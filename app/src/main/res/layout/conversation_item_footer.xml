@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical|end"
+    android:orientation="horizontal"
+    tools:background="@color/green_500"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout"
+    tools:viewBindingIgnore="true">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/footer_audio_duration"
+        style="@style/Signal.Text.Caption.MessageSent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="0:00"
+        tools:visibility="visible" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/footer_revealed_dot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/footer_audio_duration"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_rawRes="@raw/lottie_played"
+        tools:visibility="visible" />
+
+    <org.thoughtcrime.securesms.components.PlaybackSpeedToggleTextView
+        android:id="@+id/footer_audio_playback_speed_toggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:alpha="0"
+        android:background="@drawable/round_background"
+        android:fontFamily="sans-serif-medium"
+        android:gravity="center"
+        android:lineSpacingExtra="1sp"
+        android:minWidth="30dp"
+        android:minHeight="20dp"
+        android:paddingStart="4dp"
+        android:paddingEnd="4dp"
+        android:textAppearance="@style/TextAppearance.Signal.Subtitle"
+        android:textColor="@color/core_white"
+        android:visibility="gone"
+        app:backgroundTint="@color/transparent_white_20"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/footer_date"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@id/footer_revealed_dot"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:alpha="1"
+        tools:text="1x"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/footer_date"
+        style="@style/Signal.Text.Caption.MessageSent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="4dp"
+        android:autoLink="none"
+        android:ellipsize="end"
+        android:linksClickable="false"
+        android:maxLines="1"
+        android:textColor="@color/signal_text_secondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/footer_expiration_timer"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="13:14pm" />
+
+    <org.thoughtcrime.securesms.components.ExpirationTimerView
+        android:id="@+id/footer_expiration_timer"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="4dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/footer_sim_info"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/footer_sim_info"
+        style="@style/Signal.Text.Caption.MessageSent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="4dp"
+        android:autoLink="none"
+        android:ellipsize="end"
+        android:fontFamily="sans-serif-light"
+        android:linksClickable="false"
+        android:maxWidth="140dp"
+        android:maxLines="1"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/footer_insecure_indicator"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="to SIM1"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/footer_insecure_indicator"
+        android:layout_width="12dp"
+        android:layout_height="11dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="4dp"
+        android:contentDescription="@string/conversation_item__secure_message_description"
+        android:src="@drawable/ic_unlocked_white_18dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/footer_delivery_status"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <org.thoughtcrime.securesms.components.DeliveryStatusView
+        android:id="@+id/footer_delivery_status"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+</merge>

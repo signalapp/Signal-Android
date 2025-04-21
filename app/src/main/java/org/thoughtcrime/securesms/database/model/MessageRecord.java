@@ -34,7 +34,7 @@ import androidx.core.content.ContextCompat;
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.Base64;
-import org.signal.core.util.StringUtil;
+import org.signal.core.util.BidiUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
@@ -55,13 +55,13 @@ import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.profiles.ProfileName;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
@@ -253,7 +253,7 @@ public abstract class MessageRecord extends DisplayRecord {
         if (event.previousE164.isEmpty()) {
           return fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged, r.getDisplayName(context)), R.drawable.ic_thread_merge_16);
         } else {
-          return fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged, r.getDisplayName(context), PhoneNumberFormatter.prettyPrint(event.previousE164)), R.drawable.ic_thread_merge_16);
+          return fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged, r.getDisplayName(context), SignalE164Util.prettyPrint(event.previousE164)), R.drawable.ic_thread_merge_16);
         }
       } catch (IOException e) {
         throw new AssertionError(e);
@@ -265,7 +265,7 @@ public abstract class MessageRecord extends DisplayRecord {
         if (event.e164.isEmpty()) {
           return fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_your_safety_number_with_s_has_changed, r.getDisplayName(context)), R.drawable.ic_update_safety_number_16);
         } else {
-          return fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_s_belongs_to_s, PhoneNumberFormatter.prettyPrint(event.e164), r.getDisplayName(context)), R.drawable.ic_update_info_16);
+          return fromRecipient(getFromRecipient(), r -> context.getString(R.string.MessageRecord_s_belongs_to_s, SignalE164Util.prettyPrint(event.e164), r.getDisplayName(context)), R.drawable.ic_update_info_16);
         }
       } catch (IOException e) {
         throw new AssertionError(e);
@@ -283,6 +283,10 @@ public abstract class MessageRecord extends DisplayRecord {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_reported_as_spam), R.drawable.symbol_spam_16);
     } else if (isMessageRequestAccepted()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_you_accepted_the_message_request), R.drawable.symbol_thread_16);
+    } else if (isBlocked()) {
+      return staticUpdateDescription(context.getString(isGroupV2() ? R.string.MessageRecord_you_blocked_this_group : R.string.MessageRecord_you_blocked_this_person), R.drawable.symbol_block_16);
+    } else if (isUnblocked()) {
+      return staticUpdateDescription(context.getString(isGroupV2() ? R.string.MessageRecord_you_unblocked_this_group : R.string.MessageRecord_you_unblocked_this_person) , R.drawable.symbol_thread_16);
     }
 
     return null;
@@ -470,8 +474,8 @@ public abstract class MessageRecord extends DisplayRecord {
     if (profileChangeDetails != null) {
       if (profileChangeDetails.profileNameChange != null) {
         String displayName  = getFromRecipient().getDisplayName(context);
-        String newName      = StringUtil.isolateBidi(ProfileName.fromSerialized(profileChangeDetails.profileNameChange.newValue).toString());
-        String previousName = StringUtil.isolateBidi(ProfileName.fromSerialized(profileChangeDetails.profileNameChange.previous).toString());
+        String newName      = BidiUtil.isolateBidi(ProfileName.fromSerialized(profileChangeDetails.profileNameChange.newValue).toString());
+        String previousName = BidiUtil.isolateBidi(ProfileName.fromSerialized(profileChangeDetails.profileNameChange.previous).toString());
 
         String updateMessage;
         if (getFromRecipient().isSystemContact()) {
@@ -486,7 +490,7 @@ public abstract class MessageRecord extends DisplayRecord {
       } else if (profileChangeDetails.learnedProfileName != null) {
         String previouslyKnownAs;
         if (!Util.isEmpty(profileChangeDetails.learnedProfileName.e164)) {
-          previouslyKnownAs = PhoneNumberFormatter.prettyPrint(profileChangeDetails.learnedProfileName.e164);
+          previouslyKnownAs = SignalE164Util.prettyPrint(profileChangeDetails.learnedProfileName.e164);
         } else {
           previouslyKnownAs = profileChangeDetails.learnedProfileName.username;
         }
@@ -688,7 +692,8 @@ public abstract class MessageRecord extends DisplayRecord {
            isEndSession() || isIdentityUpdate() || isIdentityVerified() || isIdentityDefault() ||
            isProfileChange() || isGroupV1MigrationEvent() || isChatSessionRefresh() || isBadDecryptType() ||
            isChangeNumber() || isReleaseChannelDonationRequest() || isThreadMergeEventType() || isSmsExportType() || isSessionSwitchoverEventType() ||
-           isPaymentsRequestToActivate() || isPaymentsActivated() || isReportedSpam() || isMessageRequestAccepted();
+           isPaymentsRequestToActivate() || isPaymentsActivated() || isReportedSpam() || isMessageRequestAccepted() ||
+           isBlocked() || isUnblocked();
   }
 
   public boolean isMediaPending() {

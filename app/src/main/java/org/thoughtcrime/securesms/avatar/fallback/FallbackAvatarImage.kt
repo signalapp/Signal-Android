@@ -27,8 +27,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.Previews
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.avatar.AvatarRenderer
 import org.thoughtcrime.securesms.avatar.Avatars

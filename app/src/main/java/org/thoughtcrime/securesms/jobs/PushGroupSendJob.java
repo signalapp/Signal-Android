@@ -118,6 +118,10 @@ public final class PushGroupSendJob extends PushSendJob {
         throw new AssertionError("Not a group!");
       }
 
+      if (group.isPushV1Group()) {
+        throw new MmsException("Cannot send to GV1 groups");
+      }
+
       MessageTable    database = SignalDatabase.messages();
       OutgoingMessage message  = database.getOutgoingMessage(messageId);
 
@@ -469,6 +473,9 @@ public final class PushGroupSendJob extends PushSendJob {
       database.markAsSent(messageId, true);
 
       markAttachmentsUploaded(messageId, message);
+
+      // For scheduled messages, which may not have updated the thread with it's snippet yet
+      SignalDatabase.threads().updateSilently(threadId, false);
 
       if (skippedRecipients.size() > 0) {
         SignalDatabase.groupReceipts().setSkipped(skippedRecipients, messageId);

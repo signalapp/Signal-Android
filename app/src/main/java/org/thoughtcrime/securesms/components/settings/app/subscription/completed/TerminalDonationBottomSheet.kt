@@ -35,9 +35,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
-import org.signal.core.ui.BottomSheets
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeRepository
 import org.thoughtcrime.securesms.badges.models.Badge

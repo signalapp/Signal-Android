@@ -26,9 +26,6 @@ import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.megaphone.Megaphone
-import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
-import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -37,8 +34,7 @@ import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import java.util.concurrent.TimeUnit
 
 class ConversationListViewModel(
-  private val isArchived: Boolean,
-  private val megaphoneRepository: MegaphoneRepository = AppDependencies.megaphoneRepository
+  private val isArchived: Boolean
 ) : ViewModel() {
 
   companion object {
@@ -55,7 +51,6 @@ class ConversationListViewModel(
     .build()
 
   val conversationsState: Flowable<List<Conversation>> = store.mapDistinctForUi { it.conversations }
-  val megaphoneState: Flowable<Megaphone> = store.mapDistinctForUi { it.megaphone }
   val selectedState: Flowable<ConversationSet> = store.mapDistinctForUi { it.selectedConversations }
   val filterRequestState: Flowable<ConversationFilterRequest> = store.mapDistinctForUi { it.filterRequest }
   val chatFolderState: Flowable<List<ChatFolderMappingModel>> = store.mapDistinctForUi { it.chatFolders }
@@ -69,8 +64,6 @@ class ConversationListViewModel(
     get() = store.state.currentFolder
   val conversationFilterRequest: ConversationFilterRequest
     get() = store.state.filterRequest
-  val megaphone: Megaphone
-    get() = store.state.megaphone
   val pinnedCount: Int
     get() = store.state.pinnedCount
   val webSocketState: Observable<WebSocketConnectionState>
@@ -154,10 +147,6 @@ class ConversationListViewModel(
   }
 
   fun onVisible() {
-    megaphoneRepository.getNextMegaphone { next ->
-      store.update { it.copy(megaphone = next ?: Megaphone.NONE) }
-    }
-
     if (!coldStart) {
       AppDependencies.databaseObserver.notifyConversationListListeners()
     }
@@ -202,23 +191,10 @@ class ConversationListViewModel(
     }
   }
 
-  fun onMegaphoneCompleted(event: Megaphones.Event) {
-    store.update { it.copy(megaphone = Megaphone.NONE) }
-    megaphoneRepository.markFinished(event)
-  }
-
-  fun onMegaphoneSnoozed(event: Megaphones.Event) {
-    megaphoneRepository.markSeen(event)
-    store.update { it.copy(megaphone = Megaphone.NONE) }
-  }
-
-  fun onMegaphoneVisible(visible: Megaphone) {
-    megaphoneRepository.markVisible(visible.event)
-  }
-
   private fun loadCurrentFolders() {
     viewModelScope.launch(Dispatchers.IO) {
-      val folders = ChatFoldersRepository.getCurrentFolders(includeUnreadAndMutedCounts = true)
+      val folders = ChatFoldersRepository.getCurrentFolders()
+      val unreadCountAndMutedStatus = ChatFoldersRepository.getUnreadCountAndMutedStatusForFolders(folders)
 
       val selectedFolderId = if (currentFolder.id == -1L) {
         folders.firstOrNull()?.id
@@ -226,7 +202,12 @@ class ConversationListViewModel(
         currentFolder.id
       }
       val chatFolders = folders.map { folder ->
-        ChatFolderMappingModel(folder, selectedFolderId == folder.id)
+        ChatFolderMappingModel(
+          chatFolder = folder,
+          unreadCount = unreadCountAndMutedStatus[folder.id]?.first ?: 0,
+          isMuted = unreadCountAndMutedStatus[folder.id]?.second ?: false,
+          isSelected = selectedFolderId == folder.id
+        )
       }
 
       store.update {
@@ -283,9 +264,13 @@ class ConversationListViewModel(
     }
   }
 
-  fun addToFolder(folderId: Long, threadId: Long) {
+  fun addToFolder(folderId: Long, threadIds: List<Long>) {
     viewModelScope.launch(Dispatchers.IO) {
-      SignalDatabase.chatFolders.addToFolder(folderId, threadId)
+      val includedChats = folders.find { it.chatFolder.id == folderId }?.chatFolder?.includedChats
+      val threadIdsNotIncluded = threadIds.filterNot { threadId ->
+        includedChats?.contains(threadId) ?: false
+      }
+      SignalDatabase.chatFolders.addToFolder(folderId, threadIdsNotIncluded)
     }
   }
 
@@ -293,7 +278,6 @@ class ConversationListViewModel(
     val chatFolders: List<ChatFolderMappingModel> = emptyList(),
     val currentFolder: ChatFolderRecord = ChatFolderRecord(),
     val conversations: List<Conversation> = emptyList(),
-    val megaphone: Megaphone = Megaphone.NONE,
     val selectedConversations: ConversationSet = ConversationSet(),
     val internalSelection: Set<Conversation> = emptySet(),
     val filterRequest: ConversationFilterRequest = ConversationFilterRequest(ConversationFilter.OFF, ConversationFilterSource.DRAG),

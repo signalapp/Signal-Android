@@ -32,10 +32,10 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Previews
-import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R

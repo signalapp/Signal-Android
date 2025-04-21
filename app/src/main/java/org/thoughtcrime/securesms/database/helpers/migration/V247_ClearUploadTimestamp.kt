@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * There was a bad interaction with the digest backfill job, where digests could be changed, and then already-uploaded attachments could be re-used

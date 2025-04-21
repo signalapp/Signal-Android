@@ -16,7 +16,7 @@ import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.rx3.asFlowable
-import org.signal.core.ui.Dialogs
+import org.signal.core.ui.compose.Dialogs
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFlowViewModel
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsStage

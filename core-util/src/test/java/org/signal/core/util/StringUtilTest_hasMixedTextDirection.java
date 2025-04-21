@@ -3,7 +3,6 @@ package org.signal.core.util;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
-import org.signal.core.util.StringUtil;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -49,7 +48,7 @@ public final class StringUtilTest_hasMixedTextDirection {
 
   @Test
   public void trim() {
-    boolean output = StringUtil.hasMixedTextDirection(input);
+    boolean output = BidiUtil.hasMixedTextDirection(input);
     assertEquals(expected, output);
   }
 }

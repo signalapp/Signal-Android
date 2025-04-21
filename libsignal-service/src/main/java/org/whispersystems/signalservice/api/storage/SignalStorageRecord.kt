@@ -10,7 +10,7 @@ data class SignalStorageRecord(
   val proto: StorageRecord
 ) {
   val isUnknown: Boolean
-    get() = proto.contact == null && proto.groupV1 == null && proto.groupV2 == null && proto.account == null && proto.storyDistributionList == null && proto.callLink == null
+    get() = proto.contact == null && proto.groupV1 == null && proto.groupV2 == null && proto.account == null && proto.storyDistributionList == null && proto.callLink == null && proto.chatFolder == null
 
   companion object {
     @JvmStatic

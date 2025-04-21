@@ -49,7 +49,7 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
 
         val progress = SimpleProgressDialog.show(this)
 
-        SimpleTask.run(lifecycle, { RecipientRepository.lookupNewE164(this, number!!) }, { result ->
+        SimpleTask.run(lifecycle, { RecipientRepository.lookupNewE164(number!!) }, { result ->
           progress.dismiss()
 
           when (result) {

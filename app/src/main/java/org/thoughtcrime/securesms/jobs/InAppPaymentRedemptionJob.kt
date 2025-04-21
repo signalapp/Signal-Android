@@ -142,6 +142,11 @@ class InAppPaymentRedemptionJob private constructor(
   }
 
   override fun onRun() {
+    if (!SignalStore.account.isRegistered) {
+      Log.w(TAG, "User is not registered. Failing.")
+      throw Exception("Unregistered users cannot perform this job.")
+    }
+
     if (jobData.inAppPaymentId != null) {
       onRunForInAppPayment(InAppPaymentTable.InAppPaymentId(jobData.inAppPaymentId))
     } else {
@@ -240,6 +245,7 @@ class InAppPaymentRedemptionJob private constructor(
 
       SignalDatabase.inAppPayments.update(
         inAppPayment = inAppPayment.copy(
+          state = InAppPaymentTable.State.END,
           data = inAppPayment.data.copy(
             error = protoError
           )
@@ -253,11 +259,11 @@ class InAppPaymentRedemptionJob private constructor(
       inAppPayment = inAppPayment.copy(
         notified = !jobData.isFromAuthCheck,
         state = InAppPaymentTable.State.END,
-        data = inAppPayment.data.copy(
+        data = inAppPayment.data.newBuilder().redemption(
           redemption = inAppPayment.data.redemption.copy(
             stage = InAppPaymentData.RedemptionState.Stage.REDEEMED
           )
-        )
+        ).build()
       )
     )
 

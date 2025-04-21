@@ -5,17 +5,24 @@
 
 package org.whispersystems.signalservice.api.storage
 
+import okhttp3.Credentials
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket
+import org.whispersystems.signalservice.internal.get
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.storage.protos.ReadOperation
 import org.whispersystems.signalservice.internal.storage.protos.StorageItems
 import org.whispersystems.signalservice.internal.storage.protos.StorageManifest
 import org.whispersystems.signalservice.internal.storage.protos.WriteOperation
+import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 
 /**
  * Class to interact with storage service endpoints.
  */
-class StorageServiceApi(private val pushServiceSocket: PushServiceSocket) {
+class StorageServiceApi(
+  private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
+  private val pushServiceSocket: PushServiceSocket
+) {
 
   /**
    * Retrieves an auth string that's needed to make other storage requests.
@@ -23,9 +30,9 @@ class StorageServiceApi(private val pushServiceSocket: PushServiceSocket) {
    * GET /v1/storage/auth
    */
   fun getAuth(): NetworkResult<String> {
-    return NetworkResult.fromFetch {
-      pushServiceSocket.getStorageAuth()
-    }
+    val request = WebSocketRequestMessage.get("/v1/storage/auth")
+    return NetworkResult.fromWebSocketRequest(authWebSocket, request, StorageAuthResponse::class)
+      .map { Credentials.basic(it.username, it.password) }
   }
 
   /**

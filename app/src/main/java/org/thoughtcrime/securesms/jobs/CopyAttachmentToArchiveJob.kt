@@ -141,7 +141,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
       SignalStore.backup.usedBackupMediaSpace += AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size))
 
-      ArchiveUploadProgress.onAttachmentFinished()
+      ArchiveUploadProgress.onAttachmentFinished(attachmentId)
     }
 
     return result
@@ -156,7 +156,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
     }
 
-    ArchiveUploadProgress.onAttachmentFinished()
+    ArchiveUploadProgress.onAttachmentFinished(attachmentId)
   }
 
   class Factory : Job.Factory<CopyAttachmentToArchiveJob> {

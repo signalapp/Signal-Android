@@ -14,7 +14,6 @@ import androidx.sqlite.db.SupportSQLiteQuery;
 import net.zetetic.database.sqlcipher.SQLiteStatement;
 import net.zetetic.database.sqlcipher.SQLiteTransactionListener;
 
-import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
 
 import java.io.IOException;
@@ -354,7 +353,7 @@ public class SQLiteDatabase implements SupportSQLiteDatabase {
     return traceSql("rawQuery(2a)", sql, false, () -> wrapped.rawQuery(sql, selectionArgs));
   }
 
-  public Cursor rawQuery(String sql, Object[] args) {
+  public Cursor rawQuery(String sql, Object... args) {
     DatabaseMonitor.onSql(sql, args);
     return traceSql("rawQuery(2b)", sql, false,() -> wrapped.rawQuery(sql, args));
   }

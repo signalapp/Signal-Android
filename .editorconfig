@@ -18,3 +18,14 @@ ktlint_standard_statement-wrapping = disabled
 internal:ktlint-suppression = disabled
 ktlint_standard_unnecessary-parentheses-before-trailing-lambda = disabled
 ktlint_standard_value-parameter-comment = disabled
+
+# Disable ktlint on generated source code, see
+# https://github.com/JLLeitschuh/ktlint-gradle/issues/746
+[**/build/generated/source/**]
+ktlint = disabled
+
+[build/generated/*/main/**]
+ktlint = disabled
+
+[**/build/generated-sources/**]
+ktlint = disabled

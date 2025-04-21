@@ -9,20 +9,20 @@ import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.AppCapabilities;
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil;
-import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.keyvalue.SvrValues;
+import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.registration.data.RegistrationRepository;
 import org.thoughtcrime.securesms.registration.secondary.DeviceNameCipher;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
-import org.whispersystems.signalservice.api.push.exceptions.NetworkFailureException;
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -125,14 +125,14 @@ public class RefreshAttributesJob extends BaseJob {
         recoveryPassword
     );
 
-    AppDependencies.getSignalServiceAccountManager().setAccountAttributes(accountAttributes);
+    NetworkResultUtil.toBasicLegacy(SignalNetwork.account().setAccountAttributes(accountAttributes));
 
     hasRefreshedThisAppCycle = true;
   }
 
   @Override
   public boolean onShouldRetry(@NonNull Exception e) {
-    return e instanceof NetworkFailureException;
+    return e instanceof IOException && !(e instanceof NonSuccessfulResponseCodeException);
   }
 
   @Override

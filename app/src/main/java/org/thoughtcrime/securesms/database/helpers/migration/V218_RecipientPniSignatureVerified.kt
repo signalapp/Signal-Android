@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Adds a pni_signature_verified column to the recipient table, letting us track whether the ACI/PNI association is verified and sync that to storage service.

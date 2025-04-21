@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
  */
 class InAppPaymentError(
   val inAppPaymentDataError: InAppPaymentData.Error
-) : Exception() {
+) : Exception(inAppPaymentDataError.toString()) {
   companion object {
     fun fromDonationError(donationError: DonationError): InAppPaymentError? {
       val inAppPaymentDataError: InAppPaymentData.Error? = when (donationError) {

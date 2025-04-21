@@ -14,11 +14,15 @@ import androidx.media3.datasource.TransferListener;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.backup.v2.BackupRepository;
+import org.thoughtcrime.securesms.backup.v2.DatabaseAttachmentArchiveUtil;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.signal.core.util.Base64;
+import org.whispersystems.signalservice.api.backup.MediaId;
+import org.whispersystems.signalservice.api.backup.MediaName;
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
@@ -68,10 +72,13 @@ class PartDataSource implements DataSource {
 
     if (inProgress && !hasData && hasIncrementalDigest && attachmentKey != null) {
       final byte[] decode       = Base64.decode(attachmentKey);
-      if (attachment.transferState == AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS && attachment.archiveMediaId != null) {
+      if (attachment.transferState == AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS && attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
         final File archiveFile = attachmentDatabase.getOrCreateArchiveTransferFile(attachment.attachmentId);
         try {
-          MediaRootBackupKey.MediaKeyMaterial mediaKeyMaterial     = SignalStore.backup().getMediaRootBackupKey().deriveMediaSecretsFromMediaId(attachment.archiveMediaId);
+          String mediaName = DatabaseAttachmentArchiveUtil.requireMediaNameAsString(attachment);
+          String mediaId   = MediaName.toMediaIdString(mediaName, SignalStore.backup().getMediaRootBackupKey());
+
+          MediaRootBackupKey.MediaKeyMaterial mediaKeyMaterial     = SignalStore.backup().getMediaRootBackupKey().deriveMediaSecretsFromMediaId(mediaId);
           long                                originalCipherLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size));
 
           this.inputStream = AttachmentCipherInputStream.createStreamingForArchivedAttachment(mediaKeyMaterial, archiveFile, originalCipherLength, attachment.size, attachment.remoteDigest, decode, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);

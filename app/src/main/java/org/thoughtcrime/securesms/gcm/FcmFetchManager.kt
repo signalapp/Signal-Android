@@ -45,7 +45,14 @@ object FcmFetchManager {
 
   private val KEEP_ALIVE_TOKEN = "FcmFetch"
 
-  val WEBSOCKET_DRAIN_TIMEOUT = 5.minutes.inWholeMilliseconds
+  val WEBSOCKET_DRAIN_TIMEOUT: Long
+    get() {
+      return if (AppDependencies.signalServiceNetworkAccess.isCensored()) {
+        2.minutes.inWholeMilliseconds
+      } else {
+        5.minutes.inWholeMilliseconds
+      }
+    }
 
   @Volatile
   private var activeCount = 0
@@ -75,6 +82,9 @@ object FcmFetchManager {
       Log.w(TAG, "May have messages notification kill switch")
       return
     }
+
+    Log.w(TAG, "Notifying the user that they may have new messages.")
+
     val mayHaveMessagesNotification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().ADDITIONAL_MESSAGE_NOTIFICATIONS)
       .setSmallIcon(R.drawable.ic_notification)
       .setContentTitle(context.getString(R.string.FcmFetchManager__you_may_have_messages))

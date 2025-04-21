@@ -27,15 +27,11 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
-import org.thoughtcrime.securesms.jobs.ProfileUploadJob
-import org.thoughtcrime.securesms.jobs.SyncArchivedMediaJob
 import org.thoughtcrime.securesms.keyvalue.Completed
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
-import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
-import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
-import org.whispersystems.signalservice.api.registration.RestoreMethod
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 
 class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
 
@@ -55,10 +51,15 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
   val state: StateFlow<ScreenState> = store.asStateFlow()
 
   init {
+    reload()
+  }
+
+  fun reload() {
     viewModelScope.launch(Dispatchers.IO) {
+      store.update { it.copy(loadState = ScreenState.LoadState.LOADING, loadAttempts = it.loadAttempts + 1) }
       val tier: MessageBackupTier? = BackupRepository.restoreBackupTier(SignalStore.account.requireAci())
       store.update {
-        if (tier != null) {
+        if (tier != null && SignalStore.backup.lastBackupTime > 0) {
           it.copy(
             loadState = ScreenState.LoadState.LOADED,
             backupTier = SignalStore.backup.backupTier,
@@ -66,7 +67,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
             backupSize = SignalStore.backup.totalBackupSize.bytes
           )
         } else {
-          if (SignalStore.backup.isBackupTierRestored) {
+          if (SignalStore.backup.isBackupTierRestored || SignalStore.backup.lastBackupTime == 0L) {
             it.copy(loadState = ScreenState.LoadState.NOT_FOUND)
           } else if (it.loadState == ScreenState.LoadState.LOADING) {
             it.copy(loadState = ScreenState.LoadState.FAILURE)
@@ -93,7 +94,6 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
           AppDependencies
             .jobManager
             .startChain(BackupRestoreJob())
-            .then(SyncArchivedMediaJob())
             .then(BackupRestoreMediaJob())
             .enqueue(listener)
 
@@ -108,12 +108,9 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
               Log.i(TAG, "Restore successful")
               SignalStore.registration.restoreDecisionState = RestoreDecisionState.Completed
 
-              if (!RegistrationRepository.isMissingProfileData()) {
-                RegistrationUtil.maybeMarkRegistrationComplete()
-                AppDependencies.jobManager.add(ProfileUploadJob())
-              }
+              StorageServiceRestore.restore()
 
-              store.update { it.copy(importState = ImportState.Restored(RegistrationRepository.isMissingProfileData())) }
+              store.update { it.copy(importState = ImportState.Restored) }
             }
 
             JobTracker.JobState.PENDING,
@@ -155,6 +152,13 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
     }
   }
 
+  suspend fun performStorageServiceAccountRestoreIfNeeded() {
+    if (SignalStore.account.restoredAccountEntropyPool || SignalStore.svr.masterKeyForInitialDataRestore != null) {
+      store.update { it.copy(loadState = ScreenState.LoadState.STORAGE_SERVICE_RESTORE) }
+      StorageServiceRestore.restore()
+    }
+  }
+
   data class ScreenState(
     val isRemoteRestoreOnlyOption: Boolean = false,
     val backupTier: MessageBackupTier? = null,
@@ -162,7 +166,8 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
     val backupSize: ByteSize = 0.bytes,
     val importState: ImportState = ImportState.None,
     val restoreProgress: RestoreV2Event? = null,
-    val loadState: LoadState = if (backupTier != null) LoadState.LOADED else LoadState.LOADING
+    val loadState: LoadState = if (backupTier != null) LoadState.LOADED else LoadState.LOADING,
+    val loadAttempts: Int = 0
   ) {
 
     fun isLoaded(): Boolean {
@@ -170,14 +175,14 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
     }
 
     enum class LoadState {
-      LOADING, LOADED, NOT_FOUND, FAILURE
+      LOADING, LOADED, NOT_FOUND, FAILURE, STORAGE_SERVICE_RESTORE
     }
   }
 
   sealed interface ImportState {
     data object None : ImportState
     data object InProgress : ImportState
-    data class Restored(val missingProfileData: Boolean) : ImportState
+    data object Restored : ImportState
     data object Failed : ImportState
   }
 }

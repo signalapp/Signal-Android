@@ -194,7 +194,7 @@ sealed class ConversationSettingsViewModel(
       }
 
       if (recipientId != Recipient.self().id) {
-        repository.getGroupsInCommon(recipientId) { groupsInCommon ->
+        disposable += repository.getGroupsInCommon(recipientId).subscribe { groupsInCommon ->
           store.update { state ->
             val recipientSettings = state.requireRecipientSettingsState()
             val canShowMore = !recipientSettings.groupsInCommonExpanded && groupsInCommon.size > 6
@@ -449,6 +449,7 @@ sealed class ConversationSettingsViewModel(
               internalEvents.onNext(ConversationSettingsEvent.ShowMembersAdded(it.numberOfMembersAdded))
             }
           }
+
           is GroupAddMembersResult.Failure -> internalEvents.onNext(ConversationSettingsEvent.ShowAddMembersToGroupError(it.reason))
         }
       }

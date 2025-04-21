@@ -87,42 +87,6 @@ public class SignalServiceMessageReceiver {
     return retrieveAttachment(pointer, destination, maxSizeBytes, null).getDataStream();
   }
 
-  public ListenableFuture<ProfileAndCredential> retrieveProfile(SignalServiceAddress address,
-                                                                Optional<ProfileKey> profileKey,
-                                                                @Nullable SealedSenderAccess sealedSenderAccess,
-                                                                SignalServiceProfile.RequestType requestType,
-                                                                Locale locale)
-  {
-
-    if (profileKey.isPresent()) {
-      ACI aci;
-      if (address.getServiceId() instanceof ACI) {
-        aci = (ACI) address.getServiceId();
-      } else {
-        // We shouldn't ever have a profile key for a non-ACI.
-        SettableFuture<ProfileAndCredential> result = new SettableFuture<>();
-        result.setException(new ClassCastException("retrieving a versioned profile requires an ACI"));
-        return result;
-      }
-
-      if (requestType == SignalServiceProfile.RequestType.PROFILE_AND_CREDENTIAL) {
-        return socket.retrieveVersionedProfileAndCredential(aci, profileKey.get(), sealedSenderAccess, locale);
-      } else {
-        return FutureTransformers.map(socket.retrieveVersionedProfile(aci, profileKey.get(), sealedSenderAccess, locale), profile -> {
-          return new ProfileAndCredential(profile,
-                                          SignalServiceProfile.RequestType.PROFILE,
-                                          Optional.empty());
-        });
-      }
-    } else {
-      return FutureTransformers.map(socket.retrieveProfile(address, sealedSenderAccess, locale), profile -> {
-        return new ProfileAndCredential(profile,
-                                        SignalServiceProfile.RequestType.PROFILE,
-                                        Optional.empty());
-      });
-    }
-  }
-
   public InputStream retrieveProfileAvatar(String path, File destination, ProfileKey profileKey, long maxSizeBytes)
       throws IOException
   {
@@ -135,10 +99,6 @@ public class SignalServiceMessageReceiver {
   {
     socket.retrieveProfileAvatar(path, destination, maxSizeBytes);
     return new FileInputStream(destination);
-  }
-
-  public Single<ServiceResponse<IdentityCheckResponse>> performIdentityCheck(@Nonnull IdentityCheckRequest request, @Nonnull ResponseMapper<IdentityCheckResponse> responseMapper) {
-    return socket.performIdentityCheck(request, responseMapper);
   }
 
   /**

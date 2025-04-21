@@ -98,6 +98,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperFactory
@@ -494,6 +495,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     Log.d(TAG, "[getAndPossiblyMerge] Requires a transaction.")
+    val e164 = e164?.let { SignalE164Util.formatAsE164(it) }
+    require(aci != null || pni != null || e164 != null) { "E164 was improperly formatted!" }
 
     val db = writableDatabase
     lateinit var result: ProcessPnpTupleResult
@@ -724,20 +727,21 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     return RecipientReader(cursor)
   }
 
-  fun getRecords(ids: Collection<RecipientId>): Map<RecipientId, RecipientRecord> {
-    val queries = SqlUtil.buildCollectionQuery(
+  fun getExistingRecords(ids: Collection<RecipientId>): Map<RecipientId, RecipientRecord> {
+    val query = SqlUtil.buildFastCollectionQuery(
       column = ID,
       values = ids.map { it.serialize() }
     )
 
-    val foundRecords = queries.flatMap { query ->
-      readableDatabase.query(TABLE_NAME, null, query.where, query.whereArgs, null, null, null).readToList { cursor ->
-        RecipientTableCursorUtil.getRecord(context, cursor)
-      }
-    }
+    val foundRecords = readableDatabase
+      .select()
+      .from(TABLE_NAME)
+      .where(query.where, query.whereArgs)
+      .run()
+      .readToList { cursor -> RecipientTableCursorUtil.getRecord(context, cursor) }
 
     val foundIds = foundRecords.map { record -> record.id }
-    val remappedRecords = ids.filterNot { it in foundIds }.map(::findRemappedIdRecord)
+    val remappedRecords = ids.filterNot { it in foundIds }.mapNotNull { findRemappedIdRecord(it) }
 
     return (foundRecords + remappedRecords).associateBy { it.id }
   }
@@ -750,20 +754,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       return if (cursor != null && cursor.moveToNext()) {
         RecipientTableCursorUtil.getRecord(context, cursor)
       } else {
-        findRemappedIdRecord(id)
+        findRemappedIdRecordOrThrow(id)
       }
     }
   }
 
-  private fun findRemappedIdRecord(id: RecipientId): RecipientRecord {
+  private fun findRemappedIdRecord(id: RecipientId): RecipientRecord? {
     val remapped = RemappedRecords.getInstance().getRecipient(id)
 
     return if (remapped.isPresent) {
       Log.w(TAG, "Missing recipient for $id, but found it in the remapped records as ${remapped.get()}")
       getRecord(remapped.get())
     } else {
-      throw MissingRecipientException(id)
+      null
     }
+  }
+
+  private fun findRemappedIdRecordOrThrow(id: RecipientId): RecipientRecord {
+    return findRemappedIdRecord(id) ?: throw MissingRecipientException(id)
   }
 
   fun getRecordForSync(id: RecipientId): RecipientRecord? {
@@ -1851,7 +1859,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun setProfileAvatar(id: RecipientId, profileAvatar: String?) {
+  fun setProfileAvatar(id: RecipientId, profileAvatar: String?, forceNotify: Boolean = false) {
     val contentValues = ContentValues(1).apply {
       put(PROFILE_AVATAR, profileAvatar)
     }
@@ -1861,6 +1869,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         rotateStorageId(id)
         StorageSyncHelper.scheduleSyncForDataChange()
       }
+    } else if (forceNotify) {
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
     }
   }
 
@@ -3395,7 +3405,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   fun querySignalContacts(contactSearchQuery: ContactSearchQuery): Cursor? {
-    val query = SqlUtil.buildCaseInsensitiveGlobPattern(contactSearchQuery.query)
+    val query = SqlUtil.buildCaseInsensitiveGlobPattern(contactSearchQuery.query.trim())
 
     val searchSelection = ContactSearchSelection.Builder()
       .withRegistered(true)
@@ -3661,32 +3671,38 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         PROFILE_SHARING to 0
       )
 
-      val e164Query = SqlUtil.buildFastCollectionQuery(E164, blockedE164s)
-      db.update(TABLE_NAME)
-        .values(blockValues)
-        .where(e164Query.where, e164Query.whereArgs)
-        .run()
-
-      val aciQuery = SqlUtil.buildFastCollectionQuery(ACI_COLUMN, blockedAcis.map { it.toString() })
-      db.update(TABLE_NAME)
-        .values(blockValues)
-        .where(aciQuery.where, aciQuery.whereArgs)
-        .run()
-
-      val groupIds: List<GroupId.V1> = blockedGroupIds.mapNotNull { raw ->
-        try {
-          GroupId.v1(raw)
-        } catch (e: BadGroupIdException) {
-          Log.w(TAG, "[applyBlockedUpdate] Bad GV1 ID!")
-          null
-        }
+      if (blockedE164s.isNotEmpty()) {
+        val e164Query = SqlUtil.buildFastCollectionQuery(E164, blockedE164s)
+        db.update(TABLE_NAME)
+          .values(blockValues)
+          .where(e164Query.where, e164Query.whereArgs)
+          .run()
       }
 
-      val groupIdQuery = SqlUtil.buildFastCollectionQuery(GROUP_ID, groupIds.map { it.toString() })
-      db.update(TABLE_NAME)
-        .values(blockValues)
-        .where(groupIdQuery.where, groupIdQuery.whereArgs)
-        .run()
+      if (blockedAcis.isNotEmpty()) {
+        val aciQuery = SqlUtil.buildFastCollectionQuery(ACI_COLUMN, blockedAcis.map { it.toString() })
+        db.update(TABLE_NAME)
+          .values(blockValues)
+          .where(aciQuery.where, aciQuery.whereArgs)
+          .run()
+      }
+
+      if (blockedGroupIds.isNotEmpty()) {
+        val groupIds: List<GroupId.V1> = blockedGroupIds.mapNotNull { raw ->
+          try {
+            GroupId.v1(raw)
+          } catch (e: BadGroupIdException) {
+            Log.w(TAG, "[applyBlockedUpdate] Bad GV1 ID!")
+            null
+          }
+        }
+
+        val groupIdQuery = SqlUtil.buildFastCollectionQuery(GROUP_ID, groupIds.map { it.toString() })
+        db.update(TABLE_NAME)
+          .values(blockValues)
+          .where(groupIdQuery.where, groupIdQuery.whereArgs)
+          .run()
+      }
     }
 
     AppDependencies.recipientCache.clear()
@@ -3801,8 +3817,15 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun manuallyShowAvatar(recipientId: RecipientId) {
-    updateExtras(recipientId) { b: RecipientExtras.Builder -> b.manuallyShownAvatar(true) }
+  fun clearHasGroupsInCommon(recipientId: RecipientId) {
+    if (update(recipientId, contentValuesOf(GROUPS_IN_COMMON to 0))) {
+      Log.i(TAG, "Reset $recipientId to have no groups in common.")
+      Recipient.live(recipientId).refresh()
+    }
+  }
+
+  fun manuallyUpdateShowAvatar(recipientId: RecipientId, showAvatar: Boolean) {
+    updateExtras(recipientId) { b: RecipientExtras.Builder -> b.manuallyShownAvatar(showAvatar) }
   }
 
   fun getCapabilities(id: RecipientId): RecipientRecord.Capabilities? {
@@ -4084,7 +4107,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       PNI_COLUMN to pni?.toString(),
       PNI_SIGNATURE_VERIFIED to pniVerified.toInt(),
       STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey()),
-      AVATAR_COLOR to AvatarColorHash.forAddress((aci ?: pni)?.toString(), e164).serialize()
+      AVATAR_COLOR to AvatarColorHash.forAddress((aci ?: pni), e164).serialize()
     )
 
     if (pni != null || aci != null) {
@@ -4141,7 +4164,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
 
       if (isInsert) {
-        put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.proto.signalAci?.toString() ?: contact.proto.signalPni?.toString(), contact.proto.e164).serialize())
+        put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.proto.signalAci ?: contact.proto.signalPni, contact.proto.e164).serialize())
       }
     }
   }

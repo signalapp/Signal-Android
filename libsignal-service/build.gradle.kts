@@ -36,6 +36,7 @@ tasks.withType<KotlinCompile>().configureEach {
     compilerOptions {
       jvmTarget = JvmTarget.fromTarget(signalKotlinJvmTarget)
       freeCompilerArgs = listOf("-Xjvm-default=all")
+      suppressWarnings = true
     }
   }
 }
@@ -96,6 +97,7 @@ dependencies {
   implementation(libs.google.jsr305)
 
   api(libs.rxjava3.rxjava)
+  implementation(libs.rxjava3.rxkotlin)
 
   implementation(libs.kotlin.stdlib.jdk8)
   implementation(libs.kotlinx.coroutines.core)

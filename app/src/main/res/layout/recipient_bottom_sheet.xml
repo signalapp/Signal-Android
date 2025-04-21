@@ -56,6 +56,49 @@
             app:layout_constraintTop_toTopOf="@+id/rbs_recipient_avatar"
             tools:visibility="visible" />
 
+        <ProgressBar
+            android:id="@+id/rbs_progress_bar"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:indeterminate="true"
+            style="?android:attr/progressBarStyleLarge"
+            android:indeterminateTint="@color/signal_colorOnSurfaceVariant"
+            app:layout_constraintTop_toTopOf="@id/rbs_recipient_avatar"
+            app:layout_constraintBottom_toBottomOf="@id/rbs_recipient_avatar"
+            app:layout_constraintStart_toStartOf="@id/rbs_recipient_avatar"
+            app:layout_constraintEnd_toEndOf="@id/rbs_recipient_avatar"
+            tools:visibility="visible" />
+
+        <LinearLayout
+            android:id="@+id/rbs_tap_to_view"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/rbs_recipient_avatar"
+            app:layout_constraintEnd_toEndOf="@+id/rbs_recipient_avatar"
+            app:layout_constraintStart_toStartOf="@+id/rbs_recipient_avatar"
+            app:layout_constraintTop_toTopOf="@+id/rbs_recipient_avatar">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                app:srcCompat="@drawable/ic_tap_outline_24"
+                app:tint="@color/core_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/MessageRequestProfileView_view"
+                android:textAppearance="@style/TextAppearance.Signal.Subtitle"
+                android:textColor="@color/core_white" />
+
+        </LinearLayout>
+
         <org.thoughtcrime.securesms.components.emoji.EmojiTextView
             android:id="@+id/rbs_full_name"
             android:layout_width="0dp"

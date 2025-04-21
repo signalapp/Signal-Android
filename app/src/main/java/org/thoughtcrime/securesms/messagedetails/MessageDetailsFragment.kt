@@ -84,7 +84,7 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
 
     list.adapter = adapter
     list.itemAnimator = null
-    Material3OnScrollHelper(requireActivity(), toolbarShadow, viewLifecycleOwner).attach(list)
+    Material3OnScrollHelper(activity = requireActivity(), views = listOf(toolbarShadow), lifecycleOwner = viewLifecycleOwner).attach(list)
   }
 
   private fun initializeViewModel() {
@@ -383,6 +383,10 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
   }
 
   override fun onDisplayMediaNoLongerAvailableSheet() {
+    Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onShowUnverifiedProfileSheet(forGroup: Boolean) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 

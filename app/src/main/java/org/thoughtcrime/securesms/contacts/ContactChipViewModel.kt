@@ -9,7 +9,6 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -74,7 +73,7 @@ class ContactChipViewModel : ViewModel() {
 
   private fun getOrCreateRecipientId(selectedContact: SelectedContact): Single<RecipientId> {
     return Single.fromCallable {
-      selectedContact.getOrCreateRecipientId(AppDependencies.application)
+      selectedContact.getOrCreateRecipientId()
     }
   }
 }

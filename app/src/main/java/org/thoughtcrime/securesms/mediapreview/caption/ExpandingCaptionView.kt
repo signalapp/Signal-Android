@@ -50,8 +50,10 @@ class ExpandingCaptionView @JvmOverloads constructor(
     if (expand) {
       setMaxLength(-1)
       text = fullCaptionText
-      scrollTo(0, 0)
       updateLayoutParams { height = expandedHeight }
+      post {
+        scrollTo(0, 0)
+      }
     } else {
       setMaxLength(CHAR_LIMIT_MESSAGE_PREVIEW)
       text = fullCaptionText

@@ -39,12 +39,12 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Dividers
-import org.signal.core.ui.Previews
-import org.signal.core.ui.Rows
-import org.signal.core.ui.Rows.TextAndLabel
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.Rows.TextAndLabel
+import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.internal.storage.InternalStorageServicePlaygroundViewModel.OneOffEvent
@@ -110,7 +110,7 @@ fun Screen(
           navigationIcon = {
             IconButton(onClick = onBackPressed) {
               Icon(
-                painter = painterResource(R.drawable.symbol_arrow_left_24),
+                painter = painterResource(R.drawable.symbol_arrow_start_24),
                 tint = MaterialTheme.colorScheme.onSurface,
                 contentDescription = null
               )
@@ -282,6 +282,12 @@ private fun StorageRecordRow(record: SignalStorageRecord) {
       record.proto.storyDistributionList != null -> {
         Column {
           Text("Distribution List", fontWeight = FontWeight.Bold)
+          ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
+        }
+      }
+      record.proto.chatFolder != null -> {
+        Column {
+          Text("Chat Folder", fontWeight = FontWeight.Bold)
           ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
         }
       }

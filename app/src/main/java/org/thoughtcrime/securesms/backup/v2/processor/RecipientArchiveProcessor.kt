@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.processor
 
 import org.signal.core.util.logging.Log
+import org.signal.core.util.update
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
@@ -21,6 +22,8 @@ import org.thoughtcrime.securesms.backup.v2.importer.GroupArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.proto.ReleaseNotes
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
+import org.thoughtcrime.securesms.backup.v2.util.toLocal
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -99,9 +102,16 @@ object RecipientArchiveProcessor {
       recipient.contact != null -> ContactArchiveImporter.import(recipient.contact)
       recipient.group != null -> GroupArchiveImporter.import(recipient.group)
       recipient.distributionList != null -> DistributionListArchiveImporter.import(recipient.distributionList, importState)
-      recipient.self != null -> Recipient.self().id
       recipient.releaseNotes != null -> SignalDatabase.recipients.restoreReleaseNotes()
       recipient.callLink != null -> CallLinkArchiveImporter.import(recipient.callLink)
+      recipient.self != null -> {
+        SignalDatabase.writableDatabase
+          .update(RecipientTable.TABLE_NAME)
+          .values(RecipientTable.AVATAR_COLOR to recipient.self.avatarColor?.toLocal()?.serialize())
+          .where("${RecipientTable.ID} = ?", Recipient.self().id)
+          .run()
+        Recipient.self().id
+      }
       else -> {
         Log.w(TAG, "Unrecognized recipient type!")
         null

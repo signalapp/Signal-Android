@@ -13,16 +13,16 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.CreateFoldersFragmentArgs
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.EditNotificationProfileScheduleFragmentArgs
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.DynamicTheme
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 private const val START_LOCATION = "app.settings.start.location"
@@ -31,12 +31,12 @@ private const val NOTIFICATION_CATEGORY = "android.intent.category.NOTIFICATION_
 private const val STATE_WAS_CONFIGURATION_UPDATED = "app.settings.state.configuration.updated"
 private const val EXTRA_PERFORM_ACTION_ON_CREATE = "extra_perform_action_on_create"
 
-class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
+class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
 
   private var wasConfigurationUpdated = false
 
-  override val stripeRepository: StripeRepository by lazy { StripeRepository(this) }
-  override val googlePayResultPublisher: Subject<InAppPaymentComponent.GooglePayResult> = PublishSubject.create()
+  override val googlePayRepository: GooglePayRepository by lazy { GooglePayRepository(this) }
+  override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     if (intent?.hasExtra(ARG_NAV_GRAPH) != true) {
@@ -53,6 +53,7 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
         StartLocation.BACKUPS -> AppSettingsFragmentDirections.actionDirectToBackupsPreferenceFragment()
         StartLocation.HELP -> AppSettingsFragmentDirections.actionDirectToHelpFragment()
           .setStartCategoryIndex(intent.getIntExtra(HelpFragment.START_CATEGORY_INDEX, 0))
+
         StartLocation.PROXY -> AppSettingsFragmentDirections.actionDirectToEditProxyFragment()
         StartLocation.NOTIFICATIONS -> AppSettingsFragmentDirections.actionDirectToNotificationsSettingsFragment()
         StartLocation.CHANGE_NUMBER -> AppSettingsFragmentDirections.actionDirectToChangeNumberFragment()
@@ -64,6 +65,7 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
         StartLocation.NOTIFICATION_PROFILE_DETAILS -> AppSettingsFragmentDirections.actionDirectToNotificationProfileDetails(
           EditNotificationProfileScheduleFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).profileId
         )
+
         StartLocation.PRIVACY -> AppSettingsFragmentDirections.actionDirectToPrivacy()
         StartLocation.LINKED_DEVICES -> AppSettingsFragmentDirections.actionDirectToDevices()
         StartLocation.USERNAME_LINK -> AppSettingsFragmentDirections.actionDirectToUsernameLinkSettings()
@@ -72,8 +74,9 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
         StartLocation.CHAT_FOLDERS -> AppSettingsFragmentDirections.actionDirectToChatFoldersFragment()
         StartLocation.CREATE_CHAT_FOLDER -> AppSettingsFragmentDirections.actionDirectToCreateFoldersFragment(
           CreateFoldersFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).folderId,
-          CreateFoldersFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).threadId
+          CreateFoldersFragmentArgs.fromBundle(intent.getBundleExtra(START_ARGUMENTS)!!).threadIds
         )
+
         StartLocation.BACKUPS_SETTINGS -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment()
       }
     }
@@ -106,7 +109,7 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
       when (intent.getStringExtra(EXTRA_PERFORM_ACTION_ON_CREATE)) {
         ACTION_CHANGE_NUMBER_SUCCESS -> {
           MaterialAlertDialogBuilder(this)
-            .setMessage(getString(R.string.ChangeNumber__your_phone_number_has_changed_to_s, PhoneNumberFormatter.prettyPrint(Recipient.self().requireE164())))
+            .setMessage(getString(R.string.ChangeNumber__your_phone_number_has_changed_to_s, SignalE164Util.prettyPrint(Recipient.self().requireE164())))
             .setPositiveButton(R.string.ChangeNumber__okay, null)
             .show()
         }
@@ -134,7 +137,7 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
   @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    googlePayResultPublisher.onNext(InAppPaymentComponent.GooglePayResult(requestCode, resultCode, data))
+    googlePayResultPublisher.onNext(GooglePayComponent.GooglePayResult(requestCode, resultCode, data))
   }
 
   companion object {
@@ -209,8 +212,8 @@ class AppSettingsActivity : DSLSettingsActivity(), InAppPaymentComponent {
     fun chatFolders(context: Context): Intent = getIntentForStartLocation(context, StartLocation.CHAT_FOLDERS)
 
     @JvmStatic
-    fun createChatFolder(context: Context, id: Long = -1, threadId: Long?): Intent {
-      val arguments = CreateFoldersFragmentArgs.Builder(id, threadId ?: -1)
+    fun createChatFolder(context: Context, id: Long = -1, threadIds: LongArray?): Intent {
+      val arguments = CreateFoldersFragmentArgs.Builder(id, threadIds ?: longArrayOf())
         .build()
         .toBundle()
 

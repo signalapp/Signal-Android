@@ -43,7 +43,7 @@ object ChatArchiveImporter {
       .insertInto(ThreadTable.TABLE_NAME)
       .values(
         ThreadTable.RECIPIENT_ID to recipientId.serialize(),
-        ThreadTable.PINNED to (chat.pinnedOrder ?: 0),
+        ThreadTable.PINNED_ORDER to chat.pinnedOrder,
         ThreadTable.ARCHIVED to chat.archived.toInt(),
         ThreadTable.READ to if (chat.markedUnread) ThreadTable.ReadStatus.FORCED_UNREAD.serialize() else ThreadTable.ReadStatus.READ.serialize(),
         ThreadTable.ACTIVE to 1

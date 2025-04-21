@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.VisibleForTesting
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
@@ -23,6 +24,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.internal.ServiceResponse
 import org.whispersystems.signalservice.internal.push.exceptions.InAppPaymentReceiptCredentialError
 import java.io.IOException
@@ -45,7 +47,8 @@ class InAppPaymentOneTimeContextJob private constructor(
 
     const val KEY = "InAppPurchaseOneTimeContextJob"
 
-    private fun create(inAppPayment: InAppPaymentTable.InAppPayment): Job {
+    @VisibleForTesting
+    fun create(inAppPayment: InAppPaymentTable.InAppPayment): Job {
       return InAppPaymentOneTimeContextJob(
         inAppPayment.id,
         parameters = Parameters.Builder()
@@ -112,6 +115,11 @@ class InAppPaymentOneTimeContextJob private constructor(
   }
 
   override fun onRun() {
+    if (!SignalStore.account.isRegistered) {
+      warning("User is not registered. Failing.")
+      throw Exception("Unregistered users cannot perform this job.")
+    }
+
     val (inAppPayment, requestContext) = getAndValidateInAppPayment()
 
     info("Submitting request context to server...")
@@ -151,12 +159,12 @@ class InAppPaymentOneTimeContextJob private constructor(
 
         SignalDatabase.inAppPayments.update(
           inAppPayment.copy(
-            data = inAppPayment.data.copy(
+            data = inAppPayment.data.newBuilder().redemption(
               redemption = InAppPaymentData.RedemptionState(
                 stage = InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED,
                 receiptCredentialPresentation = receiptCredentialPresentation.serialize().toByteString()
               )
-            )
+            ).build()
           )
         )
       } else {
@@ -196,7 +204,7 @@ class InAppPaymentOneTimeContextJob private constructor(
     if (inAppPayment.state != InAppPaymentTable.State.PENDING) {
       warning("Invalid state: ${inAppPayment.state} but expected PENDING")
 
-      if (inAppPayment.state == InAppPaymentTable.State.CREATED) {
+      if (inAppPayment.state == InAppPaymentTable.State.TRANSACTING) {
         warning("onAdded failed to update payment state to PENDING. Updating now as long as the payment is valid otherwise.")
       } else {
         throw IOException("InAppPayment is in an invalid state: ${inAppPayment.state}")
@@ -225,6 +233,11 @@ class InAppPaymentOneTimeContextJob private constructor(
     val updatedPayment = inAppPayment.copy(
       state = InAppPaymentTable.State.PENDING,
       data = inAppPayment.data.copy(
+        waitForAuth = null,
+        stripeActionComplete = null,
+        payPalActionComplete = null,
+        payPalRequiresAction = null,
+        stripeRequiresAction = null,
         redemption = inAppPayment.data.redemption.copy(
           stage = InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED,
           receiptCredentialRequestContext = requestContext.serialize().toByteString()

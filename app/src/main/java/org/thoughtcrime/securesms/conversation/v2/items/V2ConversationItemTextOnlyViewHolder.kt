@@ -145,27 +145,29 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
     binding.root.onDispatchTouchEventListener = dispatchTouchEventListener
 
-    binding.reactions.setOnClickListener {
-      conversationContext.clickListener
-        .onReactionClicked(
-          Multiselect.getParts(conversationMessage).asSingle().singlePart,
-          conversationMessage.messageRecord.id,
-          conversationMessage.messageRecord.isMms
-        )
-    }
-
     binding.body.setOnTouchListener { _, event -> gestureDetector.onTouchEvent(event) }
     binding.root.setOnTouchListener { _, event -> gestureDetector.onTouchEvent(event) }
-    binding.root.setOnClickListener { onBubbleClicked() }
+    val passthroughClickListener = PassthroughClickListener()
+    binding.body.setOnClickListener {
+      if (conversationContext.selectedItems.isEmpty()) {
+        passthroughClickListener.onClick(it)
+      } else {
+        conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+      }
+    }
+    binding.body.setOnLongClickListener(passthroughClickListener)
+    binding.root.setOnClickListener {
+      if (conversationContext.selectedItems.isEmpty()) {
+        onBubbleClicked()
+      } else {
+        conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+      }
+    }
     binding.root.setOnLongClickListener {
       conversationContext.clickListener.onItemLongClick(binding.root, getMultiselectPartForLatestTouch())
 
       true
     }
-
-    val passthroughClickListener = PassthroughClickListener()
-    binding.body.setOnClickListener(passthroughClickListener)
-    binding.body.setOnLongClickListener(passthroughClickListener)
 
     binding.body.isFocusable = false
     binding.body.setTextSize(TypedValue.COMPLEX_UNIT_SP, SignalStore.settings.messageFontSize.toFloat())
@@ -181,7 +183,13 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     binding.bodyWrapper.layoutTransition = bodyBubbleLayoutTransition
 
     binding.footerBackground.background = footerDrawable
-    binding.footerDate.setOnClickListener(passthroughClickListener)
+    binding.footerDate.setOnClickListener {
+      if (conversationContext.selectedItems.isEmpty()) {
+        passthroughClickListener.onClick(it)
+      } else {
+        conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+      }
+    }
     binding.footerDate.setOnLongClickListener(passthroughClickListener)
   }
 
@@ -465,8 +473,12 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     private val recipientId: RecipientId
   ) : ClickableSpan() {
     override fun onClick(widget: View) {
-      VibrateUtil.vibrateTick(context)
-      conversationContext.clickListener.onGroupMemberClicked(recipientId, conversationMessage.threadRecipient.requireGroupId())
+      if (conversationContext.selectedItems.isEmpty()) {
+        VibrateUtil.vibrateTick(context)
+        conversationContext.clickListener.onGroupMemberClicked(recipientId, conversationMessage.threadRecipient.requireGroupId())
+      } else {
+        conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+      }
     }
 
     override fun updateDrawState(ds: TextPaint) = Unit
@@ -480,6 +492,8 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
           conversationMessage.messageRecord.id,
           conversationMessage.messageRecord.isMms
         )
+      } else {
+        conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
       }
     }
 
@@ -561,10 +575,14 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.senderPhoto.setAvatar(conversationContext.requestManager, sender, false)
       binding.senderBadge.setBadgeFromRecipient(sender, conversationContext.requestManager)
       binding.senderPhoto.setOnClickListener {
-        conversationContext.clickListener.onGroupMemberClicked(
-          conversationMessage.messageRecord.fromRecipient.id,
-          conversationMessage.threadRecipient.requireGroupId()
-        )
+        if (conversationContext.selectedItems.isEmpty()) {
+          conversationContext.clickListener.onGroupMemberClicked(
+            conversationMessage.messageRecord.fromRecipient.id,
+            conversationMessage.threadRecipient.requireGroupId()
+          )
+        } else {
+          conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+        }
       }
     } else {
       binding.senderName.visible = false
@@ -613,6 +631,18 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
     } else {
       binding.reactions.setReactions(conversationMessage.messageRecord.reactions)
       binding.root.addOnMeasureListener(reactionMeasureListener)
+      binding.reactions.setOnClickListener {
+        if (conversationContext.selectedItems.isEmpty()) {
+          conversationContext.clickListener
+            .onReactionClicked(
+              Multiselect.getParts(conversationMessage).asSingle().singlePart,
+              conversationMessage.messageRecord.id,
+              conversationMessage.messageRecord.isMms
+            )
+        } else {
+          conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+        }
+      }
     }
   }
 
@@ -659,7 +689,11 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
 
       binding.footerDate.setText(errorMessage)
       binding.footerDate.setOnClickListener {
-        conversationContext.clickListener.onMessageWithErrorClicked(record)
+        if (conversationContext.selectedItems.isEmpty()) {
+          conversationContext.clickListener.onMessageWithErrorClicked(record)
+        } else {
+          conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+        }
       }
     } else if (record.isRateLimited) {
       binding.footerDate.setText(R.string.ConversationItem_send_paused)
@@ -677,7 +711,11 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
         }
 
         binding.footerDate.setOnClickListener {
-          conversationContext.clickListener.onEditedIndicatorClicked(conversationMessage)
+          if (conversationContext.selectedItems.isEmpty()) {
+            conversationContext.clickListener.onEditedIndicatorClicked(conversationMessage)
+          } else {
+            conversationContext.clickListener.onItemClick(getMultiselectPartForLatestTouch())
+          }
         }
       }
 

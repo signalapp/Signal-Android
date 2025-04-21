@@ -64,6 +64,7 @@ import org.signal.core.util.stream.LimitedInputStream
 import org.signal.core.util.stream.NullOutputStream
 import org.signal.core.util.toInt
 import org.signal.core.util.update
+import org.signal.core.util.updateAll
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -97,7 +98,6 @@ import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
-import org.whispersystems.signalservice.api.backup.MediaId
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
@@ -164,9 +164,6 @@ class AttachmentTable(
     const val DISPLAY_ORDER = "display_order"
     const val UPLOAD_TIMESTAMP = "upload_timestamp"
     const val ARCHIVE_CDN = "archive_cdn"
-    const val ARCHIVE_MEDIA_NAME = "archive_media_name"
-    const val ARCHIVE_MEDIA_ID = "archive_media_id"
-    const val ARCHIVE_THUMBNAIL_MEDIA_ID = "archive_thumbnail_media_id"
     const val ARCHIVE_TRANSFER_FILE = "archive_transfer_file"
     const val ARCHIVE_TRANSFER_STATE = "archive_transfer_state"
     const val THUMBNAIL_RESTORE_STATE = "thumbnail_restore_state"
@@ -224,8 +221,6 @@ class AttachmentTable(
       DATA_HASH_START,
       DATA_HASH_END,
       ARCHIVE_CDN,
-      ARCHIVE_MEDIA_NAME,
-      ARCHIVE_MEDIA_ID,
       ARCHIVE_TRANSFER_FILE,
       THUMBNAIL_FILE,
       THUMBNAIL_RESTORE_STATE,
@@ -270,11 +265,8 @@ class AttachmentTable(
         $DATA_HASH_START TEXT DEFAULT NULL,
         $DATA_HASH_END TEXT DEFAULT NULL,
         $ARCHIVE_CDN INTEGER DEFAULT 0,
-        $ARCHIVE_MEDIA_NAME TEXT DEFAULT NULL,
-        $ARCHIVE_MEDIA_ID TEXT DEFAULT NULL,
         $ARCHIVE_TRANSFER_FILE TEXT DEFAULT NULL,
         $ARCHIVE_TRANSFER_STATE INTEGER DEFAULT ${ArchiveTransferState.NONE.value},
-        $ARCHIVE_THUMBNAIL_MEDIA_ID TEXT DEFAULT NULL,
         $THUMBNAIL_FILE TEXT DEFAULT NULL,
         $THUMBNAIL_RANDOM BLOB DEFAULT NULL,
         $THUMBNAIL_RESTORE_STATE INTEGER DEFAULT ${ThumbnailRestoreState.NONE.value},
@@ -294,8 +286,8 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_start_index ON $TABLE_NAME ($DATA_HASH_START);",
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_end_index ON $TABLE_NAME ($DATA_HASH_END);",
       "CREATE INDEX IF NOT EXISTS $DATA_FILE_INDEX ON $TABLE_NAME ($DATA_FILE);",
-      "CREATE INDEX IF NOT EXISTS attachment_archive_media_id_index ON $TABLE_NAME ($ARCHIVE_MEDIA_ID);",
-      "CREATE INDEX IF NOT EXISTS attachment_archive_transfer_state ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);"
+      "CREATE INDEX IF NOT EXISTS attachment_archive_transfer_state ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);",
+      "CREATE INDEX IF NOT EXISTS attachment_remote_digest_index ON $TABLE_NAME ($REMOTE_DIGEST);"
     )
 
     @JvmStatic
@@ -308,11 +300,7 @@ class AttachmentTable(
 
   @Throws(IOException::class)
   fun getAttachmentStream(attachmentId: AttachmentId, offset: Long): InputStream {
-    return try {
-      getDataStream(attachmentId, offset)
-    } catch (e: FileNotFoundException) {
-      throw IOException("No stream for: $attachmentId", e)
-    } ?: throw IOException("No stream for: $attachmentId")
+    return getDataStream(attachmentId, offset) ?: throw FileNotFoundException("No stream for: $attachmentId")
   }
 
   @Throws(IOException::class)
@@ -407,11 +395,15 @@ class AttachmentTable(
     }
   }
 
-  fun getMediaIdCursor(): Cursor {
+  /**
+   * Returns a cursor (with just the digest+archive_cdn) for all attachments that are eligible for archive upload.
+   * In practice, this means that the attachments have a digest and have not hit a permanent archive upload failure.
+   */
+  fun getAttachmentsEligibleForArchiveUpload(): Cursor {
     return readableDatabase
-      .select(ARCHIVE_MEDIA_ID, ARCHIVE_CDN)
+      .select(REMOTE_DIGEST, ARCHIVE_CDN)
       .from(TABLE_NAME)
-      .where("$ARCHIVE_MEDIA_ID IS NOT NULL")
+      .where("$REMOTE_DIGEST IS NOT NULL AND $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}")
       .run()
   }
 
@@ -672,6 +664,26 @@ class AttachmentTable(
   }
 
   /**
+   * Sets the archive transfer state for the given attachment and all other attachments that share the same data file.
+   */
+  fun setArchiveTransferStateUnlessPermanentFailure(id: AttachmentId, state: ArchiveTransferState) {
+    writableDatabase.withinTransaction {
+      val dataFile: String = readableDatabase
+        .select(DATA_FILE)
+        .from(TABLE_NAME)
+        .where("$ID = ?", id.id)
+        .run()
+        .readToSingleObject { it.requireString(DATA_FILE) } ?: return@withinTransaction
+
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(ARCHIVE_TRANSFER_STATE to state.value)
+        .where("$DATA_FILE = ? AND $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}", dataFile)
+        .run()
+    }
+  }
+
+  /**
    * Marks eligible attachments as offloaded based on their received at timestamp, their last restore time,
    * presence of thumbnail if media, and the full file being available in the archive.
    *
@@ -718,14 +730,23 @@ class AttachmentTable(
   }
 
   /**
-   * Returns the number of attachments that are in pending upload states to the archive cdn.
+   * Returns sum of the file sizes of attachments that are not fully uploaded to the archive CDN.
    */
-  fun getPendingArchiveUploadCount(): Long {
+  fun getPendingArchiveUploadBytes(): Long {
     return readableDatabase
-      .count()
-      .from(TABLE_NAME)
-      .where("$ARCHIVE_TRANSFER_STATE IN (${ArchiveTransferState.UPLOAD_IN_PROGRESS.value}, ${ArchiveTransferState.COPY_PENDING.value})")
-      .run()
+      .rawQuery(
+        """
+          SELECT SUM($DATA_SIZE)
+          FROM (
+            SELECT DISTINCT $REMOTE_DIGEST, $DATA_SIZE
+            FROM $TABLE_NAME
+            WHERE 
+              $DATA_FILE NOT NULL AND 
+              $REMOTE_DIGEST NOT NULL AND 
+              $ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value})
+          )
+        """.trimIndent()
+      )
       .readToSingleLong()
   }
 
@@ -1136,7 +1157,7 @@ class AttachmentTable(
       // We don't look at hash_start here because that could result in us matching on a file that got compressed down to something smaller, effectively lowering
       // the quality of the attachment we received.
       val hashMatch: DataFileInfo? = readableDatabase
-        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_MEDIA_NAME, ARCHIVE_MEDIA_ID)
+        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN)
         .from(TABLE_NAME)
         .where("$DATA_HASH_END = ? AND $DATA_HASH_END NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND $DATA_FILE NOT NULL", fileWriteResult.hash)
         .run()
@@ -1153,8 +1174,6 @@ class AttachmentTable(
         values.put(DATA_HASH_START, hashMatch.hashEnd)
         values.put(DATA_HASH_END, hashMatch.hashEnd)
         values.put(ARCHIVE_CDN, hashMatch.archiveCdn)
-        values.put(ARCHIVE_MEDIA_NAME, hashMatch.archiveMediaName)
-        values.put(ARCHIVE_MEDIA_ID, hashMatch.archiveMediaId)
       } else {
         values.put(DATA_FILE, fileWriteResult.file.absolutePath)
         values.put(DATA_SIZE, fileWriteResult.length)
@@ -1230,7 +1249,7 @@ class AttachmentTable(
   }
 
   @Throws(IOException::class)
-  fun finalizeAttachmentThumbnailAfterDownload(attachmentId: AttachmentId, archiveMediaId: String, inputStream: InputStream, transferFile: File) {
+  fun finalizeAttachmentThumbnailAfterDownload(attachmentId: AttachmentId, digest: ByteArray, inputStream: InputStream, transferFile: File) {
     Log.i(TAG, "[finalizeAttachmentThumbnailAfterDownload] Finalizing downloaded data for $attachmentId.")
     val fileWriteResult: DataFileWriteResult = writeToDataFile(newDataFile(context), inputStream, TransformProperties.empty())
 
@@ -1243,7 +1262,7 @@ class AttachmentTable(
 
       db.update(TABLE_NAME)
         .values(values)
-        .where("$ARCHIVE_MEDIA_ID = ?", archiveMediaId)
+        .where("$REMOTE_DIGEST = ?", digest)
         .run()
     }
 
@@ -1255,10 +1274,12 @@ class AttachmentTable(
     }
   }
 
+  /**
+   * Updates the state around archive thumbnail uploads, and ensures that all attachments sharing the same digest remain in sync.
+   */
   fun finalizeAttachmentThumbnailAfterUpload(
     attachmentId: AttachmentId,
-    archiveMediaId: String,
-    archiveThumbnailMediaId: MediaId,
+    attachmentDigest: ByteArray,
     data: ByteArray
   ) {
     Log.i(TAG, "[finalizeAttachmentThumbnailAfterUpload] Finalizing archive data for $attachmentId thumbnail.")
@@ -1268,13 +1289,12 @@ class AttachmentTable(
       val values = contentValuesOf(
         THUMBNAIL_FILE to fileWriteResult.file.absolutePath,
         THUMBNAIL_RANDOM to fileWriteResult.random,
-        THUMBNAIL_RESTORE_STATE to ThumbnailRestoreState.FINISHED.value,
-        ARCHIVE_THUMBNAIL_MEDIA_ID to archiveThumbnailMediaId.encode()
+        THUMBNAIL_RESTORE_STATE to ThumbnailRestoreState.FINISHED.value
       )
 
       db.update(TABLE_NAME)
         .values(values)
-        .where("$ARCHIVE_MEDIA_ID = ? OR $ID = ?", archiveMediaId, attachmentId)
+        .where("$ID = ? OR $REMOTE_DIGEST = ?", attachmentId, attachmentDigest)
         .run()
     }
   }
@@ -1579,10 +1599,7 @@ class AttachmentTable(
           $DATA_RANDOM,
           $DATA_HASH_START,
           $DATA_HASH_END,
-          $ARCHIVE_MEDIA_ID,
-          $ARCHIVE_MEDIA_NAME,
           $ARCHIVE_CDN,
-          $ARCHIVE_THUMBNAIL_MEDIA_ID,
           $THUMBNAIL_RESTORE_STATE
         )
       SELECT
@@ -1609,10 +1626,7 @@ class AttachmentTable(
           $DATA_RANDOM,
           $DATA_HASH_START,
           $DATA_HASH_END,
-          "${attachment.archiveMediaId}",
-          "${attachment.archiveMediaName}",
           ${attachment.archiveCdn},
-          $ARCHIVE_THUMBNAIL_MEDIA_ID,
           ${if (forThumbnail) ThumbnailRestoreState.NEEDS_RESTORE.value else ThumbnailRestoreState.NONE.value}
         FROM $TABLE_NAME
         WHERE $ID = ${attachment.attachmentId.id}
@@ -1711,7 +1725,7 @@ class AttachmentTable(
 
   fun getDataFileInfo(attachmentId: AttachmentId): DataFileInfo? {
     return readableDatabase
-      .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_MEDIA_NAME, ARCHIVE_MEDIA_ID)
+      .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN)
       .from(TABLE_NAME)
       .where("$ID = ?", attachmentId.id)
       .run()
@@ -1912,9 +1926,6 @@ class AttachmentTable(
               uploadTimestamp = jsonObject.getLong(UPLOAD_TIMESTAMP),
               dataHash = jsonObject.getString(DATA_HASH_END),
               archiveCdn = jsonObject.getInt(ARCHIVE_CDN),
-              archiveMediaName = jsonObject.getString(ARCHIVE_MEDIA_NAME),
-              archiveMediaId = jsonObject.getString(ARCHIVE_MEDIA_ID),
-              hasArchiveThumbnail = !TextUtils.isEmpty(jsonObject.getString(THUMBNAIL_FILE)),
               thumbnailRestoreState = ThumbnailRestoreState.deserialize(jsonObject.getInt(THUMBNAIL_RESTORE_STATE)),
               archiveTransferState = ArchiveTransferState.deserialize(jsonObject.getInt(ARCHIVE_TRANSFER_STATE)),
               uuid = UuidUtil.parseOrNull(jsonObject.getString(ATTACHMENT_UUID))
@@ -1960,7 +1971,7 @@ class AttachmentTable(
   /**
    * Sets the archive data for the specific attachment, as well as for any attachments that use the same underlying file.
    */
-  fun setArchiveData(attachmentId: AttachmentId, archiveCdn: Int, archiveMediaName: String, archiveMediaId: String, archiveThumbnailMediaId: String) {
+  fun setArchiveCdn(attachmentId: AttachmentId, archiveCdn: Int) {
     writableDatabase.withinTransaction { db ->
       val dataFile = db
         .select(DATA_FILE)
@@ -1977,9 +1988,6 @@ class AttachmentTable(
       db.update(TABLE_NAME)
         .values(
           ARCHIVE_CDN to archiveCdn,
-          ARCHIVE_MEDIA_ID to archiveMediaId,
-          ARCHIVE_MEDIA_NAME to archiveMediaName,
-          ARCHIVE_THUMBNAIL_MEDIA_ID to archiveThumbnailMediaId,
           ARCHIVE_TRANSFER_STATE to ArchiveTransferState.FINISHED.value
         )
         .where("$DATA_FILE = ?", dataFile)
@@ -1987,14 +1995,15 @@ class AttachmentTable(
     }
   }
 
-  fun updateArchiveCdnByMediaId(archiveMediaId: String, archiveCdn: Int): Int {
-    return writableDatabase.rawQuery(
-      "UPDATE $TABLE_NAME SET " +
-        "$ARCHIVE_CDN = CASE WHEN $ARCHIVE_MEDIA_ID = ? THEN ? ELSE $ARCHIVE_CDN END " +
-        "WHERE $ARCHIVE_MEDIA_ID = ? OR $ARCHIVE_THUMBNAIL_MEDIA_ID = ? " +
-        "RETURNING $ARCHIVE_CDN",
-      SqlUtil.buildArgs(archiveMediaId, archiveCdn, archiveMediaId, archiveMediaId)
-    ).count
+  /**
+   * Updates all attachments that share the same digest with the given archive CDN.
+   */
+  fun setArchiveCdnByDigest(digest: ByteArray, archiveCdn: Int) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(ARCHIVE_CDN to archiveCdn)
+      .where("$REMOTE_DIGEST = ?", digest)
+      .run()
   }
 
   fun clearArchiveData(attachmentIds: List<AttachmentId>) {
@@ -2003,9 +2012,7 @@ class AttachmentTable(
         writableDatabase
           .update(TABLE_NAME)
           .values(
-            ARCHIVE_CDN to 0,
-            ARCHIVE_MEDIA_ID to null,
-            ARCHIVE_MEDIA_NAME to null
+            ARCHIVE_CDN to 0
           )
           .where(query.where, query.whereArgs)
           .run()
@@ -2014,13 +2021,11 @@ class AttachmentTable(
 
   fun clearAllArchiveData() {
     writableDatabase
-      .update(TABLE_NAME)
+      .updateAll(TABLE_NAME)
       .values(
         ARCHIVE_CDN to 0,
-        ARCHIVE_MEDIA_ID to null,
-        ARCHIVE_MEDIA_NAME to null
+        ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value
       )
-      .where("$ARCHIVE_CDN > 0 OR $ARCHIVE_MEDIA_ID IS NOT NULL OR $ARCHIVE_MEDIA_NAME IS NOT NULL")
       .run()
   }
 
@@ -2310,9 +2315,6 @@ class AttachmentTable(
         put(CAPTION, attachment.caption)
         put(UPLOAD_TIMESTAMP, attachment.uploadTimestamp)
         put(ARCHIVE_CDN, attachment.archiveCdn)
-        put(ARCHIVE_MEDIA_NAME, attachment.archiveMediaName)
-        put(ARCHIVE_MEDIA_ID, attachment.archiveMediaId)
-        put(ARCHIVE_THUMBNAIL_MEDIA_ID, attachment.archiveThumbnailMediaId)
         put(ARCHIVE_TRANSFER_STATE, ArchiveTransferState.FINISHED.value)
         put(THUMBNAIL_RESTORE_STATE, ThumbnailRestoreState.NEEDS_RESTORE.value)
         put(ATTACHMENT_UUID, attachment.uuid?.toString())
@@ -2377,7 +2379,7 @@ class AttachmentTable(
       // First we'll check if our file hash matches the starting or ending hash of any other attachments and has compatible transform properties.
       // We'll prefer the match with the most recent upload timestamp.
       val hashMatch: DataFileInfo? = readableDatabase
-        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_MEDIA_NAME, ARCHIVE_MEDIA_ID)
+        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN)
         .from(TABLE_NAME)
         .where("$DATA_FILE NOT NULL AND ($DATA_HASH_START = ? OR $DATA_HASH_END = ?)", fileWriteResult.hash, fileWriteResult.hash)
         .run()
@@ -2413,8 +2415,6 @@ class AttachmentTable(
         contentValues.put(DATA_HASH_START, fileWriteResult.hash)
         contentValues.put(DATA_HASH_END, hashMatch.hashEnd)
         contentValues.put(ARCHIVE_CDN, hashMatch.archiveCdn)
-        contentValues.put(ARCHIVE_MEDIA_NAME, hashMatch.archiveMediaName)
-        contentValues.put(ARCHIVE_MEDIA_ID, hashMatch.archiveMediaId)
 
         if (hashMatch.transformProperties.skipTransform) {
           Log.i(TAG, "[insertAttachmentWithData] The hash match has a DATA_HASH_END and skipTransform=true, so skipping transform of the new file as well. (MessageId: $messageId, ${attachment.uri})")
@@ -2575,9 +2575,6 @@ class AttachmentTable(
       uploadTimestamp = cursor.requireLong(UPLOAD_TIMESTAMP),
       dataHash = cursor.requireString(DATA_HASH_END),
       archiveCdn = cursor.requireInt(ARCHIVE_CDN),
-      archiveMediaName = cursor.requireString(ARCHIVE_MEDIA_NAME),
-      archiveMediaId = cursor.requireString(ARCHIVE_MEDIA_ID),
-      hasArchiveThumbnail = !cursor.isNull(THUMBNAIL_FILE),
       thumbnailRestoreState = ThumbnailRestoreState.deserialize(cursor.requireInt(THUMBNAIL_RESTORE_STATE)),
       archiveTransferState = ArchiveTransferState.deserialize(cursor.requireInt(ARCHIVE_TRANSFER_STATE)),
       uuid = UuidUtil.parseOrNull(cursor.requireString(ATTACHMENT_UUID))
@@ -2605,9 +2602,7 @@ class AttachmentTable(
       hashEnd = this.requireString(DATA_HASH_END),
       transformProperties = TransformProperties.parse(this.requireString(TRANSFORM_PROPERTIES)),
       uploadTimestamp = this.requireLong(UPLOAD_TIMESTAMP),
-      archiveCdn = this.requireInt(ARCHIVE_CDN),
-      archiveMediaName = this.requireString(ARCHIVE_MEDIA_NAME),
-      archiveMediaId = this.requireString(ARCHIVE_MEDIA_ID)
+      archiveCdn = this.requireInt(ARCHIVE_CDN)
     )
   }
 
@@ -2671,9 +2666,7 @@ class AttachmentTable(
     val hashEnd: String?,
     val transformProperties: TransformProperties,
     val uploadTimestamp: Long,
-    val archiveCdn: Int,
-    val archiveMediaName: String?,
-    val archiveMediaId: String?
+    val archiveCdn: Int
   )
 
   @VisibleForTesting

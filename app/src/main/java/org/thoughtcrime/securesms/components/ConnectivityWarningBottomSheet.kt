@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -17,10 +19,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentManager
-import org.signal.core.ui.BottomSheets
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Previews
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -38,7 +40,7 @@ class ConnectivityWarningBottomSheet : ComposeBottomSheetDialogFragment() {
     @JvmStatic
     fun show(fragmentManager: FragmentManager) {
       if (fragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG) == null) {
-        ConnectivityWarningBottomSheet().show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+        BottomSheetUtil.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG, ConnectivityWarningBottomSheet())
         SignalStore.misc.lastConnectivityWarningTime = System.currentTimeMillis()
       }
     }
@@ -56,7 +58,10 @@ class ConnectivityWarningBottomSheet : ComposeBottomSheetDialogFragment() {
 private fun Sheet(onDismiss: () -> Unit = {}) {
   return Column(
     horizontalAlignment = Alignment.CenterHorizontally,
-    modifier = Modifier.fillMaxWidth().wrapContentSize(Alignment.Center)
+    modifier = Modifier
+      .verticalScroll(rememberScrollState())
+      .fillMaxWidth()
+      .wrapContentSize(Alignment.Center)
   ) {
     BottomSheets.Handle()
     Icon(

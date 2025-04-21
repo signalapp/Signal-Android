@@ -16,11 +16,11 @@ import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.SubmitRateLimitPushChallengeJob.SuccessEvent
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException
-import java.io.IOException
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import kotlin.time.Duration
@@ -42,25 +42,26 @@ object ProofRequiredExceptionHandler {
   fun handle(context: Context, proofRequired: ProofRequiredException, recipient: Recipient?, threadId: Long, messageId: Long): Result {
     Log.w(TAG, "[Proof Required] Options: ${proofRequired.options}")
 
-    try {
-      if (ProofRequiredException.Option.PUSH_CHALLENGE in proofRequired.options) {
-        AppDependencies.signalServiceAccountManager.requestRateLimitPushChallenge()
-        Log.i(TAG, "[Proof Required] Successfully requested a challenge. Waiting up to $PUSH_CHALLENGE_TIMEOUT ms.")
+    if (ProofRequiredException.Option.PUSH_CHALLENGE in proofRequired.options) {
+      when (val result = SignalNetwork.rateLimitChallenge.requestPushChallenge()) {
+        is NetworkResult.Success -> {
+          Log.i(TAG, "[Proof Required] Successfully requested a challenge. Waiting up to $PUSH_CHALLENGE_TIMEOUT ms.")
+          val success = PushChallengeRequest(PUSH_CHALLENGE_TIMEOUT).blockUntilSuccess()
 
-        val success = PushChallengeRequest(PUSH_CHALLENGE_TIMEOUT).blockUntilSuccess()
-
-        if (success) {
-          Log.i(TAG, "Successfully responded to a push challenge. Retrying message send.")
-          return Result.RETRY_NOW
-        } else {
-          Log.w(TAG, "Failed to respond to the push challeng in time. Falling back.")
+          if (success) {
+            Log.i(TAG, "Successfully responded to a push challenge. Retrying message send.")
+            return Result.RETRY_NOW
+          } else {
+            Log.w(TAG, "Failed to respond to the push challeng in time. Falling back.")
+          }
         }
+        is NetworkResult.StatusCodeError -> Log.w(TAG, "[Proof Required] Could not request a push challenge (${result.code}). Falling back.", result.exception)
+        is NetworkResult.NetworkError -> {
+          Log.w(TAG, "[Proof Required] Network error when requesting push challenge. Retrying later.")
+          return Result.RETRY_LATER
+        }
+        is NetworkResult.ApplicationError -> throw result.throwable
       }
-    } catch (e: NonSuccessfulResponseCodeException) {
-      Log.w(TAG, "[Proof Required] Could not request a push challenge (${e.code}). Falling back.", e)
-    } catch (e: IOException) {
-      Log.w(TAG, "[Proof Required] Network error when requesting push challenge. Retrying later.")
-      return Result.RETRY_LATER
     }
 
     if (messageId > 0) {

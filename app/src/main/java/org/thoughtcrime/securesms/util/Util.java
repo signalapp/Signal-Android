@@ -187,16 +187,8 @@ public class Util {
     return spanned;
   }
 
-  public static @NonNull String toIsoString(byte[] bytes) {
-    return new String(bytes, StandardCharsets.ISO_8859_1);
-  }
-
   public static byte[] toIsoBytes(String isoString) {
     return isoString.getBytes(StandardCharsets.ISO_8859_1);
-  }
-
-  public static byte[] toUtf8Bytes(String utf8String) {
-    return utf8String.getBytes(StandardCharsets.UTF_8);
   }
 
   public static void wait(Object lock, long timeout) {
@@ -371,10 +363,6 @@ public class Util {
     }
   }
 
-  public static <T> T getRandomElement(T[] elements) {
-    return elements[new SecureRandom().nextInt(elements.length)];
-  }
-
   public static <T> T getRandomElement(List<T> elements) {
     return elements.get(new SecureRandom().nextInt(elements.size()));
   }
@@ -448,36 +436,8 @@ public class Util {
     return (int)value;
   }
 
-  public static boolean isEquals(@Nullable Long first, long second) {
-    return first != null && first == second;
-  }
-
-  public static String getPrettyFileSize(long sizeBytes) {
-    return MemoryUnitFormat.formatBytes(sizeBytes);
-  }
-
   public static void copyToClipboard(@NonNull Context context, @NonNull CharSequence text) {
     ServiceUtil.getClipboardManager(context).setPrimaryClip(ClipData.newPlainText(COPY_LABEL, text));
-  }
-
-  @SafeVarargs
-  public static <T> List<T> concatenatedList(Collection <T>... items) {
-    final List<T> concat = new ArrayList<>(Stream.of(items).reduce(0, (sum, list) -> sum + list.size()));
-
-    for (Collection<T> list : items) {
-      concat.addAll(list);
-    }
-
-    return concat;
-  }
-
-  public static boolean isLong(String value) {
-    try {
-      Long.parseLong(value);
-      return true;
-    } catch (NumberFormatException e) {
-      return false;
-    }
   }
 
   public static int parseInt(String integer, int defaultValue) {

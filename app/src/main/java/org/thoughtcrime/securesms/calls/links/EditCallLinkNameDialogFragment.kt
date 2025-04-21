@@ -35,8 +35,8 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.navArgs
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Scaffolds
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.util.BreakIteratorCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeDialogFragment

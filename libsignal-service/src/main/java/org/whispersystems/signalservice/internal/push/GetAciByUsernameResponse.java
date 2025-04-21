@@ -6,13 +6,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * JSON POJO that represents the returned ACI from a call to
  * /v1/account/username/[username]
  */
-class GetAciByUsernameResponse {
+public class GetAciByUsernameResponse {
   @JsonProperty
   private String uuid;
 
-  GetAciByUsernameResponse() {}
+  public GetAciByUsernameResponse() {}
 
-  String getUuid() {
+  public String getUuid() {
     return uuid;
   }
 }

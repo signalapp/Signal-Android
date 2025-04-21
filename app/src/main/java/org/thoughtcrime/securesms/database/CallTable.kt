@@ -828,9 +828,11 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     )
 
     if (call != null) {
-      Log.d(TAG, "Updating call database record.")
-      updateGroupCallState(call, peekJoinedUuids)
-      AppDependencies.databaseObserver.notifyCallUpdateObservers()
+      Log.d(TAG, "Updating call database record for call $callId.")
+      if (updateGroupCallState(call, peekJoinedUuids)) {
+        Log.d(TAG, "Change detected for call $callId, notifying update observers.")
+        AppDependencies.databaseObserver.notifyCallUpdateObservers()
+      }
     } else {
       Log.d(TAG, "No call database record to update!")
     }

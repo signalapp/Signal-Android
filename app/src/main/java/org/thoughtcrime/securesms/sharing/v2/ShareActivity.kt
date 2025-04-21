@@ -110,7 +110,7 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
 
     if (intent?.getBooleanExtra(EXTRA_NAVIGATION, false) == true) {
       toolbar.setTitle(getTitleFromExtras())
-      toolbar.setNavigationIcon(R.drawable.symbol_arrow_left_24)
+      toolbar.setNavigationIcon(R.drawable.symbol_arrow_start_24)
       toolbar.setNavigationOnClickListener { finish() }
     } else {
       toolbar.visible = false

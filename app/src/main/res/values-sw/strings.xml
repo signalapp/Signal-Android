@@ -572,11 +572,6 @@
         <item quantity="one">Kuhifadhi media kutawezesha programu nyinginezo kwenye kifaa chako kuzifikia.\n\nEndelea?</item>
         <item quantity="other">Kuhifadhi media zote %1$d kutawezesha programu nyinginezo kwenye kifaa chako kuzifikia.\n\nEndelea?</item>
     </plurals>
-    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-        <item quantity="one">kosa wakati wa kuhifadhi kiambatisho kwenye stoo</item>
-        <item quantity="other">Hitilafu katika kuhifadhi ambatanisho kwa hifadhi.</item>
-    </plurals>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Imeshindwa kuhifadhi kwa kuhifadhi</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">Inahifadhi kiambatisho</item>
         <item quantity="other">Inahifadhi viambatisho %1$d</item>
@@ -584,13 +579,6 @@
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
         <item quantity="one">Inahifadhi viambatisho kwenye hifadhi…</item>
         <item quantity="other">Inahifadhi viambatisho %1$d kwenye hifadhi</item>
-    </plurals>
-    <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="ConversationFragment__save_to_phone">Hifadhi kwenye simu?</string>
-    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
-    <plurals name="ConversationFragment__this_media_will_be_saved">
-        <item quantity="one">Picha na video hizi zitahifadhiwa kwenye hifadhi ya simu yako. Programu zingine zinaweza kuifikia kulingana na ruhusa za simu yako.</item>
-        <item quantity="other">Picha na video hizi zitahifadhiwa kwenye hifadhi ya simu yako. Programu zingine zinaweza kuifikia kulingana na ruhusa za simu yako.</item>
     </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
     <string name="ConversationFragment_dont_show_again">Usionyeshe tena</string>
@@ -669,6 +657,18 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">Imeripotiwa kuwa spam na imezuiliwa</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">Umekubali ombi la ujumbe kutoka kwa %1$s. Ikiwa hii ilikuwa ni makosa, unaweza kuchagua hatua mojawapo hapa chini.</string>
+    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
+    <string name="ConversationFragment_review_carefully">Kagua kwa uangalifu</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s hajathibitishwa</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s hajathibitishwa</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
+    <string name="ConversationFragment_profile_names">Jina la wasifu</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
+    <string name="ConversationFragment_group_names">Jina la kikundi</string>
+    <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
+    <string name="ConversationFragment_photo_failed">Picha imeshindwa kupakuliwa. Jaribu tena.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Vidokezo vya Usalama</string>
@@ -680,6 +680,10 @@
     <string name="SafetyTips_previous_tip">Kidokezo kilichopita</string>
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">Kidokezo kifuatacho</string>
+    <!-- Title of tip 0 -->
+    <string name="SafetyTips_tip0_title">Majina na akaunti bandia</string>
+    <!-- Message of tip 0 -->
+    <string name="SafetyTips_tip0_message">Signal haitawahi wasiliana nawe kupata nambari yako ya usajili au PIN. Kuwa makini na maombi yanayoiga wengine. Majina ya wasifu huchaguliwa na mmiliki wa akaunti na huwa hayajathibitishwa.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Ulaghai wa crypto au fedha</string>
     <!-- Message of tip 1 -->
@@ -696,6 +700,21 @@
     <string name="SafetyTips_tip4_title">Taasisi na biashara batili</string>
     <!-- Message of tip 4 -->
     <string name="SafetyTips_tip4_message">Kuwa makini na biashara au mawakala wa serikali wanaokutafuta. Ujumbe unaohusisha mawakala wa kodi, matarishi, na zaidi unaweza kuwa wa ulaghai.</string>
+
+    <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s kwenye Signal yamechaguliwa na mwenye akaunti.</string>
+    <!-- Bottom sheet text explaining that profile names are not verified. -->
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Majina ya wasifu hayajathibitishwa</string>
+    <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Kuwa makini na akaunti zinazoiga wengine</string>
+    <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
+    <string name="ProfileNameBottomSheet__dont_share_personal">Usiwape watu usiowafahamu taarifa zako binafsi</string>
+    <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s yamechaguliwa na wanachama wa kikundi.</string>
+    <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Kuwa makini na vikundi vinavyoiga mashirika na biashara</string>
+    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Majina ya wasifu ya wanachama katika vikundi hayajathibitishwa</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Futa chujio</string>
@@ -759,8 +778,11 @@
     <string name="AddToFolderBottomSheet_choose_a_folder">Chagua folda</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
     <string name="AddToFolderBottomSheet_added_to_s">Imewekwa kwenye \"%1$s\"</string>
-    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_this_chat_is_already">Gumzo hili tayari liko kwenye folda la \"%1$s\"</string>
+    <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
+    <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
+        <item quantity="one">Gumzo hili tayari liko katika \"%1$s\"</item>
+        <item quantity="other">Magumzo haya tayari yako katika \"%1$s\"</item>
+    </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">Arifa ya wasifu</string>
@@ -1030,15 +1052,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">Je, wasilisha kumbukumbu za utatuzi?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Faili zako la rekebisho zitatusaidia kutatua tatizo lako haraka. Kuwasilisha faili zako za rekebisho ni hiari.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Wasilisha faili la rekebisho</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Wasilisha bila faili la rekebisho</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Ghairi</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Kiungo cha Android&amp;Sync Export Hakijafanikiwa</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Usawazishaji wa ujumbe umeshindikana</string>
@@ -1133,6 +1155,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">Faili isiyo na jina</string>
+    <string name="DocumentView_document_file">Faili ya hati</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Panga kwa Huduma za Play sizizopo.</string>
@@ -1660,7 +1683,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Inafutwa</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Jumbe zinafutwa</string>
-    <string name="MediaOverviewActivity_collecting_attachments">Inakusanya viambatisho</string>
     <string name="MediaOverviewActivity_Sort_by">Panga kwa</string>
     <string name="MediaOverviewActivity_Newest">Mpya kabisa</string>
     <string name="MediaOverviewActivity_Oldest">Nzee zaidi</string>
@@ -1764,6 +1786,10 @@
     <string name="MessageRecord_missed_voice_call">Simu ya kawaida fifi</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Simu ya video fifi</string>
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
+    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
+    <string name="MessageRecord_declined_video_call">Declined video call</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Simu ya sauti ambayo haijapokelewa wakati wasifu wa arifa ulipowashwa</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2052,6 +2078,14 @@
     <string name="MessageRecord_reported_as_spam">Imeripotiwa kuwa spam</string>
     <!-- Update message shown in chat after accept a message request -->
     <string name="MessageRecord_you_accepted_the_message_request">Umekubali ombi la ujumbe</string>
+    <!-- Update message shown in chat after you block a person -->
+    <string name="MessageRecord_you_blocked_this_person">Umemzuia mtu huyu</string>
+    <!-- Update message shown in chat after you unblock a person -->
+    <string name="MessageRecord_you_unblocked_this_person">Umeacha kumzuia huyu mtu</string>
+    <!-- Update message shown in chat after you block a group -->
+    <string name="MessageRecord_you_blocked_this_group">Umezuia kikundi hiki</string>
+    <!-- Update message shown in chat after you unblock a group -->
+    <string name="MessageRecord_you_unblocked_this_group">Umeacha kuzuia kikundi hiki</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Kubali</string>
@@ -2101,8 +2135,39 @@
         <item quantity="one">Kikundi %1$d cha ziada</item>
         <item quantity="other">Vikundi %1$dvya ziada</item>
     </plurals>
+    <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
+    <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
+    <!-- Text for an empty group or when you are the only member -->
+    <string name="MessageRequestProfileView_group_members_zero">Hakuna wanachama wa kikundi wengine</string>
+    <!-- Text for a group with one member (not you). %1$s is their name -->
+    <string name="MessageRequestProfileView_group_members_one">%1$s</string>
+    <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
+    <string name="MessageRequestProfileView_group_members_one_and_you">wewe na %1$s</string>
+    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two">%1$s na %2$s</string>
+    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two_and_you">wewe na %1$s, %2$s</string>
+    <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
+    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s na %3$s</string>
+    <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
+    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s na %4$s</string>
+    <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
+    <plurals name="MessageRequestProfileView_other_members">
+        <item quantity="one">%1$d wengine</item>
+        <item quantity="other">%1$d Wengine</item>
+    </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Ripoti…</string>
+    <!-- Alert dialog title to accept a message request -->
+    <string name="MessageRequestBottomView_accept_request">Je, kubali ombi?</string>
+    <!-- Alert dialog body to review the message request carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully">Kagua maombi kwa uangalifu. Majina ya wasifu huchaguliwa na mmiliki wa akaunti na huwa hayathibitishwi.</string>
+    <!-- Alert dialog title to accept a message request to join a group -->
+    <string name="MessageRequestBottomView_join_group">Ujiunge na kikundi?</string>
+    <!-- Alert dialog body to review the message request for a group carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Kagua maombi kwa uangalifu. Majina ya wasifu huchaguliwa na wanachama wa kikundi na huwa hayathibitishwi.</string>
+    <!-- Button text to join a group -->
+    <string name="MessageRequestBottomView_join">Jiunge</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Nenosiro haiwiani</string>
@@ -2206,6 +2271,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">Yote · %1$d</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Bonyeza kuondoa</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -2438,6 +2504,8 @@
     <string name="CallOverflowPopupWindow__view">Tazama</string>
 
 
+    <!-- A notification to the user that their hand is raised but they are currently speaking -->
+    <string name="CallRaiseHandSnackbar__lower_your_hand">Je ushushe mkono wako?</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s ameinua mkono</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -2476,7 +2544,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Nchi unayoishi</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Tafuta kwa jina au namba</string>
+    <string name="CountryCodeFragment__search_by">Tafuta kwa jina au code ya nchi</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">Nchi isiyofahamika</string>
 
@@ -2485,12 +2553,16 @@
     <string name="AboutSheet__signal_connection">Signal Connection</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Imethibitishwa</string>
+    <!-- Displayed in a sheet row that tells users that profile names are not verified -->
+    <string name="AboutSheet__profile_names_are_not_verified">Majina ya wasifu hayajathibitishwa</string>
+    <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
+    <string name="AboutSheet__pending_message_request">Ombi la ujumbe lililosubirishwa</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Huna jumbe za moja kwa moja na %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s yuko kwenye wawasiliani wako</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">Hamna vikundi mnavyoshiriki pamoja</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">Hakuna vikundi mnavyoshiriki pamoja</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Kagua maombi kwa uangalifu</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -2504,6 +2576,12 @@
     <string name="AboutSheet__you">Wewe</string>
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
+
+    <!-- Title of the screen showing which groups they have in common with another user. -->
+    <plurals name="GroupsInCommon__n_groups_in_common_title">
+        <item quantity="one">%1$s group in common</item>
+        <item quantity="other">%1$s groups in common</item>
+    </plurals>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2802,6 +2880,10 @@
     <string name="ThreadRecord_message_history_has_been_merged">Historia ya jumbe zako imejumuishwa</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s inamilikiwa na %2$s</string>
+    <!-- Displayed in the conversation list when a person has been blocked -->
+    <string name="ThreadRecord_blocked">Zuiliwa</string>
+    <!-- Displayed in the conversation list when a group has been blocked -->
+    <string name="ThreadRecord_blocked_group">Blocked</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Sasisho ya Signal</string>
@@ -2917,8 +2999,6 @@
     <string name="MediaPreviewActivity_you">Wewe</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Aina ya media isiyowezeshwa</string>
     <string name="MediaPreviewActivity_draft">Rasimu</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Hifadhi ili kuhifadhi kwenye hifadhi ya nje, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Uhifadhi\".</string>
-    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Haiwezekani kuhifadhi kwenye hifadhi ya nje bila ruhusa</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Futa ujumbe?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Hii itafuta ujumbe kabisa.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$shadi %2$s</string>
@@ -3025,14 +3105,46 @@
     <!-- Notification channel name for notifications sent when a device has been linked -->
     <string name="NotificationChannel_new_linked_device">Kifaa kipya kimeunganishwa</string>
 
-    <!-- ProfileEditNameFragment -->
-
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Jibu la haraka halipatikani wakati Signal imefungwa!</string>
     <string name="QuickResponseService_problem_sending_message">Tatizo kutuma ujumbe</string>
 
-    <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">Maudhui yamehifadhiwa</string>
+    <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
+    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">Imeshindwa kuhifadhi kwa kuhifadhi</string>
+
+    <!-- A toast notification that is shown after image/video/audio media was successfully downloaded and saved to the device storage, accessible in other apps. -->
+    <plurals name="SaveAttachment_saved_success">
+        <item quantity="one">Picha au video imehifadhiwa</item>
+        <item quantity="other">Picha au video zimehifadhiwa</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after some image/video/audio media was successfully downloaded and saved to the device storage, but some failed to save
+         %1$s is the number of items that failed to save and %2$s is the total number of items that the user requested to save. -->
+    <plurals name="SaveAttachment_saved_success_n_failures">
+        <item quantity="one">Picha au Video (%1$s ya %2$s haijahifadhiwa)</item>
+        <item quantity="other">Picha au Video (%1$s ya %2$s hazijahifadhiwa)</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after all of the requested image/video/audio media failed to save to the device storage. -->
+    <plurals name="SaveAttachment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">kosa wakati wa kuhifadhi kiambatisho kwenye stoo</item>
+        <item quantity="other">Hitilafu katika kuhifadhi ambatanisho kwa hifadhi.</item>
+    </plurals>
+
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="AttachmentSaver__save_to_phone">Hifadhi kwenye simu?</string>
+
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <plurals name="AttachmentSaver__this_media_will_be_saved">
+        <item quantity="one">Picha na video hizi zitahifadhiwa kwenye hifadhi ya simu yako. Programu zingine zinaweza kuifikia kulingana na ruhusa za simu yako.</item>
+        <item quantity="other">Picha na video hizi zitahifadhiwa kwenye hifadhi ya simu yako. Programu zingine zinaweza kuifikia kulingana na ruhusa za simu yako.</item>
+    </plurals>
+
+    <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal inahitaji ruhusa ya Hifadhi ili kuhifadhi kwenye hifadhi ya nje, lakini imekataliwa kabisa. Tafadhali endelea kwenye mipangilio ya programu, chagua \"Ruhusa\", na uwezeshe \"Uhifadhi\".</string>
+
+    <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Haiwezekani kuhifadhi kwenye hifadhi ya nje bila ruhusa</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Tafuta</string>
@@ -3269,7 +3381,8 @@
     <string name="ConversationUpdateItem_update_contact">Sasisha mwasiliani</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Zuia ombi</string>
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Hakuna vikundi mnavyoshiriki pamoja. Kagua maombi kwa uangalifu.</string>
+    <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Hakuna vikundi mnavyoshiriki pamoja</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Hakuna waasiliani katika kikundi hiki. Kagua maombi kwa uangalifu.</string>
     <string name="ConversationUpdateItem_view">Tazama</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Wakati wa kutoweka kwa ujumbe utawekwa kuwa %1$s utakapowatumia ujumbe.</string>
@@ -3289,6 +3402,11 @@
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Cheza … Pumzisha</string>
     <string name="audio_view__download_accessibility_description">Pakua</string>
+
+    <!-- document_view -->
+    <string name="document_view__download_accessibility_description">Pakua</string>
+    <string name="document_view__upload_accessibility_description">Pakia</string>
+    <string name="document_view__cancel_accessibility_description">Ghairi</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">Sauti</string>
@@ -4409,6 +4527,13 @@
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN hutumika kusimba maelezo yaliyohifadhiwa kwa kutumia Signal.</string>
     <string name="KbsMegaphone__create_pin">Unda Nenosiri</string>
 
+    <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__update_signal_pin">Sasisha Nenosiri la Signal</string>
+    <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__message">Sasisha Nenosiri lako la Signal ili ukamilishe usajili wa akaunti.</string>
+    <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__update_pin">Sasisha Nenosiri</string>
+
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
     <string name="CallNotificationBuilder__incoming_signal_voice_call">Simu ya Kawaida ya Signal Inayopiga Sasa</string>
@@ -4821,8 +4946,8 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Hakuna vikundi vingine mnavyoshiriki pamoja.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Hakuna vikundi mnavyoshiriki pamoja.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">Kuna vikundi %1$dmnavyoshiriki pamoja</item>
-        <item quantity="other">Kuna vikundi %1$dmnavyoshiriki pamoja</item>
+        <item quantity="one">%1$d other group in common</item>
+        <item quantity="other">%1$d other groups in common</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">Kuna kikundi %1$d mnachoshiriki pamoja</item>
@@ -5736,6 +5861,24 @@
     <string name="MediaReviewFragment__photo_set_to_high_quality">Picha imewekwa kwenye ubora wa hali ya juu</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
     <string name="MediaReviewFragment__photo_set_to_standard_quality">Picha imewekwa kwenye kiwango cha kawaida</string>
+    <!-- Accessibility label describing the add media button on the Media review screen -->
+    <string name="MediaReviewFragment__add_media_accessibility_label">Ongeza Picha au Video</string>
+    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
+    <string name="MediaReviewFragment__brush_pen_accessibility_label">Brashi na Peni</string>
+    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
+    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Kata kisha zungusha</string>
+    <!-- Accessibility label describing the change media quality button on the Media review screen -->
+    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Badili Ubora wa Picha au Video</string>
+    <!-- Accessibility label describing the save media button on the Media review screen -->
+    <string name="MediaReviewFragment__save_media_accessibility_label">Hifadhi Picha au Video</string>
+    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
+    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Badili kicharazio emoji</string>
+    <!-- Accessibility label describing the toggle view once button on the Media review screen -->
+    <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Geuza Kitufe cha Tazama Mara Moja</string>
+    <!-- Accessibility label describing the send media button on the Media review screen -->
+    <string name="MediaReviewFragment__send_media_accessibility_label">Tuma Picha au Video</string>
+    <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
+    <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Maliza kuongeza Ujumbe</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
         <item quantity="one">%1$d imewekwa kwenye ubora wa hali ya juu</item>
@@ -5986,7 +6129,7 @@
     <string name="DonationsErrors__your_payment_is_still">Mchango wako bado unachakatwa. Hii inaweza kuchukua dakika kadhaa kutegemeana na mtandao wako.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Imeshindwa kughairi usajili</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Kughairi usajili kunahitaji muunganisho wa mtandao.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Kifaa chako hakiegemezi Google Pay, kwa hivyo huwezi kujiandikisha ili kupata beji. Unaweza kuiunga mkono Signal kwa kutoa mchango kwenye tovuti yetu.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Kifaa chako hakipokei michango ya ndani na msaada wa programu, hivyo huwezi kujiandikisha ili upate beji. Bado unaweza kuipa Signal msaada kwa kutoa mchango kwenye tovuti yetu.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Hitilafu ya mtandao. Angalia muunganisho wa mtandao wako kisha ujaribu tena.</string>
     <string name="NetworkFailure__retry">Jaribu Upya</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6226,6 +6369,16 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal Release Notes &amp; Habari</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat_period">Hili ndio gumzo rasmi na pekee kutoka Signal.</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date_period">Pata taarifa mpya za habari na matoleo.</string>
+    <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat">Hili ndilo gumzo rasmi na pekee kutoka Signal</string>
+    <!-- Text description in Signal Release channel details explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date">Pata taarifa mpya za habari na matoleo</string>
+    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__official_only_chat">Gumzo rasmi na pekee la Signal</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Shughuli zote</string>
@@ -6351,6 +6504,8 @@
     <string name="StoryViewerPageFragment__send_failed">Imeshindikana Kutuma. Bonyeza kujaribu tena</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Jibu kwenye kikundi</string>
+    <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
+    <string name="StoryViewerPageFragment_any_reaction_content_description">Reactions zaidi</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Hakuna watazamaji bado</string>
     <!-- Displayed when user has disabled receipts -->
@@ -7257,6 +7412,8 @@
     <string name="CameraControls_capture_button_accessibility_label">Kitufe cha Kupiga Picha</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
     <string name="CameraControls_continue_button_accessibility_label">Kitufe cha Kuendelea</string>
+    <!-- Accessibility label describing the flash Mode toggle button on the camera screen -->
+    <string name="CameraControls_toggle_flash_mode_accessibility_label">Geuza Kitufe cha Flash Mode</string>
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
@@ -7908,9 +8065,9 @@
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Inaanda kuhifadhi nakala…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
-    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
-        <item quantity="one">Inachakata ujumbe %1$d ya %2$d (%3$d%%)</item>
-        <item quantity="other">Inachakata jumbe %1$d ya %2$d (%3$d%%)</item>
+    <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
+        <item quantity="one">Inachakata %1$s ya ujumbe %2$s (%3$d%%)</item>
+        <item quantity="other">Inachakata %1$s ya ujumbe ~%2$s (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -7957,6 +8114,10 @@
     <!-- Action button label to contact support -->
     <string name="SubscriptionNotFoundBottomSheet__contact_support">Wasiliana Msaada</string>
 
+    <!-- MessageBackupsFlowFragment -->
+    <!-- Body for network failure dialog in message backups checkout flow -->
+    <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Hitilafu ya mtandao imetokea. Tafadhali jaribu tena baadae.</string>
+
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Hifadhi jumbe na video na picha zako kwa kutumia huduma ya uhifadhi ya Signal iliyo salama na iliyosimbwa fiche. Usipoteze ujumbe unapopata simu mpya au kusakinisha tena Signal.</string>
@@ -8000,6 +8161,19 @@
     <string name="MessageBackupsKeyRecordScreen__continue">Endelea</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Angalia ufunguo tena</string>
+
+    <!-- Confirm key title -->
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Thbitisha ufunguo wako mbadala</string>
+    <!-- Confirm your key subtitle -->
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Weka ufunguo wako mbadala uliorekodi</string>
+    <!-- Confirm your key text entry hint text -->
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Ufunguo mbadala</string>
+    <!-- Confirm your key text entry error text -->
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Ufunguo mbadala usio sahihi</string>
+    <!-- Confirm your key button text to return to record key screen. -->
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">Angalia ufunguo tena</string>
+    <!-- Confirm your key button text to move onto next screen in flow -->
+    <string name="MessageBackupsKeyVerifyScreen__next">Inayofuata</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8126,6 +8300,25 @@
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Ufunguo mbadala ulioingiza ni sahihi, lakini hakuna nakala rudufu inayohusiana nayo. Ikiwa bado unayo simu yako ya zamani, hakikisha nakala za hifadhi zinawezeshwa na kwamba uhifadhi umekamilika na ujaribu tena.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Ruka rejesha</string>
+    <!-- Dialog title text when encountering backup restore network error -->
+    <string name="EnterBackupKey_cant_restore_backup">Imeshindwa kurejesha nakala</string>
+    <!-- Dialog body text when encountering backup restore network error -->
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Nakala yako haiwezi kurejeshwa kwa sasa. Angalia muunganisho wako wa mtandao kisha ujaribu tena. </string>
+    <!-- Dialog button text to contact support on network error -->
+    <string name="EnterBackupKey_contact_support">Wasiliana Msaada</string>
+
+    <!-- Email subject when contacting support on a restore backup network issue -->
+    <string name="EnterBackupKey_network_failure_support_email">Hiilafu ya kimtandao ya Hifadhi nakala ya Signal Android</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+
+    <!-- Title of dialog asking to submit debuglogs -->
+    <string name="ContactSupportDialog_submit_debug_log">Je, wasilisha kumbukumbu za utatuzi?</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="ContactSupportDialog_your_debug_logs">Faili zako la rekebisho zitatusaidia kutatua tatizo lako haraka. Kuwasilisha faili zako za rekebisho ni hiari.</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_with_debug">Wasilisha faili la rekebisho</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_without_debug">Wasilisha bila faili la rekebisho</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Skani code hii ukitumia simu yako ya zamani</string>

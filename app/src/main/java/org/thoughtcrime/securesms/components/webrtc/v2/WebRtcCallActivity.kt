@@ -17,7 +17,6 @@ import android.os.Build
 import android.os.Bundle
 import android.util.Rational
 import android.view.Surface
-import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.view.WindowManager
@@ -85,7 +84,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.ThrottledDebouncer
 import org.thoughtcrime.securesms.util.VibrateUtil
 import org.thoughtcrime.securesms.util.WindowUtil
-import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager.ChosenAudioDeviceIdentifier
@@ -270,7 +268,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     if (!callPermissionsDialogController.isAskingForPermission && !viewModel.isCallStarting && !isChangingConfigurations) {
       val state = viewModel.callParticipantsStateSnapshot
-      if (state.callState.isPreJoinOrNetworkUnavailable || state.callState.isIncomingOrHandledElsewhere) {
+      if (state.callState.isPreJoinOrNetworkUnavailable || (Build.VERSION.SDK_INT >= 27 && state.callState.isIncomingOrHandledElsewhere)) {
         if (getCallIntent().isStartedFromFullScreen && state.callState == WebRtcViewModel.State.CALL_INCOMING) {
           Log.w(TAG, "Pausing during full-screen incoming call view. Refusing to finish.")
         } else {
@@ -291,7 +289,9 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       requestNewSizesThrottle.clear()
     }
 
-    AppDependencies.signalCallManager.setEnableVideo(false)
+    if (!isChangingConfigurations) {
+      AppDependencies.signalCallManager.setEnableVideo(false)
+    }
 
     if (!viewModel.isCallStarting && !isChangingConfigurations) {
       val state = viewModel.callParticipantsStateSnapshot
@@ -386,6 +386,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     viewModel.setRecipient(event.recipient)
     callScreen.setRecipient(event.recipient)
+    event.isRemoteVideoOffer
     callScreen.setWebRtcCallState(event.state)
 
     when (event.state) {
@@ -669,7 +670,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     callPermissionsDialogController.requestCameraAndAudioPermission(
       activity = this,
       onAllGranted = onGranted,
-      onCameraGranted = { findViewById<View>(R.id.missing_permissions_container).visible = false },
+      onCameraGranted = { callScreen.hideMissingPermissionsNotice() },
       onAudioDenied = this::handleDenyCall
     )
   }
@@ -677,7 +678,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   private fun askCameraPermissions(onGranted: () -> Unit) {
     callPermissionsDialogController.requestCameraPermission(this) {
       onGranted()
-      findViewById<View>(R.id.missing_permissions_container).visible = false
+      callScreen.hideMissingPermissionsNotice()
     }
   }
 
@@ -1138,6 +1139,10 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     override fun onOverflowClicked() {
       callScreen.toggleOverflowPopup()
+    }
+
+    override fun onDismissOverflow() {
+      callScreen.dismissCallOverflowPopup()
     }
 
     override fun onCameraDirectionChanged() {

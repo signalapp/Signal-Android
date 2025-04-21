@@ -16,7 +16,7 @@ import androidx.appcompat.widget.AppCompatEditText
 import androidx.core.animation.doOnEnd
 import androidx.core.text.isDigitsOnly
 import com.google.android.material.button.MaterialButton
-import org.signal.core.util.StringUtil
+import org.signal.core.util.BidiUtil
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.badges.BadgeImageView
@@ -255,7 +255,7 @@ data class Boost(
       dend: Int
     ): CharSequence? {
       val result = dest.subSequence(0, dstart).toString() + source.toString() + dest.subSequence(dend, dest.length)
-      val resultWithoutCurrencyPrefix = StringUtil.stripBidiIndicator(result.removePrefix(symbol).removeSuffix(symbol).trim())
+      val resultWithoutCurrencyPrefix = BidiUtil.stripBidiIndicator(result.removePrefix(symbol).removeSuffix(symbol).trim())
 
       if (resultWithoutCurrencyPrefix.length == 1 && !resultWithoutCurrencyPrefix.isDigitsOnly() && resultWithoutCurrencyPrefix != separator.toString()) {
         return dest.subSequence(dstart, dend)

@@ -6,10 +6,13 @@
 package org.thoughtcrime.securesms.backup.v2.processor
 
 import androidx.core.content.contentValuesOf
+import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ExportState
+import org.thoughtcrime.securesms.backup.v2.ImportSkips
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.ChatFolder
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
@@ -19,6 +22,8 @@ import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderMembership
 import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
 import org.thoughtcrime.securesms.database.ChatFolderTables.MembershipType
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.whispersystems.signalservice.api.util.UuidUtil
 import org.thoughtcrime.securesms.backup.v2.proto.ChatFolder as ChatFolderProto
 
 /**
@@ -31,7 +36,7 @@ object ChatFolderProcessor {
   fun export(db: SignalDatabase, exportState: ExportState, emitter: BackupFrameEmitter) {
     val folders = db
       .chatFoldersTable
-      .getChatFolders()
+      .getCurrentChatFolders()
       .sortedBy { it.position }
 
     if (folders.isEmpty()) {
@@ -66,6 +71,12 @@ object ChatFolderProcessor {
   }
 
   fun import(chatFolder: ChatFolderProto, importState: ImportState) {
+    val chatFolderUuid = UuidUtil.parseOrNull(chatFolder.id)
+    if (chatFolderUuid == null) {
+      ImportSkips.chatFolderIdNotFound()
+      return
+    }
+
     val chatFolderId = SignalDatabase
       .writableDatabase
       .insertInto(ChatFolderTable.TABLE_NAME)
@@ -76,7 +87,9 @@ object ChatFolderProcessor {
         ChatFolderTable.SHOW_MUTED to chatFolder.showMutedChats,
         ChatFolderTable.SHOW_INDIVIDUAL to chatFolder.includeAllIndividualChats,
         ChatFolderTable.SHOW_GROUPS to chatFolder.includeAllGroupChats,
-        ChatFolderTable.FOLDER_TYPE to chatFolder.folderType.toLocal().value
+        ChatFolderTable.FOLDER_TYPE to chatFolder.folderType.toLocal().value,
+        ChatFolderTable.CHAT_FOLDER_ID to chatFolderUuid.toString(),
+        ChatFolderTable.STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
       )
       .run()
 
@@ -110,7 +123,8 @@ private fun ChatFolderRecord.toBackupFrame(includedRecipientIds: List<Long>, exc
       else -> throw IllegalStateException("Only ALL or CUSTOM should be in the db")
     },
     includedRecipientIds = includedRecipientIds,
-    excludedRecipientIds = excludedRecipientIds
+    excludedRecipientIds = excludedRecipientIds,
+    id = UuidUtil.toByteArray(this.chatFolderId.uuid).toByteString()
   )
 
   return Frame(chatFolder = chatFolder)

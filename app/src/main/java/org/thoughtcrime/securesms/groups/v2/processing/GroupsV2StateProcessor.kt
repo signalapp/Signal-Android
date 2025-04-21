@@ -555,13 +555,13 @@ class GroupsV2StateProcessor private constructor(
       AppDependencies.jobManager.add(AvatarGroupsV2DownloadJob(groupId, updatedGroupState.avatar))
     }
 
-    profileAndMessageHelper.setProfileSharing(groupStateDiff, updatedGroupState)
+    profileAndMessageHelper.setProfileSharing(groupStateDiff, updatedGroupState, needsAvatarFetch)
   }
 
   @VisibleForTesting
   internal class ProfileAndMessageHelper(private val aci: ACI, private val masterKey: GroupMasterKey, private val groupId: GroupId.V2) {
 
-    fun setProfileSharing(groupStateDiff: GroupStateDiff, newLocalState: DecryptedGroup) {
+    fun setProfileSharing(groupStateDiff: GroupStateDiff, newLocalState: DecryptedGroup, needsAvatarFetch: Boolean) {
       val previousGroupState = groupStateDiff.previousGroupState
 
       if (previousGroupState != null && DecryptedGroupUtil.findMemberByAci(previousGroupState.members, aci).isPresent) {
@@ -591,8 +591,11 @@ class GroupsV2StateProcessor private constructor(
             return
           } else if ((addedBy.isSystemContact || addedBy.isProfileSharing) && !addedBy.isHidden) {
             Log.i(TAG, "Group 'adder' is trusted. contact: " + addedBy.isSystemContact + ", profileSharing: " + addedBy.isProfileSharing)
-            Log.i(TAG, "Added to a group and auto-enabling profile sharing")
+            Log.i(TAG, "Added to a group and auto-enabling profile sharing and redownloading avatar if needed")
             SignalDatabase.recipients.setProfileSharing(Recipient.externalGroupExact(groupId).id, true)
+            if (needsAvatarFetch) {
+              AppDependencies.jobManager.add(AvatarGroupsV2DownloadJob(groupId, newLocalState.avatar, true))
+            }
           } else {
             Log.i(TAG, "Added to a group, but not enabling profile sharing, as 'adder' is not trusted")
           }

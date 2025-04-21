@@ -54,7 +54,7 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
 
   public void setPhoneNumberSharingMode(@NonNull PhoneNumberSharingMode phoneNumberSharingMode) {
     Log.i(TAG, "Setting phone number sharing to: " + phoneNumberSharingMode.name(), new Throwable());
-    putInteger(SHARING_MODE, phoneNumberSharingMode.serialize());
+    getStore().beginWrite().putInteger(SHARING_MODE, phoneNumberSharingMode.serialize()).commit();
   }
 
   public @NonNull PhoneNumberDiscoverabilityMode getPhoneNumberDiscoverabilityMode() {
@@ -68,7 +68,7 @@ public final class PhoneNumberPrivacyValues extends SignalStoreValues {
         .beginWrite()
         .putInteger(DISCOVERABILITY_MODE, phoneNumberDiscoverabilityMode.serialize())
         .putLong(DISCOVERABILITY_TIMESTAMP, System.currentTimeMillis())
-        .apply();
+        .commit();
   }
 
   public long getPhoneNumberDiscoverabilityModeTimestamp() {

@@ -37,8 +37,8 @@ import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberMultiplePermissionsState
 import com.google.accompanist.permissions.rememberPermissionState
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import org.signal.core.ui.Dialogs
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.R

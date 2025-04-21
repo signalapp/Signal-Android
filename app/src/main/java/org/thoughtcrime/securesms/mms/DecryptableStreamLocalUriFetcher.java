@@ -4,11 +4,14 @@ import android.content.ContentResolver;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.util.Pair;
 
 import com.bumptech.glide.load.data.StreamLocalUriFetcher;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.util.BitmapDecodingException;
+import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.ByteArrayInputStream;
@@ -20,6 +23,8 @@ import java.io.InputStream;
 class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
 
   private static final String TAG = Log.tag(DecryptableStreamLocalUriFetcher.class);
+
+  private static final int DIMENSION_LIMIT = 12_000;
 
   private Context context;
 
@@ -43,8 +48,8 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
       if (PartAuthority.isAttachmentUri(uri) && MediaUtil.isVideoType(PartAuthority.getAttachmentContentType(context, uri))) {
         try {
           AttachmentId attachmentId = PartAuthority.requireAttachmentId(uri);
-          Uri thumbnailUri = PartAuthority.getAttachmentThumbnailUri(attachmentId);
-          InputStream thumbStream = PartAuthority.getAttachmentThumbnailStream(context, thumbnailUri);
+          Uri          thumbnailUri = PartAuthority.getAttachmentThumbnailUri(attachmentId);
+          InputStream  thumbStream  = PartAuthority.getAttachmentThumbnailStream(context, thumbnailUri);
           if (thumbStream != null) {
             return thumbStream;
           }
@@ -55,10 +60,23 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
     }
 
     try {
-      return PartAuthority.getAttachmentThumbnailStream(context, uri);
+      if (isSafeSize(PartAuthority.getAttachmentThumbnailStream(context, uri))) {
+        return PartAuthority.getAttachmentThumbnailStream(context, uri);
+      } else {
+        throw new IOException("File dimensions are too large!");
+      }
     } catch (IOException ioe) {
       Log.w(TAG, ioe);
       throw new FileNotFoundException("PartAuthority couldn't load Uri resource.");
+    }
+  }
+
+  private boolean isSafeSize(InputStream stream) {
+    try {
+      Pair<Integer, Integer> size = BitmapUtil.getDimensions(stream);
+      return size.first < DIMENSION_LIMIT && size.second < DIMENSION_LIMIT;
+    } catch (BitmapDecodingException e) {
+      return false;
     }
   }
 }

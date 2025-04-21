@@ -11,9 +11,11 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.util.UuidUtil
+import org.whispersystems.signalservice.internal.push.AddressableMessage
 import org.whispersystems.signalservice.internal.push.AttachmentPointer
 import org.whispersystems.signalservice.internal.push.BodyRange
 import org.whispersystems.signalservice.internal.push.Content
+import org.whispersystems.signalservice.internal.push.ConversationIdentifier
 import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.EditMessage
 import org.whispersystems.signalservice.internal.push.Envelope
@@ -163,13 +165,13 @@ object MessageContentFuzzer {
               val conversation = Recipient.resolved(conversationId)
               SyncMessage.DeleteForMe.MessageDeletes(
                 conversation = if (conversation.isGroup) {
-                  SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
+                  ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
                 } else {
-                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                  ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
                 },
 
                 messages = conversationDeletes.map { (author, timestamp) ->
-                  SyncMessage.DeleteForMe.AddressableMessage(
+                  AddressableMessage(
                     authorServiceId = Recipient.resolved(author).requireAci().toString(),
                     sentTimestamp = timestamp
                   )
@@ -191,20 +193,20 @@ object MessageContentFuzzer {
               val conversation = Recipient.resolved(delete.conversationId)
               SyncMessage.DeleteForMe.ConversationDelete(
                 conversation = if (conversation.isGroup) {
-                  SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
+                  ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
                 } else {
-                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                  ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
                 },
 
                 mostRecentMessages = delete.messages.map { (author, timestamp) ->
-                  SyncMessage.DeleteForMe.AddressableMessage(
+                  AddressableMessage(
                     authorServiceId = Recipient.resolved(author).requireAci().toString(),
                     sentTimestamp = timestamp
                   )
                 },
 
                 mostRecentNonExpiringMessages = delete.nonExpiringMessages.map { (author, timestamp) ->
-                  SyncMessage.DeleteForMe.AddressableMessage(
+                  AddressableMessage(
                     authorServiceId = Recipient.resolved(author).requireAci().toString(),
                     sentTimestamp = timestamp
                   )
@@ -228,9 +230,9 @@ object MessageContentFuzzer {
               val conversation = Recipient.resolved(conversationId)
               SyncMessage.DeleteForMe.LocalOnlyConversationDelete(
                 conversation = if (conversation.isGroup) {
-                  SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
+                  ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
                 } else {
-                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                  ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
                 }
               )
             }
@@ -250,11 +252,11 @@ object MessageContentFuzzer {
             attachmentDeletes = listOf(
               SyncMessage.DeleteForMe.AttachmentDelete(
                 conversation = if (conversation.isGroup) {
-                  SyncMessage.DeleteForMe.ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
+                  ConversationIdentifier(threadGroupId = conversation.requireGroupId().decodedId.toByteString())
                 } else {
-                  SyncMessage.DeleteForMe.ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
+                  ConversationIdentifier(threadServiceId = conversation.requireAci().toString())
                 },
-                targetMessage = SyncMessage.DeleteForMe.AddressableMessage(
+                targetMessage = AddressableMessage(
                   authorServiceId = Recipient.resolved(message.first).requireAci().toString(),
                   sentTimestamp = message.second
                 ),

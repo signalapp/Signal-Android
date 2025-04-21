@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Adds an index to the story sends table to help with a new common query.

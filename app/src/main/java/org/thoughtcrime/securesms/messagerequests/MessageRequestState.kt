@@ -19,6 +19,12 @@ data class MessageRequestState @JvmOverloads constructor(val state: State = Stat
   val isBlocked: Boolean
     get() = state == State.INDIVIDUAL_BLOCKED || state == State.BLOCKED_GROUP
 
+  val isFewConnectionsIndividual: Boolean
+    get() = state == State.INDIVIDUAL_FEW_CONNECTIONS
+
+  val isGroupV2Add: Boolean
+    get() = state == State.GROUP_V2_ADD
+
   /**
    * An enum representing the possible message request states a user can be in.
    */
@@ -49,6 +55,9 @@ data class MessageRequestState @JvmOverloads constructor(val state: State = Stat
 
     /** A user is blocked  */
     INDIVIDUAL_BLOCKED,
+
+    /** A message request and secondary confirmation is needed for an individual with less than 2 common groups */
+    INDIVIDUAL_FEW_CONNECTIONS,
 
     /** A message request is needed for an individual since they have been hidden  */
     INDIVIDUAL_HIDDEN

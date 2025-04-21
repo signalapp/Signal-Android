@@ -55,6 +55,7 @@ class PayPalConfirmationDialogFragment : DialogFragment(R.layout.donation_webvie
     viewLifecycleOwner.lifecycle.addObserver(client)
     binding.webView.webViewClient = client
     binding.webView.settings.javaScriptEnabled = true
+    binding.webView.settings.domStorageEnabled = true
     binding.webView.settings.cacheMode = WebSettings.LOAD_NO_CACHE
     binding.webView.loadUrl(args.uri.toString())
 
@@ -80,6 +81,16 @@ class PayPalConfirmationDialogFragment : DialogFragment(R.layout.donation_webvie
 
     override fun onDestroy(owner: LifecycleOwner) {
       isDestroyed = true
+    }
+
+    /**
+     * Requires API23 for non-deprecated version.
+     */
+    @Suppress("OVERRIDE_DEPRECATION", "DEPRECATION")
+    override fun onReceivedError(view: WebView?, errorCode: Int, description: String?, failingUrl: String?) {
+      Log.d(TAG, "onReceivedError $errorCode: $description")
+
+      super.onReceivedError(view, errorCode, description, failingUrl)
     }
 
     override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {

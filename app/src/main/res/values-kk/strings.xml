@@ -572,11 +572,6 @@
         <item quantity="one">Мультимедианың барлығын жадқа сақтасаңыз, құрылғыңыздағы басқа қолданбалар да оларды пайдалана алатын болады.\n\nЖалғастыру керек пе?</item>
         <item quantity="other">%1$d мультимедианың барлығын жадқа сақтасаңыз, құрылғыңыздағы басқа қолданбалар да оларды пайдалана алатын болады.\n\nЖалғастыру керек пе?</item>
     </plurals>
-    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-        <item quantity="one">Тіркемені жадқа сақтау кезінде қате шықты!</item>
-        <item quantity="other">Тіркемелерді жадқа сақтау кезінде қате шықты!</item>
-    </plurals>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Жадқа жазу мүмкін емес!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">Тіркеме сақталуда</item>
         <item quantity="other">%1$d тіркеме сақталуда</item>
@@ -584,13 +579,6 @@
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
         <item quantity="one">Тіркеме жадқа сақталуда…</item>
         <item quantity="other">%1$d тіркеме жадқа сақталуда…</item>
-    </plurals>
-    <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="ConversationFragment__save_to_phone">Телефонға сақтау керек пе?</string>
-    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
-    <plurals name="ConversationFragment__this_media_will_be_saved">
-        <item quantity="one">Бұл мультимедиа файлы телефоныңыздың жадына сақталады. Телефоныңыздың рұқсаттарына байланысты басқа қолданбалар оны пайдалана алуы мүмкін.</item>
-        <item quantity="other">Бұл мультимедиа файлы телефоныңыздың жадына сақталады. Телефоныңыздың рұқсаттарына байланысты басқа қолданбалар оны пайдалана алуы мүмкін.</item>
     </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
     <string name="ConversationFragment_dont_show_again">Қайта көрсетілмесін</string>
@@ -669,6 +657,18 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">Спам деп хабарланып, блокталды</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">%1$s деген кісіден хат алмасуға деген өтінішті қабылдадыңыз. Егер байқамай қабылдап қойсаңыз, төмендегі әрекетті орындауыңызға болады.</string>
+    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
+    <string name="ConversationFragment_review_carefully">Мұқият тексеріңіз</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s расталмайды</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s расталмайды</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
+    <string name="ConversationFragment_profile_names">Профиль атаулары</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
+    <string name="ConversationFragment_group_names">Топ атаулары</string>
+    <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
+    <string name="ConversationFragment_photo_failed">Фотосурет жүктеп алынбады. Әрекетті қайталап көріңіз.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Қауіпсіздікке қатысты кеңестер</string>
@@ -680,6 +680,10 @@
     <string name="SafetyTips_previous_tip">Алдыңғы кеңес</string>
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">Келесі кеңес</string>
+    <!-- Title of tip 0 -->
+    <string name="SafetyTips_tip0_title">Жалған атаулар мен аккаунттар</string>
+    <!-- Message of tip 0 -->
+    <string name="SafetyTips_tip0_message">Signal сізге хабарласып, тіркеу кодын немесе PIN кодын сұрамайды. Басқа біреулердің атын жамылған сұраулардан абай болыңыз. Профиль атауларын аккаунт иелері таңдайды және олар расталмайды.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Криптовалютаға немесе ақшаға қатысты алаяқтық</string>
     <!-- Message of tip 1 -->
@@ -696,6 +700,21 @@
     <string name="SafetyTips_tip4_title">Жалған компаниялар мен мекемелер</string>
     <!-- Message of tip 4 -->
     <string name="SafetyTips_tip4_message">Сізге хабарласқан компаниялардан немесе мемлекеттік органдардан сақ болыңыз. Салық агенттіктерінен, курьерлерден және т.с.с. келген хаттар спам болуы мүмкін.</string>
+
+    <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal-дағы %1$s аккаунт иелерімен таңдалады.</string>
+    <!-- Bottom sheet text explaining that profile names are not verified. -->
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Профиль атаулары расталмады</string>
+    <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Басқа біреудің атын жамылған аккаунттардан абай болыңыз</string>
+    <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
+    <string name="ProfileNameBottomSheet__dont_share_personal">Танымайтын адамдармен жеке ақпаратты бөліспеңіз</string>
+    <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s топ мүшелерімен таңдалады.</string>
+    <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Ұйымдардың және компаниялардың атын жамылатын топтардан абай болыңыз</string>
+    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Топтардағы мүшелердің профиль атаулары расталмайды</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Сүзгіні тазалау</string>
@@ -759,8 +778,11 @@
     <string name="AddToFolderBottomSheet_choose_a_folder">Қалта таңдаңыз</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
     <string name="AddToFolderBottomSheet_added_to_s">\"%1$s\" қалтасына қосылды</string>
-    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_this_chat_is_already">Бұл чат \"%1$s\" қалтасында тұр</string>
+    <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
+    <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
+        <item quantity="one">Бұл чат \"%1$s\" қалтасына қосылып қойған</item>
+        <item quantity="other">Бұл чаттар \"%1$s\" қалтасына қосылып қойған</item>
+    </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">Хабарландыру профилі</string>
@@ -1030,15 +1052,15 @@
     <!-- Title of dialog asking users if they want to submit debug logs when contacting support -->
     <string name="LinkDeviceFragment__submit_debug_log">Ақауларды түзету журналын жіберу керек пе?</string>
     <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
-    <string name="LinkDeviceFragment__your_debug_logs">Your debug logs will help us troubleshoot your issue faster. Submitting your logs is optional.</string>
+    <string name="LinkDeviceFragment__your_debug_logs">Ақауларды түзету журналдары ақауларды жылдам түзетуге мүмкіндік береді. Журналдарды жіберу міндетті емес.</string>
     <!-- Button option to submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_with_debug">Submit with debug log</string>
+    <string name="LinkDeviceFragment__submit_with_debug">Ақауларды түзету журналын жіберу</string>
     <!-- Button option to not submit debug log when contacting support -->
-    <string name="LinkDeviceFragment__submit_without_debug">Submit without debug log</string>
+    <string name="LinkDeviceFragment__submit_without_debug">Ақауларды түзету журналын жібермеу</string>
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Бас тарту</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android экспорты (Link&amp;Sync) орындалмады</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Хабарлар синхрондалмады</string>
@@ -1133,6 +1155,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">Атауы жоқ файл</string>
+    <string name="DocumentView_document_file">Құжат файлы</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Қолданыста жоқ Play қызметтерін оңтайландыру</string>
@@ -1660,7 +1683,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Жою</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Хаттар жойылуда…</string>
-    <string name="MediaOverviewActivity_collecting_attachments">Тіркемелерді жинау…</string>
     <string name="MediaOverviewActivity_Sort_by">Сұрыптау реті</string>
     <string name="MediaOverviewActivity_Newest">Ең жаңасы</string>
     <string name="MediaOverviewActivity_Oldest">Ең ескісі</string>
@@ -1764,6 +1786,10 @@
     <string name="MessageRecord_missed_voice_call">Қабылданбаған дауыстық қоңырау</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Қабылданбаған видеоқоңырау</string>
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
+    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
+    <string name="MessageRecord_declined_video_call">Declined video call</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Хабарландыру профилі ашылып тұрғанда, дауыстық қоңырау қабылданбады</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2052,6 +2078,14 @@
     <string name="MessageRecord_reported_as_spam">Спам деп хабарланды</string>
     <!-- Update message shown in chat after accept a message request -->
     <string name="MessageRecord_you_accepted_the_message_request">Хат алмасу туралы өтінішті қабылдадыңыз</string>
+    <!-- Update message shown in chat after you block a person -->
+    <string name="MessageRecord_you_blocked_this_person">Бұл адамды блоктадыңыз</string>
+    <!-- Update message shown in chat after you unblock a person -->
+    <string name="MessageRecord_you_unblocked_this_person">Бұл адамды блоктан шығардыңыз</string>
+    <!-- Update message shown in chat after you block a group -->
+    <string name="MessageRecord_you_blocked_this_group">Осы топты блоктадыңыз</string>
+    <!-- Update message shown in chat after you unblock a group -->
+    <string name="MessageRecord_you_unblocked_this_group">Осы топты блоктан шығардыңыз</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Қабылдау</string>
@@ -2101,8 +2135,39 @@
         <item quantity="one">%1$d қосымша топ</item>
         <item quantity="other">Қосымша %1$d топ</item>
     </plurals>
+    <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
+    <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
+    <!-- Text for an empty group or when you are the only member -->
+    <string name="MessageRequestProfileView_group_members_zero">Бұл топта әзірге басқа мүшелер жоқ</string>
+    <!-- Text for a group with one member (not you). %1$s is their name -->
+    <string name="MessageRequestProfileView_group_members_one">%1$s</string>
+    <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
+    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s және сіз</string>
+    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two">%1$s және %2$s</string>
+    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s және сіз</string>
+    <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
+    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s және %3$s</string>
+    <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
+    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s және %4$s</string>
+    <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
+    <plurals name="MessageRequestProfileView_other_members">
+        <item quantity="one">тағы %1$d</item>
+        <item quantity="other">тағы %1$d</item>
+    </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Хабарлау…</string>
+    <!-- Alert dialog title to accept a message request -->
+    <string name="MessageRequestBottomView_accept_request">Сұрауды қабылдау керек пе?</string>
+    <!-- Alert dialog body to review the message request carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully">Сұрауларды мұқият тексеріңіз. Профиль атауларын аккаунт иелері таңдайды және олар расталмайды.</string>
+    <!-- Alert dialog title to accept a message request to join a group -->
+    <string name="MessageRequestBottomView_join_group">Топқа қосылу керек пе?</string>
+    <!-- Alert dialog body to review the message request for a group carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Сұрауларды мұқият тексеріңіз. Топ атауларын топ мүшелері таңдайды және олар расталмайды.</string>
+    <!-- Button text to join a group -->
+    <string name="MessageRequestBottomView_join">Қосылу</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Құпия сөйлемдер сәйкес келмейді!</string>
@@ -2206,6 +2271,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">Барлығы · %1$d</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Өшіру үшін басыңыз</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -2438,6 +2504,8 @@
     <string name="CallOverflowPopupWindow__view">View</string>
 
 
+    <!-- A notification to the user that their hand is raised but they are currently speaking -->
+    <string name="CallRaiseHandSnackbar__lower_your_hand">Қолыңызды түсіресіз бе?</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s қолыңызды көтердіңіз</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -2476,7 +2544,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Еліңіз</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Атауы немесе нөмірі бойынша іздеңіз</string>
+    <string name="CountryCodeFragment__search_by">Ел атауы немесе ел коды бойынша іздеңіз</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">Белгісіз ел</string>
 
@@ -2485,12 +2553,16 @@
     <string name="AboutSheet__signal_connection">Signal контактісі</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Тексерілді</string>
+    <!-- Displayed in a sheet row that tells users that profile names are not verified -->
+    <string name="AboutSheet__profile_names_are_not_verified">Профиль атаулары расталмады</string>
+    <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
+    <string name="AboutSheet__pending_message_request">Әлі қабылданбаған хат алмасуға деген өтініш</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">%1$s деген кісімен тікелей хат алмаспағансыз</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s сіздің контактілеріңізде бар</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">Сіздерде ортақ топ жоқ</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">Ортақ топ жоқ</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Өтініштерді мұқият қарап шығыңыз</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -2504,6 +2576,12 @@
     <string name="AboutSheet__you">Сіз</string>
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
+
+    <!-- Title of the screen showing which groups they have in common with another user. -->
+    <plurals name="GroupsInCommon__n_groups_in_common_title">
+        <item quantity="one">%1$s group in common</item>
+        <item quantity="other">%1$s groups in common</item>
+    </plurals>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2802,6 +2880,10 @@
     <string name="ThreadRecord_message_history_has_been_merged">Хаттар тарихы біріктірілді</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s нөмірі %2$s деген кісіге тиесілі</string>
+    <!-- Displayed in the conversation list when a person has been blocked -->
+    <string name="ThreadRecord_blocked">Блокталған</string>
+    <!-- Displayed in the conversation list when a group has been blocked -->
+    <string name="ThreadRecord_blocked_group">Blocked</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal-ды жаңарту</string>
@@ -2917,8 +2999,6 @@
     <string name="MediaPreviewActivity_you">Сіз</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Қолдау көрсетілмейтін мультимедиа түрі</string>
     <string name="MediaPreviewActivity_draft">Нобай</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Сыртқы жадқа сақтау үшін Signal қолданбасына Жадты пайдалануға рұқсат керек, бірақ параметрлерде оны пайдалануға рұқсат берілмеген. Қолданба параметрлеріне кіріп, \"Рұқсаттар\" опциясын таңдаңыз да, \"Жад\" функциясын қосыңыз.</string>
-    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Рұқсаттарсыз сыртқы жадқа сақтау мүмкін болмады</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Хатты жою керек пе?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Бұл функция хатты біржола жойып тастайды.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s – %2$s</string>
@@ -3025,14 +3105,46 @@
     <!-- Notification channel name for notifications sent when a device has been linked -->
     <string name="NotificationChannel_new_linked_device">Жаңа байланыстырылған құрылғы</string>
 
-    <!-- ProfileEditNameFragment -->
-
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal құлыпталып тұрғанда, жылдам жауап беру мүмкін емес!</string>
     <string name="QuickResponseService_problem_sending_message">Хатты жіберу кезінде мәселе туындады!</string>
 
-    <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">Мультимедиа сақталды</string>
+    <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
+    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">Жадқа жазу мүмкін емес!</string>
+
+    <!-- A toast notification that is shown after image/video/audio media was successfully downloaded and saved to the device storage, accessible in other apps. -->
+    <plurals name="SaveAttachment_saved_success">
+        <item quantity="one">Мультимедиа сақталды</item>
+        <item quantity="other">Мультимедиа сақталды</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after some image/video/audio media was successfully downloaded and saved to the device storage, but some failed to save
+         %1$s is the number of items that failed to save and %2$s is the total number of items that the user requested to save. -->
+    <plurals name="SaveAttachment_saved_success_n_failures">
+        <item quantity="one">Мультимедиа сақталды (%1$s/%2$s сақталмады)</item>
+        <item quantity="other">Мультимедиа сақталды (%1$s/%2$s сақталмады)</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after all of the requested image/video/audio media failed to save to the device storage. -->
+    <plurals name="SaveAttachment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Тіркемені жадқа сақтау кезінде қате шықты!</item>
+        <item quantity="other">Тіркемелерді жадқа сақтау кезінде қате шықты!</item>
+    </plurals>
+
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="AttachmentSaver__save_to_phone">Телефонға сақтау керек пе?</string>
+
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <plurals name="AttachmentSaver__this_media_will_be_saved">
+        <item quantity="one">Бұл мультимедиа файлы телефоныңыздың жадына сақталады. Телефоныңыздың рұқсаттарына байланысты басқа қолданбалар оны пайдалана алуы мүмкін.</item>
+        <item quantity="other">Бұл мультимедиа файлы телефоныңыздың жадына сақталады. Телефоныңыздың рұқсаттарына байланысты басқа қолданбалар оны пайдалана алуы мүмкін.</item>
+    </plurals>
+
+    <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Сыртқы жадқа сақтау үшін Signal қолданбасына Жадты пайдалануға рұқсат керек, бірақ параметрлерде оны пайдалануға рұқсат берілмеген. Қолданба параметрлеріне кіріп, \"Рұқсаттар\" опциясын таңдаңыз да, \"Жад\" функциясын қосыңыз.</string>
+
+    <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Рұқсаттарсыз сыртқы жадқа сақтау мүмкін болмады</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Іздеу</string>
@@ -3269,7 +3381,8 @@
     <string name="ConversationUpdateItem_update_contact">Контактіні жаңарту</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Өтінішті блоктау</string>
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ортақ топтар жоқ. Өтініштерді мұқият тексеріңіз.</string>
+    <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Ортақ топ жоқ</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Бұл топта контактілер жоқ. Өтініштерді мұқият тексеріңіз.</string>
     <string name="ConversationUpdateItem_view">View</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Оларға хат жазғанда жоғалып кететін хаттың уақыты %1$s болып орнатылады.</string>
@@ -3289,6 +3402,11 @@
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Ойнату … Кідірту</string>
     <string name="audio_view__download_accessibility_description">Жүктеп алу</string>
+
+    <!-- document_view -->
+    <string name="document_view__download_accessibility_description">Жүктеп алу</string>
+    <string name="document_view__upload_accessibility_description">Жүктеп салу</string>
+    <string name="document_view__cancel_accessibility_description">Бас тарту</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">Дыбыс</string>
@@ -4409,6 +4527,13 @@
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN-кодтар Signal-да сақталған ақпаратты шифрланған күйде қалдырады.</string>
     <string name="KbsMegaphone__create_pin">PIN код жасау</string>
 
+    <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__update_signal_pin">Signal PIN кодын жаңартыңыз</string>
+    <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__message">Аккаунтты тіркеуді аяқтау үшін Signal PIN кодын жаңартыңыз.</string>
+    <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__update_pin">PIN-кодты жаңарту</string>
+
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
     <string name="CallNotificationBuilder__incoming_signal_voice_call">Кіріс Signal дауыстық қоңырауы</string>
@@ -4821,8 +4946,8 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Басқа ортақ топтар жоқ.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Ортақ топтар жоқ.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d ортақ топ бар</item>
-        <item quantity="other">%1$d ортақ топ бар</item>
+        <item quantity="one">%1$d other group in common</item>
+        <item quantity="other">%1$d other groups in common</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">%1$d ортақ топ бар</item>
@@ -5736,6 +5861,24 @@
     <string name="MediaReviewFragment__photo_set_to_high_quality">Фотосурет жоғары сапаға орнатылды</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
     <string name="MediaReviewFragment__photo_set_to_standard_quality">Фотосурет стандартты сапаға орнатылды</string>
+    <!-- Accessibility label describing the add media button on the Media review screen -->
+    <string name="MediaReviewFragment__add_media_accessibility_label">Мультимедиа қосу</string>
+    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
+    <string name="MediaReviewFragment__brush_pen_accessibility_label">Қылқалам мен қалам</string>
+    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
+    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Кесу және айналдыру</string>
+    <!-- Accessibility label describing the change media quality button on the Media review screen -->
+    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Мультимедиа сапасын өзгерту</string>
+    <!-- Accessibility label describing the save media button on the Media review screen -->
+    <string name="MediaReviewFragment__save_media_accessibility_label">Мультимедианы сақтау</string>
+    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
+    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Эмодзи пернетақтасына ауыстыру</string>
+    <!-- Accessibility label describing the toggle view once button on the Media review screen -->
+    <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Көріністі бір рет ауыстыру</string>
+    <!-- Accessibility label describing the send media button on the Media review screen -->
+    <string name="MediaReviewFragment__send_media_accessibility_label">Мультимедианы жіберу</string>
+    <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
+    <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Хабар жазуды аяқтаңыз</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
         <item quantity="one">%1$d элемент жоғары сапа параметріне орнатылды</item>
@@ -5986,7 +6129,7 @@
     <string name="DonationsErrors__your_payment_is_still">Демеуіңіз әлі өңделіп жатыр. Желі жұмысына байланысты бұған бірнеше минут кетуі мүмкін.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Жазылымнан бас тарту мүмкін болмады</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Жазылымнан бас тарту үшін интернет керек.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Құрылғыңызда Google Pay жұмыс істемейді, сондықтан жазылып, таңба ала алмайсыз. Дегенмен Signal-ға веб-сайт арқылы демеушілік жасауға болады.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Құрылғыңызда қолданба арқылы қайырымдылық жасау функциясы істемейді, сондықтан танымбелгі алу үшін жазыла алмайсыз. Дегенмен Signal-ға веб-сайт арқылы да қолдау көрсетуге болады.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Желі қатесі. Байланысты тексеріп, қайталап көріңіз.</string>
     <string name="NetworkFailure__retry">Қайтадан байқап көру</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6226,6 +6369,16 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal шығарылымы туралы ескертпелер және жаңалықтар</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat_period">Бұл – Signal-дың ресми және жалғыз чаты.</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date_period">Жаңалықтар мен шығарылым туралы ескертпелерден хабардар болыңыз.</string>
+    <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat">Бұл – Signal-дың ресми және жалғыз чаты</string>
+    <!-- Text description in Signal Release channel details explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date">Жаңалықтар мен шығарылым туралы ескертпелерден хабардар болыңыз</string>
+    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__official_only_chat">Signal-дың ресми және жалғыз чаты</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Барлық әрекет</string>
@@ -6351,6 +6504,8 @@
     <string name="StoryViewerPageFragment__send_failed">Жіберілмеді. Қайталап көру үшін түртіңіз</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Топқа жауап беру</string>
+    <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
+    <string name="StoryViewerPageFragment_any_reaction_content_description">Басқа реакциялар</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Әлі ешкім көрмеген</string>
     <!-- Displayed when user has disabled receipts -->
@@ -7257,6 +7412,8 @@
     <string name="CameraControls_capture_button_accessibility_label">Түсіру түймесі</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
     <string name="CameraControls_continue_button_accessibility_label">Жалғастыру түймесі</string>
+    <!-- Accessibility label describing the flash Mode toggle button on the camera screen -->
+    <string name="CameraControls_toggle_flash_mode_accessibility_label">Жарқыл режимін ауыстыру</string>
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
@@ -7908,9 +8065,9 @@
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Сақтық көшірме дайындалып жатыр…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
-    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
-        <item quantity="one">%1$d/%2$d (%3$d%%) хабар өңделіп жатыр</item>
-        <item quantity="other">%1$d/%2$d (%3$d%%) хабар өңделіп жатыр</item>
+    <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
+        <item quantity="one">%1$s/%2$s хабар өңделіп жатыр (%3$d%%)</item>
+        <item quantity="other">Шамамен %1$s/%2$s хабар өңделіп жатыр (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -7957,6 +8114,10 @@
     <!-- Action button label to contact support -->
     <string name="SubscriptionNotFoundBottomSheet__contact_support">Қолдау қызметіне хабарласу</string>
 
+    <!-- MessageBackupsFlowFragment -->
+    <!-- Body for network failure dialog in message backups checkout flow -->
+    <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Желі ақауы пайда болды. Кейінірек қайталап көріңіз.</string>
+
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Signal-дың қауіпсіз, өтпелі шифрланған жад қызметінің көмегімен хаттарыңызды және мультимедианың резервтік көшірмесін жасаңыз. Жаңа телефон алғанда немесе Signal-ды қайта орнатқанда, хатты жоғалтып алмаңыз.</string>
@@ -8000,6 +8161,19 @@
     <string name="MessageBackupsKeyRecordScreen__continue">Жалғастыру</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Кілтті қайта көру</string>
+
+    <!-- Confirm key title -->
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Сақтық кілтіңізді растау</string>
+    <!-- Confirm your key subtitle -->
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Қазір ғана жазған сақтық кілтті енгізіңіз</string>
+    <!-- Confirm your key text entry hint text -->
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Сақтық кілт</string>
+    <!-- Confirm your key text entry error text -->
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Қате сақтық кілт</string>
+    <!-- Confirm your key button text to return to record key screen. -->
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">Кілтті қайта көру</string>
+    <!-- Confirm your key button text to move onto next screen in flow -->
+    <string name="MessageBackupsKeyVerifyScreen__next">Келесі</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8126,6 +8300,25 @@
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Сіз енгізген сақтық кілт дұрыс, бірақ онымен байланысты сақтық көшірме жоқ. Егер ескі телефоныңыз әлі де болса, сақтық көшірмелер қосылып тұрғанына және сақтық көшірменің жасалғанына көз жеткізіңіз де, қайталап көріңіз.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Қалпына келтіру функциясын өткізіп жіберу</string>
+    <!-- Dialog title text when encountering backup restore network error -->
+    <string name="EnterBackupKey_cant_restore_backup">Сақтық көшірме қалпына келтірілмейді</string>
+    <!-- Dialog body text when encountering backup restore network error -->
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Сақтық көшірмеңізді қазір қалпына келтіру мүмкін емес. Интернет байланысын тексеріп, қайталап көріңіз. </string>
+    <!-- Dialog button text to contact support on network error -->
+    <string name="EnterBackupKey_contact_support">Қолдау қызметіне хабарласу</string>
+
+    <!-- Email subject when contacting support on a restore backup network issue -->
+    <string name="EnterBackupKey_network_failure_support_email">Signal Android сақтық көшірмесін қалпына келтіру кезінде желі қатесі шықты</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+
+    <!-- Title of dialog asking to submit debuglogs -->
+    <string name="ContactSupportDialog_submit_debug_log">Ақауларды түзету журналын жіберу керек пе?</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="ContactSupportDialog_your_debug_logs">Ақауларды түзету журналдары ақауларды жылдам түзетуге мүмкіндік береді. Журналдарды жіберу міндетті емес.</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_with_debug">Ақауларды түзету журналын жіберу</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_without_debug">Ақауларды түзету журналын жібермеу</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Осы кодты ескі телефоныңызбен сканерлеңіз</string>

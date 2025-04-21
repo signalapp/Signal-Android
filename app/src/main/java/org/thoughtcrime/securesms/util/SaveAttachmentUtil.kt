@@ -16,25 +16,19 @@ import android.os.Build
 import android.os.Environment
 import android.provider.MediaStore
 import android.webkit.MimeTypeMap
-import android.widget.CheckBox
-import android.widget.Toast
-import androidx.annotation.WorkerThread
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.contentValuesOf
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.logging.Log
-import org.signal.core.util.orNull
+import org.signal.core.util.logging.logI
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.PartAuthority
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
-import java.io.InputStream
+import java.text.NumberFormat
 import java.text.SimpleDateFormat
 import java.util.concurrent.TimeUnit
 
@@ -46,108 +40,71 @@ import java.util.concurrent.TimeUnit
  */
 private typealias BatchOperationNameCache = HashMap<Uri, HashSet<String>>
 
-/**
- * This is a rewrite of [SaveAttachmentTask] that does not handle displaying
- * a progress dialog and is not backed by an async task.
- */
 object SaveAttachmentUtil {
-
   private val TAG = Log.tag(SaveAttachmentUtil::class.java)
 
-  fun showWarningDialogIfNecessary(context: Context, count: Int, onSave: () -> Unit) {
-    if (SignalStore.uiHints.hasDismissedSaveStorageWarning()) {
-      onSave()
-    } else {
-      MaterialAlertDialogBuilder(context)
-        .setView(R.layout.dialog_save_attachment)
-        .setTitle(R.string.ConversationFragment__save_to_phone)
-        .setCancelable(true)
-        .setMessage(context.resources.getQuantityString(R.plurals.ConversationFragment__this_media_will_be_saved, count, count))
-        .setPositiveButton(R.string.save) { dialog, _ ->
-          val checkbox = (dialog as AlertDialog).findViewById<CheckBox>(R.id.checkbox)!!
-          if (checkbox.isChecked) {
-            SignalStore.uiHints.markDismissedSaveStorageWarning()
-          }
-          onSave()
-        }
-        .setNegativeButton(android.R.string.cancel, null)
-        .show()
-    }
-  }
-
-  fun getAttachmentsForRecord(record: MmsMessageRecord): Set<SaveAttachment> {
-    return record.slideDeck.slides
-      .filter { it.uri != null && (it.hasImage() || it.hasVideo() || it.hasAudio() || it.hasDocument()) }
-      .map { SaveAttachment(it.uri!!, it.contentType, record.dateSent, it.fileName.orNull()) }
-      .toSet()
-  }
-
-  fun saveAttachments(attachments: Set<SaveAttachment>): Single<SaveResult> {
-    return Single.fromCallable {
-      saveAttachmentsSync(attachments)
-    }
-  }
-
-  @WorkerThread
-  private fun saveAttachmentsSync(attachments: Set<SaveAttachment>): SaveResult {
+  suspend fun saveAttachments(attachments: Set<SaveAttachment>): SaveAttachmentsResult {
     check(attachments.isNotEmpty()) { "must pass in at least one attachment" }
 
     if (!StorageUtil.canWriteToMediaStore()) {
-      return SaveResult.WriteAccessFailure
+      return SaveAttachmentsResult.ErrorNoWriteAccess
     }
 
     val nameCache: BatchOperationNameCache = HashMap()
 
-    try {
-      var directory: String?
-      attachments.forEach {
-        directory = saveAttachment(it, nameCache)
-        if (directory == null) {
-          return SaveResult.Failure(attachments.size)
-        }
-      }
+    val (successes, failures) = attachments
+      .map { saveAttachment(it, nameCache) }
+      .partition { saveResult -> saveResult is SaveAttachmentResult.Success }
 
-      return SaveResult.Success
-    } catch (e: IOException) {
-      Log.w(TAG, "Failed to save attachments", e)
-      return SaveResult.Failure(attachments.size)
-    }
+    return when {
+      failures.isEmpty() -> SaveAttachmentsResult.Success(successesCount = successes.size)
+      successes.isEmpty() -> SaveAttachmentsResult.Failure(failuresCount = failures.size)
+      else -> SaveAttachmentsResult.PartialSuccess(successesCount = successes.size, failuresCount = failures.size)
+    }.logI(TAG, "Save attachments completed (${successes.size} of ${attachments.size} saved successfully).")
   }
 
-  @Throws(IOException::class)
-  private fun saveAttachment(attachment: SaveAttachment, nameCache: BatchOperationNameCache): String? {
-    val contentType: String = MediaUtil.getCorrectedMimeType(attachment.contentType)!!
-    val fileName: String = sanitizeOutputFileName(attachment.fileName ?: generateOutputFileName(contentType, attachment.date))
-    val result: CreateMediaUriResult = createMediaUri(getMediaStoreContentUriForType(contentType), contentType, fileName, nameCache)
-    val updateValues = ContentValues()
-    val mediaUri = result.mediaUri ?: return null
+  private suspend fun saveAttachment(attachment: SaveAttachment, nameCache: BatchOperationNameCache): SaveAttachmentResult = withContext(Dispatchers.IO) {
+    try {
+      val contentType: String = MediaUtil.getCorrectedMimeType(attachment.contentType)!!
+      val fileName: String = sanitizeOutputFileName(attachment.fileName ?: generateOutputFileName(contentType, attachment.date))
+      val result: CreateMediaUriResult = createMediaUri(getMediaStoreContentUriForType(contentType), contentType, fileName, nameCache)
+      val updateValues = ContentValues()
+      val mediaUri = result.mediaUri ?: return@withContext SaveAttachmentResult.ErrorSavingFile
+      val inputStream = PartAuthority.getAttachmentStream(AppDependencies.application, attachment.uri) ?: return@withContext SaveAttachmentResult.ErrorSavingFile
 
-    val inputStream: InputStream = PartAuthority.getAttachmentStream(AppDependencies.application, attachment.uri) ?: return null
-    inputStream.use { inStream ->
-      if (result.outputUri.scheme == ContentResolver.SCHEME_FILE) {
-        FileOutputStream(mediaUri.path).use { outStream ->
-          StreamUtil.copy(inStream, outStream)
-          MediaScannerConnection.scanFile(AppDependencies.application, arrayOf(mediaUri.path), arrayOf(contentType), null)
-        }
-      } else {
-        AppDependencies.application.contentResolver.openOutputStream(mediaUri, "w").use { outStream ->
-          val total = StreamUtil.copy(inStream, outStream)
-          if (total > 0) {
-            updateValues.put(MediaStore.MediaColumns.SIZE, total)
+      inputStream.use { inStream ->
+        if (result.outputUri.scheme == ContentResolver.SCHEME_FILE) {
+          FileOutputStream(mediaUri.path).use { outStream ->
+            StreamUtil.copy(inStream, outStream)
+            MediaScannerConnection.scanFile(AppDependencies.application, arrayOf(mediaUri.path), arrayOf(contentType), null)
+          }
+        } else {
+          AppDependencies.application.contentResolver.openOutputStream(mediaUri, "w").use { outStream ->
+            val total = StreamUtil.copy(inStream, outStream)
+            if (total > 0) {
+              updateValues.put(MediaStore.MediaColumns.SIZE, total)
+            }
           }
         }
       }
-    }
 
-    if (Build.VERSION.SDK_INT > 28) {
-      updateValues.put(MediaStore.MediaColumns.IS_PENDING, 0)
-    }
+      if (Build.VERSION.SDK_INT > 28) {
+        updateValues.put(MediaStore.MediaColumns.IS_PENDING, 0)
+      }
 
-    if (updateValues.size() > 0) {
-      AppDependencies.application.contentResolver.update(mediaUri, updateValues, null, null)
-    }
+      if (updateValues.size() > 0) {
+        AppDependencies.application.contentResolver.update(mediaUri, updateValues, null, null)
+      }
 
-    return result.outputUri.lastPathSegment
+      return@withContext if (result.outputUri.lastPathSegment != null) {
+        SaveAttachmentResult.Success
+      } else {
+        SaveAttachmentResult.ErrorSavingFile
+      }
+    } catch (e: IOException) {
+      Log.w(TAG, "Failed to save attachment", e)
+      return@withContext SaveAttachmentResult.ErrorSavingFile
+    }
   }
 
   private fun getMediaStoreContentUriForType(contentType: String): Uri {
@@ -317,30 +274,49 @@ object SaveAttachmentUtil {
     )
   }
 
-  sealed interface SaveResult {
-    object Success : SaveResult {
-      override fun toast(context: Context) {
-        Toast.makeText(context, R.string.SaveAttachmentTask_saved, Toast.LENGTH_LONG).show()
+  private sealed interface SaveAttachmentResult {
+    data object Success : SaveAttachmentResult
+    data object ErrorSavingFile : SaveAttachmentResult
+  }
+
+  sealed interface SaveAttachmentsResult {
+    fun getMessage(context: Context): CharSequence
+
+    data class Success(val successesCount: Int) : SaveAttachmentsResult {
+      override fun getMessage(context: Context): CharSequence {
+        return context.resources.getQuantityText(R.plurals.SaveAttachment_saved_success, successesCount)
       }
     }
 
-    data class Failure(val attachmentCount: Int) : SaveResult {
-      override fun toast(context: Context) {
-        Toast.makeText(
-          context,
-          context.resources.getQuantityText(R.plurals.ConversationFragment_error_while_saving_attachments_to_sd_card, attachmentCount),
-          Toast.LENGTH_LONG
-        ).show()
+    data class PartialSuccess(val successesCount: Int, val failuresCount: Int) : SaveAttachmentsResult {
+      override fun getMessage(context: Context): CharSequence {
+        val numberFormat = NumberFormat.getInstance()
+        return context.resources.getQuantityString(
+          R.plurals.SaveAttachment_saved_success_n_failures,
+          failuresCount,
+          numberFormat.format(failuresCount),
+          numberFormat.format(failuresCount + successesCount)
+        )
       }
     }
 
-    object WriteAccessFailure : SaveResult {
-      override fun toast(context: Context) {
-        Toast.makeText(context, R.string.ConversationFragment_unable_to_write_to_sd_card_exclamation, Toast.LENGTH_LONG).show()
+    data class Failure(val failuresCount: Int) : SaveAttachmentsResult {
+      override fun getMessage(context: Context): CharSequence {
+        return context.resources.getQuantityText(R.plurals.SaveAttachment_error_while_saving_attachments_to_sd_card, failuresCount)
       }
     }
 
-    fun toast(context: Context)
+    data object WriteStoragePermissionDenied : SaveAttachmentsResult {
+      override fun getMessage(context: Context): CharSequence {
+        return context.getString(R.string.AttachmentSaver__unable_to_write_to_external_storage_without_permission)
+      }
+    }
+
+    data object ErrorNoWriteAccess : SaveAttachmentsResult {
+      override fun getMessage(context: Context): CharSequence {
+        return context.getString(R.string.SaveAttachment_unable_to_write_to_sd_card_exclamation)
+      }
+    }
   }
 
   data class SaveAttachment(

@@ -32,8 +32,8 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
 
       val folder = model.chatFolder
       name.text = getName(itemView.context, folder)
-      unreadCount.visible = folder.unreadCount > 0
-      unreadCount.text = if (folder.unreadCount > 99) itemView.context.getString(R.string.ChatFolderAdapter__99p) else folder.unreadCount.toString()
+      unreadCount.visible = model.unreadCount > 0
+      unreadCount.text = if (model.unreadCount > 99) itemView.context.getString(R.string.ChatFolderAdapter__99p) else model.unreadCount.toString()
       itemView.setOnClickListener {
         callbacks.onChatFolderClicked(model.chatFolder)
       }
@@ -42,8 +42,8 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
           context = itemView.context,
           anchorView = view,
           folderType = model.chatFolder.folderType,
-          unreadCount = folder.unreadCount,
-          isMuted = folder.isMuted,
+          unreadCount = model.unreadCount,
+          isMuted = model.isMuted,
           onEdit = { callbacks.onEdit(model.chatFolder) },
           onMuteAll = { callbacks.onMuteAll(model.chatFolder) },
           onUnmuteAll = { callbacks.onUnmuteAll(model.chatFolder) },

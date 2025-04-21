@@ -6,9 +6,9 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * A while back we added an accountId to the prekey tables to support a mix of ACI and PNI identities.

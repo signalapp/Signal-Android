@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Represents all the data needed for an outgoing message.
@@ -55,6 +56,8 @@ data class OutgoingMessage(
   val messageToEdit: Long = 0,
   val isReportSpam: Boolean = false,
   val isMessageRequestAccept: Boolean = false,
+  val isBlocked: Boolean = false,
+  val isUnblocked: Boolean = false,
   val messageExtras: MessageExtras? = null
 ) {
 
@@ -431,6 +434,56 @@ data class OutgoingMessage(
         expiresIn = expiresIn,
         isMessageRequestAccept = true,
         isUrgent = false,
+        isSecure = true
+      )
+    }
+
+    /**
+     * Message for when you block someone
+     */
+    @JvmStatic
+    fun blockedMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        isGroup = threadRecipient.isPushV2Group,
+        isBlocked = true,
+        isUrgent = false,
+        isSecure = true
+      )
+    }
+
+    /**
+     * Message for when you unblock someone
+     */
+    @JvmStatic
+    fun unblockedMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        isGroup = threadRecipient.isPushV2Group,
+        isUnblocked = true,
+        isUrgent = false,
+        isSecure = true
+      )
+    }
+
+    @JvmStatic
+    fun quickReply(
+      threadRecipient: Recipient,
+      slideDeck: SlideDeck?,
+      body: String,
+      parentStoryId: ParentStoryId?
+    ): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = System.currentTimeMillis(),
+        expiresIn = threadRecipient.expiresInSeconds.seconds.inWholeMilliseconds,
+        attachments = slideDeck?.asAttachments() ?: emptyList(),
+        body = body,
+        parentStoryId = parentStoryId,
         isSecure = true
       )
     }

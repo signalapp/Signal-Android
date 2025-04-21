@@ -11,9 +11,9 @@ androidx-media3 = "1.5.1"
 androidx-navigation = "2.8.5"
 androidx-window = "1.3.0"
 glide = "4.15.1"
-gradle = "8.7.3"
+gradle = "8.9.0"
 kotlin = "2.1.0"
-libsignal-client = "0.66.1"
+libsignal-client = "0.69.1"
 mp4parser = "1.9.39"
 android-gradle-plugin = "8.7.2"
 accompanist = "0.28.0"
@@ -39,14 +39,17 @@ android-application = { module = "com.android.application:com.android.applicatio
 androidx-benchmark-gradle-plugin = "androidx.benchmark:benchmark-gradle-plugin:1.3.3"
 
 # Compose
-androidx-compose-bom = "androidx.compose:compose-bom:2024.12.01"
+androidx-compose-bom = "androidx.compose:compose-bom:2025.03.01"
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
+androidx-compose-material3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive"}
+androidx-compose-material3-adaptive-layout = { module = "androidx.compose.material3.adaptive:adaptive-layout"}
+androidx-compose-material3-adaptive-navigation = { module = "androidx.compose.material3.adaptive:adaptive-navigation"}
 androidx-compose-ui-tooling-preview = { module = "androidx.compose.ui:ui-tooling-preview" }
 androidx-compose-ui-tooling-core = { module = "androidx.compose.ui:ui-tooling" }
 androidx-compose-ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 androidx-compose-ui-test-junit4 = { module = "androidx.compose.ui:ui-test-junit4" }
 androidx-compose-runtime-livedata = { module = "androidx.compose.runtime:runtime-livedata" }
-androidx-compose-rxjava3 = "androidx.compose.runtime:runtime-rxjava3:1.7.6"
+androidx-compose-rxjava3 = "androidx.compose.runtime:runtime-rxjava3:1.7.8"
 
 # Accompanist
 accompanist-permissions = { module = "com.google.accompanist:accompanist-permissions", version.ref = "accompanist" }
@@ -108,6 +111,7 @@ androidx-autofill = "androidx.autofill:autofill:1.1.0"
 androidx-biometric = "androidx.biometric:biometric:1.1.0"
 androidx-sharetarget = "androidx.sharetarget:sharetarget:1.2.0"
 androidx-sqlite = "androidx.sqlite:sqlite:2.4.0"
+androidx-sqlite-framework = "androidx.sqlite:sqlite-framework:2.4.0"
 androidx-profileinstaller = "androidx.profileinstaller:profileinstaller:1.4.1"
 androidx-asynclayoutinflater = "androidx.asynclayoutinflater:asynclayoutinflater:1.1.0-alpha01"
 androidx-asynclayoutinflater-appcompat = "androidx.asynclayoutinflater:asynclayoutinflater-appcompat:1.1.0-alpha01"
@@ -139,7 +143,7 @@ libsignal-client = { module = "org.signal:libsignal-client", version.ref = "libs
 libsignal-android = { module = "org.signal:libsignal-android", version.ref = "libsignal-client" }
 protobuf-gradle-plugin = { module = "com.google.protobuf:protobuf-gradle-plugin", version.ref = "protobuf-gradle-plugin" }
 signal-aesgcmprovider = "org.signal:aesgcmprovider:0.0.3"
-signal-ringrtc = "org.signal:ringrtc-android:2.49.4"
+signal-ringrtc = "org.signal:ringrtc-android:2.50.3"
 signal-android-database-sqlcipher = "org.signal:sqlcipher-android:4.6.0-S1"
 
 # Third Party

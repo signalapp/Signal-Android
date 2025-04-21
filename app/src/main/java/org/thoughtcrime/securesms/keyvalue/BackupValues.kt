@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObserver
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
@@ -35,6 +36,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_BACKUP_USED_MEDIA_SPACE = "backup.usedMediaSpace"
     private const val KEY_BACKUP_LAST_PROTO_SIZE = "backup.lastProtoSize"
     private const val KEY_BACKUP_TIER = "backup.backupTier"
+    private const val KEY_BACKUP_TIER_INTERNAL_OVERRIDE = "backup.backupTier.internalOverride"
     private const val KEY_BACKUP_TIER_RESTORED = "backup.backupTierRestored"
     private const val KEY_LATEST_BACKUP_TIER = "backup.latestBackupTier"
     private const val KEY_LAST_CHECK_IN_MILLIS = "backup.lastCheckInMilliseconds"
@@ -164,22 +166,30 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
    * be used to display backup tier information to the user in the settings fragments, not to check whether the user
    * currently has backups enabled.
    */
-  val latestBackupTier: MessageBackupTier? by enumValue(KEY_LATEST_BACKUP_TIER, null, MessageBackupTier.Serializer)
+  val latestBackupTier: MessageBackupTier?
+    get() {
+      backupTierInternalOverride?.let { return it }
+      return MessageBackupTier.deserialize(getLong(KEY_LATEST_BACKUP_TIER, -1))
+    }
 
   /**
    * Denotes if there was a mismatch detected between the user's Signal subscription, on-device Google Play subscription,
    * and what zk authorization we think we have.
    */
-  var subscriptionStateMismatchDetected: Boolean by booleanValue(KEY_SUBSCRIPTION_STATE_MISMATCH, false)
+  var subscriptionStateMismatchDetected: Boolean by booleanValue(KEY_SUBSCRIPTION_STATE_MISMATCH, false).withPrecondition { backupTierInternalOverride == null }
 
   /**
-   * When seting the backup tier, we also want to write to the latestBackupTier, as long as
+   * When setting the backup tier, we also want to write to the latestBackupTier, as long as
    * the value is non-null. This gives us a 1-deep history of the selected backup tier for
    * use in the UI
    */
   var backupTier: MessageBackupTier?
-    get() = MessageBackupTier.deserialize(getLong(KEY_BACKUP_TIER, -1))
+    get() {
+      backupTierInternalOverride?.let { return it }
+      return MessageBackupTier.deserialize(getLong(KEY_BACKUP_TIER, -1))
+    }
     set(value) {
+      Log.i(TAG, "Setting backup tier to $value", Throwable(), true)
       val serializedValue = MessageBackupTier.serialize(value)
       if (value != null) {
         store.beginWrite()
@@ -191,6 +201,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         putLong(KEY_BACKUP_TIER, serializedValue)
       }
     }
+
+  /** An internal setting that can override the backup tier for a user. */
+  var backupTierInternalOverride: MessageBackupTier? by enumValue(KEY_BACKUP_TIER_INTERNAL_OVERRIDE, null, MessageBackupTier.Serializer).withPrecondition { RemoteConfig.internalUser }
 
   var isBackupTierRestored: Boolean by booleanValue(KEY_BACKUP_TIER_RESTORED, false)
 

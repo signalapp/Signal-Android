@@ -213,9 +213,10 @@ class DSLConfiguration {
 
   fun textPref(
     title: DSLSettingsText? = null,
-    summary: DSLSettingsText? = null
+    summary: DSLSettingsText? = null,
+    icon: DSLSettingsIcon? = null
   ) {
-    val preference = TextPreference(title, summary)
+    val preference = TextPreference(title, summary, icon)
     children.add(preference)
   }
 
@@ -257,8 +258,9 @@ abstract class PreferenceModel<T : PreferenceModel<T>>(
 
 class TextPreference(
   title: DSLSettingsText?,
-  summary: DSLSettingsText?
-) : PreferenceModel<TextPreference>(title = title, summary = summary)
+  summary: DSLSettingsText?,
+  icon: DSLSettingsIcon? = null
+) : PreferenceModel<TextPreference>(title = title, summary = summary, icon = icon)
 
 class LearnMoreTextPreference(
   override val title: DSLSettingsText?,

@@ -23,7 +23,7 @@ import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
-import org.whispersystems.signalservice.api.registration.ProvisioningSocket
+import org.whispersystems.signalservice.api.provisioning.ProvisioningSocket
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
 import java.io.Closeable
 

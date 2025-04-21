@@ -11,11 +11,13 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.main.MainNavigationDestination
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.rx.RxStore
 
-class ConversationListTabsViewModel(startingTab: ConversationListTab, repository: ConversationListTabRepository) : ViewModel() {
+class ConversationListTabsViewModel(startingTab: MainNavigationDestination, repository: ConversationListTabRepository) : ViewModel() {
 
   private val notificationProfilesRepository: NotificationProfilesRepository = NotificationProfilesRepository()
 
@@ -27,8 +29,8 @@ class ConversationListTabsViewModel(startingTab: ConversationListTab, repository
   val state: Flowable<ConversationListTabsState> = store.stateFlowable.distinctUntilChanged().observeOn(AndroidSchedulers.mainThread())
   val disposables = CompositeDisposable()
 
-  private val internalTabClickEvents: Subject<ConversationListTab> = PublishSubject.create()
-  val tabClickEvents: Observable<ConversationListTab> = internalTabClickEvents.filter { Stories.isFeatureEnabled() }
+  private val internalTabClickEvents: Subject<MainNavigationDestination> = PublishSubject.create()
+  val tabClickEvents: Observable<MainNavigationDestination> = internalTabClickEvents.filter { Stories.isFeatureEnabled() }
 
   init {
     disposables += performStoreUpdate(repository.getNumberOfUnreadMessages()) { unreadChats, state ->
@@ -48,6 +50,10 @@ class ConversationListTabsViewModel(startingTab: ConversationListTab, repository
     }
   }
 
+  fun refreshNavigationBarState() {
+    store.update { it.copy(compact = SignalStore.settings.useCompactNavigationBar, isStoriesFeatureEnabled = Stories.isFeatureEnabled()) }
+  }
+
   override fun onCleared() {
     disposables.clear()
   }
@@ -58,18 +64,18 @@ class ConversationListTabsViewModel(startingTab: ConversationListTab, repository
   }
 
   fun onChatsSelected() {
-    internalTabClickEvents.onNext(ConversationListTab.CHATS)
-    performStoreUpdate { it.copy(tab = ConversationListTab.CHATS) }
+    internalTabClickEvents.onNext(MainNavigationDestination.CHATS)
+    performStoreUpdate { it.copy(tab = MainNavigationDestination.CHATS) }
   }
 
   fun onCallsSelected() {
-    internalTabClickEvents.onNext(ConversationListTab.CALLS)
-    performStoreUpdate { it.copy(tab = ConversationListTab.CALLS) }
+    internalTabClickEvents.onNext(MainNavigationDestination.CALLS)
+    performStoreUpdate { it.copy(tab = MainNavigationDestination.CALLS) }
   }
 
   fun onStoriesSelected() {
-    internalTabClickEvents.onNext(ConversationListTab.STORIES)
-    performStoreUpdate { it.copy(tab = ConversationListTab.STORIES) }
+    internalTabClickEvents.onNext(MainNavigationDestination.STORIES)
+    performStoreUpdate { it.copy(tab = MainNavigationDestination.STORIES) }
   }
 
   fun onSearchOpened() {
@@ -108,10 +114,10 @@ class ConversationListTabsViewModel(startingTab: ConversationListTab, repository
     }
   }
 
-  class Factory(private val startingTab: ConversationListTab?, private val repository: ConversationListTabRepository) : ViewModelProvider.Factory {
+  class Factory(private val startingTab: MainNavigationDestination?, private val repository: ConversationListTabRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      val tab = if (startingTab == null || (startingTab == ConversationListTab.STORIES && !Stories.isFeatureEnabled())) {
-        ConversationListTab.CHATS
+      val tab = if (startingTab == null || (startingTab == MainNavigationDestination.STORIES && !Stories.isFeatureEnabled())) {
+        MainNavigationDestination.CHATS
       } else {
         startingTab
       }

@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.stories.landing
 
 import android.view.View
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.Observer
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
@@ -19,6 +21,7 @@ object MyStoriesItem {
   }
 
   class Model(
+    val lifecycleOwner: LifecycleOwner,
     val onClick: () -> Unit
   ) : PreferenceModel<Model>() {
     override fun areItemsTheSame(newItem: Model): Boolean = true
@@ -28,9 +31,39 @@ object MyStoriesItem {
 
     private val avatarView: AvatarView = itemView.findViewById(R.id.avatar)
 
+    private var recipient: Recipient? = null
+
+    private val recipientObserver = object : Observer<Recipient> {
+      override fun onChanged(recipient: Recipient) {
+        onRecipientChanged(recipient)
+      }
+    }
+
     override fun bind(model: Model) {
       itemView.setOnClickListener { model.onClick() }
-      avatarView.displayProfileAvatar(Recipient.self())
+      observeRecipient(model.lifecycleOwner, Recipient.self())
+    }
+
+    private fun onRecipientChanged(recipient: Recipient) {
+      avatarView.displayProfileAvatar(recipient)
+    }
+
+    private fun observeRecipient(lifecycleOwner: LifecycleOwner?, recipient: Recipient?) {
+      this.recipient?.live()?.liveData?.removeObserver(recipientObserver)
+
+      this.recipient = recipient
+
+      lifecycleOwner?.let {
+        this.recipient?.live()?.liveData?.observe(lifecycleOwner, recipientObserver)
+      }
+    }
+
+    override fun onViewRecycled() {
+      unbindRecipient()
+    }
+
+    private fun unbindRecipient() {
+      observeRecipient(null, null)
     }
   }
 }

@@ -25,10 +25,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Rows
-import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueCodeSelector
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueTypeSelector
@@ -109,7 +109,7 @@ private fun Content(
 ) {
   Scaffolds.Settings(
     title = "One-time donation state",
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24),
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
     navigationContentDescription = null,
     onNavigationClick = onNavigationClick
   ) {

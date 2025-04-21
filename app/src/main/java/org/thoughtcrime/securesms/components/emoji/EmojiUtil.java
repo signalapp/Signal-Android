@@ -6,10 +6,10 @@ import android.graphics.drawable.Drawable;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.ObsoleteEmoji;
-import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.HashSet;

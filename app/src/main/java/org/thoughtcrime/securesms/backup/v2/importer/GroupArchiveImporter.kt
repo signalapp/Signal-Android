@@ -21,6 +21,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedTimer
 import org.signal.storageservice.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.backup.v2.ArchiveGroup
 import org.thoughtcrime.securesms.backup.v2.proto.Group
+import org.thoughtcrime.securesms.backup.v2.util.toLocal
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
@@ -56,6 +57,7 @@ object GroupArchiveImporter {
       put(RecipientTable.BLOCKED, group.blocked.toInt())
       put(RecipientTable.TYPE, RecipientTable.RecipientType.GV2.id)
       put(RecipientTable.STORAGE_SERVICE_ID, Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
+      put(RecipientTable.AVATAR_COLOR, group.avatarColor?.toLocal()?.serialize())
       if (group.hideStory) {
         val extras = RecipientExtras.Builder().hideStory(true).build()
         put(RecipientTable.EXTRAS, extras.encode())

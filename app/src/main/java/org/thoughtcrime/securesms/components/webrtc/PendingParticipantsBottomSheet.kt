@@ -41,10 +41,10 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import kotlinx.coroutines.flow.map
-import org.signal.core.ui.BottomSheets
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.DarkPreview
-import org.signal.core.ui.Previews
+import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
 import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel

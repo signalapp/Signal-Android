@@ -1,177 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:viewBindingIgnore="true"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-    <View
-        android:id="@+id/toolbar_background"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/signal_m3_toolbar_height"
-        android:background="@color/signal_colorBackground"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <org.thoughtcrime.securesms.util.views.DarkOverflowToolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/signal_m3_toolbar_height"
-        android:minHeight="@dimen/signal_m3_toolbar_height"
-        android:theme="?attr/actionBarStyle"
-        android:visibility="gone"
-        app:contentInsetStart="0dp"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:visibility="visible">
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <org.thoughtcrime.securesms.components.AvatarImageView
-                android:id="@+id/toolbar_icon"
-                android:layout_width="@dimen/toolbar_avatar_size"
-                android:layout_height="@dimen/toolbar_avatar_size"
-                android:layout_alignParentStart="true"
-                android:layout_marginStart="@dimen/toolbar_avatar_margin"
-                android:contentDescription="@string/conversation_list_settings_shortcut"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@tools:sample/avatars" />
-
-            <org.thoughtcrime.securesms.badges.BadgeImageView
-                android:id="@+id/toolbar_badge"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="16dp"
-                app:badge_size="small"
-                app:layout_constraintStart_toStartOf="@id/toolbar_icon"
-                app:layout_constraintTop_toTopOf="@id/toolbar_icon" />
-
-            <View
-                android:id="@+id/toolbar_settings_touch_area"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/toolbar_icon"
-                app:layout_constraintStart_toStartOf="@id/toolbar_icon"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <View
-                android:id="@+id/unread_payments_indicator"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="20dp"
-                android:alpha="0"
-                android:background="@drawable/unread_count_background"
-                app:layout_constraintBottom_toBottomOf="@id/toolbar_icon"
-                app:layout_constraintStart_toStartOf="@id/toolbar_icon"
-                tools:alpha="1" />
-
-            <View
-                android:id="@+id/backups_failed_indicator"
-                android:layout_width="13dp"
-                android:layout_height="13dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="20dp"
-                android:alpha="0"
-                android:background="@drawable/backups_failed_background"
-                app:layout_constraintBottom_toBottomOf="@id/toolbar_icon"
-                app:layout_constraintStart_toStartOf="@id/toolbar_icon"
-                tools:alpha="1" />
-
-            <TextView
-                android:id="@+id/conversation_list_title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:text="@string/app_name"
-                android:textAlignment="viewStart"
-                android:textAppearance="@style/Signal.Text.TitleLarge"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/conversation_list_notification_profile_status"
-                app:layout_constraintStart_toEndOf="@id/toolbar_icon"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/conversation_list_notification_profile_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?selectableItemBackgroundBorderless"
-                android:paddingHorizontal="3dp"
-                android:paddingVertical="11dp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/conversation_list_proxy_status"
-                app:layout_constraintStart_toEndOf="@id/conversation_list_title"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/ic_notification_profile_active"
-                tools:visibility="visible" />
-
-            <ImageView
-                android:id="@+id/conversation_list_proxy_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?selectableItemBackgroundBorderless"
-                android:padding="12dp"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/search_action"
-                app:layout_constraintStart_toEndOf="@id/conversation_list_notification_profile_status"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:src="@drawable/ic_proxy_connected_24"
-                tools:visibility="visible" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/search_action"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="?actionBarItemBackground"
-                android:contentDescription="@string/conversation_list_search_description"
-                android:padding="12dp"
-                android:tint="@color/signal_icon_tint_primary"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/symbol_search_24" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </org.thoughtcrime.securesms.util.views.DarkOverflowToolbar>
-
-    <ViewStub
-        android:id="@+id/toolbar_basic_stub"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/signal_m3_toolbar_height"
-        android:inflatedId="@+id/toolbar_basic"
-        android:layout="@layout/conversation_list_archive_toolbar"
-        android:minHeight="@dimen/signal_m3_toolbar_height"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ViewStub
-        android:id="@+id/search_toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/signal_m3_toolbar_height"
-        android:layout="@layout/conversation_list_search_toolbar"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Barrier
-        android:id="@+id/toolbar_barrier"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:barrierDirection="bottom"
-        app:constraint_referenced_ids="toolbar,toolbar_basic,toolbar_background" />
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:viewBindingIgnore="true">
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/fragment_container"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/toolbar_barrier"
+        android:layout_weight="1"
         app:navGraph="@navigation/main_activity_list" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

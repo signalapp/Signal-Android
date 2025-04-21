@@ -12,7 +12,7 @@ import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.SingleLiveEvent
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
@@ -89,11 +89,11 @@ class AdvancedPrivacySettingsViewModel(
   }
 
   private fun getCensorshipCircumventionState(): CensorshipCircumventionState {
-    val countryCode: Int = PhoneNumberFormatter.getLocalCountryCode()
+    val countryCode: Int = SignalE164Util.getLocalCountryCode()
     val isCountryCodeCensoredByDefault: Boolean = AppDependencies.signalServiceNetworkAccess.isCountryCodeCensoredByDefault(countryCode)
     val enabledState: SettingsValues.CensorshipCircumventionEnabled = SignalStore.settings.censorshipCircumventionEnabled
     val hasInternet: Boolean = NetworkConstraint.isMet(AppDependencies.application)
-    val websocketConnected: Boolean = AppDependencies.signalWebSocket.webSocketState.firstOrError().blockingGet() == WebSocketConnectionState.CONNECTED
+    val websocketConnected: Boolean = AppDependencies.authWebSocket.state.firstOrError().blockingGet() == WebSocketConnectionState.CONNECTED
 
     return when {
       SignalStore.internal.allowChangingCensorshipSetting -> {

@@ -15,9 +15,11 @@ import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
 import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig.Config
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteBoolean
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteValue
+import org.whispersystems.signalservice.api.NetworkResultUtil
 import java.io.IOException
 import java.util.TreeMap
 import java.util.concurrent.locks.ReentrantLock
@@ -90,7 +92,7 @@ object RemoteConfig {
   @WorkerThread
   @Throws(IOException::class)
   fun refreshSync() {
-    val result = AppDependencies.signalServiceAccountManager.getRemoteConfig()
+    val result = NetworkResultUtil.toBasicLegacy(SignalNetwork.remoteConfig.getRemoteConfig())
     update(result.config)
   }
 
@@ -119,10 +121,9 @@ object RemoteConfig {
     Log.i(TAG, "[Disk]   After : ${result.disk}")
   }
 
-  /** Only for rendering debug info.  */
   @JvmStatic
   @get:Synchronized
-  val debugMemoryValues: Map<String, Any>
+  val memoryValues: Map<String, Any>
     get() = TreeMap(REMOTE_VALUES)
 
   /** Only for rendering debug info.  */
@@ -1011,7 +1012,7 @@ object RemoteConfig {
   val messageBackups: Boolean by remoteValue(
     key = "android.messageBackups",
     hotSwappable = false,
-    active = false
+    active = true
   ) { value ->
     BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
   }
@@ -1019,11 +1020,12 @@ object RemoteConfig {
   /** Whether unauthenticated chat web socket is backed by libsignal-net  */
   @JvmStatic
   @get:JvmName("libSignalWebSocketEnabled")
-  val libSignalWebSocketEnabled: Boolean by remoteBoolean(
+  val libSignalWebSocketEnabled: Boolean by remoteValue(
     key = "android.libsignalWebSocketEnabled",
-    defaultValue = false,
     hotSwappable = false
-  )
+  ) { value ->
+    value.asBoolean(false) || Environment.IS_NIGHTLY
+  }
 
   /** Whether or not to launch the restore activity after registration is complete, rather than before.  */
   @JvmStatic
@@ -1034,20 +1036,6 @@ object RemoteConfig {
     active = false
   ) { value ->
     BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
-  }
-
-  /**
-   * Percentage [0, 100] of web socket requests that will be "shadowed" by sending
-   * an unauthenticated keep-alive via libsignal-net. Default: 0
-   */
-  @JvmStatic
-  @get:JvmName("libSignalWebSocketShadowingPercentage")
-  val libSignalWebSocketShadowingPercentage: Int by remoteValue(
-    key = "android.libsignalWebSocketShadowingPercentage",
-    hotSwappable = false
-  ) { value ->
-    val remote = value.asInteger(0)
-    remote.coerceIn(0, 100)
   }
 
   @JvmStatic
@@ -1119,12 +1107,11 @@ object RemoteConfig {
     hotSwappable = false
   )
 
-  /** Whether or not this device supports syncing data to newly-linked device. */
-  @JvmStatic
-  val linkAndSync: Boolean by remoteBoolean(
-    key = "android.linkAndSync.3",
+  /** Whether to allow different WindowSizeClasses to be used to determine screen layout */
+  val largeScreenUi: Boolean by remoteBoolean(
+    key = "android.largeScreenUI",
     defaultValue = false,
-    hotSwappable = true
+    hotSwappable = false
   )
 
   // endregion

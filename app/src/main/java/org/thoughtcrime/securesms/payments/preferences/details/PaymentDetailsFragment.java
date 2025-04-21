@@ -20,6 +20,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
+import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
@@ -34,7 +35,6 @@ import org.thoughtcrime.securesms.payments.State;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.signal.core.util.StringUtil;
 import org.thoughtcrime.securesms.util.views.LearnMoreTextView;
 import org.whispersystems.signalservice.api.payments.Money;
 

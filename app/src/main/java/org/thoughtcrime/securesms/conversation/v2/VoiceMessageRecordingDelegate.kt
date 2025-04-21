@@ -69,6 +69,12 @@ class VoiceMessageRecordingDelegate(
     }
   }
 
+  fun onRecordSaveDraft() {
+    voiceRecorderWakeLock.release()
+    vibrateAndResetOrientation(50)
+    session?.saveDraft()
+  }
+
   @Suppress("DEPRECATION")
   private fun vibrateAndResetOrientation(milliseconds: Long) {
     val activity = fragment.activity

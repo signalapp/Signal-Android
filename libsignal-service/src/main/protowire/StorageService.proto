@@ -51,6 +51,7 @@ message ManifestRecord {
       ACCOUNT                 = 4;
       STORY_DISTRIBUTION_LIST = 5;
       CALL_LINK               = 7;
+      CHAT_FOLDER             = 8;
     }
 
     bytes raw  = 1;
@@ -72,7 +73,33 @@ message StorageRecord {
     AccountRecord               account               = 4;
     StoryDistributionListRecord storyDistributionList = 5;
     CallLinkRecord              callLink              = 7;
+    ChatFolderRecord            chatFolder            = 8;
   }
+}
+
+
+// If unset - computed as the value of the first byte of SHA-256(msg=CONTACT_ID)
+// modulo the count of colors. Once set the avatar color for a recipient is
+// never recomputed or changed.
+//
+// `CONTACT_ID` is the first available identifier from the list:
+// - ServiceIdToBinary(ACI)
+// - E164
+// - ServiceIdToBinary(PNI)
+// - Group Id
+enum AvatarColor {
+  A100 = 0;
+  A110 = 1;
+  A120 = 2;
+  A130 = 3;
+  A140 = 4;
+  A150 = 5;
+  A160 = 6;
+  A170 = 7;
+  A180 = 8;
+  A190 = 9;
+  A200 = 10;
+  A210 = 11;
 }
 
 message ContactRecord {
@@ -110,7 +137,8 @@ message ContactRecord {
   bool          pniSignatureVerified    = 21;
   Name          nickname                = 22;
   string        note                    = 23;
-  // NEXT ID: 24
+  optional AvatarColor avatarColor      = 24;
+  // Next ID: 25
 }
 
 message GroupV1Record {
@@ -139,6 +167,7 @@ message GroupV2Record {
   bool          hideStory                    = 8;
   reserved   /* storySendEnabled */            9;
   StorySendMode storySendMode                = 10;
+  optional AvatarColor avatarColor           = 11;
 }
 
 message Payments {
@@ -237,6 +266,7 @@ message AccountRecord {
   optional bool                   hasBackup                             = 39; // Set to true after backups are enabled and one is uploaded.
   optional uint64                 backupTier                            = 40; // See zkgroup for integer particular values
            IAPSubscriberData      backupSubscriberData                  = 41;
+  optional AvatarColor            avatarColor                           = 42;
 }
 
 message StoryDistributionListRecord {
@@ -252,4 +282,38 @@ message CallLinkRecord {
   bytes rootKey               = 1;
   bytes adminPasskey          = 2;
   uint64 deletedAtTimestampMs = 3;
+}
+
+message ChatFolderRecord {
+  message Recipient {
+    message Contact {
+      string serviceId = 1;
+      string e164      = 2;
+    }
+
+    oneof identifier {
+      Contact contact = 1;
+      bytes legacyGroupId = 2;
+      bytes groupMasterKey = 3;
+    }
+  }
+
+  // Represents the default "All chats" folder record vs all other custom folders
+  enum FolderType {
+    UNKNOWN = 0;
+    ALL = 1;
+    CUSTOM = 2;
+  }
+
+  bytes identifier = 1;
+  string name = 2;
+  uint32 position = 3;
+  bool showOnlyUnread = 4;
+  bool showMutedChats = 5;
+  bool includeAllIndividualChats = 6; // Folder includes all 1:1 chats, unless excluded
+  bool includeAllGroupChats = 7;      // Folder includes all group chats, unless excluded
+  FolderType folderType = 8;
+  repeated Recipient includedRecipients = 9;
+  repeated Recipient excludedRecipients = 10;
+  uint64 deletedAtTimestampMs = 11;   // When non-zero, `position` should be set to -1 and includedRecipients should be empty
 }

@@ -66,6 +66,7 @@ class Colorizer {
     }
   }
 
+  @Suppress("DEPRECATION")
   @ColorInt
   fun getIncomingGroupSenderColor(context: Context, recipient: Recipient): Int {
     return if (groupMembers.isEmpty()) {
@@ -88,6 +89,7 @@ class Colorizer {
     groupMembers.addAll(serviceIds.sortedBy { it.toString() })
   }
 
+  @Suppress("DEPRECATION")
   @Deprecated("Not needed for CFv2", ReplaceWith("onGroupMembershipChanged"))
   fun onNameColorsChanged(nameColorMap: Map<RecipientId, NameColor>) {
     groupSenderColors.clear()
@@ -95,6 +97,7 @@ class Colorizer {
     colorsHaveBeenSet = true
   }
 
+  @Suppress("DEPRECATION")
   @ColorInt
   private fun getDefaultColor(context: Context, recipient: Recipient): Int {
     return if (colorsHaveBeenSet) {

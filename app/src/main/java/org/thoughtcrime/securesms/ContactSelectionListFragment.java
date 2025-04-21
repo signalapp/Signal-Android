@@ -48,7 +48,6 @@ import androidx.transition.TransitionManager;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.signal.core.util.concurrent.LifecycleDisposable;
-import org.signal.core.util.concurrent.RxExtensions;
 import org.signal.core.util.concurrent.SimpleTask;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar;
@@ -447,6 +446,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   }
 
   public int getSelectedMembersSize() {
+    if (contactSearchMediator == null) {
+      return 0;
+    }
+
     return contactSearchMediator.getSelectedMembersSize();
   }
 
@@ -471,11 +474,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   }
 
   public int getSelectedContactsCount() {
-    if (contactSearchMediator == null) {
-      return 0;
-    }
-
-    return contactSearchMediator.getSelectedContacts().size();
+    return getSelectedMembersSize();
   }
 
   public int getTotalMemberCount() {
@@ -684,7 +683,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
       boolean         isUnknown       = contact instanceof ContactSearchKey.UnknownRecipientKey;
       SelectedContact selectedContact = contact.requireSelectedContact();
 
-      if (!canSelectSelf && !selectedContact.hasUsername() && Recipient.self().getId().equals(selectedContact.getOrCreateRecipientId(requireContext()))) {
+      if (!canSelectSelf && !selectedContact.hasUsername() && Recipient.self().getId().equals(selectedContact.getOrCreateRecipientId())) {
         Toast.makeText(requireContext(), R.string.ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group, Toast.LENGTH_SHORT).show();
         return;
       }
@@ -721,12 +720,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
           AlertDialog loadingDialog = SimpleProgressDialog.show(requireContext());
 
           SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
-            try {
-              return RxExtensions.safeBlockingGet(UsernameRepository.fetchAciForUsername(UsernameUtil.sanitizeUsernameFromSearch(username)));
-            } catch (InterruptedException e) {
-              Log.w(TAG, "Interrupted?", e);
-              return UsernameAciFetchResult.NetworkError.INSTANCE;
-            }
+            return UsernameRepository.fetchAciForUsername(UsernameUtil.sanitizeUsernameFromSearch(username));
           }, result  -> {
             loadingDialog.dismiss();
 
@@ -840,7 +834,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
       contactChipViewModel.add(selectedContact);
     } else {
       SimpleTask.run(getViewLifecycleOwner().getLifecycle(),
-                     () -> Recipient.resolved(selectedContact.getOrCreateRecipientId(requireContext())),
+                     () -> Recipient.resolved(selectedContact.getOrCreateRecipientId()),
                      resolved -> contactChipViewModel.add(selectedContact));
     }
   }

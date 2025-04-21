@@ -117,6 +117,7 @@ message AccountData {
   reserved /*backupsSubscriberData*/ 8; // A deprecated format
   AccountSettings accountSettings = 9;
   IAPSubscriberData backupsSubscriberData = 10;
+  string svrPin = 11;
 }
 
 message Recipient {
@@ -130,6 +131,30 @@ message Recipient {
     ReleaseNotes releaseNotes = 6;
     CallLink callLink = 7;
   }
+}
+
+// If unset - computed as the value of the first byte of SHA-256(msg=CONTACT_ID)
+// modulo the count of colors. Once set the avatar color for a recipient is
+// never recomputed or changed.
+//
+// `CONTACT_ID` is the first available identifier from the list:
+// - ServiceIdToBinary(ACI)
+// - E164
+// - ServiceIdToBinary(PNI)
+// - Group Id
+enum AvatarColor {
+  A100 = 0;
+  A110 = 1;
+  A120 = 2;
+  A130 = 3;
+  A140 = 4;
+  A150 = 5;
+  A160 = 6;
+  A170 = 7;
+  A180 = 8;
+  A190 = 9;
+  A200 = 10;
+  A210 = 11;
 }
 
 message Contact {
@@ -177,6 +202,10 @@ message Contact {
   IdentityState identityState = 15;
   Name nickname = 16; // absent iff both `given` and `family` are empty
   string note = 17;
+  string systemGivenName = 18;
+  string systemFamilyName = 19;
+  string systemNickname = 20;
+  optional AvatarColor avatarColor = 21;
 }
 
 message Group {
@@ -192,6 +221,7 @@ message Group {
   StorySendMode storySendMode = 4;
   GroupSnapshot snapshot = 5;
   bool blocked = 6;
+  optional AvatarColor avatarColor = 7;
 
   // These are simply plaintext copies of the groups proto from Groups.proto.
   // They should be kept completely in-sync with Groups.proto.
@@ -271,7 +301,9 @@ message Group {
   }
 }
 
-message Self {}
+message Self {
+  optional AvatarColor avatarColor = 1;
+}
 
 message ReleaseNotes {}
 
@@ -1279,4 +1311,5 @@ message ChatFolder {
   FolderType folderType = 6;
   repeated uint64 includedRecipientIds = 7; // generated recipient id of groups, contacts, and/or note to self
   repeated uint64 excludedRecipientIds = 8; // generated recipient id of groups, contacts, and/or note to self
+  bytes id = 9; // should be 16 bytes
 }

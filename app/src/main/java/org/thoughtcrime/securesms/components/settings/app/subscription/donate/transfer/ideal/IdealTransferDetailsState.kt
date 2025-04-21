@@ -7,9 +7,10 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.t
 
 import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.transfer.BankDetailsValidator
+import org.thoughtcrime.securesms.database.InAppPaymentTable
 
 data class IdealTransferDetailsState(
-  val isMonthly: Boolean,
+  val inAppPayment: InAppPaymentTable.InAppPayment? = null,
   val idealBank: IdealBank? = null,
   val name: String = "",
   val nameFocusState: FocusState = FocusState.NOT_FOCUSED,
@@ -34,7 +35,7 @@ data class IdealTransferDetailsState(
   }
 
   fun canProceed(): Boolean {
-    return idealBank != null && BankDetailsValidator.validName(name) && (!isMonthly || BankDetailsValidator.validEmail(email))
+    return idealBank != null && BankDetailsValidator.validName(name) && (inAppPayment?.type?.recurring != true || BankDetailsValidator.validEmail(email))
   }
 
   enum class FocusState {

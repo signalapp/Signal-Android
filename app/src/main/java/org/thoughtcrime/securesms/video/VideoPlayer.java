@@ -93,6 +93,15 @@ public class VideoPlayer extends FrameLayout {
 
     this.exoPlayerListener = new ExoPlayerListener();
     this.playerListener    = new Player.Listener() {
+
+      @Override
+      public void onIsPlayingChanged(boolean isPlaying) {
+        if (!isPlaying && exoPlayer.getCurrentPosition() >= exoPlayer.getDuration()) {
+          exoPlayer.seekTo(0);
+          exoPlayer.setPlayWhenReady(false);
+        }
+      }
+
       @Override
       public void onPlayWhenReadyChanged(boolean playWhenReady, int reason) {
         onPlaybackStateChanged(playWhenReady, exoPlayer.getPlaybackState());

@@ -77,7 +77,7 @@ class CreateStoryWithViewersFragment : DSLSettingsFragment(
     }
 
     Material3OnScrollHelper(
-      context = requireContext(),
+      activity = requireActivity(),
       setStatusBarColor = { requireListener<Callback>().setStatusBarColor(it) },
       getStatusBarColor = { requireListener<Callback>().getStatusBarColor() },
       views = listOf(binding.toolbar),

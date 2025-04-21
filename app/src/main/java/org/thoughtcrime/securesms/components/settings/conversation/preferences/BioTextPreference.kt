@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingViewHolder
@@ -70,18 +71,24 @@ object BioTextPreference {
         }
 
         if (recipient.isIndividual && !recipient.isSelf) {
+          val isLtr = ViewUtil.isLtr(context)
           val chevronGlyph = SignalSymbols.getSpannedString(
             context,
             SignalSymbols.Weight.BOLD,
-            SignalSymbols.Glyph.CHEVRON_RIGHT
+            if (isLtr) SignalSymbols.Glyph.CHEVRON_RIGHT else SignalSymbols.Glyph.CHEVRON_LEFT
           ).let {
             SpanUtil.ofSize(it, 24)
           }.let {
             SpanUtil.color(ContextCompat.getColor(context, R.color.signal_colorOutline), it)
           }
 
-          append(" ")
-          append(chevronGlyph)
+          if (isLtr) {
+            append(" ")
+            append(chevronGlyph)
+          } else {
+            insert(0, " ")
+            insert(0, chevronGlyph)
+          }
         }
       }
     }

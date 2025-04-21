@@ -13,8 +13,13 @@ import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.MessageTable
+import org.thoughtcrime.securesms.database.MessageTable.Companion.DATE_RECEIVED
+import org.thoughtcrime.securesms.database.MessageTable.Companion.EXPIRES_IN
+import org.thoughtcrime.securesms.database.MessageTable.Companion.PARENT_STORY_ID
+import org.thoughtcrime.securesms.database.MessageTable.Companion.STORY_TYPE
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.recipients.RecipientId
+import kotlin.time.Duration.Companion.days
 
 private val TAG = "MessageTableArchiveExtensions"
 
@@ -25,9 +30,10 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
   val dateReceivedIndex = "message_date_received"
   writableDatabase.execSQL(
     """CREATE INDEX $dateReceivedIndex ON ${MessageTable.TABLE_NAME} (
-      ${MessageTable.DATE_RECEIVED} ASC,
-      ${MessageTable.STORY_TYPE},
-      ${MessageTable.PARENT_STORY_ID},
+      $DATE_RECEIVED ASC,
+      $STORY_TYPE,
+      $PARENT_STORY_ID,
+      $EXPIRES_IN,
       ${MessageTable.DATE_SENT},
       ${MessageTable.DATE_SERVER},
       ${MessageTable.TYPE},
@@ -36,7 +42,6 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
       ${MessageTable.MESSAGE_RANGES},
       ${MessageTable.FROM_RECIPIENT_ID},
       ${MessageTable.TO_RECIPIENT_ID},
-      ${MessageTable.EXPIRES_IN},
       ${MessageTable.EXPIRE_STARTED},
       ${MessageTable.REMOTE_DELETED},
       ${MessageTable.UNIDENTIFIED},
@@ -61,7 +66,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
       ${MessageTable.MESSAGE_EXTRAS},
       ${MessageTable.VIEW_ONCE}
     )
-    WHERE ${MessageTable.STORY_TYPE} = 0 AND ${MessageTable.PARENT_STORY_ID} <= 0
+    WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0
     """.trimMargin()
   )
   Log.d(TAG, "Creating index took ${System.currentTimeMillis() - startTime} ms")
@@ -94,7 +99,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
         .select(
           MessageTable.ID,
           MessageTable.DATE_SENT,
-          MessageTable.DATE_RECEIVED,
+          DATE_RECEIVED,
           MessageTable.DATE_SERVER,
           MessageTable.TYPE,
           MessageTable.THREAD_ID,
@@ -102,7 +107,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
           MessageTable.MESSAGE_RANGES,
           MessageTable.FROM_RECIPIENT_ID,
           MessageTable.TO_RECIPIENT_ID,
-          MessageTable.EXPIRES_IN,
+          EXPIRES_IN,
           MessageTable.EXPIRE_STARTED,
           MessageTable.REMOTE_DELETED,
           MessageTable.UNIDENTIFIED,
@@ -126,12 +131,12 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
           MessageTable.TYPE,
           MessageTable.MESSAGE_EXTRAS,
           MessageTable.VIEW_ONCE,
-          MessageTable.PARENT_STORY_ID
+          PARENT_STORY_ID
         )
         .from("${MessageTable.TABLE_NAME} INDEXED BY $dateReceivedIndex")
-        .where("${MessageTable.STORY_TYPE} = 0 AND ${MessageTable.PARENT_STORY_ID} <= 0 AND ${MessageTable.DATE_RECEIVED} >= $lastSeenReceivedTime")
+        .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime")
         .limit(count)
-        .orderBy("${MessageTable.DATE_RECEIVED} ASC")
+        .orderBy("$DATE_RECEIVED ASC")
         .run()
     }
   )

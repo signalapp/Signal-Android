@@ -162,6 +162,7 @@ object StorageSyncHelper {
       storyViewReceiptsEnabled = storyViewReceiptsState
       hasSeenGroupStoryEducationSheet = SignalStore.story.userHasSeenGroupStoryEducationSheet
       hasCompletedUsernameOnboarding = SignalStore.uiHints.hasCompletedUsernameOnboarding()
+      avatarColor = StorageSyncModels.localToRemoteAvatarColor(self.avatarColor)
       username = SignalStore.account.username ?: ""
       usernameLink = SignalStore.account.usernameLink?.let { linkComponents ->
         AccountRecord.UsernameLink(

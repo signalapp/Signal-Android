@@ -50,7 +50,7 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
     const val LIST_TABLE_NAME = ListTable.TABLE_NAME
     const val PRIVACY_MODE = ListTable.PRIVACY_MODE
 
-    fun insertInitialDistributionListAtCreationTime(db: net.zetetic.database.sqlcipher.SQLiteDatabase) {
+    fun insertInitialDistributionListAtCreationTime(db: SQLiteDatabase) {
       val recipientId = db.insert(
         RecipientTable.TABLE_NAME,
         null,

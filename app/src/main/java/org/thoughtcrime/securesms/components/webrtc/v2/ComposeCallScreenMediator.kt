@@ -15,28 +15,37 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewModelScope
+import kotlinx.collections.immutable.toPersistentList
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantListUpdate
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantsState
+import org.thoughtcrime.securesms.components.webrtc.CallReactionScrubber.Companion.CUSTOM_REACTION_BOTTOM_SHEET_TAG
 import org.thoughtcrime.securesms.components.webrtc.WebRtcControls
 import org.thoughtcrime.securesms.components.webrtc.controls.CallInfoView
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel
 import org.thoughtcrime.securesms.components.webrtc.controls.RaiseHandSnackbar
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.WebRtcViewModel
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Compose call screen wrapper
  */
-class ComposeCallScreenMediator(activity: WebRtcCallActivity, viewModel: WebRtcCallViewModel) : CallScreenMediator {
+class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewModel: WebRtcCallViewModel) : CallScreenMediator, AdditionalActionsListener {
 
   companion object {
     private val TAG = Log.tag(ComposeCallScreenMediator::class)
@@ -74,6 +83,10 @@ class ComposeCallScreenMediator(activity: WebRtcCallActivity, viewModel: WebRtcC
             callScreenViewModel.callScreenState.update { it.copy(isDisplayingAudioToggleSheet = displayed) }
           }
 
+          override fun onOverflowDisplayChanged(displayed: Boolean) {
+            callScreenViewModel.callScreenState.update { it.copy(displayAdditionalActionsDialog = displayed) }
+          }
+
           override fun onVideoTooltipDismissed() {
             callScreenViewModel.callScreenState.update { it.copy(displayVideoTooltip = false) }
           }
@@ -108,16 +121,19 @@ class ComposeCallScreenMediator(activity: WebRtcCallActivity, viewModel: WebRtcC
         CallScreen(
           callRecipient = recipient,
           webRtcCallState = webRtcCallState,
+          isRemoteVideoOffer = viewModel.isAnswerWithVideoAvailable(),
           callScreenState = callScreenState,
           callControlsState = callControlsState,
           callScreenController = callScreenController,
           callScreenControlsListener = callScreenControlsListener,
+          additionalActionsListener = this,
           callScreenSheetDisplayListener = callScreenSheetDisplayListener,
           callParticipantsPagerState = callParticipantsPagerState,
           pendingParticipantsListener = pendingParticipantsListener,
           overflowParticipants = callParticipantsState.listParticipants,
           localParticipant = callParticipantsState.localParticipant,
           localRenderState = callParticipantsState.localRenderState,
+          reactions = callParticipantsState.reactions,
           callScreenDialogType = dialog,
           callInfoView = {
             CallInfoView.View(
@@ -158,7 +174,7 @@ class ComposeCallScreenMediator(activity: WebRtcCallActivity, viewModel: WebRtcC
 
   override fun toggleOverflowPopup() {
     callScreenViewModel.callScreenState.update {
-      it.copy(displayAdditionalActionsPopup = !it.displayAdditionalActionsPopup)
+      it.copy(displayAdditionalActionsDialog = !it.displayAdditionalActionsDialog)
     }
   }
 
@@ -253,11 +269,11 @@ class ComposeCallScreenMediator(activity: WebRtcCallActivity, viewModel: WebRtcC
   }
 
   override fun onCallStateUpdate(callControlsChange: CallControlsChange) {
-    callScreenViewModel.callScreenState.update { it.copy(callControlsChange = callControlsChange) }
+    callScreenViewModel.emitCallControlsChange(callControlsChange)
   }
 
   override fun dismissCallOverflowPopup() {
-    callScreenViewModel.callScreenState.update { it.copy(displayAdditionalActionsPopup = false) }
+    callScreenViewModel.callScreenState.update { it.copy(displayAdditionalActionsDialog = false) }
   }
 
   override fun onParticipantListUpdate(callParticipantListUpdate: CallParticipantListUpdate) {
@@ -276,13 +292,39 @@ class ComposeCallScreenMediator(activity: WebRtcCallActivity, viewModel: WebRtcC
     callScreenViewModel.callScreenState.update { it.copy(displayWifiToCellularPopup = true) }
   }
 
+  override fun hideMissingPermissionsNotice() {
+    callScreenViewModel.callScreenState.update { it.copy(displayMissingPermissionsNotice = false) }
+  }
+
+  override fun onReactWithAnyClick() {
+    val bottomSheet = ReactWithAnyEmojiBottomSheetDialogFragment.createForCallingReactions()
+    bottomSheet.show(activity.supportFragmentManager, CUSTOM_REACTION_BOTTOM_SHEET_TAG)
+    callScreenViewModel.callScreenState.update { it.copy(displayAdditionalActionsDialog = false) }
+  }
+
+  override fun onReactClick(reaction: String) {
+    AppDependencies.signalCallManager.react(reaction)
+    callScreenViewModel.callScreenState.update { it.copy(displayAdditionalActionsDialog = false) }
+  }
+
+  override fun onRaiseHandClick(raised: Boolean) {
+    AppDependencies.signalCallManager.raiseHand(raised)
+    callScreenViewModel.callScreenState.update { it.copy(displayAdditionalActionsDialog = false) }
+  }
+
   /**
    * State holder for compose call screen
    */
   class CallScreenViewModel : ViewModel() {
     val callScreenControllerEvents = MutableSharedFlow<CallScreenController.Event>()
     val callState = MutableStateFlow(WebRtcViewModel.State.IDLE)
-    val callScreenState = MutableStateFlow(CallScreenState())
+    val callScreenState = MutableStateFlow(
+      CallScreenState(
+        reactions = SignalStore.emoji.reactions.map {
+          SignalStore.emoji.getPreferredVariation(it)
+        }.toPersistentList()
+      )
+    )
     val dialog = MutableStateFlow(CallScreenDialogType.NONE)
     val callParticipantsViewState = MutableStateFlow(
       CallParticipantsViewState(
@@ -293,10 +335,23 @@ class ComposeCallScreenMediator(activity: WebRtcCallActivity, viewModel: WebRtcC
       )
     )
 
+    private var callControlsChangeJob: Job? = null
+
     val callParticipantListUpdate = MutableStateFlow(CallParticipantListUpdate.computeDeltaUpdate(emptyList(), emptyList()))
 
     fun emitControllerEvent(controllerEvent: CallScreenController.Event) {
       viewModelScope.launch { callScreenControllerEvents.emit(controllerEvent) }
+    }
+
+    fun emitCallControlsChange(callControlsChange: CallControlsChange) {
+      viewModelScope.launch {
+        callControlsChangeJob?.cancelAndJoin()
+        callControlsChangeJob = launch {
+          callScreenState.update { it.copy(callControlsChange = callControlsChange) }
+          delay(2.seconds)
+          callScreenState.update { it.copy(callControlsChange = null) }
+        }
+      }
     }
   }
 }

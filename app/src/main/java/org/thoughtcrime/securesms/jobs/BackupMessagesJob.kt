@@ -10,8 +10,8 @@ import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.v2.ArchiveMediaItemIterator
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
-import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObjectIterator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ResumableMessagesBackupUploadSpec
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.jobs.protos.BackupMessagesJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import java.io.File
 import java.io.FileInputStream
@@ -51,14 +52,10 @@ class BackupMessagesJob private constructor(
      * Pruning abandoned remote media is relatively expensive, so we should
      * not do this every time we backup.
      */
-    fun enqueue(pruneAbandonedRemoteMedia: Boolean = false) {
+    fun enqueue() {
       val jobManager = AppDependencies.jobManager
 
       val chain = jobManager.startChain(BackupMessagesJob())
-
-      if (pruneAbandonedRemoteMedia) {
-        chain.then(SyncArchivedMediaJob())
-      }
 
       if (SignalStore.backup.optimizeStorage && SignalStore.backup.backsUpMedia) {
         chain.then(OptimizeMediaJob())
@@ -89,6 +86,10 @@ class BackupMessagesJob private constructor(
 
   override fun getFactoryKey(): String = KEY
 
+  override fun onAdded() {
+    ArchiveUploadProgress.begin()
+  }
+
   override fun onFailure() {
     if (!isCanceled) {
       Log.w(TAG, "Failed to backup user messages. Marking failure state.")
@@ -108,6 +109,8 @@ class BackupMessagesJob private constructor(
       BackupFileResult.Failure -> return Result.failure()
       BackupFileResult.Retry -> return Result.retry(defaultBackoff())
     }
+
+    ArchiveUploadProgress.onMessageBackupCreated(tempBackupFile.length())
 
     this.syncTime = currentTime
     this.dataFile = tempBackupFile.path
@@ -134,8 +137,16 @@ class BackupMessagesJob private constructor(
       is NetworkResult.ApplicationError -> throw result.throwable
     }
 
+    val progressListener = object : SignalServiceAttachment.ProgressListener {
+      override fun onAttachmentProgress(total: Long, progress: Long) {
+        ArchiveUploadProgress.onMessageBackupUploadProgress(total, progress)
+      }
+
+      override fun shouldCancel(): Boolean = isCanceled
+    }
+
     FileInputStream(tempBackupFile).use {
-      when (val result = BackupRepository.uploadBackupFile(backupSpec, it, tempBackupFile.length(), ArchiveUploadProgress.ArchiveUploadProgressListener { isCanceled })) {
+      when (val result = BackupRepository.uploadBackupFile(backupSpec, it, tempBackupFile.length(), progressListener)) {
         is NetworkResult.Success -> {
           Log.i(TAG, "Successfully uploaded backup file.")
           SignalStore.backup.hasBackupBeenUploaded = true
@@ -204,7 +215,6 @@ class BackupMessagesJob private constructor(
 
     BlobProvider.getInstance().clearTemporaryBackupsDirectory(AppDependencies.application)
 
-    ArchiveUploadProgress.begin()
     val tempBackupFile = BlobProvider.getInstance().forTemporaryBackup(AppDependencies.application)
 
     val outputStream = FileOutputStream(tempBackupFile)
@@ -244,8 +254,6 @@ class BackupMessagesJob private constructor(
       return BackupFileResult.Failure
     }
 
-    ArchiveUploadProgress.onMessageBackupCreated()
-
     return BackupFileResult.Success(tempBackupFile, currentTime)
   }
 
@@ -260,9 +268,9 @@ class BackupMessagesJob private constructor(
 
   private fun writeMediaCursorToTemporaryTable(db: SignalDatabase, mediaBackupEnabled: Boolean, currentTime: Long) {
     if (mediaBackupEnabled) {
-      db.attachmentTable.getMediaIdCursor().use {
+      db.attachmentTable.getAttachmentsEligibleForArchiveUpload().use {
         SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(
-          mediaObjects = ArchivedMediaObjectIterator(it).asSequence(),
+          mediaObjects = ArchiveMediaItemIterator(it).asSequence(),
           pendingSyncTime = currentTime
         )
       }

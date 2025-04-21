@@ -11,8 +11,8 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
-import org.signal.core.ui.Previews
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.ui.compose.Action

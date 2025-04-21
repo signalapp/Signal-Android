@@ -572,11 +572,6 @@
         <item quantity="one">Desar aquest fitxer a l\'emmagatzematge permetrà que qualsevol altra aplicació del dispositiu també hi pugui accedir.\n\nVols continuar?</item>
         <item quantity="other">Desar els %1$d fitxers a l\'emmagatzematge permetrà que qualsevol altra aplicació del dispositiu també hi pugui accedir.\n\nVols continuar?</item>
     </plurals>
-    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-        <item quantity="one">Error al desar el fitxer adjunt a l\'emmagatzematge!</item>
-        <item quantity="other">Error en desar els fitxers adjunts a l\'emmagatzematge.</item>
-    </plurals>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">No s\'ha pogut desar a l\'emmagatzematge.</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">Desant fitxer</item>
         <item quantity="other">Desant %1$d fitxers</item>
@@ -584,13 +579,6 @@
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
         <item quantity="one">Desant fitxer a l\'emmagatzematge…</item>
         <item quantity="other">Desant %1$d fitxers a l\'emmagatzematge…</item>
-    </plurals>
-    <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="ConversationFragment__save_to_phone">Guardar al telèfon?</string>
-    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
-    <plurals name="ConversationFragment__this_media_will_be_saved">
-        <item quantity="one">Aquest arxiu es guardarà al teu telèfon. És possible que, depenent dels permisos del telèfon, altres aplicacions puguin accedir-hi.</item>
-        <item quantity="other">Aquests arxius es guardaran al teu telèfon. És possible que, depenent dels permisos del telèfon, altres aplicacions puguin accedir-hi.</item>
     </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
     <string name="ConversationFragment_dont_show_again">No ho tornis a mostrar</string>
@@ -669,6 +657,18 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">Reportat com a spam i bloquejat</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">Has acceptat la sol·licitud de missatge de %1$s. Si es tracta d\'un error, pots escollir una de les accions que hi ha a continuació.</string>
+    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
+    <string name="ConversationFragment_review_carefully">Revisa amb atenció</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s no es verifiquen</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s no es verifiquen</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
+    <string name="ConversationFragment_profile_names">Els noms del perfil</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
+    <string name="ConversationFragment_group_names">Els noms dels grups</string>
+    <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
+    <string name="ConversationFragment_photo_failed">No s\'ha pogut descarregar la foto. Torna a provar-ho.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Consells de seguretat</string>
@@ -680,6 +680,10 @@
     <string name="SafetyTips_previous_tip">Consell anterior</string>
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">Següent consell</string>
+    <!-- Title of tip 0 -->
+    <string name="SafetyTips_tip0_title">Comptes i noms falsos</string>
+    <!-- Message of tip 0 -->
+    <string name="SafetyTips_tip0_message">Signal mai es posarà en contacte amb tu per demanar-te el teu codi de registre o PIN. Ves amb compte quan rebis peticions de persones es fan passar per altres. Els noms de perfil els tria el titular del compte i no es verifiquen.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Estafes de criptomoneda o diners</string>
     <!-- Message of tip 1 -->
@@ -696,6 +700,21 @@
     <string name="SafetyTips_tip4_title">Empreses i institucions falses</string>
     <!-- Message of tip 4 -->
     <string name="SafetyTips_tip4_message">Ves amb compte amb les empreses o les agències governamentals que es posin en contacte amb tu. Els missatges que involucren agències fiscals i serveis de missatgeria, entre d\'altres, poden ser spam.</string>
+
+    <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s a Signal els tria el titular del compte.</string>
+    <!-- Bottom sheet text explaining that profile names are not verified. -->
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Els noms de perfil no es verifiquen</string>
+    <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Ves amb compte amb els comptes que es fan passar per altres</string>
+    <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
+    <string name="ProfileNameBottomSheet__dont_share_personal">No comparteixis informació personal amb persones que no coneguis</string>
+    <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s els trien els membres del grup.</string>
+    <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Ves amb compte amb els grups que es fan passar per organitzacions i empreses</string>
+    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Els noms de perfil dels membres dels grups no es verifiquen</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Restablir filtres</string>
@@ -759,8 +778,11 @@
     <string name="AddToFolderBottomSheet_choose_a_folder">Tria una carpeta</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
     <string name="AddToFolderBottomSheet_added_to_s">Afegit a \"%1$s\"</string>
-    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_this_chat_is_already">Aquest xat ja està a la carpeta \"%1$s\"</string>
+    <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
+    <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
+        <item quantity="one">Aquest xat ja està a \"%1$s\"</item>
+        <item quantity="other">Aquests xats ja estàn a \"%1$s\"</item>
+    </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">Perfil de notificacions</string>
@@ -1038,7 +1060,7 @@
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Cancel·lar</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Error en l\'exportació d\'Android Link&amp;Sync</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">La sincronització de missatges ha fallat</string>
@@ -1133,6 +1155,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">Fitxer sense nom</string>
+    <string name="DocumentView_document_file">Arxiu</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimitza per a la no presència dels Play Services</string>
@@ -1660,7 +1683,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Se suprimeix</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Se suprimeixen missatges…</string>
-    <string name="MediaOverviewActivity_collecting_attachments">Es recopilen els adjunts…</string>
     <string name="MediaOverviewActivity_Sort_by">Ordena per</string>
     <string name="MediaOverviewActivity_Newest">El més nou</string>
     <string name="MediaOverviewActivity_Oldest">El més antic</string>
@@ -1764,6 +1786,10 @@
     <string name="MessageRecord_missed_voice_call">Trucada perduda</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Videotrucada perduda</string>
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
+    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
+    <string name="MessageRecord_declined_video_call">Declined video call</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Trucada de veu perduda mentre els ajustos de notificació estaven activats</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2052,6 +2078,14 @@
     <string name="MessageRecord_reported_as_spam">Se n\'ha informat com a spam</string>
     <!-- Update message shown in chat after accept a message request -->
     <string name="MessageRecord_you_accepted_the_message_request">Has acceptat la sol·licitud de missatge</string>
+    <!-- Update message shown in chat after you block a person -->
+    <string name="MessageRecord_you_blocked_this_person">Has bloquejat aquesta persona</string>
+    <!-- Update message shown in chat after you unblock a person -->
+    <string name="MessageRecord_you_unblocked_this_person">Has desbloquejat aquesta persona</string>
+    <!-- Update message shown in chat after you block a group -->
+    <string name="MessageRecord_you_blocked_this_group">Has bloquejat aquest grup</string>
+    <!-- Update message shown in chat after you unblock a group -->
+    <string name="MessageRecord_you_unblocked_this_group">Has desbloquejat aquest grup</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Ho accepto</string>
@@ -2101,8 +2135,39 @@
         <item quantity="one">%1$d grup addicional</item>
         <item quantity="other">%1$d grups addicionals</item>
     </plurals>
+    <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
+    <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
+    <!-- Text for an empty group or when you are the only member -->
+    <string name="MessageRequestProfileView_group_members_zero">Encara no hi ha altres membres al grup</string>
+    <!-- Text for a group with one member (not you). %1$s is their name -->
+    <string name="MessageRequestProfileView_group_members_one">%1$s</string>
+    <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
+    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s i tu</string>
+    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two">%1$s i %2$s</string>
+    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s i tu</string>
+    <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
+    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s i %3$s</string>
+    <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
+    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s i %4$s</string>
+    <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
+    <plurals name="MessageRequestProfileView_other_members">
+        <item quantity="one">%1$d altre</item>
+        <item quantity="other">%1$d més</item>
+    </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Denunciar…</string>
+    <!-- Alert dialog title to accept a message request -->
+    <string name="MessageRequestBottomView_accept_request">Acceptar la sol·licitud?</string>
+    <!-- Alert dialog body to review the message request carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully">Revisa les sol·licituds amb atenció. Els noms de perfil els tria el titular del compte i no es verifiquen.</string>
+    <!-- Alert dialog title to accept a message request to join a group -->
+    <string name="MessageRequestBottomView_join_group">Unir-te al grup?</string>
+    <!-- Alert dialog body to review the message request for a group carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Revisa les sol·licituds amb atenció. Els noms dels grups els trien els membres del grup i no es verifiquen.</string>
+    <!-- Button text to join a group -->
+    <string name="MessageRequestBottomView_join">Unir-me</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Les contrasenyes no coincideixen!</string>
@@ -2206,6 +2271,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">Tot · %1$d</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Toqueu per suprimir</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -2438,6 +2504,8 @@
     <string name="CallOverflowPopupWindow__view">Vista</string>
 
 
+    <!-- A notification to the user that their hand is raised but they are currently speaking -->
+    <string name="CallRaiseHandSnackbar__lower_your_hand">Baixar la mà?</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s ha aixecat la mà</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -2476,7 +2544,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">El teu país</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Cerca per nom o número</string>
+    <string name="CountryCodeFragment__search_by">Busca per nom o prefix del número</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">País desconegut</string>
 
@@ -2485,12 +2553,16 @@
     <string name="AboutSheet__signal_connection">Connexió de Signal</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Verificat</string>
+    <!-- Displayed in a sheet row that tells users that profile names are not verified -->
+    <string name="AboutSheet__profile_names_are_not_verified">Els noms de perfil no es verifiquen</string>
+    <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
+    <string name="AboutSheet__pending_message_request">Sol·licitud de missatge pendent</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">No hi ha missatges directes amb %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s és als contactes del teu telèfon</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">No teniu cap grup en comú</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">No hi ha grups en comú.</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Reviseu les sol·licituds amb atenció.</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -2504,6 +2576,12 @@
     <string name="AboutSheet__you">Vós</string>
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
+
+    <!-- Title of the screen showing which groups they have in common with another user. -->
+    <plurals name="GroupsInCommon__n_groups_in_common_title">
+        <item quantity="one">%1$s group in common</item>
+        <item quantity="other">%1$s groups in common</item>
+    </plurals>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2802,6 +2880,10 @@
     <string name="ThreadRecord_message_history_has_been_merged">El teu historial de missatges s\'ha combinat</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s pertany a %2$s</string>
+    <!-- Displayed in the conversation list when a person has been blocked -->
+    <string name="ThreadRecord_blocked">Bloquejat</string>
+    <!-- Displayed in the conversation list when a group has been blocked -->
+    <string name="ThreadRecord_blocked_group">Blocked</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Actualització del Signal</string>
@@ -2917,8 +2999,6 @@
     <string name="MediaPreviewActivity_you">Jo</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Tipus de fitxer no compatible</string>
     <string name="MediaPreviewActivity_draft">Esborrany</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">El Signal necessita el permís de l\'emmagatzematge per tal de desar en un emmagatzematge extern, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi l\'emmagatzematge.</string>
-    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">No es pot desar en un emmagatzematge extern sense permís.</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Vols esborrar el missatge?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Aquest missatge s\'esborrarà permanentment.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s a %2$s</string>
@@ -3025,14 +3105,46 @@
     <!-- Notification channel name for notifications sent when a device has been linked -->
     <string name="NotificationChannel_new_linked_device">Nou dispositiu vinculat</string>
 
-    <!-- ProfileEditNameFragment -->
-
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">La resposta ràpida no és disponible si el Signal està blocat!</string>
     <string name="QuickResponseService_problem_sending_message">S\'ha produït un problema en enviar el missatge!</string>
 
-    <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">Arxiu multimèdia guardat</string>
+    <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
+    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">No s\'ha pogut desar a l\'emmagatzematge.</string>
+
+    <!-- A toast notification that is shown after image/video/audio media was successfully downloaded and saved to the device storage, accessible in other apps. -->
+    <plurals name="SaveAttachment_saved_success">
+        <item quantity="one">Arxiu multimèdia guardat</item>
+        <item quantity="other">Arxius multimèdia guardats</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after some image/video/audio media was successfully downloaded and saved to the device storage, but some failed to save
+         %1$s is the number of items that failed to save and %2$s is the total number of items that the user requested to save. -->
+    <plurals name="SaveAttachment_saved_success_n_failures">
+        <item quantity="one">Arxius multimèdia guardats (%1$s de %2$s ha fallat)</item>
+        <item quantity="other">Arxius multimèdia guardats (%1$s de %2$s han fallat)</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after all of the requested image/video/audio media failed to save to the device storage. -->
+    <plurals name="SaveAttachment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Error al desar el fitxer adjunt a l\'emmagatzematge!</item>
+        <item quantity="other">Error en desar els fitxers adjunts a l\'emmagatzematge.</item>
+    </plurals>
+
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="AttachmentSaver__save_to_phone">Guardar al telèfon?</string>
+
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <plurals name="AttachmentSaver__this_media_will_be_saved">
+        <item quantity="one">Aquest arxiu es guardarà al teu telèfon. És possible que, depenent dels permisos del telèfon, altres aplicacions puguin accedir-hi.</item>
+        <item quantity="other">Aquests arxius es guardaran al teu telèfon. És possible que, depenent dels permisos del telèfon, altres aplicacions puguin accedir-hi.</item>
+    </plurals>
+
+    <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">El Signal necessita el permís de l\'emmagatzematge per tal de desar en un emmagatzematge extern, però s\'ha denegat permanentment. Si us plau, continueu cap al menú de configuració de l\'aplicació, seleccioneu Permisos i activeu-hi l\'emmagatzematge.</string>
+
+    <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">No es pot desar en un emmagatzematge extern sense permís.</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Cerca</string>
@@ -3269,7 +3381,8 @@
     <string name="ConversationUpdateItem_update_contact">Actualitza el contacte</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Bloqueja la sol·licitud</string>
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Cap grup en comú. Reviseu les sol·licituds amb atenció.</string>
+    <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">No hi ha grups en comú.</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">Cap contacte en aquest grup. Reviseu les sol·licituds amb atenció.</string>
     <string name="ConversationUpdateItem_view">Vista</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">El temps de desaparició del missatge s\'establirà a %1$s quan els n\'envieu un.</string>
@@ -3289,6 +3402,11 @@
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Reprodueix… Pausa</string>
     <string name="audio_view__download_accessibility_description">Baixa</string>
+
+    <!-- document_view -->
+    <string name="document_view__download_accessibility_description">Baixa</string>
+    <string name="document_view__upload_accessibility_description">Pujar</string>
+    <string name="document_view__cancel_accessibility_description">Cancel·lar</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">Àudio</string>
@@ -4409,6 +4527,13 @@
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">Els PIN mantenen encriptada la informació desada amb el Signal.</string>
     <string name="KbsMegaphone__create_pin">Crea un PIN</string>
 
+    <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__update_signal_pin">Actualitzar PIN de Signal</string>
+    <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__message">Actualitza el teu PIN de Signal per completar el registre del compte.</string>
+    <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__update_pin">Actualitza el PIN</string>
+
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
     <string name="CallNotificationBuilder__incoming_signal_voice_call">Trucada de veu Signal entrant</string>
@@ -4821,8 +4946,8 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Cap altre grup en comú</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Cap grup en comú</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d grup en comú</item>
-        <item quantity="other">%1$d grups en comú</item>
+        <item quantity="one">%1$d other group in common</item>
+        <item quantity="other">%1$d other groups in common</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">%1$d grup en comú</item>
@@ -5736,6 +5861,24 @@
     <string name="MediaReviewFragment__photo_set_to_high_quality">Foto configurada en alta qualitat</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
     <string name="MediaReviewFragment__photo_set_to_standard_quality">Foto configurada en qualitat estàndard</string>
+    <!-- Accessibility label describing the add media button on the Media review screen -->
+    <string name="MediaReviewFragment__add_media_accessibility_label">Afegir Arxius multimèdia</string>
+    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
+    <string name="MediaReviewFragment__brush_pen_accessibility_label">Pinzell i bolígraf</string>
+    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
+    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Retalla i gira</string>
+    <!-- Accessibility label describing the change media quality button on the Media review screen -->
+    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Canviar la qualitat de l\'arxiu</string>
+    <!-- Accessibility label describing the save media button on the Media review screen -->
+    <string name="MediaReviewFragment__save_media_accessibility_label">Guardar Arxius multimèdia</string>
+    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
+    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Canvia al teclat d\'emojis</string>
+    <!-- Accessibility label describing the toggle view once button on the Media review screen -->
+    <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Activar visualització única</string>
+    <!-- Accessibility label describing the send media button on the Media review screen -->
+    <string name="MediaReviewFragment__send_media_accessibility_label">Enviar Arxius multimèdia</string>
+    <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
+    <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Finalitzar Afegir missatge</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
         <item quantity="one">%1$d element configurat en alta qualitat</item>
@@ -5986,7 +6129,7 @@
     <string name="DonationsErrors__your_payment_is_still">La teva donació encara s\'està processant. Això pot trigar uns quants minuts segons la teva connexió.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">No s\'ha pogut cancel·lar la subscripció.</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">La cancel·lació de la subscripció requereix una connexió a Internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">El teu dispositiu no és compatible amb Google Pay, de manera que no t\'hi pots subscriure per guanyar una insígnia. Pots donar suport al Signal fent una donació al nostre lloc web.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">El teu dispositiu no és compatible amb les donacions dins de l\'app, de manera que no t\'hi pots subscriure per guanyar una insígnia. Pots donar suport a Signal fent una donació al nostre lloc web.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Error de connexió. Comproveu la connexió i torneu-ho a provar.</string>
     <string name="NetworkFailure__retry">Torneu a provar-ho</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6226,6 +6369,16 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Notes de la versió del Signal i Notícies</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat_period">Aquest és l\'únic xat oficial de Signal</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date_period">Estigues al dia de les notícies i les notes de versió.</string>
+    <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat">Aquest és l\'únic xat oficial de Signal</string>
+    <!-- Text description in Signal Release channel details explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date">Estigues al dia de les notícies i les notes de versió</string>
+    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__official_only_chat">Xat oficial i únic de Signal</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Tota l\'activitat</string>
@@ -6351,6 +6504,8 @@
     <string name="StoryViewerPageFragment__send_failed">No s\'ha pogut enviar. Toca aquí per tornar-ho a provar</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Respon al grup</string>
+    <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
+    <string name="StoryViewerPageFragment_any_reaction_content_description">Més reaccions</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Encara no té visualitzacions</string>
     <!-- Displayed when user has disabled receipts -->
@@ -7257,6 +7412,8 @@
     <string name="CameraControls_capture_button_accessibility_label">Botó de captura</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
     <string name="CameraControls_continue_button_accessibility_label">Botó continuar</string>
+    <!-- Accessibility label describing the flash Mode toggle button on the camera screen -->
+    <string name="CameraControls_toggle_flash_mode_accessibility_label">Activar Mode flash</string>
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
@@ -7908,9 +8065,9 @@
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Preparant la còpia de seguretat…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
-    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
-        <item quantity="one">Processant %1$d de %2$d (%3$d %%) missatge</item>
-        <item quantity="other">Processant %1$d de %2$d (%3$d %%) missatges</item>
+    <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
+        <item quantity="one">Processant %1$s de %2$s missatges (%3$d %%)</item>
+        <item quantity="other">Processant %1$s de ~%2$s missatges (%3$d %%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -7957,6 +8114,10 @@
     <!-- Action button label to contact support -->
     <string name="SubscriptionNotFoundBottomSheet__contact_support">Contacta amb el servei d\'assistència</string>
 
+    <!-- MessageBackupsFlowFragment -->
+    <!-- Body for network failure dialog in message backups checkout flow -->
+    <string name="MessageBackupsFlowFragment__a_network_failure_occurred">S\'ha produït un error de xarxa. Torna-ho a provar més tard.</string>
+
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Fes una còpia de seguretat dels teus missatges i arxius multimèdia utilitzant el servei d\'emmagatzematge xifrat d\'extrem a extrem de Signal. No perdis mai cap missatge quan et canviïs el telèfon o tornis a instal·lar Signal.</string>
@@ -8000,6 +8161,19 @@
     <string name="MessageBackupsKeyRecordScreen__continue">Continuar</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Tornar a veure la clau</string>
+
+    <!-- Confirm key title -->
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirma la teva clau de còpia de seguretat</string>
+    <!-- Confirm your key subtitle -->
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Introdueix la clau de còpia de seguretat que acabes de registrar</string>
+    <!-- Confirm your key text entry hint text -->
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Còpia de seguretat de la clau</string>
+    <!-- Confirm your key text entry error text -->
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Clau de còpia de seguretat incorrecta</string>
+    <!-- Confirm your key button text to return to record key screen. -->
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">Tornar a veure la clau</string>
+    <!-- Confirm your key button text to move onto next screen in flow -->
+    <string name="MessageBackupsKeyVerifyScreen__next">Següent</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8126,6 +8300,25 @@
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">La clau de la còpia de seguretat que has introduït és correcta, però no hi ha cap còpia de seguretat associada a ella. Si encara tens el teu telèfon antic, assegura\'t que les còpies de seguretat estan habilitades i que s\'ha completat una còpia de seguretat, i torna-ho a intentar.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Ometre la restauració</string>
+    <!-- Dialog title text when encountering backup restore network error -->
+    <string name="EnterBackupKey_cant_restore_backup">No es pot restaurar la còpia de seguretat</string>
+    <!-- Dialog body text when encountering backup restore network error -->
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Ara mateix no es pot restaurar la teva còpia de seguretat. Comprova la connexió a Internet i torna-ho a provar. </string>
+    <!-- Dialog button text to contact support on network error -->
+    <string name="EnterBackupKey_contact_support">Contacta amb el servei d\'assistència</string>
+
+    <!-- Email subject when contacting support on a restore backup network issue -->
+    <string name="EnterBackupKey_network_failure_support_email">Error de xarxa de restauració de la còpia de seguretat de Signal Android</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+
+    <!-- Title of dialog asking to submit debuglogs -->
+    <string name="ContactSupportDialog_submit_debug_log">Vols enviar un registre de depuració?</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="ContactSupportDialog_your_debug_logs">Els vostres registres de depuració ens ajudaran a solucionar el problema més de pressa. Enviar-nos-els és opcional.</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_with_debug">Envia-ho amb el registre de depuració</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_without_debug">Envia-ho sense el registre de depuració</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Escaneja aquest codi amb el teu mòbil antic</string>

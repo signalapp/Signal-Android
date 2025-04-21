@@ -53,6 +53,7 @@ import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.messages.GroupSendUtil;
+import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -67,6 +68,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.rx.RxStore;
@@ -74,6 +76,8 @@ import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder;
 import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager;
 import org.thoughtcrime.securesms.webrtc.locks.LockManager;
 import org.webrtc.PeerConnection;
+import org.whispersystems.signalservice.api.NetworkResult;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
@@ -876,9 +880,10 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         headerPairs = Collections.emptyList();
       }
 
-      CallingResponse response = AppDependencies.getSignalServiceMessageSender()
-                                                .makeCallingRequest(requestId, url, httpMethod.name(), headerPairs, body);
+      NetworkResult<CallingResponse> result = SignalNetwork.calling()
+                                                           .makeCallingRequest(requestId, url, httpMethod.name(), headerPairs, body);
 
+      CallingResponse response = ((NetworkResult.Success<CallingResponse>) result).getResult();
       try {
         if (response instanceof CallingResponse.Success) {
           CallingResponse.Success success = (CallingResponse.Success) response;
@@ -968,7 +973,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
 
   @Override
   public void onSpeakingNotification(@NonNull GroupCall groupCall, @NonNull GroupCall.SpeechEvent speechEvent) {
-
+    process((s, p) -> p.handleGroupCallSpeechEvent(s, speechEvent));
   }
 
   @Override
@@ -1029,21 +1034,42 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   public void retrieveTurnServers(@NonNull RemotePeer remotePeer) {
     networkExecutor.execute(() -> {
       try {
-        List<TurnServerInfo> turnServerInfos = AppDependencies.getSignalServiceAccountManager().getTurnServerInfo();
-        List<PeerConnection.IceServer> iceServers = mapToIceServers(turnServerInfos);
-        process((s, p) -> {
-          RemotePeer activePeer = s.getCallInfoState().getActivePeer();
-          if (activePeer != null && activePeer.getCallId().equals(remotePeer.getCallId())) {
-            return p.handleTurnServerUpdate(s, iceServers, TextSecurePreferences.isTurnOnly(context));
-          }
+        List<PeerConnection.IceServer> cachedServers = TurnServerCache.getCachedServers();
+        if (cachedServers != null) {
+          processTurnServers(remotePeer, cachedServers);
+          return;
+        }
 
-          Log.w(TAG, "Ignoring received turn servers for incorrect call id. requesting_call_id: " + remotePeer.getCallId() + " current_call_id: " + (activePeer != null ? activePeer.getCallId() : "null"));
-          return s;
-        });
+        List<TurnServerInfo> turnServerInfos = NetworkResultUtil.toBasicLegacy(SignalNetwork.calling().getTurnServerInfo());
+
+        // Find *any* provided ttl values as long as they are valid.
+        long minTtl = turnServerInfos.stream()
+                                     .map(TurnServerInfo::getTtl)
+                                     .filter(ttl -> ttl != null && ttl > 0)
+                                     .min(Long::compare)
+                                     .orElse(0L);
+
+        List<PeerConnection.IceServer> iceServers = mapToIceServers(turnServerInfos);
+
+        TurnServerCache.updateCache(iceServers, minTtl);
+
+        processTurnServers(remotePeer, iceServers);
       } catch (IOException e) {
         Log.w(TAG, "Unable to retrieve turn servers: ", e);
         process((s, p) -> p.handleSetupFailure(s, remotePeer.getCallId()));
       }
+    });
+  }
+
+  private void processTurnServers(RemotePeer remotePeer, List<PeerConnection.IceServer> servers) {
+    process((s, p) -> {
+      RemotePeer activePeer = s.getCallInfoState().getActivePeer();
+      if (activePeer != null && activePeer.getCallId().equals(remotePeer.getCallId())) {
+        return p.handleTurnServerUpdate(s, servers, TextSecurePreferences.isTurnOnly(context));
+      }
+
+      Log.w(TAG, "Ignoring received turn servers for incorrect call id. requesting_call_id: " + remotePeer.getCallId() + " current_call_id: " + (activePeer != null ? activePeer.getCallId() : "null"));
+      return s;
     });
   }
 

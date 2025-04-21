@@ -161,6 +161,7 @@ object AndroidTelecomUtil {
     return true
   }
 
+  @Suppress("DEPRECATION")
   fun selectAudioDevice(recipientId: RecipientId, device: SignalAudioManager.AudioDevice) {
     if (telecomSupported) {
       val connection: AndroidCallConnection? = connections[recipientId]
@@ -176,6 +177,7 @@ object AndroidTelecomUtil {
     }
   }
 
+  @Suppress("DEPRECATION")
   fun getSelectedAudioDevice(recipientId: RecipientId): SignalAudioManager.AudioDevice {
     if (telecomSupported) {
       val connection: AndroidCallConnection? = connections[recipientId]
@@ -199,6 +201,7 @@ object AndroidTelecomUtil {
   }
 }
 
+@Suppress("DEPRECATION")
 @RequiresApi(26)
 private fun Connection.setAudioRouteIfDifferent(newRoute: Int) {
   if (callAudioState.route != newRoute) {

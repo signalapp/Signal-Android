@@ -78,13 +78,11 @@ public class FromTextView extends SimpleEmojiTextView {
 
     setText(builder);
 
-    if      (recipient.isBlocked())                           setCompoundDrawablesRelativeWithIntrinsicBounds(getBlocked(), null, null, null);
-    else if (RemoteConfig.getInlinePinnedChats() && isPinned) setCompoundDrawablesRelativeWithIntrinsicBounds(getPinned(), null, null, null);
-    else                                                      setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
-  }
-
-  private Drawable getBlocked() {
-    return getDrawable(R.drawable.symbol_block_16, R.color.signal_icon_tint_secondary);
+    if (RemoteConfig.getInlinePinnedChats() && isPinned) {
+      setCompoundDrawablesRelativeWithIntrinsicBounds(getPinned(), null, null, null);
+    } else {
+      setCompoundDrawablesRelativeWithIntrinsicBounds(0, 0, 0, 0);
+    }
   }
 
   private Drawable getMuted() {

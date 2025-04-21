@@ -7,12 +7,10 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.logging.Log
 import org.signal.donations.PaymentSourceType
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.badges.Badges
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
-import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentError
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError.BadgeRedemptionError
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
@@ -33,13 +31,13 @@ import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.EmptyResponse
 import org.whispersystems.signalservice.internal.ServiceResponse
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
+import java.math.BigDecimal
 import java.util.Locale
-import java.util.concurrent.TimeUnit
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
- * Repository which can query for the user's active subscription as well as a list of available subscriptions,
- * in the currency indicated.
+ * Shared methods for operating on recurring subscriptions, shared between donations and backups.
  */
 object RecurringInAppPaymentRepository {
 
@@ -47,14 +45,43 @@ object RecurringInAppPaymentRepository {
 
   private val donationsService = AppDependencies.donationsService
 
+  /**
+   * Passthrough Rx wrapper for [getActiveSubscriptionSync] dispatching on io thread-pool.
+   */
+  @CheckResult
   fun getActiveSubscription(type: InAppPaymentSubscriberRecord.Type): Single<ActiveSubscription> {
     return Single.fromCallable {
       getActiveSubscriptionSync(type).getOrThrow()
     }.subscribeOn(Schedulers.io())
   }
 
+  /** A fake paid subscription to return when the backup tier override is set. */
+  private val MOCK_PAID_SUBSCRIPTION = ActiveSubscription(
+    ActiveSubscription.Subscription(
+      SubscriptionsConfiguration.BACKUPS_LEVEL,
+      "USD",
+      BigDecimal(42),
+      2147472000,
+      true,
+      2147472000,
+      false,
+      "active",
+      "USA",
+      "credit-card",
+      false
+    ),
+    null
+  )
+
+  /**
+   * Gets the active subscription if it exists for the given [InAppPaymentSubscriberRecord.Type]
+   */
   @WorkerThread
   fun getActiveSubscriptionSync(type: InAppPaymentSubscriberRecord.Type): Result<ActiveSubscription> {
+    if (type == InAppPaymentSubscriberRecord.Type.BACKUP && SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID) {
+      return Result.success(MOCK_PAID_SUBSCRIPTION)
+    }
+
     val response = InAppPaymentsRepository.getSubscriber(type)?.let {
       donationsService.getSubscription(it.subscriberId)
     } ?: return Result.success(ActiveSubscription.EMPTY)
@@ -71,6 +98,10 @@ object RecurringInAppPaymentRepository {
     }
   }
 
+  /**
+   * Gets a list of subscriptions available via the donations configuration.
+   */
+  @CheckResult
   fun getSubscriptions(): Single<List<Subscription>> {
     return Single
       .fromCallable { donationsService.getDonationsConfiguration(Locale.getDefault()) }
@@ -88,6 +119,10 @@ object RecurringInAppPaymentRepository {
       }
   }
 
+  /**
+   * Syncs the user account record, dispatches on the io thread-pool
+   */
+  @CheckResult
   fun syncAccountRecord(): Completable {
     return Completable.fromAction {
       SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
@@ -99,60 +134,72 @@ object RecurringInAppPaymentRepository {
    * Since PayPal and Stripe can't interoperate, we need to be able to rotate the subscriber ID
    * in case of failures.
    */
-  fun rotateSubscriberId(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
+  @WorkerThread
+  fun rotateSubscriberIdSync(subscriberType: InAppPaymentSubscriberRecord.Type) {
     Log.d(TAG, "Rotating SubscriberId due to alternate payment processor...", true)
-    val cancelCompletable: Completable = if (InAppPaymentsRepository.getSubscriber(subscriberType) != null) {
-      cancelActiveSubscription(subscriberType).andThen(updateLocalSubscriptionStateAndScheduleDataSync(subscriberType))
-    } else {
-      Completable.complete()
+    if (InAppPaymentsRepository.getSubscriber(subscriberType) != null) {
+      cancelActiveSubscriptionSync(subscriberType)
+      updateLocalSubscriptionStateAndScheduleDataSync(subscriberType)
     }
 
-    return cancelCompletable.andThen(ensureSubscriberId(subscriberType, isRotation = true))
+    ensureSubscriberIdSync(subscriberType, isRotation = true)
   }
 
-  fun ensureSubscriberId(subscriberType: InAppPaymentSubscriberRecord.Type, isRotation: Boolean = false, iapSubscriptionId: IAPSubscriptionId? = null): Completable {
-    return Single.fromCallable {
-      Log.d(TAG, "Ensuring SubscriberId for type $subscriberType exists on Signal service {isRotation?$isRotation}...", true)
+  /**
+   * Passthrough Rx wrapper for [rotateSubscriberIdSync] dispatching on io thread-pool.
+   */
+  @CheckResult
+  fun rotateSubscriberId(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
+    return Completable.fromAction {
+      rotateSubscriberIdSync(subscriberType)
+    }.subscribeOn(Schedulers.io())
+  }
 
-      if (isRotation) {
-        SubscriberId.generate()
-      } else {
-        InAppPaymentsRepository.getSubscriber(subscriberType)?.subscriberId ?: SubscriberId.generate()
-      }
-    }.flatMap { subscriberId ->
-      Single
-        .fromCallable {
-          donationsService.putSubscription(subscriberId)
-        }
-        .flatMap(ServiceResponse<EmptyResponse>::flattenResult)
-        .map { subscriberId }
-    }.doOnSuccess { subscriberId ->
-      Log.d(TAG, "Successfully set SubscriberId exists on Signal service.", true)
+  /**
+   * Ensures that the given [InAppPaymentSubscriberRecord.Type] has a [SubscriberId] that has been sent to the Signal Service.
+   * Will also record and synchronize this data with storage sync.
+   */
+  @WorkerThread
+  fun ensureSubscriberIdSync(subscriberType: InAppPaymentSubscriberRecord.Type, isRotation: Boolean = false, iapSubscriptionId: IAPSubscriptionId? = null) {
+    Log.d(TAG, "Ensuring SubscriberId for type $subscriberType exists on Signal service {isRotation?$isRotation}...", true)
 
-      InAppPaymentsRepository.setSubscriber(
-        InAppPaymentSubscriberRecord(
-          subscriberId = subscriberId,
-          currency = if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
-            SignalStore.inAppPayments.getRecurringDonationCurrency()
-          } else {
-            null
-          },
-          type = subscriberType,
-          requiresCancel = false,
-          paymentMethodType = if (subscriberType == InAppPaymentSubscriberRecord.Type.BACKUP) {
-            InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING
-          } else {
-            InAppPaymentData.PaymentMethodType.UNKNOWN
-          },
-          iapSubscriptionId = iapSubscriptionId
-        )
+    val subscriberId = if (isRotation) {
+      SubscriberId.generate()
+    } else {
+      InAppPaymentsRepository.getSubscriber(subscriberType)?.subscriberId ?: SubscriberId.generate()
+    }
+
+    donationsService.putSubscription(subscriberId).resultOrThrow
+
+    Log.d(TAG, "Successfully set SubscriberId exists on Signal service.", true)
+
+    InAppPaymentsRepository.setSubscriber(
+      InAppPaymentSubscriberRecord(
+        subscriberId = subscriberId,
+        currency = if (subscriberType == InAppPaymentSubscriberRecord.Type.DONATION) {
+          SignalStore.inAppPayments.getRecurringDonationCurrency()
+        } else {
+          null
+        },
+        type = subscriberType,
+        requiresCancel = false,
+        paymentMethodType = if (subscriberType == InAppPaymentSubscriberRecord.Type.BACKUP) {
+          InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING
+        } else {
+          InAppPaymentData.PaymentMethodType.UNKNOWN
+        },
+        iapSubscriptionId = iapSubscriptionId
       )
+    )
 
-      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
-      StorageSyncHelper.scheduleSyncForDataChange()
-    }.ignoreElement().subscribeOn(Schedulers.io())
+    SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+    StorageSyncHelper.scheduleSyncForDataChange()
   }
 
+  /**
+   * Cancels the active subscription via the Signal service.
+   */
+  @WorkerThread
   fun cancelActiveSubscriptionSync(subscriberType: InAppPaymentSubscriberRecord.Type) {
     Log.d(TAG, "Canceling active subscription...", true)
     val localSubscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
@@ -166,6 +213,9 @@ object RecurringInAppPaymentRepository {
     InAppPaymentsRepository.scheduleSyncForAccountRecordChange()
   }
 
+  /**
+   * Passthrough Rx wrapper for [cancelActiveSubscriptionSync] dispatching on io thread-pool.
+   */
   @CheckResult
   fun cancelActiveSubscription(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
     return Completable
@@ -173,107 +223,103 @@ object RecurringInAppPaymentRepository {
       .subscribeOn(Schedulers.io())
   }
 
-  fun cancelActiveSubscriptionIfNecessary(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
-    return Single.fromCallable { InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberType) }.flatMapCompletable {
-      if (it) {
-        cancelActiveSubscription(subscriberType).doOnComplete {
-          SignalStore.inAppPayments.updateLocalStateForManualCancellation(subscriberType)
-          MultiDeviceSubscriptionSyncRequestJob.enqueue()
-        }
-      } else {
-        Completable.complete()
-      }
-    }.subscribeOn(Schedulers.io())
-  }
-
-  fun getPaymentSourceTypeOfLatestSubscription(subscriberType: InAppPaymentSubscriberRecord.Type): Single<PaymentSourceType> {
-    return Single.fromCallable {
-      InAppPaymentsRepository.getLatestPaymentMethodType(subscriberType).toPaymentSourceType()
+  /**
+   * If the subscriber of the given type has been marked as "requires cancel", this method will perform the cancellation and
+   * sync the appropriate data.
+   */
+  @WorkerThread
+  fun cancelActiveSubscriptionIfNecessarySync(subscriberType: InAppPaymentSubscriberRecord.Type) {
+    val shouldCancel = InAppPaymentsRepository.getShouldCancelSubscriptionBeforeNextSubscribeAttempt(subscriberType)
+    if (shouldCancel) {
+      cancelActiveSubscriptionSync(subscriberType)
+      SignalStore.inAppPayments.updateLocalStateForManualCancellation(subscriberType)
+      MultiDeviceSubscriptionSyncRequestJob.enqueue()
     }
   }
 
-  fun setSubscriptionLevel(inAppPayment: InAppPaymentTable.InAppPayment, paymentSourceType: PaymentSourceType): Completable {
+  /**
+   * Passthrough Rx wrapper for [cancelActiveSubscriptionIfNecessarySync] dispatching on io thread-pool.
+   */
+  @CheckResult
+  fun cancelActiveSubscriptionIfNecessary(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
+    return Completable.fromAction {
+      cancelActiveSubscriptionIfNecessarySync(subscriberType)
+    }.subscribeOn(Schedulers.io())
+  }
+
+  /**
+   * Passthrough Rx wrapper for [InAppPaymentsRepository.getLatestPaymentMethodType] dispatching on io thread-pool.
+   */
+  @CheckResult
+  fun getPaymentSourceTypeOfLatestSubscription(subscriberType: InAppPaymentSubscriberRecord.Type): Single<PaymentSourceType> {
+    return Single.fromCallable {
+      InAppPaymentsRepository.getLatestPaymentMethodType(subscriberType).toPaymentSourceType()
+    }.subscribeOn(Schedulers.io())
+  }
+
+  /**
+   * Sets the subscription level as per the data in the InAppPayment.
+   *
+   * This method mutates the [InAppPaymentTable.InAppPayment] and thus returns a new instance.
+   */
+  @CheckResult
+  @WorkerThread
+  fun setSubscriptionLevelSync(inAppPayment: InAppPaymentTable.InAppPayment): InAppPaymentTable.InAppPayment {
     val subscriptionLevel = inAppPayment.data.level.toString()
-    val isLongRunning = paymentSourceType.isBankTransfer
     val subscriberType = inAppPayment.type.requireSubscriberType()
-    val errorSource = subscriberType.inAppPaymentType.toErrorSource()
+    val subscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
 
-    return getOrCreateLevelUpdateOperation(subscriptionLevel)
-      .flatMapCompletable { levelUpdateOperation ->
-        val subscriber = InAppPaymentsRepository.requireSubscriber(subscriberType)
-        SignalDatabase.inAppPayments.update(
-          inAppPayment = inAppPayment.copy(
-            subscriberId = subscriber.subscriberId,
-            data = inAppPayment.data.copy(
-              redemption = InAppPaymentData.RedemptionState(
-                stage = InAppPaymentData.RedemptionState.Stage.INIT
-              )
+    getOrCreateLevelUpdateOperation(TAG, subscriptionLevel).use { operation ->
+      SignalDatabase.inAppPayments.update(
+        inAppPayment = inAppPayment.copy(
+          subscriberId = subscriber.subscriberId,
+          data = inAppPayment.data.newBuilder().redemption(
+            redemption = InAppPaymentData.RedemptionState(
+              stage = InAppPaymentData.RedemptionState.Stage.INIT
             )
-          )
+          ).build()
         )
+      )
 
-        val timeoutError = if (isLongRunning) {
-          BadgeRedemptionError.DonationPending(errorSource, inAppPayment)
+      Log.d(TAG, "Attempting to set user subscription level to $subscriptionLevel", true)
+
+      val response = AppDependencies.donationsService.updateSubscriptionLevel(
+        subscriber.subscriberId,
+        subscriptionLevel,
+        subscriber.currency!!.currencyCode,
+        operation.idempotencyKey.serialize(),
+        subscriberType.lock
+      )
+
+      if (response.status == 200 || response.status == 204) {
+        Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${response.status}", true)
+        SignalStore.inAppPayments.updateLocalStateForLocalSubscribe(subscriberType)
+        syncAccountRecord().subscribe()
+      } else {
+        if (response.applicationError.isPresent) {
+          Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel with response code ${response.status}", response.applicationError.get(), true)
+          SignalStore.inAppPayments.clearLevelOperations()
         } else {
-          BadgeRedemptionError.TimeoutWaitingForTokenError(errorSource)
+          Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel", response.executionError.orElse(null), true)
         }
 
-        Log.d(TAG, "Attempting to set user subscription level to $subscriptionLevel", true)
-        Single
-          .fromCallable {
-            AppDependencies.donationsService.updateSubscriptionLevel(
-              subscriber.subscriberId,
-              subscriptionLevel,
-              subscriber.currency!!.currencyCode,
-              levelUpdateOperation.idempotencyKey.serialize(),
-              subscriberType.lock
-            )
-          }
-          .flatMapCompletable {
-            if (it.status == 200 || it.status == 204) {
-              Log.d(TAG, "Successfully set user subscription to level $subscriptionLevel with response code ${it.status}", true)
-              SignalStore.inAppPayments.updateLocalStateForLocalSubscribe(subscriberType)
-              syncAccountRecord().subscribe()
-              LevelUpdate.updateProcessingState(false)
-              Completable.complete()
-            } else {
-              if (it.applicationError.isPresent) {
-                Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel with response code ${it.status}", it.applicationError.get(), true)
-                SignalStore.inAppPayments.clearLevelOperations()
-              } else {
-                Log.w(TAG, "Failed to set user subscription to level $subscriptionLevel", it.executionError.orElse(null), true)
-              }
+        response.resultOrThrow
+        error("Should never get here.")
+      }
+    }
 
-              LevelUpdate.updateProcessingState(false)
-              it.flattenResult().ignoreElement()
-            }
-          }.andThen(
-            Single.fromCallable {
-              Log.d(TAG, "Enqueuing request response job chain.", true)
-              val freshPayment = SignalDatabase.inAppPayments.getById(inAppPayment.id)!!
-              InAppPaymentRecurringContextJob.createJobChain(freshPayment).enqueue()
-            }.flatMap {
-              Log.d(TAG, "Awaiting completion of redemption chain for up to 10 seconds.", true)
-              InAppPaymentsRepository.observeUpdates(inAppPayment.id).filter {
-                it.state == InAppPaymentTable.State.END
-              }.take(1).map {
-                if (it.data.error != null) {
-                  Log.d(TAG, "Failure during redemption chain: ${it.data.error}", true)
-                  throw InAppPaymentError(it.data.error)
-                }
-                it
-              }.firstOrError()
-            }.timeout(10, TimeUnit.SECONDS, Single.error(timeoutError)).ignoreElement()
-          )
-      }.doOnError {
-        LevelUpdate.updateProcessingState(false)
-      }.subscribeOn(Schedulers.io())
+    Log.d(TAG, "Enqueuing request response job chain.", true)
+    val freshPayment = SignalDatabase.inAppPayments.getById(inAppPayment.id)!!
+    InAppPaymentRecurringContextJob.createJobChain(freshPayment).enqueue()
+
+    return freshPayment
   }
 
-  private fun getOrCreateLevelUpdateOperation(subscriptionLevel: String): Single<LevelUpdateOperation> = Single.fromCallable {
-    getOrCreateLevelUpdateOperation(TAG, subscriptionLevel)
-  }
-
+  /**
+   * Get or create a [LevelUpdateOperation]
+   *
+   * This allows us to ensure the same idempotency key is used across multiple attempts for the same level.
+   */
   fun getOrCreateLevelUpdateOperation(tag: String, subscriptionLevel: String): LevelUpdateOperation {
     Log.d(tag, "Retrieving level update operation for $subscriptionLevel")
     val levelUpdateOperation = SignalStore.inAppPayments.getLevelOperation(subscriptionLevel)
@@ -298,13 +344,12 @@ object RecurringInAppPaymentRepository {
    * Update local state information and schedule a storage sync for the change. This method
    * assumes you've already properly called the DELETE method for the stored ID on the server.
    */
-  private fun updateLocalSubscriptionStateAndScheduleDataSync(subscriberType: InAppPaymentSubscriberRecord.Type): Completable {
-    return Completable.fromAction {
-      Log.d(TAG, "Marking subscription cancelled...", true)
-      SignalStore.inAppPayments.updateLocalStateForManualCancellation(subscriberType)
-      MultiDeviceSubscriptionSyncRequestJob.enqueue()
-      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
-      StorageSyncHelper.scheduleSyncForDataChange()
-    }
+  @WorkerThread
+  private fun updateLocalSubscriptionStateAndScheduleDataSync(subscriberType: InAppPaymentSubscriberRecord.Type) {
+    Log.d(TAG, "Marking subscription cancelled...", true)
+    SignalStore.inAppPayments.updateLocalStateForManualCancellation(subscriberType)
+    MultiDeviceSubscriptionSyncRequestJob.enqueue()
+    SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+    StorageSyncHelper.scheduleSyncForDataChange()
   }
 }

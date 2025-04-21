@@ -17,6 +17,10 @@ public interface CredentialsProvider {
   int getDeviceId();
   String getPassword();
 
+  default boolean isInvalid() {
+    return getAci() == null || getPassword() == null;
+  }
+
   default String getUsername() {
     StringBuilder sb = new StringBuilder();
     sb.append(getAci().toString());

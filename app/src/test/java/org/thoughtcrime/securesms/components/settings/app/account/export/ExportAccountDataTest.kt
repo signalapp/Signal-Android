@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.components.settings.app.account.export
 
+import android.annotation.SuppressLint
 import android.app.Application
 import com.fasterxml.jackson.core.JsonParseException
 import io.mockk.every
@@ -16,10 +17,11 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.util.JsonUtils
-import org.whispersystems.signalservice.api.SignalServiceAccountManager
+import org.whispersystems.signalservice.api.NetworkResult
 import java.io.IOException
 
 @RunWith(RobolectricTestRunner::class)
@@ -65,14 +67,14 @@ class ExportAccountDataTest {
 }
   """
 
+  @SuppressLint("CheckResult")
   @Test
   fun `Export json without text field`() {
     val scheduler = TestScheduler()
-    val accountManager: SignalServiceAccountManager = mockk {
-      every { accountDataReport } returns mockJson
-    }
-    val mockRepository = ExportAccountDataRepository(accountManager)
-    val viewModel = ExportAccountDataViewModel(mockRepository)
+
+    every { SignalNetwork.account.accountDataReport() } returns NetworkResult.Success(mockJson)
+
+    val viewModel = ExportAccountDataViewModel(ExportAccountDataRepository())
 
     viewModel.setExportAsTxt()
     viewModel.onGenerateReport()

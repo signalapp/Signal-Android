@@ -18,6 +18,8 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.signal.core.util.Hex
 import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.SignalExecutors
@@ -39,6 +41,7 @@ import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver.FailureCause
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader.Companion.MAC_SIZE
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -51,13 +54,11 @@ import org.thoughtcrime.securesms.jobs.CopyAttachmentToArchiveJob
 import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
 import org.thoughtcrime.securesms.jobs.RestoreAttachmentThumbnailJob
 import org.thoughtcrime.securesms.jobs.RestoreLocalAttachmentJob
-import org.thoughtcrime.securesms.jobs.SyncArchivedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.io.FileOutputStream
@@ -155,6 +156,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
             Log.w(TAG, "Validation failed! Details: ${result.messageDetails}", result.exception)
             "Validation failed :( Check the logs for details."
           }
+
           is ArchiveValidator.ValidationResult.RecipientDuplicateE164Error -> {
             Log.w(TAG, "Validation failed with a duplicate recipient! Details: ${result.details}", result.exception)
             "Validation failed :( Check the logs for details."
@@ -348,7 +350,6 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       AppDependencies
         .jobManager
         .startChain(BackupRestoreJob())
-        .then(SyncArchivedMediaJob())
         .then(BackupRestoreMediaJob())
         .enqueueAndBlockUntilCompletion(120.seconds.inWholeMilliseconds)
     }
@@ -532,6 +533,29 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       )
   }
 
+  suspend fun deleteRemoteBackupData(): Boolean = withContext(Dispatchers.IO) {
+    when (val result = BackupRepository.debugDeleteAllArchivedMedia()) {
+      is NetworkResult.Success -> Log.i(TAG, "Remote data deleted")
+      else -> {
+        Log.w(TAG, "Unable to delete media", result.getCause())
+        return@withContext false
+      }
+    }
+
+    when (val result = BackupRepository.deleteBackup()) {
+      is NetworkResult.Success -> {
+        SignalStore.backup.backupsInitialized = false
+        SignalStore.backup.messageCredentials.clearAll()
+        SignalStore.backup.mediaCredentials.clearAll()
+        SignalStore.backup.cachedMediaCdnPath = null
+        return@withContext true
+      }
+      else -> Log.w(TAG, "Unable to delete remote data", result.getCause())
+    }
+
+    return@withContext false
+  }
+
   override fun onCleared() {
     disposables.clear()
   }
@@ -559,24 +583,16 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       attachments: List<BackupAttachment> = this.attachments,
       inProgress: Set<AttachmentId> = this.inProgressMediaIds
     ): MediaState {
-      val backupKey = SignalStore.backup.messageBackupKey
-      val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
-
       val updatedAttachments = attachments.map {
         val state = if (inProgress.contains(it.dbAttachment.attachmentId)) {
           BackupAttachment.State.IN_PROGRESS
-        } else if (it.dbAttachment.archiveMediaName != null) {
-          if (it.dbAttachment.remoteDigest != null) {
-            val mediaId = mediaRootBackupKey.deriveMediaId(MediaName(it.dbAttachment.archiveMediaName)).encode()
-            if (it.dbAttachment.archiveMediaId == mediaId) {
-              BackupAttachment.State.UPLOADED_FINAL
-            } else {
-              BackupAttachment.State.UPLOADED_UNDOWNLOADED
-            }
+        } else if (it.dbAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
+          if (it.dbAttachment.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE) {
+            BackupAttachment.State.UPLOADED_FINAL
           } else {
             BackupAttachment.State.UPLOADED_UNDOWNLOADED
           }
-        } else if (it.dbAttachment.dataHash == null) {
+        } else if (it.dbAttachment.remoteLocation != null) {
           BackupAttachment.State.ATTACHMENT_CDN
         } else {
           BackupAttachment.State.LOCAL_ONLY

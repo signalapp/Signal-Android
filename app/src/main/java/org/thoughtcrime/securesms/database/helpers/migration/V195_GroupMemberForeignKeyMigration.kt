@@ -6,12 +6,12 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.requireLong
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Back CallLinks with a Recipient to ease integration and ensure we can support

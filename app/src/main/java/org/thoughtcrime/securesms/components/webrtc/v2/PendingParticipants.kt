@@ -11,8 +11,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.viewinterop.AndroidView
-import org.signal.core.ui.Previews
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.components.webrtc.PendingParticipantsView
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
 

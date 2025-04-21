@@ -61,7 +61,7 @@ class BackupsSettingsViewModel : ViewModel() {
   private fun loadEnabledState() {
     viewModelScope.launch(Dispatchers.IO) {
       if (!RemoteConfig.messageBackups || !AppDependencies.billingApi.isApiAvailable()) {
-        internalStateFlow.update { it.copy(enabledState = BackupsSettingsState.EnabledState.NotAvailable) }
+        internalStateFlow.update { it.copy(enabledState = BackupsSettingsState.EnabledState.NotAvailable, showBackupTierInternalOverride = false) }
         return@launch
       }
 
@@ -71,8 +71,13 @@ class BackupsSettingsViewModel : ViewModel() {
         null -> getEnabledStateForNoTier()
       }
 
-      internalStateFlow.update { it.copy(enabledState = enabledState) }
+      internalStateFlow.update { it.copy(enabledState = enabledState, showBackupTierInternalOverride = RemoteConfig.internalUser, backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride) }
     }
+  }
+
+  fun onBackupTierInternalOverrideChanged(tier: MessageBackupTier?) {
+    SignalStore.backup.backupTierInternalOverride = tier
+    refreshState()
   }
 
   private suspend fun getEnabledStateForFreeTier(): BackupsSettingsState.EnabledState {

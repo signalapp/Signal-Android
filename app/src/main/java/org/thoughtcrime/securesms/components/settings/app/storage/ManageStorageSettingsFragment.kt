@@ -51,16 +51,17 @@ import androidx.navigation.compose.dialog
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navArgument
-import org.signal.core.ui.Animations
-import org.signal.core.ui.Dialogs
-import org.signal.core.ui.Dividers
-import org.signal.core.ui.Previews
-import org.signal.core.ui.Rows
-import org.signal.core.ui.Rows.TextAndLabel
-import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.SignalPreview
-import org.signal.core.ui.Texts
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.Animations
+import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.Rows.TextAndLabel
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.Texts
+import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.billing.upgrade.UpgradeToEnableOptimizedStorageSheet
 import org.thoughtcrime.securesms.billing.upgrade.UpgradeToPaidTierBottomSheet
@@ -71,7 +72,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.preferences.widgets.StorageGraphView
 import org.thoughtcrime.securesms.util.BottomSheetUtil
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.viewModel
 import java.text.NumberFormat
 
@@ -360,7 +360,7 @@ private fun StorageOverview(
       )
 
       it.findViewById<StorageGraphView>(R.id.storageGraphView).setStorageBreakdown(breakdownEntries)
-      it.findViewById<TextView>(R.id.total_size).text = Util.getPrettyFileSize(breakdownEntries.totalSize)
+      it.findViewById<TextView>(R.id.total_size).text = breakdownEntries.totalSize.bytes.toUnitString()
     }
 
     it.findViewById<View>(R.id.free_up_space).setOnClickListener {

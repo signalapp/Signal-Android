@@ -5,6 +5,7 @@ import android.os.Build
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.Surface
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.content.withStyledAttributes
@@ -63,24 +64,41 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private val displayMetrics = DisplayMetrics()
   private var overridingKeyboard: Boolean = false
   private var previousKeyboardHeight: Int = 0
+  private var applyRootInsets: Boolean = false
+
+  private val windowInsetsListener = androidx.core.view.OnApplyWindowInsetsListener { _, insets ->
+    applyInsets(windowInsets = insets.getInsets(windowTypes), keyboardInsets = insets.getInsets(keyboardType))
+    insets
+  }
 
   val isKeyboardShowing: Boolean
     get() = previousKeyboardHeight > 0
 
-  init {
-    ViewCompat.setOnApplyWindowInsetsListener(this) { _, windowInsetsCompat ->
-      applyInsets(windowInsets = windowInsetsCompat.getInsets(windowTypes), keyboardInsets = windowInsetsCompat.getInsets(keyboardType))
-      windowInsetsCompat
-    }
+  override fun onAttachedToWindow() {
+    super.onAttachedToWindow()
 
+    ViewCompat.setOnApplyWindowInsetsListener(insetTarget(), windowInsetsListener)
+  }
+
+  override fun onDetachedFromWindow() {
+    super.onDetachedFromWindow()
+
+    ViewCompat.setOnApplyWindowInsetsListener(insetTarget(), null)
+  }
+
+  init {
     if (attrs != null) {
       context.withStyledAttributes(attrs, R.styleable.InsetAwareConstraintLayout) {
+        applyRootInsets = getBoolean(R.styleable.InsetAwareConstraintLayout_applyRootInsets, false)
+
         if (getBoolean(R.styleable.InsetAwareConstraintLayout_animateKeyboardChanges, false)) {
-          ViewCompat.setWindowInsetsAnimationCallback(this@InsetAwareConstraintLayout, keyboardAnimator)
+          ViewCompat.setWindowInsetsAnimationCallback(insetTarget(), keyboardAnimator)
         }
       }
     }
   }
+
+  private fun insetTarget(): View = if (applyRootInsets) rootView else this
 
   fun addKeyboardStateListener(listener: KeyboardStateListener) {
     keyboardStateListeners += listener

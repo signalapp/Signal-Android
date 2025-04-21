@@ -51,11 +51,11 @@ import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.signal.core.ui.Dividers
-import org.signal.core.ui.IconButtons.IconButton
-import org.signal.core.ui.Previews
-import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.IconButtons.IconButton
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 
 /**

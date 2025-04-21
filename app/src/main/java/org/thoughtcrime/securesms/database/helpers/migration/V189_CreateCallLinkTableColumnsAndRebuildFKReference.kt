@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Fleshes out the call link table and rebuilds the call event table.

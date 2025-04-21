@@ -264,6 +264,10 @@ class MediaSelectionViewModel(
     lastMediaDrag = Pair(0, 0)
   }
 
+  fun isSelectedMediaEmpty(): Boolean {
+    return store.state.selectedMedia.isEmpty()
+  }
+
   fun removeMedia(media: Media) {
     val snapshot = store.state
     val newMediaList = snapshot.selectedMedia - media

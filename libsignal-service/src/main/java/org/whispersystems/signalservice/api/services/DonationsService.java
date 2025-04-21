@@ -5,7 +5,9 @@ import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequest;
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse;
-import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
+import org.whispersystems.signalservice.api.NetworkResult;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
+import org.whispersystems.signalservice.api.donations.DonationsApi;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription;
 import org.whispersystems.signalservice.api.subscriptions.PayPalConfirmPaymentIntentResponse;
@@ -13,14 +15,11 @@ import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentInt
 import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentMethodResponse;
 import org.whispersystems.signalservice.api.subscriptions.StripeClientSecret;
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId;
-import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.internal.EmptyResponse;
 import org.whispersystems.signalservice.internal.ServiceResponse;
-import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration;
 import org.whispersystems.signalservice.internal.push.BankMandate;
 import org.whispersystems.signalservice.internal.push.DonationProcessor;
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration;
-import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 
 import java.io.IOException;
 import java.util.Locale;
@@ -41,7 +40,7 @@ public class DonationsService {
 
   private static final String TAG = DonationsService.class.getSimpleName();
 
-  private final PushServiceSocket pushServiceSocket;
+  private final DonationsApi donationsApi;
 
   private final AtomicReference<CacheEntry<SubscriptionsConfiguration>> donationsConfigurationCache = new AtomicReference<>(null);
   private final AtomicReference<CacheEntry<BankMandate>>                sepaBankMandateCache        = new AtomicReference<>(null);
@@ -58,8 +57,8 @@ public class DonationsService {
     }
   }
 
-  public DonationsService(@NonNull PushServiceSocket pushServiceSocket) {
-    this.pushServiceSocket = pushServiceSocket;
+  public DonationsService(@NonNull DonationsApi donationsApi) {
+    this.donationsApi = donationsApi;
   }
 
   /**
@@ -71,7 +70,7 @@ public class DonationsService {
    */
   public ServiceResponse<EmptyResponse> redeemDonationReceipt(ReceiptCredentialPresentation receiptCredentialPresentation, boolean visible, boolean primary) {
     try {
-      pushServiceSocket.redeemDonationReceipt(receiptCredentialPresentation, visible, primary);
+      NetworkResultUtil.successOrThrow(donationsApi.redeemDonationReceipt(receiptCredentialPresentation, visible, primary));
       return ServiceResponse.forResult(EmptyResponse.INSTANCE, 200, null);
     } catch (Exception e) {
       return ServiceResponse.<EmptyResponse>forUnknownError(e);
@@ -85,7 +84,7 @@ public class DonationsService {
    */
   public ServiceResponse<EmptyResponse> redeemArchivesReceipt(ReceiptCredentialPresentation receiptCredentialPresentation) {
     try {
-      pushServiceSocket.redeemArchivesReceipt(receiptCredentialPresentation);
+      NetworkResultUtil.successOrThrow(donationsApi.redeemArchivesReceipt(receiptCredentialPresentation));
       return ServiceResponse.forResult(EmptyResponse.INSTANCE, 200, null);
     } catch (Exception e) {
       return ServiceResponse.<EmptyResponse>forUnknownError(e);
@@ -100,7 +99,7 @@ public class DonationsService {
    * @return A ServiceResponse containing a DonationIntentResult with details given to us by the payment gateway.
    */
   public ServiceResponse<StripeClientSecret> createDonationIntentWithAmount(String amount, String currencyCode, long level, String paymentMethod) {
-    return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.createStripeOneTimePaymentIntent(currencyCode, paymentMethod, Long.parseLong(amount), level), 200));
+    return wrapInServiceResponse(() -> new Pair<>(NetworkResultUtil.successOrThrow(donationsApi.createStripeOneTimePaymentIntent(currencyCode, paymentMethod, Long.parseLong(amount), level)), 200));
   }
 
   /**
@@ -111,14 +110,14 @@ public class DonationsService {
    * @param receiptCredentialRequest Client-generated request token
    */
   public ServiceResponse<ReceiptCredentialResponse> submitBoostReceiptCredentialRequestSync(String paymentIntentId, ReceiptCredentialRequest receiptCredentialRequest, DonationProcessor processor) {
-    return wrapInServiceResponse(() -> new Pair<>(pushServiceSocket.submitBoostReceiptCredentials(paymentIntentId, receiptCredentialRequest, processor), 200));
+    return wrapInServiceResponse(() -> new Pair<>(NetworkResultUtil.toIAPBasicLegacy(donationsApi.submitBoostReceiptCredentials(paymentIntentId, receiptCredentialRequest, processor)), 200));
   }
 
   public ServiceResponse<SubscriptionsConfiguration> getDonationsConfiguration(Locale locale) {
     return getCachedValue(
         locale,
         donationsConfigurationCache,
-        pushServiceSocket::getDonationsConfiguration,
+        l -> NetworkResultUtil.successOrThrow(donationsApi.getDonationsConfiguration(l)),
         DONATION_CONFIGURATION_TTL
     );
   }
@@ -127,7 +126,7 @@ public class DonationsService {
     return getCachedValue(
         locale,
         sepaBankMandateCache,
-        l -> pushServiceSocket.getBankMandate(l, bankTransferType),
+        l -> NetworkResultUtil.successOrThrow(donationsApi.getBankMandate(l, bankTransferType)),
         SEPA_DEBIT_MANDATE_TTL
     );
   }
@@ -181,7 +180,7 @@ public class DonationsService {
       lock.lock();
 
       try {
-        pushServiceSocket.updateSubscriptionLevel(subscriberId.serialize(), level, currencyCode, idempotencyKey);
+        NetworkResultUtil.toIAPBasicLegacy(donationsApi.updateSubscriptionLevel(subscriberId, level, currencyCode, idempotencyKey));
       } finally {
         lock.unlock();
       }
@@ -194,7 +193,7 @@ public class DonationsService {
     return wrapInServiceResponse(() -> {
       lock.lock();
       try {
-        pushServiceSocket.linkPlayBillingPurchaseToken(subscriberId.serialize(), purchaseToken);
+        NetworkResultUtil.successOrThrow(donationsApi.linkPlayBillingPurchaseToken(subscriberId, purchaseToken));
       } finally {
         lock.unlock();
       }
@@ -208,7 +207,7 @@ public class DonationsService {
    */
   public ServiceResponse<ActiveSubscription> getSubscription(SubscriberId subscriberId) {
     return wrapInServiceResponse(() -> {
-      ActiveSubscription response = pushServiceSocket.getSubscription(subscriberId.serialize());
+      ActiveSubscription response = NetworkResultUtil.successOrThrow(donationsApi.getSubscription(subscriberId));
       return new Pair<>(response, 200);
     });
   }
@@ -225,7 +224,7 @@ public class DonationsService {
    */
   public ServiceResponse<EmptyResponse> putSubscription(SubscriberId subscriberId) {
     return wrapInServiceResponse(() -> {
-      pushServiceSocket.putSubscription(subscriberId.serialize());
+      NetworkResultUtil.successOrThrow(donationsApi.putSubscription(subscriberId));
       return new Pair<>(EmptyResponse.INSTANCE, 200);
     });
   }
@@ -237,21 +236,21 @@ public class DonationsService {
    */
   public ServiceResponse<EmptyResponse> cancelSubscription(SubscriberId subscriberId) {
     return wrapInServiceResponse(() -> {
-      pushServiceSocket.deleteSubscription(subscriberId.serialize());
+      NetworkResultUtil.successOrThrow(donationsApi.deleteSubscription(subscriberId));
       return new Pair<>(EmptyResponse.INSTANCE, 200);
     });
   }
 
   public ServiceResponse<EmptyResponse> setDefaultStripePaymentMethod(SubscriberId subscriberId, String paymentMethodId) {
     return wrapInServiceResponse(() -> {
-      pushServiceSocket.setDefaultStripeSubscriptionPaymentMethod(subscriberId.serialize(), paymentMethodId);
+      NetworkResultUtil.successOrThrow(donationsApi.setDefaultStripeSubscriptionPaymentMethod(subscriberId, paymentMethodId));
       return new Pair<>(EmptyResponse.INSTANCE, 200);
     });
   }
 
   public ServiceResponse<EmptyResponse> setDefaultIdealPaymentMethod(SubscriberId subscriberId, String setupIntentId) {
     return wrapInServiceResponse(() -> {
-      pushServiceSocket.setDefaultIdealSubscriptionPaymentMethod(subscriberId.serialize(), setupIntentId);
+      NetworkResultUtil.successOrThrow(donationsApi.setDefaultIdealSubscriptionPaymentMethod(subscriberId, setupIntentId));
       return new Pair<>(EmptyResponse.INSTANCE, 200);
     });
   }
@@ -263,7 +262,7 @@ public class DonationsService {
    */
   public ServiceResponse<StripeClientSecret> createStripeSubscriptionPaymentMethod(SubscriberId subscriberId, String type) {
     return wrapInServiceResponse(() -> {
-      StripeClientSecret clientSecret = pushServiceSocket.createStripeSubscriptionPaymentMethod(subscriberId.serialize(), type);
+      StripeClientSecret clientSecret = NetworkResultUtil.successOrThrow(donationsApi.createStripeSubscriptionPaymentMethod(subscriberId, type));
       return new Pair<>(clientSecret, 200);
     });
   }
@@ -291,7 +290,7 @@ public class DonationsService {
                                                                                              String cancelUrl)
   {
     return wrapInServiceResponse(() -> {
-      PayPalCreatePaymentIntentResponse response = pushServiceSocket.createPayPalOneTimePaymentIntent(
+      NetworkResult<PayPalCreatePaymentIntentResponse> response = donationsApi.createPayPalOneTimePaymentIntent(
           locale,
           currencyCode.toUpperCase(Locale.US), // Chris Eager to make this case insensitive in the next build
           Long.parseLong(amount),
@@ -299,7 +298,7 @@ public class DonationsService {
           returnUrl,
           cancelUrl
       );
-      return new Pair<>(response, 200);
+      return new Pair<>(NetworkResultUtil.successOrThrow(response), 200);
     });
   }
 
@@ -326,7 +325,7 @@ public class DonationsService {
                                                                                                String paymentToken)
   {
     return wrapInServiceResponse(() -> {
-      PayPalConfirmPaymentIntentResponse response = pushServiceSocket.confirmPayPalOneTimePaymentIntent(currency, amount, level, payerId, paymentId, paymentToken);
+      PayPalConfirmPaymentIntentResponse response = NetworkResultUtil.toIAPBasicLegacy(donationsApi.confirmPayPalOneTimePaymentIntent(currency, amount, level, payerId, paymentId, paymentToken));
       return new Pair<>(response, 200);
     });
   }
@@ -351,7 +350,7 @@ public class DonationsService {
                                                                                       String cancelUrl)
   {
     return wrapInServiceResponse(() -> {
-      PayPalCreatePaymentMethodResponse response = pushServiceSocket.createPayPalPaymentMethod(locale, subscriberId.serialize(), returnUrl, cancelUrl);
+      PayPalCreatePaymentMethodResponse response = NetworkResultUtil.successOrThrow(donationsApi.createPayPalPaymentMethod(locale, subscriberId, returnUrl, cancelUrl));
       return new Pair<>(response, 200);
     });
   }
@@ -370,14 +369,14 @@ public class DonationsService {
    */
   public ServiceResponse<EmptyResponse> setDefaultPayPalPaymentMethod(SubscriberId subscriberId, String paymentMethodId) {
     return wrapInServiceResponse(() -> {
-      pushServiceSocket.setDefaultPaypalSubscriptionPaymentMethod(subscriberId.serialize(), paymentMethodId);
+      NetworkResultUtil.successOrThrow(donationsApi.setDefaultPaypalSubscriptionPaymentMethod(subscriberId, paymentMethodId));
       return new Pair<>(EmptyResponse.INSTANCE, 200);
     });
   }
 
   public ServiceResponse<ReceiptCredentialResponse> submitReceiptCredentialRequestSync(SubscriberId subscriberId, ReceiptCredentialRequest receiptCredentialRequest) {
     return wrapInServiceResponse(() -> {
-      ReceiptCredentialResponse response = pushServiceSocket.submitReceiptCredentials(subscriberId.serialize(), receiptCredentialRequest);
+      ReceiptCredentialResponse response = NetworkResultUtil.successOrThrow(donationsApi.submitReceiptCredentials(subscriberId, receiptCredentialRequest));
       return new Pair<>(response, 200);
     });
   }

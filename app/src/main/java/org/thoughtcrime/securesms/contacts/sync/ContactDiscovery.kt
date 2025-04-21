@@ -7,6 +7,7 @@ import androidx.annotation.WorkerThread
 import org.signal.contacts.SystemContactsRepository
 import org.signal.contacts.SystemContactsRepository.ContactIterator
 import org.signal.contacts.SystemContactsRepository.ContactPhoneDetails
+import org.signal.core.util.E164Util
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.StringUtil
 import org.signal.core.util.logging.Log
@@ -19,7 +20,6 @@ import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -141,8 +141,9 @@ object ContactDiscovery {
     )
   }
 
-  private fun phoneNumberFormatter(context: Context): (String) -> String {
-    return { PhoneNumberFormatter.get(context).format(it) }
+  private fun phoneNumberFormatter(): (String) -> String? {
+    val formatter = E164Util.createFormatterForE164(SignalStore.account.e164!!)
+    return { formatter.formatAsE164(it) }
   }
 
   private fun refreshRecipients(
@@ -171,13 +172,13 @@ object ContactDiscovery {
         contactsProvider = {
           if (useFullSync) {
             Log.d(TAG, "Doing a full system contact sync. There are ${result.registeredIds.size} contacts to get info for.")
-            SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter(context))
+            SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter())
           } else {
             Log.d(TAG, "Doing a partial system contact sync. There are ${result.registeredIds.size} contacts to get info for.")
             SystemContactsRepository.getContactDetailsByQueries(
               context = context,
               queries = Recipient.resolvedList(result.registeredIds).mapNotNull { it.e164.orElse(null) },
-              e164Formatter = phoneNumberFormatter(context)
+              e164Formatter = phoneNumberFormatter()
             )
           }
         },
@@ -235,7 +236,7 @@ object ContactDiscovery {
   private fun syncRecipientsWithSystemContacts(
     context: Context,
     rewrites: Map<String, String>,
-    contactsProvider: () -> ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter(context)) },
+    contactsProvider: () -> ContactIterator = { SystemContactsRepository.getAllSystemContacts(context, phoneNumberFormatter()) },
     clearInfoForMissingContacts: Boolean
   ) {
     val localNumber: String = SignalStore.account.e164 ?: ""
@@ -259,8 +260,10 @@ object ContactDiscovery {
               ProfileName.EMPTY
             }
 
+            val recipient: Recipient = Recipient.externalContact(realNumber) ?: continue
+
             handle.setSystemContactInfo(
-              Recipient.externalContact(realNumber).id,
+              recipient.id,
               profileName,
               phoneDetails.displayName,
               phoneDetails.photoUri,

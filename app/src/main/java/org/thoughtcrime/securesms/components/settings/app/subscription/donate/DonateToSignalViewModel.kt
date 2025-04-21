@@ -11,7 +11,7 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.processors.BehaviorProcessor
 import io.reactivex.rxjava3.subjects.PublishSubject
-import org.signal.core.util.StringUtil
+import org.signal.core.util.BidiUtil
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.money.PlatformCurrencyUtil
@@ -158,7 +158,7 @@ class DonateToSignalViewModel(
   }
 
   fun setCustomAmount(rawAmount: String) {
-    val amount = StringUtil.stripBidiIndicator(rawAmount)
+    val amount = BidiUtil.stripBidiIndicator(rawAmount)
     val bigDecimalAmount: BigDecimal = if (amount.isEmpty() || amount == DecimalFormatSymbols.getInstance().decimalSeparator.toString()) {
       BigDecimal.ZERO
     } else {

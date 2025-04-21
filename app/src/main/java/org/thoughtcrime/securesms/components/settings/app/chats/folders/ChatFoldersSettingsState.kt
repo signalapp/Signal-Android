@@ -9,8 +9,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 data class ChatFoldersSettingsState(
   val folders: List<ChatFolderRecord> = emptyList(),
   val suggestedFolders: List<ChatFolderRecord> = emptyList(),
-  val originalFolder: ChatFolderRecord = ChatFolderRecord(),
-  val currentFolder: ChatFolderRecord = ChatFolderRecord(),
+  val originalFolder: ChatFolder = ChatFolder(),
+  val currentFolder: ChatFolder = ChatFolder(),
   val showDeleteDialog: Boolean = false,
   val showConfirmationDialog: Boolean = false,
   val pendingIncludedRecipients: Set<RecipientId> = emptySet(),

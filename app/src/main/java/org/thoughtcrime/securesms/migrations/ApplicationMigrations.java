@@ -171,9 +171,15 @@ public class ApplicationMigrations {
 //    static final int FIX_INACTIVE_GROUPS           = 127;
     static final int DUPLICATE_E164_FIX            = 128;
     static final int FTS_TRIGGER_FIX               = 129;
+    static final int THREAD_TABLE_PINNED_MIGRATION = 130;
+    static final int GROUP_DECLINE_INVITE_FIX      = 131;
+    static final int AVATAR_COLOR_MIGRATION_JOB    = 132;
+    static final int DUPLICATE_E164_FIX_2          = 133;
+    static final int E164_FORMATTING               = 134;
+    static final int CHAT_FOLDER_STORAGE_SYNC      = 135;
   }
 
-  public static final int CURRENT_VERSION = 129;
+  public static final int CURRENT_VERSION = 135;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -786,6 +792,30 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.FTS_TRIGGER_FIX) {
       jobs.put(Version.FTS_TRIGGER_FIX, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.THREAD_TABLE_PINNED_MIGRATION) {
+      jobs.put(Version.THREAD_TABLE_PINNED_MIGRATION, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.GROUP_DECLINE_INVITE_FIX) {
+      jobs.put(Version.GROUP_DECLINE_INVITE_FIX, new DatabaseMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.AVATAR_COLOR_MIGRATION_JOB) {
+      jobs.put(Version.AVATAR_COLOR_MIGRATION_JOB, new AvatarColorStorageServiceMigrationJob());
+    }
+    
+    if (lastSeenVersion < Version.DUPLICATE_E164_FIX_2) {
+      jobs.put(Version.DUPLICATE_E164_FIX_2, new DuplicateE164MigrationJob());
+    }
+
+    if (lastSeenVersion < Version.E164_FORMATTING) {
+      jobs.put(Version.E164_FORMATTING, new E164FormattingMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.CHAT_FOLDER_STORAGE_SYNC) {
+      jobs.put(Version.CHAT_FOLDER_STORAGE_SYNC, new SyncChatFoldersMigrationJob());
     }
 
     return jobs;

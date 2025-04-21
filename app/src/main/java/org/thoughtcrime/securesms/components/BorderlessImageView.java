@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -53,15 +54,15 @@ public class BorderlessImageView extends FrameLayout {
     image.setOnLongClickListener(l);
   }
 
-  public void setSlide(@NonNull RequestManager requestManager, @NonNull Slide slide) {
+  public void setSlide(@NonNull RequestManager requestManager, @NonNull Slide slide, @ColorInt int missingBackgroundColor) {
     boolean showControls = slide.asAttachment().getUri() == null;
 
     if (slide.hasSticker()) {
       image.setScaleType(ImageView.ScaleType.FIT_CENTER);
-      image.setImageResource(requestManager, slide, showControls, false);
+      image.setImageResource(requestManager, slide, showControls, false, 0, 0, missingBackgroundColor);
     } else {
       image.setScaleType(ImageView.ScaleType.CENTER_CROP);
-      image.setImageResource(requestManager, slide, showControls, false, slide.asAttachment().width, slide.asAttachment().height);
+      image.setImageResource(requestManager, slide, showControls, false, slide.asAttachment().width, slide.asAttachment().height, missingBackgroundColor);
     }
 
     missingShade.setVisibility(showControls ? View.VISIBLE : View.GONE);

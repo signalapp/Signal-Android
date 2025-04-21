@@ -42,7 +42,7 @@ class VoiceNotePlayer @JvmOverloads constructor(
     val isSeekingToStart = positionMs == C.TIME_UNSET
 
     return if (isQueueToneIndex && isSeekingToStart) {
-      val nextVoiceNoteWindowIndex = if (currentWindowIndex < windowIndex) windowIndex + 1 else windowIndex - 1
+      val nextVoiceNoteWindowIndex = if (currentMediaItemIndex < windowIndex) windowIndex + 1 else windowIndex - 1
       if (mediaItemCount <= nextVoiceNoteWindowIndex) {
         super.seekTo(windowIndex, positionMs)
       } else {

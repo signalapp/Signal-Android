@@ -252,6 +252,8 @@ public class AddGroupDetailsFragment extends LoggingFragment {
       default:
         throw new IllegalStateException("Unexpected error: " + error.getErrorType().name());
     }
+
+    create.cancelSpinning();
   }
 
   private void toast(@StringRes int toastStringId) {

@@ -291,7 +291,7 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isThreadMergeType(record.type) -> {
-          builder.updateMessage = record.toRemoteThreadMergeUpdate() ?: continue
+          builder.updateMessage = record.toRemoteThreadMergeUpdate()?.takeIf { exportState.recipientIdToAci.contains(builder.authorId) } ?: continue
           transformTimer.emit("thread-merge")
         }
 
@@ -360,7 +360,7 @@ class ChatItemArchiveExporter(
 
         else -> {
           val attachments = extraData.attachmentsById[record.id]
-          if (attachments?.isNotEmpty() == true && attachments.all { it.contentType == MediaUtil.LONG_TEXT } && record.body.isNullOrEmpty()) {
+          if (attachments?.isNotEmpty() == true && attachments.any { it.contentType == MediaUtil.LONG_TEXT } && record.body.isNullOrBlank()) {
             Log.w(TAG, ExportSkips.invalidLongTextChatItem(record.dateSent))
             continue
           }
@@ -563,10 +563,11 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
   }
 
   if (!MessageTypes.isExpirationTimerUpdate(record.type) && builder.expiresInMs != null && builder.expireStartDate != null) {
+    val cutoffDuration = 1.days.inWholeMilliseconds
     val expiresAt = builder.expireStartDate!! + builder.expiresInMs!!
-    val threshold = if (exportState.forTransfer) backupStartTime else backupStartTime + 1.days.inWholeMilliseconds
+    val threshold = if (exportState.forTransfer) backupStartTime else backupStartTime + cutoffDuration
 
-    if (expiresAt < threshold) {
+    if (expiresAt < threshold || builder.expiresInMs!! <= cutoffDuration) {
       Log.w(TAG, ExportSkips.messageExpiresTooSoon(record.dateSent))
       return null
     }
@@ -612,7 +613,7 @@ private fun BackupMessageRecord.toRemoteSessionSwitchoverUpdate(): ChatUpdateMes
   return ChatUpdateMessage(
     sessionSwitchover = try {
       val event = SessionSwitchoverEvent.ADAPTER.decode(Base64.decodeOrThrow(this.body))
-      SessionSwitchoverChatUpdate(event.e164.e164ToLong()!!)
+      SessionSwitchoverChatUpdate(event.e164.e164ToLong() ?: 0)
     } catch (e: IOException) {
       SessionSwitchoverChatUpdate()
     }
@@ -858,7 +859,7 @@ private fun LinkPreview.toRemoteLinkPreview(mediaArchiveEnabled: Boolean): org.t
 }
 
 private fun BackupMessageRecord.toRemoteViewOnceMessage(mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): ViewOnceMessage {
-  val attachment: DatabaseAttachment? = attachments?.firstOrNull()?.takeUnless { !it.hasData && it.size == 0L && it.archiveMediaId == null && it.width == 0 && it.height == 0 && it.blurHash == null }
+  val attachment: DatabaseAttachment? = attachments?.firstOrNull()?.takeUnless { !it.hasData && it.size == 0L && it.remoteDigest == null && it.width == 0 && it.height == 0 && it.blurHash == null }
 
   return ViewOnceMessage(
     attachment = attachment?.toRemoteMessageAttachment(mediaArchiveEnabled),
@@ -874,21 +875,21 @@ private fun BackupMessageRecord.toRemoteContactMessage(mediaArchiveEnabled: Bool
       name = sharedContact.name.toRemote(),
       avatar = (sharedContact.avatar?.attachment as? DatabaseAttachment)?.toRemoteMessageAttachment(mediaArchiveEnabled)?.pointer,
       organization = sharedContact.organization ?: "",
-      number = sharedContact.phoneNumbers.map { phone ->
+      number = sharedContact.phoneNumbers.mapNotNull { phone ->
         ContactAttachment.Phone(
           value_ = phone.number,
           type = phone.type.toRemote(),
           label = phone.label ?: ""
-        )
+        ).takeUnless { it.value_.isBlank() }
       },
-      email = sharedContact.emails.map { email ->
+      email = sharedContact.emails.mapNotNull { email ->
         ContactAttachment.Email(
           value_ = email.email,
           label = email.label ?: "",
           type = email.type.toRemote()
-        )
+        ).takeUnless { it.value_.isBlank() }
       },
-      address = sharedContact.postalAddresses.map { address ->
+      address = sharedContact.postalAddresses.mapNotNull { address ->
         ContactAttachment.PostalAddress(
           type = address.type.toRemote(),
           label = address.label ?: "",
@@ -899,7 +900,7 @@ private fun BackupMessageRecord.toRemoteContactMessage(mediaArchiveEnabled: Bool
           region = address.region ?: "",
           postcode = address.postalCode ?: "",
           country = address.country ?: ""
-        )
+        ).takeUnless { it.street.isBlank() && it.pobox.isBlank() && it.neighborhood.isBlank() && it.city.isBlank() && it.region.isBlank() && it.postcode.isBlank() && it.country.isBlank() }
       }
     ),
     reactions = reactionRecords.toRemote()
@@ -1001,7 +1002,7 @@ private fun BackupMessageRecord.toRemoteStandardMessage(exportState: ExportState
     ?: emptyList()
   val hasVoiceNote = messageAttachments.any { it.voiceNote }
   return StandardMessage(
-    quote = this.toRemoteQuote(mediaArchiveEnabled, quotedAttachments),
+    quote = this.toRemoteQuote(exportState, mediaArchiveEnabled, quotedAttachments),
     text = text.takeUnless { hasVoiceNote },
     attachments = messageAttachments.toRemoteAttachments(mediaArchiveEnabled).withFixedVoiceNotes(textPresent = text != null || longTextAttachment != null),
     linkPreview = linkPreviews.map { it.toRemoteLinkPreview(mediaArchiveEnabled) },
@@ -1010,8 +1011,8 @@ private fun BackupMessageRecord.toRemoteStandardMessage(exportState: ExportState
   )
 }
 
-private fun BackupMessageRecord.toRemoteQuote(mediaArchiveEnabled: Boolean, attachments: List<DatabaseAttachment>? = null): Quote? {
-  if (this.quoteTargetSentTimestamp == MessageTable.QUOTE_NOT_PRESENT_ID || this.quoteAuthor <= 0) {
+private fun BackupMessageRecord.toRemoteQuote(exportState: ExportState, mediaArchiveEnabled: Boolean, attachments: List<DatabaseAttachment>? = null): Quote? {
+  if (this.quoteTargetSentTimestamp == MessageTable.QUOTE_NOT_PRESENT_ID || this.quoteAuthor <= 0 || exportState.groupRecipientIds.contains(this.quoteAuthor)) {
     return null
   }
 
@@ -1475,10 +1476,14 @@ fun ChatItem.validateChatItem(): ChatItem? {
 
 fun List<ChatItem>.repairRevisions(current: ChatItem.Builder): List<ChatItem> {
   return if (current.standardMessage != null) {
-    val filtered = this.filter { it.standardMessage != null }
+    val filtered = this
+      .filter { it.standardMessage != null }
+      .map { it.withDowngradeVoiceNotes() }
+
     if (this.size != filtered.size) {
       Log.w(TAG, ExportOddities.mismatchedRevisionHistory(current.dateSent))
     }
+
     filtered
   } else if (current.directStoryReplyMessage != null) {
     val filtered = this.filter { it.directStoryReplyMessage != null }
@@ -1504,6 +1509,28 @@ private fun List<MessageAttachment>.withFixedVoiceNotes(textPresent: Boolean): L
       it
     }
   }
+}
+
+private fun ChatItem.withDowngradeVoiceNotes(): ChatItem {
+  if (this.standardMessage == null) {
+    return this
+  }
+
+  if (this.standardMessage.attachments.none { it.flag == MessageAttachment.Flag.VOICE_MESSAGE }) {
+    return this
+  }
+
+  return this.copy(
+    standardMessage = this.standardMessage.copy(
+      attachments = this.standardMessage.attachments.map {
+        if (it.flag == MessageAttachment.Flag.VOICE_MESSAGE) {
+          it.copy(flag = MessageAttachment.Flag.NONE)
+        } else {
+          it
+        }
+      }
+    )
+  )
 }
 
 private fun Cursor.toBackupMessageRecord(pastIds: Set<Long>, backupStartTime: Long): BackupMessageRecord? {

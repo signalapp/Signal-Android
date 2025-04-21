@@ -74,7 +74,6 @@ import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
 import org.thoughtcrime.securesms.glide.GlideLiveDataTarget;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -84,6 +83,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.SearchUtil;
+import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
@@ -503,7 +503,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                thread.isOutgoingAudioCall() ||
                thread.isOutgoingVideoCall() ||
                thread.isVerificationStatusChange() ||
-               thread.isScheduledMessage())
+               thread.isScheduledMessage() ||
+               thread.getRecipient().isBlocked())
     {
       deliveryStatusIndicator.setNone();
       alertView.setNone();
@@ -586,6 +587,10 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       } else {
         return emphasisAdded(context, context.getString(R.string.ThreadRecord_message_request), defaultTint);
       }
+    } else if (thread.getRecipient().isBlocked() && thread.getRecipient().isGroup()) {
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_blocked_group), R.drawable.symbol_block_16, defaultTint);
+    } else if (thread.getRecipient().isBlocked()) {
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_blocked), R.drawable.symbol_block_16, defaultTint);
     } else if (MessageTypes.isGroupUpdate(thread.getType())) {
       if (thread.getRecipient().isPushV2Group()) {
         if (thread.getMessageExtras() != null) {
@@ -660,7 +665,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       return emphasisAdded(context, context.getString(R.string.ThreadRecord_message_history_has_been_merged), defaultTint);
     } else if (MessageTypes.isSessionSwitchoverType(thread.getType())) {
       if (thread.getRecipient().getE164().isPresent()) {
-        return emphasisAdded(context, context.getString(R.string.ThreadRecord_s_belongs_to_s, PhoneNumberFormatter.prettyPrint(thread.getRecipient().requireE164()),  thread.getRecipient().getDisplayName(context)), defaultTint);
+        return emphasisAdded(context, context.getString(R.string.ThreadRecord_s_belongs_to_s, SignalE164Util.prettyPrint(thread.getRecipient().requireE164()), thread.getRecipient().getDisplayName(context)), defaultTint);
       } else {
         return emphasisAdded(context, context.getString(R.string.ThreadRecord_safety_number_changed), defaultTint);
       }

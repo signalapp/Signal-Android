@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.annotation.VisibleForTesting
-import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
@@ -16,13 +15,11 @@ import org.signal.donations.StripeIntentAccessor
 import org.signal.donations.json.StripeIntentStatus
 import org.signal.donations.json.StripePaymentIntent
 import org.signal.donations.json.StripeSetupIntent
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.database.model.InAppPaymentReceiptRecord
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -145,29 +142,16 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
       return checkIntentStatusResult
     }
 
-    Log.i(TAG, "Creating and inserting receipt.", true)
-    val receipt = when (inAppPayment.type) {
-      InAppPaymentType.ONE_TIME_DONATION -> InAppPaymentReceiptRecord.createForBoost(inAppPayment.data.amount!!.toFiatMoney())
-      InAppPaymentType.ONE_TIME_GIFT -> InAppPaymentReceiptRecord.createForGift(inAppPayment.data.amount!!.toFiatMoney())
-      else -> {
-        Log.e(TAG, "Unexpected type ${inAppPayment.type}", true)
-        return CheckResult.Failure()
-      }
-    }
-
-    SignalDatabase.donationReceipts.addReceipt(receipt)
-
     Log.i(TAG, "Verified payment. Updating InAppPayment::${inAppPayment.id.serialize()}")
     SignalDatabase.inAppPayments.update(
       inAppPayment = inAppPayment.copy(
         state = InAppPaymentTable.State.PENDING,
-        data = inAppPayment.data.copy(
-          waitForAuth = null,
+        data = inAppPayment.data.newBuilder().redemption(
           redemption = InAppPaymentData.RedemptionState(
             stage = InAppPaymentData.RedemptionState.Stage.INIT,
             paymentIntentId = inAppPayment.data.waitForAuth.stripeIntentId
           )
-        )
+        ).build()
       )
     )
 
@@ -228,7 +212,7 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     val setPaymentMethodResponse = if (inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
       AppDependencies.donationsService.setDefaultIdealPaymentMethod(subscriber.subscriberId, stripeSetupIntent.id)
     } else {
-      AppDependencies.donationsService.setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethod)
+      AppDependencies.donationsService.setDefaultStripePaymentMethod(subscriber.subscriberId, stripeSetupIntent.paymentMethodId)
     }
 
     when (val result = checkResult(setPaymentMethodResponse)) {
@@ -238,6 +222,10 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
     }
 
     Log.d(TAG, "Set default payment method via Signal service.", true)
+
+    SignalDatabase.inAppPaymentSubscribers.setPaymentMethod(subscriber.subscriberId, inAppPayment.data.paymentMethodType)
+
+    Log.d(TAG, "Wrote default payment method to subscriber database entry.", true)
 
     val level = inAppPayment.data.level.toString()
 
@@ -268,12 +256,11 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
         SignalDatabase.inAppPayments.update(
           inAppPayment = inAppPayment.copy(
             state = InAppPaymentTable.State.PENDING,
-            data = inAppPayment.data.copy(
-              waitForAuth = null,
+            data = inAppPayment.data.newBuilder().redemption(
               redemption = InAppPaymentData.RedemptionState(
                 stage = InAppPaymentData.RedemptionState.Stage.INIT
               )
-            )
+            ).build()
           )
         )
 
@@ -343,7 +330,11 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
             data_ = errorData
           ),
           waitForAuth = InAppPaymentData.WaitingForAuthorizationState("", ""),
-          redemption = null
+          redemption = null,
+          stripeActionComplete = null,
+          payPalActionComplete = null,
+          payPalRequiresAction = null,
+          stripeRequiresAction = null
         )
       )
     )
@@ -363,11 +354,11 @@ class InAppPaymentAuthCheckJob private constructor(parameters: Parameters) : Bas
   }
 
   override fun onShouldRetry(e: Exception): Boolean = e is InAppPaymentRetryException
-  override fun fetchPaymentIntent(price: FiatMoney, level: Long, sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
+  override fun fetchPaymentIntent(price: FiatMoney, level: Long, sourceType: PaymentSourceType.Stripe): StripeIntentAccessor {
     error("Not needed, this job should not be creating intents.")
   }
 
-  override fun fetchSetupIntent(inAppPaymentType: InAppPaymentType, sourceType: PaymentSourceType.Stripe): Single<StripeIntentAccessor> {
+  override fun fetchSetupIntent(inAppPaymentType: InAppPaymentType, sourceType: PaymentSourceType.Stripe): StripeIntentAccessor {
     error("Not needed, this job should not be creating intents.")
   }
 

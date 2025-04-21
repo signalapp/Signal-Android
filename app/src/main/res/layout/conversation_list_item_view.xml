@@ -10,7 +10,6 @@
     android:focusable="true"
     android:minHeight="84dp"
     android:nextFocusLeft="@+id/container"
-    android:nextFocusRight="@+id/fab"
     android:paddingStart="@dimen/dsl_settings_gutter"
     android:paddingTop="10dp"
     android:paddingEnd="@dimen/dsl_settings_gutter"

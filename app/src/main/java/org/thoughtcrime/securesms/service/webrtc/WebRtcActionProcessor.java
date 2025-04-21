@@ -230,7 +230,6 @@ public abstract class WebRtcActionProcessor {
                                                       messageAgeSec,
                                                       WebRtcUtil.getCallMediaTypeFromOfferType(offerMetadata.getOfferType()),
                                                       SignalStore.account().getDeviceId(),
-                                                      SignalStore.account().isPrimaryDevice(),
                                                       remoteIdentityKey,
                                                       localIdentityKey);
     } catch (CallException | InvalidKeyException e) {
@@ -784,6 +783,11 @@ public abstract class WebRtcActionProcessor {
 
   protected @NonNull WebRtcServiceState handleGroupCallEnded(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull GroupCall.GroupCallEndReason groupCallEndReason) {
     Log.i(tag, "handleGroupCallEnded not processed");
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleGroupCallSpeechEvent(@NonNull WebRtcServiceState currentState, @NonNull GroupCall.SpeechEvent speechEvent) {
+    Log.i(tag, "handleGroupCallSpeechEvent not processed");
     return currentState;
   }
 

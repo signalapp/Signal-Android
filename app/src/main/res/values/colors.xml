@@ -9,6 +9,7 @@
     <color name="story_caption_gradient_start">#CC000000</color>
 
     <color name="webrtc_hangup_background">#F07168</color>
+    <color name="webrtc_answer_background">#34C759</color>
 
     <color name="transparent_black_05">#0D000000</color>
     <color name="transparent_black_08">#14000000</color>

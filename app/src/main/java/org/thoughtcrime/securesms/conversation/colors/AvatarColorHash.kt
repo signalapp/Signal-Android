@@ -5,7 +5,9 @@
 
 package org.thoughtcrime.securesms.conversation.colors
 
+import org.signal.core.util.CryptoUtil
 import org.thoughtcrime.securesms.groups.GroupId
+import org.whispersystems.signalservice.api.push.ServiceId
 
 /**
  * Stolen from iOS. Utilizes a simple hash to map different characteristics to an avatar color index.
@@ -17,13 +19,13 @@ object AvatarColorHash {
    *
    * Uppercase is necessary here because iOS utilizes uppercase UUIDs by default.
    */
-  fun forAddress(serviceId: String?, e164: String?): AvatarColor {
-    if (!serviceId.isNullOrEmpty()) {
-      return forSeed(serviceId.toString().uppercase())
+  fun forAddress(serviceId: ServiceId?, e164: String?): AvatarColor {
+    if (serviceId != null) {
+      return forData(serviceId.toByteArray())
     }
 
     if (!e164.isNullOrEmpty()) {
-      return forSeed(e164)
+      return forData(e164.toByteArray(Charsets.UTF_8))
     }
 
     return AvatarColor.A100
@@ -33,22 +35,15 @@ object AvatarColorHash {
     return forData(group.decodedId)
   }
 
-  fun forSeed(seed: String): AvatarColor {
-    return forData(seed.toByteArray())
-  }
-
   @JvmStatic
   fun forCallLink(rootKey: ByteArray): AvatarColor {
     return forIndex(rootKey.first().toInt())
   }
 
   private fun forData(data: ByteArray): AvatarColor {
-    var hash = 0
-    for (value in data) {
-      hash = hash.rotateLeft(3) xor value.toInt()
-    }
-
-    return forIndex(hash)
+    val hash = CryptoUtil.sha256(data)
+    val firstByte: Byte = hash[0]
+    return forIndex(firstByte.toInt())
   }
 
   private fun forIndex(index: Int): AvatarColor {

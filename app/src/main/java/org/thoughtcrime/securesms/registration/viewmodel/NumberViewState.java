@@ -10,7 +10,7 @@ import com.google.i18n.phonenumbers.NumberParseException;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
+import org.signal.core.util.E164Util;
 
 import java.util.Objects;
 
@@ -42,7 +42,7 @@ public final class NumberViewState implements Parcelable {
     return nationalNumber;
   }
 
-  public String getCountryDisplayName() {
+  public @Nullable String getCountryDisplayName() {
     if (selectedCountryName != null) {
       return selectedCountryName;
     }
@@ -58,7 +58,7 @@ public final class NumberViewState implements Parcelable {
     }
 
     String regionCode = util.getRegionCodeForCountryCode(countryCode);
-    return PhoneNumberFormatter.getRegionDisplayNameLegacy(regionCode);
+    return E164Util.getRegionDisplayName(regionCode).orElse(null);
   }
 
   /**
@@ -70,7 +70,7 @@ public final class NumberViewState implements Parcelable {
       String                  regionCode  = util.getRegionCodeForNumber(phoneNumber);
 
       if (regionCode != null) {
-        return PhoneNumberFormatter.getRegionDisplayNameLegacy(regionCode);
+        return E164Util.getRegionDisplayName(regionCode).orElse(null);
       }
 
     } catch (NumberParseException e) {
@@ -80,7 +80,7 @@ public final class NumberViewState implements Parcelable {
   }
 
   public boolean isValid() {
-    return PhoneNumberFormatter.isValidNumber(getE164Number(), Integer.toString(getCountryCode()));
+    return E164Util.isValidNumberForRegistration(Integer.toString(getCountryCode()), getE164Number());
   }
 
   @Override
@@ -123,7 +123,7 @@ public final class NumberViewState implements Parcelable {
   }
 
   private static String getConfiguredE164Number(int countryCode, String number) {
-    return PhoneNumberFormatter.formatE164(String.valueOf(countryCode), number);
+    return E164Util.formatAsE164WithCountryCodeForDisplay(String.valueOf(countryCode), number);
   }
 
   private static Phonenumber.PhoneNumber getPhoneNumber(@NonNull PhoneNumberUtil util, @NonNull String e164Number)

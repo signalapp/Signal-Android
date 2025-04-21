@@ -75,4 +75,22 @@ data class RegistrationState(
       }
     }
   }
+
+  fun toNavigationStateOnly(): NavigationState {
+    return NavigationState(challengesRequested, challengesPresented, captchaToken, registrationCheckpoint, canSkipSms)
+  }
+
+  /**
+   * Subset of [RegistrationState] useful for deciding on navigation. Prevents other properties updating from re-triggering
+   * navigation decisions.
+   */
+  data class NavigationState(
+    val challengesRequested: List<Challenge>,
+    val challengesPresented: Set<Challenge>,
+    val captchaToken: String? = null,
+    val registrationCheckpoint: RegistrationCheckpoint,
+    val canSkipSms: Boolean
+  ) {
+    val challengesRemaining: List<Challenge> = challengesRequested.filterNot { it in challengesPresented }
+  }
 }

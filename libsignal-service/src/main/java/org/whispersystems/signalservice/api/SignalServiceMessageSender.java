@@ -20,8 +20,8 @@ import org.signal.libsignal.protocol.message.PlaintextContent;
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage;
 import org.signal.libsignal.protocol.state.PreKeyBundle;
 import org.signal.libsignal.protocol.state.SessionRecord;
-import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken;
+import org.whispersystems.signalservice.api.attachment.AttachmentApi;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ContentHint;
 import org.whispersystems.signalservice.api.crypto.EnvelopeContent;
@@ -32,6 +32,8 @@ import org.whispersystems.signalservice.api.crypto.SignalSessionBuilder;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException;
 import org.whispersystems.signalservice.api.groupsv2.GroupSendEndorsements;
+import org.whispersystems.signalservice.api.keys.KeysApi;
+import org.whispersystems.signalservice.api.message.MessageApi;
 import org.whispersystems.signalservice.api.messages.SendMessageResult;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
@@ -47,7 +49,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceStoryMessageRe
 import org.whispersystems.signalservice.api.messages.SignalServiceTextAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceTypingMessage;
 import org.whispersystems.signalservice.api.messages.calls.AnswerMessage;
-import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
 import org.whispersystems.signalservice.api.messages.calls.IceUpdateMessage;
 import org.whispersystems.signalservice.api.messages.calls.OfferMessage;
 import org.whispersystems.signalservice.api.messages.calls.OpaqueMessage;
@@ -77,8 +78,6 @@ import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
-import org.whispersystems.signalservice.api.services.AttachmentService;
-import org.whispersystems.signalservice.api.services.MessagingService;
 import org.whispersystems.signalservice.api.util.AttachmentPointerUtil;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Preconditions;
@@ -86,7 +85,6 @@ import org.whispersystems.signalservice.api.util.Uint64RangeException;
 import org.whispersystems.signalservice.api.util.Uint64Util;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException;
-import org.whispersystems.signalservice.internal.ServiceResponse;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 import org.whispersystems.signalservice.internal.push.AttachmentPointer;
@@ -131,7 +129,6 @@ import org.whispersystems.signalservice.internal.util.Util;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -143,7 +140,6 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 import java.util.stream.Collectors;
 
 import javax.annotation.Nonnull;
@@ -170,7 +166,6 @@ public class SignalServiceMessageSender {
   private static final int RETRY_COUNT = 4;
 
   private final PushServiceSocket             socket;
-  private final SignalWebSocket               webSocket;
   private final SignalServiceAccountDataStore aciStore;
   private final SignalSessionLock             sessionLock;
   private final SignalServiceAddress          localAddress;
@@ -179,37 +174,38 @@ public class SignalServiceMessageSender {
   private final Optional<EventListener>       eventListener;
   private final IdentityKeyPair               localPniIdentity;
 
-  private final AttachmentService attachmentService;
-  private final MessagingService  messagingService;
+  private final AttachmentApi attachmentApi;
+  private final MessageApi    messageApi;
+  private final KeysApi       keysApi;
 
-  private final ExecutorService executor;
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
 
   public SignalServiceMessageSender(PushServiceSocket pushServiceSocket,
                                     SignalServiceDataStore store,
                                     SignalSessionLock sessionLock,
-                                    SignalWebSocket signalWebSocket,
+                                    AttachmentApi attachmentApi,
+                                    MessageApi messageApi,
+                                    KeysApi keysApi,
                                     Optional<EventListener> eventListener,
                                     ExecutorService executor,
                                     long maxEnvelopeSize)
   {
     CredentialsProvider credentialsProvider = pushServiceSocket.getCredentialsProvider();
 
-    this.socket            = pushServiceSocket;
-    this.webSocket         = signalWebSocket;
-    this.aciStore          = store.aci();
-    this.sessionLock       = sessionLock;
-    this.localAddress      = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
-    this.localDeviceId     = credentialsProvider.getDeviceId();
-    this.localPni          = credentialsProvider.getPni();
-    this.attachmentService = new AttachmentService(signalWebSocket);
-    this.messagingService  = new MessagingService(signalWebSocket);
-    this.eventListener     = eventListener;
-    this.executor          = executor != null ? executor : Executors.newSingleThreadExecutor();
-    this.maxEnvelopeSize   = maxEnvelopeSize;
-    this.localPniIdentity  = store.pni().getIdentityKeyPair();
-    this.scheduler         = Schedulers.from(executor, false, false);
+    this.socket           = pushServiceSocket;
+    this.aciStore         = store.aci();
+    this.sessionLock      = sessionLock;
+    this.localAddress     = new SignalServiceAddress(credentialsProvider.getAci(), credentialsProvider.getE164());
+    this.localDeviceId    = credentialsProvider.getDeviceId();
+    this.localPni         = credentialsProvider.getPni();
+    this.attachmentApi    = attachmentApi;
+    this.messageApi       = messageApi;
+    this.eventListener    = eventListener;
+    this.maxEnvelopeSize  = maxEnvelopeSize;
+    this.localPniIdentity = store.pni().getIdentityKeyPair();
+    this.scheduler        = Schedulers.from(executor, false, false);
+    this.keysApi          = keysApi;
   }
 
   /**
@@ -400,20 +396,6 @@ public class SignalServiceMessageSender {
     }
 
     return results;
-  }
-
-  /**
-   * Send an http request on behalf of the calling infrastructure.
-   *
-   * @param requestId Request identifier
-   * @param url Fully qualified URL to request
-   * @param httpMethod Http method to use (e.g., "GET", "POST")
-   * @param headers Optional list of headers to send with request
-   * @param body Optional body to send with request
-   * @return
-   */
-  public CallingResponse makeCallingRequest(long requestId, String url, String httpMethod, List<Pair<String, String>> headers, byte[] body) {
-    return socket.makeCallingRequest(requestId, url, httpMethod, headers, body);
   }
 
   /**
@@ -761,6 +743,8 @@ public class SignalServiceMessageSender {
       content = createCallLogEventContent(message.getCallLogEvent().get());
     } else if (message.getDeviceNameChange().isPresent()) {
       content = createDeviceNameChangeContent(message.getDeviceNameChange().get());
+    } else if (message.getAttachmentBackfillResponse().isPresent()) {
+      content = createAttachmentBackfillResponseContent(message.getAttachmentBackfillResponse().get());
     } else {
       throw new IOException("Unsupported sync message!");
     }
@@ -825,24 +809,8 @@ public class SignalServiceMessageSender {
   }
 
   public ResumableUploadSpec getResumableUploadSpec() throws IOException {
-    AttachmentUploadForm v4UploadAttributes = null;
-
     Log.d(TAG, "Using pipe to retrieve attachment upload attributes...");
-    try {
-      v4UploadAttributes = new AttachmentService.AttachmentAttributesResponseProcessor<>(attachmentService.getAttachmentV4UploadAttributes().blockingGet()).getResultOrThrow();
-    } catch (WebSocketUnavailableException e) {
-      Log.w(TAG, "[getResumableUploadSpec] Pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
-    } catch (IOException e) {
-      if (e instanceof RateLimitException) {
-        throw e;
-      }
-      Log.w(TAG, "Failed to retrieve attachment upload attributes using pipe. Falling back...");
-    }
-    
-    if (v4UploadAttributes == null) {
-      Log.d(TAG, "Not using pipe to retrieve attachment upload attributes...");
-      v4UploadAttributes = socket.getAttachmentV4UploadAttributes();
-    }
+    AttachmentUploadForm v4UploadAttributes = NetworkResultUtil.toBasicLegacy(attachmentApi.getAttachmentV4UploadForm());
 
     return socket.getResumableUploadSpec(v4UploadAttributes);
   }
@@ -1740,6 +1708,13 @@ public class SignalServiceMessageSender {
     return container.syncMessage(builder.build()).build();
   }
 
+  private Content createAttachmentBackfillResponseContent(SyncMessage.AttachmentBackfillResponse proto) {
+    Content.Builder     container = new Content.Builder();
+    SyncMessage.Builder builder   = createSyncMessageBuilder().attachmentBackfillResponse(proto);
+
+    return container.syncMessage(builder.build()).build();
+  }
+
   private SyncMessage.Builder createSyncMessageBuilder() {
     byte[]       padding = Util.getRandomLengthSecretBytes(512);
 
@@ -1949,31 +1924,29 @@ public class SignalServiceMessageSender {
         }
 
         try {
-          SendMessageResponse response = new MessagingService.SendResponseProcessor<>(messagingService.send(messages, sealedSenderAccess, story).blockingGet()).getResultOrThrow();
+          SendMessageResponse response = NetworkResultUtil.toMessageSendLegacy(messages.getDestination(), messageApi.sendMessage(messages, sealedSenderAccess, story));
           return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
-        } catch (InvalidUnidentifiedAccessHeaderException | UnregisteredUserException | MismatchedDevicesException | StaleDevicesException e) {
+        } catch (AuthorizationFailedException |
+                 UnregisteredUserException |
+                 MismatchedDevicesException |
+                 StaleDevicesException |
+                 ProofRequiredException |
+                 ServerRejectedException e) {
           // Non-technical failures shouldn't be retried with socket
           throw e;
         } catch (WebSocketUnavailableException e) {
           String pipe = sealedSenderAccess == null ? "Pipe" : "Unidentified pipe";
-          Log.i(TAG, "[sendMessage][" + timestamp + "] " + pipe + " unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          Log.i(TAG, "[sendMessage][" + timestamp + "] " + pipe + " unavailable (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          throw e;
         } catch (IOException e) {
           String pipe = sealedSenderAccess == null ? "Pipe" : "Unidentified pipe";
           Throwable cause = e;
           if (e.getCause() != null) {
             cause = e.getCause();
           }
-          Log.w(TAG, "[sendMessage][" + timestamp + "] " + pipe + " failed, falling back... (" + cause.getClass().getSimpleName() + ": " + cause.getMessage() + ")");
+          Log.w(TAG, "[sendMessage][" + timestamp + "] " + pipe + " failed (" + cause.getClass().getSimpleName() + ": " + cause.getMessage() + ")");
+          throw (cause instanceof IOException) ? (IOException) cause : e;
         }
-
-        if (cancelationSignal != null && cancelationSignal.isCanceled()) {
-          throw new CancelationException();
-        }
-
-        SendMessageResponse response = socket.sendMessage(messages, sealedSenderAccess, story);
-
-        return SendMessageResult.success(recipient, messages.getDevices(), response.sentUnidentified(), response.getNeedsSync() || aciStore.isMultiDevice(), System.currentTimeMillis() - startTime, content.getContent());
-
       } catch (InvalidKeyException ike) {
         Log.w(TAG, ike);
         if (sealedSenderAccess != null) {
@@ -1989,7 +1962,7 @@ public class SignalServiceMessageSender {
         }
       } catch (MismatchedDevicesException mde) {
         Log.w(TAG, "[sendMessage][" + timestamp + "] Handling mismatched devices. (" + mde.getMessage() + ")");
-        handleMismatchedDevices(socket, recipient, mde.getMismatchedDevices());
+        handleMismatchedDevices(recipient, mde.getMismatchedDevices());
       } catch (StaleDevicesException ste) {
         Log.w(TAG, "[sendMessage][" + timestamp + "] Handling stale devices. (" + ste.getMessage() + ")");
         handleStaleDevices(recipient, ste.getStaleDevices());
@@ -2130,16 +2103,19 @@ public class SignalServiceMessageSender {
             return Single.error(new CancelationException());
           }
 
-          return messagingService.send(messages, sealedSenderAccess, story)
-                                 .map(r -> new kotlin.Pair<>(messages, r));
+          return Single.fromCallable(() -> messageApi.sendMessage(messages, sealedSenderAccess, story))
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .onErrorReturn(NetworkResult.ApplicationError::new)
+                .map(r -> new kotlin.Pair<>(messages, r));
         })
         .observeOn(scheduler)
         .flatMap(pair -> {
-          final OutgoingPushMessageList              messages        = pair.getFirst();
-          final ServiceResponse<SendMessageResponse> serviceResponse = pair.getSecond();
+          final OutgoingPushMessageList            messages      = pair.getFirst();
+          final NetworkResult<SendMessageResponse> networkResult = pair.getSecond();
 
-          if (serviceResponse.getResult().isPresent()) {
-            SendMessageResponse response = serviceResponse.getResult().get();
+          try {
+            SendMessageResponse response = NetworkResultUtil.toMessageSendLegacy(messages.getDestination(), networkResult);
             SendMessageResult   result   = SendMessageResult.success(
                 recipient,
                 messages.getDevices(),
@@ -2149,39 +2125,28 @@ public class SignalServiceMessageSender {
                 content.getContent()
             );
             return Single.just(result);
-          } else {
+          } catch (IOException throwable) {
             if (cancelationSignal != null && cancelationSignal.isCanceled()) {
               return Single.error(new CancelationException());
             }
 
-            //noinspection OptionalGetWithoutIsPresent
-            Throwable throwable = serviceResponse.getApplicationError().or(serviceResponse::getExecutionError).get();
-
-            if (throwable instanceof InvalidUnidentifiedAccessHeaderException ||
+            if (throwable instanceof AuthorizationFailedException ||
                 throwable instanceof UnregisteredUserException ||
                 throwable instanceof MismatchedDevicesException ||
-                throwable instanceof StaleDevicesException)
+                throwable instanceof StaleDevicesException ||
+                throwable instanceof ProofRequiredException ||
+                throwable instanceof ServerRejectedException)
             {
               // Non-technical failures shouldn't be retried with socket
               return Single.error(throwable);
             } else if (throwable instanceof WebSocketUnavailableException) {
-              Log.i(TAG, "[sendMessage][" + timestamp + "] " + (sealedSenderAccess != null ? "Unidentified " : "") + "pipe unavailable, falling back... (" + throwable.getClass().getSimpleName() + ": " + throwable.getMessage() + ")");
-            } else if (throwable instanceof IOException) {
+              Log.i(TAG, "[sendMessage][" + timestamp + "] " + (sealedSenderAccess != null ? "Unidentified " : "") + "pipe unavailable (" + throwable.getClass().getSimpleName() + ": " + throwable.getMessage() + ")");
+              return Single.error(throwable);
+            } else {
               Throwable cause = throwable.getCause() != null ? throwable.getCause() : throwable;
-              Log.w(TAG, "[sendMessage][" + timestamp + "] " + (sealedSenderAccess != null ? "Unidentified " : "") + "pipe failed, falling back... (" + cause.getClass().getSimpleName() + ": " + cause.getMessage() + ")");
+              Log.w(TAG, "[sendMessage][" + timestamp + "] " + (sealedSenderAccess != null ? "Unidentified " : "") + "pipe failed (" + cause.getClass().getSimpleName() + ": " + cause.getMessage() + ")");
+              return Single.error((cause instanceof IOException) ? cause : throwable);
             }
-
-            return Single.fromCallable(() -> {
-              SendMessageResponse response = socket.sendMessage(messages, sealedSenderAccess, story);
-              return SendMessageResult.success(
-                  recipient,
-                  messages.getDevices(),
-                  response.sentUnidentified(),
-                  response.getNeedsSync() || aciStore.isMultiDevice(),
-                  System.currentTimeMillis() - startTime,
-                  content.getContent()
-              );
-            }).subscribeOn(scheduler);
           }
         });
 
@@ -2232,7 +2197,7 @@ public class SignalServiceMessageSender {
         Log.w(TAG, "[sendMessage][" + timestamp + "] Handling mismatched devices. (" + mde.getMessage() + ")");
 
         return Single.fromCallable(() -> {
-                       handleMismatchedDevices(socket, recipient, mde.getMismatchedDevices());
+                       handleMismatchedDevices(recipient, mde.getMismatchedDevices());
                        return Unit.INSTANCE;
                      })
                      .flatMap(unused -> sendMessageRx(
@@ -2433,24 +2398,28 @@ public class SignalServiceMessageSender {
 
       try {
         try {
-          SendGroupMessageResponse response = new MessagingService.SendResponseProcessor<>(messagingService.sendToGroup(ciphertext, sealedSenderAccess, timestamp, online, urgent, story).blockingGet()).getResultOrThrow();
+
+          SendGroupMessageResponse response = NetworkResultUtil.toGroupMessageSendLegacy(messageApi.sendGroupMessage(ciphertext, sealedSenderAccess, timestamp, online, urgent, story));
           return transformGroupResponseToMessageResults(targetInfo.devices, response, content);
-        } catch (InvalidUnidentifiedAccessHeaderException | NotFoundException | GroupMismatchedDevicesException | GroupStaleDevicesException e) {
+        } catch (InvalidUnidentifiedAccessHeaderException |
+                 NotFoundException |
+                 GroupMismatchedDevicesException |
+                 GroupStaleDevicesException |
+                 ServerRejectedException e) {
           // Non-technical failures shouldn't be retried with socket
           throw e;
         } catch (WebSocketUnavailableException e) {
-          Log.i(TAG, "[sendGroupMessage][" + timestamp + "] Pipe unavailable, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          Log.i(TAG, "[sendGroupMessage][" + timestamp + "] Pipe unavailable (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          throw e;
         } catch (IOException e) {
-          Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Pipe failed, falling back... (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Pipe failed (" + e.getClass().getSimpleName() + ": " + e.getMessage() + ")");
+          throw e;
         }
-
-        SendGroupMessageResponse response = socket.sendGroupMessage(ciphertext, sealedSenderAccess, timestamp, online, urgent, story);
-        return transformGroupResponseToMessageResults(targetInfo.devices, response, content);
       } catch (GroupMismatchedDevicesException e) {
         Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling mismatched devices. (" + e.getMessage() + ")");
         for (GroupMismatchedDevices mismatched : e.getMismatchedDevices()) {
           SignalServiceAddress address = new SignalServiceAddress(ServiceId.parseOrThrow(mismatched.getUuid()), Optional.empty());
-          handleMismatchedDevices(socket, address, mismatched.getDevices());
+          handleMismatchedDevices(address, mismatched.getDevices());
         }
       } catch (GroupStaleDevicesException e) {
         Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling stale devices. (" + e.getMessage() + ")");
@@ -2702,18 +2671,18 @@ public class SignalServiceMessageSender {
         sealedSenderAccess = null;
       }
 
-      return socket.getPreKeys(recipient, sealedSenderAccess, deviceId);
+      return NetworkResultUtil.toPreKeysLegacy(keysApi.getPreKeys(recipient, sealedSenderAccess, deviceId));
     } catch (NonSuccessfulResponseCodeException e) {
       if (e.code == 401 && story) {
         Log.d(TAG, "Got 401 when fetching prekey for story. Trying without UD.");
-        return socket.getPreKeys(recipient, null, deviceId);
+        return NetworkResultUtil.toPreKeysLegacy(keysApi.getPreKeys(recipient, null, deviceId));
       } else {
         throw e;
       }
     }
   }
 
-  private void handleMismatchedDevices(PushServiceSocket socket, SignalServiceAddress recipient,
+  private void handleMismatchedDevices(SignalServiceAddress recipient,
                                        MismatchedDevices mismatchedDevices)
       throws IOException, UntrustedIdentityException
   {
@@ -2722,7 +2691,7 @@ public class SignalServiceMessageSender {
       archiveSessions(recipient, mismatchedDevices.getExtraDevices());
 
       for (int missingDeviceId : mismatchedDevices.getMissingDevices()) {
-        PreKeyBundle preKey = socket.getPreKey(recipient, missingDeviceId);
+        PreKeyBundle preKey = NetworkResultUtil.toPreKeysLegacy(keysApi.getPreKey(recipient, missingDeviceId));
 
         try {
           SignalSessionBuilder sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(aciStore, new SignalProtocolAddress(recipient.getIdentifier(), missingDeviceId)));
@@ -2744,7 +2713,7 @@ public class SignalServiceMessageSender {
   public void handleChangeNumberMismatchDevices(@Nonnull MismatchedDevices mismatchedDevices)
       throws IOException, UntrustedIdentityException
   {
-    handleMismatchedDevices(socket, localAddress, mismatchedDevices);
+    handleMismatchedDevices(localAddress, mismatchedDevices);
   }
 
   private void archiveSessions(SignalServiceAddress recipient, List<Integer> devices) {

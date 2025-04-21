@@ -28,19 +28,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.os.bundleOf
 import androidx.core.widget.TextViewCompat
-import org.signal.core.ui.BottomSheets
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.isNotNullOrBlank
 import org.thoughtcrime.securesms.AvatarPreviewActivity
@@ -48,11 +49,13 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
+import org.thoughtcrime.securesms.conversation.v2.UnverifiedProfileNameBottomSheet
+import org.thoughtcrime.securesms.groups.ui.incommon.GroupsInCommonActivity
 import org.thoughtcrime.securesms.nicknames.ViewNoteSheet
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stories.settings.my.SignalConnectionsBottomSheetDialogFragment
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.viewModel
 
 /**
@@ -101,7 +104,7 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
           hasAvatar = recipient.get().profileAvatarFileDetails.hasFile(),
           recipientForAvatar = recipient.get(),
           formattedE164 = if (recipient.get().hasE164 && recipient.get().shouldShowE164) {
-            PhoneNumberFormatter.get(requireContext()).prettyPrintFormat(recipient.get().requireE164())
+            SignalE164Util.prettyPrint(recipient.get().requireE164())
           } else {
             null
           },
@@ -112,7 +115,9 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
         ),
         onClickSignalConnections = this::openSignalConnectionsSheet,
         onAvatarClicked = this::openProfilePhotoViewer,
-        onNoteClicked = this::openNoteSheet
+        onNoteClicked = this::openNoteSheet,
+        onUnverifiedProfileClicked = this::openUnverifiedProfileSheet,
+        onGroupsInCommonClicked = this::openGroupsInCommon
       )
     }
   }
@@ -129,6 +134,16 @@ class AboutSheet : ComposeBottomSheetDialogFragment() {
   private fun openNoteSheet() {
     dismiss()
     ViewNoteSheet.create(recipientId).show(parentFragmentManager, null)
+  }
+
+  private fun openUnverifiedProfileSheet() {
+    dismiss()
+    UnverifiedProfileNameBottomSheet.show(fragmentManager = parentFragmentManager, forGroup = false)
+  }
+
+  private fun openGroupsInCommon() {
+    dismiss()
+    startActivity(GroupsInCommonActivity.createIntent(requireContext(), recipientId))
   }
 }
 
@@ -153,7 +168,9 @@ private fun Content(
   model: AboutModel,
   onClickSignalConnections: () -> Unit,
   onAvatarClicked: () -> Unit,
-  onNoteClicked: () -> Unit
+  onNoteClicked: () -> Unit,
+  onUnverifiedProfileClicked: () -> Unit = {},
+  onGroupsInCommonClicked: () -> Unit = {}
 ) {
   Box(
     contentAlignment = Alignment.Center,
@@ -190,7 +207,7 @@ private fun Content(
     )
 
     AboutRow(
-      startIcon = painterResource(R.drawable.symbol_person_24),
+      startIcon = ImageVector.vectorResource(R.drawable.symbol_person_24),
       text = if (!model.isSelf && model.displayName.isNotBlank() && model.profileName.isNotBlank() && model.displayName != model.profileName) {
         stringResource(id = R.string.AboutSheet__user_set_display_name_and_profile_name, model.displayName, model.profileName)
       } else {
@@ -203,7 +220,7 @@ private fun Content(
       val textColor = LocalContentColor.current
 
       AboutRow(
-        startIcon = painterResource(R.drawable.symbol_edit_24),
+        startIcon = ImageVector.vectorResource(R.drawable.symbol_edit_24),
         text = {
           Row {
             AndroidView(factory = ::EmojiTextView) {
@@ -219,9 +236,19 @@ private fun Content(
       )
     }
 
+    if (!model.isSelf && !model.profileSharing && !model.systemContact) {
+      AboutRow(
+        startIcon = ImageVector.vectorResource(id = R.drawable.symbol_person_question_24),
+        text = stringResource(id = R.string.AboutSheet__profile_names_are_not_verified),
+        endIcon = ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
+        modifier = Modifier.align(alignment = Alignment.Start),
+        onClick = onUnverifiedProfileClicked
+      )
+    }
+
     if (!model.isSelf && model.verified) {
       AboutRow(
-        startIcon = painterResource(id = R.drawable.symbol_safety_number_24),
+        startIcon = ImageVector.vectorResource(id = R.drawable.symbol_safety_number_24),
         text = stringResource(id = R.string.AboutSheet__verified),
         modifier = Modifier.align(alignment = Alignment.Start),
         onClick = onClickSignalConnections
@@ -231,25 +258,30 @@ private fun Content(
     if (!model.isSelf) {
       if (model.profileSharing || model.systemContact) {
         AboutRow(
-          startIcon = painterResource(id = R.drawable.symbol_connections_24),
+          startIcon = ImageVector.vectorResource(id = R.drawable.symbol_connections_24),
           text = stringResource(id = R.string.AboutSheet__signal_connection),
-          endIcon = painterResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
+          endIcon = ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
           modifier = Modifier.align(alignment = Alignment.Start),
           onClick = onClickSignalConnections
         )
+      } else if (model.groupsInCommon == 0) {
+        AboutRow(
+          startIcon = ImageVector.vectorResource(id = R.drawable.symbol_chat_badge_24),
+          text = stringResource(id = R.string.AboutSheet__pending_message_request),
+          modifier = Modifier.align(alignment = Alignment.Start)
+        )
       } else {
         AboutRow(
-          startIcon = painterResource(id = R.drawable.symbol_chat_x),
+          startIcon = ImageVector.vectorResource(id = R.drawable.symbol_chat_x),
           text = stringResource(id = R.string.AboutSheet__no_direct_message, model.shortName),
-          modifier = Modifier.align(alignment = Alignment.Start),
-          onClick = onClickSignalConnections
+          modifier = Modifier.align(alignment = Alignment.Start)
         )
       }
     }
 
     if (!model.isSelf && model.systemContact) {
       AboutRow(
-        startIcon = painterResource(id = R.drawable.symbol_person_circle_24),
+        startIcon = ImageVector.vectorResource(id = R.drawable.symbol_person_circle_24),
         text = stringResource(id = R.string.AboutSheet__s_is_in_your_system_contacts, model.shortName),
         modifier = Modifier.fillMaxWidth()
       )
@@ -257,7 +289,7 @@ private fun Content(
 
     if (model.formattedE164.isNotNullOrBlank()) {
       AboutRow(
-        startIcon = painterResource(R.drawable.symbol_phone_24),
+        startIcon = ImageVector.vectorResource(R.drawable.symbol_phone_24),
         text = model.formattedE164,
         modifier = Modifier.fillMaxWidth()
       )
@@ -271,24 +303,26 @@ private fun Content(
       }
 
       val groupsInCommonIcon = if (!model.profileSharing && model.groupsInCommon == 0) {
-        painterResource(R.drawable.symbol_error_circle_24)
+        ImageVector.vectorResource(R.drawable.symbol_error_circle_24)
       } else {
-        painterResource(R.drawable.symbol_group_24)
+        ImageVector.vectorResource(R.drawable.symbol_group_24)
       }
 
       AboutRow(
         startIcon = groupsInCommonIcon,
         text = groupsInCommonText,
+        endIcon = if (model.groupsInCommon > 0) ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16) else null,
+        onClick = if (model.groupsInCommon > 0) onGroupsInCommonClicked else null,
         modifier = Modifier.fillMaxWidth()
       )
     }
 
     if (model.note.isNotBlank()) {
       AboutRow(
-        startIcon = painterResource(id = R.drawable.symbol_note_light_24),
+        startIcon = ImageVector.vectorResource(id = R.drawable.symbol_note_light_24),
         text = model.note,
         modifier = Modifier.fillMaxWidth(),
-        endIcon = painterResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
+        endIcon = ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16),
         onClick = onNoteClicked
       )
     }
@@ -299,10 +333,10 @@ private fun Content(
 
 @Composable
 private fun AboutRow(
-  startIcon: Painter,
+  startIcon: ImageVector,
   text: String,
   modifier: Modifier = Modifier,
-  endIcon: Painter? = null,
+  endIcon: ImageVector? = null,
   onClick: (() -> Unit)? = null
 ) {
   AboutRow(
@@ -324,10 +358,10 @@ private fun AboutRow(
 
 @Composable
 private fun AboutRow(
-  startIcon: Painter,
+  startIcon: ImageVector,
   text: @Composable RowScope.() -> Unit,
   modifier: Modifier = Modifier,
-  endIcon: Painter? = null,
+  endIcon: ImageVector? = null,
   onClick: (() -> Unit)? = null
 ) {
   val padHorizontal = if (onClick != null) 19.dp else 32.dp
@@ -350,7 +384,7 @@ private fun AboutRow(
       }
   ) {
     Icon(
-      painter = startIcon,
+      imageVector = startIcon,
       contentDescription = null,
       modifier = Modifier
         .padding(end = 16.dp)
@@ -361,7 +395,7 @@ private fun AboutRow(
 
     if (endIcon != null) {
       Icon(
-        painter = endIcon,
+        imageVector = endIcon,
         contentDescription = null,
         tint = MaterialTheme.colorScheme.outline
       )
@@ -549,6 +583,35 @@ private fun ContentPreviewNotAConnection() {
   }
 }
 
+@SignalPreview
+@Composable
+private fun ContentPreviewNotAConnectionNoGroups() {
+  SignalTheme {
+    Surface {
+      Content(
+        model = AboutModel(
+          isSelf = false,
+          displayName = "Peter Parker",
+          shortName = "Peter",
+          profileName = "Peter Parker",
+          about = "(spoilers) dead",
+          verified = false,
+          hasAvatar = true,
+          recipientForAvatar = Recipient.UNKNOWN,
+          formattedE164 = null,
+          profileSharing = false,
+          systemContact = false,
+          groupsInCommon = 0,
+          note = ""
+        ),
+        onClickSignalConnections = {},
+        onAvatarClicked = {},
+        onNoteClicked = {}
+      )
+    }
+  }
+}
+
 @Preview(name = "Light Theme", group = "about row", uiMode = Configuration.UI_MODE_NIGHT_NO)
 @Preview(name = "Dark Theme", group = "about row", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
@@ -556,9 +619,9 @@ private fun AboutRowPreview() {
   SignalTheme {
     Surface {
       AboutRow(
-        startIcon = painterResource(R.drawable.symbol_person_24),
+        startIcon = ImageVector.vectorResource(R.drawable.symbol_person_24),
         text = "Maya Johnson",
-        endIcon = painterResource(id = R.drawable.symbol_chevron_right_compact_bold_16)
+        endIcon = ImageVector.vectorResource(id = R.drawable.symbol_chevron_right_compact_bold_16)
       )
     }
   }

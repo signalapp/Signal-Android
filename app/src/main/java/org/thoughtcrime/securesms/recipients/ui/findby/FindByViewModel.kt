@@ -13,7 +13,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
-import org.signal.core.util.concurrent.safeBlockingGet
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientRepository
@@ -66,7 +65,7 @@ class FindByViewModel(
       return FindByResult.InvalidEntry
     }
 
-    return when (val result = UsernameRepository.fetchAciForUsername(username = username).safeBlockingGet()) {
+    return when (val result = UsernameRepository.fetchAciForUsername(usernameString = username.removePrefix("@"))) {
       UsernameRepository.UsernameAciFetchResult.NetworkError -> FindByResult.NotFound()
       UsernameRepository.UsernameAciFetchResult.NotFound -> FindByResult.NotFound()
       is UsernameRepository.UsernameAciFetchResult.Success -> FindByResult.Success(Recipient.externalUsername(result.aci, username).id)
@@ -81,7 +80,7 @@ class FindByViewModel(
 
     val e164 = "+$countryCode$nationalNumber"
 
-    return when (val result = RecipientRepository.lookupNewE164(context, e164)) {
+    return when (val result = RecipientRepository.lookupNewE164(e164)) {
       RecipientRepository.LookupResult.InvalidEntry -> FindByResult.InvalidEntry
       RecipientRepository.LookupResult.NetworkError -> FindByResult.NetworkError
       is RecipientRepository.LookupResult.NotFound -> FindByResult.NotFound(result.recipientId)

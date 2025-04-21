@@ -121,7 +121,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       .safeBlockingGet()
     stopwatch.split("responses")
 
-    val localRecords = SignalDatabase.recipients.getRecords(recipientIds)
+    val localRecords = SignalDatabase.recipients.getExistingRecords(recipientIds)
     Log.d(TAG, "Fetched ${localRecords.size} existing records.")
     stopwatch.split("disk-fetch")
 

@@ -564,21 +564,11 @@
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="other">儲存共 %1$d 個媒體到儲存空間將允許您的裝置上任何其他的應用程式存取它們。\n\n要繼續嗎？</item>
     </plurals>
-    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-        <item quantity="other">儲存附件到儲存空間時發生錯誤！</item>
-    </plurals>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">無法寫入到儲存空間！</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="other">正在儲存 %1$d 個附件</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
         <item quantity="other">正在儲存 %1$d 個附件到儲存空間…</item>
-    </plurals>
-    <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="ConversationFragment__save_to_phone">儲存到手機？</string>
-    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
-    <plurals name="ConversationFragment__this_media_will_be_saved">
-        <item quantity="other">此媒體將儲存在你手機的儲存空間中。其他應用程式可能會根據你手機的權限來使用。</item>
     </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
     <string name="ConversationFragment_dont_show_again">不再顯示</string>
@@ -657,6 +647,18 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">已舉報垃圾訊息並封鎖</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">你已接受來自 %1$s 的訊息請求。如果這是個錯誤，你可以選擇以下操作。</string>
+    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
+    <string name="ConversationFragment_review_carefully">仔細檢查</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s 未經驗證</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s 未經驗證</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
+    <string name="ConversationFragment_profile_names">個人檔案名稱</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
+    <string name="ConversationFragment_group_names">群組名稱</string>
+    <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
+    <string name="ConversationFragment_photo_failed">下載相片失敗。請再試一次。</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">安全提示</string>
@@ -668,6 +670,10 @@
     <string name="SafetyTips_previous_tip">上一個提示</string>
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">下一個提示</string>
+    <!-- Title of tip 0 -->
+    <string name="SafetyTips_tip0_title">假名稱和帳戶</string>
+    <!-- Message of tip 0 -->
+    <string name="SafetyTips_tip0_message">Signal 永遠不會聯絡你來索取你的註冊碼或 PIN 碼。請小心那些冒充他人的請求。個人檔案名稱由其帳戶持有人選擇，並未經過驗證。</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">加密貨幣或金錢詐騙</string>
     <!-- Message of tip 1 -->
@@ -684,6 +690,21 @@
     <string name="SafetyTips_tip4_title">虛假企業和機構</string>
     <!-- Message of tip 4 -->
     <string name="SafetyTips_tip4_message">請小心與你聯絡的企業或政府機構。涉及稅務機關、快遞公司等訊息可能是垃圾訊息。</string>
+
+    <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">Signal 上的 %1$s 由其帳戶持有人選擇。</string>
+    <!-- Bottom sheet text explaining that profile names are not verified. -->
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">個人檔案名稱未經驗證</string>
+    <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">請小心那些冒充他人的帳戶</string>
+    <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
+    <string name="ProfileNameBottomSheet__dont_share_personal">不要與不認識的人分享個人資料</string>
+    <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s 由群組成員選擇。</string>
+    <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">請小心那些冒充其他組織和企業的群組</string>
+    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">群組中成員的個人檔案名稱未經驗證</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">清除篩選器</string>
@@ -738,8 +759,10 @@
     <string name="AddToFolderBottomSheet_choose_a_folder">選擇資料夾</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
     <string name="AddToFolderBottomSheet_added_to_s">已新增至「%1$s 」</string>
-    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_this_chat_is_already">此聊天已經在「 %1$s 」資料夾中</string>
+    <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
+    <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
+        <item quantity="other">這些聊天已經在「 %1$s」</item>
+    </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">通知情景</string>
@@ -1015,7 +1038,7 @@
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">取消</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android 匯出 (Link&amp;Sync) 失敗</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">訊息同步失敗</string>
@@ -1110,6 +1133,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">未命名檔案</string>
+    <string name="DocumentView_document_file">文件檔案</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">針對缺少 Play 服務的優化</string>
@@ -1612,7 +1636,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">正在刪除</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">正在刪除訊息…</string>
-    <string name="MediaOverviewActivity_collecting_attachments">正在蒐集附件…</string>
     <string name="MediaOverviewActivity_Sort_by">排序方式</string>
     <string name="MediaOverviewActivity_Newest">由新到舊</string>
     <string name="MediaOverviewActivity_Oldest">由舊到新</string>
@@ -1713,6 +1736,10 @@
     <string name="MessageRecord_missed_voice_call">未接的語音通話</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">未接的視訊通話</string>
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
+    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
+    <string name="MessageRecord_declined_video_call">Declined video call</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">通知設定檔開啟時有未接語音通話</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -1991,6 +2018,14 @@
     <string name="MessageRecord_reported_as_spam">已舉報垃圾訊息</string>
     <!-- Update message shown in chat after accept a message request -->
     <string name="MessageRecord_you_accepted_the_message_request">你已接受訊息請求</string>
+    <!-- Update message shown in chat after you block a person -->
+    <string name="MessageRecord_you_blocked_this_person">你已封鎖此人</string>
+    <!-- Update message shown in chat after you unblock a person -->
+    <string name="MessageRecord_you_unblocked_this_person">你已解除封鎖此人</string>
+    <!-- Update message shown in chat after you block a group -->
+    <string name="MessageRecord_you_blocked_this_group">你已封鎖此群組</string>
+    <!-- Update message shown in chat after you unblock a group -->
+    <string name="MessageRecord_you_unblocked_this_group">你已解除封鎖此群組</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">接受</string>
@@ -2036,8 +2071,38 @@
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="other">另 %1$d 個群組</item>
     </plurals>
+    <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
+    <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
+    <!-- Text for an empty group or when you are the only member -->
+    <string name="MessageRequestProfileView_group_members_zero">尚未有其他群組成員</string>
+    <!-- Text for a group with one member (not you). %1$s is their name -->
+    <string name="MessageRequestProfileView_group_members_one">%1$s</string>
+    <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
+    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s 和你</string>
+    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two">%1$s 及 %2$s</string>
+    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s、%2$s 和你</string>
+    <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
+    <string name="MessageRequestProfileView_group_members_three">%1$s、%2$s 和 %3$s</string>
+    <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
+    <string name="MessageRequestProfileView_group_members_other">%1$s、%2$s、%3$s 和 %4$s</string>
+    <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
+    <plurals name="MessageRequestProfileView_other_members">
+        <item quantity="other">另 %1$d 人</item>
+    </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">舉報…</string>
+    <!-- Alert dialog title to accept a message request -->
+    <string name="MessageRequestBottomView_accept_request">要接受請求嗎？</string>
+    <!-- Alert dialog body to review the message request carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully">請仔細檢視請求。個人檔案名稱由其帳戶持有人選擇，並未經過驗證。</string>
+    <!-- Alert dialog title to accept a message request to join a group -->
+    <string name="MessageRequestBottomView_join_group">要加入群組嗎？</string>
+    <!-- Alert dialog body to review the message request for a group carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">請仔細檢視請求。群組名稱由群組成員選擇，並未經過驗證。</string>
+    <!-- Button text to join a group -->
+    <string name="MessageRequestBottomView_join">加入</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">密碼不匹配！</string>
@@ -2139,6 +2204,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">全部 · %1$d</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">輕觸以移除</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -2360,6 +2426,8 @@
     <string name="CallOverflowPopupWindow__view">檢視</string>
 
 
+    <!-- A notification to the user that their hand is raised but they are currently speaking -->
+    <string name="CallRaiseHandSnackbar__lower_your_hand">要放下手？</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s 舉了手</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -2394,7 +2462,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">你的國家或地區</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">用名或者電話去搵</string>
+    <string name="CountryCodeFragment__search_by">用國名或國碼搜尋</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">未知國家／地區</string>
 
@@ -2403,12 +2471,16 @@
     <string name="AboutSheet__signal_connection">Signal 人脈</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">已驗證</string>
+    <!-- Displayed in a sheet row that tells users that profile names are not verified -->
+    <string name="AboutSheet__profile_names_are_not_verified">個人檔案名稱未經驗證</string>
+    <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
+    <string name="AboutSheet__pending_message_request">待處理的訊息請求</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">沒有與 %1$s 的直接訊息</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s 在你的手機通訊錄中</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">你沒有共同的群組</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">無共同群組</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">請仔細檢閱請求</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -2421,6 +2493,11 @@
     <string name="AboutSheet__you">您</string>
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
+
+    <!-- Title of the screen showing which groups they have in common with another user. -->
+    <plurals name="GroupsInCommon__n_groups_in_common_title">
+        <item quantity="other">%1$s groups in common</item>
+    </plurals>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2714,6 +2791,10 @@
     <string name="ThreadRecord_message_history_has_been_merged">你的訊息紀錄已經合併</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s 是 %2$s 的手機號碼</string>
+    <!-- Displayed in the conversation list when a person has been blocked -->
+    <string name="ThreadRecord_blocked">已封鎖</string>
+    <!-- Displayed in the conversation list when a group has been blocked -->
+    <string name="ThreadRecord_blocked_group">Blocked</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal 更新</string>
@@ -2828,8 +2909,6 @@
     <string name="MediaPreviewActivity_you">您</string>
     <string name="MediaPreviewActivity_unssuported_media_type">未支援的媒體類型</string>
     <string name="MediaPreviewActivity_draft">草稿</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要儲存裝置權限才可儲存到外部儲存空間，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「儲存裝置」。</string>
-    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">缺少權限下無法儲存到外部儲存空間</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">要刪除訊息嗎？</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">這將會永久刪除此訊息。</string>
     <string name="MediaPreviewActivity_s_to_s">由 %1$s 發給 %2$s</string>
@@ -2934,14 +3013,42 @@
     <!-- Notification channel name for notifications sent when a device has been linked -->
     <string name="NotificationChannel_new_linked_device">新的已連結裝置</string>
 
-    <!-- ProfileEditNameFragment -->
-
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal 在鎖定時無法使用快速回應！</string>
     <string name="QuickResponseService_problem_sending_message">傳送訊息時發生問題！</string>
 
-    <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">多媒體已儲存</string>
+    <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
+    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">無法寫入到儲存空間！</string>
+
+    <!-- A toast notification that is shown after image/video/audio media was successfully downloaded and saved to the device storage, accessible in other apps. -->
+    <plurals name="SaveAttachment_saved_success">
+        <item quantity="other">已儲存媒體</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after some image/video/audio media was successfully downloaded and saved to the device storage, but some failed to save
+         %1$s is the number of items that failed to save and %2$s is the total number of items that the user requested to save. -->
+    <plurals name="SaveAttachment_saved_success_n_failures">
+        <item quantity="other">已儲存媒體（%2$s 中的 %1$s 儲存失敗）</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after all of the requested image/video/audio media failed to save to the device storage. -->
+    <plurals name="SaveAttachment_error_while_saving_attachments_to_sd_card">
+        <item quantity="other">儲存附件到儲存空間時發生錯誤！</item>
+    </plurals>
+
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="AttachmentSaver__save_to_phone">儲存到手機？</string>
+
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <plurals name="AttachmentSaver__this_media_will_be_saved">
+        <item quantity="other">此媒體將儲存在你手機的儲存空間中。其他應用程式可能會根據你手機的權限來使用。</item>
+    </plurals>
+
+    <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal 需要儲存裝置權限才可儲存到外部儲存空間，但已被永久拒絕。請前往應用程式設定，選擇「權限」，然後啟用「儲存裝置」。</string>
+
+    <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">缺少權限下無法儲存到外部儲存空間</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">搜尋</string>
@@ -3174,7 +3281,8 @@
     <string name="ConversationUpdateItem_update_contact">更新聯絡人</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">封鎖請求</string>
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">無共同群組。請仔細檢閱請求。</string>
+    <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">無共同群組</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">無聯絡人在此群組中。請仔細檢閱請求。</string>
     <string name="ConversationUpdateItem_view">檢視</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">當您發送訊息時，將會設置時效為 %1$s。</string>
@@ -3194,6 +3302,11 @@
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">播放 … 暫停</string>
     <string name="audio_view__download_accessibility_description">下載</string>
+
+    <!-- document_view -->
+    <string name="document_view__download_accessibility_description">下載</string>
+    <string name="document_view__upload_accessibility_description">上載</string>
+    <string name="document_view__cancel_accessibility_description">取消</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">音訊</string>
@@ -4295,6 +4408,13 @@
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN 碼讓在 Signal 中的資訊得以加密保存。</string>
     <string name="KbsMegaphone__create_pin">建立 PIN 碼</string>
 
+    <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__update_signal_pin">更新 Signal PIN 碼</string>
+    <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__message">更新你的 Signal PIN 碼以完成帳戶註冊。</string>
+    <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__update_pin">更新 PIN 碼</string>
+
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
     <string name="CallNotificationBuilder__incoming_signal_voice_call">Signal 語音通話來電</string>
@@ -4705,7 +4825,7 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">無其他共同群組。</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">無共同群組。</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="other">%1$d 個共同群組</item>
+        <item quantity="other">%1$d other groups in common</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="other">%1$d 個共同群組</item>
@@ -5602,6 +5722,24 @@
     <string name="MediaReviewFragment__photo_set_to_high_quality">相片設定為高品質</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
     <string name="MediaReviewFragment__photo_set_to_standard_quality">相片設定為標準品質</string>
+    <!-- Accessibility label describing the add media button on the Media review screen -->
+    <string name="MediaReviewFragment__add_media_accessibility_label">新增媒體</string>
+    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
+    <string name="MediaReviewFragment__brush_pen_accessibility_label">筆刷和筆</string>
+    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
+    <string name="MediaReviewFragment__crop_rotate_accessibility_label">裁剪和旋轉</string>
+    <!-- Accessibility label describing the change media quality button on the Media review screen -->
+    <string name="MediaReviewFragment__change_media_quality_accessibility_label">更改媒體品質</string>
+    <!-- Accessibility label describing the save media button on the Media review screen -->
+    <string name="MediaReviewFragment__save_media_accessibility_label">儲存媒體</string>
+    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
+    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">切換表情符號鍵盤</string>
+    <!-- Accessibility label describing the toggle view once button on the Media review screen -->
+    <string name="MediaReviewFragment__view_once_toggle_accessibility_label">切換「閱後即焚」狀態</string>
+    <!-- Accessibility label describing the send media button on the Media review screen -->
+    <string name="MediaReviewFragment__send_media_accessibility_label">傳送媒體</string>
+    <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
+    <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">完成新增訊息</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
         <item quantity="other">%1$d 個項目設定為高品質</item>
@@ -5850,7 +5988,7 @@
     <string name="DonationsErrors__your_payment_is_still">你的捐款仍在處理中。 可能需時幾分鐘，視乎你的連線而定。</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">無法取消定期贊助</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">你必須有網路連線才可取消定期贊助。</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">你的裝置不支援 Google Pay，因此未能進行定期贊助並贈予徽章。你仍可在我們的網站上捐款以支持 Signal。</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">你的裝置不支援應用程式內捐款，因此未能進行定期贊助並贈予徽章。你仍可在我們的網站上捐款以支持 Signal。</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">網絡錯誤。請檢查您的連線，然後再試一次。</string>
     <string name="NetworkFailure__retry">重試</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6090,6 +6228,16 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Signal 版本資訊暨最新消息</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat_period">這是 Signal 官方及唯一版本的聊天。</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date_period">隨時了解最新消息和發行版本備註。</string>
+    <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat">這是 Signal 官方及唯一版本的聊天</string>
+    <!-- Text description in Signal Release channel details explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date">隨時了解最新消息和發行版本備註</string>
+    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__official_only_chat">官方及唯一版本的 Signal 聊天</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">所有活動</string>
@@ -6212,6 +6360,8 @@
     <string name="StoryViewerPageFragment__send_failed">傳送失敗。點按以重試</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">回覆至群組</string>
+    <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
+    <string name="StoryViewerPageFragment_any_reaction_content_description">更多心情回應</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">未有觀看</string>
     <!-- Displayed when user has disabled receipts -->
@@ -7097,6 +7247,8 @@
     <string name="CameraControls_capture_button_accessibility_label">「擷取」按鈕</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
     <string name="CameraControls_continue_button_accessibility_label">「繼續」按鈕</string>
+    <!-- Accessibility label describing the flash Mode toggle button on the camera screen -->
+    <string name="CameraControls_toggle_flash_mode_accessibility_label">切換閃光燈模式</string>
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
@@ -7741,8 +7893,8 @@
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">正在準備進行備份…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
-    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
-        <item quantity="other">正在處理 %2$d 中的 %1$d (%3$d%%) 個訊息</item>
+    <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
+        <item quantity="other">正在處理 %2$s 中的 %1$s 個訊息 (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -7787,6 +7939,10 @@
     <!-- Action button label to contact support -->
     <string name="SubscriptionNotFoundBottomSheet__contact_support">聯絡支援團隊</string>
 
+    <!-- MessageBackupsFlowFragment -->
+    <!-- Body for network failure dialog in message backups checkout flow -->
+    <string name="MessageBackupsFlowFragment__a_network_failure_occurred">發生網路故障。請稍後再試。</string>
+
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">備份你的訊息和媒體均使用 Signal 的端對端加密儲存服務進行儲存。當你使用新手機或重新安裝 Signal 時，絕不會遺失訊息。</string>
@@ -7830,6 +7986,19 @@
     <string name="MessageBackupsKeyRecordScreen__continue">繼續</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">再看一次金鑰</string>
+
+    <!-- Confirm key title -->
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">確認你的備份金鑰</string>
+    <!-- Confirm your key subtitle -->
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">輸入你剛剛記錄的備份金鑰</string>
+    <!-- Confirm your key text entry hint text -->
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">備份金鑰</string>
+    <!-- Confirm your key text entry error text -->
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">備份金鑰不正確</string>
+    <!-- Confirm your key button text to return to record key screen. -->
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">再看一次金鑰</string>
+    <!-- Confirm your key button text to move onto next screen in flow -->
+    <string name="MessageBackupsKeyVerifyScreen__next">下一步</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -7954,6 +8123,25 @@
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">你輸入的備份金鑰是正確的，但沒有與其關聯的備份。如果你還有舊手機，請確定備份已啟用並已完成備份，然後再試一次。</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">跳過還原</string>
+    <!-- Dialog title text when encountering backup restore network error -->
+    <string name="EnterBackupKey_cant_restore_backup">無法還原備份</string>
+    <!-- Dialog body text when encountering backup restore network error -->
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">現在無法還原你的備份。請檢查你的網路連線，然後重試。 </string>
+    <!-- Dialog button text to contact support on network error -->
+    <string name="EnterBackupKey_contact_support">聯絡支援團隊</string>
+
+    <!-- Email subject when contacting support on a restore backup network issue -->
+    <string name="EnterBackupKey_network_failure_support_email">Signal Android 備份還原時網路發生錯誤</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+
+    <!-- Title of dialog asking to submit debuglogs -->
+    <string name="ContactSupportDialog_submit_debug_log">要提交除錯日誌嗎？</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="ContactSupportDialog_your_debug_logs">除錯日誌會幫助我們更快地修正問題。上載除錯日誌是可選項目。</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_with_debug">連同除錯日誌一同上交</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_without_debug">不要連同除錯日誌一同上交</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">使用舊手機掃描此二維碼</string>

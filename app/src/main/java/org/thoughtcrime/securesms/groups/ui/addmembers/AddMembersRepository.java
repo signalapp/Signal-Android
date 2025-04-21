@@ -23,7 +23,7 @@ final class AddMembersRepository {
 
   @WorkerThread
   RecipientId getOrCreateRecipientId(@NonNull SelectedContact selectedContact) {
-    return selectedContact.getOrCreateRecipientId(context);
+    return selectedContact.getOrCreateRecipientId();
   }
 
   @WorkerThread

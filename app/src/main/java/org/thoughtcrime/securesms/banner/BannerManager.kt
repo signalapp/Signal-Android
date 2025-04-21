@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.banner
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.platform.ComposeView
@@ -16,7 +15,7 @@ import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.Flow
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 
 /**
@@ -37,18 +36,16 @@ class BannerManager @JvmOverloads constructor(
    * Re-evaluates the [Banner]s, choosing one to render (if any) and updating the view.
    */
   fun updateContent(composeView: ComposeView) {
-    val banner: Banner<Any>? = banners.firstOrNull { it.enabled } as Banner<Any>?
-
     composeView.apply {
       setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnViewTreeLifecycleDestroyed)
       setContent {
+        val banner: Banner<Any>? = banners.firstOrNull { it.enabled } as Banner<Any>?
         if (banner == null) {
           onNoBannerShownListener()
           return@setContent
         }
 
-        val state: State<Any?> = banner.dataFlow.collectAsStateWithLifecycle(initialValue = null)
-        val bannerState by state
+        val bannerState by banner.dataFlow.collectAsStateWithLifecycle(initialValue = null)
 
         bannerState?.let { model ->
           SignalTheme {

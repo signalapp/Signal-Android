@@ -5,11 +5,14 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.isNullOrEmpty
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
+import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.GroupTable.ShowAsStoryState
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTable.RecipientType
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.callLinks
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.distributionLists
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
@@ -21,6 +24,7 @@ import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
+import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
@@ -28,6 +32,7 @@ import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.storage.toSignalCallLinkRecord
+import org.whispersystems.signalservice.api.storage.toSignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
 import org.whispersystems.signalservice.api.storage.toSignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
@@ -41,10 +46,11 @@ import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.Id
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
 import java.util.Currency
 import kotlin.math.max
+import org.whispersystems.signalservice.internal.storage.protos.AvatarColor as RemoteAvatarColor
+import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord as RemoteChatFolder
 
 object StorageSyncModels {
 
-  @JvmStatic
   fun localToRemoteRecord(settings: RecipientRecord): SignalStorageRecord {
     if (settings.storageId == null) {
       throw AssertionError("Must have a storage key!")
@@ -53,7 +59,6 @@ object StorageSyncModels {
     return localToRemoteRecord(settings, settings.storageId)
   }
 
-  @JvmStatic
   fun localToRemoteRecord(settings: RecipientRecord, groupMasterKey: GroupMasterKey): SignalStorageRecord {
     if (settings.storageId == null) {
       throw AssertionError("Must have a storage key!")
@@ -62,7 +67,6 @@ object StorageSyncModels {
     return localToRemoteGroupV2(settings, settings.storageId, groupMasterKey).toSignalStorageRecord()
   }
 
-  @JvmStatic
   fun localToRemoteRecord(settings: RecipientRecord, rawStorageId: ByteArray): SignalStorageRecord {
     return when (settings.recipientType) {
       RecipientType.INDIVIDUAL -> localToRemoteContact(settings, rawStorageId).toSignalStorageRecord()
@@ -72,6 +76,10 @@ object StorageSyncModels {
       RecipientType.CALL_LINK -> localToRemoteCallLink(settings, rawStorageId).toSignalStorageRecord()
       else -> throw AssertionError("Unsupported type!")
     }
+  }
+
+  fun localToRemoteRecord(folder: ChatFolderRecord, rawStorageId: ByteArray): SignalStorageRecord {
+    return localToRemoteChatFolder(folder, rawStorageId).toSignalStorageRecord()
   }
 
   @JvmStatic
@@ -182,6 +190,7 @@ object StorageSyncModels {
       pniSignatureVerified = recipient.syncExtras.pniSignatureVerified
       nickname = recipient.nickname.takeUnless { it.isEmpty }?.let { ContactRecord.Name(given = it.givenName, family = it.familyName) }
       note = recipient.note ?: ""
+      avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
     }.build().toSignalContactRecord(StorageId.forContact(rawStorageId))
   }
 
@@ -218,6 +227,7 @@ object StorageSyncModels {
       mutedUntilTimestamp = recipient.muteUntil
       dontNotifyForMentionsIfMuted = recipient.mentionSetting == RecipientTable.MentionSetting.ALWAYS_NOTIFY
       hideStory = recipient.extras != null && recipient.extras.hideStory()
+      avatarColor = localToRemoteAvatarColor(recipient.avatarColor)
       storySendMode = when (groups.getShowAsStoryState(groupId)) {
         ShowAsStoryState.ALWAYS -> GroupV2Record.StorySendMode.ENABLED
         ShowAsStoryState.NEVER -> GroupV2Record.StorySendMode.DISABLED
@@ -339,6 +349,69 @@ object StorageSyncModels {
       )
     } else {
       return null
+    }
+  }
+
+  fun localToRemoteAvatarColor(avatarColor: AvatarColor): RemoteAvatarColor {
+    return when (avatarColor) {
+      AvatarColor.A100 -> RemoteAvatarColor.A100
+      AvatarColor.A110 -> RemoteAvatarColor.A110
+      AvatarColor.A120 -> RemoteAvatarColor.A120
+      AvatarColor.A130 -> RemoteAvatarColor.A130
+      AvatarColor.A140 -> RemoteAvatarColor.A140
+      AvatarColor.A150 -> RemoteAvatarColor.A150
+      AvatarColor.A160 -> RemoteAvatarColor.A160
+      AvatarColor.A170 -> RemoteAvatarColor.A170
+      AvatarColor.A180 -> RemoteAvatarColor.A180
+      AvatarColor.A190 -> RemoteAvatarColor.A190
+      AvatarColor.A200 -> RemoteAvatarColor.A200
+      AvatarColor.A210 -> RemoteAvatarColor.A210
+      AvatarColor.UNKNOWN -> RemoteAvatarColor.A100
+      AvatarColor.ON_SURFACE_VARIANT -> RemoteAvatarColor.A100
+    }
+  }
+
+  fun localToRemoteChatFolder(folder: ChatFolderRecord, rawStorageId: ByteArray?): SignalChatFolderRecord {
+    if (folder.chatFolderId == null) {
+      throw AssertionError("Chat folder must have a chat folder id.")
+    }
+    return SignalChatFolderRecord.newBuilder(folder.storageServiceProto).apply {
+      identifier = UuidUtil.toByteArray(folder.chatFolderId.uuid).toByteString()
+      name = folder.name
+      position = folder.position
+      showOnlyUnread = folder.showUnread
+      showMutedChats = folder.showMutedChats
+      includeAllIndividualChats = folder.showIndividualChats
+      includeAllGroupChats = folder.showGroupChats
+      folderType = when (folder.folderType) {
+        ChatFolderRecord.FolderType.ALL -> RemoteChatFolder.FolderType.ALL
+        ChatFolderRecord.FolderType.INDIVIDUAL,
+        ChatFolderRecord.FolderType.GROUP,
+        ChatFolderRecord.FolderType.UNREAD,
+        ChatFolderRecord.FolderType.CUSTOM -> RemoteChatFolder.FolderType.CUSTOM
+      }
+      includedRecipients = localToRemoteChatFolderRecipients(folder.includedChats)
+      excludedRecipients = localToRemoteChatFolderRecipients(folder.excludedChats)
+      deletedAtTimestampMs = folder.deletedTimestampMs
+    }.build().toSignalChatFolderRecord(StorageId.forChatFolder(rawStorageId))
+  }
+
+  private fun localToRemoteChatFolderRecipients(threadIds: List<Long>): List<RemoteChatFolder.Recipient> {
+    val recipientIds = SignalDatabase.threads.getRecipientIdsForThreadIds(threadIds)
+    return recipientIds.mapNotNull { id ->
+      val recipient = SignalDatabase.recipients.getRecordForSync(id) ?: throw AssertionError("Missing recipient for id")
+      when (recipient.recipientType) {
+        RecipientType.INDIVIDUAL -> {
+          RemoteChatFolder.Recipient(contact = RemoteChatFolder.Recipient.Contact(serviceId = recipient.serviceId?.toString() ?: "", e164 = recipient.e164 ?: ""))
+        }
+        RecipientType.GV1 -> {
+          RemoteChatFolder.Recipient(legacyGroupId = recipient.groupId!!.requireV1().decodedId.toByteString())
+        }
+        RecipientType.GV2 -> {
+          RemoteChatFolder.Recipient(groupMasterKey = recipient.syncExtras.groupMasterKey!!.serialize().toByteString())
+        }
+        else -> null
+      }
     }
   }
 }

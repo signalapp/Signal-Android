@@ -588,13 +588,6 @@
         <item quantity="many">Uložením %1$d média do úložiska k nemu umožníte prístup ostatným aplikáciám v zariadení.\n\nPokračovať?</item>
         <item quantity="other">Uložením všetkých %1$d médií do úložiska k nim umožníte prístup ostatným aplikáciám v zariadení.\n\nPokračovať?</item>
     </plurals>
-    <plurals name="ConversationFragment_error_while_saving_attachments_to_sd_card">
-        <item quantity="one">Nastala chyba pri ukladaní prílohy na dátové úložisko zariadenia!</item>
-        <item quantity="few">Nastala chyba pri ukladaní príloh na dátové úložisko zariadenia!</item>
-        <item quantity="many">Nastala chyba pri ukladaní príloh na dátové úložisko zariadenia!</item>
-        <item quantity="other">Nastala chyba pri ukladaní príloh na úložisko!</item>
-    </plurals>
-    <string name="ConversationFragment_unable_to_write_to_sd_card_exclamation">Nedá sa zapisovať na úložisko!</string>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">Ukladám prílohu</item>
         <item quantity="few">Ukladám %1$d prílohy</item>
@@ -606,15 +599,6 @@
         <item quantity="few">Ukladám %1$d prílohy do úložiska…</item>
         <item quantity="many">Ukladám %1$d prílohy do úložiska…</item>
         <item quantity="other">Ukladám %1$d príloh do úložiska…</item>
-    </plurals>
-    <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="ConversationFragment__save_to_phone">Uložiť do telefónu?</string>
-    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
-    <plurals name="ConversationFragment__this_media_will_be_saved">
-        <item quantity="one">Toto médium sa uloží do úložiska vášho telefónu. V závislosti od nastavených povolení telefónu môžu mať k nemu prístup iné aplikácie.</item>
-        <item quantity="few">Tieto médiá sa uložia do úložiska vášho telefónu. V závislosti od nastavených povolení telefónu môžu mať k nim prístup iné aplikácie.</item>
-        <item quantity="many">Tieto médiá sa uložia do úložiska vášho telefónu. V závislosti od nastavených povolení telefónu môžu mať k nim prístup iné aplikácie.</item>
-        <item quantity="other">Tieto médiá sa uložia do úložiska vášho telefónu. V závislosti od nastavených povolení telefónu môžu mať k nim prístup iné aplikácie.</item>
     </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
     <string name="ConversationFragment_dont_show_again">Už nezobrazovať</string>
@@ -693,6 +677,18 @@
     <string name="ConversationFragment_reported_as_spam_and_blocked">Nahlásené ako spam a blokované</string>
     <!-- Dialog message shown after accepting a message request and tapping on options from the conversation event -->
     <string name="ConversationFragment_you_accepted_a_message_request_from_s">Prijali ste žiadosť o správu od používateľa %1$s. Ak išlo o omyl, nižšie si môžete vybrať, ako postupovať.</string>
+    <!-- Text shown in conversation header when in a message request state and to carefully review the user -->
+    <string name="ConversationFragment_review_carefully">Pozorne skontrolujte</string>
+    <!-- Text shown in conversation header when in a message request state that profile names are not verified. Placeholder will be \'Profile names\' -->
+    <string name="ConversationFragment_profile_names_not_verified">%1$s nie sú overené</string>
+    <!-- Text shown in conversation header when in a message request state that group names are not verified. Placeholder will be \'Group names\' -->
+    <string name="ConversationFragment_group_names_not_verified">%1$s nie sú overené</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about profile names -->
+    <string name="ConversationFragment_profile_names">Názvy profilov</string>
+    <!-- Placeholder text shown in conversation header that when clicked will open a dialog about group names -->
+    <string name="ConversationFragment_group_names">Názvy skupín</string>
+    <!-- Snackbar toast message shown when a profile cannot be downloaded and to try again. -->
+    <string name="ConversationFragment_photo_failed">Fotku sa nepodarilo stiahnuť. Skúste to znova.</string>
 
     <!-- Title of Safety Tips bottom sheet dialog -->
     <string name="SafetyTips_title">Bezpečnostné tipy</string>
@@ -704,6 +700,10 @@
     <string name="SafetyTips_previous_tip">Predchádzajúci tip</string>
     <!-- Button text to move to the next tip -->
     <string name="SafetyTips_next_tip">Ďalší tip</string>
+    <!-- Title of tip 0 -->
+    <string name="SafetyTips_tip0_title">Falošné mená a účty</string>
+    <!-- Message of tip 0 -->
+    <string name="SafetyTips_tip0_message">Signal vás nikdy nebude kontaktovať s požiadavkou o poskytnutie registračného kódu alebo PIN kódu. Buďte obozretní pri žiadostiach, ktoré sa vydávajú za iných ľudí. Názvy profilov vyberá majiteľ účtu a nie sú overené.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">Peňažné podvody alebo podvody s kryptomenou</string>
     <!-- Message of tip 1 -->
@@ -720,6 +720,21 @@
     <string name="SafetyTips_tip4_title">Falošné firmy a inštitúcie</string>
     <!-- Message of tip 4 -->
     <string name="SafetyTips_tip4_message">Zbystrite, ak vás oslovia firmy alebo vládne agentúry. V prípade správ odkazujúcich na daňové úrady, kuriérov a pod. môže ísť o spam.</string>
+
+    <!-- Bottom sheet text explaining that profile names are chosen by the account holder. Placeholder will be \'Profile names\' -->
+    <string name="ProfileNameBottomSheet__profile_names_on_signal">%1$s si v aplikácii Signal vyberá majiteľ účtu.</string>
+    <!-- Bottom sheet text explaining that profile names are not verified. -->
+    <string name="ProfileNameBottomSheet__profile_names_arent_verified">Názvy profilov nie sú overené</string>
+    <!-- Bottom sheet text explaining that accounts can impersonate other people and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_accounts">Dávajte si pozor na účty, ktoré sa vydávajú za iných ľudí</string>
+    <!-- Bottom sheet text explaining that personal information should not be shared with strangers -->
+    <string name="ProfileNameBottomSheet__dont_share_personal">Nezdieľajte osobné údaje s ľuďmi, ktorých nepoznáte</string>
+    <!-- Bottom sheet text explaining that group names are chosen by the group members. Placeholder will be \'Group names\' -->
+    <string name="ProfileNameBottomSheet__group_names_on_signal">%1$s vyberajú členovia skupiny.</string>
+    <!-- Bottom sheet text explaining that groups can impersonate organizations and to be cautious -->
+    <string name="ProfileNameBottomSheet__be_cautious_of_groups">Dávajte si pozor na skupiny, ktoré sa vydávajú za organizácie a firmy</string>
+    <!-- Bottom sheet text explaining that profile names of group members are not verified -->
+    <string name="ProfileNameBottomSheet__profile_names_in_groups">Názvy profilov jednotlivých členov skupín nie sú overené</string>
 
     <!-- Label for a button displayed in conversation list to clear the chat filter -->
     <string name="ConversationListFragment__clear_filter">Zrušiť filter</string>
@@ -801,8 +816,13 @@
     <string name="AddToFolderBottomSheet_choose_a_folder">Vyberte priečinok</string>
     <!-- Toast shown when a chat has been added to a folder, where %s is the name of the folder -->
     <string name="AddToFolderBottomSheet_added_to_s">Pridané do priečinka „%1$s“</string>
-    <!-- Toast shown when a user tries to add a chat to a folder, but the folder already has that chat. %s is the name of the folder -->
-    <string name="AddToFolderBottomSheet_this_chat_is_already">Tento čet sa už nachádza v priečinku „%1$s“</string>
+    <!-- Toast shown when a user tries to add chats to a folder, but the folder already has those chats. %s is the name of the folder -->
+    <plurals name="AddToFolderBottomSheet_these_chat_are_already_in_s">
+        <item quantity="one">Tento čet sa už nachádza v priečinku „%1$s“</item>
+        <item quantity="few">Tieto čety sa už nachádzajú v priečinku „%1$s“</item>
+        <item quantity="many">Tieto čety sa už nachádzajú v priečinku „%1$s“</item>
+        <item quantity="other">Tieto čety sa už nachádzajú v priečinku „%1$s“</item>
+    </plurals>
 
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">Notifikačný profil</string>
@@ -1084,7 +1104,7 @@
     <!-- Button option to dismiss dialog -->
     <string name="LinkDeviceFragment__cancel">Zrušiť</string>
     <!-- Email subject when contacting support on a linked device syncing issue -->
-    <string name="LinkDeviceFragment__link_sync_failure_support_email">Android Link&amp;Sync Export Failed</string>
+    <string name="LinkDeviceFragment__link_sync_failure_support_email">Export systému Android (Link&amp;Sync) zlyhal</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__link_sync_failure_support_email_filter" translatable="false">Android Link&amp;Sync Export Failed</string> -->
     <!-- Title of a dialog letting the user know that syncing messages to their linked device failed -->
     <string name="LinkDeviceFragment__sync_failure_title">Synchronizácia správ zlyhala</string>
@@ -1179,6 +1199,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">Nepomenovaný súbor</string>
+    <string name="DocumentView_document_file">Súbor</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">Optimalizovať pre chýbajúce služby Google Play</string>
@@ -1756,7 +1777,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">Mazanie</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">Mažú sa správy…</string>
-    <string name="MediaOverviewActivity_collecting_attachments">Ukladám prílohy…</string>
     <string name="MediaOverviewActivity_Sort_by">Zoradiť podľa</string>
     <string name="MediaOverviewActivity_Newest">Najnovšie</string>
     <string name="MediaOverviewActivity_Oldest">Najstaršie</string>
@@ -1866,6 +1886,10 @@
     <string name="MessageRecord_missed_voice_call">Zmeškaný hlasový hovor</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Zmeškaný videohovor</string>
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
+    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
+    <string name="MessageRecord_declined_video_call">Declined video call</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Zmeškaný hlasový hovor pri zapnutom profile upozornení</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2174,6 +2198,14 @@
     <string name="MessageRecord_reported_as_spam">Nahlásené ako spam</string>
     <!-- Update message shown in chat after accept a message request -->
     <string name="MessageRecord_you_accepted_the_message_request">Prijali ste žiadosť o správu</string>
+    <!-- Update message shown in chat after you block a person -->
+    <string name="MessageRecord_you_blocked_this_person">Túto osobu ste zablokovali</string>
+    <!-- Update message shown in chat after you unblock a person -->
+    <string name="MessageRecord_you_unblocked_this_person">Túto osobu ste odblokovali.</string>
+    <!-- Update message shown in chat after you block a group -->
+    <string name="MessageRecord_you_blocked_this_group">Túto skupinu ste zablokovali</string>
+    <!-- Update message shown in chat after you unblock a group -->
+    <string name="MessageRecord_you_unblocked_this_group">Túto skupinu ste odblokovali</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Potvrdiť</string>
@@ -2231,8 +2263,41 @@
         <item quantity="many">%1$d ďalších skupín</item>
         <item quantity="other">%1$d ďalších skupín</item>
     </plurals>
+    <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
+    <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
+    <!-- Text for an empty group or when you are the only member -->
+    <string name="MessageRequestProfileView_group_members_zero">Zatiaľ tu nie sú žiadni ďalší členovia skupiny</string>
+    <!-- Text for a group with one member (not you). %1$s is their name -->
+    <string name="MessageRequestProfileView_group_members_one">%1$s</string>
+    <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
+    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s a vy</string>
+    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two">%1$s a %2$s</string>
+    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s a vy</string>
+    <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
+    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s a %3$s</string>
+    <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
+    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s a %4$s</string>
+    <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
+    <plurals name="MessageRequestProfileView_other_members">
+        <item quantity="one">%1$d ďalší</item>
+        <item quantity="few">%1$d ďalší</item>
+        <item quantity="many">%1$d ďalších</item>
+        <item quantity="other">%1$d ďalších</item>
+    </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">Nahlásiť…</string>
+    <!-- Alert dialog title to accept a message request -->
+    <string name="MessageRequestBottomView_accept_request">Prijať žiadosť?</string>
+    <!-- Alert dialog body to review the message request carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully">Žiadosti dôkladne overte. Názvy profilov vyberá majiteľ účtu a nie sú overené.</string>
+    <!-- Alert dialog title to accept a message request to join a group -->
+    <string name="MessageRequestBottomView_join_group">Pripojiť sa ku skupine?</string>
+    <!-- Alert dialog body to review the message request for a group carefully -->
+    <string name="MessageRequestBottomView_review_requests_carefully_groups">Žiadosti dôkladne overte. Názvy skupín vyberajú členovia skupiny a nie sú overené.</string>
+    <!-- Button text to join a group -->
+    <string name="MessageRequestBottomView_join">Pridať sa</string>
 
     <!-- PassphraseChangeActivity -->
     <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">Heslá sa nezhodujú!</string>
@@ -2340,6 +2405,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">Všetky · %1$d</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">Ťuknutím odstránite</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -2594,6 +2660,8 @@
     <string name="CallOverflowPopupWindow__view">Zobraziť</string>
 
 
+    <!-- A notification to the user that their hand is raised but they are currently speaking -->
+    <string name="CallRaiseHandSnackbar__lower_your_hand">Znížiť ruku?</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s ste zdvihli ruku</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -2640,7 +2708,7 @@
     <!-- Toolbar title of country picker selection page -->
     <string name="CountryCodeFragment__your_country">Vaša krajina</string>
     <!-- Hint text in search bar to either enter in a country name or number -->
-    <string name="CountryCodeFragment__search_by">Hľadať podľa mena alebo čísla</string>
+    <string name="CountryCodeFragment__search_by">Hľadať podľa názvu alebo predvoľby</string>
     <!-- Text shown when displaying a list of countries that indicates an unknown country    -->
     <string name="CountryCodeFragment__unknown_country">Neznáma krajina</string>
 
@@ -2649,12 +2717,16 @@
     <string name="AboutSheet__signal_connection">Signal spojenie</string>
     <!-- Displayed in a sheet row describing that the user has marked this contact as \'verified\' from within the app -->
     <string name="AboutSheet__verified">Overený</string>
+    <!-- Displayed in a sheet row that tells users that profile names are not verified -->
+    <string name="AboutSheet__profile_names_are_not_verified">Názvy profilov nie sú overené</string>
+    <!-- Displayed in a sheet row describing that the user is in a message request state with the person -->
+    <string name="AboutSheet__pending_message_request">Čaká sa na žiadosť o správu</string>
     <!-- Displayed in bottom sheet describing that the user has no direct messages with this person. The placeholder is a person\'s name. -->
     <string name="AboutSheet__no_direct_message">Žiadne priame správy s používateľom %1$s</string>
     <!-- Explains that the given user (placeholder is short name) is in the users system contact -->
     <string name="AboutSheet__s_is_in_your_system_contacts">%1$s je vo vašich kontaktoch</string>
     <!-- Notice in a row when user has no groups in common -->
-    <string name="AboutSheet__you_have_no_groups_in_common">Nemáte žiadne spoločné skupiny</string>
+    <string name="AboutSheet__you_have_no_groups_in_common">Žiadne spoločné skupiny</string>
     <!-- Notice when a user is not a connection to review requests carefully -->
     <string name="AboutSheet__review_requests_carefully">Požiadavky pozorne overte</string>
     <!-- Text used when user has groups in common. Placeholder is the count -->
@@ -2670,6 +2742,14 @@
     <string name="AboutSheet__you">Vy</string>
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
+
+    <!-- Title of the screen showing which groups they have in common with another user. -->
+    <plurals name="GroupsInCommon__n_groups_in_common_title">
+        <item quantity="one">%1$s group in common</item>
+        <item quantity="few">%1$s groups in common</item>
+        <item quantity="many">%1$s groups in common</item>
+        <item quantity="other">%1$s groups in common</item>
+    </plurals>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2978,6 +3058,10 @@
     <string name="ThreadRecord_message_history_has_been_merged">História správ bola zlúčená</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
     <string name="ThreadRecord_s_belongs_to_s">%1$s patrí používateľovi %2$s</string>
+    <!-- Displayed in the conversation list when a person has been blocked -->
+    <string name="ThreadRecord_blocked">Zablokovaný</string>
+    <!-- Displayed in the conversation list when a group has been blocked -->
+    <string name="ThreadRecord_blocked_group">Blocked</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Aktualizácia Signalu</string>
@@ -3095,8 +3179,6 @@
     <string name="MediaPreviewActivity_you">Vy</string>
     <string name="MediaPreviewActivity_unssuported_media_type">Nepodporovaný typ súboru</string>
     <string name="MediaPreviewActivity_draft">Koncept</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal potrebuje prístup k úložisku aby mohol ukladať dáta na externé úložisko, ale prístup bol natrvalo zakázaný. Prosím v nastaveniach aplikácií zvoľte \"Oprávnenia\", a povoľte \"Úložisko\".</string>
-    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">Bez povolenia sa nedá zapisovať na externé úložisko</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">Vymazať správu?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">Týmto natrvalo odstránite túto správu.</string>
     <string name="MediaPreviewActivity_s_to_s">od %1$s do %2$s</string>
@@ -3207,14 +3289,54 @@
     <!-- Notification channel name for notifications sent when a device has been linked -->
     <string name="NotificationChannel_new_linked_device">Nové prepojené zariadenie</string>
 
-    <!-- ProfileEditNameFragment -->
-
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Rýchla odpoveď nie je dostupná, keď je Signal zamknutý!</string>
     <string name="QuickResponseService_problem_sending_message">Problém pri odosielaní správy!</string>
 
-    <!-- A small toast notification to let the user know their image/video/audio was downloaded and saved to their device, accessible in other apps. -->
-    <string name="SaveAttachmentTask_saved">Médiá boli uložené</string>
+    <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
+    <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">Nedá sa zapisovať na úložisko!</string>
+
+    <!-- A toast notification that is shown after image/video/audio media was successfully downloaded and saved to the device storage, accessible in other apps. -->
+    <plurals name="SaveAttachment_saved_success">
+        <item quantity="one">Médium bolo uložené</item>
+        <item quantity="few">Médiá boli uložené</item>
+        <item quantity="many">Médiá boli uložené</item>
+        <item quantity="other">Médiá boli uložené</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after some image/video/audio media was successfully downloaded and saved to the device storage, but some failed to save
+         %1$s is the number of items that failed to save and %2$s is the total number of items that the user requested to save. -->
+    <plurals name="SaveAttachment_saved_success_n_failures">
+        <item quantity="one">Médiá boli uložené (neúspešné: %1$s z %2$s)</item>
+        <item quantity="few">Médiá boli uložené (neúspešné: %1$s z %2$s)</item>
+        <item quantity="many">Médiá boli uložené (neúspešné: %1$s z %2$s)</item>
+        <item quantity="other">Médiá boli uložené (neúspešné: %1$s z %2$s)</item>
+    </plurals>
+
+    <!-- A toast notification that is shown after all of the requested image/video/audio media failed to save to the device storage. -->
+    <plurals name="SaveAttachment_error_while_saving_attachments_to_sd_card">
+        <item quantity="one">Nastala chyba pri ukladaní prílohy do úložiska zariadenia!</item>
+        <item quantity="few">Nastala chyba pri ukladaní príloh do úložiska zariadenia!</item>
+        <item quantity="many">Nastala chyba pri ukladaní príloh do úložiska zariadenia!</item>
+        <item quantity="other">Nastala chyba pri ukladaní príloh do úložiska zariadenia!</item>
+    </plurals>
+
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="AttachmentSaver__save_to_phone">Uložiť do telefónu?</string>
+
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <plurals name="AttachmentSaver__this_media_will_be_saved">
+        <item quantity="one">Toto médium sa uloží do úložiska vášho telefónu. V závislosti od nastavených povolení telefónu môžu mať k nemu prístup iné aplikácie.</item>
+        <item quantity="few">Tieto médiá sa uložia do úložiska vášho telefónu. V závislosti od nastavených povolení telefónu môžu mať k nim prístup iné aplikácie.</item>
+        <item quantity="many">Tieto médiá sa uložia do úložiska vášho telefónu. V závislosti od nastavených povolení telefónu môžu mať k nim prístup iné aplikácie.</item>
+        <item quantity="other">Tieto médiá sa uložia do úložiska vášho telefónu. V závislosti od nastavených povolení telefónu môžu mať k nim prístup iné aplikácie.</item>
+    </plurals>
+
+    <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">Signal potrebuje prístup k úložisku aby mohol ukladať dáta na externé úložisko, ale prístup bol natrvalo zakázaný. Zvoľte, prosím, v nastaveniach aplikácií \"Oprávnenia\", a povoľte \"Úložisko\".</string>
+
+    <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">Bez povolenia sa nedá zapisovať na externé úložisko</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">Hľadať</string>
@@ -3459,7 +3581,8 @@
     <string name="ConversationUpdateItem_update_contact">Aktualizovať kontakt</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Blokovať žiadosť</string>
-    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Žiadne spoločné skupiny. Žiadosti starostlivo skontrolujte.</string>
+    <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
+    <string name="ConversationUpdateItem_no_groups_in_common_review_requests_carefully">Žiadne spoločné skupiny</string>
     <string name="ConversationUpdateItem_no_contacts_in_this_group_review_requests_carefully">V tejto skupine nie sú žiadne kontakty. Žiadosti starostlivo skontrolujte.</string>
     <string name="ConversationUpdateItem_view">Zobraziť</string>
     <string name="ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them">Keď odošlete správu, čas zmiznutia správy bude nastavený na %1$s.</string>
@@ -3479,6 +3602,11 @@
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">Prehrať … Pozastaviť</string>
     <string name="audio_view__download_accessibility_description">Stiahnuť</string>
+
+    <!-- document_view -->
+    <string name="document_view__download_accessibility_description">Stiahnuť</string>
+    <string name="document_view__upload_accessibility_description">Nahrať</string>
+    <string name="document_view__cancel_accessibility_description">Zrušiť</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">Zvuk</string>
@@ -4637,6 +4765,13 @@
     <string name="KbsMegaphone__pins_keep_information_thats_stored_with_signal_encrytped">PIN kódy udržiavajú informácie uložené v Signale zašifrované.</string>
     <string name="KbsMegaphone__create_pin">Vytvoriť PIN</string>
 
+    <!-- Title for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__update_signal_pin">Aktualizujte Signal PIN</string>
+    <!-- Message for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__message">Ak chcete dokončiť registráciu účtu, aktualizujte svoj Signal PIN.</string>
+    <!-- Button text for megaphone shown after registration without a pin but with aep to prompt the user to enter their pin -->
+    <string name="UpdatePinMegaphone__update_pin">Aktualizovať PIN kód</string>
+
     <!-- CallNotificationBuilder -->
     <!-- Displayed in a notification when a Signal voice call is ringing -->
     <string name="CallNotificationBuilder__incoming_signal_voice_call">Prichádzajúci Signal hlasový hovor</string>
@@ -5053,10 +5188,10 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Žiadne ďalšie spoločné skupiny.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Žiadne spoločné skupiny.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d spoločná skupina</item>
-        <item quantity="few">%1$d spoločné skupiny</item>
-        <item quantity="many">%1$d spoločných skupín</item>
-        <item quantity="other">%1$d spoločných skupín</item>
+        <item quantity="one">%1$d other group in common</item>
+        <item quantity="few">%1$d other groups in common</item>
+        <item quantity="many">%1$d other groups in common</item>
+        <item quantity="other">%1$d other groups in common</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">%1$d spoločná skupina</item>
@@ -6004,6 +6139,24 @@
     <string name="MediaReviewFragment__photo_set_to_high_quality">Fotka je nastavená na vysokú kvalitu</string>
     <!-- Small notification presented to the user when they set their still image to be sent in standard (lower than high) visual quality. -->
     <string name="MediaReviewFragment__photo_set_to_standard_quality">Fotka je nastavená na štandardnú kvalitu</string>
+    <!-- Accessibility label describing the add media button on the Media review screen -->
+    <string name="MediaReviewFragment__add_media_accessibility_label">Pridať médium</string>
+    <!-- Accessibility label describing the brush and pen button on the Media review screen -->
+    <string name="MediaReviewFragment__brush_pen_accessibility_label">Skicár</string>
+    <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
+    <string name="MediaReviewFragment__crop_rotate_accessibility_label">Orezať a otočiť</string>
+    <!-- Accessibility label describing the change media quality button on the Media review screen -->
+    <string name="MediaReviewFragment__change_media_quality_accessibility_label">Zmeniť kvalitu média</string>
+    <!-- Accessibility label describing the save media button on the Media review screen -->
+    <string name="MediaReviewFragment__save_media_accessibility_label">Uložiť médiá</string>
+    <!-- Accessibility label describing the toggle emoji keyboard button on the Media review screen -->
+    <string name="MediaReviewFragment__emoji_toggle_accessibility_label">Prepnúť na emoji klávesnicu</string>
+    <!-- Accessibility label describing the toggle view once button on the Media review screen -->
+    <string name="MediaReviewFragment__view_once_toggle_accessibility_label">Prepnúť režim jedného pozretia</string>
+    <!-- Accessibility label describing the send media button on the Media review screen -->
+    <string name="MediaReviewFragment__send_media_accessibility_label">Odoslať médiá</string>
+    <!-- Accessibility label describing the finish adding a message button on the Media review screen dialog -->
+    <string name="MediaReviewFragment__finish_adding_a_message_accessibility_label">Dokončiť pridávanie správy</string>
     <!-- Small notification presented to the user when they set multiple media items to be sent in high visual quality. -->
     <plurals name="MediaReviewFragment__items_set_to_high_quality">
         <item quantity="one">%1$d položka je nastavená na vysokú kvalitu</item>
@@ -6258,7 +6411,7 @@
     <string name="DonationsErrors__your_payment_is_still">Váš príspevok sa stále spracováva. V závislosti od vášho pripojenia to môže trvať niekoľko minút.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Predplatné sa nepodarilo zrušiť</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Zrušenie predplatného vyžaduje internetové pripojenie.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support_google_pay_so_you_can_t_subscribe_to_earn_a_badge_you_can_still_support_signal_by_making_a_donation_on_our_website">Vaše zariadenie nepodporuje službu Google Pay, nemôžete sa preto prihlásiť na prispievanie a získať odznak. Signal však môžete stále podporiť príspevkom na našej webovej stránke.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Vaše zariadenie nepodporuje príspevky v aplikácii, nemôžete sa preto prihlásiť na prispievanie a získať odznak. Signal však môžete stále podporiť príspevkom na našej webovej stránke.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Chyba siete. Skontrolujte pripojenie a skúste to znova.</string>
     <string name="NetworkFailure__retry">Skúsiť znovu</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -6498,6 +6651,16 @@
 
     <!-- Description shown for the Signal Release Notes channel -->
     <string name="ReleaseNotes__signal_release_notes_and_news">Poznámky k vydaniu Signal &amp; Novinky</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat_period">Toto je oficiálny a jediný čet od aplikácie Signal.</string>
+    <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date_period">Buďte informovaní o novinkách a poznámkach k vydaniu.</string>
+    <!-- Text description in Signal Release channel details explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__this_is_official_chat">Toto je oficiálny a jediný čet od aplikácie Signal.</string>
+    <!-- Text description in Signal Release channel details explaining what the channel is for -->
+    <string name="ReleaseNotes__keep_up_to_date">Buďte informovaní o novinkách a poznámkach k vydaniu.</string>
+    <!-- Subtitle for the Signal Release channel explaining that it is the only chat from Signal -->
+    <string name="ReleaseNotes__official_only_chat">Oficiálny a jediný čet Signal</string>
 
     <!-- Donation receipts activity title -->
     <string name="DonationReceiptListFragment__all_activity">Všetky aktivity</string>
@@ -6629,6 +6792,8 @@
     <string name="StoryViewerPageFragment__send_failed">Odoslanie zlyhalo. Ťuknite a skúste to znovu.</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">Odpovedať skupine</string>
+    <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
+    <string name="StoryViewerPageFragment_any_reaction_content_description">Viac reakcií</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Zatiaľ žiadne zobrazenia</string>
     <!-- Displayed when user has disabled receipts -->
@@ -7577,6 +7742,8 @@
     <string name="CameraControls_capture_button_accessibility_label">Tlačidlo pre spúšť</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
     <string name="CameraControls_continue_button_accessibility_label">Tlačidlo pokračovať</string>
+    <!-- Accessibility label describing the flash Mode toggle button on the camera screen -->
+    <string name="CameraControls_toggle_flash_mode_accessibility_label">Prepnúť režim blesku</string>
 
     <!-- CallPreference -->
     <!-- Generic group call in call info -->
@@ -8242,11 +8409,11 @@
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Pripravuje sa záloha…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
-    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
-        <item quantity="one">Spracováva sa %1$d z %2$d správy (%3$d %%)</item>
-        <item quantity="few">Spracovávajú sa %1$d z %2$d správ (%3$d %%)</item>
-        <item quantity="many">Spracováva sa %1$d z %2$d správ (%3$d %%)</item>
-        <item quantity="other">Spracováva sa %1$d z %2$d správ (%3$d %%)</item>
+    <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
+        <item quantity="one">Spracováva sa %1$s z %2$s správ (%3$d %%)</item>
+        <item quantity="few">Spracováva sa %1$s z približne %2$s správ (%3$d %%)</item>
+        <item quantity="many">Spracováva sa %1$s z približne %2$s správ (%3$d %%)</item>
+        <item quantity="other">Spracováva sa %1$s z približne %2$s správ (%3$d %%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
@@ -8297,6 +8464,10 @@
     <!-- Action button label to contact support -->
     <string name="SubscriptionNotFoundBottomSheet__contact_support">Kontaktovať podporu</string>
 
+    <!-- MessageBackupsFlowFragment -->
+    <!-- Body for network failure dialog in message backups checkout flow -->
+    <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Došlo k zlyhaniu siete. Skúste to znova neskôr.</string>
+
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
     <string name="MessageBackupsEducationScreen__backup_your_messages_and_media">Zálohujte si správy a médiá pomocou bezpečnej úložnej služby Signal chránenej end-to-end šifrovaním. Odteraz už pri výmene telefónu alebo opätovnom nainštalovaní Signalu neprídete ani o jednu správu.</string>
@@ -8340,6 +8511,19 @@
     <string name="MessageBackupsKeyRecordScreen__continue">Pokračovať</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Pozrieť si kľúč znova</string>
+
+    <!-- Confirm key title -->
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Potvrďte záložný kľúč</string>
+    <!-- Confirm your key subtitle -->
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Zadajte záložný kľúč, ktorý ste si práve zaznamenali</string>
+    <!-- Confirm your key text entry hint text -->
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Záložný kľúč</string>
+    <!-- Confirm your key text entry error text -->
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Nesprávny záložný kľúč</string>
+    <!-- Confirm your key button text to return to record key screen. -->
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">Pozrieť si kľúč znova</string>
+    <!-- Confirm your key button text to move onto next screen in flow -->
+    <string name="MessageBackupsKeyVerifyScreen__next">Ďalej</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8470,6 +8654,25 @@
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Zadaný záložný kľúč je správny, ale nie je s ním spojená žiadna záloha. Ak ešte máte svoj starý telefón, uistite sa, že bolo povolené a dokončené zálohovanie. Potom to skúste znova.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Preskočiť obnovenie</string>
+    <!-- Dialog title text when encountering backup restore network error -->
+    <string name="EnterBackupKey_cant_restore_backup">Nepodarilo sa obnoviť zálohu</string>
+    <!-- Dialog body text when encountering backup restore network error -->
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">Vašu zálohu nie je momentálne možné obnoviť. Skontrolujte internetové pripojenie a skúste to znova. </string>
+    <!-- Dialog button text to contact support on network error -->
+    <string name="EnterBackupKey_contact_support">Kontaktovať podporu</string>
+
+    <!-- Email subject when contacting support on a restore backup network issue -->
+    <string name="EnterBackupKey_network_failure_support_email">Chyba siete pri obnovovaní zálohy Signal Android</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+
+    <!-- Title of dialog asking to submit debuglogs -->
+    <string name="ContactSupportDialog_submit_debug_log">Odoslať denník ladenia?</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="ContactSupportDialog_your_debug_logs">Vaše denníky ladenia nám pomôžu vyriešiť váš problém rýchlejšie. Ich odoslanie nie je povinné.</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_with_debug">Odoslať s denníkom ladenia</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_without_debug">Odoslať bez denníka ladenia</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">Naskenujte tento kód pomocou svojho starého telefónu</string>

@@ -112,6 +112,12 @@ public class EmojiPageView extends RecyclerView implements VariationSelectorList
     addItemDecoration(new EmojiItemDecoration(allowVariations, drawable));
   }
 
+  @Override
+  public boolean dispatchTouchEvent(MotionEvent ev) {
+    getParent().requestDisallowInterceptTouchEvent(true);
+    return super.dispatchTouchEvent(ev);
+  }
+
   public void presentForEmojiKeyboard() {
     setPadding(getPaddingLeft(),
                getPaddingTop(),

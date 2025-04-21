@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Adding an urgent flag to message envelopes to help with notifications. Need to track flag in

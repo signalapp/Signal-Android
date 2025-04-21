@@ -130,7 +130,7 @@ public class NewConversationActivity extends ContactSelectionActivity
 
         AlertDialog progress = SimpleProgressDialog.show(this);
 
-        SimpleTask.run(getLifecycle(), () -> RecipientRepository.lookupNewE164(this, number), result -> {
+        SimpleTask.run(getLifecycle(), () -> RecipientRepository.lookupNewE164(number), result -> {
           progress.dismiss();
 
           if (result instanceof RecipientRepository.LookupResult.Success) {

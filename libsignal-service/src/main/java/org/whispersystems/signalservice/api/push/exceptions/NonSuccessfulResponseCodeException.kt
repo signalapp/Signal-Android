@@ -15,29 +15,36 @@ open class NonSuccessfulResponseCodeException : IOException {
   val code: Int
   val stringBody: String?
   val binaryBody: ByteArray?
+  val headers: Map<String, String>
 
   constructor(code: Int) : super("StatusCode: $code") {
     this.code = code
     this.stringBody = null
     this.binaryBody = null
+    this.headers = emptyMap()
   }
 
   constructor(code: Int, message: String) : super("[$code] $message") {
     this.code = code
     this.stringBody = null
     this.binaryBody = null
+    this.headers = emptyMap()
   }
 
-  constructor(code: Int, message: String, body: String?) : super("[$code] $message") {
+  @JvmOverloads
+  constructor(code: Int, message: String, body: String?, headers: Map<String, String> = emptyMap()) : super("[$code] $message") {
     this.code = code
     this.stringBody = body
     this.binaryBody = null
+    this.headers = headers.mapKeys { it.key.lowercase() }
   }
 
-  constructor(code: Int, message: String, body: ByteArray?) : super("[$code] $message") {
+  @JvmOverloads
+  constructor(code: Int, message: String, body: ByteArray?, headers: Map<String, String> = emptyMap()) : super("[$code] $message") {
     this.code = code
     this.stringBody = null
     this.binaryBody = body
+    this.headers = headers.mapKeys { it.key.lowercase() }
   }
 
   fun is4xx(): Boolean {

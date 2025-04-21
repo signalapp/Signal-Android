@@ -18,6 +18,7 @@ import androidx.lifecycle.Lifecycle
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment.Purpose.entries
 import org.thoughtcrime.securesms.databinding.PromptLogsBottomSheetBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -42,12 +43,12 @@ class DebugLogsPromptDialogFragment : FixedRoundedCornerBottomSheetDialogFragmen
       }
 
       if (NetworkUtil.isConnected(activity) && activity.supportFragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG) == null) {
-        DebugLogsPromptDialogFragment().apply {
+        val dialog = DebugLogsPromptDialogFragment().apply {
           arguments = bundleOf(
             KEY_PURPOSE to purpose.serialized
           )
-        }.show(activity.supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
-
+        }
+        BottomSheetUtil.show(activity.supportFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG, dialog)
         Log.i(TAG, "Showing debug log dialog prompt for $purpose")
         when (purpose) {
           Purpose.NOTIFICATIONS -> SignalStore.uiHints.lastNotificationLogsPrompt = System.currentTimeMillis()

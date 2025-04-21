@@ -141,7 +141,7 @@ class SignalServiceNetworkAccess(context: Context) {
 
   private val interceptors: List<Interceptor> = listOf(
     StandardUserAgentInterceptor(),
-    RemoteDeprecationDetectorInterceptor(),
+    RemoteDeprecationDetectorInterceptor(this::getConfiguration),
     DeprecatedClientPreventionInterceptor(),
     DeviceTransferBlockingInterceptor.getInstance()
   )
@@ -169,7 +169,7 @@ class SignalServiceNetworkAccess(context: Context) {
     HostConfig("https://android.clients.google.com", G_HOST, PLAY_CONNECTION_SPEC),
     HostConfig("https://clients3.google.com", G_HOST, GMAPS_CONNECTION_SPEC),
     HostConfig("https://clients4.google.com", G_HOST, GMAPS_CONNECTION_SPEC),
-    HostConfig("https://inbox.google.com", G_HOST, GMAIL_CONNECTION_SPEC)
+    HostConfig("https://googlemail.com", G_HOST, GMAIL_CONNECTION_SPEC)
   )
 
   private val fUrls = arrayOf("https://github.githubassets.com", "https://pinterest.com", "https://www.redditstatic.com")

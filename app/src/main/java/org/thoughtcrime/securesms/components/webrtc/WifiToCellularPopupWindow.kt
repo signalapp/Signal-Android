@@ -25,6 +25,10 @@ class WifiToCellularPopupWindow(private val parent: ViewGroup) : PopupWindow(
   }
 
   fun show() {
+    if (parent.windowToken == null) {
+      return
+    }
+
     showAtLocation(parent, Gravity.TOP or Gravity.START, 0, 0)
     VibrateUtil.vibrate(parent.context, VIBRATE_DURATION_MS)
     contentView.postDelayed(DISPLAY_DURATION_MS) {

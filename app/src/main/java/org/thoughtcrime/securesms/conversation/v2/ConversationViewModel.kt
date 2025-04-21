@@ -11,6 +11,7 @@ import android.net.Uri
 import android.os.Build
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.RequestManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
@@ -31,11 +32,15 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.util.orNull
 import org.signal.paging.ProxyPagingController
@@ -55,6 +60,7 @@ import org.thoughtcrime.securesms.conversation.v2.data.ConversationElementKey
 import org.thoughtcrime.securesms.conversation.v2.items.ChatColorsDrawable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.MessageTable
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.Mention
@@ -188,6 +194,9 @@ class ConversationViewModel(
   val jumpToDateValidator: JumpToDateValidator
     get() = _jumpToDateValidator
 
+  private val internalBackPressedState = MutableStateFlow(BackPressedState())
+  val backPressedState: StateFlow<BackPressedState> = internalBackPressedState
+
   init {
     disposables += recipient
       .subscribeBy {
@@ -308,6 +317,20 @@ class ConversationViewModel(
         override fun onError(e: Throwable) = Unit
         override fun onComplete() = Unit
       })
+  }
+
+  fun onAvatarDownloadFailed() {
+    viewModelScope.launch(Dispatchers.IO) {
+      val recipient = recipientSnapshot
+      if (recipient != null) {
+        recipients.manuallyUpdateShowAvatar(recipient.id, false)
+      }
+      pagingController.onDataItemChanged(ConversationElementKey.threadHeader)
+    }
+  }
+
+  fun updateThreadHeader() {
+    pagingController.onDataItemChanged(ConversationElementKey.threadHeader)
   }
 
   fun getBannerFlows(
@@ -586,5 +609,24 @@ class ConversationViewModel(
     return repository
       .getEarliestMessageSentDate(threadId)
       .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun setIsReactionDelegateShowing(isReactionDelegateShowing: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isReactionDelegateShowing = isReactionDelegateShowing)
+    }
+  }
+
+  fun setIsSearchRequested(isSearchRequested: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isSearchRequested = isSearchRequested)
+    }
+  }
+
+  data class BackPressedState(
+    val isReactionDelegateShowing: Boolean = false,
+    val isSearchRequested: Boolean = false
+  ) {
+    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing
   }
 }

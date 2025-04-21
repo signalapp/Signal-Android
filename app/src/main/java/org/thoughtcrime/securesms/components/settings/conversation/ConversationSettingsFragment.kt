@@ -33,6 +33,7 @@ import org.signal.core.util.Result
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.getParcelableArrayListExtraCompat
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.InviteActivity
@@ -52,6 +53,8 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.NO_TINT
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.CheckoutFlowActivity
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.AvatarPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.BioTextPreference
@@ -217,7 +220,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
   }
 
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
-    return object : Material3OnScrollHelper(requireActivity(), toolbar!!, viewLifecycleOwner) {
+    return object : Material3OnScrollHelper(activity = requireActivity(), views = listOf(toolbar!!), lifecycleOwner = viewLifecycleOwner) {
       override val inactiveColorSet = ColorSet(
         toolbarColorRes = R.color.signal_colorBackground_0,
         statusBarColorRes = R.color.signal_colorBackground
@@ -372,7 +375,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
               descriptionShouldLinkify = groupState.groupDescriptionShouldLinkify,
               canEditGroupAttributes = groupState.canEditGroupAttributes,
               onEditGroupDescription = {
-                startActivity(CreateProfileActivity.getIntentForGroupProfile(requireActivity(), groupState.groupId))
+                startActivity(CreateProfileActivity.getIntentForGroupProfileWithFocusedDescription(requireActivity(), groupState.groupId))
               },
               onViewGroupDescription = {
                 GroupDescriptionDialog.show(childFragmentManager, groupState.groupId, null, groupState.groupDescriptionShouldLinkify)
@@ -489,6 +492,18 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           customPref(call)
         }
 
+        dividerPref()
+      }
+
+      if (state.recipient.isReleaseNotes) {
+        textPref(
+          icon = DSLSettingsIcon.from(R.drawable.symbol_official_20),
+          title = DSLSettingsText.from(R.string.ReleaseNotes__this_is_official_chat)
+        )
+        textPref(
+          icon = DSLSettingsIcon.from(R.drawable.symbol_bell_20),
+          title = DSLSettingsText.from(R.string.ReleaseNotes__keep_up_to_date)
+        )
         dividerPref()
       }
 
@@ -633,6 +648,27 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         )
       }
 
+      if (state.recipient.isReleaseNotes) {
+        dividerPref()
+        sectionHeaderPref(R.string.preferences__help)
+
+        externalLinkPref(
+          icon = DSLSettingsIcon.from(R.drawable.symbol_help_24),
+          title = DSLSettingsText.from(R.string.HelpSettingsFragment__support_center),
+          linkId = R.string.support_center_url
+        )
+        clickPref(
+          icon = DSLSettingsIcon.from(R.drawable.symbol_invite_24),
+          title = DSLSettingsText.from(R.string.HelpSettingsFragment__contact_us),
+          onClick = { startActivity(AppSettingsActivity.help(requireContext())) }
+        )
+        clickPref(
+          icon = DSLSettingsIcon.from(R.drawable.symbol_heart_24),
+          title = DSLSettingsText.from(R.string.preferences__donate_to_signal),
+          onClick = { startActivity(CheckoutFlowActivity.createIntent(requireContext(), InAppPaymentType.ONE_TIME_DONATION)) }
+        )
+      }
+
       state.withRecipientSettingsState { recipientSettingsState ->
         if (state.recipient.badges.isNotEmpty() && !state.recipient.isSelf) {
           dividerPref()
@@ -731,6 +767,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             RecipientPreference.Model(
               recipient = member.member,
               isAdmin = member.isAdmin,
+              lifecycleOwner = viewLifecycleOwner,
               onClick = {
                 RecipientBottomSheetDialogFragment.show(parentFragmentManager, member.member.id, groupState.groupId)
               }

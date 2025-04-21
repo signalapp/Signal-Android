@@ -267,6 +267,8 @@ public class MmsMessageRecord extends MessageRecord {
           int message;
           if (call.getEvent() == CallTable.Event.MISSED_NOTIFICATION_PROFILE) {
             message = isVideoCall ? R.string.MessageRecord_missed_video_call_notification_profile : R.string.MessageRecord_missed_voice_call_notification_profile;
+          } else if (call.getEvent() == CallTable.Event.NOT_ACCEPTED) {
+            message = isVideoCall ? R.string.MessageRecord_declined_video_call : R.string.MessageRecord_declined_voice_call;
           } else {
             message = isVideoCall ? R.string.MessageRecord_missed_video_call : R.string.MessageRecord_missed_voice_call;
           }
@@ -317,6 +319,8 @@ public class MmsMessageRecord extends MessageRecord {
            (type & MessageTypes.KEY_EXCHANGE_MASK) == 0 &&
            !isReportedSpam() &&
            !isMessageRequestAccepted() &&
+           !isBlocked() &&
+           !isUnblocked() &&
            storyType == StoryType.NONE &&
            getDateSent() > 0 &&
            (parentStoryId == null || parentStoryId.isDirectReply());

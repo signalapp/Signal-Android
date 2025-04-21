@@ -17,9 +17,9 @@ import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
+import org.thoughtcrime.securesms.util.SignalE164Util
 
 /**
  * A captive activity that can determine if an interrupted/erred change number request
@@ -72,7 +72,7 @@ class ChangeNumberLockActivity : PassphraseRequiredActivity() {
 
     MaterialAlertDialogBuilder(this)
       .setTitle(R.string.ChangeNumberLockActivity__change_status_confirmed)
-      .setMessage(getString(R.string.ChangeNumberLockActivity__your_number_has_been_confirmed_as_s, PhoneNumberFormatter.prettyPrint(SignalStore.account.e164!!)))
+      .setMessage(getString(R.string.ChangeNumberLockActivity__your_number_has_been_confirmed_as_s, SignalE164Util.prettyPrint(SignalStore.account.e164!!)))
       .setPositiveButton(android.R.string.ok) { _, _ ->
         startActivity(MainActivity.clearTop(this))
         finish()

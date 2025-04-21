@@ -14,21 +14,24 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
-import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorStage
 import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.databinding.DonationInProgressFragmentBinding
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse
@@ -46,9 +49,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
   private val binding by ViewBinderDelegate(DonationInProgressFragmentBinding::bind)
   private val args: PayPalPaymentInProgressFragmentArgs by navArgs()
 
-  private val viewModel: PayPalPaymentInProgressViewModel by navGraphViewModels(R.id.checkout_flow, factoryProducer = {
-    PayPalPaymentInProgressViewModel.Factory()
-  })
+  private val viewModel: PayPalPaymentInProgressViewModel by navGraphViewModels(R.id.checkout_flow)
 
   override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
     isCancelable = false
@@ -62,15 +63,19 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
       viewModel.onBeginNewAction()
       when (args.action) {
         InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT -> {
-          viewModel.processNewDonation(args.inAppPayment!!, this::oneTimeConfirmationPipeline, this::monthlyConfirmationPipeline)
+          viewModel.processNewDonation(
+            args.inAppPaymentId!!,
+            this::oneTimeConfirmationPipeline,
+            this::monthlyConfirmationPipeline
+          )
         }
 
         InAppPaymentProcessorAction.UPDATE_SUBSCRIPTION -> {
-          viewModel.updateSubscription(args.inAppPayment!!)
+          viewModel.updateSubscription(args.inAppPaymentId!!)
         }
 
         InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION -> {
-          viewModel.cancelSubscription(args.inAppPaymentType.requireSubscriberType())
+          viewModel.cancelSubscription(InAppPaymentSubscriberRecord.Type.DONATION)
         }
       }
     }
@@ -93,8 +98,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           bundleOf(
             REQUEST_KEY to InAppPaymentProcessorActionResult(
               action = args.action,
-              inAppPayment = args.inAppPayment,
-              inAppPaymentType = args.inAppPaymentType,
+              inAppPaymentId = args.inAppPaymentId,
               status = InAppPaymentProcessorActionResult.Status.FAILURE
             )
           )
@@ -109,8 +113,7 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
           bundleOf(
             REQUEST_KEY to InAppPaymentProcessorActionResult(
               action = args.action,
-              inAppPayment = args.inAppPayment,
-              inAppPaymentType = args.inAppPaymentType,
+              inAppPaymentId = args.inAppPaymentId,
               status = InAppPaymentProcessorActionResult.Status.SUCCESS
             )
           )
@@ -122,19 +125,69 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
   }
 
   private fun getProcessingStatus(): String {
-    return if (args.inAppPaymentType == InAppPaymentType.RECURRING_BACKUP) {
-      getString(R.string.InAppPaymentInProgressFragment__processing_payment)
-    } else {
-      getString(R.string.InAppPaymentInProgressFragment__processing_donation)
+    return getString(R.string.InAppPaymentInProgressFragment__processing_donation)
+  }
+
+  private fun oneTimeConfirmationPipeline(inAppPaymentId: InAppPaymentTable.InAppPaymentId): Completable {
+    return Single.fromCallable {
+      SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+    }.map { inAppPayment ->
+      val requiresAction: InAppPaymentData.PayPalRequiresActionState = inAppPayment.data.payPalRequiresAction ?: error("InAppPayment is missing requiresAction data")
+      PayPalCreatePaymentIntentResponse(
+        requiresAction.approvalUrl,
+        requiresAction.token
+      )
+    }.flatMap {
+      routeToOneTimeConfirmation(it)
+    }.flatMapCompletable {
+      Completable.fromAction {
+        Log.d(TAG, "User confirmed action. Updating intent accessors and resubmitting job.")
+        val postNextActionPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+
+        SignalDatabase.inAppPayments.update(
+          postNextActionPayment.copy(
+            state = InAppPaymentTable.State.REQUIRED_ACTION_COMPLETED,
+            data = postNextActionPayment.data.newBuilder().payPalActionComplete(
+              payPalActionComplete = InAppPaymentData.PayPalActionCompleteState(
+                paymentId = it.paymentId ?: "",
+                paymentToken = it.paymentToken,
+                payerId = it.payerId
+              )
+            ).build()
+          )
+        )
+      }
     }
   }
 
-  private fun oneTimeConfirmationPipeline(createPaymentIntentResponse: PayPalCreatePaymentIntentResponse): Single<PayPalConfirmationResult> {
-    return routeToOneTimeConfirmation(createPaymentIntentResponse)
-  }
+  private fun monthlyConfirmationPipeline(inAppPaymentId: InAppPaymentTable.InAppPaymentId): Completable {
+    return Single.fromCallable {
+      SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+    }.map { inAppPayment ->
+      val requiresAction: InAppPaymentData.PayPalRequiresActionState = inAppPayment.data.payPalRequiresAction ?: error("InAppPayment is missing requiresAction data")
+      PayPalCreatePaymentMethodResponse(
+        requiresAction.approvalUrl,
+        requiresAction.token
+      )
+    }.flatMap {
+      routeToMonthlyConfirmation(it)
+    }.flatMapCompletable {
+      Completable.fromAction {
+        Log.d(TAG, "User confirmed action. Updating intent accessors and resubmitting job.")
+        val postNextActionPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
 
-  private fun monthlyConfirmationPipeline(createPaymentIntentResponse: PayPalCreatePaymentMethodResponse): Single<PayPalPaymentMethodId> {
-    return routeToMonthlyConfirmation(createPaymentIntentResponse)
+        SignalDatabase.inAppPayments.update(
+          postNextActionPayment.copy(
+            state = InAppPaymentTable.State.REQUIRED_ACTION_COMPLETED,
+            data = postNextActionPayment.data.newBuilder().payPalActionComplete(
+              payPalActionComplete = InAppPaymentData.PayPalActionCompleteState(
+                paymentId = it.paymentId
+              )
+            ).build()
+          )
+        )
+      }
+    }
   }
 
   private fun routeToOneTimeConfirmation(createPaymentIntentResponse: PayPalCreatePaymentIntentResponse): Single<PayPalConfirmationResult> {
@@ -144,7 +197,9 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         if (result != null) {
           emitter.onSuccess(result.copy(paymentId = createPaymentIntentResponse.paymentId))
         } else {
-          emitter.onError(DonationError.UserCancelledPaymentError(args.inAppPaymentType.toErrorSource()))
+          disposables += viewModel.getInAppPaymentType(args.inAppPaymentId!!).subscribeBy {
+            emitter.onError(DonationError.UserCancelledPaymentError(it.toErrorSource()))
+          }
         }
       }
 
@@ -172,7 +227,9 @@ class PayPalPaymentInProgressFragment : DialogFragment(R.layout.donation_in_prog
         if (result) {
           emitter.onSuccess(PayPalPaymentMethodId(createPaymentIntentResponse.token))
         } else {
-          emitter.onError(DonationError.UserCancelledPaymentError(args.inAppPaymentType.toErrorSource()))
+          disposables += viewModel.getInAppPaymentType(args.inAppPaymentId!!).subscribeBy {
+            emitter.onError(DonationError.UserCancelledPaymentError(it.toErrorSource()))
+          }
         }
       }
 

@@ -90,7 +90,7 @@ object SystemContactsRepository {
    * lookup key.
    */
   @JvmStatic
-  fun getAllSystemContacts(context: Context, e164Formatter: (String) -> String): ContactIterator {
+  fun getAllSystemContacts(context: Context, e164Formatter: (String) -> String?): ContactIterator {
     val uri = ContactsContract.Data.CONTENT_URI
     val projection = arrayOf(
       ContactsContract.Data.MIMETYPE,
@@ -114,7 +114,7 @@ object SystemContactsRepository {
   }
 
   @JvmStatic
-  fun getContactDetailsByQueries(context: Context, queries: List<String>, e164Formatter: (String) -> String): ContactIterator {
+  fun getContactDetailsByQueries(context: Context, queries: List<String>, e164Formatter: (String) -> String?): ContactIterator {
     val lookupKeys: MutableSet<String> = mutableSetOf()
 
     for (query in queries) {
@@ -560,7 +560,7 @@ object SystemContactsRepository {
     )
   }
 
-  private fun getLinkedContactsByE164(context: Context, account: Account, e164Formatter: (String) -> String): Map<String, LinkedContactDetails> {
+  private fun getLinkedContactsByE164(context: Context, account: Account, e164Formatter: (String) -> String?): Map<String, LinkedContactDetails> {
     val currentContactsUri = ContactsContract.RawContacts.CONTENT_URI.buildUpon()
       .appendQueryParameter(ContactsContract.RawContacts.ACCOUNT_NAME, account.name)
       .appendQueryParameter(ContactsContract.RawContacts.ACCOUNT_TYPE, account.type).build()
@@ -580,7 +580,7 @@ object SystemContactsRepository {
         val displayPhone = cursor.requireString(FIELD_DISPLAY_PHONE)
 
         if (displayPhone != null) {
-          val e164 = e164Formatter(displayPhone)
+          val e164 = e164Formatter(displayPhone) ?: continue
 
           contactsDetails[e164] = LinkedContactDetails(
             id = cursor.requireLong(BaseColumns._ID),
@@ -596,7 +596,7 @@ object SystemContactsRepository {
     return contactsDetails
   }
 
-  private fun getSystemContactInfo(context: Context, e164: String, e164Formatter: (String) -> String): SystemContactInfo? {
+  private fun getSystemContactInfo(context: Context, e164: String, e164Formatter: (String) -> String?): SystemContactInfo? {
     ContactsContract.RawContactsEntity.RAW_CONTACT_ID
     val uri = Uri.withAppendedPath(ContactsContract.PhoneLookup.CONTENT_FILTER_URI, Uri.encode(e164))
     val projection = arrayOf(
@@ -712,7 +712,7 @@ object SystemContactsRepository {
    */
   private class CursorContactIterator(
     private val cursor: Cursor,
-    private val e164Formatter: (String) -> String
+    private val e164Formatter: (String) -> String?
   ) : ContactIterator {
 
     init {
@@ -752,13 +752,14 @@ object SystemContactsRepository {
 
       while (!cursor.isAfterLast && lookupKey == cursor.getLookupKey() && cursor.isPhoneMimeType()) {
         val displayNumber: String? = cursor.requireString(ContactsContract.CommonDataKinds.Phone.NUMBER)
+        val formattedNumber: String? = displayNumber?.let { e164Formatter(it) }
 
-        if (!displayNumber.isNullOrEmpty()) {
+        if (!displayNumber.isNullOrEmpty() && !formattedNumber.isNullOrEmpty()) {
           phoneDetails += ContactPhoneDetails(
             contactUri = ContactsContract.Contacts.getLookupUri(cursor.requireLong(ContactsContract.CommonDataKinds.Phone._ID), lookupKey),
             displayName = cursor.requireString(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME),
             photoUri = cursor.requireString(ContactsContract.CommonDataKinds.Phone.PHOTO_URI),
-            number = e164Formatter(displayNumber),
+            number = formattedNumber,
             type = cursor.requireInt(ContactsContract.CommonDataKinds.Phone.TYPE),
             label = cursor.requireString(ContactsContract.CommonDataKinds.Phone.LABEL)
           )

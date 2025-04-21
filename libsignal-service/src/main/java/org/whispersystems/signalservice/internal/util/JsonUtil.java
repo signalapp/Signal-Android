@@ -19,15 +19,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.module.kotlin.KotlinModule;
 
+import org.signal.core.util.Base64;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.logging.Log;
 import org.whispersystems.signalservice.api.kbs.MasterKey;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId;
+import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.MalformedResponseException;
 import org.whispersystems.signalservice.api.util.UuidUtil;
-import org.signal.core.util.Base64;
 
 import java.io.IOException;
 import java.util.UUID;
@@ -73,6 +73,12 @@ public class JsonUtil {
     return objectMapper.readValue(json, typeRef);
   }
 
+  public static <T> T fromJson(byte[] json, Class<T> clazz)
+      throws IOException
+  {
+    return objectMapper.readValue(json, clazz);
+  }
+
   public static <T> T fromJsonResponse(String json, TypeReference<T> typeRef)
       throws MalformedResponseException
   {
@@ -84,6 +90,16 @@ public class JsonUtil {
   }
 
   public static <T> T fromJsonResponse(String body, Class<T> clazz)
+      throws MalformedResponseException
+  {
+    try {
+      return JsonUtil.fromJson(body, clazz);
+    } catch (IOException e) {
+      throw new MalformedResponseException("Unable to parse entity", e);
+    }
+  }
+
+  public static <T> T fromJsonResponse(byte[] body, Class<T> clazz)
       throws MalformedResponseException
   {
     try {

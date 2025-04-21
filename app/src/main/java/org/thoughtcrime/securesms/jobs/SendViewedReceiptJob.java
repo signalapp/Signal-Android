@@ -248,8 +248,7 @@ public class SendViewedReceiptJob extends BaseJob {
       List<String>    rawMessageIds  = data.hasStringArray(KEY_MESSAGE_IDS) ? data.getStringArrayAsList(KEY_MESSAGE_IDS) : Collections.emptyList();
       List<MessageId> messageIds     = rawMessageIds.stream().map(MessageId::deserialize).collect(Collectors.toList());
       long            threadId       = data.getLong(KEY_THREAD);
-      RecipientId     recipientId    = data.hasString(KEY_RECIPIENT) ? RecipientId.from(data.getString(KEY_RECIPIENT))
-                                                                               : Recipient.external(application, data.getString(KEY_ADDRESS)).getId();
+      RecipientId     recipientId    = RecipientId.from(data.getString(KEY_RECIPIENT));
 
       return new SendViewedReceiptJob(parameters, threadId, recipientId, syncTimestamps, messageIds, timestamp);
     }

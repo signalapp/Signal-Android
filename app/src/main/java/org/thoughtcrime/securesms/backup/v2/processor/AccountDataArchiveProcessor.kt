@@ -68,6 +68,7 @@ object AccountDataArchiveProcessor {
           givenName = selfRecord.signalProfileName.givenName,
           familyName = selfRecord.signalProfileName.familyName,
           avatarUrlPath = selfRecord.signalProfileAvatar ?: "",
+          svrPin = SignalStore.svr.pin ?: "",
           username = selfRecord.username?.takeIf { it.isNotBlank() },
           usernameLink = if (selfRecord.username.isNotNullOrBlank() && signalStore.accountValues.usernameLink != null) {
             AccountData.UsernameLink(
@@ -114,6 +115,9 @@ object AccountDataArchiveProcessor {
     SignalDatabase.recipients.restoreSelfFromBackup(accountData, selfId)
 
     SignalStore.account.setRegistered(true)
+    if (accountData.svrPin.isNotBlank()) {
+      SignalStore.svr.setPin(accountData.svrPin)
+    }
 
     val context = AppDependencies.application
     val settings = accountData.accountSettings

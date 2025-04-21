@@ -46,6 +46,7 @@
     <dimen name="message_bubble_collapsed_footer_padding">6dp</dimen>
     <dimen name="message_bubble_edge_margin">32dp</dimen>
     <dimen name="message_bubble_bottom_padding">7dp</dimen>
+    <dimen name="message_bubble_footer_bottom_padding">5dp</dimen>
     <dimen name="message_bubble_collapsed_bottom_padding">7dp</dimen>
     <dimen name="message_bubble_revealable_padding">12dp</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
@@ -61,7 +62,6 @@
     <dimen name="media_bubble_gif_width">240dp</dimen>
     <dimen name="message_audio_width">212dp</dimen>
     <dimen name="message_bubble_default_footer_bottom_margin">-4dp</dimen>
-    <dimen name="message_audio_duration_margin_start">56dp</dimen>
 
     <dimen name="progress_dialog_size">120dp</dimen>
 
@@ -246,5 +246,12 @@
     <dimen name="CallScreenParticipantItem__margin_bottom">0dp</dimen>
 
     <dimen name="chat_folder_row_height">64dp</dimen>
+
+    <dimen name="conversation_header_padding">24dp</dimen>
+    <dimen name="conversation_header_padding_expanded">32dp</dimen>
+    <dimen name="conversation_header_max_size">308dp</dimen>
+    <dimen name="conversation_header_margin">40dp</dimen>
+
+    <dimen name="donation_pill_max_width">150dp</dimen>
 
 </resources>

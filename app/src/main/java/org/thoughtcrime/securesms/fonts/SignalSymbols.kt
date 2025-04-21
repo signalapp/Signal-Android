@@ -10,12 +10,14 @@ import android.graphics.Typeface
 import android.text.SpannableStringBuilder
 import android.text.TextPaint
 import android.text.style.MetricAffectingSpan
+import androidx.annotation.ColorRes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.withStyle
+import org.thoughtcrime.securesms.util.SpanUtil
 
 /**
  * Helper object for working with the SignalSymbols font
@@ -24,6 +26,7 @@ object SignalSymbols {
 
   enum class Glyph(val unicode: Char) {
     CHECKMARK('\u2713'),
+    CHEVRON_LEFT('\uE024'),
     CHEVRON_RIGHT('\uE025'),
     PERSON_CIRCLE('\uE05E'),
     LOCK('\uE041')
@@ -40,7 +43,8 @@ object SignalSymbols {
   fun getSpannedString(
     context: Context,
     weight: Weight,
-    glyph: Glyph
+    glyph: Glyph,
+    @ColorRes colorRes: Int = -1
   ): CharSequence {
     val typeface = getTypeface(context, weight)
     val span = CustomTypefaceSpan(typeface)
@@ -48,7 +52,11 @@ object SignalSymbols {
     val text = SpannableStringBuilder(glyph.unicode.toString())
     text.setSpan(span, 0, text.length, 0)
 
-    return text
+    return if (colorRes != -1) {
+      SpanUtil.color(colorRes, text)
+    } else {
+      text
+    }
   }
 
   @Composable
@@ -104,7 +112,7 @@ object SignalSymbols {
     private fun update(tp: TextPaint?) {
       tp.apply {
         val old = this!!.typeface
-        val oldStyle = old?.style ?: 0
+        val oldStyle = old?.style ?: Typeface.NORMAL
         val font = Typeface.create(font, oldStyle)
         typeface = font
       }

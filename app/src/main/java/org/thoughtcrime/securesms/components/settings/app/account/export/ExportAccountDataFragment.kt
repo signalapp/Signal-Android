@@ -34,11 +34,11 @@ import androidx.core.app.ShareCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Dialogs
-import org.signal.core.ui.Rows
-import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.Texts
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.Texts
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R

@@ -18,9 +18,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Rows
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueCodeSelector
 import org.thoughtcrime.securesms.components.settings.app.internal.donor.DonationErrorValueTypeSelector
 import org.thoughtcrime.securesms.compose.ComposeFragment

@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -18,10 +20,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
-import org.signal.core.ui.BottomSheets
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Previews
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -67,7 +69,10 @@ class DeviceSpecificNotificationBottomSheet : ComposeBottomSheetDialogFragment()
 private fun DeviceSpecificSheet(onContinue: () -> Unit = {}, onDismiss: () -> Unit = {}) {
   return Column(
     horizontalAlignment = Alignment.CenterHorizontally,
-    modifier = Modifier.fillMaxWidth().wrapContentSize(Alignment.Center)
+    modifier = Modifier
+      .verticalScroll(rememberScrollState())
+      .fillMaxWidth()
+      .wrapContentSize(Alignment.Center)
   ) {
     BottomSheets.Handle()
     Icon(
@@ -95,13 +100,17 @@ private fun DeviceSpecificSheet(onContinue: () -> Unit = {}, onDismiss: () -> Un
     ) {
       Buttons.MediumTonal(
         onClick = onDismiss,
-        modifier = Modifier.padding(end = 12.dp).weight(1f)
+        modifier = Modifier
+          .padding(end = 12.dp)
+          .weight(1f)
       ) {
         Text(stringResource(id = R.string.DeviceSpecificNotificationBottomSheet__no_thanks))
       }
       Buttons.MediumTonal(
         onClick = onContinue,
-        modifier = Modifier.padding(start = 12.dp).weight(1f)
+        modifier = Modifier
+          .padding(start = 12.dp)
+          .weight(1f)
       ) {
         Icon(painterResource(id = R.drawable.ic_open_20), contentDescription = null, modifier = Modifier.padding(end = 4.dp))
         Text(stringResource(id = R.string.DeviceSpecificNotificationBottomSheet__continue))

@@ -4,7 +4,6 @@ import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.os.AsyncTask
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
@@ -12,12 +11,14 @@ import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.load.Options
 import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import org.signal.core.util.Base64
 import org.signal.core.util.DimensionUnit
-import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -31,7 +32,7 @@ import org.thoughtcrime.securesms.stories.viewer.page.StoryViewerPageState
 import org.thoughtcrime.securesms.util.BitmapUtil
 import org.thoughtcrime.securesms.util.DeleteDialog
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.SaveAttachmentTask
+import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import java.io.ByteArrayInputStream
 
 object StoryContextMenu {
@@ -48,48 +49,46 @@ object StoryContextMenu {
     ).map { (_, deletedThread) -> deletedThread }
   }
 
-  fun save(context: Context, messageRecord: MessageRecord) {
+  suspend fun save(fragment: Fragment, messageRecord: MessageRecord) {
     val mediaMessageRecord = messageRecord as? MmsMessageRecord
     val uri: Uri? = mediaMessageRecord?.slideDeck?.firstSlide?.uri
     val contentType: String? = mediaMessageRecord?.slideDeck?.firstSlide?.contentType
 
-    if (mediaMessageRecord?.storyType?.isTextStory == true) {
-      SimpleTask.run({
-        val model = StoryTextPostModel.parseFrom(messageRecord)
-        val decoder = StoryTextPostModel.Decoder()
-        val bitmap = decoder.decode(model, 1080, 1920, Options()).get()
-        val jpeg: ByteArrayInputStream = BitmapUtil.toCompressedJpeg(bitmap)
+    when {
+      mediaMessageRecord?.storyType?.isTextStory == true -> saveTextStory(fragment, mediaMessageRecord)
+      uri == null || contentType == null -> showErrorCantSaveStory(fragment, uri, contentType)
+      else -> saveMediaStory(fragment, uri, contentType, mediaMessageRecord)
+    }
+  }
 
-        bitmap.recycle()
+  private suspend fun saveTextStory(fragment: Fragment, messageRecord: MmsMessageRecord) {
+    val saveAttachment = withContext(Dispatchers.Main) {
+      val model = StoryTextPostModel.parseFrom(messageRecord)
+      val decoder = StoryTextPostModel.Decoder()
+      val bitmap = decoder.decode(model, 1080, 1920, Options()).get()
+      val jpeg: ByteArrayInputStream = BitmapUtil.toCompressedJpeg(bitmap)
 
-        SaveAttachmentTask.Attachment(
-          BlobProvider.getInstance().forData(jpeg.readBytes()).createForSingleUseInMemory(),
-          MediaUtil.IMAGE_JPEG,
-          mediaMessageRecord.dateSent,
-          null
-        )
-      }, { saveAttachment ->
-        SaveAttachmentTask(context)
-          .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, saveAttachment)
-      })
-      return
+      bitmap.recycle()
+
+      SaveAttachmentUtil.SaveAttachment(
+        uri = BlobProvider.getInstance().forData(jpeg.readBytes()).createForSingleUseInMemory(),
+        contentType = MediaUtil.IMAGE_JPEG,
+        date = messageRecord.dateSent,
+        fileName = null
+      )
     }
 
-    if (uri == null || contentType == null) {
-      Log.w(TAG, "Unable to save story media uri: $uri contentType: $contentType")
-      Toast.makeText(context, R.string.MyStories__unable_to_save, Toast.LENGTH_SHORT).show()
-      return
-    }
+    AttachmentSaver(fragment).saveAttachments(setOf(saveAttachment))
+  }
 
-    val saveAttachment = SaveAttachmentTask.Attachment(
-      uri,
-      contentType,
-      mediaMessageRecord.dateSent,
-      null
-    )
+  private suspend fun saveMediaStory(fragment: Fragment, uri: Uri, contentType: String, mediaMessageRecord: MmsMessageRecord) {
+    val saveAttachment = SaveAttachmentUtil.SaveAttachment(uri = uri, contentType = contentType, date = mediaMessageRecord.dateSent, fileName = null)
+    AttachmentSaver(fragment).saveAttachments(setOf(saveAttachment))
+  }
 
-    SaveAttachmentTask(context)
-      .executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, saveAttachment)
+  private fun showErrorCantSaveStory(fragment: Fragment, uri: Uri?, contentType: String?) {
+    Log.w(TAG, "Unable to save story media uri: $uri contentType: $contentType")
+    Toast.makeText(fragment.requireContext(), R.string.MyStories__unable_to_save, Toast.LENGTH_LONG).show()
   }
 
   fun share(fragment: Fragment, messageRecord: MmsMessageRecord) {

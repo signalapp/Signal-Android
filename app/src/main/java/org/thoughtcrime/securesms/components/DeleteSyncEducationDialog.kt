@@ -25,9 +25,9 @@ import androidx.fragment.app.FragmentManager
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.subjects.CompletableSubject
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Previews
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore

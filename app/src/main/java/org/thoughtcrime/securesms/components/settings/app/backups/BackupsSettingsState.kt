@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.backups
 
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import kotlin.time.Duration
 
@@ -12,7 +13,9 @@ import kotlin.time.Duration
  * Screen state for top-level backups settings screen.
  */
 data class BackupsSettingsState(
-  val enabledState: EnabledState = EnabledState.Loading
+  val enabledState: EnabledState = EnabledState.Loading,
+  val showBackupTierInternalOverride: Boolean = false,
+  val backupTierInternalOverride: MessageBackupTier? = null
 ) {
   /**
    * Describes the 'enabled' state of backups.

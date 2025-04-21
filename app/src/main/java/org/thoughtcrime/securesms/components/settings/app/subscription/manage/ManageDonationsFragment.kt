@@ -149,7 +149,7 @@ class ManageDonationsFragment :
   }
 
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper {
-    return object : Material3OnScrollHelper(requireActivity(), toolbar!!, viewLifecycleOwner) {
+    return object : Material3OnScrollHelper(activity = requireActivity(), views = listOf(toolbar!!), lifecycleOwner = viewLifecycleOwner) {
       override val activeColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
       override val inactiveColorSet: ColorSet = ColorSet(R.color.transparent, R.color.signal_colorBackground)
     }
@@ -195,7 +195,7 @@ class ManageDonationsFragment :
       if (state.subscriptionTransactionState is ManageDonationsState.TransactionState.NotInTransaction) {
         val activeSubscription = state.subscriptionTransactionState.activeSubscription.activeSubscription
 
-        if (activeSubscription != null) {
+        if (activeSubscription != null && !activeSubscription.isCanceled) {
           val subscription: Subscription? = state.availableSubscriptions.firstOrNull { it.level == activeSubscription.level }
           if (subscription != null) {
             presentSubscriptionSettings(activeSubscription, subscription, state)

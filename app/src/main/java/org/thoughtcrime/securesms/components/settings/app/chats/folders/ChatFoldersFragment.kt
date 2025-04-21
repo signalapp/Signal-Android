@@ -43,16 +43,16 @@ import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Dialogs
-import org.signal.core.ui.Dividers
-import org.signal.core.ui.DropdownMenus
-import org.signal.core.ui.Previews
-import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.SignalPreview
-import org.signal.core.ui.copied.androidx.compose.DraggableItem
-import org.signal.core.ui.copied.androidx.compose.dragContainer
-import org.signal.core.ui.copied.androidx.compose.rememberDragDropState
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.DropdownMenus
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
+import org.signal.core.ui.compose.copied.androidx.compose.dragContainer
+import org.signal.core.ui.compose.copied.androidx.compose.rememberDragDropState
 import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -84,7 +84,7 @@ class ChatFoldersFragment : ComposeFragment() {
         navController = navController,
         modifier = Modifier.padding(contentPadding),
         onFolderClicked = {
-          navController.safeNavigate(ChatFoldersFragmentDirections.actionChatFoldersFragmentToCreateFoldersFragment(it.id, -1))
+          navController.safeNavigate(ChatFoldersFragmentDirections.actionChatFoldersFragmentToCreateFoldersFragment(it.id, null))
         },
         onAdd = { folder ->
           Toast.makeText(requireContext(), getString(R.string.ChatFoldersFragment__folder_added, folder.name), Toast.LENGTH_SHORT).show()
@@ -404,7 +404,6 @@ private fun ChatFolderPreview() {
       showIndividualChats = true,
       showGroupChats = true,
       showMutedChats = true,
-      isMuted = false,
       folderType = ChatFolderRecord.FolderType.CUSTOM
     ),
     ChatFolderRecord(
@@ -415,7 +414,6 @@ private fun ChatFolderPreview() {
       showIndividualChats = true,
       showGroupChats = false,
       showMutedChats = false,
-      isMuted = false,
       folderType = ChatFolderRecord.FolderType.CUSTOM
     )
   )

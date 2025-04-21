@@ -26,7 +26,7 @@ object Scrubber {
   private val E164_ZERO_PATTERN = Pattern.compile("\\b(KEEP_E164::)?0(\\d{10})\\b")
 
   /** The second group will be censored.*/
-  private val CRUDE_EMAIL_PATTERN = Pattern.compile("\\b([^\\s/])([^\\s/]*@[^\\s]+)")
+  private val CRUDE_EMAIL_PATTERN = Pattern.compile("\\b([^\\s/,()])([^\\s/,()]*@[^\\s]+\\.[^\\s]+)")
   private const val EMAIL_CENSOR = "...@..."
 
   /** The middle group will be censored. */

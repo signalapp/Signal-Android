@@ -24,9 +24,9 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.Previews
-import org.signal.core.ui.SignalPreview
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 
 /**

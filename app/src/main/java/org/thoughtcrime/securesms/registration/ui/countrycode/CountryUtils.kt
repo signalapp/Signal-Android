@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.registration.ui.countrycode
 
 import com.google.i18n.phonenumbers.PhoneNumberUtil
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
+import org.signal.core.util.E164Util
 import java.text.Collator
 import java.util.Locale
 
@@ -25,7 +25,7 @@ object CountryUtils {
     return PhoneNumberUtil.getInstance().supportedRegions
       .map { region ->
         Country(
-          name = PhoneNumberFormatter.getRegionDisplayName(region).orElse(""),
+          name = E164Util.getRegionDisplayName(region).orElse(""),
           emoji = countryToEmoji(region),
           countryCode = PhoneNumberUtil.getInstance().getCountryCodeForRegion(region),
           regionCode = region
@@ -39,7 +39,7 @@ object CountryUtils {
     return COMMON_COUNTRIES
       .map { region ->
         Country(
-          name = PhoneNumberFormatter.getRegionDisplayName(region).orElse(""),
+          name = E164Util.getRegionDisplayName(region).orElse(""),
           emoji = countryToEmoji(region),
           countryCode = PhoneNumberUtil.getInstance().getCountryCodeForRegion(region),
           regionCode = region

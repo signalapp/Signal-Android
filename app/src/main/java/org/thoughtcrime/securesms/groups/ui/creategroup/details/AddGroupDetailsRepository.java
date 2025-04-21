@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.core.util.Consumer;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.groups.GroupChangeBusyException;
 import org.thoughtcrime.securesms.groups.GroupChangeException;
 import org.thoughtcrime.securesms.groups.GroupManager;
@@ -22,6 +23,8 @@ import java.util.List;
 import java.util.Set;
 
 final class AddGroupDetailsRepository {
+
+  private static String TAG = Log.tag(AddGroupDetailsRepository.class);
 
   private final Context context;
 
@@ -58,10 +61,13 @@ final class AddGroupDetailsRepository {
 
         resultConsumer.accept(GroupCreateResult.success(result));
       } catch (GroupChangeBusyException e) {
+        Log.w(TAG, "Unable to create group, group busy", e);
         resultConsumer.accept(GroupCreateResult.error(GroupCreateResult.Error.Type.ERROR_BUSY));
       } catch (GroupChangeException e) {
+        Log.w(TAG, "Unable to create group, group change failed", e);
         resultConsumer.accept(GroupCreateResult.error(GroupCreateResult.Error.Type.ERROR_FAILED));
       } catch (IOException e) {
+        Log.w(TAG, "Unable to create group, unknown IO", e);
         resultConsumer.accept(GroupCreateResult.error(GroupCreateResult.Error.Type.ERROR_IO));
       }
     });

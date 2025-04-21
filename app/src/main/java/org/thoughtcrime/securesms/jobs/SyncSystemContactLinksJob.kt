@@ -15,8 +15,8 @@ import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.permissions.Permissions
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.util.SignalE164Util
 import java.lang.Exception
 
 /**
@@ -109,7 +109,7 @@ class SyncSystemContactLinksJob private constructor(parameters: Parameters) : Ba
         messagePrompt = { e164 -> context.getString(R.string.ContactsDatabase_message_s, e164) },
         callPrompt = { e164 -> context.getString(R.string.ContactsDatabase_signal_call_s, e164) },
         videoCallPrompt = { e164 -> context.getString(R.string.ContactsDatabase_signal_video_call_s, e164) },
-        e164Formatter = { number -> PhoneNumberFormatter.get(context).format(number) },
+        e164Formatter = { number -> SignalE164Util.formatAsE164(number) },
         messageMimetype = MESSAGE_MIMETYPE,
         callMimetype = CALL_MIMETYPE,
         videoCallMimetype = VIDEO_CALL_MIMETYPE,

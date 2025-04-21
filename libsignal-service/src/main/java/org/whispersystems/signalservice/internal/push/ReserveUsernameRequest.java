@@ -2,15 +2,14 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Collections;
 import java.util.List;
 
-class ReserveUsernameRequest {
+public class ReserveUsernameRequest {
   @JsonProperty
   private List<String> usernameHashes;
 
-  ReserveUsernameRequest(List<String> usernameHashes) {
-    this.usernameHashes = Collections.unmodifiableList(usernameHashes);
+  public ReserveUsernameRequest(List<String> usernameHashes) {
+    this.usernameHashes = usernameHashes;
   }
 
   List<String> getUsernameHashes() {

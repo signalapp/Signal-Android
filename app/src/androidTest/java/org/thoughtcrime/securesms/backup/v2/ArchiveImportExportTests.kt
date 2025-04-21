@@ -231,6 +231,11 @@ class ArchiveImportExportTests {
     runTests { it.startsWith("recipient_groups_") }
   }
 
+  //  @Test
+  fun recipientSelf() {
+    runTests { it.startsWith("recipient_self_") }
+  }
+
   private fun runTests(predicate: (String) -> Boolean = { true }) {
     val testFiles = InstrumentationRegistry.getInstrumentation().context.resources.assets.list(TESTS_FOLDER)!!.filter(predicate)
     val results: MutableList<TestResult> = mutableListOf()

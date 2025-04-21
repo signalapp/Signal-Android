@@ -48,7 +48,7 @@ class ArchiveAttachmentBackfillJob private constructor(parameters: Parameters) :
 
     SignalDatabase.attachments.createKeyIvDigestForAttachmentsThatNeedArchiveUpload()
 
-    ArchiveUploadProgress.onAttachmentsStarted(jobs.size.toLong())
+    ArchiveUploadProgress.onAttachmentsStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
 
     Log.i(TAG, "Adding ${jobs.size} jobs to backfill attachments.")
     AppDependencies.jobManager.addAll(jobs)

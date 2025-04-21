@@ -5,10 +5,8 @@
 
 package org.thoughtcrime.securesms.jobs
 
-import android.content.Context
 import androidx.annotation.WorkerThread
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JsonJobData
@@ -92,14 +90,16 @@ class PushProcessMessageErrorJob private constructor(
 
     @WorkerThread
     private fun createParameters(exceptionMetadata: ExceptionMetadata): Parameters {
-      val context: Context = AppDependencies.application
+      val recipient: Recipient? = exceptionMetadata.groupId?.let { Recipient.externalPossiblyMigratedGroup(it) } ?: Recipient.external(exceptionMetadata.sender)
 
-      val recipient = exceptionMetadata.groupId?.let { Recipient.externalPossiblyMigratedGroup(it) } ?: Recipient.external(context, exceptionMetadata.sender)
+      if (recipient == null) {
+        Log.w(TAG, "Unable to create Recipient for the requested identifier!")
+      }
 
       return Parameters.Builder()
         .setMaxAttempts(Parameters.UNLIMITED)
         .addConstraint(ChangeNumberConstraint.KEY)
-        .setQueue(PushProcessMessageJob.getQueueName(recipient.id))
+        .setQueue(recipient?.let { PushProcessMessageJob.getQueueName(it.id) })
         .build()
     }
   }

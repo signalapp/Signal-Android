@@ -12,7 +12,7 @@ import androidx.annotation.StringRes;
 import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 
-import org.signal.core.util.StringUtil;
+import org.signal.core.util.BidiUtil;
 import org.signal.storageservice.protos.groups.AccessControl;
 import org.signal.storageservice.protos.groups.Member;
 import org.signal.storageservice.protos.groups.local.DecryptedApproveMember;
@@ -60,22 +60,16 @@ import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationSelfInvitedUpd
 import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedOtherUserToGroupUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedToGroupUpdate;
-import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context;
-import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription;
 import org.thoughtcrime.securesms.groups.GV2AccessLevelUtil;
-import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
 import org.whispersystems.signalservice.api.push.ServiceId;
-import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceIds;
 import org.whispersystems.signalservice.api.util.UuidUtil;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -450,7 +444,7 @@ final class GroupsV2UpdateMessageProducer {
   }
 
   private void describeGroupInvitationDeclinedUpdate(@NonNull GroupInvitationDeclinedUpdate update, @NonNull List<UpdateDescription> updates) {
-    if (selfIds.matches(update.inviteeAci)) {
+    if (update.inviteeAci != null && selfIds.matches(update.inviteeAci)) {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_you_declined_the_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
     } else {
       updates.add(updateDescription(context.getString(R.string.MessageRecord_someone_declined_an_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
@@ -551,9 +545,9 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeGroupNameUpdate(@NonNull GroupNameUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.updaterAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, StringUtil.isolateBidi(update.newGroupName)), R.drawable.ic_update_group_name_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(update.newGroupName)), R.drawable.ic_update_group_name_16));
     } else {
-      String newTitle = StringUtil.isolateBidi(update.newGroupName);
+      String newTitle = BidiUtil.isolateBidi(update.newGroupName);
       if (selfIds.matches(update.updaterAci)) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_name_to_s, newTitle), R.drawable.ic_update_group_name_16));
       } else {
@@ -1081,7 +1075,7 @@ final class GroupsV2UpdateMessageProducer {
     boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
     if (change.newTitle != null) {
-      String newTitle = StringUtil.isolateBidi(change.newTitle.value_);
+      String newTitle = BidiUtil.isolateBidi(change.newTitle.value_);
       if (editorIsYou) {
         updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_name_to_s, newTitle), R.drawable.ic_update_group_name_16));
       } else {
@@ -1104,7 +1098,7 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeUnknownEditorNewTitle(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.newTitle != null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, StringUtil.isolateBidi(change.newTitle.value_)), R.drawable.ic_update_group_name_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(change.newTitle.value_)), R.drawable.ic_update_group_name_16));
     }
   }
 
@@ -1118,7 +1112,7 @@ final class GroupsV2UpdateMessageProducer {
         updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_description, groupDescriptionUpdate.updaterAci, R.drawable.ic_update_group_name_16));
       }
     } else {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, StringUtil.isolateBidi(groupDescriptionUpdate.newDescription)), R.drawable.ic_update_group_name_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(groupDescriptionUpdate.newDescription)), R.drawable.ic_update_group_name_16));
     }
   }
 

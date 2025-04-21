@@ -21,7 +21,7 @@ public class LogSectionRemoteConfig implements LogSection {
   @Override
   public @NonNull CharSequence getContent(@NonNull Context context) {
     StringBuilder       out           = new StringBuilder();
-    Map<String, Object> memory        = RemoteConfig.getDebugMemoryValues();
+    Map<String, Object> memory        = RemoteConfig.getMemoryValues();
     Map<String, Object> disk          = RemoteConfig.getDebugDiskValues();
     Map<String, Object> pending       = RemoteConfig.getDebugPendingDiskValues();
     int                 remoteLength  = Stream.of(memory.keySet()).map(String::length).max(Integer::compareTo).orElse(0);

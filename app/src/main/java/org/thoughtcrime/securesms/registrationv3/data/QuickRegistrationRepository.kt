@@ -19,8 +19,9 @@ import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.registration.RestoreMethod
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 import java.io.IOException
 import kotlin.coroutines.coroutineContext
 import kotlin.time.Duration.Companion.seconds
@@ -71,9 +72,8 @@ object QuickRegistrationRepository {
         return TransferAccountResult.FAILED
       }
 
-      AppDependencies
-        .signalServiceAccountManager
-        .registrationApi
+      SignalNetwork
+        .provisioning
         .sendReRegisterDeviceProvisioningMessage(
           ephemeralId,
           publicKey,
@@ -147,8 +147,7 @@ object QuickRegistrationRepository {
     Log.d(TAG, "Waiting for restore method with token: ***${restoreMethodToken.takeLast(4)}")
     while (retries-- > 0 && result !is NetworkResult.Success && coroutineContext.isActive) {
       Log.d(TAG, "Waiting, remaining tries: $retries")
-      val api = AppDependencies.registrationApi
-      result = api.waitForRestoreMethod(restoreMethodToken)
+      result = SignalNetwork.provisioning.waitForRestoreMethod(restoreMethodToken)
       Log.d(TAG, "Result: $result")
     }
 

@@ -4,7 +4,6 @@ import android.content.Context
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import io.reactivex.rxjava3.kotlin.subscribeBy
@@ -21,7 +20,7 @@ import org.thoughtcrime.securesms.components.settings.DSLSettingsIcon
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.NO_TINT
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.GooglePayButton
 import org.thoughtcrime.securesms.components.settings.app.subscription.models.PayPalButton
 import org.thoughtcrime.securesms.components.settings.configure
@@ -31,6 +30,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.payments.currency.CurrencyUtil
 import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Entry point to capturing the necessary payment token to pay for a donation
@@ -41,9 +41,9 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
 
   private val args: GatewaySelectorBottomSheetArgs by navArgs()
 
-  private val viewModel: GatewaySelectorViewModel by viewModels(factoryProducer = {
-    GatewaySelectorViewModel.Factory(args, requireListener<InAppPaymentComponent>().stripeRepository)
-  })
+  private val viewModel: GatewaySelectorViewModel by viewModel {
+    GatewaySelectorViewModel(args, requireListener<GooglePayComponent>().googlePayRepository)
+  }
 
   override fun bindAdapter(adapter: DSLSettingsAdapter) {
     BadgeDisplay112.register(adapter)
@@ -59,44 +59,48 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
   }
 
   private fun getConfiguration(state: GatewaySelectorState): DSLConfiguration {
-    return configure {
-      customPref(
-        BadgeDisplay112.Model(
-          badge = state.inAppPayment.data.badge!!.let { Badges.fromDatabaseBadge(it) },
-          withDisplayText = false
-        )
-      )
-
-      space(12.dp)
-
-      presentTitleAndSubtitle(requireContext(), state.inAppPayment)
-
-      space(16.dp)
-
-      if (state.loading) {
-        space(16.dp)
-        customPref(IndeterminateLoadingCircle)
-        space(16.dp)
-        return@configure
-      }
-
-      state.gatewayOrderStrategy.orderedGateways.forEach { gateway ->
-        when (gateway) {
-          InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING -> error("Unsupported payment method.")
-          InAppPaymentData.PaymentMethodType.GOOGLE_PAY -> renderGooglePayButton(state)
-          InAppPaymentData.PaymentMethodType.PAYPAL -> renderPayPalButton(state)
-          InAppPaymentData.PaymentMethodType.CARD -> renderCreditCardButton(state)
-          InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> renderSEPADebitButton(state)
-          InAppPaymentData.PaymentMethodType.IDEAL -> renderIDEALButton(state)
-          InAppPaymentData.PaymentMethodType.UNKNOWN -> error("Unsupported payment method.")
+    return when (state) {
+      GatewaySelectorState.Loading -> {
+        configure {
+          space(16.dp)
+          customPref(IndeterminateLoadingCircle)
+          space(16.dp)
         }
       }
+      is GatewaySelectorState.Ready -> {
+        configure {
+          customPref(
+            BadgeDisplay112.Model(
+              badge = state.inAppPayment.data.badge!!.let { Badges.fromDatabaseBadge(it) },
+              withDisplayText = false
+            )
+          )
 
-      space(16.dp)
+          space(12.dp)
+
+          presentTitleAndSubtitle(requireContext(), state.inAppPayment)
+
+          space(16.dp)
+
+          state.gatewayOrderStrategy.orderedGateways.forEach { gateway ->
+            when (gateway) {
+              InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING -> error("Unsupported payment method.")
+              InAppPaymentData.PaymentMethodType.GOOGLE_PAY -> renderGooglePayButton(state)
+              InAppPaymentData.PaymentMethodType.PAYPAL -> renderPayPalButton(state)
+              InAppPaymentData.PaymentMethodType.CARD -> renderCreditCardButton(state)
+              InAppPaymentData.PaymentMethodType.SEPA_DEBIT -> renderSEPADebitButton(state)
+              InAppPaymentData.PaymentMethodType.IDEAL -> renderIDEALButton(state)
+              InAppPaymentData.PaymentMethodType.UNKNOWN -> error("Unsupported payment method.")
+            }
+          }
+
+          space(16.dp)
+        }
+      }
     }
   }
 
-  private fun DSLConfiguration.renderGooglePayButton(state: GatewaySelectorState) {
+  private fun DSLConfiguration.renderGooglePayButton(state: GatewaySelectorState.Ready) {
     if (state.isGooglePayAvailable) {
       space(16.dp)
 
@@ -115,7 +119,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     }
   }
 
-  private fun DSLConfiguration.renderPayPalButton(state: GatewaySelectorState) {
+  private fun DSLConfiguration.renderPayPalButton(state: GatewaySelectorState.Ready) {
     if (state.isPayPalAvailable) {
       space(16.dp)
 
@@ -134,7 +138,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     }
   }
 
-  private fun DSLConfiguration.renderCreditCardButton(state: GatewaySelectorState) {
+  private fun DSLConfiguration.renderCreditCardButton(state: GatewaySelectorState.Ready) {
     if (state.isCreditCardAvailable) {
       space(16.dp)
 
@@ -153,7 +157,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     }
   }
 
-  private fun DSLConfiguration.renderSEPADebitButton(state: GatewaySelectorState) {
+  private fun DSLConfiguration.renderSEPADebitButton(state: GatewaySelectorState.Ready) {
     if (state.isSEPADebitAvailable) {
       space(16.dp)
 
@@ -162,7 +166,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
         icon = DSLSettingsIcon.from(R.drawable.bank_transfer),
         disableOnClick = true,
         onClick = {
-          val price = args.inAppPayment.data.amount!!.toFiatMoney()
+          val price = state.inAppPayment.data.amount!!.toFiatMoney()
           if (state.sepaEuroMaximum != null &&
             price.currency == CurrencyUtil.EURO &&
             price.amount > state.sepaEuroMaximum.amount
@@ -181,7 +185,7 @@ class GatewaySelectorBottomSheet : DSLSettingsBottomSheetFragment() {
     }
   }
 
-  private fun DSLConfiguration.renderIDEALButton(state: GatewaySelectorState) {
+  private fun DSLConfiguration.renderIDEALButton(state: GatewaySelectorState.Ready) {
     if (state.isIDEALAvailable) {
       space(16.dp)
 

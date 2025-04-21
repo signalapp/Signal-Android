@@ -35,9 +35,9 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Previews
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
 import org.signal.core.util.kibiBytes
@@ -262,7 +262,7 @@ sealed interface BackupStatusData {
   class NotEnoughFreeSpace(
     requiredSpace: ByteSize
   ) : BackupStatusData {
-    val requiredSpace = requiredSpace.toUnitString(maxPlaces = 2)
+    val requiredSpace = requiredSpace.toUnitString()
 
     override val iconRes: Int = R.drawable.symbol_backup_error_24
 
@@ -282,7 +282,7 @@ sealed interface BackupStatusData {
     val bytesTotal: ByteSize = 0.bytes,
     val restoreStatus: RestoreStatus = RestoreStatus.NORMAL
   ) : BackupStatusData {
-    override val iconRes: Int = R.drawable.symbol_backup_light
+    override val iconRes: Int = if (restoreStatus == RestoreStatus.FINISHED) R.drawable.symbol_check_circle_24 else R.drawable.symbol_backup_light
     override val iconColors: BackupsIconColors = if (restoreStatus == RestoreStatus.FINISHED) BackupsIconColors.Success else BackupsIconColors.Normal
     override val showDismissAction: Boolean = restoreStatus == RestoreStatus.FINISHED
 
@@ -301,8 +301,8 @@ sealed interface BackupStatusData {
       @Composable get() = when (restoreStatus) {
         RestoreStatus.NORMAL -> stringResource(
           R.string.BackupStatus__status_size_of_size,
-          bytesDownloaded.toUnitString(maxPlaces = 2),
-          bytesTotal.toUnitString(maxPlaces = 2)
+          bytesDownloaded.toUnitString(),
+          bytesTotal.toUnitString()
         )
 
         RestoreStatus.LOW_BATTERY -> stringResource(R.string.BackupStatus__status_device_has_low_battery)
@@ -311,7 +311,7 @@ sealed interface BackupStatusData {
         RestoreStatus.FINISHED -> bytesTotal.toUnitString()
       }
 
-    override val progress: Float = if (bytesTotal.bytes > 0) {
+    override val progress: Float = if (bytesTotal.bytes > 0 && restoreStatus != RestoreStatus.FINISHED) {
       min(1f, max(0f, bytesDownloaded.bytes.toFloat() / bytesTotal.bytes.toFloat()))
     } else {
       NONE.toFloat()

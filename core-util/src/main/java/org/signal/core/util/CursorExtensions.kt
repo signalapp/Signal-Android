@@ -1,6 +1,7 @@
 package org.signal.core.util
 
 import android.database.Cursor
+import androidx.core.database.getIntOrNull
 import androidx.core.database.getLongOrNull
 import androidx.core.database.getStringOrNull
 import java.util.Optional
@@ -19,6 +20,10 @@ fun Cursor.optionalString(column: String): Optional<String> {
 
 fun Cursor.requireInt(column: String): Int {
   return CursorUtil.requireInt(this, column)
+}
+
+fun Cursor.requireIntOrNull(column: String): Int? {
+  return this.getIntOrNull(this.getColumnIndexOrThrow(column))
 }
 
 fun Cursor.optionalInt(column: String): Optional<Int> {
@@ -119,6 +124,16 @@ fun Cursor.readToSingleInt(defaultValue: Int = 0): Int {
       it.getInt(0)
     } else {
       defaultValue
+    }
+  }
+}
+
+fun Cursor.readToSingleIntOrNull(): Int? {
+  return use {
+    if (it.moveToFirst()) {
+      it.getIntOrNull(0)
+    } else {
+      null
     }
   }
 }

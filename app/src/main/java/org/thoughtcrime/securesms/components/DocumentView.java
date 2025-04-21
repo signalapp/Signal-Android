@@ -20,14 +20,17 @@ import com.pnikosis.materialishprogress.ProgressWheel;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+import org.signal.core.util.ByteSize;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
-import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.whispersystems.signalservice.api.util.OptionalUtil;
+
+import java.util.Collections;
 
 public class DocumentView extends FrameLayout {
 
@@ -35,16 +38,19 @@ public class DocumentView extends FrameLayout {
 
   private final @NonNull AnimatingToggle controlToggle;
   private final @NonNull ImageView       downloadButton;
+  private final @NonNull ImageView       uploadButton;
   private final @NonNull ProgressWheel   downloadProgress;
-  private final @NonNull View            container;
   private final @NonNull ViewGroup       iconContainer;
+  private final @NonNull ViewGroup       stopUploadButton;
   private final @NonNull TextView        fileName;
   private final @NonNull TextView        fileSize;
   private final @NonNull TextView        document;
 
-  private @Nullable SlideClickListener downloadListener;
-  private @Nullable SlideClickListener viewListener;
-  private @Nullable Slide              documentSlide;
+  private @Nullable SlideClickListener    downloadListener;
+  private @Nullable SlideClickListener    viewListener;
+  private @Nullable SlidesClickedListener cancelTransferClickListener;
+  private @Nullable SlidesClickedListener resendTransferClickListener;
+  private @Nullable Slide                 documentSlide;
 
   public DocumentView(@NonNull Context context) {
     this(context, null);
@@ -58,10 +64,11 @@ public class DocumentView extends FrameLayout {
     super(context, attrs, defStyleAttr);
     inflate(context, R.layout.document_view, this);
 
-    this.container        = findViewById(R.id.document_container);
     this.iconContainer    = findViewById(R.id.icon_container);
+    this.stopUploadButton = findViewById(R.id.stop_upload_progress_container);
     this.controlToggle    = findViewById(R.id.control_toggle);
     this.downloadButton   = findViewById(R.id.download);
+    this.uploadButton     = findViewById(R.id.upload);
     this.downloadProgress = findViewById(R.id.download_progress);
     this.fileName         = findViewById(R.id.file_name);
     this.fileSize         = findViewById(R.id.file_size);
@@ -89,17 +96,30 @@ public class DocumentView extends FrameLayout {
     this.viewListener = listener;
   }
 
+  public void setCancelTransferClickListener(@Nullable SlidesClickedListener listener) {
+    this.cancelTransferClickListener = listener;
+  }
+
+  public void setResendTransferClickListener(@Nullable SlidesClickedListener listener) {
+    this.resendTransferClickListener = listener;
+  }
+
   public void setDocument(final @NonNull Slide documentSlide,
                           final boolean showControls,
                           final boolean showSingleLineFilename)
   {
-    if (showControls && documentSlide.isPendingDownload()) {
+    if (showControls && documentSlide.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
+      controlToggle.displayQuick(stopUploadButton);
+      downloadProgress.spin();
+      stopUploadButton.setOnClickListener(new CancelTransferListener(documentSlide));
+    } else if (showControls && documentSlide.getUri() != null && documentSlide.isPendingDownload()) {
+      controlToggle.displayQuick(uploadButton);
+      uploadButton.setOnClickListener(new ResendTransferClickListener(documentSlide));
+      if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
+    } else if (showControls && documentSlide.getUri() == null && documentSlide.isPendingDownload()) {
       controlToggle.displayQuick(downloadButton);
       downloadButton.setOnClickListener(new DownloadClickedListener(documentSlide));
       if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
-    } else if (showControls && documentSlide.getTransferState() == AttachmentTable.TRANSFER_PROGRESS_STARTED) {
-      controlToggle.displayQuick(downloadProgress);
-      downloadProgress.spin();
     } else {
       controlToggle.displayQuick(iconContainer);
       if (downloadProgress.isSpinning()) downloadProgress.stopSpinning();
@@ -115,15 +135,9 @@ public class DocumentView extends FrameLayout {
     this.fileName.setText(OptionalUtil.or(documentSlide.getFileName(),
                                           documentSlide.getCaption())
                                       .orElse(getContext().getString(R.string.DocumentView_unnamed_file)));
-    this.fileSize.setText(Util.getPrettyFileSize(documentSlide.getFileSize()));
+    this.fileSize.setText(new ByteSize(documentSlide.getFileSize()).toUnitString(2));
     this.document.setText(documentSlide.getFileType(getContext()).orElse("").toLowerCase());
     this.setOnClickListener(new OpenClickedListener(documentSlide));
-  }
-
-  public void setDocument(final @NonNull Slide documentSlide,
-                          final boolean showControls)
-  {
-    setDocument(documentSlide, showControls, true);
   }
 
   @Override
@@ -173,8 +187,42 @@ public class DocumentView extends FrameLayout {
 
     @Override
     public void onClick(View v) {
-      if (!slide.isPendingDownload() && !slide.isInProgress() && viewListener != null) {
+      if (slide.hasDocument() && slide.getUri()!=null && viewListener != null) {
         viewListener.onClick(v, slide);
+      }
+    }
+  }
+
+  private class CancelTransferListener implements View.OnClickListener {
+    private final @NonNull Slide slide;
+
+    private CancelTransferListener(@NonNull Slide slide) {
+      this.slide = slide;
+    }
+
+    @Override
+    public void onClick(View v) {
+      if (cancelTransferClickListener != null) {
+        cancelTransferClickListener.onClick(v, Collections.singletonList(slide));
+      } else {
+        Log.w(TAG, "Received a cancel button click, but unable to execute it. slide: " + slide);
+      }
+    }
+  }
+
+  private class ResendTransferClickListener implements View.OnClickListener {
+    private final @NonNull Slide slide;
+
+    private ResendTransferClickListener(@NonNull Slide slide) {
+      this.slide = slide;
+    }
+
+    @Override
+    public void onClick(View v) {
+      if (resendTransferClickListener != null) {
+        resendTransferClickListener.onClick(v, Collections.singletonList(slide));
+      } else {
+        Log.w(TAG, "Received a cancel button click, but unable to execute it. slide: " + slide);
       }
     }
   }

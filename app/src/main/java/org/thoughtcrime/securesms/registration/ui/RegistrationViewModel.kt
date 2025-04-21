@@ -871,6 +871,8 @@ class RegistrationViewModel : ViewModel() {
       stopwatch.split("storage-sync")
 
       stopwatch.stop(TAG)
+    } else if (SignalStore.misc.needsUsernameRestore) {
+      AppDependencies.jobManager.runSynchronously(ReclaimUsernameAndLinkJob(), TimeUnit.SECONDS.toMillis(10))
     }
 
     refreshRemoteConfig()
