@@ -2370,7 +2370,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val recipientId = getByAci(aci).getOrNull() ?: return
     val record = getRecord(recipientId)
 
-    if (record.pni == null && record.e164 == null) {
+    val pni = record.pni
+    val e164 = record.e164?.takeIf { SignalE164Util.isPotentialE164(it) }
+
+    if (pni == null && e164 == null) {
       return
     }
 
@@ -2385,7 +2388,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .where("$ID = ?", record.id)
       .run()
 
-    getAndPossiblyMerge(null, record.pni, record.e164)
+    getAndPossiblyMerge(null, pni, e164)
   }
 
   fun processIndividualCdsLookup(aci: ACI?, pni: PNI, e164: String): RecipientId {
