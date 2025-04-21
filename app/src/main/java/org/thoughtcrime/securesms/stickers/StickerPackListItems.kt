@@ -20,7 +20,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
@@ -54,7 +53,6 @@ fun StickerPackSectionHeader(
 fun AvailableStickerPackRow(
   pack: AvailableStickerPack,
   onStartDownloadClick: () -> Unit = {},
-  onCancelDownloadClick: () -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -74,21 +72,16 @@ fun AvailableStickerPackRow(
     TransferProgressIndicator(
       state = when (pack.downloadStatus) {
         DownloadStatus.NotDownloaded -> TransferProgressState.Ready(
-          iconPainter = painterResource(id = R.drawable.symbol_arrow_circle_down_24),
+          icon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_circle_down_24),
           startButtonContentDesc = stringResource(R.string.StickerManagement_accessibility_download),
           startButtonOnClickLabel = stringResource(R.string.StickerManagement_accessibility_download_pack, pack.record.title),
           onStartClick = onStartDownloadClick
         )
 
-        is DownloadStatus.InProgress -> TransferProgressState.InProgress(
-          progress = pack.downloadStatus.progress,
-          cancelButtonContentDesc = stringResource(R.string.StickerManagement_accessibility_cancel),
-          cancelButtonOnClickLabel = stringResource(R.string.StickerManagement_accessibility_cancel_downloading_pack, pack.record.title),
-          onCancelClick = onCancelDownloadClick
-        )
+        is DownloadStatus.InProgress -> TransferProgressState.InProgress()
 
         DownloadStatus.Downloaded -> TransferProgressState.Complete(
-          iconPainter = painterResource(id = R.drawable.symbol_check_24),
+          icon = ImageVector.vectorResource(id = R.drawable.symbol_check_24),
           iconContentDesc = stringResource(R.string.StickerManagement_accessibility_downloaded_checkmark, pack.record.title)
         )
       }
@@ -227,7 +220,7 @@ private fun AvailableStickerPackRowPreviewDownloading() = SignalTheme {
       title = "Bandit the Cat",
       author = "Agnes Lee",
       isBlessed = false,
-      downloadStatus = DownloadStatus.InProgress(progress = 0.37f)
+      downloadStatus = DownloadStatus.InProgress
     )
   )
 }

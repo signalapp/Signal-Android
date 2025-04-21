@@ -14,13 +14,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.StrokeCap
-import androidx.compose.ui.graphics.painter.Painter
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.clickableContainer
-import org.thoughtcrime.securesms.R
 
 /**
  * A button that can be used to start, cancel, show progress, and show completion of a data transfer.
@@ -51,7 +49,7 @@ private fun StartTransferButton(
       )
   ) {
     Icon(
-      painter = state.iconPainter,
+      imageVector = state.icon,
       tint = MaterialTheme.colorScheme.onSurface,
       contentDescription = null,
       modifier = Modifier
@@ -68,34 +66,61 @@ private fun ProgressIndicator(
 ) {
   Box(
     modifier = modifier
-      .clickableContainer(
-        contentDescription = null,
-        onClickLabel = state.cancelButtonOnClickLabel,
-        onClick = state.onCancelClick
-      )
-      .padding(8.dp)
-  ) {
-    Icon(
-      painter = painterResource(R.drawable.symbol_stop_24),
-      tint = MaterialTheme.colorScheme.onSurface,
-      contentDescription = null,
-      modifier = Modifier
-        .matchParentSize()
-        .padding(6.dp)
-    )
-
-    CircularProgressIndicator(
-      progress = { state.progress },
-      strokeWidth = 2.dp,
-      strokeCap = StrokeCap.Round,
-      trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-      color = MaterialTheme.colorScheme.onSurface,
-      modifier = Modifier
-        .matchParentSize()
-        .clearAndSetSemantics {
-          contentDescription = state.cancelButtonContentDesc
+      .then(
+        if (state.cancelAction != null) {
+          Modifier.clickableContainer(
+            contentDescription = null,
+            onClickLabel = state.cancelAction.onClickLabel,
+            onClick = state.cancelAction.onClick
+          )
+        } else {
+          Modifier
         }
-    )
+      )
+      .padding(10.dp)
+  ) {
+    state.icon?.let { icon ->
+      Icon(
+        imageVector = icon,
+        tint = MaterialTheme.colorScheme.onSurface,
+        contentDescription = null,
+        modifier = Modifier
+          .matchParentSize()
+          .padding(6.dp)
+      )
+    }
+
+    val indicatorModifier = Modifier
+      .matchParentSize()
+      .then(
+        if (state.cancelAction != null) {
+          Modifier.clearAndSetSemantics {
+            contentDescription = state.cancelAction.contentDesc
+          }
+        } else {
+          Modifier
+        }
+      )
+
+    val progress = state.progress
+    if (progress == null) {
+      CircularProgressIndicator(
+        strokeWidth = 2.dp,
+        strokeCap = StrokeCap.Round,
+        trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+        color = MaterialTheme.colorScheme.onSurface,
+        modifier = indicatorModifier
+      )
+    } else {
+      CircularProgressIndicator(
+        progress = { progress },
+        strokeWidth = 2.dp,
+        strokeCap = StrokeCap.Round,
+        trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+        color = MaterialTheme.colorScheme.onSurface,
+        modifier = indicatorModifier
+      )
+    }
   }
 }
 
@@ -105,7 +130,7 @@ private fun CompleteIcon(
   modifier: Modifier = Modifier
 ) {
   Icon(
-    painter = state.iconPainter,
+    imageVector = state.icon,
     tint = MaterialTheme.colorScheme.onSurface,
     contentDescription = state.iconContentDesc,
     modifier = modifier.padding(12.dp)
@@ -114,21 +139,27 @@ private fun CompleteIcon(
 
 sealed interface TransferProgressState {
   data class Ready(
-    val iconPainter: Painter,
+    val icon: ImageVector,
     val startButtonContentDesc: String,
     val startButtonOnClickLabel: String,
     val onStartClick: () -> Unit
   ) : TransferProgressState
 
   data class InProgress(
-    val progress: Float,
-    val cancelButtonContentDesc: String,
-    val cancelButtonOnClickLabel: String,
-    val onCancelClick: () -> Unit = {}
-  ) : TransferProgressState
+    val icon: ImageVector? = null,
+    val progress: Float? = null,
+    val cancelAction: CancelAction? = null
+  ) : TransferProgressState {
+
+    data class CancelAction(
+      val contentDesc: String,
+      val onClickLabel: String,
+      val onClick: () -> Unit
+    )
+  }
 
   data class Complete(
-    val iconPainter: Painter,
+    val icon: ImageVector,
     val iconContentDesc: String
   ) : TransferProgressState
 }

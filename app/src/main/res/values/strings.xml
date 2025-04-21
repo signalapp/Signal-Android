@@ -2808,16 +2808,12 @@
     <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Download %s sticker pack</string>
-    <!-- Accessibility label for the button to cancel a sticker pack download. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_cancel_downloading_pack">Cancel downloading %s sticker pack</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
     <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
     <string name="StickerManagement_accessibility_download">Download</string>
-    <!-- Accessibility label for the button to cancel downloading a sticker pack. -->
-    <string name="StickerManagement_accessibility_cancel">Cancel</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">No stickers installed</string>

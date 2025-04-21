@@ -58,7 +58,7 @@ data class AvailableStickerPack(
 ) {
   sealed class DownloadStatus {
     data object NotDownloaded : DownloadStatus()
-    data class InProgress(val progress: Float) : DownloadStatus()
+    data object InProgress : DownloadStatus()
     data object Downloaded : DownloadStatus()
   }
 }

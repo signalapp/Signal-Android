@@ -279,7 +279,7 @@ private fun AvailableStickersContentPreview() {
           title = "Bandit the Cat",
           author = "Agnes Lee",
           isBlessed = false,
-          downloadStatus = DownloadStatus.InProgress(progress = 0.37f)
+          downloadStatus = DownloadStatus.InProgress
         ),
         StickerPreviewDataFactory.availablePack(
           title = "Day by Day",
