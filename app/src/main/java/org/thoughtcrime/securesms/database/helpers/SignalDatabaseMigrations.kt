@@ -126,6 +126,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V268_FixInAppPaymen
 import org.thoughtcrime.securesms.database.helpers.migration.V269_BackupMediaSnapshotChanges
 import org.thoughtcrime.securesms.database.helpers.migration.V270_FixChatFolderColumnsForStorageSync
 import org.thoughtcrime.securesms.database.helpers.migration.V271_AddNotificationProfileIdColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V272_UpdateUnreadCountIndices
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -257,10 +258,11 @@ object SignalDatabaseMigrations {
     268 to V268_FixInAppPaymentsErrorStateConsistency,
     269 to V269_BackupMediaSnapshotChanges,
     270 to V270_FixChatFolderColumnsForStorageSync,
-    271 to V271_AddNotificationProfileIdColumn
+    271 to V271_AddNotificationProfileIdColumn,
+    272 to V272_UpdateUnreadCountIndices
   )
 
-  const val DATABASE_VERSION = 271
+  const val DATABASE_VERSION = 272
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {
