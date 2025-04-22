@@ -5,6 +5,14 @@
 
 package org.thoughtcrime.securesms.components.transfercontrols
 
+import androidx.compose.animation.AnimatedContent
+import androidx.compose.animation.SizeTransform
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -28,10 +36,22 @@ fun TransferProgressIndicator(
   state: TransferProgressState,
   modifier: Modifier = Modifier.size(48.dp)
 ) {
-  when (state) {
-    is TransferProgressState.Ready -> StartTransferButton(state, modifier)
-    is TransferProgressState.InProgress -> ProgressIndicator(state, modifier)
-    is TransferProgressState.Complete -> CompleteIcon(state, modifier)
+  AnimatedContent(
+    targetState = state,
+    transitionSpec = {
+      val startDelay = 200
+      val enterTransition = fadeIn(tween(delayMillis = startDelay, durationMillis = 500)) + scaleIn(tween(delayMillis = startDelay, durationMillis = 400))
+      val exitTransition = fadeOut(tween(delayMillis = startDelay, durationMillis = 600)) + scaleOut(tween(delayMillis = startDelay, durationMillis = 800))
+      enterTransition
+        .togetherWith(exitTransition)
+        .using(SizeTransform(clip = false))
+    }
+  ) { targetState ->
+    when (targetState) {
+      is TransferProgressState.Ready -> StartTransferButton(targetState, modifier)
+      is TransferProgressState.InProgress -> ProgressIndicator(targetState, modifier)
+      is TransferProgressState.Complete -> CompleteIcon(targetState, modifier)
+    }
   }
 }
 

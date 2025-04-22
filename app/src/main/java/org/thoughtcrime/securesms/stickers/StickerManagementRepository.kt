@@ -69,19 +69,22 @@ object StickerManagementRepository {
       val installedPacks = mutableListOf<StickerPackRecord>()
       val availablePacks = mutableListOf<StickerPackRecord>()
       val blessedPacks = mutableListOf<StickerPackRecord>()
+      val sortOrderById = mutableMapOf<String, Int>()
 
-      reader.asSequence().forEach { record ->
+      reader.asSequence().forEachIndexed { index, record ->
         when {
           record.isInstalled -> installedPacks.add(record)
           BlessedPacks.contains(record.packId) -> blessedPacks.add(record)
           else -> availablePacks.add(record)
         }
+        sortOrderById[record.packId] = index
       }
 
       StickerPackResult(
         installedPacks = installedPacks,
         availablePacks = availablePacks,
-        blessedPacks = blessedPacks
+        blessedPacks = blessedPacks,
+        sortOrderByPackId = sortOrderById
       )
     }
   }
@@ -159,5 +162,6 @@ object StickerManagementRepository {
 data class StickerPackResult(
   val installedPacks: List<StickerPackRecord>,
   val availablePacks: List<StickerPackRecord>,
-  val blessedPacks: List<StickerPackRecord>
+  val blessedPacks: List<StickerPackRecord>,
+  val sortOrderByPackId: Map<String, Int>
 )

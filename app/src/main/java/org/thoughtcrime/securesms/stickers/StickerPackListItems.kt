@@ -17,6 +17,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -52,7 +53,7 @@ fun StickerPackSectionHeader(
 @Composable
 fun AvailableStickerPackRow(
   pack: AvailableStickerPack,
-  onStartDownloadClick: () -> Unit = {},
+  onInstallClick: () -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -69,23 +70,32 @@ fun AvailableStickerPackRow(
       modifier = Modifier.weight(1f)
     )
 
-    TransferProgressIndicator(
-      state = when (pack.downloadStatus) {
-        DownloadStatus.NotDownloaded -> TransferProgressState.Ready(
-          icon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_circle_down_24),
-          startButtonContentDesc = stringResource(R.string.StickerManagement_accessibility_download),
-          startButtonOnClickLabel = stringResource(R.string.StickerManagement_accessibility_download_pack, pack.record.title),
-          onStartClick = onStartDownloadClick
+    val readyIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_circle_down_24)
+    val downloadedIcon = ImageVector.vectorResource(R.drawable.symbol_check_24)
+
+    val startButtonContentDesc = stringResource(R.string.StickerManagement_accessibility_download)
+    val startButtonOnClickLabel = stringResource(R.string.StickerManagement_accessibility_download_pack, pack.record.title)
+    val downloadedContentDesc = stringResource(R.string.StickerManagement_accessibility_downloaded_checkmark, pack.record.title)
+
+    val transferState = remember(pack.downloadStatus) {
+      when (pack.downloadStatus) {
+        is DownloadStatus.NotDownloaded -> TransferProgressState.Ready(
+          icon = readyIcon,
+          startButtonContentDesc = startButtonContentDesc,
+          startButtonOnClickLabel = startButtonOnClickLabel,
+          onStartClick = onInstallClick
         )
 
         is DownloadStatus.InProgress -> TransferProgressState.InProgress()
 
-        DownloadStatus.Downloaded -> TransferProgressState.Complete(
-          icon = ImageVector.vectorResource(id = R.drawable.symbol_check_24),
-          iconContentDesc = stringResource(R.string.StickerManagement_accessibility_downloaded_checkmark, pack.record.title)
+        is DownloadStatus.Downloaded -> TransferProgressState.Complete(
+          icon = downloadedIcon,
+          iconContentDesc = downloadedContentDesc
         )
       }
-    )
+    }
+
+    TransferProgressIndicator(state = transferState)
   }
 }
 

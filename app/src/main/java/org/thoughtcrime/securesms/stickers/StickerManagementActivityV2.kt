@@ -36,7 +36,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
@@ -62,13 +65,20 @@ class StickerManagementActivityV2 : PassphraseRequiredActivity() {
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     super.onCreate(savedInstanceState, ready)
 
+    lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.STARTED) {
+        viewModel.onScreenVisible()
+      }
+    }
+
     setContent {
       val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
       SignalTheme {
         StickerManagementScreen(
           uiState = uiState,
-          onNavigateBack = ::supportFinishAfterTransition
+          onNavigateBack = ::supportFinishAfterTransition,
+          onInstallClick = viewModel::installStickerPack
         )
       }
     }
@@ -85,6 +95,7 @@ private data class Page(
 private fun StickerManagementScreen(
   uiState: StickerManagementUiState,
   onNavigateBack: () -> Unit = {},
+  onInstallClick: (AvailableStickerPack) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   Scaffold(
@@ -94,7 +105,13 @@ private fun StickerManagementScreen(
     val pages = listOf(
       Page(
         title = stringResource(R.string.StickerManagement_available_tab_label),
-        getContent = { AvailableStickersContent(blessedPacks = uiState.availableBlessedPacks, availablePacks = uiState.availablePacks) }
+        getContent = {
+          AvailableStickersContent(
+            blessedPacks = uiState.availableBlessedPacks,
+            notBlessedPacks = uiState.availableNotBlessedPacks,
+            onInstallClick = onInstallClick
+          )
+        }
       ),
       Page(
         title = stringResource(R.string.StickerManagement_installed_tab_label),
@@ -175,10 +192,11 @@ private fun PagerTab(
 @Composable
 private fun AvailableStickersContent(
   blessedPacks: List<AvailableStickerPack>,
-  availablePacks: List<AvailableStickerPack>,
+  notBlessedPacks: List<AvailableStickerPack>,
+  onInstallClick: (AvailableStickerPack) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
-  if (blessedPacks.isEmpty() && availablePacks.isEmpty()) {
+  if (blessedPacks.isEmpty() && notBlessedPacks.isEmpty()) {
     EmptyView(text = stringResource(R.string.StickerManagement_available_tab_empty_text))
   } else {
     LazyColumn(
@@ -191,21 +209,29 @@ private fun AvailableStickersContent(
           items = blessedPacks,
           key = { it.record.packId }
         ) {
-          AvailableStickerPackRow(it)
+          AvailableStickerPackRow(
+            pack = it,
+            onInstallClick = { onInstallClick(it) },
+            modifier = Modifier.animateItem()
+          )
         }
       }
 
-      if (blessedPacks.isNotEmpty() && availablePacks.isNotEmpty()) {
+      if (blessedPacks.isNotEmpty() && notBlessedPacks.isNotEmpty()) {
         item { Dividers.Default() }
       }
 
-      if (availablePacks.isNotEmpty()) {
+      if (notBlessedPacks.isNotEmpty()) {
         item { StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_stickers_you_received_header)) }
         items(
-          items = availablePacks,
+          items = notBlessedPacks,
           key = { it.record.packId }
         ) {
-          AvailableStickerPackRow(it)
+          AvailableStickerPackRow(
+            pack = it,
+            onInstallClick = { onInstallClick(it) },
+            modifier = Modifier.animateItem()
+          )
         }
       }
     }
@@ -254,10 +280,7 @@ private fun EmptyView(
 private fun StickerManagementScreenEmptyStatePreview() {
   Previews.Preview {
     StickerManagementScreen(
-      StickerManagementUiState(
-        availablePacks = emptyList(),
-        installedPacks = emptyList()
-      )
+      StickerManagementUiState()
     )
   }
 }
@@ -274,7 +297,7 @@ private fun AvailableStickersContentPreview() {
           isBlessed = true
         )
       ),
-      availablePacks = listOf(
+      notBlessedPacks = listOf(
         StickerPreviewDataFactory.availablePack(
           title = "Bandit the Cat",
           author = "Agnes Lee",
