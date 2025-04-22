@@ -1578,7 +1578,10 @@ class ConversationFragment :
     when (data) {
       is ShareOrDraftData.SendKeyboardImage -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = false)
       is ShareOrDraftData.SendSticker -> sendMessageWithoutComposeInput(slide = data.slide, clearCompose = true)
-      is ShareOrDraftData.SetText -> composeText.setDraftText(data.text)
+      is ShareOrDraftData.SetText -> {
+        composeText.setDraftText(data.text)
+        inputPanel.clickOnComposeInput()
+      }
       is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(data.location, MediaConstraints.getPushMediaConstraints())
       is ShareOrDraftData.SetEditMessage -> {
         composeText.setDraftText(data.draftText)
