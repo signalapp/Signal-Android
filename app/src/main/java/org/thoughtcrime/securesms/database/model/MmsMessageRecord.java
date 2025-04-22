@@ -28,6 +28,8 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
 import org.thoughtcrime.securesms.database.model.databaseprotos.CryptoValue;
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge;
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras;
+import org.thoughtcrime.securesms.fonts.SignalSymbols;
+import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;
@@ -250,20 +252,20 @@ public class MmsMessageRecord extends MessageRecord {
       if (call.getDirection() == CallTable.Direction.OUTGOING) {
         if (call.getType() == CallTable.Type.AUDIO_CALL) {
           int updateString = R.string.MessageRecord_outgoing_voice_call;
-          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), R.drawable.ic_update_audio_call_outgoing_16);
+          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), Glyph.PHONE);
         } else {
           int updateString = R.string.MessageRecord_outgoing_video_call;
-          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), R.drawable.ic_update_video_call_outgoing_16);
+          return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), Glyph.VIDEO_CAMERA);
         }
       } else {
         boolean isVideoCall = call.getType() == CallTable.Type.VIDEO_CALL;
 
         if (accepted || !call.isDisplayedAsMissedCallInUi()) {
           int updateString = isVideoCall ? R.string.MessageRecord_incoming_video_call : R.string.MessageRecord_incoming_voice_call;
-          int icon         = isVideoCall ? R.drawable.ic_update_video_call_incoming_16 : R.drawable.ic_update_audio_call_incoming_16;
+          Glyph icon       = isVideoCall ? Glyph.VIDEO_CAMERA : Glyph.PHONE;
           return staticUpdateDescription(context.getString(R.string.MessageRecord_call_message_with_date, context.getString(updateString), callDateString), icon);
         } else {
-          int icon = isVideoCall ? R.drawable.ic_update_video_call_missed_16 : R.drawable.ic_update_audio_call_missed_16;
+          Glyph icon = isVideoCall ? Glyph.VIDEO_CAMERA : Glyph.PHONE;
           int message;
           if (call.getEvent() == CallTable.Event.MISSED_NOTIFICATION_PROFILE) {
             message = isVideoCall ? R.string.MessageRecord_missed_video_call_notification_profile : R.string.MessageRecord_missed_voice_call_notification_profile;

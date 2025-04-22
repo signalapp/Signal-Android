@@ -687,7 +687,7 @@ private fun BackupCard(
         Text(
           text = signalSymbolText(
             text = title,
-            glyphStart = if (backupState.isActive()) SignalSymbols.Glyph.CHECKMARK else null
+            glyphStart = if (backupState.isActive()) SignalSymbols.Glyph.CHECK else null
           ),
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           style = MaterialTheme.typography.bodyMedium

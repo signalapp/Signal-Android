@@ -60,6 +60,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationSelfInvitedUpd
 import org.thoughtcrime.securesms.backup.v2.proto.GroupV2MigrationUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedOtherUserToGroupUpdate;
 import org.thoughtcrime.securesms.backup.v2.proto.SelfInvitedToGroupUpdate;
+import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
 import org.thoughtcrime.securesms.groups.GV2AccessLevelUtil;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -117,24 +118,24 @@ final class GroupsV2UpdateMessageProducer {
     }
 
     if (selfPending.isPresent()) {
-      return updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, selfPending.get().addedByAci, R.drawable.ic_update_group_add_16);
+      return updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, selfPending.get().addedByAci, Glyph.PERSON_PLUS);
     }
 
     if (decryptedGroupChange != null) {
       ByteString foundingMemberUuid = decryptedGroupChange.editorServiceIdBytes;
       if (foundingMemberUuid.size() > 0) {
         if (selfIds.matches(foundingMemberUuid)) {
-          return updateDescription(context.getString(R.string.MessageRecord_you_created_the_group), R.drawable.ic_update_group_16);
+          return updateDescription(context.getString(R.string.MessageRecord_you_created_the_group), Glyph.GROUP);
         } else {
-          return updateDescription(R.string.MessageRecord_s_added_you, foundingMemberUuid, R.drawable.ic_update_group_add_16);
+          return updateDescription(R.string.MessageRecord_s_added_you, foundingMemberUuid, Glyph.PERSON_PLUS);
         }
       }
     }
 
     if (group != null && DecryptedGroupUtil.findMemberByAci(group.members, selfIds.getAci()).isPresent()) {
-      return updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16);
+      return updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), Glyph.PERSON_PLUS);
     } else {
-      return updateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16);
+      return updateDescription(context.getString(R.string.MessageRecord_group_updated), Glyph.GROUP);
     }
   }
 
@@ -144,7 +145,7 @@ final class GroupsV2UpdateMessageProducer {
       describeUpdate(update, updates);
     }
     if (updates.isEmpty()) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_group_updated), Glyph.GROUP));
     }
 
     return updates;
@@ -222,9 +223,9 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeGroupSelfInvitationRevokedUpdate(@NonNull GroupSelfInvitationRevokedUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.revokerAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group), Glyph.PERSON_X));
     } else {
-      updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, update.revokerAci, R.drawable.ic_update_group_decline_16));
+      updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, update.revokerAci, Glyph.PERSON_X));
     }
   }
 
@@ -232,20 +233,20 @@ final class GroupsV2UpdateMessageProducer {
     final int duration = Math.toIntExact(update.expiresInMs / 1000);
     String    time     = ExpirationUtil.getExpirationDisplayValue(context, duration);
     if (update.updaterAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_disappearing_message_time_set_to_s, time), R.drawable.ic_update_timer_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_disappearing_message_time_set_to_s, time), Glyph.TIMER));
     } else {
       boolean editorIsYou = selfIds.matches(update.updaterAci);
       if (duration <= 0) {
         if (editorIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_disabled_disappearing_messages), R.drawable.ic_update_timer_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_disabled_disappearing_messages), Glyph.TIMER_SLASH));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_disabled_disappearing_messages, update.updaterAci, R.drawable.ic_update_timer_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_disabled_disappearing_messages, update.updaterAci, Glyph.TIMER_SLASH));
         }
       } else {
         if (editorIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time), R.drawable.ic_update_timer_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time), Glyph.TIMER));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_set_disappearing_message_time_to_s, update.updaterAci, time, R.drawable.ic_update_timer_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_set_disappearing_message_time_to_s, update.updaterAci, time, Glyph.TIMER));
         }
       }
     }
@@ -253,49 +254,49 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeGroupMemberJoinedByLinkUpdate(@NonNull GroupMemberJoinedByLinkUpdate update, @NonNull List<UpdateDescription> updates) {
     if (selfIds.matches(update.newMemberAci)) {
-      updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group_via_the_group_link), R.drawable.ic_update_group_accept_16));
+      updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group_via_the_group_link), Glyph.PERSON_CHECK));
     } else {
-      updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group_via_the_group_link, update.newMemberAci, R.drawable.ic_update_group_accept_16));
+      updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group_via_the_group_link, update.newMemberAci, Glyph.PERSON_CHECK));
     }
   }
 
   private void describeGroupV2MigrationSelfInvitedUpdate(@NonNull GroupV2MigrationSelfInvitedUpdate update, @NonNull List<UpdateDescription> updates) {
-    updates.add(updateDescription(context.getString(R.string.MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join), R.drawable.ic_update_group_add_16));
+    updates.add(updateDescription(context.getString(R.string.MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join), Glyph.PERSON_PLUS));
   }
 
   private void describeGroupV2MigrationDroppedMembersUpdate(@NonNull GroupV2MigrationDroppedMembersUpdate update, @NonNull List<UpdateDescription> updates) {
     updates.add(updateDescription(context.getResources()
-                                         .getQuantityString(R.plurals.MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed, update.droppedMembersCount, update.droppedMembersCount), R.drawable.ic_update_group_remove_16));
+                                         .getQuantityString(R.plurals.MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed, update.droppedMembersCount, update.droppedMembersCount), Glyph.PERSON_MINUS));
   }
 
   private void describeGroupV2MigrationInvitedMembersUpdate(@NonNull GroupV2MigrationInvitedMembersUpdate update, @NonNull List<UpdateDescription> updates) {
     updates.add(updateDescription(context.getResources()
-                                         .getQuantityString(R.plurals.MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited, update.invitedMembersCount, update.invitedMembersCount), R.drawable.ic_update_group_remove_16));
+                                         .getQuantityString(R.plurals.MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited, update.invitedMembersCount, update.invitedMembersCount), Glyph.PERSON_MINUS));
   }
 
   private void describeGroupV2MigrationUpdate(@NonNull GroupV2MigrationUpdate update, @NonNull List<UpdateDescription> updates) {
-    updates.add(updateDescription(context.getString(R.string.MessageRecord_this_group_was_updated_to_a_new_group), R.drawable.ic_update_group_role_16));
+    updates.add(updateDescription(context.getString(R.string.MessageRecord_this_group_was_updated_to_a_new_group), Glyph.MEGAPHONE));
   }
 
   private void describeGroupInviteLinkAdminApprovalUpdate(@NonNull GroupInviteLinkAdminApprovalUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.updaterAci == null) {
       if (update.linkRequiresAdminApproval) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off), Glyph.MEGAPHONE));
       }
     } else {
       if (selfIds.matches(update.updaterAci)) {
         if (update.linkRequiresAdminApproval) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_admin_approval_for_the_group_link), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_admin_approval_for_the_group_link), Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_off_admin_approval_for_the_group_link), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_off_admin_approval_for_the_group_link), Glyph.MEGAPHONE));
         }
       } else {
         if (update.linkRequiresAdminApproval) {
-          updates.add(updateDescription(R.string.MessageRecord_s_turned_on_admin_approval_for_the_group_link, update.updaterAci, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_turned_on_admin_approval_for_the_group_link, update.updaterAci, Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_turned_off_admin_approval_for_the_group_link, update.updaterAci, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_turned_off_admin_approval_for_the_group_link, update.updaterAci, Glyph.MEGAPHONE));
         }
       }
     }
@@ -303,12 +304,12 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeInviteLinkDisabledUpdate(@NonNull GroupInviteLinkDisabledUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.updaterAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_off), R.drawable.ic_update_group_role_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_off), Glyph.MEGAPHONE));
     } else {
       if (selfIds.matches(update.updaterAci)) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_off_the_group_link), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_off_the_group_link), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_turned_off_the_group_link, update.updaterAci, R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_turned_off_the_group_link, update.updaterAci, Glyph.MEGAPHONE));
       }
     }
   }
@@ -317,22 +318,22 @@ final class GroupsV2UpdateMessageProducer {
 
     if (update.updaterAci == null) {
       if (update.linkRequiresAdminApproval) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off), Glyph.MEGAPHONE));
       }
     } else {
       if (selfIds.matches(update.updaterAci)) {
         if (update.linkRequiresAdminApproval) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_on), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_on), Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_off), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_off), Glyph.MEGAPHONE));
         }
       } else {
         if (update.linkRequiresAdminApproval) {
-          updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_on, update.updaterAci, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_on, update.updaterAci, Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_off, update.updaterAci, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_off, update.updaterAci, Glyph.MEGAPHONE));
         }
       }
     }
@@ -340,12 +341,12 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeInviteLinkResetUpdate(@NonNull GroupInviteLinkResetUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.updaterAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_reset), R.drawable.ic_update_group_role_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_reset), Glyph.MEGAPHONE));
     } else {
       if (selfIds.matches(update.updaterAci)) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_reset_the_group_link), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_reset_the_group_link), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_reset_the_group_link, update.updaterAci, R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_reset_the_group_link, update.updaterAci, Glyph.MEGAPHONE));
       }
     }
   }
@@ -354,9 +355,9 @@ final class GroupsV2UpdateMessageProducer {
     boolean requestingMemberIsYou = selfIds.matches(update.requestorAci);
 
     if (requestingMemberIsYou) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_canceled_your_request_to_join_the_group), R.drawable.ic_update_group_decline_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_canceled_your_request_to_join_the_group), Glyph.PERSON_X));
     } else {
-      updates.add(updateDescription(R.string.MessageRecord_s_canceled_their_request_to_join_the_group, update.requestorAci, R.drawable.ic_update_group_decline_16));
+      updates.add(updateDescription(R.string.MessageRecord_s_canceled_their_request_to_join_the_group, update.requestorAci, Glyph.PERSON_X));
     }
   }
 
@@ -366,40 +367,40 @@ final class GroupsV2UpdateMessageProducer {
     if (update.wasApproved) {
       if (update.updaterAci == null) {
         if (requestingMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_approved), R.drawable.ic_update_group_accept_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_approved), Glyph.PERSON_CHECK));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_a_request_to_join_the_group_from_s_has_been_approved, update.requestorAci, R.drawable.ic_update_group_accept_16));
+          updates.add(updateDescription(R.string.MessageRecord_a_request_to_join_the_group_from_s_has_been_approved, update.requestorAci, Glyph.PERSON_CHECK));
         }
       } else {
         if (requestingMemberIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_s_approved_your_request_to_join_the_group, update.updaterAci, R.drawable.ic_update_group_accept_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_approved_your_request_to_join_the_group, update.updaterAci, Glyph.PERSON_CHECK));
         } else {
           boolean editorIsYou = selfIds.matches(update.updaterAci);
 
           if (editorIsYou) {
-            updates.add(updateDescription(R.string.MessageRecord_you_approved_a_request_to_join_the_group_from_s, update.requestorAci, R.drawable.ic_update_group_accept_16));
+            updates.add(updateDescription(R.string.MessageRecord_you_approved_a_request_to_join_the_group_from_s, update.requestorAci, Glyph.PERSON_CHECK));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_approved_a_request_to_join_the_group_from_s, update.updaterAci, update.requestorAci, R.drawable.ic_update_group_accept_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_approved_a_request_to_join_the_group_from_s, update.updaterAci, update.requestorAci, Glyph.PERSON_CHECK));
           }
         }
       }
     } else {
       if (update.updaterAci == null) {
         if (requestingMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), R.drawable.ic_update_group_decline_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), Glyph.PERSON_X));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_a_request_to_join_the_group_from_s_has_been_denied, update.requestorAci, R.drawable.ic_update_group_decline_16));
+          updates.add(updateDescription(R.string.MessageRecord_a_request_to_join_the_group_from_s_has_been_denied, update.requestorAci, Glyph.PERSON_X));
         }
       } else {
         if (requestingMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), R.drawable.ic_update_group_decline_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), Glyph.PERSON_X));
         } else {
           boolean editorIsYou = selfIds.matches(update.updaterAci);
 
           if (editorIsYou) {
-            updates.add(updateDescription(R.string.MessageRecord_you_denied_a_request_to_join_the_group_from_s, update.requestorAci, R.drawable.ic_update_group_decline_16));
+            updates.add(updateDescription(R.string.MessageRecord_you_denied_a_request_to_join_the_group_from_s, update.requestorAci, Glyph.PERSON_X));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, update.updaterAci, update.requestorAci, R.drawable.ic_update_group_decline_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, update.updaterAci, update.requestorAci, Glyph.PERSON_X));
           }
         }
       }
@@ -408,9 +409,9 @@ final class GroupsV2UpdateMessageProducer {
 
   private void describeGroupJoinRequestUpdate(@NonNull GroupJoinRequestUpdate update, @NonNull List<UpdateDescription> updates) {
     if (selfIds.matches(update.requestorAci)) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_sent_a_request_to_join_the_group), R.drawable.ic_update_group_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_sent_a_request_to_join_the_group), Glyph.GROUP));
     } else {
-      updates.add(updateDescription(R.string.MessageRecord_s_requested_to_join_via_the_group_link, update.requestorAci, R.drawable.ic_update_group_16));
+      updates.add(updateDescription(R.string.MessageRecord_s_requested_to_join_via_the_group_link, update.requestorAci, Glyph.GROUP));
     }
   }
 
@@ -426,28 +427,28 @@ final class GroupsV2UpdateMessageProducer {
 
     if (update.updaterAci == null) {
       if (revokedMeCount > 0) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group), Glyph.PERSON_X));
       }
       if (notMeInvitees > 0) {
-        updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_d_invitations_were_revoked, notMeInvitees, notMeInvitees), R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_d_invitations_were_revoked, notMeInvitees, notMeInvitees), Glyph.PERSON_X));
       }
     } else {
       if (revokedMeCount > 0) {
-        updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, update.updaterAci, R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, update.updaterAci, Glyph.PERSON_X));
       }
       if (selfIds.matches(update.updaterAci)) {
-        updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_you_revoked_invites, notMeInvitees, notMeInvitees), R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_you_revoked_invites, notMeInvitees, notMeInvitees), Glyph.PERSON_X));
       } else {
-        updates.add(updateDescription(R.plurals.MessageRecord_s_revoked_invites, notMeInvitees, update.updaterAci, notMeInvitees, R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(R.plurals.MessageRecord_s_revoked_invites, notMeInvitees, update.updaterAci, notMeInvitees, Glyph.PERSON_X));
       }
     }
   }
 
   private void describeGroupInvitationDeclinedUpdate(@NonNull GroupInvitationDeclinedUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.inviteeAci != null && selfIds.matches(update.inviteeAci)) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_declined_the_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_declined_the_invitation_to_the_group), Glyph.PERSON_X));
     } else {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_someone_declined_an_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_someone_declined_an_invitation_to_the_group), Glyph.PERSON_X));
     }
   }
 
@@ -456,24 +457,24 @@ final class GroupsV2UpdateMessageProducer {
 
     if (update.updaterAci == null) {
       if (newMemberIsYou) {
-        updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16));
+        updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), Glyph.PERSON_PLUS));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, update.newMemberAci, R.drawable.ic_update_group_add_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, update.newMemberAci, Glyph.PERSON_PLUS));
       }
     } else {
       if (newMemberIsYou) {
-        updates.add(0, updateDescription(R.string.MessageRecord_s_added_you, update.updaterAci, R.drawable.ic_update_group_add_16));
+        updates.add(0, updateDescription(R.string.MessageRecord_s_added_you, update.updaterAci, Glyph.PERSON_PLUS));
       } else if (selfIds.matches(update.updaterAci)) {
         if (update.hadOpenInvitation) {
-          updates.add(updateDescription(R.string.MessageRecord_you_added_invited_member_s, update.newMemberAci, R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_added_invited_member_s, update.newMemberAci, Glyph.PERSON_PLUS));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_you_added_s, update.newMemberAci, R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_added_s, update.newMemberAci, Glyph.PERSON_PLUS));
         }
       } else {
         if (update.hadOpenInvitation) {
-          updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, update.updaterAci, update.newMemberAci, R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, update.updaterAci, update.newMemberAci, Glyph.PERSON_PLUS));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_added_s, update.updaterAci, update.newMemberAci, R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_added_s, update.updaterAci, update.newMemberAci, Glyph.PERSON_PLUS));
         }
       }
     }
@@ -483,75 +484,75 @@ final class GroupsV2UpdateMessageProducer {
     boolean newMemberIsYou = selfIds.matches(update.newMemberAci);
 
     if (newMemberIsYou) {
-      updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16));
+      updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), Glyph.PERSON_PLUS));
     } else {
-      updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, update.newMemberAci, R.drawable.ic_update_group_add_16));
+      updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, update.newMemberAci, Glyph.PERSON_PLUS));
     }
   }
 
   private void describeGroupInvitationAcceptedUpdate(@NonNull GroupInvitationAcceptedUpdate update, @NonNull List<UpdateDescription> updates) {
     if (selfIds.matches(update.newMemberAci)) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_accepted_invite), R.drawable.ic_update_group_accept_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_accepted_invite), Glyph.PERSON_CHECK));
     } else {
-      updates.add(updateDescription(R.string.MessageRecord_s_accepted_invite, update.newMemberAci, R.drawable.ic_update_group_accept_16));
+      updates.add(updateDescription(R.string.MessageRecord_s_accepted_invite, update.newMemberAci, Glyph.PERSON_CHECK));
     }
   }
 
   private void describeUnknownUsersInvitedUpdate(@NonNull GroupUnknownInviteeUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.inviterAci == null) {
-      updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_d_people_were_invited_to_the_group, update.inviteeCount, update.inviteeCount), R.drawable.ic_update_group_add_16));
+      updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_d_people_were_invited_to_the_group, update.inviteeCount, update.inviteeCount), Glyph.PERSON_PLUS));
     } else {
-      updates.add(updateDescription(R.plurals.MessageRecord_s_invited_members, update.inviteeCount, update.inviterAci, update.inviteeCount, R.drawable.ic_update_group_add_16));
+      updates.add(updateDescription(R.plurals.MessageRecord_s_invited_members, update.inviteeCount, update.inviterAci, update.inviteeCount, Glyph.PERSON_PLUS));
     }
   }
 
   private void describeSelfInvitedOtherUserToGroupUpdate(@NonNull SelfInvitedOtherUserToGroupUpdate update, @NonNull List<UpdateDescription> updates) {
-    updates.add(updateDescription(R.string.MessageRecord_you_invited_s_to_the_group, update.inviteeServiceId, R.drawable.ic_update_group_add_16));
+    updates.add(updateDescription(R.string.MessageRecord_you_invited_s_to_the_group, update.inviteeServiceId, Glyph.PERSON_PLUS));
   }
 
   private void describeSelfInvitedToGroupUpdate(@NonNull SelfInvitedToGroupUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.inviterAci == null) {
-      updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_were_invited_to_the_group), R.drawable.ic_update_group_add_16));
+      updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_were_invited_to_the_group), Glyph.PERSON_PLUS));
     } else {
-      updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, update.inviterAci, R.drawable.ic_update_group_add_16));
+      updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, update.inviterAci, Glyph.PERSON_PLUS));
     }
   }
 
   private void describeGenericGroupUpdate(@NonNull GenericGroupUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.updaterAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_was_updated), R.drawable.ic_update_group_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_was_updated), Glyph.GROUP));
     } else {
       boolean editorIsYou = selfIds.matches(update.updaterAci);
 
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_updated_group), R.drawable.ic_update_group_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_updated_group), Glyph.GROUP));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_updated_group, update.updaterAci, R.drawable.ic_update_group_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_updated_group, update.updaterAci, Glyph.GROUP));
       }
     }
   }
 
   private void describeGroupCreationUpdate(@NonNull GroupCreationUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.updaterAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_group_updated), R.drawable.ic_update_group_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_group_updated), Glyph.GROUP));
     } else {
       if (selfIds.matches(update.updaterAci)) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_created_the_group), R.drawable.ic_update_group_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_created_the_group), Glyph.GROUP));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_added_you, update.updaterAci, R.drawable.ic_update_group_add_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_added_you, update.updaterAci, Glyph.PERSON_PLUS));
       }
     }
   }
 
   private void describeGroupNameUpdate(@NonNull GroupNameUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.updaterAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(update.newGroupName)), R.drawable.ic_update_group_name_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(update.newGroupName)), Glyph.EDIT));
     } else {
       String newTitle = BidiUtil.isolateBidi(update.newGroupName);
       if (selfIds.matches(update.updaterAci)) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_name_to_s, newTitle), R.drawable.ic_update_group_name_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_name_to_s, newTitle), Glyph.EDIT));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_name_to_s, update.updaterAci, newTitle, R.drawable.ic_update_group_name_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_name_to_s, update.updaterAci, newTitle, Glyph.EDIT));
       }
     }
   }
@@ -562,14 +563,14 @@ final class GroupsV2UpdateMessageProducer {
     }
     String accessLevel = GV2AccessLevelUtil.toString(context, backupGv2AccessLevelToGroups(update.accessLevel));
     if (update.updaterAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_who_can_edit_group_membership_has_been_changed_to_s, accessLevel), R.drawable.ic_update_group_role_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_who_can_edit_group_membership_has_been_changed_to_s, accessLevel), Glyph.MEGAPHONE));
     } else {
       boolean editorIsYou = selfIds.matches(update.updaterAci);
 
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_edit_group_membership_to_s, accessLevel), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_edit_group_membership_to_s, accessLevel), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_membership_to_s, update.updaterAci, accessLevel, R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_membership_to_s, update.updaterAci, accessLevel, Glyph.MEGAPHONE));
       }
     }
   }
@@ -580,14 +581,14 @@ final class GroupsV2UpdateMessageProducer {
     }
     String accessLevel = GV2AccessLevelUtil.toString(context, backupGv2AccessLevelToGroups(update.accessLevel));
     if (update.updaterAci == null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_who_can_edit_group_info_has_been_changed_to_s, accessLevel), R.drawable.ic_update_group_role_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_who_can_edit_group_info_has_been_changed_to_s, accessLevel), Glyph.MEGAPHONE));
     } else {
       boolean editorIsYou = selfIds.matches(update.updaterAci);
 
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_edit_group_info_to_s, accessLevel), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_edit_group_info_to_s, accessLevel), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_info_to_s, update.updaterAci, accessLevel, R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_info_to_s, update.updaterAci, accessLevel, Glyph.MEGAPHONE));
       }
     }
   }
@@ -595,24 +596,24 @@ final class GroupsV2UpdateMessageProducer {
   private void describeGroupAnnouncementOnlyUpdate(@NonNull GroupAnnouncementOnlyChangeUpdate update, @NonNull List<UpdateDescription> updates) {
     if (update.updaterAci == null) {
       if (update.isAnnouncementOnly) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_only_admins_to_send), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_only_admins_to_send), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_all_members_to_send), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_all_members_to_send), Glyph.MEGAPHONE));
       }
     } else {
       boolean editorIsYou = selfIds.matches(update.updaterAci);
 
       if (update.isAnnouncementOnly) {
         if (editorIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_only_admins_to_send), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_only_admins_to_send), Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_allow_only_admins_to_send, update.updaterAci, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_allow_only_admins_to_send, update.updaterAci, Glyph.MEGAPHONE));
         }
       } else {
         if (editorIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_all_members_to_send), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_all_members_to_send), Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_allow_all_members_to_send, update.updaterAci, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_allow_all_members_to_send, update.updaterAci, Glyph.MEGAPHONE));
         }
       }
     }
@@ -624,9 +625,9 @@ final class GroupsV2UpdateMessageProducer {
     }
     boolean editorIsYou = selfIds.matches(update.aci);
     if (editorIsYou) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_left_the_group), R.drawable.ic_update_group_leave_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_left_the_group), Glyph.LEAVE));
     } else {
-      updates.add(updateDescription(R.string.MessageRecord_s_left_the_group, update.aci, R.drawable.ic_update_group_leave_16));
+      updates.add(updateDescription(R.string.MessageRecord_s_left_the_group, update.aci, Glyph.LEAVE));
     }
   }
 
@@ -635,9 +636,9 @@ final class GroupsV2UpdateMessageProducer {
       boolean removedMemberIsYou = selfIds.matches(update.removedAci);
 
       if (removedMemberIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_no_longer_in_the_group), R.drawable.ic_update_group_leave_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_no_longer_in_the_group), Glyph.LEAVE));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_is_no_longer_in_the_group, update.removedAci, R.drawable.ic_update_group_leave_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_is_no_longer_in_the_group, update.removedAci, Glyph.LEAVE));
       }
     } else {
       boolean editorIsYou = selfIds.matches(update.removerAci);
@@ -646,18 +647,18 @@ final class GroupsV2UpdateMessageProducer {
 
       if (editorIsYou) {
         if (removedMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_left_the_group), R.drawable.ic_update_group_leave_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_left_the_group), Glyph.LEAVE));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_you_removed_s, update.removedAci, R.drawable.ic_update_group_remove_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_removed_s, update.removedAci, Glyph.PERSON_MINUS));
         }
       } else {
         if (removedMemberIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_s_removed_you_from_the_group, update.removerAci, R.drawable.ic_update_group_remove_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_removed_you_from_the_group, update.removerAci, Glyph.PERSON_MINUS));
         } else {
           if (update.removerAci.equals(update.removedAci)) {
-            updates.add(updateDescription(R.string.MessageRecord_s_left_the_group, update.removedAci, R.drawable.ic_update_group_leave_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_left_the_group, update.removedAci, Glyph.LEAVE));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_removed_s, update.removerAci, update.removedAci, R.drawable.ic_update_group_remove_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_removed_s, update.removerAci, update.removedAci, Glyph.PERSON_MINUS));
           }
         }
       }
@@ -757,14 +758,14 @@ final class GroupsV2UpdateMessageProducer {
     boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
     if (editorIsYou) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_updated_group), R.drawable.ic_update_group_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_you_updated_group), Glyph.GROUP));
     } else {
-      updates.add(updateDescription(R.string.MessageRecord_s_updated_group, change.editorServiceIdBytes, R.drawable.ic_update_group_16));
+      updates.add(updateDescription(R.string.MessageRecord_s_updated_group, change.editorServiceIdBytes, Glyph.GROUP));
     }
   }
 
   private void describeUnknownEditorUnknownChange(@NonNull List<UpdateDescription> updates) {
-    updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_was_updated), R.drawable.ic_update_group_16));
+    updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_was_updated), Glyph.GROUP));
   }
 
   private void describeMemberAdditions(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
@@ -775,18 +776,18 @@ final class GroupsV2UpdateMessageProducer {
 
       if (editorIsYou) {
         if (newMemberIsYou) {
-          updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group_via_the_group_link), R.drawable.ic_update_group_accept_16));
+          updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group_via_the_group_link), Glyph.PERSON_CHECK));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_you_added_s, member.aciBytes, R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_added_s, member.aciBytes, Glyph.PERSON_PLUS));
         }
       } else {
         if (newMemberIsYou) {
-          updates.add(0, updateDescription(R.string.MessageRecord_s_added_you, change.editorServiceIdBytes, R.drawable.ic_update_group_add_16));
+          updates.add(0, updateDescription(R.string.MessageRecord_s_added_you, change.editorServiceIdBytes, Glyph.PERSON_PLUS));
         } else {
           if (member.aciBytes.equals(change.editorServiceIdBytes)) {
-            updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group_via_the_group_link, member.aciBytes, R.drawable.ic_update_group_accept_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group_via_the_group_link, member.aciBytes, Glyph.PERSON_CHECK));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_added_s, change.editorServiceIdBytes, member.aciBytes, R.drawable.ic_update_group_add_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_added_s, change.editorServiceIdBytes, member.aciBytes, Glyph.PERSON_PLUS));
           }
         }
       }
@@ -798,9 +799,9 @@ final class GroupsV2UpdateMessageProducer {
       boolean newMemberIsYou = selfIds.matches(member.aciBytes);
 
       if (newMemberIsYou) {
-        updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16));
+        updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), Glyph.PERSON_PLUS));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, member.aciBytes, R.drawable.ic_update_group_add_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, member.aciBytes, Glyph.PERSON_PLUS));
       }
     }
   }
@@ -813,18 +814,18 @@ final class GroupsV2UpdateMessageProducer {
 
       if (editorIsYou) {
         if (removedMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_left_the_group), R.drawable.ic_update_group_leave_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_left_the_group), Glyph.LEAVE));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_you_removed_s, member, R.drawable.ic_update_group_remove_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_removed_s, member, Glyph.PERSON_MINUS));
         }
       } else {
         if (removedMemberIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_s_removed_you_from_the_group, change.editorServiceIdBytes, R.drawable.ic_update_group_remove_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_removed_you_from_the_group, change.editorServiceIdBytes, Glyph.PERSON_MINUS));
         } else {
           if (member.equals(change.editorServiceIdBytes)) {
-            updates.add(updateDescription(R.string.MessageRecord_s_left_the_group, member, R.drawable.ic_update_group_leave_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_left_the_group, member, Glyph.LEAVE));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_removed_s, change.editorServiceIdBytes, member, R.drawable.ic_update_group_remove_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_removed_s, change.editorServiceIdBytes, member, Glyph.PERSON_MINUS));
           }
         }
       }
@@ -836,9 +837,9 @@ final class GroupsV2UpdateMessageProducer {
       boolean removedMemberIsYou = selfIds.matches(member);
 
       if (removedMemberIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_no_longer_in_the_group), R.drawable.ic_update_group_leave_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_no_longer_in_the_group), Glyph.LEAVE));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_is_no_longer_in_the_group, member, R.drawable.ic_update_group_leave_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_is_no_longer_in_the_group, member, Glyph.LEAVE));
       }
     }
   }
@@ -850,23 +851,23 @@ final class GroupsV2UpdateMessageProducer {
       boolean changedMemberIsYou = selfIds.matches(roleChange.aciBytes);
       if (roleChange.role == Member.Role.ADMINISTRATOR) {
         if (editorIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_you_made_s_an_admin, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_made_s_an_admin, roleChange.aciBytes, Glyph.MEGAPHONE));
         } else {
           if (changedMemberIsYou) {
-            updates.add(updateDescription(R.string.MessageRecord_s_made_you_an_admin, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_made_you_an_admin, change.editorServiceIdBytes, Glyph.MEGAPHONE));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_made_s_an_admin, change.editorServiceIdBytes, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_made_s_an_admin, change.editorServiceIdBytes, roleChange.aciBytes, Glyph.MEGAPHONE));
 
           }
         }
       } else {
         if (editorIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_you_revoked_admin_privileges_from_s, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_revoked_admin_privileges_from_s, roleChange.aciBytes, Glyph.MEGAPHONE));
         } else {
           if (changedMemberIsYou) {
-            updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_admin_privileges, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_admin_privileges, change.editorServiceIdBytes, Glyph.MEGAPHONE));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_revoked_admin_privileges_from_s, change.editorServiceIdBytes, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_revoked_admin_privileges_from_s, change.editorServiceIdBytes, roleChange.aciBytes, Glyph.MEGAPHONE));
           }
         }
       }
@@ -879,15 +880,15 @@ final class GroupsV2UpdateMessageProducer {
 
       if (roleChange.role == Member.Role.ADMINISTRATOR) {
         if (changedMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_now_an_admin), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_now_an_admin), Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_is_now_an_admin, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_is_now_an_admin, roleChange.aciBytes, Glyph.MEGAPHONE));
         }
       } else {
         if (changedMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_no_longer_an_admin), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_no_longer_an_admin), Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_is_no_longer_an_admin, roleChange.aciBytes, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_is_no_longer_an_admin, roleChange.aciBytes, Glyph.MEGAPHONE));
         }
       }
     }
@@ -901,38 +902,38 @@ final class GroupsV2UpdateMessageProducer {
 
       if (groupAdminStatusUpdate.wasAdminStatusGranted) {
         if (editorIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_you_made_s_an_admin, groupAdminStatusUpdate.memberAci, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_made_s_an_admin, groupAdminStatusUpdate.memberAci, Glyph.MEGAPHONE));
         } else {
           if (changedMemberIsYou) {
-            updates.add(updateDescription(R.string.MessageRecord_s_made_you_an_admin, groupAdminStatusUpdate.updaterAci, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_made_you_an_admin, groupAdminStatusUpdate.updaterAci, Glyph.MEGAPHONE));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_made_s_an_admin, groupAdminStatusUpdate.updaterAci, groupAdminStatusUpdate.memberAci, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_made_s_an_admin, groupAdminStatusUpdate.updaterAci, groupAdminStatusUpdate.memberAci, Glyph.MEGAPHONE));
 
           }
         }
       } else {
         if (editorIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_you_revoked_admin_privileges_from_s, groupAdminStatusUpdate.memberAci, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_revoked_admin_privileges_from_s, groupAdminStatusUpdate.memberAci, Glyph.MEGAPHONE));
         } else {
           if (changedMemberIsYou) {
-            updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_admin_privileges, groupAdminStatusUpdate.updaterAci, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_admin_privileges, groupAdminStatusUpdate.updaterAci, Glyph.MEGAPHONE));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_revoked_admin_privileges_from_s, groupAdminStatusUpdate.updaterAci, groupAdminStatusUpdate.memberAci, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_revoked_admin_privileges_from_s, groupAdminStatusUpdate.updaterAci, groupAdminStatusUpdate.memberAci, Glyph.MEGAPHONE));
           }
         }
       }
     } else {
       if (groupAdminStatusUpdate.wasAdminStatusGranted) {
         if (changedMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_now_an_admin), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_now_an_admin), Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_is_now_an_admin, groupAdminStatusUpdate.memberAci, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_is_now_an_admin, groupAdminStatusUpdate.memberAci, Glyph.MEGAPHONE));
         }
       } else {
         if (changedMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_no_longer_an_admin), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_are_no_longer_an_admin), Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_is_no_longer_an_admin, groupAdminStatusUpdate.memberAci, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_is_no_longer_an_admin, groupAdminStatusUpdate.memberAci, Glyph.MEGAPHONE));
         }
       }
     }
@@ -946,10 +947,10 @@ final class GroupsV2UpdateMessageProducer {
       boolean newMemberIsYou = selfIds.matches(invitee.serviceIdBytes);
 
       if (newMemberIsYou) {
-        updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, change.editorServiceIdBytes, R.drawable.ic_update_group_add_16));
+        updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, change.editorServiceIdBytes, Glyph.PERSON_PLUS));
       } else {
         if (editorIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_you_invited_s_to_the_group, invitee.serviceIdBytes, R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_invited_s_to_the_group, invitee.serviceIdBytes, Glyph.PERSON_PLUS));
         } else {
           notYouInviteCount++;
         }
@@ -957,7 +958,7 @@ final class GroupsV2UpdateMessageProducer {
     }
 
     if (notYouInviteCount > 0) {
-      updates.add(updateDescription(R.plurals.MessageRecord_s_invited_members, notYouInviteCount, change.editorServiceIdBytes, notYouInviteCount, R.drawable.ic_update_group_add_16));
+      updates.add(updateDescription(R.plurals.MessageRecord_s_invited_members, notYouInviteCount, change.editorServiceIdBytes, notYouInviteCount, Glyph.PERSON_PLUS));
     }
   }
 
@@ -971,9 +972,9 @@ final class GroupsV2UpdateMessageProducer {
         UUID uuid = UuidUtil.fromByteStringOrUnknown(invitee.addedByAci);
 
         if (UuidUtil.UNKNOWN_UUID.equals(uuid)) {
-          updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_were_invited_to_the_group), R.drawable.ic_update_group_add_16));
+          updates.add(0, updateDescription(context.getString(R.string.MessageRecord_you_were_invited_to_the_group), Glyph.PERSON_PLUS));
         } else {
-          updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, invitee.addedByAci, R.drawable.ic_update_group_add_16));
+          updates.add(0, updateDescription(R.string.MessageRecord_s_invited_you_to_the_group, invitee.addedByAci, Glyph.PERSON_PLUS));
         }
       } else {
         notYouInviteCount++;
@@ -981,7 +982,7 @@ final class GroupsV2UpdateMessageProducer {
     }
 
     if (notYouInviteCount > 0) {
-      updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_d_people_were_invited_to_the_group, notYouInviteCount, notYouInviteCount), R.drawable.ic_update_group_add_16));
+      updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_d_people_were_invited_to_the_group, notYouInviteCount, notYouInviteCount), Glyph.PERSON_PLUS));
     }
   }
 
@@ -993,12 +994,12 @@ final class GroupsV2UpdateMessageProducer {
       boolean decline = invitee.serviceIdBytes.equals(change.editorServiceIdBytes);
       if (decline) {
         if (editorIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_declined_the_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_declined_the_invitation_to_the_group), Glyph.PERSON_X));
         } else {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_someone_declined_an_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_someone_declined_an_invitation_to_the_group), Glyph.PERSON_X));
         }
       } else if (selfIds.matches(invitee.serviceIdBytes)) {
-        updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, change.editorServiceIdBytes, R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_revoked_your_invitation_to_the_group, change.editorServiceIdBytes, Glyph.PERSON_X));
       } else {
         notDeclineCount++;
       }
@@ -1006,9 +1007,9 @@ final class GroupsV2UpdateMessageProducer {
 
     if (notDeclineCount > 0) {
       if (editorIsYou) {
-        updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_you_revoked_invites, notDeclineCount, notDeclineCount), R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_you_revoked_invites, notDeclineCount, notDeclineCount), Glyph.PERSON_X));
       } else {
-        updates.add(updateDescription(R.plurals.MessageRecord_s_revoked_invites, notDeclineCount, change.editorServiceIdBytes, notDeclineCount, R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(R.plurals.MessageRecord_s_revoked_invites, notDeclineCount, change.editorServiceIdBytes, notDeclineCount, Glyph.PERSON_X));
       }
     }
   }
@@ -1020,14 +1021,14 @@ final class GroupsV2UpdateMessageProducer {
       boolean inviteeWasYou = selfIds.matches(invitee.serviceIdBytes);
 
       if (inviteeWasYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group), R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_an_admin_revoked_your_invitation_to_the_group), Glyph.PERSON_X));
       } else {
         notDeclineCount++;
       }
     }
 
     if (notDeclineCount > 0) {
-      updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_d_invitations_were_revoked, notDeclineCount, notDeclineCount), R.drawable.ic_update_group_decline_16));
+      updates.add(updateDescription(context.getResources().getQuantityString(R.plurals.MessageRecord_d_invitations_were_revoked, notDeclineCount, notDeclineCount), Glyph.PERSON_X));
     }
   }
 
@@ -1040,18 +1041,18 @@ final class GroupsV2UpdateMessageProducer {
 
       if (editorIsYou) {
         if (newMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_accepted_invite), R.drawable.ic_update_group_accept_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_accepted_invite), Glyph.PERSON_CHECK));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_you_added_invited_member_s, aci, R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_added_invited_member_s, aci, Glyph.PERSON_PLUS));
         }
       } else {
         if (newMemberIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_s_added_you, change.editorServiceIdBytes, R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_added_you, change.editorServiceIdBytes, Glyph.PERSON_PLUS));
         } else {
           if (aci.equals(change.editorServiceIdBytes)) {
-            updates.add(updateDescription(R.string.MessageRecord_s_accepted_invite, aci, R.drawable.ic_update_group_accept_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_accepted_invite, aci, Glyph.PERSON_CHECK));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, change.editorServiceIdBytes, aci, R.drawable.ic_update_group_add_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, change.editorServiceIdBytes, aci, Glyph.PERSON_PLUS));
           }
         }
       }
@@ -1064,9 +1065,9 @@ final class GroupsV2UpdateMessageProducer {
       boolean    newMemberIsYou = selfIds.matches(aci);
 
       if (newMemberIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), Glyph.PERSON_PLUS));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, aci, R.drawable.ic_update_group_add_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, aci, Glyph.PERSON_PLUS));
       }
     }
   }
@@ -1077,9 +1078,9 @@ final class GroupsV2UpdateMessageProducer {
     if (change.newTitle != null) {
       String newTitle = BidiUtil.isolateBidi(change.newTitle.value_);
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_name_to_s, newTitle), R.drawable.ic_update_group_name_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_name_to_s, newTitle), Glyph.EDIT));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_name_to_s, change.editorServiceIdBytes, newTitle, R.drawable.ic_update_group_name_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_name_to_s, change.editorServiceIdBytes, newTitle, Glyph.EDIT));
       }
     }
   }
@@ -1089,16 +1090,16 @@ final class GroupsV2UpdateMessageProducer {
 
     if (change.newDescription != null) {
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_description), R.drawable.ic_update_group_name_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_description), Glyph.EDIT));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_description, change.editorServiceIdBytes, R.drawable.ic_update_group_name_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_description, change.editorServiceIdBytes, Glyph.EDIT));
       }
     }
   }
 
   private void describeUnknownEditorNewTitle(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.newTitle != null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(change.newTitle.value_)), R.drawable.ic_update_group_name_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(change.newTitle.value_)), Glyph.EDIT));
     }
   }
 
@@ -1107,18 +1108,18 @@ final class GroupsV2UpdateMessageProducer {
       boolean editorIsYou = selfIds.matches(groupDescriptionUpdate.updaterAci);
 
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_description), R.drawable.ic_update_group_name_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_description), Glyph.EDIT));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_description, groupDescriptionUpdate.updaterAci, R.drawable.ic_update_group_name_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_description, groupDescriptionUpdate.updaterAci, Glyph.EDIT));
       }
     } else {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(groupDescriptionUpdate.newDescription)), R.drawable.ic_update_group_name_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_name_has_changed_to_s, BidiUtil.isolateBidi(groupDescriptionUpdate.newDescription)), Glyph.EDIT));
     }
   }
 
   private void describeUnknownEditorNewDescription(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.newDescription != null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_description_has_changed), R.drawable.ic_update_group_name_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_description_has_changed), Glyph.EDIT));
     }
   }
 
@@ -1127,9 +1128,9 @@ final class GroupsV2UpdateMessageProducer {
 
     if (change.newAvatar != null) {
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_avatar), R.drawable.ic_update_group_avatar_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_avatar), Glyph.PHOTO));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_avatar, change.editorServiceIdBytes, R.drawable.ic_update_group_avatar_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_avatar, change.editorServiceIdBytes, Glyph.PHOTO));
       }
     }
   }
@@ -1139,18 +1140,18 @@ final class GroupsV2UpdateMessageProducer {
       boolean editorIsYou = selfIds.matches(groupAvatarUpdate.updaterAci);
 
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_avatar), R.drawable.ic_update_group_avatar_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_the_group_avatar), Glyph.PHOTO));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_avatar, groupAvatarUpdate.updaterAci, R.drawable.ic_update_group_avatar_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_the_group_avatar, groupAvatarUpdate.updaterAci, Glyph.PHOTO));
       }
     } else {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_group_avatar_has_been_changed), R.drawable.ic_update_group_avatar_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_group_avatar_has_been_changed), Glyph.PHOTO));
     }
   }
 
   private void describeUnknownEditorNewAvatar(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.newAvatar != null) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_group_avatar_has_been_changed), R.drawable.ic_update_group_avatar_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_group_avatar_has_been_changed), Glyph.PHOTO));
     }
   }
 
@@ -1161,16 +1162,16 @@ final class GroupsV2UpdateMessageProducer {
       final int duration = change.newTimer.duration;
       if (duration <= 0) {
         if (editorIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_disabled_disappearing_messages), R.drawable.ic_update_timer_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_disabled_disappearing_messages), Glyph.TIMER_SLASH));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_disabled_disappearing_messages, change.editorServiceIdBytes, R.drawable.ic_update_timer_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_disabled_disappearing_messages, change.editorServiceIdBytes, Glyph.TIMER_SLASH));
         }
       } else {
         String time = ExpirationUtil.getExpirationDisplayValue(context, duration);
         if (editorIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time), R.drawable.ic_update_timer_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_set_disappearing_message_time_to_s, time), Glyph.TIMER));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_set_disappearing_message_time_to_s, change.editorServiceIdBytes, time, R.drawable.ic_update_timer_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_set_disappearing_message_time_to_s, change.editorServiceIdBytes, time, Glyph.TIMER));
         }
       }
     }
@@ -1179,7 +1180,7 @@ final class GroupsV2UpdateMessageProducer {
   private void describeUnknownEditorNewTimer(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.newTimer != null) {
       String time = ExpirationUtil.getExpirationDisplayValue(context, change.newTimer.duration);
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_disappearing_message_time_set_to_s, time), R.drawable.ic_update_timer_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_disappearing_message_time_set_to_s, time), Glyph.TIMER));
     }
   }
 
@@ -1189,9 +1190,9 @@ final class GroupsV2UpdateMessageProducer {
     if (change.newAttributeAccess != AccessControl.AccessRequired.UNKNOWN) {
       String accessLevel = GV2AccessLevelUtil.toString(context, change.newAttributeAccess);
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_edit_group_info_to_s, accessLevel), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_edit_group_info_to_s, accessLevel), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_info_to_s, change.editorServiceIdBytes, accessLevel, R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_info_to_s, change.editorServiceIdBytes, accessLevel, Glyph.MEGAPHONE));
       }
     }
   }
@@ -1199,7 +1200,7 @@ final class GroupsV2UpdateMessageProducer {
   private void describeUnknownEditorNewAttributeAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.newAttributeAccess != AccessControl.AccessRequired.UNKNOWN) {
       String accessLevel = GV2AccessLevelUtil.toString(context, change.newAttributeAccess);
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_who_can_edit_group_info_has_been_changed_to_s, accessLevel), R.drawable.ic_update_group_role_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_who_can_edit_group_info_has_been_changed_to_s, accessLevel), Glyph.MEGAPHONE));
     }
   }
 
@@ -1209,9 +1210,9 @@ final class GroupsV2UpdateMessageProducer {
     if (change.newMemberAccess != AccessControl.AccessRequired.UNKNOWN) {
       String accessLevel = GV2AccessLevelUtil.toString(context, change.newMemberAccess);
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_edit_group_membership_to_s, accessLevel), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_changed_who_can_edit_group_membership_to_s, accessLevel), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_membership_to_s, change.editorServiceIdBytes, accessLevel, R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_changed_who_can_edit_group_membership_to_s, change.editorServiceIdBytes, accessLevel, Glyph.MEGAPHONE));
       }
     }
   }
@@ -1219,7 +1220,7 @@ final class GroupsV2UpdateMessageProducer {
   private void describeUnknownEditorNewMembershipAccess(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.newMemberAccess != AccessControl.AccessRequired.UNKNOWN) {
       String accessLevel = GV2AccessLevelUtil.toString(context, change.newMemberAccess);
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_who_can_edit_group_membership_has_been_changed_to_s, accessLevel), R.drawable.ic_update_group_role_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_who_can_edit_group_membership_has_been_changed_to_s, accessLevel), Glyph.MEGAPHONE));
     }
   }
 
@@ -1242,15 +1243,15 @@ final class GroupsV2UpdateMessageProducer {
         groupLinkEnabled = true;
         if (editorIsYou) {
           if (previousAccessControl == AccessControl.AccessRequired.ADMINISTRATOR) {
-            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_off_admin_approval_for_the_group_link), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_off_admin_approval_for_the_group_link), Glyph.MEGAPHONE));
           } else {
-            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_off), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_off), Glyph.MEGAPHONE));
           }
         } else {
           if (previousAccessControl == AccessControl.AccessRequired.ADMINISTRATOR) {
-            updates.add(updateDescription(R.string.MessageRecord_s_turned_off_admin_approval_for_the_group_link, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_turned_off_admin_approval_for_the_group_link, change.editorServiceIdBytes, Glyph.MEGAPHONE));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_off, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_off, change.editorServiceIdBytes, Glyph.MEGAPHONE));
           }
         }
         break;
@@ -1258,32 +1259,32 @@ final class GroupsV2UpdateMessageProducer {
         groupLinkEnabled = true;
         if (editorIsYou) {
           if (previousAccessControl == AccessControl.AccessRequired.ANY) {
-            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_admin_approval_for_the_group_link), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_admin_approval_for_the_group_link), Glyph.MEGAPHONE));
           } else {
-            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_on), R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_on_the_group_link_with_admin_approval_on), Glyph.MEGAPHONE));
           }
         } else {
           if (previousAccessControl == AccessControl.AccessRequired.ANY) {
-            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_admin_approval_for_the_group_link, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_admin_approval_for_the_group_link, change.editorServiceIdBytes, Glyph.MEGAPHONE));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_on, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_turned_on_the_group_link_with_admin_approval_on, change.editorServiceIdBytes, Glyph.MEGAPHONE));
           }
         }
         break;
       case UNSATISFIABLE:
         if (editorIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_off_the_group_link), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_turned_off_the_group_link), Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_turned_off_the_group_link, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_turned_off_the_group_link, change.editorServiceIdBytes, Glyph.MEGAPHONE));
         }
         break;
     }
 
     if (!groupLinkEnabled && change.newInviteLinkPassword.size() > 0) {
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_reset_the_group_link), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_reset_the_group_link), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_reset_the_group_link, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_reset_the_group_link, change.editorServiceIdBytes, Glyph.MEGAPHONE));
       }
     }
   }
@@ -1302,25 +1303,25 @@ final class GroupsV2UpdateMessageProducer {
     switch (change.newInviteLinkAccess) {
       case ANY:
         if (previousAccessControl == AccessControl.AccessRequired.ADMINISTRATOR) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off), Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off), Glyph.MEGAPHONE));
         }
         break;
       case ADMINISTRATOR:
         if (previousAccessControl == AccessControl.AccessRequired.ANY) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on), Glyph.MEGAPHONE));
         } else {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on), R.drawable.ic_update_group_role_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on), Glyph.MEGAPHONE));
         }
         break;
       case UNSATISFIABLE:
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_off), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_turned_off), Glyph.MEGAPHONE));
         break;
     }
 
     if (change.newInviteLinkPassword.size() > 0) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_reset), R.drawable.ic_update_group_role_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_the_group_link_has_been_reset), Glyph.MEGAPHONE));
     }
   }
 
@@ -1331,16 +1332,16 @@ final class GroupsV2UpdateMessageProducer {
       boolean requestingMemberIsYou = selfIds.matches(member.aciBytes);
 
       if (requestingMemberIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_sent_a_request_to_join_the_group), R.drawable.ic_update_group_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_sent_a_request_to_join_the_group), Glyph.GROUP));
       } else {
         if (deleteRequestingUuids.contains(member.aciBytes)) {
           updates.add(updateDescription(R.plurals.MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link,
                                         change.deleteRequestingMembers.size(),
                                         member.aciBytes,
                                         change.deleteRequestingMembers.size(),
-                                        R.drawable.ic_update_group_16));
+                                        Glyph.GROUP));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_requested_to_join_via_the_group_link, member.aciBytes, R.drawable.ic_update_group_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_requested_to_join_via_the_group_link, member.aciBytes, Glyph.GROUP));
         }
       }
     }
@@ -1351,14 +1352,14 @@ final class GroupsV2UpdateMessageProducer {
       boolean requestingMemberIsYou = selfIds.matches(requestingMember.aciBytes);
 
       if (requestingMemberIsYou) {
-        updates.add(updateDescription(R.string.MessageRecord_s_approved_your_request_to_join_the_group, change.editorServiceIdBytes, R.drawable.ic_update_group_accept_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_approved_your_request_to_join_the_group, change.editorServiceIdBytes, Glyph.PERSON_CHECK));
       } else {
         boolean editorIsYou = selfIds.matches(change.editorServiceIdBytes);
 
         if (editorIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_you_approved_a_request_to_join_the_group_from_s, requestingMember.aciBytes, R.drawable.ic_update_group_accept_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_approved_a_request_to_join_the_group_from_s, requestingMember.aciBytes, Glyph.PERSON_CHECK));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_approved_a_request_to_join_the_group_from_s, change.editorServiceIdBytes, requestingMember.aciBytes, R.drawable.ic_update_group_accept_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_approved_a_request_to_join_the_group_from_s, change.editorServiceIdBytes, requestingMember.aciBytes, Glyph.PERSON_CHECK));
         }
       }
     }
@@ -1369,9 +1370,9 @@ final class GroupsV2UpdateMessageProducer {
       boolean requestingMemberIsYou = selfIds.matches(requestingMember.aciBytes);
 
       if (requestingMemberIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_approved), R.drawable.ic_update_group_accept_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_approved), Glyph.PERSON_CHECK));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_a_request_to_join_the_group_from_s_has_been_approved, requestingMember.aciBytes, R.drawable.ic_update_group_accept_16));
+        updates.add(updateDescription(R.string.MessageRecord_a_request_to_join_the_group_from_s_has_been_approved, requestingMember.aciBytes, Glyph.PERSON_CHECK));
       }
     }
   }
@@ -1390,17 +1391,17 @@ final class GroupsV2UpdateMessageProducer {
 
       if (requestingMemberIsYou) {
         if (editorIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_canceled_your_request_to_join_the_group), R.drawable.ic_update_group_decline_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_canceled_your_request_to_join_the_group), Glyph.PERSON_X));
         } else {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), R.drawable.ic_update_group_decline_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), Glyph.PERSON_X));
         }
       } else {
         boolean editorIsCanceledMember = change.editorServiceIdBytes.equals(requestingMember);
 
         if (editorIsCanceledMember) {
-          updates.add(updateDescription(R.string.MessageRecord_s_canceled_their_request_to_join_the_group, requestingMember, R.drawable.ic_update_group_decline_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_canceled_their_request_to_join_the_group, requestingMember, Glyph.PERSON_X));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, change.editorServiceIdBytes, requestingMember, R.drawable.ic_update_group_decline_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_denied_a_request_to_join_the_group_from_s, change.editorServiceIdBytes, requestingMember, Glyph.PERSON_X));
         }
       }
     }
@@ -1411,9 +1412,9 @@ final class GroupsV2UpdateMessageProducer {
       boolean requestingMemberIsYou = selfIds.matches(requestingMember);
 
       if (requestingMemberIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin), Glyph.PERSON_X));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_a_request_to_join_the_group_from_s_has_been_denied, requestingMember, R.drawable.ic_update_group_decline_16));
+        updates.add(updateDescription(R.string.MessageRecord_a_request_to_join_the_group_from_s_has_been_denied, requestingMember, Glyph.PERSON_X));
       }
     }
   }
@@ -1423,24 +1424,24 @@ final class GroupsV2UpdateMessageProducer {
 
     if (change.newIsAnnouncementGroup == EnabledState.ENABLED) {
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_only_admins_to_send), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_only_admins_to_send), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_allow_only_admins_to_send, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_allow_only_admins_to_send, change.editorServiceIdBytes, Glyph.MEGAPHONE));
       }
     } else if (change.newIsAnnouncementGroup == EnabledState.DISABLED) {
       if (editorIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_all_members_to_send), R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_allow_all_members_to_send), Glyph.MEGAPHONE));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_allow_all_members_to_send, change.editorServiceIdBytes, R.drawable.ic_update_group_role_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_allow_all_members_to_send, change.editorServiceIdBytes, Glyph.MEGAPHONE));
       }
     }
   }
 
   private void describeUnknownEditorAnnouncementGroupChange(@NonNull DecryptedGroupChange change, @NonNull List<UpdateDescription> updates) {
     if (change.newIsAnnouncementGroup == EnabledState.ENABLED) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_only_admins_to_send), R.drawable.ic_update_group_role_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_only_admins_to_send), Glyph.MEGAPHONE));
     } else if (change.newIsAnnouncementGroup == EnabledState.DISABLED) {
-      updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_all_members_to_send), R.drawable.ic_update_group_role_16));
+      updates.add(updateDescription(context.getString(R.string.MessageRecord_allow_all_members_to_send), Glyph.MEGAPHONE));
     }
   }
 
@@ -1453,18 +1454,18 @@ final class GroupsV2UpdateMessageProducer {
 
       if (editorIsYou) {
         if (newMemberIsYou) {
-          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_accepted_invite), R.drawable.ic_update_group_accept_16));
+          updates.add(updateDescription(context.getString(R.string.MessageRecord_you_accepted_invite), Glyph.PERSON_CHECK));
         } else {
-          updates.add(updateDescription(R.string.MessageRecord_you_added_invited_member_s, uuid, R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_you_added_invited_member_s, uuid, Glyph.PERSON_PLUS));
         }
       } else {
         if (newMemberIsYou) {
-          updates.add(updateDescription(R.string.MessageRecord_s_added_you, change.editorServiceIdBytes, R.drawable.ic_update_group_add_16));
+          updates.add(updateDescription(R.string.MessageRecord_s_added_you, change.editorServiceIdBytes, Glyph.PERSON_PLUS));
         } else {
           if (uuid.equals(change.editorServiceIdBytes)) {
-            updates.add(updateDescription(R.string.MessageRecord_s_accepted_invite, uuid, R.drawable.ic_update_group_accept_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_accepted_invite, uuid, Glyph.PERSON_CHECK));
           } else {
-            updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, change.editorServiceIdBytes, uuid, R.drawable.ic_update_group_add_16));
+            updates.add(updateDescription(R.string.MessageRecord_s_added_invited_member_s, change.editorServiceIdBytes, uuid, Glyph.PERSON_PLUS));
           }
         }
       }
@@ -1477,20 +1478,20 @@ final class GroupsV2UpdateMessageProducer {
       boolean    newMemberIsYou = selfIds.matches(aci);
 
       if (newMemberIsYou) {
-        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), R.drawable.ic_update_group_add_16));
+        updates.add(updateDescription(context.getString(R.string.MessageRecord_you_joined_the_group), Glyph.PERSON_PLUS));
       } else {
-        updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, aci, R.drawable.ic_update_group_add_16));
+        updates.add(updateDescription(R.string.MessageRecord_s_joined_the_group, aci, Glyph.PERSON_PLUS));
       }
     }
   }
 
-  private static UpdateDescription updateDescription(@NonNull String string, @DrawableRes int iconResource) {
-    return UpdateDescription.staticDescription(string, iconResource);
+  private static UpdateDescription updateDescription(@NonNull String string, Glyph glyph) {
+    return UpdateDescription.staticDescription(string, glyph);
   }
 
   private UpdateDescription updateDescription(@StringRes int stringRes,
                                               @NonNull ByteString serviceId1Bytes,
-                                              @DrawableRes int iconResource)
+                                              Glyph glyph)
   {
     ServiceId   serviceId   = ServiceId.parseOrUnknown(serviceId1Bytes);
     RecipientId recipientId = RecipientId.from(serviceId);
@@ -1503,13 +1504,13 @@ final class GroupsV2UpdateMessageProducer {
 
           return makeRecipientsClickable(context, templateString, recipientIdList, recipientClickHandler);
         },
-        iconResource);
+        glyph);
   }
 
   private UpdateDescription updateDescription(@StringRes int stringRes,
                                               @NonNull ByteString serviceId1Bytes,
                                               @NonNull ByteString serviceId2Bytes,
-                                              @DrawableRes int iconResource)
+                                              Glyph glyph)
   {
     ServiceId serviceId1 = ServiceId.parseOrUnknown(serviceId1Bytes);
     ServiceId serviceId2 = ServiceId.parseOrUnknown(serviceId2Bytes);
@@ -1525,14 +1526,14 @@ final class GroupsV2UpdateMessageProducer {
 
           return makeRecipientsClickable(context, templateString, recipientIdList, recipientClickHandler);
         },
-        iconResource
+        glyph
     );
   }
 
   private UpdateDescription updateDescription(@StringRes int stringRes,
                                               @NonNull ByteString serviceId1Bytes,
                                               @NonNull Object formatArg,
-                                              @DrawableRes int iconResource)
+                                              Glyph glyph)
   {
     ServiceId   serviceId   = ServiceId.parseOrUnknown(serviceId1Bytes);
     RecipientId recipientId = RecipientId.from(serviceId);
@@ -1545,7 +1546,7 @@ final class GroupsV2UpdateMessageProducer {
 
           return makeRecipientsClickable(context, templateString, recipientIdList, recipientClickHandler);
         },
-        iconResource
+        glyph
     );
   }
 
@@ -1553,7 +1554,7 @@ final class GroupsV2UpdateMessageProducer {
                                               int quantity,
                                               @NonNull ByteString serviceId1Bytes,
                                               @NonNull Object formatArg,
-                                              @DrawableRes int iconResource)
+                                              Glyph glyph)
   {
     ServiceId   serviceId   = ServiceId.parseOrUnknown(serviceId1Bytes);
     RecipientId recipientId = RecipientId.from(serviceId);
@@ -1566,7 +1567,7 @@ final class GroupsV2UpdateMessageProducer {
 
           return makeRecipientsClickable(context, templateString, recipientIdList, recipientClickHandler);
         },
-        iconResource
+        glyph
     );
   }
 

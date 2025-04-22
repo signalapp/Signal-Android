@@ -27,12 +27,6 @@ import org.thoughtcrime.securesms.util.ViewUtil
 object SignalSymbols {
 
   enum class Glyph(val unicode: Char) {
-    CHECKMARK('\u2713'),
-    CHEVRON_LEFT('\uE024'),
-    CHEVRON_RIGHT('\uE025'),
-    PERSON_CIRCLE('\uE05E'),
-    LOCK('\uE041'),
-    LOCK_OPEN('\uE07D'),
     LOGO('\uE000'),
     ALBUM('\uE001'),
     APPEARANCE('\uE031'),
@@ -90,6 +84,8 @@ object SignalSymbols {
     CHECK('\u2713'),
     CHECK_CIRCLE('\uE022'),
     CHECK_SQUARE('\uE023'),
+    CHEVRON_LEFT('\uE024'),
+    CHEVRON_RIGHT('\uE025'),
     CHEVRON_UP('\uE026'),
     CHEVRON_DOWN('\uE027'),
     CHEVRON_CIRCLE_LEFT('\uE028'),
@@ -124,6 +120,8 @@ object SignalSymbols {
     LINK_ANDROID('\uE03F'),
     LINK_BROKEN('\uE057'),
     LINK_SLASH('\uE040'),
+    LOCK('\uE041'),
+    LOCK_OPEN('\uE07D'),
     MEGAPHONE('\uE042'),
     MERGE('\uE043'),
     MESSAGE_STATUS_SENDING('\uE044'),
@@ -156,6 +154,7 @@ object SignalSymbols {
     OFFICIAL_BADGE_FILL('\uE087'),
     OUTGOING('\uE05C'),
     PERSON('\uE05D'),
+    PERSON_CIRCLE('\uE05E'),
     PERSON_CHECK('\uE05F'),
     PERSON_X('\uE060'),
     PERSON_PLUS('\uE061'),
@@ -187,7 +186,11 @@ object SignalSymbols {
     VIEW_ONCE_VIEWED('\uE07A'),
     X('\u00D7'),
     X_CIRCLE('\u2297'),
-    X_SQUARE('\u2327')
+    X_SQUARE('\u2327'),
+
+    REFRESH('\uE000'),
+    ACTIVATE_PAYMENTS('\uE000'),
+    CALENDAR('\uE000')
   }
 
   enum class Weight {

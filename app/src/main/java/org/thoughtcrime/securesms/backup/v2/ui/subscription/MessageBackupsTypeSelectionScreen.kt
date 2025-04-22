@@ -262,7 +262,7 @@ fun MessageBackupsTypeBlock(
       Text(
         text = signalSymbolText(
           text = stringResource(R.string.MessageBackupsTypeSelectionScreen__current_plan),
-          glyphStart = SignalSymbols.Glyph.CHECKMARK
+          glyphStart = SignalSymbols.Glyph.CHECK
         ),
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier
