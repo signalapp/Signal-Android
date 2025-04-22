@@ -17,9 +17,9 @@ import java.util.List;
 final class StickerManagementViewModel extends ViewModel {
 
   private final Application                 application;
-  private final StickerManagementRepository repository;
-  private final MutableLiveData<StickerPackResult> packs;
-  private final DatabaseObserver.Observer   observer;
+  private final StickerManagementRepository         repository;
+  private final MutableLiveData<StickerPacksResult> packs;
+  private final DatabaseObserver.Observer           observer;
 
   private StickerManagementViewModel(@NonNull Application application, @NonNull StickerManagementRepository repository) {
     this.application = application;
@@ -42,7 +42,7 @@ final class StickerManagementViewModel extends ViewModel {
     repository.deleteOrphanedStickerPacksAsync();
   }
 
-  @NonNull LiveData<StickerPackResult> getStickerPacks() {
+  @NonNull LiveData<StickerPacksResult> getStickerPacks() {
     repository.getStickerPacks(packs::postValue);
     return packs;
   }

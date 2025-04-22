@@ -252,10 +252,10 @@ class StickerTable(
     notifyStickerPackListeners()
   }
 
-  fun markPackAsInstalled(packKey: String, notify: Boolean) {
+  fun markPackAsInstalled(packId: String, notify: Boolean) {
     updatePackInstalled(
       db = databaseHelper.signalWritableDatabase,
-      packId = packKey,
+      packId = packId,
       installed = true,
       notify = notify
     )

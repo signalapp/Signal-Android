@@ -20,6 +20,8 @@ import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.StickerTable
 import org.thoughtcrime.securesms.database.StickerTable.StickerPackRecordReader
+import org.thoughtcrime.securesms.database.model.StickerPackId
+import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.JobManager
@@ -39,7 +41,7 @@ object StickerManagementRepository {
 
   @Discouraged("For Java use only. In Kotlin, use the getStickerPacks() overload that returns a Flow instead.")
   @WorkerThread
-  fun getStickerPacks(callback: Callback<StickerPackResult>) {
+  fun getStickerPacks(callback: Callback<StickerPacksResult>) {
     coroutineScope.launch {
       callback.onComplete(loadStickerPacks())
     }
@@ -48,7 +50,7 @@ object StickerManagementRepository {
   /**
    * Emits the sticker packs along with any updates.
    */
-  fun getStickerPacks(): Flow<StickerPackResult> = callbackFlow {
+  fun getStickerPacks(): Flow<StickerPacksResult> = callbackFlow {
     trySend(loadStickerPacks())
 
     val stickersDbObserver = DatabaseObserver.Observer {
@@ -64,12 +66,12 @@ object StickerManagementRepository {
     }
   }
 
-  private suspend fun loadStickerPacks(): StickerPackResult = withContext(Dispatchers.IO) {
+  private suspend fun loadStickerPacks(): StickerPacksResult = withContext(Dispatchers.IO) {
     StickerPackRecordReader(stickersDbTable.getAllStickerPacks()).use { reader ->
       val installedPacks = mutableListOf<StickerPackRecord>()
       val availablePacks = mutableListOf<StickerPackRecord>()
       val blessedPacks = mutableListOf<StickerPackRecord>()
-      val sortOrderById = mutableMapOf<String, Int>()
+      val sortOrderById = mutableMapOf<StickerPackId, Int>()
 
       reader.asSequence().forEachIndexed { index, record ->
         when {
@@ -77,10 +79,10 @@ object StickerManagementRepository {
           BlessedPacks.contains(record.packId) -> blessedPacks.add(record)
           else -> availablePacks.add(record)
         }
-        sortOrderById[record.packId] = index
+        sortOrderById[StickerPackId(record.packId)] = index
       }
 
-      StickerPackResult(
+      StickerPacksResult(
         installedPacks = installedPacks,
         availablePacks = availablePacks,
         blessedPacks = blessedPacks,
@@ -112,34 +114,34 @@ object StickerManagementRepository {
 
   fun installStickerPackAsync(packId: String, packKey: String, notify: Boolean) {
     coroutineScope.launch {
-      installStickerPack(packId, packKey, notify)
+      installStickerPack(StickerPackId(packId), StickerPackKey(packKey), notify)
     }
   }
 
-  suspend fun installStickerPack(packId: String, packKey: String, notify: Boolean) = withContext(Dispatchers.IO) {
-    if (stickersDbTable.isPackAvailableAsReference(packId)) {
-      stickersDbTable.markPackAsInstalled(packId, notify)
+  suspend fun installStickerPack(packId: StickerPackId, packKey: StickerPackKey, notify: Boolean) = withContext(Dispatchers.IO) {
+    if (stickersDbTable.isPackAvailableAsReference(packId.value)) {
+      stickersDbTable.markPackAsInstalled(packId.value, notify)
     }
 
-    jobManager.add(StickerPackDownloadJob.forInstall(packId, packKey, notify))
+    jobManager.add(StickerPackDownloadJob.forInstall(packId.value, packKey.value, notify))
 
     if (SignalStore.account.hasLinkedDevices) {
-      jobManager.add(MultiDeviceStickerPackOperationJob(packId, packKey, MultiDeviceStickerPackOperationJob.Type.INSTALL))
+      jobManager.add(MultiDeviceStickerPackOperationJob(packId.value, packKey.value, MultiDeviceStickerPackOperationJob.Type.INSTALL))
     }
   }
 
   @Discouraged("For Java use only. In Kotlin, use uninstallStickerPack() instead.")
   fun uninstallStickerPackAsync(packId: String, packKey: String) {
     coroutineScope.launch {
-      uninstallStickerPack(packId, packKey)
+      uninstallStickerPack(StickerPackId(packId), StickerPackKey(packKey))
     }
   }
 
-  suspend fun uninstallStickerPack(packId: String, packKey: String) = withContext(Dispatchers.IO) {
-    stickersDbTable.uninstallPack(packId)
+  suspend fun uninstallStickerPack(packId: StickerPackId, packKey: StickerPackKey) = withContext(Dispatchers.IO) {
+    stickersDbTable.uninstallPack(packId.value)
 
     if (SignalStore.account.hasLinkedDevices) {
-      AppDependencies.jobManager.add(MultiDeviceStickerPackOperationJob(packId, packKey, MultiDeviceStickerPackOperationJob.Type.REMOVE))
+      AppDependencies.jobManager.add(MultiDeviceStickerPackOperationJob(packId.value, packKey.value, MultiDeviceStickerPackOperationJob.Type.REMOVE))
     }
   }
 
@@ -159,9 +161,9 @@ object StickerManagementRepository {
   }
 }
 
-data class StickerPackResult(
+data class StickerPacksResult(
   val installedPacks: List<StickerPackRecord>,
   val availablePacks: List<StickerPackRecord>,
   val blessedPacks: List<StickerPackRecord>,
-  val sortOrderByPackId: Map<String, Int>
+  val sortOrderByPackId: Map<StickerPackId, Int>
 )

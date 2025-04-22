@@ -15,6 +15,8 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.thoughtcrime.securesms.database.model.StickerPackId
+import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
 
@@ -24,7 +26,7 @@ class StickerManagementViewModelV2 : ViewModel() {
   private val _uiState = MutableStateFlow(StickerManagementUiState())
   val uiState: StateFlow<StickerManagementUiState> = _uiState.asStateFlow()
 
-  private val downloadStatusByPackId: MutableStateFlow<Map<String, DownloadStatus>> = MutableStateFlow(emptyMap())
+  private val downloadStatusByPackId: MutableStateFlow<Map<StickerPackId, DownloadStatus>> = MutableStateFlow(emptyMap())
 
   init {
     viewModelScope.launch {
@@ -42,25 +44,26 @@ class StickerManagementViewModelV2 : ViewModel() {
   private suspend fun loadStickerPacks() {
     combine(stickerManagementRepo.getStickerPacks(), downloadStatusByPackId, ::Pair)
       .collectLatest { (stickerPacksResult, downloadStatuses) ->
-        val recentlyInstalledPacks = stickerPacksResult.installedPacks.filter { downloadStatuses.contains(it.packId) }
+        val recentlyInstalledPacks = stickerPacksResult.installedPacks.filter { downloadStatuses.contains(StickerPackId(it.packId)) }
         val allAvailablePacks = (stickerPacksResult.blessedPacks + stickerPacksResult.availablePacks + recentlyInstalledPacks)
           .map { record ->
+            val packId = StickerPackId(record.packId)
             AvailableStickerPack(
               record = record,
               isBlessed = BlessedPacks.contains(record.packId),
-              downloadStatus = downloadStatuses.getOrElse(record.packId) {
-                downloadStatusByPackId.value.getOrDefault(record.packId, DownloadStatus.NotDownloaded)
+              downloadStatus = downloadStatuses.getOrElse(packId) {
+                downloadStatusByPackId.value.getOrDefault(packId, DownloadStatus.NotDownloaded)
               }
             )
           }
-          .sortedBy { stickerPacksResult.sortOrderByPackId.getValue(it.record.packId) }
+          .sortedBy { stickerPacksResult.sortOrderByPackId.getValue(it.id) }
 
         val (availableBlessedPacks, availableNotBlessedPacks) = allAvailablePacks.partition { it.isBlessed }
         val installedPacks = stickerPacksResult.installedPacks.map { record ->
           InstalledStickerPack(
             record = record,
             isBlessed = BlessedPacks.contains(record.packId),
-            sortOrder = stickerPacksResult.sortOrderByPackId.getValue(record.packId)
+            sortOrder = stickerPacksResult.sortOrderByPackId.getValue(StickerPackId(record.packId))
           )
         }
 
@@ -75,16 +78,16 @@ class StickerManagementViewModelV2 : ViewModel() {
   }
 
   fun installStickerPack(pack: AvailableStickerPack) = viewModelScope.launch {
-    updatePackDownloadStatus(pack.record.packId, DownloadStatus.InProgress)
+    updatePackDownloadStatus(pack.id, DownloadStatus.InProgress)
 
-    StickerManagementRepository.installStickerPack(packId = pack.record.packId, packKey = pack.record.packKey, notify = true)
-    updatePackDownloadStatus(pack.record.packId, DownloadStatus.Downloaded)
+    StickerManagementRepository.installStickerPack(packId = pack.id, packKey = pack.key, notify = true)
+    updatePackDownloadStatus(pack.id, DownloadStatus.Downloaded)
 
     delay(1500) // wait, so we show the downloaded status for a bit before removing this row from the available sticker packs list
-    updatePackDownloadStatus(pack.record.packId, null)
+    updatePackDownloadStatus(pack.id, null)
   }
 
-  private fun updatePackDownloadStatus(packId: String, newStatus: DownloadStatus?) {
+  private fun updatePackDownloadStatus(packId: StickerPackId, newStatus: DownloadStatus?) {
     downloadStatusByPackId.value = if (newStatus == null) {
       downloadStatusByPackId.value.minus(packId)
     } else {
@@ -93,7 +96,7 @@ class StickerManagementViewModelV2 : ViewModel() {
   }
 
   fun uninstallStickerPack(pack: AvailableStickerPack) = viewModelScope.launch {
-    StickerManagementRepository.uninstallStickerPack(packId = pack.record.packId, packKey = pack.record.packKey)
+    StickerManagementRepository.uninstallStickerPack(packId = pack.id, packKey = pack.key)
   }
 }
 
@@ -109,6 +112,9 @@ data class AvailableStickerPack(
   val isBlessed: Boolean,
   val downloadStatus: DownloadStatus
 ) {
+  val id = StickerPackId(record.packId)
+  val key = StickerPackKey(record.packKey)
+
   sealed class DownloadStatus {
     data object NotDownloaded : DownloadStatus()
     data object InProgress : DownloadStatus()
@@ -121,4 +127,7 @@ data class InstalledStickerPack(
   val isBlessed: Boolean,
   val sortOrder: Int,
   val isSelected: Boolean = false
-)
+) {
+  val id = StickerPackId(record.packId)
+  val key = StickerPackKey(record.packKey)
+}

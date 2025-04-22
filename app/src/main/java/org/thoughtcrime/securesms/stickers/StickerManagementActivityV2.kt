@@ -207,7 +207,7 @@ private fun AvailableStickersContent(
         item { StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_signal_artist_series_header)) }
         items(
           items = blessedPacks,
-          key = { it.record.packId }
+          key = { it.id.value }
         ) {
           AvailableStickerPackRow(
             pack = it,
@@ -225,7 +225,7 @@ private fun AvailableStickersContent(
         item { StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_stickers_you_received_header)) }
         items(
           items = notBlessedPacks,
-          key = { it.record.packId }
+          key = { it.id.value }
         ) {
           AvailableStickerPackRow(
             pack = it,
@@ -253,7 +253,7 @@ private fun InstalledStickersContent(
       item { StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_installed_stickers_header)) }
       items(
         items = packs,
-        key = { it.record.packId }
+        key = { it.id.value }
       ) {
         InstalledStickerPackRow(it)
       }
