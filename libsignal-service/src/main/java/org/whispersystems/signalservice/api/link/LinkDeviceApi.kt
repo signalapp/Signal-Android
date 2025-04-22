@@ -11,6 +11,7 @@ import org.signal.core.util.urlEncode
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
@@ -100,6 +101,7 @@ class LinkDeviceApi(
     aciIdentityKeyPair: IdentityKeyPair,
     pniIdentityKeyPair: IdentityKeyPair,
     profileKey: ProfileKey,
+    accountEntropyPool: AccountEntropyPool,
     masterKey: MasterKey,
     mediaRootBackupKey: MediaRootBackupKey,
     code: String,
@@ -117,6 +119,7 @@ class LinkDeviceApi(
       profileKey = profileKey.serialize().toByteString(),
       provisioningCode = code,
       provisioningVersion = ProvisioningVersion.CURRENT.value,
+      accountEntropyPool = accountEntropyPool.value,
       masterKey = masterKey.serialize().toByteString(),
       mediaRootBackupKey = mediaRootBackupKey.value.toByteString(),
       ephemeralBackupKey = ephemeralMessageBackupKey?.value?.toByteString()
