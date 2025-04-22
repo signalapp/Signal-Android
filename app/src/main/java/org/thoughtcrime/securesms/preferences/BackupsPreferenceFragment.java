@@ -346,6 +346,7 @@ public class BackupsPreferenceFragment extends Fragment {
     timer.setVisibility(View.VISIBLE);
     frequencyView.setVisibility(View.VISIBLE);
     updateTimeLabel();
+    updateDateLabel();
     setBackupFolderName();
   }
 
