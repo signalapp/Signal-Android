@@ -2755,6 +2755,17 @@ class ConversationFragment :
     }
   }
 
+  fun handleMoveToQuotePosition(quoteId: Long, authorId: RecipientId) {
+    disposables += viewModel.getQuotedMessagePosition(quoteId, authorId)
+      .subscribeBy {
+        if (it >= 0) {
+          moveToPosition(it)
+        } else {
+          toast(R.string.ConversationFragment_quoted_message_no_longer_available)
+        }
+      }
+  }
+
   //endregion Scroll Handling
 
   // region Conversation Callbacks
@@ -2788,14 +2799,7 @@ class ConversationFragment :
         return
       }
 
-      disposables += viewModel.getQuotedMessagePosition(quote)
-        .subscribeBy {
-          if (it >= 0) {
-            moveToPosition(it)
-          } else {
-            toast(R.string.ConversationFragment_quoted_message_no_longer_available)
-          }
-        }
+      handleMoveToQuotePosition(quote.id, quote.author)
     }
 
     override fun onLinkPreviewClicked(linkPreview: LinkPreview) {
@@ -4217,6 +4221,10 @@ class ConversationFragment :
 
     override fun onQuoteCleared() {
       draftViewModel.clearQuoteDraft()
+    }
+
+    override fun onQuoteClicked(quoteId: Long, authorId: RecipientId) {
+      handleMoveToQuotePosition(quoteId = quoteId, authorId = authorId)
     }
 
     override fun onEnterEditMode() {

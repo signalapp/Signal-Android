@@ -58,7 +58,6 @@ import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
@@ -249,9 +248,9 @@ class ConversationRepository(
     oldConversationRepository.markGiftBadgeRevealed(messageId)
   }
 
-  fun getQuotedMessagePosition(threadId: Long, quote: Quote): Single<Int> {
+  fun getQuotedMessagePosition(threadId: Long, quoteId: Long, authorId: RecipientId): Single<Int> {
     return Single.fromCallable {
-      SignalDatabase.messages.getQuotedMessagePosition(threadId, quote.id, quote.author)
+      SignalDatabase.messages.getQuotedMessagePosition(threadId, quoteId, authorId)
     }.subscribeOn(Schedulers.io())
   }
 
