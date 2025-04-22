@@ -158,7 +158,7 @@ rxjava3-rxandroid = "io.reactivex.rxjava3:rxandroid:3.0.0"
 rxjava3-rxkotlin = "io.reactivex.rxjava3:rxkotlin:3.0.1"
 rxdogtag = "com.uber.rxdogtag2:rxdogtag:2.0.1"
 conscrypt-android = "org.conscrypt:conscrypt-android:2.5.3"
-mobilecoin = "com.mobilecoin:android-sdk:6.0.1"
+mobilecoin = "com.mobilecoin:android-sdk:6.1.2"
 leolin-shortcutbadger = "me.leolin:ShortcutBadger:1.1.22"
 emilsjolander-stickylistheaders = "se.emilsjolander:stickylistheaders:2.7.0"
 glide-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
