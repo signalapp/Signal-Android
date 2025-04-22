@@ -12,7 +12,7 @@
       android:layout_width="0dp"
       android:layout_height="wrap_content"
       android:padding="8dp"
-      android:text="@string/SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors"
+      android:text="@string/SubmitDebugLogActivity_your_log_will_be_posted_online"
       android:textColor="@color/core_black"
       android:background="@color/core_yellow"
       android:visibility="gone"
