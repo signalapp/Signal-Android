@@ -75,11 +75,11 @@ class StoryViewsFragment :
 
   private fun getConfiguration(state: StoryViewsState): DSLConfiguration {
     return configure {
-      state.views.sortedBy { it.recipient.getDisplayName(requireContext()) }.forEach { storyViewItemData ->
+      state.views.sortedBy { it.recipient.getDisplayName(requireContext()).lowercase() }.forEach { storyViewItemData ->
         customPref(
           StoryViewItem.Model(
             storyViewItemData = storyViewItemData,
-            canRemoveMember = state.storyRecipient?.isDistributionList ?: false,
+            canRemoveMember = state.storyRecipient?.isDistributionList == true,
             goToChat = { model ->
               lifecycleDisposable += ConversationIntents.createBuilder(requireContext(), model.storyViewItemData.recipient.id, -1L).subscribeBy {
                 val chatIntent = it.build()
