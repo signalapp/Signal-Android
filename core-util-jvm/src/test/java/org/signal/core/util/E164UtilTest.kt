@@ -98,7 +98,9 @@ class E164UtilTest {
   @Test
   fun `formatAsE164 - short codes`() {
     val formatter: E164Util.Formatter = E164Util.createFormatterForE164("+14152222222")
-    Assert.assertEquals("40404", formatter.formatAsE164("40404"))
+    Assert.assertEquals("+40404", formatter.formatAsE164("+40404"))
+    Assert.assertEquals("7726", formatter.formatAsE164("+7726"))
+    Assert.assertEquals("69987", formatter.formatAsE164("+69987"))
     Assert.assertEquals("40404", formatter.formatAsE164("40404"))
     Assert.assertEquals("7726", formatter.formatAsE164("7726"))
     Assert.assertEquals("22000", formatter.formatAsE164("22000"))
