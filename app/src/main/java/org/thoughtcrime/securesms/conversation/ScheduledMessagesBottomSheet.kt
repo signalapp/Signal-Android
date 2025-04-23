@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.components.recyclerview.SmoothScrollingLinearLayoutManager
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
+import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart
 import org.thoughtcrime.securesms.conversation.mutiselect.MultiselectPart.Attachments
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageRecord
@@ -257,6 +258,9 @@ class ScheduledMessagesBottomSheet : FixedRoundedCornerBottomSheetDialogFragment
     override fun onVoiceNotePlay(uri: Uri, messageId: Long, position: Double) {
       callback.getConversationAdapterListener().onSingleVoiceNotePlay(uri, messageId, position)
     }
+
+    override fun onItemLongClick(itemView: View?, item: MultiselectPart?) = Unit
+    override fun onItemClick(item: MultiselectPart?) = Unit
   }
 
   companion object {
