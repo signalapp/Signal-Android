@@ -59,7 +59,7 @@ object StoryViewItem {
     }
 
     private fun formatDate(dateInMilliseconds: Long): String {
-      return DateUtils.formatDateWithDayOfWeek(Locale.getDefault(), dateInMilliseconds)
+      return DateUtils.getBriefRelativeTimeSpanString(context, Locale.getDefault(), dateInMilliseconds)
     }
 
     private fun showContextMenu(model: Model) {
