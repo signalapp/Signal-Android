@@ -30,8 +30,18 @@ import org.thoughtcrime.securesms.stories.Stories
 class MainNavigationViewModel(initialListLocation: MainNavigationListLocation = MainNavigationListLocation.CHATS) : ViewModel() {
   private val megaphoneRepository = AppDependencies.megaphoneRepository
 
-  private val detailLocationFlow = MutableSharedFlow<MainNavigationDetailLocation>()
-  val detailLocation: SharedFlow<MainNavigationDetailLocation> = detailLocationFlow
+  /**
+   * A shared flow of detail location requests that the MainActivity will service.
+   */
+  private val detailLocationRequestFlow = MutableSharedFlow<MainNavigationDetailLocation>()
+  val detailLocationRequests: SharedFlow<MainNavigationDetailLocation> = detailLocationRequestFlow
+
+  /**
+   * The latest detail location that has been requested, for consumption by other components.
+   */
+  private val detailLocationFlow = MutableStateFlow<MainNavigationDetailLocation>(MainNavigationDetailLocation.Empty)
+  val detailLocation: StateFlow<MainNavigationDetailLocation> = detailLocationFlow
+  val detailLocationObservable: Observable<MainNavigationDetailLocation> = detailLocationFlow.asObservable()
 
   private val internalMegaphone = MutableStateFlow(Megaphone.NONE)
   val megaphone: StateFlow<Megaphone> = internalMegaphone
@@ -73,6 +83,7 @@ class MainNavigationViewModel(initialListLocation: MainNavigationListLocation = 
 
   fun goTo(location: MainNavigationDetailLocation) {
     viewModelScope.launch {
+      detailLocationRequestFlow.emit(location)
       detailLocationFlow.emit(location)
     }
   }

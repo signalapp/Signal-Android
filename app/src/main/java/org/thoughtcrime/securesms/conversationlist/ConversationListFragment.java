@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.conversationlist;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -117,6 +118,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView;
@@ -132,6 +134,7 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.main.MainNavigationDetailLocation;
 import org.thoughtcrime.securesms.main.MainNavigationListLocation;
 import org.thoughtcrime.securesms.main.MainNavigationViewModel;
 import org.thoughtcrime.securesms.main.MainToolbarMode;
@@ -160,6 +163,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
+import org.thoughtcrime.securesms.window.WindowSizeClass;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.lang.ref.WeakReference;
@@ -402,6 +406,22 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                        list.scrollToPosition(0);
                                                      }
                                                    }));
+
+    if (WindowSizeClass.Companion.getWindowSizeClass(getResources()).isSplitPane()) {
+      lifecycleDisposable.add(mainNavigationViewModel.getDetailLocationObservable()
+                                                     .subscribeOn(AndroidSchedulers.mainThread())
+                                                     .subscribe(location -> {
+                                                       if (location instanceof MainNavigationDetailLocation.Conversation) {
+                                                         Intent                   intent   = ((MainNavigationDetailLocation.Conversation) location).getIntent();
+                                                         ConversationIntents.Args args     = ConversationIntents.Args.from(Objects.requireNonNull(intent.getExtras()));
+                                                         long                     threadId = args.getThreadId();
+
+                                                         defaultAdapter.setActiveThreadId(threadId);
+                                                       }
+                                                     }));
+    } else {
+      defaultAdapter.setActiveThreadId(0);
+    }
 
     requireCallback().bindScrollHelper(list, getViewLifecycleOwner(), chatFolderList, color -> {
       for (int i = 0; i < chatFolderList.getChildCount(); i++) {

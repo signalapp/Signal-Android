@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
 import org.thoughtcrime.securesms.conversation.MessageStyler;
+import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.ThreadTable;
@@ -213,9 +214,10 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                    @NonNull RequestManager glideRequests,
                    @NonNull Locale locale,
                    @NonNull Set<Long> typingThreads,
-                   @NonNull ConversationSet selectedConversations)
+                   @NonNull ConversationSet selectedConversations,
+                   long activeThreadId)
   {
-    bindThread(lifecycleOwner, thread, glideRequests, locale, typingThreads, selectedConversations, null, false, true);
+    bindThread(lifecycleOwner, thread, glideRequests, locale, typingThreads, selectedConversations, null, false, true, activeThreadId);
   }
 
   public void bindThread(@NonNull LifecycleOwner lifecycleOwner,
@@ -226,7 +228,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                          @NonNull ConversationSet selectedConversations,
                          @Nullable String highlightSubstring,
                          boolean appendSystemContactIcon,
-                         boolean showPinned)
+                         boolean showPinned,
+                         long activeThreadId)
   {
     this.threadId           = thread.getThreadId();
     this.requestManager     = requestManager;
@@ -282,6 +285,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       this.archivedView.setVisibility(View.GONE);
     }
 
+    setActiveThreadId(activeThreadId);
     setStatusIcons(thread);
     setSelectedConversations(selectedConversations);
     setBadgeFromRecipient(recipient.get());
@@ -326,6 +330,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     alertView.setNone();
 
     setSelectedConversations(new ConversationSet());
+    setActiveThreadId(0);
     setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(requestManager, recipient.get(), !batchMode, false);
   }
@@ -363,6 +368,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     alertView.setNone();
 
     setSelectedConversations(new ConversationSet());
+    setActiveThreadId(0);
     setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(requestManager, recipient.get(), !batchMode);
   }
@@ -383,12 +389,18 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     if (this.recipient != null) {
       observeRecipient(null, null);
       setSelectedConversations(new ConversationSet());
+      setActiveThreadId(0);
       contactPhotoImage.setAvatar(requestManager, null, !batchMode);
     }
 
     observeDisplayBody(null, null);
     joinMembersDisposable.dispose();
     updateDateView = null;
+  }
+
+  @Override
+  public void setActiveThreadId(long activeThreadId) {
+    setActivated(activeThreadId > 0 && this.threadId == activeThreadId);
   }
 
   @Override

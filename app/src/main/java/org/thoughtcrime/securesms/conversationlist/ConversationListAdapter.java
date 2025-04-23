@@ -44,7 +44,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   private enum Payload {
     TYPING_INDICATOR,
     SELECTION,
-    TIMESTAMP
+    TIMESTAMP,
+    ACTIVE
   }
 
   private final LifecycleOwner                                      lifecycleOwner;
@@ -55,6 +56,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   private final Set<Long>                                           typingSet                     = new HashSet<>();
 
   private       ConversationSet                                     selectedConversations         = new ConversationSet();
+  private       long                                                activeThreadId                = 0;
   private       PagingController                                    pagingController;
 
   protected ConversationListAdapter(@NonNull LifecycleOwner lifecycleOwner,
@@ -148,6 +150,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
             case TYPING_INDICATOR -> vh.getConversationListItem().updateTypingIndicator(typingSet);
             case SELECTION -> vh.getConversationListItem().setSelectedConversations(selectedConversations);
             case TIMESTAMP -> vh.getConversationListItem().updateTimestamp();
+            case ACTIVE -> vh.getConversationListItem().setActiveThreadId(activeThreadId);
           }
         }
       }
@@ -165,7 +168,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
                                             requestManager,
                                             Locale.getDefault(),
                                             typingSet,
-                                            selectedConversations);
+                                            selectedConversations,
+                                            activeThreadId);
     } else if (holder.getItemViewType() == TYPE_HEADER) {
       HeaderViewHolder casted       = (HeaderViewHolder) holder;
       Conversation     conversation = Objects.requireNonNull(getItem(position));
@@ -222,6 +226,11 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   void setSelectedConversations(@NonNull ConversationSet conversations) {
     selectedConversations = conversations;
     notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
+  }
+
+  void setActiveThreadId(long activeThreadId) {
+    this.activeThreadId = activeThreadId;
+    notifyItemRangeChanged(0, getItemCount(), Payload.ACTIVE);
   }
 
   @Override

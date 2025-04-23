@@ -211,7 +211,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
     setContent {
       val listHostState = rememberFragmentState()
-      val detailLocation by mainNavigationViewModel.detailLocation.collectAsStateWithLifecycle(MainNavigationDetailLocation.Empty)
+      val detailLocation by mainNavigationViewModel.detailLocationRequests.collectAsStateWithLifecycle(MainNavigationDetailLocation.Empty)
       val snackbar by mainNavigationViewModel.snackbar.collectAsStateWithLifecycle()
       val mainToolbarState by toolbarViewModel.state.collectAsStateWithLifecycle()
       val megaphone by mainNavigationViewModel.megaphone.collectAsStateWithLifecycle()
