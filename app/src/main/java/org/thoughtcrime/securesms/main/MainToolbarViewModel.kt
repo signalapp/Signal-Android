@@ -18,6 +18,8 @@ import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlowable
+import kotlinx.coroutines.withContext
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
@@ -31,9 +33,18 @@ class MainToolbarViewModel : ViewModel() {
   val state: StateFlow<MainToolbarState> = internalStateFlow
 
   fun refresh() {
+    viewModelScope.launch {
+      val self = withContext(SignalDispatchers.IO) {
+        Recipient.self().resolve()
+      }
+
+      internalStateFlow.update {
+        it.copy(self = self)
+      }
+    }
+
     internalStateFlow.update {
       it.copy(
-        self = Recipient.self(),
         hasFailedBackups = BackupRepository.shouldDisplayBackupFailedIndicator() || BackupRepository.shouldDisplayBackupAlreadyRedeemedIndicator(),
         hasPassphrase = !SignalStore.settings.passphraseDisabled
       )

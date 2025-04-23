@@ -129,7 +129,7 @@ enum class MainToolbarMode {
 
 data class MainToolbarState(
   val toolbarColor: Color? = null,
-  val self: Recipient = Recipient.self(),
+  val self: Recipient = Recipient.UNKNOWN,
   val mode: MainToolbarMode = MainToolbarMode.FULL,
   val destination: MainNavigationListLocation = MainNavigationListLocation.CHATS,
   val chatFilter: ConversationFilter = ConversationFilter.OFF,
