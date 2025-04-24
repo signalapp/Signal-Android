@@ -1077,6 +1077,7 @@
               android:enableOnBackInvokedCallback="true"
               android:theme="@style/Theme.Signal.DayNight.NoActionBar"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"
+              android:windowSoftInputMode="stateUnchanged"
               android:resizeableActivity="true"
               android:exported="false"/>
 

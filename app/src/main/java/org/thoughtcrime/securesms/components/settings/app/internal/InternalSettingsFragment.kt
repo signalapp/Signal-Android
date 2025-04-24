@@ -167,10 +167,11 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
 
       switchPref(
         title = DSLSettingsText.from("Enable new split pane UI."),
-        summary = DSLSettingsText.from("Warning: Some bugs and non functional buttons are expected."),
+        summary = DSLSettingsText.from("Warning: Some bugs and non functional buttons are expected. App will restart."),
         isChecked = state.largeScreenUi,
         onClick = {
           viewModel.setUseLargeScreenUi(!state.largeScreenUi)
+          AppUtil.restart(requireContext())
         }
       )
 

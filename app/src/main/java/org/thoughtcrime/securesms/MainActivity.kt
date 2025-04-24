@@ -70,8 +70,10 @@ import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity.Co
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
+import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
 import org.thoughtcrime.securesms.conversation.v2.MotionEventRelay
+import org.thoughtcrime.securesms.conversation.v2.ShareDataTimestampViewModel
 import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment
 import org.thoughtcrime.securesms.conversationlist.RestoreCompleteBottomSheetDialog
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
@@ -163,6 +165,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
   private val toolbarViewModel: MainToolbarViewModel by viewModels()
   private val toolbarCallback = ToolbarCallback()
+  private val shareDataTimestampViewModel: ShareDataTimestampViewModel by viewModels()
 
   private val motionEventRelay: MotionEventRelay by viewModels()
 
@@ -209,9 +212,11 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       }
     }
 
+    shareDataTimestampViewModel.setTimestampFromActivityCreation(savedInstanceState, intent)
+
     setContent {
       val listHostState = rememberFragmentState()
-      val detailLocation by mainNavigationViewModel.detailLocationRequests.collectAsStateWithLifecycle(MainNavigationDetailLocation.Empty)
+      val detailLocation by mainNavigationViewModel.detailLocationRequests.collectAsStateWithLifecycle()
       val snackbar by mainNavigationViewModel.snackbar.collectAsStateWithLifecycle()
       val mainToolbarState by toolbarViewModel.state.collectAsStateWithLifecycle()
       val megaphone by mainNavigationViewModel.megaphone.collectAsStateWithLifecycle()
@@ -255,6 +260,8 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
               startActivity((detailLocation as MainNavigationDetailLocation.Conversation).intent)
             }
           }
+
+          mainNavigationViewModel.goTo(MainNavigationDetailLocation.Empty)
         }
 
         AppScaffold(
@@ -494,6 +501,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
   }
 
   private fun handleDeepLinkIntent(intent: Intent) {
+    handleConversationIntent(intent)
     handleGroupLinkInIntent(intent)
     handleProxyInIntent(intent)
     handleSignalMeIntent(intent)
@@ -511,6 +519,12 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       VitalsViewModel.State.PROMPT_DEBUGLOGS_FOR_CRASH -> DebugLogsPromptDialogFragment.show(this, DebugLogsPromptDialogFragment.Purpose.CRASH)
       VitalsViewModel.State.PROMPT_CONNECTIVITY_WARNING -> ConnectivityWarningBottomSheet.show(supportFragmentManager)
       VitalsViewModel.State.PROMPT_DEBUGLOGS_FOR_CONNECTIVITY_WARNING -> DebugLogsPromptDialogFragment.show(this, DebugLogsPromptDialogFragment.Purpose.CONNECTIVITY_WARNING)
+    }
+  }
+
+  private fun handleConversationIntent(intent: Intent) {
+    if (ConversationIntents.isConversationIntent(intent)) {
+      mainNavigationViewModel.goTo(MainNavigationDetailLocation.Conversation(intent))
     }
   }
 

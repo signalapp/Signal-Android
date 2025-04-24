@@ -11,7 +11,6 @@ import io.reactivex.rxjava3.core.Observable
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.filter
@@ -32,9 +31,10 @@ class MainNavigationViewModel(initialListLocation: MainNavigationListLocation = 
 
   /**
    * A shared flow of detail location requests that the MainActivity will service.
+   * This is immediately set back to empty after requesting a detail location to prevent duplicate launches.
    */
-  private val detailLocationRequestFlow = MutableSharedFlow<MainNavigationDetailLocation>()
-  val detailLocationRequests: SharedFlow<MainNavigationDetailLocation> = detailLocationRequestFlow
+  private val detailLocationRequestFlow = MutableStateFlow<MainNavigationDetailLocation>(MainNavigationDetailLocation.Empty)
+  val detailLocationRequests: StateFlow<MainNavigationDetailLocation> = detailLocationRequestFlow
 
   /**
    * The latest detail location that has been requested, for consumption by other components.

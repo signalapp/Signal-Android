@@ -1564,7 +1564,7 @@ class ConversationFragment :
   }
 
   private fun handleShareOrDraftData(inputReadyState: InputReadyState, data: ShareOrDraftData) {
-    shareDataTimestampViewModel.timestamp = args.shareDataTimestamp
+    shareDataTimestampViewModel.setTimestampFromConversationArgs(args)
 
     if (inputReadyState.isAnnouncementGroup == true && inputReadyState.isAdmin == false) {
       Toast.makeText(requireContext(), R.string.MultiselectForwardFragment__only_admins_can_send_messages_to_this_group, Toast.LENGTH_SHORT).show()
