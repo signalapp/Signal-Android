@@ -270,10 +270,15 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
           return
         }
         hasActiveSignalSubscription && hasActiveGooglePlayBillingSubscription -> {
-          Log.d(TAG, "Found erroneous mismatch. Clearing.")
+          Log.d(TAG, "Found active signal subscription and active google play subscription. Clearing mismatch.")
+          SignalStore.backup.subscriptionStateMismatchDetected = false
+        }
+        !hasActiveSignalSubscription && !hasActiveGooglePlayBillingSubscription -> {
+          Log.d(TAG, "Found inactive signal subscription and inactive google play subscription. Clearing mismatch.")
           SignalStore.backup.subscriptionStateMismatchDetected = false
         }
         else -> {
+          Log.w(TAG, "Hit unexpected subscription mismatch state: signal:false, google:true")
           return
         }
       }

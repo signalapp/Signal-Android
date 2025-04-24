@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
@@ -350,10 +351,16 @@ object BackupRepository {
   fun turnOffAndDisableBackups(): Boolean {
     return try {
       Log.d(TAG, "Attempting to disable backups.")
-      if (SignalStore.backup.backupTier == MessageBackupTier.PAID) {
+
+      val backupsSubscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
+      if (SignalStore.backup.backupTier == MessageBackupTier.PAID && backupsSubscriber != null) {
         Log.d(TAG, "User is currently on a paid tier. Canceling.")
         RecurringInAppPaymentRepository.cancelActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
         Log.d(TAG, "Successfully canceled paid tier.")
+      }
+
+      if (backupsSubscriber == null) {
+        Log.w(TAG, "No backup subscriber in the database. Proceeding with disabling backups anyway.")
       }
 
       Log.d(TAG, "Disabling backups.")
