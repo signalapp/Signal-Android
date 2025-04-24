@@ -141,7 +141,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   }
 
   private fun presentToolbarForConversationListFragment() {
-    toolbarViewModel.setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationListLocation.CHATS)
+    toolbarViewModel.setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationListLocation.CHATS, overwriteSearchMode = false)
   }
 
   private fun presentToolbarForConversationListArchiveFragment() {
