@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.util.swap
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -177,17 +178,22 @@ class ChatFoldersViewModel : ViewModel() {
     }
   }
 
-  fun updatePosition(fromIndex: Int, toIndex: Int) {
-    viewModelScope.launch(Dispatchers.IO) {
-      val folders = state.value.folders.toMutableList().apply { add(toIndex, removeAt(fromIndex)) }
-      val updatedFolders = folders.mapIndexed { index, chatFolderRecord ->
-        chatFolderRecord.copy(position = index)
-      }
-      ChatFoldersRepository.updatePositions(updatedFolders)
+  fun updateItemPosition(fromIndex: Int, toIndex: Int) {
+    val folders = state.value.folders.swap(fromIndex, toIndex)
+    val updatedFolders = folders.mapIndexed { index, chatFolderRecord ->
+      chatFolderRecord.copy(position = index)
+    }
+    internalState.update {
+      it.copy(folders = updatedFolders)
+    }
+  }
 
-      internalState.update {
-        it.copy(folders = updatedFolders)
-      }
+  fun saveItemPositions() {
+    val updatedFolders = state.value.folders.mapIndexed { index, chatFolderRecord ->
+      chatFolderRecord.copy(position = index)
+    }
+    viewModelScope.launch(Dispatchers.IO) {
+      ChatFoldersRepository.updatePositions(updatedFolders)
     }
   }
 

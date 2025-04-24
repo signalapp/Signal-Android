@@ -101,7 +101,13 @@ class ChatFoldersFragment : ComposeFragment() {
         onDeleteDismissed = {
           viewModel.showDeleteDialog(false)
         },
-        onPositionUpdated = { fromIndex, toIndex -> viewModel.updatePosition(fromIndex, toIndex) }
+        onDragAndDropEvent = { event ->
+          when (event) {
+            is DragAndDropEvent.OnItemMove -> viewModel.updateItemPosition(event.fromIndex, event.toIndex)
+            is DragAndDropEvent.OnItemDrop -> viewModel.saveItemPositions()
+            is DragAndDropEvent.OnDragCancel -> {}
+          }
+        }
       )
     }
   }
@@ -117,16 +123,12 @@ fun FoldersScreen(
   onDeleteClicked: (ChatFolderRecord) -> Unit = {},
   onDeleteConfirmed: () -> Unit = {},
   onDeleteDismissed: () -> Unit = {},
-  onPositionUpdated: (Int, Int) -> Unit = { _, _ -> }
+  onDragAndDropEvent: (DragAndDropEvent) -> Unit = {}
 ) {
   val screenWidth = LocalConfiguration.current.screenWidthDp.dp
   val isRtl = ViewUtil.isRtl(LocalContext.current)
   val listState = rememberLazyListState()
-  val dragDropState = rememberDragDropState(listState, includeHeader = true, includeFooter = true) { event ->
-    if (event is DragAndDropEvent.OnItemMove) {
-      onPositionUpdated(event.fromIndex, event.toIndex)
-    }
-  }
+  val dragDropState = rememberDragDropState(listState, includeHeader = true, includeFooter = true, onEvent = onDragAndDropEvent)
 
   LaunchedEffect(Unit) {
     if (!SignalStore.uiHints.hasSeenChatFoldersEducationSheet) {
