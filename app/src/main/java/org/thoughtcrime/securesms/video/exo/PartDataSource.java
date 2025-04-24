@@ -14,22 +14,22 @@ import androidx.media3.datasource.TransferListener;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.backup.v2.BackupRepository;
 import org.thoughtcrime.securesms.backup.v2.DatabaseAttachmentArchiveUtil;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.PartUriParser;
 import org.signal.core.util.Base64;
-import org.whispersystems.signalservice.api.backup.MediaId;
 import org.whispersystems.signalservice.api.backup.MediaName;
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
+import org.signal.core.util.stream.TailerInputStream;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
 
 import java.io.EOFException;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Collections;
@@ -88,14 +88,16 @@ class PartDataSource implements DataSource {
       } else {
         final File transferFile = attachmentDatabase.getOrCreateTransferFile(attachment.attachmentId);
         try {
-          this.inputStream = AttachmentCipherInputStream.createForAttachment(transferFile, attachment.size, decode, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
+          long                                       streamLength   = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size));
+          AttachmentCipherInputStream.StreamSupplier streamSupplier = () -> new TailerInputStream(() -> new FileInputStream(transferFile), streamLength);
+          this.inputStream = AttachmentCipherInputStream.createForAttachment(streamSupplier, streamLength, attachment.size, decode, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize, false);
         } catch (InvalidMessageException e) {
           throw new IOException("Error decrypting attachment stream!", e);
         }
       }
       long skipped = 0;
       while (skipped < dataSpec.position) {
-        skipped += this.inputStream.read();
+        skipped += this.inputStream.skip(dataSpec.position - skipped);
       }
 
       Log.d(TAG, "Successfully loaded partial attachment file.");
