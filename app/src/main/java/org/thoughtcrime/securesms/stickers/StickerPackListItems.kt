@@ -133,7 +133,7 @@ fun InstalledStickerPackRow(
       imageVector = ImageVector.vectorResource(id = R.drawable.ic_drag_handle),
       contentDescription = stringResource(R.string.StickerManagement_accessibility_drag_handle),
       tint = MaterialTheme.colorScheme.onSurfaceVariant,
-      modifier = modifier
+      modifier = Modifier
         .padding(horizontal = 12.dp)
         .size(24.dp)
     )

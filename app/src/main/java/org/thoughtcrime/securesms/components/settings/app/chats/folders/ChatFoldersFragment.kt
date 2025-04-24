@@ -50,6 +50,7 @@ import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
 import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
 import org.signal.core.ui.compose.copied.androidx.compose.dragContainer
 import org.signal.core.ui.compose.copied.androidx.compose.rememberDragDropState
@@ -121,10 +122,11 @@ fun FoldersScreen(
   val screenWidth = LocalConfiguration.current.screenWidthDp.dp
   val isRtl = ViewUtil.isRtl(LocalContext.current)
   val listState = rememberLazyListState()
-  val dragDropState =
-    rememberDragDropState(listState, includeHeader = true, includeFooter = true) { fromIndex, toIndex ->
-      onPositionUpdated(fromIndex, toIndex)
+  val dragDropState = rememberDragDropState(listState, includeHeader = true, includeFooter = true) { event ->
+    if (event is DragAndDropEvent.OnItemMove) {
+      onPositionUpdated(event.fromIndex, event.toIndex)
     }
+  }
 
   LaunchedEffect(Unit) {
     if (!SignalStore.uiHints.hasSeenChatFoldersEducationSheet) {

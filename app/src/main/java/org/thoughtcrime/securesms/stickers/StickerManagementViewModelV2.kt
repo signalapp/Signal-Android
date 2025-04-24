@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.util.swap
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
@@ -77,14 +78,16 @@ class StickerManagementViewModelV2 : ViewModel() {
       }
   }
 
-  fun installStickerPack(pack: AvailableStickerPack) = viewModelScope.launch {
-    updatePackDownloadStatus(pack.id, DownloadStatus.InProgress)
+  fun installStickerPack(pack: AvailableStickerPack) {
+    viewModelScope.launch {
+      updatePackDownloadStatus(pack.id, DownloadStatus.InProgress)
 
-    StickerManagementRepository.installStickerPack(packId = pack.id, packKey = pack.key, notify = true)
-    updatePackDownloadStatus(pack.id, DownloadStatus.Downloaded)
+      StickerManagementRepository.installStickerPack(packId = pack.id, packKey = pack.key, notify = true)
+      updatePackDownloadStatus(pack.id, DownloadStatus.Downloaded)
 
-    delay(1500) // wait, so we show the downloaded status for a bit before removing this row from the available sticker packs list
-    updatePackDownloadStatus(pack.id, null)
+      delay(1500) // wait, so we show the downloaded status for a bit before removing this row from the available sticker packs list
+      updatePackDownloadStatus(pack.id, null)
+    }
   }
 
   private fun updatePackDownloadStatus(packId: StickerPackId, newStatus: DownloadStatus?) {
@@ -95,8 +98,20 @@ class StickerManagementViewModelV2 : ViewModel() {
     }
   }
 
-  fun uninstallStickerPack(pack: AvailableStickerPack) = viewModelScope.launch {
-    StickerManagementRepository.uninstallStickerPack(packId = pack.id, packKey = pack.key)
+  fun uninstallStickerPack(pack: AvailableStickerPack) {
+    viewModelScope.launch {
+      StickerManagementRepository.uninstallStickerPack(packId = pack.id, packKey = pack.key)
+    }
+  }
+
+  fun updatePosition(fromIndex: Int, toIndex: Int) {
+    _uiState.update { it.copy(installedPacks = _uiState.value.installedPacks.swap(fromIndex, toIndex)) }
+  }
+
+  fun saveInstalledPacksSortOrder() {
+    viewModelScope.launch {
+      StickerManagementRepository.setStickerPacksOrder(_uiState.value.installedPacks.map { it.record })
+    }
   }
 }
 

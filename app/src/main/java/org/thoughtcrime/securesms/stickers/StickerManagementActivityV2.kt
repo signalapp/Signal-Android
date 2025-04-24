@@ -17,6 +17,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -31,10 +33,14 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -45,6 +51,10 @@ import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
+import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
+import org.signal.core.ui.compose.copied.androidx.compose.dragContainer
+import org.signal.core.ui.compose.copied.androidx.compose.rememberDragDropState
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
@@ -78,7 +88,18 @@ class StickerManagementActivityV2 : PassphraseRequiredActivity() {
         StickerManagementScreen(
           uiState = uiState,
           onNavigateBack = ::supportFinishAfterTransition,
-          onInstallClick = viewModel::installStickerPack
+          availableTabCallbacks = object : AvailableStickersContentCallbacks {
+            override fun onInstallClick(pack: AvailableStickerPack) = viewModel.installStickerPack(pack)
+          },
+          installedTabCallbacks = object : InstalledStickersContentCallbacks {
+            override fun onDragAndDropEvent(event: DragAndDropEvent) {
+              when (event) {
+                is DragAndDropEvent.OnItemMove -> viewModel.updatePosition(event.fromIndex, event.toIndex)
+                is DragAndDropEvent.OnItemDrop -> viewModel.saveInstalledPacksSortOrder()
+                is DragAndDropEvent.OnDragCancel -> {}
+              }
+            }
+          }
         )
       }
     }
@@ -90,12 +111,29 @@ private data class Page(
   val getContent: @Composable () -> Unit
 )
 
+interface AvailableStickersContentCallbacks {
+  fun onInstallClick(pack: AvailableStickerPack)
+
+  object Empty : AvailableStickersContentCallbacks {
+    override fun onInstallClick(pack: AvailableStickerPack) = Unit
+  }
+}
+
+interface InstalledStickersContentCallbacks {
+  fun onDragAndDropEvent(event: DragAndDropEvent)
+
+  object Empty : InstalledStickersContentCallbacks {
+    override fun onDragAndDropEvent(event: DragAndDropEvent) = Unit
+  }
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun StickerManagementScreen(
   uiState: StickerManagementUiState,
   onNavigateBack: () -> Unit = {},
-  onInstallClick: (AvailableStickerPack) -> Unit = {},
+  availableTabCallbacks: AvailableStickersContentCallbacks = AvailableStickersContentCallbacks.Empty,
+  installedTabCallbacks: InstalledStickersContentCallbacks = InstalledStickersContentCallbacks.Empty,
   modifier: Modifier = Modifier
 ) {
   Scaffold(
@@ -109,13 +147,18 @@ private fun StickerManagementScreen(
           AvailableStickersContent(
             blessedPacks = uiState.availableBlessedPacks,
             notBlessedPacks = uiState.availableNotBlessedPacks,
-            onInstallClick = onInstallClick
+            callbacks = availableTabCallbacks
           )
         }
       ),
       Page(
         title = stringResource(R.string.StickerManagement_installed_tab_label),
-        getContent = { InstalledStickersContent(uiState.installedPacks) }
+        getContent = {
+          InstalledStickersContent(
+            packs = uiState.installedPacks,
+            callbacks = installedTabCallbacks
+          )
+        }
       )
     )
 
@@ -193,7 +236,7 @@ private fun PagerTab(
 private fun AvailableStickersContent(
   blessedPacks: List<AvailableStickerPack>,
   notBlessedPacks: List<AvailableStickerPack>,
-  onInstallClick: (AvailableStickerPack) -> Unit = {},
+  callbacks: AvailableStickersContentCallbacks = AvailableStickersContentCallbacks.Empty,
   modifier: Modifier = Modifier
 ) {
   if (blessedPacks.isEmpty() && notBlessedPacks.isEmpty()) {
@@ -211,7 +254,7 @@ private fun AvailableStickersContent(
         ) {
           AvailableStickerPackRow(
             pack = it,
-            onInstallClick = { onInstallClick(it) },
+            onInstallClick = { callbacks.onInstallClick(it) },
             modifier = Modifier.animateItem()
           )
         }
@@ -229,7 +272,7 @@ private fun AvailableStickersContent(
         ) {
           AvailableStickerPackRow(
             pack = it,
-            onInstallClick = { onInstallClick(it) },
+            onInstallClick = { callbacks.onInstallClick(it) },
             modifier = Modifier.animateItem()
           )
         }
@@ -241,21 +284,48 @@ private fun AvailableStickersContent(
 @Composable
 private fun InstalledStickersContent(
   packs: List<InstalledStickerPack>,
+  callbacks: InstalledStickersContentCallbacks = InstalledStickersContentCallbacks.Empty,
   modifier: Modifier = Modifier
 ) {
   if (packs.isEmpty()) {
     EmptyView(text = stringResource(R.string.StickerManagement_installed_tab_empty_text))
   } else {
+    val listState = rememberLazyListState()
+    val dragDropState = rememberDragDropState(lazyListState = listState, includeHeader = true, includeFooter = false, onEvent = callbacks::onDragAndDropEvent)
+
+    val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
+    val screenWidth = LocalConfiguration.current.screenWidthDp.dp
+
     LazyColumn(
       contentPadding = PaddingValues(top = 8.dp),
-      modifier = modifier.fillMaxHeight()
+      state = listState,
+      modifier = modifier
+        .fillMaxHeight()
+        .dragContainer(
+          dragDropState = dragDropState,
+          leftDpOffset = if (isRtl) 0.dp else screenWidth - 56.dp,
+          rightDpOffset = if (isRtl) 56.dp else screenWidth
+        )
     ) {
-      item { StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_installed_stickers_header)) }
-      items(
+      item {
+        DraggableItem(dragDropState, 0) {
+          StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_installed_stickers_header))
+        }
+      }
+
+      itemsIndexed(
         items = packs,
-        key = { it.id.value }
-      ) {
-        InstalledStickerPackRow(it)
+        key = { _, pack -> pack.id.value }
+      ) { index, pack ->
+        DraggableItem(
+          index = index + 1,
+          dragDropState = dragDropState
+        ) { isDragging ->
+          InstalledStickerPackRow(
+            pack = pack,
+            modifier = Modifier.shadow(if (isDragging) 1.dp else 0.dp)
+          )
+        }
       }
     }
   }
