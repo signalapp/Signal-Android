@@ -59,7 +59,7 @@ class FindByViewModel(
 
   @WorkerThread
   private fun performUsernameLookup(): FindByResult {
-    val username = state.value.userEntry
+    val username = state.value.userEntry.trim()
 
     if (!UsernameUtil.isValidUsernameForSearch(username)) {
       return FindByResult.InvalidEntry
