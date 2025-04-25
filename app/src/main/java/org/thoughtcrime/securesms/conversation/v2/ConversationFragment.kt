@@ -1887,6 +1887,8 @@ class ConversationFragment :
       stickerRecord.size,
       stickerLocator,
       stickerRecord.contentType
+        .takeIf { it.isNotBlank() }
+        ?: MediaUtil.IMAGE_WEBP
     )
 
     sendMessageWithoutComposeInput(slide = slide, clearCompose = clearCompose)
