@@ -399,6 +399,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
           return
         }
       }
+
       WebRtcViewModel.State.CALL_OUTGOING -> handleOutgoingCall(event)
       WebRtcViewModel.State.CALL_CONNECTED -> handleCallConnected(event)
       WebRtcViewModel.State.CALL_RINGING -> handleCallRinging()
@@ -410,6 +411,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
           handleTerminate(event.recipient, HangupMessage.Type.NORMAL)
         }
       }
+
       WebRtcViewModel.State.CALL_DISCONNECTED_GLARE -> handleGlare(event.recipient)
       WebRtcViewModel.State.CALL_NEEDS_PERMISSION -> handleTerminate(event.recipient, HangupMessage.Type.NEED_PERMISSION)
       WebRtcViewModel.State.CALL_RECONNECTING -> handleCallReconnecting()
@@ -871,6 +873,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       is CallEvent.ShowGroupCallSafetyNumberChange -> SafetyNumberBottomSheet.forGroupCall(event.identityRecords).show(supportFragmentManager)
       is CallEvent.SwitchToSpeaker -> callScreen.switchToSpeakerView()
       is CallEvent.ShowSwipeToSpeakerHint -> CallToastPopupWindow.show(rootView())
+      is CallEvent.ShowRemoteMuteToast -> CallToastPopupWindow.show(rootView(), R.drawable.ic_mic_off_solid_18, event.getDescription(this))
       is CallEvent.ShowVideoTooltip -> {
         if (isInPipMode()) return
 
@@ -914,6 +917,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
         val formatter: EllapsedTimeFormatter = EllapsedTimeFormatter.fromDurationMillis(inCallStatus.elapsedTime) ?: return
         callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, formatter.toString()))
       }
+
       is InCallStatus.PendingCallLinkUsers -> {
         val waiting = inCallStatus.pendingUserCount
 
@@ -925,6 +929,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
           )
         )
       }
+
       is InCallStatus.JoinedCallLinkUsers -> {
         val joined = inCallStatus.joinedUserCount
 

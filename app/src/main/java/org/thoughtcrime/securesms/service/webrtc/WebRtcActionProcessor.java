@@ -786,6 +786,16 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  protected @NonNull WebRtcServiceState handleRemoteMuteRequest(@NonNull WebRtcServiceState currentState, long sourceDemuxId) {
+    Log.i(tag, "handleRemoteMuteRequest not processed");
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleObservedRemoteMute(@NonNull WebRtcServiceState currentState, long sourceDemuxId, long targetDemuxId) {
+    Log.i(tag, "handleObservedRemoteMute not processed");
+    return currentState;
+  }
+
   protected @NonNull WebRtcServiceState handleGroupCallSpeechEvent(@NonNull WebRtcServiceState currentState, @NonNull GroupCall.SpeechEvent speechEvent) {
     Log.i(tag, "handleGroupCallSpeechEvent not processed");
     return currentState;

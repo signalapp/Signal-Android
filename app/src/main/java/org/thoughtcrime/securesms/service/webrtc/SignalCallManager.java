@@ -972,6 +972,17 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   @Override
+  public void onRemoteMuteRequest(@NonNull GroupCall groupCall, long sourceDemuxId) {
+    process((s, p) -> p.handleRemoteMuteRequest(s, sourceDemuxId));
+
+  }
+
+  @Override
+  public void onObservedRemoteMute(@NonNull GroupCall groupCall, long sourceDemuxId, long targetDemuxId) {
+    process((s, p) -> p.handleObservedRemoteMute(s, sourceDemuxId, targetDemuxId));
+  }
+
+  @Override
   public void onSpeakingNotification(@NonNull GroupCall groupCall, @NonNull GroupCall.SpeechEvent speechEvent) {
     process((s, p) -> p.handleGroupCallSpeechEvent(s, speechEvent));
   }

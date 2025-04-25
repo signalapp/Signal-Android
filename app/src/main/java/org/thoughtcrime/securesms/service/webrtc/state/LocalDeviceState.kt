@@ -19,7 +19,8 @@ data class LocalDeviceState(
   var availableDevices: Set<SignalAudioManager.AudioDevice> = emptySet(),
   var bluetoothPermissionDenied: Boolean = false,
   var networkConnectionType: PeerConnection.AdapterType = PeerConnection.AdapterType.UNKNOWN,
-  var handRaisedTimestamp: Long = CallParticipant.HAND_LOWERED
+  var handRaisedTimestamp: Long = CallParticipant.HAND_LOWERED,
+  var remoteMutedBy: CallParticipant? = null
 ) {
 
   fun duplicate(): LocalDeviceState {
