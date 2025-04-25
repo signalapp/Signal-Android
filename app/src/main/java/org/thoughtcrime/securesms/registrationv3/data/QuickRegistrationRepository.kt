@@ -67,11 +67,6 @@ object QuickRegistrationRepository {
         return TransferAccountResult.FAILED
       }
 
-      val pin = SignalStore.svr.pin ?: run {
-        Log.w(TAG, "No pin")
-        return TransferAccountResult.FAILED
-      }
-
       SignalNetwork
         .provisioning
         .sendReRegisterDeviceProvisioningMessage(
@@ -81,15 +76,15 @@ object QuickRegistrationRepository {
             e164 = SignalStore.account.requireE164(),
             aci = SignalStore.account.requireAci().toByteString(),
             accountEntropyPool = SignalStore.account.accountEntropyPool.value,
-            pin = pin,
+            pin = SignalStore.svr.pin,
             platform = RegistrationProvisionMessage.Platform.ANDROID,
-            backupTimestampMs = SignalStore.backup.lastBackupTime.coerceAtLeast(0L),
+            backupTimestampMs = SignalStore.backup.lastBackupTime.coerceAtLeast(0L).takeIf { it > 0 },
             tier = when (SignalStore.backup.backupTier) {
               MessageBackupTier.PAID -> RegistrationProvisionMessage.Tier.PAID
               MessageBackupTier.FREE -> RegistrationProvisionMessage.Tier.FREE
               null -> null
             },
-            backupSizeBytes = SignalStore.backup.totalBackupSize,
+            backupSizeBytes = SignalStore.backup.totalBackupSize.takeIf { it > 0 },
             restoreMethodToken = restoreMethodToken
           )
         )

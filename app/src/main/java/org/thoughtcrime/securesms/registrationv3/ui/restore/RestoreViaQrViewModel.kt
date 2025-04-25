@@ -158,17 +158,15 @@ class RestoreViaQrViewModel : ViewModel() {
         Log.i(TAG, "Saving restore method token: ***${result.message.restoreMethodToken.takeLast(4)}")
         SignalStore.registration.restoreMethodToken = result.message.restoreMethodToken
         SignalStore.registration.isOtherDeviceAndroid = result.message.platform == RegistrationProvisionMessage.Platform.ANDROID
-        if (result.message.backupTimestampMs > 0) {
-          SignalStore.backup.backupTier = result.message.tier.let {
-            when (it) {
-              RegistrationProvisionMessage.Tier.FREE -> MessageBackupTier.FREE
-              RegistrationProvisionMessage.Tier.PAID -> MessageBackupTier.PAID
-              null -> null
-            }
-          }
-          SignalStore.backup.lastBackupTime = result.message.backupTimestampMs
-          SignalStore.backup.usedBackupMediaSpace = result.message.backupSizeBytes
+
+        SignalStore.backup.lastBackupTime = result.message.backupTimestampMs ?: 0
+        SignalStore.backup.usedBackupMediaSpace = result.message.backupSizeBytes ?: 0
+        SignalStore.backup.backupTier = when (result.message.tier) {
+          RegistrationProvisionMessage.Tier.FREE -> MessageBackupTier.FREE
+          RegistrationProvisionMessage.Tier.PAID -> MessageBackupTier.PAID
+          null -> null
         }
+
         store.update { it.copy(isRegistering = true, provisioningMessage = result.message, qrState = QrState.Scanned) }
         shutdown()
       } else {

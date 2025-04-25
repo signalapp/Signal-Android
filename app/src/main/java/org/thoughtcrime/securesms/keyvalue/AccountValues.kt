@@ -161,6 +161,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     }
   }
 
+  @get:JvmName("restoredAccountEntropyPool")
   @get:Synchronized
   val restoredAccountEntropyPool by booleanValue(KEY_RESTORED_ACCOUNT_ENTROPY_KEY, false)
 

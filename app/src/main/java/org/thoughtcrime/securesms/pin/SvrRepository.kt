@@ -359,7 +359,7 @@ object SvrRepository {
   @Throws(IOException::class)
   fun enableRegistrationLockForUserWithPin() {
     operationLock.withLock {
-      check(SignalStore.svr.hasOptedInWithAccess() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to set a registration lock!" }
+      check(SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to set a registration lock!" }
 
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Enabling registration lock.", true)
       NetworkResultUtil.toBasicLegacy(SignalNetwork.account.enableRegistrationLock(SignalStore.svr.masterKey.deriveRegistrationLock()))
@@ -373,7 +373,7 @@ object SvrRepository {
   @Throws(IOException::class)
   fun disableRegistrationLockForUserWithPin() {
     operationLock.withLock {
-      check(SignalStore.svr.hasOptedInWithAccess() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to disable registration lock!" }
+      check(SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to disable registration lock!" }
 
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Disabling registration lock.", true)
       NetworkResultUtil.toBasicLegacy(SignalNetwork.account.disableRegistrationLock())
@@ -403,7 +403,7 @@ object SvrRepository {
         false
       }
 
-      if (newToken && SignalStore.svr.hasOptedInWithAccess()) {
+      if (newToken && SignalStore.svr.hasPin()) {
         BackupManager(AppDependencies.application).dataChanged()
       }
     } catch (e: Throwable) {
@@ -464,7 +464,7 @@ object SvrRepository {
   private val hasNoRegistrationLock: Boolean
     get() {
       return !SignalStore.svr.isRegistrationLockEnabled &&
-        !SignalStore.svr.hasOptedInWithAccess() &&
+        !SignalStore.svr.hasPin() &&
         !SignalStore.svr.hasOptedOut()
     }
 }
