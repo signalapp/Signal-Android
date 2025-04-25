@@ -268,7 +268,7 @@ class RestoreAttachmentJob private constructor(
         throw IOException("Failed to delete temp download file following range exception")
       }
     } catch (e: InvalidAttachmentException) {
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, e.message)
       markFailed(attachmentId)
     } catch (e: NonSuccessfulResponseCodeException) {
       if (SignalStore.backup.backsUpMedia) {

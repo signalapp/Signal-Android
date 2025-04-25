@@ -103,7 +103,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
       // Intentionally enqueues one at a time for safer attachment transfer state management
       restoreThumbnailJobs.forEach { jobManager.add(it) }
       restoreFullAttachmentJobs.forEach { jobManager.add(it) }
-    } while (restoreThumbnailJobs.isNotEmpty() && restoreFullAttachmentJobs.isNotEmpty() && notRestorable.isNotEmpty())
+    } while (restoreThumbnailJobs.isNotEmpty() || restoreFullAttachmentJobs.isNotEmpty() || notRestorable.isNotEmpty())
 
     SignalStore.backup.totalRestorableAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
 
