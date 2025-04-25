@@ -14,8 +14,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import kotlin.time.Duration.Companion.days
 
 /**
- * When run, this will find the next attachment that needs to be uploaded to the archive service and upload it.
- * It will enqueue a copy of itself if it thinks there is more work to be done, and that copy will continue the upload process.
+ * When run, this will find all of the attachments that need to be uploaded to the archive tier and enqueue [UploadAttachmentToArchiveJob]s for them.
  */
 class ArchiveAttachmentBackfillJob private constructor(parameters: Parameters) : Job(parameters) {
   companion object {

@@ -5,10 +5,12 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -40,7 +42,8 @@ class BackupMediaSnapshotSyncJob private constructor(
 
     const val KEY = "BackupMediaSnapshotSyncJob"
 
-    private const val REMOTE_DELETE_BATCH_SIZE = 500
+    private const val REMOTE_DELETE_BATCH_SIZE = 750
+    private const val CDN_PAGE_SIZE = 10_000
     private val BACKUP_MEDIA_SYNC_INTERVAL = 7.days.inWholeMilliseconds
 
     fun enqueue(syncTime: Long) {
@@ -79,7 +82,9 @@ class BackupMediaSnapshotSyncJob private constructor(
     return syncDataFromCdn() ?: Result.success()
   }
 
-  override fun onFailure() = Unit
+  override fun onFailure() {
+    SignalDatabase.backupMediaSnapshots.clearLastSeenOnRemote()
+  }
 
   /**
    * Looks through our local snapshot of what attachments we put in the last backup file, and uses that to delete any old attachments from the archive CDN
@@ -92,7 +97,7 @@ class BackupMediaSnapshotSyncJob private constructor(
       deleteMediaObjectsFromCdn(mediaObjects)?.let { result -> return result }
       SignalDatabase.backupMediaSnapshots.deleteMediaObjects(mediaObjects)
 
-      mediaObjects = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaObjects(syncTime, REMOTE_DELETE_BATCH_SIZE)
+      mediaObjects = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaObjects(syncTime, CDN_PAGE_SIZE)
     }
 
     return null
@@ -135,6 +140,25 @@ class BackupMediaSnapshotSyncJob private constructor(
       deleteMediaObjectsFromCdn(attachmentsToDelete)?.let { result -> return result }
     }
 
+    val entriesNeedingRepairCursor = SignalDatabase.backupMediaSnapshots.getMediaObjectsLastSeenOnCdnBeforeTime(syncTime)
+    val needRepairCount = entriesNeedingRepairCursor.count
+
+    if (needRepairCount > 0) {
+      Log.w(TAG, "Found $needRepairCount attachments that we thought were uploaded, but could not be found on the CDN. Clearing state and enqueuing uploads.")
+
+      entriesNeedingRepairCursor.forEach {
+        val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(it)
+        // TODO [backup] Re-enqueue thumbnail uploads if necessary
+        if (!entry.isThumbnail) {
+          SignalDatabase.attachments.resetArchiveTransferStateByDigest(entry.digest)
+        }
+      }
+
+      BackupMessagesJob.enqueue()
+    } else {
+      Log.d(TAG, "No attachments need to be repaired.")
+    }
+
     SignalStore.backup.lastMediaSyncTime = System.currentTimeMillis()
 
     return null
@@ -151,6 +175,11 @@ class BackupMediaSnapshotSyncJob private constructor(
         cdn = it.cdn
       )
     }
+
+    SignalDatabase.backupMediaSnapshots.markSeenOnRemote(
+      mediaIdBatch = mediaObjects.map { it.mediaId },
+      time = syncTime
+    )
 
     val notFoundMediaObjects = SignalDatabase.backupMediaSnapshots.getMediaObjectsThatCantBeFound(mediaObjects)
     val remainingObjects = mediaObjects - notFoundMediaObjects

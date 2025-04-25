@@ -664,6 +664,20 @@ class AttachmentTable(
   }
 
   /**
+   * Sets the archive transfer state for the given attachment by digest.
+   */
+  fun resetArchiveTransferStateByDigest(digest: ByteArray) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
+        ARCHIVE_CDN to 0
+      )
+      .where("$REMOTE_DIGEST = ?", digest)
+      .run()
+  }
+
+  /**
    * Sets the archive transfer state for the given attachment and all other attachments that share the same data file.
    */
   fun setArchiveTransferStateUnlessPermanentFailure(id: AttachmentId, state: ArchiveTransferState) {
