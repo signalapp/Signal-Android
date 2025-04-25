@@ -529,7 +529,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
           if (chatFolderRecord?.chatFolderId != null) {
             records.add(StorageSyncModels.localToRemoteRecord(chatFolderRecord, id.raw))
           } else {
-            throw MissingChatFolderModelError("Missing local chat folder model!")
+            throw MissingChatFolderModelError("Missing local chat folder model! Type: " + id.type)
           }
         }
 

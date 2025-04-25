@@ -171,6 +171,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
    */
   fun getChatFolder(id: Long?): ChatFolderRecord? {
     if (id == null) {
+      Log.w(TAG, "Chat folder id was null")
       return null
     }
     val includedChats: Map<Long, List<Long>> = getIncludedChats(id)
@@ -495,7 +496,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         val encodedKey = cursor.requireNonNullString(ChatFolderTable.STORAGE_SERVICE_ID)
         val key = Base64.decodeOrThrow(encodedKey)
         StorageId.forChatFolder(key)
-      }
+      }.also { Log.i(TAG, "${it.size} folders have storage ids.") }
   }
 
   /**
