@@ -277,7 +277,8 @@ class LibSignalChatConnection(
   override fun sendRequest(request: WebSocketRequestMessage, timeoutSeconds: Long): Single<WebsocketResponse> {
     CHAT_SERVICE_LOCK.withLock {
       if (isDead()) {
-        return Single.error(IOException("$name is closed!"))
+        // Match OkHttpWebSocketConnection by throwing here.
+        throw IOException("$name is closed!")
       }
 
       val single = SingleSubject.create<WebsocketResponse>()
@@ -299,8 +300,8 @@ class LibSignalChatConnection(
             //   keep this implementation simple. If another CompletableFuture implementation is
             //   used, we'll need to add some logic here to be ensure this completion handler
             //   fires after the one enqueued in connect().
-            sendRequest(request)
-              .subscribe(
+            try {
+              sendRequest(request).subscribe(
                 { response ->
                   pendingResponses.remove(single)
                   single.onSuccess(response)
@@ -310,6 +311,20 @@ class LibSignalChatConnection(
                   single.onError(error)
                 }
               )
+            } catch (e: IOException) {
+              // We failed to send the request because the connection closed between
+              //   when we got the completion callback and when we got scheduled for
+              //   execution. So, we need to propagate that error downstream, but we
+              //   do not need to worry about pendingResponses, because the response
+              //   single was never added to pendingResponses. (It is only added to
+              //   the set after the request is *successfully* sent off.)
+              // There's also an additional complication that we know from in-the-field
+              //   crash reports that some downstream consumer of the single's error
+              //   call is not resilient to raw IOExceptions, so we need to again mirror
+              //   the OkHttpWebSocketConnection behavior of passing an explicit
+              //   SocketException instead.
+              single.onError(SocketException("Closed unexpectedly"))
+            }
           },
           onFailure = { throwable ->
             // This matches the behavior of OkHttpWebSocketConnection when the connection fails
