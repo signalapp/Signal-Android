@@ -28,16 +28,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
@@ -47,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.os.BundleCompat
 import androidx.core.os.bundleOf
+import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.parcelize.Parcelize
 import org.signal.core.ui.compose.BottomSheets
@@ -56,25 +52,20 @@ import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
-import org.thoughtcrime.securesms.billing.upgrade.UpgradeToPaidTierBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
-import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.days
-import kotlin.time.Duration.Companion.milliseconds
 import org.signal.core.ui.R as CoreUiR
 
 /**
  * Notifies the user of an issue with their backup.
  */
-class BackupAlertBottomSheet : UpgradeToPaidTierBottomSheet() {
+class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
 
   override val peekHeightPercentage: Float = 0.75f
 
@@ -82,8 +73,12 @@ class BackupAlertBottomSheet : UpgradeToPaidTierBottomSheet() {
     private const val ARG_ALERT = "alert"
 
     @JvmStatic
-    fun create(backupAlert: BackupAlert): BackupAlertBottomSheet {
-      return BackupAlertBottomSheet().apply {
+    fun create(backupAlert: BackupAlert): DialogFragment {
+      return if (backupAlert is BackupAlert.MediaBackupsAreOff) {
+        MediaBackupsAreOffBottomSheet()
+      } else {
+        BackupAlertBottomSheet()
+      }.apply {
         arguments = bundleOf(ARG_ALERT to backupAlert)
       }
     }
@@ -94,34 +89,20 @@ class BackupAlertBottomSheet : UpgradeToPaidTierBottomSheet() {
   }
 
   @Composable
-  override fun UpgradeSheetContent(
-    paidBackupType: MessageBackupsType.Paid,
-    freeBackupType: MessageBackupsType.Free,
-    isSubscribeEnabled: Boolean,
-    onSubscribeClick: () -> Unit
-  ) {
-    var pricePerMonth by remember { mutableStateOf("-") }
-    val resources = LocalContext.current.resources
-
-    LaunchedEffect(paidBackupType.pricePerMonth) {
-      pricePerMonth = FiatMoneyUtil.format(resources, paidBackupType.pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
-    }
-
-    val performPrimaryAction = remember(onSubscribeClick) {
-      createPrimaryAction(onSubscribeClick)
+  override fun SheetContent() {
+    val performPrimaryAction = remember(backupAlert) {
+      createPrimaryAction()
     }
 
     BackupAlertSheetContent(
       backupAlert = backupAlert,
-      isSubscribeEnabled = isSubscribeEnabled,
-      mediaTtl = paidBackupType.mediaTtl,
       onPrimaryActionClick = performPrimaryAction,
       onSecondaryActionClick = this::performSecondaryAction
     )
   }
 
   @Stable
-  private fun createPrimaryAction(onSubscribeClick: () -> Unit): () -> Unit = {
+  private fun createPrimaryAction(): () -> Unit = {
     when (backupAlert) {
       is BackupAlert.CouldNotCompleteBackup -> {
         BackupMessagesJob.enqueue()
@@ -129,9 +110,7 @@ class BackupAlertBottomSheet : UpgradeToPaidTierBottomSheet() {
       }
 
       BackupAlert.FailedToRenew -> launchManageBackupsSubscription()
-      is BackupAlert.MediaBackupsAreOff -> {
-        onSubscribeClick()
-      }
+      is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
 
       BackupAlert.MediaWillBeDeletedToday -> {
         performFullMediaDownload()
@@ -152,7 +131,7 @@ class BackupAlertBottomSheet : UpgradeToPaidTierBottomSheet() {
     when (backupAlert) {
       is BackupAlert.CouldNotCompleteBackup -> Unit
       BackupAlert.FailedToRenew -> Unit
-      is BackupAlert.MediaBackupsAreOff -> Unit
+      is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
       BackupAlert.MediaWillBeDeletedToday -> {
         displayLastChanceDialog()
       }
@@ -212,11 +191,8 @@ class BackupAlertBottomSheet : UpgradeToPaidTierBottomSheet() {
 }
 
 @Composable
-private fun BackupAlertSheetContent(
+fun BackupAlertSheetContent(
   backupAlert: BackupAlert,
-  pricePerMonth: String = "",
-  isSubscribeEnabled: Boolean = true,
-  mediaTtl: Duration,
   onPrimaryActionClick: () -> Unit = {},
   onSecondaryActionClick: () -> Unit = {}
 ) {
@@ -231,7 +207,8 @@ private fun BackupAlertSheetContent(
     Spacer(modifier = Modifier.size(26.dp))
 
     when (backupAlert) {
-      BackupAlert.FailedToRenew, is BackupAlert.MediaBackupsAreOff -> {
+      is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
+      BackupAlert.FailedToRenew -> {
         Box {
           Image(
             imageVector = ImageVector.vectorResource(id = R.drawable.image_signal_backups),
@@ -276,29 +253,27 @@ private fun BackupAlertSheetContent(
       )
 
       BackupAlert.FailedToRenew -> PaymentProcessingBody()
-      is BackupAlert.MediaBackupsAreOff -> MediaBackupsAreOffBody(backupAlert.endOfPeriodSeconds, mediaTtl)
       BackupAlert.MediaWillBeDeletedToday -> MediaWillBeDeletedTodayBody()
       is BackupAlert.DiskFull -> DiskFullBody(requiredSpace = backupAlert.requiredSpace)
       BackupAlert.BackupFailed -> BackupFailedBody()
       BackupAlert.CouldNotRedeemBackup -> CouldNotRedeemBackup()
+      is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
     }
 
     val secondaryActionResource = rememberSecondaryActionResource(backupAlert = backupAlert)
     val padBottom = if (secondaryActionResource > 0) 16.dp else 56.dp
 
     Buttons.LargeTonal(
-      enabled = isSubscribeEnabled,
       onClick = onPrimaryActionClick,
       modifier = Modifier
         .defaultMinSize(minWidth = 220.dp)
         .padding(bottom = padBottom)
     ) {
-      Text(text = primaryActionString(backupAlert = backupAlert, pricePerMonth = pricePerMonth))
+      Text(text = primaryActionString(backupAlert = backupAlert))
     }
 
     if (secondaryActionResource > 0) {
       TextButton(
-        enabled = isSubscribeEnabled,
         onClick = onSecondaryActionClick,
         modifier = Modifier.padding(bottom = 32.dp)
       ) {
@@ -382,28 +357,6 @@ private fun PaymentProcessingBody() {
 }
 
 @Composable
-private fun MediaBackupsAreOffBody(
-  endOfPeriodSeconds: Long,
-  mediaTtl: Duration
-) {
-  val daysUntilDeletion = remember { endOfPeriodSeconds.days + mediaTtl }.inWholeDays.toInt()
-
-  Text(
-    text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__your_backup_plan_has_expired, daysUntilDeletion, daysUntilDeletion),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
-    modifier = Modifier.padding(bottom = 24.dp)
-  )
-
-  Text(
-    text = stringResource(id = R.string.BackupAlertBottomSheet__you_can_begin_paying_for_backups_again),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
-    modifier = Modifier.padding(bottom = 36.dp)
-  )
-}
-
-@Composable
 private fun MediaWillBeDeletedTodayBody() {
   Text(
     text = stringResource(id = R.string.BackupAlertBottomSheet__your_signal_media_backup_plan_has_been),
@@ -473,13 +426,12 @@ private fun titleString(backupAlert: BackupAlert): String {
 
 @Composable
 private fun primaryActionString(
-  backupAlert: BackupAlert,
-  pricePerMonth: String
+  backupAlert: BackupAlert
 ): String {
   return when (backupAlert) {
     is BackupAlert.CouldNotCompleteBackup -> stringResource(R.string.BackupAlertBottomSheet__back_up_now)
     BackupAlert.FailedToRenew -> stringResource(R.string.BackupAlertBottomSheet__manage_subscription)
-    is BackupAlert.MediaBackupsAreOff -> stringResource(R.string.BackupAlertBottomSheet__subscribe_for_s_month, pricePerMonth)
+    is BackupAlert.MediaBackupsAreOff -> error("Not supported.")
     BackupAlert.MediaWillBeDeletedToday -> stringResource(R.string.BackupAlertBottomSheet__download_media_now)
     is BackupAlert.DiskFull -> stringResource(R.string.BackupAlertBottomSheet__got_it)
     is BackupAlert.BackupFailed -> stringResource(R.string.BackupAlertBottomSheet__check_for_update)
@@ -493,7 +445,7 @@ private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
     when (backupAlert) {
       is BackupAlert.CouldNotCompleteBackup -> R.string.BackupAlertBottomSheet__try_later
       BackupAlert.FailedToRenew -> R.string.BackupAlertBottomSheet__not_now
-      is BackupAlert.MediaBackupsAreOff -> R.string.BackupAlertBottomSheet__not_now
+      is BackupAlert.MediaBackupsAreOff -> error("Not supported.")
       BackupAlert.MediaWillBeDeletedToday -> R.string.BackupAlertBottomSheet__dont_download_media
       is BackupAlert.DiskFull -> R.string.BackupAlertBottomSheet__skip_restore
       is BackupAlert.BackupFailed -> R.string.BackupAlertBottomSheet__learn_more
@@ -507,8 +459,7 @@ private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
 private fun BackupAlertSheetContentPreviewGeneric() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = 7),
-      mediaTtl = 60.days
+      backupAlert = BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = 7)
     )
   }
 }
@@ -518,20 +469,7 @@ private fun BackupAlertSheetContentPreviewGeneric() {
 private fun BackupAlertSheetContentPreviewPayment() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.FailedToRenew,
-      mediaTtl = 60.days
-    )
-  }
-}
-
-@SignalPreview
-@Composable
-private fun BackupAlertSheetContentPreviewMedia() {
-  Previews.BottomSheetPreview {
-    BackupAlertSheetContent(
-      backupAlert = BackupAlert.MediaBackupsAreOff(endOfPeriodSeconds = System.currentTimeMillis().milliseconds.inWholeSeconds),
-      pricePerMonth = "$2.99",
-      mediaTtl = 60.days
+      backupAlert = BackupAlert.FailedToRenew
     )
   }
 }
@@ -541,8 +479,7 @@ private fun BackupAlertSheetContentPreviewMedia() {
 private fun BackupAlertSheetContentPreviewDelete() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.MediaWillBeDeletedToday,
-      mediaTtl = 60.days
+      backupAlert = BackupAlert.MediaWillBeDeletedToday
     )
   }
 }
@@ -552,8 +489,7 @@ private fun BackupAlertSheetContentPreviewDelete() {
 private fun BackupAlertSheetContentPreviewDiskFull() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.DiskFull(requiredSpace = "12GB"),
-      mediaTtl = 60.days
+      backupAlert = BackupAlert.DiskFull(requiredSpace = "12GB")
     )
   }
 }
@@ -563,8 +499,7 @@ private fun BackupAlertSheetContentPreviewDiskFull() {
 private fun BackupAlertSheetContentPreviewBackupFailed() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.BackupFailed,
-      mediaTtl = 60.days
+      backupAlert = BackupAlert.BackupFailed
     )
   }
 }
@@ -574,8 +509,7 @@ private fun BackupAlertSheetContentPreviewBackupFailed() {
 private fun BackupAlertSheetContentPreviewCouldNotRedeemBackup() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.CouldNotRedeemBackup,
-      mediaTtl = 60.days
+      backupAlert = BackupAlert.CouldNotRedeemBackup
     )
   }
 }

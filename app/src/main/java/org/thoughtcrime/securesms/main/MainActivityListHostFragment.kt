@@ -5,13 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.NavDestination
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -21,8 +26,6 @@ import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
-import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsState
-import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.TopToastPopup
@@ -35,13 +38,13 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     private val TAG = Log.tag(MainActivityListHostFragment::class.java)
   }
 
-  private val conversationListTabsViewModel: ConversationListTabsViewModel by viewModels(ownerProducer = { requireActivity() })
   private val disposables: LifecycleDisposable = LifecycleDisposable()
 
   private var previousTopToastPopup: TopToastPopup? = null
 
   private val destinationChangedListener = DestinationChangedListener()
   private val toolbarViewModel: MainToolbarViewModel by activityViewModels()
+  private val mainNavigationViewModel: MainNavigationViewModel by activityViewModels()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     disposables.bindTo(viewLifecycleOwner)
@@ -50,18 +53,30 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
       toolbarViewModel.setHasUnreadPayments(unread.isPresent)
     }
 
-    disposables += conversationListTabsViewModel.state.subscribeBy { state ->
-      val controller: NavController = getChildNavController()
-      when (controller.currentDestination?.id) {
-        R.id.conversationListFragment -> goToStateFromConversationList(state, controller)
-        R.id.conversationListArchiveFragment -> Unit
-        R.id.storiesLandingFragment -> goToStateFromStories(state, controller)
-        R.id.callLogFragment -> goToStateFromCalling(state, controller)
-      }
-    }
+    lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        launch {
+          mainNavigationViewModel.mainNavigationState.collectLatest { state ->
+            withContext(Dispatchers.Main) {
+              val controller: NavController = getChildNavController()
+              when (controller.currentDestination?.id) {
+                R.id.conversationListFragment -> goToStateFromConversationList(state, controller)
+                R.id.conversationListArchiveFragment -> Unit
+                R.id.storiesLandingFragment -> goToStateFromStories(state, controller)
+                R.id.callLogFragment -> goToStateFromCalling(state, controller)
+              }
+            }
+          }
+        }
 
-    disposables += conversationListTabsViewModel.getNotificationProfiles().subscribeBy { profiles ->
-      updateNotificationProfileStatus(profiles)
+        launch {
+          mainNavigationViewModel.getNotificationProfiles().collectLatest { profiles ->
+            withContext(Dispatchers.Main) {
+              updateNotificationProfileStatus(profiles)
+            }
+          }
+        }
+      }
     }
   }
 
@@ -69,11 +84,11 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     return requireView().findViewById<View>(R.id.fragment_container).findNavController()
   }
 
-  private fun goToStateFromConversationList(state: ConversationListTabsState, navController: NavController) {
-    if (state.tab == MainNavigationDestination.CHATS) {
+  private fun goToStateFromConversationList(state: MainNavigationState, navController: NavController) {
+    if (state.selectedDestination == MainNavigationListLocation.CHATS) {
       return
     } else {
-      val destination = if (state.tab == MainNavigationDestination.STORIES) {
+      val destination = if (state.selectedDestination == MainNavigationListLocation.STORIES) {
         R.id.action_conversationListFragment_to_storiesLandingFragment
       } else {
         R.id.action_conversationListFragment_to_callLogFragment
@@ -87,19 +102,19 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     }
   }
 
-  private fun goToStateFromCalling(state: ConversationListTabsState, navController: NavController) {
-    when (state.tab) {
-      MainNavigationDestination.CALLS -> return
-      MainNavigationDestination.CHATS -> navController.popBackStack(R.id.conversationListFragment, false)
-      MainNavigationDestination.STORIES -> navController.navigate(R.id.action_callLogFragment_to_storiesLandingFragment)
+  private fun goToStateFromCalling(state: MainNavigationState, navController: NavController) {
+    when (state.selectedDestination) {
+      MainNavigationListLocation.CALLS -> return
+      MainNavigationListLocation.CHATS -> navController.popBackStack(R.id.conversationListFragment, false)
+      MainNavigationListLocation.STORIES -> navController.navigate(R.id.action_callLogFragment_to_storiesLandingFragment)
     }
   }
 
-  private fun goToStateFromStories(state: ConversationListTabsState, navController: NavController) {
-    when (state.tab) {
-      MainNavigationDestination.STORIES -> return
-      MainNavigationDestination.CHATS -> navController.popBackStack(R.id.conversationListFragment, false)
-      MainNavigationDestination.CALLS -> navController.navigate(R.id.action_storiesLandingFragment_to_callLogFragment)
+  private fun goToStateFromStories(state: MainNavigationState, navController: NavController) {
+    when (state.selectedDestination) {
+      MainNavigationListLocation.STORIES -> return
+      MainNavigationListLocation.CHATS -> navController.popBackStack(R.id.conversationListFragment, false)
+      MainNavigationListLocation.CALLS -> navController.navigate(R.id.action_storiesLandingFragment_to_callLogFragment)
     }
   }
 
@@ -112,7 +127,7 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
       .findNavController()
       .addOnDestinationChangedListener(destinationChangedListener)
 
-    if (conversationListTabsViewModel.isMultiSelectOpen()) {
+    if (toolbarViewModel.state.value.mode == MainToolbarMode.ACTION_MODE) {
       presentToolbarForMultiselect()
     }
   }
@@ -126,19 +141,19 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   }
 
   private fun presentToolbarForConversationListFragment() {
-    toolbarViewModel.setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationDestination.CHATS)
+    toolbarViewModel.setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationListLocation.CHATS, overwriteSearchMode = false)
   }
 
   private fun presentToolbarForConversationListArchiveFragment() {
-    toolbarViewModel.setToolbarMode(MainToolbarMode.BASIC, destination = MainNavigationDestination.CHATS)
+    toolbarViewModel.setToolbarMode(MainToolbarMode.BASIC, destination = MainNavigationListLocation.CHATS)
   }
 
   private fun presentToolbarForStoriesLandingFragment() {
-    toolbarViewModel.setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationDestination.STORIES)
+    toolbarViewModel.setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationListLocation.STORIES)
   }
 
   private fun presentToolbarForCallLogFragment() {
-    toolbarViewModel.setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationDestination.CALLS)
+    toolbarViewModel.setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationListLocation.CALLS)
   }
 
   private fun presentToolbarForMultiselect() {
@@ -152,7 +167,6 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
 
   override fun onMultiSelectStarted() {
     presentToolbarForMultiselect()
-    conversationListTabsViewModel.onMultiSelectStarted()
   }
 
   override fun onMultiSelectFinished() {
@@ -160,8 +174,6 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
     if (currentDestination != null) {
       presentToolbarForDestination(currentDestination)
     }
-
-    conversationListTabsViewModel.onMultiSelectFinished()
   }
 
   override fun updateProxyStatus(state: WebSocketConnectionState) {
@@ -218,22 +230,18 @@ class MainActivityListHostFragment : Fragment(R.layout.main_activity_list_host_f
   private fun presentToolbarForDestination(destination: NavDestination) {
     when (destination.id) {
       R.id.conversationListFragment -> {
-        conversationListTabsViewModel.isShowingArchived(false)
         presentToolbarForConversationListFragment()
       }
 
       R.id.conversationListArchiveFragment -> {
-        conversationListTabsViewModel.isShowingArchived(true)
         presentToolbarForConversationListArchiveFragment()
       }
 
       R.id.storiesLandingFragment -> {
-        conversationListTabsViewModel.isShowingArchived(false)
         presentToolbarForStoriesLandingFragment()
       }
 
       R.id.callLogFragment -> {
-        conversationListTabsViewModel.isShowingArchived(false)
         presentToolbarForCallLogFragment()
       }
     }

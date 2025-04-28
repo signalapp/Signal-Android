@@ -151,6 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ബ്ലോക്ക് ചെയ്ത ഉപയോക്താക്കൾ</string>
     <string name="BlockedUsersActivity__add_blocked_user">ബ്ലോക്ക് ചെയ്ത ഉപയോക്താവിനെ ചേർക്കുക</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
     <string name="BlockedUsersActivity__blocked_users_will">ബ്ലോക്ക് ചെയ്ത ഉപയോക്താക്കൾക്ക് നിങ്ങളെ വിളിക്കാനോ നിങ്ങൾക്ക് സന്ദേശങ്ങള്‍ അയയ്ക്കാനോ കഴിയില്ല.</string>
     <string name="BlockedUsersActivity__no_blocked_users">ബ്ലോക്ക് ചെയ്ത ഉപയോക്താക്കളൊന്നുമില്ല</string>
     <string name="BlockedUsersActivity__block_user">ഉപയോക്താവിനെ ബ്ലോക്ക് ചെയ്യണോ?</string>
@@ -1717,6 +1718,8 @@
     <string name="MediaOverviewActivity_sent_by_you">നിങ്ങൾ അയച്ചത്</string>
     <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s %2$s-ന് അയച്ചത്.</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">നിങ്ങൾ %1$s-ന് അയച്ചത്.</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">പിന്നീട് എന്നെ ഓർമ്മിപ്പിക്കുക</string>
@@ -1787,9 +1790,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">മിസ്‌ഡ് വീഡിയോ കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">നിരസിച്ച വോയിസ് കോൾ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">നിരസിച്ച വീഡിയോ കോൾ</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">അറിയിപ്പ് പ്രൊഫൈൽ ഓണായിരിക്കുമ്പോൾ വോയ്സ് കോൾ മിസ്സ് ആയി</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2579,8 +2582,8 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="one">%1$s group in common</item>
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="one">പൊതുവായി %1$s ഗ്രൂപ്പ് ഉണ്ട്</item>
+        <item quantity="other">പൊതുവായി %1$s ഗ്രൂപ്പുകൾ ഉണ്ട്</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2762,6 +2765,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">പിൻ പരിശോധിച്ചുറപ്പിച്ചു. ഒരാഴ്ച്ചയ്ക്കുള്ളിൽ ഞങ്ങൾ വീണ്ടും ഓർമ്മിപ്പിക്കാം.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">പിൻ പരിശോധിച്ചുറപ്പിച്ചു. ഏതാനും ആഴ്ച്ചകൾക്കുള്ളിൽ ഞങ്ങൾ വീണ്ടും ഓർമ്മിപ്പിക്കാം.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">പിൻ പരിശോധിച്ചുറപ്പിച്ചു. ഒരു മാസത്തിനുള്ളിൽ ഞങ്ങൾ വീണ്ടും ഓർമ്മിപ്പിക്കാം.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
 
     <!-- Slide -->
     <string name="Slide_image">ചിത്രം</string>
@@ -2777,15 +2786,35 @@
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">സ്റ്റിക്കറുകൾ</string>
 
+    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
+    <string name="StickerManagement_available_tab_label">Available</string>
+    <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
+    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <!-- Shown when there are no sticker packs available for installation -->
+    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <!-- Shown when there are no sticker packs currently installed -->
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
+    <string name="StickerManagement_author_unknown">Unknown</string>
+    <!-- Sticker pack list section header for packs that are already installed. -->
+    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
+    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
+    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
+    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <!-- Accessibility label for the button to download a sticker pack. -->
+    <string name="StickerManagement_accessibility_download">Download</string>
+
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">ഇൻസ്റ്റാളുചെയ്‌ത സ്റ്റിക്കറുകൾ</string>
-    <string name="StickerManagementAdapter_stickers_you_received">നിങ്ങൾക്ക് ലഭിച്ച സ്റ്റിക്കറുകൾ</string>
-    <string name="StickerManagementAdapter_signal_artist_series">Signal ആർട്ടിസ്റ്റ് സീരീസ്</string>
     <string name="StickerManagementAdapter_no_stickers_installed">സ്റ്റിക്കറുകളൊന്നും ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">വരുന്ന സന്ദേശങ്ങളിൽ നിന്നുള്ള സ്റ്റിക്കറുകൽ ഇവിടെ ദൃശ്യമാകും</string>
     <string name="StickerManagementAdapter_untitled">ശീർ‌ഷകമില്ലാത്തത്</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagementAdapter_unknown">അജ്ഞാതം</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">ശീർ‌ഷകമില്ലാത്തത്</string>
@@ -2812,6 +2841,8 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ഈ URL പകർത്തി നിങ്ങളുടെ പ്രശ്ന റിപ്പോർട്ടിലേക്കോ പിന്തുണാ ഇമെയിലിലേക്കോ ചേർക്കുക:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">പങ്കിടുക</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">സംഭാവന നൽകുന്നവർക്ക് കാണുന്നതിന് ഈ ലോഗ് പരസ്യമായി ഓൺലൈനിൽ പോസ്റ്റുചെയ്യും. അപ്‌ലോഡ് ചെയ്യുന്നതിന് മുമ്പ് നിങ്ങൾക്ക് ഇത് പരിശോധിക്കാവുന്നതാണ്.</string>
+    <!-- Banner message shown while submitting debug log -->
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2883,7 +2914,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">ബ്ലോക്ക് ചെയ്തിരിക്കുന്നു</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">ബ്ലോക്ക് ചെയ്തിരിക്കുന്നു</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal അപ്‌ഡേറ്റ്</string>
@@ -3716,6 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">വേണ്ട</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ഈ സന്ദേശം</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">അടുത്തിടെ ഉപയോഗിച്ചവ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">സ്മൈലി &amp; ആളുകൾ</string>
@@ -3728,6 +3760,17 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">പതാകകൾ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ഇമോട്ടിക്കോണുകൾ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
+
+    <!-- GifQuickSearchOption -->
+    <string name="GifQuickSearchOption__recents">Recents</string>
+    <string name="GifQuickSearchOption__trending">Trending</string>
+    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
+    <string name="GifQuickSearchOption__love">Love</string>
+    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
+    <string name="GifQuickSearchOption__surprised">Surprised</string>
+    <string name="GifQuickSearchOption__excited">Excited</string>
+    <string name="GifQuickSearchOption__sad">Sad</string>
+    <string name="GifQuickSearchOption__angry">Angry</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">സ്ഥിരസ്ഥിതി ഉപയോഗിക്കുക</string>
@@ -4323,6 +4366,8 @@
     <string name="conversation_list_fragment__fab_content_description">പുതിയ ചാറ്റ്</string>
     <string name="conversation_list_fragment__open_camera_description">ക്യാമറ തുറക്കുക</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ഇതുവരെ ചാറ്റുകളൊന്നുമില്ല.\nഒരു സുഹൃത്തിന് സന്ദേശമയച്ചുകൊണ്ട് ആരംഭിക്കുക.</string>
+    <!-- Message shown when there are no archived chats to display -->
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">പ്രദർശിപ്പിക്കാൻ ചാറ്റുകളൊന്നുമില്ല</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4946,8 +4991,8 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">സാമാന്യമായി മറ്റ് ഗ്രൂപ്പുകളൊന്നുമില്ല.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">സാമാന്യമായി ഗ്രൂപ്പുകളൊന്നുമില്ല.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d other group in common</item>
-        <item quantity="other">%1$d other groups in common</item>
+        <item quantity="one">പൊതുവായുള്ള മറ്റ് %1$d ഗ്രൂപ്പ്</item>
+        <item quantity="other">പൊതുവായുള്ള മറ്റ് %1$d ഗ്രൂപ്പുകൾ</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">സാമാന്യമായി %1$d ഗ്രൂപ്പ് ഉണ്ട്</item>
@@ -5697,6 +5742,8 @@
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ക്ലിപ്ബോർഡിലേക്ക് ഫോൺ നമ്പർ പകർത്തി.</string>
     <string name="ConversationSettingsFragment__phone_number">ഫോൺ നമ്പർ</string>
     <string name="ConversationSettingsFragment__get_badges">Signal-നെ പിന്തുണച്ച് നിങ്ങളുടെ പ്രൊഫൈലിനായി ബാഡ്‌ജുകൾ കരസ്ഥമാക്കൂ. കൂടുതലറിയാൻ ഒരു ബാഡ്‌ജിൽ ടാപ്പ് ചെയ്യുക.</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
@@ -8377,6 +8424,17 @@
     <string name="NoBackupToRestore_step3">ബാക്കപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കി നിങ്ങളുടെ ബാക്കപ്പ് പൂർത്തിയാകുന്നതുവരെ കാത്തിരിക്കുക</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
+
+    <!-- Accessibility label for close search button in MainToolbar -->
+    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <!-- Accessibility label for clear search query in MainToolbar -->
+    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__more_options_content_description">More options</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__proxy_content_description">Proxy</string>
 
     <!-- EOF -->
 </resources>

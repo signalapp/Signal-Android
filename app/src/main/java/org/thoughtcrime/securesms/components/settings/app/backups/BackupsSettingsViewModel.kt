@@ -16,6 +16,8 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
+import kotlinx.coroutines.withContext
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -48,30 +50,34 @@ class BackupsSettingsViewModel : ViewModel() {
         .filter { it }
         .drop(1)
         .collect {
-          refreshState()
+          Log.d(TAG, "Triggering refresh from internet reconnect.")
+          loadEnabledState()
         }
     }
   }
 
   fun refreshState() {
-    Log.d(TAG, "Refreshing state.")
-    loadEnabledState()
+    Log.d(TAG, "Refreshing state from manual call.")
+    viewModelScope.launch {
+      loadEnabledState()
+    }
   }
 
-  private fun loadEnabledState() {
-    viewModelScope.launch(Dispatchers.IO) {
+  private suspend fun loadEnabledState() {
+    withContext(SignalDispatchers.IO) {
       if (!RemoteConfig.messageBackups || !AppDependencies.billingApi.isApiAvailable()) {
+        Log.w(TAG, "Paid backups are not available on this device.")
         internalStateFlow.update { it.copy(enabledState = BackupsSettingsState.EnabledState.NotAvailable, showBackupTierInternalOverride = false) }
-        return@launch
-      }
+      } else {
+        val enabledState = when (SignalStore.backup.backupTier) {
+          MessageBackupTier.FREE -> getEnabledStateForFreeTier()
+          MessageBackupTier.PAID -> getEnabledStateForPaidTier()
+          null -> getEnabledStateForNoTier()
+        }
 
-      val enabledState = when (SignalStore.backup.backupTier) {
-        MessageBackupTier.FREE -> getEnabledStateForFreeTier()
-        MessageBackupTier.PAID -> getEnabledStateForPaidTier()
-        null -> getEnabledStateForNoTier()
+        Log.d(TAG, "Found enabled state $enabledState. Updating UI state.")
+        internalStateFlow.update { it.copy(enabledState = enabledState, showBackupTierInternalOverride = RemoteConfig.internalUser, backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride) }
       }
-
-      internalStateFlow.update { it.copy(enabledState = enabledState, showBackupTierInternalOverride = RemoteConfig.internalUser, backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride) }
     }
   }
 
@@ -82,10 +88,14 @@ class BackupsSettingsViewModel : ViewModel() {
 
   private suspend fun getEnabledStateForFreeTier(): BackupsSettingsState.EnabledState {
     return try {
+      Log.d(TAG, "Attempting to grab enabled state for free tier.")
+      val backupType = BackupRepository.getBackupsType(MessageBackupTier.FREE)!!
+
+      Log.d(TAG, "Retrieved backup type. Returning active state...")
       BackupsSettingsState.EnabledState.Active(
         expiresAt = 0.seconds,
         lastBackupAt = SignalStore.backup.lastBackupTime.milliseconds,
-        type = BackupRepository.getBackupsType(MessageBackupTier.FREE)!!
+        type = backupType
       )
     } catch (e: Exception) {
       Log.w(TAG, "Failed to build enabled state.", e)
@@ -95,8 +105,13 @@ class BackupsSettingsViewModel : ViewModel() {
 
   private suspend fun getEnabledStateForPaidTier(): BackupsSettingsState.EnabledState {
     return try {
+      Log.d(TAG, "Attempting to grab enabled state for paid tier.")
       val backupType = BackupRepository.getBackupsType(MessageBackupTier.PAID) as MessageBackupsType.Paid
+
+      Log.d(TAG, "Retrieved backup type. Grabbing active subscription...")
       val activeSubscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrThrow()
+
+      Log.d(TAG, "Retrieved subscription. Active? ${activeSubscription.isActive}")
       if (activeSubscription.isActive) {
         BackupsSettingsState.EnabledState.Active(
           expiresAt = activeSubscription.activeSubscription.endOfCurrentPeriod.seconds,
@@ -120,6 +135,7 @@ class BackupsSettingsViewModel : ViewModel() {
   }
 
   private fun getEnabledStateForNoTier(): BackupsSettingsState.EnabledState {
+    Log.d(TAG, "Grabbing enabled state for no tier.")
     return if (SignalStore.uiHints.hasEverEnabledRemoteBackups) {
       BackupsSettingsState.EnabledState.Inactive
     } else {

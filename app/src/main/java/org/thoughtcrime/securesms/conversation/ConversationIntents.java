@@ -10,12 +10,14 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.MainActivity;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivity;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.main.MainNavigationListLocation;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.SlideFactory;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -34,7 +36,7 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ConversationIntents {
-  private static final String TAG = Log.tag(ConversationIntents.class);
+  private static final String ACTION = "ConversationIntents.ViewConversation";
 
   private static final String BUBBLE_AUTHORITY                       = "bubble";
   private static final String NOTIFICATION_CUSTOM_SCHEME             = "custom";
@@ -97,7 +99,11 @@ public class ConversationIntents {
    */
   public static @NonNull Builder createBuilderSync(@NonNull Context context, @NonNull RecipientId recipientId, long threadId) {
     Preconditions.checkArgument(threadId > 0, "threadId is invalid");
-    return new Builder(context, ConversationActivity.class, recipientId, threadId, ConversationScreenType.NORMAL);
+    return new Builder(context, getConversationActivityClass(), recipientId, threadId, ConversationScreenType.NORMAL);
+  }
+
+  private static @NonNull Class<? extends Activity> getConversationActivityClass() {
+    return SignalStore.internal().getLargeScreenUi() ? MainActivity.class : ConversationActivity.class;
   }
 
   static @Nullable Uri getIntentData(@NonNull Bundle bundle) {
@@ -127,6 +133,10 @@ public class ConversationIntents {
 
   static boolean isNotificationIntentUri(@Nullable Uri uri) {
     return uri != null && Objects.equals(uri.getScheme(), NOTIFICATION_CUSTOM_SCHEME);
+  }
+
+  public static boolean isConversationIntent(@NonNull Intent intent) {
+    return ACTION.equals(intent.getAction());
   }
 
   public final static class Args {
@@ -393,9 +403,14 @@ public class ConversationIntents {
         throw new IllegalStateException("Cannot have both sticker and media array");
       }
 
-      Intent intent = new Intent(context, conversationActivityClass);
+      final Intent intent;
+      if (MainActivity.class.equals(conversationActivityClass)) {
+        intent = MainActivity.clearTop(context);
+      } else {
+        intent = new Intent(context, conversationActivityClass);
+      }
 
-      intent.setAction(Intent.ACTION_DEFAULT);
+      intent.setAction(ConversationIntents.ACTION);
 
       if (conversationScreenType.isInBubble()) {
         intent.setData(new Uri.Builder().authority(BUBBLE_AUTHORITY)

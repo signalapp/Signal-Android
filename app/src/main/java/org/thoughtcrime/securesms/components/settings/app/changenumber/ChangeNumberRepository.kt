@@ -46,11 +46,11 @@ import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
 import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
+import org.whispersystems.signalservice.internal.push.MismatchedDevices
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse
-import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException
 import java.io.IOException
 import java.security.MessageDigest
 import java.security.SecureRandom
@@ -270,9 +270,11 @@ class ChangeNumberRepository(
         result = SignalNetwork.account.changeNumber(request)
       }
 
-      val possibleError = result.getCause() as? MismatchedDevicesException
-      if (possibleError != null) {
-        messageSender.handleChangeNumberMismatchDevices(possibleError.mismatchedDevices)
+      if (result is NetworkResult.StatusCodeError && result.code == 409) {
+        val mismatchedDevices: MismatchedDevices? = result.parseJsonBody()
+        if (mismatchedDevices != null) {
+          messageSender.handleChangeNumberMismatchDevices(mismatchedDevices)
+        }
         attempts++
       } else {
         completed = true

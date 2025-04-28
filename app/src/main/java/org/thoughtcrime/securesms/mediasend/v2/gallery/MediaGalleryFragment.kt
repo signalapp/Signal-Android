@@ -15,7 +15,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.Stopwatch
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.conversation.ManageContextMenu
@@ -23,6 +25,8 @@ import org.thoughtcrime.securesms.databinding.V2MediaGalleryFragmentBinding
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
+import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
+import org.thoughtcrime.securesms.mediasend.v2.review.MediaGalleryGridItemTouchListener
 import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.util.Material3OnScrollHelper
@@ -44,6 +48,10 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     factoryProducer = { MediaGalleryViewModel.Factory(null, null, MediaGalleryRepository(requireContext(), MediaRepository())) }
   )
 
+  private val sharedViewModel: MediaSelectionViewModel by viewModels(
+    ownerProducer = { requireActivity() }
+  )
+
   private lateinit var callbacks: Callbacks
 
   private var selectedMediaTouchHelper: ItemTouchHelper? = null
@@ -54,6 +62,8 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
 
   private val viewStateLiveData = MutableLiveData(ViewState())
 
+  private val lifecycleDisposable = LifecycleDisposable()
+
   private val onBackPressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(false) {
     override fun handleOnBackPressed() {
       onBack()
@@ -63,6 +73,8 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     callbacks = requireListener()
     val binding = V2MediaGalleryFragmentBinding.bind(view)
+
+    lifecycleDisposable.bindTo(this)
 
     SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
 
@@ -130,8 +142,45 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     binding.mediaGallerySelected.adapter = selectedAdapter
     selectedMediaTouchHelper?.attachToRecyclerView(binding.mediaGallerySelected)
 
+    val mediaGalleryGridItemTouchListener = MediaGalleryGridItemTouchListener()
+    val onDragSelectListener = object : MediaGalleryGridItemTouchListener.OnDragSelectListener {
+      override fun onSelectionStarted(start: Int) {
+        galleryAdapter.getModel(start).ifPresent {
+          val fileModel = it as MediaGallerySelectableItem.FileModel
+          val media = fileModel.media
+          if (fileModel.isSelected) {
+            callbacks.onMediaUnselected(media)
+            mediaGalleryGridItemTouchListener.setIsActive(false)
+          } else {
+            callbacks.onMediaSelected(media)
+          }
+        }
+      }
+
+      override fun onSelectChange(start: Int, end: Int, shouldSelect: Boolean) {
+        val mediaSet = (start..end)
+          .mapNotNull { i ->
+            galleryAdapter.getModel(i).orElse(null) as? MediaGallerySelectableItem.FileModel
+          }
+          .map { fileModel ->
+            fileModel.media
+          }
+          .toSet()
+
+        if (mediaSet.isNotEmpty()) {
+          if (shouldSelect) {
+            callbacks.onMediaSelected(mediaSet)
+          } else {
+            callbacks.onMediaUnselected(mediaSet)
+          }
+        }
+      }
+    }
+    mediaGalleryGridItemTouchListener.withSelectListener(onDragSelectListener)
+
     MediaGallerySelectableItem.registerAdapter(
       mappingAdapter = galleryAdapter,
+      mediaGalleryGridItemTouchListener = mediaGalleryGridItemTouchListener,
       onMediaFolderClicked = {
         onBackPressedCallback.isEnabled = true
         viewModel.setMediaFolder(it)
@@ -148,6 +197,7 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
 
     binding.mediaGalleryGrid.adapter = galleryAdapter
     binding.mediaGalleryGrid.addItemDecoration(GridDividerDecoration(4, ViewUtil.dpToPx(2)))
+    binding.mediaGalleryGrid.addOnItemTouchListener(mediaGalleryGridItemTouchListener)
 
     viewStateLiveData.observe(viewLifecycleOwner) { state ->
       binding.mediaGalleryBottomBarGroup.visible = state.selectedMedia.isNotEmpty()
@@ -212,6 +262,13 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     }
 
     requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
+
+    lifecycleDisposable += sharedViewModel.mediaErrors
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe {
+        mediaGalleryGridItemTouchListener.stopAutoScroll()
+        mediaGalleryGridItemTouchListener.setIsActive(false)
+      }
   }
 
   override fun onResume() {
@@ -285,6 +342,8 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     fun isCameraEnabled(): Boolean = true
     fun isMultiselectEnabled(): Boolean = false
     fun onMediaSelected(media: Media)
+    fun onMediaSelected(media: Set<Media>) = Unit
+    fun onMediaUnselected(media: Set<Media>) = Unit
     fun onMediaUnselected(media: Media): Unit = throw UnsupportedOperationException()
     fun onSelectedMediaClicked(media: Media): Unit = throw UnsupportedOperationException()
     fun onNavigateToCamera(): Unit = throw UnsupportedOperationException()

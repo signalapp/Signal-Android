@@ -260,16 +260,16 @@ object StorageSyncHelper {
       Log.d(TAG, "Registration still ongoing. Ignore sync request.")
       return
     }
-    AppDependencies.jobManager.add(StorageSyncJob())
+    AppDependencies.jobManager.add(StorageSyncJob.forLocalChange())
   }
 
   @JvmStatic
   fun scheduleRoutineSync() {
     val timeSinceLastSync = System.currentTimeMillis() - SignalStore.storageService.lastSyncTime
 
-    if (timeSinceLastSync > REFRESH_INTERVAL) {
+    if (timeSinceLastSync > REFRESH_INTERVAL && SignalStore.registration.isRegistrationComplete) {
       Log.d(TAG, "Scheduling a sync. Last sync was $timeSinceLastSync ms ago.")
-      scheduleSyncForDataChange()
+      AppDependencies.jobManager.add(StorageSyncJob.forRemoteChange())
     } else {
       Log.d(TAG, "No need for sync. Last sync was $timeSinceLastSync ms ago.")
     }

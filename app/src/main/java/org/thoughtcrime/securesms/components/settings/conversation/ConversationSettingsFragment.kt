@@ -69,6 +69,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.S
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.Utils.formatMutedUntil
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
 import org.thoughtcrime.securesms.groups.ui.GroupLimitDialog
@@ -629,6 +630,10 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             mediaRecords = state.sharedMedia,
             mediaIds = state.sharedMediaIds,
             onMediaRecordClick = { view, mediaRecord, isLtr ->
+              if (mediaRecord.attachment?.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
+                Toast.makeText(context, R.string.ConversationSettingsFragment__this_media_is_not_sent_yet, Toast.LENGTH_LONG).show()
+                return@Model
+              }
               view.transitionName = "thumb"
               val options = ActivityOptions.makeSceneTransitionAnimation(requireActivity(), view, "thumb")
               startActivityForResult(

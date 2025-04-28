@@ -13,7 +13,7 @@ androidx-window = "1.3.0"
 glide = "4.15.1"
 gradle = "8.9.0"
 kotlin = "2.1.0"
-libsignal-client = "0.69.1"
+libsignal-client = "0.70.0"
 mp4parser = "1.9.39"
 android-gradle-plugin = "8.7.2"
 accompanist = "0.28.0"
@@ -142,8 +142,8 @@ firebase-messaging = "com.google.firebase:firebase-messaging:24.1.0"
 libsignal-client = { module = "org.signal:libsignal-client", version.ref = "libsignal-client" }
 libsignal-android = { module = "org.signal:libsignal-android", version.ref = "libsignal-client" }
 protobuf-gradle-plugin = { module = "com.google.protobuf:protobuf-gradle-plugin", version.ref = "protobuf-gradle-plugin" }
-signal-aesgcmprovider = "org.signal:aesgcmprovider:0.0.3"
-signal-ringrtc = "org.signal:ringrtc-android:2.50.3"
+signal-aesgcmprovider = "org.signal:aesgcmprovider:0.0.4"
+signal-ringrtc = "org.signal:ringrtc-android:2.50.6"
 signal-android-database-sqlcipher = "org.signal:sqlcipher-android:4.6.0-S1"
 
 # Third Party
@@ -157,8 +157,8 @@ rxjava3-rxjava = "io.reactivex.rxjava3:rxjava:3.0.13"
 rxjava3-rxandroid = "io.reactivex.rxjava3:rxandroid:3.0.0"
 rxjava3-rxkotlin = "io.reactivex.rxjava3:rxkotlin:3.0.1"
 rxdogtag = "com.uber.rxdogtag2:rxdogtag:2.0.1"
-conscrypt-android = "org.conscrypt:conscrypt-android:2.5.2"
-mobilecoin = "com.mobilecoin:android-sdk:6.0.1"
+conscrypt-android = "org.conscrypt:conscrypt-android:2.5.3"
+mobilecoin = "com.mobilecoin:android-sdk:6.1.2"
 leolin-shortcutbadger = "me.leolin:ShortcutBadger:1.1.22"
 emilsjolander-stickylistheaders = "se.emilsjolander:stickylistheaders:2.7.0"
 glide-glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }

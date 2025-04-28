@@ -151,6 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">بلاک کردہ یوزرز</string>
     <string name="BlockedUsersActivity__add_blocked_user">بلاک کردہ یوزر کو شامل کریں</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
     <string name="BlockedUsersActivity__blocked_users_will">بلاک کردہ یوزرز آپ کو کال کرنے یا آپ کو میسجز بھیجنے کے قابل نہیں ہوں گے۔</string>
     <string name="BlockedUsersActivity__no_blocked_users">کوئی بلاک کردہ یوزرز نہیں ہیں</string>
     <string name="BlockedUsersActivity__block_user">یوزر کو بلاک کریں؟</string>
@@ -1717,6 +1718,8 @@
     <string name="MediaOverviewActivity_sent_by_you">آپ کے ذریعہ بھیجا گیا</string>
     <string name="MediaOverviewActivity_sent_by_s_to_s">%1$sبذریعہ%2$s بھیجا گیا</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">آپ کے ذریعہ بھیجا گیا%1$s</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">مجھے بعد میں یاد کروانا</string>
@@ -1787,9 +1790,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">مسڈ ویڈیو کال</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">مسترد کردہ وائس کال</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">مسترد کردہ ویڈیو کال</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">اطلاعات کی پروفائل آن ہونے کے دوران مسڈ وائس کال</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2579,8 +2582,8 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="one">%1$s group in common</item>
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="one">%1$sمشترکہ گروپ</item>
+        <item quantity="other">%1$sمشترکہ گروپس</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2762,6 +2765,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN کی تصدیق کامیابی سے کر دی گئی۔ ہم آپ کو ایک ہفتے میں دوبارہ یاد کروائیں گے۔</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN کی تصدیق کامیابی سے کر دی گئی۔ ہم ایک دو ہفتوں میں آپ کو دوبارہ یاد کروائیں گے۔</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN کی تصدیق کامیابی سے کر دی گئی۔ ہم ایک ماہ میں آپ کو دوبارہ یاد کروائیں گے۔</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
 
     <!-- Slide -->
     <string name="Slide_image">تصویر</string>
@@ -2777,15 +2786,35 @@
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">اسٹیکرز</string>
 
+    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
+    <string name="StickerManagement_available_tab_label">Available</string>
+    <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
+    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <!-- Shown when there are no sticker packs available for installation -->
+    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <!-- Shown when there are no sticker packs currently installed -->
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
+    <string name="StickerManagement_author_unknown">Unknown</string>
+    <!-- Sticker pack list section header for packs that are already installed. -->
+    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
+    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
+    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
+    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <!-- Accessibility label for the button to download a sticker pack. -->
+    <string name="StickerManagement_accessibility_download">Download</string>
+
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">اسٹیکرز نصب کریں</string>
-    <string name="StickerManagementAdapter_stickers_you_received">اسٹیکرز جو آپ کو ملے ہیں</string>
-    <string name="StickerManagementAdapter_signal_artist_series">Signal آرٹسٹ سیریز</string>
     <string name="StickerManagementAdapter_no_stickers_installed">اسٹیکر نصب نہیں ہوئے</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">آنے والے پیغامات سے اسٹیکرز یہاں ظاہر ہونگے</string>
     <string name="StickerManagementAdapter_untitled">عنوان کے بغیر</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagementAdapter_unknown">نامعلوم</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">عنوان کے بغیر</string>
@@ -2812,6 +2841,8 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">اس یو آر ایل کو کاپی کریں اور اسے اپنی ایشو رپورٹ یا سپورٹ ای میل میں شامل کریں:. n \\ n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">اشتراک کریں</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">اس لاگ کو دیکھنے والوں کے دیکھنے کے لئے عوامی سطح پر آن لائن پوسٹ کیا جائے گا۔ اپ لوڈ کرنے سے پہلے آپ اس کی جانچ کرسکتے ہیں۔</string>
+    <!-- Banner message shown while submitting debug log -->
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2883,7 +2914,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">بلاک کر دیا گیا</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">بلاک کر دیا گیا</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal اپ ڈیٹ</string>
@@ -3716,6 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">نہیں شکریہ</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">یہ پیغام</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">حالیہ استعمال شدہ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">اموجس &amp;amp؛ لوگ</string>
@@ -3728,6 +3760,17 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">جھنڈے</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ایموجیس</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">کوئی نتیجہ نہیں</string>
+
+    <!-- GifQuickSearchOption -->
+    <string name="GifQuickSearchOption__recents">Recents</string>
+    <string name="GifQuickSearchOption__trending">Trending</string>
+    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
+    <string name="GifQuickSearchOption__love">Love</string>
+    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
+    <string name="GifQuickSearchOption__surprised">Surprised</string>
+    <string name="GifQuickSearchOption__excited">Excited</string>
+    <string name="GifQuickSearchOption__sad">Sad</string>
+    <string name="GifQuickSearchOption__angry">Angry</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">پہلے سے طے شدہ استعمال کریں</string>
@@ -4323,6 +4366,8 @@
     <string name="conversation_list_fragment__fab_content_description">نئی چیٹ</string>
     <string name="conversation_list_fragment__open_camera_description">کیمرہ کھولیں</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ابھی کوئی چیٹس نہیں ہیں۔\nکسی دوست کو میسج کر کے آغاز کریں۔</string>
+    <!-- Message shown when there are no archived chats to display -->
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">ڈسپلے کرنے کے لیے کوئی چیٹس نہیں ہیں</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4946,8 +4991,8 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">کوئی دوسرا گروہ مشترکہ نہیں۔</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">مشترکہ طور پر کوئی گروپ نہیں۔</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d other group in common</item>
-        <item quantity="other">%1$d other groups in common</item>
+        <item quantity="one">%1$d دیگر مشترکہ گروپ</item>
+        <item quantity="other">%1$d دیگر مشترکہ گروپس</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">%1$dمشترکہ گروپ</item>
@@ -5697,6 +5742,8 @@
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">کلپ بورڈ پر فون نمبر کاپی کیا گیا۔</string>
     <string name="ConversationSettingsFragment__phone_number">فون نمبر</string>
     <string name="ConversationSettingsFragment__get_badges">Signal کی سپورٹ کے ذریعے اپنی پروفائل کے لیے بیجز حاصل کریں۔ مزید جاننے کے لیے بیج پر ٹیپ کریں۔</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">ممبران شامل کریں</string>
@@ -8377,6 +8424,17 @@
     <string name="NoBackupToRestore_step3">بیک اپس کو فعال کریں اور انتظار کریں جب تک آپ کا بیک اپ مکمل نہ ہو جائے</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">بحال کرنا نظر انداز کریں</string>
+
+    <!-- Accessibility label for close search button in MainToolbar -->
+    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <!-- Accessibility label for clear search query in MainToolbar -->
+    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__more_options_content_description">More options</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__proxy_content_description">Proxy</string>
 
     <!-- EOF -->
 </resources>

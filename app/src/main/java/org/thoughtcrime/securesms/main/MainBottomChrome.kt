@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarResult
@@ -27,6 +28,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones
+import org.thoughtcrime.securesms.window.WindowSizeClass
 
 data class SnackbarState(
   val message: String,
@@ -41,24 +43,21 @@ data class SnackbarState(
   )
 }
 
-interface MainBottomChromeCallback {
-  fun onNewChatClick()
-  fun onNewCallClick()
-  fun onCameraClick(destination: MainNavigationDestination)
+interface MainBottomChromeCallback : MainFloatingActionButtonsCallback {
   fun onMegaphoneVisible(megaphone: Megaphone)
   fun onSnackbarDismissed()
 
   object Empty : MainBottomChromeCallback {
     override fun onNewChatClick() = Unit
     override fun onNewCallClick() = Unit
-    override fun onCameraClick(destination: MainNavigationDestination) = Unit
+    override fun onCameraClick(destination: MainNavigationListLocation) = Unit
     override fun onMegaphoneVisible(megaphone: Megaphone) = Unit
     override fun onSnackbarDismissed() = Unit
   }
 }
 
 data class MainBottomChromeState(
-  val destination: MainNavigationDestination = MainNavigationDestination.CHATS,
+  val destination: MainNavigationListLocation = MainNavigationListLocation.CHATS,
   val megaphoneState: MainMegaphoneState = MainMegaphoneState(),
   val snackbarState: SnackbarState? = null,
   val mainToolbarMode: MainToolbarMode = MainToolbarMode.FULL
@@ -77,21 +76,21 @@ fun MainBottomChrome(
   megaphoneActionController: MegaphoneActionController,
   modifier: Modifier = Modifier
 ) {
+  val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+
   Column(
     modifier = modifier
       .fillMaxWidth()
       .animateContentSize()
   ) {
-    if (state.mainToolbarMode == MainToolbarMode.FULL) {
+    if (state.mainToolbarMode == MainToolbarMode.FULL && windowSizeClass.isCompact()) {
       Box(
         contentAlignment = Alignment.CenterEnd,
         modifier = Modifier.fillMaxWidth()
       ) {
         MainFloatingActionButtons(
           destination = state.destination,
-          onCameraClick = callback::onCameraClick,
-          onNewCallClick = callback::onNewCallClick,
-          onNewChatClick = callback::onNewChatClick
+          callback = callback
         )
       }
 
@@ -102,9 +101,17 @@ fun MainBottomChrome(
       )
     }
 
+    val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+    val snackBarModifier = if (windowSizeClass.isCompact() && state.mainToolbarMode == MainToolbarMode.BASIC) {
+      Modifier.navigationBarsPadding()
+    } else {
+      Modifier
+    }
+
     MainSnackbar(
       snackbarState = state.snackbarState,
-      onDismissed = callback::onSnackbarDismissed
+      onDismissed = callback::onSnackbarDismissed,
+      modifier = snackBarModifier
     )
   }
 }
@@ -112,11 +119,15 @@ fun MainBottomChrome(
 @Composable
 private fun MainSnackbar(
   snackbarState: SnackbarState?,
-  onDismissed: () -> Unit
+  onDismissed: () -> Unit,
+  modifier: Modifier = Modifier
 ) {
   val hostState = remember { SnackbarHostState() }
 
-  Snackbars.Host(hostState)
+  Snackbars.Host(
+    hostState,
+    modifier = modifier
+  )
 
   if (snackbarState?.showProgress == true) {
     Dialogs.IndeterminateProgressDialog()
@@ -126,7 +137,8 @@ private fun MainSnackbar(
     if (snackbarState != null) {
       val result = hostState.showSnackbar(
         message = snackbarState.message,
-        actionLabel = snackbarState.actionState?.action
+        actionLabel = snackbarState.actionState?.action,
+        duration = snackbarState.duration
       )
 
       when (result) {

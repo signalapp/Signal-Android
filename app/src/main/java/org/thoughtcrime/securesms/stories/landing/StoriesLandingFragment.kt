@@ -31,7 +31,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.main.MainNavigationDestination
+import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainToolbarMode
 import org.thoughtcrime.securesms.main.MainToolbarViewModel
@@ -44,7 +44,6 @@ import org.thoughtcrime.securesms.stories.StoryViewerArgs
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
 import org.thoughtcrime.securesms.stories.dialogs.StoryDialogs
 import org.thoughtcrime.securesms.stories.my.MyStoriesActivity
-import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.stories.viewer.StoryViewerActivity
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -73,7 +72,6 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
     }
   )
 
-  private val tabsViewModel: ConversationListTabsViewModel by viewModels(ownerProducer = { requireActivity() })
   private val mainToolbarViewModel: MainToolbarViewModel by activityViewModels()
   private val mainNavigationViewModel: MainNavigationViewModel by activityViewModels()
 
@@ -156,14 +154,14 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
           if (!closeSearchIfOpen()) {
-            tabsViewModel.onChatsSelected()
+            mainNavigationViewModel.onChatsSelected()
           }
         }
       }
     )
 
-    lifecycleDisposable += tabsViewModel.tabClickEvents
-      .filter { it == MainNavigationDestination.STORIES }
+    lifecycleDisposable += mainNavigationViewModel.tabClickEvents
+      .filter { it == MainNavigationListLocation.STORIES }
       .subscribeBy(onNext = {
         val layoutManager = recyclerView?.layoutManager as? LinearLayoutManager ?: return@subscribeBy
         if (layoutManager.findFirstVisibleItemPosition() <= LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD) {

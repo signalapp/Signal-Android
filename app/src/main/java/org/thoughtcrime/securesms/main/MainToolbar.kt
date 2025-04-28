@@ -18,17 +18,17 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBars
-import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.layout.windowInsetsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -40,6 +40,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -128,9 +129,9 @@ enum class MainToolbarMode {
 
 data class MainToolbarState(
   val toolbarColor: Color? = null,
-  val self: Recipient = Recipient.self(),
+  val self: Recipient = Recipient.UNKNOWN,
   val mode: MainToolbarMode = MainToolbarMode.FULL,
-  val destination: MainNavigationDestination = MainNavigationDestination.CHATS,
+  val destination: MainNavigationListLocation = MainNavigationListLocation.CHATS,
   val chatFilter: ConversationFilter = ConversationFilter.OFF,
   val callFilter: CallLogFilter = CallLogFilter.ALL,
   val hasUnreadPayments: Boolean = false,
@@ -223,9 +224,25 @@ private fun SearchToolbar(
         ) {
           Icon(
             imageVector = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
-            contentDescription = null
+            contentDescription = stringResource(R.string.MainToolbar__close_search_content_description)
           )
         }
+      },
+      trailingIcon = if (state.searchQuery.isNotEmpty()) {
+        {
+          IconButtons.IconButton(
+            onClick = {
+              callback.onSearchQueryUpdated("")
+            }
+          ) {
+            Icon(
+              imageVector = ImageVector.vectorResource(R.drawable.ic_x_20),
+              contentDescription = stringResource(R.string.MainToolbar__clear_search_content_description)
+            )
+          }
+        }
+      } else {
+        null
       },
       contentPadding = PaddingValues(0.dp),
       colors = TextFieldDefaults.colors(
@@ -245,7 +262,6 @@ private fun SearchToolbar(
         Text(text = stringResource(state.searchHint))
       },
       modifier = modifier
-        .systemBarsPadding()
         .background(color = state.toolbarColor ?: MaterialTheme.colorScheme.surface)
         .height(dimensionResource(R.dimen.signal_m3_toolbar_height))
         .padding(horizontal = 16.dp, vertical = 10.dp)
@@ -304,18 +320,26 @@ private fun PrimaryToolbar(
       Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
-          .padding(start = 28.dp, end = 26.dp)
-          .fillMaxHeight()
+          .padding(start = 20.dp, end = 16.dp)
+          .size(48.dp)
       ) {
         AvatarImage(
           recipient = state.self,
           modifier = Modifier
             .clip(CircleShape)
+            .size(28.dp)
+        )
+
+        val interactionSource = remember { MutableInteractionSource() }
+        Box(
+          modifier = Modifier
+            .fillMaxSize()
             .clickable(
               onClick = callback::onSettingsClick,
-              onClickLabel = stringResource(R.string.conversation_list_settings_shortcut)
+              onClickLabel = stringResource(R.string.conversation_list_settings_shortcut),
+              interactionSource = interactionSource,
+              indication = ripple(radius = 14.dp)
             )
-            .size(28.dp)
         )
 
         BadgeImageSmall(
@@ -365,9 +389,9 @@ private fun PrimaryToolbar(
         controller = controller
       ) {
         when (state.destination) {
-          MainNavigationDestination.CHATS -> ChatDropdownItems(state, callback, dismiss)
-          MainNavigationDestination.CALLS -> CallDropdownItems(state.callFilter, callback, dismiss)
-          MainNavigationDestination.STORIES -> StoryDropDownItems(callback, dismiss)
+          MainNavigationListLocation.CHATS -> ChatDropdownItems(state, callback, dismiss)
+          MainNavigationListLocation.CALLS -> CallDropdownItems(state.callFilter, callback, dismiss)
+          MainNavigationListLocation.STORIES -> StoryDropDownItems(callback, dismiss)
         }
       }
     }
@@ -392,7 +416,7 @@ private fun TooltipOverflowButton(
       ) {
         Icon(
           imageVector = ImageVector.vectorResource(R.drawable.symbol_more_vertical),
-          contentDescription = null
+          contentDescription = stringResource(R.string.MainToolbar__more_options_content_description)
         )
       }
     }
@@ -411,7 +435,7 @@ private fun NotificationProfileAction(
       // TODO [alex] - Add proper icon (cannot utilize layer-list)
       Image(
         painter = painterResource(R.drawable.ic_moon_24),
-        contentDescription = null
+        contentDescription = stringResource(R.string.MainToolbar__notification_profile_content_description)
       )
     }
   }
@@ -428,7 +452,7 @@ private fun ProxyAction(
     ) {
       Image(
         imageVector = ImageVector.vectorResource(state.proxyState.icon),
-        contentDescription = null
+        contentDescription = stringResource(R.string.MainToolbar__proxy_content_description)
       )
     }
   }
@@ -663,7 +687,7 @@ private fun FullMainToolbarPreview() {
       state = MainToolbarState(
         self = Recipient(isResolving = false),
         mode = mode,
-        destination = MainNavigationDestination.CHATS,
+        destination = MainNavigationListLocation.CHATS,
         hasEnabledNotificationProfile = true,
         proxyState = MainToolbarState.ProxyState.CONNECTED,
         hasFailedBackups = true
@@ -700,7 +724,9 @@ private fun SearchToolbarPreview() {
 private fun ArchiveToolbarPreview() {
   Previews.Preview {
     ArchiveToolbar(
-      state = MainToolbarState(),
+      state = MainToolbarState(
+        self = Recipient(isResolving = false)
+      ),
       callback = MainToolbarCallback.Empty
     )
   }

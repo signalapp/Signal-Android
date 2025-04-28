@@ -50,6 +50,7 @@ import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
 import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
 import org.signal.core.ui.compose.copied.androidx.compose.dragContainer
 import org.signal.core.ui.compose.copied.androidx.compose.rememberDragDropState
@@ -100,7 +101,13 @@ class ChatFoldersFragment : ComposeFragment() {
         onDeleteDismissed = {
           viewModel.showDeleteDialog(false)
         },
-        onPositionUpdated = { fromIndex, toIndex -> viewModel.updatePosition(fromIndex, toIndex) }
+        onDragAndDropEvent = { event ->
+          when (event) {
+            is DragAndDropEvent.OnItemMove -> viewModel.updateItemPosition(event.fromIndex, event.toIndex)
+            is DragAndDropEvent.OnItemDrop -> viewModel.saveItemPositions()
+            is DragAndDropEvent.OnDragCancel -> {}
+          }
+        }
       )
     }
   }
@@ -116,15 +123,12 @@ fun FoldersScreen(
   onDeleteClicked: (ChatFolderRecord) -> Unit = {},
   onDeleteConfirmed: () -> Unit = {},
   onDeleteDismissed: () -> Unit = {},
-  onPositionUpdated: (Int, Int) -> Unit = { _, _ -> }
+  onDragAndDropEvent: (DragAndDropEvent) -> Unit = {}
 ) {
   val screenWidth = LocalConfiguration.current.screenWidthDp.dp
   val isRtl = ViewUtil.isRtl(LocalContext.current)
   val listState = rememberLazyListState()
-  val dragDropState =
-    rememberDragDropState(listState, includeHeader = true, includeFooter = true) { fromIndex, toIndex ->
-      onPositionUpdated(fromIndex, toIndex)
-    }
+  val dragDropState = rememberDragDropState(listState, includeHeader = true, includeFooter = true, onEvent = onDragAndDropEvent)
 
   LaunchedEffect(Unit) {
     if (!SignalStore.uiHints.hasSeenChatFoldersEducationSheet) {

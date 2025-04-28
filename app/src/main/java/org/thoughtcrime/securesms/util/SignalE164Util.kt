@@ -53,6 +53,14 @@ object SignalE164Util {
     return getFormatter().formatAsE164(input)
   }
 
+  /**
+   * Returns true if the input string can be considered an E164. Specifically, it returns true if we could figure out how to format it as an E164.
+   */
+  @JvmStatic
+  fun isPotentialE164(input: String): Boolean {
+    return formatAsE164(input) != null
+  }
+
   private fun getFormatter(): E164Util.Formatter {
     val localNumber = SignalStore.account.e164 ?: return defaultFormatter
     val formatter = cachedFormatters[localNumber]

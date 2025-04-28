@@ -11,23 +11,22 @@ import androidx.lifecycle.ViewModelProvider;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
 import org.thoughtcrime.securesms.database.model.StickerPackRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.stickers.StickerManagementRepository.PackResult;
 
 import java.util.List;
 
 final class StickerManagementViewModel extends ViewModel {
 
   private final Application                 application;
-  private final StickerManagementRepository repository;
-  private final MutableLiveData<PackResult> packs;
-  private final DatabaseObserver.Observer   observer;
+  private final StickerManagementRepository         repository;
+  private final MutableLiveData<StickerPacksResult> packs;
+  private final DatabaseObserver.Observer           observer;
 
   private StickerManagementViewModel(@NonNull Application application, @NonNull StickerManagementRepository repository) {
     this.application = application;
     this.repository  = repository;
     this.packs       = new MutableLiveData<>();
     this.observer    = () -> {
-      repository.deleteOrphanedStickerPacks();
+      repository.deleteOrphanedStickerPacksAsync();
       repository.getStickerPacks(packs::postValue);
     };
 
@@ -35,29 +34,29 @@ final class StickerManagementViewModel extends ViewModel {
   }
 
   void init() {
-    repository.deleteOrphanedStickerPacks();
+    repository.deleteOrphanedStickerPacksAsync();
     repository.fetchUnretrievedReferencePacks();
   }
 
   void onVisible() {
-    repository.deleteOrphanedStickerPacks();
+    repository.deleteOrphanedStickerPacksAsync();
   }
 
-  @NonNull LiveData<PackResult> getStickerPacks() {
+  @NonNull LiveData<StickerPacksResult> getStickerPacks() {
     repository.getStickerPacks(packs::postValue);
     return packs;
   }
 
   void onStickerPackUninstallClicked(@NonNull String packId, @NonNull String packKey) {
-    repository.uninstallStickerPack(packId, packKey);
+    repository.uninstallStickerPackAsync(packId, packKey);
   }
 
   void onStickerPackInstallClicked(@NonNull String packId, @NonNull String packKey) {
-    repository.installStickerPack(packId, packKey, false);
+    repository.installStickerPackAsync(packId, packKey, false);
   }
 
   void onOrderChanged(List<StickerPackRecord> packsInOrder) {
-    repository.setPackOrder(packsInOrder);
+    repository.setStickerPacksOrderAsync(packsInOrder);
   }
 
   @Override

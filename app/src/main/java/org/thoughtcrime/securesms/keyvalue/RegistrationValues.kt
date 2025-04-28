@@ -86,7 +86,10 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
         store.beginWrite()
           .putBlob(RESTORE_DECISION_STATE, newValue.encode())
           .apply()
-        AppDependencies.incomingMessageObserver.notifyRegistrationStateChanged()
+
+        if (newValue.isTerminal) {
+          AppDependencies.incomingMessageObserver.notifyRestoreDecisionMade()
+        }
       }
     }
 }

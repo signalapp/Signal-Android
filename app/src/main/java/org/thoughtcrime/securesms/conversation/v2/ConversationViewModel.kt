@@ -67,7 +67,6 @@ import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
@@ -404,8 +403,8 @@ class ConversationViewModel(
     }
   }
 
-  fun getQuotedMessagePosition(quote: Quote): Single<Int> {
-    return repository.getQuotedMessagePosition(threadId, quote)
+  fun getQuotedMessagePosition(quoteId: Long, authorId: RecipientId): Single<Int> {
+    return repository.getQuotedMessagePosition(threadId, quoteId, authorId)
   }
 
   fun moveToDate(receivedTimestamp: Long): Single<Int> {

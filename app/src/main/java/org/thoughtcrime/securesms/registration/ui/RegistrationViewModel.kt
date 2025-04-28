@@ -833,22 +833,31 @@ class RegistrationViewModel : ViewModel() {
   private suspend fun registerVerifiedSession(context: Context, sessionId: String) {
     Log.v(TAG, "registerVerifiedSession()")
     val registrationData = getRegistrationData()
-    val registrationResult: RegisterAccountResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, recoveryPassword = null)
+    var result: RegisterAccountResult = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, recoveryPassword = null)
 
-    val reglockEnabled = if (registrationResult is RegisterAccountResult.RegistrationLocked) {
-      Log.i(TAG, "Received a registration lock response when trying to register verified session. Retrying with master key.")
-      store.update {
-        it.copy(
-          svr2AuthCredentials = registrationResult.svr2Credentials,
-          svr3AuthCredentials = registrationResult.svr3Credentials
-        )
+    val reglockEnabled = result is RegisterAccountResult.RegistrationLocked
+
+    if (reglockEnabled) {
+      Log.i(TAG, "Registration lock response received.")
+      store.update { it.copy(lockedTimeRemaining = result.timeRemaining) }
+
+      if (SignalStore.svr.registrationLockToken != null) {
+        Log.d(TAG, "Retrying registration with stored credentials.")
+        result = RegistrationRepository.registerAccount(context = context, sessionId = sessionId, registrationData = registrationData, recoveryPassword = null, pin = SignalStore.svr.pin) { SignalStore.svr.masterKey }
       }
-      true
-    } else {
-      false
+
+      if (result is RegisterAccountResult.RegistrationLocked && (result.svr2Credentials != null || result.svr3Credentials != null)) {
+        Log.i(TAG, "Saving registration lock received credentials (svr2: ${result.svr2Credentials != null}, svr3: ${result.svr3Credentials != null}).")
+        store.update {
+          it.copy(
+            svr2AuthCredentials = result.svr2Credentials,
+            svr3AuthCredentials = result.svr3Credentials
+          )
+        }
+      }
     }
 
-    handleRegistrationResult(context, registrationData, registrationResult, reglockEnabled)
+    handleRegistrationResult(context, registrationData, result, reglockEnabled)
   }
 
   private suspend fun onSuccessfulRegistration(context: Context, registrationData: RegistrationData, remoteResult: AccountRegistrationResult, reglockEnabled: Boolean) {
@@ -865,7 +874,7 @@ class RegistrationViewModel : ViewModel() {
       stopwatch.split("account-restore")
 
       AppDependencies.jobManager
-        .startChain(StorageSyncJob())
+        .startChain(StorageSyncJob.forRemoteChange())
         .then(ReclaimUsernameAndLinkJob())
         .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
       stopwatch.split("storage-sync")

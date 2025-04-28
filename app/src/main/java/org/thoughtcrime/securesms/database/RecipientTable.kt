@@ -1208,25 +1208,22 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .where(
         """
         $STORAGE_SERVICE_ID NOT NULL AND (
-            ($TYPE = ? AND ($ACI_COLUMN NOT NULL OR $PNI_COLUMN NOT NULL) AND $ID != ?)
+            ($TYPE = ${RecipientType.INDIVIDUAL.id} AND ($ACI_COLUMN NOT NULL OR $PNI_COLUMN NOT NULL) AND $ID != ${Recipient.self().id.toLong()})
             OR
-            $TYPE = ?
+            $TYPE = ${RecipientType.GV1.id}
             OR
-            $DISTRIBUTION_LIST_ID NOT NULL AND $DISTRIBUTION_LIST_ID IN (
+            ($TYPE = ${RecipientType.DISTRIBUTION_LIST.id} AND $DISTRIBUTION_LIST_ID NOT NULL AND $DISTRIBUTION_LIST_ID IN (
               SELECT ${DistributionListTables.ListTable.ID}
               FROM ${DistributionListTables.ListTable.TABLE_NAME}
-            )
+            ))
             OR
-            $CALL_LINK_ROOM_ID NOT NULL AND $CALL_LINK_ROOM_ID IN (
+            ($TYPE = ${RecipientType.CALL_LINK.id} AND $CALL_LINK_ROOM_ID NOT NULL AND $CALL_LINK_ROOM_ID IN (
               SELECT ${CallLinkTable.ROOM_ID}
               FROM ${CallLinkTable.TABLE_NAME}
               WHERE (${CallLinkTable.ADMIN_KEY} NOT NULL OR ${CallLinkTable.DELETION_TIMESTAMP} > 0) AND ${CallLinkTable.ROOT_KEY} NOT NULL
-            )
+            ))
         )
-        """,
-        RecipientType.INDIVIDUAL.id,
-        Recipient.self().id,
-        RecipientType.GV1.id
+        """
       )
       .run()
       .use { cursor ->
@@ -2373,7 +2370,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val recipientId = getByAci(aci).getOrNull() ?: return
     val record = getRecord(recipientId)
 
-    if (record.pni == null && record.e164 == null) {
+    val pni = record.pni
+    val e164 = record.e164?.takeIf { SignalE164Util.isPotentialE164(it) }
+
+    if (pni == null && e164 == null) {
       return
     }
 
@@ -2388,7 +2388,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .where("$ID = ?", record.id)
       .run()
 
-    getAndPossiblyMerge(null, record.pni, record.e164)
+    getAndPossiblyMerge(null, pni, e164)
   }
 
   fun processIndividualCdsLookup(aci: ACI?, pni: PNI, e164: String): RecipientId {

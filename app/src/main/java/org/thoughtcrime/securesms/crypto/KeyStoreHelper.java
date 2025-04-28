@@ -32,6 +32,10 @@ import java.security.NoSuchProviderException;
 import java.security.UnrecoverableEntryException;
 import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicReference;
 
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -43,38 +47,69 @@ import javax.crypto.spec.GCMParameterSpec;
 
 public final class KeyStoreHelper {
 
-  private static final String ANDROID_KEY_STORE = "AndroidKeyStore";
-  private static final String KEY_ALIAS         = "SignalSecret";
+  private static final String   ANDROID_KEY_STORE = "AndroidKeyStore";
+  private static final String   KEY_ALIAS         = "SignalSecret";
+  private static final Executor executor          = Executors.newSingleThreadExecutor();
 
-  @RequiresApi(Build.VERSION_CODES.M)
+  @RequiresApi(23)
   public static SealedData seal(@NonNull byte[] input) {
-    SecretKey secretKey = getOrCreateKeyStoreEntry();
+    CountDownLatch              latch  = new CountDownLatch(1);
+    AtomicReference<SealedData> result = new AtomicReference<>();
+
+    executor.execute(() -> {
+      try {
+        SecretKey secretKey = getOrCreateKeyStoreEntry();
+
+        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+        cipher.init(Cipher.ENCRYPT_MODE, secretKey);
+
+        byte[] iv   = cipher.getIV();
+        byte[] data = cipher.doFinal(input);
+
+        result.set(new SealedData(iv, data));
+      } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+        throw new AssertionError(e);
+      } finally {
+        latch.countDown();
+      }
+    });
 
     try {
-      Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-      cipher.init(Cipher.ENCRYPT_MODE, secretKey);
-
-      byte[] iv   = cipher.getIV();
-      byte[] data = cipher.doFinal(input);
-
-      return new SealedData(iv, data);
-    } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException e) {
+      latch.await();
+    } catch (InterruptedException e) {
       throw new AssertionError(e);
     }
+
+    return result.get();
   }
 
-  @RequiresApi(Build.VERSION_CODES.M)
+  @RequiresApi(23)
   public static byte[] unseal(@NonNull SealedData sealedData) {
-    SecretKey secretKey = getKeyStoreEntry();
+    CountDownLatch          latch  = new CountDownLatch(1);
+    AtomicReference<byte[]> result = new AtomicReference<>();
+
+    executor.execute(() -> {
+      try {
+        SecretKey secretKey = getKeyStoreEntry();
+
+        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
+        cipher.init(Cipher.DECRYPT_MODE, secretKey, new GCMParameterSpec(128, sealedData.iv));
+
+        result.set(cipher.doFinal(sealedData.data));
+      } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+        throw new AssertionError(e);
+      } finally {
+        latch.countDown();
+      }
+    });
 
     try {
-      Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-      cipher.init(Cipher.DECRYPT_MODE, secretKey, new GCMParameterSpec(128, sealedData.iv));
-
-      return cipher.doFinal(sealedData.data);
-    } catch (NoSuchAlgorithmException | NoSuchPaddingException | InvalidKeyException | InvalidAlgorithmParameterException | IllegalBlockSizeException | BadPaddingException e) {
+      latch.await();
+    } catch (InterruptedException e) {
       throw new AssertionError(e);
     }
+
+    return result.get();
   }
 
   @RequiresApi(Build.VERSION_CODES.M)

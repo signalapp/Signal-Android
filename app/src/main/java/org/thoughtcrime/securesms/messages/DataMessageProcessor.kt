@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
+import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
 import org.thoughtcrime.securesms.jobs.protos.GroupCallPeekJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -88,7 +89,6 @@ import org.thoughtcrime.securesms.recipients.Recipient.HiddenState
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.stickers.StickerLocator
-import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.LinkUtil
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -244,7 +244,7 @@ object DataMessageProcessor {
     if (senderRecipient.isSelf) {
       if (ProfileKeyUtil.getSelfProfileKey() != messageProfileKey) {
         warn(timestamp, "Saw a sync message whose profile key doesn't match our records. Scheduling a storage sync to check.")
-        StorageSyncHelper.scheduleSyncForDataChange()
+        AppDependencies.jobManager.add(StorageSyncJob.forRemoteChange())
       }
     } else if (messageProfileKey != null) {
       if (messageProfileKeyBytes.contentEquals(senderRecipient.profileKey)) {

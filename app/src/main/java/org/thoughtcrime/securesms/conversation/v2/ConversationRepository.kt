@@ -14,7 +14,6 @@ import android.text.SpannableStringBuilder
 import androidx.core.content.pm.ShortcutInfoCompat
 import androidx.core.graphics.drawable.IconCompat
 import androidx.core.graphics.drawable.toBitmap
-import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -59,7 +58,6 @@ import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
@@ -111,7 +109,7 @@ class ConversationRepository(
    */
   fun getKeyboardImageDetails(uri: Uri): Maybe<KeyboardUtil.ImageDetails> {
     return MaybeCompat.fromCallable {
-      KeyboardUtil.getImageDetails(Glide.with(applicationContext), uri)
+      KeyboardUtil.getImageDetails(uri)
     }.subscribeOn(Schedulers.io())
   }
 
@@ -250,9 +248,9 @@ class ConversationRepository(
     oldConversationRepository.markGiftBadgeRevealed(messageId)
   }
 
-  fun getQuotedMessagePosition(threadId: Long, quote: Quote): Single<Int> {
+  fun getQuotedMessagePosition(threadId: Long, quoteId: Long, authorId: RecipientId): Single<Int> {
     return Single.fromCallable {
-      SignalDatabase.messages.getQuotedMessagePosition(threadId, quote.id, quote.author)
+      SignalDatabase.messages.getQuotedMessagePosition(threadId, quoteId, authorId)
     }.subscribeOn(Schedulers.io())
   }
 

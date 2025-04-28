@@ -93,6 +93,14 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
     sharedViewModel.removeMedia(media)
   }
 
+  override fun onMediaSelected(media: Set<Media>) {
+    sharedViewModel.addMedia(media)
+  }
+
+  override fun onMediaUnselected(media: Set<Media>) {
+    sharedViewModel.removeMedia(media)
+  }
+
   override fun onSelectedMediaClicked(media: Media) {
     sharedViewModel.onPageChanged(media)
     navigator.goToReview(findNavController())

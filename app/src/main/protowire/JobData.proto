@@ -214,3 +214,7 @@ message InAppPaymentSetupJobData {
   uint64 inAppPaymentId = 1;
   InAppPaymentSourceData inAppPaymentSource = 2;
 }
+
+message StorageSyncJobData {
+  bool localManifestOutOfDate = 1;
+}

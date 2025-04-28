@@ -151,6 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ဘလော့ခ်ထားသော သုံးစွဲသူများ</string>
     <string name="BlockedUsersActivity__add_blocked_user">ဘလော့ခ်ထားသော သုံးစွဲသူ ပေါင်းထည့်ရန်</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
     <string name="BlockedUsersActivity__blocked_users_will">ဘလော့ခ်ထားသော သုံးစွဲသူများသည် သင့်ထံ ဖုန်းခေါ်ခြင်း သို့မဟုတ် မက်ဆေ့ချ်ပို့ခြင်းများ မလုပ်နိုင်တော့ပါ။</string>
     <string name="BlockedUsersActivity__no_blocked_users">ဘလော့ခ်ထားသော သုံးစွဲသူ မရှိ</string>
     <string name="BlockedUsersActivity__block_user">သုံးစွဲသူအား ဘလော့ခ်မည်လား။</string>
@@ -1667,6 +1668,8 @@
     <string name="MediaOverviewActivity_sent_by_you">သင်မှ ပို့ခဲ့သည်</string>
     <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s မှ %2$s သို့ ပို့ခဲ့သည်</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">သင်မှ %1$s သို့ ပို့ခဲ့သည်</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">နောက်မှပြန်သတိပေးပါ</string>
@@ -1737,9 +1740,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">လွတ်သွားသော ဗီဒီယိုကောလ်</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">ငြင်းပယ်ခဲ့သော အော်ဒီယိုကောလ်</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">ငြင်းပယ်ခဲ့သော ဗီဒီယိုကောလ်</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">အသိပေးချက် ပရိုဖိုင်ကို ဖွင့်ထားစဉ် အော်ဒီယိုကောလ် လွတ်သွားသည်</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2496,7 +2499,7 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="other">တူညီသော အဖွဲ့ %1$s ဖွဲ့</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2673,6 +2676,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN ကို အောင်မြင်စွာ အတည်ပြုပြီး။ သင့်ကို တစ်ပတ်အတွင်း ထပ်မံအသိပေးပါမည်။</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN ကို အောင်မြင်စွာ အတည်ပြုပြီး။ သင့်ကို နှစ်ပတ်အတွင်း ထပ်မံအသိပေးပါမည်။</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN ကို အောင်မြင်စွာ အတည်ပြုပြီး။ သင့်ကို တစ်လအတွင်း ထပ်မံအသိပေးပါမည်။</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
 
     <!-- Slide -->
     <string name="Slide_image">ပုံ</string>
@@ -2688,15 +2697,35 @@
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">စတစ်ကာများ</string>
 
+    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
+    <string name="StickerManagement_available_tab_label">Available</string>
+    <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
+    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <!-- Shown when there are no sticker packs available for installation -->
+    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <!-- Shown when there are no sticker packs currently installed -->
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
+    <string name="StickerManagement_author_unknown">Unknown</string>
+    <!-- Sticker pack list section header for packs that are already installed. -->
+    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
+    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
+    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
+    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <!-- Accessibility label for the button to download a sticker pack. -->
+    <string name="StickerManagement_accessibility_download">Download</string>
+
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">ထည့်သွင်းစတစ်ကာများ</string>
-    <string name="StickerManagementAdapter_stickers_you_received">သင်ရရှိသောစတစ်ကာများ</string>
-    <string name="StickerManagementAdapter_signal_artist_series">Signal အနုပညာရှင် စီးရီးများ</string>
     <string name="StickerManagementAdapter_no_stickers_installed">စတစ်ကာများ မတပ်ဆင်ထားပါ</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">အဝင်မက်ဆေ့ခ်ျများမှ စတစ်ကာများသည် ၎င်းနေရာတွင် ပေါ်ပါမည်</string>
     <string name="StickerManagementAdapter_untitled">ခေါင်းစဉ်မဲ့</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagementAdapter_unknown">မသိ</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">ခေါင်းစဉ်မဲ့</string>
@@ -2723,6 +2752,8 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">၎င်း URL ကိုကူးယူပြီး သင်၏ ပြဿနာ မှတ်တမ်းစာ သို့မဟုတ် ပံ့ပိုးရန်အီးမေးလ်ထဲသို့ ထည့်ပါ။ \n\n <b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">ဝေမျှရန်</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">ကူညီပံ့ပိုးသူများ ကြည့်ရှုနိုင်ရန်အတွက် ဤမှတ်တမ်းကို အွန်လိုင်းတွင် လူသူမရွေးကြည့်နိုင်ရန် တင်သွားပါမည်။ အပ်လုဒ်မလုပ်မီ ဆန်းစစ်နိုင်ပါသည်။</string>
+    <!-- Banner message shown while submitting debug log -->
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2794,7 +2825,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">ဘလော့ခ်ထားပြီး</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">ဘလော့ခ်ထားပြီး</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal ဗားရှင်းအသစ်</string>
@@ -3609,6 +3640,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">မလုပ်လိုပါ</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">၎င်းမက်ဆေ့ချ်</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">နောက်ဆုံးသုံးခဲ့သော</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">အပြုံးမျက်နှာ နှင့် လူများ</string>
@@ -3621,6 +3653,17 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">အလံများ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ရုပ်ပြောင်များ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ရလဒ်များ ရှာမတွေ့ပါ</string>
+
+    <!-- GifQuickSearchOption -->
+    <string name="GifQuickSearchOption__recents">Recents</string>
+    <string name="GifQuickSearchOption__trending">Trending</string>
+    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
+    <string name="GifQuickSearchOption__love">Love</string>
+    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
+    <string name="GifQuickSearchOption__surprised">Surprised</string>
+    <string name="GifQuickSearchOption__excited">Excited</string>
+    <string name="GifQuickSearchOption__sad">Sad</string>
+    <string name="GifQuickSearchOption__angry">Angry</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">မူလကို သုံးပါ</string>
@@ -4212,6 +4255,8 @@
     <string name="conversation_list_fragment__fab_content_description">ချက်(တ်)အသစ်</string>
     <string name="conversation_list_fragment__open_camera_description">ကင်မရာဖွင့်ပါ</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ချက်(တ်)မရှိသေးပါ။\nသူငယ်ချင်းတစ်ယောက်ထံ မက်ဆေ့ချ်ပို့ခြင်းဖြင့် စတင်လိုက်ပါ။</string>
+    <!-- Message shown when there are no archived chats to display -->
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">ပြသရန် ချက်(တ်)မရှိပါ</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4825,7 +4870,7 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">အခြား တူညီသော အဖွဲ့များမရှိပါ</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">အခြား တူညီသော အဖွဲ့များမရှိပါ</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="other">%1$d other groups in common</item>
+        <item quantity="other">တူညီသော အခြားအဖွဲ့ %1$d ဖွဲ့</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="other">တူညီသော အဖွဲ့ %1$d ဖွဲ့</item>
@@ -5563,6 +5608,8 @@
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ဖုန်းနံပါတ်ကို ကလစ်ဘုတ်တွင် ကူးယူပြီး။</string>
     <string name="ConversationSettingsFragment__phone_number">ဖုန်းနံပါတ်</string>
     <string name="ConversationSettingsFragment__get_badges">Signal ကို ပံ့ပိုးခြင်းဖြင် သင့်ပရိုဖိုင်အတွက် ဘဲ့ဂျ်များကို ရယူပါ။ ပိုမိုလေ့လာရန် ဘဲ့ဂျ်တစ်ခုကို နှိပ်ပါ။</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">အဖွဲ့ဝင်များ ထည့်ပါ</string>
@@ -8200,6 +8247,17 @@
     <string name="NoBackupToRestore_step3">ဘက်ခ်အပ်ကိုဖွင့်ပြီး သင်၏ဘက်ခ်အပ် ပြီးမြောက်သည်အထိ စောင့်ပါ</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
+
+    <!-- Accessibility label for close search button in MainToolbar -->
+    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <!-- Accessibility label for clear search query in MainToolbar -->
+    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__more_options_content_description">More options</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__proxy_content_description">Proxy</string>
 
     <!-- EOF -->
 </resources>

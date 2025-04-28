@@ -342,8 +342,8 @@ object NotificationFactory {
     ringtone.play()
   }
 
-  fun notifyMessageDeliveryFailed(context: Context, recipient: Recipient, thread: ConversationId, visibleThread: ConversationId?) {
-    if (thread == visibleThread) {
+  fun notifyMessageDeliveryFailed(context: Context, recipient: Recipient, thread: ConversationId, visibleThread: ConversationId?, visibleBubbleThread: ConversationId?) {
+    if (thread == visibleThread || thread == visibleBubbleThread) {
       notifyInThread(context, recipient, 0)
       return
     }

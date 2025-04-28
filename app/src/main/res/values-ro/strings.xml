@@ -151,6 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Utilizatori blocați</string>
     <string name="BlockedUsersActivity__add_blocked_user">Adaugă un utilizator blocat</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
     <string name="BlockedUsersActivity__blocked_users_will">Utilizatorii blocați nu vor putea să te sune sau să îți trimită mesaje.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Nu există utilizatori blocați</string>
     <string name="BlockedUsersActivity__block_user">Blochezi utilizatorul?</string>
@@ -1767,6 +1768,8 @@
     <string name="MediaOverviewActivity_sent_by_you">Trimis de tine</string>
     <string name="MediaOverviewActivity_sent_by_s_to_s">Trimis de %1$s către %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Trimis de tine către %1$s</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Amintește-mi mai târziu</string>
@@ -1837,9 +1840,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Apel video nepreluat</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">Apel video respins</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">Apel video respins</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Apel vocal pierdut în timp ce profilul de notificare este activat</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2662,9 +2665,9 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="one">%1$s group in common</item>
-        <item quantity="few">%1$s groups in common</item>
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="one">%1$s grup în comun</item>
+        <item quantity="few">%1$s grupuri în comun</item>
+        <item quantity="other">%1$s de grupuri în comun</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2851,6 +2854,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou peste o săptămână.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou peste câteva săptămâni.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou peste o lună.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Imagine</string>
@@ -2866,15 +2875,35 @@
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">Autocolante</string>
 
+    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
+    <string name="StickerManagement_available_tab_label">Available</string>
+    <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
+    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <!-- Shown when there are no sticker packs available for installation -->
+    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <!-- Shown when there are no sticker packs currently installed -->
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
+    <string name="StickerManagement_author_unknown">Unknown</string>
+    <!-- Sticker pack list section header for packs that are already installed. -->
+    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
+    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
+    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
+    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <!-- Accessibility label for the button to download a sticker pack. -->
+    <string name="StickerManagement_accessibility_download">Download</string>
+
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">Autocolante instalate</string>
-    <string name="StickerManagementAdapter_stickers_you_received">Autocolante Primite</string>
-    <string name="StickerManagementAdapter_signal_artist_series">Seria artistică Signal</string>
     <string name="StickerManagementAdapter_no_stickers_installed">Nici un autocolant instalat</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Autocolantele din mesajele primite se vor afișa aici</string>
     <string name="StickerManagementAdapter_untitled">Fără titlu</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagementAdapter_unknown">Necunoscut</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">Fără titlu</string>
@@ -2901,6 +2930,8 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiază acest URL și adaugă-l la raportul de probleme sau la emailul de suport:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Distribuie</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Acest jurnal va fi publicat online pentru a fi vizualizat de către contribuitori. Poți să-l examinezi înainte să fie încărcat.</string>
+    <!-- Banner message shown while submitting debug log -->
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2972,7 +3003,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">Blocat</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">Blocat</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Actualizare Signal</string>
@@ -3823,6 +3854,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Nu, mulțumesc</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Acest mesaj</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Utilizate Recent</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smiley-uri &amp; Oameni</string>
@@ -3835,6 +3867,17 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Steaguri</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Emoticoane</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Nici un rezultat găsit</string>
+
+    <!-- GifQuickSearchOption -->
+    <string name="GifQuickSearchOption__recents">Recents</string>
+    <string name="GifQuickSearchOption__trending">Trending</string>
+    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
+    <string name="GifQuickSearchOption__love">Love</string>
+    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
+    <string name="GifQuickSearchOption__surprised">Surprised</string>
+    <string name="GifQuickSearchOption__excited">Excited</string>
+    <string name="GifQuickSearchOption__sad">Sad</string>
+    <string name="GifQuickSearchOption__angry">Angry</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Implicit</string>
@@ -4434,6 +4477,8 @@
     <string name="conversation_list_fragment__fab_content_description">Conversație nouă</string>
     <string name="conversation_list_fragment__open_camera_description">Deschide Camera</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Nu există conversații. Începe prin a trimite unui prieten un mesaj.</string>
+    <!-- Message shown when there are no archived chats to display -->
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Nu există conversații de afișat</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5067,9 +5112,9 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Nu există alte grupuri în comun.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Niciun grup în comun.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d other group in common</item>
-        <item quantity="few">%1$d other groups in common</item>
-        <item quantity="other">%1$d other groups in common</item>
+        <item quantity="one">%1$d alt grup în comun</item>
+        <item quantity="few">%1$d alte grupuri în comun</item>
+        <item quantity="other">%1$d de alte grupuri în comun</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">%1$d grup în comun</item>
@@ -5831,6 +5876,8 @@
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numărul de telefon a fost copiat în clipboard.</string>
     <string name="ConversationSettingsFragment__phone_number">Număr de telefon</string>
     <string name="ConversationSettingsFragment__get_badges">Poți obține insigne pentru profilul tău susținând Signal. Atinge o insignă pentru a afla mai multe.</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Adăugare membri</string>
@@ -8554,6 +8601,17 @@
     <string name="NoBackupToRestore_step3">Activează backup-urile și așteaptă până când backup-ul este finalizat</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Sari peste restaurare</string>
+
+    <!-- Accessibility label for close search button in MainToolbar -->
+    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <!-- Accessibility label for clear search query in MainToolbar -->
+    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__more_options_content_description">More options</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__proxy_content_description">Proxy</string>
 
     <!-- EOF -->
 </resources>

@@ -32,6 +32,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
+import androidx.fragment.app.viewModels
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
@@ -40,7 +41,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
-import org.thoughtcrime.securesms.util.viewModel
 
 /**
  * Bottom sheet shown when choosing to add a chat to a folder
@@ -59,7 +59,11 @@ class AddToFolderBottomSheet private constructor(private val onDismissListener: 
     OTHER(3)
   }
 
-  private val viewModel by viewModel { ConversationListViewModel(isArchived = false) }
+  private val viewModel: ConversationListViewModel by viewModels(
+    factoryProducer = {
+      ConversationListViewModel.Factory(isArchived = false)
+    }
+  )
 
   companion object {
     private const val ARG_FOLDERS = "argument.folders"

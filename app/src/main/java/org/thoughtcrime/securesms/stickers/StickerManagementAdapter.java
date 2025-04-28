@@ -46,12 +46,12 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
 
   private final List<StickerSection> sections = new ArrayList<StickerSection>(3) {{
     StickerSection yourStickers    = new StickerSection(TAG_YOUR_STICKERS,
-                                                        R.string.StickerManagementAdapter_installed_stickers,
+                                                        R.string.StickerManagement_installed_stickers_header,
                                                         R.string.StickerManagementAdapter_no_stickers_installed,
                                                         new ArrayList<>(),
                                                         0);
     StickerSection messageStickers = new StickerSection(TAG_MESSAGE_STICKERS,
-                                                        R.string.StickerManagementAdapter_stickers_you_received,
+                                                        R.string.StickerManagement_stickers_you_received_header,
                                                         R.string.StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here,
                                                         new ArrayList<>(),
                                                         yourStickers.size());
@@ -127,17 +127,17 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
                     @NonNull List<StickerPackRecord> blessedPacks)
   {
     StickerSection yourStickers    = new StickerSection(TAG_YOUR_STICKERS,
-                                                        R.string.StickerManagementAdapter_installed_stickers,
+                                                        R.string.StickerManagement_installed_stickers_header,
                                                         R.string.StickerManagementAdapter_no_stickers_installed,
                                                         installedPacks,
                                                         0);
     StickerSection blessedStickers = new StickerSection(TAG_BLESSED_STICKERS,
-                                                        R.string.StickerManagementAdapter_signal_artist_series,
+                                                        R.string.StickerManagement_signal_artist_series_header,
                                                         0,
                                                         blessedPacks,
                                                         yourStickers.size());
     StickerSection messageStickers = new StickerSection(TAG_MESSAGE_STICKERS,
-                                                        R.string.StickerManagementAdapter_stickers_you_received,
+                                                        R.string.StickerManagement_stickers_you_received_header,
                                                         R.string.StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here,
                                                         availablePacks,
                                                         yourStickers.size() + (blessedPacks.isEmpty() ? 0 : blessedStickers.size()));
@@ -270,7 +270,7 @@ final class StickerManagementAdapter extends SectionedRecyclerViewAdapter<String
       }
 
       title.setText(titleBuilder);
-      author.setText(stickerPack.authorOptional.orElse(itemView.getResources().getString(R.string.StickerManagementAdapter_unknown)));
+      author.setText(stickerPack.authorOptional.orElse(itemView.getResources().getString(R.string.StickerManagement_author_unknown)));
       divider.setVisibility(lastInList ? View.GONE : View.VISIBLE);
 
       requestManager.load(new DecryptableUri(stickerPack.cover.uri))

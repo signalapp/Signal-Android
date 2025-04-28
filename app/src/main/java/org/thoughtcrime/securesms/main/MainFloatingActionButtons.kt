@@ -12,6 +12,7 @@ import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -20,6 +21,7 @@ import androidx.compose.material3.FilledTonalIconButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButtonColors
 import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -38,78 +40,138 @@ import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.window.Navigation
-import org.thoughtcrime.securesms.window.WindowSizeClass
 import kotlin.math.roundToInt
 
 private val ACTION_BUTTON_SIZE = 56.dp
 private val ACTION_BUTTON_SPACING = 16.dp
 
+interface MainFloatingActionButtonsCallback {
+  fun onNewChatClick()
+  fun onNewCallClick()
+  fun onCameraClick(destination: MainNavigationListLocation)
+
+  object Empty : MainFloatingActionButtonsCallback {
+    override fun onNewChatClick() = Unit
+    override fun onNewCallClick() = Unit
+    override fun onCameraClick(destination: MainNavigationListLocation) = Unit
+  }
+}
+
 @Composable
 fun MainFloatingActionButtons(
-  destination: MainNavigationDestination,
-  onNewChatClick: () -> Unit = {},
-  onCameraClick: (MainNavigationDestination) -> Unit = {},
-  onNewCallClick: () -> Unit = {}
+  destination: MainNavigationListLocation,
+  callback: MainFloatingActionButtonsCallback,
+  modifier: Modifier = Modifier,
+  navigation: Navigation = Navigation.rememberNavigation()
 ) {
-  val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
-  if (windowSizeClass.navigation == Navigation.RAIL) {
-    return
-  }
-
   val boxHeightDp = (ACTION_BUTTON_SIZE * 2 + ACTION_BUTTON_SPACING)
   val boxHeightPx = with(LocalDensity.current) {
     boxHeightDp.toPx().roundToInt()
   }
 
+  val primaryButtonAlignment = remember(navigation) {
+    when (navigation) {
+      Navigation.RAIL -> Alignment.TopCenter
+      Navigation.BAR -> Alignment.BottomCenter
+    }
+  }
+
+  val shadowElevation: Dp = remember(navigation) {
+    when (navigation) {
+      Navigation.RAIL -> 0.dp
+      Navigation.BAR -> 4.dp
+    }
+  }
+
   Box(
-    modifier = Modifier
+    modifier = modifier
       .padding(ACTION_BUTTON_SPACING)
       .height(boxHeightDp)
   ) {
-    AnimatedVisibility(
-      visible = destination == MainNavigationDestination.CHATS,
-      modifier = Modifier.align(Alignment.TopCenter),
-      enter = slideInVertically(initialOffsetY = { boxHeightPx - it }),
-      exit = slideOutVertically(targetOffsetY = { boxHeightPx - it })
-    ) {
-      val elevation by transition.animateDp(targetValueByState = { if (it == EnterExitState.Visible) 4.dp else 0.dp })
-
-      CameraButton(
-        colors = IconButtonDefaults.filledTonalIconButtonColors().copy(
-          containerColor = SignalTheme.colors.colorSurface1
-        ),
-        onClick = {
-          onCameraClick(MainNavigationDestination.CHATS)
-        },
-        shadowElevation = elevation
-      )
-    }
+    SecondaryActionButton(
+      destination = destination,
+      boxHeightPx = boxHeightPx,
+      onCameraClick = callback::onCameraClick,
+      elevation = shadowElevation
+    )
 
     Box(
-      modifier = Modifier.align(Alignment.BottomCenter)
+      modifier = Modifier.align(primaryButtonAlignment)
     ) {
       PrimaryActionButton(
         destination = destination,
-        onNewChatClick = onNewChatClick,
-        onCameraClick = onCameraClick,
-        onNewCallClick = onNewCallClick
+        onNewChatClick = callback::onNewChatClick,
+        onCameraClick = callback::onCameraClick,
+        onNewCallClick = callback::onNewCallClick,
+        elevation = shadowElevation
       )
     }
   }
 }
 
 @Composable
+private fun BoxScope.SecondaryActionButton(
+  destination: MainNavigationListLocation,
+  boxHeightPx: Int,
+  elevation: Dp,
+  onCameraClick: (MainNavigationListLocation) -> Unit
+) {
+  val navigation = Navigation.rememberNavigation()
+  val secondaryButtonAlignment = remember(navigation) {
+    when (navigation) {
+      Navigation.RAIL -> Alignment.BottomCenter
+      Navigation.BAR -> Alignment.TopCenter
+    }
+  }
+
+  val offsetYProvider: (Int) -> Int = remember(navigation) {
+    when (navigation) {
+      Navigation.RAIL -> {
+        { it - boxHeightPx }
+      }
+      Navigation.BAR -> {
+        { boxHeightPx - it }
+      }
+    }
+  }
+
+  AnimatedVisibility(
+    visible = destination == MainNavigationListLocation.CHATS,
+    modifier = Modifier.align(secondaryButtonAlignment),
+    enter = slideInVertically(initialOffsetY = offsetYProvider),
+    exit = slideOutVertically(targetOffsetY = offsetYProvider)
+  ) {
+    val animatedElevation by transition.animateDp(targetValueByState = { if (it == EnterExitState.Visible) elevation else 0.dp })
+
+    CameraButton(
+      colors = IconButtonDefaults.filledTonalIconButtonColors().copy(
+        containerColor = when (navigation) {
+          Navigation.RAIL -> MaterialTheme.colorScheme.surface
+          Navigation.BAR -> SignalTheme.colors.colorSurface2
+        },
+        contentColor = MaterialTheme.colorScheme.onSurface
+      ),
+      onClick = {
+        onCameraClick(MainNavigationListLocation.CHATS)
+      },
+      shadowElevation = animatedElevation
+    )
+  }
+}
+
+@Composable
 private fun PrimaryActionButton(
-  destination: MainNavigationDestination,
+  destination: MainNavigationListLocation,
+  elevation: Dp,
   onNewChatClick: () -> Unit = {},
-  onCameraClick: (MainNavigationDestination) -> Unit = {},
+  onCameraClick: (MainNavigationListLocation) -> Unit = {},
   onNewCallClick: () -> Unit = {}
 ) {
   val onClick = remember(destination) {
     when (destination) {
-      MainNavigationDestination.CHATS -> onNewChatClick
-      MainNavigationDestination.CALLS -> onNewCallClick
-      MainNavigationDestination.STORIES -> {
+      MainNavigationListLocation.CHATS -> onNewChatClick
+      MainNavigationListLocation.CALLS -> onNewCallClick
+      MainNavigationListLocation.STORIES -> {
         { onCameraClick(destination) }
       }
     }
@@ -117,12 +179,13 @@ private fun PrimaryActionButton(
 
   MainFloatingActionButton(
     onClick = onClick,
+    shadowElevation = elevation,
     icon = {
       AnimatedContent(destination) { targetState ->
         val icon = when (targetState) {
-          MainNavigationDestination.CHATS -> R.drawable.symbol_edit_24
-          MainNavigationDestination.CALLS -> R.drawable.symbol_phone_plus_24
-          MainNavigationDestination.STORIES -> R.drawable.symbol_camera_24
+          MainNavigationListLocation.CHATS -> R.drawable.symbol_edit_24
+          MainNavigationListLocation.CALLS -> R.drawable.symbol_phone_plus_24
+          MainNavigationListLocation.STORIES -> R.drawable.symbol_camera_24
         }
 
         Icon(
@@ -178,15 +241,58 @@ private fun MainFloatingActionButton(
 
 @SignalPreview
 @Composable
-private fun MainFloatingActionButtonsPreview() {
-  var destination by remember { mutableStateOf(MainNavigationDestination.CHATS) }
+private fun MainFloatingActionButtonsNavigationRailPreview() {
+  var currentDestination by remember { mutableStateOf(MainNavigationListLocation.CHATS) }
+  val callback = remember {
+    object : MainFloatingActionButtonsCallback {
+      override fun onCameraClick(destination: MainNavigationListLocation) {
+        currentDestination = MainNavigationListLocation.CALLS
+      }
+
+      override fun onNewChatClick() {
+        currentDestination = MainNavigationListLocation.STORIES
+      }
+
+      override fun onNewCallClick() {
+        currentDestination = MainNavigationListLocation.CHATS
+      }
+    }
+  }
 
   Previews.Preview {
     MainFloatingActionButtons(
-      destination = destination,
-      onCameraClick = { destination = MainNavigationDestination.CALLS },
-      onNewChatClick = { destination = MainNavigationDestination.STORIES },
-      onNewCallClick = { destination = MainNavigationDestination.CHATS }
+      destination = currentDestination,
+      callback = callback,
+      navigation = Navigation.RAIL
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun MainFloatingActionButtonsNavigationBarPreview() {
+  var currentDestination by remember { mutableStateOf(MainNavigationListLocation.CHATS) }
+  val callback = remember {
+    object : MainFloatingActionButtonsCallback {
+      override fun onCameraClick(destination: MainNavigationListLocation) {
+        currentDestination = MainNavigationListLocation.CALLS
+      }
+
+      override fun onNewChatClick() {
+        currentDestination = MainNavigationListLocation.STORIES
+      }
+
+      override fun onNewCallClick() {
+        currentDestination = MainNavigationListLocation.CHATS
+      }
+    }
+  }
+
+  Previews.Preview {
+    MainFloatingActionButtons(
+      destination = currentDestination,
+      callback = callback,
+      navigation = Navigation.BAR
     )
   }
 }

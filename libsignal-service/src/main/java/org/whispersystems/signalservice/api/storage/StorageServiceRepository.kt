@@ -9,7 +9,9 @@ import com.squareup.wire.FieldEncoding
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import okio.IOException
+import org.signal.core.util.bytes
 import org.signal.core.util.isNotEmpty
+import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
@@ -29,6 +31,8 @@ import java.lang.Exception
 class StorageServiceRepository(private val storageServiceApi: StorageServiceApi) {
 
   companion object {
+    private val TAG = Log.tag(StorageServiceRepository::class)
+
     private const val STORAGE_READ_MAX_ITEMS: Int = 1000
   }
 
@@ -115,6 +119,9 @@ class StorageServiceRepository(private val storageServiceApi: StorageServiceApi)
 
     val knownIds = storageIds.filterNot { it.isUnknown }
     val batches = knownIds.chunked(STORAGE_READ_MAX_ITEMS)
+
+    Log.d(TAG, "Reading ${knownIds.size} storage records in ${batches.size} batches of size $STORAGE_READ_MAX_ITEMS")
+
     val results = batches.map { batch ->
       readStorageRecordsBatch(auth, storageKey, recordIkm, batch)
     }
@@ -272,7 +279,8 @@ class StorageServiceRepository(private val storageServiceApi: StorageServiceApi)
       version = manifestRecord.version,
       sourceDeviceId = manifestRecord.sourceDevice,
       recordIkm = manifestRecord.recordIkm.takeIf { it.isNotEmpty() }?.toByteArray()?.let { RecordIkm(it) },
-      storageIds = ids
+      storageIds = ids,
+      protoByteSize = this.encode().size.bytes
     )
   }
 

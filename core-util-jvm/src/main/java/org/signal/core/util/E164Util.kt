@@ -253,12 +253,18 @@ object E164Util {
      * a phone number.
      */
     fun formatAsE164(input: String): String? {
-      return formatAsE164WithRegionCode(
+      val formatted = formatAsE164WithRegionCode(
         localNumber = localNumber,
         localAreaCode = localAreaCode,
         regionCode = localRegionCode,
         input = input
       )
+
+      return if (formatted == null && input.startsWith("+")) {
+        formatAsE164(input.substring(1))
+      } else {
+        formatted
+      }
     }
 
     /**

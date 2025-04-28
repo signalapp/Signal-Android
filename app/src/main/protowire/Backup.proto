@@ -724,11 +724,30 @@ message FilePointer {
   message InvalidAttachmentLocator {
   }
 
+  // References attachments in a local encrypted backup.
+  // Importers should first attempt to read the file from the local backup,
+  // and on failure fallback to backup and transit cdn if possible.
+  message LocalLocator {
+    string mediaName = 1;
+    // Separate key used to encrypt this file for the local backup.
+    // Generally required. Missing field indicates attachment was not
+    // available locally when the backup was generated, but remote
+    // backup or transit info was available.
+    optional bytes localKey = 2;
+    bytes remoteKey = 3;
+    bytes remoteDigest = 4;
+    uint32 size = 5;
+    optional uint32 backupCdnNumber = 6;
+    optional string transitCdnKey = 7;
+    optional uint32 transitCdnNumber = 8;
+  }
+
   // If unset, importers should consider it to be an InvalidAttachmentLocator without throwing an error.
   oneof locator {
     BackupLocator backupLocator = 1;
     AttachmentLocator attachmentLocator = 2;
     InvalidAttachmentLocator invalidAttachmentLocator = 3;
+    LocalLocator localLocator = 12;
   }
 
   optional string contentType = 4;
@@ -1291,6 +1310,7 @@ message NotificationProfile {
   uint32 scheduleStartTime = 9; // 24-hour clock int, 0000-2359 (e.g., 15, 900, 1130, 2345)
   uint32 scheduleEndTime = 10; // 24-hour clock int, 0000-2359 (e.g., 15, 900, 1130, 2345)
   repeated DayOfWeek scheduleDaysEnabled = 11;
+  bytes id = 12; // should be 16 bytes
 }
 
 message ChatFolder {

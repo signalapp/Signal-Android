@@ -1,7 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-    <item android:drawable="@color/signal_colorSurface2" android:state_selected="true" />
-    <item android:drawable="@color/signal_colorSurface2" android:state_pressed="true" />
-    <item android:drawable="@color/signal_colorSurface3" android:state_focused="true" />
-    <item android:drawable="@drawable/conversation_list_item_background_default" />
+<!--
+  ~ Copyright 2025 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<selector
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:enterFadeDuration="100"
+    android:exitFadeDuration="100">
+
+    <item android:state_activated="true">
+        <inset
+            android:insetLeft="12dp"
+            android:insetRight="12dp"
+            android:insetTop="0dp"
+            android:insetBottom="0dp">
+
+            <shape android:shape="rectangle">
+                <solid android:color="@color/signal_colorSecondaryContainer" />
+                <corners android:radius="18dp" />
+            </shape>
+        </inset>
+    </item>
+
+    <item android:state_selected="true">
+        <inset
+            android:insetLeft="12dp"
+            android:insetRight="12dp"
+            android:insetTop="2dp"
+            android:insetBottom="2dp">
+
+            <shape android:shape="rectangle">
+                <solid android:color="@color/conversation_list_selected_color" />
+                <corners android:radius="18dp" />
+            </shape>
+        </inset>
+    </item>
+
+    <item>
+        <ripple android:color="@color/conversation_list_selected_color">
+            <item android:id="@android:id/mask">
+                <inset
+                    android:insetLeft="12dp"
+                    android:insetRight="12dp"
+                    android:insetTop="2dp"
+                    android:insetBottom="2dp">
+
+                    <shape android:shape="rectangle">
+                        <solid android:color="@color/transparent_black_60" />
+                        <corners android:radius="18dp" />
+                    </shape>
+                </inset>
+            </item>
+            <item android:drawable="@drawable/conversation_list_item_background_default" />
+        </ripple>
+    </item>
 </selector>

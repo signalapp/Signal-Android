@@ -19,6 +19,7 @@ package org.thoughtcrime.securesms.video;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
@@ -55,6 +56,7 @@ public class VideoPlayer extends FrameLayout {
   private static final String TAG = Log.tag(VideoPlayer.class);
 
   private final PlayerView                exoView;
+  private final View                      progressBar;
   private final DefaultMediaSourceFactory mediaSourceFactory;
 
   private ExoPlayer                           exoPlayer;
@@ -89,6 +91,7 @@ public class VideoPlayer extends FrameLayout {
     this.mediaSourceFactory = new DefaultMediaSourceFactory(context);
 
     this.exoView     = findViewById(R.id.video_view);
+    this.progressBar = findViewById(R.id.progress_bar);
     this.exoControls = createPlayerControls(getContext());
 
     this.exoPlayerListener = new ExoPlayerListener();
@@ -113,6 +116,13 @@ public class VideoPlayer extends FrameLayout {
       }
 
       private void onPlaybackStateChanged(boolean playWhenReady, int playbackState) {
+        if (progressBar != null) {
+          if (playbackState == Player.STATE_BUFFERING) {
+            progressBar.setVisibility(View.VISIBLE);
+          } else {
+            progressBar.setVisibility(View.GONE);
+          }
+        }
         if (playerCallback != null) {
           switch (playbackState) {
             case Player.STATE_READY:

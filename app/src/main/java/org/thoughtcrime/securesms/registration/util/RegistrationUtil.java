@@ -46,7 +46,7 @@ public final class RegistrationUtil {
       }
 
       AppDependencies.getJobManager().startChain(new RefreshAttributesJob())
-                     .then(new StorageSyncJob())
+                     .then(StorageSyncJob.forRemoteChange())
                      .then(new DirectoryRefreshJob(false))
                      .enqueue();
 

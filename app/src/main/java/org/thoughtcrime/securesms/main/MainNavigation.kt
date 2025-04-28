@@ -12,15 +12,12 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.FilledTonalIconButton
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButtonDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
 import androidx.compose.material3.NavigationBarItem
@@ -39,12 +36,10 @@ import androidx.compose.ui.geometry.CornerRadius
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.drawText
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.IntSize
@@ -64,7 +59,7 @@ import org.thoughtcrime.securesms.R
 
 private val LOTTIE_SIZE = 28.dp
 
-enum class MainNavigationDestination(
+enum class MainNavigationListLocation(
   @StringRes val label: Int,
   @RawRes val icon: Int,
   @StringRes val contentDescription: Int = label
@@ -89,7 +84,7 @@ data class MainNavigationState(
   val storiesCount: Int = 0,
   val storyFailure: Boolean = false,
   val isStoriesFeatureEnabled: Boolean = true,
-  val selectedDestination: MainNavigationDestination = MainNavigationDestination.CHATS,
+  val selectedDestination: MainNavigationListLocation = MainNavigationListLocation.CHATS,
   val compact: Boolean = false
 )
 
@@ -99,50 +94,47 @@ data class MainNavigationState(
 @Composable
 fun MainNavigationBar(
   state: MainNavigationState,
-  onDestinationSelected: (MainNavigationDestination) -> Unit
+  onDestinationSelected: (MainNavigationListLocation) -> Unit
 ) {
-  Box(modifier = Modifier.background(color = SignalTheme.colors.colorSurface2)) {
-    NavigationBar(
-      containerColor = SignalTheme.colors.colorSurface2,
-      contentColor = MaterialTheme.colorScheme.onSurface,
-      modifier = Modifier
-        .navigationBarsPadding()
-        .height(if (state.compact) 48.dp else 80.dp)
-    ) {
-      val entries = remember(state.isStoriesFeatureEnabled) {
-        if (state.isStoriesFeatureEnabled) {
-          MainNavigationDestination.entries
-        } else {
-          MainNavigationDestination.entries.filterNot { it == MainNavigationDestination.STORIES }
-        }
+  NavigationBar(
+    containerColor = SignalTheme.colors.colorSurface2,
+    contentColor = MaterialTheme.colorScheme.onSurface,
+    modifier = Modifier.height(if (state.compact) 48.dp else 80.dp),
+    windowInsets = WindowInsets(0, 0, 0, 0)
+  ) {
+    val entries = remember(state.isStoriesFeatureEnabled) {
+      if (state.isStoriesFeatureEnabled) {
+        MainNavigationListLocation.entries
+      } else {
+        MainNavigationListLocation.entries.filterNot { it == MainNavigationListLocation.STORIES }
+      }
+    }
+
+    entries.forEach { destination ->
+
+      val badgeCount = when (destination) {
+        MainNavigationListLocation.CHATS -> state.chatsCount
+        MainNavigationListLocation.CALLS -> state.callsCount
+        MainNavigationListLocation.STORIES -> state.storiesCount
       }
 
-      entries.forEach { destination ->
-
-        val badgeCount = when (destination) {
-          MainNavigationDestination.CHATS -> state.chatsCount
-          MainNavigationDestination.CALLS -> state.callsCount
-          MainNavigationDestination.STORIES -> state.storiesCount
-        }
-
-        val selected = state.selectedDestination == destination
-        NavigationBarItem(
-          selected = selected,
-          icon = {
-            NavigationDestinationIcon(
-              destination = destination,
-              selected = selected
-            )
-          },
-          label = if (state.compact) null else {
-            { NavigationDestinationLabel(destination) }
-          },
-          onClick = {
-            onDestinationSelected(destination)
-          },
-          modifier = Modifier.drawNavigationBarBadge(count = badgeCount, compact = state.compact)
-        )
-      }
+      val selected = state.selectedDestination == destination
+      NavigationBarItem(
+        selected = selected,
+        icon = {
+          NavigationDestinationIcon(
+            destination = destination,
+            selected = selected
+          )
+        },
+        label = if (state.compact) null else {
+          { NavigationDestinationLabel(destination) }
+        },
+        onClick = {
+          onDestinationSelected(destination)
+        },
+        modifier = Modifier.drawNavigationBarBadge(count = badgeCount, compact = state.compact)
+      )
     }
   }
 }
@@ -212,55 +204,24 @@ private fun Modifier.drawNavigationBarBadge(count: Int, compact: Boolean): Modif
 @Composable
 fun MainNavigationRail(
   state: MainNavigationState,
-  onDestinationSelected: (MainNavigationDestination) -> Unit
+  mainFloatingActionButtonsCallback: MainFloatingActionButtonsCallback,
+  onDestinationSelected: (MainNavigationListLocation) -> Unit
 ) {
   NavigationRail(
     containerColor = SignalTheme.colors.colorSurface1,
     header = {
-      FilledTonalIconButton(
-        onClick = { },
-        shape = RoundedCornerShape(18.dp),
-        modifier = Modifier
-          .padding(top = 56.dp, bottom = 16.dp)
-          .size(56.dp),
-        enabled = true,
-        colors = IconButtonDefaults.filledTonalIconButtonColors()
-          .copy(
-            containerColor = MaterialTheme.colorScheme.primaryContainer,
-            contentColor = MaterialTheme.colorScheme.onBackground
-          )
-      ) {
-        Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_edit_24),
-          contentDescription = null
-        )
-      }
-
-      FilledTonalIconButton(
-        onClick = { },
-        shape = RoundedCornerShape(18.dp),
-        modifier = Modifier
-          .padding(bottom = 80.dp)
-          .size(56.dp),
-        enabled = true,
-        colors = IconButtonDefaults.filledTonalIconButtonColors()
-          .copy(
-            containerColor = MaterialTheme.colorScheme.surface,
-            contentColor = MaterialTheme.colorScheme.onSurface
-          )
-      ) {
-        Icon(
-          imageVector = ImageVector.vectorResource(R.drawable.symbol_camera_24),
-          contentDescription = null
-        )
-      }
+      MainFloatingActionButtons(
+        destination = state.selectedDestination,
+        callback = mainFloatingActionButtonsCallback,
+        modifier = Modifier.padding(vertical = 40.dp)
+      )
     }
   ) {
     val entries = remember(state.isStoriesFeatureEnabled) {
       if (state.isStoriesFeatureEnabled) {
-        MainNavigationDestination.entries
+        MainNavigationListLocation.entries
       } else {
-        MainNavigationDestination.entries.filterNot { it == MainNavigationDestination.STORIES }
+        MainNavigationListLocation.entries.filterNot { it == MainNavigationListLocation.STORIES }
       }
     }
 
@@ -269,7 +230,7 @@ fun MainNavigationRail(
 
       Box {
         NavigationRailItem(
-          modifier = Modifier.padding(bottom = if (MainNavigationDestination.entries.lastIndex == idx) 0.dp else 16.dp),
+          modifier = Modifier.padding(bottom = if (MainNavigationListLocation.entries.lastIndex == idx) 0.dp else 16.dp),
           icon = {
             NavigationDestinationIcon(
               destination = destination,
@@ -297,13 +258,13 @@ fun MainNavigationRail(
 @Composable
 private fun BoxScope.NavigationRailCountIndicator(
   state: MainNavigationState,
-  destination: MainNavigationDestination
+  destination: MainNavigationListLocation
 ) {
   val count = remember(state, destination) {
     when (destination) {
-      MainNavigationDestination.CHATS -> state.chatsCount
-      MainNavigationDestination.CALLS -> state.callsCount
-      MainNavigationDestination.STORIES -> state.storiesCount
+      MainNavigationListLocation.CHATS -> state.chatsCount
+      MainNavigationListLocation.CALLS -> state.callsCount
+      MainNavigationListLocation.STORIES -> state.storiesCount
     }
   }
 
@@ -330,7 +291,7 @@ private fun BoxScope.NavigationRailCountIndicator(
 
 @Composable
 private fun NavigationDestinationIcon(
-  destination: MainNavigationDestination,
+  destination: MainNavigationListLocation,
   selected: Boolean
 ) {
   val dynamicProperties = rememberLottieDynamicProperties(
@@ -349,14 +310,14 @@ private fun NavigationDestinationIcon(
 
   LottieAnimation(
     composition = composition,
-    progress = { progress },
+    progress = { if (selected) progress else 0f },
     dynamicProperties = dynamicProperties,
     modifier = Modifier.size(LOTTIE_SIZE)
   )
 }
 
 @Composable
-private fun NavigationDestinationLabel(destination: MainNavigationDestination) {
+private fun NavigationDestinationLabel(destination: MainNavigationListLocation) {
   Text(stringResource(destination.label))
 }
 
@@ -372,7 +333,7 @@ private fun formatCount(count: Int): String {
 @Composable
 private fun MainNavigationRailPreview() {
   Previews.Preview {
-    var selected by remember { mutableStateOf(MainNavigationDestination.CHATS) }
+    var selected by remember { mutableStateOf(MainNavigationListLocation.CHATS) }
 
     MainNavigationRail(
       state = MainNavigationState(
@@ -381,6 +342,7 @@ private fun MainNavigationRailPreview() {
         storiesCount = 5,
         selectedDestination = selected
       ),
+      mainFloatingActionButtonsCallback = MainFloatingActionButtonsCallback.Empty,
       onDestinationSelected = { selected = it }
     )
   }
@@ -390,7 +352,7 @@ private fun MainNavigationRailPreview() {
 @Composable
 private fun MainNavigationBarPreview() {
   Previews.Preview {
-    var selected by remember { mutableStateOf(MainNavigationDestination.CHATS) }
+    var selected by remember { mutableStateOf(MainNavigationListLocation.CHATS) }
 
     MainNavigationBar(
       state = MainNavigationState(

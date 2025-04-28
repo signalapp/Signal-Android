@@ -27,6 +27,7 @@ import androidx.compose.ui.zIndex
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent.OnItemMove
 
 /**
  * From AndroidX Compose demo
@@ -36,12 +37,16 @@ import kotlinx.coroutines.launch
  * Supports adding non-draggable headers and footers.
  */
 @Composable
-fun rememberDragDropState(lazyListState: LazyListState, includeHeader: Boolean, includeFooter: Boolean, onMove: (Int, Int) -> Unit): DragDropState {
+fun rememberDragDropState(
+  lazyListState: LazyListState,
+  includeHeader: Boolean,
+  includeFooter: Boolean,
+  onEvent: (DragAndDropEvent) -> Unit = {}
+): DragDropState {
   val scope = rememberCoroutineScope()
-  val state =
-    remember(lazyListState) {
-      DragDropState(state = lazyListState, onMove = onMove, includeHeader = includeHeader, includeFooter = includeFooter, scope = scope)
-    }
+  val state = remember(lazyListState) {
+    DragDropState(state = lazyListState, onEvent = onEvent, includeHeader = includeHeader, includeFooter = includeFooter, scope = scope)
+  }
   LaunchedEffect(state) {
     while (true) {
       val diff = state.scrollChannel.receive()
@@ -57,7 +62,7 @@ internal constructor(
   private val scope: CoroutineScope,
   private val includeHeader: Boolean,
   private val includeFooter: Boolean,
-  private val onMove: (Int, Int) -> Unit
+  private val onEvent: (DragAndDropEvent) -> Unit
 ) {
   var draggingItemIndex by mutableStateOf<Int?>(null)
     private set
@@ -94,7 +99,17 @@ internal constructor(
       }
   }
 
-  internal fun onDragInterrupted() {
+  internal fun onDragEnd() {
+    onDragInterrupted()
+    onEvent(DragAndDropEvent.OnItemDrop)
+  }
+
+  internal fun onDragCancel() {
+    onDragInterrupted()
+    onEvent(DragAndDropEvent.OnDragCancel)
+  }
+
+  private fun onDragInterrupted() {
     if (draggingItemIndex != null) {
       previousIndexOfDraggedItem = draggingItemIndex
       val startOffset = draggingItemOffset
@@ -137,9 +152,9 @@ internal constructor(
       (!includeFooter || targetItem.index != (state.layoutInfo.totalItemsCount - 1))
     ) {
       if (includeHeader) {
-        onMove.invoke(draggingItem.index - 1, targetItem.index - 1)
+        onEvent.invoke(OnItemMove(fromIndex = draggingItem.index - 1, toIndex = targetItem.index - 1))
       } else {
-        onMove.invoke(draggingItem.index, targetItem.index)
+        onEvent.invoke(OnItemMove(fromIndex = draggingItem.index, toIndex = targetItem.index))
       }
       draggingItemIndex = targetItem.index
     } else {
@@ -161,7 +176,30 @@ internal constructor(
     get() = this.offset + this.size
 }
 
-fun Modifier.dragContainer(dragDropState: DragDropState, leftDpOffset: Dp, rightDpOffset: Dp): Modifier {
+sealed interface DragAndDropEvent {
+  /**
+   * Triggered when an item is moving from one position to another.
+   *
+   * The ordering of the corresponding UI state should be updated when this event is received.
+   */
+  data class OnItemMove(val fromIndex: Int, val toIndex: Int) : DragAndDropEvent
+
+  /**
+   * Triggered when a dragged item is dropped into its final position.
+   */
+  data object OnItemDrop : DragAndDropEvent
+
+  /**
+   * Triggered when a drag gesture is canceled.
+   */
+  data object OnDragCancel : DragAndDropEvent
+}
+
+fun Modifier.dragContainer(
+  dragDropState: DragDropState,
+  leftDpOffset: Dp,
+  rightDpOffset: Dp
+): Modifier {
   return pointerInput(dragDropState) {
     detectDragGestures(
       onDrag = { change, offset ->
@@ -169,8 +207,8 @@ fun Modifier.dragContainer(dragDropState: DragDropState, leftDpOffset: Dp, right
         dragDropState.onDrag(offset = offset)
       },
       onDragStart = { offset -> dragDropState.onDragStart(offset) },
-      onDragEnd = { dragDropState.onDragInterrupted() },
-      onDragCancel = { dragDropState.onDragInterrupted() },
+      onDragEnd = { dragDropState.onDragEnd() },
+      onDragCancel = { dragDropState.onDragCancel() },
       leftDpOffset = leftDpOffset,
       rightDpOffset = rightDpOffset
     )

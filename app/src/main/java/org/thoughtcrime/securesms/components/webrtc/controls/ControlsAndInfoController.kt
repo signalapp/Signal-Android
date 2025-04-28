@@ -27,6 +27,7 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.constraintlayout.widget.Guideline
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
+import androidx.core.view.isVisible
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import androidx.transition.TransitionSet
@@ -108,6 +109,7 @@ class ControlsAndInfoController private constructor(
   private val raiseHandComposeView: ComposeView = webRtcCallView.findViewById(R.id.call_screen_raise_hand_view)
   private val aboveControlsGuideline: Guideline = webRtcCallView.findViewById(R.id.call_screen_above_controls_guideline)
   private val toggleCameraDirectionView: View = webRtcCallView.findViewById(R.id.call_screen_camera_direction_toggle)
+  private val startCallControls: View = webRtcCallView.findViewById(R.id.call_screen_start_call_controls)
   private val callControls: ConstraintLayout = webRtcCallView.findViewById(R.id.call_controls_constraint_layout)
   private val isLandscape = activity.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
   private val waitingToBeLetInProgressDrawable = IndeterminateDrawable.createCircularDrawable(
@@ -160,7 +162,11 @@ class ControlsAndInfoController private constructor(
         previousCallControlHeightData = HeightData(callControls.height, coordinator.height)
 
         val controlPeakHeight = callControls.height + callControls.y.toInt() + 16.dp
-        behavior.peekHeight = controlPeakHeight
+        if (startCallControls.isVisible) {
+          behavior.peekHeight = max(behavior.peekHeight, controlPeakHeight)
+        } else {
+          behavior.peekHeight = controlPeakHeight
+        }
         frame.minimumHeight = coordinator.height / minFrameHeightDenominator
         behavior.maxHeight = (coordinator.height.toFloat() * maxBehaviorHeightPercentage).toInt()
 
@@ -199,7 +205,6 @@ class ControlsAndInfoController private constructor(
 
     behavior.isHideable = true
     behavior.peekHeight = 0
-    behavior.state = BottomSheetBehavior.STATE_HIDDEN
     BottomSheetBehaviorHack.setNestedScrollingChild(behavior, callInfoComposeView)
 
     behavior.addBottomSheetCallback(object : BottomSheetCallback() {

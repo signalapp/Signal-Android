@@ -13,7 +13,6 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
@@ -44,14 +43,13 @@ import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterLerp
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterPullState
 import org.thoughtcrime.securesms.databinding.CallLogFragmentBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.main.MainNavigationDestination
+import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainToolbarMode
 import org.thoughtcrime.securesms.main.MainToolbarViewModel
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.SnackbarState
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
@@ -84,7 +82,6 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   private lateinit var signalBottomActionBarController: SignalBottomActionBarController
 
   private val viewModel: CallLogViewModel by activityViewModels()
-  private val tabsViewModel: ConversationListTabsViewModel by viewModels(ownerProducer = { requireActivity() })
   private val mainToolbarViewModel: MainToolbarViewModel by activityViewModels()
   private val mainNavigationViewModel: MainNavigationViewModel by activityViewModels()
 
@@ -171,7 +168,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
           if (!closeSearchIfOpen()) {
-            tabsViewModel.onChatsSelected()
+            mainNavigationViewModel.onChatsSelected()
           }
         }
       }
@@ -196,8 +193,8 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   }
 
   private fun initializeTapToScrollToTop(scrollToPositionDelegate: ScrollToPositionDelegate) {
-    disposables += tabsViewModel.tabClickEvents
-      .filter { it == MainNavigationDestination.CALLS }
+    disposables += mainNavigationViewModel.tabClickEvents
+      .filter { it == MainNavigationListLocation.CALLS }
       .subscribeBy(onNext = {
         scrollToPositionDelegate.resetScrollPosition()
       })

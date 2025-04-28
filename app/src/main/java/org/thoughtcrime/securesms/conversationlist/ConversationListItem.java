@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.components.emoji.EmojiStrings;
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
 import org.thoughtcrime.securesms.conversation.MessageStyler;
+import org.thoughtcrime.securesms.conversationlist.model.Conversation;
 import org.thoughtcrime.securesms.conversationlist.model.ConversationSet;
 import org.thoughtcrime.securesms.database.MessageTypes;
 import org.thoughtcrime.securesms.database.ThreadTable;
@@ -72,6 +73,7 @@ import org.thoughtcrime.securesms.database.model.LiveUpdateMessage;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ThreadRecord;
 import org.thoughtcrime.securesms.database.model.UpdateDescription;
+import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
 import org.thoughtcrime.securesms.glide.GlideLiveDataTarget;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
@@ -212,9 +214,10 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                    @NonNull RequestManager glideRequests,
                    @NonNull Locale locale,
                    @NonNull Set<Long> typingThreads,
-                   @NonNull ConversationSet selectedConversations)
+                   @NonNull ConversationSet selectedConversations,
+                   long activeThreadId)
   {
-    bindThread(lifecycleOwner, thread, glideRequests, locale, typingThreads, selectedConversations, null, false, true);
+    bindThread(lifecycleOwner, thread, glideRequests, locale, typingThreads, selectedConversations, null, false, true, activeThreadId);
   }
 
   public void bindThread(@NonNull LifecycleOwner lifecycleOwner,
@@ -225,7 +228,8 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
                          @NonNull ConversationSet selectedConversations,
                          @Nullable String highlightSubstring,
                          boolean appendSystemContactIcon,
-                         boolean showPinned)
+                         boolean showPinned,
+                         long activeThreadId)
   {
     this.threadId           = thread.getThreadId();
     this.requestManager     = requestManager;
@@ -281,6 +285,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
       this.archivedView.setVisibility(View.GONE);
     }
 
+    setActiveThreadId(activeThreadId);
     setStatusIcons(thread);
     setSelectedConversations(selectedConversations);
     setBadgeFromRecipient(recipient.get());
@@ -325,6 +330,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     alertView.setNone();
 
     setSelectedConversations(new ConversationSet());
+    setActiveThreadId(0);
     setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(requestManager, recipient.get(), !batchMode, false);
   }
@@ -362,6 +368,7 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     alertView.setNone();
 
     setSelectedConversations(new ConversationSet());
+    setActiveThreadId(0);
     setBadgeFromRecipient(recipient.get());
     contactPhotoImage.setAvatar(requestManager, recipient.get(), !batchMode);
   }
@@ -382,12 +389,18 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     if (this.recipient != null) {
       observeRecipient(null, null);
       setSelectedConversations(new ConversationSet());
+      setActiveThreadId(0);
       contactPhotoImage.setAvatar(requestManager, null, !batchMode);
     }
 
     observeDisplayBody(null, null);
     joinMembersDisposable.dispose();
     updateDateView = null;
+  }
+
+  @Override
+  public void setActiveThreadId(long activeThreadId) {
+    setActivated(activeThreadId > 0 && this.threadId == activeThreadId);
   }
 
   @Override
@@ -588,9 +601,9 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
         return emphasisAdded(context, context.getString(R.string.ThreadRecord_message_request), defaultTint);
       }
     } else if (thread.getRecipient().isBlocked() && thread.getRecipient().isGroup()) {
-      return emphasisAdded(context, context.getString(R.string.ThreadRecord_blocked_group), R.drawable.symbol_block_16, defaultTint);
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_blocked_group), Glyph.BLOCK, defaultTint);
     } else if (thread.getRecipient().isBlocked()) {
-      return emphasisAdded(context, context.getString(R.string.ThreadRecord_blocked), R.drawable.symbol_block_16, defaultTint);
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_blocked), Glyph.BLOCK, defaultTint);
     } else if (MessageTypes.isGroupUpdate(thread.getType())) {
       if (thread.getRecipient().isPushV2Group()) {
         if (thread.getMessageExtras() != null) {
@@ -599,14 +612,14 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
           return emphasisAdded(context, MessageRecord.getGv2ChangeDescription(context, thread.getBody(), null), defaultTint);
         }
       } else {
-        return emphasisAdded(context, context.getString(R.string.ThreadRecord_group_updated), R.drawable.ic_update_group_16, defaultTint);
+        return emphasisAdded(context, context.getString(R.string.ThreadRecord_group_updated), Glyph.GROUP, defaultTint);
       }
     } else if (MessageTypes.isGroupQuit(thread.getType())) {
-      return emphasisAdded(context, context.getString(R.string.ThreadRecord_left_the_group), R.drawable.ic_update_group_leave_16, defaultTint);
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_left_the_group), Glyph.LEAVE, defaultTint);
     } else if (MessageTypes.isKeyExchangeType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.ConversationListItem_key_exchange_message), defaultTint);
     } else if (MessageTypes.isChatSessionRefresh(thread.getType())) {
-      return emphasisAdded(context, context.getString(R.string.ThreadRecord_chat_session_refreshed), R.drawable.ic_refresh_16, defaultTint);
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_chat_session_refreshed), Glyph.REFRESH, defaultTint);
     } else if (MessageTypes.isNoRemoteSessionType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.MessageDisplayHelper_message_encrypted_for_non_existing_session), defaultTint);
     } else if (MessageTypes.isEndSessionType(thread.getType())) {
@@ -614,22 +627,22 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     } else if (MessageTypes.isLegacyType(thread.getType())) {
       return emphasisAdded(context, context.getString(R.string.MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported), defaultTint);
     } else if (thread.isScheduledMessage()) {
-      return emphasisAdded(context, context.getString(R.string.ThreadRecord_scheduled_message), R.drawable.symbol_calendar_compact_light_16, defaultTint);
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_scheduled_message), Glyph.CALENDAR, defaultTint);
     } else if (MessageTypes.isDraftMessageType(thread.getType())) {
       String draftText = context.getString(R.string.ThreadRecord_draft);
       return emphasisAdded(context, draftText + " " + thread.getBody(), defaultTint);
     } else if (MessageTypes.isOutgoingAudioCall(thread.getType())) {
-      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_outgoing_voice_call) : thread.getBody(), R.drawable.ic_update_audio_call_outgoing_16, defaultTint);
+      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_outgoing_voice_call) : thread.getBody(), Glyph.PHONE, defaultTint);
     } else if (MessageTypes.isOutgoingVideoCall(thread.getType())) {
-      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_outgoing_video_call) : thread.getBody(), R.drawable.ic_update_video_call_outgoing_16, defaultTint);
+      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_outgoing_video_call) : thread.getBody(), Glyph.VIDEO_CAMERA, defaultTint);
     } else if (MessageTypes.isIncomingAudioCall(thread.getType())) {
-      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_incoming_voice_call) : thread.getBody(), R.drawable.ic_update_audio_call_incoming_16, defaultTint);
+      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_incoming_voice_call) : thread.getBody(), Glyph.PHONE, defaultTint);
     } else if (MessageTypes.isIncomingVideoCall(thread.getType())) {
-      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_incoming_video_call) : thread.getBody(), R.drawable.ic_update_video_call_incoming_16, defaultTint);
+      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_incoming_video_call) : thread.getBody(), Glyph.VIDEO_CAMERA, defaultTint);
     } else if (MessageTypes.isMissedAudioCall(thread.getType())) {
-      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_missed_voice_call) : thread.getBody(), R.drawable.ic_update_audio_call_missed_16, defaultTint);
+      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_missed_voice_call) : thread.getBody(), Glyph.PHONE, defaultTint);
     } else if (MessageTypes.isMissedVideoCall(thread.getType())) {
-      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_missed_video_call) : thread.getBody(), R.drawable.ic_update_video_call_missed_16, defaultTint);
+      return emphasisAdded(context, StringUtil.isEmpty(thread.getBody()) ? context.getString(R.string.MessageRecord_missed_video_call) : thread.getBody(), Glyph.VIDEO_CAMERA, defaultTint);
     } else if (MessageTypes.isGroupCall(thread.getType())) {
       return emphasisAdded(context, MessageRecord.getGroupCallUpdateDescription(context, thread.getBody(), false), defaultTint);
     } else if (MessageTypes.isJoinedType(thread.getType())) {
@@ -637,10 +650,10 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
     } else if (MessageTypes.isExpirationTimerUpdate(thread.getType())) {
       int seconds = (int) (thread.getExpiresIn() / 1000);
       if (seconds <= 0) {
-        return emphasisAdded(context, context.getString(R.string.ThreadRecord_disappearing_messages_disabled), R.drawable.ic_update_timer_disabled_16, defaultTint);
+        return emphasisAdded(context, context.getString(R.string.ThreadRecord_disappearing_messages_disabled), Glyph.TIMER_SLASH, defaultTint);
       }
       String time = ExpirationUtil.getExpirationDisplayValue(context, seconds);
-      return emphasisAdded(context, context.getString(R.string.ThreadRecord_disappearing_message_time_updated_to_s, time), R.drawable.ic_update_timer_16, defaultTint);
+      return emphasisAdded(context, context.getString(R.string.ThreadRecord_disappearing_message_time_updated_to_s, time), Glyph.TIMER, defaultTint);
     } else if (MessageTypes.isIdentityUpdate(thread.getType())) {
       return emphasisAdded(recipientToStringAsync(thread.getRecipient().getId(), r -> {
         if (r.isGroup()) {
@@ -772,11 +785,11 @@ public final class ConversationListItem extends ConstraintLayout implements Bind
   }
 
   private static @NonNull LiveData<SpannableString> emphasisAdded(@NonNull Context context, @NonNull String string, @ColorInt int defaultTint) {
-    return emphasisAdded(context, UpdateDescription.staticDescription(string, 0), defaultTint);
+    return emphasisAdded(context, UpdateDescription.staticDescription(string, null), defaultTint);
   }
 
-  private static @NonNull LiveData<SpannableString> emphasisAdded(@NonNull Context context, @NonNull String string, @DrawableRes int iconResource, @ColorInt int defaultTint) {
-    return emphasisAdded(context, UpdateDescription.staticDescription(string, iconResource), defaultTint);
+  private static @NonNull LiveData<SpannableString> emphasisAdded(@NonNull Context context, @NonNull String string, @Nullable Glyph glyph, @ColorInt int defaultTint) {
+    return emphasisAdded(context, UpdateDescription.staticDescription(string, glyph), defaultTint);
   }
 
   private static @NonNull LiveData<SpannableString> emphasisAdded(@NonNull Context context, @NonNull UpdateDescription description, @ColorInt int defaultTint) {

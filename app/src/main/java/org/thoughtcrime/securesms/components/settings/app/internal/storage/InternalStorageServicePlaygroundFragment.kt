@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
@@ -48,6 +49,7 @@ import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.internal.storage.InternalStorageServicePlaygroundViewModel.OneOffEvent
+import org.thoughtcrime.securesms.components.settings.app.internal.storage.InternalStorageServicePlaygroundViewModel.StorageInsights
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.StorageForcePushJob
@@ -70,6 +72,7 @@ class InternalStorageServicePlaygroundFragment : ComposeFragment() {
   override fun FragmentContent() {
     val manifest by viewModel.manifest
     val storageRecords by viewModel.storageRecords
+    val storageInsights by viewModel.storageInsights
     val oneOffEvent by viewModel.oneOffEvents
     var forceSsreToggled by remember { mutableStateOf(SignalStore.internal.forceSsre2Capability) }
 
@@ -77,6 +80,7 @@ class InternalStorageServicePlaygroundFragment : ComposeFragment() {
       onBackPressed = { findNavController().popBackStack() },
       manifest = manifest,
       storageRecords = storageRecords,
+      storageInsights = storageInsights,
       oneOffEvent = oneOffEvent,
       forceSsreCapability = forceSsreToggled,
       onForceSsreToggled = { checked ->
@@ -93,6 +97,7 @@ class InternalStorageServicePlaygroundFragment : ComposeFragment() {
 fun Screen(
   manifest: SignalStorageManifest,
   storageRecords: List<SignalStorageRecord>,
+  storageInsights: StorageInsights,
   forceSsreCapability: Boolean,
   oneOffEvent: OneOffEvent,
   onForceSsreToggled: (Boolean) -> Unit = {},
@@ -143,6 +148,7 @@ fun Screen(
         1 -> ViewScreen(
           manifest = manifest,
           storageRecords = storageRecords,
+          storageInsights = storageInsights,
           oneOffEvent = oneOffEvent
         )
       }
@@ -160,7 +166,7 @@ fun ToolScreen(
     modifier = Modifier.fillMaxWidth()
   ) {
     ActionRow("Enqueue StorageSyncJob", "Just a normal syncing operation.") {
-      AppDependencies.jobManager.add(StorageSyncJob())
+      AppDependencies.jobManager.add(StorageSyncJob.forLocalChange())
     }
 
     ActionRow("Enqueue StorageForcePushJob", "Forces your local state over the remote.") {
@@ -191,6 +197,7 @@ fun ToolScreen(
 fun ViewScreen(
   manifest: SignalStorageManifest,
   storageRecords: List<SignalStorageRecord>,
+  storageInsights: StorageInsights,
   oneOffEvent: OneOffEvent
 ) {
   val context = LocalContext.current
@@ -217,6 +224,10 @@ fun ViewScreen(
       ManifestRow(manifest)
       Dividers.Default()
     }
+    item(key = "insights") {
+      InsightsRow(storageInsights)
+      Dividers.Default()
+    }
     storageRecords.forEach { record ->
       item(key = Hex.toStringCondensed(record.id.raw)) {
         StorageRecordRow(record)
@@ -237,9 +248,45 @@ private fun ManifestRow(manifest: SignalStorageManifest) {
 }
 
 @Composable
+private fun InsightsRow(insights: StorageInsights) {
+  Column {
+    ManifestItemRow("Total Manifest Size", insights.totalManifestSize.toUnitString())
+    ManifestItemRow("Total Record Size", insights.totalRecordSize.toUnitString())
+
+    Spacer(Modifier.height(16.dp))
+
+    ManifestItemRow("Total Account Record Size", insights.totalAccountRecordSize.toUnitString())
+    ManifestItemRow("Total Contact Record Size", insights.totalContactSize.toUnitString())
+    ManifestItemRow("Total GroupV1 Record Size", insights.totalGroupV1Size.toUnitString())
+    ManifestItemRow("Total GroupV2 Record Size", insights.totalGroupV2Size.toUnitString())
+    ManifestItemRow("Total Call Link Record Size", insights.totalCallLinkSize.toUnitString())
+    ManifestItemRow("Total Distribution List Record Size", insights.totalDistributionListSize.toUnitString())
+    ManifestItemRow("Total Chat Folder Record Size", insights.totalChatFolderSize.toUnitString())
+    ManifestItemRow("Total Unknown Record Size", insights.totalUnknownSize.toUnitString())
+
+    Spacer(Modifier.height(16.dp))
+
+    if (listOf(
+        insights.totalContactSize,
+        insights.totalGroupV1Size,
+        insights.totalGroupV2Size,
+        insights.totalAccountRecordSize,
+        insights.totalCallLinkSize,
+        insights.totalDistributionListSize,
+        insights.totalChatFolderSize
+      ).sumOf { it.bytes } != insights.totalRecordSize.bytes
+    ) {
+      Text("Mismatch! Sum of record sizes does not match our total record size!")
+    } else {
+      Text("Everything adds up \uD83D\uDC4D")
+    }
+  }
+}
+
+@Composable
 private fun ManifestItemRow(title: String, value: String) {
   Row(modifier = Modifier.fillMaxWidth()) {
-    Text(title + ":", fontWeight = FontWeight.Bold)
+    Text("$title:", fontWeight = FontWeight.Bold)
     Spacer(Modifier.width(6.dp))
     Text(value)
   }
@@ -329,6 +376,7 @@ fun ScreenPreview() {
       forceSsreCapability = true,
       manifest = SignalStorageManifest.EMPTY,
       storageRecords = emptyList(),
+      storageInsights = StorageInsights(),
       oneOffEvent = OneOffEvent.None
     )
   }
@@ -361,6 +409,7 @@ fun ViewScreenPreview() {
         storageIds = storageRecords.map { it.id }
       ),
       storageRecords = storageRecords,
+      storageInsights = StorageInsights(),
       oneOffEvent = OneOffEvent.None
     )
   }

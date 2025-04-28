@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
@@ -252,6 +253,10 @@ public final class MediaOverviewPageFragment extends LoggingFragment
     DatabaseAttachment attachment = mediaRecord.getAttachment();
 
     if (MediaUtil.isVideo(attachment) || MediaUtil.isImage(attachment)) {
+      if (mediaRecord.getAttachment().transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
+        Toast.makeText(context, R.string.MediaOverviewActivity_this_media_is_not_sent_yet, Toast.LENGTH_LONG).show();
+        return;
+      }
       MediaIntentFactory.MediaPreviewArgs args = new MediaIntentFactory.MediaPreviewArgs(
           threadId,
           mediaRecord.getDate(),

@@ -162,6 +162,7 @@ object LinkDeviceRepository {
       aciIdentityKeyPair = SignalStore.account.aciIdentityKey,
       pniIdentityKeyPair = SignalStore.account.pniIdentityKey,
       profileKey = ProfileKeyUtil.getSelfProfileKey(),
+      accountEntropyPool = SignalStore.account.accountEntropyPool,
       masterKey = SignalStore.svr.masterKey,
       code = verificationCodeResult.verificationCode,
       ephemeralMessageBackupKey = ephemeralMessageBackupKey,
@@ -269,6 +270,7 @@ object LinkDeviceRepository {
 
     if (cancellationSignal()) {
       Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
+      sendTransferArchiveError(deviceId, deviceCreatedAt, TransferArchiveError.RELINK_REQUESTED)
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
@@ -293,6 +295,7 @@ object LinkDeviceRepository {
 
     if (cancellationSignal()) {
       Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
+      sendTransferArchiveError(deviceId, deviceCreatedAt, TransferArchiveError.RELINK_REQUESTED)
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
@@ -306,6 +309,7 @@ object LinkDeviceRepository {
 
     if (cancellationSignal()) {
       Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
+      sendTransferArchiveError(deviceId, deviceCreatedAt, TransferArchiveError.RELINK_REQUESTED)
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
@@ -319,6 +323,7 @@ object LinkDeviceRepository {
 
     if (cancellationSignal()) {
       Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
+      sendTransferArchiveError(deviceId, deviceCreatedAt, TransferArchiveError.RELINK_REQUESTED)
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
@@ -382,7 +387,7 @@ object LinkDeviceRepository {
   }
 
   /**
-   * If [createAndUploadArchive] fails to upload an archive, alert the linked device of the failure and if the user will try again
+   * If [createAndUploadArchive] is cancelled or fails to upload an archive, alert the linked device of the failure and if the user will try again
    */
   fun sendTransferArchiveError(deviceId: Int, deviceCreatedAt: Long, error: TransferArchiveError) {
     val archiveErrorResult = SignalNetwork.linkDevice.setTransferArchiveError(

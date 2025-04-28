@@ -1,6 +1,9 @@
 package org.thoughtcrime.securesms.push
 
 import android.content.Context
+import android.net.ConnectivityManager
+import android.os.Build
+import androidx.core.content.ContextCompat
 import com.google.i18n.phonenumbers.PhoneNumberUtil
 import okhttp3.CipherSuite
 import okhttp3.ConnectionSpec
@@ -19,7 +22,9 @@ import org.thoughtcrime.securesms.net.RemoteDeprecationDetectorInterceptor
 import org.thoughtcrime.securesms.net.SequentialDns
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor
 import org.thoughtcrime.securesms.net.StaticDns
+import org.thoughtcrime.securesms.net.StorageServiceSizeLoggingInterceptor
 import org.whispersystems.signalservice.api.push.TrustStore
+import org.whispersystems.signalservice.internal.configuration.HttpProxy
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
 import org.whispersystems.signalservice.internal.configuration.SignalCdsiUrl
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
@@ -28,6 +33,7 @@ import org.whispersystems.signalservice.internal.configuration.SignalStorageUrl
 import org.whispersystems.signalservice.internal.configuration.SignalSvr2Url
 import java.io.IOException
 import java.util.Optional
+import android.net.Proxy as AndroidProxy
 
 /**
  * Provides a [SignalServiceConfiguration] to be used with our service layer.
@@ -133,6 +139,28 @@ class SignalServiceNetworkAccess(context: Context) {
       .build()
 
     private val APP_CONNECTION_SPEC = ConnectionSpec.MODERN_TLS
+
+    @Suppress("DEPRECATION")
+    private fun getSystemHttpProxy(context: Context): HttpProxy? {
+      return if (Build.VERSION.SDK_INT >= 23) {
+        val connectivityManager = ContextCompat.getSystemService(context, ConnectivityManager::class.java) ?: return null
+
+        connectivityManager
+          .activeNetwork
+          ?.let { connectivityManager.getLinkProperties(it)?.httpProxy }
+          ?.takeIf { !it.exclusionList.contains(BuildConfig.SIGNAL_URL.stripProtocol()) }
+          ?.let { proxy -> HttpProxy(proxy.host, proxy.port) }
+      } else {
+        val host: String? = AndroidProxy.getHost(context)
+        val port: Int = AndroidProxy.getPort(context)
+
+        if (host != null) {
+          HttpProxy(host, port)
+        } else {
+          null
+        }
+      }
+    }
   }
 
   private val serviceTrustStore: TrustStore = SignalServiceTrustStore(context)
@@ -141,6 +169,7 @@ class SignalServiceNetworkAccess(context: Context) {
 
   private val interceptors: List<Interceptor> = listOf(
     StandardUserAgentInterceptor(),
+    StorageServiceSizeLoggingInterceptor(),
     RemoteDeprecationDetectorInterceptor(this::getConfiguration),
     DeprecatedClientPreventionInterceptor(),
     DeviceTransferBlockingInterceptor.getInstance()
@@ -187,6 +216,7 @@ class SignalServiceNetworkAccess(context: Context) {
     networkInterceptors = interceptors,
     dns = Optional.of(DNS),
     signalProxy = Optional.empty(),
+    systemHttpProxy = Optional.empty(),
     zkGroupServerPublicParams = zkGroupServerPublicParams,
     genericServerPublicParams = genericServerPublicParams,
     backupServerPublicParams = backupServerPublicParams,
@@ -246,6 +276,7 @@ class SignalServiceNetworkAccess(context: Context) {
     networkInterceptors = interceptors,
     dns = Optional.of(DNS),
     signalProxy = if (SignalStore.proxy.isProxyEnabled) Optional.ofNullable(SignalStore.proxy.proxy) else Optional.empty(),
+    systemHttpProxy = Optional.ofNullable(getSystemHttpProxy(context)),
     zkGroupServerPublicParams = zkGroupServerPublicParams,
     genericServerPublicParams = genericServerPublicParams,
     backupServerPublicParams = backupServerPublicParams,
@@ -316,6 +347,7 @@ class SignalServiceNetworkAccess(context: Context) {
       networkInterceptors = interceptors,
       dns = Optional.of(DNS),
       signalProxy = Optional.empty(),
+      systemHttpProxy = Optional.empty(),
       zkGroupServerPublicParams = zkGroupServerPublicParams,
       genericServerPublicParams = genericServerPublicParams,
       backupServerPublicParams = backupServerPublicParams,

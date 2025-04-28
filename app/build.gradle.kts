@@ -21,8 +21,8 @@ plugins {
 
 apply(from = "static-ips.gradle.kts")
 
-val canonicalVersionCode = 1536
-val canonicalVersionName = "7.40.0"
+val canonicalVersionCode = 1539
+val canonicalVersionName = "7.41.0"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
@@ -370,6 +370,7 @@ android {
       buildConfigField("boolean", "MANAGES_APP_UPDATES", "true")
       buildConfigField("String", "APK_UPDATE_MANIFEST_URL", "\"${apkUpdateManifestUrl}\"")
       buildConfigField("String", "BUILD_DISTRIBUTION_TYPE", "\"nightly\"")
+      buildConfigField("boolean", "MESSAGE_BACKUP_RESTORE_ENABLED", "true")
     }
 
     create("prod") {

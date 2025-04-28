@@ -236,9 +236,10 @@ public final class Megaphones {
             @Override
             public void onReminderDismissed(boolean includedFailure) {
               Log.i(TAG, "[PinReminder] onReminderDismissed(" + includedFailure + ")");
-              if (includedFailure) {
-                SignalStore.pin().onEntrySkipWithWrongGuess();
-              }
+
+              SignalStore.pin().onEntrySkip(includedFailure);
+              controller.onMegaphoneSnooze(Event.PIN_REMINDER);
+              controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(SignalPinReminders.getSkipReminderString(SignalStore.pin().getCurrentInterval())));
             }
 
             @Override

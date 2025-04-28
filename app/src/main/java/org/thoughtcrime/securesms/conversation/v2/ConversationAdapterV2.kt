@@ -642,14 +642,14 @@ class ConversationAdapterV2(
       val names = members.map { member -> member.getDisplayName(context) }
       val otherMembers = if (size > 3) context.resources.getQuantityString(R.plurals.MessageRequestProfileView_other_members, size - 3, size - 3) else null
       val membersSubtitle = if (recipient.isActiveGroup) {
-        when (size) {
-          1 -> context.getString(R.string.MessageRequestProfileView_group_members_zero)
-          2 -> context.getString(R.string.MessageRequestProfileView_group_members_one_and_you, names[0])
-          3 -> context.getString(R.string.MessageRequestProfileView_group_members_two_and_you, names[0], names[1])
+        when (names.size) {
+          0 -> context.getString(R.string.MessageRequestProfileView_group_members_zero)
+          1 -> context.getString(R.string.MessageRequestProfileView_group_members_one_and_you, names[0])
+          2 -> context.getString(R.string.MessageRequestProfileView_group_members_two_and_you, names[0], names[1])
           else -> context.getString(R.string.MessageRequestProfileView_group_members_other, names[0], names[1], names[2], otherMembers)
         }
       } else {
-        when (size) {
+        when (names.size) {
           0 -> context.getString(R.string.MessageRequestProfileView_group_members_zero)
           1 -> context.getString(R.string.MessageRequestProfileView_group_members_one, names[0])
           2 -> context.getString(R.string.MessageRequestProfileView_group_members_two, names[0], names[1])

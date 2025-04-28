@@ -39,11 +39,13 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   private static final int TYPE_CLEAR_FILTER_FOOTER = 6;
   private static final int TYPE_CLEAR_FILTER_EMPTY  = 7;
   private static final int TYPE_CHAT_FOLDER_EMPTY   = 8;
+  private static final int TYPE_EMPTY_ARCHIVED      = 9;
 
   private enum Payload {
     TYPING_INDICATOR,
     SELECTION,
-    TIMESTAMP
+    TIMESTAMP,
+    ACTIVE
   }
 
   private final LifecycleOwner                                      lifecycleOwner;
@@ -54,6 +56,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
   private final Set<Long>                                           typingSet                     = new HashSet<>();
 
   private       ConversationSet                                     selectedConversations         = new ConversationSet();
+  private       long                                                activeThreadId                = 0;
   private       PagingController                                    pagingController;
 
   protected ConversationListAdapter(@NonNull LifecycleOwner lifecycleOwner,
@@ -113,6 +116,9 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     } else if (viewType == TYPE_HEADER) {
       View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.dsl_section_header, parent, false);
       return new HeaderViewHolder(v);
+    } else if (viewType == TYPE_EMPTY_ARCHIVED) {
+      View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_list_archived_empty_state, parent, false);
+      return new HeaderViewHolder(v);
     } else if (viewType == TYPE_EMPTY) {
       View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_list_empty_state, parent, false);
       return new HeaderViewHolder(v);
@@ -144,6 +150,7 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
             case TYPING_INDICATOR -> vh.getConversationListItem().updateTypingIndicator(typingSet);
             case SELECTION -> vh.getConversationListItem().setSelectedConversations(selectedConversations);
             case TIMESTAMP -> vh.getConversationListItem().updateTimestamp();
+            case ACTIVE -> vh.getConversationListItem().setActiveThreadId(activeThreadId);
           }
         }
       }
@@ -161,7 +168,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
                                             requestManager,
                                             Locale.getDefault(),
                                             typingSet,
-                                            selectedConversations);
+                                            selectedConversations,
+                                            activeThreadId);
     } else if (holder.getItemViewType() == TYPE_HEADER) {
       HeaderViewHolder casted       = (HeaderViewHolder) holder;
       Conversation     conversation = Objects.requireNonNull(getItem(position));
@@ -220,6 +228,11 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     notifyItemRangeChanged(0, getItemCount(), Payload.SELECTION);
   }
 
+  void setActiveThreadId(long activeThreadId) {
+    this.activeThreadId = activeThreadId;
+    notifyItemRangeChanged(0, getItemCount(), Payload.ACTIVE);
+  }
+
   @Override
   public int getItemViewType(int position) {
     Conversation conversation = getItem(position);
@@ -240,6 +253,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
         return TYPE_CHAT_FOLDER_EMPTY;
       case THREAD:
         return TYPE_THREAD;
+      case ARCHIVED_EMPTY:
+        return TYPE_EMPTY_ARCHIVED;
       case EMPTY:
         return TYPE_EMPTY;
       default:

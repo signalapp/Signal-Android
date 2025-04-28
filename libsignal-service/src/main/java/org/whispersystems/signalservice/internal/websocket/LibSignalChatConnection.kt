@@ -498,6 +498,7 @@ class LibSignalChatConnection(
     }
   }
 
+  @Throws(IOException::class)
   override fun sendResponse(response: WebSocketResponseMessage) {
     if (response.status == 200 && response.message.equals("OK")) {
       ackSenderForInternalPseudoId[response.id]?.send() ?: Log.w(TAG, "$name [sendResponse] Silently dropped response without available ackSend {id: ${response.id}}")
@@ -554,8 +555,10 @@ class LibSignalChatConnection(
             else -> disconnectReason
           }
 
-          for (pendingResponse in pendingResponses) {
-            pendingResponse.onError(downstreamThrowable)
+          synchronized(pendingResponses) {
+            for (pendingResponse in pendingResponses) {
+              pendingResponse.onError(downstreamThrowable)
+            }
           }
         }
         chatConnection = null

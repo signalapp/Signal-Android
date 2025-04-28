@@ -11,11 +11,16 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.AnimatedPane
+import androidx.compose.material3.adaptive.layout.PaneExpansionState
+import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldScope
+import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
+import androidx.compose.material3.adaptive.layout.rememberPaneExpansionState
 import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold
 import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
@@ -28,10 +33,13 @@ import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import androidx.window.core.ExperimentalWindowCoreApi
 import androidx.window.core.layout.WindowHeightSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
 import org.signal.core.ui.compose.Previews
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.main.MainFloatingActionButtonsCallback
 import org.thoughtcrime.securesms.main.MainNavigationBar
 import org.thoughtcrime.securesms.main.MainNavigationRail
 import org.thoughtcrime.securesms.main.MainNavigationState
@@ -39,7 +47,16 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 
 enum class Navigation {
   RAIL,
-  BAR
+  BAR;
+
+  companion object {
+    @Composable
+    fun rememberNavigation(): Navigation {
+      val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+
+      return remember(windowSizeClass) { windowSizeClass.navigation }
+    }
+  }
 }
 
 /**
@@ -56,7 +73,7 @@ enum class WindowSizeClass(
 ) {
   COMPACT_PORTRAIT(Navigation.BAR),
   COMPACT_LANDSCAPE(Navigation.BAR),
-  MEDIUM_PORTRAIT(Navigation.BAR),
+  MEDIUM_PORTRAIT(Navigation.RAIL),
   MEDIUM_LANDSCAPE(Navigation.RAIL),
   EXTENDED_PORTRAIT(Navigation.RAIL),
   EXTENDED_LANDSCAPE(Navigation.RAIL);
@@ -65,13 +82,22 @@ enum class WindowSizeClass(
   fun isMedium(): Boolean = this == MEDIUM_PORTRAIT || this == MEDIUM_LANDSCAPE
   fun isExtended(): Boolean = this == EXTENDED_PORTRAIT || this == EXTENDED_LANDSCAPE
 
-  companion object {
+  fun isLandscape(): Boolean = this == COMPACT_LANDSCAPE || this == MEDIUM_LANDSCAPE || this == EXTENDED_LANDSCAPE
 
+  fun isSplitPane(): Boolean {
+    return if (SignalStore.internal.largeScreenUi && SignalStore.internal.forceSplitPaneOnCompactLandscape) {
+      this != COMPACT_PORTRAIT
+    } else {
+      this.navigation != Navigation.BAR
+    }
+  }
+
+  companion object {
     @OptIn(ExperimentalWindowCoreApi::class)
     fun Resources.getWindowSizeClass(): WindowSizeClass {
       val orientation = configuration.orientation
 
-      if (!RemoteConfig.largeScreenUi) {
+      if (isForcedCompact()) {
         return getCompactSizeClassForOrientation(orientation)
       }
 
@@ -84,12 +110,23 @@ enum class WindowSizeClass(
       return getSizeClassForOrientationAndSystemSizeClass(orientation, windowSizeClass)
     }
 
+    fun isForcedCompact(): Boolean {
+      return !SignalStore.internal.largeScreenUi
+    }
+
     @Composable
-    fun rememberWindowSizeClass(): WindowSizeClass {
+    fun checkForcedCompact(): Boolean {
+      return !LocalInspectionMode.current && isForcedCompact()
+    }
+
+    @Composable
+    fun rememberWindowSizeClass(forceCompact: Boolean = checkForcedCompact()): WindowSizeClass {
       val orientation = LocalConfiguration.current.orientation
 
-      if (!LocalInspectionMode.current && !RemoteConfig.largeScreenUi) {
-        return getCompactSizeClassForOrientation(orientation)
+      if (forceCompact) {
+        return remember(orientation) {
+          getCompactSizeClassForOrientation(orientation)
+        }
       }
 
       val wsc = currentWindowAdaptiveInfo().windowSizeClass
@@ -147,13 +184,27 @@ fun AppScaffold(
   detailContent: @Composable () -> Unit = {},
   navRailContent: @Composable () -> Unit = {},
   bottomNavContent: @Composable () -> Unit = {},
+  paneExpansionDragHandle: (@Composable ThreePaneScaffoldScope.(PaneExpansionState) -> Unit)? = null,
   listContent: @Composable () -> Unit
 ) {
+  val isForcedCompact = WindowSizeClass.checkForcedCompact()
   val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
 
-  if (windowSizeClass.isMedium()) {
-    Row {
-      Box(modifier = Modifier.weight(1f)) {
+  if (isForcedCompact) {
+    ListAndNavigation(
+      listContent = listContent,
+      navRailContent = navRailContent,
+      bottomNavContent = bottomNavContent,
+      windowSizeClass = windowSizeClass
+    )
+
+    return
+  }
+
+  NavigableListDetailPaneScaffold(
+    navigator = navigator,
+    listPane = {
+      AnimatedPane {
         ListAndNavigation(
           listContent = listContent,
           navRailContent = navRailContent,
@@ -161,31 +212,15 @@ fun AppScaffold(
           windowSizeClass = windowSizeClass
         )
       }
-
-      Box(modifier = Modifier.weight(1f)) {
+    },
+    detailPane = {
+      AnimatedPane {
         detailContent()
       }
-    }
-  } else {
-    NavigableListDetailPaneScaffold(
-      navigator = navigator,
-      listPane = {
-        AnimatedPane {
-          ListAndNavigation(
-            listContent = listContent,
-            navRailContent = navRailContent,
-            bottomNavContent = bottomNavContent,
-            windowSizeClass = windowSizeClass
-          )
-        }
-      },
-      detailPane = {
-        AnimatedPane {
-          detailContent()
-        }
-      }
-    )
-  }
+    },
+    paneExpansionDragHandle = paneExpansionDragHandle,
+    paneExpansionState = rememberPaneExpansionState()
+  )
 }
 
 @Composable
@@ -195,7 +230,11 @@ private fun ListAndNavigation(
   bottomNavContent: @Composable () -> Unit,
   windowSizeClass: WindowSizeClass
 ) {
-  Row {
+  Row(
+    modifier = if (windowSizeClass.isLandscape()) {
+      Modifier.displayCutoutPadding()
+    } else Modifier
+  ) {
     if (windowSizeClass.navigation == Navigation.RAIL) {
       navRailContent()
     }
@@ -223,6 +262,13 @@ private fun ListAndNavigation(
 private fun AppScaffoldPreview() {
   Previews.Preview {
     AppScaffold(
+      navigator = rememberListDetailPaneScaffoldNavigator<Any>(
+        scaffoldDirective = calculatePaneScaffoldDirective(
+          currentWindowAdaptiveInfo()
+        ).copy(
+          horizontalPartitionSpacerSize = 10.dp
+        )
+      ),
       listContent = {
         Box(
           contentAlignment = Alignment.Center,
@@ -252,6 +298,7 @@ private fun AppScaffoldPreview() {
       navRailContent = {
         MainNavigationRail(
           state = MainNavigationState(),
+          mainFloatingActionButtonsCallback = MainFloatingActionButtonsCallback.Empty,
           onDestinationSelected = {}
         )
       },

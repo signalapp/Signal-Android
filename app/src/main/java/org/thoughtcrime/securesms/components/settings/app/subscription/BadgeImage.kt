@@ -64,6 +64,7 @@ private fun BadgeImage(
       },
       update = {
         it.setBadge(badge)
+        it.isClickable = false
       },
       modifier = modifier
     )

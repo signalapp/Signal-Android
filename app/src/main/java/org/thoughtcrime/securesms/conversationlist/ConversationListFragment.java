@@ -18,6 +18,7 @@ package org.thoughtcrime.securesms.conversationlist;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -117,6 +118,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState;
+import org.thoughtcrime.securesms.conversation.ConversationIntents;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView;
@@ -132,7 +134,9 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.main.MainNavigationDestination;
+import org.thoughtcrime.securesms.main.MainNavigationDetailLocation;
+import org.thoughtcrime.securesms.main.MainNavigationListLocation;
+import org.thoughtcrime.securesms.main.MainNavigationViewModel;
 import org.thoughtcrime.securesms.main.MainToolbarMode;
 import org.thoughtcrime.securesms.main.MainToolbarViewModel;
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder;
@@ -145,8 +149,6 @@ import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.search.MessageResult;
 import org.thoughtcrime.securesms.sms.MessageSender;
-import org.thoughtcrime.securesms.storage.StorageSyncHelper;
-import org.thoughtcrime.securesms.stories.tabs.ConversationListTabsViewModel;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.AppStartup;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
@@ -161,6 +163,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.PagingMappingAdapter;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
 import org.thoughtcrime.securesms.util.views.Stub;
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper;
+import org.thoughtcrime.securesms.window.WindowSizeClass;
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState;
 
 import java.lang.ref.WeakReference;
@@ -225,12 +228,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   protected ConversationListArchiveItemDecoration archiveDecoration;
   protected ConversationListItemAnimator          itemAnimator;
   private   Stopwatch                             startupStopwatch;
-  private   ConversationListTabsViewModel         conversationListTabsViewModel;
   private   ContactSearchMediator                 contactSearchMediator;
   private   MainToolbarViewModel                  mainToolbarViewModel;
   private   ChatListBackHandler                   chatListBackHandler;
 
   private BannerManager bannerManager;
+
+  protected MainNavigationViewModel mainNavigationViewModel;
 
   public static ConversationListFragment newInstance() {
     return new ConversationListFragment();
@@ -250,8 +254,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onCreate(Bundle icicle) {
     super.onCreate(icicle);
-    startupStopwatch     = new Stopwatch("startup");
-    mainToolbarViewModel = new ViewModelProvider(getActivity()).get(MainToolbarViewModel.class);
+    startupStopwatch        = new Stopwatch("startup");
+    mainToolbarViewModel    = new ViewModelProvider(requireActivity()).get(MainToolbarViewModel.class);
+    mainNavigationViewModel = new ViewModelProvider(requireActivity()).get(MainNavigationViewModel.class);
   }
 
   @Override
@@ -390,19 +395,33 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     chatListBackHandler = new ChatListBackHandler(false);
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), chatListBackHandler);
 
-    conversationListTabsViewModel = new ViewModelProvider(requireActivity()).get(ConversationListTabsViewModel.class);
-
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
-    lifecycleDisposable.add(conversationListTabsViewModel.getTabClickEvents().filter(tab -> tab == MainNavigationDestination.CHATS)
-                                                         .subscribe(unused -> {
-                                                           LinearLayoutManager layoutManager            = (LinearLayoutManager) list.getLayoutManager();
-                                                           int                 firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
-                                                           if (firstVisibleItemPosition <= LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD) {
-                                                             list.smoothScrollToPosition(0);
-                                                           } else {
-                                                             list.scrollToPosition(0);
-                                                           }
-                                                         }));
+    lifecycleDisposable.add(mainNavigationViewModel.getTabClickEvents().filter(tab -> tab == MainNavigationListLocation.CHATS)
+                                                   .subscribe(unused -> {
+                                                     LinearLayoutManager layoutManager            = (LinearLayoutManager) list.getLayoutManager();
+                                                     int                 firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
+                                                     if (firstVisibleItemPosition <= LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD) {
+                                                       list.smoothScrollToPosition(0);
+                                                     } else {
+                                                       list.scrollToPosition(0);
+                                                     }
+                                                   }));
+
+    if (WindowSizeClass.Companion.getWindowSizeClass(getResources()).isSplitPane()) {
+      lifecycleDisposable.add(mainNavigationViewModel.getDetailLocationObservable()
+                                                     .subscribeOn(AndroidSchedulers.mainThread())
+                                                     .subscribe(location -> {
+                                                       if (location instanceof MainNavigationDetailLocation.Conversation) {
+                                                         Intent                   intent   = ((MainNavigationDetailLocation.Conversation) location).getIntent();
+                                                         ConversationIntents.Args args     = ConversationIntents.Args.from(Objects.requireNonNull(intent.getExtras()));
+                                                         long                     threadId = args.getThreadId();
+
+                                                         defaultAdapter.setActiveThreadId(threadId);
+                                                       }
+                                                     }));
+    } else {
+      defaultAdapter.setActiveThreadId(0);
+    }
 
     requireCallback().bindScrollHelper(list, getViewLifecycleOwner(), chatFolderList, color -> {
       for (int i = 0; i < chatFolderList.getChildCount(); i++) {
@@ -931,7 +950,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private void handleMarkAsUnread(@NonNull Collection<Long> ids) {
     SimpleTask.run(getViewLifecycleOwner().getLifecycle(), () -> {
       SignalDatabase.threads().setForcedUnread(ids);
-      StorageSyncHelper.scheduleSyncForDataChange();
       return null;
     }, none -> endActionModeIfActive());
   }
@@ -954,7 +972,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         .subscribe(() -> {
           endActionModeIfActive();
 
-          getNavigator().getViewModel().setSnackbar(new SnackbarState(
+          mainNavigationViewModel.setSnackbar(new SnackbarState(
               snackBarTitle,
               new SnackbarState.ActionState(
                   getString(R.string.ConversationListFragment_undo),
@@ -1043,7 +1061,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
                                                       .toList());
 
     if (toPin.size() + viewModel.getPinnedCount() > MAXIMUM_PINNED_CONVERSATIONS) {
-      getNavigator().getViewModel().setSnackbar(new SnackbarState(
+      mainNavigationViewModel.setSnackbar(new SnackbarState(
           getString(R.string.conversation_list__you_can_only_pin_up_to_d_chats, MAXIMUM_PINNED_CONVERSATIONS),
           null,
           false,
@@ -1408,7 +1426,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(pinnedThreadIds -> {
-              getNavigator().getViewModel().setSnackbar(new SnackbarState(
+              mainNavigationViewModel.setSnackbar(new SnackbarState(
                   getResources().getQuantityString(R.plurals.ConversationListFragment_conversations_archived, 1, 1),
                   new SnackbarState.ActionState(
                       getString(R.string.ConversationListFragment_undo),

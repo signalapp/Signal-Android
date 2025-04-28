@@ -90,7 +90,7 @@ class TextStoryPostCreationFragment : Fragment(R.layout.stories_text_post_creati
         linkPreviewViewModel.onSend()
       }
 
-      val canSend = state.body.isNotEmpty() || !state.linkPreviewUri.isNullOrEmpty()
+      val canSend = state.body.isNotBlank() || !state.linkPreviewUri.isNullOrEmpty()
       binding.send.alpha = if (canSend) 1f else 0.5f
       binding.send.isEnabled = canSend
     }

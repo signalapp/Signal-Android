@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobs.protos.StorageSyncJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -127,25 +128,38 @@ import java.util.stream.Collectors
  * to enqueue a [StorageServiceMigrationJob] as an app migration to make sure it gets
  * synced.
  */
-class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(parameters) {
+class StorageSyncJob private constructor(parameters: Parameters, private var localManifestOutOfDate: Boolean) : BaseJob(parameters) {
 
   companion object {
     const val KEY: String = "StorageSyncJobV2"
     const val QUEUE_KEY: String = "StorageSyncingJobs"
 
     private val TAG = Log.tag(StorageSyncJob::class.java)
+
+    @JvmStatic
+    fun forLocalChange(): StorageSyncJob {
+      return StorageSyncJob(localManifestOutOfDate = false)
+    }
+
+    @JvmStatic
+    fun forRemoteChange(): StorageSyncJob {
+      return StorageSyncJob(localManifestOutOfDate = true)
+    }
   }
 
-  constructor() : this(
+  constructor(localManifestOutOfDate: Boolean) : this(
     Parameters.Builder().addConstraint(NetworkConstraint.KEY)
       .setQueue(QUEUE_KEY)
       .setMaxInstancesForFactory(2)
       .setLifespan(TimeUnit.DAYS.toMillis(1))
       .setMaxAttempts(3)
-      .build()
+      .build(),
+    localManifestOutOfDate
   )
 
-  override fun serialize(): ByteArray? = null
+  override fun serialize(): ByteArray {
+    return StorageSyncJobData(localManifestOutOfDate = localManifestOutOfDate).encode()
+  }
 
   override fun getFactoryKey(): String = KEY
 
@@ -222,12 +236,18 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
     val repository = StorageServiceRepository(SignalNetwork.storageService)
 
     val localManifest = SignalStore.storageService.manifest
-    val remoteManifest = when (val result = repository.getStorageManifestIfDifferentVersion(storageServiceKey, localManifest.version)) {
-      is ManifestIfDifferentVersionResult.DifferentVersion -> result.manifest
-      ManifestIfDifferentVersionResult.SameVersion -> localManifest
-      is ManifestIfDifferentVersionResult.DecryptionError -> throw result.exception
-      is ManifestIfDifferentVersionResult.NetworkError -> throw result.exception
-      is ManifestIfDifferentVersionResult.StatusCodeError -> throw result.exception
+    val remoteManifest = if (localManifestOutOfDate || localManifest.version < 1 || runAttempt >= 3) {
+      Log.i(TAG, "Local manifest is invalid. Fetching remote manifest. (localManifestOutOfDate: $localManifestOutOfDate, localManifest.version: ${localManifest.version}, runAttempt: $runAttempt)")
+      when (val result = repository.getStorageManifestIfDifferentVersion(storageServiceKey, localManifest.version)) {
+        is ManifestIfDifferentVersionResult.DifferentVersion -> result.manifest
+        ManifestIfDifferentVersionResult.SameVersion -> localManifest
+        is ManifestIfDifferentVersionResult.DecryptionError -> throw result.exception
+        is ManifestIfDifferentVersionResult.NetworkError -> throw result.exception
+        is ManifestIfDifferentVersionResult.StatusCodeError -> throw result.exception
+      }
+    } else {
+      Log.i(TAG, "Local manifest is potentially valid. Using it in place of fetching the remote manifest.")
+      localManifest
     }
     stopwatch.split("remote-manifest")
 
@@ -373,6 +393,7 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
         is StorageServiceRepository.WriteStorageRecordsResult.NetworkError -> throw result.exception
         StorageServiceRepository.WriteStorageRecordsResult.ConflictError -> {
           Log.w(TAG, "Hit a conflict when trying to resolve the conflict! Retrying.")
+          localManifestOutOfDate = true
           throw RetryLaterException()
         }
       }
@@ -410,7 +431,7 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
       }
 
       Log.i(TAG, "Enqueueing a storage sync job to handle any possible merges after applying unknown records.")
-      AppDependencies.jobManager.add(StorageSyncJob())
+      AppDependencies.jobManager.add(StorageSyncJob.forLocalChange())
     }
 
     stopwatch.split("known-unknowns")
@@ -582,7 +603,8 @@ class StorageSyncJob private constructor(parameters: Parameters) : BaseJob(param
 
   class Factory : Job.Factory<StorageSyncJob?> {
     override fun create(parameters: Parameters, serializedData: ByteArray?): StorageSyncJob {
-      return StorageSyncJob(parameters)
+      val data = serializedData?.let { StorageSyncJobData.ADAPTER.decode(it) } ?: StorageSyncJobData()
+      return StorageSyncJob(parameters, data.localManifestOutOfDate)
     }
   }
 }

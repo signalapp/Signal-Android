@@ -19,6 +19,12 @@ dependencyResolutionManagement {
       }
     }
     maven {
+      url = uri("https://raw.githubusercontent.com/signalapp/maven/master/aesgcmprovider/release/")
+      content {
+        includeGroupByRegex("org\\.signal.*")
+      }
+    }
+    maven {
       url = uri("https://dl.cloudsmith.io/qxAgwaeEE1vN8aLU/mobilecoin/mobilecoin/maven/")
     }
   }

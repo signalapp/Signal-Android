@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ContactFilterView;
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode;
 import org.thoughtcrime.securesms.contacts.paged.ChatType;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme;
@@ -38,6 +39,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
   private final DynamicTheme dynamicTheme = new DynamicNoActionBarTheme();
 
   private BlockedUsersViewModel viewModel;
+  private View                  container;
 
   private final LifecycleDisposable lifecycleDisposable = new LifecycleDisposable();
 
@@ -57,7 +59,7 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
 
     Toolbar           toolbar           = findViewById(R.id.toolbar);
     ContactFilterView contactFilterView = findViewById(R.id.contact_filter_edit_text);
-    View              container         = findViewById(R.id.fragment_container);
+    container                           = findViewById(R.id.fragment_container);
 
     toolbar.setNavigationOnClickListener(unused -> onBackPressed());
     contactFilterView.setOnFilterChangedListener(query -> {
@@ -99,11 +101,41 @@ public class BlockedUsersActivity extends PassphraseRequiredActivity implements 
 
   @Override
   public void onBeforeContactSelected(boolean isFromUnknownSearchKey, @NonNull Optional<RecipientId> recipientId, String number, @NonNull Optional<ChatType> chatType, @NonNull Consumer<Boolean> callback) {
-    final String displayName = recipientId.map(id -> Recipient.resolved(id).getDisplayName(this)).orElse(number);
+    Optional<Recipient> resolvedRecipient = recipientId.map(Recipient::resolved);
 
-    AlertDialog confirmationDialog = new MaterialAlertDialogBuilder(this)
-        .setTitle(R.string.BlockedUsersActivity__block_user)
-        .setMessage(getString(R.string.BlockedUserActivity__s_will_not_be_able_to, displayName))
+    final String displayName = resolvedRecipient
+        .map(r -> r.getDisplayName(this))
+        .orElse(number);
+
+    boolean isSelf = resolvedRecipient
+        .map(Recipient::isSelf)
+        .orElseGet(() -> Optional.ofNullable(number)
+                                 .map(Recipient::external)
+                                 .map(Recipient::isSelf)
+                                 .orElse(false));
+
+    if (isSelf) {
+      Snackbar.make(container, getString(R.string.BlockedUsersActivity__cannot_block_yourself), Snackbar.LENGTH_SHORT).show();
+      return;
+    }
+
+    MaterialAlertDialogBuilder builder = new MaterialAlertDialogBuilder(this);
+
+    if (resolvedRecipient.isPresent() && resolvedRecipient.get().isGroup()) {
+      Recipient recipient = resolvedRecipient.get();
+      if (SignalDatabase.groups().isActive(recipient.requireGroupId())) {
+        builder.setTitle(getString(R.string.BlockUnblockDialog_block_and_leave_s, displayName));
+        builder.setMessage(R.string.BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates);
+      } else {
+        builder.setTitle(getString(R.string.BlockUnblockDialog_block_s, displayName));
+        builder.setMessage(R.string.BlockUnblockDialog_group_members_wont_be_able_to_add_you);
+      }
+    } else {
+      builder.setTitle(R.string.BlockedUsersActivity__block_user);
+      builder.setMessage(getString(R.string.BlockedUserActivity__s_will_not_be_able_to, displayName));
+    }
+
+    AlertDialog confirmationDialog = builder
         .setPositiveButton(R.string.BlockedUsersActivity__block, (dialog, which) -> {
           if (recipientId.isPresent()) {
             viewModel.block(recipientId.get());

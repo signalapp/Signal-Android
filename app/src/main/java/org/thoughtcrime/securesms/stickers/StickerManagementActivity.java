@@ -123,7 +123,7 @@ public final class StickerManagementActivity extends PassphraseRequiredActivity 
   }
 
   private void initViewModel() {
-    StickerManagementRepository repository = new StickerManagementRepository(this);
+    StickerManagementRepository repository = StickerManagementRepository.INSTANCE;
     viewModel = new ViewModelProvider(this, new StickerManagementViewModel.Factory(getApplication(), repository)).get(StickerManagementViewModel.class);
 
     viewModel.init();

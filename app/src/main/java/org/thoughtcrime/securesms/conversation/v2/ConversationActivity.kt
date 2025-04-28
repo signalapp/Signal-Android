@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.Window
 import androidx.activity.viewModels
+import androidx.lifecycle.enableSavedStateHandles
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.logging.Log
@@ -49,16 +50,12 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    enableSavedStateHandles()
     supportPostponeEnterTransition()
     transitionDebouncer.publish { supportStartPostponedEnterTransition() }
     window.requestFeature(Window.FEATURE_ACTIVITY_TRANSITIONS)
 
-    if (savedInstanceState != null) {
-      shareDataTimestampViewModel.timestamp = savedInstanceState.getLong(STATE_WATERMARK, -1L)
-    } else if (intent.flags and Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY != 0) {
-      shareDataTimestampViewModel.timestamp = System.currentTimeMillis()
-    }
-
+    shareDataTimestampViewModel.setTimestampFromActivityCreation(savedInstanceState, intent)
     setContentView(R.layout.fragment_container)
 
     if (savedInstanceState == null) {
@@ -69,11 +66,6 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   override fun onResume() {
     super.onResume()
     theme.onResume(this)
-  }
-
-  override fun onSaveInstanceState(outState: Bundle) {
-    super.onSaveInstanceState(outState)
-    outState.putLong(STATE_WATERMARK, shareDataTimestampViewModel.timestamp)
   }
 
   override fun onStop() {

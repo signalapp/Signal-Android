@@ -66,7 +66,11 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private var previousKeyboardHeight: Int = 0
   private var applyRootInsets: Boolean = false
 
+  private var insets: WindowInsetsCompat? = null
+  private var windowTypes: Int = InsetAwareConstraintLayout.windowTypes
+
   private val windowInsetsListener = androidx.core.view.OnApplyWindowInsetsListener { _, insets ->
+    this.insets = insets
     applyInsets(windowInsets = insets.getInsets(windowTypes), keyboardInsets = insets.getInsets(keyboardType))
     insets
   }
@@ -99,6 +103,23 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   }
 
   private fun insetTarget(): View = if (applyRootInsets) rootView else this
+
+  /**
+   * Specifies whether or not window insets should be accounted for when applying
+   * insets. This is useful when choosing whether to display the content in this
+   * constraint layout as a full-window view or as a framed view.
+   */
+  fun setUseWindowTypes(useWindowTypes: Boolean) {
+    windowTypes = if (useWindowTypes) {
+      InsetAwareConstraintLayout.windowTypes
+    } else {
+      0
+    }
+
+    if (insets != null) {
+      applyInsets(insets!!.getInsets(windowTypes), insets!!.getInsets(keyboardType))
+    }
+  }
 
   fun addKeyboardStateListener(listener: KeyboardStateListener) {
     keyboardStateListeners += listener
@@ -133,10 +154,12 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
     if (keyboardInsets.bottom > 0) {
       setKeyboardHeight(keyboardInsets.bottom)
-      if (!keyboardAnimator.animating) {
-        keyboardGuideline?.setGuidelineEnd(keyboardInsets.bottom)
-      } else {
-        keyboardAnimator.endingGuidelineEnd = keyboardInsets.bottom
+      if (!overridingKeyboard) {
+        if (!keyboardAnimator.animating) {
+          keyboardGuideline?.setGuidelineEnd(keyboardInsets.bottom)
+        } else {
+          keyboardAnimator.endingGuidelineEnd = keyboardInsets.bottom
+        }
       }
     } else if (!overridingKeyboard) {
       if (!keyboardAnimator.animating) {
@@ -171,6 +194,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   protected fun resetKeyboardGuideline() {
     clearKeyboardGuidelineOverride()
     keyboardGuideline?.setGuidelineEnd(navigationBarGuideline.guidelineEnd)
+    keyboardAnimator.endingGuidelineEnd = navigationBarGuideline.guidelineEnd
   }
 
   private fun getKeyboardHeight(): Int {

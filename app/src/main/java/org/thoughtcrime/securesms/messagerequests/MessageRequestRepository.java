@@ -51,7 +51,7 @@ public final class MessageRequestRepository {
 
   private static final String TAG                  = Log.tag(MessageRequestRepository.class);
   private static final int    MIN_GROUPS_THRESHOLD = 2;
-  private static final int    MAX_MEMBER_NAMES     = 3;
+  private static final int    MAX_MEMBER_NAMES     = 4;
 
   private final Context  context;
   private final Executor executor;

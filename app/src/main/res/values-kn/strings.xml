@@ -151,6 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ನಿರ್ಬಂಧಿಸಿದ ಬಳಕೆದಾರರು</string>
     <string name="BlockedUsersActivity__add_blocked_user">ನಿರ್ಬಂಧಿಸಿದ ಬಳಕೆದಾರರನ್ನು ಸೇರಿಸಿ</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
     <string name="BlockedUsersActivity__blocked_users_will">ನಿರ್ಬಂಧಿಸಿದ ಬಳಕೆದಾರರು ನಿಮಗೆ ಕರೆ ಮಾಡಲು ಅಥವಾ ನಿಮಗೆ ಮೆಸೇಜ್‌ಗಳನ್ನು ಕಳುಹಿಸಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <string name="BlockedUsersActivity__no_blocked_users">ನಿರ್ಬಂಧಿಸಿದ ಬಳಕೆದಾರರು ಇಲ್ಲ</string>
     <string name="BlockedUsersActivity__block_user">ಬಳಕೆದಾರರನ್ನು ನಿರ್ಬಂಧಿಸಬೇಕೇ?</string>
@@ -1717,6 +1718,8 @@
     <string name="MediaOverviewActivity_sent_by_you">ನಿಮ್ಮಿಂದ ಕಳುಹಿಸಲಾಗಿದೆ</string>
     <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s ರಿಂದ %2$s ಗೆ ಕಳುಹಿಸಿದರು</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s ರವರಿಂದ ನಿಮಗೆ ಕಳುಹಿಸಲಾಗಿದೆ</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">ನನಗೆ ನಂತರ ನೆನಪಿಸು</string>
@@ -1787,9 +1790,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">ಮಿಸ್ಡ್ ವೀಡಿಯೊ ಕಾಲ್</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">ನಿರಾಕರಿಸಿದ ಧ್ವನಿ ಕರೆ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">ನಿರಾಕರಿಸಿದ ವೀಡಿಯೊ ಕರೆ</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">ಅಧಿಸೂಚನೆ ಪ್ರೊಫೈಲ್ ಆನ್ ಆಗಿರುವಾಗ ತಪ್ಪಿಹೋದ ಧ್ವನಿ ಕರೆ</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2579,8 +2582,8 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="one">%1$s group in common</item>
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="one">ಸಾಮಾನ್ಯ ಗುಂಪು %1$s</item>
+        <item quantity="other">%1$s ಗುಂಪುಗಳಲ್ಲಿ ನೀವಿಬ್ಬರೂ ಇರುವಿರಿ</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2762,6 +2765,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">ಯಶಸ್ವಿಯಾಗಿ PIN ದೃಢೀಕರಿಸಲಾಗಿದೆ. ವಾರದಲ್ಲಿ ಮತ್ತೆ ನಾವು ನಿಮಗೆ ನೆನಪಿಸುತ್ತೇವೆ.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">ಯಶಸ್ವಿಯಾಗಿ PIN ದೃಢೀಕರಿಸಲಾಗಿದೆ. ಒಂದೆರಡು ವಾರಗಳಲ್ಲಿ ಮತ್ತೆ ನಾವು ನಿಮಗೆ ನೆನಪಿಸುತ್ತೇವೆ.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">ಯಶಸ್ವಿಯಾಗಿ PIN ದೃಢೀಕರಿಸಲಾಗಿದೆ. ತಿಂಗಳಲ್ಲಿ ಮತ್ತೆ ನಾವು ನಿಮಗೆ ನೆನಪಿಸುತ್ತೇವೆ.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
 
     <!-- Slide -->
     <string name="Slide_image">ಚಿತ್ರ</string>
@@ -2777,15 +2786,35 @@
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">ಸ್ಟಿಕ್ಕರ್‌ಗಳು</string>
 
+    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
+    <string name="StickerManagement_available_tab_label">Available</string>
+    <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
+    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <!-- Shown when there are no sticker packs available for installation -->
+    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <!-- Shown when there are no sticker packs currently installed -->
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
+    <string name="StickerManagement_author_unknown">Unknown</string>
+    <!-- Sticker pack list section header for packs that are already installed. -->
+    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
+    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
+    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
+    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <!-- Accessibility label for the button to download a sticker pack. -->
+    <string name="StickerManagement_accessibility_download">Download</string>
+
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿರುವ ಸ್ಟಿಕ್ಕರ್‌ಗಳು</string>
-    <string name="StickerManagementAdapter_stickers_you_received">ನೀವು ಸ್ವೀಕರಿಸಿದ ಸ್ಟಿಕ್ಕರ್‌ಗಳು</string>
-    <string name="StickerManagementAdapter_signal_artist_series">Signal ಕಲಾವಿದ ಸರಣಿ</string>
     <string name="StickerManagementAdapter_no_stickers_installed">ಯಾವುದೇ ಸ್ಟಿಕ್ಕರ್‌ಗಳನ್ನು ಸ್ಥಾಪಿಸಲಾಗಿಲ್ಲ</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">ಒಳಬರುವ ಸಂದೇಶಗಳಿಂದ ಸ್ಟಿಕ್ಕರ್‌ಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತದೆ</string>
     <string name="StickerManagementAdapter_untitled">ಶೀರ್ಷಿಕ ರಹಿತ</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagementAdapter_unknown">ತಿಳಿದಿಲ್ಲ</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">ಶೀರ್ಷಿಕ ರಹಿತ</string>
@@ -2812,6 +2841,8 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">ಈ URL ಅನ್ನು ನಕಲಿಸಿ ಮತ್ತು ಇದನ್ನು ನಿಮ್ಮ ವಿಷಯ ವರದಿಗೆ ಸೇರಿಸಿ ಅಥವಾ ಇಮೇಲ್ ಬೆಂಬಲಿಸಿ :\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">ಹಂಚಿಕೊಳ್ಳಿ</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">ಈ ದಾಖಲೆಯನ್ನು ಕೊಡುಗೆದಾರರ ವೀಕ್ಷಣೆಗೆ ಬಹಿರಂಗ ಅಂತರ್ಜಾಲಕ್ಕೆ ಪೋಸ್ಟ್ ಮಾಡಲಾಗುತ್ತದೆ. ನೀವು ಇದನ್ನು ಸಲ್ಲಿಸುವ ಮೊದಲು ಪರೀಕ್ಷಿಸಬಹುದು.</string>
+    <!-- Banner message shown while submitting debug log -->
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2883,7 +2914,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">ನಿರ್ಬಂಧಿಸಲಾಗಿದೆ</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal ನವೀಕರಿಸಿ</string>
@@ -3716,6 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">ಇಲ್ಲ, ಧನ್ಯವಾದಗಳು</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ಈ ಸಂದೇಶ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">ಇತ್ತೀಚೆಗೆ ಬಳಸಲಾಗಿದೆ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">ಸ್ಮೈಲೀಗಳು ಮತ್ತು ಜನರು</string>
@@ -3728,6 +3760,17 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">ಫ್ಲ್ಯಾಗ್‌ಗಳು</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ಎಮೋಟಿಕಾನ್‌ಗಳು</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ಯಾವುದೇ ಫಲಿತಾಂಶ ಕಂಡುಬಂದಿಲ್ಲ</string>
+
+    <!-- GifQuickSearchOption -->
+    <string name="GifQuickSearchOption__recents">Recents</string>
+    <string name="GifQuickSearchOption__trending">Trending</string>
+    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
+    <string name="GifQuickSearchOption__love">Love</string>
+    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
+    <string name="GifQuickSearchOption__surprised">Surprised</string>
+    <string name="GifQuickSearchOption__excited">Excited</string>
+    <string name="GifQuickSearchOption__sad">Sad</string>
+    <string name="GifQuickSearchOption__angry">Angry</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">ಡೀಫಾಲ್ಟ್ ಬಳಸಿ</string>
@@ -4323,6 +4366,8 @@
     <string name="conversation_list_fragment__fab_content_description">ಹೊಸ ಚಾಟ್</string>
     <string name="conversation_list_fragment__open_camera_description">ಕ್ಯಾಮರಾ ತೆರೆಯಿರಿ</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ಇನ್ನೂ ಯಾವುದೇ ಚಾಟ್‌ಗಳಿಲ್ಲ.\nಸ್ನೇಹಿತರಿಗೆ ಮೆಸೇಜ್ ಮಾಡುವ ಮೂಲಕ ಆರಂಭಿಸಿ.</string>
+    <!-- Message shown when there are no archived chats to display -->
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">ತೋರಿಸಲು ಯಾವುದೇ ಚಾಟ್ ಗಳು ಇಲ್ಲ</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4946,8 +4991,8 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">ಬೇರೆ ಯಾವುದೇ ಗುಂಪುಗಳು ಸಾಮಾನ್ಯವಾಗಿಲ್ಲ.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">ಯಾವುದೇ ಒಂದೇ ಗುಂಪುಗಳಲ್ಲಿಲ್ಲ.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d other group in common</item>
-        <item quantity="other">%1$d other groups in common</item>
+        <item quantity="one">%1$d ಇತರ ಸಾಮಾನ್ಯ ಗುಂಪು</item>
+        <item quantity="other">%1$d ಇತರ ಸಾಮಾನ್ಯ ಗುಂಪುಗಳು</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">ಸಾಮಾನ್ಯ ಗುಂಪು %1$d</item>
@@ -5697,6 +5742,8 @@
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">ಕ್ಲಿಪ್‌ಬೋರ್ಡ್‌ಗೆ ಫೋನ್ ನಂಬರ್ ಅನ್ನು ನಕಲಿಸಲಾಗಿದೆ</string>
     <string name="ConversationSettingsFragment__phone_number">ದೂರವಾಣಿ ಸಂಖ್ಯೆ</string>
     <string name="ConversationSettingsFragment__get_badges">Signal ಅನ್ನು ಬೆಂಬಲಿಸುವ ಮೂಲಕ ನಿಮ್ಮ ಪ್ರೊಫೈಲ್‌ಗೆ ಬ್ಯಾಡ್ಜ್‌ಗಳನ್ನು ಪಡೆಯಿರಿ. ಇನ್ನಷ್ಟು ತಿಳಿಯಲು ಬ್ಯಾಡ್ಜ್ ಮೇಲೆ ಟ್ಯಾಪ್ ಮಾಡಿ.</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">ಸದಸ್ಯರನ್ನು ಸೇರಿಸಿ</string>
@@ -8377,6 +8424,17 @@
     <string name="NoBackupToRestore_step3">ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ ಮತ್ತು ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಪೂರ್ಣವಾಗುವವರೆಗೆ ನಿರೀಕ್ಷಿಸಿ</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">ರಿಸ್ಟೋರ್ ಸ್ಕಿಪ್ ಮಾಡಿ</string>
+
+    <!-- Accessibility label for close search button in MainToolbar -->
+    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <!-- Accessibility label for clear search query in MainToolbar -->
+    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__more_options_content_description">More options</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__proxy_content_description">Proxy</string>
 
     <!-- EOF -->
 </resources>

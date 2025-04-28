@@ -11,12 +11,14 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
+import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
 import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
 import org.thoughtcrime.securesms.recipients.RecipientId
 import java.time.DayOfWeek
@@ -46,6 +48,7 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
     const val CREATED_AT = "created_at"
     const val ALLOW_ALL_CALLS = "allow_all_calls"
     const val ALLOW_ALL_MENTIONS = "allow_all_mentions"
+    const val NOTIFICATION_PROFILE_ID = "notification_profile_id"
 
     val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
@@ -55,7 +58,8 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
         $COLOR TEXT NOT NULL,
         $CREATED_AT INTEGER NOT NULL,
         $ALLOW_ALL_CALLS INTEGER NOT NULL DEFAULT 0,
-        $ALLOW_ALL_MENTIONS INTEGER NOT NULL DEFAULT 0
+        $ALLOW_ALL_MENTIONS INTEGER NOT NULL DEFAULT 0,
+        $NOTIFICATION_PROFILE_ID TEXT DEFAULT NULL
       )
     """
   }
@@ -110,12 +114,14 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
 
     db.beginTransaction()
     try {
+      val notificationProfileId = NotificationProfileId.generate()
       val profileValues = ContentValues().apply {
         put(NotificationProfileTable.NAME, name)
         put(NotificationProfileTable.EMOJI, emoji)
         put(NotificationProfileTable.COLOR, color.serialize())
         put(NotificationProfileTable.CREATED_AT, createdAt)
         put(NotificationProfileTable.ALLOW_ALL_CALLS, 1)
+        put(NotificationProfileTable.NOTIFICATION_PROFILE_ID, notificationProfileId.serialize())
       }
 
       val profileId = db.insert(NotificationProfileTable.TABLE_NAME, null, profileValues)
@@ -140,7 +146,8 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
           emoji = emoji,
           createdAt = createdAt,
           schedule = getProfileSchedule(profileId),
-          allowAllCalls = true
+          allowAllCalls = true,
+          notificationProfileId = notificationProfileId
         )
       )
     } finally {
@@ -323,7 +330,8 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
       allowAllCalls = cursor.requireBoolean(NotificationProfileTable.ALLOW_ALL_CALLS),
       allowAllMentions = cursor.requireBoolean(NotificationProfileTable.ALLOW_ALL_MENTIONS),
       schedule = getProfileSchedule(profileId),
-      allowedMembers = getProfileAllowedMembers(profileId)
+      allowedMembers = getProfileAllowedMembers(profileId),
+      notificationProfileId = NotificationProfileId.from(cursor.requireNonNullString(NotificationProfileTable.NOTIFICATION_PROFILE_ID))
     )
   }
 

@@ -3,11 +3,9 @@ package org.thoughtcrime.securesms;
 import android.app.Activity;
 import android.content.Intent;
 
-import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
@@ -25,23 +23,14 @@ public class MainNavigator {
 
   private final AppCompatActivity       activity;
   private final LifecycleDisposable     lifecycleDisposable;
+  private final MainNavigationViewModel viewModel;
 
-  private MainNavigationViewModel viewModel;
-
-  public MainNavigator(@NonNull AppCompatActivity activity) {
+  public MainNavigator(@NonNull AppCompatActivity activity, @NonNull MainNavigationViewModel viewModel) {
     this.activity            = activity;
     this.lifecycleDisposable = new LifecycleDisposable();
+    this.viewModel           = viewModel;
 
     lifecycleDisposable.bindTo(activity);
-  }
-
-  @MainThread
-  public @NonNull MainNavigationViewModel getViewModel() {
-    if (viewModel == null) {
-      viewModel = new ViewModelProvider(activity).get(MainNavigationViewModel.class);
-    }
-    
-    return viewModel;
   }
 
   public static MainNavigator get(@NonNull Activity activity) {

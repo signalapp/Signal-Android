@@ -16,12 +16,11 @@ import java.io.IOException
 private const val TAG = "LibSignalNetworkExtensions"
 
 fun Network.transformAndSetRemoteConfig(remoteConfig: Map<String, Any>) {
-  val libsignalRemoteConfig = HashMap<String, String>()
-  for (key in remoteConfig.keys) {
-    if (key.startsWith("android.libsignal.") or key.startsWith("global.libsignal.")) {
-      libsignalRemoteConfig[key] = JsonUtil.toJson(remoteConfig[key])
-    }
-  }
+  val libsignalRemoteConfig: Map<String, String> = remoteConfig
+    .filterKeys { it.startsWith("android.libsignal.") }
+    .mapKeys { (k, _) -> k.removePrefix("android.libsignal.") }
+    // libsignal-net's RemoteConfig diverges from JSON-spec by not quoting string values.
+    .mapValues { (_, v) -> (v as? String) ?: JsonUtil.toJson(v) }
 
   this.setRemoteConfig(libsignalRemoteConfig)
 }
@@ -30,16 +29,27 @@ fun Network.transformAndSetRemoteConfig(remoteConfig: Map<String, Any>) {
  * Helper method to apply settings from the SignalServiceConfiguration.
  */
 fun Network.applyConfiguration(config: SignalServiceConfiguration) {
-  val proxy = config.signalProxy.orNull()
+  val signalProxy = config.signalProxy.orNull()
+  val systemHttpProxy = config.systemHttpProxy.orNull()
 
-  if (proxy == null) {
-    this.clearProxy()
-  } else {
-    try {
-      this.setProxy(proxy.host, proxy.port)
-    } catch (e: IOException) {
-      Log.e(TAG, "Invalid proxy configuration set! Failing connections until changed.")
-      this.setInvalidProxy()
+  when {
+    (signalProxy != null) -> {
+      try {
+        this.setProxy(signalProxy.host, signalProxy.port)
+      } catch (e: IOException) {
+        Log.e(TAG, "Invalid proxy configuration set! Failing connections until changed.")
+        this.setInvalidProxy()
+      }
+    }
+    (systemHttpProxy != null) -> {
+      try {
+        this.setProxy("http", systemHttpProxy.host, systemHttpProxy.port, "", "")
+      } catch (e: IOException) {
+        // The Android settings screen where this is set explicitly calls out that apps are allowed to
+        //  ignore the HTTP Proxy setting, so if using the specified proxy would cause us to break, let's
+        //  try just ignoring it and seeing if that still lets us connect.
+        Log.w(TAG, "Failed to set system HTTP proxy, ignoring and continuing...")
+      }
     }
   }
 

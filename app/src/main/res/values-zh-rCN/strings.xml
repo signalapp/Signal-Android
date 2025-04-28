@@ -151,6 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">已屏蔽的用户</string>
     <string name="BlockedUsersActivity__add_blocked_user">添加屏蔽用户</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
     <string name="BlockedUsersActivity__blocked_users_will">被屏蔽的用户将无法向您发起通话或发送消息。</string>
     <string name="BlockedUsersActivity__no_blocked_users">无屏蔽用户</string>
     <string name="BlockedUsersActivity__block_user">要屏蔽用户吗？</string>
@@ -1667,6 +1668,8 @@
     <string name="MediaOverviewActivity_sent_by_you">由您发送</string>
     <string name="MediaOverviewActivity_sent_by_s_to_s">由 %1$s 发送至 %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">由您发送至 %1$s</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">稍后提醒</string>
@@ -1737,9 +1740,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">未接视频来电</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">拒接的语音通话</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">拒接的视频通话</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">语音通话由于开启通知配置而未接通</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2496,7 +2499,7 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="other">%1$s 个共同群组</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2673,6 +2676,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN 码验证成功。我们将会在一周后再次提醒您。</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN 码验证成功。我们将会在几周后再次提醒您。</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN 码验证成功。我们将会在一个月后再次提醒您。</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
 
     <!-- Slide -->
     <string name="Slide_image">图片</string>
@@ -2688,15 +2697,35 @@
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">表情</string>
 
+    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
+    <string name="StickerManagement_available_tab_label">Available</string>
+    <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
+    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <!-- Shown when there are no sticker packs available for installation -->
+    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <!-- Shown when there are no sticker packs currently installed -->
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
+    <string name="StickerManagement_author_unknown">Unknown</string>
+    <!-- Sticker pack list section header for packs that are already installed. -->
+    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
+    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
+    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
+    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <!-- Accessibility label for the button to download a sticker pack. -->
+    <string name="StickerManagement_accessibility_download">Download</string>
+
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">已安装表情</string>
-    <string name="StickerManagementAdapter_stickers_you_received">收到的表情</string>
-    <string name="StickerManagementAdapter_signal_artist_series">Signal 艺术家系列</string>
     <string name="StickerManagementAdapter_no_stickers_installed">未安装表情</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">此处将显示传入消息中的表情</string>
     <string name="StickerManagementAdapter_untitled">未命名</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagementAdapter_unknown">未知</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">未命名</string>
@@ -2723,6 +2752,8 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">复制此 URL 并将其添加到问题报告或支持电子邮件:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">分享</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">此日志将会在线上公开发布，供赞助人查看。您可以先仔细检查再上传。</string>
+    <!-- Banner message shown while submitting debug log -->
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2794,7 +2825,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">已屏蔽</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">已屏蔽</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal 更新</string>
@@ -3609,6 +3640,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">不，谢谢。</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">此消息</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">最近使用</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">笑脸和情感</string>
@@ -3621,6 +3653,17 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">旗帜</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">颜文字</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">未找到结果</string>
+
+    <!-- GifQuickSearchOption -->
+    <string name="GifQuickSearchOption__recents">Recents</string>
+    <string name="GifQuickSearchOption__trending">Trending</string>
+    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
+    <string name="GifQuickSearchOption__love">Love</string>
+    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
+    <string name="GifQuickSearchOption__surprised">Surprised</string>
+    <string name="GifQuickSearchOption__excited">Excited</string>
+    <string name="GifQuickSearchOption__sad">Sad</string>
+    <string name="GifQuickSearchOption__angry">Angry</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">使用默认</string>
@@ -4212,6 +4255,8 @@
     <string name="conversation_list_fragment__fab_content_description">新聊天</string>
     <string name="conversation_list_fragment__open_camera_description">打开相机</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">还没有聊天记录。\n开始使用，给朋友发个消息吧。</string>
+    <!-- Message shown when there are no archived chats to display -->
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">没有可显示的聊天</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4825,7 +4870,7 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">没有其它共同群组。</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">无共同群组。</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="other">%1$d other groups in common</item>
+        <item quantity="other">%1$d 个其他共同群组</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="other">%1$d 个共同群组</item>
@@ -5563,6 +5608,8 @@
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">已复制手机号码至剪贴板。</string>
     <string name="ConversationSettingsFragment__phone_number">手机号码</string>
     <string name="ConversationSettingsFragment__get_badges">欢迎给 Signal 捐款，在个人资料中显示捐款徽章。点击徽章了解详情。</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">添加成员</string>
@@ -8200,6 +8247,17 @@
     <string name="NoBackupToRestore_step3">启用备份然后等待备份完成</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">跳过恢复</string>
+
+    <!-- Accessibility label for close search button in MainToolbar -->
+    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <!-- Accessibility label for clear search query in MainToolbar -->
+    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__more_options_content_description">More options</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__proxy_content_description">Proxy</string>
 
     <!-- EOF -->
 </resources>

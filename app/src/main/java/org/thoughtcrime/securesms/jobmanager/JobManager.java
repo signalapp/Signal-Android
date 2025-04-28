@@ -288,6 +288,7 @@ public class JobManager implements ConstraintObserver.Notifier {
    * Search through the list of pending jobs and find all that match a given predicate. Note that there will always be races here, and the result you get back
    * may not be valid anymore by the time you get it. Use with caution.
    */
+  @WorkerThread
   public @NonNull List<JobSpec> find(@NonNull Predicate<JobSpec> predicate) {
     waitUntilInitialized();
     return jobController.findJobs(predicate);

@@ -79,6 +79,7 @@ object RecurringInAppPaymentRepository {
   @WorkerThread
   fun getActiveSubscriptionSync(type: InAppPaymentSubscriberRecord.Type): Result<ActiveSubscription> {
     if (type == InAppPaymentSubscriberRecord.Type.BACKUP && SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID) {
+      Log.d(TAG, "Returning mock paid subscription.")
       return Result.success(MOCK_PAID_SUBSCRIPTION)
     }
 

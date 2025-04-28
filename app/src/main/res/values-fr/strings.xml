@@ -131,7 +131,7 @@
     <!-- Alert dialog title to show the recipient has not activated payments -->
     <string name="AttachmentManager__not_activated_payments">%1$s n’a pas activé les paiements </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">Souhaitez-vous leur envoyer une demande d’activation des paiements ?</string>
+    <string name="AttachmentManager__request_to_activate_payments">Voulez-vous lui envoyer une demande d\'activation des paiements ?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">Envoyer une demande</string>
     <!-- Alert dialog button to cancel dialog -->
@@ -151,6 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Utilisateurs bloqués</string>
     <string name="BlockedUsersActivity__add_blocked_user">Ajouter un utilisateur bloqué</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
     <string name="BlockedUsersActivity__blocked_users_will">Les utilisateurs bloqués ne pourront ni vous appeler, ni vous envoyer des messages.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Aucun utilisateur bloqué</string>
     <string name="BlockedUsersActivity__block_user">Bloquer cet utilisateur ?</string>
@@ -597,7 +598,7 @@
     <string name="ConversationFragment_delete">Supprimer</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Supprimer de tous les appareils</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ce message sera supprimé pour tous les membres participant à la conversation s’ils utilisent une version récente de Signal. Ils pourront voir que vous avez supprimé un message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ce message sera supprimé de cette conversation pour tous les utiliateurs disposant d\'une version récente de Signal. Ils verront que vous avez supprimé un message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Message d\'origine introuvable</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Le message d\'origine n\'est plus disponible</string>
     <string name="ConversationFragment_failed_to_open_message">Impossible d\'ouvrir le message</string>
@@ -1003,7 +1004,7 @@
 
     <!-- DecryptionFailedDialog -->
     <string name="DecryptionFailedDialog_chat_session_refreshed">Actualisation de la session</string>
-    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal utilise un chiffrement de bout en bout, et l’actualisation de votre session de dialogue en ligne pourrait parfois être nécessaire. Cela n’affecte pas la sécurité de votre conversation, mais vous pourriez avoir manqué un message de ce contact. Vous pouvez lui demander de vous le renvoyer.</string>
+    <string name="DecryptionFailedDialog_signal_uses_end_to_end_encryption">Signal utilise un chiffrement de bout en bout et doit parfois actualiser votre session. Cela n\'a aucune incidence sur la sécurité de votre conversation, mais il se peut que vous ayez manqué un message de ce contact. Auquel cas, vous pouvez lui demander de vous le renvoyer.</string>
 
     <!-- LinkDeviceFragment -->
     <!-- Description for how Signal will work with a linked device (eg desktop, iPad) -->
@@ -1423,7 +1424,7 @@
     <string name="ManageGroupActivity_edit_name_and_picture">Changer d\'image et renommer</string>
     <string name="ManageGroupActivity_legacy_group">Groupe hérité</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
-    <string name="ManageGroupActivity_legacy_group_learn_more">Ce groupe est un groupe hérité. Des fonctionnalités telles que l’administration des groupes ne sont proposées que pour les nouveaux groupes.</string>
+    <string name="ManageGroupActivity_legacy_group_learn_more">Ce groupe est un groupe hérité. Des fonctionnalités telles que l\'administration des groupes ne sont disponibles que pour les nouveaux groupes.</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
     <string name="ManageGroupActivity_legacy_group_upgrade">Ce groupe est un groupe hérité. Pour accéder à de nouvelles fonctionnalités, telles que les @mentions et les admins,</string>
     <string name="ManageGroupActivity_legacy_group_too_large">Impossible de convertir ce groupe hérité en nouveau groupe, car ses membres sont trop nombreux. Un groupe peut compter jusqu\'à %1$d membres.</string>
@@ -1459,7 +1460,7 @@
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
     <string name="RemoteRestoreActivity__backup_created_at_with_size">Dernière sauvegarde effectuée le %1$s à %2$s. Taille de la sauvegarde : %3$s.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
-    <string name="RemoteRestoreActivity__fetching_backup_details">Récupération des infos de la sauvegarde…</string>
+    <string name="RemoteRestoreActivity__fetching_backup_details">Récupération des infos de sauvegarde…</string>
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">Ignorer la restauration</string>
     <!-- Dialog title displayed when remote restore failed -->
@@ -1717,6 +1718,8 @@
     <string name="MediaOverviewActivity_sent_by_you">Vous avez envoyé ce média</string>
     <string name="MediaOverviewActivity_sent_by_s_to_s">Envoyé par %1$s à %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Vous avez envoyé ce média à %1$s</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Me le rappeler plus tard</string>
@@ -1787,9 +1790,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">Appel vidéo manqué</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">Appel vocal refusé</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">Appel vidéo refusé</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">Appel vocal manqué lorsque le profil de notification était activé</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -1996,7 +1999,7 @@
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Vous avez envoyé une demande d\'activation des paiements à %1$s</string>
     <!-- Request message from recipient to activate payments -->
-    <string name="MessageRecord_wants_you_to_activate_payments">%1$s souhaite que vous activiez les paiements. N’envoyez de paiements qu’aux personnes en qui vous avez confiance.</string>
+    <string name="MessageRecord_wants_you_to_activate_payments">%1$s voudrait que vous activiez les paiements. N\'envoyez de paiements qu\'aux personnes en qui vous avez confiance.</string>
     <!-- Message to inform user that payments was activated-->
     <string name="MessageRecord_you_activated_payments">Vous avez activé les paiements</string>
     <!-- Message to inform sender that recipient can now accept payments -->
@@ -2110,7 +2113,7 @@
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Rejoindre ce groupe et partager votre nom et votre photo avec ses membres ? Vous pourrez ensuite accéder à la conversation.</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Rejoindre ce groupe ? Ce contact ne saura que vous avez vu son invitation que si vous l’acceptez.</string>
-    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager vos nom et photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l’aurez pas débloqué.</string>
+    <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">Débloquer ce groupe et partager votre nom et votre photo avec ses membres ? Vous ne recevrez aucun message tant que vous ne l\'aurez pas débloqué.</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
     <string name="MessageRequestProfileView_view">Afficher</string>
     <string name="MessageRequestProfileView_member_of_one_group">Membre de %1$s</string>
@@ -2579,8 +2582,8 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="one">%1$s group in common</item>
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="one">%1$s groupe en commun</item>
+        <item quantity="other">%1$s groupes en commun</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2691,7 +2694,7 @@
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">Numéro de téléphone</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
-    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Saisissez votre numéro de téléphone pour commencer.</string>
+    <string name="RegistrationActivity_enter_your_phone_number_to_get_started">Prêt à vous lancer ? Saisissez votre numéro de téléphone.</string>
     <string name="RegistrationActivity_enter_the_code_we_sent_to_s">Saisissez le code que nous vous avons envoyé au %1$s</string>
 
     <string name="RegistrationActivity_phone_number_description">Numéro de téléphone</string>
@@ -2700,9 +2703,9 @@
     <string name="RegistrationActivity_verification_code">Code de vérification</string>
     <string name="RegistrationActivity_resend_code">Renvoyer le code</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_title">Un problème d’inscription ?</string>
+    <string name="RegistrationActivity_support_bottom_sheet_title">Petit souci d\'inscription ?</string>
     <!--    A list of suggestions to try for a user having trouble entering their verification code.-->
-    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Assurez-vous que votre téléphone capte bien le signal mobile pour recevoir un SMS ou un appel.\n • Vérifiez que ce numéro reçoit bien les appels.\n • Vérifiez aussi que vous avez saisi le bon numéro de téléphone.</string>
+    <string name="RegistrationActivity_support_bottom_sheet_body_suggestions">• Assurez-vous que votre téléphone capte bien le signal mobile pour recevoir un SMS ou un appel.\n • Vérifiez que ce numéro reçoit bien les appels.\n • Vérifiez aussi que vous avez correctement saisi le numéro de téléphone.</string>
     <!--    A call to action for a user having trouble entering the verification to seek further help. The first placeholder is RegistrationActivity_support_bottom_sheet_cta_troubleshooting_steps_substring, the second is RegistrationActivity_support_bottom_sheet_cta_contact_support_substring -->
     <string name="RegistrationActivity_support_bottom_sheet_body_call_to_action">Pour en savoir plus, veuillez consulter %1$s ou %2$s</string>
     <!--    A clickable piece of text that will take the user to our website with additional suggestions.-->
@@ -2762,6 +2765,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons dans une semaine.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons dans quelques semaines.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons dans un mois.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>
@@ -2777,15 +2786,35 @@
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">Stickers</string>
 
-    <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">Stickers installés</string>
-    <string name="StickerManagementAdapter_stickers_you_received">Stickers reçus</string>
-    <string name="StickerManagementAdapter_signal_artist_series">Stickers d\'artistes pour Signal</string>
-    <string name="StickerManagementAdapter_no_stickers_installed">Aucun sticker n’est installé</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Les stickers des messages reçus s’affichent ici</string>
-    <string name="StickerManagementAdapter_untitled">Sans titre</string>
+    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
+    <string name="StickerManagement_available_tab_label">Available</string>
+    <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
+    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <!-- Shown when there are no sticker packs available for installation -->
+    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <!-- Shown when there are no sticker packs currently installed -->
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagementAdapter_unknown">Auteur inconnu</string>
+    <string name="StickerManagement_author_unknown">Unknown</string>
+    <!-- Sticker pack list section header for packs that are already installed. -->
+    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
+    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
+    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
+    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <!-- Accessibility label for the button to download a sticker pack. -->
+    <string name="StickerManagement_accessibility_download">Download</string>
+
+    <!-- StickerManagementAdapter -->
+    <string name="StickerManagementAdapter_no_stickers_installed">Aucun sticker n’est installé</string>
+    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Les stickers des messages reçus s\'afficheront ici.</string>
+    <string name="StickerManagementAdapter_untitled">Sans titre</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">Sans titre</string>
@@ -2812,6 +2841,8 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">Copiez cette URL et ajoutez-la à votre rapport d’erreur ou à votre e-mail de demande d’assistance :\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">Partager</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ce journal sera publiquement disponible sur le web, où les contributeurs pourront le consulter. Vous pouvez l’examiner avant de l’importer.</string>
+    <!-- Banner message shown while submitting debug log -->
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2837,7 +2868,7 @@
     <string name="ThreadRecord_this_message_was_deleted">Ce message a été supprimé.</string>
     <string name="ThreadRecord_you_deleted_this_message">Vous avez supprimé ce message.</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
-    <string name="ThreadRecord_you_sent_request">Vous avez envoyé une demande d\'activation des paiements à {0}</string>
+    <string name="ThreadRecord_you_sent_request">Vous avez envoyé une demande d\'activation des paiements</string>
     <!-- Displayed in the notification when the recipient wants to activate payments -->
     <string name="ThreadRecord_wants_you_to_activate_payments">%1$s souhaite que vous activiez les paiements</string>
     <!-- Displayed in the notification when the user activates payments -->
@@ -2883,7 +2914,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">Bloqué</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">Bloqué</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Mise à jour de Signal</string>
@@ -3662,7 +3693,7 @@
     <string name="message_details_recipient__failed_to_send">Échec de l\'envoi</string>
     <string name="message_details_recipient__new_safety_number">Nouveau numéro de sécurité</string>
     <!-- Button text shown in message details when the message has an edit history and this will let them view the history -->
-    <string name="MessageDetails__view_edit_history">Voir l’historique des modifications</string>
+    <string name="MessageDetails__view_edit_history">Afficher l\'historique des modifications</string>
 
     <!-- AndroidManifest.xml -->
     <string name="AndroidManifest__create_passphrase">Créer une phrase secrète</string>
@@ -3716,6 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Non merci</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ce message</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Récemment utilisés</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Émoticônes et personnages</string>
@@ -3728,6 +3760,17 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">Drapeaux</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">Émoticônes</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Aucun résultat</string>
+
+    <!-- GifQuickSearchOption -->
+    <string name="GifQuickSearchOption__recents">Recents</string>
+    <string name="GifQuickSearchOption__trending">Trending</string>
+    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
+    <string name="GifQuickSearchOption__love">Love</string>
+    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
+    <string name="GifQuickSearchOption__surprised">Surprised</string>
+    <string name="GifQuickSearchOption__excited">Excited</string>
+    <string name="GifQuickSearchOption__sad">Sad</string>
+    <string name="GifQuickSearchOption__angry">Angry</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Utiliser la valeur par défaut</string>
@@ -3983,7 +4026,7 @@
     <string name="preferences_connecting_to_proxy">Connexion au proxy…</string>
     <string name="preferences_connected_to_proxy">Vous êtes connecté au proxy.</string>
     <string name="preferences_connection_failed">Échec de la connexion</string>
-    <string name="preferences_couldnt_connect_to_the_proxy">Impossible de se connecter au proxy. Veuillez vérifier l’adresse du proxy et réessayer.</string>
+    <string name="preferences_couldnt_connect_to_the_proxy">Impossible de se connecter au proxy. Veuillez vérifier l\'adresse du proxy et réessayer.</string>
     <string name="preferences_you_are_connected_to_the_proxy">Vous êtes connecté au proxy. Vous pouvez désactiver le proxy à tout moment depuis les paramètres.</string>
     <!-- Title of alert dialog after a successful connection to the proxy -->
     <string name="preferences_success">Connexion réussie</string>
@@ -4212,7 +4255,7 @@
     <!-- ConfirmPaymentFragment -->
     <string name="ConfirmPayment__confirm_payment">Confirmer le paiement</string>
     <string name="ConfirmPayment__network_fee">Frais de réseau</string>
-    <string name="ConfirmPayment__estimated_s">%1$s estimés</string>
+    <string name="ConfirmPayment__estimated_s">Montant estimé : %1$s</string>
     <!-- Prefix to a name to indicate who a payment will be sent to -->
     <string name="ConfirmPayment__to">À</string>
     <string name="ConfirmPayment__total_amount">Montant total</string>
@@ -4323,6 +4366,8 @@
     <string name="conversation_list_fragment__fab_content_description">Nouvelle conversation</string>
     <string name="conversation_list_fragment__open_camera_description">Ouvrir l\'appareil photo</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Aucune conversation pour le moment.\nPour commencer, envoyez un message à un ami.</string>
+    <!-- Message shown when there are no archived chats to display -->
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Aucune conversation à afficher</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4439,18 +4484,18 @@
     <string name="CreateKbsPinFragment__create_a_new_pin">Créer un nouveau code PIN</string>
     <string name="CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered">Vous pouvez changer de code PIN tant que cet appareil est enregistré.</string>
     <string name="CreateKbsPinFragment__create_your_pin">Créer un code PIN</string>
-    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Les PIN peuvent vous aider à restaurer votre compte et garder vos données chiffrées avec Signal. </string>
+    <string name="CreateKbsPinFragment__pins_can_help_you_restore_your_account">Utilisez un code PIN pour protéger les informations que vous stockez dans Signal et faciliter la restauration de votre compte. </string>
     <string name="CreateKbsPinFragment__choose_a_stronger_pin">Choisissez un code PIN plus complexe</string>
 
     <!-- ConfirmKbsPinFragment -->
     <string name="ConfirmKbsPinFragment__pins_dont_match">Les codes PIN ne correspondent pas. Veuillez réessayez.</string>
     <!-- Prompt for the user to repeat entering the PIN in order to help them remember it correctly.   -->
-    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Saisissez à nouveau le PIN que vous venez de créer.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_the_pin_you_just_created">Ressaisissez le code PIN que vous venez de créer.</string>
     <string name="ConfirmKbsPinFragment__confirm_your_pin">Confirmez votre code PIN</string>
     <string name="ConfirmKbsPinFragment__pin_creation_failed">Impossible de créer le code PIN.</string>
     <string name="ConfirmKbsPinFragment__your_pin_was_not_saved">Votre code PIN n’a pas été enregistré. Nous vous inviterons à en créer un plus tard.</string>
     <string name="ConfirmKbsPinFragment__pin_created">Code PIN créé.</string>
-    <string name="ConfirmKbsPinFragment__re_enter_your_pin">Saisissez de nouveau votre PIN.</string>
+    <string name="ConfirmKbsPinFragment__re_enter_your_pin">Ressaisissez le code PIN</string>
     <string name="ConfirmKbsPinFragment__creating_pin">Création du code PIN…</string>
 
     <!-- KbsSplashFragment -->
@@ -4946,8 +4991,8 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">Aucun autre groupe en commun.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">Aucun groupe en commun.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d other group in common</item>
-        <item quantity="other">%1$d other groups in common</item>
+        <item quantity="one">%1$d autre groupe en commun</item>
+        <item quantity="other">%1$d autres groupes en commun</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">%1$d groupe en commun</item>
@@ -5196,7 +5241,7 @@
     <string name="UnreadPayments__d_new_payment_notifications">%1$d nouvelles notifications de paiement</string>
 
     <!-- CanNotSendPaymentDialog -->
-    <string name="CanNotSendPaymentDialog__cant_send_payment">Impossible d\'envoyer le paiement</string>
+    <string name="CanNotSendPaymentDialog__cant_send_payment">Impossible d\'effectuer ce paiement</string>
     <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Pour envoyer un paiement à cet utilisateur, vous devez d\'abord lui envoyer une invitation par message, qu\'il doit accepter. Commencez par lui envoyer un message pour l\'inviter à échanger avec vous sur Signal.</string>
     <string name="CanNotSendPaymentDialog__send_a_message">Envoyer un message</string>
 
@@ -5697,6 +5742,8 @@
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numéro de téléphone copié dans le presse-papiers.</string>
     <string name="ConversationSettingsFragment__phone_number">Numéro de téléphone</string>
     <string name="ConversationSettingsFragment__get_badges">Soutenez Signal et gagnez des macarons à afficher sur votre profil. Appuyez sur un macaron pour en savoir plus.</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
@@ -6124,7 +6171,7 @@
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__donation_failed">Échec de l\'envoi du don</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__your_payment_was_processed_but">Votre don a été traité, mais Signal n\'a pas pu envoyer le message de confirmation. Veuillez contacter l’assistance.</string>
+    <string name="DonationsErrors__your_payment_was_processed_but">Votre don a bien été traité, mais impossible d\'envoyer à votre ami le message l\'informant de ce don. Merci de bien vouloir contacter l\'assistance.</string>
     <string name="DonationsErrors__your_badge_could_not">Nous n\'avons pas pu ajouter votre macaron à votre compte, mais vous avez peut-être été facturé. Merci de contacter l\'assistance.</string>
     <string name="DonationsErrors__your_payment_is_still">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Résiliation des dons mensuels : échec de l\'opération</string>
@@ -6144,7 +6191,7 @@
     <!-- Gift message view title -->
     <string name="GiftMessageView__donation_on_behalf_of_s">Don offert à %1$s</string>
     <!-- Gift message view title for incoming donations -->
-    <string name="GiftMessageView__s_donated_to_signal_on">%1$s a effectué un don de votre part</string>
+    <string name="GiftMessageView__s_donated_to_signal_on">%1$s a fait un don à Signal pour vous</string>
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Récupérer</string>
     <!-- Gift badge view action label -->
@@ -6212,9 +6259,9 @@
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification -->
     <string name="StripeFailureCode__an_error_occurred_while_processing_this_payment">Une erreur s’est produite lors du traitement de ce paiement. Veuillez réessayer.</string>
     <!-- Failure code text for a closed account, deceased recipient, or one with blocked direct debits, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Les coordonnées bancaires renseignées n’ont pas été reconnues. Veuillez contacter votre banque pour plus d’informations.</string>
+    <string name="StripeFailureCode__the_bank_details_provided_could_not_be_processed">Impossible de traiter les coordonnées bancaires saisies. Veuillez contacter votre banque pour en savoir plus.</string>
     <!-- Failure code text for a non-existent bank branch, invalid account holder, invalid iban, generic failure, or unknown bank failure, displayed in a dialog or notification -->
-    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Veuillez vérifier vos informations bancaires et réessayer. Si le problème persiste, contactez votre banque.</string>
+    <string name="StripeFailureCode__verify_your_bank_details_are_correct">Veuillez vérifier vos coordonnées bancaires et réessayer. Si le problème persiste, nous vous invitons à contacter votre banque.</string>
 
     <!-- Title of create notification profile screen -->
     <string name="EditNotificationProfileFragment__name_your_profile">Nommer ce profil</string>
@@ -6424,7 +6471,7 @@
     <!-- Title for "My Stories" row item in Stories landing page -->
     <string name="StoriesLandingFragment__my_stories">Mes stories</string>
     <!-- Subtitle for "My Stories" row item when user has not added stories -->
-    <string name="StoriesLandingFragment__tap_to_add">Appuyez pour ajouter</string>
+    <string name="StoriesLandingFragment__tap_to_add">Appuyez pour ajouter du contenu</string>
     <!-- Displayed when there are no stories to display -->
     <string name="StoriesLandingFragment__no_recent_updates_to_show_right_now">Aucune nouvelle story à afficher pour le moment.</string>
     <!-- Context menu option to hide a story -->
@@ -7015,15 +7062,15 @@
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Les virements sont généralement traités en 1 à 14 jours ouvrés. Veuillez attendre que ce paiement soit effectif avant d’effectuer un autre don.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion. Veuillez attendre que ce paiement soit finalisé avant de mettre à jour votre don.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion. Veuillez attendre que ce paiement soit finalisé avant de modifier votre don.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion. Veuillez attendre que ce paiement soit finalisé avant d’effectuer un autre don.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Votre don est en cours de traitement. Cela peut prendre quelques minutes en fonction de votre connexion. Veuillez attendre que ce paiement soit finalisé avant de faire un autre don.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Votre don iDEAL est en cours de traitement. Consultez votre application bancaire pour approuver votre paiement avant d\'effectuer un nouveau don.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
     <string name="DonateToSignal__donation_amount_too_high">Le montant du don est trop élevé</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Vous pouvez envoyer jusqu’à %1$s par virement bancaire. Veuillez saisir un autre montant ou choisir une méthode de paiement différente.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Vous pouvez envoyer jusqu\'à %1$s par virement bancaire. Veuillez saisir un autre montant ou choisir un autre mode de paiement.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Don mensuel</string>
@@ -7109,7 +7156,7 @@
     <!-- Text field label for email -->
     <string name="BankTransferDetailsFragment__email">E-mail</string>
     <!-- Text label for button to show user how to find their IBAN -->
-    <string name="BankTransferDetailsFragment__find_account_info">Trouver les coordonnées bancaires</string>
+    <string name="BankTransferDetailsFragment__find_account_info">Trouver vos informations bancaires</string>
     <!-- Donate button label for monthly subscription -->
     <string name="BankTransferDetailsFragment__donate_s_month">Faire un don de %1$s/mois</string>
     <!-- Donate button label for one-time -->
@@ -7154,7 +7201,7 @@
     <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">Choisissez votre banque</string>
 
     <!-- Title of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__find_your_account_information">Trouver les détails relatifs à votre compte</string>
+    <string name="FindAccountInfoSheet__find_your_account_information">Trouver vos coordonnées bancaires</string>
     <!-- Body of bottom sheet for finding account information -->
     <string name="FindAccountInfoSheet__look_for_your_iban_at">Votre numéro IBAN se trouve généralement en haut de vos relevés bancaires. Les numéros IBAN contiennent jusqu’à 34 caractères. Le nom que vous saisissez doit correspondre au nom complet associé à votre compte bancaire. Veuillez contacter votre banque pour plus d’informations.</string>
 
@@ -7538,7 +7585,7 @@
     <!-- Description text for QR code and links in the username link settings -->
     <string name="UsernameLinkSettings_qr_description">Ne partagez votre lien et votre code QR qu\'avec des personnes de confiance. Une fois que vous les partagez, ces personnes peuvent voir votre nom d\'utilisateur et démarrer une conversation avec vous.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
-    <string name="UsernameLinkSettings_username_copied_toast">Nom d’utilisateur copié</string>
+    <string name="UsernameLinkSettings_username_copied_toast">Nom d\'utilisateur copié</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
     <string name="UsernameLinkSettings_link_copied_toast">Lien copié</string>
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
@@ -7657,7 +7704,7 @@
     <!-- Entry placeholder for find by phone number -->
     <string name="FindByActivity__phone_number">Numéro de téléphone</string>
     <!-- Help text under user entry for find by username -->
-    <string name="FindByActivity__enter_username_description">Saisissez un nom d’utilisateur composé d’un nom, d’un point et d’une série de chiffres.</string>
+    <string name="FindByActivity__enter_username_description">Saisissez un nom d\'utilisateur suivi d\'un point et d\'une série de chiffres.</string>
     <!-- Content description for next action button -->
     <string name="FindByActivity__next">Suivant</string>
     <!-- Placeholder text for search input for selecting country code -->
@@ -7671,7 +7718,7 @@
     <!-- Dialog title when username is not found -->
     <string name="FindByActivity__username_not_found">Nom d’utilisateur introuvable</string>
     <!-- Dialog body for invalid username. Placeholder is the entered username. -->
-    <string name="FindByActivity__s_is_not_a_valid_username">%1$s n’est pas un nom d’utilisateur valide. Le nom d’utilisateur complet doit comporter un point suivi d’une série de chiffres associés.</string>
+    <string name="FindByActivity__s_is_not_a_valid_username">%1$s n\'est pas un nom d\'utilisateur valide. Le nom d\'utilisateur complet doit comporter un nom suivi d\'un point et d\'une série de chiffres.</string>
     <!-- Dialog body for an invalid phone number. Placeholder is the entered phone number. -->
     <string name="FindByActivity__s_is_not_a_valid_phone_number">Le numéro %1$s est incorrect. Veuillez réessayer avec un numéro de téléphone valide.</string>
     <!-- Dialog body for not found username -->
@@ -7952,7 +7999,7 @@
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Historique des paiements</string>
     <!-- Section header for backup information -->
-    <string name="RemoteBackupsSettingsFragment__backup_details">Détails de la sauvegarde</string>
+    <string name="RemoteBackupsSettingsFragment__backup_details">Informations de sauvegarde</string>
     <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Restaurer via les données mobiles</string>
     <!-- Row label for backup size -->
@@ -8377,6 +8424,17 @@
     <string name="NoBackupToRestore_step3">Activez les sauvegardes et attendez que la sauvegarde soit terminée</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">Ignorer la restauration</string>
+
+    <!-- Accessibility label for close search button in MainToolbar -->
+    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <!-- Accessibility label for clear search query in MainToolbar -->
+    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__more_options_content_description">More options</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__proxy_content_description">Proxy</string>
 
     <!-- EOF -->
 </resources>

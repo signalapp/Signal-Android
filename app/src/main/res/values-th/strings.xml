@@ -151,6 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ผู้ใช้ที่ถูกบล็อก</string>
     <string name="BlockedUsersActivity__add_blocked_user">เพิ่มผู้ใช้ที่ถูกบล็อก</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
     <string name="BlockedUsersActivity__blocked_users_will">ผู้ใช้ที่ถูกบล็อกจะไม่สามารถโทรหรือส่งข้อความหาคุณได้</string>
     <string name="BlockedUsersActivity__no_blocked_users">ไม่มีผู้ใช้ที่ถูกบล็อก</string>
     <string name="BlockedUsersActivity__block_user">บล็อกผู้ใช้หรือไม่</string>
@@ -1667,6 +1668,8 @@
     <string name="MediaOverviewActivity_sent_by_you">ส่งโดยคุณ</string>
     <string name="MediaOverviewActivity_sent_by_s_to_s">ส่งโดย %1$s ถึง %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">ส่งโดยคุณถึง %1$s</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">เตือนฉันทีหลัง</string>
@@ -1737,9 +1740,9 @@
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">วิดีโอคอลที่ไม่ได้รับ</string>
     <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
-    <string name="MessageRecord_declined_voice_call">Declined voice call</string>
+    <string name="MessageRecord_declined_voice_call">การโทรด้วยเสียงที่ถูกปฏิเสธ</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
-    <string name="MessageRecord_declined_video_call">Declined video call</string>
+    <string name="MessageRecord_declined_video_call">วิดีโอคอลที่ถูกปฏิเสธ</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">สายโทรเสียงที่ไม่ได้รับระหว่างใช้โปรไฟล์การแจ้งเตือน</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2496,7 +2499,7 @@
 
     <!-- Title of the screen showing which groups they have in common with another user. -->
     <plurals name="GroupsInCommon__n_groups_in_common_title">
-        <item quantity="other">%1$s groups in common</item>
+        <item quantity="other">มี %1$s กลุ่มร่วมกัน</item>
     </plurals>
 
     <!-- CallParticipantsListDialog -->
@@ -2673,6 +2676,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">ตรวจยืนยัน PIN เรียบร้อยแล้ว เราจะแจ้งเตือนคุณอีกครั้งในหนึ่งสัปดาห์</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">ตรวจยืนยัน PIN เรียบร้อยแล้ว เราจะแจ้งเตือนคุณอีกครั้งอีกสองอาทิตย์</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">ตรวจยืนยัน PIN เรียบร้อยแล้ว เราจะแจ้งเตือนคุณอีกครั้งในหนึ่งเดือน</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
 
     <!-- Slide -->
     <string name="Slide_image">รูปภาพ</string>
@@ -2688,15 +2697,35 @@
     <!-- StickerManagementActivity -->
     <string name="StickerManagementActivity_stickers">สติกเกอร์</string>
 
+    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
+    <string name="StickerManagement_available_tab_label">Available</string>
+    <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
+    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <!-- Shown when there are no sticker packs available for installation -->
+    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <!-- Shown when there are no sticker packs currently installed -->
+    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <!-- Message shown when the author of the sticker pack is unknown -->
+    <string name="StickerManagement_author_unknown">Unknown</string>
+    <!-- Sticker pack list section header for packs that are already installed. -->
+    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
+    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
+    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
+    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <!-- Accessibility label for the button to download a sticker pack. -->
+    <string name="StickerManagement_accessibility_download">Download</string>
+
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">ติดตั้งสติกเกอร์</string>
-    <string name="StickerManagementAdapter_stickers_you_received">สติกเกอร์ที่คุณได้รับ</string>
-    <string name="StickerManagementAdapter_signal_artist_series">ซีรีส์ของสติกเกอร์ที่ออกแบบโดยศิลปินของ Signal</string>
     <string name="StickerManagementAdapter_no_stickers_installed">ไม่มีการติดตั้งสติกเกอร์</string>
     <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">สติกเกอร์จากข้อความเข้าจะปรากฏที่นี่</string>
     <string name="StickerManagementAdapter_untitled">ไม่มีชื่อ</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagementAdapter_unknown">ไม่ทราบ</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">ไม่มีชื่อ</string>
@@ -2723,6 +2752,8 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">คัดลอก URL และเพิ่มมันในรายงานปัญหาหรืออีเมลปรึกษาปัญหา:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">แบ่งปัน</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">บันทึกนี้จะถูกโพสต์แบบสาธารณะทางออนไลน์เพื่อให้ผู้สนับสนุนสามารถดูได้ คุณอาจจะตรวจสอบก่อนที่จะอัปโหลด</string>
+    <!-- Banner message shown while submitting debug log -->
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2794,7 +2825,7 @@
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">ถูกบล็อก</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
-    <string name="ThreadRecord_blocked_group">Blocked</string>
+    <string name="ThreadRecord_blocked_group">ถูกบล็อก</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">ปรับรุ่น Signal</string>
@@ -3609,6 +3640,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">ไม่ ขอบคุณ</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ข้อความนี้</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">เพิ่งใช้</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">หน้ายิ้ม &amp; ผู้คน</string>
@@ -3621,6 +3653,17 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">ธง</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">อีโมติคอน</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ไม่พบผลลัพธ์</string>
+
+    <!-- GifQuickSearchOption -->
+    <string name="GifQuickSearchOption__recents">Recents</string>
+    <string name="GifQuickSearchOption__trending">Trending</string>
+    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
+    <string name="GifQuickSearchOption__love">Love</string>
+    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
+    <string name="GifQuickSearchOption__surprised">Surprised</string>
+    <string name="GifQuickSearchOption__excited">Excited</string>
+    <string name="GifQuickSearchOption__sad">Sad</string>
+    <string name="GifQuickSearchOption__angry">Angry</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">ใช้ค่าเริ่มต้น</string>
@@ -4212,6 +4255,8 @@
     <string name="conversation_list_fragment__fab_content_description">แชทใหม่</string>
     <string name="conversation_list_fragment__open_camera_description">เปิดกล้อง</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ยังไม่มีแชท\nเริ่มต้นด้วยการส่งข้อความหาเพื่อนสักคน</string>
+    <!-- Message shown when there are no archived chats to display -->
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">ไม่มีแชทให้แสดง</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4825,7 +4870,7 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">ไม่มีกลุ่มอื่นร่วมกัน</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">ไม่มีกลุ่มร่วมกัน</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="other">%1$d other groups in common</item>
+        <item quantity="other">มีอีก %1$d กลุ่มร่วมกัน</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="other">มี %1$d กลุ่มร่วมกัน</item>
@@ -5563,6 +5608,8 @@
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">คัดลอกหมายเลขโทรศัพท์ไปยังคลิปบอร์ดแล้ว</string>
     <string name="ConversationSettingsFragment__phone_number">หมายเลขโทรศัพท์</string>
     <string name="ConversationSettingsFragment__get_badges">รับโล่ติดโปรไฟล์ด้วยการสนับสนุน Signal แตะที่โล่เพื่อเรียนรู้เพิ่มเติม</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">เพิ่มสมาชิก</string>
@@ -8200,6 +8247,17 @@
     <string name="NoBackupToRestore_step3">เปิดใช้งานการสำรองข้อมูล แล้วรอจนการสำรองข้อมูลของคุณเสร็จสมบูรณ์</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">ข้ามการกู้คืน</string>
+
+    <!-- Accessibility label for close search button in MainToolbar -->
+    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <!-- Accessibility label for clear search query in MainToolbar -->
+    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__more_options_content_description">More options</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__proxy_content_description">Proxy</string>
 
     <!-- EOF -->
 </resources>

@@ -5,10 +5,12 @@
 
 package org.thoughtcrime.securesms.backup.v2.processor
 
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toInt
 import org.thoughtcrime.securesms.backup.v2.ExportState
+import org.thoughtcrime.securesms.backup.v2.ImportSkips
 import org.thoughtcrime.securesms.backup.v2.ImportState
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
@@ -20,7 +22,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.serialize
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.RecipientId
-import java.lang.IllegalStateException
+import org.whispersystems.signalservice.api.util.UuidUtil
 import java.time.DayOfWeek
 import org.thoughtcrime.securesms.backup.v2.proto.NotificationProfile as NotificationProfileProto
 
@@ -41,6 +43,12 @@ object NotificationProfileProcessor {
   }
 
   fun import(profile: NotificationProfileProto, importState: ImportState) {
+    val notificationProfileUuid = UuidUtil.parseOrNull(profile.id)
+    if (notificationProfileUuid == null) {
+      ImportSkips.notificationProfileIdNotFound()
+      return
+    }
+
     val profileId = SignalDatabase
       .writableDatabase
       .insertInto(NotificationProfileTable.TABLE_NAME)
@@ -50,7 +58,8 @@ object NotificationProfileProcessor {
         NotificationProfileTable.COLOR to (AvatarColor.fromColor(profile.color) ?: AvatarColor.random()).serialize(),
         NotificationProfileTable.CREATED_AT to profile.createdAtMs,
         NotificationProfileTable.ALLOW_ALL_CALLS to profile.allowAllCalls.toInt(),
-        NotificationProfileTable.ALLOW_ALL_MENTIONS to profile.allowAllMentions.toInt()
+        NotificationProfileTable.ALLOW_ALL_MENTIONS to profile.allowAllMentions.toInt(),
+        NotificationProfileTable.NOTIFICATION_PROFILE_ID to notificationProfileUuid.toString()
       )
       .run()
 
@@ -89,6 +98,7 @@ object NotificationProfileProcessor {
 
 private fun NotificationProfile.toBackupFrame(includeRecipient: (RecipientId) -> Boolean): Frame {
   val profile = NotificationProfileProto(
+    id = UuidUtil.toByteArray(this.notificationProfileId.uuid).toByteString(),
     name = this.name,
     emoji = this.emoji.takeIf { it.isNotBlank() },
     color = this.color.colorInt(),

@@ -1,17 +1,20 @@
 package org.thoughtcrime.securesms.conversationlist
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 
 /**
  * Mapping model of folders used in [ChatFolderAdapter]
  */
+@Parcelize
 data class ChatFolderMappingModel(
   val chatFolder: ChatFolderRecord,
   val unreadCount: Int,
   val isMuted: Boolean,
   val isSelected: Boolean
-) : MappingModel<ChatFolderMappingModel> {
+) : MappingModel<ChatFolderMappingModel>, Parcelable {
   override fun areItemsTheSame(newItem: ChatFolderMappingModel): Boolean {
     return chatFolder.id == newItem.chatFolder.id
   }
