@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Estetyt käyttäjät</string>
     <string name="BlockedUsersActivity__add_blocked_user">Lisää estetty käyttäjä</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Et voi estää itseäsi</string>
     <string name="BlockedUsersActivity__blocked_users_will">Estetyt käyttäjät eivät voi soittaa sinulle tai lähettää sinulle viestejä.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Ei estettyjä käyttäjiä</string>
     <string name="BlockedUsersActivity__block_user">Estetäänkö käyttäjä?</string>
@@ -1719,7 +1719,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Lähettäjä %1$s, vastaanottaja %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Sinun lähettämäsi, vastaanottaja %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Tätä mediaa ei ole vielä lähetetty.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Muistuta minua myöhemmin</string>
@@ -2765,12 +2765,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">Tunnusluvun vahvistus onnistui. Muistutamme sinua uudelleen viikon kuluttua.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Tunnusluvun vahvistus onnistui. Muistutamme sinua uudelleen parin viikon kuluttua.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">Tunnusluvun vahvistus onnistui. Muistutamme sinua uudelleen kuukauden kuluttua.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">Muistutamme sinua jälleen myöhemmin.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">Muistutamme sinua jälleen huomenna.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">Muistutamme sinua jälleen muutaman päivän päästä.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">Muistutamme sinua jälleen viikon kuluttua.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">Muistutamme sinua jälleen parin viikon kuluttua.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">Muistutamme sinua jälleen kuukauden kuluttua.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Kuva</string>
@@ -2787,29 +2787,29 @@
     <string name="StickerManagementActivity_stickers">Tarrat</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">Käytettävissä</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">Asennettu</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">Tarrapaketteja ei ole saatavilla</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">Tarrapaketteja ei ole asennettu</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">Tuntematon</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">Asennetut tarrat</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">Vastaanotetut tarrat</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Signal Artist -sarja</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">Lataa tarrapaketti %1$s</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Ladatun paketin valintamerkki</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">Vedä ja pudota -kahva</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">Lataa</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">Tarroja ei ole asennettu</string>
@@ -2842,7 +2842,7 @@
     <string name="SubmitDebugLogActivity_share">Jaa</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Loki julkaistaan intermetissä, jossa se on kehittäjien nähtävissä. Voit tutkia sitä ennen lähettämistä.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Kun napsautat Lähetä, lokitiedosto lähetetään 30 päivän ajaksi verkkoon ja sille määritetään yksityinen URL-osoite. Voit tallentaa sen ensin myös paikallisesti.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3747,7 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Ei kiitos</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Äskeiset</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tämä viesti</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Äskettäin käytetyt</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Hymiöt ja ihmiset</string>
@@ -3762,15 +3762,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ei tuloksia</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">Äskeiset</string>
+    <string name="GifQuickSearchOption__trending">Trendaavat</string>
+    <string name="GifQuickSearchOption__celebrate">Juhli</string>
+    <string name="GifQuickSearchOption__love">Ihastu</string>
+    <string name="GifQuickSearchOption__thumbs_up">Peukku ylös</string>
+    <string name="GifQuickSearchOption__surprised">Yllättynyt</string>
+    <string name="GifQuickSearchOption__excited">Innoissaan</string>
+    <string name="GifQuickSearchOption__sad">Surullinen</string>
+    <string name="GifQuickSearchOption__angry">Vihainen</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Käytä oletusta</string>
@@ -4367,7 +4367,7 @@
     <string name="conversation_list_fragment__open_camera_description">Avaa kamera</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Keskusteluita ei vielä ole.\nAloita lähettämällä viesti kaverillesi.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Arkistoidut keskustelut näkyvät täällä.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Ei näytettäviä keskusteluja</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5743,7 +5743,7 @@
     <string name="ConversationSettingsFragment__phone_number">Puhelinnumero</string>
     <string name="ConversationSettingsFragment__get_badges">Hanki profiiliisi merkkejä tukemalla Signalia. Lue lisää napauttamalla merkkiä.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Tätä mediaa ei ole vielä lähetetty.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Lisää jäseniä</string>
@@ -8426,15 +8426,15 @@
     <string name="NoBackupToRestore_skip_restore">Ohita palautus</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">Sulje haku</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">Tyhjennä haku</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">Lisää valintoja</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">Ilmoitusprofiili</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">Välityspalvelin</string>
 
     <!-- EOF -->
 </resources>

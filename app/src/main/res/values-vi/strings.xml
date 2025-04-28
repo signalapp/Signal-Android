@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Người dùng đã chặn</string>
     <string name="BlockedUsersActivity__add_blocked_user">Thêm người dùng vào danh sách chặn</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Không thể chặn chính mình</string>
     <string name="BlockedUsersActivity__blocked_users_will">Người dùng bị chặn sẽ không thể gửi tin nhắn hay gọi cho bạn.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Không có người dùng đã chặn</string>
     <string name="BlockedUsersActivity__block_user">Chặn người dùng này?</string>
@@ -1669,7 +1669,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Được gửi từ %1$s tới %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Được gửi từ bạn tới %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Tập tin đa phương tiện này chưa được gửi.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Nhắc tôi sau</string>
@@ -2676,12 +2676,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">Xác minh mã PIN thành công. Chúng tôi sẽ nhắc bạn lại sau một tuần nữa.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Xác minh mã PIN thành công. Chúng tôi sẽ nhắc bạn lại sau vài tuần nữa.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">Xác minh mã PIN thành công. Chúng tôi sẽ nhắc bạn lại sau một tháng nữa.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">Chúng tôi sẽ nhắc bạn lại sau.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">Chúng tôi sẽ nhắc bạn lại vào ngày mai.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">Chúng tôi sẽ nhắc bạn lại trong vài ngày nữa.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">Chúng tôi sẽ nhắc bạn lại trong một tuần nữa.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">Chúng tôi sẽ nhắc bạn lại trong vài tuần nữa.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">Chúng tôi sẽ nhắc bạn lại trong một tháng nữa.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Ảnh</string>
@@ -2698,29 +2698,29 @@
     <string name="StickerManagementActivity_stickers">Nhãn dán</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">Sẵn có</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">Đã cài đặt</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">Không có gói nhãn dán khả dụng nào</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">Chưa cài gói nhãn dán nào</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">Không rõ</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">Các gói nhãn dán đã cài</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">Nhãn dán nhận được</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Tuyển tập Nghệ sĩ Signal</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">Tải gói nhãn dán %1$s</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Dấu kiểm đã tải xuống</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">Thanh kéo và thả</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">Tải xuống</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">Chưa có nhãn dán nào được cài</string>
@@ -2753,7 +2753,7 @@
     <string name="SubmitDebugLogActivity_share">Chia sẻ</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Nhật kí này sẽ được đăng trực tuyến công khai cho những người đóng góp theo dõi. Bạn có thể kiểm tra nó trước khi gửi đi.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Khi bạn bấm Gửi, nhật ký của bạn sẽ được đăng online trong 30 ngày tại một URL độc nhất, chưa được xuất bản. Bạn có thể Lưu trên thiết bị trước.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3640,7 +3640,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Không, cảm ơn</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Gần đây</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Tin nhắn này</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Sử dụng gần đây</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Mặt cười và Con người</string>
@@ -3655,15 +3655,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Không tìm thấy kết quả</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">Gần đây</string>
+    <string name="GifQuickSearchOption__trending">Đang thịnh hành</string>
+    <string name="GifQuickSearchOption__celebrate">Chúc mừng</string>
+    <string name="GifQuickSearchOption__love">Yêu thích</string>
+    <string name="GifQuickSearchOption__thumbs_up">Ra hiệu đồng ý</string>
+    <string name="GifQuickSearchOption__surprised">Ngạc nhiên</string>
+    <string name="GifQuickSearchOption__excited">Hào hứng</string>
+    <string name="GifQuickSearchOption__sad">Buồn</string>
+    <string name="GifQuickSearchOption__angry">Tức giận</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Dùng mặc định</string>
@@ -4256,7 +4256,7 @@
     <string name="conversation_list_fragment__open_camera_description">Mở Camera</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Chưa có tin nhắn.\nBắt đầu bằng việc nhắn tin cho một người bạn.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Cuộc trò chuyện được lưu trữ sẽ hiển thị ở đây.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Không có cuộc trò chuyện</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5609,7 +5609,7 @@
     <string name="ConversationSettingsFragment__phone_number">Số điện thoại</string>
     <string name="ConversationSettingsFragment__get_badges">Hãy thu thập nhiều huy hiệu đính trên hồ sơ của bạn bằng cách hỗ trợ cho Signal. Bấm vào huy hiệu để biết thêm chi tiết.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Tập tin đa phương tiện này chưa được gửi.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Thêm thành viên</string>
@@ -8249,13 +8249,13 @@
     <string name="NoBackupToRestore_skip_restore">Bỏ qua</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">Đóng tìm kiếm</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">Xoá Tìm kiếm</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">Tùy chọn khác</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">Cấu hình Thông báo</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
 

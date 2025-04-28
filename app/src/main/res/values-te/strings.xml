@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">బ్లాక్ చేయబడిన యూజర్లు</string>
     <string name="BlockedUsersActivity__add_blocked_user">బ్లాక్ చేయబడిన యూజర్‌ను జోడించండి</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">మిమ్మల్ని మీరు బ్లాక్ చేసుకోలేరు</string>
     <string name="BlockedUsersActivity__blocked_users_will">బ్లాక్ చేయబడిన యూజర్లు మీకు కాల్ చేయలేరు లేదా మీకు సందేశాలు పంపలేరు.</string>
     <string name="BlockedUsersActivity__no_blocked_users">బ్లాక్ చేయబడిన యూజర్లు లేరు</string>
     <string name="BlockedUsersActivity__block_user">యూజర్‌ను బ్లాక్ చేసేదా?</string>
@@ -1719,7 +1719,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">%1$sనుండి%2$sవరకు పంపబడింది</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">మీరు పంపారు%1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">ఈ మీడియా ఇంకా పంపబడలేదు.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">తరువాత నాకు గుర్తు చేయండి</string>
@@ -2765,12 +2765,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN విజయవంతంగా ధృవీకరించబడింది. మేం మీకు మళ్లీ వారంలో గుర్తు చేస్తాం.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN విజయవంతంగా ధృవీకరించబడింది. మేం మీకు కొన్నివారాల్లో మళ్లీ గుర్తు చేస్తాం.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN విజయవంతంగా ధృవీకరించబడింది. మేం మీకు మళ్లీ నెలలో గుర్తు చేస్తాం.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">మేము మీకు తర్వాత మళ్ళీ గుర్తు చేస్తాము.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">మేము మీకు రేపు మళ్ళీ గుర్తు చేస్తాము.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">మేము మీకు కొద్ది రోజుల్లో మళ్ళీ గుర్తు చేస్తాము.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">మేము మీకు ఒక వారంలో మళ్ళీ గుర్తు చేస్తాము.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">మేము మీకు రెండు వారాల్లో మళ్ళీ గుర్తు చేస్తాము.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">మేము మీకు ఒక నెలలో మళ్ళీ గుర్తు చేస్తాము.</string>
 
     <!-- Slide -->
     <string name="Slide_image">చిత్రం</string>
@@ -2787,29 +2787,29 @@
     <string name="StickerManagementActivity_stickers">స్టిక్కర్లు</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">లభ్యం</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">ఇన్‌స్టాల్ చేయబడింది</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">స్టిక్కర్ ప్యాక్‌లు ఏవీ అందుబాటులో లేవు</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">స్టిక్కర్ ప్యాక్‌లు ఏవీ ఇన్‌స్టాల్ చేయబడలేదు</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">తెలియని</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">ఇన్‌స్టాల్ చేసిన స్టిక్కర్లు</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">మీరు అందుకున్న స్టిక్కర్లు</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Signal ఆర్టిస్ట్ సిరీస్</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">%1$s స్టిక్కర్ ప్యాక్‌ను డౌన్‌లోడ్ చేసుకోండి</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">డౌన్‌లోడ్ చేయబడిన చెక్‌మార్క్</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">డ్రాగ్ మరియు డ్రాప్ హ్యాండిల్</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">దిగుమతి</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">స్టిక్కర్లు వ్యవస్థాపించబడలేదు</string>
@@ -2842,7 +2842,7 @@
     <string name="SubmitDebugLogActivity_share">పంచుకోండి</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">కంట్రిబ్యూటర్‌లు వీక్షించడానికి ఈ లాగ్ పబ్లిక్‌గా ఆన్‌లైన్‌లో పోస్ట్ చేయబడుతుంది. అప్‌లోడ్ చేయడానికి ముందు మీరు దానిని పరీక్షించవచ్చు.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">మీరు సబ్మిట్ మీద క్లిక్ చేసినప్పుడు, మీ లాగ్ ప్రత్యేకమైన, పబ్లిష్ చేయని  URL వద్ద 30 రోజులపాటు ఆన్‌లైన్‌లో పోస్ట్ చేయబడుతుంది. మీరు ముందుగా దానిని స్థానికంగా సేవ్ చేయవచ్చు.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3747,7 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">వద్దు ధన్యవాదాలు</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">ఇటీవలివి</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ఈ సందేశం</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">ఇటీవల ఉపయోగించబడింది</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">స్మైలీస్ &amp; ప్రజలు</string>
@@ -3762,15 +3762,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ఫలితాలు కనుగొనబడలేదు</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">ఇటీవలివి</string>
+    <string name="GifQuickSearchOption__trending">ట్రెండింగ్</string>
+    <string name="GifQuickSearchOption__celebrate">వేడుక</string>
+    <string name="GifQuickSearchOption__love">ప్రేమ</string>
+    <string name="GifQuickSearchOption__thumbs_up">థంబ్స్ అప్</string>
+    <string name="GifQuickSearchOption__surprised">ఆశ్చర్యం</string>
+    <string name="GifQuickSearchOption__excited">ఉత్సాహం</string>
+    <string name="GifQuickSearchOption__sad">విచారం</string>
+    <string name="GifQuickSearchOption__angry">కోపం</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">అప్రమేయం ఉపయోగించు</string>
@@ -4367,7 +4367,7 @@
     <string name="conversation_list_fragment__open_camera_description">కెమెరా తెరువు</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ఇంకా చాట్‌లు లేవు.\nఒక స్నేహితుడికి సందేశం పంపడం ద్వారా ప్రారంభించండి.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">ఆర్కైవ్ చేసిన చాట్‌లు ఇక్కడ కనిపిస్తాయి.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">ప్రదర్శించడానికి ఏ చాట్స్ లేవు</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5743,7 +5743,7 @@
     <string name="ConversationSettingsFragment__phone_number">ఫోను నంబరు</string>
     <string name="ConversationSettingsFragment__get_badges">Signal కు మద్దతు ఇవ్వడం ద్వారా మీ ప్రొఫైల్ కొరకు బ్యాడ్జీలను పొందండి. మరింత తెలుసుకోవడానికి బ్యాడ్జి మీద తట్టండి.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">ఈ మీడియా ఇంకా పంపబడలేదు.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">సభ్యులను జోడించండి</string>
@@ -8426,15 +8426,15 @@
     <string name="NoBackupToRestore_skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">శోధనను మూసివేయండి</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">శోధనను క్లియర్ చేయండి</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">మరిన్ని ఎంపికలు</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">నోటిఫికేషన్ ప్రొఫైల్</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">ప్రాక్సీ</string>
 
     <!-- EOF -->
 </resources>

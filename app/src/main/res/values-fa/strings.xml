@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">کاربران مسدود شده</string>
     <string name="BlockedUsersActivity__add_blocked_user">افزودن کاربر مسدود شده</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">نمی‌توانید خودتان را مسدود کنید</string>
     <string name="BlockedUsersActivity__blocked_users_will">کاربران مسدودشده امکان برقراری تماس یا ارسال پیام به شما را نخواهند داشت.</string>
     <string name="BlockedUsersActivity__no_blocked_users">هیچ کاربر مسدودشده‌ای وجود ندارد</string>
     <string name="BlockedUsersActivity__block_user">کاربر مسدود شود؟</string>
@@ -1719,7 +1719,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">ارسال شد از %1$s به %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">ارسال شد از شما به %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">این فایل رسانه هنوز ارسال نشده است.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">بعداً به من یادآوری کن</string>
@@ -2765,12 +2765,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">پین با موفقیت تایید شد. یک هفته بعد دوباره به شما یادآوری خواهیم کرد.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">پین با موفقیت تایید شد. دو هفته بعد دوباره به شما یادآوری خواهیم کرد.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">پین با موفقیت تایید شد. یک ماه بعد دوباره به شما یادآوری خواهیم کرد.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">بعداً دوباره به شما یادآوری خواهیم کرد.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">فردا دوباره به شما یادآوری خواهیم کرد.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">چند روز دیگر دوباره به شما یادآوری خواهیم کرد.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">یک هفته بعد دوباره به شما یادآوری خواهیم کرد.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">دو هفته بعد دوباره به شما یادآوری خواهیم کرد.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">یک ماه بعد دوباره به شما یادآوری خواهیم کرد.</string>
 
     <!-- Slide -->
     <string name="Slide_image">تصویر</string>
@@ -2787,29 +2787,29 @@
     <string name="StickerManagementActivity_stickers">استیکرها</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">در دسترس</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">نصب شده است</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">بسته استیکری موجود نیست</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">بسته استیکری نصب نشده است</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">ناشناخته</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">استیکرهای نصب شده</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">استیکرهایی که دریافت کردید</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">مجموعهٔ هنرمند سیگنال</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">دانلود بسته استیکر %1$s</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">تیک دانلودشده</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">دستگیره کشیدن و رها کردن</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">بارگیری</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">هیچ استیکری نصب نشده است</string>
@@ -2842,7 +2842,7 @@
     <string name="SubmitDebugLogActivity_share">اشتراک‌گذاری</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">این گزارش به صورت عمومی و آنلاین برای بازنگری مشارکت‌کنندگان منتشر خواهد شد، شما می‌توانید قبل از بارگذاری آن را بازرسی کنید.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">وقتی روی ارسال کلیک می‌کنید، گزارش شما به مدت 30 روز به صورت آنلاین در یک URL منحصربه‌فرد و منتشرنشده پست می‌شود. می‌توانید ابتدا آن را در دستگاه خود ذخیره کنید.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3747,7 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">نه ممنون</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">تماس‌های اخیر</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">به‌تازگی استفاده شده</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">لبخندها و آدم‌ها</string>
@@ -3762,15 +3762,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">هیچ نتیجه‌ای پیدا نشد</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">تماس‌های اخیر</string>
+    <string name="GifQuickSearchOption__trending">پرطرفدار</string>
+    <string name="GifQuickSearchOption__celebrate">جشن</string>
+    <string name="GifQuickSearchOption__love">عشق</string>
+    <string name="GifQuickSearchOption__thumbs_up">لایک</string>
+    <string name="GifQuickSearchOption__surprised">متعجب</string>
+    <string name="GifQuickSearchOption__excited">هیجان‌زده</string>
+    <string name="GifQuickSearchOption__sad">غمگین</string>
+    <string name="GifQuickSearchOption__angry">عصبانی</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">استفاده از پیش‌فرض سیستم</string>
@@ -4367,7 +4367,7 @@
     <string name="conversation_list_fragment__open_camera_description">باز کردن دوربین</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">هنوز هیچ گفتگویی وجود ندارد.\n با پیام دادن به یک دوست شروع کنید.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">گفتگوهای بایگانی‌شده اینجا ظاهر می‌شوند.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">گفتگویی برای نمایش وجود ندارد</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5743,7 +5743,7 @@
     <string name="ConversationSettingsFragment__phone_number">شماره تلفن</string>
     <string name="ConversationSettingsFragment__get_badges">با حمایت از سیگنال نشان‌هایی برای نمایه‌تان دریافت کنید. برای اطلاعات بیشتر روی نشان ضربه بزنید.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">این فایل رسانه هنوز ارسال نشده است.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">افزودن اعضا</string>
@@ -8426,15 +8426,15 @@
     <string name="NoBackupToRestore_skip_restore">رد کردن بازیابی</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">بستن جستجو</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">پاک کردن جستجو</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">گزینه‌های بیشتر</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">نمایه اعلان‌ها</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">پروکسی</string>
 
     <!-- EOF -->
 </resources>

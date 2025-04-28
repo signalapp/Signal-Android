@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">المستخدمون المحظورون</string>
     <string name="BlockedUsersActivity__add_blocked_user">احظُرأحد المُستخدِمين</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">لا يُمكنك حظر نفسك</string>
     <string name="BlockedUsersActivity__blocked_users_will">لن يتمكن المستخدم المحظور من الاتصال بك ولا إرسال الرسائل إليك.</string>
     <string name="BlockedUsersActivity__no_blocked_users">لا يوجد مستخدمون محظورون</string>
     <string name="BlockedUsersActivity__block_user">هل ترغبُ بحظر المستخدم؟</string>
@@ -1919,7 +1919,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">مرسل من %1$s إلى %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">مرسل منك إلى %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">لم يتم إرسال ملف الوسائط بعد.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">ذكِّرني لاحقًا</string>
@@ -3121,12 +3121,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">تمَّ التحقُّق بنجاح من رقم التعريف الشخصي (PIN). سوف نُذكِّرك بإدخاله مرّة أخرى خلال أسبوع.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">تمَّ التحقُّق بنجاح من رقم التعريف الشخصي (PIN). سوف نُذكِّرك بإدخاله مرّة أخرى خلال بضعة أسابيع.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">تمَّ التحقُّق بنجاح من رقم التعريف الشخصي (PIN). سوف نُذكِّرك بإدخاله مرّة أخرى خلال شهر.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">سنُذكِّرك مرّة أخرى لاحقًا.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">سنُذكِّرك مرّة أُخرى غدًا.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">سنذكِّرك مرّة أُخرى في غُضون بضعة أيام.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">سنُذكِّرك مرّة أُخرى في غُضون أسبوعٍ واحد.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">سنُذكِّرك مرّة أُخرى في غُضون بضعة أسابيع.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">سنُذكِّرك مرّة أُخرى في غُضون شهر واحد.</string>
 
     <!-- Slide -->
     <string name="Slide_image">صورة</string>
@@ -3143,29 +3143,29 @@
     <string name="StickerManagementActivity_stickers">ملصقات</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">متاحة</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">مُثبَّتة</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">لا توجد حزم مُلصَقات متوفرة</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">لا توجد حزم مُلصَقات مُثبَّتة</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">غير معروف</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">المُلصَقات المُثبَّتة</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">المُلصَقات المستلمة</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">سلسلة فناني سيجنال</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">نزِّل حزمة المُلصَقات \"%1$s\"</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">علامة \"تمَّ التنزيل\"</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">أداة التحكُّم بالسحب والإفلات</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">تنزيل</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">لا يوجد ملصقات مُثبَّتة</string>
@@ -3198,7 +3198,7 @@
     <string name="SubmitDebugLogActivity_share">مشاركة</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">سيتمُّ نشر هذا السّجل علنًا على الانترنت حتى يتمكن المساهمون من الاطِّلاع عليه. يمكنك فحصه أو تعديله قبل تحميله.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">‫عند النقرعلى زر \"إرسال\"، سوف يُنشَر السجلّ على الإنترنت لمدة 30 يومًا في عنوان URL فريد غير منشور. يمكنك حفظه محليًا أولًا.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -4175,7 +4175,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">لا، شكرًا</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">الأحدث</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">هذه الرسالة</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">تمَّ الاستخدام مُؤخَّرًا</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">أوجُه سمايلي وأشخاص</string>
@@ -4190,15 +4190,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">لم يتم العثور على أي نتائج</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">الأحدث</string>
+    <string name="GifQuickSearchOption__trending">الرائج</string>
+    <string name="GifQuickSearchOption__celebrate">الاحتفال</string>
+    <string name="GifQuickSearchOption__love">الحب</string>
+    <string name="GifQuickSearchOption__thumbs_up">الإبهام للأعلى</string>
+    <string name="GifQuickSearchOption__surprised">مُتفاجِئ</string>
+    <string name="GifQuickSearchOption__excited">مُتحمِّس</string>
+    <string name="GifQuickSearchOption__sad">حزين</string>
+    <string name="GifQuickSearchOption__angry">غاضب</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">استخدِم الافتراضي</string>
@@ -4811,7 +4811,7 @@
     <string name="conversation_list_fragment__open_camera_description">فتح الكاميرا</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">لا دردشات حتى الآن.\nابدأ من خلال مراسلة صديق.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">سَتظهر الدردشات المؤرشَفة هنا.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">لا توجد أي دردشات للعرض</string>
     <!-- Button text that will open up chat folder settings -->
@@ -6279,7 +6279,7 @@
     <string name="ConversationSettingsFragment__phone_number">رقم الهاتف</string>
     <string name="ConversationSettingsFragment__get_badges">يمكنك الحصول على شارات لحسابك الشخصي عبر دعم سيجنال. يكفي النقر على شارة لمعرفة المزيد.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">لم يتم إرسال ملف الوسائط بعد.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">إضافة أعضاء</string>
@@ -9134,15 +9134,15 @@
     <string name="NoBackupToRestore_skip_restore">تخطِّي الاستعادة</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">إغلاق البحث</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">مسح مُدخلات البحث</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">خيارات أكثر</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">مركز الإشعارات</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">البروكسي</string>
 
     <!-- EOF -->
 </resources>

@@ -152,7 +152,7 @@
     <string name="BlockedUsersActivity__blocked_users">Utilisateurs bloqués</string>
     <string name="BlockedUsersActivity__add_blocked_user">Ajouter un utilisateur bloqué</string>
     <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
-    <string name="BlockedUsersActivity__blocked_users_will">Les utilisateurs bloqués ne pourront ni vous appeler, ni vous envoyer des messages.</string>
+    <string name="BlockedUsersActivity__blocked_users_will">Les utilisateurs bloqués ne pourront ni vous appeler, ni vous envoyer de messages.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Aucun utilisateur bloqué</string>
     <string name="BlockedUsersActivity__block_user">Bloquer cet utilisateur ?</string>
     <string name="BlockedUserActivity__s_will_not_be_able_to">%1$s ne pourra ni vous appeler, ni vous envoyer des messages.</string>
@@ -210,8 +210,8 @@
     <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">Vous pourrez échanger des messages et des appels avec ce contact, et il aura accès à votre nom et à votre photo.</string>
     <!-- Text that is shown when unblocking an SMS contact -->
     <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">Vous pourrez échanger des messages.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les personnes bloquées ne pourront ni vous appeler ni vous envoyer de messages.</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Les personnes bloquées ne pourront pas vous envoyer de messages.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les utilisateurs bloqués ne pourront ni vous appeler, ni vous envoyer de messages.</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Les utilisateurs bloqués ne pourront pas vous envoyer de messages.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloquer la réception des mises à jour et des actualités de Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
@@ -598,7 +598,7 @@
     <string name="ConversationFragment_delete">Supprimer</string>
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">Supprimer de tous les appareils</string>
-    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ce message sera supprimé de cette conversation pour tous les utiliateurs disposant d\'une version récente de Signal. Ils verront que vous avez supprimé un message.</string>
+    <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">Ce message sera supprimé de cette conversation pour tous les utilisateurs disposant d\'une version récente de Signal. Ils verront que vous avez supprimé un message.</string>
     <string name="ConversationFragment_quoted_message_not_found">Message d\'origine introuvable</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">Le message d\'origine n\'est plus disponible</string>
     <string name="ConversationFragment_failed_to_open_message">Impossible d\'ouvrir le message</string>
@@ -635,7 +635,7 @@
     <!-- Label for a button displayed in the conversation toolbar to open the main screen of the app. -->
     <string name="ConversationFragment__content_description_launch_signal_button">Ouvrir Signal</string>
     <!-- Dialog title shown when more than one contact in a group conversation is no longer verified -->
-    <string name="ConversationFragment__no_longer_verified">N’est plus marqué comme vérifié</string>
+    <string name="ConversationFragment__no_longer_verified">N\'est plus marqué comme confirmé</string>
     <!-- Button shown in conversation header when in a message request state and no groups in common to show new message safety tips -->
     <string name="ConversationFragment_safety_tips">Conseils de sécurité</string>
     <!-- Menu option to report spam in a conversation -->
@@ -831,11 +831,11 @@
     <!-- Displayed at the top of the screen and explains how profiles can be viewed. -->
     <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">Votre profil sera accessible à vos contacts, à vos groupes et aux utilisateurs à qui vous écrivez.</string>
     <!-- Title of clickable row to select phone number privacy settings -->
-    <string name="ProfileCreateFragment__who_can_find_me">Qui peut me trouver grâce à mon numéro de téléphone ?</string>
+    <string name="ProfileCreateFragment__who_can_find_me">Qui peut me trouver grâce à mon numéro ?</string>
 
     <!-- WhoCanSeeMyPhoneNumberFragment -->
     <!-- Toolbar title for this screen -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Qui peut me trouver grâce à mon numéro de téléphone ?</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">Qui peut me trouver grâce à mon numéro ?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">Toutes les personnes disposant de votre numéro de téléphone pourront voir que vous utilisez Signal et lancer une conversation avec vous.</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
@@ -1486,7 +1486,7 @@
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">Votre nom d\'utilisateur, votre code QR et votre lien ne s\'affichent pas sur votre profil. Ne partagez votre nom d\'utilisateur qu\'avec des personnes de confiance.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
-    <string name="ManageProfileFragment__username_footer_no_username">Vos amis peuvent désormais vous contacter grâce à votre nom d’utilisateur facultatif, ce qui vous évite de partager votre numéro de téléphone. </string>
+    <string name="ManageProfileFragment__username_footer_no_username">Vos amis peuvent désormais vous contacter grâce à votre nom d\'utilisateur facultatif, ce qui vous évite de partager votre numéro de téléphone. </string>
     <string name="ManageProfileFragment_profile_name">Nom de profil</string>
     <string name="ManageProfileFragment_username">Nom d\'utilisateur</string>
     <string name="ManageProfileFragment_about">À propos</string>
@@ -1514,7 +1514,7 @@
 
     <!-- UsernameOutOfSyncReminder -->
     <!-- Displayed above the conversation list when a user needs to address an issue with their username -->
-    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Une erreur s’est produite et votre nom d’utilisateur n’est plus associé à votre compte. Vous pouvez tenter de le reconfigurer ou en choisir un autre.</string>
+    <string name="UsernameOutOfSyncReminder__username_and_link_corrupt">Une erreur s\'est produite : votre nom d\'utilisateur n\'est plus associé à votre compte. Vous pouvez tenter de le reconfigurer ou en choisir un autre.</string>
     <!-- Displayed above the conversation list when a user needs to address an issue with their username link -->
     <string name="UsernameOutOfSyncReminder__link_corrupt">Une erreur s\'est produite : le lien et le code QR associés à votre nom d\'utilisateur ne sont plus valides. Veuillez créer un nouveau lien pour le partager.</string>
     <!-- Action text to navigate user to manually fix the issue with their username -->
@@ -1995,7 +1995,7 @@
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
     <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">L\'historique de vos messages avec %1$s et une autre conversation que cette personne a créée ont été fusionnés.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
-    <string name="MessageRecord_s_belongs_to_s">%1$s appartient à %2$s</string>
+    <string name="MessageRecord_s_belongs_to_s">%1$s est le numéro de %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
     <string name="MessageRecord_you_sent_request">Vous avez envoyé une demande d\'activation des paiements à %1$s</string>
     <!-- Request message from recipient to activate payments -->
@@ -2661,12 +2661,12 @@
     <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Pour vous permettre de contacter vos amis, Signal a besoin de l\'autorisation \"Contacts\". Vos contacts sont importés grâce au service de découverte confidentielle de Signal : autrement dit, ils sont chiffrés de bout en bout et nous n\'y avons jamais accès.</string>
     <string name="RegistrationActivity_rate_limited_to_service">Vous avez dépassé le nombre de tentatives autorisées pour inscrire ce numéro. Veuillez réessayer plus tard.</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
-    <string name="RegistrationActivity_rate_limited_to_try_again">Vous avez atteint le nombre maximal de tentatives d’inscription de ce numéro. Veuillez réessayer dans %1$s.</string>
+    <string name="RegistrationActivity_rate_limited_to_try_again">Vous avez dépassé le nombre de tentatives autorisées pour inscrire ce numéro. Veuillez réessayer dans %1$s.</string>
     <string name="RegistrationActivity_unable_to_connect_to_service">Impossible de se connecter au service. Veuillez vérifier la connexion réseau et réessayer.</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
     <string name="RegistrationActivity_sms_provider_error">Des problèmes liés au fournisseur de services SMS empêchent Signal d\'envoyer un code par SMS. Merci de réessayer dans quelques heures.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Nous n’avons pas pu vous envoyer un code de vérification par SMS. Demandez plutôt de recevoir votre code par appel vocal.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">Impossible de vous envoyer un code de vérification par SMS. Nous pouvous vous communiquer votre code via un appel vocal.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">Demande de code de vérification impossible. Vérifiez votre connexion réseau puis réessayez.</string>
     <string name="RegistrationActivity_non_standard_number_format">Format de numéro inhabituel</string>
@@ -2787,21 +2787,21 @@
     <string name="StickerManagementActivity_stickers">Stickers</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">Disponibles</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">Installés</string>
     <!-- Shown when there are no sticker packs available for installation -->
     <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
     <!-- Shown when there are no sticker packs currently installed -->
     <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">Inconnu</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">Stickers installés</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">Stickers reçus</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Stickers d\'artistes pour Signal</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2809,7 +2809,7 @@
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
     <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">Télécharger</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">Aucun sticker n’est installé</string>
@@ -2842,7 +2842,7 @@
     <string name="SubmitDebugLogActivity_share">Partager</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ce journal sera publiquement disponible sur le web, où les contributeurs pourront le consulter. Vous pouvez l’examiner avant de l’importer.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Après avoir cliqué sur \"Envoyer\", votre journal sera publié en ligne pendant 30 jours sur une URL non publique unique. Vous pouvez d\'abord l\'enregistrer localement.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2910,7 +2910,7 @@
     <!--  Displayed in the conversation list when your message history has been merged -->
     <string name="ThreadRecord_message_history_has_been_merged">L’historique de vos messages a fusionné</string>
     <!--  Displayed in the conversation list when identities have been merged. The first placeholder is a phone number, and the second is a person\'s name -->
-    <string name="ThreadRecord_s_belongs_to_s">%1$s appartient à %2$s</string>
+    <string name="ThreadRecord_s_belongs_to_s">%1$s est le numéro de %2$s</string>
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">Bloqué</string>
     <!-- Displayed in the conversation list when a group has been blocked -->
@@ -3208,7 +3208,7 @@
     <!-- Row item title for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__usernames">Noms d’utilisateur</string>
     <!-- Row item description for usernames explainer -->
-    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Vous pouvez désormais être contacté grâce à votre nom d’utilisateur facultatif et ainsi éviter de partager votre numéro de téléphone. Votre nom d’utilisateur n’est pas affiché dans votre profil.</string>
+    <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Vos amis peuvent désormais vous contacter grâce à votre nom d\'utilisateur facultatif, ce qui vous évite de partager votre numéro de téléphone. Le nom d\'utilisateur ne s\'affiche pas sur votre profil.</string>
     <!-- Row item title for qr code and links explainer -->
     <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">Codes QR et liens</string>
     <!-- Row item description for qr code and links explainer -->
@@ -3608,7 +3608,7 @@
 
     <!-- profile_create_activity -->
     <string name="CreateProfileActivity_first_name_required">Prénom (champ obligatoire)</string>
-    <string name="CreateProfileActivity_last_name_optional">Nom de famille (facultatif)</string>
+    <string name="CreateProfileActivity_last_name_optional">Nom (facultatif)</string>
     <string name="CreateProfileActivity_next">Suivant</string>
     <string name="CreateProfileActivity_custom_mms_group_names_and_photos_will_only_be_visible_to_you">Vous seul pouvez afficher le nom personnalisé du groupe MMS et ses photos.</string>
     <string name="CreateProfileActivity_group_descriptions_will_be_visible_to_members_of_this_group_and_people_who_have_been_invited">La présentation du groupe sera accessible aux membres de ce groupe et aux invités.</string>
@@ -3646,7 +3646,7 @@
     <!-- EditProfileNameFragment -->
     <string name="EditProfileNameFragment_your_name">Votre nom</string>
     <string name="EditProfileNameFragment_first_name">Prénom</string>
-    <string name="EditProfileNameFragment_last_name_optional">Nom de famille (facultatif)</string>
+    <string name="EditProfileNameFragment_last_name_optional">Nom (facultatif)</string>
     <string name="EditProfileNameFragment_save">Enregistrer</string>
     <string name="EditProfileNameFragment_failed_to_save_due_to_network_issues_try_again_later">Enregistrement impossible en raison d\'une erreur réseau. Veuillez réessayer plus tard.</string>
 
@@ -3747,7 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Non merci</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Récents</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ce message</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Récemment utilisés</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Émoticônes et personnages</string>
@@ -3762,15 +3762,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Aucun résultat</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">Récents</string>
+    <string name="GifQuickSearchOption__trending">Tendance</string>
+    <string name="GifQuickSearchOption__celebrate">Fête</string>
+    <string name="GifQuickSearchOption__love">Amour</string>
+    <string name="GifQuickSearchOption__thumbs_up">Pouce levé</string>
+    <string name="GifQuickSearchOption__surprised">Surprise</string>
+    <string name="GifQuickSearchOption__excited">Enthousiasme</string>
+    <string name="GifQuickSearchOption__sad">Tristesse</string>
+    <string name="GifQuickSearchOption__angry">Colère</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Utiliser la valeur par défaut</string>
@@ -4158,7 +4158,7 @@
     <!-- Title to enable payment lock -->
     <string name="PaymentsSecuritySetupFragment__protect_your_funds">Protéger vos fonds</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">Contribuez à empêcher une personne en possession de votre téléphone d\'accéder à vos fonds en renforçant votre système de sécurité. Vous pouvez désactiver cette option dans les paramètres.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">Renforcez votre sécurité et évitez qu\'une personne qui accède à votre téléphone puisse aussi accéder à vos fonds. Vous pouvez désactiver cette option dans les paramètres.</string>
     <!-- Option to enable payment lock -->
     <string name="PaymentsSecuritySetupFragment__enable_payment_lock">Activer le verrouillage des paiements</string>
     <!-- Option to cancel -->
@@ -4166,7 +4166,7 @@
     <!-- Dialog title to confirm skipping the step -->
     <string name="PaymentsSecuritySetupFragment__skip_this_step">Passer cette étape ?</string>
     <!-- Dialog description to let users know why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Passer cette étape pourrait permettre à quiconque en possession de votre téléphone de transférer vos fonds ou de consulter votre phrase de récupération.</string>
+    <string name="PaymentsSecuritySetupFragment__skipping_this_step">Si vous ignorez cette étape et que votre téléphone tombe entre de mauvaises mains, n\'importe qui peut potentiellement transférer vos fonds ou accéder à votre phrase de récupération.</string>
     <!-- Dialog option to cancel -->
     <string name="PaymentsSecuritySetupFragment__cancel">Annuler</string>
     <!-- Dialog option to skip -->
@@ -4244,7 +4244,7 @@
     <string name="CreatePaymentFragment__lt">&lt;</string>
     <string name="CreatePaymentFragment__backspace">Retour arrière</string>
     <string name="CreatePaymentFragment__add_note">Ajouter un message</string>
-    <string name="CreatePaymentFragment__conversions_are_just_estimates">Les conversions ne sont que des estimations et peuvent être imprécises.</string>
+    <string name="CreatePaymentFragment__conversions_are_just_estimates">Les montants convertis ne sont que des estimations. Ils peuvent être approximatifs.</string>
   <!-- Removed by excludeNonTranslatables <string name="CreatePaymentFragment__learn_more__conversions" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_currency_conversion</string> -->
 
     <!-- EditNoteFragment -->
@@ -4520,7 +4520,7 @@
 
     <!-- AccountLockedFragment -->
     <string name="AccountLockedFragment__account_locked">Compte verrouillé</string>
-    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Votre compte a été verrouillé afin de protéger vos données personnelles et votre sécurité. Après %1$d jours d’inactivité dans votre compte, vous pourrez réinscrire ce numéro de téléphone sans avoir besoin de votre PIN. Tout le contenu sera supprimé.</string>
+    <string name="AccountLockedFragment__your_account_has_been_locked_to_protect_your_privacy">Nous avons verrouillé votre compte pour protéger vos données personnelles et assurer votre sécurité. Votre compte doit rester inactif pendant %1$d jours. Passé ce délai, vous pourrez réenregistrer ce numéro de téléphone sans saisir votre code PIN. Tout le contenu sera supprimé.</string>
     <string name="AccountLockedFragment__next">Suivant</string>
     <string name="AccountLockedFragment__learn_more">En savoir plus</string>
   <!-- Removed by excludeNonTranslatables <string name="AccountLockedFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
@@ -4673,7 +4673,7 @@
     <!-- Subtext below option to launch into phone number privacy settings screen -->
     <string name="preferences_app_protection__choose_who_can_see">Choisissez qui peut voir votre numéro de téléphone et qui peut l’utiliser pour vous rechercher sur Signal.</string>
     <!-- Section title above two radio buttons for enabling and disabling phone number display -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Qui peut voir mon numéro de téléphone</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_see_my_number_heading">Qui peut voir mon numéro</string>
     <!-- Subtext below radio buttons when who can see my number is set to everybody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_on_description">Seuls les contacts et les groupes avec lesquels vous échangez des messages pourront voir votre numéro de téléphone.</string>
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to everybody -->
@@ -4681,7 +4681,7 @@
     <!-- Subtext below radio buttons when who can see my number is set to nobody and who can find me by number is set to nobody -->
     <string name="PhoneNumberPrivacySettingsFragment_sharing_off_discovery_off_description">Personne n’aura accès à votre numéro de téléphone.</string>
     <!-- Section title above two radio buttons for enabling and disabling whether users can find me by my phone number  -->
-    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Qui peut me trouver grâce à mon numéro de téléphone</string>
+    <string name="PhoneNumberPrivacySettingsFragment_who_can_find_me_by_number_heading">Qui peut me trouver grâce à mon numéro</string>
     <!-- Subtext below radio buttons when who can find me by number is set to everyone -->
     <string name="PhoneNumberPrivacySettingsFragment_discovery_on_description">Toutes les personnes disposant de votre numéro de téléphone pourront voir que vous utilisez Signal et lancer une conversation avec vous.</string>
     <!-- Subtext below radio buttons when who can find me by number is set to nobody -->
@@ -4691,7 +4691,7 @@
     <!-- Dialog title shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
     <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_title">Voulez-vous vraiment continuer ?</string>
     <!-- Dialog warning message shown when selecting "Nobody" in phone number privacy settings for who can find me by number -->
-    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Si vous définissez le paramètre \"Qui peut me trouver grâce à mon numéro de téléphone\" sur \"Personne\", les autres utilisateurs auront plus de difficulté à vous trouver sur Signal.</string>
+    <string name="PhoneNumberPrivacySettingsFragment__nobody_can_find_me_warning_message">Si vous définissez le paramètre \"Qui peut me trouver grâce à mon numéro\" sur \"Personne\", les autres utilisateurs auront plus de difficulté à vous trouver sur Signal.</string>
     <!-- Dialog button text for canceling change action -->
     <string name="PhoneNumberPrivacySettingsFragment__cancel">Annuler</string>
     <string name="PhoneNumberPrivacy_everyone">Tout le monde</string>
@@ -5147,7 +5147,7 @@
     <string name="payment_info_card_hide">Masquer</string>
     <!-- Title of save recovery phrase card -->
     <string name="payment_info_card_save_recovery_phrase">Enregistrer une phrase de récupération</string>
-    <string name="payment_info_card_your_recovery_phrase_gives_you">La phrase de récupération est un autre moyen de restaurer votre compte de paiement.</string>
+    <string name="payment_info_card_your_recovery_phrase_gives_you">Avec une phrase de récupération, vous disposez d\'un autre moyen de restaurer votre compte de paiement.</string>
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">Enregistrer votre phrase</string>
     <string name="payment_info_card_update_your_pin">Mettez à jour votre code PIN</string>
@@ -5181,7 +5181,7 @@
         <item quantity="other">Votre solde est automatiquement restauré lorsque vous réinstallez Signal et confirmez votre code PIN Signal. Vous pouvez aussi le restaurer grâce à une phrase de récupération unique comportant %1$d mots. Notez-la et conservez-la en lieu sûr.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">Le solde de votre compte est disponible Il est temps d\'enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour rétablir votre solde.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Un solde est disponible sur votre compte ! Il est temps d\'enregistrer votre phrase de récupération, une clé de 24•mots que vous pouvez utiliser pour récupérer votre solde.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
     <string name="PaymentsRecoveryStartFragment__time_to_save">Il est temps d’enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour rétablir votre solde.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Votre phrase de récupération est une phrase unique et personnelle de %1$d mots. Elle vous permet de restaurer votre solde.</string>
@@ -5540,7 +5540,7 @@
     <string name="NotificationProfilesFragment__create_profile">Créer un profil</string>
 
     <!-- PrivacySettingsFragment -->
-    <string name="PrivacySettingsFragment__blocked">Bloqué</string>
+    <string name="PrivacySettingsFragment__blocked">Utilisateurs bloqués</string>
     <!-- Settings label that shows the number blocked contacts -->
     <plurals name="PrivacySettingsFragment__d_contacts">
         <item quantity="one">%1$d groupe ou contact</item>
@@ -6147,7 +6147,7 @@
     <!-- Failure code text for revoked authorization of payment, displayed in a dialog or notification as a message. -->
     <string name="InAppPaymentErrors__StripeFailureCode__this_payment_was_revoked">Impossible de traiter ce paiement, car le détenteur du compte l\'a révoqué. Vous n\'avez pas été débité.</string>
     <!-- Failure code text for a payment lacking an authorized mandate or incorrect mandate, displayed in a dialog or notification as a message.-->
-    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">Une erreur s’est produite lors du traitement du paiement. Veuillez réessayer.</string>
+    <string name="InAppPaymentErrors__StripeFailureCode__an_error_occurred_while_processing_this_payment">Une erreur s\'est produite lors du traitement du paiement. Veuillez réessayer.</string>
 
     <!-- Displayed in notification when user payment fails to process on Stripe -->
     <string name="DonationsErrors__error_processing_payment">Erreur de traitement du don</string>
@@ -6546,7 +6546,7 @@
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Réagir</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
-    <string name="StoryViewerPageFragment__partially_sent">Partiellement envoyé. Touchez pour plus de détails</string>
+    <string name="StoryViewerPageFragment__partially_sent">Envoi partiel. En savoir plus</string>
     <!-- Displayed when viewing a post that has failed to send -->
     <string name="StoryViewerPageFragment__send_failed">Impossible de partager la story. Appuyez pour réessayer.</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
@@ -6917,7 +6917,7 @@
     <!-- Content description for vertical context menu button in safety number sheet rows -->
     <string name="SafetyNumberRecipientRowItem__open_context_menu">Ouvrir le menu contextuel</string>
     <!-- Sub-line when a user is verified. -->
-    <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Vérifié</string>
+    <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Confirmé</string>
     <!-- Sub-line when a user is verified. -->
     <string name="SafetyNumberRecipientRowItem__verified">Confirmé</string>
     <!-- Title of safety number changes bottom sheet when showing individual records -->
@@ -7162,9 +7162,9 @@
     <!-- Donate button label for one-time -->
     <string name="BankTransferDetailsFragment__donate_s">Faire un don de %1$s</string>
     <!-- Error label for IBAN field when number is too short -->
-    <string name="BankTransferDetailsFragment__iban_is_too_short">Votre numéro IBAN est trop court</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_short">L\'IBAN saisi est trop court.</string>
     <!-- Error label for IBAN field when number is too long -->
-    <string name="BankTransferDetailsFragment__iban_is_too_long">Votre numéro IBAN est trop long</string>
+    <string name="BankTransferDetailsFragment__iban_is_too_long">L\'IBAN saisi est trop long.</string>
     <!-- Error label for IBAN field when country is not supported -->
     <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">Code pays de l\'IBAN non pris en charge</string>
     <!-- Error label for IBAN field when number is invalid -->
@@ -7756,7 +7756,7 @@
     <!-- Field label for family name -->
     <string name="NicknameActivity__last_name">Nom</string>
     <!-- Content description for last name clear button -->
-    <string name="NicknameActivity__clear_last_name">Effacer le nom</string>
+    <string name="NicknameActivity__clear_last_name">Supprimer le nom de famille</string>
     <!-- Field label for note -->
     <string name="NicknameActivity__note">Notes</string>
     <!-- Button label to save -->
@@ -8428,11 +8428,11 @@
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Close search</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">Effacer la recherche</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">Plus d\'options</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">Profil de notification</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
 

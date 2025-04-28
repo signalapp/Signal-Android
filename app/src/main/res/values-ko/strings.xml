@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">차단한 사용자</string>
     <string name="BlockedUsersActivity__add_blocked_user">차단한 사용자 추가</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">본인은 차단할 수 없습니다</string>
     <string name="BlockedUsersActivity__blocked_users_will">차단한 사용자는 나에게 전화를 걸거나 메시지를 보낼 수 없습니다.</string>
     <string name="BlockedUsersActivity__no_blocked_users">차단한 사용자 없음</string>
     <string name="BlockedUsersActivity__block_user">이 사용자를 차단할까요?</string>
@@ -1669,7 +1669,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s 님이 %2$s에게 보냄</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">내가 %1$s에게 보냄</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">아직 전송하지 않은 미디어입니다.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">나중에 알림</string>
@@ -2676,12 +2676,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN이 성공적으로 인증되었습니다. 1주 뒤에 알려드리겠습니다.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN이 성공적으로 인증되었습니다. 2주 뒤에 알려드리겠습니다.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN이 성공적으로 인증되었습니다. 한 달 후에 다시 알려 드리겠습니다.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">나중에 다시 알려드리겠습니다.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">내일 다시 알려드리겠습니다.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">며칠 후에 다시 알려드리겠습니다.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">일주일 후에 다시 알려드리겠습니다.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">몇 주 후에 다시 알려드리겠습니다.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">한 달 후에 다시 알려드리겠습니다.</string>
 
     <!-- Slide -->
     <string name="Slide_image">이미지</string>
@@ -2698,29 +2698,29 @@
     <string name="StickerManagementActivity_stickers">스티커</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">사용 가능</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">설치됨</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">사용할 수 있는 스티커 팩이 없습니다</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">설치한 스티커 팩이 없습니다</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">알 수 없음</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">설치된 스티커</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">받은 스티커</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Signal 아티스트 시리즈</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">%1$s 스티커 팩 다운로드</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">다운로드 확인 표시</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">끌어다 놓기 핸들</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">다운로드</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">설치된 스티커 없음</string>
@@ -2753,7 +2753,7 @@
     <string name="SubmitDebugLogActivity_share">공유</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">이 로그는 기여자가 볼 수 있도록 온라인에 공개적으로 게시됩니다. 업로드하기 전에 검토할 수 있습니다.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">제출을 클릭하면 귀하의 로그는 특정한 비공개 URL에 30일 동안 올라갑니다. 먼저, 로컬에 저장해 두셔도 됩니다.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3640,7 +3640,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">아니요</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">최근</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">이 메시지</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">최근 사용함</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">웃는 &amp; 사람들</string>
@@ -3655,15 +3655,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">결과 없음</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">최근</string>
+    <string name="GifQuickSearchOption__trending">인기</string>
+    <string name="GifQuickSearchOption__celebrate">축하</string>
+    <string name="GifQuickSearchOption__love">사랑</string>
+    <string name="GifQuickSearchOption__thumbs_up">좋아요</string>
+    <string name="GifQuickSearchOption__surprised">놀람</string>
+    <string name="GifQuickSearchOption__excited">신남</string>
+    <string name="GifQuickSearchOption__sad">슬픔</string>
+    <string name="GifQuickSearchOption__angry">화남</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">기본값 사용</string>
@@ -4256,7 +4256,7 @@
     <string name="conversation_list_fragment__open_camera_description">카메라 열기</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">아직 대화가 없습니다.\n친구에게 메시지를 보내 시작해 보세요.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">보관한 대화가 여기에 표시됩니다.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">표시할 대화가 없습니다.</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5609,7 +5609,7 @@
     <string name="ConversationSettingsFragment__phone_number">전화번호</string>
     <string name="ConversationSettingsFragment__get_badges">Signal을 후원하고 배지를 받으세요. 배지를 탭하여 자세히 알아보세요.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">아직 전송하지 않은 미디어입니다.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">멤버 추가</string>
@@ -8249,15 +8249,15 @@
     <string name="NoBackupToRestore_skip_restore">복원 건너뛰기</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">검색 닫기</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">검색 기록 삭제</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">옵션 더 보기</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">알림 프로필</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">프록시</string>
 
     <!-- EOF -->
 </resources>

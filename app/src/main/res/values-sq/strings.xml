@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Përdoruesit e bllokuar</string>
     <string name="BlockedUsersActivity__add_blocked_user">Shto përdorues të bllokuar</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Nuk mund ta bllokosh veten</string>
     <string name="BlockedUsersActivity__blocked_users_will">Përdoruesit e bllokuar nuk do të mund të të telefonojnë apo të të dërgojnë mesazhe.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Nuk ka përdorues të bllokuar</string>
     <string name="BlockedUsersActivity__block_user">Të bllokohet përdoruesin?</string>
@@ -1719,7 +1719,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Dërguar nga %1$s për %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Dërguar nga ju për %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Media nuk është dërguar ende.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Kujtomë më vonë</string>
@@ -2765,12 +2765,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-i u verifikua me sukses. Do t’jua kujtojmë sërish pas një jave.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-i u verifikua me sukses. Do t’jua kujtojmë sërish pas nja dy javësh.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN-i u verifikua me sukses. Do t’jua kujtojmë sërish pas një muaji.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">Do të ta rikujtojmë më vonë.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">Ne do të ta kujtojmë përsëri nesër.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">Do të ta kujtojmë sërish pas disa ditësh.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">Do të ta kujtojmë përsëri pas një jave.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">Do të ta kujtojmë përsëri pas disa javësh.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">Do të ta kujtojmë përsëri pas një muaji.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Figurë</string>
@@ -2787,29 +2787,29 @@
     <string name="StickerManagementActivity_stickers">Ngjitëse</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">Në dispozicion</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">Instaluar</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">Nuk ka paketa ngjitëse të disponueshme</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">Nuk ka paketa ngjitëse të instaluara</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">I panjohur</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">Ngjitës të Instaluar</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">Ngjitës Që Keni Marrë</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Seritë Artis Signal-i</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">Shkarko paketën e ngjitëseve %1$s</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Shenja e kontrollit e shkarkuar</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">Tërhiq dhe lësho dorezën</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">Shkarko</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">S\\’ka ngjitës të instaluar</string>
@@ -2842,7 +2842,7 @@
     <string name="SubmitDebugLogActivity_share">Ndajeni Me të Tjerë</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ky regjistër do të postohet publikisht në internet që ta shohin kontribuesit. Para se ta ngarkoni, mund ta shqyrtoni.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Kur klikoni mbi Parashtroje, regjistri juaj do të postohet në internet për 30 ditë, te një URL unike, e pabotuar më parë. Mundeni ta Ruani lokalisht, së pari.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3747,7 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Jo, faleminderit</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Së fundmi</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Këtë Mesazh</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Përdorur Së Fundi</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emotikone &amp; Persona</string>
@@ -3762,15 +3762,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">S\\’u gjet përfundim</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">Së fundmi</string>
+    <string name="GifQuickSearchOption__trending">Tendencë</string>
+    <string name="GifQuickSearchOption__celebrate">Festo</string>
+    <string name="GifQuickSearchOption__love">Dashuria</string>
+    <string name="GifQuickSearchOption__thumbs_up">Gishti i madh lart</string>
+    <string name="GifQuickSearchOption__surprised">I habitur</string>
+    <string name="GifQuickSearchOption__excited">I emocionuar</string>
+    <string name="GifQuickSearchOption__sad">I trishtuar</string>
+    <string name="GifQuickSearchOption__angry">I zemëruar</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Përdor parazgjedhje</string>
@@ -4367,7 +4367,7 @@
     <string name="conversation_list_fragment__open_camera_description">Hape Kamerën</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ende pa biseda.\nFillo duke i dërguar një mesazh një shoku.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Bisedat e arkivuara do të shfaqen këtu.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Nuk ka biseda për të shfaqur</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5743,7 +5743,7 @@
     <string name="ConversationSettingsFragment__phone_number">Numër telefoni</string>
     <string name="ConversationSettingsFragment__get_badges">Merr distinktivët për profilin tënd, duke përkrahur Signal. Për të mësuar më shumë, kliko mbi një distinktiv.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Media nuk është dërguar ende.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Shtoni anëtarë</string>
@@ -8426,15 +8426,15 @@
     <string name="NoBackupToRestore_skip_restore">Kapërce rikthimin</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">Mbyll kërkimin</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">Spastro Kërkimin</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">Opsione të tjera</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">Profili i njoftimit</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">Ndërmjetës</string>
 
     <!-- EOF -->
 </resources>

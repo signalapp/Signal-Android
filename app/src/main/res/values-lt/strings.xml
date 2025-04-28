@@ -2965,21 +2965,21 @@
     <string name="StickerManagementActivity_stickers">Lipdukai</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">Galimas</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">Įdiegtas</string>
     <!-- Shown when there are no sticker packs available for installation -->
     <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
     <!-- Shown when there are no sticker packs currently installed -->
     <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">Nežinoma</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">Įdiegti lipdukai</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">Jūsų gauti lipdukai</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Signal menininkų serija</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2987,7 +2987,7 @@
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
     <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">Atsisiųsti</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">Nėra jokių įdiegtų lipdukų</string>
@@ -3020,7 +3020,7 @@
     <string name="SubmitDebugLogActivity_share">Bendrinti</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Šis žurnalas bus viešai paskelbtas internete talkininkams peržiūrėti. Prieš išsiųsdami, galite jį panagrinėti.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Kai spustelėsite „Pateikti“, jūsų žurnalas bus 30-čiai dienų paskelbtas internete unikaliu neskelbiamu URL adresu. Galite, iš pradžių, įsirašyti jį savo įrenginyje.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3961,7 +3961,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Ne, ačiū</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Paskiausi</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ši žinutė</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Paskiausi</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Šypsenėlės ir žmonės</string>
@@ -3976,15 +3976,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Nerasta jokių rezultatų</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">Paskiausi</string>
+    <string name="GifQuickSearchOption__trending">Populiaru</string>
+    <string name="GifQuickSearchOption__celebrate">Šventė</string>
+    <string name="GifQuickSearchOption__love">Meilė</string>
+    <string name="GifQuickSearchOption__thumbs_up">Patinka</string>
+    <string name="GifQuickSearchOption__surprised">Nustebęs</string>
+    <string name="GifQuickSearchOption__excited">Linksmas</string>
+    <string name="GifQuickSearchOption__sad">Liūdnas</string>
+    <string name="GifQuickSearchOption__angry">Piktas</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Naudoti numatytąjį</string>
@@ -8782,13 +8782,13 @@
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Close search</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">Išvalyti paiešką</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">Daugiau parinkčių</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">Pranešimų profilis</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">Įgaliotasis serveris</string>
 
     <!-- EOF -->
 </resources>

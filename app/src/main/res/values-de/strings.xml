@@ -2787,21 +2787,21 @@
     <string name="StickerManagementActivity_stickers">Sticker</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">Verfügbar</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">Installiert</string>
     <!-- Shown when there are no sticker packs available for installation -->
     <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
     <!-- Shown when there are no sticker packs currently installed -->
     <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">Unbekannt</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">Installierte Sticker</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">Empfangene Sticker</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Signal-Artist-Serie</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2809,7 +2809,7 @@
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
     <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">Herunterladen</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">Keine Sticker installiert</string>
@@ -2842,7 +2842,7 @@
     <string name="SubmitDebugLogActivity_share">Teilen</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dieses Diagnoseprotokoll wird online gestellt, sodass Mitwirkende es einsehen können. Bevor du das Protokoll hochlädst, kannst du es noch einmal überprüfen.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Wenn du auf »Übermitteln« klickst, wird dein Diagnoseprotokoll unter einer eindeutigen, unveröffentlichten Internetadresse für 30 Tage online gestellt. Du kannst es aber auch erst lokal speichern.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3747,7 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Nein danke</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Zuletzt verwendet</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Diese Nachricht</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Zuletzt verwendet</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; Menschen</string>
@@ -3762,15 +3762,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Keine Ergebnisse gefunden</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">Zuletzt verwendet</string>
+    <string name="GifQuickSearchOption__trending">Trends</string>
+    <string name="GifQuickSearchOption__celebrate">Feiern</string>
+    <string name="GifQuickSearchOption__love">Liebe</string>
+    <string name="GifQuickSearchOption__thumbs_up">Daumen hoch</string>
+    <string name="GifQuickSearchOption__surprised">Überrascht</string>
+    <string name="GifQuickSearchOption__excited">Aufgeregt</string>
+    <string name="GifQuickSearchOption__sad">Traurig</string>
+    <string name="GifQuickSearchOption__angry">Verärgert</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Standard verwenden</string>
@@ -8428,11 +8428,11 @@
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Close search</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">Suche zurücksetzen</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">Weitere Optionen</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">Benachrichtigungsprofil</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
 

@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Geblokkeerde personen</string>
     <string name="BlockedUsersActivity__add_blocked_user">Geblokkeerde persoon toevoegen</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Kan jezelf niet blokkeren</string>
     <string name="BlockedUsersActivity__blocked_users_will">Geblokkeerde personen kunnen je niet bellen en geen berichten sturen.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Je hebt geen personen geblokkeerd</string>
     <string name="BlockedUsersActivity__block_user">Persoon blokkeren?</string>
@@ -1719,7 +1719,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Door %1$s naar %2$s verzonden</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Door jou naar %1$s verzonden</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Dit bestand is nog niet verzonden.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Herinner me later</string>
@@ -2765,12 +2765,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">Pincode succesvol geverifieerd. We zullen het over een week opnieuw vragen.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Pincode succesvol geverifieerd. We zullen het over een aantal weken opnieuw vragen.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">Pincode succesvol geverifieerd. We zullen het over een maand opnieuw vragen.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">We zullen het later opnieuw vragen.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We zullen het morgen opnieuw vragen.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We zullen het over een aantal dagen opnieuw vragen.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We zullen het over een week opnieuw vragen.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We zullen het over een aantal weken opnieuw vragen.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We zullen het over een maand opnieuw vragen.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Afbeelding</string>
@@ -2787,29 +2787,29 @@
     <string name="StickerManagementActivity_stickers">Stickers</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">Beschikbaar</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">Geïnstalleerd</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">Er zijn geen stickerpakketten beschikbaar</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">Er zijn geen stickerpakketten geïnstalleerd</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">Onbekend</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">Geïnstalleerde stickerpakketten</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">Ontvangen stickerpakketten</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Signals eigen stickerpakketten</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">Download %1$s stickerpakket</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Vinkje voor gedownload</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">Slepen en neerzetten</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">Downloaden</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">Geen stickerpakketten geïnstalleerd</string>
@@ -2842,7 +2842,7 @@
     <string name="SubmitDebugLogActivity_share">Delen</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dit log bevat geen persoonlijke details zoals telefoonnummers. Als je op uploaden tikt dan wordt dit log 30 dagen lang online beschikbaar gesteld op een unieke nergens onthulde URL. Die URL kun je zelf naar de ontwikkelaars sturen.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Als je op uploaden klikt dan wordt dit log 30 dagen lang online beschikbaar gesteld op een unieke nergens onthulde URL. Je kunt dit log ook offline op je eigen apparaat opslaan.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3747,7 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Nee bedankt</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Onlangs gebruikt</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Dit bericht</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Onlangs gebruikt</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smileys &amp; mensen</string>
@@ -3762,15 +3762,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Geen emoji gevonden</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
+    <string name="GifQuickSearchOption__recents">Onlangs gebruikt</string>
     <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__celebrate">Vieren</string>
+    <string name="GifQuickSearchOption__love">Liefde</string>
+    <string name="GifQuickSearchOption__thumbs_up">Duimpje omhoog</string>
+    <string name="GifQuickSearchOption__surprised">Verbaasd</string>
+    <string name="GifQuickSearchOption__excited">Blij</string>
+    <string name="GifQuickSearchOption__sad">Verdrietig</string>
+    <string name="GifQuickSearchOption__angry">Boos</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Gebruik systeemstandaard</string>
@@ -4367,7 +4367,7 @@
     <string name="conversation_list_fragment__open_camera_description">Camera openen</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Nog geen chats.\nBegin door een vriend of vriendin een bericht te sturen.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Gearchiveerde chats verschijnen hier.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Geen chats om weer te geven</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5743,7 +5743,7 @@
     <string name="ConversationSettingsFragment__phone_number">Telefoonnummer</string>
     <string name="ConversationSettingsFragment__get_badges">Door Signal te ondersteunen verdien je badges om op je profiel weer te geven. Tik op een badge om er meer over te leren.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Dit bestand is nog niet verzonden.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Leden toevoegen</string>
@@ -8426,13 +8426,13 @@
     <string name="NoBackupToRestore_skip_restore">Herstel overslaan</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">Zoekopdracht sluiten</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">Zoekopdracht wissen</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">Meer opties</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">Meldingsprofiel</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
 

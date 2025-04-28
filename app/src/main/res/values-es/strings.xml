@@ -2787,21 +2787,21 @@
     <string name="StickerManagementActivity_stickers">Stickers</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">Disponibles</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">Instalados</string>
     <!-- Shown when there are no sticker packs available for installation -->
     <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
     <!-- Shown when there are no sticker packs currently installed -->
     <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">Desconocido</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">Stickers instalados</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">Stickers recibidos</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Stickers de artistas de Signal</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -2809,7 +2809,7 @@
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
     <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">Descargar</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">No hay ningún paquete de stickers instalado</string>
@@ -2842,7 +2842,7 @@
     <string name="SubmitDebugLogActivity_share">Compartir</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este registro se publicará online y las personas que colaboran con nosotros tendrán acceso. Lo puedes examinar antes de enviarlo.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Si haces clic en Enviar, tu registro se publicará durante 30 días en una URL única y privada. Lo podrás guardar en tu dispositivo como primera opción.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3747,7 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">No, gracias</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recientes</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Este mensaje</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Usados recientemente</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Emoticonos y personas</string>
@@ -3762,15 +3762,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">No hay ningún resultado</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">Recientes</string>
+    <string name="GifQuickSearchOption__trending">Tendencia</string>
+    <string name="GifQuickSearchOption__celebrate">Celebración</string>
+    <string name="GifQuickSearchOption__love">Amor</string>
+    <string name="GifQuickSearchOption__thumbs_up">Pulgar arriba</string>
+    <string name="GifQuickSearchOption__surprised">Sorpresa</string>
+    <string name="GifQuickSearchOption__excited">Entusiasmo</string>
+    <string name="GifQuickSearchOption__sad">Tristeza</string>
+    <string name="GifQuickSearchOption__angry">Enfado</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Usar predeterminado</string>
@@ -5047,13 +5047,13 @@
     <string name="DeleteAccountFragment__delete_account">Eliminar cuenta</string>
     <string name="DeleteAccountFragment__delete_your_account_info_and_profile_photo">la información de tu cuenta y tu foto de perfil</string>
     <string name="DeleteAccountFragment__delete_all_your_messages">todos tus mensajes</string>
-    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">Eliminar %1$s en tu cuenta de pagos</string>
+    <string name="DeleteAccountFragment__delete_s_in_your_payments_account">%1$s de tu cuenta de pagos</string>
     <string name="DeleteAccountFragment__no_country_code">Código de país no especificado</string>
     <string name="DeleteAccountFragment__no_number">Número no especificado</string>
     <string name="DeleteAccountFragment__the_phone_number">El número de teléfono que has introducido no coincide con el de tu cuenta de Signal.</string>
     <string name="DeleteAccountFragment__are_you_sure">¿Seguro que quieres eliminar tu cuenta?</string>
-    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Esta acción elimina tu cuenta de Signal y reinicia la aplicación. Signal se cerrará después de completarse el proceso.</string>
-    <string name="DeleteAccountFragment__failed_to_delete_local_data">Fallo al eliminar los datos locales. Puedes hacerlo manualmente desde los ajustes del sistema para la aplicación.</string>
+    <string name="DeleteAccountFragment__this_will_delete_your_signal_account">Esta acción hará que se elimine tu cuenta de Signal y se restablezca la aplicación. Signal se cerrará después de que finalice este proceso.</string>
+    <string name="DeleteAccountFragment__failed_to_delete_local_data">No se han podido eliminar los datos locales. Puedes hacerlo manualmente desde el menú Aplicaciones en Ajustes de Android.</string>
     <string name="DeleteAccountFragment__launch_app_settings">Abrir Ajustes de aplicaciones</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
     <string name="DeleteAccountFragment__leaving_groups">Abandonando grupos…</string>
@@ -5091,7 +5091,7 @@
 
     <!-- MultiShareDialogs -->
     <string name="MultiShareDialogs__failed_to_send_to_some_users">No se ha podido enviar a algunas personas</string>
-    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Puedes compartir con un máximo de %1$d chats</string>
+    <string name="MultiShareDialogs__you_can_only_share_with_up_to">Puedes compartirlo con un máximo de %1$d chats</string>
 
     <!-- ChatWallpaperActivity -->
 
@@ -5166,7 +5166,7 @@
     <string name="DeactivateWalletFragment__deactivate_without_transferring">Desactivar sin transferir</string>
     <string name="DeactivateWalletFragment__deactivate">Desactivar</string>
     <string name="DeactivateWalletFragment__deactivate_without_transferring_question">¿Desactivar sin transferir?</string>
-    <string name="DeactivateWalletFragment__your_balance_will_remain">Tu balance permanecerá en la cartera asociada a tu cuenta de Signal para cuando decidas reactivar los pagos.</string>
+    <string name="DeactivateWalletFragment__your_balance_will_remain">Tu saldo permanecerá en la cartera asociada a tu cuenta de Signal para cuando decidas reactivar los pagos.</string>
     <string name="DeactivateWalletFragment__error_deactivating_wallet">No se ha podido desactivar la cartera.</string>
   <!-- Removed by excludeNonTranslatables <string name="DeactivateWalletFragment__learn_more__we_recommend_transferring_your_funds" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_deactivate</string> -->
 
@@ -5191,7 +5191,7 @@
     <!-- Alert dialog title which asks before going back if user wants to save recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__continue_without_saving">¿Continuar sin guardar?</string>
     <!-- Alert dialog description to let user know why recovery phrase needs to be saved -->
-    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">Tu frase de recuperación te permite restablecer tu saldo en el peor de los casos. Te recomendamos que la guardes.</string>
+    <string name="PaymentsRecoveryStartFragment__your_recovery_phrase">La frase de recuperación te permite restaurar tu saldo en caso de emergencia. Te recomendamos que la guardes.</string>
     <!-- Alert dialog option to skip recovery phrase -->
     <string name="PaymentsRecoveryStartFragment__skip_recovery_phrase">Omitir frase de recuperación</string>
     <!-- Alert dialog option to cancel dialog-->
@@ -5247,7 +5247,7 @@
 
     <!-- GroupsInCommonMessageRequest -->
     <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">No tienes grupos en común con esta persona. Revisa siempre detenidamente las solicitudes de chat antes de aceptarlas para evitar mensajes no deseados.</string>
-    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Nadie en este grupo ha chateado nunca contigo. Revisa siempre cuidadosamente solicitudes de chat antes de aceptarlas para evitar mensajes indeseados.</string>
+    <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Ninguno de tus contactos o personas con las que chateas están en este grupo. Revisa siempre detenidamente las solicitudes de chat antes de aceptarlas para evitar mensajes no deseados.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">Acerca de las solicitudes de mensaje</string>
     <string name="GroupsInCommonMessageRequest__okay">Aceptar</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupsInCommonMessageRequest__support_article" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
@@ -8428,11 +8428,11 @@
     <!-- Accessibility label for close search button in MainToolbar -->
     <string name="MainToolbar__close_search_content_description">Close search</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">Borrar búsqueda</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">Más opciones</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">Perfil de notificaciones</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
 

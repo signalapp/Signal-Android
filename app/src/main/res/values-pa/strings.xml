@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ਪਾਬੰਦੀਸ਼ੁਦਾ ਵਰਤੋਂਕਾਰ</string>
     <string name="BlockedUsersActivity__add_blocked_user">ਪਾਬੰਦੀਸ਼ੁਦਾ ਵਰਤੋਂਕਾਰ ਸ਼ਾਮਲ ਕਰੋ</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">ਖੁਦ ਉੱਤੇ ਪਾਬੰਦੀ ਨਹੀਂ ਲਗਾਈ ਜਾ ਸਕਦੀ</string>
     <string name="BlockedUsersActivity__blocked_users_will">ਪਾਬੰਦੀਸ਼ੁਦਾ ਵਰਤੋਂਕਾਰ ਤੁਹਾਨੂੰ ਕਾਲ ਨਹੀਂ ਕਰ ਸਕਣਗੇ ਜਾਂ ਸੁਨੇਹੇ ਨਹੀਂ ਭੇਜ ਸਕਣਗੇ।</string>
     <string name="BlockedUsersActivity__no_blocked_users">ਕੋਈ ਵੀ ਪਾਬੰਦੀਸ਼ੁਦਾ ਵਰਤੋਂਕਾਰ ਮੌਜੂਦ ਨਹੀਂ ਹੈ</string>
     <string name="BlockedUsersActivity__block_user">ਕੀ ਵਰਤੋਂਕਾਰ ਉੱਤੇ ਪਾਬੰਦੀ ਲਗਾਉਣੀ ਹੈ?</string>
@@ -1719,7 +1719,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s ਦੁਆਰਾ %2$s ਨੂੰ ਭੇਜਿਆ</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">ਤੁਹਾਡੇ ਦੁਆਰਾ %1$s ਨੂੰ ਭੇਜਿਆ</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">ਇਹ ਮੀਡੀਆ ਅਜੇ ਭੇਜਿਆ ਨਹੀਂ ਗਿਆ ਹੈ।</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">ਮੈਨੂੰ ਬਾਅਦ ਵਿੱਚ ਯਾਦ ਕਰਾਓ</string>
@@ -2765,12 +2765,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">ਪਿੰਨ ਕਾਮਯਾਬੀ ਨਾਲ ਤਸਦੀਕ ਕੀਤਾ। ਅਸੀਂ ਤੁਹਾਨੂੰ ਹਫ਼ਤੇ ਕੁ ਵਿੱਚ ਫੇਰ ਯਾਦ ਕਰਵਾਵਾਂਗੇ।</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">ਪਿੰਨ ਕਾਮਯਾਬੀ ਨਾਲ ਤਸਦੀਕ ਕੀਤਾ। ਅਸੀਂ ਤੁਹਾਨੂੰ ਕੁਝ ਕੁ ਹਫ਼ਤਿਆਂ ਵਿੱਚ ਫੇਰ ਯਾਦ ਕਰਵਾਵਾਂਗੇ।</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">ਪਿੰਨ ਕਾਮਯਾਬੀ ਨਾਲ ਤਸਦੀਕ ਕੀਤਾ। ਅਸੀਂ ਤੁਹਾਨੂੰ ਮਹੀਨੇ ਕੁ ਵਿੱਚ ਫੇਰ ਯਾਦ ਕਰਵਾਵਾਂਗੇ।</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">ਅਸੀਂ ਤੁਹਾਨੂੰ ਬਾਅਦ ਵਿੱਚ ਦੁਬਾਰਾ ਯਾਦ ਕਰਾਵਾਂਗੇ।</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">ਅਸੀਂ ਤੁਹਾਨੂੰ ਕੱਲ੍ਹ ਦੁਬਾਰਾ ਯਾਦ ਕਰਾਵਾਂਗੇ।</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">ਅਸੀਂ ਤੁਹਾਨੂੰ ਕੁਝ ਦਿਨਾਂ ਬਾਅਦ ਦੁਬਾਰਾ ਯਾਦ ਕਰਾਵਾਂਗੇ।</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">ਅਸੀਂ ਤੁਹਾਨੂੰ ਇੱਕ ਹਫ਼ਤੇ ਬਾਅਦ ਦੁਬਾਰਾ ਯਾਦ ਕਰਾਵਾਂਗੇ।</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">ਅਸੀਂ ਤੁਹਾਨੂੰ ਕੁਝ ਹਫ਼ਤਿਆਂ ਬਾਅਦ ਦੁਬਾਰਾ ਯਾਦ ਕਰਾਵਾਂਗੇ।</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">ਅਸੀਂ ਤੁਹਾਨੂੰ ਇੱਕ ਮਹੀਨੇ ਬਾਅਦ ਦੁਬਾਰਾ ਯਾਦ ਕਰਾਵਾਂਗੇ।</string>
 
     <!-- Slide -->
     <string name="Slide_image">ਚਿੱਤਰ</string>
@@ -2787,29 +2787,29 @@
     <string name="StickerManagementActivity_stickers">ਸਟਿੱਕਰ</string>
 
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">ਉਪਲਬਧ</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
+    <string name="StickerManagement_installed_tab_label">ਇੰਸਟਾਲ ਕੀਤਾ ਗਿਆ</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">ਕੋਈ ਵੀ ਸਟਿੱਕਰ ਪੈਕ ਉਪਲਬਧ ਨਹੀਂ ਹਨ</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">ਕੋਈ ਵੀ ਸਟਿੱਕਰ ਪੈਕ ਇੰਸਟਾਲ ਨਹੀਂ ਕੀਤਾ ਗਿਆ ਹੈ</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_author_unknown">ਅਣਜਾਣ</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">ਇੰਸਟਾਲ ਕੀਤੇ ਸਟਿੱਕਰ</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">ਤੁਹਾਨੂੰ ਪ੍ਰਾਪਤ ਹੋਏ ਸਟਿੱਕਰ</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Signal ਕਲਾਕਾਰ ਸੀਰੀਜ਼</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">%1$s ਸਟਿੱਕਰ ਪੈਕ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">ਡਾਊਨਲੋਡ ਕੀਤਾ ਚੈੱਕਮਾਰਕ</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">ਹੈਂਡਲ ਨੂੰ ਡਰੈਗ ਅਤੇ ਡਰੌਪ ਕਰੋ</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">ਡਾਊਨਲੋਡ ਕਰੋ</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_no_stickers_installed">ਕੋਈ ਸਟਿੱਕਰ ਸਥਾਪਤ ਨਹੀਂ ਕੀਤੇ ਗਏ</string>
@@ -2842,7 +2842,7 @@
     <string name="SubmitDebugLogActivity_share">ਸਾਂਝਾ ਕਰੋ</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">ਇਸ ਲਾਗ ਨੂੰ ਯੋਗਦਾਨ ਪਾਉਣ ਵਾਲਿਆਂ ਦੇ ਦੇਖਣ ਲਈ ਜਨਤਕ ਤੌਰ ’ਤੇ ਆਨਲਾਈਨ ਪੋਸਟ ਕੀਤਾ ਜਾਵੇਗਾ। ਤੁਸੀਂ ਇਸ ਨੂੰ ਅੱਪਲੋਡ ਕਰਨ ਤੋਂ ਪਹਿਲਾਂ ਇਸ ਦੀ ਜਾਂਚ ਕਰ ਸਕਦੇ ਹੋ।</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">ਜਦੋਂ ਤੁਸੀਂ ਦਰਜ ਕਰੋ \'ਤੇ ਕਲਿੱਕ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਹਾਡਾ ਲੌਗ 30 ਦਿਨਾਂ ਲਈ ਇੱਕ ਵਿਲੱਖਣ, ਗੈਰ-ਪ੍ਰਕਾਸ਼ਿਤ URL \'ਤੇ ਆਨਲਾਈਨ ਪੋਸਟ ਕਰ ਦਿੱਤਾ ਜਾਵੇਗਾ। ਤੁਸੀਂ ਇਸਨੂੰ ਪਹਿਲਾਂ ਸਥਾਨਕ ਤੌਰ \'ਤੇ ਸੇਵ ਕਰ ਸਕਦੇ ਹੋ।</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3747,7 +3747,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">ਨਹੀਂ ਧੰਨਵਾਦ</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">ਹਾਲੀਆ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ਇਹ ਸੁਨੇਹਾ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">ਤਾਜ਼ਾ ਵਰਤੇ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">ਮੁਖੜੇ ਤੇ ਲੋਕ</string>
@@ -3762,15 +3762,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ਕੋਈ ਨਤੀਜੇ ਨਹੀਂ ਲੱਭੇ</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">ਹਾਲੀਆ</string>
+    <string name="GifQuickSearchOption__trending">ਪ੍ਰਚਲਿਤ</string>
+    <string name="GifQuickSearchOption__celebrate">ਜਸ਼ਨ</string>
+    <string name="GifQuickSearchOption__love">ਪਿਆਰ</string>
+    <string name="GifQuickSearchOption__thumbs_up">ਚੜ੍ਹਦੀ ਕਲਾਂ</string>
+    <string name="GifQuickSearchOption__surprised">ਹੈਰਾਨ</string>
+    <string name="GifQuickSearchOption__excited">ਉਤਸ਼ਾਹਿਤ</string>
+    <string name="GifQuickSearchOption__sad">ਉਦਾਸ</string>
+    <string name="GifQuickSearchOption__angry">ਗੁੱਸਾ</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">ਡਿਫੌਲਟ ਵਰਤੋ</string>
@@ -4367,7 +4367,7 @@
     <string name="conversation_list_fragment__open_camera_description">ਕੈਮਰਾ ਖੋਲ੍ਹੋ</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ਹਾਲੇ ਕੋਈ ਚੈਟ ਨਹੀਂ ਹੈ।\nਦੋਸਤ ਨੂੰ ਸੁਨੇਹਾ ਕਰਕੇ ਸ਼ੁਰੂਆਤ ਕਰੋ।</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">ਆਰਕਾਈਵ ਕੀਤੀਆਂ ਚੈਟਾਂ ਇੱਥੇ ਦਿਖਾਈ ਦੇਣਗੀਆਂ।</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">ਦਿਖਾਉਣ ਲਈ ਕੋਈ ਚੈਟ ਨਹੀਂ</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5743,7 +5743,7 @@
     <string name="ConversationSettingsFragment__phone_number">ਫੋਨ ਨੰਬਰ</string>
     <string name="ConversationSettingsFragment__get_badges">Signal ਨੂੰ ਆਪਣਾ ਸਹਿਯੋਗ ਦੇ ਕੇ ਆਪਣੀ ਪ੍ਰੋਫ਼ਾਈਲ ਲਈ ਬੈਜ ਪ੍ਰਾਪਤ ਕਰੋ। ਹੋਰ ਜਾਣਨ ਲਈ ਬੈਜ ਉੱਤੇ ਟੈਪ ਕਰੋ।</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">ਇਹ ਮੀਡੀਆ ਅਜੇ ਭੇਜਿਆ ਨਹੀਂ ਗਿਆ ਹੈ।</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">ਮੈਂਬਰਾਂ ਨੂੰ ਸ਼ਾਮਲ ਕਰੋ</string>
@@ -8426,15 +8426,15 @@
     <string name="NoBackupToRestore_skip_restore">ਰੀਸਟੋਰ ਕਰਨਾ ਛੱਡੋ</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">ਖੋਜ ਬੰਦ ਕਰੋ</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">ਖੋਜ ਨੂੰ ਮਿਟਾਓ</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">ਹੋਰ ਵਿਕਲਪ</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">ਸੂਚਨਾ ਪ੍ਰੋਫ਼ਾਈਲ</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">ਪ੍ਰੌਕਸੀ</string>
 
     <!-- EOF -->
 </resources>
