@@ -55,7 +55,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -604,6 +606,7 @@ fun MediaList(
     }
   }
 
+  val haptics = LocalHapticFeedback.current
   var selectionState by remember { mutableStateOf(MediaMultiSelectState()) }
 
   Box(modifier = Modifier.fillMaxSize()) {
@@ -620,6 +623,7 @@ fun MediaList(
                 selectionState = selectionState.copy(selected = if (selectionState.selected.contains(attachment.id)) selectionState.selected - attachment.id else selectionState.selected + attachment.id)
               }
             }, onLongClick = {
+              haptics.performHapticFeedback(HapticFeedbackType.LongPress)
               selectionState = if (selectionState.selecting) MediaMultiSelectState() else MediaMultiSelectState(selecting = true, selected = setOf(attachment.id))
             })
             .padding(horizontal = 16.dp, vertical = 8.dp)

@@ -39,6 +39,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -300,13 +302,19 @@ object Rows {
     onLongClick: (() -> Unit)? = null,
     enabled: Boolean = true
   ) {
+    val haptics = LocalHapticFeedback.current
     Row(
       modifier = modifier
         .fillMaxWidth()
         .combinedClickable(
           enabled = enabled && (onClick != null || onLongClick != null),
           onClick = onClick ?: {},
-          onLongClick = onLongClick ?: {}
+          onLongClick = {
+            if (onLongClick != null) {
+              haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+              onLongClick()
+            }
+          }
         )
         .padding(defaultPadding()),
       verticalAlignment = CenterVertically
