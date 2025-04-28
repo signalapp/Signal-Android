@@ -942,7 +942,7 @@
 
 
     <!-- BackupFrequencyPickerDialogFragment -->
-    <string name="BackupFrequencyPickerDialogFragment__enter_frequency">Enter frequency</string>
+    <string name="BackupFrequencyPickerDialogFragment__set_backup_frequency">Set backup frequency</string>
     <string name="BackupFrequencyPickerDialogFragment__ok">OK</string>
     <string name="BackupFrequencyPickerDialogFragment__cancel">Cancel</string>
 

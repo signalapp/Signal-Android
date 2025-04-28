@@ -24,7 +24,7 @@ class BackupFrequencyPickerDialogFragment(private val defaultFrequency: BackupFr
       .setSingleChoiceItems(localizedFrequencyOptions, defaultIndex) { _, selectedIndex ->
         selectedFrequency = frequencyOptions[selectedIndex]
       }
-      .setTitle(R.string.BackupFrequencyPickerDialogFragment__enter_frequency)
+      .setTitle(R.string.BackupFrequencyPickerDialogFragment__set_backup_frequency)
       .setPositiveButton(R.string.BackupFrequencyPickerDialogFragment__ok, callback)
       .setNegativeButton(R.string.BackupFrequencyPickerDialogFragment__cancel, null)
       .create()
