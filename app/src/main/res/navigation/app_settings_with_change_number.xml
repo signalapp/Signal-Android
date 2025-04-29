@@ -208,12 +208,12 @@
 
     <fragment
         android:id="@+id/advancedPinSettingsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedAdvancedPinPreferenceFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsFragment"
         android:label="advanced_pin_settings_fragment" />
 
     <fragment
         android:id="@+id/deleteAccountFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedDeleteAccountFragment"
+        android:name="org.thoughtcrime.securesms.delete.DeleteAccountFragment"
         android:label="delete_account_fragment"
         tools:layout="@layout/delete_account_fragment" />
 
@@ -387,7 +387,7 @@
 
     <fragment
         android:id="@+id/backupsPreferenceFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedBackupsPreferenceFragment"
+        android:name="org.thoughtcrime.securesms.preferences.BackupsPreferenceFragment"
         android:label="backups_preference_fragment"
         tools:layout="@layout/fragment_backups" />
 
@@ -504,7 +504,7 @@
 
     <fragment
         android:id="@+id/editProxyFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedEditProxyFragment"
+        android:name="org.thoughtcrime.securesms.preferences.EditProxyFragment"
         android:label="edit_proxy_fragment" />
 
     <!-- endregion -->
@@ -539,7 +539,7 @@
 
     <fragment
         android:id="@+id/helpFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedHelpFragment"
+        android:name="org.thoughtcrime.securesms.help.HelpFragment"
         android:label="help_fragment">
 
         <argument

@@ -11,9 +11,11 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ShareCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -54,6 +56,9 @@ public class EditProxyFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    Toolbar toolbar = view.findViewById(R.id.toolbar);
+    toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
+
     this.proxySwitch = view.findViewById(R.id.edit_proxy_switch);
     this.proxyTitle  = view.findViewById(R.id.edit_proxy_address_title);
     this.proxyText   = view.findViewById(R.id.edit_proxy_host);
