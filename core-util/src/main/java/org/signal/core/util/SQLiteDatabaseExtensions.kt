@@ -464,7 +464,7 @@ class UpdateBuilderPart3(
   private val whereArgs: Array<out Any?>
 ) {
   @JvmOverloads
-  fun run(conflictStrategy: Int = SQLiteDatabase.CONFLICT_NONE): Int {
+  fun run(): Int {
     val query = StringBuilder("UPDATE $tableName SET ")
 
     val contentValuesKeys = values.keySet()
@@ -476,16 +476,6 @@ class UpdateBuilderPart3(
     }
 
     query.append(" WHERE ").append(where)
-
-    val conflictString = when (conflictStrategy) {
-      SQLiteDatabase.CONFLICT_IGNORE -> " ON CONFLICT IGNORE"
-      SQLiteDatabase.CONFLICT_ABORT -> " ON CONFLICT ABORT"
-      SQLiteDatabase.CONFLICT_FAIL -> " ON CONFLICT FAIL"
-      SQLiteDatabase.CONFLICT_ROLLBACK -> " ON CONFLICT ROLLBACK"
-      SQLiteDatabase.CONFLICT_REPLACE -> " ON CONFLICT REPLACE"
-      else -> ""
-    }
-    query.append(conflictString)
 
     val statement = db.compileStatement(query.toString())
     var bindIndex = 1
