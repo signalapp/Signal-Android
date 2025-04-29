@@ -9,6 +9,8 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -30,11 +32,14 @@ import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -48,6 +53,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
@@ -58,6 +64,11 @@ import org.signal.core.ui.compose.copied.androidx.compose.rememberDragDropState
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
+import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
+import org.thoughtcrime.securesms.database.model.StickerPackId
+import org.thoughtcrime.securesms.database.model.StickerPackKey
+import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
 import org.thoughtcrime.securesms.util.viewModel
 
@@ -89,9 +100,13 @@ class StickerManagementActivityV2 : PassphraseRequiredActivity() {
           uiState = uiState,
           onNavigateBack = ::supportFinishAfterTransition,
           availableTabCallbacks = object : AvailableStickersContentCallbacks {
+            override fun onForwardClick(pack: AvailableStickerPack) = openShareSheet(pack.id, pack.key)
             override fun onInstallClick(pack: AvailableStickerPack) = viewModel.installStickerPack(pack)
           },
           installedTabCallbacks = object : InstalledStickersContentCallbacks {
+            override fun onForwardClick(pack: InstalledStickerPack) = openShareSheet(pack.id, pack.key)
+            override fun onSelectClick(pack: InstalledStickerPack) = viewModel.toggleSelection(pack)
+            override fun onRemoveClick(pack: InstalledStickerPack) = viewModel.uninstallStickerPack(pack)
             override fun onDragAndDropEvent(event: DragAndDropEvent) {
               when (event) {
                 is DragAndDropEvent.OnItemMove -> viewModel.updatePosition(event.fromIndex, event.toIndex)
@@ -104,6 +119,20 @@ class StickerManagementActivityV2 : PassphraseRequiredActivity() {
       }
     }
   }
+
+  private fun openShareSheet(packId: StickerPackId, packKey: StickerPackKey) {
+    MultiselectForwardFragment.showBottomSheet(
+      supportFragmentManager = supportFragmentManager,
+      multiselectForwardFragmentArgs = MultiselectForwardFragmentArgs(
+        multiShareArgs = listOf(
+          MultiShareArgs.Builder()
+            .withDraftText(StickerUrl.createShareLink(packId.value, packKey.value))
+            .build()
+        ),
+        title = R.string.StickerManagement_share_sheet_title
+      )
+    )
+  }
 }
 
 private data class Page(
@@ -112,17 +141,25 @@ private data class Page(
 )
 
 interface AvailableStickersContentCallbacks {
+  fun onForwardClick(pack: AvailableStickerPack)
   fun onInstallClick(pack: AvailableStickerPack)
 
   object Empty : AvailableStickersContentCallbacks {
+    override fun onForwardClick(pack: AvailableStickerPack) = Unit
     override fun onInstallClick(pack: AvailableStickerPack) = Unit
   }
 }
 
 interface InstalledStickersContentCallbacks {
+  fun onForwardClick(pack: InstalledStickerPack)
+  fun onSelectClick(pack: InstalledStickerPack)
+  fun onRemoveClick(pack: InstalledStickerPack)
   fun onDragAndDropEvent(event: DragAndDropEvent)
 
   object Empty : InstalledStickersContentCallbacks {
+    override fun onForwardClick(pack: InstalledStickerPack) = Unit
+    override fun onSelectClick(pack: InstalledStickerPack) = Unit
+    override fun onRemoveClick(pack: InstalledStickerPack) = Unit
     override fun onDragAndDropEvent(event: DragAndDropEvent) = Unit
   }
 }
@@ -232,6 +269,7 @@ private fun PagerTab(
   )
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun AvailableStickersContent(
   blessedPacks: List<AvailableStickerPack>,
@@ -242,6 +280,8 @@ private fun AvailableStickersContent(
   if (blessedPacks.isEmpty() && notBlessedPacks.isEmpty()) {
     EmptyView(text = stringResource(R.string.StickerManagement_available_tab_empty_text))
   } else {
+    val haptics = LocalHapticFeedback.current
+
     LazyColumn(
       contentPadding = PaddingValues(top = 8.dp),
       modifier = modifier.fillMaxHeight()
@@ -252,10 +292,22 @@ private fun AvailableStickersContent(
           items = blessedPacks,
           key = { it.id.value }
         ) {
+          val menuController = remember { DropdownMenus.MenuController() }
           AvailableStickerPackRow(
             pack = it,
-            onInstallClick = { callbacks.onInstallClick(it) },
-            modifier = Modifier.animateItem()
+            menuController = menuController,
+            onForwardClick = callbacks::onForwardClick,
+            onInstallClick = callbacks::onInstallClick,
+            modifier = Modifier
+              .animateItem()
+              .combinedClickable(
+                onClick = {},
+                onLongClick = {
+                  haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                  menuController.show()
+                },
+                onLongClickLabel = stringResource(R.string.StickerManagement_accessibility_open_context_menu)
+              )
           )
         }
       }
@@ -270,10 +322,21 @@ private fun AvailableStickersContent(
           items = notBlessedPacks,
           key = { it.id.value }
         ) {
+          val menuController = remember { DropdownMenus.MenuController() }
           AvailableStickerPackRow(
             pack = it,
-            onInstallClick = { callbacks.onInstallClick(it) },
-            modifier = Modifier.animateItem()
+            menuController = menuController,
+            onForwardClick = callbacks::onForwardClick,
+            onInstallClick = callbacks::onInstallClick,
+            modifier = Modifier
+              .animateItem()
+              .combinedClickable(
+                onClick = {},
+                onLongClick = {
+                  haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                  menuController.show()
+                }
+              )
           )
         }
       }
@@ -281,6 +344,7 @@ private fun AvailableStickersContent(
   }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun InstalledStickersContent(
   packs: List<InstalledStickerPack>,
@@ -295,6 +359,7 @@ private fun InstalledStickersContent(
 
     val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
+    val haptics = LocalHapticFeedback.current
 
     LazyColumn(
       contentPadding = PaddingValues(top = 8.dp),
@@ -317,13 +382,28 @@ private fun InstalledStickersContent(
         items = packs,
         key = { _, pack -> pack.id.value }
       ) { index, pack ->
+        val menuController = remember { DropdownMenus.MenuController() }
+
         DraggableItem(
           index = index + 1,
           dragDropState = dragDropState
         ) { isDragging ->
           InstalledStickerPackRow(
             pack = pack,
-            modifier = Modifier.shadow(if (isDragging) 1.dp else 0.dp)
+            menuController = menuController,
+            onForwardClick = { callbacks.onForwardClick(pack) },
+            onSelectClick = { callbacks.onSelectClick(pack) },
+            onRemoveClick = { callbacks.onRemoveClick(pack) },
+            modifier = Modifier
+              .shadow(if (isDragging) 1.dp else 0.dp)
+              .combinedClickable(
+                onClick = {},
+                onLongClick = {
+                  haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                  menuController.show()
+                },
+                onLongClickLabel = stringResource(R.string.StickerManagement_accessibility_open_context_menu)
+              )
           )
         }
       }

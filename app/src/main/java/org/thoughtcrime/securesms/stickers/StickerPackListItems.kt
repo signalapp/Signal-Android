@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.stickers
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DropdownMenus
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.nullIfBlank
@@ -53,7 +56,9 @@ fun StickerPackSectionHeader(
 @Composable
 fun AvailableStickerPackRow(
   pack: AvailableStickerPack,
-  onInstallClick: () -> Unit = {},
+  menuController: DropdownMenus.MenuController,
+  onForwardClick: (AvailableStickerPack) -> Unit = {},
+  onInstallClick: (AvailableStickerPack) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -83,7 +88,7 @@ fun AvailableStickerPackRow(
           icon = readyIcon,
           startButtonContentDesc = startButtonContentDesc,
           startButtonOnClickLabel = startButtonOnClickLabel,
-          onStartClick = onInstallClick
+          onStartClick = { onInstallClick(pack) }
         )
 
         is DownloadStatus.InProgress -> TransferProgressState.InProgress()
@@ -96,6 +101,31 @@ fun AvailableStickerPackRow(
     }
 
     TransferProgressIndicator(state = transferState)
+
+    DropdownMenus.Menu(
+      controller = menuController,
+      offsetX = 0.dp,
+      offsetY = 12.dp,
+      modifier = modifier.background(SignalTheme.colors.colorSurface2)
+    ) {
+      MenuItem(
+        icon = ImageVector.vectorResource(R.drawable.symbol_arrow_circle_down_24),
+        text = stringResource(R.string.StickerManagement_menu_install_pack),
+        onClick = {
+          onInstallClick(pack)
+          menuController.hide()
+        }
+      )
+
+      MenuItem(
+        icon = ImageVector.vectorResource(R.drawable.symbol_forward_24),
+        text = stringResource(R.string.StickerManagement_menu_forward_pack),
+        onClick = {
+          onForwardClick(pack)
+          menuController.hide()
+        }
+      )
+    }
   }
 }
 
@@ -105,6 +135,10 @@ fun InstalledStickerPackRow(
   multiSelectModeEnabled: Boolean = false,
   checked: Boolean = false,
   onCheckedChange: (Boolean) -> Unit = {},
+  menuController: DropdownMenus.MenuController,
+  onForwardClick: (InstalledStickerPack) -> Unit = {},
+  onRemoveClick: (InstalledStickerPack) -> Unit = {},
+  onSelectClick: (InstalledStickerPack) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   Row(
@@ -137,6 +171,40 @@ fun InstalledStickerPackRow(
         .padding(horizontal = 12.dp)
         .size(24.dp)
     )
+
+    DropdownMenus.Menu(
+      controller = menuController,
+      offsetX = 0.dp,
+      offsetY = 12.dp,
+      modifier = modifier.background(SignalTheme.colors.colorSurface2)
+    ) {
+      MenuItem(
+        icon = ImageVector.vectorResource(R.drawable.symbol_forward_24),
+        text = stringResource(R.string.StickerManagement_menu_forward_pack),
+        onClick = {
+          onForwardClick(pack)
+          menuController.hide()
+        }
+      )
+
+      MenuItem(
+        icon = ImageVector.vectorResource(R.drawable.symbol_check_circle_24),
+        text = stringResource(R.string.StickerManagement_menu_select_pack),
+        onClick = {
+          onSelectClick(pack)
+          menuController.hide()
+        }
+      )
+
+      MenuItem(
+        icon = ImageVector.vectorResource(R.drawable.symbol_trash_24),
+        text = stringResource(R.string.StickerManagement_menu_remove_pack),
+        onClick = {
+          onRemoveClick(pack)
+          menuController.hide()
+        }
+      )
+    }
   }
 }
 
@@ -205,7 +273,8 @@ private fun AvailableStickerPackRowPreviewBlessed() = SignalTheme {
       title = "Swoon / Faces",
       author = "Swoon",
       isBlessed = true
-    )
+    ),
+    menuController = DropdownMenus.MenuController()
   )
 }
 
@@ -218,7 +287,8 @@ private fun AvailableStickerPackRowPreviewNotBlessed() = SignalTheme {
       author = "Miguel Ángel Camprubí",
       isBlessed = false,
       downloadStatus = DownloadStatus.NotDownloaded
-    )
+    ),
+    menuController = DropdownMenus.MenuController()
   )
 }
 
@@ -231,7 +301,8 @@ private fun AvailableStickerPackRowPreviewDownloading() = SignalTheme {
       author = "Agnes Lee",
       isBlessed = false,
       downloadStatus = DownloadStatus.InProgress
-    )
+    ),
+    menuController = DropdownMenus.MenuController()
   )
 }
 
@@ -244,7 +315,8 @@ private fun AvailableStickerPackRowPreviewDownloaded() = SignalTheme {
       author = "Agnes Lee",
       isBlessed = false,
       downloadStatus = DownloadStatus.Downloaded
-    )
+    ),
+    menuController = DropdownMenus.MenuController()
   )
 }
 
@@ -253,6 +325,7 @@ private fun AvailableStickerPackRowPreviewDownloaded() = SignalTheme {
 private fun InstalledStickerPackRowPreview() = SignalTheme {
   InstalledStickerPackRow(
     multiSelectModeEnabled = false,
+    menuController = DropdownMenus.MenuController(),
     pack = StickerPreviewDataFactory.installedPack(
       title = "Bandit the Cat",
       author = "Agnes Lee",
@@ -266,10 +339,51 @@ private fun InstalledStickerPackRowPreview() = SignalTheme {
 private fun InstalledStickerPackRowSelectModePreview() = SignalTheme {
   InstalledStickerPackRow(
     multiSelectModeEnabled = true,
+    menuController = DropdownMenus.MenuController(),
     pack = StickerPreviewDataFactory.installedPack(
       title = "Bandit the Cat",
       author = "Agnes Lee",
       isBlessed = true
     )
+  )
+}
+
+@Composable
+private fun MenuItem(
+  icon: ImageVector,
+  text: String,
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  DropdownMenus.Item(
+    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
+    text = {
+      Row(
+        verticalAlignment = Alignment.CenterVertically
+      ) {
+        Icon(
+          imageVector = icon,
+          contentDescription = null,
+          modifier = Modifier.size(24.dp)
+        )
+        Text(
+          text = text,
+          style = MaterialTheme.typography.bodyLarge,
+          modifier = Modifier.padding(horizontal = 16.dp)
+        )
+      }
+    },
+    onClick = onClick,
+    modifier = modifier
+  )
+}
+
+@SignalPreview
+@Composable
+private fun MenuItemPreview() = Previews.Preview {
+  MenuItem(
+    icon = ImageVector.vectorResource(R.drawable.symbol_forward_24),
+    text = "Forward",
+    onClick = { }
   )
 }

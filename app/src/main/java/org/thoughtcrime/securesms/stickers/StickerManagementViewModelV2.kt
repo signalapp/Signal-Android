@@ -98,7 +98,7 @@ class StickerManagementViewModelV2 : ViewModel() {
     }
   }
 
-  fun uninstallStickerPack(pack: AvailableStickerPack) {
+  fun uninstallStickerPack(pack: InstalledStickerPack) {
     viewModelScope.launch {
       StickerManagementRepository.uninstallStickerPack(packId = pack.id, packKey = pack.key)
     }
@@ -113,13 +113,23 @@ class StickerManagementViewModelV2 : ViewModel() {
       StickerManagementRepository.setStickerPacksOrder(_uiState.value.installedPacks.map { it.record })
     }
   }
+
+  fun toggleSelection(pack: InstalledStickerPack) {
+    _uiState.update { previousState ->
+      previousState.copy(
+        isMultiSelectMode = true,
+        selectedPackIds = if (pack.isSelected) previousState.selectedPackIds.minus(pack.id) else previousState.selectedPackIds.plus(pack.id)
+      )
+    }
+  }
 }
 
 data class StickerManagementUiState(
   val availableBlessedPacks: List<AvailableStickerPack> = emptyList(),
   val availableNotBlessedPacks: List<AvailableStickerPack> = emptyList(),
   val installedPacks: List<InstalledStickerPack> = emptyList(),
-  val isMultiSelectMode: Boolean = false
+  val isMultiSelectMode: Boolean = false,
+  val selectedPackIds: Set<StickerPackId> = emptySet()
 )
 
 data class AvailableStickerPack(
