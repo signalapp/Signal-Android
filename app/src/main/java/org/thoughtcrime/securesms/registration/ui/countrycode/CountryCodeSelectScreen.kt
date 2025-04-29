@@ -78,7 +78,8 @@ fun CountryCodeSelectScreen(
           Text(text = title, style = MaterialTheme.typography.titleLarge)
         },
         onNavigationClick = onDismissed,
-        navigationIconPainter = rememberVectorPainter(ImageVector.vectorResource(R.drawable.symbol_x_24))
+        navigationIconPainter = rememberVectorPainter(ImageVector.vectorResource(R.drawable.symbol_x_24)),
+        navigationContentDescription = stringResource(R.string.Material3SearchToolbar__close)
       )
     }
   ) { padding ->

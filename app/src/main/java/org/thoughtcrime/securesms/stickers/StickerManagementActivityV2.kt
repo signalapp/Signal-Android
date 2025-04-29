@@ -243,6 +243,7 @@ private fun TopAppBar(
     title = stringResource(R.string.StickerManagementActivity_stickers),
     titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
     navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
+    navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
     onNavigationClick = onBackPress
   )
 }

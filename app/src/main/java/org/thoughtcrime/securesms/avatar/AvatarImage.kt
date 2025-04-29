@@ -26,7 +26,8 @@ import org.thoughtcrime.securesms.util.NameUtil
 fun AvatarImage(
   recipient: Recipient,
   modifier: Modifier = Modifier,
-  useProfile: Boolean = true
+  useProfile: Boolean = true,
+  contentDescription: String? = null
 ) {
   if (LocalInspectionMode.current) {
     Spacer(
@@ -38,7 +39,11 @@ fun AvatarImage(
     val state = recipient.live().liveData.map { AvatarImageState(NameUtil.getAbbreviation(it.getDisplayName(context)), it, AvatarHelper.getAvatarFileDetails(context, it.id)) }.observeAsState().value ?: return
 
     AndroidView(
-      factory = ::AvatarImageView,
+      factory = {
+        AvatarImageView(context).apply {
+          this.contentDescription = contentDescription
+        }
+      },
       modifier = modifier.background(color = Color.Transparent, shape = CircleShape)
     ) {
       if (useProfile) {
