@@ -94,11 +94,6 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setInternalCallingAudioProcessingMethod(method: CallManager.AudioProcessingMethod) {
-    preferenceDataStore.putInt(InternalValues.CALLING_AUDIO_PROCESSING_METHOD, method.ordinal)
-    refresh()
-  }
-
   fun setInternalCallingDataMode(dataMode: CallManager.DataMode) {
     preferenceDataStore.putInt(InternalValues.CALLING_DATA_MODE, dataMode.ordinal)
     refresh()
@@ -109,8 +104,33 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     refresh()
   }
 
-  fun setInternalCallingEnableOboeAdm(enabled: Boolean) {
-    preferenceDataStore.putBoolean(InternalValues.CALLING_ENABLE_OBOE_ADM, enabled)
+  fun setInternalCallingSetAudioConfig(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_SET_AUDIO_CONFIG, enabled)
+    refresh()
+  }
+
+  fun setInternalCallingUseOboeAdm(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_USE_OBOE_ADM, enabled)
+    refresh()
+  }
+
+  fun setInternalCallingUseSoftwareAec(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_USE_SOFTWARE_AEC, enabled)
+    refresh()
+  }
+
+  fun setInternalCallingUseSoftwareNs(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_USE_SOFTWARE_NS, enabled)
+    refresh()
+  }
+
+  fun setInternalCallingUseInputLowLatency(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_USE_INPUT_LOW_LATENCY, enabled)
+    refresh()
+  }
+
+  fun setInternalCallingUseInputVoiceComm(enabled: Boolean) {
+    preferenceDataStore.putBoolean(InternalValues.CALLING_USE_INPUT_VOICE_COMM, enabled)
     refresh()
   }
 
@@ -152,10 +172,14 @@ class InternalSettingsViewModel(private val repository: InternalSettingsReposito
     allowCensorshipSetting = SignalStore.internal.allowChangingCensorshipSetting,
     forceWebsocketMode = SignalStore.internal.isWebsocketModeForced,
     callingServer = SignalStore.internal.groupCallingServer,
-    callingAudioProcessingMethod = SignalStore.internal.callingAudioProcessingMethod,
     callingDataMode = SignalStore.internal.callingDataMode,
     callingDisableTelecom = SignalStore.internal.callingDisableTelecom,
-    callingEnableOboeAdm = SignalStore.internal.callingEnableOboeAdm,
+    callingSetAudioConfig = SignalStore.internal.callingSetAudioConfig,
+    callingUseOboeAdm = SignalStore.internal.callingUseOboeAdm,
+    callingUseSoftwareAec = SignalStore.internal.callingUseSoftwareAec,
+    callingUseSoftwareNs = SignalStore.internal.callingUseSoftwareNs,
+    callingUseInputLowLatency = SignalStore.internal.callingUseInputLowLatency,
+    callingUseInputVoiceComm = SignalStore.internal.callingUseInputVoiceComm,
     useBuiltInEmojiSet = SignalStore.internal.forceBuiltInEmoji,
     emojiVersion = null,
     removeSenderKeyMinimium = SignalStore.internal.removeSenderKeyMinimum,

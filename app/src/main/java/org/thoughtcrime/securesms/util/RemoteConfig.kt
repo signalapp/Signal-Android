@@ -694,37 +694,9 @@ object RemoteConfig {
     hotSwappable = false
   )
 
-  /** A comma-separated list of models that should *not* use hardware AEC for calling.  */
-  val hardwareAecBlocklistModels: String by remoteString(
-    key = "android.calling.hardwareAecBlockList",
-    defaultValue = "",
-    hotSwappable = true
-  )
-
-  /** A comma-separated list of models that should *not* use software AEC for calling.  */
-  val softwareAecBlocklistModels: String by remoteString(
-    key = "android.calling.softwareAecBlockList",
-    defaultValue = "",
-    hotSwappable = true
-  )
-
-  /** Whether the Oboe ADM should be used or not.  */
-  val oboeDeployment: Boolean by remoteBoolean(
-    key = "android.calling.oboeDeployment",
-    defaultValue = false,
-    hotSwappable = false
-  )
-
-  /** A comma-separated list of models that should use the Java ADM instead of the Oboe ADM.  */
-  val useJavaAdmModels: String by remoteString(
-    key = "android.calling.useJavaAdmList",
-    defaultValue = "",
-    hotSwappable = true
-  )
-
-  /** A comma-separated list of models that should use software AEC for calling with the Oboe ADM.  */
-  val useSoftwareAecForOboeModels: String by remoteString(
-    key = "android.calling.useSoftwareAecForOboe",
+  /** A json string representing rules necessary to build an audio configuration for a device. */
+  val callingAudioDeviceConfig: String by remoteString(
+    key = "android.calling.audioDeviceConfig",
     defaultValue = "",
     hotSwappable = true
   )
@@ -755,13 +727,6 @@ object RemoteConfig {
     key = "android.cameraXMixedModelBlockList",
     defaultValue = "",
     hotSwappable = false
-  )
-
-  /** Whether or not hardware AEC should be used for calling on devices older than API 29.  */
-  val useHardwareAecIfOlderThanApi29: Boolean by remoteBoolean(
-    key = "android.calling.useHardwareAecIfOlderThanApi29",
-    defaultValue = false,
-    hotSwappable = true
   )
 
   /** Prefetch count for stories from a given user. */
