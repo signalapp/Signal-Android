@@ -4202,6 +4202,10 @@ class ConversationFragment :
         .execute()
     }
 
+    override fun onRecorderAlreadyInUse() {
+      toast(R.string.ConversationFragment_cannot_record_voice_message_during_call)
+    }
+
     override fun onEmojiToggle() {
       container.toggleInput(MediaKeyboardFragmentCreator, composeText, showSoftKeyOnHide = true)
     }
