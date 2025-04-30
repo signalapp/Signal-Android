@@ -96,6 +96,10 @@ public class BlobProvider {
     return new BlobBuilder(data, fileSize);
   }
 
+  public static boolean isSingleUseMemoryBlob(Uri uri) throws IOException {
+    return StorageType.decode(uri.getPathSegments().get(STORAGE_TYPE_PATH_SEGMENT)) == StorageType.SINGLE_USE_MEMORY;
+  }
+
   public synchronized boolean hasStream(@NonNull Context context, @NonNull Uri uri) {
     waitUntilInitialized();
     try {
