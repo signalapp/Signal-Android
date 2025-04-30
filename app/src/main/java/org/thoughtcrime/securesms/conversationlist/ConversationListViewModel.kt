@@ -70,8 +70,8 @@ class ConversationListViewModel(
 
   val conversationsState: Flowable<List<Conversation>> = store.mapDistinctForUi { it.conversations }
   val selectedState: Flowable<ConversationSet> = store.mapDistinctForUi { it.selectedConversations }
-  val filterRequestState: Flowable<ConversationFilterRequest> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.filterRequest }.asFlowable()
-  val chatFolderState: Flowable<List<ChatFolderMappingModel>> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.chatFolders }.asFlowable()
+  val filterRequestState: Flowable<ConversationFilterRequest> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.filterRequest }.asFlowable().observeOn(AndroidSchedulers.mainThread())
+  val chatFolderState: Flowable<List<ChatFolderMappingModel>> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.chatFolders }.asFlowable().observeOn(AndroidSchedulers.mainThread())
   val hasNoConversations: Flowable<Boolean>
 
   val controller = ProxyPagingController<Long>()
