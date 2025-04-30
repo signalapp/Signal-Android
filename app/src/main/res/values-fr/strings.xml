@@ -38,7 +38,7 @@
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
     <string name="app_icon_label_notes">Notes</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">Actu</string>
+    <string name="app_icon_label_news">Actualités</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
     <string name="app_icon_label_waves">Vagues</string>
 
@@ -129,7 +129,7 @@
     <string name="AttachmentManager_signal_needs_storage_access">Pour afficher vos photos et vidéos, Signal doit être autorisé à y accéder.</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s n’a pas activé les paiements </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s n\'a pas activé les paiements </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
     <string name="AttachmentManager__request_to_activate_payments">Voulez-vous lui envoyer une demande d\'activation des paiements ?</string>
     <!-- Alert dialog button to send request -->
@@ -150,8 +150,8 @@
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Utilisateurs bloqués</string>
-    <string name="BlockedUsersActivity__add_blocked_user">Ajouter un utilisateur bloqué</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__add_blocked_user">Bloquer un utilisateur</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Impossible de bloquer votre propre compte</string>
     <string name="BlockedUsersActivity__blocked_users_will">Les utilisateurs bloqués ne pourront ni vous appeler, ni vous envoyer de messages.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Aucun utilisateur bloqué</string>
     <string name="BlockedUsersActivity__block_user">Bloquer cet utilisateur ?</string>
@@ -164,27 +164,27 @@
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
     <string name="CreditCardFragment__enter_your_card_details">Veuillez saisir les informations de votre carte. Signal ne collecte pas et ne stocke pas vos informations personnelles.</string>
     <!-- Displayed as a hint in the card number text field -->
-    <string name="CreditCardFragment__card_number">Numéro de la carte</string>
+    <string name="CreditCardFragment__card_number">Numéro de carte</string>
     <!-- Displayed as a hint in the card expiry text field -->
     <string name="CreditCardFragment__mm_yy">MM/AA</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">Cryptogramme visuel</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
-    <string name="CreditCardFragment__invalid_card_number">Numéro de carte non valide</string>
+    <string name="CreditCardFragment__invalid_card_number">Numéro de carte incorrect</string>
     <!-- Error displayed under the card expiry text field when the card is expired -->
     <string name="CreditCardFragment__card_has_expired">Carte arrivée à expiration</string>
     <!-- Error displayed under the card cvv text field when the cvv is too short -->
-    <string name="CreditCardFragment__code_is_too_short">CVC trop court</string>
+    <string name="CreditCardFragment__code_is_too_short">Code CVC trop court</string>
     <!-- Error displayed under the card cvv text field when the cvv is too long -->
-    <string name="CreditCardFragment__code_is_too_long">CVC trop long</string>
+    <string name="CreditCardFragment__code_is_too_long">Code CVC trop long</string>
     <!-- Error displayed under the card cvv text field when the cvv is invalid -->
-    <string name="CreditCardFragment__invalid_code">Code non valide</string>
+    <string name="CreditCardFragment__invalid_code">Code CVC incorrect</string>
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
-    <string name="CreditCardFragment__invalid_month">Mois non valide</string>
+    <string name="CreditCardFragment__invalid_month">Mois incorrect</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
     <string name="CreditCardFragment__year_required">Veuillez indiquer une année.</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
-    <string name="CreditCardFragment__invalid_year">Année non valide</string>
+    <string name="CreditCardFragment__invalid_year">Année incorrecte</string>
     <!-- Button label to confirm credit card input and proceed with one-time payment -->
     <string name="CreditCardFragment__donate_s">Faire un don de %1$s</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
@@ -194,11 +194,11 @@
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
-    <string name="OneTimeDonationPreference__one_time_s">Don ponctuel %1$s</string>
+    <string name="OneTimeDonationPreference__one_time_s">Don ponctuel de %1$s</string>
     <!-- Preference subtitle when donation is pending -->
     <string name="OneTimeDonationPreference__donation_pending">Don en attente</string>
     <!-- Preference subtitle when donation is processing -->
-    <string name="OneTimeDonationPreference__donation_processing">Traitement du don en cours</string>
+    <string name="OneTimeDonationPreference__donation_processing">Don en cours de traitement</string>
 
     <!-- BlockUnblockDialog -->
     <string name="BlockUnblockDialog_block_and_leave_s">Bloquer et quitter %1$s ?</string>
@@ -213,7 +213,7 @@
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">Les utilisateurs bloqués ne pourront ni vous appeler, ni vous envoyer de messages.</string>
     <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">Les utilisateurs bloqués ne pourront pas vous envoyer de messages.</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloquer la réception des mises à jour et des actualités de Signal.</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Bloquer la réception des notes de version et des actualités Signal.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Je veux de nouveau recevoir les mises à jour et les actualités de Signal.</string>
     <string name="BlockUnblockDialog_unblock_s">Débloquer %1$s ?</string>
@@ -261,7 +261,7 @@
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
-    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">L’enregistrement vidéo n’est pas pris en charge sur votre appareil</string>
+    <string name="CameraFragment__video_recording_is_not_supported_on_your_device">Votre appareil ne permet pas d\'enregistrer des vidéos</string>
 
     <!-- CameraXFragment -->
     <string name="CameraXFragment_tap_for_photo_hold_for_video">Touchez pour une photo, maintenez pour une vidéo</string>
@@ -346,7 +346,7 @@
     <string name="CommunicationActions_insecure_call">Appel non sécurisé</string>
     <string name="CommunicationActions_carrier_charges_may_apply">Des frais d’opérateur peuvent s’appliquer. Le numéro que vous appelez n’est pas inscrit auprès de Signal. Cet appel sera effectué par votre opérateur de réseau mobile et non via Internet.</string>
     <string name="CommunicationActions_cant_join_call">Impossible de rejoindre l\'appel</string>
-    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Le lien de cet appel n’est plus valide.</string>
+    <string name="CommunicationActions_this_call_link_is_no_longer_valid">Ce lien d\'appel n\'est plus valide.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
     <string name="CommunicationActions_invalid_link">Lien non valide</string>
     <!-- Message on dialog when call link url cannot be parsed -->
@@ -420,17 +420,17 @@
     <string name="ConversationItem_this_message_was_deleted">Ce message a été supprimé.</string>
     <string name="ConversationItem_you_deleted_this_message">Vous avez supprimé ce message.</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
-    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Impossible de télécharger le message. %1$s doit l’envoyer à nouveau.</string>
+    <string name="ConversationItem_cant_download_message_s_will_need_to_send_it_again">Impossible de télécharger le message. %1$s devra vous le renvoyer.</string>
     <!-- Dialog error message shown when user can\'t download an image message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
-    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Impossible de télécharger l’image. %1$s doit l’envoyer à nouveau.</string>
+    <string name="ConversationItem_cant_download_image_s_will_need_to_send_it_again">Impossible de télécharger l\'image. %1$s devra vous la renvoyer.</string>
     <!-- Dialog error message shown when user can\'t download a video message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
-    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Impossible de télécharger la vidéo. %1$s doit l’envoyer à nouveau.</string>
+    <string name="ConversationItem_cant_download_video_s_will_need_to_send_it_again">Impossible de télécharger la vidéo. %1$s devra vous la renvoyer.</string>
     <!-- Dialog error message shown when user can\'t download a their own message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Impossible de télécharger le message. {0} doit l’envoyer à nouveau.</string>
+    <string name="ConversationItem_cant_download_message_you_will_need_to_send_it_again">Impossible de télécharger le message. Veuillez le renvoyer.</string>
     <!-- Dialog error message shown when user can\'t download a their own image message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Impossible de télécharger l’image. {0} doit l’envoyer à nouveau.</string>
+    <string name="ConversationItem_cant_download_image_you_will_need_to_send_it_again">Impossible de télécharger l\'image. Veuillez la renvoyer.</string>
     <!-- Dialog error message shown when user can\'t download a their own video message via a linked device due to a permanent failure (e.g., unable to decrypt) -->
-    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Impossible de télécharger la vidéo. {0} doit l’envoyer à nouveau.</string>
+    <string name="ConversationItem_cant_download_video_you_will_need_to_send_it_again">Impossible de télécharger la vidéo. Veuillez la renvoyer.</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. The timestamp represents a message that has been edited within the last minute. -->
     <string name="ConversationItem_edited_now_timestamp_footer">Modifié à l\'instant</string>
     <!-- Display as the timestamp footer in a message bubble in a conversation when a message has been edited. This is displayed when the edit has occurred between 1-59 minutes ago. -->
@@ -443,7 +443,7 @@
     <!-- ConversationActivity -->
     <string name="ConversationActivity_add_attachment">Ajouter une pièce jointe</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
-    <string name="ConversationActivity_send_edit">Envoyer les modifications</string>
+    <string name="ConversationActivity_send_edit">Envoyer le message modifié</string>
     <string name="ConversationActivity_compose_message">Rédiger un message</string>
     <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">Oups ! Une erreur s\'est produite lors de l\'ajout de la pièce jointe.</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
@@ -452,13 +452,13 @@
     <string name="ConversationActivity_group_members">Membres du groupe</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
-        <item quantity="one">Les modifications peuvent être appliquées uniquement dans un délai de %1$d heure à compter de l’envoi du message.</item>
-        <item quantity="other">Les modifications peuvent être appliquées uniquement dans un délai de %1$d heures à compter de l’envoi du message.</item>
+        <item quantity="one">Une fois envoyés, les messages ne peuvent être modifiés que pendant %1$d heure.</item>
+        <item quantity="other">Une fois envoyés, les messages ne peuvent être modifiés que pendant %1$d heures.</item>
     </plurals>
     <!-- Warning dialog text shown to user if they try to edit a message too many times. Where %1$d is replaced with the number of edits -->
     <plurals name="ConversationActivity_edit_message_too_many_edits">
-        <item quantity="one">%1$d modification peut-être appliquée à ce message.</item>
-        <item quantity="other">%1$d modifications seulement peuvent être appliquées à ce message.</item>
+        <item quantity="one">Vous ne pouvez modifier ce message qu\'une seule %1$d  fois.</item>
+        <item quantity="other">Vous ne pouvez modifier ce message que %1$d  fois.</item>
     </plurals>
 
     <string name="ConversationActivity_invalid_recipient">Destinataire incorrect.</string>
@@ -536,20 +536,20 @@
     <string name="ConversationActivity_error_sending_media">Impossible d\'envoyer le média</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">La messagerie SMS n’est plus prise en charge dans Signal.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported">Signal ne prend plus en charge les communications par SMS.</string>
     <!-- Message shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
-    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">La messagerie SMS n’est plus prise en charge par Signal. Invitez %1$s à rejoindre Signal pour continuer cette conversation.</string>
+    <string name="ConversationActivity__sms_messaging_is_no_longer_supported_in_signal_invite_s_to_to_signal_to_keep_the_conversation_here">Signal ne prend plus en charge les communications par SMS. Invitez %1$s à rejoindre Signal pour continuer votre conversation.</string>
     <!-- Message shown when opening a conversation with an unregistered user who used to be on Signal -->
     <string name="ConversationActivity__this_person_is_no_longer_using_signal">Ce contact n’utilise plus Signal. Invitez-le à rejoindre la plateforme pour reprendre votre conversation.</string>
     <!-- Action button shown when opening an SMS conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__invite_to_signal">Inviter sur Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
-    <string name="ConversationActivity__you_will_be_reminded_again_soon">Vous recevrez un rappel bientôt.</string>
+    <string name="ConversationActivity__you_will_be_reminded_again_soon">Nous vous le rappellerons bientôt.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Envoi d\'un message au texte formaté</string>
+    <string name="SendingFormattingTextDialog_title">Envoi de texte mis en forme</string>
     <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Certaines personnes utilisent peut-être une version de Signal qui ne prend pas en charge le texte formaté. Elles ne pourront pas voir les modifications apportées à la mise en forme.</string>
+    <string name="SendingFormattingTextDialog_message">Certaines personnes utilisent peut-être une version de Signal qui ne prend pas en charge le texte mis en forme. Elles ne pourront pas afficher les modifications apportées à la mise en forme de votre message.</string>
     <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
     <string name="SendingFormattingTextDialog_send_anyway_button">Envoyer quand même</string>
     <!-- Button text for canceling sending the message with formatting after seeing warning. -->
@@ -604,7 +604,7 @@
     <string name="ConversationFragment_failed_to_open_message">Impossible d\'ouvrir le message</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">Balayez un message vers la droite pour y répondre rapidement</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">Balayez un message vers la gauche pour y répondre rapidement</string>
-    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Les contenus éphémères sont supprimés après être envoyés</string>
+    <string name="ConversationFragment_view_once_media_is_deleted_after_sending">Une fois envoyés, les médias à vue unique sont supprimés</string>
     <string name="ConversationFragment_you_already_viewed_this_message">Vous avez déjà vu ce message</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">Cette conversation est dédiée à vos notes personnelles. Si des appareils sont associés à votre compte, les nouvelles notes que vous ajoutez ici sont synchronisées sur tous vos appareils.</string>
     <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d membres du groupe portent le même nom.</string>
@@ -745,8 +745,8 @@
     </plurals>
     <string name="ConversationListFragment_undo">Annuler</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
-        <item quantity="one">Conversation déplacée dans la boîte de réception</item>
-        <item quantity="other">%1$d conversations déplacées dans la boîte de réception</item>
+        <item quantity="one">Conversation déplacée vers la boîte de réception</item>
+        <item quantity="other">%1$d conversations déplacées vers la boîte de réception</item>
     </plurals>
     <plurals name="ConversationListFragment_read_plural">
         <item quantity="one">Lu</item>
@@ -764,7 +764,7 @@
     <string name="ConversationListFragment_archive">Archiver</string>
     <string name="ConversationListFragment_unarchive">Désarchiver</string>
     <string name="ConversationListFragment_delete">Supprimer</string>
-    <string name="ConversationListFragment_select_all">Tout sélect.</string>
+    <string name="ConversationListFragment_select_all">Tout sélectionner</string>
     <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
         <item quantity="one">%1$d élément sélectionné</item>
@@ -792,7 +792,7 @@
     <!-- Message shown in top toast to indicate the named profile is on -->
     <string name="ConversationListFragment__s_on">%1$s activé</string>
     <!-- -->
-    <string name="ConversationListFragment_username_recovered_toast">Votre code QR et votre lien ont été réinitialisés. Votre nom d’utilisateur est désormais %1$s</string>
+    <string name="ConversationListFragment_username_recovered_toast">Nous avons réinitialisé votre lien et votre code QR. Votre nouveau nom d\'utilisateur est %1$s</string>
 
     <!-- ConversationListItem -->
     <string name="ConversationListItem_key_exchange_message">Message d\'échange de clés</string>
@@ -1719,7 +1719,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Envoyé par %1$s à %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Vous avez envoyé ce média à %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Ce média n\'a pas encore été envoyé.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Me le rappeler plus tard</string>
@@ -1863,8 +1863,8 @@
     <string name="MessageRecord_you_invited_s_to_the_group">Vous avez invité %1$s à rejoindre le groupe.</string>
     <string name="MessageRecord_s_invited_you_to_the_group">%1$s vous a invité à rejoindre le groupe.</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s a invité 1 personne à rejoindre le groupe.</item>
-        <item quantity="other">%1$s a invité %2$d personnes à rejoindre le groupe.</item>
+        <item quantity="one">%1$s a invité %2$d personne à rejoindre le groupe.</item>
+        <item quantity="other">%1$s a invité %2$d personnes à rejoindre le groupe.</item>
     </plurals>
     <string name="MessageRecord_you_were_invited_to_the_group">Vous avez reçu une invitation à rejoindre le groupe.</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
@@ -1991,9 +1991,9 @@
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">Vous aimez cette nouvelle fonctionnalité ? Faites un don ponctuel pour soutenir Signal.</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
-    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">L\'historique de vos messages avec %1$s et son numéro %2$s ont été fusionnés.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_their_number_s_has_been_merged">Signal a fusionné les messages échangés avec %1$s et avec son numéro %2$s.</string>
     <!-- Update item message shown when we merge two threads together and we don\'t know the phone number of the other thread. The placeholder is a person\'s name. -->
-    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">L\'historique de vos messages avec %1$s et une autre conversation que cette personne a créée ont été fusionnés.</string>
+    <string name="MessageRecord_your_message_history_with_s_and_another_chat_has_been_merged">Signal a fusionné les messages échangés avec %1$s et ceux d\'une autre conversation associée au même contact.</string>
     <!-- Update item message shown when you find out a phone number belongs to a person you had a conversation with. First placeholder is a phone number, second placeholder is a name. -->
     <string name="MessageRecord_s_belongs_to_s">%1$s est le numéro de %2$s</string>
     <!-- Message to notify sender that activate payments request has been sent to the recipient -->
@@ -2107,7 +2107,7 @@
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">Recevoir voir des nouvelles de%1$s ? Vous ne recevrez aucune nouvelle tant que vous ne l’aurez pas débloqué.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">Poursuivre votre conversation avec ce groupe et partager vos nom et photo avec ses membres ?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">Les groupes hérités ne peuvent plus être utilisés. Créez un nouveau groupe pour activer les nouvelles fonctionnalités telles que les @mentions et les administrateurs.</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Vous ne pouvez plus utiliser ce groupe hérité, car il comporte un trop grand nombre de membres. Un groupe ne peut compter plus de %1$d membres.</string>
+    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">Vous ne pouvez plus utiliser ce groupe hérité, car ses membres sont trop nombreux. Un groupe ne peut compter plus de %1$d membres.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">Poursuivre cette conversation et partager votre nom et votre photo avec %1$s ?</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">Rejoindre ce groupe et partager votre nom et votre photo avec ses membres ? Aucune confirmation de lecture n’est envoyée tant que vous n’avez pas accepté.</string>
     <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">Rejoindre ce groupe et partager votre nom et votre photo avec ses membres ? Vous pourrez ensuite accéder à la conversation.</string>
@@ -2760,17 +2760,17 @@
 
     <!-- SignalPinReminders -->
     <string name="SignalPinReminders_well_remind_you_again_later">Vous avez bien confirmé votre code PIN. Nous vous le redemanderons plus tard.</string>
-    <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons demain.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons dans quelques jours.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_week">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons dans une semaine.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons dans quelques semaines.</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_month">Vous avez bien confirmé votre code•PIN. Nous vous le redemanderons dans un mois.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders_well_remind_you_again_tomorrow">Vous avez bien confirmé votre code PIN. Nous vous le redemanderons demain.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">Vous avez bien confirmé votre code PIN. Nous vous le redemanderons dans quelques jours.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_week">Vous avez bien confirmé votre code PIN. Nous vous le redemanderons dans une semaine.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Vous avez bien confirmé votre code PIN. Nous vous le redemanderons dans quelques semaines.</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_month">Vous avez bien confirmé votre code PIN. Nous vous le redemanderons dans un mois.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">Nous vous le redemanderons plus tard.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">Nous vous le redemanderons demain.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">Nous vous le redemanderons dans quelques jours.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">Nous vous le redemanderons dans une semaine.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">Nous vous le redemanderons dans deux semaines.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">Nous vous le redemanderons dans un mois.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Image</string>
@@ -2791,9 +2791,9 @@
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
     <string name="StickerManagement_installed_tab_label">Installés</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">Aucun pack de stickers n\'est disponible</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">Aucun pack de stickers n\'est installé</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagement_author_unknown">Inconnu</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
@@ -2803,11 +2803,11 @@
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Stickers d\'artistes pour Signal</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">Télécharger le pack de stickers %1$s</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Icône de téléchargement terminé</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">Icône glisser-déposer</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
     <string name="StickerManagement_accessibility_download">Télécharger</string>
 
@@ -2963,7 +2963,7 @@
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
     <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">Nom d’utilisateur indisponible, veuillez essayer un autre numéro.</string>
     <!-- Displayed when the chosen discriminator is too short -->
-    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Nom d’utilisateur incorrect. Veuillez saisir au moins %1$d chiffres.</string>
+    <string name="UsernameEditFragment__invalid_username_enter_a_minimum_of_d_digits">Nom d\'utilisateur incorrect. Veuillez saisir au moins %1$d chiffres.</string>
     <!-- Displayed when the chosen discriminator is too long -->
     <string name="UsernameEditFragment__invalid_username_enter_a_maximum_of_d_digits">Nom d’utilisateur incorrect. Veuillez saisir %1$d chiffres maximum.</string>
     <!-- Displayed when the chosen discriminator is 00 -->
@@ -2973,7 +2973,7 @@
     <!-- The body of an alert dialog asking the user to confirm that they want to recover their username -->
     <string name="UsernameEditFragment_recovery_dialog_confirmation">Récupérer votre nom d’utilisateur entraîne la réinitialisation de votre lien et code QR existants. Êtes-vous sûr de vouloir continuer ?</string>
     <!-- The body of an alert dialog asking the user to confirm that they want to change their username, even if it resets their link -->
-    <string name="UsernameEditFragment_change_confirmation_message">Modifier votre nom d’utilisateur entraîne la réinitialisation de votre lien et code QR existants. Êtes-vous sûr de vouloir continuer ?</string>
+    <string name="UsernameEditFragment_change_confirmation_message">Si vous changez de nom d\'utilisateur, votre lien et votre code QR existants seront réinitialisés. Voulez-vous vraiment continuer ?</string>
     <!-- Text for a button in a dialog asking if the user would like to continue the operation of changing their username -->
     <string name="UsernameEditFragment_continue">Continuer</string>
 
@@ -3210,9 +3210,9 @@
     <!-- Row item description for usernames explainer -->
     <string name="NewWaysToConnectDialogFragment__people_can_now_message_you_using_your_optional_username">Vos amis peuvent désormais vous contacter grâce à votre nom d\'utilisateur facultatif, ce qui vous évite de partager votre numéro de téléphone. Le nom d\'utilisateur ne s\'affiche pas sur votre profil.</string>
     <!-- Row item title for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">Codes QR et liens</string>
+    <string name="NewWaysToConnectDialogFragment__qr_codes_and_links">Liens et codes QR</string>
     <!-- Row item description for qr code and links explainer -->
-    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Les noms d\'utilisateur sont associés à des liens et des codes QR uniques, que vous pouvez partager avec vos amis pour démarrer des conversations en un instant.</string>
+    <string name="NewWaysToConnectDialogFragment__usernames_have_a_unique_qr_code">Chaque nom d\'utilisateur est associé à un lien et un code QR uniques. Vous pouvez les partager avec vos amis pour démarrer une conversation instantanément.</string>
     <!-- Button label for not right now -->
     <string name="NewWaysToConnectDialogFragment__not_now">Plus tard</string>
     <!-- Button label for continue -->
@@ -3666,7 +3666,7 @@
     <string name="verify_display_fragment__clear_verification">Annuler la confirmation</string>
 
     <!-- verity_scan_fragment -->
-    <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scannez le code QR qui s\'affiche sur l\'appareil de votre contact.</string>
+    <string name="verify_scan_fragment__scan_the_qr_code_on_your_contact">Scannez le code QR affiché sur l\'appareil de votre contact.</string>
 
     <!-- webrtc_answer_decline_button -->
     <string name="webrtc_answer_decline_button__swipe_up_to_answer">Balayer vers le haut pour répondre</string>
@@ -4367,7 +4367,7 @@
     <string name="conversation_list_fragment__open_camera_description">Ouvrir l\'appareil photo</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Aucune conversation pour le moment.\nPour commencer, envoyez un message à un ami.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Les conversations archivées apparaîtront ici.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Aucune conversation à afficher</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4535,7 +4535,7 @@
     <string name="RegistrationLockFragment__incorrect_pin_try_again">Code PIN incorrect. Veuillez réessayer.</string>
     <string name="RegistrationLockFragment__forgot_pin">Code PIN oublié ?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Code PIN incorrect.</string>
-    <string name="RegistrationLockFragment__forgot_your_pin">Code•PIN oublié ?</string>
+    <string name="RegistrationLockFragment__forgot_your_pin">Code PIN oublié ?</string>
     <string name="RegistrationLockFragment__not_many_tries_left">Il vous reste un nombre limité de tentatives.</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Inscription à Signal – Besoin d’aide : code PIN sous Android (PIN v2)</string>
 
@@ -4821,7 +4821,7 @@
     <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Pour détecter votre ancien appareil Android et s\'y connecter, Signal a besoin de l\'autorisation \"Localisation\".</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Pour que Signal puisse détecter votre nouvel appareil Android et s\'y connecter, les services de localisation doivent être activés.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Pour que Signal puisse détecter votre nouvel appareil Android et s\'y connecter, le Wi-Fi doit être activé. Il suffit d\'activer l\'option Wi-Fi. La connexion à un réseau Wi-Fi n\'est pas nécessaire.</string>
-    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Il semblerait que cet appareil soit incompatible avec le Wi-Fi•Direct. Signal utilise le Wi-Fi Direct pour détecter votre ancien appareil Android et s’y connecter. Pour récupérer votre compte sur votre nouvel appareil Android, vous avez toujours la possibilité d’effectuer une sauvegarde.</string>
+    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Il semblerait que cet appareil soit incompatible avec le Wi-Fi Direct. Signal utilise le Wi-Fi Direct pour détecter votre ancien appareil Android et s\'y connecter. Pour récupérer votre compte sur votre nouvel appareil Android, vous avez toujours la possibilité d\'effectuer une sauvegarde.</string>
     <string name="OldDeviceTransferSetup__create_a_backup">Créer une sauvegarde</string>
     <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Une erreur inattendue s\'est produite lors de la tentative de connexion à votre nouvel appareil Android.</string>
 
@@ -4950,8 +4950,8 @@
     <string name="GroupsLearnMore_paragraph_3">Signal vous permettra bientôt de convertir les groupes hérités.</string>
 
     <!-- GroupLinkBottomSheetDialogFragment -->
-    <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Quiconque dispose de ce lien peut afficher le nom et la photo du groupe et demander à le rejoindre. Ne le partagez qu’avec des personnes de confiance.</string>
-    <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Quiconque dispose de ce lien peut afficher le nom et la photo du groupe et demander à le rejoindre. Ne le partagez qu’avec des personnes de confiance.</string>
+    <string name="GroupLinkBottomSheet_share_hint_requiring_approval">Toute personne disposant du lien peut afficher le nom et la photo du groupe et demander à le rejoindre. Ne le partagez qu\'avec des personnes de confiance.</string>
+    <string name="GroupLinkBottomSheet_share_hint_not_requiring_approval">Toute personne disposant du lien peut afficher le nom et la photo du groupe et demander à le rejoindre. Ne le partagez qu\'avec des personnes de confiance.</string>
     <string name="GroupLinkBottomSheet_share_via_signal">Partager via Signal</string>
     <string name="GroupLinkBottomSheet_copy">Copier</string>
     <string name="GroupLinkBottomSheet_qr_code">Code QR</string>
@@ -5181,7 +5181,7 @@
         <item quantity="other">Votre solde est automatiquement restauré lorsque vous réinstallez Signal et confirmez votre code PIN Signal. Vous pouvez aussi le restaurer grâce à une phrase de récupération unique comportant %1$d mots. Notez-la et conservez-la en lieu sûr.</item>
     </plurals>
     <!-- Description in save recovery phrase screen which shows up when user has non zero balance -->
-    <string name="PaymentsRecoveryStartFragment__got_balance">Un solde est disponible sur votre compte ! Il est temps d\'enregistrer votre phrase de récupération, une clé de 24•mots que vous pouvez utiliser pour récupérer votre solde.</string>
+    <string name="PaymentsRecoveryStartFragment__got_balance">Un solde est disponible sur votre compte ! Il est temps d\'enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour récupérer votre solde.</string>
     <!-- Description in save recovery phrase screen which shows up when user navigates from info card -->
     <string name="PaymentsRecoveryStartFragment__time_to_save">Il est temps d’enregistrer votre phrase de récupération, une clé de 24 mots que vous pouvez utiliser pour rétablir votre solde.</string>
     <string name="PaymentsRecoveryStartFragment__your_recovery_phrase_is_a">Votre phrase de récupération est une phrase unique et personnelle de %1$d mots. Elle vous permet de restaurer votre solde.</string>
@@ -5623,8 +5623,8 @@
     <string name="ChatColorSelectionFragment__delete">Supprimer</string>
     <string name="ChatColorSelectionFragment__delete_color">Supprimer la couleur</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
-        <item quantity="one">Cette couleur personnalisée est utilisée dans %1$d conversation. Souhaitez-vous la supprimer pour toutes les conversations ?</item>
-        <item quantity="other">Cette couleur personnalisée est utilisée dans %1$d conversations. Souhaitez-vous la supprimer pour toutes les conversations ?</item>
+        <item quantity="one">Cette couleur personnalisée est utilisée dans %1$d conversation. Voulez-vous la supprimer pour toutes les conversations ?</item>
+        <item quantity="other">Cette couleur personnalisée est utilisée dans %1$d conversations. Voulez-vous la supprimer pour toutes les conversations ?</item>
     </plurals>
     <string name="ChatColorSelectionFragment__delete_chat_color">Supprimer la couleur des bulles ?</string>
 
@@ -5743,7 +5743,7 @@
     <string name="ConversationSettingsFragment__phone_number">Numéro de téléphone</string>
     <string name="ConversationSettingsFragment__get_badges">Soutenez Signal et gagnez des macarons à afficher sur votre profil. Appuyez sur un macaron pour en savoir plus.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Ce média n\'a pas encore été envoyé.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Ajouter des membres</string>
@@ -5801,7 +5801,7 @@
     <!-- Dialog message when remove target contact is in system contacts -->
     <string name="NewConversationActivity__this_person_is_saved_to_your">Cette personne est sauvegardée dans les contacts de votre appareil. Veuillez la supprimer de vos contacts et réessayer.</string>
     <!-- Dialog action to view contact when they can\'t be removed otherwise -->
-    <string name="NewConversationActivity__view_contact">Voir les Contacts</string>
+    <string name="NewConversationActivity__view_contact">Afficher le contact</string>
     <!-- Error message shown when looking up a person by phone number and that phone number is not associated with a signal account -->
     <string name="NewConversationActivity__s_is_not_a_signal_user">%1$s n\'utilise pas Signal.</string>
     <!-- Error message shown when we could not get a user from the username link -->
@@ -6556,7 +6556,7 @@
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">Aucune vue pour le moment</string>
     <!-- Displayed when user has disabled receipts -->
-    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Activer les confirmations de vue pour savoir qui a consulté vos Stories.</string>
+    <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Pour savoir qui a consulté vos stories, activez les confirmations de vue.</string>
     <!-- Button label displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__go_to_settings">Accéder aux paramètres</string>
     <!-- Dialog action to remove viewer from a story -->
@@ -6609,8 +6609,8 @@
     <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Masquer votre story pour certains contacts</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
-        <item quantity="one">%1$d personne exclue</item>
-        <item quantity="other">%1$d personnes exclues</item>
+        <item quantity="one">%1$d contact exclu</item>
+        <item quantity="other">%1$d contacts exclus</item>
     </plurals>
     <!-- Privacy setting title for only sharing your story with specified connections -->
     <string name="MyStorySettingsFragment__only_share_with">Ne partager qu\'avec…</string>
@@ -6865,8 +6865,8 @@
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_excluded">
-        <item quantity="one">%1$s · %2$d exclu</item>
-        <item quantity="other">%1$s · %2$d exclus</item>
+        <item quantity="one">%1$s · %2$d contact exclu</item>
+        <item quantity="other">%1$s · %2$d contacts exclus</item>
     </plurals>
     <!-- Label under name for My Story when first sending to my story -->
     <string name="ContactSearchItems__tap_to_choose_your_viewers">Appuyez pour choisir vos spectateurs</string>
@@ -7607,7 +7607,7 @@
     <!-- Label for a tab that shows a screen to scan a QR code -->
     <string name="UsernameLinkSettings_scan_tab_name">Scanner</string>
     <!-- Description text shown underneath the username QR code scanner -->
-    <string name="UsernameLinkSettings_qr_scan_description">Scannez le code QR sur l’appareil de votre contact.</string>
+    <string name="UsernameLinkSettings_qr_scan_description">Scannez le code QR affiché sur l\'appareil de votre contact.</string>
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Couleur</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
@@ -7634,7 +7634,7 @@
     <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Veuillez scanner une autre image contenant un code QR Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Toute personne disposant de ce lien peut voir votre nom d\'utilisateur et démarrer une conversation avec vous. À ne partager qu\'avec des personnes de confiance.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Toute personne disposant du lien peut afficher votre nom d\'utilisateur et démarrer une conversation avec vous. Ne le partagez qu\'avec des personnes de confiance.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">Copier le lien</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -8426,7 +8426,7 @@
     <string name="NoBackupToRestore_skip_restore">Ignorer la restauration</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">Fermer la zone de recherche</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
     <string name="MainToolbar__clear_search_content_description">Effacer la recherche</string>
     <!-- Accessibility label for more options button in MainToolbar -->

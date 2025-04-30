@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blokirani_e uporabniki_ce</string>
     <string name="BlockedUsersActivity__add_blocked_user">Dodaj blokiranega_o uporabnika_co</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Sami sebe ne morete blokirati</string>
     <string name="BlockedUsersActivity__blocked_users_will">Blokirani_e uporabniki_ce vas ne bodo mogli_e klicati ali vam pošiljati sporočil.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Ni blokiranih uporabnikov_ic</string>
     <string name="BlockedUsersActivity__block_user">Želite blokirati uporabnika_co?</string>
@@ -1819,7 +1819,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Poslano od uporabnika_ce %1$s za uporabnika_co %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Poslano od vas za uporabnika_co %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Ta medij še ni poslan.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Spomni me kasneje</string>
@@ -2943,12 +2943,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN je bil potrjen. Čez teden vas bomo znova opomnili.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN je bil potrjen. Čez nekaj tednov vas bomo znova opomnili.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN je bil potrjen. Čez mesec vas bomo znova opomnili.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">Pozneje vas bomo ponovno opomnili.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">Jutri vas bomo ponovno opomnili.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">V nekaj dneh vas bomo ponovno opomnili.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">Čez en teden vas bomo ponovno opomnili.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">Čez nekaj tednov vas bomo ponovno opomnili.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">Čez en mesec vas bomo ponovno opomnili.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Slika</string>
@@ -2969,9 +2969,9 @@
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
     <string name="StickerManagement_installed_tab_label">Nameščeno</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">Paketi nalepk niso na voljo</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">Paketi nalepk niso nameščeni</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagement_author_unknown">Neznano</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
@@ -2981,11 +2981,11 @@
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Serija Signalovi umetniki</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">Prenesi %1$s paket nalepk</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Ikona za preneseno</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">Povlecite in spustite</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
     <string name="StickerManagement_accessibility_download">Prenesi</string>
 
@@ -3961,7 +3961,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Ne, hvala!</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Nedavni</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Nedavno</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">To sporočilo</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nedavno uporabljeno</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smeški &amp; Ljudje</string>
@@ -3976,8 +3976,8 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ni rezultatov</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Nedavni</string>
-    <string name="GifQuickSearchOption__trending">Popularno</string>
+    <string name="GifQuickSearchOption__recents">Nedavno</string>
+    <string name="GifQuickSearchOption__trending">Priljubljeno</string>
     <string name="GifQuickSearchOption__celebrate">Praznovanje</string>
     <string name="GifQuickSearchOption__love">Ljubezen</string>
     <string name="GifQuickSearchOption__thumbs_up">Palec gor</string>
@@ -4589,7 +4589,7 @@
     <string name="conversation_list_fragment__open_camera_description">Odpri kamero</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Zaenkrat brez klepetov.\nZačnite s sporočilom prijatelju_ici.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Arhivirani klepeti bodo prikazani tukaj.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Ni klepetov za prikaz</string>
     <!-- Button text that will open up chat folder settings -->
@@ -6011,7 +6011,7 @@
     <string name="ConversationSettingsFragment__phone_number">Telefonska številka</string>
     <string name="ConversationSettingsFragment__get_badges">S podporo Signalu si pridobite značke za svoj profil. Za več tapnite na značko.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Ta medij še ni poslan.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Dodaj člane_ice</string>
@@ -8780,7 +8780,7 @@
     <string name="NoBackupToRestore_skip_restore">Preskoči obnovitev</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">Zapri iskanje</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
     <string name="MainToolbar__clear_search_content_description">Počisti iskalno polje</string>
     <!-- Accessibility label for more options button in MainToolbar -->

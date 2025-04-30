@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Utilizatori blocați</string>
     <string name="BlockedUsersActivity__add_blocked_user">Adaugă un utilizator blocat</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Nu te poți bloca pe tine</string>
     <string name="BlockedUsersActivity__blocked_users_will">Utilizatorii blocați nu vor putea să te sune sau să îți trimită mesaje.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Nu există utilizatori blocați</string>
     <string name="BlockedUsersActivity__block_user">Blochezi utilizatorul?</string>
@@ -1769,7 +1769,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Trimis de %1$s către %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Trimis de tine către %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Fișierul nu este încă trimis.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Amintește-mi mai târziu</string>
@@ -2854,12 +2854,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou peste o săptămână.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou peste câteva săptămâni.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN-ul a fost verificat cu succes. Îți vom reaminti din nou peste o lună.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">Îți reamintim din nou mai târziu.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">Îți vom reaminti mâine.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">Îți vom reaminti în câteva zile.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">Îți vom reaminti din nou într-o săptămână.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">Îți vom reaminti din nou în câteva săptămâni.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">Îți vom reaminti din nou într-o lună.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Imagine</string>
@@ -2880,9 +2880,9 @@
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
     <string name="StickerManagement_installed_tab_label">Instalat</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">Nu e disponibil niciun pachet de autocolante</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">Nu e instalat niciun pachet de autocolante</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagement_author_unknown">Necunoscut</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
@@ -2892,11 +2892,11 @@
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Seria artistică Signal</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">Descarcă %1$s pachetul de autocolante </string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Bifă pentru Descărcat</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">Semnul de Trage și plasează</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
     <string name="StickerManagement_accessibility_download">Descarcă</string>
 
@@ -4478,7 +4478,7 @@
     <string name="conversation_list_fragment__open_camera_description">Deschide Camera</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Nu există conversații. Începe prin a trimite unui prieten un mesaj.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Conversațiile arhivate vor apărea aici.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Nu există conversații de afișat</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5877,7 +5877,7 @@
     <string name="ConversationSettingsFragment__phone_number">Număr de telefon</string>
     <string name="ConversationSettingsFragment__get_badges">Poți obține insigne pentru profilul tău susținând Signal. Atinge o insignă pentru a afla mai multe.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Fișierul nu este încă trimis.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Adăugare membri</string>
@@ -8603,7 +8603,7 @@
     <string name="NoBackupToRestore_skip_restore">Sari peste restaurare</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">Închide căutarea</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
     <string name="MainToolbar__clear_search_content_description">Șterge căutarea</string>
     <!-- Accessibility label for more options button in MainToolbar -->

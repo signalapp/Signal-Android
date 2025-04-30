@@ -7224,7 +7224,7 @@
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">بدء دردشة</string>
     <!-- Signal connections sheet bullet point 2 -->
-    <string name="SignalConnectionsBottomSheet__accepting_a_message_request">قبول طلب التراسل</string>
+    <string name="SignalConnectionsBottomSheet__accepting_a_message_request">قبول طلب للتراسُل</string>
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">وجودهم في جهات اتصال هاتفك</string>
     <!-- Note at the bottom of the Signal connections sheet -->
@@ -7348,7 +7348,7 @@
     <!-- Displayed in the viewer when a story is no longer available -->
     <string name="StorySlateView__this_story_is_no_longer_available">لم تعد هذه القصة متاحة.</string>
     <!-- Displayed in the viewer when a story has permanently failed to download. -->
-    <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">تعذّر تحميل القصة. سَيحتاج %1$s إلى مشاركتها مرّة أخرى.</string>
+    <string name="StorySlateView__cant_download_story_s_will_need_to_share_it_again">تعذّر تنزيل القصة. سَيحتاج %1$s إلى مشاركتها مرّة أخرى.</string>
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">لا يوجد اتصال بشبكة الإنترنت</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->

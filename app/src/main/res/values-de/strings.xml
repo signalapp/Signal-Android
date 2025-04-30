@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blockierte Kontakte</string>
     <string name="BlockedUsersActivity__add_blocked_user">Zu blockierten Kontakten hinzufügen</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Du kannst dich nicht selbst blockieren</string>
     <string name="BlockedUsersActivity__blocked_users_will">Blockierte Kontakte werden dich nicht anrufen oder dir Nachrichten senden können.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Keine blockierten Kontakte</string>
     <string name="BlockedUsersActivity__block_user">Kontakt blockieren?</string>
@@ -1719,7 +1719,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Von %1$s an %2$s gesendet</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Von dir an %1$s gesendet</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Dieser Medieninhalt wurde noch nicht versendet.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Später erinnern</string>
@@ -2765,12 +2765,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN erfolgreich verifiziert. Wir erinnern dich in einer Woche wieder.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN erfolgreich verifiziert. Wir erinnern dich in einigen Wochen wieder.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN erfolgreich verifiziert. Wir erinnern dich in einem Monat wieder.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">Wir erinnern dich später erneut.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">Wir erinnern dich morgen erneut.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">Wir erinnern dich in einigen Tagen erneut.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">Wir erinnern dich in einer Woche erneut.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">Wir erinnern dich in einigen Wochen erneut.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">Wir erinnern dich in einem Monat erneut.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Bild</string>
@@ -2791,9 +2791,9 @@
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
     <string name="StickerManagement_installed_tab_label">Installiert</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">Keine Sticker-Sets verfügbar</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">Keine Sticker-Sets installiert</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagement_author_unknown">Unbekannt</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
@@ -2803,11 +2803,11 @@
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Signal-Artist-Serie</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">%1$s Sticker-Set herunterladen</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Heruntergeladen Häkchen </string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">Reihenfolge ändern-Handle</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
     <string name="StickerManagement_accessibility_download">Herunterladen</string>
 
@@ -4367,7 +4367,7 @@
     <string name="conversation_list_fragment__open_camera_description">Kamera öffnen</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Noch keine Chats.\nLeg los und schreib einem deiner Kontakte.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archivierte Chats werden hier angezeigt.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Keine Chats zum Anzeigen</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5743,7 +5743,7 @@
     <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
     <string name="ConversationSettingsFragment__get_badges">Unterstütze Signal und erhalte Abzeichen für dein Profil. Tippe auf ein Abzeichen, um mehr zu erfahren.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Dieser Medieninhalt wurde noch nicht versendet.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Mitglieder hinzufügen</string>
@@ -8426,7 +8426,7 @@
     <string name="NoBackupToRestore_skip_restore">Wiederherstellen überspringen</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">Suche schließen</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
     <string name="MainToolbar__clear_search_content_description">Suche zurücksetzen</string>
     <!-- Accessibility label for more options button in MainToolbar -->

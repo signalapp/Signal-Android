@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">被封鎖的使用者</string>
     <string name="BlockedUsersActivity__add_blocked_user">新增被封鎖的使用者</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">不能封鎖你自己</string>
     <string name="BlockedUsersActivity__blocked_users_will">已封鎖的聯絡人將無法撥電話或傳訊息給你。</string>
     <string name="BlockedUsersActivity__no_blocked_users">沒有被封鎖的使用者</string>
     <string name="BlockedUsersActivity__block_user">要封鎖使用者嗎？</string>
@@ -1669,7 +1669,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">由 %1$s 傳送給 %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">由你傳送給 %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">尚未發送此媒體。</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">稍後提醒我</string>
@@ -2676,12 +2676,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN 碼驗證成功。我們會在一周內再次提醒你。</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN 碼驗證成功。我們會在幾週後再次提醒你。</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN 碼驗證成功。我們會在一個月後再次提醒你。</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">我們稍後會再次提醒你。</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">明天我們將會再次提醒你。</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">幾天後我們將會再次提醒你。</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">一週後我們將會再次提醒你。</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">幾週後我們將會再次提醒你。</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">一個月後我們將會再次提醒你。</string>
 
     <!-- Slide -->
     <string name="Slide_image">圖片</string>
@@ -2702,9 +2702,9 @@
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
     <string name="StickerManagement_installed_tab_label">已安裝</string>
     <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
+    <string name="StickerManagement_available_tab_empty_text">沒有可用的貼圖包</string>
     <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
+    <string name="StickerManagement_installed_tab_empty_text">沒有已安裝的貼圖包</string>
     <!-- Message shown when the author of the sticker pack is unknown -->
     <string name="StickerManagement_author_unknown">未知</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
@@ -2714,11 +2714,11 @@
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Signal 藝術家系列</string>
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">下載 %1$s 貼圖包</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">已下載的勾選標記</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">拖放橫桿</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
     <string name="StickerManagement_accessibility_download">下載</string>
 
@@ -4256,7 +4256,7 @@
     <string name="conversation_list_fragment__open_camera_description">開啟相機</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">尚無聊天。\n透過與朋友聊天開始。</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">已封存聊天將顯示在此處。</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">無聊天可顯示</string>
     <!-- Button text that will open up chat folder settings -->
@@ -5609,7 +5609,7 @@
     <string name="ConversationSettingsFragment__phone_number">電話號碼</string>
     <string name="ConversationSettingsFragment__get_badges">透過贊助 Signal 為你的個人資料中得到徽章。 點擊徽章以了解更多資訊。</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">尚未發送此媒體。</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">新增成員</string>
@@ -8249,7 +8249,7 @@
     <string name="NoBackupToRestore_skip_restore">跳過還原</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">關閉搜尋</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
     <string name="MainToolbar__clear_search_content_description">清除搜尋</string>
     <!-- Accessibility label for more options button in MainToolbar -->
