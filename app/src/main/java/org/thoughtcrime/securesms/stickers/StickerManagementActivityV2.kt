@@ -11,6 +11,8 @@ import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
@@ -32,19 +34,25 @@ import androidx.compose.material3.TabRowDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
@@ -64,6 +72,8 @@ import org.signal.core.ui.compose.copied.androidx.compose.rememberDragDropState
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.menu.ActionItem
+import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
 import org.thoughtcrime.securesms.database.model.StickerPackId
@@ -71,6 +81,7 @@ import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
 import org.thoughtcrime.securesms.util.viewModel
+import java.text.NumberFormat
 
 /**
  * Displays all of the available and installed sticker packs, enabling installation, uninstallation, and sorting.
@@ -99,14 +110,16 @@ class StickerManagementActivityV2 : PassphraseRequiredActivity() {
         StickerManagementScreen(
           uiState = uiState,
           onNavigateBack = ::supportFinishAfterTransition,
+          onExitMultiSelectMode = { viewModel.setMultiSelectEnabled(false) },
           availableTabCallbacks = object : AvailableStickersContentCallbacks {
             override fun onForwardClick(pack: AvailableStickerPack) = openShareSheet(pack.id, pack.key)
             override fun onInstallClick(pack: AvailableStickerPack) = viewModel.installStickerPack(pack)
           },
           installedTabCallbacks = object : InstalledStickersContentCallbacks {
             override fun onForwardClick(pack: InstalledStickerPack) = openShareSheet(pack.id, pack.key)
-            override fun onSelectClick(pack: InstalledStickerPack) = viewModel.toggleSelection(pack)
             override fun onRemoveClick(pack: InstalledStickerPack) = viewModel.uninstallStickerPack(pack)
+            override fun onSelectionToggle(pack: InstalledStickerPack) = viewModel.toggleSelection(pack)
+            override fun onSelectAllToggle() = viewModel.toggleSelectAll()
             override fun onDragAndDropEvent(event: DragAndDropEvent) {
               when (event) {
                 is DragAndDropEvent.OnItemMove -> viewModel.updatePosition(event.fromIndex, event.toIndex)
@@ -152,14 +165,16 @@ interface AvailableStickersContentCallbacks {
 
 interface InstalledStickersContentCallbacks {
   fun onForwardClick(pack: InstalledStickerPack)
-  fun onSelectClick(pack: InstalledStickerPack)
   fun onRemoveClick(pack: InstalledStickerPack)
+  fun onSelectionToggle(pack: InstalledStickerPack)
+  fun onSelectAllToggle()
   fun onDragAndDropEvent(event: DragAndDropEvent)
 
   object Empty : InstalledStickersContentCallbacks {
     override fun onForwardClick(pack: InstalledStickerPack) = Unit
-    override fun onSelectClick(pack: InstalledStickerPack) = Unit
     override fun onRemoveClick(pack: InstalledStickerPack) = Unit
+    override fun onSelectionToggle(pack: InstalledStickerPack) = Unit
+    override fun onSelectAllToggle() = Unit
     override fun onDragAndDropEvent(event: DragAndDropEvent) = Unit
   }
 }
@@ -169,39 +184,50 @@ interface InstalledStickersContentCallbacks {
 private fun StickerManagementScreen(
   uiState: StickerManagementUiState,
   onNavigateBack: () -> Unit = {},
+  onExitMultiSelectMode: () -> Unit = {},
   availableTabCallbacks: AvailableStickersContentCallbacks = AvailableStickersContentCallbacks.Empty,
   installedTabCallbacks: InstalledStickersContentCallbacks = InstalledStickersContentCallbacks.Empty,
   modifier: Modifier = Modifier
 ) {
-  Scaffold(
-    topBar = { TopAppBar(onBackPress = onNavigateBack) }
-  ) { padding ->
-
-    val pages = listOf(
-      Page(
-        title = stringResource(R.string.StickerManagement_available_tab_label),
-        getContent = {
-          AvailableStickersContent(
-            blessedPacks = uiState.availableBlessedPacks,
-            notBlessedPacks = uiState.availableNotBlessedPacks,
-            callbacks = availableTabCallbacks
-          )
-        }
-      ),
-      Page(
-        title = stringResource(R.string.StickerManagement_installed_tab_label),
-        getContent = {
-          InstalledStickersContent(
-            packs = uiState.installedPacks,
-            callbacks = installedTabCallbacks
-          )
-        }
-      )
+  val pages = listOf(
+    Page(
+      title = stringResource(R.string.StickerManagement_available_tab_label),
+      getContent = {
+        AvailableStickersContent(
+          blessedPacks = uiState.availableBlessedPacks,
+          notBlessedPacks = uiState.availableNotBlessedPacks,
+          callbacks = availableTabCallbacks
+        )
+      }
+    ),
+    Page(
+      title = stringResource(R.string.StickerManagement_installed_tab_label),
+      getContent = {
+        InstalledStickersContent(
+          packs = uiState.installedPacks,
+          multiSelectEnabled = uiState.multiSelectEnabled,
+          selectedPackIds = uiState.selectedPackIds,
+          callbacks = installedTabCallbacks
+        )
+      }
     )
+  )
 
-    val pagerState = rememberPagerState(pageCount = { pages.size })
-    val coroutineScope = rememberCoroutineScope()
+  val pagerState = rememberPagerState(pageCount = { pages.size })
+  val coroutineScope = rememberCoroutineScope()
 
+  Scaffold(
+    topBar = {
+      if (pagerState.currentPage == 1 && uiState.multiSelectEnabled) {
+        MultiSelectTopAppBar(
+          selectedItemCount = uiState.selectedPackIds.size,
+          onExitClick = onExitMultiSelectMode
+        )
+      } else {
+        TopAppBar(onBackPress = onNavigateBack)
+      }
+    }
+  ) { padding ->
     Column(
       modifier = modifier.padding(padding)
     ) {
@@ -248,6 +274,21 @@ private fun TopAppBar(
   )
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun MultiSelectTopAppBar(
+  selectedItemCount: Int,
+  onExitClick: () -> Unit = {}
+) {
+  Scaffolds.DefaultTopAppBar(
+    title = pluralStringResource(R.plurals.StickerManagement_title_n_selected, selectedItemCount, NumberFormat.getInstance().format(selectedItemCount)),
+    titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
+    navigationIconPainter = painterResource(R.drawable.symbol_x_24),
+    navigationContentDescription = stringResource(R.string.StickerManagement_accessibility_exit_multi_select_mode),
+    onNavigationClick = onExitClick
+  )
+}
+
 @Composable
 private fun PagerTab(
   title: String,
@@ -285,6 +326,7 @@ private fun AvailableStickersContent(
 
     LazyColumn(
       contentPadding = PaddingValues(top = 8.dp),
+      verticalArrangement = Arrangement.spacedBy(4.dp),
       modifier = modifier.fillMaxHeight()
     ) {
       if (blessedPacks.isNotEmpty()) {
@@ -349,6 +391,8 @@ private fun AvailableStickersContent(
 @Composable
 private fun InstalledStickersContent(
   packs: List<InstalledStickerPack>,
+  multiSelectEnabled: Boolean,
+  selectedPackIds: Set<StickerPackId>,
   callbacks: InstalledStickersContentCallbacks = InstalledStickersContentCallbacks.Empty,
   modifier: Modifier = Modifier
 ) {
@@ -360,54 +404,96 @@ private fun InstalledStickersContent(
 
     val isRtl = LocalLayoutDirection.current == LayoutDirection.Rtl
     val screenWidth = LocalConfiguration.current.screenWidthDp.dp
+    val density = LocalDensity.current
     val haptics = LocalHapticFeedback.current
 
-    LazyColumn(
-      contentPadding = PaddingValues(top = 8.dp),
-      state = listState,
-      modifier = modifier
-        .fillMaxHeight()
-        .dragContainer(
-          dragDropState = dragDropState,
-          leftDpOffset = if (isRtl) 0.dp else screenWidth - 56.dp,
-          rightDpOffset = if (isRtl) 56.dp else screenWidth
-        )
-    ) {
-      item {
-        DraggableItem(dragDropState, 0) {
-          StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_installed_stickers_header))
-        }
-      }
+    Box(modifier = Modifier.fillMaxSize()) {
+      var bottomActionBarPadding: Dp by remember { mutableStateOf(0.dp) }
 
-      itemsIndexed(
-        items = packs,
-        key = { _, pack -> pack.id.value }
-      ) { index, pack ->
-        val menuController = remember { DropdownMenus.MenuController() }
-
-        DraggableItem(
-          index = index + 1,
-          dragDropState = dragDropState
-        ) { isDragging ->
-          InstalledStickerPackRow(
-            pack = pack,
-            menuController = menuController,
-            onForwardClick = { callbacks.onForwardClick(pack) },
-            onSelectClick = { callbacks.onSelectClick(pack) },
-            onRemoveClick = { callbacks.onRemoveClick(pack) },
-            modifier = Modifier
-              .shadow(if (isDragging) 1.dp else 0.dp)
-              .combinedClickable(
-                onClick = {},
-                onLongClick = {
-                  haptics.performHapticFeedback(HapticFeedbackType.LongPress)
-                  menuController.show()
-                },
-                onLongClickLabel = stringResource(R.string.StickerManagement_accessibility_open_context_menu)
-              )
+      LazyColumn(
+        contentPadding = PaddingValues(
+          top = 8.dp,
+          bottom = if (multiSelectEnabled) bottomActionBarPadding else 0.dp
+        ),
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        state = listState,
+        modifier = modifier
+          .fillMaxHeight()
+          .dragContainer(
+            dragDropState = dragDropState,
+            leftDpOffset = if (isRtl) 0.dp else screenWidth - 56.dp,
+            rightDpOffset = if (isRtl) 56.dp else screenWidth
           )
+      ) {
+        item {
+          DraggableItem(dragDropState, 0) {
+            StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_installed_stickers_header))
+          }
+        }
+
+        itemsIndexed(
+          items = packs,
+          key = { _, pack -> pack.id.value }
+        ) { index, pack ->
+          val menuController = remember { DropdownMenus.MenuController() }
+
+          DraggableItem(
+            index = index + 1,
+            dragDropState = dragDropState
+          ) { isDragging ->
+            InstalledStickerPackRow(
+              pack = pack,
+              multiSelectEnabled = multiSelectEnabled,
+              selected = pack.id in selectedPackIds,
+              menuController = menuController,
+              onForwardClick = { callbacks.onForwardClick(pack) },
+              onSelectionToggle = { callbacks.onSelectionToggle(pack) },
+              onRemoveClick = { callbacks.onRemoveClick(pack) },
+              modifier = Modifier
+                .shadow(if (isDragging) 1.dp else 0.dp)
+                .combinedClickable(
+                  onClick = {
+                    if (multiSelectEnabled) {
+                      callbacks.onSelectionToggle(pack)
+                    }
+                  },
+                  onLongClick = {
+                    if (!multiSelectEnabled) {
+                      haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+                      menuController.show()
+                    }
+                  },
+                  onLongClickLabel = stringResource(R.string.StickerManagement_accessibility_open_context_menu)
+                )
+            )
+          }
         }
       }
+
+      SignalBottomActionBar(
+        visible = multiSelectEnabled,
+        items = listOf(
+          ActionItem(
+            iconRes = R.drawable.symbol_check_circle_24,
+            title = if (selectedPackIds.size == packs.size) {
+              stringResource(R.string.StickerManagement_action_deselect_all)
+            } else {
+              stringResource(R.string.StickerManagement_action_select_all)
+            },
+            action = callbacks::onSelectAllToggle
+          ),
+          ActionItem(
+            iconRes = R.drawable.symbol_trash_24,
+            title = stringResource(R.string.StickerManagement_action_delete_selected),
+            action = { /* TODO implement multi-delete */ }
+          )
+        ),
+        modifier = Modifier
+          .align(Alignment.BottomCenter)
+          .onGloballyPositioned { layoutCoordinates ->
+            bottomActionBarPadding = with(density) { layoutCoordinates.size.height.toDp() }
+          }
+      )
     }
   }
 }
@@ -478,6 +564,7 @@ private fun InstalledStickersContentPreview() {
           isBlessed = true
         ),
         StickerPreviewDataFactory.installedPack(
+          packId = "stickerPackId2",
           title = "Bandit the Cat",
           author = "Agnes Lee",
           isBlessed = true
@@ -486,7 +573,9 @@ private fun InstalledStickersContentPreview() {
           title = "Day by Day",
           author = "Miguel Ángel Camprubí"
         )
-      )
+      ),
+      multiSelectEnabled = true,
+      selectedPackIds = setOf(StickerPackId("stickerPackId2"))
     )
   }
 }

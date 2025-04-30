@@ -5,6 +5,11 @@
 
 package org.thoughtcrime.securesms.stickers
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -13,6 +18,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -64,8 +70,12 @@ fun AvailableStickerPackRow(
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = modifier
-      .background(MaterialTheme.colorScheme.surface)
-      .padding(start = 24.dp, top = 12.dp, end = 12.dp, bottom = 12.dp)
+      .padding(horizontal = 16.dp)
+      .background(
+        color = MaterialTheme.colorScheme.surface,
+        shape = RoundedCornerShape(18.dp)
+      )
+      .padding(vertical = 10.dp)
   ) {
     StickerPackInfo(
       coverImageUri = DecryptableUri(pack.record.cover.uri),
@@ -132,25 +142,32 @@ fun AvailableStickerPackRow(
 @Composable
 fun InstalledStickerPackRow(
   pack: InstalledStickerPack,
-  multiSelectModeEnabled: Boolean = false,
-  checked: Boolean = false,
-  onCheckedChange: (Boolean) -> Unit = {},
+  multiSelectEnabled: Boolean = false,
+  selected: Boolean = false,
   menuController: DropdownMenus.MenuController,
   onForwardClick: (InstalledStickerPack) -> Unit = {},
   onRemoveClick: (InstalledStickerPack) -> Unit = {},
-  onSelectClick: (InstalledStickerPack) -> Unit = {},
+  onSelectionToggle: (InstalledStickerPack) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = modifier
-      .background(MaterialTheme.colorScheme.surface)
-      .padding(12.dp)
+      .padding(horizontal = 16.dp)
+      .background(
+        color = if (selected) SignalTheme.colors.colorSurface2 else MaterialTheme.colorScheme.surface,
+        shape = RoundedCornerShape(18.dp)
+      )
+      .padding(vertical = 10.dp)
   ) {
-    if (multiSelectModeEnabled) {
+    AnimatedVisibility(
+      visible = multiSelectEnabled,
+      enter = fadeIn() + expandHorizontally(),
+      exit = fadeOut() + shrinkHorizontally()
+    ) {
       Checkbox(
-        checked = checked,
-        onCheckedChange = onCheckedChange,
+        checked = selected,
+        onCheckedChange = { onSelectionToggle(pack) },
         modifier = Modifier.padding(end = 8.dp)
       )
     }
@@ -191,7 +208,7 @@ fun InstalledStickerPackRow(
         icon = ImageVector.vectorResource(R.drawable.symbol_check_circle_24),
         text = stringResource(R.string.StickerManagement_menu_select_pack),
         onClick = {
-          onSelectClick(pack)
+          onSelectionToggle(pack)
           menuController.hide()
         }
       )
@@ -324,7 +341,7 @@ private fun AvailableStickerPackRowPreviewDownloaded() = SignalTheme {
 @Composable
 private fun InstalledStickerPackRowPreview() = SignalTheme {
   InstalledStickerPackRow(
-    multiSelectModeEnabled = false,
+    multiSelectEnabled = false,
     menuController = DropdownMenus.MenuController(),
     pack = StickerPreviewDataFactory.installedPack(
       title = "Bandit the Cat",
@@ -338,7 +355,7 @@ private fun InstalledStickerPackRowPreview() = SignalTheme {
 @Composable
 private fun InstalledStickerPackRowSelectModePreview() = SignalTheme {
   InstalledStickerPackRow(
-    multiSelectModeEnabled = true,
+    multiSelectEnabled = true,
     menuController = DropdownMenus.MenuController(),
     pack = StickerPreviewDataFactory.installedPack(
       title = "Bandit the Cat",

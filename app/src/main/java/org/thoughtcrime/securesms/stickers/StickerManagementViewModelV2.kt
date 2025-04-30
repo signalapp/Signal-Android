@@ -116,9 +116,32 @@ class StickerManagementViewModelV2 : ViewModel() {
 
   fun toggleSelection(pack: InstalledStickerPack) {
     _uiState.update { previousState ->
+      val wasItemSelected = previousState.selectedPackIds.contains(pack.id)
       previousState.copy(
-        isMultiSelectMode = true,
-        selectedPackIds = if (pack.isSelected) previousState.selectedPackIds.minus(pack.id) else previousState.selectedPackIds.plus(pack.id)
+        multiSelectEnabled = true,
+        selectedPackIds = if (wasItemSelected) previousState.selectedPackIds.minus(pack.id) else previousState.selectedPackIds.plus(pack.id)
+      )
+    }
+  }
+
+  fun toggleSelectAll() {
+    _uiState.update { previousState ->
+      previousState.copy(
+        multiSelectEnabled = true,
+        selectedPackIds = if (previousState.selectedPackIds.size == previousState.installedPacks.size) {
+          emptySet()
+        } else {
+          previousState.installedPacks.map { it.id }.toSet()
+        }
+      )
+    }
+  }
+
+  fun setMultiSelectEnabled(isEnabled: Boolean) {
+    _uiState.update { previousState ->
+      previousState.copy(
+        multiSelectEnabled = isEnabled,
+        selectedPackIds = emptySet()
       )
     }
   }
@@ -128,7 +151,7 @@ data class StickerManagementUiState(
   val availableBlessedPacks: List<AvailableStickerPack> = emptyList(),
   val availableNotBlessedPacks: List<AvailableStickerPack> = emptyList(),
   val installedPacks: List<InstalledStickerPack> = emptyList(),
-  val isMultiSelectMode: Boolean = false,
+  val multiSelectEnabled: Boolean = false,
   val selectedPackIds: Set<StickerPackId> = emptySet()
 )
 
@@ -150,8 +173,7 @@ data class AvailableStickerPack(
 data class InstalledStickerPack(
   val record: StickerPackRecord,
   val isBlessed: Boolean,
-  val sortOrder: Int,
-  val isSelected: Boolean = false
+  val sortOrder: Int
 ) {
   val id = StickerPackId(record.packId)
   val key = StickerPackKey(record.packKey)
