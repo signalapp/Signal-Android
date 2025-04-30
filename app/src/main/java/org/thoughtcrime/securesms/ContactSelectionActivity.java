@@ -170,7 +170,7 @@ public abstract class ContactSelectionActivity extends PassphraseRequiredActivit
       ContactSelectionActivity activity = this.activity.get();
 
       if (activity != null && !activity.isFinishing()) {
-        activity.contactsFragment.resetQueryFilter();
+        activity.contactsFragment.onDataRefreshed();
       }
     }
   }
