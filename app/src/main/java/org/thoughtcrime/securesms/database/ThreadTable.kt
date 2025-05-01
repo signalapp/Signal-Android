@@ -962,9 +962,19 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun getArchivedRecipients(): Set<RecipientId> {
-    return getArchivedConversationList(ConversationFilter.OFF).readToList { cursor ->
-      RecipientId.from(cursor.requireLong(RECIPIENT_ID))
-    }.toSet()
+    var offset = 0L
+    val result = mutableSetOf<RecipientId>()
+
+    do {
+      val recipientIds = getArchivedConversationList(ConversationFilter.OFF, offset, 500).readToList { cursor ->
+        RecipientId.from(cursor.requireLong(RECIPIENT_ID))
+      }
+
+      result.addAll(recipientIds)
+      offset += recipientIds.size
+    } while (recipientIds.isNotEmpty())
+
+    return result
   }
 
   fun getInboxPositions(): Map<RecipientId, Int> {
