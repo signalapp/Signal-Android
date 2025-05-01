@@ -72,7 +72,8 @@ class StickerManagementViewModelV2 : ViewModel() {
           previousState.copy(
             availableBlessedPacks = availableBlessedPacks,
             availableNotBlessedPacks = availableNotBlessedPacks,
-            installedPacks = installedPacks
+            installedPacks = installedPacks,
+            multiSelectEnabled = if (installedPacks.isEmpty()) false else previousState.multiSelectEnabled
           )
         }
       }
@@ -98,9 +99,42 @@ class StickerManagementViewModelV2 : ViewModel() {
     }
   }
 
-  fun uninstallStickerPack(pack: InstalledStickerPack) {
+  fun onUninstallStickerPacksRequested(packIds: Set<StickerPackId>) {
+    if (packIds.isEmpty()) {
+      return
+    }
+
+    if (_uiState.value.multiSelectEnabled) {
+      _uiState.update { previousState ->
+        previousState.copy(
+          userPrompt = ConfirmRemoveStickerPacksPrompt(numItemsToDelete = packIds.size)
+        )
+      }
+    } else {
+      uninstallStickerPacks(packIds)
+    }
+  }
+
+  fun onUninstallStickerPacksConfirmed(packIds: Set<StickerPackId>) {
+    _uiState.update { previousState -> previousState.copy(userPrompt = null) }
+    uninstallStickerPacks(packIds)
+  }
+
+  fun onUninstallStickerPacksCanceled() {
+    _uiState.update { previousState -> previousState.copy(userPrompt = null) }
+  }
+
+  private fun uninstallStickerPacks(packIds: Set<StickerPackId>) {
     viewModelScope.launch {
-      StickerManagementRepository.uninstallStickerPack(packId = pack.id, packKey = pack.key)
+      _uiState.value.installedPacks
+        .filter { packIds.contains(it.id) }
+        .forEach { pack -> StickerManagementRepository.uninstallStickerPack(packId = pack.id, packKey = pack.key) }
+
+      _uiState.update { previousState ->
+        previousState.copy(
+          selectedPackIds = previousState.selectedPackIds.minus(packIds)
+        )
+      }
     }
   }
 
@@ -152,7 +186,12 @@ data class StickerManagementUiState(
   val availableNotBlessedPacks: List<AvailableStickerPack> = emptyList(),
   val installedPacks: List<InstalledStickerPack> = emptyList(),
   val multiSelectEnabled: Boolean = false,
-  val selectedPackIds: Set<StickerPackId> = emptySet()
+  val selectedPackIds: Set<StickerPackId> = emptySet(),
+  val userPrompt: ConfirmRemoveStickerPacksPrompt? = null
+)
+
+data class ConfirmRemoveStickerPacksPrompt(
+  val numItemsToDelete: Int
 )
 
 data class AvailableStickerPack(

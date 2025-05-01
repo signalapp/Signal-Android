@@ -2830,6 +2830,11 @@
     <string name="StickerManagement_action_deselect_all">Deselect all</string>
     <!-- Bottom action bar option to uninstall all selected sticker packs. -->
     <string name="StickerManagement_action_delete_selected">Delete</string>
+    <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation">
+        <item quantity="one">Remove %1$s sticker pack</item>
+        <item quantity="other">Remove %1$s sticker packs</item>
+    </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
     <string name="StickerManagement_menu_forward_pack">Forward</string>

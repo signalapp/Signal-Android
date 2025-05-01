@@ -60,6 +60,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
@@ -117,7 +118,9 @@ class StickerManagementActivityV2 : PassphraseRequiredActivity() {
           },
           installedTabCallbacks = object : InstalledStickersContentCallbacks {
             override fun onForwardClick(pack: InstalledStickerPack) = openShareSheet(pack.id, pack.key)
-            override fun onRemoveClick(pack: InstalledStickerPack) = viewModel.uninstallStickerPack(pack)
+            override fun onRemoveClick(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksRequested(packIds)
+            override fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>) = viewModel.onUninstallStickerPacksConfirmed(packIds)
+            override fun onRemoveStickerPacksCanceled() = viewModel.onUninstallStickerPacksCanceled()
             override fun onSelectionToggle(pack: InstalledStickerPack) = viewModel.toggleSelection(pack)
             override fun onSelectAllToggle() = viewModel.toggleSelectAll()
             override fun onDragAndDropEvent(event: DragAndDropEvent) {
@@ -165,14 +168,18 @@ interface AvailableStickersContentCallbacks {
 
 interface InstalledStickersContentCallbacks {
   fun onForwardClick(pack: InstalledStickerPack)
-  fun onRemoveClick(pack: InstalledStickerPack)
+  fun onRemoveClick(packIds: Set<StickerPackId>)
+  fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>)
+  fun onRemoveStickerPacksCanceled()
   fun onSelectionToggle(pack: InstalledStickerPack)
   fun onSelectAllToggle()
   fun onDragAndDropEvent(event: DragAndDropEvent)
 
   object Empty : InstalledStickersContentCallbacks {
     override fun onForwardClick(pack: InstalledStickerPack) = Unit
-    override fun onRemoveClick(pack: InstalledStickerPack) = Unit
+    override fun onRemoveClick(packIds: Set<StickerPackId>) = Unit
+    override fun onRemoveStickerPacksConfirmed(packIds: Set<StickerPackId>) = Unit
+    override fun onRemoveStickerPacksCanceled() = Unit
     override fun onSelectionToggle(pack: InstalledStickerPack) = Unit
     override fun onSelectAllToggle() = Unit
     override fun onDragAndDropEvent(event: DragAndDropEvent) = Unit
@@ -207,6 +214,7 @@ private fun StickerManagementScreen(
           packs = uiState.installedPacks,
           multiSelectEnabled = uiState.multiSelectEnabled,
           selectedPackIds = uiState.selectedPackIds,
+          dialogState = uiState.userPrompt,
           callbacks = installedTabCallbacks
         )
       }
@@ -393,6 +401,7 @@ private fun InstalledStickersContent(
   packs: List<InstalledStickerPack>,
   multiSelectEnabled: Boolean,
   selectedPackIds: Set<StickerPackId>,
+  dialogState: ConfirmRemoveStickerPacksPrompt? = null,
   callbacks: InstalledStickersContentCallbacks = InstalledStickersContentCallbacks.Empty,
   modifier: Modifier = Modifier
 ) {
@@ -448,7 +457,7 @@ private fun InstalledStickersContent(
               menuController = menuController,
               onForwardClick = { callbacks.onForwardClick(pack) },
               onSelectionToggle = { callbacks.onSelectionToggle(pack) },
-              onRemoveClick = { callbacks.onRemoveClick(pack) },
+              onRemoveClick = { callbacks.onRemoveClick(setOf(pack.id)) },
               modifier = Modifier
                 .shadow(if (isDragging) 1.dp else 0.dp)
                 .combinedClickable(
@@ -470,6 +479,22 @@ private fun InstalledStickersContent(
         }
       }
 
+      if (dialogState != null) {
+        Dialogs.SimpleAlertDialog(
+          title = Dialogs.NoTitle,
+          body = pluralStringResource(
+            R.plurals.StickerManagement_delete_n_packs_confirmation,
+            dialogState.numItemsToDelete,
+            NumberFormat.getInstance().format(dialogState.numItemsToDelete)
+          ),
+          confirm = stringResource(R.string.StickerManagement_menu_remove_pack),
+          dismiss = stringResource(android.R.string.cancel),
+          onConfirm = { callbacks.onRemoveStickerPacksConfirmed(selectedPackIds) },
+          onDeny = callbacks::onRemoveStickerPacksCanceled,
+          onDismiss = callbacks::onRemoveStickerPacksCanceled
+        )
+      }
+
       SignalBottomActionBar(
         visible = multiSelectEnabled,
         items = listOf(
@@ -485,7 +510,7 @@ private fun InstalledStickersContent(
           ActionItem(
             iconRes = R.drawable.symbol_trash_24,
             title = stringResource(R.string.StickerManagement_action_delete_selected),
-            action = { /* TODO implement multi-delete */ }
+            action = { callbacks.onRemoveClick(selectedPackIds) }
           )
         ),
         modifier = Modifier
