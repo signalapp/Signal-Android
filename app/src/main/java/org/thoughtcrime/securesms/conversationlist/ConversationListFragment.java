@@ -389,6 +389,12 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     initializeVoiceNotePlayer();
     initializeBanners();
     maybeScheduleRefreshProfileJob();
+    ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(this, mainNavigationViewModel.getDetailLocation());
+
+    String query = contactSearchMediator.getFilter();
+    if (query != null) {
+      onSearchQueryUpdated(query);
+    }
 
     RatingManager.showRatingDialogIfNecessary(requireContext());
 
@@ -473,7 +479,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     initializeSearchListener();
     initializeFilterListener();
-    EventBus.getDefault().register(this);
     itemAnimator.disable();
     SpoilerAnnotation.resetRevealedSpoilers();
 
@@ -537,13 +542,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     super.onStart();
     AppForegroundObserver.addListener(appForegroundObserver);
     itemAnimator.disable();
-  }
-
-  @Override
-  public void onPause() {
-    super.onPause();
-
-    EventBus.getDefault().unregister(this);
   }
 
   @Override

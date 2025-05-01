@@ -252,16 +252,23 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           )
         )
 
+        if (SignalStore.internal.largeScreenUi) {
+          LaunchedEffect(scaffoldNavigator.currentDestination) {
+            if (scaffoldNavigator.currentDestination?.pane == ThreePaneScaffoldRole.Secondary) {
+              mainNavigationViewModel.goTo(MainNavigationDetailLocation.Empty)
+            }
+          }
+        }
+
         LaunchedEffect(detailLocation) {
           if (detailLocation is MainNavigationDetailLocation.Conversation) {
             if (SignalStore.internal.largeScreenUi) {
               scaffoldNavigator.navigateTo(ThreePaneScaffoldRole.Primary, detailLocation)
             } else {
               startActivity((detailLocation as MainNavigationDetailLocation.Conversation).intent)
+              mainNavigationViewModel.goTo(MainNavigationDetailLocation.Empty)
             }
           }
-
-          mainNavigationViewModel.goTo(MainNavigationDetailLocation.Empty)
         }
 
         AppScaffold(
