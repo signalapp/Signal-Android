@@ -55,6 +55,7 @@ import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
+import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
 import java.util.Objects
 
 /**
@@ -173,6 +174,10 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
         }
       }
     )
+
+    if (resources.getWindowSizeClass().isCompact()) {
+      ViewUtil.setBottomMargin(binding.bottomActionBar, ViewUtil.getNavigationBarHeight(binding.bottomActionBar))
+    }
 
     signalBottomActionBarController = SignalBottomActionBarController(
       binding.bottomActionBar,

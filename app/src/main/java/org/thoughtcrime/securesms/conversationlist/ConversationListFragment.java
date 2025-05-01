@@ -318,6 +318,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
     searchAdapter = contactSearchMediator.getAdapter();
 
+    if (WindowSizeClass.Companion.getWindowSizeClass(getResources()).isCompact()) {
+      ViewUtil.setBottomMargin(bottomActionBar, ViewUtil.getNavigationBarHeight(bottomActionBar));
+    }
+
     CollapsingToolbarLayout collapsingToolbarLayout = view.findViewById(R.id.collapsing_toolbar);
     int                     openHeight              = (int) DimensionUnit.DP.toPixels(FilterLerp.FILTER_OPEN_HEIGHT);
 
