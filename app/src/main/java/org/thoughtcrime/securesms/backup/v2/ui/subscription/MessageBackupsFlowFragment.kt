@@ -43,6 +43,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
 
     @VisibleForTesting
     const val TIER = "tier"
+    const val CLIPBOARD_TIMEOUT_SECONDS = 60
 
     fun create(messageBackupTier: MessageBackupTier?): MessageBackupsFlowFragment {
       return MessageBackupsFlowFragment().apply {
@@ -115,7 +116,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           onNavigationClick = viewModel::goToPreviousStage,
           onNextClick = viewModel::goToNextStage,
           onCopyToClipboardClick = {
-            Util.copyToClipboard(context, it)
+            Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS)
           }
         )
       }
