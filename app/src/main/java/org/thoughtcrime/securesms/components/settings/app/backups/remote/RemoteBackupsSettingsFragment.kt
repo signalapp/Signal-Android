@@ -1214,6 +1214,7 @@ private fun BackupFrequencyDialog(
         Text(
           text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_frequency),
           style = MaterialTheme.typography.headlineMedium,
+          color = MaterialTheme.colorScheme.onSurface,
           modifier = Modifier.padding(24.dp)
         )
 
