@@ -992,6 +992,14 @@ object RemoteConfig {
     value.asBoolean(false) || Environment.IS_NIGHTLY
   }
 
+  @JvmStatic
+  @get:JvmName("libsignalEnforceMinTlsVersion")
+  val libsignalEnforceMinTlsVersion by remoteBoolean(
+    key = "android.libsignalEnforceMinTlsVersion",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
   /** Whether or not to launch the restore activity after registration is complete, rather than before.  */
   @JvmStatic
   @get:JvmName("restoreAfterRegistration")
