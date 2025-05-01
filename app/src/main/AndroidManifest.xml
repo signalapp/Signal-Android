@@ -146,17 +146,6 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false" />
 
-    <activity android:name=".InviteActivity"
-              android:theme="@style/Signal.Light.NoActionBar.Invite"
-              android:windowSoftInputMode="stateHidden"
-              android:parentActivityName=".MainActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
-    </activity>
-
     <activity android:name=".DeviceProvisioningActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="true">

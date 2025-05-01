@@ -586,8 +586,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     }
 
     override fun onInviteFriendsClick() {
-      val intent = Intent(this@MainActivity, InviteActivity::class.java)
-      startActivity(intent)
+      openSettings.launch(AppSettingsActivity.invite(this@MainActivity))
     }
 
     override fun onFilterUnreadChatsClick() {

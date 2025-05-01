@@ -468,7 +468,7 @@ private fun AppSettingsContent(
             text = stringResource(R.string.AppSettingsFragment__invite_your_friends),
             icon = painterResource(R.drawable.symbol_invite_24),
             onClick = {
-              callbacks.navigate(R.id.action_appSettingsFragment_to_inviteActivity)
+              callbacks.navigate(R.id.action_appSettingsFragment_to_inviteFragment)
             }
           )
         }

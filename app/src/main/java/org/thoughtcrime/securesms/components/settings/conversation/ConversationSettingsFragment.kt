@@ -36,7 +36,6 @@ import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.BlockUnblockDialog
-import org.thoughtcrime.securesms.InviteActivity
 import org.thoughtcrime.securesms.MuteDialog
 import org.thoughtcrime.securesms.PushContactSelectionActivity
 import org.thoughtcrime.securesms.R
@@ -389,7 +388,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             LegacyGroupPreference.Model(
               state = groupState.legacyGroupState,
               onLearnMoreClick = { GroupsLearnMoreBottomSheetDialogFragment.show(parentFragmentManager) },
-              onMmsWarningClick = { startActivity(Intent(requireContext(), InviteActivity::class.java)) }
+              onMmsWarningClick = { startActivity(AppSettingsActivity.invite(requireContext())) }
             )
           )
         }
