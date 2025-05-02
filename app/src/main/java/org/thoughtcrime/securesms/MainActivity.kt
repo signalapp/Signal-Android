@@ -33,17 +33,19 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
-import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
 import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
+import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.Dp
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.rememberFragmentState
@@ -216,7 +218,6 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
     setContent {
       val listHostState = rememberFragmentState()
-      val detailLocation by mainNavigationViewModel.detailLocationRequests.collectAsStateWithLifecycle()
       val snackbar by mainNavigationViewModel.snackbar.collectAsStateWithLifecycle()
       val mainToolbarState by toolbarViewModel.state.collectAsStateWithLifecycle()
       val megaphone by mainNavigationViewModel.megaphone.collectAsStateWithLifecycle()
@@ -242,37 +243,10 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       val contentLayoutData = MainContentLayoutData.rememberContentLayoutData()
 
       MainContainer {
-        val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator<Any>(
-          scaffoldDirective = calculatePaneScaffoldDirective(
-            currentWindowAdaptiveInfo()
-          ).copy(
-            maxHorizontalPartitions = if (windowSizeClass.isSplitPane()) 2 else 1,
-            horizontalPartitionSpacerSize = contentLayoutData.partitionWidth,
-            defaultPanePreferredWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
-          )
-        )
-
-        if (SignalStore.internal.largeScreenUi) {
-          LaunchedEffect(scaffoldNavigator.currentDestination) {
-            if (scaffoldNavigator.currentDestination?.pane == ThreePaneScaffoldRole.Secondary) {
-              mainNavigationViewModel.goTo(MainNavigationDetailLocation.Empty)
-            }
-          }
-        }
-
-        LaunchedEffect(detailLocation) {
-          if (detailLocation is MainNavigationDetailLocation.Conversation) {
-            if (SignalStore.internal.largeScreenUi) {
-              scaffoldNavigator.navigateTo(ThreePaneScaffoldRole.Primary, detailLocation)
-            } else {
-              startActivity((detailLocation as MainNavigationDetailLocation.Conversation).intent)
-              mainNavigationViewModel.goTo(MainNavigationDetailLocation.Empty)
-            }
-          }
-        }
+        val wrappedNavigator = rememberNavigator(windowSizeClass, contentLayoutData, maxWidth)
 
         AppScaffold(
-          navigator = scaffoldNavigator,
+          navigator = wrappedNavigator,
           bottomNavContent = {
             if (isNavigationVisible) {
               Column(
@@ -338,7 +312,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
             }
           },
           detailContent = {
-            when (val destination = scaffoldNavigator.currentDestination?.contentKey) {
+            when (val destination = wrappedNavigator.currentDestination?.contentKey) {
               is MainNavigationDetailLocation.Conversation -> {
                 val fragmentState = key(destination) { rememberFragmentState() }
                 AndroidFragment(
@@ -382,6 +356,41 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     CachedInflater.from(this).clear()
 
     lifecycleDisposable += vitalsViewModel.vitalsState.subscribe(this::presentVitalsState)
+  }
+
+  /**
+   * Creates and wraps a scaffold navigator such that we can use it to operate with both
+   * our split pane and legacy activities.
+   */
+  @OptIn(ExperimentalMaterial3AdaptiveApi::class)
+  @Composable
+  private fun rememberNavigator(
+    windowSizeClass: WindowSizeClass,
+    contentLayoutData: MainContentLayoutData,
+    maxWidth: Dp
+  ): ThreePaneScaffoldNavigator<Any> {
+    val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator<Any>(
+      scaffoldDirective = calculatePaneScaffoldDirective(
+        currentWindowAdaptiveInfo()
+      ).copy(
+        maxHorizontalPartitions = if (windowSizeClass.isSplitPane()) 2 else 1,
+        horizontalPartitionSpacerSize = contentLayoutData.partitionWidth,
+        defaultPanePreferredWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
+      )
+    )
+
+    val coroutine = rememberCoroutineScope()
+
+    return remember(scaffoldNavigator, coroutine) {
+      mainNavigationViewModel.wrapNavigator(coroutine, scaffoldNavigator) { detailLocation ->
+        when (detailLocation) {
+          is MainNavigationDetailLocation.Conversation -> {
+            startActivity(detailLocation.intent)
+          }
+          MainNavigationDetailLocation.Empty -> Unit
+        }
+      }
+    }
   }
 
   @Composable
