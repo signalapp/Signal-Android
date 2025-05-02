@@ -20,8 +20,10 @@ import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
@@ -168,11 +170,20 @@ fun SignalBottomActionBar(
     AndroidView(
       factory = { context ->
         SignalBottomActionBar(context, null)
-          .apply { setItems(items) }
+          .apply {
+            elevation = 0f
+            setItems(items)
+          }
       },
       update = { view ->
         view.setItems(items)
-      }
+      },
+      modifier = Modifier
+        .padding(4.dp) // prevent shadow clipping during visibility animations
+        .shadow(
+          elevation = 4.dp,
+          shape = RoundedCornerShape(18.dp)
+        )
     )
   }
 }
