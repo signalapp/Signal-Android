@@ -5843,6 +5843,8 @@
     <string name="NewConversationActivity__s_has_been_removed">%1$s has been removed</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s has been blocked</string>
+    <!-- Snackbar message when blocking a contact has failed -->
+    <string name="NewConversationActivity__block_failed">Block failed</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Unable to remove %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->

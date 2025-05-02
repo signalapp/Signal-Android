@@ -362,6 +362,8 @@ public class NewConversationActivity extends ContactSelectionActivity
                                                   handleManualRefresh();
                                                   displaySnackbar(R.string.NewConversationActivity__s_has_been_blocked, recipient.getDisplayName(this));
                                                   contactsFragment.reset();
+                                                }, (throwable) -> {
+                                                  displaySnackbar(R.string.NewConversationActivity__block_failed);
                                                 }));
                                               })
     );

@@ -171,14 +171,19 @@ class ConversationSettingsRepository(
     }
   }
 
-  fun block(recipientId: RecipientId) {
-    SignalExecutors.BOUNDED.execute {
+  @WorkerThread
+  fun block(recipientId: RecipientId): GroupChangeResult {
+    return try {
       val recipient = Recipient.resolved(recipientId)
       if (recipient.isGroup) {
         RecipientUtil.block(context, recipient)
       } else {
         RecipientUtil.blockNonGroup(context, recipient)
       }
+      GroupChangeResult.SUCCESS
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to block recipient.", e)
+      GroupChangeResult.failure(GroupChangeFailureReason.fromException(e))
     }
   }
 

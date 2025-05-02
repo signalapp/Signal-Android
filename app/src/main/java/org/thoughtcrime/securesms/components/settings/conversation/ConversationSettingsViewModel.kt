@@ -266,7 +266,15 @@ sealed class ConversationSettingsViewModel(
     }
 
     override fun block() {
-      repository.block(recipientId)
+      viewModelScope.launch {
+        val result = withContext(SignalDispatchers.IO) {
+          repository.block(recipientId)
+        }
+
+        if (!result.isSuccess) {
+          internalEvents.onNext(ConversationSettingsEvent.ShowBlockGroupError(result.getFailureReason()))
+        }
+      }
     }
 
     override fun unblock() {
