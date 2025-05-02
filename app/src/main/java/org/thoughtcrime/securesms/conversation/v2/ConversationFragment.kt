@@ -693,6 +693,9 @@ class ConversationFragment :
 
     conversationGroupViewModel.updateGroupStateIfNeeded()
 
+    // Timestamps may be affected by configuration change
+    recomputeMessageDates(force = true)
+
     if (inputPanel.voiceNoteDraft != null) {
       updateToggleButtonState()
     }
@@ -1172,12 +1175,7 @@ class ConversationFragment :
 
     getVoiceNoteMediaController().voiceNotePlaybackState.observe(viewLifecycleOwner, inputPanel.playbackStateObserver)
 
-    val conversationUpdateTick = ConversationUpdateTick {
-      disposables += ConversationMessageComputeWorkers.recomputeFormattedDate(
-        requireContext(),
-        adapter.currentList.filterIsInstance<ConversationMessageElement>()
-      ).observeOn(AndroidSchedulers.mainThread()).subscribeBy { adapter.updateTimestamps() }
-    }
+    val conversationUpdateTick = ConversationUpdateTick { recomputeMessageDates() }
 
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
 
@@ -1185,6 +1183,17 @@ class ConversationFragment :
       composeText.requestFocus()
       binding.conversationInputPanel.quickAttachmentToggle.disable()
     }
+  }
+
+  private fun recomputeMessageDates(force: Boolean = false) {
+    disposables += ConversationMessageComputeWorkers
+      .recomputeFormattedDate(
+        requireContext(),
+        adapter.currentList.filterIsInstance<ConversationMessageElement>(),
+        force
+      )
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy { adapter.updateTimestamps() }
   }
 
   private fun initializeInlineSearch() {
