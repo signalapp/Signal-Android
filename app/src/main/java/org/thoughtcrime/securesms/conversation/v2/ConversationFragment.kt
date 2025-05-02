@@ -665,6 +665,11 @@ class ConversationFragment :
     outState.putBoolean(SAVED_STATE_IS_SEARCH_REQUESTED, isSearchRequested)
   }
 
+  override fun onStart() {
+    super.onStart()
+    recomputeMessageDates(forceUpdate = true)
+  }
+
   override fun onResume() {
     super.onResume()
 
@@ -1173,12 +1178,7 @@ class ConversationFragment :
 
     getVoiceNoteMediaController().voiceNotePlaybackState.observe(viewLifecycleOwner, inputPanel.playbackStateObserver)
 
-    val conversationUpdateTick = ConversationUpdateTick {
-      disposables += ConversationMessageComputeWorkers.recomputeFormattedDate(
-        requireContext(),
-        adapter.currentList.filterIsInstance<ConversationMessageElement>()
-      ).observeOn(AndroidSchedulers.mainThread()).subscribeBy { adapter.updateTimestamps() }
-    }
+    val conversationUpdateTick = ConversationUpdateTick { recomputeMessageDates() }
 
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
 
@@ -1186,6 +1186,17 @@ class ConversationFragment :
       composeText.requestFocus()
       binding.conversationInputPanel.quickAttachmentToggle.disable()
     }
+  }
+
+  private fun recomputeMessageDates(forceUpdate: Boolean = false) {
+    disposables += ConversationMessageComputeWorkers
+      .recomputeFormattedDate(
+        context = requireContext(),
+        items = adapter.currentList.filterIsInstance<ConversationMessageElement>(),
+        forceUpdate = forceUpdate
+      )
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribeBy { adapter.updateTimestamps() }
   }
 
   private fun initializeInlineSearch() {
