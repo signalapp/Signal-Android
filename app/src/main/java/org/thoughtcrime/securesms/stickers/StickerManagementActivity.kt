@@ -98,13 +98,13 @@ import java.text.NumberFormat
 /**
  * Displays all of the available and installed sticker packs, enabling installation, uninstallation, and sorting.
  */
-class StickerManagementActivityV2 : PassphraseRequiredActivity() {
+class StickerManagementActivity : PassphraseRequiredActivity() {
   companion object {
     @JvmStatic
-    fun createIntent(context: Context): Intent = Intent(context, StickerManagementActivityV2::class.java)
+    fun createIntent(context: Context): Intent = Intent(context, StickerManagementActivity::class.java)
   }
 
-  private val viewModel by viewModel { StickerManagementViewModelV2() }
+  private val viewModel by viewModel { StickerManagementViewModel() }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     super.onCreate(savedInstanceState, ready)
@@ -311,7 +311,7 @@ private fun TopAppBar(
   onSetMultiSelectModeEnabled: (Boolean) -> Unit
 ) {
   Scaffolds.DefaultTopAppBar(
-    title = stringResource(R.string.StickerManagementActivity_stickers),
+    title = stringResource(R.string.StickerManagement_title_stickers),
     titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
     navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
     navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),

@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
 
-class StickerManagementViewModelV2 : ViewModel() {
+class StickerManagementViewModel : ViewModel() {
   private val stickerManagementRepo = StickerManagementRepository
 
   private val _uiState = MutableStateFlow(StickerManagementUiState())

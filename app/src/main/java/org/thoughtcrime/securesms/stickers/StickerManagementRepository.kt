@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.stickers
 
 import androidx.annotation.Discouraged
-import androidx.annotation.WorkerThread
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.awaitClose
@@ -38,14 +37,6 @@ object StickerManagementRepository {
   private val stickersDbTable: StickerTable = SignalDatabase.stickers
   private val attachmentsDbTable: AttachmentTable = SignalDatabase.attachments
   private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.IO)
-
-  @Discouraged("For Java use only. In Kotlin, use the getStickerPacks() overload that returns a Flow instead.")
-  @WorkerThread
-  fun getStickerPacks(callback: Callback<StickerPacksResult>) {
-    coroutineScope.launch {
-      callback.onComplete(loadStickerPacks())
-    }
-  }
 
   /**
    * Emits the sticker packs along with any updates.
@@ -91,13 +82,6 @@ object StickerManagementRepository {
     }
   }
 
-  @Discouraged("For Java use only. In Kotlin, use deleteOrphanedStickerPacks() instead.")
-  fun deleteOrphanedStickerPacksAsync() {
-    coroutineScope.launch {
-      deleteOrphanedStickerPacks()
-    }
-  }
-
   suspend fun deleteOrphanedStickerPacks() = withContext(Dispatchers.IO) {
     stickersDbTable.deleteOrphanedPacks()
   }
@@ -112,6 +96,7 @@ object StickerManagementRepository {
     }
   }
 
+  @Discouraged("For Java use only. In Kotlin, use installStickerPack() instead.")
   fun installStickerPackAsync(packId: String, packKey: String, notify: Boolean) {
     coroutineScope.launch {
       installStickerPack(StickerPackId(packId), StickerPackKey(packKey), notify)
@@ -142,13 +127,6 @@ object StickerManagementRepository {
 
     if (SignalStore.account.hasLinkedDevices) {
       AppDependencies.jobManager.add(MultiDeviceStickerPackOperationJob(packId.value, packKey.value, MultiDeviceStickerPackOperationJob.Type.REMOVE))
-    }
-  }
-
-  @Discouraged("For Java use only. In Kotlin, use setStickerPackOrder() instead.")
-  fun setStickerPacksOrderAsync(packsInOrder: List<StickerPackRecord>) {
-    coroutineScope.launch {
-      setStickerPacksOrder(packsInOrder)
     }
   }
 
