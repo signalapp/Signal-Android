@@ -27,6 +27,7 @@ class SignalBottomActionBarController(
     }
 
     if (isVisible) {
+      bottomActionBar.adjustBottomMarginForNavBar()
       ViewUtil.animateIn(bottomActionBar, bottomActionBar.enterAnimation)
       callback.onBottomActionBarVisibilityChanged(View.VISIBLE)
 
@@ -36,6 +37,12 @@ class SignalBottomActionBarController(
         .animateOut(bottomActionBar, bottomActionBar.exitAnimation)
         .addListener(BecomingGoneAnimationListener())
     }
+  }
+
+  private fun View.adjustBottomMarginForNavBar(extraPaddingDp: Int = 8) {
+    val navBarHeightPx = ViewUtil.getNavigationBarHeight(this)
+    val paddingPx = ViewUtil.dpToPx(extraPaddingDp)
+    ViewUtil.setBottomMargin(this, navBarHeightPx + paddingPx)
   }
 
   private inner class BecomingVisiblePreDrawListener : ViewTreeObserver.OnPreDrawListener {

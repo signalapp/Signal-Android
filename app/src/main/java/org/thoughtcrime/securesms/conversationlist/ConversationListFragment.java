@@ -1143,8 +1143,15 @@ public class ConversationListFragment extends MainFragment implements Conversati
   }
 
   private void startActionMode() {
+    adjustBottomMarginForNavBar(bottomActionBar, 8);
     ViewUtil.animateIn(bottomActionBar, bottomActionBar.getEnterAnimation());
     requireCallback().onMultiSelectStarted();
+  }
+
+  private void adjustBottomMarginForNavBar(View v, int extraPaddingDp) {
+    int navBarHeightPx = ViewUtil.getNavigationBarHeight(v);
+    int paddingPx = ViewUtil.dpToPx(extraPaddingDp);
+    ViewUtil.setBottomMargin(v, navBarHeightPx + paddingPx);
   }
 
   public void endActionModeIfActive() {
