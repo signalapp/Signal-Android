@@ -294,6 +294,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
   fun wipeAllDataAndRestoreFromRemote() {
     SignalExecutors.BOUNDED_IO.execute {
+      SignalStore.backup.restoreWithCellular = false
       restoreFromRemote()
     }
   }

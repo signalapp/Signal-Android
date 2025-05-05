@@ -88,6 +88,7 @@ class AttachmentDownloadJob private constructor(
       return when (val transferState = databaseAttachment.transferState) {
         AttachmentTable.TRANSFER_PROGRESS_DONE -> null
 
+        AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS,
         AttachmentTable.TRANSFER_RESTORE_OFFLOADED,
         AttachmentTable.TRANSFER_NEEDS_RESTORE -> RestoreAttachmentJob.restoreAttachment(databaseAttachment)
 
@@ -112,7 +113,6 @@ class AttachmentDownloadJob private constructor(
           }
         }
 
-        AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS,
         AttachmentTable.TRANSFER_PROGRESS_STARTED,
         AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE -> {
           Log.d(TAG, "${databaseAttachment.attachmentId} is downloading or permanently failed, transferState: $transferState")

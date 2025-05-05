@@ -184,9 +184,10 @@ private fun getRestoringMediaString(backupStatusData: BackupStatusData.Restoring
 
 @Composable
 private fun progressColor(backupStatusData: BackupStatusData): Color {
-  return when (backupStatusData) {
-    is BackupStatusData.RestoringMedia -> MaterialTheme.colorScheme.primary
-    else -> backupStatusData.iconColors.foreground
+  return if (backupStatusData is BackupStatusData.RestoringMedia && backupStatusData.restoreStatus == BackupStatusData.RestoreStatus.NORMAL) {
+    MaterialTheme.colorScheme.primary
+  } else {
+    backupStatusData.iconColors.foreground
   }
 }
 

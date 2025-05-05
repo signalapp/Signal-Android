@@ -555,6 +555,15 @@ class AttachmentTable(
       .readToSingleLong()
   }
 
+  fun getOptimizedMediaAttachmentSize(): Long {
+    return readableDatabase
+      .select("SUM($DATA_SIZE)")
+      .from(TABLE_NAME)
+      .where("$TRANSFER_STATE = ?", TRANSFER_RESTORE_OFFLOADED)
+      .run()
+      .readToSingleLong()
+  }
+
   /**
    * Finds all of the attachmentIds of attachments that need to be uploaded to the archive cdn.
    */

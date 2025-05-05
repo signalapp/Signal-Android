@@ -217,7 +217,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onCancelMediaRestore() {
-      viewModel.cancelMediaRestore()
+      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.CANCEL_MEDIA_RESTORE_PROTECTION)
     }
 
     override fun onDisplaySkipMediaRestoreProtectionDialog() {
@@ -245,8 +245,12 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       BackupAlertBottomSheet.create(BackupAlert.BackupFailed).show(parentFragmentManager, null)
     }
 
-    override fun onRestoreUsingCellularClick(canUseCellular: Boolean) {
-      viewModel.setCanRestoreUsingCellular(canUseCellular)
+    override fun onRestoreUsingCellularConfirm() {
+      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.RESTORE_OVER_CELLULAR_PROTECTION)
+    }
+
+    override fun onRestoreUsingCellularClick() {
+      viewModel.setCanRestoreUsingCellular()
     }
 
     override fun onRedemptionErrorDetailsClick() {
@@ -334,7 +338,8 @@ private interface ContentCallbacks {
   fun onLearnMoreAboutLostSubscription() = Unit
   fun onContactSupport() = Unit
   fun onLearnMoreAboutBackupFailure() = Unit
-  fun onRestoreUsingCellularClick(canUseCellular: Boolean) = Unit
+  fun onRestoreUsingCellularConfirm() = Unit
+  fun onRestoreUsingCellularClick() = Unit
   fun onRedemptionErrorDetailsClick() = Unit
 }
 
@@ -425,18 +430,20 @@ private fun RemoteBackupsSettingsContent(
               )
             }
 
-            item {
-              Rows.ToggleRow(
-                checked = canRestoreUsingCellular,
-                text = stringResource(id = R.string.RemoteBackupsSettingsFragment__restore_using_cellular),
-                onCheckChanged = contentCallbacks::onRestoreUsingCellularClick
-              )
+            if (!canRestoreUsingCellular) {
+              item {
+                Rows.TextRow(
+                  text = stringResource(R.string.RemoteBackupsSettingsFragment__resume_download),
+                  icon = painterResource(R.drawable.symbol_arrow_circle_down_24),
+                  onClick = contentCallbacks::onRestoreUsingCellularConfirm
+                )
+              }
             }
-          } else if (backupRestoreState is BackupRestoreState.Ready && backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
+          } else if (backupRestoreState is BackupRestoreState.Ready) {
             item {
               BackupReadyToDownloadRow(
                 ready = backupRestoreState,
-                endOfSubscription = backupState.renewalTime,
+                backupState = backupState,
                 onDownloadClick = contentCallbacks::onStartMediaRestore
               )
             }
@@ -534,6 +541,20 @@ private fun RemoteBackupsSettingsContent(
         },
         onDismiss = contentCallbacks::onDialogDismissed,
         onSkipClick = contentCallbacks::onSkipMediaRestore
+      )
+    }
+
+    RemoteBackupsSettingsState.Dialog.CANCEL_MEDIA_RESTORE_PROTECTION -> {
+      CancelInitialRestoreDialog(
+        onDismiss = contentCallbacks::onDialogDismissed,
+        onSkipClick = contentCallbacks::onSkipMediaRestore
+      )
+    }
+
+    RemoteBackupsSettingsState.Dialog.RESTORE_OVER_CELLULAR_PROTECTION -> {
+      ResumeRestoreOverCellularDialog(
+        onDismiss = contentCallbacks::onDialogDismissed,
+        onResumeOverCellularClick = contentCallbacks::onRestoreUsingCellularClick
       )
     }
   }
@@ -1164,6 +1185,37 @@ private fun SkipDownloadDialog(
   )
 }
 
+@Composable
+private fun CancelInitialRestoreDialog(
+  onSkipClick: () -> Unit = {},
+  onDismiss: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.RemoteBackupsSettingsFragment__skip_restore_question),
+    body = stringResource(R.string.RemoteBackupsSettingsFragment__skip_restore_message),
+    confirm = stringResource(R.string.RemoteBackupsSettingsFragment__skip),
+    dismiss = stringResource(android.R.string.cancel),
+    confirmColor = MaterialTheme.colorScheme.error,
+    onConfirm = onSkipClick,
+    onDismiss = onDismiss
+  )
+}
+
+@Composable
+private fun ResumeRestoreOverCellularDialog(
+  onResumeOverCellularClick: () -> Unit = {},
+  onDismiss: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.ResumeRestoreCellular_resume_using_cellular_title),
+    body = stringResource(R.string.ResumeRestoreCellular_resume_using_cellular_message),
+    confirm = stringResource(R.string.BackupStatus__resume),
+    dismiss = stringResource(android.R.string.cancel),
+    onConfirm = onResumeOverCellularClick,
+    onDismiss = onDismiss
+  )
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CircularProgressDialog(
@@ -1254,11 +1306,16 @@ private fun BackupFrequencyDialog(
 @Composable
 private fun BackupReadyToDownloadRow(
   ready: BackupRestoreState.Ready,
-  endOfSubscription: Duration,
+  backupState: RemoteBackupsSettingsState.BackupState,
   onDownloadClick: () -> Unit = {}
 ) {
-  val days = (endOfSubscription - System.currentTimeMillis().milliseconds).inWholeDays.toInt()
-  val string = pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__you_have_s_of_backup_data, days, ready.bytes, days)
+  val string = if (backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
+    val days = (backupState.renewalTime - System.currentTimeMillis().milliseconds).inWholeDays.toInt()
+    pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__you_have_s_of_backup_data, days, ready.bytes, days)
+  } else {
+    stringResource(R.string.RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device, ready.bytes)
+  }
+
   val annotated = buildAnnotatedString {
     append(string)
     val startIndex = string.indexOf(ready.bytes)
@@ -1436,7 +1493,7 @@ private fun BackupReadyToDownloadPreview() {
   Previews.Preview {
     BackupReadyToDownloadRow(
       ready = BackupRestoreState.Ready("12GB"),
-      endOfSubscription = System.currentTimeMillis().milliseconds + 30.days
+      backupState = RemoteBackupsSettingsState.BackupState.None
     )
   }
 }

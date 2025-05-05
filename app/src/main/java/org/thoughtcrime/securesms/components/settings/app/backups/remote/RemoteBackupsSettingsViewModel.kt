@@ -15,6 +15,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.takeWhile
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
@@ -83,15 +84,25 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         }
     }
 
-    viewModelScope.launch(Dispatchers.Default) {
+    viewModelScope.launch(Dispatchers.IO) {
       val restoreProgress = MediaRestoreProgressBanner()
 
+      var optimizedRemainingBytes = 0L
       while (isActive) {
         if (restoreProgress.enabled) {
           Log.d(TAG, "Backup is being restored. Collecting updates.")
-          restoreProgress.dataFlow.collectLatest { latest ->
-            _restoreState.update { BackupRestoreState.FromBackupStatusData(latest) }
-          }
+          restoreProgress
+            .dataFlow
+            .takeWhile { it !is BackupStatusData.RestoringMedia || it.restoreStatus != BackupStatusData.RestoreStatus.FINISHED }
+            .collectLatest { latest ->
+              _restoreState.update { BackupRestoreState.FromBackupStatusData(latest) }
+            }
+        } else if (
+          !SignalStore.backup.optimizeStorage &&
+          SignalStore.backup.userManuallySkippedMediaRestore &&
+          SignalDatabase.attachments.getOptimizedMediaAttachmentSize().also { optimizedRemainingBytes = it } > 0
+        ) {
+          _restoreState.update { BackupRestoreState.Ready(optimizedRemainingBytes.bytes.toUnitString()) }
         } else if (SignalStore.backup.totalRestorableAttachmentSize > 0L) {
           _restoreState.update { BackupRestoreState.Ready(SignalStore.backup.totalRestorableAttachmentSize.bytes.toUnitString()) }
         } else if (BackupRepository.shouldDisplayBackupFailedSettingsRow()) {
@@ -126,9 +137,9 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     _state.update { it.copy(canBackUpUsingCellular = canBackUpUsingCellular) }
   }
 
-  fun setCanRestoreUsingCellular(canRestoreUsingCellular: Boolean) {
-    SignalStore.backup.restoreWithCellular = canRestoreUsingCellular
-    _state.update { it.copy(canRestoreUsingCellular = canRestoreUsingCellular) }
+  fun setCanRestoreUsingCellular() {
+    SignalStore.backup.restoreWithCellular = true
+    _state.update { it.copy(canRestoreUsingCellular = true) }
   }
 
   fun setBackupsFrequency(backupsFrequency: BackupFrequency) {
@@ -139,15 +150,11 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun beginMediaRestore() {
-    // TODO - [backups] Begin media restore.
+    BackupRepository.resumeMediaRestore()
   }
 
   fun skipMediaRestore() {
     BackupRepository.skipMediaRestore()
-  }
-
-  fun cancelMediaRestore() {
-    // TODO - [backups] Cancel in-progress media restoration
   }
 
   fun requestDialog(dialog: RemoteBackupsSettingsState.Dialog) {
@@ -269,14 +276,17 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
           return
         }
+
         hasActiveSignalSubscription && hasActiveGooglePlayBillingSubscription -> {
           Log.d(TAG, "Found active signal subscription and active google play subscription. Clearing mismatch.")
           SignalStore.backup.subscriptionStateMismatchDetected = false
         }
+
         !hasActiveSignalSubscription && !hasActiveGooglePlayBillingSubscription -> {
           Log.d(TAG, "Found inactive signal subscription and inactive google play subscription. Clearing mismatch.")
           SignalStore.backup.subscriptionStateMismatchDetected = false
         }
+
         else -> {
           Log.w(TAG, "Hit unexpected subscription mismatch state: signal:false, google:true")
           return

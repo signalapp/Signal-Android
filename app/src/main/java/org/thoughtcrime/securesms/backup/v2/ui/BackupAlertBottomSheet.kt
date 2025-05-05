@@ -55,9 +55,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
-import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.signal.core.ui.R as CoreUiR
@@ -185,8 +183,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
   }
 
   private fun performFullMediaDownload() {
-    // TODO [backups] -- We need to force this to download everything
-    AppDependencies.jobManager.add(BackupRestoreMediaJob())
+    BackupRepository.resumeMediaRestore()
   }
 }
 

@@ -759,6 +759,13 @@ public class ConversationListFragment extends MainFragment implements ActionMode
             if (backupStatusData instanceof BackupStatusData.NotEnoughFreeSpace) {
               BackupAlertBottomSheet.create(new BackupAlert.DiskFull(((BackupStatusData.NotEnoughFreeSpace) backupStatusData).getRequiredSpace()))
                                     .show(getParentFragmentManager(), null);
+            } else if (backupStatusData instanceof BackupStatusData.RestoringMedia && ((BackupStatusData.RestoringMedia) backupStatusData).getRestoreStatus() == BackupStatusData.RestoreStatus.WAITING_FOR_WIFI) {
+              new MaterialAlertDialogBuilder(requireContext())
+                  .setTitle(R.string.ResumeRestoreCellular_resume_using_cellular_title)
+                  .setMessage(R.string.ResumeRestoreCellular_resume_using_cellular_message)
+                  .setNegativeButton(android.R.string.cancel, null)
+                  .setPositiveButton(R.string.BackupStatus__resume, (d, w) -> SignalStore.backup().setRestoreWithCellular(true))
+                  .show();
             }
           }
 
