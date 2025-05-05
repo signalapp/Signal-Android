@@ -9,6 +9,7 @@ import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.groups.state.SenderKeyRecord
 import org.signal.libsignal.protocol.state.IdentityKeyStore
+import org.signal.libsignal.protocol.state.IdentityKeyStore.IdentityChange
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.PreKeyBundle
 import org.signal.libsignal.protocol.state.PreKeyRecord
@@ -137,7 +138,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     override fun getLocalRegistrationId(): Int = registrationId
     override fun isTrustedIdentity(address: SignalProtocolAddress?, identityKey: IdentityKey?, direction: IdentityKeyStore.Direction?): Boolean = true
     override fun loadSession(address: SignalProtocolAddress?): SessionRecord = aliceSessionRecord ?: SessionRecord()
-    override fun saveIdentity(address: SignalProtocolAddress?, identityKey: IdentityKey?): Boolean = false
+    override fun saveIdentity(address: SignalProtocolAddress?, identityKey: IdentityKey?): IdentityKeyStore.IdentityChange = IdentityChange.NEW_OR_UNCHANGED
     override fun storeSession(address: SignalProtocolAddress?, record: SessionRecord?) {
       aliceSessionRecord = record
     }

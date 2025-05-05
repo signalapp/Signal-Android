@@ -14,6 +14,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
+import org.signal.libsignal.protocol.state.IdentityKeyStore;
 import org.signal.libsignal.protocol.state.SessionRecord;
 import org.signal.libsignal.protocol.state.SessionStore;
 import org.thoughtcrime.securesms.R;
@@ -172,7 +173,7 @@ public final class IdentityUtil {
       SessionStore          sessionStore     = AppDependencies.getProtocolStore().aci();
       SignalProtocolAddress address          = new SignalProtocolAddress(user, SignalServiceAddress.DEFAULT_DEVICE_ID);
 
-      if (AppDependencies.getProtocolStore().aci().identities().saveIdentity(address, identityKey)) {
+      if (AppDependencies.getProtocolStore().aci().identities().saveIdentity(address, identityKey) == IdentityKeyStore.IdentityChange.REPLACED_EXISTING) {
         if (sessionStore.containsSession(address)) {
           SessionRecord sessionRecord = sessionStore.loadSession(address);
           sessionRecord.archiveCurrentState();
