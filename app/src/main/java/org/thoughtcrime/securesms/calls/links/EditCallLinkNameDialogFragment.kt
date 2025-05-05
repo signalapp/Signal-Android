@@ -34,7 +34,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
-import androidx.navigation.fragment.navArgs
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.util.BreakIteratorCompat
@@ -45,11 +44,11 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
 
   companion object {
     const val RESULT_KEY = "edit_call_link_name"
-
-    private const val MAX_CHARACTER_COUNT = 32
+    const val ARG_NAME = "name"
   }
 
-  private val args: EditCallLinkNameDialogFragmentArgs by navArgs()
+  private val argName: String
+    get() = requireArguments().getString(ARG_NAME)!!
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -69,8 +68,8 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
     var callName by remember {
       mutableStateOf(
         TextFieldValue(
-          text = args.name,
-          selection = TextRange(args.name.length)
+          text = argName,
+          selection = TextRange(argName.length)
         )
       )
     }

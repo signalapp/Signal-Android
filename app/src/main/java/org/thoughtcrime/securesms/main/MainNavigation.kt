@@ -68,6 +68,10 @@ enum class MainNavigationListLocation(
     label = R.string.ConversationListTabs__chats,
     icon = R.raw.chats_28
   ),
+  ARCHIVE(
+    label = R.string.ConversationListTabs__chats,
+    icon = R.raw.chats_28
+  ),
   CALLS(
     label = R.string.ConversationListTabs__calls,
     icon = R.raw.calls_28
@@ -104,15 +108,16 @@ fun MainNavigationBar(
   ) {
     val entries = remember(state.isStoriesFeatureEnabled) {
       if (state.isStoriesFeatureEnabled) {
-        MainNavigationListLocation.entries
+        MainNavigationListLocation.entries.filterNot { it == MainNavigationListLocation.ARCHIVE }
       } else {
-        MainNavigationListLocation.entries.filterNot { it == MainNavigationListLocation.STORIES }
+        MainNavigationListLocation.entries.filterNot { it == MainNavigationListLocation.STORIES || it == MainNavigationListLocation.ARCHIVE }
       }
     }
 
     entries.forEach { destination ->
 
       val badgeCount = when (destination) {
+        MainNavigationListLocation.ARCHIVE -> error("Not supported")
         MainNavigationListLocation.CHATS -> state.chatsCount
         MainNavigationListLocation.CALLS -> state.callsCount
         MainNavigationListLocation.STORIES -> state.storiesCount
@@ -219,9 +224,9 @@ fun MainNavigationRail(
   ) {
     val entries = remember(state.isStoriesFeatureEnabled) {
       if (state.isStoriesFeatureEnabled) {
-        MainNavigationListLocation.entries
+        MainNavigationListLocation.entries.filterNot { it == MainNavigationListLocation.ARCHIVE }
       } else {
-        MainNavigationListLocation.entries.filterNot { it == MainNavigationListLocation.STORIES }
+        MainNavigationListLocation.entries.filterNot { it == MainNavigationListLocation.STORIES || it == MainNavigationListLocation.ARCHIVE }
       }
     }
 
@@ -262,6 +267,7 @@ private fun BoxScope.NavigationRailCountIndicator(
 ) {
   val count = remember(state, destination) {
     when (destination) {
+      MainNavigationListLocation.ARCHIVE -> error("Not supported")
       MainNavigationListLocation.CHATS -> state.chatsCount
       MainNavigationListLocation.CALLS -> state.callsCount
       MainNavigationListLocation.STORIES -> state.storiesCount

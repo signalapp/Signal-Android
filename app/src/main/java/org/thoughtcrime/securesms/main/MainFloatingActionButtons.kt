@@ -170,6 +170,7 @@ private fun PrimaryActionButton(
 ) {
   val onClick = remember(destination) {
     when (destination) {
+      MainNavigationListLocation.ARCHIVE -> error("Not supported")
       MainNavigationListLocation.CHATS -> onNewChatClick
       MainNavigationListLocation.CALLS -> onNewCallClick
       MainNavigationListLocation.STORIES -> {
@@ -184,6 +185,7 @@ private fun PrimaryActionButton(
     icon = {
       AnimatedContent(destination) { targetState ->
         val (icon, contentDescriptionId) = when (targetState) {
+          MainNavigationListLocation.ARCHIVE -> error("Not supported")
           MainNavigationListLocation.CHATS -> R.drawable.symbol_edit_24 to R.string.conversation_list_fragment__fab_content_description
           MainNavigationListLocation.CALLS -> R.drawable.symbol_phone_plus_24 to R.string.CallLogFragment__start_a_new_call
           MainNavigationListLocation.STORIES -> R.drawable.symbol_camera_24 to R.string.conversation_list_fragment__open_camera_description

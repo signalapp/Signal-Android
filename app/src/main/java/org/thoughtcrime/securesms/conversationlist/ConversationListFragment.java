@@ -53,7 +53,6 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.ViewCompat;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -643,8 +642,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   @Override
   public void onShowArchiveClick() {
     if (viewModel.currentSelectedConversations().isEmpty()) {
-      NavHostFragment.findNavController(this)
-                     .navigate(ConversationListFragmentDirections.actionConversationListFragmentToConversationListArchiveFragment());
+      mainNavigationViewModel.goTo(MainNavigationListLocation.ARCHIVE);
     }
   }
 
@@ -707,7 +705,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           } else if (event instanceof MainToolbarViewModel.Event.Chats.ClearFilter) {
             onClearFilterClick();
           } else if (event instanceof MainToolbarViewModel.Event.Chats.CloseArchive) {
-            NavHostFragment.findNavController(this).popBackStack(R.id.conversationListFragment, false);
+            mainNavigationViewModel.goTo(MainNavigationListLocation.CHATS);
           }
         })
     );
@@ -855,7 +853,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void initializeViewModel() {
-    viewModel = new ViewModelProvider(this, new ConversationListViewModel.Factory(isArchived())).get(ConversationListViewModel.class);
+    Class<? extends ConversationListViewModel> viewModelClass = isArchived() ? ConversationListViewModel.ArchivedConversationListViewModel.class : ConversationListViewModel.UnarchivedConversationListViewModel.class;
+    viewModel = new ViewModelProvider(requireActivity(), new ConversationListViewModel.Factory(isArchived())).get(viewModelClass);
 
     lifecycleDisposable.add(viewModel.getConversationsState().subscribe(this::onConversationListChanged));
     lifecycleDisposable.add(viewModel.getHasNoConversations().subscribe(this::updateEmptyState));
@@ -1389,7 +1388,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   protected Callback requireCallback() {
-    return ((Callback) getParentFragment().getParentFragment());
+    return ((Callback) requireActivity());
   }
 
   protected @PluralsRes int getArchivedSnackbarTitleRes() {

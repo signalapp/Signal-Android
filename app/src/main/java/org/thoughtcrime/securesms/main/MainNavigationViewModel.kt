@@ -97,6 +97,15 @@ class MainNavigationViewModel(
 
     if (previous != null) {
       val destination = previous.currentDestination?.contentKey ?: return wrapped
+      if (destination is MainNavigationListLocation) {
+        goTo(destination)
+      }
+    } else {
+      goTo(mainNavigationState.value.selectedDestination)
+    }
+
+    if (previous != null) {
+      val destination = previous.currentDestination?.contentKey ?: return wrapped
       if (destination is MainNavigationDetailLocation) {
         goTo(destination)
       }
@@ -120,6 +129,12 @@ class MainNavigationViewModel(
 
     navigator?.composeScope?.launch {
       navigator?.navigateTo(ThreePaneScaffoldRole.Primary, location)
+    }
+  }
+
+  fun goTo(location: MainNavigationListLocation) {
+    internalMainNavigationState.update {
+      it.copy(selectedDestination = location)
     }
   }
 
@@ -165,6 +180,13 @@ class MainNavigationViewModel(
     internalTabClickEvents.tryEmit(MainNavigationListLocation.CHATS)
     internalMainNavigationState.update {
       it.copy(selectedDestination = MainNavigationListLocation.CHATS)
+    }
+  }
+
+  fun onArchiveSelected() {
+    internalTabClickEvents.tryEmit(MainNavigationListLocation.ARCHIVE)
+    internalMainNavigationState.update {
+      it.copy(selectedDestination = MainNavigationListLocation.ARCHIVE)
     }
   }
 

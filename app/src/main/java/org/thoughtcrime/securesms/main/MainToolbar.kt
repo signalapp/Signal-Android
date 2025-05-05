@@ -395,6 +395,7 @@ private fun PrimaryToolbar(
         controller = controller
       ) {
         when (state.destination) {
+          MainNavigationListLocation.ARCHIVE -> Unit
           MainNavigationListLocation.CHATS -> ChatDropdownItems(state, callback, dismiss)
           MainNavigationListLocation.CALLS -> CallDropdownItems(state.callFilter, callback, dismiss)
           MainNavigationListLocation.STORIES -> StoryDropDownItems(callback, dismiss)

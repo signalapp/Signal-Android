@@ -72,6 +72,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
     this.onConversationClickListener = onConversationClickListener;
     this.onClearFilterClicked        = onClearFilterClicked;
     this.onFolderSettingsClicked     = onFolderSettingsClicked;
+
+    setStateRestorationPolicy(StateRestorationPolicy.PREVENT_WHEN_EMPTY);
   }
 
   @Override
