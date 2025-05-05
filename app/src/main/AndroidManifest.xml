@@ -1337,6 +1337,12 @@
         </intent-filter>
     </receiver>
 
+    <receiver android:name=".service.MessageBackupListener" android:exported="false">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
+
     <receiver android:name=".service.AnalyzeDatabaseAlarmListener" android:exported="false">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
