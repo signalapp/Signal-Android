@@ -28,7 +28,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -83,6 +82,7 @@ import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.compose.RoundCheckbox
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.DialogState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -629,7 +629,7 @@ fun MediaList(
             .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
           if (selectionState.selecting) {
-            Checkbox(
+            RoundCheckbox(
               checked = selectionState.selected.contains(attachment.id),
               onCheckedChange = { selected ->
                 selectionState = selectionState.copy(selected = if (selected) selectionState.selected + attachment.id else selectionState.selected - attachment.id)

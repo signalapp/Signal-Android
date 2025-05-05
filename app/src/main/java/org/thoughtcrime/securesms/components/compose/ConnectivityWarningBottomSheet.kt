@@ -1,4 +1,9 @@
-package org.thoughtcrime.securesms.components
+/*
+ * Copyright 2025 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
+ */
+
+package org.thoughtcrime.securesms.components.compose
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row

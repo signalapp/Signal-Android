@@ -70,10 +70,10 @@ import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.show
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
 import org.thoughtcrime.securesms.calls.log.CallLogFragment
 import org.thoughtcrime.securesms.calls.new.NewCallActivity
-import org.thoughtcrime.securesms.components.ConnectivityWarningBottomSheet
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment
-import org.thoughtcrime.securesms.components.DeviceSpecificNotificationBottomSheet
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment
+import org.thoughtcrime.securesms.components.compose.ConnectivityWarningBottomSheet
+import org.thoughtcrime.securesms.components.compose.DeviceSpecificNotificationBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity.Companion.manageSubscriptions
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment

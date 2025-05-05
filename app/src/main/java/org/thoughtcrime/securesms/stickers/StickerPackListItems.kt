@@ -19,7 +19,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -37,6 +36,7 @@ import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.nullIfBlank
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.compose.RoundCheckbox
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressIndicator
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressState
 import org.thoughtcrime.securesms.compose.GlideImage
@@ -158,14 +158,14 @@ fun InstalledStickerPackRow(
         color = if (selected) SignalTheme.colors.colorSurface2 else MaterialTheme.colorScheme.surface,
         shape = RoundedCornerShape(18.dp)
       )
-      .padding(vertical = 10.dp)
+      .padding(horizontal = 4.dp, vertical = 10.dp)
   ) {
     AnimatedVisibility(
       visible = multiSelectEnabled,
       enter = fadeIn() + expandHorizontally(),
       exit = fadeOut() + shrinkHorizontally()
     ) {
-      Checkbox(
+      RoundCheckbox(
         checked = selected,
         onCheckedChange = { onSelectionToggle(pack) },
         modifier = Modifier.padding(end = 8.dp)
