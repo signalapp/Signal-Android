@@ -5,9 +5,11 @@
 
 package org.thoughtcrime.securesms.components.settings.app.backups
 
+import androidx.annotation.WorkerThread
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.distinctUntilChanged
@@ -16,7 +18,6 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
-import kotlinx.coroutines.withContext
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
@@ -43,28 +44,41 @@ class BackupsSettingsViewModel : ViewModel() {
 
   val stateFlow: StateFlow<BackupsSettingsState> = internalStateFlow
 
+  private val loadRequests = MutableSharedFlow<Unit>(extraBufferCapacity = 1)
+
   init {
-    viewModelScope.launch(Dispatchers.Default) {
+    viewModelScope.launch(SignalDispatchers.Default) {
       InternetConnectionObserver.observe().asFlow()
         .distinctUntilChanged()
         .filter { it }
         .drop(1)
         .collect {
           Log.d(TAG, "Triggering refresh from internet reconnect.")
-          loadEnabledState()
+          loadRequests.tryEmit(Unit)
         }
     }
+
+    viewModelScope.launch(SignalDispatchers.Default) {
+      loadRequests.collect {
+        Log.d(TAG, "-- Dispatching state load.")
+        loadEnabledState().join()
+        Log.d(TAG, "-- Completed state load.")
+      }
+    }
+  }
+
+  override fun onCleared() {
+    Log.d(TAG, "ViewModel has been cleared.")
   }
 
   fun refreshState() {
     Log.d(TAG, "Refreshing state from manual call.")
-    viewModelScope.launch {
-      loadEnabledState()
-    }
+    loadRequests.tryEmit(Unit)
   }
 
-  private suspend fun loadEnabledState() {
-    withContext(SignalDispatchers.IO) {
+  @WorkerThread
+  private fun loadEnabledState(): Job {
+    return viewModelScope.launch(SignalDispatchers.IO) {
       if (!RemoteConfig.messageBackups || !AppDependencies.billingApi.isApiAvailable()) {
         Log.w(TAG, "Paid backups are not available on this device.")
         internalStateFlow.update { it.copy(enabledState = BackupsSettingsState.EnabledState.NotAvailable, showBackupTierInternalOverride = false) }
