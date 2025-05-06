@@ -119,6 +119,12 @@ private fun SheetContent(
     }
 
     Text(
+      text = stringResource(org.thoughtcrime.securesms.R.string.BackupAlertBottomSheet__your_backups_subscription_expired),
+      style = MaterialTheme.typography.titleLarge,
+      modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
+    )
+
+    Text(
       text = pluralStringResource(id = org.thoughtcrime.securesms.R.plurals.BackupAlertBottomSheet__your_backup_plan_has_expired, daysUntilDeletion, daysUntilDeletion),
       textAlign = TextAlign.Center,
       color = MaterialTheme.colorScheme.onSurfaceVariant,
