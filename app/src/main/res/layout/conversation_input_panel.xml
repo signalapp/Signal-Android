@@ -296,15 +296,17 @@
 
         <org.thoughtcrime.securesms.components.SendButton
             android:id="@+id/send_button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:padding="8dp"
             android:background="@drawable/circle_touch_highlight_background"
             android:contentDescription="@string/conversation_activity__send"
             android:nextFocusLeft="@+id/embedded_text_editor"
-            android:padding="9dp"
             android:scaleType="fitCenter"
             app:srcCompat="@drawable/ic_send_unlock_24"
             app:tint="@color/conversation_send_button_tint" />
+
 
     </org.thoughtcrime.securesms.components.AnimatingToggle>
 
