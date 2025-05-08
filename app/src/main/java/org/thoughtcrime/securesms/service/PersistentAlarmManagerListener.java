@@ -28,6 +28,15 @@ public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
 
   protected abstract long onAlarm(Context context, long scheduledTime);
 
+  public void cancel(Context context) {
+    AlarmManager  alarmManager  = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+    Intent alarmIntent = new Intent(context, getClass());
+    PendingIntent pendingIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntentFlags.immutable());
+
+    info("Cancelling alarm");
+    alarmManager.cancel(pendingIntent);
+  }
+
   @Override
   public void onReceive(Context context, Intent intent) {
     info(String.format("onReceive(%s)", intent.getAction()));
@@ -47,6 +56,7 @@ public abstract class PersistentAlarmManagerListener extends BroadcastReceiver {
       return;
     }
 
+    // If we've already scheduled this alarm, cancel it so we can schedule it again with the new time.
     alarmManager.cancel(pendingIntent);
 
     if (shouldScheduleExact()) {
