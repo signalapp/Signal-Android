@@ -19,7 +19,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
@@ -66,7 +65,7 @@ class MainNavigationViewModel(
    * This is Rx because these are still accessed from Java.
    */
   private val internalTabClickEvents: MutableSharedFlow<MainNavigationListLocation> = MutableSharedFlow()
-  val tabClickEvents: Observable<MainNavigationListLocation> = internalTabClickEvents.filter { Stories.isFeatureEnabled() }.asObservable()
+  val tabClickEvents: Observable<MainNavigationListLocation> = internalTabClickEvents.asObservable()
 
   init {
     performStoreUpdate(MainNavigationRepository.getNumberOfUnreadMessages()) { unreadChats, state ->
@@ -177,30 +176,31 @@ class MainNavigationViewModel(
   }
 
   fun onChatsSelected() {
-    internalTabClickEvents.tryEmit(MainNavigationListLocation.CHATS)
-    internalMainNavigationState.update {
-      it.copy(selectedDestination = MainNavigationListLocation.CHATS)
-    }
+    onTabSelected(MainNavigationListLocation.CHATS)
   }
 
   fun onArchiveSelected() {
-    internalTabClickEvents.tryEmit(MainNavigationListLocation.ARCHIVE)
-    internalMainNavigationState.update {
-      it.copy(selectedDestination = MainNavigationListLocation.ARCHIVE)
-    }
+    onTabSelected(MainNavigationListLocation.ARCHIVE)
   }
 
   fun onCallsSelected() {
-    internalTabClickEvents.tryEmit(MainNavigationListLocation.CALLS)
-    internalMainNavigationState.update {
-      it.copy(selectedDestination = MainNavigationListLocation.CALLS)
-    }
+    onTabSelected(MainNavigationListLocation.CALLS)
   }
 
   fun onStoriesSelected() {
-    internalTabClickEvents.tryEmit(MainNavigationListLocation.STORIES)
-    internalMainNavigationState.update {
-      it.copy(selectedDestination = MainNavigationListLocation.STORIES)
+    onTabSelected(MainNavigationListLocation.STORIES)
+  }
+
+  private fun onTabSelected(destination: MainNavigationListLocation) {
+    viewModelScope.launch {
+      val currentTab = internalMainNavigationState.value.selectedDestination
+      if (currentTab == destination) {
+        internalTabClickEvents.emit(destination)
+      } else {
+        internalMainNavigationState.update {
+          it.copy(selectedDestination = destination)
+        }
+      }
     }
   }
 

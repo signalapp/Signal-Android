@@ -407,6 +407,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     lifecycleDisposable.bindTo(getViewLifecycleOwner());
     lifecycleDisposable.add(mainNavigationViewModel.getTabClickEvents().filter(tab -> tab == MainNavigationListLocation.CHATS)
                                                    .subscribe(unused -> {
+                                                     Log.d(TAG, "Scroll to top please");
                                                      LinearLayoutManager layoutManager            = (LinearLayoutManager) list.getLayoutManager();
                                                      int                 firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition();
                                                      if (firstVisibleItemPosition <= LIST_SMOOTH_SCROLL_TO_TOP_THRESHOLD) {
