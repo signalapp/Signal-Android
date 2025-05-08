@@ -6,7 +6,6 @@ import android.content.Context;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.jobs.LocalBackupJob;
-import org.thoughtcrime.securesms.keyvalue.SettingsValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.preferences.BackupFrequencyV1;
 import org.thoughtcrime.securesms.util.JavaTimeExtensionsKt;
@@ -45,9 +44,10 @@ public class LocalBackupListener extends PersistentAlarmManagerListener {
     }
   }
 
-  /** If there is a backup scheduled in the future via the AlarmManager, cancel it. */
-  public static void cancelScheduled(Context context) {
+  /** Cancels any future backup scheduled with AlarmManager and attempts to cancel any ongoing backup job. */
+  public static void unschedule(Context context) {
     new LocalBackupListener().cancel(context);
+    LocalBackupJob.cancelRunningJobs();
   }
 
   public static long setNextBackupTimeToIntervalFromNow(@NonNull Context context) {

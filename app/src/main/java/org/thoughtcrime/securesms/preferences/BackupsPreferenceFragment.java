@@ -302,7 +302,7 @@ public class BackupsPreferenceFragment extends Fragment {
     Log.i(TAG, "Setting backup schedule: " + frequency.name() + " at" + hour + "h" + minute + "m");
     SignalStore.settings().setBackupSchedule(frequency, hour, minute);
     if (frequency == BackupFrequencyV1.NEVER) {
-      LocalBackupListener.cancelScheduled(requireContext());
+      LocalBackupListener.unschedule(requireContext());
     } else {
       // Schedule the next backup using the newly set frequency, but relative to the time of the
       // last backup. This should only kick off a new backup to be created immediately if the
