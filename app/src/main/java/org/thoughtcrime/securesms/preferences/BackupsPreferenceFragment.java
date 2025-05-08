@@ -283,7 +283,6 @@ public class BackupsPreferenceFragment extends Fragment {
   }
 
   private void pickFrequency() {
-    // User should select the backup frequency first, and then the time of day to do the backups.
     final BackupFrequencyPickerDialogFragment frequencyPickerDialogFragment = new BackupFrequencyPickerDialogFragment(SignalStore.settings().getBackupFrequency());
     frequencyPickerDialogFragment.setOnPositiveButtonClickListener((unused1, unused2) -> {
       BackupFrequencyV1 frequency = frequencyPickerDialogFragment.getValue();
