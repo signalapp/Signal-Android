@@ -159,6 +159,7 @@ object StoriesLandingItem {
         avatarView.displayProfileAvatar(model.data.storyRecipient)
         badgeView.setBadgeFromRecipient(model.data.storyRecipient)
       }
+      badgeView.isClickable = false
 
       val record = model.data.primaryStory.messageRecord as MmsMessageRecord
 
