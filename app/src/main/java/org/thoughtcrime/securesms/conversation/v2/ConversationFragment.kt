@@ -384,6 +384,7 @@ class ConversationFragment :
 
     private const val SCROLL_HEADER_ANIMATION_DURATION: Long = 100L
     private const val SCROLL_HEADER_CLOSE_DELAY: Long = SCROLL_HEADER_ANIMATION_DURATION * 4
+    private const val IS_SCROLLED_TO_BOTTOM_THRESHOLD: Int = 2
   }
 
   private val args: ConversationIntents.Args by lazy {
@@ -2608,8 +2609,17 @@ class ConversationFragment :
     }
   }
 
+  /**
+   * The methods used in this method are taken directly from View.canScrollVertically(-1)'s code path.
+   */
   private fun isScrolledToBottom(): Boolean {
-    return !binding.conversationItemRecycler.canScrollVertically(1)
+    return with(binding.conversationItemRecycler) {
+      val offset = computeVerticalScrollOffset()
+      val range = computeVerticalScrollRange() - computeVerticalScrollExtent()
+      val delta = range - offset
+
+      delta <= IS_SCROLLED_TO_BOTTOM_THRESHOLD
+    }
   }
 
   private fun isScrolledPastButtonThreshold(): Boolean {
