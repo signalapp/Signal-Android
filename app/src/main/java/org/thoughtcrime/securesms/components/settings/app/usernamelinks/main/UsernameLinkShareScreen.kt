@@ -146,17 +146,20 @@ private fun ButtonBar(
       enabled = linkState is UsernameLinkState.Present,
       onClick = onLinkClicked,
       iconResId = R.drawable.symbol_link_24,
-      labelResId = R.string.UsernameLinkSettings_link_button_label
+      labelResId = R.string.UsernameLinkSettings_link_button_label,
+      contentDescriptionId = R.string.UsernameLinkSettings_link_button_label
     )
     Buttons.ActionButton(
       onClick = onShareClicked,
       iconResId = R.drawable.symbol_share_android_24,
-      labelResId = R.string.UsernameLinkSettings_share_button_label
+      labelResId = R.string.UsernameLinkSettings_share_button_label,
+      contentDescriptionId = R.string.UsernameLinkSettings_share_button_label
     )
     Buttons.ActionButton(
       onClick = onColorClicked,
       iconResId = R.drawable.symbol_color_24,
-      labelResId = R.string.UsernameLinkSettings_color_button_label
+      labelResId = R.string.UsernameLinkSettings_color_button_label,
+      contentDescriptionId = R.string.UsernameLinkSettings_color_button_label
     )
   }
 }
