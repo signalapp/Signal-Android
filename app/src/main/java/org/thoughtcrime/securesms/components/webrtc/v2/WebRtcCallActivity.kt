@@ -12,6 +12,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.hardware.display.DisplayManager
 import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
@@ -24,6 +25,7 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import androidx.core.util.Consumer
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -44,6 +46,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.GroupCall
@@ -477,6 +480,19 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     viewModel.setIsInPipMode(isInPipMode())
 
     lifecycleScope.launch {
+      launch(SignalDispatchers.Unconfined) {
+        lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+          val displayManager = application.getSystemService<DisplayManager>()!!
+          DisplayMonitor.monitor(displayManager)
+            .collectLatest {
+              val display = displayManager.getDisplay(it.displayId) ?: return@collectLatest
+              val orientation = Orientation.fromSurfaceRotation(display.rotation)
+
+              AppDependencies.signalCallManager.orientationChanged(true, orientation.degrees)
+            }
+        }
+      }
+
       lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
         launch {
           viewModel.microphoneEnabled.collectLatest {
