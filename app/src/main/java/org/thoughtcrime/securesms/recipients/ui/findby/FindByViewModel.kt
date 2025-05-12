@@ -99,7 +99,7 @@ class FindByViewModel(
         query = filterBy,
         filteredCountries = state.value.supportedCountries.filter { country: Country ->
           country.name.contains(filterBy, ignoreCase = true) ||
-            country.countryCode.toString().contains(filterBy) ||
+            country.countryCode.toString().contains(filterBy.removePrefix("+")) ||
             (filterBy.equals("usa", ignoreCase = true) && country.name.equals("United States", ignoreCase = true))
         }
       )
