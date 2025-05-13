@@ -1921,7 +1921,7 @@ class ConversationFragment :
   }
 
   private fun sendMessage(
-    body: String = composeText.editableText.toString(),
+    body: String = composeText.editableText.toString().trim(),
     mentions: List<Mention> = composeText.mentions,
     bodyRanges: BodyRangeList? = composeText.styling,
     messageToEdit: MessageId? = inputPanel.editMessageId,
