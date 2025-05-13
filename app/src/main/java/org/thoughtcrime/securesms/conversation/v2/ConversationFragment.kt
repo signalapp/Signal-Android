@@ -48,7 +48,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.view.ActionMode
 import androidx.appcompat.widget.SearchView
 import androidx.appcompat.widget.Toolbar
-import androidx.core.app.ActivityCompat
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.content.ContextCompat
 import androidx.core.content.pm.ShortcutManagerCompat
@@ -2875,7 +2874,7 @@ class ConversationFragment :
       val activity = activity ?: return
       ViewCompat.setTransitionName(avatarTransitionView, "avatar")
       val bundle = ActivityOptionsCompat.makeSceneTransitionAnimation(activity, avatarTransitionView, "avatar").toBundle()
-      ActivityCompat.startActivity(activity, SharedContactDetailsActivity.getIntent(activity, contact), bundle)
+      activity.startActivity(SharedContactDetailsActivity.getIntent(activity, contact), bundle)
     }
 
     override fun onAddToContactsClicked(contact: Contact) {
@@ -3556,7 +3555,7 @@ class ConversationFragment :
         binding.toolbar
       )
 
-      ActivityCompat.startActivity(requireContext(), intent, bundle)
+      requireActivity().startActivity(intent, bundle)
     }
 
     override fun handleLeavePushGroup() {
@@ -3607,7 +3606,7 @@ class ConversationFragment :
         binding.toolbar
       )
 
-      ActivityCompat.startActivity(requireActivity(), intent, bundle)
+      requireActivity().startActivity(intent, bundle)
     }
 
     override fun handleSelectMessageExpiration() {
