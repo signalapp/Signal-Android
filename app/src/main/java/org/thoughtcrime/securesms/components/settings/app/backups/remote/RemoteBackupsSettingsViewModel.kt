@@ -55,7 +55,7 @@ import kotlin.time.Duration.Companion.seconds
 class RemoteBackupsSettingsViewModel : ViewModel() {
 
   companion object {
-    private val TAG = Log.tag(RemoteBackupsSettingsFragment::class)
+    private val TAG = Log.tag(RemoteBackupsSettingsViewModel::class)
   }
 
   private val _state = MutableStateFlow(
@@ -214,6 +214,15 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   private suspend fun refreshState(lastPurchase: InAppPaymentTable.InAppPayment?) {
+    try {
+      performStateRefresh(lastPurchase)
+    } catch (e: Exception) {
+      Log.w(TAG, "State refresh failed", e)
+      throw e
+    }
+  }
+
+  private suspend fun performStateRefresh(lastPurchase: InAppPaymentTable.InAppPayment?) {
     val tier = SignalStore.backup.latestBackupTier
 
     _state.update {
@@ -269,7 +278,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
             it.copy(
               backupState = RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay(
                 messageBackupsType = type,
-                renewalTime = activeSubscription!!.activeSubscription.endOfCurrentPeriod.seconds
+                renewalTime = activeSubscription.activeSubscription.endOfCurrentPeriod.seconds
               )
             )
           }
@@ -302,6 +311,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
           BackupRepository.getBackupsType(tier) as MessageBackupsType.Paid
         }
 
+        Log.d(TAG, "Attempting to retrieve current subscription...")
         val activeSubscription = withContext(Dispatchers.IO) {
           RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
         }

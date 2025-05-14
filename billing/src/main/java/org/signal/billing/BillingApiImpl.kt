@@ -181,8 +181,10 @@ internal class BillingApiImpl(
           Log.d(TAG, "No pricing available.")
           null
         } else {
+          val price = FiatMoney(BigDecimal.valueOf(pricing.priceAmountMicros, 6), Currency.getInstance(pricing.priceCurrencyCode))
+          Log.d(TAG, "Found product pricing: $price")
           BillingProduct(
-            price = FiatMoney(BigDecimal.valueOf(pricing.priceAmountMicros, 6), Currency.getInstance(pricing.priceCurrencyCode))
+            price = price
           )
         }
       } catch (e: BillingError) {
