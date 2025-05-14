@@ -102,7 +102,12 @@ class InAppPaymentRecurringContextJob private constructor(
     warning("A permanent failure occurred.")
 
     val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
-    if (inAppPayment != null && inAppPayment.data.error == null) {
+    val isRedeemed = inAppPayment?.state == InAppPaymentTable.State.END && inAppPayment.data.redemption?.stage != InAppPaymentData.RedemptionState.Stage.REDEEMED
+    if (isRedeemed) {
+      info("Already redeemed. Exiting quietly.")
+      return
+    } else if (inAppPayment != null && inAppPayment.data.error == null) {
+      warning("Unredeemed payment failed.")
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
           notified = false,

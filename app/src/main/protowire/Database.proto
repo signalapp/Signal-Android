@@ -414,13 +414,14 @@ message InAppPaymentData {
             INVALID_CURRENCY               = 5;  // One-time payment currency is invalid
             PAYMENT_SETUP                  = 6;  // A generic payment setup error (prior to charging the user)
             STRIPE_CODED_ERROR             = 7;  // Stripe error containing a stripe error code in data.
-            STRIPE_DECLINED_ERROR          = 8; // Stripe error containing a decline error code in data.
-            STRIPE_FAILURE                 = 9; // Stripe error containing a failure error code in data.
+            STRIPE_DECLINED_ERROR          = 8;  // Stripe error containing a decline error code in data.
+            STRIPE_FAILURE                 = 9;  // Stripe error containing a failure error code in data.
             PAYPAL_CODED_ERROR             = 10; // PayPal error containing a paypal error code in data.
             PAYPAL_DECLINED_ERROR          = 11; // PayPal error containing a paypal decline code in data.
             PAYMENT_PROCESSING             = 12; // Generic payment error containing an HTTP status code in data.
             CREDENTIAL_VALIDATION          = 13; // Failed to validate credential returned from service.
             REDEMPTION                     = 14; // Failed during badge redemption containing an HTTP status code in data if available.
+            SETUP_CANCELLED                = 15; // After an authorization attempt, the intent is still not set up correctly.
         }
 
                  Type   type = 1;

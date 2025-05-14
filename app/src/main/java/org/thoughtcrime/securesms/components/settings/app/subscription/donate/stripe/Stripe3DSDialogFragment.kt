@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.donate.Do
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.databinding.DonationWebviewFragmentBinding
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.visible
 
@@ -86,7 +87,7 @@ class Stripe3DSDialogFragment : DialogFragment(R.layout.donation_webview_fragmen
       )
     )
 
-    if (RemoteConfig.internalUser && args.waitingForAuthPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
+    if (Environment.IS_STAGING && RemoteConfig.internalUser && args.waitingForAuthPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.IDEAL) {
       val openApp = MaterialButton(requireContext()).apply {
         text = "Open App"
         layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT).apply {

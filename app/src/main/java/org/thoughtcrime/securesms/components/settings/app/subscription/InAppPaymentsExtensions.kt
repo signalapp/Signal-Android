@@ -33,7 +33,6 @@ fun PaymentSource.toProto(): InAppPaymentSourceData {
     code = type.toInAppPaymentSourceDataCode(),
     idealData = if (this is IDEALPaymentSource) {
       InAppPaymentSourceData.IDEALData(
-        bank = idealData.bank,
         name = idealData.name,
         email = idealData.email
       )
@@ -77,8 +76,7 @@ fun InAppPaymentSourceData.toPaymentSource(): PaymentSource {
     InAppPaymentSourceData.Code.IDEAL -> {
       IDEALPaymentSource(
         StripeApi.IDEALData(
-          bank = idealData!!.bank,
-          name = idealData.name,
+          name = idealData!!.name,
           email = idealData.email
         )
       )
