@@ -869,6 +869,10 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     lifecycleDisposable.add(viewModel.getWebSocketState().subscribe(pipeState -> requireCallback().updateProxyStatus(pipeState)));
     lifecycleDisposable.add(viewModel.getChatFolderState().subscribe(this::onChatFoldersChanged));
 
+    if (viewModel.getConversationFilterRequest().getFilter() == ConversationFilter.UNREAD) {
+      pullView.openAfterNextLayout();
+    }
+
     appForegroundObserver = new AppForegroundObserver.Listener() {
       @Override
       public void onForeground() {
