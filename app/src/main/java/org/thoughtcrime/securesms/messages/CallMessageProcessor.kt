@@ -8,25 +8,27 @@ import org.thoughtcrime.securesms.messages.MessageContentProcessor.Companion.war
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.ringrtc.RemotePeer
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData.AnswerMetadata
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData.CallMetadata
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData.HangupMetadata
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData.OfferMetadata
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData.OpaqueMessageMetadata
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedAnswerMetadata
-import org.thoughtcrime.securesms.service.webrtc.WebRtcData.ReceivedOfferMetadata
+import org.thoughtcrime.securesms.service.webrtc.WebRtcData.*
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.messages.calls.HangupMessage
-import org.whispersystems.signalservice.api.messages.calls.OfferMessage
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.internal.push.CallMessage
-import org.whispersystems.signalservice.internal.push.CallMessage.Offer
-import org.whispersystems.signalservice.internal.push.CallMessage.Opaque
 import org.whispersystems.signalservice.internal.push.Content
 import org.whispersystems.signalservice.internal.push.Envelope
 import kotlin.time.Duration.Companion.milliseconds
 
-object CallMessageProcessor {
+interface CallHandler {
+  fun canHandle(callMessage: CallMessage): Boolean
+  fun handle(
+    senderRecipient: Recipient,
+    envelope: Envelope,
+    content: Content,
+    metadata: EnvelopeMetadata,
+    serverDeliveredTimestamp: Long
+  )
+}
+
+class CallMessageProcessor(private val handlers: List<CallHandler>) {
   fun process(
     senderRecipient: Recipient,
     envelope: Envelope,
@@ -34,159 +36,183 @@ object CallMessageProcessor {
     metadata: EnvelopeMetadata,
     serverDeliveredTimestamp: Long
   ) {
-    val callMessage = content.callMessage!!
-
-    when {
-      callMessage.offer != null -> handleCallOfferMessage(envelope, metadata, callMessage.offer!!, senderRecipient.id, serverDeliveredTimestamp)
-      callMessage.answer != null -> handleCallAnswerMessage(envelope, metadata, callMessage.answer!!, senderRecipient.id)
-      callMessage.iceUpdate.isNotEmpty() -> handleCallIceUpdateMessage(envelope, metadata, callMessage.iceUpdate, senderRecipient.id)
-      callMessage.hangup != null -> handleCallHangupMessage(envelope, metadata, callMessage.hangup!!, senderRecipient.id)
-      callMessage.busy != null -> handleCallBusyMessage(envelope, metadata, callMessage.busy!!, senderRecipient.id)
-      callMessage.opaque != null -> handleCallOpaqueMessage(envelope, metadata, callMessage.opaque!!, senderRecipient.requireAci(), serverDeliveredTimestamp)
-    }
+    val callMessage = content.callMessage ?: return
+    handlers.firstOrNull { it.canHandle(callMessage) }
+      ?.handle(senderRecipient, envelope, content, metadata, serverDeliveredTimestamp)
+      ?: warn(envelope.timestamp ?: 0, "No handler for call message type")
   }
+}
 
-  private fun handleCallOfferMessage(envelope: Envelope, metadata: EnvelopeMetadata, offer: Offer, senderRecipientId: RecipientId, serverDeliveredTimestamp: Long) {
-    log(envelope.timestamp!!, "handleCallOfferMessage...")
+class OfferCallHandler : CallHandler {
+  override fun canHandle(callMessage: CallMessage): Boolean = callMessage.offer != null
 
-    val offerId = if (offer.id != null && offer.type != null && offer.opaque != null) {
-      offer.id!!
-    } else {
-      warn(envelope.timestamp!!, "Invalid offer, missing id, type, or opaque")
+  override fun handle(
+    senderRecipient: Recipient,
+    envelope: Envelope,
+    content: Content,
+    metadata: EnvelopeMetadata,
+    serverDeliveredTimestamp: Long
+  ) {
+    log(envelope.timestamp ?: 0, "handleCallOfferMessage...")
+
+    val offer = content.callMessage!!.offer!!
+    if (offer.id == null || offer.type == null || offer.opaque == null) {
+      warn(envelope.timestamp ?: 0, "Invalid offer, missing id, type, or opaque")
       return
     }
 
-    val remotePeer = RemotePeer(senderRecipientId, CallId(offerId))
-    val remoteIdentityKey = AppDependencies.protocolStore.aci().identities().getIdentityRecord(senderRecipientId).map { (_, identityKey): IdentityRecord -> identityKey.serialize() }.get()
+    val remotePeer = RemotePeer(senderRecipient.id, CallId(offer.id))
+    val remoteIdentityKey = AppDependencies.protocolStore.aci().identities().getIdentityRecord(senderRecipient.id)
+      .map { (_, identityKey): IdentityRecord -> identityKey.serialize() }.get()
 
-    AppDependencies.signalCallManager
-      .receivedOffer(
-        CallMetadata(remotePeer, metadata.sourceDeviceId),
-        OfferMetadata(offer.opaque?.toByteArray(), OfferMessage.Type.fromProto(offer.type!!)),
-        ReceivedOfferMetadata(
-          remoteIdentityKey,
-          envelope.serverTimestamp!!,
-          serverDeliveredTimestamp
-        )
-      )
+    AppDependencies.signalCallManager.receivedOffer(
+      CallMetadata(remotePeer, metadata.sourceDeviceId),
+      OfferMetadata(offer.opaque.toByteArray(), CallMessage.Offer.Type.fromProto(offer.type)),
+      ReceivedOfferMetadata(remoteIdentityKey, envelope.serverTimestamp!!, serverDeliveredTimestamp)
+    )
   }
+}
 
-  private fun handleCallAnswerMessage(
+class AnswerCallHandler : CallHandler {
+  override fun canHandle(callMessage: CallMessage): Boolean = callMessage.answer != null
+
+  override fun handle(
+    senderRecipient: Recipient,
     envelope: Envelope,
+    content: Content,
     metadata: EnvelopeMetadata,
-    answer: CallMessage.Answer,
-    senderRecipientId: RecipientId
+    serverDeliveredTimestamp: Long
   ) {
-    log(envelope.timestamp!!, "handleCallAnswerMessage...")
+    log(envelope.timestamp ?: 0, "handleCallAnswerMessage...")
 
-    val answerId = if (answer.id != null && answer.opaque != null) {
-      answer.id!!
-    } else {
-      warn(envelope.timestamp!!, "Invalid answer, missing id or opaque")
+    val answer = content.callMessage!!.answer!!
+    if (answer.id == null || answer.opaque == null) {
+      warn(envelope.timestamp ?: 0, "Invalid answer, missing id or opaque")
       return
     }
 
-    val remotePeer = RemotePeer(senderRecipientId, CallId(answerId))
-    val remoteIdentityKey = AppDependencies.protocolStore.aci().identities().getIdentityRecord(senderRecipientId).map { (_, identityKey): IdentityRecord -> identityKey.serialize() }.get()
+    val remotePeer = RemotePeer(senderRecipient.id, CallId(answer.id))
+    val remoteIdentityKey = AppDependencies.protocolStore.aci().identities().getIdentityRecord(senderRecipient.id)
+      .map { (_, identityKey): IdentityRecord -> identityKey.serialize() }.get()
 
-    AppDependencies.signalCallManager
-      .receivedAnswer(
-        CallMetadata(remotePeer, metadata.sourceDeviceId),
-        AnswerMetadata(answer.opaque?.toByteArray()),
-        ReceivedAnswerMetadata(remoteIdentityKey)
-      )
+    AppDependencies.signalCallManager.receivedAnswer(
+      CallMetadata(remotePeer, metadata.sourceDeviceId),
+      AnswerMetadata(answer.opaque.toByteArray()),
+      ReceivedAnswerMetadata(remoteIdentityKey)
+    )
   }
+}
 
-  private fun handleCallIceUpdateMessage(
+class IceUpdateCallHandler : CallHandler {
+  override fun canHandle(callMessage: CallMessage): Boolean = callMessage.iceUpdate.isNotEmpty()
+
+  override fun handle(
+    senderRecipient: Recipient,
     envelope: Envelope,
+    content: Content,
     metadata: EnvelopeMetadata,
-    iceUpdateList: List<CallMessage.IceUpdate>,
-    senderRecipientId: RecipientId
+    serverDeliveredTimestamp: Long
   ) {
-    log(envelope.timestamp!!, "handleCallIceUpdateMessage... " + iceUpdateList.size)
+    log(envelope.timestamp ?: 0, "handleCallIceUpdateMessage... ${content.callMessage!!.iceUpdate.size}")
 
-    val iceCandidates: MutableList<ByteArray> = ArrayList(iceUpdateList.size)
-    var callId: Long = -1
-
-    iceUpdateList
+    val iceCandidates = content.callMessage!!.iceUpdate
       .filter { it.opaque != null && it.id != null }
-      .forEach { iceUpdate ->
-        iceCandidates += iceUpdate.opaque!!.toByteArray()
-        callId = iceUpdate.id!!
-      }
+      .map { it.opaque!!.toByteArray() }
+
+    val callId = content.callMessage!!.iceUpdate.firstOrNull { it.id != null }?.id ?: -1L
 
     if (iceCandidates.isNotEmpty()) {
-      val remotePeer = RemotePeer(senderRecipientId, CallId(callId))
-      AppDependencies.signalCallManager
-        .receivedIceCandidates(
-          CallMetadata(remotePeer, metadata.sourceDeviceId),
-          iceCandidates
-        )
-    } else {
-      warn(envelope.timestamp!!, "Invalid ice updates, all missing opaque and/or call id")
-    }
-  }
-
-  private fun handleCallHangupMessage(
-    envelope: Envelope,
-    metadata: EnvelopeMetadata,
-    hangup: CallMessage.Hangup?,
-    senderRecipientId: RecipientId
-  ) {
-    log(envelope.timestamp!!, "handleCallHangupMessage")
-
-    val (hangupId: Long, hangupDeviceId: Int?) = if (hangup?.id != null) {
-      hangup.id!! to hangup.deviceId
-    } else {
-      warn(envelope.timestamp!!, "Invalid hangup, null message or missing id/deviceId")
-      return
-    }
-
-    val remotePeer = RemotePeer(senderRecipientId, CallId(hangupId))
-    AppDependencies.signalCallManager
-      .receivedCallHangup(
+      val remotePeer = RemotePeer(senderRecipient.id, CallId(callId))
+      AppDependencies.signalCallManager.receivedIceCandidates(
         CallMetadata(remotePeer, metadata.sourceDeviceId),
-        HangupMetadata(HangupMessage.Type.fromProto(hangup.type), hangupDeviceId ?: 0)
+        iceCandidates
       )
-  }
-
-  private fun handleCallBusyMessage(envelope: Envelope, metadata: EnvelopeMetadata, busy: CallMessage.Busy, senderRecipientId: RecipientId) {
-    log(envelope.timestamp!!, "handleCallBusyMessage")
-
-    val busyId = if (busy.id != null) {
-      busy.id!!
     } else {
-      warn(envelope.timestamp!!, "Invalid busy, missing call id")
+      warn(envelope.timestamp ?: 0, "Invalid ice updates, all missing opaque and/or call id")
+    }
+  }
+}
+
+class HangupCallHandler : CallHandler {
+  override fun canHandle(callMessage: CallMessage): Boolean = callMessage.hangup != null
+
+  override fun handle(
+    senderRecipient: Recipient,
+    envelope: Envelope,
+    content: Content,
+    metadata: EnvelopeMetadata,
+    serverDeliveredTimestamp: Long
+  ) {
+    log(envelope.timestamp ?: 0, "handleCallHangupMessage")
+
+    val hangup = content.callMessage!!.hangup
+    if (hangup?.id == null) {
+      warn(envelope.timestamp ?: 0, "Invalid hangup, null message or missing id/deviceId")
       return
     }
 
-    val remotePeer = RemotePeer(senderRecipientId, CallId(busyId))
+    val remotePeer = RemotePeer(senderRecipient.id, CallId(hangup.id))
+    AppDependencies.signalCallManager.receivedCallHangup(
+      CallMetadata(remotePeer, metadata.sourceDeviceId),
+      HangupMetadata(HangupMessage.Type.fromProto(hangup.type), hangup.deviceId ?: 0)
+    )
+  }
+}
+
+class BusyCallHandler : CallHandler {
+  override fun canHandle(callMessage: CallMessage): Boolean = callMessage.busy != null
+
+  override fun handle(
+    senderRecipient: Recipient,
+    envelope: Envelope,
+    content: Content,
+    metadata: EnvelopeMetadata,
+    serverDeliveredTimestamp: Long
+  ) {
+    log(envelope.timestamp ?: 0, "handleCallBusyMessage")
+
+    val busy = content.callMessage!!.busy
+    if (busy?.id == null) {
+      warn(envelope.timestamp ?: 0, "Invalid busy, missing call id")
+      return
+    }
+
+    val remotePeer = RemotePeer(senderRecipient.id, CallId(busy.id))
     AppDependencies.signalCallManager.receivedCallBusy(CallMetadata(remotePeer, metadata.sourceDeviceId))
   }
+}
 
-  private fun handleCallOpaqueMessage(envelope: Envelope, metadata: EnvelopeMetadata, opaque: Opaque, senderServiceId: ServiceId, serverDeliveredTimestamp: Long) {
-    log(envelope.timestamp!!, "handleCallOpaqueMessage")
+class OpaqueCallHandler : CallHandler {
+  override fun canHandle(callMessage: CallMessage): Boolean = callMessage.opaque != null
 
-    val data = if (opaque.data_ != null) {
-      opaque.data_!!.toByteArray()
-    } else {
-      warn(envelope.timestamp!!, "Invalid opaque message, null data")
+  override fun handle(
+    senderRecipient: Recipient,
+    envelope: Envelope,
+    content: Content,
+    metadata: EnvelopeMetadata,
+    serverDeliveredTimestamp: Long
+  ) {
+    log(envelope.timestamp ?: 0, "handleCallOpaqueMessage")
+
+    val opaque = content.callMessage!!.opaque
+    val data = opaque?.data_?.toByteArray() ?: run {
+      warn(envelope.timestamp ?: 0, "Invalid opaque message, null data")
       return
     }
 
-    var messageAgeSeconds: Long = 0
-    if (envelope.serverTimestamp in 1..serverDeliveredTimestamp) {
-      messageAgeSeconds = (serverDeliveredTimestamp - envelope.serverTimestamp!!).milliseconds.inWholeSeconds
-    }
+    val messageAgeSeconds = if (
+      envelope.serverTimestamp in 1..serverDeliveredTimestamp
+    ) {
+      (serverDeliveredTimestamp - envelope.serverTimestamp!!).milliseconds.inWholeSeconds
+    } else 0
 
-    AppDependencies.signalCallManager
-      .receivedOpaqueMessage(
-        OpaqueMessageMetadata(
-          senderServiceId.rawUuid,
-          data,
-          metadata.sourceDeviceId,
-          messageAgeSeconds
-        )
+    AppDependencies.signalCallManager.receivedOpaqueMessage(
+      OpaqueMessageMetadata(
+        senderRecipient.requireAci().rawUuid,
+        data,
+        metadata.sourceDeviceId,
+        messageAgeSeconds
       )
+    )
   }
 }
