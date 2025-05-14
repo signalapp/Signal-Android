@@ -133,12 +133,7 @@ class StickerManagementViewModel : ViewModel() {
   private fun uninstallStickerPacks(packIds: Set<StickerPackId>) {
     val packsToUninstall = _uiState.value.installedPacks.filter { packIds.contains(it.id) }
     viewModelScope.launch {
-      packsToUninstall.forEach { pack ->
-        StickerManagementRepository.uninstallStickerPack(packId = pack.id, packKey = pack.key)
-        _uiState.update { previousState ->
-          previousState.copy(selectedPackIds = previousState.selectedPackIds.minus(pack.id))
-        }
-      }
+      StickerManagementRepository.uninstallStickerPacks(packsToUninstall.associate { it.id to it.key })
 
       _uiState.update { previousState ->
         previousState.copy(
@@ -146,7 +141,8 @@ class StickerManagementViewModel : ViewModel() {
             StickerManagementConfirmation.UninstalledPack(packsToUninstall.single().record.title)
           } else {
             StickerManagementConfirmation.UninstalledPacks(packsToUninstall.size)
-          }
+          },
+          selectedPackIds = previousState.selectedPackIds.minus(packIds)
         )
       }
     }

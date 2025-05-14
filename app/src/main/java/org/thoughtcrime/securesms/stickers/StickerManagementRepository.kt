@@ -118,15 +118,17 @@ object StickerManagementRepository {
   @Discouraged("For Java use only. In Kotlin, use uninstallStickerPack() instead.")
   fun uninstallStickerPackAsync(packId: String, packKey: String) {
     coroutineScope.launch {
-      uninstallStickerPack(StickerPackId(packId), StickerPackKey(packKey))
+      uninstallStickerPacks(mapOf(StickerPackId(packId) to StickerPackKey(packKey)))
     }
   }
 
-  suspend fun uninstallStickerPack(packId: StickerPackId, packKey: StickerPackKey) = withContext(Dispatchers.IO) {
-    stickersDbTable.uninstallPack(packId.value)
+  suspend fun uninstallStickerPacks(packKeysById: Map<StickerPackId, StickerPackKey>) = withContext(Dispatchers.IO) {
+    stickersDbTable.uninstallPacks(packIds = packKeysById.keys)
 
     if (SignalStore.account.hasLinkedDevices) {
-      AppDependencies.jobManager.add(MultiDeviceStickerPackOperationJob(packId.value, packKey.value, MultiDeviceStickerPackOperationJob.Type.REMOVE))
+      packKeysById.forEach { (packId, packKey) ->
+        AppDependencies.jobManager.add(MultiDeviceStickerPackOperationJob(packId.value, packKey.value, MultiDeviceStickerPackOperationJob.Type.REMOVE))
+      }
     }
   }
 

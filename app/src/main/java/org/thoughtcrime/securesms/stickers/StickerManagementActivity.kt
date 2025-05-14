@@ -412,7 +412,13 @@ private fun AvailableStickersContent(
       modifier = modifier.fillMaxHeight()
     ) {
       if (blessedPacks.isNotEmpty()) {
-        item { StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_signal_artist_series_header)) }
+        item(key = "blessed_section_header") {
+          StickerPackSectionHeader(
+            text = stringResource(R.string.StickerManagement_signal_artist_series_header),
+            modifier = Modifier.animateItem()
+          )
+        }
+
         items(
           items = blessedPacks,
           key = { it.id.value }
@@ -442,7 +448,12 @@ private fun AvailableStickersContent(
       }
 
       if (notBlessedPacks.isNotEmpty()) {
-        item { StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_stickers_you_received_header)) }
+        item(key = "not_blessed_section_header") {
+          StickerPackSectionHeader(
+            text = stringResource(R.string.StickerManagement_stickers_you_received_header),
+            modifier = Modifier.animateItem()
+          )
+        }
         items(
           items = notBlessedPacks,
           key = { it.id.value }
@@ -508,9 +519,12 @@ private fun InstalledStickersContent(
             rightDpOffset = if (isRtl) 56.dp else screenWidth
           )
       ) {
-        item {
+        item(key = "installed_section_header") {
           DraggableItem(dragDropState, 0) {
-            StickerPackSectionHeader(text = stringResource(R.string.StickerManagement_installed_stickers_header))
+            StickerPackSectionHeader(
+              text = stringResource(R.string.StickerManagement_installed_stickers_header),
+              modifier = Modifier.animateItem()
+            )
           }
         }
 
