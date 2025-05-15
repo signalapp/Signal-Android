@@ -118,6 +118,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState;
 import org.thoughtcrime.securesms.conversation.ConversationIntents;
+import org.thoughtcrime.securesms.conversation.ConversationUpdateTick;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationListFilterPullView;
@@ -490,10 +491,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
       setAdapter(defaultAdapter);
     }
 
-    if (activeAdapter instanceof TimestampPayloadSupport) {
-      ((TimestampPayloadSupport) activeAdapter).notifyTimestampPayloadUpdate();
-    }
-
     SignalProxyUtil.startListeningToWebsocket();
 
     if (SignalStore.rateLimit().needsRecaptcha()) {
@@ -821,6 +818,9 @@ public class ConversationListFragment extends MainFragment implements ActionMode
         });
       }
     });
+
+    ConversationUpdateTick conversationUpdateTick = new ConversationUpdateTick(() -> defaultAdapter.notifyTimestampPayloadUpdate());
+    getViewLifecycleOwner().getLifecycle().addObserver(conversationUpdateTick);
   }
 
   @SuppressWarnings("rawtypes")

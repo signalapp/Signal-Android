@@ -34,7 +34,7 @@ class ConversationUpdateTick(
 
     if (lastTick > 0) {
       val timeSinceLastTick = System.currentTimeMillis() - lastTick
-      if (timeSinceLastTick <= 0) {
+      if (timeSinceLastTick < 0) {
         Log.w(TAG, "Time since last tick is invalid. Reinitializing and posting update in $TIMEOUT ms")
 
         lastTick = System.currentTimeMillis()
@@ -42,7 +42,7 @@ class ConversationUpdateTick(
       }
 
       val timeUntilNextTick = Util.clamp(TIMEOUT - timeSinceLastTick, 0, TIMEOUT)
-      if (timeSinceLastTick == 0L) {
+      if (timeUntilNextTick == 0L) {
         Log.i(TAG, "Last tick outside timeout period. Posting update immediately")
         handler.post(this::onTick)
       } else {
