@@ -810,25 +810,41 @@ private fun BackupCard(
       )
     }
 
-    val buttonText = when (messageBackupsType) {
-      is MessageBackupsType.Paid -> stringResource(R.string.RemoteBackupsSettingsFragment__manage_or_cancel)
-      is MessageBackupsType.Free -> stringResource(R.string.RemoteBackupsSettingsFragment__upgrade)
-    }
-
     if (backupState.isActive()) {
-      Buttons.LargeTonal(
-        onClick = { onBackupTypeActionButtonClicked(messageBackupsType.tier) },
-        colors = ButtonDefaults.filledTonalButtonColors().copy(
-          containerColor = SignalTheme.colors.colorTransparent5,
-          contentColor = colorResource(R.color.signal_light_colorOnSurface)
-        ),
-        modifier = Modifier.padding(top = 12.dp)
-      ) {
-        Text(
-          text = buttonText
-        )
+      val buttonText = when (messageBackupsType) {
+        is MessageBackupsType.Paid -> stringResource(R.string.RemoteBackupsSettingsFragment__manage_or_cancel)
+        is MessageBackupsType.Free -> stringResource(R.string.RemoteBackupsSettingsFragment__upgrade)
       }
+
+      CallToActionButton(
+        text = buttonText,
+        onClick = { onBackupTypeActionButtonClicked(messageBackupsType.tier) }
+      )
+    } else if (backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
+      CallToActionButton(
+        text = stringResource(R.string.RemoteBackupsSettingsFragment__renew),
+        onClick = { onBackupTypeActionButtonClicked(MessageBackupTier.FREE) }
+      )
     }
+  }
+}
+
+@Composable
+private fun CallToActionButton(
+  text: String,
+  onClick: () -> Unit
+) {
+  Buttons.LargeTonal(
+    onClick = onClick,
+    colors = ButtonDefaults.filledTonalButtonColors().copy(
+      containerColor = SignalTheme.colors.colorTransparent5,
+      contentColor = colorResource(R.color.signal_light_colorOnSurface)
+    ),
+    modifier = Modifier.padding(top = 12.dp)
+  ) {
+    Text(
+      text = text
+    )
   }
 }
 

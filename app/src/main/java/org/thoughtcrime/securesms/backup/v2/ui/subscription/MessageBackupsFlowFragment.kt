@@ -68,6 +68,11 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
     )
   }
 
+  override fun onResume() {
+    super.onResume()
+    viewModel.refreshCurrentTier()
+  }
+
   @Composable
   override fun FragmentContent() {
     val state by viewModel.stateFlow.collectAsStateWithLifecycle()

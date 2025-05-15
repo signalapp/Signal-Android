@@ -65,8 +65,6 @@ class MessageBackupsFlowViewModel(
   val stateFlow: StateFlow<MessageBackupsFlowState> = internalStateFlow
 
   init {
-    check(SignalStore.backup.backupTier != MessageBackupTier.PAID) { "This screen does not support cancellation or downgrades." }
-
     viewModelScope.launch {
       val result = withContext(SignalDispatchers.IO) {
         BackupRepository.triggerBackupIdReservation()
@@ -156,6 +154,34 @@ class MessageBackupsFlowViewModel(
           else -> goToPreviousStage()
         }
       }
+    }
+  }
+
+  fun refreshCurrentTier() {
+    val tier = SignalStore.backup.backupTier
+    if (tier == MessageBackupTier.PAID) {
+      Log.d(TAG, "Checking active subscription object for paid status.")
+      viewModelScope.launch {
+        val activeSubscription = withContext(SignalDispatchers.IO) {
+          RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
+        }
+
+        activeSubscription.onSuccess {
+          if (it.isCanceled) {
+            Log.d(TAG, "Active subscription is cancelled. Clearing tier.")
+            internalStateFlow.update { it.copy(currentMessageBackupTier = null) }
+          } else if (it.isActive) {
+            Log.d(TAG, "Active subscription is active. Setting tier.")
+            internalStateFlow.update { it.copy(currentMessageBackupTier = SignalStore.backup.backupTier) }
+          } else {
+            Log.w(TAG, "Subscription is inactive. Clearing tier.")
+            internalStateFlow.update { it.copy(currentMessageBackupTier = null) }
+          }
+        }
+      }
+    } else {
+      Log.d(TAG, "User is on tier: $tier")
+      internalStateFlow.update { it.copy(currentMessageBackupTier = tier) }
     }
   }
 

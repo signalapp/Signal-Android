@@ -321,19 +321,19 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
           val subscription = activeSubscription.getOrThrow().activeSubscription
           if (subscription != null) {
-            Log.d(TAG, "Subscription found. Updating UI state with subscription details.")
+            Log.d(TAG, "Subscription found. Updating UI state with subscription details. Status: ${subscription.status}")
             _state.update {
               it.copy(
                 hasRedemptionError = lastPurchase?.data?.error?.data_ == "409",
                 backupState = when {
-                  subscription.isActive -> RemoteBackupsSettingsState.BackupState.ActivePaid(
+                  subscription.isCanceled && subscription.isActive -> RemoteBackupsSettingsState.BackupState.Canceled(
                     messageBackupsType = type,
-                    price = FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency)),
                     renewalTime = subscription.endOfCurrentPeriod.seconds
                   )
 
-                  subscription.isCanceled -> RemoteBackupsSettingsState.BackupState.Canceled(
+                  subscription.isActive -> RemoteBackupsSettingsState.BackupState.ActivePaid(
                     messageBackupsType = type,
+                    price = FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency)),
                     renewalTime = subscription.endOfCurrentPeriod.seconds
                   )
 
