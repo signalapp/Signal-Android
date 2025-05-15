@@ -86,6 +86,11 @@ data class RemoteBackupsSettingsState(
     ) : WithTypeAndRenewalTime
 
     /**
+     * User has an active backup but no active subscription
+     */
+    data object NotFound : BackupState
+
+    /**
      * User has a canceled paid tier backup
      */
     data class Canceled(

@@ -522,6 +522,22 @@ fun Screen(
 
       Dividers.Default()
 
+      Rows.TextRow(
+        text = "Mark backup failure",
+        label = "This will display the error sheet when returning to the chats list.",
+        onClick = {
+          SignalStore.backup.internalSetBackupFailedErrorState()
+        }
+      )
+
+      Rows.TextRow(
+        text = "Mark backup expired and downgraded",
+        label = "This will not actually downgrade the user.",
+        onClick = {
+          SignalStore.backup.backupExpiredAndDowngraded = true
+        }
+      )
+
       Spacer(modifier = Modifier.height(8.dp))
     }
   }

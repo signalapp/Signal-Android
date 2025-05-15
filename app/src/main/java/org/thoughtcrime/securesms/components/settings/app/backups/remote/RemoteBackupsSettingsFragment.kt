@@ -165,7 +165,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
   @Stable
   private inner class Callbacks : ContentCallbacks {
     override fun onNavigationClick() {
-      findNavController().popBackStack()
+      requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 
     override fun onBackupTypeActionClick(tier: MessageBackupTier) {
@@ -431,6 +431,14 @@ private fun RemoteBackupsSettingsContent(
             BackupCard(
               backupState = backupState,
               onBackupTypeActionButtonClicked = contentCallbacks::onBackupTypeActionClick
+            )
+          }
+
+          RemoteBackupsSettingsState.BackupState.NotFound -> {
+            SubscriptionNotFoundCard(
+              title = stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found),
+              onRenewClick = contentCallbacks::onRenewLostSubscription,
+              onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription
             )
           }
         }
@@ -849,7 +857,9 @@ private fun RedemptionErrorAlert(
 
     Text(
       text = stringResource(R.string.AppSettingsFragment__couldnt_redeem_your_backups_subscription),
-      modifier = Modifier.padding(start = 16.dp, end = 4.dp).weight(1f)
+      modifier = Modifier
+        .padding(start = 16.dp, end = 4.dp)
+        .weight(1f)
     )
 
     Buttons.Small(onClick = onDetailsClick) {
@@ -939,8 +949,8 @@ private fun PendingCard(
 }
 
 @Composable
-private fun SubscriptionMismatchMissingGooglePlayCard(
-  state: RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay,
+private fun SubscriptionNotFoundCard(
+  title: String,
   onRenewClick: () -> Unit = {},
   onLearnMoreClick: () -> Unit = {}
 ) {
@@ -951,11 +961,9 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
       .background(color = SignalTheme.colors.colorSurface2, shape = RoundedCornerShape(12.dp))
       .padding(24.dp)
   ) {
-    val days by rememberUpdatedState((state.renewalTime - System.currentTimeMillis().milliseconds).inWholeDays)
-
     Row {
       Text(
-        text = pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid, days.toInt(), days),
+        text = title,
         modifier = Modifier
           .weight(1f)
           .padding(end = 13.dp)
@@ -1015,6 +1023,21 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
       }
     }
   }
+}
+
+@Composable
+private fun SubscriptionMismatchMissingGooglePlayCard(
+  state: RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay,
+  onRenewClick: () -> Unit = {},
+  onLearnMoreClick: () -> Unit = {}
+) {
+  val days by rememberUpdatedState((state.renewalTime - System.currentTimeMillis().milliseconds).inWholeDays)
+
+  SubscriptionNotFoundCard(
+    title = pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid, days.toInt(), days),
+    onRenewClick = onRenewClick,
+    onLearnMoreClick = onLearnMoreClick
+  )
 }
 
 @Composable
@@ -1426,6 +1449,16 @@ private fun PendingCardPreview() {
   Previews.Preview {
     PendingCard(
       price = FiatMoney(BigDecimal.TEN, Currency.getInstance(Locale.getDefault()))
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun SubscriptionNotFoundCardPreview() {
+  Previews.Preview {
+    SubscriptionNotFoundCard(
+      title = stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found)
     )
   }
 }

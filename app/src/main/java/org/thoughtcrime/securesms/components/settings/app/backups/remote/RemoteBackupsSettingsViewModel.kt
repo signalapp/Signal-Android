@@ -345,11 +345,19 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
               )
             }
           } else {
-            Log.d(TAG, "ActiveSubscription had null subscription object. Updating UI state with INACTIVE subscription.")
-            _state.update {
-              it.copy(
-                backupState = RemoteBackupsSettingsState.BackupState.Inactive(type)
-              )
+            Log.d(TAG, "ActiveSubscription had null subscription object.")
+            if (SignalStore.backup.areBackupsEnabled) {
+              _state.update {
+                it.copy(
+                  backupState = RemoteBackupsSettingsState.BackupState.NotFound
+                )
+              }
+            } else {
+              _state.update {
+                it.copy(
+                  backupState = RemoteBackupsSettingsState.BackupState.Inactive(type)
+                )
+              }
             }
           }
         } else {

@@ -142,7 +142,7 @@ object BackupRepository {
           Log.w(TAG, "Received status 403. The user is not in the media tier. Updating local state.", error.exception)
           SignalStore.backup.backupTier = MessageBackupTier.FREE
           SignalStore.uiHints.markHasEverEnabledRemoteBackups()
-          // TODO [backup] If the user thought they were in media tier but aren't, feels like we should have a special UX flow for this?
+          SignalStore.backup.backupExpiredAndDowngraded = true
         }
       }
     }
@@ -264,6 +264,18 @@ object BackupRepository {
     return SignalStore.backup.hasBackupBeenUploaded && SignalStore.backup.hasBackupFailure
   }
 
+  /**
+   * Displayed when the user falls out of the grace period for backups after their subscription
+   * expires.
+   */
+  fun shouldDisplayBackupExpiredAndDowngradedSheet(): Boolean {
+    if (shouldNotDisplayBackupFailedMessaging()) {
+      return false
+    }
+
+    return SignalStore.backup.backupExpiredAndDowngraded
+  }
+
   fun markBackupAlreadyRedeemedIndicatorClicked() {
     SignalStore.backup.hasBackupAlreadyRedeemedError = false
   }
@@ -281,6 +293,13 @@ object BackupRepository {
    */
   fun markBackupFailedSheetDismissed() {
     SignalStore.backup.updateMessageBackupFailureSheetWatermark()
+  }
+
+  /**
+   * User closed backup expiration alert sheet
+   */
+  fun markBackupExpiredAndDowngradedSheetDismissed() {
+    SignalStore.backup.backupExpiredAndDowngraded = false
   }
 
   /**
