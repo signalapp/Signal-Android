@@ -895,7 +895,9 @@ private fun LoadingCard() {
 @Composable
 private fun ErrorCard() {
   BoxCard {
-    Column {
+    Column(
+      horizontalAlignment = Alignment.CenterHorizontally
+    ) {
       CircularProgressIndicator(
         strokeWidth = 3.5.dp,
         color = MaterialTheme.colorScheme.secondary,
