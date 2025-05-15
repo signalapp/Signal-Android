@@ -35,6 +35,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.SignalDatabase;
+import org.thoughtcrime.securesms.main.MainNavigationListLocation;
 import org.thoughtcrime.securesms.main.SnackbarState;
 import org.thoughtcrime.securesms.util.ConversationUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
@@ -81,7 +82,7 @@ public class ConversationListArchiveFragment extends ConversationListFragment im
     requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), new OnBackPressedCallback(true) {
       @Override
       public void handleOnBackPressed() {
-        NavHostFragment.findNavController(ConversationListArchiveFragment.this).popBackStack();
+        mainNavigationViewModel.goTo(MainNavigationListLocation.CHATS);
       }
     });
   }
