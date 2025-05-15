@@ -161,9 +161,11 @@ class StickerManagementViewModel : ViewModel() {
   fun toggleSelection(pack: InstalledStickerPack) {
     _uiState.update { previousState ->
       val wasItemSelected = previousState.selectedPackIds.contains(pack.id)
+      val selectedPackIds = if (wasItemSelected) previousState.selectedPackIds.minus(pack.id) else previousState.selectedPackIds.plus(pack.id)
+
       previousState.copy(
-        multiSelectEnabled = true,
-        selectedPackIds = if (wasItemSelected) previousState.selectedPackIds.minus(pack.id) else previousState.selectedPackIds.plus(pack.id)
+        multiSelectEnabled = selectedPackIds.isNotEmpty(),
+        selectedPackIds = selectedPackIds
       )
     }
   }
