@@ -108,7 +108,7 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
     private fun buildMultiShareArgs(context: Context, conversationMessage: ConversationMessage, selectedParts: Set<MultiselectPart>): MultiShareArgs {
       val builder = MultiShareArgs.Builder(setOf())
         .withMentions(conversationMessage.mentions)
-        .withTimestamp(conversationMessage.messageRecord.timestamp)
+        .withTimestamp(conversationMessage.originalMessage.timestamp)
         .withExpiration(conversationMessage.messageRecord.expireStarted + conversationMessage.messageRecord.expiresIn)
 
       if (conversationMessage.multiselectCollection.isTextSelected(selectedParts)) {
