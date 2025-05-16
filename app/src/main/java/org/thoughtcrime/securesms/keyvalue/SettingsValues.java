@@ -13,6 +13,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.mms.SentMediaQuality;
+import org.thoughtcrime.securesms.preferences.BackupFrequencyV1;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
@@ -45,6 +46,7 @@ public final class SettingsValues extends SignalStoreValues {
   public static final  String PREFER_SYSTEM_EMOJI                     = "settings.use.system.emoji";
   public static final  String ENTER_KEY_SENDS                         = "settings.enter.key.sends";
   public static final  String BACKUPS_ENABLED                         = "settings.backups.enabled";
+  public static final  String BACKUPS_SCHEDULE_FREQUENCY              = "settings.backups.schedule.frequency";
   public static final  String BACKUPS_SCHEDULE_HOUR                   = "settings.backups.schedule.hour";
   public static final  String BACKUPS_SCHEDULE_MINUTE                 = "settings.backups.schedule.minute";
   public static final  String SMS_DELIVERY_REPORTS_ENABLED            = "settings.sms.delivery.reports.enabled";
@@ -73,8 +75,9 @@ public final class SettingsValues extends SignalStoreValues {
   private static final String SCREEN_LOCK_ENABLED                     = "settings.screen.lock.enabled";
   private static final String SCREEN_LOCK_TIMEOUT                     = "settings.screen.lock.timeout";
 
-  public static final int BACKUP_DEFAULT_HOUR   = 2;
-  public static final int BACKUP_DEFAULT_MINUTE = 0;
+  public static final BackupFrequencyV1 BACKUP_DEFAULT_FREQUENCY = BackupFrequencyV1.MONTHLY;
+  public static final int               BACKUP_DEFAULT_HOUR      = 2;
+  public static final int BACKUP_DEFAULT_MINUTE    = 0;
 
   private final SingleLiveEvent<String> onConfigurationSettingChanged = new SingleLiveEvent<>();
 
@@ -106,7 +109,7 @@ public final class SettingsValues extends SignalStoreValues {
     }
     if (!store.containsKey(BACKUPS_SCHEDULE_HOUR)) {
       // Initialize backup time to a 5min interval between 1-5am
-      setBackupSchedule(new Random().nextInt(5) + 1, new Random().nextInt(12) * 5);
+      setBackupSchedule(BACKUP_DEFAULT_FREQUENCY, new Random().nextInt(5) + 1, new Random().nextInt(12) * 5);
     }
   }
 
@@ -307,6 +310,10 @@ public final class SettingsValues extends SignalStoreValues {
     putBoolean(BACKUPS_ENABLED, backupEnabled);
   }
 
+  public BackupFrequencyV1 getBackupFrequency() {
+    return BackupFrequencyV1.valueOf(getString(BACKUPS_SCHEDULE_FREQUENCY, BACKUP_DEFAULT_FREQUENCY.name()));
+  }
+
   public int getBackupHour() {
     return getInteger(BACKUPS_SCHEDULE_HOUR, BACKUP_DEFAULT_HOUR);
   }
@@ -315,7 +322,8 @@ public final class SettingsValues extends SignalStoreValues {
     return getInteger(BACKUPS_SCHEDULE_MINUTE, BACKUP_DEFAULT_MINUTE);
   }
 
-  public void setBackupSchedule(int hour, int minute) {
+  public void setBackupSchedule(BackupFrequencyV1 frequency, int hour, int minute) {
+    putString(BACKUPS_SCHEDULE_FREQUENCY, frequency.name());
     putInteger(BACKUPS_SCHEDULE_HOUR, hour);
     putInteger(BACKUPS_SCHEDULE_MINUTE, minute);
   }
