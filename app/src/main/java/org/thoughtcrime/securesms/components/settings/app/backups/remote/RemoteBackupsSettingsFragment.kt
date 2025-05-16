@@ -1209,7 +1209,7 @@ private fun LastBackupRow(
       }
     }
 
-    Buttons.Small(onClick = onBackupNowClick) {
+    Buttons.MediumTonal(onClick = onBackupNowClick) {
       Text(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__back_up_now))
     }
   }
