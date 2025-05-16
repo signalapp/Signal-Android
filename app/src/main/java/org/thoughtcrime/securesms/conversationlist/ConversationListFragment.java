@@ -393,7 +393,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     initializeVoiceNotePlayer();
     initializeBanners();
     maybeScheduleRefreshProfileJob();
-    ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(this, mainNavigationViewModel.getDetailLocation());
+    ConversationListFragmentExtensionsKt.listenToEventBusWhileResumed(this, mainNavigationViewModel .getDetailLocation());
 
     String query = contactSearchMediator.getFilter();
     if (query != null) {

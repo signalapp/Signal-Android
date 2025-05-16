@@ -213,6 +213,10 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     BackupMessagesJob.enqueue()
   }
 
+  fun cancelUpload() {
+    // TODO [message-backups] -- Perform cancel of media upload.
+  }
+
   private suspend fun refreshState(lastPurchase: InAppPaymentTable.InAppPayment?) {
     try {
       performStateRefresh(lastPurchase)

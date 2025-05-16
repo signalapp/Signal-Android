@@ -36,6 +36,7 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -54,6 +55,7 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
@@ -61,6 +63,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -69,6 +72,7 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.google.android.material.progressindicator.LinearProgressIndicator
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
@@ -101,8 +105,6 @@ import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.fonts.SignalSymbols
-import org.thoughtcrime.securesms.fonts.SignalSymbols.signalSymbolText
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -241,6 +243,10 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       // TODO - [backups] Need process here (cancel first?)
     }
 
+    override fun onCancelUploadClick() {
+      viewModel.cancelUpload()
+    }
+
     override fun onContactSupport() {
       requireActivity().finish()
       requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.REMOTE_BACKUPS_INDEX))
@@ -328,6 +334,7 @@ private interface ContentCallbacks {
   fun onBackupTypeActionClick(tier: MessageBackupTier) = Unit
   fun onBackUpUsingCellularClick(canUseCellular: Boolean) = Unit
   fun onBackupNowClick() = Unit
+  fun onCancelUploadClick() = Unit
   fun onTurnOffAndDeleteBackupsClick() = Unit
   fun onChangeBackupFrequencyClick() = Unit
   fun onDialogDismissed() = Unit
@@ -445,43 +452,9 @@ private fun RemoteBackupsSettingsContent(
       }
 
       if (backupsEnabled) {
-        if (backupRestoreState !is BackupRestoreState.None) {
-          item {
-            Dividers.Default()
-          }
-
-          if (backupRestoreState is BackupRestoreState.FromBackupStatusData) {
-            item {
-              BackupStatusRow(
-                backupStatusData = backupRestoreState.backupStatusData,
-                onCancelClick = contentCallbacks::onCancelMediaRestore,
-                onSkipClick = contentCallbacks::onSkipMediaRestore,
-                onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
-              )
-            }
-
-            if (!canRestoreUsingCellular) {
-              item {
-                Rows.TextRow(
-                  text = stringResource(R.string.RemoteBackupsSettingsFragment__resume_download),
-                  icon = painterResource(R.drawable.symbol_arrow_circle_down_24),
-                  onClick = contentCallbacks::onRestoreUsingCellularConfirm
-                )
-              }
-            }
-          } else if (backupRestoreState is BackupRestoreState.Ready) {
-            item {
-              BackupReadyToDownloadRow(
-                ready = backupRestoreState,
-                backupState = backupState,
-                onDownloadClick = contentCallbacks::onStartMediaRestore
-              )
-            }
-          }
-        }
-
         appendBackupDetailsItems(
           backupState = backupState,
+          backupRestoreState = backupRestoreState,
           backupProgress = backupProgress,
           lastBackupTimestamp = lastBackupTimestamp,
           backupMediaSize = backupMediaSize,
@@ -618,6 +591,7 @@ private fun RemoteBackupsSettingsContent(
 
 private fun LazyListScope.appendBackupDetailsItems(
   backupState: RemoteBackupsSettingsState.BackupState,
+  backupRestoreState: BackupRestoreState,
   backupProgress: ArchiveUploadProgressState?,
   lastBackupTimestamp: Long,
   backupMediaSize: Long,
@@ -634,6 +608,37 @@ private fun LazyListScope.appendBackupDetailsItems(
     Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
   }
 
+  if (backupRestoreState !is BackupRestoreState.None) {
+    if (backupRestoreState is BackupRestoreState.FromBackupStatusData) {
+      item {
+        BackupStatusRow(
+          backupStatusData = backupRestoreState.backupStatusData,
+          onCancelClick = contentCallbacks::onCancelMediaRestore,
+          onSkipClick = contentCallbacks::onSkipMediaRestore,
+          onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
+        )
+      }
+
+      if (!canRestoreUsingCellular) {
+        item {
+          Rows.TextRow(
+            text = stringResource(R.string.RemoteBackupsSettingsFragment__resume_download),
+            icon = painterResource(R.drawable.symbol_arrow_circle_down_24),
+            onClick = contentCallbacks::onRestoreUsingCellularConfirm
+          )
+        }
+      }
+    } else if (backupRestoreState is BackupRestoreState.Ready) {
+      item {
+        BackupReadyToDownloadRow(
+          ready = backupRestoreState,
+          backupState = backupState,
+          onDownloadClick = contentCallbacks::onStartMediaRestore
+        )
+      }
+    }
+  }
+
   if (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None) {
     item {
       LastBackupRow(
@@ -643,7 +648,10 @@ private fun LazyListScope.appendBackupDetailsItems(
     }
   } else {
     item {
-      InProgressBackupRow(archiveUploadProgressState = backupProgress)
+      InProgressBackupRow(
+        archiveUploadProgressState = backupProgress,
+        cancelArchiveUpload = contentCallbacks::onCancelUploadClick
+      )
     }
   }
 
@@ -736,10 +744,7 @@ private fun BackupCard(
         }
 
         Text(
-          text = signalSymbolText(
-            text = title,
-            glyphStart = if (backupState.isActive()) SignalSymbols.Glyph.CHECK else null
-          ),
+          text = title,
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           style = MaterialTheme.typography.bodyMedium
         )
@@ -834,7 +839,7 @@ private fun CallToActionButton(
   text: String,
   onClick: () -> Unit
 ) {
-  Buttons.LargeTonal(
+  Buttons.MediumTonal(
     onClick = onClick,
     colors = ButtonDefaults.filledTonalButtonColors().copy(
       containerColor = SignalTheme.colors.colorTransparent5,
@@ -1010,7 +1015,7 @@ private fun SubscriptionNotFoundCard(
     Row(
       horizontalArrangement = spacedBy(16.dp)
     ) {
-      Buttons.LargeTonal(
+      Buttons.MediumTonal(
         onClick = onRenewClick,
         colors = ButtonDefaults.filledTonalButtonColors().copy(
           containerColor = SignalTheme.colors.colorTransparent5,
@@ -1025,7 +1030,7 @@ private fun SubscriptionNotFoundCard(
         )
       }
 
-      Buttons.LargeTonal(
+      Buttons.MediumTonal(
         onClick = onLearnMoreClick,
         colors = ButtonDefaults.filledTonalButtonColors().copy(
           containerColor = SignalTheme.colors.colorTransparent5,
@@ -1060,7 +1065,8 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
 
 @Composable
 private fun InProgressBackupRow(
-  archiveUploadProgressState: ArchiveUploadProgressState
+  archiveUploadProgressState: ArchiveUploadProgressState,
+  cancelArchiveUpload: () -> Unit = {}
 ) {
   Row(
     modifier = Modifier
@@ -1068,26 +1074,23 @@ private fun InProgressBackupRow(
       .padding(top = 16.dp, bottom = 14.dp)
   ) {
     Column(
-      modifier = Modifier.weight(1f)
+      modifier = Modifier.weight(1f),
+      verticalArrangement = spacedBy(12.dp)
     ) {
       when (archiveUploadProgressState.state) {
         ArchiveUploadProgressState.State.None -> {
-          LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+          ArchiveProgressIndicator()
         }
         ArchiveUploadProgressState.State.Export -> {
           val progressValue by animateFloatAsState(targetValue = archiveUploadProgressState.frameExportProgress(), animationSpec = tween(durationMillis = 250))
-          LinearProgressIndicator(
-            modifier = Modifier.fillMaxWidth(),
-            progress = { progressValue },
-            drawStopIndicator = {}
-          )
+          ArchiveProgressIndicator(progress = { progressValue })
         }
         ArchiveUploadProgressState.State.UploadBackupFile, ArchiveUploadProgressState.State.UploadMedia -> {
           val progressValue by animateFloatAsState(targetValue = archiveUploadProgressState.uploadProgress(), animationSpec = tween(durationMillis = 250))
-          LinearProgressIndicator(
-            modifier = Modifier.fillMaxWidth(),
+          ArchiveProgressIndicator(
             progress = { progressValue },
-            drawStopIndicator = {}
+            isCancelable = true,
+            cancel = cancelArchiveUpload
           )
         }
       }
@@ -1097,6 +1100,31 @@ private fun InProgressBackupRow(
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )
+    }
+  }
+}
+
+@Composable
+private fun ArchiveProgressIndicator(
+  progress: () -> Float = { 0f },
+  isCancelable: Boolean = false,
+  cancel: () -> Unit = {}
+) {
+  Row {
+    LinearProgressIndicator(
+      trackColor = MaterialTheme.colorScheme.secondaryContainer,
+      progress = progress,
+      drawStopIndicator = {},
+      modifier = Modifier.fillMaxWidth()
+    )
+
+    if (isCancelable) {
+      IconButton(onClick = cancel) {
+        Icon(
+          imageVector = ImageVector.vectorResource(R.drawable.symbol_x_24),
+          contentDescription = stringResource(R.string.RemoteBackupsSettingsFragment__cancel_upload)
+        )
+      }
     }
   }
 }
@@ -1733,13 +1761,6 @@ private fun BackupFrequencyDialogPreview() {
       onDismiss = {}
     )
   }
-}
-
-private data class BackupProgress(
-  val completed: Long,
-  val total: Long
-) {
-  val progress: Float = if (total > 0) completed / total.toFloat() else 0f
 }
 
 private fun ArchiveUploadProgressState.frameExportProgress(): Float {

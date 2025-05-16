@@ -26,6 +26,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
@@ -196,7 +197,13 @@ object Rows {
           Switch(
             checked = state.checked,
             enabled = state.enabled,
-            onCheckedChange = state.onCheckChanged
+            onCheckedChange = state.onCheckChanged,
+            colors = SwitchDefaults.colors(
+              checkedTrackColor = MaterialTheme.colorScheme.primary,
+              uncheckedBorderColor = MaterialTheme.colorScheme.outline,
+              uncheckedIconColor = MaterialTheme.colorScheme.outline,
+              uncheckedTrackColor = MaterialTheme.colorScheme.surfaceVariant
+            )
           )
         }
       }
