@@ -183,6 +183,7 @@ object Buttons {
     @DrawableRes iconResId: Int,
     @StringRes labelResId: Int,
     modifier: Modifier = Modifier,
+    @StringRes contentDescriptionId: Int? = null,
     enabled: Boolean = true
   ) {
     ActionButton(
@@ -193,7 +194,9 @@ object Buttons {
     ) {
       Image(
         painter = painterResource(iconResId),
-        contentDescription = null,
+        contentDescription = contentDescriptionId?.let {
+          stringResource(it)
+        },
         modifier = Modifier.padding(16.dp),
         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSecondaryContainer)
       )

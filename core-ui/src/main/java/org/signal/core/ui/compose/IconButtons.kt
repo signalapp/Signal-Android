@@ -25,6 +25,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.copied.androidx.compose.material3.IconButtonColors
@@ -74,6 +76,7 @@ object IconButtons {
     shape: Shape = CircleShape,
     enabled: Boolean = true,
     colors: IconButtonColors = iconButtonColors(),
+    contentDescription: String?= null,
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
     content: @Composable () -> Unit
   ) {
@@ -83,6 +86,11 @@ object IconButtons {
         .size(size)
         .clip(shape)
         .background(color = colors.containerColor(enabled).value)
+        .semantics {
+          contentDescription?.let {
+            this.contentDescription = it
+          }
+        }
         .clickable(
           onClick = onClick,
           enabled = enabled,
