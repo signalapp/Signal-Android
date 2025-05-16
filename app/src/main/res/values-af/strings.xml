@@ -546,7 +546,7 @@
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Jy sal binnekort weer hieraan herinner word.</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
-    <string name="ConversationFragment_cannot_record_voice_message_during_call">Cannot record voice message during call.</string>
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">Kan nie stemboodskap tydens oproep opneem nie.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">Stuur tans geformateerde teks</string>
@@ -2483,13 +2483,13 @@
     <string name="WebRtcCallView__toggle_group_ringing">Groeplui aan/af</string>
 
     <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
-    <string name="WebRtcCallView__s_remotely_muted_you">%1$s muted you.</string>
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s het jou gedemp.</string>
     <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
-    <string name="WebRtcCallView__you_remotely_muted_s">You muted %1$s.</string>
+    <string name="WebRtcCallView__you_remotely_muted_s">Jy het %1$s gedemp.</string>
     <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
-    <string name="WebRtcCallView__s_remotely_muted_s">%1$s muted %2$s.</string>
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s het %2$s gedemp.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
-    <string name="WebRtcCallView__you_muted_yourself">You muted yourself from another device.</string>
+    <string name="WebRtcCallView__you_muted_yourself">Jy het jouself van \'n ander toestel af gedemp.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">\'n Gebruikerskoppelvlak-fout het voorgekom. Rapporteer asseblief hierdie fout aan die ontwikkelaars.</string>
@@ -2795,11 +2795,11 @@
     <string name="SmsMessageRecord_duplicate_message">Duplikaatboodskap.</string>
 
     <!-- Sticker management screen default title. -->
-    <string name="StickerManagement_title_stickers">Stickers</string>
+    <string name="StickerManagement_title_stickers">Plakkers</string>
     <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
     <plurals name="StickerManagement_title_n_selected">
-        <item quantity="one">%1$s selected</item>
-        <item quantity="other">%1$s selected</item>
+        <item quantity="one">%1$s geselekteer</item>
+        <item quantity="other">%1$s geselekteer</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
     <string name="StickerManagement_available_tab_label">Beskikbaar</string>
@@ -2818,38 +2818,38 @@
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">Signal Kunstenaarreeks</string>
     <!-- Title shown when sharing a sticker pack with another user. -->
-    <string name="StickerManagement_share_sheet_title">Forward to</string>
+    <string name="StickerManagement_share_sheet_title">Stuur aan na</string>
     <!-- Bottom action bar option to select all sticker packs in the list. -->
-    <string name="StickerManagement_action_select_all">Select all</string>
+    <string name="StickerManagement_action_select_all">Kies alles</string>
     <!-- Bottom action bar option to deselect all sticker packs in the list. -->
-    <string name="StickerManagement_action_deselect_all">Deselect all</string>
+    <string name="StickerManagement_action_deselect_all">Deselekteer almal</string>
     <!-- Bottom action bar option to uninstall all selected sticker packs. -->
-    <string name="StickerManagement_action_delete_selected">Delete</string>
+    <string name="StickerManagement_action_delete_selected">Skrap</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack</item>
-        <item quantity="other">Remove %1$s sticker packs</item>
+        <item quantity="one">Verwyder %1$s plakkerpakket</item>
+        <item quantity="other">Verwyder %1$s plakkerpakkette</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
-    <string name="StickerManagement_installed_pack_s">Installed %1$s.</string>
+    <string name="StickerManagement_installed_pack_s">%1$s geïnstalleer.</string>
     <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
-    <string name="StickerManagement_deleted_pack_s">Removed %1$s.</string>
+    <string name="StickerManagement_deleted_pack_s">%1$s verwyder.</string>
     <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
     <plurals name="StickerManagement_deleted_n_packs">
-        <item quantity="one">%1$s sticker pack removed.</item>
-        <item quantity="other">%1$s sticker packs removed.</item>
+        <item quantity="one">%1$s plakkerpakket verwyder.</item>
+        <item quantity="other">%1$s plakkerpakkette verwyder.</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
-    <string name="StickerManagement_menu_forward_pack">Forward</string>
+    <string name="StickerManagement_menu_forward_pack">Stuur aan</string>
     <!-- Sticker pack list dropdown menu label for the button to mark a sticker pack as selected in order to perform additional actions. -->
-    <string name="StickerManagement_menu_select_pack">Select</string>
+    <string name="StickerManagement_menu_select_pack">Selekteer</string>
     <!-- Sticker pack list dropdown menu label for the button to install a sticker pack. -->
-    <string name="StickerManagement_menu_install_pack">Install</string>
+    <string name="StickerManagement_menu_install_pack">Installeer</string>
     <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
-    <string name="StickerManagement_menu_remove_pack">Remove</string>
+    <string name="StickerManagement_menu_remove_pack">Verwyder</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
-    <string name="StickerManagement_menu_select_packs">Select sticker packs</string>
+    <string name="StickerManagement_menu_select_packs">Kies plakkerpakkette</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">Laai %1$s-plakkerpakket af</string>
@@ -2860,11 +2860,11 @@
     <!-- Accessibility label for the button to download a sticker pack. -->
     <string name="StickerManagement_accessibility_download">Laai af</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
-    <string name="StickerManagement_accessibility_open_top_bar_menu">Open menu</string>
+    <string name="StickerManagement_accessibility_open_top_bar_menu">Maak kieslys oop</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
-    <string name="StickerManagement_accessibility_open_context_menu">Open context menu</string>
+    <string name="StickerManagement_accessibility_open_context_menu">Maak kontekskieslys oop</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
-    <string name="StickerManagement_accessibility_exit_multi_select_mode">Exit selection mode and clear selections</string>
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">Verlaat selekteermodus en vee keuses uit</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">Naamloos</string>
@@ -4774,9 +4774,9 @@
     <!-- Button label to indicate that a feature is in beta mode -->
     <string name="Beta__beta_title">Beta</string>
     <!-- Content description for info icon -->
-    <string name="Beta__info">Info</string>
+    <string name="Beta__info">Inligting</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">This is a beta feature that we will be adding functionality to on an ongoing basis.</string>
+    <string name="Beta__this_is_beta">Hierdie is \'n beta-kenmerk waarby ons deurlopend funksionaliteit sal voeg.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Ontsluit Signal</string>
@@ -5854,7 +5854,7 @@
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s is versper</string>
     <!-- Snackbar message when blocking a contact has failed -->
-    <string name="NewConversationActivity__block_failed">Block failed</string>
+    <string name="NewConversationActivity__block_failed">Versperring het misluk</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Kan nie %1$s verwyder nie</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -7221,7 +7221,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Kies jou bank</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Confirm your donation with iDEAL</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Bevestig jou skenking met iDEAL</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Om jou herhalende skenking op te stel, tik op \"gaan voort\" om \'n €0.01-debiet by jou bank te bevestig. Dit sal outomaties terugbetaal word en laat toe dat jou %1$s/maand-skenking van jou rekening gedebiteer word.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7895,13 +7895,13 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Besig om media te herstel</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">Media restore paused</string>
+    <string name="BackupStatus__restore_paused">Mediaherstel is onderbreek</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">Herstel vanaf rugsteun voltooi</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">Besonderhede</string>
     <!-- Status action label for resume restore from a paused state -->
-    <string name="BackupStatus__resume">Resume</string>
+    <string name="BackupStatus__resume">Hervat</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wag tans vir WiFi…</string>
@@ -7935,9 +7935,9 @@
     <string name="BackupStatusRow__learn_more">Vind meer uit</string>
 
     <!-- Dialog title to prompt resuming media restore over cellular -->
-    <string name="ResumeRestoreCellular_resume_using_cellular_title">Resume using cellular data?</string>
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">Hervat die gebruik van mobiele data?</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
-    <string name="ResumeRestoreCellular_resume_using_cellular_message">Restoring your media using cellular data may result in data charges. You can connect to a Wi-Fi network to automatically resume.</string>
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">Die herstel van jou media met behulp van mobiele data kan datakoste tot gevolg hê. Jy kan aan \'n Wi-Fi-netwerk konnekteer om outomaties te hervat.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8039,7 +8039,7 @@
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">Rugsteunbesonderhede</string>
     <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__resume_download">Resume download</string>
+    <string name="RemoteBackupsSettingsFragment__resume_download">Hervat aflaai</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Rugsteungrootte</string>
     <!-- Row label for backup frequency -->
@@ -8160,7 +8160,7 @@
         <item quantity="other">Jy het %1$s rugsteundata wat nie op hierdie toestel is nie. Jou rugsteun sal geskrap word wanneer jou intekening oor %2$d dae eindig.</item>
     </plurals>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">You have %1$s of backup data that’s not on this device. </string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Jy het %1$s rugsteundata wat nie op hierdie toestel is nie. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">Laai af</string>
     <!-- Dialog title for skipping download of backed up media -->
@@ -8171,9 +8171,9 @@
         <item quantity="other">As jy die aflaai oorslaan, sal die oorblywende media en aanhegsels in jou rugsteun oor %1$d dae geskrap word.</item>
     </plurals>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
-    <string name="RemoteBackupsSettingsFragment__skip_restore_question">Skip restore?</string>
+    <string name="RemoteBackupsSettingsFragment__skip_restore_question">Slaan herstel oor?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
-    <string name="RemoteBackupsSettingsFragment__skip_restore_message">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time.</string>
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">As jy herstel oorslaan, kan die oorblywende media en aanhegsels in jou rugsteun op \'n later tydstip afgelaai word.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Slaan oor</string>
     <!-- Dialog title for network error while trying to disable backups -->
@@ -8481,14 +8481,14 @@
     <string name="MainToolbar__proxy_content_description">Tussenganger</string>
 
     <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
-    <string name="DefaultTopAppBar__navigate_up_content_description">Navigate up</string>
+    <string name="DefaultTopAppBar__navigate_up_content_description">Navigeer op</string>
 
     <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
-    <string name="SignalCheckbox_accessibility_on_click_label">Toggle</string>
+    <string name="SignalCheckbox_accessibility_on_click_label">Skakel aan of af</string>
     <!-- Accessibility label describing a checked checkbox. -->
-    <string name="SignalCheckbox_accessibility_checked_description">Ticked</string>
+    <string name="SignalCheckbox_accessibility_checked_description">Gemerk</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
-    <string name="SignalCheckbox_accessibility_unchecked_description">Unticked</string>
+    <string name="SignalCheckbox_accessibility_unchecked_description">Ongemerk</string>
 
     <!-- EOF -->
 </resources>
