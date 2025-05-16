@@ -42,25 +42,25 @@ class NetworkConnectionListener(private val context: Context, private val onNetw
 
     override fun onBlockedStatusChanged(network: Network, blocked: Boolean) {
       super.onBlockedStatusChanged(network, blocked)
-      Log.d(TAG, "ConnectivityManager.NetworkCallback onBlockedStatusChanged()")
+      Log.d(TAG, "ConnectivityManager.NetworkCallback onBlockedStatusChanged($network, $blocked)")
       onNetworkLost { blocked }
     }
 
     override fun onAvailable(network: Network) {
       super.onAvailable(network)
-      Log.d(TAG, "ConnectivityManager.NetworkCallback onAvailable()")
+      Log.d(TAG, "ConnectivityManager.NetworkCallback onAvailable($network)")
       onNetworkLost { false }
     }
 
     override fun onLost(network: Network) {
       super.onLost(network)
-      Log.d(TAG, "ConnectivityManager.NetworkCallback onLost()")
+      Log.d(TAG, "ConnectivityManager.NetworkCallback onLost($network)")
       onNetworkLost { true }
     }
 
     override fun onLinkPropertiesChanged(network: Network, linkProperties: LinkProperties) {
       super.onLinkPropertiesChanged(network, linkProperties)
-      Log.d(TAG, "ConnectivityManager.NetworkCallback onLinkPropertiesChanged()")
+      Log.d(TAG, "ConnectivityManager.NetworkCallback onLinkPropertiesChanged($network)")
       onProxySettingsChanged(linkProperties.httpProxy)
     }
   }

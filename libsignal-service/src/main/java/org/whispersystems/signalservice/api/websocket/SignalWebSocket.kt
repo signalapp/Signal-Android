@@ -47,7 +47,7 @@ sealed class SignalWebSocket(
   }
 
   private var connection: WebSocketConnection? = null
-  private val connectionName
+  val connectionName
     get() = connection?.name ?: "[null]"
 
   private val _state: BehaviorSubject<WebSocketConnectionState> = BehaviorSubject.createDefault(WebSocketConnectionState.DISCONNECTED)
