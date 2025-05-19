@@ -546,7 +546,7 @@
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">நீங்கள் விரைவில் மீண்டும் நினைவூட்டப்படுவீர்கள்.</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
-    <string name="ConversationFragment_cannot_record_voice_message_during_call">Cannot record voice message during call.</string>
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">அழைப்பின்போது வாய்ஸ் மெசேஜைப் பதிவு செய்ய முடியாது.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">வடிவமைக்கப்பட்ட உரையை அனுப்புகிறது</string>
@@ -2483,13 +2483,13 @@
     <string name="WebRtcCallView__toggle_group_ringing">குழு ரிங்கிங்கை நிலைமாற்று</string>
 
     <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
-    <string name="WebRtcCallView__s_remotely_muted_you">%1$s muted you.</string>
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s உங்களை ஒலியடக்கியுள்ளார்.</string>
     <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
-    <string name="WebRtcCallView__you_remotely_muted_s">You muted %1$s.</string>
+    <string name="WebRtcCallView__you_remotely_muted_s">நீங்கள் %1$sஐ ஒலியடக்கியுள்ளீர்கள்.</string>
     <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
-    <string name="WebRtcCallView__s_remotely_muted_s">%1$s muted %2$s.</string>
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s என்பவர் %2$sஐ ஒலியடக்கியுள்ளார்.</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
-    <string name="WebRtcCallView__you_muted_yourself">You muted yourself from another device.</string>
+    <string name="WebRtcCallView__you_muted_yourself">நீங்கள் மற்றொரு சாதனத்தில் இருந்து உங்களை ஒலியடக்கியுள்ளீர்கள்.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI பிழை ஏற்பட்டது. டெவலப்பர்களிடம் இந்தப் பிழையைப் புகாரளிக்கவும்.</string>
@@ -2822,22 +2822,22 @@
     <!-- Bottom action bar option to select all sticker packs in the list. -->
     <string name="StickerManagement_action_select_all">எல்லாம்</string>
     <!-- Bottom action bar option to deselect all sticker packs in the list. -->
-    <string name="StickerManagement_action_deselect_all">Deselect all</string>
+    <string name="StickerManagement_action_deselect_all">அனைத்தையும் தேர்வுநீக்கு</string>
     <!-- Bottom action bar option to uninstall all selected sticker packs. -->
     <string name="StickerManagement_action_delete_selected">நீக்கு</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="one">Remove %1$s sticker pack</item>
-        <item quantity="other">Remove %1$s sticker packs</item>
+        <item quantity="one">%1$s ஸ்டிக்கர் பேக்கை அகற்றவும்</item>
+        <item quantity="other">%1$s ஸ்டிக்கர் பேக்குகளை அழிக்கவும்</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
-    <string name="StickerManagement_installed_pack_s">Installed %1$s.</string>
+    <string name="StickerManagement_installed_pack_s">நிறுவப்பட்டவை%1$s.</string>
     <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
-    <string name="StickerManagement_deleted_pack_s">Removed %1$s.</string>
+    <string name="StickerManagement_deleted_pack_s">அகற்றப்பட்டவை%1$s.</string>
     <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
     <plurals name="StickerManagement_deleted_n_packs">
-        <item quantity="one">%1$s sticker pack removed.</item>
-        <item quantity="other">%1$s sticker packs removed.</item>
+        <item quantity="one">%1$s ஸ்டிக்கர் பேக் அகற்றப்பட்டது.</item>
+        <item quantity="other">%1$s ஸ்டிக்கர் பேக்குகள் அகற்றப்பட்டன.</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -2849,7 +2849,7 @@
     <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
     <string name="StickerManagement_menu_remove_pack">அகற்று</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
-    <string name="StickerManagement_menu_select_packs">Select sticker packs</string>
+    <string name="StickerManagement_menu_select_packs">ஸ்டிக்கர் பேக்குகளைத் தேர்ந்தெடுக்கவும்</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$sஸ்டிக்கர் பேக்கைப் பதிவிறக்குக</string>
@@ -2860,11 +2860,11 @@
     <!-- Accessibility label for the button to download a sticker pack. -->
     <string name="StickerManagement_accessibility_download">பதிவிறக்க</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
-    <string name="StickerManagement_accessibility_open_top_bar_menu">Open menu</string>
+    <string name="StickerManagement_accessibility_open_top_bar_menu">மெனுவைத் திறக்கவும்</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_open_context_menu">சூழல் மெனுவைத் திறக்கவும்</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
-    <string name="StickerManagement_accessibility_exit_multi_select_mode">Exit selection mode and clear selections</string>
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">தேர்வுப் பயன்முறையிலிருந்து வெளியேறி, தேர்வுகளை அழிக்கவும்</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">பெயரிடாத</string>
@@ -4776,7 +4776,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">தகவல்</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">This is a beta feature that we will be adding functionality to on an ongoing basis.</string>
+    <string name="Beta__this_is_beta">இது ஒரு பீட்டா அம்சமாகும், இதில் நாங்கள் செயல்பாட்டைத் தொடர்ச்சியான முறையில் சேர்ப்போம்.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">சிக்னலைத் திற</string>
@@ -5854,7 +5854,7 @@
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s தடைசெய்யப்பட்டார்</string>
     <!-- Snackbar message when blocking a contact has failed -->
-    <string name="NewConversationActivity__block_failed">Block failed</string>
+    <string name="NewConversationActivity__block_failed">தடைசெய்ய முடியவில்லை</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">%1$s ஐ அகற்ற முடியவில்லை</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -7221,7 +7221,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">உங்கள் வங்கியைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Confirm your donation with iDEAL</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">உங்கள் நன்கொடையை iDEAL உடன் உறுதிப்படுத்தவும்.</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">உங்கள் தொடர் நன்கொடையை அமைக்க, உங்கள் வங்கியில் €0,01 கட்டணத்தை உறுதிசெய்ய அழுத்தவும். இது தானாகத் திருப்பி அளிக்கப்படும் மற்றும் உங்கள் %1$s/மாத நன்கொடையை உங்கள் கணக்கிலிருந்து டெபிட் செய்ய அனுமதிக்கும்.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7895,13 +7895,13 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">மீடியாவை மீட்டமைக்கிறது</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">Media restore paused</string>
+    <string name="BackupStatus__restore_paused">ஊடகத்தை மீட்டமைப்பது இடைநிறுத்தப்பட்டது</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">மீட்டெடுப்பு முடிந்தது</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">விவரங்கள்</string>
     <!-- Status action label for resume restore from a paused state -->
-    <string name="BackupStatus__resume">Resume</string>
+    <string name="BackupStatus__resume">தொடர்க</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi-க்காக காத்துக்கொண்டிருக்கிறது…</string>
@@ -7935,9 +7935,9 @@
     <string name="BackupStatusRow__learn_more">மேலும் அறிக</string>
 
     <!-- Dialog title to prompt resuming media restore over cellular -->
-    <string name="ResumeRestoreCellular_resume_using_cellular_title">Resume using cellular data?</string>
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">செல்லுலார் தரவைப் பயன்படுத்தித் தொடரவா?</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
-    <string name="ResumeRestoreCellular_resume_using_cellular_message">Restoring your media using cellular data may result in data charges. You can connect to a Wi-Fi network to automatically resume.</string>
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">செல்லுலார் தரவைப் பயன்படுத்தி உங்கள் ஊடகத்தை மீட்டெடுப்பது தரவு கட்டணங்களை விதிப்பதற்கு வழிவகுக்கும். தானாகவே தொடங்க நீங்கள் Wi-Fi நெட்வொர்க்குடன் இணைக்கலாம்.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8039,7 +8039,7 @@
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">காப்புப்பிரதி விவரங்கள்</string>
     <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__resume_download">Resume download</string>
+    <string name="RemoteBackupsSettingsFragment__resume_download">பதிவிறக்கத்தைத் தொடர்க</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">காப்புப்பிரதி அளவு</string>
     <!-- Row label for backup frequency -->
@@ -8160,7 +8160,7 @@
         <item quantity="other">இந்தச் சாதனத்தில் இல்லாத %1$s காப்புப் பிரதி தரவு உங்களிடம் உள்ளன. உங்கள் சந்தா %2$d நாட்களில் முடிவடையும் போது உங்கள் காப்புப் பிரதி அழிக்கப்படும்.</item>
     </plurals>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">You have %1$s of backup data that’s not on this device. </string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">உங்களிடம் இந்தச் சாதனத்தில் இல்லாத %1$s காப்புப் பிரதி தரவு உள்ளது. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">பதிவிறக்க</string>
     <!-- Dialog title for skipping download of backed up media -->
@@ -8173,7 +8173,7 @@
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">மீட்டமைப்பதைத் தவிர்ப்பதா?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
-    <string name="RemoteBackupsSettingsFragment__skip_restore_message">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time.</string>
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">மீதமுள்ள ஊடகத்தை மீட்டெடுப்பதைத் தவிர்த்தால், உங்கள் காப்புப்பிரதியில் உள்ள இணைப்புகளைப் பிற்காலத்தில் பதிவிறக்கம் செய்யலாம்.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">தவிர்</string>
     <!-- Dialog title for network error while trying to disable backups -->
@@ -8486,9 +8486,9 @@
     <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
     <string name="SignalCheckbox_accessibility_on_click_label">நிலைமாற்று</string>
     <!-- Accessibility label describing a checked checkbox. -->
-    <string name="SignalCheckbox_accessibility_checked_description">Ticked</string>
+    <string name="SignalCheckbox_accessibility_checked_description">தேர்வுசெய்யப்பட்டது</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
-    <string name="SignalCheckbox_accessibility_unchecked_description">Unticked</string>
+    <string name="SignalCheckbox_accessibility_unchecked_description">தேர்வுநீக்கப்பட்டது</string>
 
     <!-- EOF -->
 </resources>

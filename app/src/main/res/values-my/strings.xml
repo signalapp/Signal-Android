@@ -541,7 +541,7 @@
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">မကြာမီ သင့်အား ထပ်မံသတိပေးပါမည်။</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
-    <string name="ConversationFragment_cannot_record_voice_message_during_call">Cannot record voice message during call.</string>
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">ခေါ်ဆိုနေစဉ်အတွင်း အသံမက်ဆေ့(ချ်)ကို မှတ်တမ်းတင်၍မရပါ။</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">ဖောမတ်လုပ်ထားသည့် စာသားကို ပေးပို့ခြင်း</string>
@@ -2405,13 +2405,13 @@
     <string name="WebRtcCallView__toggle_group_ringing">အဖွဲ့ ဖုန်းမြည်သံ ဖွင့်/ပိတ်လုပ်ရန်</string>
 
     <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
-    <string name="WebRtcCallView__s_remotely_muted_you">%1$s muted you.</string>
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s သင့်ကို အသံပိတ်ထားသည်။</string>
     <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
-    <string name="WebRtcCallView__you_remotely_muted_s">You muted %1$s.</string>
+    <string name="WebRtcCallView__you_remotely_muted_s">သင်သည် %1$s ကို အသံပိတ်ထားသည်။</string>
     <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
-    <string name="WebRtcCallView__s_remotely_muted_s">%1$s muted %2$s.</string>
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s သည် %2$s ကို အသံပိတ်ထားသည်။</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
-    <string name="WebRtcCallView__you_muted_yourself">You muted yourself from another device.</string>
+    <string name="WebRtcCallView__you_muted_yourself">သင်သည် အခြားစက်မှ သင့်ကိုယ်သင် အသံပိတ်ထားသည်။</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI ချို့ယွင်းချက်တစ်ခု ဖြစ်နေသည်။ ဤချို့ယွင်းချက်ကို ဆော့ဖ်ဝဲရေးသားသူများထံ ရီပို့(တ်)လုပ်ပါ။</string>
@@ -2732,32 +2732,32 @@
     <!-- Bottom action bar option to select all sticker packs in the list. -->
     <string name="StickerManagement_action_select_all">အားလုံးရွေးရန်</string>
     <!-- Bottom action bar option to deselect all sticker packs in the list. -->
-    <string name="StickerManagement_action_deselect_all">Deselect all</string>
+    <string name="StickerManagement_action_deselect_all">ရွေးချယ်မှုအားလုံးကို ပယ်မည်</string>
     <!-- Bottom action bar option to uninstall all selected sticker packs. -->
     <string name="StickerManagement_action_delete_selected">ဖျက်ရန်</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="other">Remove %1$s sticker packs</item>
+        <item quantity="other">စတစ်ကာတွဲ %1$s ခု ဖယ်ရှားမည်</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
-    <string name="StickerManagement_installed_pack_s">Installed %1$s.</string>
+    <string name="StickerManagement_installed_pack_s">%1$s ကို ထည့်သွင်းထားသည်။</string>
     <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
-    <string name="StickerManagement_deleted_pack_s">Removed %1$s.</string>
+    <string name="StickerManagement_deleted_pack_s">%1$s ကို ဖယ်ရှားခဲ့သည်။</string>
     <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
     <plurals name="StickerManagement_deleted_n_packs">
-        <item quantity="other">%1$s sticker packs removed.</item>
+        <item quantity="other">စတစ်ကာတွဲ %1$s ခုကို ဖယ်ရှားလိုက်ပါပြီ။</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
-    <string name="StickerManagement_menu_forward_pack">ထပ်ဆင့် ပေးပို့မယ်</string>
+    <string name="StickerManagement_menu_forward_pack">ထပ်ဆင့် ပေးပို့မည်</string>
     <!-- Sticker pack list dropdown menu label for the button to mark a sticker pack as selected in order to perform additional actions. -->
     <string name="StickerManagement_menu_select_pack">ရွေးရန်</string>
     <!-- Sticker pack list dropdown menu label for the button to install a sticker pack. -->
-    <string name="StickerManagement_menu_install_pack">ထည့်သွင်းမယ်+</string>
+    <string name="StickerManagement_menu_install_pack">ထည့်သွင်းမည်</string>
     <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
     <string name="StickerManagement_menu_remove_pack">ဖယ်ရှားရန်</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
-    <string name="StickerManagement_menu_select_packs">Select sticker packs</string>
+    <string name="StickerManagement_menu_select_packs">စတစ်ကာအတွဲများကို ရွေးပါ</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">%1$s စတစ်ကာတွဲကို ဒေါင်းလုဒ်လုပ်ပါ</string>
@@ -2768,11 +2768,11 @@
     <!-- Accessibility label for the button to download a sticker pack. -->
     <string name="StickerManagement_accessibility_download">ဒေါင်းလုဒ်လုပ်မည်</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
-    <string name="StickerManagement_accessibility_open_top_bar_menu">Open menu</string>
+    <string name="StickerManagement_accessibility_open_top_bar_menu">မီနူးကို ဖွင့်ရန်</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_open_context_menu">အကြောင်းအရာ မီနူးကို ဖွင့်ရန်</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
-    <string name="StickerManagement_accessibility_exit_multi_select_mode">Exit selection mode and clear selections</string>
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">ရွေးချယ်မှုစနစ်မှ ထွက်ပြီး ရွေးချယ်မှုများကို ရှင်းလင်းမည်</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">ခေါင်းစဉ်မဲ့</string>
@@ -4654,7 +4654,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">အချက်အလက်</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">This is a beta feature that we will be adding functionality to on an ongoing basis.</string>
+    <string name="Beta__this_is_beta">၎င်းသည် ကျွန်ုပ်တို့လုပ်ဆောင်နိုင်စွမ်းကို ဆက်လက်ထည့်သွင်းပေးမည့် Beta အင်္ဂါရပ်တစ်ခုဖြစ်သည်။</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal ကို ပြန်ဖွင့်ပါ</string>
@@ -5717,7 +5717,7 @@
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s အား ဘလော့ခ်ပြီးပါပြီ</string>
     <!-- Snackbar message when blocking a contact has failed -->
-    <string name="NewConversationActivity__block_failed">Block failed</string>
+    <string name="NewConversationActivity__block_failed">ဘလော့ခ်ခြင်း မအောင်မြင်ပါ</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">%1$s ကို ဖယ်ရှား၍ မရနိုင်ပါ</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -7057,7 +7057,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">သင့်ဘဏ်ကို ရွေးချယ်ပါ</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Confirm your donation with iDEAL</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">iDEAL ဖြင့် သင်၏ လှူဒါန်းမှုကို အတည်ပြုပါ</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">သင်၏ ထပ်တလဲလဲလှူဒါန်းမှုကို သတ်မှတ်ရန်အတွက် သင့်ဘဏ်တွင် €0,01 ကောက်ခံမှုကို အတည်ပြုရန် ဆက်လုပ်မည်ကို နှိပ်ပါ။ ၎င်းသည် အလိုအလျောက် ပြန်အမ်းပေးမည်ဖြစ်ပြီး သင်၏ တစ်လလျှင် %1$s လှူဒါန်းမှုကို သင့်အကောင့်မှ ငွေထုတ်ခွင့်ပြုပါမည်။</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7722,13 +7722,13 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">မီဒီယာကို ပြန်လည်ရယူနေသည်</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">Media restore paused</string>
+    <string name="BackupStatus__restore_paused">မီဒီယာပြန်လည်ရယူခြင်းကို ခေတ္တရပ်ထားသည်</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">ပြန်လည်ရယူခြင်း ပြီးစီးပါပြီ</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">အသေးစိတ်အချက်အလက်များ</string>
     <!-- Status action label for resume restore from a paused state -->
-    <string name="BackupStatus__resume">Resume</string>
+    <string name="BackupStatus__resume">ပြန်ဆက်လုပ်မည်</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi ကို စောင့်နေသည်…</string>
@@ -7762,9 +7762,9 @@
     <string name="BackupStatusRow__learn_more">ပိုမိုလေ့လာရန်</string>
 
     <!-- Dialog title to prompt resuming media restore over cellular -->
-    <string name="ResumeRestoreCellular_resume_using_cellular_title">Resume using cellular data?</string>
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">ဆယ်လူလာဒေတာကို ပြန်လည်အသုံးပြုမလား။</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
-    <string name="ResumeRestoreCellular_resume_using_cellular_message">Restoring your media using cellular data may result in data charges. You can connect to a Wi-Fi network to automatically resume.</string>
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">ဆယ်လူလာဒေတာကို အသုံးပြု၍ သင်၏မီဒီယာကို ပြန်လည်ရယူခြင်းသည် ဒေတာအတွက် ငွေကုန်ကျနိုင်သည်။ အလိုအလျောက်ပြန်လည်စတင်ရန် Wi-Fi ကို ချိတ်ဆက်နိုင်သည်။</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7865,7 +7865,7 @@
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">ဘက်ခ်အပ် အသေးစိတ်</string>
     <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__resume_download">Resume download</string>
+    <string name="RemoteBackupsSettingsFragment__resume_download">ဒေါင်းလုဒ်ပြန်ဆက်လုပ်မည်</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">ဘက်ခ်အပ် အရွယ်အစား</string>
     <!-- Row label for backup frequency -->
@@ -7983,7 +7983,7 @@
         <item quantity="other">သင့်တွင် ဤစက်တွင်မရှိသော ဘက်ခ်အပ်ဒေတာ %1$s ရှိသည်။ သင်၏ပုံမှန်လှူဒါန်းမှု %2$d ရက်အတွင်း ကုန်ဆုံးသည့်အခါ သင့် ဘက်ခ်အပ်ကို ဖျက်လိုက်ပါမည်။</item>
     </plurals>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">You have %1$s of backup data that’s not on this device. </string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">သင့်တွင် ဤစက်၌မရှိသော အရန်ဒေတာ %1$s ရှိသည်။ </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">ဒေါင်းလုဒ် လုပ်မည်</string>
     <!-- Dialog title for skipping download of backed up media -->
@@ -7995,7 +7995,7 @@
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">ပြန်လည်ရယူခြင်းကို ကျော်လိုပါသလား။</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
-    <string name="RemoteBackupsSettingsFragment__skip_restore_message">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time.</string>
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">သင့်ဘက်ခ်အပ်တွင် ကျန်ရှိသည့်မီဒီယာနှင့် ပူးတွဲဖိုင်များအား ပြန်လည်ရယူခြင်းကို ကျော်လိုက်ပါက နောင်တစ်ချိန် ဘက်ခ်အပ်ကိုဒေါင်းလုဒ်ပြုလုပ်နိုင်သည်။</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">ကျော်မည်</string>
     <!-- Dialog title for network error while trying to disable backups -->
@@ -8306,9 +8306,9 @@
     <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
     <string name="SignalCheckbox_accessibility_on_click_label">ပုံစံပြောင်းရန်</string>
     <!-- Accessibility label describing a checked checkbox. -->
-    <string name="SignalCheckbox_accessibility_checked_description">Ticked</string>
+    <string name="SignalCheckbox_accessibility_checked_description">အမှန်ခြစ်ထားသည်</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
-    <string name="SignalCheckbox_accessibility_unchecked_description">Unticked</string>
+    <string name="SignalCheckbox_accessibility_unchecked_description">အမှန်မခြစ်ထားပါ</string>
 
     <!-- EOF -->
 </resources>

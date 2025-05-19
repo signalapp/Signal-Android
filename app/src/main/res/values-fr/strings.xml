@@ -2798,8 +2798,8 @@
     <string name="StickerManagement_title_stickers">Stickers</string>
     <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
     <plurals name="StickerManagement_title_n_selected">
-        <item quantity="one">%1$s message sélectionné</item>
-        <item quantity="other">%1$s messages sélectionnés</item>
+        <item quantity="one">%1$s pack de stickers sélectionné</item>
+        <item quantity="other">%1$s packs de stickers sélectionnés</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
     <string name="StickerManagement_available_tab_label">Disponibles</string>
@@ -8481,7 +8481,7 @@
     <string name="MainToolbar__proxy_content_description">Proxy</string>
 
     <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
-    <string name="DefaultTopAppBar__navigate_up_content_description">Naviguer vers le haut</string>
+    <string name="DefaultTopAppBar__navigate_up_content_description">Retour en haut</string>
 
     <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
     <string name="SignalCheckbox_accessibility_on_click_label">Activer ou désactiver</string>

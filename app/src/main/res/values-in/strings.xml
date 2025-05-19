@@ -2753,7 +2753,7 @@
     <!-- Sticker pack list dropdown menu label for the button to mark a sticker pack as selected in order to perform additional actions. -->
     <string name="StickerManagement_menu_select_pack">Pilih</string>
     <!-- Sticker pack list dropdown menu label for the button to install a sticker pack. -->
-    <string name="StickerManagement_menu_install_pack">Pasang</string>
+    <string name="StickerManagement_menu_install_pack">Instal</string>
     <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
     <string name="StickerManagement_menu_remove_pack">Hapus</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
@@ -8304,7 +8304,7 @@
     <string name="DefaultTopAppBar__navigate_up_content_description">Arahkan ke atas</string>
 
     <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
-    <string name="SignalCheckbox_accessibility_on_click_label">Beralih</string>
+    <string name="SignalCheckbox_accessibility_on_click_label">Ganti</string>
     <!-- Accessibility label describing a checked checkbox. -->
     <string name="SignalCheckbox_accessibility_checked_description">Ticked</string>
     <!-- Accessibility label describing an unchecked checkbox. -->

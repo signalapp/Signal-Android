@@ -541,7 +541,7 @@
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">អ្នកនឹងត្រូវបានរំលឹកម្តងទៀតក្នុងពេលឆាប់ៗនេះ។</string>
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
-    <string name="ConversationFragment_cannot_record_voice_message_during_call">Cannot record voice message during call.</string>
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">មិនអាចថតសារជាសំឡេងក្នុងអំឡុងពេលហៅទូរសព្ទ។</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">កំពុងផ្ញើអត្ថបទដែលមានទម្រង់ជាក់លាក់</string>
@@ -2405,13 +2405,13 @@
     <string name="WebRtcCallView__toggle_group_ringing">បិទ/បើកសំឡេងរោទ៍ជាក្រុម</string>
 
     <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
-    <string name="WebRtcCallView__s_remotely_muted_you">%1$s muted you.</string>
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s បានបិទសំឡេងអ្នក។</string>
     <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
-    <string name="WebRtcCallView__you_remotely_muted_s">You muted %1$s.</string>
+    <string name="WebRtcCallView__you_remotely_muted_s">អ្នកបានបិទសំឡេង %1$s។</string>
     <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
-    <string name="WebRtcCallView__s_remotely_muted_s">%1$s muted %2$s.</string>
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s បានបិទសំឡេង %2$s។</string>
     <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
-    <string name="WebRtcCallView__you_muted_yourself">You muted yourself from another device.</string>
+    <string name="WebRtcCallView__you_muted_yourself">អ្នកបានបិទសំឡេងខ្លួនអ្នកពីឧបករណ៍ផ្សេងទៀត។</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">បញ្ហា UI បានកើតឡើង។ សូមរាយការណ៍ពីបញ្ហានេះទៅអ្នកអភិវឌ្ឍន៍។</string>
@@ -2709,7 +2709,7 @@
     <string name="StickerManagement_title_stickers">ស្ទីកគ័រ</string>
     <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
     <plurals name="StickerManagement_title_n_selected">
-        <item quantity="other">%1$s បានជ្រើសរើស</item>
+        <item quantity="other">បានជ្រើសរើស %1$s</item>
     </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
     <string name="StickerManagement_available_tab_label">មាន</string>
@@ -2732,20 +2732,20 @@
     <!-- Bottom action bar option to select all sticker packs in the list. -->
     <string name="StickerManagement_action_select_all">រើសយកទាំងអស់</string>
     <!-- Bottom action bar option to deselect all sticker packs in the list. -->
-    <string name="StickerManagement_action_deselect_all">Deselect all</string>
+    <string name="StickerManagement_action_deselect_all">ដកការជ្រើសរើសទាំងអស់</string>
     <!-- Bottom action bar option to uninstall all selected sticker packs. -->
     <string name="StickerManagement_action_delete_selected">លុប</string>
     <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
     <plurals name="StickerManagement_delete_n_packs_confirmation">
-        <item quantity="other">Remove %1$s sticker packs</item>
+        <item quantity="other">ដក %1$s កញ្ចប់ស្ទីកគ័រចេញ</item>
     </plurals>
     <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
-    <string name="StickerManagement_installed_pack_s">Installed %1$s.</string>
+    <string name="StickerManagement_installed_pack_s">បានដំឡើង %1$s។</string>
     <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
-    <string name="StickerManagement_deleted_pack_s">Removed %1$s.</string>
+    <string name="StickerManagement_deleted_pack_s">បានដក %1$s ចេញ។</string>
     <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
     <plurals name="StickerManagement_deleted_n_packs">
-        <item quantity="other">%1$s sticker packs removed.</item>
+        <item quantity="other">កញ្ចប់ស្ទីកគ័រ %1$s ត្រូវបានដកចេញ។</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -2757,7 +2757,7 @@
     <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
     <string name="StickerManagement_menu_remove_pack">ដកចេញ</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
-    <string name="StickerManagement_menu_select_packs">Select sticker packs</string>
+    <string name="StickerManagement_menu_select_packs">ជ្រើសរើសកញ្ចប់ស្ទីកគ័រ</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">ទាញយកកញ្ចប់ស្ទីកគ័រ %1$s</string>
@@ -2768,11 +2768,11 @@
     <!-- Accessibility label for the button to download a sticker pack. -->
     <string name="StickerManagement_accessibility_download">ទាញយក</string>
     <!-- Accessibility label for opening the screen specific dropdown menu. -->
-    <string name="StickerManagement_accessibility_open_top_bar_menu">Open menu</string>
+    <string name="StickerManagement_accessibility_open_top_bar_menu">បើកម៉ឺនុយ</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
     <string name="StickerManagement_accessibility_open_context_menu">បើកម៉ឺនុយបរិបទ</string>
     <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
-    <string name="StickerManagement_accessibility_exit_multi_select_mode">Exit selection mode and clear selections</string>
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">ចាកចេញពីមុខងារជ្រើសរើស ហើយសម្អាតការជ្រើសរើស</string>
 
     <!-- StickerManagementAdapter -->
     <string name="StickerManagementAdapter_untitled">គ្មានចំណងជើង</string>
@@ -4654,7 +4654,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">ព័ត៌មាន</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">This is a beta feature that we will be adding functionality to on an ongoing basis.</string>
+    <string name="Beta__this_is_beta">នេះគឺជាមុខងារបេតាដែលយើងនឹងបញ្ចូលមុខងារផ្សេងៗជាបន្តបន្ទាប់។</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">ដោះសោ Signal</string>
@@ -5717,7 +5717,7 @@
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s ត្រូវបានទប់ស្កាត់</string>
     <!-- Snackbar message when blocking a contact has failed -->
-    <string name="NewConversationActivity__block_failed">Block failed</string>
+    <string name="NewConversationActivity__block_failed">ការទប់ស្កាត់មិនបានជោគជ័យទេ</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">មិនអាចដក %1$s ចេញបានទេ</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -7057,7 +7057,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">ជ្រើសរើសធនាគាររបស់អ្នក</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Confirm your donation with iDEAL</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">បញ្ជាក់ការបរិច្ចាគរបស់អ្នកជាមួយ iDEAL</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">ដើម្បីរៀបចំសម្រាប់ការបរិច្ចាគជាថ្មីទៀតរបស់អ្នក សូមចុច បន្ត ដើម្បីបញ្ជាក់ការគិតប្រាក់ €0,01 ជាមួយធនាគាររបស់អ្នក។ វានឹងត្រូវបានបង្វិលសងវិញដោយស្វ័យប្រវត្តិ ហើយអនុញ្ញាតឱ្យមានការដកប្រាក់ពីគណនីរបស់អ្នក សម្រាប់ការបរិច្ចាគ %1$s/ខែរបស់អ្នក។</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7722,13 +7722,13 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">កំពុងស្ដារមេឌៀមកវិញ</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">Media restore paused</string>
+    <string name="BackupStatus__restore_paused">ការស្តារមេឌៀត្រូវបានផ្អាក</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">ការស្តារបានបញ្ចប់</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">ព័ត៌មានលម្អិត</string>
     <!-- Status action label for resume restore from a paused state -->
-    <string name="BackupStatus__resume">Resume</string>
+    <string name="BackupStatus__resume">បន្ត</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">កំពុងរង់ចាំ Wi-Fi…</string>
@@ -7762,9 +7762,9 @@
     <string name="BackupStatusRow__learn_more">ស្វែងយល់បន្ថែម</string>
 
     <!-- Dialog title to prompt resuming media restore over cellular -->
-    <string name="ResumeRestoreCellular_resume_using_cellular_title">Resume using cellular data?</string>
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">បន្តប្រើទិន្នន័យអ៊ីនធឺណិតទូរសព្ទ?</string>
     <!-- Dialog message to prompt resuming media restore over cellular -->
-    <string name="ResumeRestoreCellular_resume_using_cellular_message">Restoring your media using cellular data may result in data charges. You can connect to a Wi-Fi network to automatically resume.</string>
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">ការស្ដារមេឌៀរបស់អ្នកដោយប្រើទិន្នន័យអ៊ីនធឺណិតទូរសព្ទអាចបណ្តាលឱ្យមានការគិតថ្លៃទិន្នន័យ។ អ្នកអាចភ្ជាប់ជាមួយបណ្តាញ Wi-Fi ដើម្បីបន្តដោយស្វ័យប្រវត្តិ។</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7865,7 +7865,7 @@
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">ព័ត៌មានលម្អិតអំពីការបម្រុងទុក</string>
     <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__resume_download">Resume download</string>
+    <string name="RemoteBackupsSettingsFragment__resume_download">បន្តការទាញយក</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">ទំហំបម្រុងទុក</string>
     <!-- Row label for backup frequency -->
@@ -7983,7 +7983,7 @@
         <item quantity="other">អ្នកមានទិន្នន័យបម្រុងទុក %1$s ដែលមិនមាននៅលើឧបករណ៍នេះទេ។ ការបម្រុងទុករបស់អ្នកនឹងត្រូវបានលុប នៅពេលដែលការជាវរបស់អ្នកបញ្ចប់ក្នុងរយៈពេល %2$d ថ្ងៃទៀត។</item>
     </plurals>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">You have %1$s of backup data that’s not on this device. </string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">អ្នកមានទិន្នន័យបម្រុងទុក %1$s ដែលមិនមាននៅលើឧបករណ៍នេះ។ </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">ទាញយក</string>
     <!-- Dialog title for skipping download of backed up media -->
@@ -7995,7 +7995,7 @@
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">រំលងការស្តារឡើងវិញ?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
-    <string name="RemoteBackupsSettingsFragment__skip_restore_message">If you skip restore the remaining media and attachments in your backup can be downloaded at a later time.</string>
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">ប្រសិនបើអ្នករំលងការស្ដារមេឌៀ និងឯកសារភ្ជាប់ដែលនៅសល់នៅក្នុងការបម្រុងទុករបស់អ្នក អាចទាញយកនៅពេលក្រោយបាន។</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">រំលង</string>
     <!-- Dialog title for network error while trying to disable backups -->
@@ -8306,9 +8306,9 @@
     <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
     <string name="SignalCheckbox_accessibility_on_click_label">កុងតាក់</string>
     <!-- Accessibility label describing a checked checkbox. -->
-    <string name="SignalCheckbox_accessibility_checked_description">Ticked</string>
+    <string name="SignalCheckbox_accessibility_checked_description">បានធីក</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
-    <string name="SignalCheckbox_accessibility_unchecked_description">Unticked</string>
+    <string name="SignalCheckbox_accessibility_unchecked_description">មិនបានធីក</string>
 
     <!-- EOF -->
 </resources>

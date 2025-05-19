@@ -150,7 +150,7 @@
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">المستخدمون المحظورون</string>
-    <string name="BlockedUsersActivity__add_blocked_user">احظُرأحد المُستخدِمين</string>
+    <string name="BlockedUsersActivity__add_blocked_user">احظُر أحد المُستخدِمين</string>
     <string name="BlockedUsersActivity__cannot_block_yourself">لا يُمكنك حظر نفسك</string>
     <string name="BlockedUsersActivity__blocked_users_will">لن يتمكن المستخدم المحظور من الاتصال بك ولا إرسال الرسائل إليك.</string>
     <string name="BlockedUsersActivity__no_blocked_users">لا يوجد مستخدمون محظورون</string>
@@ -194,7 +194,7 @@
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
-    <string name="OneTimeDonationPreference__one_time_s">%1$s مرّة واحدة</string>
+    <string name="OneTimeDonationPreference__one_time_s">%1$s لمرّة واحدة</string>
     <!-- Preference subtitle when donation is pending -->
     <string name="OneTimeDonationPreference__donation_pending">التبرّع مُعلَّق</string>
     <!-- Preference subtitle when donation is processing -->
@@ -3259,7 +3259,7 @@
     <string name="SubmitDebugLogActivity_submit">إرسال</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">فشل إرسال السجلات</string>
     <string name="SubmitDebugLogActivity_success">تمَّ بنجاح!</string>
-    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">يُرجى نسخ هذا العنوان وإضافته إلى بلاغك عن مشكلة أو إلى بريد الدعم :\n\n<b>%1$s</b></string>
+    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">يُرجى نسخ هذا العنوان وإضافته إلى بلاغك عن مشكلة أو إلى بريد الدعم:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">مشاركة</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">سيتمُّ نشر هذا السّجل علنًا على الانترنت حتى يتمكن المساهمون من الاطِّلاع عليه. يمكنك فحصه أو تعديله قبل تحميله.</string>
     <!-- Banner message shown while submitting debug log -->
@@ -4282,7 +4282,7 @@
     <string name="arrays__images">صور</string>
     <string name="arrays__audio">صوت</string>
     <string name="arrays__video">فيديو</string>
-    <string name="arrays__documents">الوثائق</string>
+    <string name="arrays__documents">وثائق</string>
 
     <string name="arrays__small">صغير</string>
     <string name="arrays__normal">عادي</string>
@@ -4411,7 +4411,7 @@
     <string name="preferences__enable_pin">تفعيل رقم PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قٌمتَ بتعطيل رقم التعريف الشخصي (PIN)، ستضيع جميع البيانات عند قيامك بإعادة التسجيل في سيجنال إلّا إذا قُمتَ باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل بينما رقم التعريف الشخصي (PIN) في حالة تعطيل.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">أرقام التعريف الشخصية (PIN) تُبقي المعلومات المحفوظة في سيجنال مُشفَّرة لكي لا يستطيع أحدٌ غيرك الوصول إليها. سيتمُّ استرجاع حسابك الشخصي، إعداداتك، وجهات اتصالك عند إعادة تثبيت التطبيق. لن تكون لك حاجة بعدها لرقم التعريف الشخصي لفتح التطبيق.</string>
-    <string name="preferences__system_default">الوضع الافتراضي للنظام</string>
+    <string name="preferences__system_default">اللغة الافتراضية للنظام</string>
     <string name="preferences__language">اللغة</string>
     <string name="preferences__signal_messages_and_calls">رسائل ومكالمات سيجنال</string>
     <string name="preferences__advanced_pin_settings">الإعدادات المُتقدِّمة لرقم الـ PIN</string>
@@ -6196,7 +6196,7 @@
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">التراخيص</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">الشروط وسياسة الخصوصية</string>
-    <string name="HelpFragment__copyright_signal_messenger">جميع الحقوق محفوظة لمِرسال سيجنال</string>
+    <string name="HelpFragment__copyright_signal_messenger">جميع الحقوق محفوظة لتطبيق سيجنال للمراسلة</string>
     <string name="HelpFragment__licenced_under_the_agplv3">بموجب رخصة GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
@@ -7281,7 +7281,7 @@
         <item quantity="other">%1$d مشاهدة</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">اِختر من يُمكنه رؤية قصتك. لن تؤثر التغييرات على القصص التي أرسلتها من قبل.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">اختر من يُمكنه رؤية قصتك. لن تؤثر التغييرات على القصص التي أرسلتها من قبل.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">الردود والتفاعلات</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
