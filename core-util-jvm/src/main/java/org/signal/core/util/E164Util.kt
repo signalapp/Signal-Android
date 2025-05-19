@@ -160,7 +160,7 @@ object E164Util {
       val withAreaCodeRules: String = applyAreaCodeRules(localNumber, localAreaCode, correctedInput)
       val parsedNumber: PhoneNumber = PhoneNumberUtil.getInstance().parse(withAreaCodeRules, regionCode)
 
-      val isShortCode = ShortNumberInfo.getInstance().isValidShortNumberForRegion(parsedNumber, regionCode) || withAreaCodeRules.length <= 5
+      val isShortCode = ShortNumberInfo.getInstance().isValidShortNumberForRegion(parsedNumber, regionCode) || withAreaCodeRules.trimStart('+').length <= 6
       if (isShortCode) {
         return correctedInput.numbersOnly().stripLeadingZerosFromE164()
       }
