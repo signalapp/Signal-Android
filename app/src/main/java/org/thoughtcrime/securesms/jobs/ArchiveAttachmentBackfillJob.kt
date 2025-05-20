@@ -49,8 +49,12 @@ class ArchiveAttachmentBackfillJob private constructor(parameters: Parameters) :
 
     ArchiveUploadProgress.onAttachmentsStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
 
-    Log.i(TAG, "Adding ${jobs.size} jobs to backfill attachments.")
-    AppDependencies.jobManager.addAll(jobs)
+    if (!isCanceled) {
+      Log.i(TAG, "Adding ${jobs.size} jobs to backfill attachments.")
+      AppDependencies.jobManager.addAll(jobs)
+    } else {
+      Log.w(TAG, "Job was canceled. Not enqueuing backfill.")
+    }
 
     return Result.success()
   }

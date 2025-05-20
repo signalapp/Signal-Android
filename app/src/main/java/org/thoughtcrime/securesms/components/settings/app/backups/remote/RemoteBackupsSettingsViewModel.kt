@@ -214,7 +214,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun cancelUpload() {
-    // TODO [message-backups] -- Perform cancel of media upload.
+    ArchiveUploadProgress.cancel()
   }
 
   private suspend fun refreshState(lastPurchase: InAppPaymentTable.InAppPayment?) {

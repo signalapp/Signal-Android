@@ -639,7 +639,7 @@ private fun LazyListScope.appendBackupDetailsItems(
     }
   }
 
-  if (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None) {
+  if (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None || backupProgress.state == ArchiveUploadProgressState.State.UserCanceled) {
     item {
       LastBackupRow(
         lastBackupTimestamp = lastBackupTimestamp,
@@ -1074,16 +1074,19 @@ private fun InProgressBackupRow(
       .padding(top = 16.dp, bottom = 14.dp)
   ) {
     Column(
-      modifier = Modifier.weight(1f),
-      verticalArrangement = spacedBy(12.dp)
+      modifier = Modifier.weight(1f)
     ) {
       when (archiveUploadProgressState.state) {
-        ArchiveUploadProgressState.State.None -> {
+        ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled -> {
           ArchiveProgressIndicator()
         }
         ArchiveUploadProgressState.State.Export -> {
           val progressValue by animateFloatAsState(targetValue = archiveUploadProgressState.frameExportProgress(), animationSpec = tween(durationMillis = 250))
-          ArchiveProgressIndicator(progress = { progressValue })
+          ArchiveProgressIndicator(
+            progress = { progressValue },
+            isCancelable = true,
+            cancel = cancelArchiveUpload
+          )
         }
         ArchiveUploadProgressState.State.UploadBackupFile, ArchiveUploadProgressState.State.UploadMedia -> {
           val progressValue by animateFloatAsState(targetValue = archiveUploadProgressState.uploadProgress(), animationSpec = tween(durationMillis = 250))
@@ -1110,12 +1113,14 @@ private fun ArchiveProgressIndicator(
   isCancelable: Boolean = false,
   cancel: () -> Unit = {}
 ) {
-  Row {
+  Row(
+    verticalAlignment = Alignment.CenterVertically
+  ) {
     LinearProgressIndicator(
       trackColor = MaterialTheme.colorScheme.secondaryContainer,
       progress = progress,
       drawStopIndicator = {},
-      modifier = Modifier.fillMaxWidth()
+      modifier = Modifier.weight(1f).padding(vertical = 12.dp)
     )
 
     if (isCancelable) {
@@ -1132,7 +1137,7 @@ private fun ArchiveProgressIndicator(
 @Composable
 private fun getProgressStateMessage(archiveUploadProgressState: ArchiveUploadProgressState): String {
   return when (archiveUploadProgressState.state) {
-    ArchiveUploadProgressState.State.None -> stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
+    ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled -> stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
     ArchiveUploadProgressState.State.Export -> getBackupExportPhaseProgressString(archiveUploadProgressState)
     ArchiveUploadProgressState.State.UploadBackupFile, ArchiveUploadProgressState.State.UploadMedia -> getBackupUploadPhaseProgressString(archiveUploadProgressState)
   }
@@ -1626,30 +1631,6 @@ private fun InProgressRowPreview() {
         archiveUploadProgressState = ArchiveUploadProgressState(
           state = ArchiveUploadProgressState.State.Export,
           backupPhase = ArchiveUploadProgressState.BackupPhase.Account
-        )
-      )
-      InProgressBackupRow(
-        archiveUploadProgressState = ArchiveUploadProgressState(
-          state = ArchiveUploadProgressState.State.Export,
-          backupPhase = ArchiveUploadProgressState.BackupPhase.Call
-        )
-      )
-      InProgressBackupRow(
-        archiveUploadProgressState = ArchiveUploadProgressState(
-          state = ArchiveUploadProgressState.State.Export,
-          backupPhase = ArchiveUploadProgressState.BackupPhase.Sticker
-        )
-      )
-      InProgressBackupRow(
-        archiveUploadProgressState = ArchiveUploadProgressState(
-          state = ArchiveUploadProgressState.State.Export,
-          backupPhase = ArchiveUploadProgressState.BackupPhase.Recipient
-        )
-      )
-      InProgressBackupRow(
-        archiveUploadProgressState = ArchiveUploadProgressState(
-          state = ArchiveUploadProgressState.State.Export,
-          backupPhase = ArchiveUploadProgressState.BackupPhase.Thread
         )
       )
       InProgressBackupRow(

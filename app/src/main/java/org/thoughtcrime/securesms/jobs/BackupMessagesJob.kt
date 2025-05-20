@@ -186,7 +186,7 @@ class BackupMessagesJob private constructor(
     stopwatch.split("used-space")
     stopwatch.stop(TAG)
 
-    if (SignalStore.backup.backsUpMedia && SignalDatabase.attachments.doAnyAttachmentsNeedArchiveUpload()) {
+    if (SignalStore.backup.backsUpMedia && SignalDatabase.attachments.doAnyAttachmentsNeedArchiveUpload() && !isCanceled) {
       Log.i(TAG, "Enqueuing attachment backfill job.")
       AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob())
     } else {
