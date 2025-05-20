@@ -318,6 +318,10 @@ public class InputPanel extends ConstraintLayout
     }
   }
 
+  public boolean hasLinkPreview() {
+    return linkPreview.getVisibility() == View.VISIBLE;
+  }
+
   public void setLinkPreviewLoading() {
     this.linkPreview.setVisibility(View.VISIBLE);
     this.linkPreview.setLoading();
