@@ -26,11 +26,11 @@ import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.Currency
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
@@ -79,8 +79,8 @@ class BackupsSettingsViewModel : ViewModel() {
   @WorkerThread
   private fun loadEnabledState(): Job {
     return viewModelScope.launch(SignalDispatchers.IO) {
-      if (!RemoteConfig.messageBackups || !AppDependencies.billingApi.isApiAvailable()) {
-        Log.w(TAG, "Paid backups are not available on this device.")
+      if (!RemoteConfig.messageBackups) {
+        Log.w(TAG, "Remote backups are not available on this device.")
         internalStateFlow.update { it.copy(enabledState = BackupsSettingsState.EnabledState.NotAvailable, showBackupTierInternalOverride = false) }
       } else {
         val enabledState = when (SignalStore.backup.backupTier) {
@@ -117,10 +117,11 @@ class BackupsSettingsViewModel : ViewModel() {
     }
   }
 
-  private suspend fun getEnabledStateForPaidTier(): BackupsSettingsState.EnabledState {
+  @WorkerThread
+  private fun getEnabledStateForPaidTier(): BackupsSettingsState.EnabledState {
     return try {
       Log.d(TAG, "Attempting to grab enabled state for paid tier.")
-      val backupType = BackupRepository.getBackupsType(MessageBackupTier.PAID) as MessageBackupsType.Paid
+      val backupConfiguration = BackupRepository.getBackupLevelConfiguration() ?: return BackupsSettingsState.EnabledState.Failed
 
       Log.d(TAG, "Retrieved backup type. Grabbing active subscription...")
       val activeSubscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrThrow()
@@ -135,8 +136,8 @@ class BackupsSettingsViewModel : ViewModel() {
               activeSubscription.activeSubscription.amount,
               Currency.getInstance(activeSubscription.activeSubscription.currency)
             ),
-            storageAllowanceBytes = backupType.storageAllowanceBytes,
-            mediaTtl = backupType.mediaTtl
+            storageAllowanceBytes = backupConfiguration.storageAllowanceBytes,
+            mediaTtl = backupConfiguration.mediaTtlDays.days
           )
         )
       } else {

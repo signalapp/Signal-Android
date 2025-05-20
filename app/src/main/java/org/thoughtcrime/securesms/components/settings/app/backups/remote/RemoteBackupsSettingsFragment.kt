@@ -72,7 +72,6 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.progressindicator.LinearProgressIndicator
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
@@ -105,6 +104,7 @@ import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -160,7 +160,8 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       backupMediaSize = state.backupMediaSize,
       backupState = state.backupState,
       backupRestoreState = restoreState,
-      hasRedemptionError = state.hasRedemptionError
+      hasRedemptionError = state.hasRedemptionError,
+      statusBarColorNestedScrollConnection = remember { StatusBarColorNestedScrollConnection(requireActivity()) }
     )
   }
 
@@ -370,7 +371,8 @@ private fun RemoteBackupsSettingsContent(
   contentCallbacks: ContentCallbacks,
   backupProgress: ArchiveUploadProgressState?,
   backupMediaSize: Long,
-  hasRedemptionError: Boolean
+  hasRedemptionError: Boolean,
+  statusBarColorNestedScrollConnection: StatusBarColorNestedScrollConnection?
 ) {
   val snackbarHostState = remember {
     SnackbarHostState()
@@ -391,7 +393,15 @@ private fun RemoteBackupsSettingsContent(
         scrollBehavior = scrollBehavior
       )
     },
-    modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+    modifier = Modifier
+      .then(
+        if (statusBarColorNestedScrollConnection != null) {
+          Modifier.nestedScroll(statusBarColorNestedScrollConnection)
+        } else {
+          Modifier
+        }
+      )
+      .nestedScroll(scrollBehavior.nestedScrollConnection),
     snackbarHost = {
       Snackbars.Host(snackbarHostState = snackbarHostState)
     }
@@ -1465,7 +1475,8 @@ private fun RemoteBackupsSettingsContentPreview() {
         messageBackupsType = MessageBackupsType.Free(mediaRetentionDays = 30)
       ),
       backupRestoreState = BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup),
-      hasRedemptionError = true
+      hasRedemptionError = true,
+      statusBarColorNestedScrollConnection = null
     )
   }
 }

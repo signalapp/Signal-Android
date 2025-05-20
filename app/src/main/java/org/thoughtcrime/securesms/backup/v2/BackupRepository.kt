@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.v2.BackupRepository.copyAttachmentToArchive
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.AdHocCallArchiveProcessor
@@ -1455,6 +1456,13 @@ object BackupRepository {
   }
 
   @WorkerThread
+  fun getBackupLevelConfiguration(): SubscriptionsConfiguration.BackupLevelConfiguration? {
+    val config = getSubscriptionsConfiguration()
+
+    return config.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL]
+  }
+
+  @WorkerThread
   private fun getFreeType(): MessageBackupsType.Free {
     val config = getSubscriptionsConfiguration()
 
@@ -1464,10 +1472,8 @@ object BackupRepository {
   }
 
   private suspend fun getPaidType(): MessageBackupsType.Paid? {
-    val config = getSubscriptionsConfiguration()
     val product = AppDependencies.billingApi.queryProduct() ?: return null
-
-    val backupLevelConfiguration = config.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL] ?: return null
+    val backupLevelConfiguration = getBackupLevelConfiguration() ?: return null
 
     return MessageBackupsType.Paid(
       pricePerMonth = product.price,
