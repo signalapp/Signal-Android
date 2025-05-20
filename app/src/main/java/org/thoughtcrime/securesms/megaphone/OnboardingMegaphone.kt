@@ -85,7 +85,8 @@ fun OnboardingMegaphone(
     Text(
       text = stringResource(R.string.Megaphones_get_started),
       style = MaterialTheme.typography.titleSmall,
-      modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+      modifier = Modifier.padding(start = 16.dp, top = 4.dp),
+      color = MaterialTheme.colorScheme.onSurface
     )
 
     val onboardingItems = remember(onboardingState.displayState) {
