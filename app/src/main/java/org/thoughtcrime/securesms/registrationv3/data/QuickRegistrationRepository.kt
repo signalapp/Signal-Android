@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64.decode
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
@@ -85,7 +86,11 @@ object QuickRegistrationRepository {
               null -> null
             },
             backupSizeBytes = SignalStore.backup.totalBackupSize.takeIf { it > 0 },
-            restoreMethodToken = restoreMethodToken
+            restoreMethodToken = restoreMethodToken,
+            aciIdentityKeyPublic = SignalStore.account.aciIdentityKey.publicKey.serialize().toByteString(),
+            aciIdentityKeyPrivate = SignalStore.account.aciIdentityKey.privateKey.serialize().toByteString(),
+            pniIdentityKeyPublic = SignalStore.account.pniIdentityKey.publicKey.serialize().toByteString(),
+            pniIdentityKeyPrivate = SignalStore.account.pniIdentityKey.privateKey.serialize().toByteString()
           )
         )
         .successOrThrow()

@@ -102,7 +102,9 @@ class EnterBackupKeyFragment : ComposeFragment() {
           context = requireContext(),
           backupKey = viewModel.backupKey,
           e164 = null,
-          pin = null
+          pin = null,
+          aciIdentityKeyPair = null,
+          pniIdentityKeyPair = null
         )
       },
       onLearnMore = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) },
