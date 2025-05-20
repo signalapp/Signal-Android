@@ -266,6 +266,8 @@ class IncomingMessageObserver(
     SignalExecutors.BOUNDED.execute {
       Log.w(TAG, "Beginning termination. ${this.hashCode()}")
       terminated = true
+      Log.w(TAG, "Disconnecting auth socket as part of termination")
+      authWebSocket.disconnect()
     }
   }
 
@@ -478,6 +480,8 @@ class IncomingMessageObserver(
           attempts++
           Log.w(TAG, e)
         } finally {
+          Log.w(TAG, "Disconnecting auth websocket")
+          authWebSocket.disconnect()
           webSocketDisposable.dispose()
           decryptionDrained = false
         }
