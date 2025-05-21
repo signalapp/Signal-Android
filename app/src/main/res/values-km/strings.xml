@@ -7661,6 +7661,12 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">ការជាវការបម្រុងទុករបស់អ្នកមិនអាចបន្តបានទេ</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">ពិនិត្យមើលដើម្បីប្រាកដថាវិធីបង់ប្រាក់របស់អ្នកទាន់សម័យ។ ចុចគ្រប់គ្រងការជាវ ហើយនៅក្រោមវិធីបង់ប្រាក់ សូមចុចធ្វើបច្ចុប្បន្នភាព។</string>
+    <!-- Sheet title for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Your backups subscription has expired</string>
+    <!-- Sheet body part 1 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Your subscription couldn\'t be renewed with your payment method. To continue backing up media you need an active subscription.</string>
+    <!-- Sheet body part 2 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Backups plan.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">មិនអាចបញ្ចប់ការបម្រុងទុកបានទេ</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7671,6 +7677,8 @@
     <string name="BackupAlertBottomSheet__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">រំលងការស្តារឡើងវិញ</string>
+    <!-- Primary action button to open backups management screen -->
+    <string name="BackupAlertBottomSheet__manage_backups">Manage backups</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">បម្រុងទុកឥឡូវនេះ</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -7856,6 +7864,8 @@
     <string name="BackupsSettingsFragment_set_up">រៀបចំ</string>
 
     <!-- RemoteBackupsSettingsFragment -->
+    <!-- Content description for canceling backup upload -->
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">Cancel upload</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">ការបម្រុងទុក Signal</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -7962,6 +7972,8 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">កំពុងទាញយកការបម្រុងទុករបស់អ្នក</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">វាអាចចំណាយពេលយូរ អាស្រ័យលើទំហំនៃការបម្រុងទុករបស់អ្នក។ អ្នកអាចប្រើទូរសព្ទរបស់អ្នកបានធម្មតា ពេលកំពុងទាញយក។</string>
+    <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Backups.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="other">ការជាវរបស់អ្នកនៅលើឧបករណ៍នេះមានសុពលភាពរយៈពេល %1$d ថ្ងៃទៀត។ សូមបន្តការជាវដើម្បីបន្តប្រើប្រាស់ការបម្រុងទុក Signal</item>

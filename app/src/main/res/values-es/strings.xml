@@ -196,7 +196,7 @@
     <!-- Preference title with placeholder for amount. -->
     <string name="OneTimeDonationPreference__one_time_s">Pago único de %1$s</string>
     <!-- Preference subtitle when donation is pending -->
-    <string name="OneTimeDonationPreference__donation_pending">Tu donación está pendiente</string>
+    <string name="OneTimeDonationPreference__donation_pending">Donación pendiente</string>
     <!-- Preference subtitle when donation is processing -->
     <string name="OneTimeDonationPreference__donation_processing">Tu donación se está procesando</string>
 
@@ -7127,9 +7127,9 @@
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Tu donación a través de iDEAL aún se está procesando. Consulta la aplicación de tu banco para aprobar el pago antes de hacer otra donación.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
-    <string name="DonateToSignal__donation_amount_too_high">El importe de la donación es demasiado alto</string>
+    <string name="DonateToSignal__donation_amount_too_high">El importe es demasiado alto</string>
     <!-- Dialog body shown when a user tries to donate an amount higher than is allowed for a given payment method, place holder is the maximum -->
-    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Puedes enviar hasta %1$s mediante transferencia bancaria. Prueba con un importe o un método de pago diferentes.</string>
+    <string name="DonateToSignalFragment__you_can_send_up_to_s_via_bank_transfer">Puedes enviar hasta %1$s mediante transferencia bancaria. Prueba con otro importe o método de pago.</string>
 
     <!-- Donation pill toggle monthly text -->
     <string name="DonationPillToggle__monthly">Mensual</string>
@@ -7145,8 +7145,8 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Donar %1$s a Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Consigue la insignia %1$s durante %2$d día</item>
-        <item quantity="other">Consigue la insignia %1$s durante %2$d días</item>
+        <item quantity="one">Consigue la insignia %1$s por %2$d día</item>
+        <item quantity="other">Consigue la insignia %1$s por %2$d días</item>
     </plurals>
     <!-- Button label for paying with a bank transfer -->
     <string name="GatewaySelectorBottomSheet__bank_transfer">Transferencia bancaria</string>
@@ -7159,7 +7159,7 @@
 
     <!-- Dialog title for launching external intent -->
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">¿Salir de Signal para confirmar la donación?</string>
-    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Una vez confirmada esta donación, regresa a Signal para terminar de procesarla.</string>
+    <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Una vez confirmada esta donación, regresa a Signal para que se termine de procesar.</string>
 
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
@@ -7177,17 +7177,17 @@
 
     <!-- BankTransferDetailsFragment -->
     <!-- Subtext explaining how email is used. Placeholder is \'Learn more\' -->
-    <string name="BankTransferDetailsFragment__enter_your_bank_details">Introduce tus datos bancarios y correo electrónico. Stripe utiliza este correo electrónico para enviarte actualizaciones sobre tu donación. %1$s</string>
+    <string name="BankTransferDetailsFragment__enter_your_bank_details">Introduce los datos de tu cuenta bancaria y correo electrónico. Stripe utiliza este correo electrónico para enviarte actualizaciones sobre tu donación. %1$s</string>
     <!-- Subtext learn more link text -->
     <string name="BankTransferDetailsFragment__learn_more">Más información</string>
     <!-- Text field label for name on bank account -->
-    <string name="BankTransferDetailsFragment__name_on_bank_account">Nombre en la cuenta bancaria</string>
+    <string name="BankTransferDetailsFragment__name_on_bank_account">Nombre que figura en la cuenta bancaria</string>
     <!-- Text field label for IBAN -->
     <string name="BankTransferDetailsFragment__iban">IBAN</string>
     <!-- Text field label for email -->
-    <string name="BankTransferDetailsFragment__email">Correo</string>
+    <string name="BankTransferDetailsFragment__email">Correo electrónico</string>
     <!-- Text label for button to show user how to find their IBAN -->
-    <string name="BankTransferDetailsFragment__find_account_info">¿Dónde encuentro mis datos bancarios?</string>
+    <string name="BankTransferDetailsFragment__find_account_info">Buscar datos bancarios</string>
     <!-- Donate button label for monthly subscription -->
     <string name="BankTransferDetailsFragment__donate_s_month">Donar %1$s/mes</string>
     <!-- Donate button label for one-time -->
@@ -7197,7 +7197,7 @@
     <!-- Error label for IBAN field when number is too long -->
     <string name="BankTransferDetailsFragment__iban_is_too_long">El IBAN es demasiado largo</string>
     <!-- Error label for IBAN field when country is not supported -->
-    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">El código de país en el IBAN no es compatible</string>
+    <string name="BankTransferDetailsFragment__iban_country_code_is_not_supported">No se admite el código de país del IBAN</string>
     <!-- Error label for IBAN field when number is invalid -->
     <string name="BankTransferDetailsFragment__invalid_iban">IBAN no válido</string>
     <!-- Error label for name field when name is not at least two characters long -->
@@ -7215,9 +7215,9 @@
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
     <string name="IdealTransferDetailsFragment__learn_more">Más información</string>
     <!-- Hint label for text entry box for name on bank account -->
-    <string name="IdealTransferDetailsFragment__name_on_bank_account">Nombre en la cuenta bancaria</string>
+    <string name="IdealTransferDetailsFragment__name_on_bank_account">Nombre que figura en la cuenta bancaria</string>
     <!-- Hint label for text entry box for email -->
-    <string name="IdealTransferDetailsFragment__email">Correo</string>
+    <string name="IdealTransferDetailsFragment__email">Correo electrónico</string>
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Elige tu banco</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
@@ -7232,16 +7232,16 @@
     <string name="IdealTransferDetailsBankSelectionDialogFragment__choose_your_bank">Elige tu banco</string>
 
     <!-- Title of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__find_your_account_information">Buscar información de tu cuenta</string>
+    <string name="FindAccountInfoSheet__find_your_account_information">¿Dónde encuentro mis datos bancarios?</string>
     <!-- Body of bottom sheet for finding account information -->
-    <string name="FindAccountInfoSheet__look_for_your_iban_at">Busca tu IBAN en la parte superior de tu extracto bancario. Los IBAN pueden contener hasta 34 caracteres. El nombre que introduzcas debe coincidir con tu nombre completo en tu cuenta bancaria. Ponte en contacto con tu banco para obtener más información.</string>
+    <string name="FindAccountInfoSheet__look_for_your_iban_at">Busca tu IBAN, un código de hasta 34 caracteres, en la parte superior de tu extracto bancario. El nombre que introduzcas debe coincidir con tu nombre, tal como figura en tu cuenta bancaria. Contacta con tu banco para obtener más información.</string>
 
     <!-- Title of donation pending sheet displayed after making a bank transfer -->
     <string name="DonationPendingBottomSheet__donation_pending">Donación pendiente</string>
     <!-- Top text block of donation pending sheet displayed after subscribing via a bank transfer. Placeholder is the badge name. -->
-    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">Tu donación mensual está pendiente. Podrás mostrar la insignia %1$s en tu perfil cuando recibamos tu donación.</string>
+    <string name="DonationPendingBottomSheet__your_monthly_donation_is_pending">Tu donación mensual está pendiente. Cuando la recibamos, podrás mostrar la insignia %1$s en tu perfil.</string>
     <!-- Top text block of donation pending sheet displayed after one-time donation via a bank transfer. Placeholder is the badge name. -->
-    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Tu donación única está pendiente. Podrás mostrar la insignia %1$s en tu perfil cuando recibamos tu donación.</string>
+    <string name="DonationPendingBottomSheet__your_one_time_donation_is_pending">Tu donación puntual está pendiente. Cuando la recibamos, podrás mostrar la insignia %1$s en tu perfil.</string>
     <!-- Bottom text block of donation pending sheet displayed after donating via a bank transfer. Placeholder is for learn more. -->
     <string name="DonationPendingBottomSheet__bank_transfers_usually_take">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en procesarse. %1$s</string>
     <!-- Learn more text for donation pending sheet displayed after donating via a bank transfer. -->
@@ -7252,7 +7252,7 @@
     <!-- Title of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__donation_couldnt_be_processed">No se ha podido procesar la donación</string>
     <!-- Text block of donation error sheet displayed after making a bank transfer that fails -->
-    <string name="DonationErrorBottomSheet__were_having_trouble">Estamos teniendo problemas para procesar tu transferencia bancaria. No se te ha cobrado. Selecciona otro método de pago o contacta a tu banco para más información.</string>
+    <string name="DonationErrorBottomSheet__were_having_trouble">Estamos teniendo problemas para procesar tu transferencia bancaria. No se ha aplicado ningún cargo. Selecciona otro método de pago o contacta con tu banco para obtener más información.</string>
     <!-- Button label for retry button of donation error sheet displayed after making a bank transfer that fails -->
     <string name="DonationErrorBottomSheet__try_again">Reintentar</string>
     <!-- Button label for not now button of donation error sheet displayed after making a bank transfer that fails -->
@@ -7272,18 +7272,18 @@
     <string name="CdsTemporaryErrorBottomSheet_title">Se han procesado demasiados contactos</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we temporarily can\'t process their contacts. The placeholder represents the number of days the user will have to wait until they can again. -->
     <plurals name="CdsTemporaryErrorBottomSheet_body1">
-        <item quantity="one">Se llevará a cabo otro intento de procesar tus contactos en un plazo de %1$d día.</item>
-        <item quantity="other">Se llevará a cabo otro intento de procesar tus contactos en un plazo de %1$d días.</item>
+        <item quantity="one">Volveremos a intentar procesar tus contactos en el plazo de %1$d día.</item>
+        <item quantity="other">Volveremos a intentar procesar tus contactos en un plazo de %1$d días.</item>
     </plurals>
     <!-- The second part of the body text in a bottom sheet dialog that advises the user to remove contacts from their phone to fix the issue. -->
-    <string name="CdsTemporaryErrorBottomSheet_body2">Para resolver este problema cuanto antes, considera eliminar los contactos o las cuentas de tu teléfono que estén sincronizando muchos contactos.</string>
+    <string name="CdsTemporaryErrorBottomSheet_body2">Para resolver este problema cuanto antes, puedes eliminar de tu teléfono los contactos o las cuentas que requieran la sincronización de una gran cantidad de contactos.</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
     <!-- A toast that will be shown if we are unable to open the user\'s default contacts app. -->
 
     <!-- The title of a bottom sheet dialog that tells the user we can\'t process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_title">No pueden procesarse tus contactos</string>
+    <string name="CdsPermanentErrorBottomSheet_title">No se pueden procesar tus contactos</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
-    <string name="CdsPermanentErrorBottomSheet_body">El número de contactos de tu teléfono supera el límite que Signal puede procesar. Para encontrar contactos en Signal, considera eliminar los contactos o las cuentas de tu teléfono que estén sincronizando muchos contactos.</string>
+    <string name="CdsPermanentErrorBottomSheet_body">La cantidad de contactos de tu teléfono supera el límite que Signal puede procesar. Para encontrar contactos en Signal, puedes eliminar de tu teléfono los contactos o las cuentas que requieran la sincronización de una gran cantidad de contactos.</string>
     <!-- The first part of the body text in a bottom sheet dialog that tells the user we can\'t process their contacts. -->
     <string name="CdsPermanentErrorBottomSheet_learn_more">Más información</string>
     <!-- A button label in a bottom sheet that will navigate the user to their contacts settings. -->
@@ -7295,13 +7295,13 @@
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
     <string name="PaymentMessageView_you_sent_s">Enviado a %1$s</string>
     <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
-    <string name="PaymentMessageView_s_sent_you">%1$s te ha enviado</string>
+    <string name="PaymentMessageView_s_sent_you">%1$s te lo ha enviado</string>
 
     <!-- YourInformationIsPrivateBottomSheet -->
     <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Tu información es privada</string>
     <string name="YourInformationIsPrivateBottomSheet__signal_does_not_collect">Signal no recoge ni almacena tu información personal cuando haces una donación.</string>
-    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Utilizamos Stripe como nuestro procesador de pagos para recibir tus donaciones. No accedemos, ni almacenamos, ni guardamos ninguno de los datos que les proporcionas.</string>
-    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal no conecta ni puede conectar tu donación a tu cuenta de Signal.</string>
+    <string name="YourInformationIsPrivateBottomSheet__we_use_stripe">Usamos Stripe para procesar las donaciones que recibimos. No accedemos, ni almacenamos, ni guardamos ninguno de los datos que le proporcionas.</string>
+    <string name="YourInformationIsPrivateBottomSheet__signal_does_not_and_cannot">Signal no vincula ni puede vincular tu donación con tu cuenta de Signal.</string>
     <string name="YourInformationIsPrivateBottomSheet__thank_you">¡Gracias por tu apoyo!</string>
 
     <!-- GroupStoryEducationSheet -->
@@ -7392,7 +7392,7 @@
     <!-- Displayed on Group Call button if user is not in the call -->
     <string name="CallLogAdapter__join">Unirse</string>
     <!-- Displayed on Group Call button if user is in the call -->
-    <string name="CallLogAdapter__return">Atrás</string>
+    <string name="CallLogAdapter__return">Volver</string>
     <!-- Call state template when there is more than one call collapsed into a single row. D is a number > 1 and S is a call info string (like Missed) -->
     <string name="CallLogAdapter__d_s">(%1$d) %2$s</string>
     <!-- Status text on call links -->
@@ -7435,7 +7435,7 @@
     <!-- Action bar menu item to delete all call events -->
     <string name="CallLogFragment__clear_call_history">Eliminar historial de llamadas</string>
     <!-- Action bar menu item to only display missed calls -->
-    <string name="CallLogFragment__filter_missed_calls">Filtrar llamadas perdidas</string>
+    <string name="CallLogFragment__filter_missed_calls">Filtrar por llamadas perdidas</string>
     <!-- Action bar menu item to clear missed call filter -->
     <string name="CallLogFragment__clear_filter">Quitar filtro</string>
     <!-- Action bar menu item to open settings -->
@@ -7489,7 +7489,7 @@
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Botón de captura</string>
     <!-- Accessibility label describing the continue button on the camera screen -->
-    <string name="CameraControls_continue_button_accessibility_label">Botón continuar</string>
+    <string name="CameraControls_continue_button_accessibility_label">Botón de continuar</string>
     <!-- Accessibility label describing the flash Mode toggle button on the camera screen -->
     <string name="CameraControls_toggle_flash_mode_accessibility_label">Activar o desactivar flash</string>
 
@@ -7509,7 +7509,7 @@
     <!-- Call link creation item title on calls tab -->
     <string name="CreateCallLink__create_a_call_link">Crear un enlace de llamada</string>
     <!-- Call link creation item description on calls tab -->
-    <string name="CreateCallLink__share_a_link_for">Compartir enlace para llamada de Signal</string>
+    <string name="CreateCallLink__share_a_link_for">Compartir enlace de llamada de Signal</string>
     <!-- Text inserted when sharing a call link within Signal. Placeholder is a call link url. -->
     <string name="CreateCallLink__use_this_link_to_join_a_signal_call">Usa este enlace para unirte a una llamada de Signal: %1$s</string>
 
@@ -7833,6 +7833,12 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">No se ha renovado tu suscripción a las copias de seguridad</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Asegúrate de que tu método de pago esté actualizado. Toca \"Gestionar suscripción\" y, en Métodos de pago, selecciona \"Actualizar\".</string>
+    <!-- Sheet title for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Your backups subscription has expired</string>
+    <!-- Sheet body part 1 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Your subscription couldn\'t be renewed with your payment method. To continue backing up media you need an active subscription.</string>
+    <!-- Sheet body part 2 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Backups plan.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Copia de seguridad incompleta</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7844,6 +7850,8 @@
     <string name="BackupAlertBottomSheet__learn_more">Más información</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">Omitir restauración</string>
+    <!-- Primary action button to open backups management screen -->
+    <string name="BackupAlertBottomSheet__manage_backups">Manage backups</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">Iniciar copia</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -8030,6 +8038,8 @@
     <string name="BackupsSettingsFragment_set_up">Configurar</string>
 
     <!-- RemoteBackupsSettingsFragment -->
+    <!-- Content description for canceling backup upload -->
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">Cancel upload</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Copias de seguridad de Signal</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8136,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Descargando tu copia de seguridad</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Dependiendo del tamaño de tu copia de seguridad, este proceso puede llevar bastante tiempo. Mientras se realiza la descarga, podrás seguir usando tu teléfono como de costumbre.</string>
+    <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Backups.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">Tu suscripción en este dispositivo es válida durante %1$d día más. Renueva tu suscripción para seguir usando las copias de seguridad de Signal.</item>

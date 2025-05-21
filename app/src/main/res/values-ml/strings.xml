@@ -7833,6 +7833,12 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">നിങ്ങളുടെ ബാക്കപ്പ് സബ്‌സ്‌ക്രിപ്‌ഷൻ പുതുക്കാനായില്ല</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">നിങ്ങളുടെ പേയ്‌മെൻ്റ് രീതി അപ് ടു ഡേറ്റ് ആണെന്ന് ഉറപ്പാക്കാൻ പരിശോധിക്കുക. സബ്‌സ്‌ക്രിപ്‌ഷൻ മാനേജ് ചെയ്യുക ടാപ്പുചെയ്‌ത് പേയ്‌മെൻ്റ് രീതികൾക്ക് കീഴിൽ അപ്‌ഡേറ്റ് ടാപ്പ് ചെയ്യുക.</string>
+    <!-- Sheet title for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Your backups subscription has expired</string>
+    <!-- Sheet body part 1 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Your subscription couldn\'t be renewed with your payment method. To continue backing up media you need an active subscription.</string>
+    <!-- Sheet body part 2 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Backups plan.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">ബാക്കപ്പ് പൂർത്തിയാക്കാൻ കഴിഞ്ഞില്ല</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7844,6 +7850,8 @@
     <string name="BackupAlertBottomSheet__learn_more">കൂടുതലറിയുക</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
+    <!-- Primary action button to open backups management screen -->
+    <string name="BackupAlertBottomSheet__manage_backups">Manage backups</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">ഇപ്പോൾ ബാക്കപ്പ് ചെയ്യുക</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -8030,6 +8038,8 @@
     <string name="BackupsSettingsFragment_set_up">സജ്ജമാക്കുക</string>
 
     <!-- RemoteBackupsSettingsFragment -->
+    <!-- Content description for canceling backup upload -->
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">Cancel upload</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal ബാക്കപ്പുകൾ</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8136,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">നിങ്ങളുടെ ബാക്കപ്പ് ഡൗൺലോഡ് ചെയ്യുന്നു</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">നിങ്ങളുടെ ബാക്കപ്പിൻ്റെ വലുപ്പത്തെ ആശ്രയിച്ച്, ഇതിന് വളരെയധികം സമയമെടുത്തേക്കാം. ഡൗൺലോഡ് നടക്കുമ്പോൾ നിങ്ങൾ സാധാരണ ഉപയോഗിക്കുന്നതുപോലെ നിങ്ങളുടെ ഫോൺ ഉപയോഗിക്കാം.</string>
+    <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Backups.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">ഈ ഉപകരണത്തിലെ നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ അടുത്ത %1$d ദിവസത്തേക്ക് സാധുതയുള്ളതാണ്. Signal ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരാൻ പുതുക്കുക</item>
