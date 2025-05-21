@@ -240,13 +240,10 @@ class LibSignalChatConnection(
       // OkHttpWebSocketConnection will terminate a connection if disconnect() is called while
       //   the connection itself is still CONNECTING, so we carry forward that behavior here.
       if (state.value == WebSocketConnectionState.CONNECTING) {
-        // The right way to do this is to cancel the CompletableFuture returned by connectChat().
-        // This will terminate forward progress on the connection attempt, and mostly closely match
-        //   what OkHttpWebSocketConnection does.
-        // Unfortunately, libsignal's CompletableFuture does not yet support cancellation.
-        // So, instead, we set a flag to disconnect() as soon as the connection completes.
-        // TODO [andrew]: Add cancellation support to CompletableFuture and use it here
-        state.onNext(WebSocketConnectionState.DISCONNECTING)
+        Log.i(TAG, "$name Cancelling connection attempt...")
+        // This is safe because we just checked that state == CONNECTING
+        chatConnectionFuture!!.cancel(true)
+        state.onNext(WebSocketConnectionState.DISCONNECTED)
         return
       }
 
