@@ -134,15 +134,13 @@ class FindByActivity : PassphraseRequiredActivity() {
               onNavigationClick = { finishAfterTransition() },
               navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
             ) {
-              val context = LocalContext.current
-
               Content(
                 paddingValues = it,
                 state = state,
                 onUserEntryChanged = viewModel::onUserEntryChanged,
                 onNextClick = {
                   lifecycleScope.launch {
-                    when (val result = viewModel.onNextClicked(context)) {
+                    when (val result = viewModel.onNextClicked()) {
                       is FindByResult.Success -> {
                         setResult(RESULT_OK, Intent().putExtra(RECIPIENT_ID, result.recipientId))
                         finishAfterTransition()
@@ -191,10 +189,6 @@ class FindByActivity : PassphraseRequiredActivity() {
             val body = if (state.mode == FindByMode.USERNAME) {
               stringResource(id = R.string.FindByActivity__s_is_not_a_valid_username, state.userEntry)
             } else {
-              val formattedNumber = remember(state.userEntry) {
-                val cleansed = state.userEntry.removePrefix(state.selectedCountry.countryCode.toString())
-                E164Util.formatAsE164WithCountryCodeForDisplay(state.selectedCountry.countryCode.toString(), cleansed)
-              }
               stringResource(id = R.string.FindByActivity__s_is_not_a_valid_phone_number, state.userEntry)
             }
 
