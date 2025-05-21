@@ -274,7 +274,4 @@ class FindByViewModelTest {
     unmockkStatic(UsernameRepository::class)
     unmockkObject(Recipient)
   }
-
-
 }
-
