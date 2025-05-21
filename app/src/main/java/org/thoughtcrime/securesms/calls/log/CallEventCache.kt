@@ -98,7 +98,8 @@ class CallEventCache(
         val child = next()
 
         if (child.type == Type.AD_HOC_CALL.code) {
-          continue
+          previous()
+          break
         }
 
         if (parent.peer == child.peer && parent.direction == child.direction && isEventMatch(parent, child) && isWithinTimeout(parent, child)) {

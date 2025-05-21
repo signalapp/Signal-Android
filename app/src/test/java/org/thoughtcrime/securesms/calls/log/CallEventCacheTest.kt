@@ -172,6 +172,26 @@ class CallEventCacheTest {
     assertThat(result).size().isEqualTo(3)
   }
 
+  @Test
+  fun `Given two call link entries in a row, when I clusterCallEvents, then I expect two entries`() {
+    val testData = listOf(
+      createCacheRecord(
+        callId = 1,
+        peer = 1,
+        type = Type.AD_HOC_CALL.code
+      ),
+      createCacheRecord(
+        callId = 2,
+        peer = 2,
+        type = Type.AD_HOC_CALL.code
+      )
+    )
+
+    val filterState = CallEventCache.FilterState()
+    val result = CallEventCache.clusterCallEvents(testData, filterState)
+    assertThat(result).size().isEqualTo(2)
+  }
+
   private fun createCacheRecord(
     callId: Long,
     peer: Long = 1,
