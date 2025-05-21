@@ -1282,29 +1282,39 @@ object BackupRepository {
   }
 
   fun debugDeleteAllArchivedMedia(): NetworkResult<Unit> {
+    val itemLimit = 1000
     return debugGetArchivedMediaState()
       .then { archivedMedia ->
-        val mediaToDelete = archivedMedia
+        val mediaChunksToDelete = archivedMedia
           .map {
             DeleteArchivedMediaRequest.ArchivedMediaObject(
               cdn = it.cdn,
               mediaId = it.mediaId
             )
           }
+          .chunked(itemLimit)
 
-        if (mediaToDelete.isEmpty()) {
+        if (mediaChunksToDelete.isEmpty()) {
           Log.i(TAG, "No media to delete, quick success")
-          NetworkResult.Success(Unit)
-        } else {
-          getArchiveServiceAccessPair()
-            .then { credential ->
-              SignalNetwork.archive.deleteArchivedMedia(
+          return@then NetworkResult.Success(Unit)
+        }
+
+        getArchiveServiceAccessPair()
+          .then processChunks@{ credential ->
+            mediaChunksToDelete.forEachIndexed { index, chunk ->
+              val result = SignalNetwork.archive.deleteArchivedMedia(
                 aci = SignalStore.account.requireAci(),
                 archiveServiceAccess = credential.mediaBackupAccess,
-                mediaToDelete = mediaToDelete
+                mediaToDelete = chunk
               )
+
+              if (result !is NetworkResult.Success) {
+                Log.w(TAG, "Error occurred while deleting archived media chunk #$index: $result")
+                return@processChunks result
+              }
             }
-        }
+            NetworkResult.Success(Unit)
+          }
       }
       .map {
         SignalDatabase.attachments.clearAllArchiveData()
