@@ -176,8 +176,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
 
   var useConversationItemV2Media by booleanValue(CONVERSATION_ITEM_V2_MEDIA, false).defaultForExternalUsers()
 
-  var webSocketShadowingStats by nullableBlobValue(WEB_SOCKET_SHADOWING_STATS, null).defaultForExternalUsers()
-
   var forceSsre2Capability by booleanValue("internal.force_ssre2_capability", false).defaultForExternalUsers()
 
   private fun <T> SignalStoreValueDelegate<T>.defaultForExternalUsers(): SignalStoreValueDelegate<T> {

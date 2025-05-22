@@ -70,6 +70,8 @@ wire {
   protoPath {
     srcDir("${project.rootDir}/libsignal-service/src/main/protowire")
   }
+  // Handled by libsignal
+  prune("signalservice.DecryptionErrorMessage")
 }
 
 ktlint {
