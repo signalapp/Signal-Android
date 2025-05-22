@@ -67,4 +67,18 @@ object StickerPreviewDataFactory {
     isBlessed = isBlessed,
     sortOrder = 0
   )
+
+  fun manifestStickers(count: Int): List<StickerManifest.Sticker> = buildList {
+    for (index in 0 until count) {
+      add(
+        StickerManifest.Sticker(
+          "packId-$index",
+          "packKey-$index",
+          index,
+          "😎",
+          "image/webp"
+        )
+      )
+    }
+  }
 }
