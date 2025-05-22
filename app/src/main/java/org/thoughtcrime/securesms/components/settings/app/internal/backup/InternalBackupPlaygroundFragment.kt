@@ -77,6 +77,7 @@ import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.TextFields.TextField
+import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.R
@@ -458,6 +459,15 @@ fun Screen(
         label = "Copies the cryptographic BackupKey to the clipboard as a hex string. Important: this is the key that is derived from the AEP, and therefore *not* the same as the key labeled \"Backup Key\" in the designs. That's actually the AEP, listed above.",
         onClick = {
           Util.copyToClipboard(context, Hex.toStringCondensed(SignalStore.account.accountEntropyPool.deriveMessageBackupKey().value))
+          Toast.makeText(context, "Copied!", Toast.LENGTH_SHORT).show()
+        }
+      )
+
+      Rows.TextRow(
+        text = "Copy Media Backup ID",
+        label = "Copies the Media Backup ID, Base64 encoded; it can be used to identify your media backup on the server.",
+        onClick = {
+          Util.copyToClipboard(context, Base64.encodeWithoutPadding(SignalStore.backup.mediaRootBackupKey.deriveBackupId(SignalStore.account.requireAci()).value))
           Toast.makeText(context, "Copied!", Toast.LENGTH_SHORT).show()
         }
       )
