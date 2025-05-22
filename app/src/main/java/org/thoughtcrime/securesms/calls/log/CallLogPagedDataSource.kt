@@ -82,7 +82,11 @@ class CallLogPagedDataSource(
     stopwatch.split("calls")
 
     if (hasFilter && start <= clearFilterStart && remaining > 0) {
-      callLogRows.add(CallLogRow.ClearFilter)
+      if (callLogRows.isNotEmpty()) {
+        callLogRows.add(CallLogRow.ClearFilter)
+      } else {
+        callLogRows.add(CallLogRow.ClearFilterEmpty)
+      }
     }
 
     repository.onCallTabPageLoaded(callLogRows)

@@ -7405,6 +7405,8 @@
     <string name="CallLogAdapter__start_a_video_call">Start a video call</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">Start a voice call</string>
+    <!-- Notice on call log when no missed calls are available, centered on display -->
+    <string name="CallLogAdapter__no_missed_calls">No missed calls</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
