@@ -627,7 +627,8 @@ private fun BioRow(
         size = 36.dp,
         colors = IconButtons.iconButtonColors(
           containerColor = SignalTheme.colors.colorSurface4
-        )
+        ),
+        contentDescription = stringResource(R.string.ManageProfileFragment_link_setting_text)
       ) {
         Icon(
           painter = painterResource(R.drawable.symbol_qrcode_24),
