@@ -241,7 +241,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onRenewLostSubscription() {
-      // TODO - [backups] Need process here (cancel first?)
+      checkoutLauncher.launch(MessageBackupTier.PAID)
     }
 
     override fun onCancelUploadClick() {
