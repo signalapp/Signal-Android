@@ -111,6 +111,14 @@ object ExportSkips {
     return log(sentTimestamp, "Learned profile update was empty.")
   }
 
+  fun invalidE164InThreadMerge(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Invalid e164 in thread merge event.")
+  }
+
+  fun failedToParseThreadMergeEvent(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Failed to parse thread merge event.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }
@@ -156,6 +164,10 @@ object ExportOddities {
 
   fun emptyQuote(sentTimestamp: Long): String {
     return log(sentTimestamp, "Quote had no text or attachments. Removing it.")
+  }
+
+  fun invalidE164InSessionSwitchover(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Invalid e164 in sessions switchover event. Exporting an empty event.")
   }
 
   private fun log(sentTimestamp: Long, message: String): String {
