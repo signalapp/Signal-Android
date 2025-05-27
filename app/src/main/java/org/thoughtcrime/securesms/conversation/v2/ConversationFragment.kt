@@ -943,7 +943,7 @@ class ConversationFragment :
             firstRender = false
             binding.conversationItemRecycler.doAfterNextLayout {
               SignalLocalMetrics.ConversationOpen.onRenderFinished()
-              (requireActivity() as? MainActivity)?.onFirstRender()
+              (context as? MainActivity)?.onFirstRender()
               doAfterFirstRender()
             }
           }
