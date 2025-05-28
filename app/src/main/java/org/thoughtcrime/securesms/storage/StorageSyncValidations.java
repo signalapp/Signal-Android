@@ -177,8 +177,8 @@ public final class StorageSyncValidations {
         ContactRecord contact = insert.getProto().contact;
 
         if (self.requireAci().equals(ServiceId.ACI.parseOrNull(contact.aci)) ||
-            self.requirePni().equals(ServiceId.PNI.parseOrNull(contact.pni)) ||
-            self.requireE164().equals(contact.e164))
+            (self.getPni().isPresent() && self.requirePni().equals(ServiceId.PNI.parseOrNull(contact.pni))) ||
+            (self.getE164().isPresent() && self.requireE164().equals(contact.e164)))
         {
           throw new SelfAddedAsContactError();
         }
