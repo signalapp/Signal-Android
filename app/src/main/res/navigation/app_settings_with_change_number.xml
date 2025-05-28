@@ -490,7 +490,7 @@
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
             android:id="@+id/action_dataAndStorageSettingsFragment_to_editProxyFragment"
-            app:destination="@id/editProxyFragment"
+            app:destination="@id/edit_proxy"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -502,10 +502,7 @@
         android:name="org.thoughtcrime.securesms.components.settings.app.storage.ManageStorageSettingsFragment"
         android:label="storage_preference_fragment" />
 
-    <fragment
-        android:id="@+id/editProxyFragment"
-        android:name="org.thoughtcrime.securesms.preferences.EditProxyFragment"
-        android:label="edit_proxy_fragment" />
+    <include app:graph="@navigation/edit_proxy" />
 
     <!-- endregion -->
 
@@ -588,7 +585,7 @@
 
     <action
         android:id="@+id/action_direct_to_editProxyFragment"
-        app:destination="@id/editProxyFragment"
+        app:destination="@id/edit_proxy"
         app:enterAnim="@anim/fragment_open_enter"
         app:exitAnim="@anim/fragment_open_exit"
         app:popEnterAnim="@anim/fragment_close_enter"
