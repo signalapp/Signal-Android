@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.takeWhile
 import kotlinx.coroutines.flow.update
@@ -27,6 +28,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -41,7 +43,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
-import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.service.MessageBackupListener
@@ -76,6 +77,14 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   val restoreState: StateFlow<BackupRestoreState> = _restoreState
 
   init {
+    viewModelScope.launch(Dispatchers.IO) {
+      SignalStore.backup.deletionStateFlow
+        .filter { it == DeletionState.NONE }
+        .collect {
+          refresh()
+        }
+    }
+
     viewModelScope.launch(Dispatchers.IO) {
       latestPurchaseId
         .flatMapLatest { id -> InAppPaymentsRepository.observeUpdates(id).asFlow() }
@@ -178,34 +187,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun turnOffAndDeleteBackups() {
-    viewModelScope.launch {
-      Log.d(TAG, "Beginning to turn off and delete backup.")
-      requestDialog(RemoteBackupsSettingsState.Dialog.PROGRESS_SPINNER)
-
-      val hasMediaBackupUploaded = SignalStore.backup.backsUpMedia && SignalStore.backup.hasBackupBeenUploaded
-
-      val succeeded = withContext(Dispatchers.IO) {
-        BackupRepository.turnOffAndDisableBackups()
-      }
-
-      if (isActive) {
-        if (succeeded) {
-          if (hasMediaBackupUploaded && SignalStore.backup.optimizeStorage) {
-            Log.d(TAG, "User has optimized storage, downloading.")
-            requestDialog(RemoteBackupsSettingsState.Dialog.DOWNLOADING_YOUR_BACKUP)
-
-            SignalStore.backup.optimizeStorage = false
-            RestoreOptimizedMediaJob.enqueue()
-          } else {
-            Log.d(TAG, "User does not have optimized storage, finished.")
-            requestDialog(RemoteBackupsSettingsState.Dialog.NONE)
-          }
-          refresh()
-        } else {
-          Log.d(TAG, "Failed to disable backups.")
-          requestDialog(RemoteBackupsSettingsState.Dialog.TURN_OFF_FAILED)
-        }
-      }
+    viewModelScope.launch(Dispatchers.IO) {
+      BackupRepository.turnOffAndDisableBackups()
     }
   }
 

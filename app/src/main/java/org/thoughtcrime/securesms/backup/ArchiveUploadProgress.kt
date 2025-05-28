@@ -5,12 +5,15 @@
 
 package org.thoughtcrime.securesms.backup
 
+import androidx.annotation.WorkerThread
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
 import org.signal.core.util.throttleLatest
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -25,6 +28,7 @@ import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.max
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Tracks the progress of uploading your message archive and provides an observable stream of results.
@@ -108,6 +112,23 @@ object ArchiveUploadProgress {
       AppDependencies.jobManager.cancelAllInQueue(it)
     }
     AppDependencies.jobManager.cancelAllInQueue(ArchiveThumbnailUploadJob.KEY)
+  }
+
+  @WorkerThread
+  suspend fun cancelAndBlock() {
+    Log.d(TAG, "Canceling upload.")
+    cancel()
+
+    withContext(Dispatchers.IO) {
+      Log.d(TAG, "Flushing job manager queue...")
+      AppDependencies.jobManager.flush()
+
+      val queues = setOf(BackfillDigestJob.QUEUE, ArchiveThumbnailUploadJob.KEY) + UploadAttachmentToArchiveJob.getAllQueueKeys()
+      Log.d(TAG, "Waiting for cancelations to occur...")
+      while (!AppDependencies.jobManager.areQueuesEmpty(queues)) {
+        delay(1.seconds)
+      }
+    }
   }
 
   fun onMessageBackupCreated(backupFileSize: Long) {

@@ -70,10 +70,10 @@ import org.signal.core.ui.R as CoreUiR
 @Composable
 fun MessageBackupsTypeSelectionScreen(
   stage: MessageBackupsStage,
-  paymentReadyState: MessageBackupsFlowState.PaymentReadyState,
   currentBackupTier: MessageBackupTier?,
   selectedBackupTier: MessageBackupTier?,
   availableBackupTypes: List<MessageBackupsType>,
+  isNextEnabled: Boolean,
   onMessageBackupsTierSelected: (MessageBackupTier) -> Unit,
   onNavigationClick: () -> Unit,
   onReadMoreClicked: () -> Unit,
@@ -161,7 +161,7 @@ fun MessageBackupsTypeSelectionScreen(
 
       Buttons.LargePrimary(
         onClick = onNextClicked,
-        enabled = selectedBackupTier != currentBackupTier && selectedBackupTier != null && paymentReadyState == MessageBackupsFlowState.PaymentReadyState.READY,
+        enabled = isNextEnabled,
         modifier = Modifier
           .fillMaxWidth()
           .padding(vertical = if (hasCurrentBackupTier) 10.dp else 16.dp)
@@ -202,7 +202,7 @@ private fun MessageBackupsTypeSelectionScreenPreview() {
       onReadMoreClicked = {},
       onNextClicked = {},
       currentBackupTier = null,
-      paymentReadyState = MessageBackupsFlowState.PaymentReadyState.READY
+      isNextEnabled = true
     )
   }
 }
@@ -222,7 +222,7 @@ private fun MessageBackupsTypeSelectionScreenWithCurrentTierPreview() {
       onReadMoreClicked = {},
       onNextClicked = {},
       currentBackupTier = MessageBackupTier.PAID,
-      paymentReadyState = MessageBackupsFlowState.PaymentReadyState.READY
+      isNextEnabled = true
     )
   }
 }

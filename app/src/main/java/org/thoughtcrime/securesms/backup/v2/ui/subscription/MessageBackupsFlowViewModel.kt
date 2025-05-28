@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.TimeoutCancellationException
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -24,6 +25,7 @@ import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
+import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
@@ -63,6 +65,7 @@ class MessageBackupsFlowViewModel(
   )
 
   val stateFlow: StateFlow<MessageBackupsFlowState> = internalStateFlow
+  val deletionState: Flow<DeletionState> = SignalStore.backup.deletionStateFlow
 
   init {
     viewModelScope.launch {

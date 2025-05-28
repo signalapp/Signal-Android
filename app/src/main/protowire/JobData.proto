@@ -218,3 +218,15 @@ message InAppPaymentSetupJobData {
 message StorageSyncJobData {
   bool localManifestOutOfDate = 1;
 }
+
+message BackupDeleteJobData {
+  enum Stage {
+    UNKNOWN = 0;
+    CANCEL_SUBSCRIBER = 1;
+    DELETE_MESSAGES = 2;
+    DELETE_MEDIA = 3;
+    CLEAR_LOCAL_STATE = 4;
+  }
+
+  repeated Stage completed = 1;
+}

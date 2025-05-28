@@ -50,8 +50,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -67,6 +69,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -91,6 +94,7 @@ import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
@@ -106,6 +110,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBa
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.thoughtcrime.securesms.help.HelpFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
@@ -145,6 +150,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     val state by viewModel.state.collectAsState()
     val backupProgress by ArchiveUploadProgress.progress.collectAsStateWithLifecycle(initialValue = null)
     val restoreState by viewModel.restoreState.collectAsState()
+    val deleteState by SignalStore.backup.deletionStateFlow.collectAsStateWithLifecycle(initialValue = SignalStore.backup.deletionState)
     val callbacks = remember { Callbacks() }
 
     RemoteBackupsSettingsContent(
@@ -160,6 +166,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       backupMediaSize = state.backupMediaSize,
       backupState = state.backupState,
       backupRestoreState = restoreState,
+      backupDeleteState = deleteState,
       hasRedemptionError = state.hasRedemptionError,
       statusBarColorNestedScrollConnection = remember { StatusBarColorNestedScrollConnection(requireActivity()) }
     )
@@ -354,6 +361,8 @@ private interface ContentCallbacks {
   fun onRestoreUsingCellularConfirm() = Unit
   fun onRestoreUsingCellularClick() = Unit
   fun onRedemptionErrorDetailsClick() = Unit
+
+  object Emtpy : ContentCallbacks
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -362,6 +371,7 @@ private fun RemoteBackupsSettingsContent(
   backupsEnabled: Boolean,
   backupState: RemoteBackupsSettingsState.BackupState,
   backupRestoreState: BackupRestoreState,
+  backupDeleteState: DeletionState,
   lastBackupTimestamp: Long,
   canBackUpUsingCellular: Boolean,
   canRestoreUsingCellular: Boolean,
@@ -438,7 +448,8 @@ private fun RemoteBackupsSettingsContent(
             SubscriptionMismatchMissingGooglePlayCard(
               state = backupState,
               onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription,
-              onRenewClick = contentCallbacks::onRenewLostSubscription
+              onRenewClick = contentCallbacks::onRenewLostSubscription,
+              isRenewEnabled = backupDeleteState != DeletionState.RUNNING
             )
           }
 
@@ -447,7 +458,8 @@ private fun RemoteBackupsSettingsContent(
           is RemoteBackupsSettingsState.BackupState.WithTypeAndRenewalTime -> {
             BackupCard(
               backupState = backupState,
-              onBackupTypeActionButtonClicked = contentCallbacks::onBackupTypeActionClick
+              onBackupTypeActionButtonClicked = contentCallbacks::onBackupTypeActionClick,
+              buttonsEnabled = backupDeleteState != DeletionState.RUNNING
             )
           }
 
@@ -455,13 +467,16 @@ private fun RemoteBackupsSettingsContent(
             SubscriptionNotFoundCard(
               title = stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found),
               onRenewClick = contentCallbacks::onRenewLostSubscription,
-              onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription
+              onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription,
+              isRenewEnabled = backupDeleteState != DeletionState.RUNNING
             )
           }
         }
       }
 
-      if (backupsEnabled) {
+      if (backupDeleteState != DeletionState.NONE) {
+        appendBackupDeletionState(backupDeleteState, contentCallbacks)
+      } else if (backupsEnabled) {
         appendBackupDetailsItems(
           backupState = backupState,
           backupRestoreState = backupRestoreState,
@@ -496,12 +511,7 @@ private fun RemoteBackupsSettingsContent(
         }
 
         item {
-          Buttons.LargePrimary(
-            onClick = { contentCallbacks.onBackupTypeActionClick(MessageBackupTier.FREE) },
-            modifier = Modifier.horizontalGutters()
-          ) {
-            Text(text = stringResource(R.string.RemoteBackupsSettingsFragment__reenable_backups))
-          }
+          ReenableBackupsButton(contentCallbacks)
         }
       }
     }
@@ -594,6 +604,96 @@ private fun RemoteBackupsSettingsContent(
       else -> {
         snackbarHostState.showSnackbar(snackbarText)
         contentCallbacks.onSnackbarDismissed()
+      }
+    }
+  }
+}
+
+@Composable
+private fun ReenableBackupsButton(contentCallbacks: ContentCallbacks) {
+  Buttons.LargePrimary(
+    onClick = { contentCallbacks.onBackupTypeActionClick(MessageBackupTier.FREE) },
+    modifier = Modifier.horizontalGutters()
+  ) {
+    Text(text = stringResource(R.string.RemoteBackupsSettingsFragment__reenable_backups))
+  }
+}
+
+private fun LazyListScope.appendBackupDeletionState(
+  backupDeleteState: DeletionState,
+  contentCallbacks: ContentCallbacks
+) {
+  when (backupDeleteState) {
+    DeletionState.NONE -> return
+    DeletionState.FAILED -> {
+      item {
+        Text(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error),
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          style = MaterialTheme.typography.bodyMedium,
+          modifier = Modifier
+            .padding(horizontal = 16.dp)
+            .padding(top = 16.dp)
+        )
+      }
+
+      item {
+        Column(
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 12.dp)
+            .background(color = SignalTheme.colors.colorSurface2, shape = RoundedCornerShape(12.dp))
+            .padding(24.dp)
+        ) {
+          Text(
+            text = stringResource(R.string.RemoteBackupsSettingsFragment__failed_to_delete_backup),
+            style = MaterialTheme.typography.titleSmall,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
+          )
+          Text(
+            text = stringResource(R.string.RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support),
+            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            textAlign = TextAlign.Center,
+            modifier = Modifier.fillMaxWidth()
+          )
+        }
+      }
+
+      item {
+        ReenableBackupsButton(contentCallbacks)
+      }
+    }
+
+    DeletionState.RUNNING -> {
+      item {
+        Text(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data),
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          modifier = Modifier
+            .padding(horizontal = 16.dp)
+            .padding(top = 16.dp)
+        )
+      }
+
+      item {
+        Column(
+          verticalArrangement = spacedBy(12.dp),
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = 16.dp, vertical = 12.dp)
+            .background(color = SignalTheme.colors.colorSurface2, shape = RoundedCornerShape(12.dp))
+            .padding(24.dp)
+        ) {
+          LinearProgressIndicator(
+            modifier = Modifier.fillMaxWidth()
+          )
+          Text(
+            text = stringResource(R.string.RemoteBackupsSettingsFragment__deleting_backup),
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+          )
+        }
       }
     }
   }
@@ -735,6 +835,7 @@ private fun LazyListScope.appendBackupDetailsItems(
 @Composable
 private fun BackupCard(
   backupState: RemoteBackupsSettingsState.BackupState.WithTypeAndRenewalTime,
+  buttonsEnabled: Boolean,
   onBackupTypeActionButtonClicked: (MessageBackupTier) -> Unit = {}
 ) {
   val messageBackupsType = backupState.messageBackupsType
@@ -833,11 +934,13 @@ private fun BackupCard(
 
       CallToActionButton(
         text = buttonText,
+        enabled = buttonsEnabled,
         onClick = { onBackupTypeActionButtonClicked(messageBackupsType.tier) }
       )
     } else if (backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
       CallToActionButton(
         text = stringResource(R.string.RemoteBackupsSettingsFragment__renew),
+        enabled = buttonsEnabled,
         onClick = { onBackupTypeActionButtonClicked(MessageBackupTier.FREE) }
       )
     }
@@ -847,10 +950,12 @@ private fun BackupCard(
 @Composable
 private fun CallToActionButton(
   text: String,
+  enabled: Boolean,
   onClick: () -> Unit
 ) {
   Buttons.MediumTonal(
     onClick = onClick,
+    enabled = enabled,
     colors = ButtonDefaults.filledTonalButtonColors().copy(
       containerColor = SignalTheme.colors.colorTransparent5,
       contentColor = colorResource(R.color.signal_light_colorOnSurface)
@@ -984,6 +1089,7 @@ private fun PendingCard(
 @Composable
 private fun SubscriptionNotFoundCard(
   title: String,
+  isRenewEnabled: Boolean,
   onRenewClick: () -> Unit = {},
   onLearnMoreClick: () -> Unit = {}
 ) {
@@ -1042,6 +1148,7 @@ private fun SubscriptionNotFoundCard(
 
       Buttons.MediumTonal(
         onClick = onLearnMoreClick,
+        enabled = isRenewEnabled,
         colors = ButtonDefaults.filledTonalButtonColors().copy(
           containerColor = SignalTheme.colors.colorTransparent5,
           contentColor = colorResource(R.color.signal_light_colorOnSurface)
@@ -1061,6 +1168,7 @@ private fun SubscriptionNotFoundCard(
 @Composable
 private fun SubscriptionMismatchMissingGooglePlayCard(
   state: RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay,
+  isRenewEnabled: Boolean,
   onRenewClick: () -> Unit = {},
   onLearnMoreClick: () -> Unit = {}
 ) {
@@ -1068,6 +1176,7 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
 
   SubscriptionNotFoundCard(
     title = pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid, days.toInt(), days),
+    isRenewEnabled = isRenewEnabled,
     onRenewClick = onRenewClick,
     onLearnMoreClick = onLearnMoreClick
   )
@@ -1090,6 +1199,7 @@ private fun InProgressBackupRow(
         ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled -> {
           ArchiveProgressIndicator()
         }
+
         ArchiveUploadProgressState.State.Export -> {
           val progressValue by animateFloatAsState(targetValue = archiveUploadProgressState.frameExportProgress(), animationSpec = tween(durationMillis = 250))
           ArchiveProgressIndicator(
@@ -1098,6 +1208,7 @@ private fun InProgressBackupRow(
             cancel = cancelArchiveUpload
           )
         }
+
         ArchiveUploadProgressState.State.UploadBackupFile, ArchiveUploadProgressState.State.UploadMedia -> {
           val progressValue by animateFloatAsState(targetValue = archiveUploadProgressState.uploadProgress(), animationSpec = tween(durationMillis = 250))
           ArchiveProgressIndicator(
@@ -1130,7 +1241,9 @@ private fun ArchiveProgressIndicator(
       trackColor = MaterialTheme.colorScheme.secondaryContainer,
       progress = progress,
       drawStopIndicator = {},
-      modifier = Modifier.weight(1f).padding(vertical = 12.dp)
+      modifier = Modifier
+        .weight(1f)
+        .padding(vertical = 12.dp)
     )
 
     if (isCancelable) {
@@ -1468,12 +1581,13 @@ private fun RemoteBackupsSettingsContentPreview() {
       backupsFrequency = BackupFrequency.MANUAL,
       requestedDialog = RemoteBackupsSettingsState.Dialog.NONE,
       requestedSnackbar = RemoteBackupsSettingsState.Snackbar.NONE,
-      contentCallbacks = object : ContentCallbacks {},
+      contentCallbacks = ContentCallbacks.Emtpy,
       backupProgress = null,
       backupMediaSize = 2300000,
       backupState = RemoteBackupsSettingsState.BackupState.ActiveFree(
         messageBackupsType = MessageBackupsType.Free(mediaRetentionDays = 30)
       ),
+      backupDeleteState = DeletionState.NONE,
       backupRestoreState = BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup),
       hasRedemptionError = true,
       statusBarColorNestedScrollConnection = null
@@ -1520,7 +1634,8 @@ private fun PendingCardPreview() {
 private fun SubscriptionNotFoundCardPreview() {
   Previews.Preview {
     SubscriptionNotFoundCard(
-      title = stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found)
+      title = stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found),
+      isRenewEnabled = true
     )
   }
 }
@@ -1537,7 +1652,8 @@ private fun SubscriptionMismatchMissingGooglePlayCardPreview() {
           mediaTtl = 30.days
         ),
         renewalTime = System.currentTimeMillis().milliseconds + 30.days
-      )
+      ),
+      isRenewEnabled = true
     )
   }
 }
@@ -1556,7 +1672,8 @@ private fun BackupCardPreview() {
           ),
           renewalTime = 1727193018.seconds,
           price = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD"))
-        )
+        ),
+        buttonsEnabled = true
       )
 
       BackupCard(
@@ -1567,7 +1684,8 @@ private fun BackupCardPreview() {
             mediaTtl = 30.days
           ),
           renewalTime = 1727193018.seconds
-        )
+        ),
+        buttonsEnabled = true
       )
 
       BackupCard(
@@ -1578,7 +1696,8 @@ private fun BackupCardPreview() {
             mediaTtl = 30.days
           ),
           renewalTime = 1727193018.seconds
-        )
+        ),
+        buttonsEnabled = true
       )
 
       BackupCard(
@@ -1590,7 +1709,8 @@ private fun BackupCardPreview() {
           ),
           renewalTime = 1727193018.seconds,
           price = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD"))
-        )
+        ),
+        buttonsEnabled = true
       )
 
       BackupCard(
@@ -1598,7 +1718,8 @@ private fun BackupCardPreview() {
           messageBackupsType = MessageBackupsType.Free(
             mediaRetentionDays = 30
           )
-        )
+        ),
+        buttonsEnabled = true
       )
     }
   }
@@ -1752,6 +1873,31 @@ private fun BackupFrequencyDialogPreview() {
       onSelected = {},
       onDismiss = {}
     )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun BackupDeletionCardPreview() {
+  var backupDeletionState by remember { mutableStateOf(DeletionState.NONE) }
+
+  Previews.Preview {
+    LazyColumn {
+      item {
+        Buttons.MediumTonal(
+          onClick = {
+            backupDeletionState = when (backupDeletionState) {
+              DeletionState.FAILED -> DeletionState.NONE
+              DeletionState.NONE -> DeletionState.RUNNING
+              DeletionState.RUNNING -> DeletionState.FAILED
+            }
+          }
+        ) {
+          Text("Next Deletion State")
+        }
+      }
+      appendBackupDeletionState(backupDeletionState, contentCallbacks = ContentCallbacks.Emtpy)
+    }
   }
 }
 

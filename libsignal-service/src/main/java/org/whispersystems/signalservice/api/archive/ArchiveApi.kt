@@ -181,7 +181,7 @@ class ArchiveApi(
    * - 403: Forbidden. The request had insufficient permissions to perform the requested action.
    * - 429: Rate limited.
    */
-  fun refreshBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<Unit> {
+  fun refreshBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Unit> {
     return getCredentialPresentation(aci, archiveServiceAccess)
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->
@@ -203,7 +203,7 @@ class ArchiveApi(
    * - 429: Rate limited.
    *
    */
-  fun deleteBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<Unit> {
+  fun deleteBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Unit> {
     return getCredentialPresentation(aci, archiveServiceAccess)
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->

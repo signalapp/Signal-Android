@@ -34,7 +34,7 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
     }
   }
 
-  private constructor() : this(
+  constructor() : this(
     parameters = Parameters.Builder()
       .setQueue("RestoreOptimizeMediaJob")
       .setMaxInstancesForQueue(2)

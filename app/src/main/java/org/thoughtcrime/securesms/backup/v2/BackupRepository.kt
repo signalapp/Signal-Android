@@ -38,6 +38,8 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.copyAttachmentToArchive
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataArchiveProcessor
@@ -56,8 +58,6 @@ import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -68,11 +68,11 @@ import org.thoughtcrime.securesms.database.OneTimePreKeyTable
 import org.thoughtcrime.securesms.database.SearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignedPreKeyTable
-import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
+import org.thoughtcrime.securesms.jobs.BackupDeleteJob
 import org.thoughtcrime.securesms.jobs.CheckRestoreMediaLeftJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
@@ -166,13 +166,57 @@ object BackupRepository {
    * Refreshes backup via server
    */
   fun refreshBackup(): NetworkResult<Unit> {
-    return initBackupAndFetchAuth()
-      .then { accessPair ->
-        AppDependencies.archiveApi.refreshBackup(
-          aci = SignalStore.account.requireAci(),
-          archiveServiceAccess = accessPair.messageBackupAccess
-        )
+    Log.d(TAG, "Refreshing backup...")
+
+    Log.d(TAG, "Fetching backup auth credential.")
+    val credentialResult = initBackupAndFetchAuth()
+    if (credentialResult.getCause() != null) {
+      Log.w(TAG, "Failed to access backup auth.", credentialResult.getCause())
+      return credentialResult.map { Unit }
+    }
+
+    val credential = credentialResult.successOrThrow()
+
+    Log.d(TAG, "Fetched backup auth credential. Fetching backup tier.")
+
+    val backupTierResult = getBackupTier()
+    if (backupTierResult.getCause() != null) {
+      Log.w(TAG, "Failed to access backup tier.", backupTierResult.getCause())
+      return backupTierResult.map { Unit }
+    }
+
+    val backupTier = backupTierResult.successOrThrow()
+
+    Log.d(TAG, "Fetched backup tier. Refreshing message backup access.")
+    val messageBackupAccessResult = AppDependencies.archiveApi.refreshBackup(
+      aci = SignalStore.account.requireAci(),
+      archiveServiceAccess = credential.messageBackupAccess
+    )
+
+    if (messageBackupAccessResult.getCause() != null) {
+      Log.d(TAG, "Failed to refresh message backup access.", messageBackupAccessResult.getCause())
+      return messageBackupAccessResult
+    }
+
+    Log.d(TAG, "Refreshed message backup access.")
+    if (backupTier == MessageBackupTier.PAID) {
+      Log.d(TAG, "Refreshing media backup access.")
+
+      val mediaBackupAccessResult = AppDependencies.archiveApi.refreshBackup(
+        aci = SignalStore.account.requireAci(),
+        archiveServiceAccess = credential.mediaBackupAccess
+      )
+
+      if (mediaBackupAccessResult.getCause() != null) {
+        Log.d(TAG, "Failed to refresh media backup access.", mediaBackupAccessResult.getCause())
       }
+
+      Log.d(TAG, "Refreshed media backup access.")
+
+      return mediaBackupAccessResult
+    } else {
+      return messageBackupAccessResult
+    }
   }
 
   /**
@@ -377,35 +421,18 @@ object BackupRepository {
   }
 
   /**
-   * If the user is on a paid tier, this method will unsubscribe them from that tier.
-   * It will then disable backups.
-   *
-   * Returns true if we were successful, false otherwise.
+   * Initiates backup disable via [BackupDeleteJob]
    */
-  @WorkerThread
-  fun turnOffAndDisableBackups(): Boolean {
-    return try {
-      Log.d(TAG, "Attempting to disable backups.")
+  suspend fun turnOffAndDisableBackups() {
+    ArchiveUploadProgress.cancelAndBlock()
 
-      val backupsSubscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
-      if (SignalStore.backup.backupTier == MessageBackupTier.PAID && backupsSubscriber != null) {
-        Log.d(TAG, "User is currently on a paid tier. Canceling.")
-        RecurringInAppPaymentRepository.cancelActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
-        Log.d(TAG, "Successfully canceled paid tier.")
-      }
+    SignalStore.backup.deletionState = DeletionState.RUNNING
+    SignalStore.backup.optimizeStorage = false
 
-      if (backupsSubscriber == null) {
-        Log.w(TAG, "No backup subscriber in the database. Proceeding with disabling backups anyway.")
-      }
-
-      Log.d(TAG, "Disabling backups.")
-      SignalStore.backup.disableBackups()
-      SignalDatabase.attachments.clearAllArchiveData()
-      true
-    } catch (e: Exception) {
-      Log.w(TAG, "Failed to turn off backups.", e)
-      false
-    }
+    AppDependencies.jobManager
+      .startChain(RestoreOptimizedMediaJob())
+      .then(BackupDeleteJob())
+      .enqueue()
   }
 
   private fun createSignalDatabaseSnapshot(baseName: String): SignalDatabase {
@@ -1278,6 +1305,13 @@ object BackupRepository {
     return initBackupAndFetchAuth()
       .then { credential ->
         SignalNetwork.archive.deleteBackup(SignalStore.account.requireAci(), credential.messageBackupAccess)
+      }
+  }
+
+  fun deleteMediaBackup(): NetworkResult<Unit> {
+    return initBackupAndFetchAuth()
+      .then { credential ->
+        SignalNetwork.archive.deleteBackup(SignalStore.account.requireAci(), credential.mediaBackupAccess)
       }
   }
 

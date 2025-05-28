@@ -5,11 +5,13 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
+import androidx.compose.runtime.Immutable
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.AccountEntropyPool
 
+@Immutable
 data class MessageBackupsFlowState(
   val selectedMessageBackupTier: MessageBackupTier? = SignalStore.backup.backupTier,
   val currentMessageBackupTier: MessageBackupTier? = null,
@@ -25,5 +27,14 @@ data class MessageBackupsFlowState(
     NOT_READY,
     READY,
     FAILED
+  }
+
+  /**
+   * Whether or not the 'next' button on the type selection screen is enabled.
+   */
+  fun isCheckoutButtonEnabled(): Boolean {
+    return selectedMessageBackupTier in availableBackupTypes.map { it.tier } &&
+      selectedMessageBackupTier != currentMessageBackupTier &&
+      paymentReadyState == PaymentReadyState.READY
   }
 }
