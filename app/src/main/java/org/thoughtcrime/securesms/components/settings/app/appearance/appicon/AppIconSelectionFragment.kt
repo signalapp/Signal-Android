@@ -72,7 +72,7 @@ class AppIconSelectionFragment : ComposeFragment() {
       onNavigationClick = {
         findNavController().popBackStack()
       },
-      navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
+      navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding: PaddingValues ->
       IconSelectionScreen(appIconUtility.currentAppIcon, ::updateAppIcon, ::openLearnMore, Modifier.padding(contentPadding))

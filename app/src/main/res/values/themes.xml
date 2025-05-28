@@ -199,8 +199,8 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleLight</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleLight</item>
-        <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
+        <item name="homeAsUpIndicator">@drawable/symbol_arrow_start_24</item>
+        <item name="android:homeAsUpIndicator">@drawable/symbol_arrow_start_24</item>
 
         <item name="settingsToolbarStyle">@style/TextSecure.LightActionBar.Settings</item>
 
@@ -290,8 +290,8 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="alertDialogTheme">@style/AppCompatAlertDialogStyleDark</item>
         <item name="android:alertDialogTheme">@style/AppCompatDialogStyleDark</item>
-        <item name="homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
-        <item name="android:homeAsUpIndicator">@drawable/ic_arrow_left_24</item>
+        <item name="homeAsUpIndicator">@drawable/symbol_arrow_start_24</item>
+        <item name="android:homeAsUpIndicator">@drawable/symbol_arrow_start_24</item>
 
         <item name="settingsToolbarStyle">@style/TextSecure.DarkActionBar.Settings</item>
 

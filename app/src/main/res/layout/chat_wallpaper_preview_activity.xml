@@ -31,7 +31,7 @@
         android:background="@color/signal_background_primary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@id/status_bar_guideline"
-        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:navigationIcon="@drawable/symbol_arrow_start_24"
         app:title="@string/ChatWallpaperPreviewActivity__preview" />
 
     <TextView
