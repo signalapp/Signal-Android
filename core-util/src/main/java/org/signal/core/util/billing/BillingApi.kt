@@ -21,6 +21,10 @@ interface BillingApi {
 
   suspend fun isApiAvailable(): Boolean = false
 
+  /**
+   * Queries the Billing API for product pricing. This value should be cached by
+   * the implementor for 24 hours.
+   */
   suspend fun queryProduct(): BillingProduct? = null
 
   /**

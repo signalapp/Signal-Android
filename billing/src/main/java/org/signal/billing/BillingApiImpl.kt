@@ -25,6 +25,7 @@ import com.android.billingclient.api.queryPurchasesAsync
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.asCoroutineDispatcher
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.channels.trySendBlocking
@@ -48,6 +49,10 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import java.math.BigDecimal
 import java.util.Currency
+import java.util.concurrent.Executors
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * BillingApi serves as the core location for interacting with the Google Billing API. Use of this API is required
@@ -61,7 +66,12 @@ internal class BillingApiImpl(
 
   companion object {
     private val TAG = Log.tag(BillingApi::class)
+    private val CACHE_LIFESPAN = 1.days
   }
+
+  private val productDetailsDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher()
+  private var productDetailsExpiration: Duration = 0.days
+  private var productDetailsResult: ProductDetailsResult? = null
 
   private val connectionState = MutableStateFlow<State>(State.Init)
   private val coroutineScope = CoroutineScope(Dispatchers.Default)
@@ -277,22 +287,35 @@ internal class BillingApiImpl(
   }
 
   private suspend fun queryProductsInternal(): ProductDetailsResult {
-    val productList = listOf(
-      QueryProductDetailsParams.Product.newBuilder()
-        .setProductId(billingDependencies.getProductId())
-        .setProductType(ProductType.SUBS)
+    return withContext(productDetailsDispatcher) {
+      val now = System.currentTimeMillis().milliseconds
+      val cachedResult = productDetailsResult
+      if (now < productDetailsExpiration && cachedResult != null) {
+        Log.d(TAG, "Returning cached product details.")
+        return@withContext cachedResult
+      }
+
+      val productList = listOf(
+        QueryProductDetailsParams.Product.newBuilder()
+          .setProductId(billingDependencies.getProductId())
+          .setProductType(ProductType.SUBS)
+          .build()
+      )
+
+      val params = QueryProductDetailsParams.newBuilder()
+        .setProductList(productList)
         .build()
-    )
 
-    val params = QueryProductDetailsParams.newBuilder()
-      .setProductList(productList)
-      .build()
-
-    return withContext(Dispatchers.IO) {
-      doOnConnectionReady {
+      val result = doOnConnectionReady {
         Log.d(TAG, "Querying product details.")
         billingClient.queryProductDetails(params)
       }
+
+      Log.d(TAG, "Caching product details.")
+      productDetailsResult = result
+      productDetailsExpiration = now + CACHE_LIFESPAN
+
+      return@withContext result
     }
   }
 
