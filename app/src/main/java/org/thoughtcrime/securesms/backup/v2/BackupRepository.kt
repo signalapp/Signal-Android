@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.backup.v2
 import android.database.Cursor
 import android.os.Environment
 import android.os.StatFs
-import androidx.annotation.Discouraged
 import androidx.annotation.WorkerThread
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
@@ -35,7 +34,6 @@ import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.attachments.Attachment
-import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
@@ -1105,21 +1103,6 @@ object BackupRepository {
       .also { Log.i(TAG, "UploadBackupFileResult: $it") }
   }
 
-  /**
-   * A simple test method that just hits various network endpoints. Only useful for the playground.
-   *
-   * @return True if successful, otherwise false.
-   */
-  @Discouraged("This will upload the entire backup file on every execution.")
-  fun debugUploadBackupFile(backupStream: InputStream, backupStreamLength: Long): NetworkResult<Unit> {
-    return getResumableMessagesBackupUploadSpec()
-      .then { formAndUploadUrl ->
-        val (form, resumableUploadUrl) = formAndUploadUrl
-        SignalNetwork.archive.uploadBackupFile(form, resumableUploadUrl, backupStream, backupStreamLength)
-          .also { Log.i(TAG, "UploadBackupFileResult: $it") }
-      }
-  }
-
   fun downloadBackupFile(destination: File, listener: ProgressListener? = null): NetworkResult<Unit> {
     return initBackupAndFetchAuth()
       .then { credential ->
@@ -1206,74 +1189,6 @@ object BackupRepository {
         SignalDatabase.attachments.setArchiveCdn(attachmentId = attachment.attachmentId, archiveCdn = response.cdn)
       }
       .also { Log.i(TAG, "archiveMediaResult: $it") }
-  }
-
-  fun copyAttachmentToArchive(databaseAttachments: List<DatabaseAttachment>): NetworkResult<BatchArchiveMediaResult> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        val requests = mutableListOf<ArchiveMediaRequest>()
-        val mediaIdToAttachmentId = mutableMapOf<String, AttachmentId>()
-        val attachmentIdToMediaName = mutableMapOf<AttachmentId, String>()
-
-        databaseAttachments.forEach {
-          val mediaName = it.requireMediaName()
-          val request = it.toArchiveMediaRequest(mediaName, credential.mediaBackupAccess.backupKey)
-          requests += request
-          mediaIdToAttachmentId[request.mediaId] = it.attachmentId
-          attachmentIdToMediaName[it.attachmentId] = mediaName.name
-        }
-
-        SignalNetwork.archive
-          .copyAttachmentToArchive(
-            aci = SignalStore.account.requireAci(),
-            archiveServiceAccess = credential.mediaBackupAccess,
-            items = requests
-          )
-          .map { credential to BatchArchiveMediaResult(it, mediaIdToAttachmentId, attachmentIdToMediaName) }
-      }
-      .map { (credential, result) ->
-        result
-          .successfulResponses
-          .forEach {
-            val attachmentId = result.mediaIdToAttachmentId(it.mediaId)
-            val mediaName = result.attachmentIdToMediaName(attachmentId)
-            val thumbnailId = credential.mediaBackupAccess.backupKey.deriveMediaId(MediaName.forThumbnailFromMediaName(mediaName = mediaName)).encode()
-            SignalDatabase.attachments.setArchiveCdn(attachmentId = attachmentId, archiveCdn = it.cdn!!)
-          }
-        result
-      }
-      .also { Log.i(TAG, "archiveMediaResult: $it") }
-  }
-
-  fun deleteArchivedMedia(attachments: List<DatabaseAttachment>): NetworkResult<Unit> {
-    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
-
-    val mediaToDelete = attachments
-      .filter { it.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED }
-      .map {
-        DeleteArchivedMediaRequest.ArchivedMediaObject(
-          cdn = it.archiveCdn,
-          mediaId = it.requireMediaName().toMediaId(mediaRootBackupKey).encode()
-        )
-      }
-
-    if (mediaToDelete.isEmpty()) {
-      Log.i(TAG, "No media to delete, quick success")
-      return NetworkResult.Success(Unit)
-    }
-
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.deleteArchivedMedia(
-          aci = SignalStore.account.requireAci(),
-          archiveServiceAccess = credential.mediaBackupAccess,
-          mediaToDelete = mediaToDelete
-        )
-      }
-      .map {
-        SignalDatabase.attachments.clearArchiveData(attachments.map { it.attachmentId })
-      }
-      .also { Log.i(TAG, "deleteArchivedMediaResult: $it") }
   }
 
   fun deleteAbandonedMediaObjects(mediaObjects: Collection<ArchivedMediaObject>): NetworkResult<Unit> {
