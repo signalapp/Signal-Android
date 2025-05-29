@@ -32,6 +32,7 @@ import java.io.IOException
 import java.net.SocketException
 import java.time.Instant
 import java.util.Optional
+import java.util.concurrent.CancellationException
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Executors
 import java.util.concurrent.LinkedBlockingQueue
@@ -188,6 +189,13 @@ class LibSignalChatConnection(
         },
         onFailure = { throwable ->
           CHAT_SERVICE_LOCK.withLock {
+            if (throwable is CancellationException) {
+              // We should have transitioned to DISCONNECTED immediately after we canceled chatConnectionFuture
+              check(state.value == WebSocketConnectionState.DISCONNECTED)
+              Log.i(TAG, "$name [connect] cancelled")
+              return@whenComplete
+            }
+
             Log.w(TAG, "$name [connect] Failure:", throwable)
             chatConnection = null
             // Internally, libsignal-net will throw this DeviceDeregisteredException when the HTTP CONNECT
