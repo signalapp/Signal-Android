@@ -182,7 +182,7 @@ class BackupMediaSnapshotTableTest {
 
     val notFound = SignalDatabase.backupMediaSnapshots.getMediaObjectsThatCantBeFound(remoteData)
     assertThat(notFound.size).isEqualTo(1)
-    assertThat(notFound.first().cdn).isEqualTo(2)
+    assertThat(notFound.first()).isEqualTo(remoteData[1])
   }
 
   private fun getTotalItemCount(): Int {

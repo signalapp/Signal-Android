@@ -31,6 +31,7 @@ import java.io.InputStream
 import java.time.Instant
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Class to interact with various archive-related endpoints.
@@ -346,7 +347,7 @@ class ArchiveApi(
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->
         val request = WebSocketRequestMessage.post("/v1/archives/media/delete", DeleteArchivedMediaRequest(mediaToDelete = mediaToDelete), headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, timeout = 30.seconds)
       }
   }
 

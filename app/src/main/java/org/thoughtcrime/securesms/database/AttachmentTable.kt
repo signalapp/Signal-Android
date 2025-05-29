@@ -290,6 +290,10 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS attachment_remote_digest_index ON $TABLE_NAME ($REMOTE_DIGEST);"
     )
 
+    private val DATA_FILE_INFO_PROJECTION = arrayOf(
+      ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_TRANSFER_STATE, THUMBNAIL_FILE, THUMBNAIL_RESTORE_STATE, THUMBNAIL_RANDOM
+    )
+
     @JvmStatic
     @Throws(IOException::class)
     fun newDataFile(context: Context): File {
@@ -571,7 +575,7 @@ class AttachmentTable(
     return readableDatabase
       .select(ID)
       .from(TABLE_NAME)
-      .where("$ARCHIVE_TRANSFER_STATE = ? AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value)
+      .where("($ARCHIVE_TRANSFER_STATE = ? or $ARCHIVE_TRANSFER_STATE = ?) AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value, ArchiveTransferState.TEMPORARY_FAILURE.value)
       .orderBy("$ID DESC")
       .run()
       .readToList { AttachmentId(it.requireLong(ID)) }
@@ -636,7 +640,7 @@ class AttachmentTable(
   fun doAnyAttachmentsNeedArchiveUpload(): Boolean {
     return readableDatabase
       .exists(TABLE_NAME)
-      .where("$ARCHIVE_TRANSFER_STATE = ? AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value)
+      .where("($ARCHIVE_TRANSFER_STATE = ? OR $ARCHIVE_TRANSFER_STATE = ?) AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value, ArchiveTransferState.TEMPORARY_FAILURE.value)
       .run()
   }
 
@@ -668,6 +672,27 @@ class AttachmentTable(
         .update(TABLE_NAME)
         .values(ARCHIVE_TRANSFER_STATE to state.value)
         .where("$DATA_FILE = ?", dataFile)
+        .run()
+    }
+  }
+
+  /**
+   * Sets the archive transfer state for the given attachment and all other attachments that share the same data file iff
+   * the row isn't already marked as a [ArchiveTransferState.PERMANENT_FAILURE].
+   */
+  fun setArchiveTransferStateFailure(id: AttachmentId, state: ArchiveTransferState) {
+    writableDatabase.withinTransaction {
+      val dataFile: String = readableDatabase
+        .select(DATA_FILE)
+        .from(TABLE_NAME)
+        .where("$ID = ?", id.id)
+        .run()
+        .readToSingleObject { it.requireString(DATA_FILE) } ?: return@withinTransaction
+
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(ARCHIVE_TRANSFER_STATE to state.value)
+        .where("$ARCHIVE_TRANSFER_STATE != ? AND $DATA_FILE = ?", ArchiveTransferState.PERMANENT_FAILURE.value, dataFile)
         .run()
     }
   }
@@ -1180,7 +1205,7 @@ class AttachmentTable(
       // We don't look at hash_start here because that could result in us matching on a file that got compressed down to something smaller, effectively lowering
       // the quality of the attachment we received.
       val hashMatch: DataFileInfo? = readableDatabase
-        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN)
+        .select(*DATA_FILE_INFO_PROJECTION)
         .from(TABLE_NAME)
         .where("$DATA_HASH_END = ? AND $DATA_HASH_END NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND $DATA_FILE NOT NULL", fileWriteResult.hash)
         .run()
@@ -1197,6 +1222,10 @@ class AttachmentTable(
         values.put(DATA_HASH_START, hashMatch.hashEnd)
         values.put(DATA_HASH_END, hashMatch.hashEnd)
         values.put(ARCHIVE_CDN, hashMatch.archiveCdn)
+        values.put(ARCHIVE_TRANSFER_STATE, hashMatch.archiveTransferState)
+        values.put(THUMBNAIL_FILE, hashMatch.thumbnailFile)
+        values.put(THUMBNAIL_RANDOM, hashMatch.thumbnailRandom)
+        values.put(THUMBNAIL_RESTORE_STATE, hashMatch.thumbnailRestoreState)
       } else {
         values.put(DATA_FILE, fileWriteResult.file.absolutePath)
         values.put(DATA_SIZE, fileWriteResult.length)
@@ -1748,7 +1777,7 @@ class AttachmentTable(
 
   fun getDataFileInfo(attachmentId: AttachmentId): DataFileInfo? {
     return readableDatabase
-      .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN)
+      .select(*DATA_FILE_INFO_PROJECTION)
       .from(TABLE_NAME)
       .where("$ID = ?", attachmentId.id)
       .run()
@@ -2402,7 +2431,7 @@ class AttachmentTable(
       // First we'll check if our file hash matches the starting or ending hash of any other attachments and has compatible transform properties.
       // We'll prefer the match with the most recent upload timestamp.
       val hashMatch: DataFileInfo? = readableDatabase
-        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN)
+        .select(*DATA_FILE_INFO_PROJECTION)
         .from(TABLE_NAME)
         .where("$DATA_FILE NOT NULL AND ($DATA_HASH_START = ? OR $DATA_HASH_END = ?)", fileWriteResult.hash, fileWriteResult.hash)
         .run()
@@ -2438,6 +2467,10 @@ class AttachmentTable(
         contentValues.put(DATA_HASH_START, fileWriteResult.hash)
         contentValues.put(DATA_HASH_END, hashMatch.hashEnd)
         contentValues.put(ARCHIVE_CDN, hashMatch.archiveCdn)
+        contentValues.put(ARCHIVE_TRANSFER_STATE, hashMatch.archiveTransferState)
+        contentValues.put(THUMBNAIL_FILE, hashMatch.thumbnailFile)
+        contentValues.put(THUMBNAIL_RANDOM, hashMatch.thumbnailRandom)
+        contentValues.put(THUMBNAIL_RESTORE_STATE, hashMatch.thumbnailRestoreState)
 
         if (hashMatch.transformProperties.skipTransform) {
           Log.i(TAG, "[insertAttachmentWithData] The hash match has a DATA_HASH_END and skipTransform=true, so skipping transform of the new file as well. (MessageId: $messageId, ${attachment.uri})")
@@ -2625,7 +2658,11 @@ class AttachmentTable(
       hashEnd = this.requireString(DATA_HASH_END),
       transformProperties = TransformProperties.parse(this.requireString(TRANSFORM_PROPERTIES)),
       uploadTimestamp = this.requireLong(UPLOAD_TIMESTAMP),
-      archiveCdn = this.requireInt(ARCHIVE_CDN)
+      archiveCdn = this.requireInt(ARCHIVE_CDN),
+      archiveTransferState = this.requireInt(ARCHIVE_TRANSFER_STATE),
+      thumbnailFile = this.requireString(THUMBNAIL_FILE),
+      thumbnailRandom = this.requireBlob(THUMBNAIL_RANDOM),
+      thumbnailRestoreState = this.requireInt(THUMBNAIL_RESTORE_STATE)
     )
   }
 
@@ -2689,7 +2726,11 @@ class AttachmentTable(
     val hashEnd: String?,
     val transformProperties: TransformProperties,
     val uploadTimestamp: Long,
-    val archiveCdn: Int
+    val archiveCdn: Int,
+    val archiveTransferState: Int,
+    val thumbnailFile: String?,
+    val thumbnailRandom: ByteArray?,
+    val thumbnailRestoreState: Int
   )
 
   @VisibleForTesting

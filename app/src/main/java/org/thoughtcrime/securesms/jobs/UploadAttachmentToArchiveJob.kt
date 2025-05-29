@@ -6,6 +6,8 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.Base64
+import org.signal.core.util.inRoundedDays
+import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readLength
 import org.signal.protos.resumableuploads.ResumableUpload
@@ -32,6 +34,7 @@ import java.net.ProtocolException
 import kotlin.random.Random
 import kotlin.random.nextInt
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Given an attachmentId, this will upload the corresponding attachment to the archive cdn.
@@ -40,6 +43,7 @@ import kotlin.time.Duration.Companion.days
 class UploadAttachmentToArchiveJob private constructor(
   private val attachmentId: AttachmentId,
   private var uploadSpec: ResumableUpload?,
+  private val canReuseUpload: Boolean,
   parameters: Parameters
 ) : Job(parameters) {
 
@@ -59,9 +63,10 @@ class UploadAttachmentToArchiveJob private constructor(
     fun getAllQueueKeys() = (0 until MAX_JOB_QUEUES).map { buildQueueKey(queue = it) }
   }
 
-  constructor(attachmentId: AttachmentId) : this(
+  constructor(attachmentId: AttachmentId, canReuseUpload: Boolean = true) : this(
     attachmentId = attachmentId,
     uploadSpec = null,
+    canReuseUpload = canReuseUpload,
     parameters = Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
       .setLifespan(30.days.inWholeMilliseconds)
@@ -71,7 +76,9 @@ class UploadAttachmentToArchiveJob private constructor(
   )
 
   override fun serialize(): ByteArray = UploadAttachmentToArchiveJobData(
-    attachmentId = attachmentId.id
+    attachmentId = attachmentId.id,
+    uploadSpec = uploadSpec,
+    canReuseUpload = canReuseUpload
   ).encode()
 
   override fun getFactoryKey(): String = KEY
@@ -118,6 +125,13 @@ class UploadAttachmentToArchiveJob private constructor(
     if (attachment.remoteKey == null || attachment.remoteIv == null) {
       Log.w(TAG, "[$attachmentId] Attachment is missing remote key or IV! Cannot upload.")
       return Result.failure()
+    }
+
+    val timeSinceUpload = System.currentTimeMillis() - attachment.uploadTimestamp
+    if (canReuseUpload && timeSinceUpload > 0 && timeSinceUpload < AttachmentUploadJob.UPLOAD_REUSE_THRESHOLD && attachment.remoteLocation.isNotNullOrBlank()) {
+      Log.i(TAG, "We can copy an already-uploaded file. It was uploaded $timeSinceUpload ms (${timeSinceUpload.milliseconds.inRoundedDays()} days) ago. Skipping.")
+      AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachment.attachmentId))
+      return Result.success()
     }
 
     if (uploadSpec != null && System.currentTimeMillis() > uploadSpec!!.timeout) {
@@ -200,10 +214,10 @@ class UploadAttachmentToArchiveJob private constructor(
   override fun onFailure() {
     if (this.isCanceled) {
       Log.w(TAG, "[$attachmentId] Job was canceled, updating archive transfer state to ${AttachmentTable.ArchiveTransferState.NONE}.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
     } else {
       Log.w(TAG, "[$attachmentId] Job failed, updating archive transfer state to ${AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE} (if not already a permanent failure).")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
     }
   }
 
@@ -253,6 +267,7 @@ class UploadAttachmentToArchiveJob private constructor(
       return UploadAttachmentToArchiveJob(
         attachmentId = AttachmentId(data.attachmentId),
         uploadSpec = data.uploadSpec,
+        canReuseUpload = data.canReuseUpload == true,
         parameters = parameters
       )
     }

@@ -165,10 +165,10 @@ class BackupMediaSnapshotSyncJob private constructor(
   }
 
   /**
-   * Update CDNs of archived media items. Returns set of objects that don't match
+   * Update CDNs of archived media items. Returns list of objects that don't match
    * to a local attachment DB row.
    */
-  private fun syncCdnPage(archivedItemPage: ArchiveGetMediaItemsResponse): Set<ArchivedMediaObject> {
+  private fun syncCdnPage(archivedItemPage: ArchiveGetMediaItemsResponse): List<ArchivedMediaObject> {
     val mediaObjects = archivedItemPage.storedMediaObjects.map {
       ArchivedMediaObject(
         mediaId = it.mediaId,

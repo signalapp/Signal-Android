@@ -138,6 +138,7 @@ message CopyAttachmentToArchiveJobData {
 message UploadAttachmentToArchiveJobData {
   uint64 attachmentId = 1;
   ResumableUpload uploadSpec = 2;
+  optional bool canReuseUpload = 3;
 }
 
 message BackupMediaSnapshotSyncJobData {

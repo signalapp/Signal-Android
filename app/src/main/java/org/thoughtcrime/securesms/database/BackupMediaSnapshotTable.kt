@@ -137,35 +137,31 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
   /**
    * Given a list of media objects, find the ones that we have no knowledge of in our local store.
    */
-  fun getMediaObjectsThatCantBeFound(objects: List<ArchivedMediaObject>): Set<ArchivedMediaObject> {
+  fun getMediaObjectsThatCantBeFound(objects: List<ArchivedMediaObject>): List<ArchivedMediaObject> {
     if (objects.isEmpty()) {
-      return emptySet()
+      return emptyList()
     }
 
     val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(
       column = MEDIA_ID,
       values = objects.map { it.mediaId },
-      collectionOperator = SqlUtil.CollectionOperator.NOT_IN,
-      prefix = "$IS_THUMBNAIL = 0 AND "
+      collectionOperator = SqlUtil.CollectionOperator.IN
     )
 
-    val out: MutableSet<ArchivedMediaObject> = mutableSetOf()
+    val foundObjects: MutableSet<String> = mutableSetOf()
 
     for (query in queries) {
-      out += readableDatabase
+      foundObjects += readableDatabase
         .select(MEDIA_ID, CDN)
         .from(TABLE_NAME)
         .where(query.where, query.whereArgs)
         .run()
         .readToSet {
-          ArchivedMediaObject(
-            mediaId = it.requireNonNullString(MEDIA_ID),
-            cdn = it.requireInt(CDN)
-          )
+          it.requireNonNullString(MEDIA_ID)
         }
     }
 
-    return out
+    return objects.filterNot { foundObjects.contains(it.mediaId) }
   }
 
   /**
