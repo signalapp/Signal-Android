@@ -46,6 +46,7 @@ import org.whispersystems.signalservice.internal.ServiceResponse
 import java.io.IOException
 import java.util.Optional
 import java.util.concurrent.TimeUnit
+import kotlin.time.Duration.Companion.minutes
 
 /**
  * Retrieves a users profile and sets the appropriate local fields.
@@ -92,10 +93,26 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     val recipients = Recipient.resolvedList(recipientIds)
     stopwatch.split("resolve-ensure")
 
-    val requests: List<Observable<Pair<Recipient, ServiceResponse<ProfileAndCredential>>>> = recipients
-      .filter { it.hasServiceId }
+    val currentTime = System.currentTimeMillis()
+    val debounceThreshold = currentTime - PROFILE_FETCH_DEBOUNCE_TIME_MS
+    val recipientsToFetch = recipients.filter { recipient ->
+      recipient.hasServiceId && recipient.lastProfileFetchTime < debounceThreshold
+    }
+
+    if (recipientsToFetch.isEmpty()) {
+      Log.i(TAG, "All ${recipients.size} recipients have been fetched recently (within ${PROFILE_FETCH_DEBOUNCE_TIME_MS}ms). Skipping network requests.")
+      return
+    }
+
+    if (recipientsToFetch.size < recipients.size) {
+      Log.i(TAG, "Debouncing: Fetching ${recipientsToFetch.size} of ${recipients.size} recipients (${recipients.size - recipientsToFetch.size} were fetched recently)")
+    }
+
+    val requests: List<Observable<Pair<Recipient, ServiceResponse<ProfileAndCredential>>>> = recipientsToFetch
       .map { ProfileUtil.retrieveProfile(context, it, getRequestType(it)).toObservable() }
     stopwatch.split("requests")
+
+    val fetchingRecipientIds = recipientsToFetch.map { it.id }.toSet()
 
     val operationState = Observable.mergeDelayError(requests, 16, 1)
       .observeOn(Schedulers.io(), true)
@@ -121,11 +138,11 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       .safeBlockingGet()
     stopwatch.split("responses")
 
-    val localRecords = SignalDatabase.recipients.getExistingRecords(recipientIds)
+    val localRecords = SignalDatabase.recipients.getExistingRecords(fetchingRecipientIds)
     Log.d(TAG, "Fetched ${localRecords.size} existing records.")
     stopwatch.split("disk-fetch")
 
-    val successIds: Set<RecipientId> = recipientIds - operationState.retries
+    val successIds: Set<RecipientId> = fetchingRecipientIds - operationState.retries
     val newlyRegisteredIds: Set<RecipientId> = operationState.profiles
       .map { it.first() }
       .filterNot { it.isRegistered }
@@ -528,6 +545,8 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     private const val KEY_RECIPIENTS = "recipients"
     private const val DEDUPE_KEY_RETRIEVE_AVATAR = KEY + "_RETRIEVE_PROFILE_AVATAR"
     private const val QUEUE_PREFIX = "RetrieveProfileJob_"
+
+    private val PROFILE_FETCH_DEBOUNCE_TIME_MS = 5.minutes.inWholeMilliseconds
 
     /**
      * Submits the necessary job to refresh the profile of the requested recipient. Works for any

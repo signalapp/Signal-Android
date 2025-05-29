@@ -3662,6 +3662,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         db.update(TABLE_NAME, values, query.where, query.whereArgs)
       }
     }
+
+    // Invalidate recipient cache so that updated timestamps are reflected
+    ids.forEach { id ->
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+    }
   }
 
   fun applyBlockedUpdate(blockedE164s: List<String>, blockedAcis: List<ACI>, blockedGroupIds: List<ByteArray?>) {
