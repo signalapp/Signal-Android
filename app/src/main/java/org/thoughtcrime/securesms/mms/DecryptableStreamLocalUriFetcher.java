@@ -25,7 +25,7 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
 
   private static final String TAG = Log.tag(DecryptableStreamLocalUriFetcher.class);
 
-  private static final int DIMENSION_LIMIT = 12_000;
+  private static final int DIMENSION_LIMIT = 18_000;
 
   private Context context;
 
