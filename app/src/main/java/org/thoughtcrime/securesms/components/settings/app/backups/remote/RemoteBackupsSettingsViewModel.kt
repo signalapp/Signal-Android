@@ -14,7 +14,6 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.takeWhile
 import kotlinx.coroutines.flow.update
@@ -47,6 +46,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.service.MessageBackupListener
 import java.util.Currency
+import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -78,11 +78,9 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   init {
     viewModelScope.launch(Dispatchers.IO) {
-      SignalStore.backup.deletionStateFlow
-        .filter { it == DeletionState.NONE }
-        .collect {
-          refresh()
-        }
+      SignalStore.backup.deletionStateFlow.collectLatest {
+        refresh()
+      }
     }
 
     viewModelScope.launch(Dispatchers.IO) {
@@ -164,6 +162,10 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   fun skipMediaRestore() {
     BackupRepository.skipMediaRestore()
+
+    if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
+      BackupRepository.continueTurningOffAndDisablingBackups()
+    }
   }
 
   fun requestDialog(dialog: RemoteBackupsSettingsState.Dialog) {
@@ -187,6 +189,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun turnOffAndDeleteBackups() {
+    requestDialog(RemoteBackupsSettingsState.Dialog.PROGRESS_SPINNER)
+
     viewModelScope.launch(Dispatchers.IO) {
       BackupRepository.turnOffAndDisableBackups()
     }
@@ -202,6 +206,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   private suspend fun refreshState(lastPurchase: InAppPaymentTable.InAppPayment?) {
     try {
+      Log.i(TAG, "Performing a state refresh.")
       performStateRefresh(lastPurchase)
     } catch (e: Exception) {
       Log.w(TAG, "State refresh failed", e)
@@ -241,7 +246,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       Log.d(TAG, "[subscriptionStateMismatchDetected] A mismatch was detected.")
 
       val hasActiveGooglePlayBillingSubscription = when (val purchaseResult = AppDependencies.billingApi.queryPurchases()) {
-        is BillingPurchaseResult.Success -> purchaseResult.isAcknowledged && purchaseResult.isWithinTheLastMonth()
+        is BillingPurchaseResult.Success -> purchaseResult.isAcknowledged && purchaseResult.isWithinTheLastMonth() && purchaseResult.isAutoRenewing
         else -> false
       } || SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID
 
@@ -337,6 +342,15 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
               _state.update {
                 it.copy(
                   backupState = RemoteBackupsSettingsState.BackupState.NotFound
+                )
+              }
+            } else if (lastPurchase != null && lastPurchase.endOfPeriod > System.currentTimeMillis().milliseconds) {
+              _state.update {
+                it.copy(
+                  backupState = RemoteBackupsSettingsState.BackupState.Canceled(
+                    messageBackupsType = type,
+                    renewalTime = lastPurchase.endOfPeriod
+                  )
                 )
               }
             } else {

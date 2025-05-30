@@ -9,6 +9,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
@@ -52,7 +53,7 @@ private val YELLOW_DOT = Color(0xFFFFCC00)
 fun BackupStatusRow(
   backupStatusData: BackupStatusData,
   onSkipClick: () -> Unit = {},
-  onCancelClick: () -> Unit = {},
+  onCancelClick: (() -> Unit)? = null,
   onLearnMoreClick: () -> Unit = {}
 ) {
   Column {
@@ -61,7 +62,7 @@ fun BackupStatusRow(
     ) {
       Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
+        modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter)).defaultMinSize(minHeight = 48.dp)
       ) {
         LinearProgressIndicator(
           color = progressColor(backupStatusData),
@@ -69,13 +70,15 @@ fun BackupStatusRow(
           modifier = Modifier.weight(1f)
         )
 
-        IconButton(
-          onClick = onCancelClick
-        ) {
-          Icon(
-            painter = painterResource(R.drawable.symbol_x_24),
-            contentDescription = stringResource(R.string.BackupStatusRow__cancel_download)
-          )
+        if (onCancelClick != null) {
+          IconButton(
+            onClick = onCancelClick
+          ) {
+            Icon(
+              painter = painterResource(R.drawable.symbol_x_24),
+              contentDescription = stringResource(R.string.BackupStatusRow__cancel_download)
+            )
+          }
         }
       }
     }

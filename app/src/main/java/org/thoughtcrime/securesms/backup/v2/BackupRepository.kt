@@ -423,14 +423,16 @@ object BackupRepository {
    */
   suspend fun turnOffAndDisableBackups() {
     ArchiveUploadProgress.cancelAndBlock()
+    SignalStore.backup.userManuallySkippedMediaRestore = false
+    SignalStore.backup.deletionState = DeletionState.CLEAR_LOCAL_STATE
+    AppDependencies.jobManager.add(BackupDeleteJob())
+  }
 
-    SignalStore.backup.deletionState = DeletionState.RUNNING
-    SignalStore.backup.optimizeStorage = false
-
-    AppDependencies.jobManager
-      .startChain(RestoreOptimizedMediaJob())
-      .then(BackupDeleteJob())
-      .enqueue()
+  /**
+   * To be called if the user skips media restore during the deletion process.
+   */
+  fun continueTurningOffAndDisablingBackups() {
+    AppDependencies.jobManager.add(BackupDeleteJob())
   }
 
   private fun createSignalDatabaseSnapshot(baseName: String): SignalDatabase {

@@ -206,6 +206,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
           .putLong(KEY_LATEST_BACKUP_TIER, serializedValue)
           .putBoolean(KEY_BACKUP_TIER_RESTORED, true)
           .apply()
+
+        deletionState = DeletionState.NONE
       } else {
         putLong(KEY_BACKUP_TIER, serializedValue)
       }

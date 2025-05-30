@@ -80,7 +80,7 @@ abstract class UpgradeToPaidTierBottomSheet : ComposeBottomSheetDialogFragment()
     viewLifecycleOwner.lifecycleScope.launch(SignalDispatchers.Main) {
       repeatOnLifecycle(Lifecycle.State.RESUMED) {
         viewModel.deletionState.collectLatest {
-          if (it == DeletionState.RUNNING) {
+          if (it == DeletionState.DELETE_BACKUPS) {
             Toast.makeText(
               requireContext(),
               R.string.MessageBackupsFlowFragment__a_backup_deletion_is_in_progress,

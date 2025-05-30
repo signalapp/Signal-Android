@@ -50,7 +50,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.setValue
@@ -275,6 +274,10 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     override fun onRedemptionErrorDetailsClick() {
       BackupAlertBottomSheet.create(BackupAlert.CouldNotRedeemBackup).show(parentFragmentManager, null)
     }
+
+    override fun onDisplayProgressDialog() {
+      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.PROGRESS_SPINNER)
+    }
   }
 
   private fun displayBackupKey() {
@@ -361,6 +364,7 @@ private interface ContentCallbacks {
   fun onRestoreUsingCellularConfirm() = Unit
   fun onRestoreUsingCellularClick() = Unit
   fun onRedemptionErrorDetailsClick() = Unit
+  fun onDisplayProgressDialog() = Unit
 
   object Emtpy : ContentCallbacks
 }
@@ -389,6 +393,12 @@ private fun RemoteBackupsSettingsContent(
   }
 
   val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+
+  LaunchedEffect(backupDeleteState) {
+    if (backupDeleteState != DeletionState.NONE && backupDeleteState != DeletionState.CLEAR_LOCAL_STATE) {
+      contentCallbacks.onDialogDismissed()
+    }
+  }
 
   Scaffold(
     topBar = {
@@ -449,7 +459,7 @@ private fun RemoteBackupsSettingsContent(
               state = backupState,
               onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription,
               onRenewClick = contentCallbacks::onRenewLostSubscription,
-              isRenewEnabled = backupDeleteState != DeletionState.RUNNING
+              isRenewEnabled = backupDeleteState != DeletionState.DELETE_BACKUPS
             )
           }
 
@@ -459,7 +469,7 @@ private fun RemoteBackupsSettingsContent(
             BackupCard(
               backupState = backupState,
               onBackupTypeActionButtonClicked = contentCallbacks::onBackupTypeActionClick,
-              buttonsEnabled = backupDeleteState != DeletionState.RUNNING
+              buttonsEnabled = backupDeleteState != DeletionState.DELETE_BACKUPS
             )
           }
 
@@ -468,14 +478,19 @@ private fun RemoteBackupsSettingsContent(
               title = stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found),
               onRenewClick = contentCallbacks::onRenewLostSubscription,
               onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription,
-              isRenewEnabled = backupDeleteState != DeletionState.RUNNING
+              isRenewEnabled = backupDeleteState != DeletionState.DELETE_BACKUPS
             )
           }
         }
       }
 
-      if (backupDeleteState != DeletionState.NONE) {
-        appendBackupDeletionState(backupDeleteState, contentCallbacks)
+      if (backupDeleteState != DeletionState.NONE && backupDeleteState != DeletionState.CLEAR_LOCAL_STATE) {
+        appendBackupDeletionItems(
+          backupDeleteState = backupDeleteState,
+          backupRestoreState = backupRestoreState,
+          canRestoreUsingCellular = canRestoreUsingCellular,
+          contentCallbacks = contentCallbacks
+        )
       } else if (backupsEnabled) {
         appendBackupDetailsItems(
           backupState = backupState,
@@ -619,22 +634,42 @@ private fun ReenableBackupsButton(contentCallbacks: ContentCallbacks) {
   }
 }
 
-private fun LazyListScope.appendBackupDeletionState(
+private fun LazyListScope.appendRestoreFromBackupStatusData(
+  backupRestoreState: BackupRestoreState.FromBackupStatusData,
+  canRestoreUsingCellular: Boolean,
+  contentCallbacks: ContentCallbacks
+) {
+  item {
+    BackupStatusRow(
+      backupStatusData = backupRestoreState.backupStatusData,
+      onCancelClick = contentCallbacks::onCancelMediaRestore,
+      onSkipClick = contentCallbacks::onSkipMediaRestore,
+      onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
+    )
+  }
+
+  if (!canRestoreUsingCellular) {
+    item {
+      Rows.TextRow(
+        text = stringResource(R.string.RemoteBackupsSettingsFragment__resume_download),
+        icon = painterResource(R.drawable.symbol_arrow_circle_down_24),
+        onClick = contentCallbacks::onRestoreUsingCellularConfirm
+      )
+    }
+  }
+}
+
+private fun LazyListScope.appendBackupDeletionItems(
   backupDeleteState: DeletionState,
+  backupRestoreState: BackupRestoreState,
+  canRestoreUsingCellular: Boolean,
   contentCallbacks: ContentCallbacks
 ) {
   when (backupDeleteState) {
     DeletionState.NONE -> return
     DeletionState.FAILED -> {
       item {
-        Text(
-          text = stringResource(R.string.RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error),
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          style = MaterialTheme.typography.bodyMedium,
-          modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .padding(top = 16.dp)
-        )
+        DescriptionText(text = stringResource(R.string.RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error))
       }
 
       item {
@@ -665,16 +700,31 @@ private fun LazyListScope.appendBackupDeletionState(
       }
     }
 
-    DeletionState.RUNNING -> {
+    DeletionState.AWAITING_MEDIA_DOWNLOAD -> {
       item {
-        Text(
-          text = stringResource(R.string.RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data),
-          style = MaterialTheme.typography.bodyMedium,
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .padding(top = 16.dp)
+        DescriptionText(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be)
         )
+      }
+
+      if (backupRestoreState is BackupRestoreState.FromBackupStatusData) {
+        appendRestoreFromBackupStatusData(
+          backupRestoreState = backupRestoreState,
+          canRestoreUsingCellular = canRestoreUsingCellular,
+          contentCallbacks = contentCallbacks
+        )
+      } else {
+        item {
+          LinearProgressIndicator(
+            modifier = Modifier.fillMaxWidth()
+          )
+        }
+      }
+    }
+
+    DeletionState.DELETE_BACKUPS -> {
+      item {
+        DescriptionText(text = stringResource(R.string.RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data))
       }
 
       item {
@@ -696,7 +746,38 @@ private fun LazyListScope.appendBackupDeletionState(
         }
       }
     }
+
+    DeletionState.COMPLETE -> {
+      item {
+        DescriptionText(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted),
+          modifier = Modifier.padding(bottom = 12.dp)
+        )
+      }
+
+      item {
+        ReenableBackupsButton(contentCallbacks)
+      }
+    }
+
+    DeletionState.CLEAR_LOCAL_STATE -> Unit
   }
+}
+
+@Composable
+private fun DescriptionText(
+  text: String,
+  modifier: Modifier = Modifier
+) {
+  Text(
+    text = text,
+    style = MaterialTheme.typography.bodyMedium,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
+    modifier = Modifier
+      .padding(horizontal = 16.dp)
+      .padding(top = 16.dp)
+      .then(modifier)
+  )
 }
 
 private fun LazyListScope.appendBackupDetailsItems(
@@ -720,24 +801,11 @@ private fun LazyListScope.appendBackupDetailsItems(
 
   if (backupRestoreState !is BackupRestoreState.None) {
     if (backupRestoreState is BackupRestoreState.FromBackupStatusData) {
-      item {
-        BackupStatusRow(
-          backupStatusData = backupRestoreState.backupStatusData,
-          onCancelClick = contentCallbacks::onCancelMediaRestore,
-          onSkipClick = contentCallbacks::onSkipMediaRestore,
-          onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
-        )
-      }
-
-      if (!canRestoreUsingCellular) {
-        item {
-          Rows.TextRow(
-            text = stringResource(R.string.RemoteBackupsSettingsFragment__resume_download),
-            icon = painterResource(R.drawable.symbol_arrow_circle_down_24),
-            onClick = contentCallbacks::onRestoreUsingCellularConfirm
-          )
-        }
-      }
+      appendRestoreFromBackupStatusData(
+        backupRestoreState = backupRestoreState,
+        canRestoreUsingCellular = canRestoreUsingCellular,
+        contentCallbacks = contentCallbacks
+      )
     } else if (backupRestoreState is BackupRestoreState.Ready) {
       item {
         BackupReadyToDownloadRow(
@@ -1363,7 +1431,7 @@ private fun TurnOffAndDeleteBackupsDialog(
 ) {
   Dialogs.SimpleAlertDialog(
     title = stringResource(id = R.string.RemoteBackupsSettingsFragment__turn_off_and_delete_backups),
-    body = stringResource(id = R.string.RemoteBackupsSettingsFragment__you_will_not_be_charged_again),
+    body = stringResource(id = R.string.RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created),
     confirm = stringResource(id = R.string.RemoteBackupsSettingsFragment__turn_off_and_delete),
     dismiss = stringResource(id = android.R.string.cancel),
     confirmColor = MaterialTheme.colorScheme.error,
@@ -1879,27 +1947,30 @@ private fun BackupFrequencyDialogPreview() {
 @SignalPreview
 @Composable
 private fun BackupDeletionCardPreview() {
-  var backupDeletionState by remember { mutableStateOf(DeletionState.NONE) }
-
   Previews.Preview {
     LazyColumn {
-      item {
-        Buttons.MediumTonal(
-          onClick = {
-            backupDeletionState = when (backupDeletionState) {
-              DeletionState.FAILED -> DeletionState.NONE
-              DeletionState.NONE -> DeletionState.RUNNING
-              DeletionState.RUNNING -> DeletionState.FAILED
-            }
-          }
-        ) {
-          Text("Next Deletion State")
+      for (state in DeletionState.entries.filter { it.hasUx() }) {
+        appendBackupDeletionItems(
+          backupDeleteState = state,
+          backupRestoreState = BackupRestoreState.FromBackupStatusData(
+            backupStatusData = BackupStatusData.RestoringMedia(
+              bytesDownloaded = 80.mebiBytes,
+              bytesTotal = 3.gibiBytes
+            )
+          ),
+          contentCallbacks = ContentCallbacks.Emtpy,
+          canRestoreUsingCellular = true
+        )
+
+        item {
+          Dividers.Default()
         }
       }
-      appendBackupDeletionState(backupDeletionState, contentCallbacks = ContentCallbacks.Emtpy)
     }
   }
 }
+
+private fun DeletionState.hasUx() = this !in setOf(DeletionState.NONE, DeletionState.CLEAR_LOCAL_STATE)
 
 private fun ArchiveUploadProgressState.frameExportProgress(): Float {
   return if (this.frameTotalCount == 0L) {
