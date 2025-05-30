@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.OneTimePreKeyTable;
 import org.thoughtcrime.securesms.database.PendingRetryReceiptTable;
 import org.thoughtcrime.securesms.database.ReactionTable;
 import org.thoughtcrime.securesms.database.RemappedRecordTables;
+import org.thoughtcrime.securesms.database.RemoteMegaphoneTable;
 import org.thoughtcrime.securesms.database.SearchTable;
 import org.thoughtcrime.securesms.database.SenderKeyTable;
 import org.thoughtcrime.securesms.database.SenderKeySharedTable;
@@ -95,7 +96,8 @@ public class FullBackupExporter extends FullBackupBase {
       PendingRetryReceiptTable.TABLE_NAME,
       AvatarPickerDatabase.TABLE_NAME,
       RemappedRecordTables.Recipients.TABLE_NAME,
-      RemappedRecordTables.Threads.TABLE_NAME
+      RemappedRecordTables.Threads.TABLE_NAME,
+      RemoteMegaphoneTable.TABLE_NAME
   );
 
   public static BackupEvent export(@NonNull Context context,

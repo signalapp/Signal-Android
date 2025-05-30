@@ -168,11 +168,12 @@ public class FullBackupImporter extends FullBackupBase {
       return;
     }
 
-    boolean isForMmsFtsSecretTable = statement.statement.contains(SearchTable.FTS_TABLE_NAME + "_");
-    boolean isForEmojiSecretTable  = statement.statement.contains(EmojiSearchTable.TABLE_NAME + "_");
-    boolean isForSqliteSecretTable = statement.statement.toLowerCase().startsWith("create table sqlite_");
+    boolean isForMmsFtsSecretTable    = statement.statement.contains(SearchTable.FTS_TABLE_NAME + "_");
+    boolean isForEmojiSecretTable     = statement.statement.contains(EmojiSearchTable.TABLE_NAME + "_");
+    boolean isForSqliteSecretTable    = statement.statement.toLowerCase().startsWith("create table sqlite_");
+    boolean isForRemoteMegaphoneTable = statement.statement.toLowerCase().startsWith("insert into remote_megaphone");
 
-    if (isForMmsFtsSecretTable || isForEmojiSecretTable || isForSqliteSecretTable) {
+    if (isForMmsFtsSecretTable || isForEmojiSecretTable || isForSqliteSecretTable || isForRemoteMegaphoneTable) {
       Log.i(TAG, "Ignoring import for statement: " + statement.statement);
       return;
     }
