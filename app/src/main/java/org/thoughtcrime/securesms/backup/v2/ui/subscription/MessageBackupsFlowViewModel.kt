@@ -28,6 +28,8 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -50,7 +52,7 @@ import kotlin.time.Duration.Companion.seconds
 class MessageBackupsFlowViewModel(
   initialTierSelection: MessageBackupTier?,
   startScreen: MessageBackupsStage = if (SignalStore.backup.backupTier == null) MessageBackupsStage.EDUCATION else MessageBackupsStage.TYPE_SELECTION
-) : ViewModel() {
+) : ViewModel(), BackupKeyCredentialManagerHandler {
 
   companion object {
     private val TAG = Log.tag(MessageBackupsFlowViewModel::class)
@@ -341,5 +343,9 @@ class MessageBackupsFlowViewModel(
       Log.d(TAG, "Job chain completed successfully.")
       return
     }
+  }
+
+  override fun updateBackupKeySaveState(newState: BackupKeySaveState?) {
+    internalStateFlow.update { it.copy(backupKeySaveState = newState) }
   }
 }

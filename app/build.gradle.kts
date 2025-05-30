@@ -585,6 +585,8 @@ dependencies {
   implementation(libs.rxjava3.rxandroid)
   implementation(libs.rxjava3.rxkotlin)
   implementation(libs.rxdogtag)
+  implementation(libs.androidx.credentials)
+  implementation(libs.androidx.credentials.compat)
 
   "playImplementation"(project(":billing"))
   "nightlyImplementation"(project(":billing"))

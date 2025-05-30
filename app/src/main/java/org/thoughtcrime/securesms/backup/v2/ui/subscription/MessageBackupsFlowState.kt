@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import androidx.compose.runtime.Immutable
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.AccountEntropyPool
@@ -21,7 +22,8 @@ data class MessageBackupsFlowState(
   val stage: MessageBackupsStage = startScreen,
   val accountEntropyPool: AccountEntropyPool = SignalStore.account.accountEntropyPool,
   val failure: Throwable? = null,
-  val paymentReadyState: PaymentReadyState = PaymentReadyState.NOT_READY
+  val paymentReadyState: PaymentReadyState = PaymentReadyState.NOT_READY,
+  val backupKeySaveState: BackupKeySaveState? = null
 ) {
   enum class PaymentReadyState {
     NOT_READY,

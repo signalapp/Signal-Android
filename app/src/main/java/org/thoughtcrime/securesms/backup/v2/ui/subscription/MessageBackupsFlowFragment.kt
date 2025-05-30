@@ -142,11 +142,15 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
 
         MessageBackupsKeyRecordScreen(
           backupKey = state.accountEntropyPool.displayValue,
+          keySaveState = state.backupKeySaveState,
           onNavigationClick = viewModel::goToPreviousStage,
           onNextClick = viewModel::goToNextStage,
           onCopyToClipboardClick = {
             Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS)
-          }
+          },
+          onRequestSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
+          onConfirmSaveToPasswordManager = viewModel::onBackupKeySaveConfirmed,
+          onSaveToPasswordManagerComplete = viewModel::onBackupKeySaveCompleted
         )
       }
 
@@ -191,6 +195,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           requireActivity().setResult(Activity.RESULT_OK, MessageBackupsCheckoutActivity.createResultData())
           requireActivity().finishAfterTransition()
         }
+
         else -> Unit
       }
     }
