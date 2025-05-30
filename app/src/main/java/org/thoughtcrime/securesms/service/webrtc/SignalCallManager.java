@@ -68,7 +68,6 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
-import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.rx.RxStore;
@@ -988,13 +987,21 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   @Override
-  public void onFullyInitialized() {
-    process((s, p) -> p.handleOrientationChanged(s, s.getLocalDeviceState().isLandscapeEnabled(), s.getLocalDeviceState().getDeviceOrientation().getDegrees()));
+  public void onFullyInitialized(@NonNull final CameraState newCameraState) {
+    process((s, p) -> {
+      WebRtcServiceState s1 = p.handleSetCameraDirection(s, newCameraState);
+      return p.handleOrientationChanged(s1, s.getLocalDeviceState().isLandscapeEnabled(), s.getLocalDeviceState().getDeviceOrientation().getDegrees());
+    });
   }
 
   @Override
   public void onCameraSwitchCompleted(@NonNull final CameraState newCameraState) {
     process((s, p) -> p.handleCameraSwitchCompleted(s, newCameraState));
+  }
+
+  @Override
+  public void onCameraSwitchFailure(@NonNull final CameraState newCameraState) {
+    process((s, p) -> p.handleCameraSwitchFailure(s, newCameraState));
   }
 
   @Override

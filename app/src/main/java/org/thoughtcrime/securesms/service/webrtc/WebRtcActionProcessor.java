@@ -569,6 +569,11 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  public @NonNull WebRtcServiceState handleCameraSwitchFailure(@NonNull WebRtcServiceState currentState, @NonNull CameraState newCameraState) {
+    Log.i(tag, "handleCameraSwitchFailure not processed");
+    return currentState;
+  }
+
   public @NonNull WebRtcServiceState handleNetworkChanged(@NonNull WebRtcServiceState currentState, boolean available) {
     Log.i(tag, "handleNetworkChanged not processed");
     return currentState;
@@ -627,6 +632,18 @@ public abstract class WebRtcActionProcessor {
                        .setOrientation(Orientation.fromDegrees(stateRotationDegrees))
                        .setLandscapeEnabled(isLandscapeEnabled)
                        .setDeviceOrientation(Orientation.fromDegrees(orientationDegrees))
+                       .build();
+  }
+
+  protected @NonNull WebRtcServiceState handleSetCameraDirection(@NonNull WebRtcServiceState currentState, CameraState state) {
+    BroadcastVideoSink sink = currentState.getVideoState().getLocalSink();
+    if (sink != null) {
+      sink.setRotateToRightSide(state.getActiveDirection() == CameraState.Direction.BACK);
+    }
+
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .cameraState(state)
                        .build();
   }
 
