@@ -132,8 +132,6 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.retry(defaultBackoff())
     }
 
-    val mediaSecrets = mediaRootBackupKey.deriveMediaSecrets(attachment.requireThumbnailMediaName())
-
     return when (val result = BackupRepository.copyThumbnailToArchive(attachmentPointer, attachment)) {
       is NetworkResult.Success -> {
         // save attachment thumbnail

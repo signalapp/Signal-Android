@@ -15,6 +15,7 @@ import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
+import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
@@ -257,7 +258,7 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
   class ArchiveMediaItem(
     val mediaId: String,
     val thumbnailMediaId: String,
-    val cdn: Int,
+    val cdn: Int?,
     val digest: ByteArray
   )
 
@@ -268,7 +269,7 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
 
   class MediaEntry(
     val mediaId: String,
-    val cdn: Int,
+    val cdn: Int?,
     val digest: ByteArray,
     val isThumbnail: Boolean
   ) {
@@ -276,7 +277,7 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
       fun fromCursor(cursor: Cursor): MediaEntry {
         return MediaEntry(
           mediaId = cursor.requireNonNullString(MEDIA_ID),
-          cdn = cursor.requireInt(CDN),
+          cdn = cursor.requireIntOrNull(CDN),
           digest = cursor.requireNonNullBlob(REMOTE_DIGEST),
           isThumbnail = cursor.requireBoolean(IS_THUMBNAIL)
         )

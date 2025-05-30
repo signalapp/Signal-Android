@@ -54,6 +54,7 @@ import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
+import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
@@ -264,7 +265,7 @@ class AttachmentTable(
         $UPLOAD_TIMESTAMP INTEGER DEFAULT 0,
         $DATA_HASH_START TEXT DEFAULT NULL,
         $DATA_HASH_END TEXT DEFAULT NULL,
-        $ARCHIVE_CDN INTEGER DEFAULT 0,
+        $ARCHIVE_CDN INTEGER DEFAULT NULL,
         $ARCHIVE_TRANSFER_FILE TEXT DEFAULT NULL,
         $ARCHIVE_TRANSFER_STATE INTEGER DEFAULT ${ArchiveTransferState.NONE.value},
         $THUMBNAIL_FILE TEXT DEFAULT NULL,
@@ -705,7 +706,7 @@ class AttachmentTable(
       .update(TABLE_NAME)
       .values(
         ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
-        ARCHIVE_CDN to 0
+        ARCHIVE_CDN to null
       )
       .where("$REMOTE_DIGEST = ?", digest)
       .run()
@@ -1977,7 +1978,7 @@ class AttachmentTable(
               displayOrder = jsonObject.getInt(DISPLAY_ORDER),
               uploadTimestamp = jsonObject.getLong(UPLOAD_TIMESTAMP),
               dataHash = jsonObject.getString(DATA_HASH_END),
-              archiveCdn = jsonObject.getInt(ARCHIVE_CDN),
+              archiveCdn = if (jsonObject.isNull(ARCHIVE_CDN)) null else jsonObject.getInt(ARCHIVE_CDN),
               thumbnailRestoreState = ThumbnailRestoreState.deserialize(jsonObject.getInt(THUMBNAIL_RESTORE_STATE)),
               archiveTransferState = ArchiveTransferState.deserialize(jsonObject.getInt(ARCHIVE_TRANSFER_STATE)),
               uuid = UuidUtil.parseOrNull(jsonObject.getString(ATTACHMENT_UUID))
@@ -2064,7 +2065,7 @@ class AttachmentTable(
         writableDatabase
           .update(TABLE_NAME)
           .values(
-            ARCHIVE_CDN to 0
+            ARCHIVE_CDN to null
           )
           .where(query.where, query.whereArgs)
           .run()
@@ -2075,7 +2076,7 @@ class AttachmentTable(
     writableDatabase
       .updateAll(TABLE_NAME)
       .values(
-        ARCHIVE_CDN to 0,
+        ARCHIVE_CDN to null,
         ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value
       )
       .run()
@@ -2630,7 +2631,7 @@ class AttachmentTable(
       displayOrder = cursor.requireInt(DISPLAY_ORDER),
       uploadTimestamp = cursor.requireLong(UPLOAD_TIMESTAMP),
       dataHash = cursor.requireString(DATA_HASH_END),
-      archiveCdn = cursor.requireInt(ARCHIVE_CDN),
+      archiveCdn = cursor.requireIntOrNull(ARCHIVE_CDN),
       thumbnailRestoreState = ThumbnailRestoreState.deserialize(cursor.requireInt(THUMBNAIL_RESTORE_STATE)),
       archiveTransferState = ArchiveTransferState.deserialize(cursor.requireInt(ARCHIVE_TRANSFER_STATE)),
       uuid = UuidUtil.parseOrNull(cursor.requireString(ATTACHMENT_UUID))
@@ -2658,7 +2659,7 @@ class AttachmentTable(
       hashEnd = this.requireString(DATA_HASH_END),
       transformProperties = TransformProperties.parse(this.requireString(TRANSFORM_PROPERTIES)),
       uploadTimestamp = this.requireLong(UPLOAD_TIMESTAMP),
-      archiveCdn = this.requireInt(ARCHIVE_CDN),
+      archiveCdn = this.requireIntOrNull(ARCHIVE_CDN),
       archiveTransferState = this.requireInt(ARCHIVE_TRANSFER_STATE),
       thumbnailFile = this.requireString(THUMBNAIL_FILE),
       thumbnailRandom = this.requireBlob(THUMBNAIL_RANDOM),
@@ -2726,7 +2727,7 @@ class AttachmentTable(
     val hashEnd: String?,
     val transformProperties: TransformProperties,
     val uploadTimestamp: Long,
-    val archiveCdn: Int,
+    val archiveCdn: Int?,
     val archiveTransferState: Int,
     val thumbnailFile: String?,
     val thumbnailRandom: ByteArray?,

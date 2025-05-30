@@ -9,7 +9,9 @@ import android.text.TextUtils
 import org.signal.core.util.Base64
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -20,6 +22,7 @@ import java.util.Optional
 object DatabaseAttachmentArchiveUtil {
   @JvmStatic
   fun requireMediaName(attachment: DatabaseAttachment): MediaName {
+    require(isDigestValidated(attachment))
     return MediaName.fromDigest(attachment.remoteDigest!!)
   }
 
@@ -28,17 +31,34 @@ object DatabaseAttachmentArchiveUtil {
    */
   @JvmStatic
   fun requireMediaNameAsString(attachment: DatabaseAttachment): String {
+    require(isDigestValidated(attachment))
     return MediaName.fromDigest(attachment.remoteDigest!!).name
   }
 
   @JvmStatic
   fun getMediaName(attachment: DatabaseAttachment): MediaName? {
-    return attachment.remoteDigest?.let { MediaName.fromDigest(it) }
+    return if (isDigestValidated(attachment)) {
+      attachment.remoteDigest?.let { MediaName.fromDigest(it) }
+    } else {
+      null
+    }
   }
 
   @JvmStatic
   fun requireThumbnailMediaName(attachment: DatabaseAttachment): MediaName {
+    require(isDigestValidated(attachment))
     return MediaName.fromDigestForThumbnail(attachment.remoteDigest!!)
+  }
+
+  private fun isDigestValidated(attachment: DatabaseAttachment): Boolean {
+    return when (attachment.transferState) {
+      AttachmentTable.TRANSFER_PROGRESS_DONE,
+      AttachmentTable.TRANSFER_NEEDS_RESTORE,
+      AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS,
+      AttachmentTable.TRANSFER_RESTORE_OFFLOADED -> true
+
+      else -> false
+    }
   }
 }
 
@@ -77,7 +97,7 @@ fun DatabaseAttachment.createArchiveAttachmentPointer(useArchiveCdn: Boolean): S
         mediaId = this.requireMediaName().toMediaId(mediaRootBackupKey).encode()
       )
 
-      id to archiveCdn
+      id to (archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn)
     } else {
       if (remoteLocation.isNullOrEmpty()) {
         throw InvalidAttachmentException("empty content id")
@@ -131,7 +151,7 @@ fun DatabaseAttachment.createArchiveThumbnailPointer(): SignalServiceAttachmentP
     val key = mediaRootBackupKey.deriveThumbnailTransitKey(requireThumbnailMediaName())
     val mediaId = mediaRootBackupKey.deriveMediaId(requireThumbnailMediaName()).encode()
     SignalServiceAttachmentPointer(
-      cdnNumber = archiveCdn,
+      cdnNumber = archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn,
       remoteId = SignalServiceAttachmentRemoteId.Backup(
         mediaCdnPath = mediaCdnPath,
         mediaId = mediaId

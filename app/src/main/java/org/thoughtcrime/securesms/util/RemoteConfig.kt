@@ -982,6 +982,13 @@ object RemoteConfig {
     BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
   }
 
+  val backupFallbackArchiveCdn: Int by remoteInt(
+    key = "global.backups.mediaTierFallbackCdnNumber",
+    hotSwappable = true,
+    active = true,
+    defaultValue = 3
+  )
+
   /** Whether unauthenticated chat web socket is backed by libsignal-net  */
   @JvmStatic
   @get:JvmName("libSignalWebSocketEnabled")

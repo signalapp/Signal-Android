@@ -26,7 +26,7 @@ import org.signal.core.util.getAllTableDefinitions
 import org.signal.core.util.getAllTriggerDefinitions
 import org.signal.core.util.getForeignKeyViolations
 import org.signal.core.util.logging.Log
-import org.signal.core.util.requireInt
+import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.urlEncode
@@ -1637,11 +1637,9 @@ sealed class ImportResult {
 }
 
 /**
- * Iterator that reads values from the given cursor. Expects that ARCHIVE_MEDIA_ID and ARCHIVE_CDN are both
- * present and non-null in the cursor.
+ * Iterator that reads values from the given cursor. Expects that REMOTE_DIGEST is present and non-null, and ARCHIVE_CDN is present.
  *
  * This class does not assume ownership of the cursor. Recommended usage is within a use statement:
- *
  *
  * ```
  * databaseCall().use { cursor ->
@@ -1661,7 +1659,7 @@ class ArchiveMediaItemIterator(private val cursor: Cursor) : Iterator<ArchiveMed
 
   override fun next(): ArchiveMediaItem {
     val digest = cursor.requireNonNullBlob(AttachmentTable.REMOTE_DIGEST)
-    val cdn = cursor.requireInt(AttachmentTable.ARCHIVE_CDN)
+    val cdn = cursor.requireIntOrNull(AttachmentTable.ARCHIVE_CDN)
 
     val mediaId = MediaName.fromDigest(digest).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
     val thumbnailMediaId = MediaName.fromDigestForThumbnail(digest).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
