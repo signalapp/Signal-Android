@@ -208,7 +208,7 @@
 
     <fragment
         android:id="@+id/advancedPinSettingsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.privacy.advanced.AdvancedPrivacySettingsFragment"
+        android:name="org.thoughtcrime.securesms.preferences.AdvancedPinPreferenceFragment"
         android:label="advanced_pin_settings_fragment" />
 
     <fragment
