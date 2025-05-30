@@ -67,10 +67,6 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
@@ -79,11 +75,11 @@ import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.compose.Tooltips
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
-import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSmall
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.rememberRecipientField
 
 interface MainToolbarCallback {
   fun onNewGroupClick()
@@ -353,16 +349,7 @@ private fun PrimaryToolbar(
             }
         )
 
-        var badge by remember { mutableStateOf<Badge?>(null) }
-        LaunchedEffect(state.self.id) {
-          Recipient.observable(state.self.id)
-            .asFlow()
-            .map { it.featuredBadge }
-            .distinctUntilChanged()
-            .collectLatest {
-              badge = it
-            }
-        }
+        val badge by rememberRecipientField(state.self) { featuredBadge }
 
         BadgeImageSmall(
           badge = badge,
