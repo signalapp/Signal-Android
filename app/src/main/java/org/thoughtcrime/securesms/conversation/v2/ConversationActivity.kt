@@ -11,6 +11,7 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.Log.tag
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
@@ -18,6 +19,8 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePay
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.jobs.ConversationShortcutUpdateJob
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.ConfigurationUtil
 import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
@@ -50,6 +53,21 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    if (SignalStore.internal.largeScreenUi) {
+      startActivity(
+        MainActivity.clearTop(this).apply {
+          action = ConversationIntents.ACTION
+          putExtras(intent)
+        }
+      )
+
+      if (!ConversationIntents.isConversationIntent(intent)) {
+        ConversationShortcutUpdateJob.enqueue()
+      }
+
+      finish()
+    }
+
     enableSavedStateHandles()
     supportPostponeEnterTransition()
     transitionDebouncer.publish { supportStartPostponedEnterTransition() }

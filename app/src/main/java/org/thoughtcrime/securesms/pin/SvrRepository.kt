@@ -44,6 +44,7 @@ object SvrRepository {
 
   val TAG = Log.tag(SvrRepository::class.java)
 
+  private val svr2Legacy: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE_LEGACY)
   private val svr2: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
   private val svr3: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork)
 
@@ -51,7 +52,7 @@ object SvrRepository {
   private val readImplementations: List<SecureValueRecovery> = if (Svr3Migration.shouldReadFromSvr3) {
     listOf(svr3, svr2)
   } else {
-    listOf(svr2)
+    listOf(svr2, svr2Legacy)
   }
 
   /** An ordered list of SVR implementations to write to. They should be in priority order, with the most important one listed first. */
@@ -63,6 +64,7 @@ object SvrRepository {
       }
       if (Svr3Migration.shouldWriteToSvr2) {
         implementations += svr2
+        implementations += svr2Legacy
       }
       return implementations
     }
@@ -99,7 +101,8 @@ object SvrRepository {
         )
       } else {
         listOf(
-          svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) }
+          svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) },
+          svr2Legacy to { restoreMasterKeyPreRegistrationFromV2(svr2Legacy, credentials.svr2, userPin) }
         )
       }
 
@@ -359,7 +362,7 @@ object SvrRepository {
   @Throws(IOException::class)
   fun enableRegistrationLockForUserWithPin() {
     operationLock.withLock {
-      check(SignalStore.svr.hasOptedInWithAccess() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to set a registration lock!" }
+      check(SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to set a registration lock!" }
 
       Log.i(TAG, "[enableRegistrationLockForUserWithPin] Enabling registration lock.", true)
       NetworkResultUtil.toBasicLegacy(SignalNetwork.account.enableRegistrationLock(SignalStore.svr.masterKey.deriveRegistrationLock()))
@@ -373,7 +376,7 @@ object SvrRepository {
   @Throws(IOException::class)
   fun disableRegistrationLockForUserWithPin() {
     operationLock.withLock {
-      check(SignalStore.svr.hasOptedInWithAccess() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to disable registration lock!" }
+      check(SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut()) { "Must have a PIN to disable registration lock!" }
 
       Log.i(TAG, "[disableRegistrationLockForUserWithPin] Disabling registration lock.", true)
       NetworkResultUtil.toBasicLegacy(SignalNetwork.account.disableRegistrationLock())
@@ -403,7 +406,7 @@ object SvrRepository {
         false
       }
 
-      if (newToken && SignalStore.svr.hasOptedInWithAccess()) {
+      if (newToken && SignalStore.svr.hasPin()) {
         BackupManager(AppDependencies.application).dataChanged()
       }
     } catch (e: Throwable) {
@@ -464,7 +467,7 @@ object SvrRepository {
   private val hasNoRegistrationLock: Boolean
     get() {
       return !SignalStore.svr.isRegistrationLockEnabled &&
-        !SignalStore.svr.hasOptedInWithAccess() &&
+        !SignalStore.svr.hasPin() &&
         !SignalStore.svr.hasOptedOut()
     }
 }

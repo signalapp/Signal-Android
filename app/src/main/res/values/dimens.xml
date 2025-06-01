@@ -107,8 +107,6 @@
     <dimen name="sticker_page_item_padding">16dp</dimen>
     <dimen name="sticker_page_item_width">72dp</dimen>
 
-    <dimen name="sticker_management_horizontal_margin">16dp</dimen>
-
     <dimen name="sticker_preview_sticker_size">96dp</dimen>
     <dimen name="sticker_preview_gutter_size">16dp</dimen>
 

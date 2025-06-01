@@ -165,8 +165,8 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
 
   @Throws(IOException::class, RetryLaterException::class, UntrustedIdentityException::class)
   override fun onRun() {
-    if (!SignalStore.svr.hasOptedInWithAccess() && !SignalStore.svr.hasOptedOut()) {
-      Log.i(TAG, "Doesn't have a PIN. Skipping.")
+    if (!(SignalStore.svr.hasPin() || SignalStore.account.restoredAccountEntropyPool) && !SignalStore.svr.hasOptedOut()) {
+      Log.i(TAG, "Doesn't have access to storage service. Skipping.")
       return
     }
 

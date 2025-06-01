@@ -150,7 +150,7 @@
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">المستخدمون المحظورون</string>
-    <string name="BlockedUsersActivity__add_blocked_user">احظُرأحد المُستخدِمين</string>
+    <string name="BlockedUsersActivity__add_blocked_user">احظُر أحد المُستخدِمين</string>
     <string name="BlockedUsersActivity__cannot_block_yourself">لا يُمكنك حظر نفسك</string>
     <string name="BlockedUsersActivity__blocked_users_will">لن يتمكن المستخدم المحظور من الاتصال بك ولا إرسال الرسائل إليك.</string>
     <string name="BlockedUsersActivity__no_blocked_users">لا يوجد مستخدمون محظورون</string>
@@ -194,7 +194,7 @@
 
     <!-- OneTimeDonationPreference -->
     <!-- Preference title with placeholder for amount. -->
-    <string name="OneTimeDonationPreference__one_time_s">%1$s مرّة واحدة</string>
+    <string name="OneTimeDonationPreference__one_time_s">%1$s لمرّة واحدة</string>
     <!-- Preference subtitle when donation is pending -->
     <string name="OneTimeDonationPreference__donation_pending">التبرّع مُعلَّق</string>
     <!-- Preference subtitle when donation is processing -->
@@ -216,7 +216,7 @@
     <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">حظر الحصول على آخر الأخبار والتحديثات من سيجنال.</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
     <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">استئناف الحصول على آخر الأخبار والتحديثات من سيجنال.</string>
-    <string name="BlockUnblockDialog_unblock_s">أترغبُ برفع الحظر عن %1$s؟</string>
+    <string name="BlockUnblockDialog_unblock_s">هل ترغبُ برفع الحظر عن %1$s؟</string>
     <string name="BlockUnblockDialog_block">حظر</string>
     <string name="BlockUnblockDialog_block_and_leave">حظر ومغادرة</string>
     <!-- Dialog button label to report as spam and block the person -->
@@ -417,8 +417,8 @@
     <string name="ConversationItem_error_network_not_delivered">فشل الإرسال.</string>
     <string name="ConversationItem_group_action_left">غادر المستخدم %1$s المجموعة.</string>
     <string name="ConversationItem_send_paused">الإرسال متوقف مؤقتًا</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">أترغبُ بالعودة إلى الرسائل القصيرة غير المُشفّرَة؟</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">أترغبُ بالعودة إلى وسائط متعددة غير مُشفّرَة؟</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">هل ترغبُ بالعودة إلى الرسائل القصيرة غير المُشفَّرة؟</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">هل ترغبُ بالعودة إلى وسائط متعددة غير مُشفَّرة؟</string>
     <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">هذه الرسالة ستكون <b>غير</b> مُشفَّرة لأن المستلم لم يعد مستخدمًا ‏لسيجنال‏ .\n\nهل لديك الرغبة في إرسالها غير آمنة؟</string>
     <string name="ConversationItem_unable_to_open_media">لم يتم العثور على تطبيق قادر على فتح الملف.</string>
     <string name="ConversationItem_copied_text">تم نسخ %1$s</string>
@@ -534,8 +534,8 @@
     <string name="ConversationActivity_new_say_it_with_stickers">جديد! عبَّر عمّا تحب بالمُلصقَات</string>
 
     <string name="ConversationActivity_cancel">إلغاء</string>
-    <string name="ConversationActivity_delete_conversation">أترغبُ بحذف الدردشة؟</string>
-    <string name="ConversationActivity_delete_and_leave_group">أترغبُ بالحذف ثم مغادرة المجموعة؟</string>
+    <string name="ConversationActivity_delete_conversation">هل ترغبُ بحذف الدردشة؟</string>
+    <string name="ConversationActivity_delete_and_leave_group">هل ترغبُ بالحذف ثم مغادرة المجموعة؟</string>
     <string name="ConversationActivity_this_conversation_will_be_deleted_from_all_of_your_devices">ستُحذَف هذه الدردشة من جميع أجهزتك.</string>
     <string name="ConversationActivity_you_will_leave_this_group_and_it_will_be_deleted_from_all_of_your_devices">سَتغادر هذه المجموعة، ثم ستُحذَف من كل أجهزتك.</string>
     <string name="ConversationActivity_delete">حذف</string>
@@ -565,6 +565,8 @@
     <string name="ConversationActivity__invite_to_signal">اُدْعُ إلى سيجنال</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">سنُذكّرك مرة أخرى قريبًا.</string>
+    <!-- Toast message shown when trying to record a voice message during an ongoing call -->
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">لا يُمكن تسجيل رسالة صوتية خلال المكالمة.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">إرسال نص بتنسيق مُعيَّن</string>
@@ -589,14 +591,14 @@
     <!-- Toast text when contacts activity is not found -->
     <string name="ConversationFragment__contacts_app_not_found">لم يتم العثور على تطبيق جهات الاتصال.</string>
     <plurals name="ConversationFragment_delete_selected_messages">
-        <item quantity="zero">أترغبُ بحذف الرسائل المُحدَّدة؟</item>
-        <item quantity="one">أترغبُ بحذف الرسالة المُحدَّدة؟</item>
-        <item quantity="two">أترغبُ بحذف الرسالتين المُحدَّدتين؟</item>
-        <item quantity="few">أترغبُ بحذف الرسائل المُحدَّدة؟</item>
-        <item quantity="many">أترغبُ بحذف الرسائل المُحدَّدة؟</item>
-        <item quantity="other">أترغبُ بحذف الرسائل المُحدَّدة؟</item>
+        <item quantity="zero">هل ترغبُ بحذف الرسائل المُحدَّدة؟</item>
+        <item quantity="one">هل ترغبُ بحذف الرسالة المُحدَّدة؟</item>
+        <item quantity="two">هل ترغبُ بحذف الرسالتين المُحدَّدتين؟</item>
+        <item quantity="few">هل ترغبُ بحذف الرسائل المُحدَّدة؟</item>
+        <item quantity="many">هل ترغبُ بحذف الرسائل المُحدَّدة؟</item>
+        <item quantity="other">هل ترغبُ بحذف الرسائل المُحدَّدة؟</item>
     </plurals>
-    <string name="ConversationFragment_save_to_sd_card">أترغبُ بالحفظ في الذاكرة؟</string>
+    <string name="ConversationFragment_save_to_sd_card">هل ترغبُ بالحفظ في الذاكرة؟</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
         <item quantity="zero">إن حفظ أي ملف متعدد الوسائط في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
         <item quantity="one">إن حفظ ملف متعدد الوسائط هذا في سعة التخزين سَيسمح لأي تطبيق آخر على جهازك بالوصول إليه.\n\n استمرار؟</item>
@@ -724,7 +726,7 @@
     <!-- Title of tip 0 -->
     <string name="SafetyTips_tip0_title">الأسماء والحسابات المُزيَّفة</string>
     <!-- Message of tip 0 -->
-    <string name="SafetyTips_tip0_message">لن يَطلب سيجنال منك أبدًا كود التسجيل أو رقم التعريف الشخصي (PIN). كُن حذرًا من الطلبات التي تنتحل شخصية الآخرين. يقوم أصحاب الحسابات بتحديد أسماء حساباتهم الشخصية، وهي غير خاضعة لعملية التحقُّق.</string>
+    <string name="SafetyTips_tip0_message">لن يَطلب سيجنال منك أبدًا كود التسجيل أو رقم التعريف الشخصي (PIN). كُن حذرًا من الطلبات التي تنتحل شخصية الآخرين. يتم تعيين أسماء الحسابات الشخصية من قبل أصحابها، وهي غير خاضعة لعملية التحقُّق.</string>
     <!-- Title of tip 1 -->
     <string name="SafetyTips_tip1_title">عمليات الاحتيال المالية أو من خلال العملات المشفرة</string>
     <!-- Message of tip 1 -->
@@ -762,12 +764,12 @@
     <!-- Notice on chat list when no unread chats are available, centered on display -->
     <string name="ConversationListFragment__no_unread_chats">لا توجد دردشات غير مقروءة</string>
     <plurals name="ConversationListFragment_delete_selected_conversations">
-        <item quantity="zero">أترغبُ بحذف الدردشات المُحدّدة؟</item>
-        <item quantity="one">أترغبُ بحذف الدردشة المُحدّدة؟</item>
-        <item quantity="two">أترغبُ بحذف الدردشتين المُحدّدتين؟</item>
-        <item quantity="few">أترغبُ بحذف الدردشات المُحدّدة؟</item>
-        <item quantity="many">أترغبُ بحذف الدردشات المُحدّدة؟</item>
-        <item quantity="other">أترغبُ بحذف الدردشات المُحدّدة؟</item>
+        <item quantity="zero">هل ترغبُ بحذف الدردشات المُحدّدة؟</item>
+        <item quantity="one">هل ترغبُ بحذف الدردشة المُحدّدة؟</item>
+        <item quantity="two">هل ترغبُ بحذف الدردشتين المُحدّدتين؟</item>
+        <item quantity="few">هل ترغبُ بحذف الدردشات المُحدّدة؟</item>
+        <item quantity="many">هل ترغبُ بحذف الدردشات المُحدّدة؟</item>
+        <item quantity="other">هل ترغبُ بحذف الدردشات المُحدّدة؟</item>
     </plurals>
     <plurals name="ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations">
         <item quantity="zero">سيؤدي هذا إلى حذف %1$d دردشات مختارة بشكل نهائي.</item>
@@ -922,7 +924,7 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">لن يتمكّن أي أحد من رؤيتك على سيجنال إلّا إذا راسلته أو كانت لديك دردشة موجودة معه.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">أترغبُ بالاستعادة مِن نسخة احتياطية؟</string>
+    <string name="ChooseBackupFragment__restore_from_backup">هل ترغبُ بالاستعادة مِن نسخة احتياطية؟</string>
     <string name="ChooseBackupFragment__restore_your_messages_and_media">استعِد الرسائل والوسائط الخاصة بك من نسخة احتياطية محلية. إن لم تقم باستعادتها الآن، لن يكون بإمكانك ذلك لاحقًا.</string>
     <string name="ChooseBackupFragment__icon_content_description">الاستعادة من أيقونة النسخة الاحتياطية</string>
     <string name="ChooseBackupFragment__choose_backup">اختيار النسخة الاحتياطية</string>
@@ -1086,7 +1088,7 @@
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_delete_dialog_action">حذف</string>
     <!-- Button in dialog asking user if they are sure they want to delete the selected scheduled message -->
-    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">أترغبُ بحذف الرسالة المُجدولة المُحَدّدة؟</string>
+    <string name="ScheduledMessagesBottomSheet_delete_dialog_message">هل ترغبُ بحذف الرسالة المُجدولة المُحَدَّدة؟</string>
     <!-- Progress message shown while deleting selected scheduled message -->
     <string name="ScheduledMessagesBottomSheet_deleting_progress_message">جارٍ حذف الرسالة المُجدولة…</string>
 
@@ -1227,7 +1229,7 @@
     <string name="NewLinkedDeviceNotification__a_new_device_was_linked">تمَّ ربط جهاز جديد بِحسابك %1$s. انقر للمشاهدة.</string>
 
     <!-- DeviceListActivity -->
-    <string name="DeviceListActivity_unlink_s">أترغبُ بفصل الربط بـ \"%1$s\"؟</string>
+    <string name="DeviceListActivity_unlink_s">هل ترغبُ بفصل الربط بـ \"%1$s\"؟</string>
     <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">لن يكون إرسال واستقبال الرسائل مُمكِنًا بمُجرَّد إلغاء ربط الجهاز.</string>
     <string name="DeviceListActivity_network_connection_failed">فَشِلَ الاتصال بالشبكة</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
@@ -1276,8 +1278,8 @@
     <!-- GiphyFragmentPageAdapter -->
 
     <!-- AddToGroupActivity -->
-    <string name="AddToGroupActivity_add_member">أترغبُ بإضافة عضو؟</string>
-    <string name="AddToGroupActivity_add_s_to_s">أترغبُ بإضافة \"%1$s\" إلى \"%2$s\"؟</string>
+    <string name="AddToGroupActivity_add_member">هل ترغبُ بإضافة عضو؟</string>
+    <string name="AddToGroupActivity_add_s_to_s">هل ترغبُ بإضافة \"%1$s\" إلى \"%2$s\"؟</string>
     <string name="AddToGroupActivity_s_added_to_s">تمَّت إضافة %1$s إلى %2$s.</string>
     <string name="AddToGroupActivity_add_to_group">أضِف إلى مجموعة</string>
     <string name="AddToGroupActivity_add_to_groups">أضِف إلى مجموعات</string>
@@ -1388,12 +1390,12 @@
 
     <!-- GroupsV1MigrationSuggestionsDialog -->
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
-        <item quantity="zero">أترغب بإضافة أعضاء؟</item>
-        <item quantity="one">أترغب بإضافة عضو واحد؟</item>
-        <item quantity="two">أترغب بإضافة عضوين؟</item>
-        <item quantity="few">أترغب بإضافة أعضاء؟</item>
-        <item quantity="many">أترغب بإضافة أعضاء؟</item>
-        <item quantity="other">أترغب بإضافة أعضاء؟</item>
+        <item quantity="zero">هل ترغبُ بإضافة أعضاء؟</item>
+        <item quantity="one">هل ترغبُ بإضافة عضو واحد؟</item>
+        <item quantity="two">هل ترغبُ بإضافة عضوين؟</item>
+        <item quantity="few">هل ترغبُ بإضافة أعضاء؟</item>
+        <item quantity="many">هل ترغبُ بإضافة أعضاء؟</item>
+        <item quantity="other">هل ترغبُ بإضافة أعضاء؟</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
         <item quantity="zero">لا يمكن إضافة هذا العضو تلقائيًا إلى المجموعة الجديدة عندما تمت ترقيتها:</item>
@@ -1554,7 +1556,7 @@
     <string name="AddGroupDetailsFragment__try_again_later">حاوِل مرّة أخرى لاحقًا.</string>
     <string name="AddGroupDetailsFragment__remove">إزالة</string>
     <string name="AddGroupDetailsFragment__sms_contact">جهة اتصال عبر الرسائل القصيرة (SMS)</string>
-    <string name="AddGroupDetailsFragment__remove_s_from_this_group">أترغبُ بإزالة %1$s من هذه المجموعة؟</string>
+    <string name="AddGroupDetailsFragment__remove_s_from_this_group">هل ترغبُ بإزالة %1$s من هذه المجموعة؟</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">حدّدتَ جهة اتصال لا تدعم مجموعات سيجنال، لذلك ستُحوّل هذه المجموعة إلى رسائل الوسائط المتعددة المخصصة (MMS). ستكون أسماء وصور مجموعة رسائل الوسائط المتعددة المخصصة (MMS) مرئية لك فقط.</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group after SMS Phase 0 -->
@@ -1638,7 +1640,7 @@
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
-    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">أترغبُ بتلقِّي الإشعارات عندما يُذكَر اسمك في الدردشات المكتومة؟</string>
+    <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">هل ترغبُ بتلقِّي الإشعارات عندما يُذكَر اسمك في الدردشات المكتومة؟</string>
     <string name="GroupMentionSettingDialog_always_notify_me">نبِّهني دومًا</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">لا تنبّهني</string>
 
@@ -1668,7 +1670,7 @@
     <!-- Snackbar message after successful deletion of username -->
     <string name="ManageProfileFragment__username_deleted">تمَّ حذف اسم المُستخدم</string>
     <!-- The title of a pop-up dialog asking the user to confirm deleting their username -->
-    <string name="ManageProfileFragment__delete_username_dialog_title">أترغبُ بحذف اسم المُستخدم؟</string>
+    <string name="ManageProfileFragment__delete_username_dialog_title">هل ترغبُ بحذف اسم المُستخدِم؟</string>
     <!-- The body of a pop-up dialog asking the user to confirm deleting their username -->
     <string name="ManageProfileFragment__delete_username_dialog_body">"سيُؤدي هذا إلى إزالة اسم المُستخدم الخاص بك وتعطيل كود الـ QR والرابط الخاصين بك. \"%1$s\" سيُصبح متاحًا للآخرين ليستفيدوا منه. هل أنت متأكد؟"</string>
 
@@ -1789,10 +1791,10 @@
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">لستَ عضوًا في المجموعة حاليًا.</string>
 
     <!-- GV2 Request confirmation dialog -->
-    <string name="RequestConfirmationDialog_add_s_to_the_group">أترغبُ بإضافة \"%1$s\" إلى المجموعة؟</string>
-    <string name="RequestConfirmationDialog_deny_request_from_s">أترغبُ برفض طلب \"%1$s\"؟</string>
+    <string name="RequestConfirmationDialog_add_s_to_the_group">هل ترغبُ بإضافة \"%1$s\" إلى المجموعة؟</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s">هل ترغبُ برفض طلب \"%1$s\"؟</string>
     <!-- Confirm dialog message shown when deny a group link join request and group link is enabled. -->
-    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">أترغبُ برفض طلب انضمام المستخدم \"%1$s\"؟ لن يتمكن المُستخدم من إرسال طلب الانضمام مرّة أخرى بواسطة رابط للمجموعة.</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">هل ترغبُ برفض طلب انضمام المُستخدِم \"%1$s\"؟ لن يتمكن المُستخدِم من إرسال طلب الانضمام مرّة أخرى بواسطة رابط للمجموعة.</string>
     <string name="RequestConfirmationDialog_add">إضافة</string>
     <string name="RequestConfirmationDialog_deny">رفض</string>
 
@@ -1807,7 +1809,7 @@
     <!-- When editing a message, label shown above the text input field in the composer -->
     <string name="InputPanel_edit_message">تعديل الرسالة</string>
     <!-- Dialog title shown if users are about to discard their draft message -->
-    <string name="InputPanel__discard_draft">أترغبُ بتجاهل المسودّة؟</string>
+    <string name="InputPanel__discard_draft">هل ترغبُ بتجاهل المسودّة؟</string>
     <!-- Dialog message explaining their action cannot be reversed -->
     <string name="InputPanel__this_action_cant_be_undone">لا يُمكن التراجُع عن هذا الإجراء.</string>
     <!-- Button inside an alert dialog confirming the deletion of their draft -->
@@ -1855,12 +1857,12 @@
     <string name="MediaOverviewActivity_Audio">ملفات الصوت</string>
     <string name="MediaOverviewActivity_All">الجميع</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
-        <item quantity="zero">أترغبُ بحذف العنصر المُحدَّد؟</item>
-        <item quantity="one">أترغبُ بحذف العنصر المُحدَّد؟</item>
-        <item quantity="two">أترغبُ بحذف العنصرين المُحدَّدين؟</item>
-        <item quantity="few">أترغبُ بحذف العناصر المُحدَّدة؟</item>
-        <item quantity="many">أترغبُ بحذف العناصر المُحدَّدة؟</item>
-        <item quantity="other">أترغبُ بحذف العناصر المُحدَّدة؟</item>
+        <item quantity="zero">هل ترغبُ بحذف العنصر المُحدَّد؟</item>
+        <item quantity="one">هل ترغبُ بحذف العنصر المُحدَّد؟</item>
+        <item quantity="two">هل ترغبُ بحذف العنصرين المُحدَّدين؟</item>
+        <item quantity="few">هل ترغبُ بحذف العناصر المُحدَّدة؟</item>
+        <item quantity="many">هل ترغبُ بحذف العناصر المُحدَّدة؟</item>
+        <item quantity="other">هل ترغبُ بحذف العناصر المُحدَّدة؟</item>
     </plurals>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_message">
         <item quantity="zero">هذا سيحذف جميع الـ %1$d ملف التي تمّ اختياره. سيتم حذف أيضًا أي رسالة نصية ذات صلة بهذه العناصر.</item>
@@ -1951,7 +1953,7 @@
     <string name="NotificationBarManager__cancel_call">إلغاء المكالمة</string>
 
     <!-- NotificationsMegaphone -->
-    <string name="NotificationsMegaphone_turn_on_notifications">أترغبُ بتفعيل الإشعارات؟</string>
+    <string name="NotificationsMegaphone_turn_on_notifications">هل ترغبُ بتفعيل الإشعارات؟</string>
     <string name="NotificationsMegaphone_never_miss_a_message">عدم تفويت أي رسالة من جهات اتصالك ومجموعاتك.</string>
     <string name="NotificationsMegaphone_turn_on">تشغيل</string>
     <string name="NotificationsMegaphone_not_now">ليس الآن</string>
@@ -2344,13 +2346,13 @@
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them_SMS">هل تود السماح لـ %1$s بإرسال رسالة لك؟ لن تتلقى أي رسالة منه حتى تُلغي حظرك له.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock the Signal release notes channel -->
-    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">أترغبُ بالحصول على الأخبار والتحديثات من %1$s؟ لن تصلك أي تحديثات حتى ترفع الحظر عنه.</string>
+    <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">هل ترغبُ بالحصول على الأخبار والتحديثات من %1$s؟ لن تصلك أي تحديثات حتى ترفع الحظر عنه.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">هل ترغبُ بمتابعة الدردشة مع هذه المجموعة ومُشاركة اسمك وصورتك مع أعضاءها؟</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">لم يعد ممكنًا استخدام هذه المجموعة ذات النمط القديم. أنشِئ مجموعة جديدة لتفعيل المزايا الجديدة مثل الإشارة بتاغ @mentions والمُشرِفين.</string>
     <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">لا يمكن استخدام هذه المجموعة ذات النمط السابق لأنها كبيرة جدًا. الحد الأقصى للمجموعة هو %1$d.</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">هل ترغبُ بمتابعة هذه الدردشة مع %1$s وهل ترغبُ بمشاركة اسمك وصورتك معه؟</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">أترغبُ بالانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن يعرفوا أنك قرأتَ رسائلهم حتى تقبل بذلك.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">أترغبُ بالانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن تظهر لك رسائلهم حتى تقبل بذلك.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">هل ترغبُ بالانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن يعرفوا أنك قرأتَ رسائلهم حتى تقبل بذلك.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">هل ترغبُ بالانضمام إلى هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن تظهر لك رسائلهم حتى تقبل بذلك.</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
     <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">هل ترغبُ بالانضمام إلى هذه المجموعة؟ لن يعرفوا أنك قرأت رسائلهم حتى تقبل بذلك.</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">هل ترغبُ بإزالة الحظر عن هذه المجموعة ومشاركة اسمك وصورتك مع أعضائها؟ لن تتلقَ أية رسائل حتى تُزيل الحظر عنها.</string>
@@ -2424,7 +2426,7 @@
     <!-- Alert dialog title to accept a message request -->
     <string name="MessageRequestBottomView_accept_request">هل ترغبُ بقبول الطلب؟</string>
     <!-- Alert dialog body to review the message request carefully -->
-    <string name="MessageRequestBottomView_review_requests_carefully">راجِع الطلبات بعناية. يقوم أصحاب الحسابات بتحديد أسماء حساباتهم الشخصية، وهي غير خاضعة لعملية التحقُّق.</string>
+    <string name="MessageRequestBottomView_review_requests_carefully">راجِع الطلبات بعناية. يتم تعيين أسماء الحسابات الشخصية من قبل أصحابها، وهي غير خاضعة لعملية التحقُّق.</string>
     <!-- Alert dialog title to accept a message request to join a group -->
     <string name="MessageRequestBottomView_join_group">هل ترغبُ بالانضمام إلى المجموعة؟</string>
     <!-- Alert dialog body to review the message request for a group carefully -->
@@ -2493,7 +2495,7 @@
 
     <!-- PinRestoreEntryFragment -->
     <string name="PinRestoreEntryFragment_incorrect_pin">رقم التعريف الشخصي (PIN) غير صحيح</string>
-    <string name="PinRestoreEntryFragment_skip_pin_entry">أترغبُ بتخطي إدخال رقم التعريف الشخصي (PIN)؟</string>
+    <string name="PinRestoreEntryFragment_skip_pin_entry">هل ترغبُ بتخطي إدخال رقم التعريف الشخصي (PIN)؟</string>
     <string name="PinRestoreEntryFragment_need_help">هل تحتاج لمُساعدة؟</string>
     <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">رقم التعريف الشخصي (PIN) الخاص بك هو سلسلة مكونة من %1$d حروف قد تكون أرقامًا فقط أو مزيج من الحروف والأرقام.\n\nإذا كُنتَ لا تتذكر رمز التعريف الشخصي الخاص بك، يمكنك إنشاء رمز جديد. يمكنك بعدها التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</string>
     <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">إذا كُنتَ لا تتذكر رقم التعريف الشخصي (PIN) الخاص بك، يمكنك إنشاء واحد جديد. يمكنك بعدها التسجيل واستخدام حسابك لكنك ستفقد بعض الإعدادات المحفوظة مثل معلومات حسابك الشخصي.</string>
@@ -2612,12 +2614,12 @@
     <string name="WebRtcCallActivity__not_now">ليس الآن</string>
     <!-- Title for dialog to approve all requests -->
     <plurals name="WebRtcCallActivity__approve_d_requests">
-        <item quantity="zero">أترغبُ بالموافقة على %1$d طلب؟</item>
-        <item quantity="one">أترغبُ بالموافقة على %1$d طلب؟</item>
-        <item quantity="two">أترغبُ بالموافقة على %1$d طلبين؟</item>
-        <item quantity="few">أترغبُ بالموافقة على %1$d طلباتٍ؟</item>
-        <item quantity="many">أترغبُ بالموافقة على %1$d طلبًا؟</item>
-        <item quantity="other">أترغبُ بالموافقة على %1$d طلب؟</item>
+        <item quantity="zero">هل ترغبُ بالموافقة على %1$d طلب؟</item>
+        <item quantity="one">هل ترغبُ بالموافقة على %1$d طلب؟</item>
+        <item quantity="two">هل ترغبُ بالموافقة على %1$d طلبين؟</item>
+        <item quantity="few">هل ترغبُ بالموافقة على %1$d طلباتٍ؟</item>
+        <item quantity="many">هل ترغبُ بالموافقة على %1$d طلبًا؟</item>
+        <item quantity="other">هل ترغبُ بالموافقة على %1$d طلب؟</item>
     </plurals>
     <!-- Positive action for call link approve all dialog -->
     <string name="WebRtcCallActivity__approve_all">الموافقة على الكل</string>
@@ -2632,12 +2634,12 @@
     </plurals>
     <!-- Title for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__deny_d_requests">
-        <item quantity="zero">أترغبُ برفض %1$d طلب؟</item>
-        <item quantity="one">أترغبُ برفض %1$d طلب؟</item>
-        <item quantity="two">أترغبُ برفض %1$d طلبين؟</item>
-        <item quantity="few">أترغبُ برفض %1$d طلبات؟</item>
-        <item quantity="many">أترغبُ برفض %1$d طلبًا؟</item>
-        <item quantity="other">أترغبُ برفض %1$d طلب؟</item>
+        <item quantity="zero">هل ترغبُ برفض %1$d طلب؟</item>
+        <item quantity="one">هل ترغبُ برفض %1$d طلب؟</item>
+        <item quantity="two">هل ترغبُ برفض %1$d طلبين؟</item>
+        <item quantity="few">هل ترغبُ برفض %1$d طلبات؟</item>
+        <item quantity="many">هل ترغبُ برفض %1$d طلبًا؟</item>
+        <item quantity="other">هل ترغبُ برفض %1$d طلب؟</item>
     </plurals>
     <!-- Message for dialog to deny all requests -->
     <plurals name="WebRtcCallActivity__d_people_will_not_be_added_to_the_call">
@@ -2791,6 +2793,15 @@
     <string name="WebRtcCallView__end_call">إنهاء المُكالمة</string>
     <!-- Content description for toggling group ring state -->
     <string name="WebRtcCallView__toggle_group_ringing">تفعيل الرنين للمجموعة</string>
+
+    <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s كتمَ صوتك.</string>
+    <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
+    <string name="WebRtcCallView__you_remotely_muted_s">كتمتَ صوت %1$s.</string>
+    <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s كتمَ صوت %2$s.</string>
+    <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
+    <string name="WebRtcCallView__you_muted_yourself">كتمتَ نفسك من جهاز آخر.</string>
 
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">حدث خطأ في واجهة المستخدم. يُرجى الإبلاغ عن هذا الخطأ للمطوِّرين.</string>
@@ -3139,18 +3150,26 @@
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s أعاد ضبط المحادثة الآمنة.</string>
     <string name="SmsMessageRecord_duplicate_message">رسالة مُكرَّرة.</string>
 
-    <!-- StickerManagementActivity -->
-    <string name="StickerManagementActivity_stickers">ملصقات</string>
-
+    <!-- Sticker management screen default title. -->
+    <string name="StickerManagement_title_stickers">المُلصَقات</string>
+    <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
+    <plurals name="StickerManagement_title_n_selected">
+        <item quantity="zero">لا شيء مُحدَّد (%1$s)</item>
+        <item quantity="one">واحدة مُحدَّدة (%1$s)</item>
+        <item quantity="two">%1$s محدَّدتان</item>
+        <item quantity="few">‫%1$s محدَّدة</item>
+        <item quantity="many">‫%1$s محدَّدة</item>
+        <item quantity="other">‫%1$s محدَّدة</item>
+    </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
     <string name="StickerManagement_available_tab_label">متاحة</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
     <string name="StickerManagement_installed_tab_label">مُثبَّتة</string>
-    <!-- Shown when there are no sticker packs available for installation -->
+    <!-- Shown when there are no sticker packs available for installation. -->
     <string name="StickerManagement_available_tab_empty_text">لا توجد حزم مُلصَقات متوفرة</string>
-    <!-- Shown when there are no sticker packs currently installed -->
+    <!-- Shown when there are no sticker packs currently installed. -->
     <string name="StickerManagement_installed_tab_empty_text">لا توجد حزم مُلصَقات مُثبَّتة</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
+    <!-- Message shown when the author of the sticker pack is unknown. -->
     <string name="StickerManagement_author_unknown">غير معروف</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
     <string name="StickerManagement_installed_stickers_header">المُلصَقات المُثبَّتة</string>
@@ -3158,6 +3177,48 @@
     <string name="StickerManagement_stickers_you_received_header">المُلصَقات المستلمة</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
     <string name="StickerManagement_signal_artist_series_header">سلسلة فناني سيجنال</string>
+    <!-- Title shown when sharing a sticker pack with another user. -->
+    <string name="StickerManagement_share_sheet_title">إعادة التوجيه إلى</string>
+    <!-- Bottom action bar option to select all sticker packs in the list. -->
+    <string name="StickerManagement_action_select_all">تحديد الكل</string>
+    <!-- Bottom action bar option to deselect all sticker packs in the list. -->
+    <string name="StickerManagement_action_deselect_all">إلغاء تحديد الكل</string>
+    <!-- Bottom action bar option to uninstall all selected sticker packs. -->
+    <string name="StickerManagement_action_delete_selected">حذف</string>
+    <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation">
+        <item quantity="zero">إزالة %1$s حزمة مُلصَقات</item>
+        <item quantity="one">إزالة %1$s حزمة مُلصَقات</item>
+        <item quantity="two">إزالة %1$s حزمتي مُلصَقات</item>
+        <item quantity="few">إزالة %1$s حزم مُلصَقات</item>
+        <item quantity="many">إزالة %1$s حزمة مُلصَقات</item>
+        <item quantity="other">إزالة %1$s حزمة مُلصَقات</item>
+    </plurals>
+    <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
+    <string name="StickerManagement_installed_pack_s">تمَّ تثبيت %1$s.</string>
+    <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
+    <string name="StickerManagement_deleted_pack_s">تمَّت إزالة %1$s.</string>
+    <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
+    <plurals name="StickerManagement_deleted_n_packs">
+        <item quantity="zero">تمَّت إزالة %1$s حزمة مُلصَقات.</item>
+        <item quantity="one">تمَّت إزالة %1$s حزمة مُلصَقات.</item>
+        <item quantity="two">تمَّت إزالة %1$s حزمتي مُلصَقات.</item>
+        <item quantity="few">تمَّت إزالة %1$s حزم مُلصَقات.</item>
+        <item quantity="many">تمَّت إزالة %1$s حزمة مُلصَقات.</item>
+        <item quantity="other">تمَّت إزالة %1$s حزمة مُلصَقات.</item>
+    </plurals>
+
+    <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
+    <string name="StickerManagement_menu_forward_pack">إعادة توجيه</string>
+    <!-- Sticker pack list dropdown menu label for the button to mark a sticker pack as selected in order to perform additional actions. -->
+    <string name="StickerManagement_menu_select_pack">تحديد</string>
+    <!-- Sticker pack list dropdown menu label for the button to install a sticker pack. -->
+    <string name="StickerManagement_menu_install_pack">تثبيت</string>
+    <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
+    <string name="StickerManagement_menu_remove_pack">إزالة</string>
+    <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
+    <string name="StickerManagement_menu_select_packs">اختيار مجموعات المُلصقات</string>
+
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">نزِّل حزمة المُلصَقات \"%1$s\"</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
@@ -3166,10 +3227,14 @@
     <string name="StickerManagement_accessibility_drag_handle">أداة التحكُّم بالسحب والإفلات</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
     <string name="StickerManagement_accessibility_download">تنزيل</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="StickerManagement_accessibility_open_top_bar_menu">فتح القائمة</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_open_context_menu">فتح قائمة السياق</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">الخروج من وضع التحديد وإزالة التحديدات</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_no_stickers_installed">لا يوجد ملصقات مُثبَّتة</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">ستظهر هنا الملصقات القادمة من الرسائل الواردة</string>
     <string name="StickerManagementAdapter_untitled">بدون عنوان</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -3194,7 +3259,7 @@
     <string name="SubmitDebugLogActivity_submit">إرسال</string>
     <string name="SubmitDebugLogActivity_failed_to_submit_logs">فشل إرسال السجلات</string>
     <string name="SubmitDebugLogActivity_success">تمَّ بنجاح!</string>
-    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">يُرجى نسخ هذا العنوان وإضافته إلى بلاغك عن مشكلة أو إلى بريد الدعم :\n\n<b>%1$s</b></string>
+    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">يُرجى نسخ هذا العنوان وإضافته إلى بلاغك عن مشكلة أو إلى بريد الدعم:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">مشاركة</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">سيتمُّ نشر هذا السّجل علنًا على الانترنت حتى يتمكن المساهمون من الاطِّلاع عليه. يمكنك فحصه أو تعديله قبل تحميله.</string>
     <!-- Banner message shown while submitting debug log -->
@@ -3374,10 +3439,6 @@
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">تمَّ تشفير الرسالة لجلسة غير موجودة.</string>
 
-    <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">رسالة مُتعدِّدة الوسائط مشفَّرة بطريقة غير صحيحة</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">تمَّ تشفير الرسالة مُتعدِّدة الوسائط لجلسة غير موجودة…</string>
-
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">كتم الإشعارات</string>
 
@@ -3390,7 +3451,7 @@
     <string name="MediaPreviewActivity_you">أنت</string>
     <string name="MediaPreviewActivity_unssuported_media_type">نوع الوسائط غير مدعوم</string>
     <string name="MediaPreviewActivity_draft">مسوَّدة</string>
-    <string name="MediaPreviewActivity_media_delete_confirmation_title">أترغبُ بحذف الرسالة؟</string>
+    <string name="MediaPreviewActivity_media_delete_confirmation_title">هل ترغبُ بحذف الرسالة؟</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">هذا الإجراء سَيحذف الرسالة بشكلٍ دائم.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s إلى %2$s</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
@@ -4205,7 +4266,7 @@
     <string name="arrays__use_custom">استخدِم التخصيص</string>
 
     <string name="arrays__mute_for_one_hour">كتم لمدة ساعة</string>
-    <string name="arrays__mute_for_eight_hours">كتم لمدة 8 ساعات</string>
+    <string name="arrays__mute_for_eight_hours">كتم لمدة ثماني ساعات</string>
     <string name="arrays__mute_for_one_day">كتم لمدة يوم</string>
     <string name="arrays__mute_for_seven_days">كتم لمدة سبعة أيام</string>
     <string name="arrays__always">دائمًا</string>
@@ -4221,7 +4282,7 @@
     <string name="arrays__images">صور</string>
     <string name="arrays__audio">صوت</string>
     <string name="arrays__video">فيديو</string>
-    <string name="arrays__documents">الوثائق</string>
+    <string name="arrays__documents">وثائق</string>
 
     <string name="arrays__small">صغير</string>
     <string name="arrays__normal">عادي</string>
@@ -4350,7 +4411,7 @@
     <string name="preferences__enable_pin">تفعيل رقم PIN</string>
     <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">إذا قٌمتَ بتعطيل رقم التعريف الشخصي (PIN)، ستضيع جميع البيانات عند قيامك بإعادة التسجيل في سيجنال إلّا إذا قُمتَ باسترجاعها بواسطة النسخ الاحتياطي اليدوي. لا يمكنك تفعيل قفل التسجيل بينما رقم التعريف الشخصي (PIN) في حالة تعطيل.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">أرقام التعريف الشخصية (PIN) تُبقي المعلومات المحفوظة في سيجنال مُشفَّرة لكي لا يستطيع أحدٌ غيرك الوصول إليها. سيتمُّ استرجاع حسابك الشخصي، إعداداتك، وجهات اتصالك عند إعادة تثبيت التطبيق. لن تكون لك حاجة بعدها لرقم التعريف الشخصي لفتح التطبيق.</string>
-    <string name="preferences__system_default">الوضع الافتراضي للنظام</string>
+    <string name="preferences__system_default">اللغة الافتراضية للنظام</string>
     <string name="preferences__language">اللغة</string>
     <string name="preferences__signal_messages_and_calls">رسائل ومكالمات سيجنال</string>
     <string name="preferences__advanced_pin_settings">الإعدادات المُتقدِّمة لرقم الـ PIN</string>
@@ -4380,9 +4441,9 @@
     <string name="preferences_storage__files">الملفات</string>
     <string name="preferences_storage__audio">الصوت</string>
     <string name="preferences_storage__review_storage">مراجعة سعة التخزين</string>
-    <string name="preferences_storage__delete_older_messages">أترغبُ بحذف الرسائل القديمة؟</string>
+    <string name="preferences_storage__delete_older_messages">هل ترغبُ بحذف الرسائل القديمة؟</string>
     <!-- Dialog title shown when selecting delete message history from manage storage -->
-    <string name="preferences_storage__delete_message_history">أترغبُ بحذف سجل الرسائل؟</string>
+    <string name="preferences_storage__delete_message_history">هل ترغبُ بحذف سجل الرسائل؟</string>
     <string name="preferences_storage__this_will_permanently_delete_all_message_history_and_media">سيحذف هذا بشكلٍ دائم جميع سجلات الرسائل والوسائط الأقدم من %1$s من جهازك.</string>
     <!-- The body of an alert dialog that is shown when confirming a trim operation. Trimming will delete all but the most recent messages in a chat. The placeholder represents how many messages are kept in each chat. All older messages are deleted. -->
     <plurals name="preferences_storage__this_will_permanently_trim_all_conversations_to_the_d_most_recent_messages">
@@ -4521,7 +4582,7 @@
     <string name="PaymentsHomeFragment__cant_display_currency_conversion">لا يُمكن عرض تحويل العملات. يُرجى التحقُّق من اتصال هاتفك بالإنترنت ثم المحاولة مرّة أخرى.</string>
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">المدفوعات غير متاحة في منطقتك.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">لا يمكن تفعيل المدفوعات.حاوِل مرّة أخرى لاحقًا.</string>
-    <string name="PaymentsHomeFragment__deactivate_payments_question">أترغبُ بتعطيل المدفوعات؟</string>
+    <string name="PaymentsHomeFragment__deactivate_payments_question">هل ترغبُ بتعطيل المدفوعات؟</string>
     <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">لن يصبح بإمكانك إرسال أو تلقي MobileCoin في سيجنال إذا قمتَ بتعطيل المدفوعات.</string>
     <string name="PaymentsHomeFragment__deactivate">تعطيل</string>
     <string name="PaymentsHomeFragment__continue">متابعة</string>
@@ -4604,7 +4665,7 @@
     <!-- Option to cancel -->
     <string name="PaymentsSecuritySetupFragment__not_now">ليس الآن</string>
     <!-- Dialog title to confirm skipping the step -->
-    <string name="PaymentsSecuritySetupFragment__skip_this_step">أترغبُ بتَخَطّي هذه الخطوة؟</string>
+    <string name="PaymentsSecuritySetupFragment__skip_this_step">هل ترغبُ بتَخَطّي هذه الخطوة؟</string>
     <!-- Dialog description to let users know why payment lock is required -->
     <string name="PaymentsSecuritySetupFragment__skipping_this_step">قد يُؤدي تخطِّي هذه الخطوة إلى السماح لأي شخص يستخدم هاتفك بتحويل الأموال أو الاطِّللاع على عبارة الاستعادة الخاصة بك.</string>
     <!-- Dialog option to cancel -->
@@ -5197,6 +5258,14 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">قمتَ بمحاولاتٍ كثيرة. يُرجى المحاولة مرّة أخرى لاحقًا.</string>
     <string name="RegistrationActivity_error_connecting_to_service">حدث خطأ خلال الاتصال بالخادم</string>
     <string name="preferences_chats__backups">النُسخ الاحتياطية</string>
+
+    <!-- Button label to indicate that a feature is in beta mode -->
+    <string name="Beta__beta_title">الإصدار التجريبي</string>
+    <!-- Content description for info icon -->
+    <string name="Beta__info">المعلومات</string>
+    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
+    <string name="Beta__this_is_beta">هذه ميزة تجريبية سنُضيف إليها المزيد من الوظائف بشكلٍ مستمر.</string>
+
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">فتح قفل سيجنال</string>
     <!-- Description text explaining how to unlock Signal -->
@@ -5603,7 +5672,7 @@
     <string name="ChatWallpaperFragment__chat_color">لون الدردشة</string>
     <string name="ChatWallpaperFragment__reset_chat_colors">إعادة تعيين ألوان الدردشة</string>
     <string name="ChatWallpaperFragment__reset_chat_color">إعادة تعيين لون الدردشة</string>
-    <string name="ChatWallpaperFragment__reset_chat_color_question">أترغبُ بإعادة تعيين لون الدردشة؟</string>
+    <string name="ChatWallpaperFragment__reset_chat_color_question">هل ترغبُ بإعادة تعيين لون الدردشة؟</string>
     <string name="ChatWallpaperFragment__set_wallpaper">تعيين الخلفية</string>
     <string name="ChatWallpaperFragment__dark_mode_dims_wallpaper">الوضع الداكن يعتم الخلفية</string>
     <string name="ChatWallpaperFragment__contact_name">اسم جهة الاتصال</string>
@@ -6033,7 +6102,7 @@
     <!-- Text that when pressed will delete the current folder -->
     <string name="CreateFoldersFragment__delete_folder">حذف المجلد</string>
     <!-- Alert dialog title to delete the current folder -->
-    <string name="CreateFoldersFragment__delete_this_chat_folder">أترغبُ بحذف مجلد الدردشة هذا؟</string>
+    <string name="CreateFoldersFragment__delete_this_chat_folder">هل ترغبُ بحذف مجلد الدردشة هذا؟</string>
     <!-- Option to see all of the chats if the chat list was too long and had been truncated -->
     <string name="CreateFoldersFragment__see_all">مشاهدة الكل</string>
     <!-- Toast shown when trying to make a folder with no name -->
@@ -6127,7 +6196,7 @@
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">التراخيص</string>
     <string name="HelpSettingsFragment__terms_amp_privacy_policy">الشروط وسياسة الخصوصية</string>
-    <string name="HelpFragment__copyright_signal_messenger">جميع الحقوق محفوظة لمِرسال سيجنال</string>
+    <string name="HelpFragment__copyright_signal_messenger">جميع الحقوق محفوظة لتطبيق سيجنال للمراسلة</string>
     <string name="HelpFragment__licenced_under_the_agplv3">بموجب رخصة GNU AGPLv3</string>
 
     <!-- DataAndStorageSettingsFragment -->
@@ -6158,7 +6227,7 @@
         <item quantity="many">هذا اللون المُخصَّص يُستخدَم في %1$d دردشةً. هل تريد حذفه من جميع الدردشات؟</item>
         <item quantity="other">هذا اللون المُخصَّص يُستخدَم في %1$d دردشةٍ. هل تريد حذفه من جميع الدردشات؟</item>
     </plurals>
-    <string name="ChatColorSelectionFragment__delete_chat_color">أترغبُ بحذف لون الدردشة؟</string>
+    <string name="ChatColorSelectionFragment__delete_chat_color">هل ترغبُ بحذف لون الدردشة؟</string>
 
     <!-- CustomChatColorCreatorFragment -->
     <string name="CustomChatColorCreatorFragment__solid">موحَّد</string>
@@ -6332,6 +6401,8 @@
     <string name="NewConversationActivity__s_has_been_removed">تمَّ حذف %1$s</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">تمَّ حظر %1$s</string>
+    <!-- Snackbar message when blocking a contact has failed -->
+    <string name="NewConversationActivity__block_failed">تعذّر الحظر</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">لا يمكن إزالة %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -7210,7 +7281,7 @@
         <item quantity="other">%1$d مشاهدة</item>
     </plurals>
     <!-- My story privacy fine print about what the privacy settings are for -->
-    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">اِختر من يُمكنه رؤية قصتك. لن تؤثر التغييرات على القصص التي أرسلتها من قبل.</string>
+    <string name="MyStorySettingsFragment__choose_who_can_view_your_story">اختر من يُمكنه رؤية قصتك. لن تؤثر التغييرات على القصص التي أرسلتها من قبل.</string>
     <!-- Section header for options related to replies and reactions -->
     <string name="MyStorySettingsFragment__replies_amp_reactions">الردود والتفاعلات</string>
     <!-- Switchable option for allowing replies and reactions on your stories -->
@@ -7392,12 +7463,12 @@
     <string name="GiftFlowStartFragment__donate_for_a_friend">التبرُّع نيابةً عن صديق</string>
     <!-- Description text on start fragment for gifting a badge -->
     <plurals name="GiftFlowStartFragment__support_signal_by">
-        <item quantity="zero">ادعم سيجنال عن طريق تقديم تبرّع إلى صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لِعرضها على حسابهم الشخصي لـ %1$d يوم</item>
-        <item quantity="one">ادعم سيجنال عن طريق تقديم تبرّع إلى صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لعرضها على حسابهم الشخصي لـ %1$d يوم</item>
-        <item quantity="two">ادعم سيجنال عن طريق تقديم تبرّع إلى صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لعرضها على حسابهم الشخصي لـ %1$d يومين</item>
-        <item quantity="few">ادعم سيجنال عن طريق تقديم تبرّع إلى صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لعرضها على حسابهم الشخصي لـ %1$d أيام</item>
-        <item quantity="many">ادعم سيجنال عن طريق تقديم تبرّع إلى صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لعرضها على حسابهم الشخصي لـ %1$d يومًا</item>
-        <item quantity="other">ادعم سيجنال عن طريق تقديم تبرّع إلى صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لعرضها على حسابهم الشخصي لـ %1$d يوم</item>
+        <item quantity="zero">ادعم سيجنال عن طريق تقديم تبرُّع نيابةً عن صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لِعرضها على حسابهم الشخصي لـ %1$d يوم</item>
+        <item quantity="one">ادعم سيجنال عن طريق تقديم تبرُّع نيابةً عن صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لعرضها على حسابهم الشخصي لـ %1$d يوم</item>
+        <item quantity="two">ادعم سيجنال عن طريق تقديم تبرُّع نيابةً عن صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لعرضها على حسابهم الشخصي لـ %1$d يومين</item>
+        <item quantity="few">ادعم سيجنال عن طريق تقديم تبرُّع نيابةً عن صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لعرضها على حسابهم الشخصي لـ %1$d أيام</item>
+        <item quantity="many">ادعم سيجنال عن طريق تقديم تبرُّع نيابةً عن صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لعرضها على حسابهم الشخصي لـ %1$d يومًا</item>
+        <item quantity="other">ادعم سيجنال عن طريق تقديم تبرُّع نيابةً عن صديق أو فرد من العائلة يستخدم سيجنال. سَيتلقون شارة لعرضها على حسابهم الشخصي لـ %1$d يوم</item>
     </plurals>
     <!-- Action button label for start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__next">التالي</string>
@@ -7746,34 +7817,6 @@
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">هل ترغبُ بمغادرة سيجنال لتأكيد التبرُّع؟</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">بعد التأكيد، ارجع إلى سيجنال لإنهاء معالجة تبرُّعك.</string>
 
-    <!-- IdealBank -->
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__abn_amro">ABN AMRO</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__asn_bank">ASN Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__bunq">bunq</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__ing">ING</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__knab">Knab</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__n26">N26</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__rabobank">Rabobank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__regiobank">RegioBank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__revolut">Revolut</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__sns_bank">SNS Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__triodos_bank">Triodos Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__yoursafe">Yoursafe</string>
-
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
     <string name="BankTransferMandateFragment__bank_transfer">تحويل مصرفي</string>
@@ -7834,7 +7877,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">حدِّد مصرفك</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">تأكيد التبرُّع الخاص بك عبر %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">أكّد تبرّعك مع iDEAL</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">لإعداد تبرُّعك المُتكرِّر، انقر على \"متابعة\" لتأكيد خصم €0,01 مع المصرف الذي تتعامل معه. سَيتم استرداد هذه القيمة تلقائيًا وسَيسمح هذا بخصم تبرُّعك بقيمة %1$s/شهريًا من حسابك.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -8478,6 +8521,12 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">تعذَّر تجديد اشتراك النسخ الاحتياطي الخاص بحسابك.</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">تأكَّد من أن طريقة الدفع الخاصة بك مُحدَّثة. انقر على \"إدارة الاشتراك\"، ثم انقر على \"تحديث\" ضمن تبويب \"طرق الدفع\".</string>
+    <!-- Sheet title for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Your backups subscription has expired</string>
+    <!-- Sheet body part 1 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Your subscription couldn\'t be renewed with your payment method. To continue backing up media you need an active subscription.</string>
+    <!-- Sheet body part 2 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Backups plan.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">تعذَّر إكمال النسخ الاحتياطي</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -8493,6 +8542,8 @@
     <string name="BackupAlertBottomSheet__learn_more">اعرف المزيد</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">تخطّي الاستعادة</string>
+    <!-- Primary action button to open backups management screen -->
+    <string name="BackupAlertBottomSheet__manage_backups">Manage backups</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">إنشاء نسخة احتياطية الآن</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -8520,7 +8571,7 @@
     <!-- Dialog action to skip media download -->
     <string name="BackupAlertBottomSheet__skip">تخطّي</string>
     <!-- Dialog title for skipping media restore -->
-    <string name="BackupAlertBottomSheet__skip_restore_question">أترغبُ بتخطِّي الاستعادة؟</string>
+    <string name="BackupAlertBottomSheet__skip_restore_question">هل ترغبُ بتخطِّي الاستعادة؟</string>
     <!-- Dialog text for skipping media restore -->
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">إذا تخطّيت الاستعادة، يُمكن تنزيل الوسائط والمرفقات المتبقية في نسختك الاحتياطية في وقتٍ لاحق عند توفُّر مساحة التخزين.</string>
     <!-- Dialog title when a backup fails to be created -->
@@ -8544,11 +8595,13 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">جارٍ استعادة الوسائط</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">تمَّ إيقاف الاستعادة مؤقَّتًا</string>
+    <string name="BackupStatus__restore_paused">تمَّ إيقاف استعادة الوسائط</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">اكتملَت عملية الاستعادة.</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">التفاصيل</string>
+    <!-- Status action label for resume restore from a paused state -->
+    <string name="BackupStatus__resume">استئناف</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">في انتظار شبكة الواي فاي…</string>
@@ -8580,6 +8633,11 @@
     <string name="BackupStatusRow__your_last_backup_latest_version">تعذَّر إتمام عملية النسخ الاحتياطي الأخيرة. تأكَّد من أنك تستخدم آخر إصدار لسيجنال وحاوِل من جديد.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">اعرف المزيد</string>
+
+    <!-- Dialog title to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">هل ترغبُ باستئناف استخدام البيانات الخلوية؟</string>
+    <!-- Dialog message to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">قد تؤدي استعادة الوسائط باستخدام البيانات الخلوية إلى فرض رسوم على البيانات. يمكنك الاتصال بشبكة الواي فاي للاستئناف بشكل تلقائي.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -8676,6 +8734,8 @@
     <string name="BackupsSettingsFragment_set_up">إعداد</string>
 
     <!-- RemoteBackupsSettingsFragment -->
+    <!-- Content description for canceling backup upload -->
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">Cancel upload</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">النسخ الاحتياطية على سيجنال</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8684,8 +8744,8 @@
     <string name="RemoteBackupsSettingsFragment__payment_history">تاريخ الدفع</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">تفاصيل النسخ الاحتياطي</string>
-    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">الاستعادة باستخدام بيانات الجوال</string>
+    <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__resume_download">استئناف التنزيل</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">حجم النسخة الاحتياطية</string>
     <!-- Row label for backup frequency -->
@@ -8782,6 +8842,8 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">جارٍتنزيل النسخة الاحتياطية الخاصة بك</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">قد يستغرق هذا وقتًا طويلًا حسب حجم النسخة الاحتياطية الخاصة بك. يُمكنك استخدام هاتفك بشكل طبيعي أثناء إجراء عملية التنزيل.</string>
+    <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Backups.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="zero">اشتراكك الموجود على هذا الجهاز صالح لمدة الأيام %1$d القادمة. جدّد اشتراكك لمواصلة استخدام نُسخ سيجنال الاحتياطية.</item>
@@ -8817,10 +8879,12 @@
         <item quantity="many">لديك %1$s من البيانات الاحتياطية غير متوفرة على هذا الجهاز. سيتمُّ حذف نسختك الاحتياطية عند انتهاء اشتراكك خلال %2$d يومًا.</item>
         <item quantity="other">لديك %1$s من البيانات الاحتياطية غير متوفرة على هذا الجهاز. سيتمُّ حذف نسختك الاحتياطية عند انتهاء اشتراكك خلال %2$d يومٍ.</item>
     </plurals>
+    <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">لديك %1$s من البيانات الاحتياطية غير الموجودة على هذا الجهاز. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">تنزيل</string>
     <!-- Dialog title for skipping download of backed up media -->
-    <string name="RemoteBackupsSettingsFragment__skip_download_question">أترغبُ بتخطي التنزيل؟</string>
+    <string name="RemoteBackupsSettingsFragment__skip_download_question">هل ترغبُ بتخطي التنزيل؟</string>
     <!-- Dialog body for skiping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="zero">إذا تخطيت التنزيل، فسيتمُّ حذف الوسائط والملفات المرفقة المتبقية في نسختك الاحتياطية خلال %1$d أيام.</item>
@@ -8830,6 +8894,10 @@
         <item quantity="many">إذا تخطيت التنزيل، فسيتمُّ حذف الوسائط والمرفقات المتبقية في نسختك الاحتياطية خلال %1$d يومًا.</item>
         <item quantity="other">إذا تخطيت التنزيل، فسيتمُّ حذف الوسائط والملفات المرفقة المتبقية في نسختك الاحتياطية خلال %1$d يومٍ.</item>
     </plurals>
+    <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_question">هل ترغبُ بتخطِّي الاستعادة؟</string>
+    <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">إذا تخطّيت الاستعادة، يُمكن تنزيل الوسائط والمرفقات المتبقية في نسختك الاحتياطية في وقتٍ لاحق.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">تخطّي</string>
     <!-- Dialog title for network error while trying to disable backups -->
@@ -9143,6 +9211,16 @@
     <string name="MainToolbar__notification_profile_content_description">مركز الإشعارات</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">البروكسي</string>
+
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">التصفُّح نحو اﻷعلى</string>
+
+    <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
+    <string name="SignalCheckbox_accessibility_on_click_label">تبديل</string>
+    <!-- Accessibility label describing a checked checkbox. -->
+    <string name="SignalCheckbox_accessibility_checked_description">مُحدَّد</string>
+    <!-- Accessibility label describing an unchecked checkbox. -->
+    <string name="SignalCheckbox_accessibility_unchecked_description">غير مُحدَّد</string>
 
     <!-- EOF -->
 </resources>

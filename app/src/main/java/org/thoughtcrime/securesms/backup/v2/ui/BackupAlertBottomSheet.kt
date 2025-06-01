@@ -55,9 +55,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
-import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.signal.core.ui.R as CoreUiR
@@ -121,6 +119,9 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
         PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
 
       BackupAlert.CouldNotRedeemBackup -> Unit
+      BackupAlert.ExpiredAndDowngraded -> {
+        startActivity(AppSettingsActivity.remoteBackups(requireContext()))
+      }
     }
 
     dismissAllowingStateLoss()
@@ -129,6 +130,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
   @Stable
   private fun performSecondaryAction() {
     when (backupAlert) {
+      BackupAlert.ExpiredAndDowngraded -> Unit
       is BackupAlert.CouldNotCompleteBackup -> Unit
       BackupAlert.FailedToRenew -> Unit
       is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
@@ -152,6 +154,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
     when (backupAlert) {
       is BackupAlert.CouldNotCompleteBackup, BackupAlert.BackupFailed -> BackupRepository.markBackupFailedSheetDismissed()
       is BackupAlert.MediaWillBeDeletedToday -> BackupRepository.snoozeYourMediaWillBeDeletedTodaySheet()
+      is BackupAlert.ExpiredAndDowngraded -> BackupRepository.markBackupExpiredAndDowngradedSheetDismissed()
       else -> Unit
     }
   }
@@ -185,8 +188,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
   }
 
   private fun performFullMediaDownload() {
-    // TODO [backups] -- We need to force this to download everything
-    AppDependencies.jobManager.add(BackupRestoreMediaJob())
+    BackupRepository.resumeMediaRestore()
   }
 }
 
@@ -208,7 +210,7 @@ fun BackupAlertSheetContent(
 
     when (backupAlert) {
       is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
-      BackupAlert.FailedToRenew -> {
+      BackupAlert.FailedToRenew, BackupAlert.ExpiredAndDowngraded -> {
         Box {
           Image(
             imageVector = ImageVector.vectorResource(id = R.drawable.image_signal_backups),
@@ -258,6 +260,7 @@ fun BackupAlertSheetContent(
       BackupAlert.BackupFailed -> BackupFailedBody()
       BackupAlert.CouldNotRedeemBackup -> CouldNotRedeemBackup()
       is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
+      BackupAlert.ExpiredAndDowngraded -> SubscriptionExpired()
     }
 
     val secondaryActionResource = rememberSecondaryActionResource(backupAlert = backupAlert)
@@ -335,6 +338,23 @@ private fun CouldNotRedeemBackup() {
 }
 
 @Composable
+private fun SubscriptionExpired() {
+  Text(
+    text = stringResource(id = R.string.BackupAlertBottomSheet__your_subscription_couldnt_be_renewed),
+    textAlign = TextAlign.Center,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
+    modifier = Modifier.padding(bottom = 24.dp)
+  )
+
+  Text(
+    text = stringResource(id = R.string.BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free),
+    textAlign = TextAlign.Center,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
+    modifier = Modifier.padding(bottom = 36.dp)
+  )
+}
+
+@Composable
 private fun CouldNotCompleteBackup(
   daysSinceLastBackup: Int
 ) {
@@ -404,7 +424,7 @@ private fun BackupFailedBody() {
 private fun rememberBackupsIconColors(backupAlert: BackupAlert): BackupsIconColors {
   return remember(backupAlert) {
     when (backupAlert) {
-      BackupAlert.FailedToRenew, is BackupAlert.MediaBackupsAreOff -> error("Not icon-based options.")
+      BackupAlert.ExpiredAndDowngraded, BackupAlert.FailedToRenew, is BackupAlert.MediaBackupsAreOff -> error("Not icon-based options.")
       is BackupAlert.CouldNotCompleteBackup, BackupAlert.BackupFailed, is BackupAlert.DiskFull, BackupAlert.CouldNotRedeemBackup -> BackupsIconColors.Warning
       BackupAlert.MediaWillBeDeletedToday -> BackupsIconColors.Error
     }
@@ -416,11 +436,12 @@ private fun titleString(backupAlert: BackupAlert): String {
   return when (backupAlert) {
     is BackupAlert.CouldNotCompleteBackup -> stringResource(R.string.BackupAlertBottomSheet__couldnt_complete_backup)
     BackupAlert.FailedToRenew -> stringResource(R.string.BackupAlertBottomSheet__your_backups_subscription_failed_to_renew)
-    is BackupAlert.MediaBackupsAreOff -> stringResource(R.string.BackupAlertBottomSheet__your_backups_subscription_expired)
+    is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
     BackupAlert.MediaWillBeDeletedToday -> stringResource(R.string.BackupAlertBottomSheet__your_media_will_be_deleted_today)
     is BackupAlert.DiskFull -> stringResource(R.string.BackupAlertBottomSheet__free_up_s_on_this_device, backupAlert.requiredSpace)
     BackupAlert.BackupFailed -> stringResource(R.string.BackupAlertBottomSheet__backup_failed)
     BackupAlert.CouldNotRedeemBackup -> stringResource(R.string.BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription)
+    BackupAlert.ExpiredAndDowngraded -> stringResource(R.string.BackupAlertBottomSheet__your_backups_subscription_has_expired)
   }
 }
 
@@ -436,6 +457,7 @@ private fun primaryActionString(
     is BackupAlert.DiskFull -> stringResource(R.string.BackupAlertBottomSheet__got_it)
     is BackupAlert.BackupFailed -> stringResource(R.string.BackupAlertBottomSheet__check_for_update)
     BackupAlert.CouldNotRedeemBackup -> stringResource(R.string.BackupAlertBottomSheet__got_it)
+    BackupAlert.ExpiredAndDowngraded -> stringResource(R.string.BackupAlertBottomSheet__manage_backups)
   }
 }
 
@@ -444,7 +466,7 @@ private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
   return remember(backupAlert) {
     when (backupAlert) {
       is BackupAlert.CouldNotCompleteBackup -> R.string.BackupAlertBottomSheet__try_later
-      BackupAlert.FailedToRenew -> R.string.BackupAlertBottomSheet__not_now
+      BackupAlert.FailedToRenew, BackupAlert.ExpiredAndDowngraded -> R.string.BackupAlertBottomSheet__not_now
       is BackupAlert.MediaBackupsAreOff -> error("Not supported.")
       BackupAlert.MediaWillBeDeletedToday -> R.string.BackupAlertBottomSheet__dont_download_media
       is BackupAlert.DiskFull -> R.string.BackupAlertBottomSheet__skip_restore
@@ -514,6 +536,16 @@ private fun BackupAlertSheetContentPreviewCouldNotRedeemBackup() {
   }
 }
 
+@SignalPreview
+@Composable
+private fun BackupAlertSheetContentPreviewSubscriptionExpired() {
+  Previews.BottomSheetPreview {
+    BackupAlertSheetContent(
+      backupAlert = BackupAlert.ExpiredAndDowngraded
+    )
+  }
+}
+
 /**
  * All necessary information to display the sheet should be handed in through the specific alert.
  */
@@ -562,4 +594,10 @@ sealed class BackupAlert : Parcelable {
    * Too many attempts to redeem the backup subscription have occurred this month.
    */
   data object CouldNotRedeemBackup : BackupAlert()
+
+  /**
+   * Displayed after the user falls out of the grace period and their backups subscription is downgraded
+   * to the free tier.
+   */
+  data object ExpiredAndDowngraded : BackupAlert()
 }

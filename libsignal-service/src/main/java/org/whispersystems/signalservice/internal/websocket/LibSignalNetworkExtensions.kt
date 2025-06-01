@@ -10,18 +10,15 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.libsignal.net.Network
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
-import org.whispersystems.signalservice.internal.util.JsonUtil
 import java.io.IOException
 
 private const val TAG = "LibSignalNetworkExtensions"
 
-fun Network.transformAndSetRemoteConfig(remoteConfig: Map<String, Any>) {
-  val libsignalRemoteConfig: Map<String, String> = remoteConfig
-    .filterKeys { it.startsWith("android.libsignal.") }
-    .mapKeys { (k, _) -> k.removePrefix("android.libsignal.") }
-    // libsignal-net's RemoteConfig diverges from JSON-spec by not quoting string values.
-    .mapValues { (_, v) -> (v as? String) ?: JsonUtil.toJson(v) }
-
+fun Network.buildAndSetRemoteConfig(enforceMinTls: Boolean) {
+  val libsignalRemoteConfig: HashMap<String, String> = HashMap()
+  if (enforceMinTls) {
+    libsignalRemoteConfig["enforceMinimumTls"] = ""
+  }
   this.setRemoteConfig(libsignalRemoteConfig)
 }
 

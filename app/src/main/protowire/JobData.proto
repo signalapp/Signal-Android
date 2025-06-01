@@ -190,7 +190,7 @@ message InAppPaymentSourceData {
   }
 
   message IDEALData {
-    string bank = 1;
+    reserved 1; // bank, no longer utilized.
     string name = 2;
     string email = 3;
   }

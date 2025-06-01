@@ -59,14 +59,21 @@ class CallLogViewModel(
 
   init {
     disposables.add(callLogStore)
-    disposables += distinctQueryFilterPairs.subscribe { (query, filter) ->
-      pagedData.onNext(
-        PagedData.createForObservable(
-          CallLogPagedDataSource(query, filter, callLogRepository),
-          pagingConfig
+    disposables += distinctQueryFilterPairs
+      .switchMap { (query, filter) ->
+        selected.map {
+          Triple(query, filter, it != CallLogSelectionState.empty())
+        }
+      }
+      .distinctUntilChanged()
+      .subscribe { (query, filter, hasSelection) ->
+        pagedData.onNext(
+          PagedData.createForObservable(
+            CallLogPagedDataSource(query, filter, callLogRepository, hasSelection),
+            pagingConfig
+          )
         )
-      )
-    }
+      }
 
     disposables += pagedData.map { it.controller }.subscribe {
       controller.set(it)

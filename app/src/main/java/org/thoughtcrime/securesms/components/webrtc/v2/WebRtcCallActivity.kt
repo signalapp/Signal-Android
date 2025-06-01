@@ -12,6 +12,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.content.res.Configuration
+import android.hardware.display.DisplayManager
 import android.media.AudioManager
 import android.os.Build
 import android.os.Bundle
@@ -24,6 +25,7 @@ import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
+import androidx.core.content.getSystemService
 import androidx.core.util.Consumer
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -44,6 +46,7 @@ import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.GroupCall
@@ -399,6 +402,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
           return
         }
       }
+
       WebRtcViewModel.State.CALL_OUTGOING -> handleOutgoingCall(event)
       WebRtcViewModel.State.CALL_CONNECTED -> handleCallConnected(event)
       WebRtcViewModel.State.CALL_RINGING -> handleCallRinging()
@@ -410,6 +414,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
           handleTerminate(event.recipient, HangupMessage.Type.NORMAL)
         }
       }
+
       WebRtcViewModel.State.CALL_DISCONNECTED_GLARE -> handleGlare(event.recipient)
       WebRtcViewModel.State.CALL_NEEDS_PERMISSION -> handleTerminate(event.recipient, HangupMessage.Type.NEED_PERMISSION)
       WebRtcViewModel.State.CALL_RECONNECTING -> handleCallReconnecting()
@@ -475,6 +480,19 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     viewModel.setIsInPipMode(isInPipMode())
 
     lifecycleScope.launch {
+      launch(SignalDispatchers.Unconfined) {
+        lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+          val displayManager = application.getSystemService<DisplayManager>()!!
+          DisplayMonitor.monitor(displayManager)
+            .collectLatest {
+              val display = displayManager.getDisplay(it.displayId) ?: return@collectLatest
+              val orientation = Orientation.fromSurfaceRotation(display.rotation)
+
+              AppDependencies.signalCallManager.orientationChanged(true, orientation.degrees)
+            }
+        }
+      }
+
       lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
         launch {
           viewModel.microphoneEnabled.collectLatest {
@@ -871,6 +889,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       is CallEvent.ShowGroupCallSafetyNumberChange -> SafetyNumberBottomSheet.forGroupCall(event.identityRecords).show(supportFragmentManager)
       is CallEvent.SwitchToSpeaker -> callScreen.switchToSpeakerView()
       is CallEvent.ShowSwipeToSpeakerHint -> CallToastPopupWindow.show(rootView())
+      is CallEvent.ShowRemoteMuteToast -> CallToastPopupWindow.show(rootView(), R.drawable.ic_mic_off_solid_18, event.getDescription(this))
       is CallEvent.ShowVideoTooltip -> {
         if (isInPipMode()) return
 
@@ -914,6 +933,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
         val formatter: EllapsedTimeFormatter = EllapsedTimeFormatter.fromDurationMillis(inCallStatus.elapsedTime) ?: return
         callScreen.setStatus(getString(R.string.WebRtcCallActivity__signal_s, formatter.toString()))
       }
+
       is InCallStatus.PendingCallLinkUsers -> {
         val waiting = inCallStatus.pendingUserCount
 
@@ -925,6 +945,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
           )
         )
       }
+
       is InCallStatus.JoinedCallLinkUsers -> {
         val joined = inCallStatus.joinedUserCount
 

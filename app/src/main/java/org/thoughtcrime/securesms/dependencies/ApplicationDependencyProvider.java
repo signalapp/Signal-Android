@@ -170,7 +170,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                             keysApi,
                                             Optional.of(new SecurityEventListener(context)),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 16, 30),
-                                            ByteUnit.KILOBYTES.toBytes(256));
+                                            ByteUnit.KILOBYTES.toBytes(256),
+                                            RemoteConfig::useMessageSendRestFallback);
   }
 
   @Override
@@ -223,8 +224,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull IncomingMessageObserver provideIncomingMessageObserver(@NonNull SignalWebSocket.AuthenticatedWebSocket webSocket) {
-    return new IncomingMessageObserver(context, webSocket);
+  public @NonNull IncomingMessageObserver provideIncomingMessageObserver(@NonNull SignalWebSocket.AuthenticatedWebSocket webSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
+    return new IncomingMessageObserver(context, webSocket, unauthWebSocket);
   }
 
   @Override
@@ -261,7 +262,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   public @NonNull Network provideLibsignalNetwork(@NonNull SignalServiceConfiguration config) {
     Network network = new Network(BuildConfig.LIBSIGNAL_NET_ENV, StandardUserAgentInterceptor.USER_AGENT);
     LibSignalNetworkExtensions.applyConfiguration(network, config);
-    LibSignalNetworkExtensions.transformAndSetRemoteConfig(network, RemoteConfig.getMemoryValues());
+    LibSignalNetworkExtensions.buildAndSetRemoteConfig(network, RemoteConfig.libsignalEnforceMinTlsVersion());
 
     return network;
   }

@@ -253,7 +253,7 @@ public class ComposeText extends EmojiEditText {
   }
 
   public @NonNull List<Mention> getMentions() {
-    return MentionAnnotation.getMentionsFromAnnotations(getText());
+    return MentionAnnotation.getMentionsFromAnnotations(getTextTrimmed());
   }
 
   public boolean hasStyling() {

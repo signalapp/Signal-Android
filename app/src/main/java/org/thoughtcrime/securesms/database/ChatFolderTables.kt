@@ -336,7 +336,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
           ChatFolderTable.DELETED_TIMESTAMP_MS to chatFolder.deletedTimestampMs
         )
         .where("${ChatFolderTable.ID} = ?", chatFolder.id)
-        .run(SQLiteDatabase.CONFLICT_IGNORE)
+        .run()
 
       db
         .delete(ChatFolderMembershipTable.TABLE_NAME)
@@ -394,7 +394,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         db.update(ChatFolderTable.TABLE_NAME)
           .values(ChatFolderTable.POSITION to folder.position)
           .where("${ChatFolderTable.ID} = ?", folder.id)
-          .run(SQLiteDatabase.CONFLICT_IGNORE)
+          .run()
       }
       AppDependencies.databaseObserver.notifyChatFolderObservers()
     }
@@ -533,7 +533,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
             ChatFolderTable.STORAGE_SERVICE_PROTO to storageServiceProto
           )
           .where("${ChatFolderTable.FOLDER_TYPE} = ?", ChatFolderRecord.FolderType.ALL.value)
-          .run(SQLiteDatabase.CONFLICT_IGNORE)
+          .run()
       }
     } else {
       createFolder(remoteChatFolderRecordToLocal(record))
@@ -636,7 +636,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         db.update(ChatFolderTable.TABLE_NAME)
           .values(ChatFolderTable.POSITION to index)
           .where("${ChatFolderTable.ID} = ?", id)
-          .run(SQLiteDatabase.CONFLICT_IGNORE)
+          .run()
       }
     }
   }

@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
 import org.thoughtcrime.securesms.database.model.IncomingSticker
+import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
@@ -296,9 +297,15 @@ class StickerTable(
   }
 
   fun uninstallPack(packId: String) {
+    uninstallPacks(setOf(StickerPackId(packId)))
+  }
+
+  fun uninstallPacks(packIds: Set<StickerPackId>) {
     writableDatabase.withinTransaction { db ->
-      updatePackInstalled(db = db, packId = packId, installed = false, notify = false)
-      deleteStickersInPackExceptCover(db, packId)
+      packIds.forEach { packId ->
+        updatePackInstalled(db = db, packId = packId.value, installed = false, notify = false)
+        deleteStickersInPackExceptCover(db, packId.value)
+      }
     }
 
     notifyStickerPackListeners()

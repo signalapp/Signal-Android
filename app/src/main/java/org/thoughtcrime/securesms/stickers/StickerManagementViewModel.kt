@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
 
-class StickerManagementViewModelV2 : ViewModel() {
+class StickerManagementViewModel : ViewModel() {
   private val stickerManagementRepo = StickerManagementRepository
 
   private val _uiState = MutableStateFlow(StickerManagementUiState())
@@ -72,7 +72,8 @@ class StickerManagementViewModelV2 : ViewModel() {
           previousState.copy(
             availableBlessedPacks = availableBlessedPacks,
             availableNotBlessedPacks = availableNotBlessedPacks,
-            installedPacks = installedPacks
+            installedPacks = installedPacks,
+            multiSelectEnabled = if (installedPacks.isEmpty()) false else previousState.multiSelectEnabled
           )
         }
       }
@@ -84,6 +85,12 @@ class StickerManagementViewModelV2 : ViewModel() {
 
       StickerManagementRepository.installStickerPack(packId = pack.id, packKey = pack.key, notify = true)
       updatePackDownloadStatus(pack.id, DownloadStatus.Downloaded)
+
+      _uiState.update { previousState ->
+        previousState.copy(
+          actionConfirmation = StickerManagementConfirmation.InstalledPack(pack.record.title)
+        )
+      }
 
       delay(1500) // wait, so we show the downloaded status for a bit before removing this row from the available sticker packs list
       updatePackDownloadStatus(pack.id, null)
@@ -98,9 +105,46 @@ class StickerManagementViewModelV2 : ViewModel() {
     }
   }
 
-  fun uninstallStickerPack(pack: AvailableStickerPack) {
+  fun onUninstallStickerPacksRequested(packIds: Set<StickerPackId>) {
+    if (packIds.isEmpty()) {
+      return
+    }
+
+    if (_uiState.value.multiSelectEnabled) {
+      _uiState.update { previousState ->
+        previousState.copy(
+          userPrompt = ConfirmRemoveStickerPacksPrompt(numItemsToDelete = packIds.size)
+        )
+      }
+    } else {
+      uninstallStickerPacks(packIds)
+    }
+  }
+
+  fun onUninstallStickerPacksConfirmed(packIds: Set<StickerPackId>) {
+    _uiState.update { previousState -> previousState.copy(userPrompt = null) }
+    uninstallStickerPacks(packIds)
+  }
+
+  fun onUninstallStickerPacksCanceled() {
+    _uiState.update { previousState -> previousState.copy(userPrompt = null) }
+  }
+
+  private fun uninstallStickerPacks(packIds: Set<StickerPackId>) {
+    val packsToUninstall = _uiState.value.installedPacks.filter { packIds.contains(it.id) }
     viewModelScope.launch {
-      StickerManagementRepository.uninstallStickerPack(packId = pack.id, packKey = pack.key)
+      StickerManagementRepository.uninstallStickerPacks(packsToUninstall.associate { it.id to it.key })
+
+      _uiState.update { previousState ->
+        previousState.copy(
+          actionConfirmation = if (packsToUninstall.size == 1) {
+            StickerManagementConfirmation.UninstalledPack(packsToUninstall.single().record.title)
+          } else {
+            StickerManagementConfirmation.UninstalledPacks(packsToUninstall.size)
+          },
+          selectedPackIds = previousState.selectedPackIds.minus(packIds)
+        )
+      }
     }
   }
 
@@ -113,14 +157,67 @@ class StickerManagementViewModelV2 : ViewModel() {
       StickerManagementRepository.setStickerPacksOrder(_uiState.value.installedPacks.map { it.record })
     }
   }
+
+  fun toggleSelection(pack: InstalledStickerPack) {
+    _uiState.update { previousState ->
+      val wasItemSelected = previousState.selectedPackIds.contains(pack.id)
+      val selectedPackIds = if (wasItemSelected) previousState.selectedPackIds.minus(pack.id) else previousState.selectedPackIds.plus(pack.id)
+
+      previousState.copy(
+        multiSelectEnabled = selectedPackIds.isNotEmpty(),
+        selectedPackIds = selectedPackIds
+      )
+    }
+  }
+
+  fun toggleSelectAll() {
+    _uiState.update { previousState ->
+      previousState.copy(
+        multiSelectEnabled = true,
+        selectedPackIds = if (previousState.selectedPackIds.size == previousState.installedPacks.size) {
+          emptySet()
+        } else {
+          previousState.installedPacks.map { it.id }.toSet()
+        }
+      )
+    }
+  }
+
+  fun setMultiSelectEnabled(isEnabled: Boolean) {
+    _uiState.update { previousState ->
+      previousState.copy(
+        multiSelectEnabled = isEnabled,
+        selectedPackIds = emptySet()
+      )
+    }
+  }
+
+  fun onSnackbarDismiss() {
+    _uiState.update { previousState ->
+      previousState.copy(actionConfirmation = null)
+    }
+  }
 }
 
 data class StickerManagementUiState(
   val availableBlessedPacks: List<AvailableStickerPack> = emptyList(),
   val availableNotBlessedPacks: List<AvailableStickerPack> = emptyList(),
   val installedPacks: List<InstalledStickerPack> = emptyList(),
-  val isMultiSelectMode: Boolean = false
+  val multiSelectEnabled: Boolean = false,
+  val selectedPackIds: Set<StickerPackId> = emptySet(),
+  val userPrompt: ConfirmRemoveStickerPacksPrompt? = null,
+  val actionConfirmation: StickerManagementConfirmation? = null
 )
+
+data class ConfirmRemoveStickerPacksPrompt(
+  val numItemsToDelete: Int
+)
+
+sealed interface StickerManagementConfirmation {
+  data class InstalledPack(val packTitle: String) : StickerManagementConfirmation
+  data class UninstalledPack(val packTitle: String) : StickerManagementConfirmation
+  data class UninstalledPacks(val numPacksUninstalled: Int) : StickerManagementConfirmation
+}
 
 data class AvailableStickerPack(
   val record: StickerPackRecord,
@@ -140,8 +237,7 @@ data class AvailableStickerPack(
 data class InstalledStickerPack(
   val record: StickerPackRecord,
   val isBlessed: Boolean,
-  val sortOrder: Int,
-  val isSelected: Boolean = false
+  val sortOrder: Int
 ) {
   val id = StickerPackId(record.packId)
   val key = StickerPackKey(record.packKey)

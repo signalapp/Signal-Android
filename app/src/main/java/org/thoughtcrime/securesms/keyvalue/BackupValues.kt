@@ -70,6 +70,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_INVALID_BACKUP_VERSION = "backup.invalid.version"
 
     private const val KEY_USER_MANUALLY_SKIPPED_MEDIA_RESTORE = "backup.user.manually.skipped.media.restore"
+    private const val KEY_BACKUP_EXPIRED_AND_DOWNGRADED = "backup.expired.and.downgraded"
 
     private const val KEY_MEDIA_ROOT_BACKUP_KEY = "backup.mediaRootBackupKey"
 
@@ -107,9 +108,11 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   val daysSinceLastBackup: Int get() = (System.currentTimeMillis().milliseconds - lastBackupTime.milliseconds).inWholeDays.toInt()
 
   var lastMediaSyncTime: Long by longValue(KEY_LAST_BACKUP_MEDIA_SYNC_TIME, -1)
-  var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.MANUAL, BackupFrequency.Serializer)
+  var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.DAILY, BackupFrequency.Serializer)
 
   var userManuallySkippedMediaRestore: Boolean by booleanValue(KEY_USER_MANUALLY_SKIPPED_MEDIA_RESTORE, false)
+
+  var backupExpiredAndDowngraded: Boolean by booleanValue(KEY_BACKUP_EXPIRED_AND_DOWNGRADED, false)
 
   /**
    * The last time the device notified the server that the archive is still in use.
@@ -241,6 +244,11 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
    * something bad happened, it can only be utilized as a reference for comparison.
    */
   var spaceAvailableOnDiskBytes: Long by longValue(KEY_BACKUP_FAIL_SPACE_REMAINING, -1L)
+
+  fun internalSetBackupFailedErrorState() {
+    markMessageBackupFailure()
+    putLong(KEY_BACKUP_FAIL_SHEET_SNOOZE_TIME, 0)
+  }
 
   /**
    * Call when the user disables backups. Clears/resets all relevant fields.

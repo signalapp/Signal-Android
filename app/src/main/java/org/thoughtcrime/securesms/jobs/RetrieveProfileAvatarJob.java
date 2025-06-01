@@ -125,7 +125,7 @@ public class RetrieveProfileAvatarJob extends BaseJob {
         return;
       }
     } else if (profileAvatar != null && profileAvatar.equals(recipient.resolve().getProfileAvatar())) {
-      Log.w(TAG, "Already retrieved profile avatar: " + profileAvatar);
+      Log.w(TAG, "Already retrieved profile avatar: ***" + profileAvatar.substring(profileAvatar.length() - 3));
       return;
     }
 

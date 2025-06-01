@@ -42,7 +42,7 @@ import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import java.util.concurrent.TimeUnit
 
-class ConversationListViewModel(
+sealed class ConversationListViewModel(
   private val isArchived: Boolean,
   private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
@@ -70,8 +70,8 @@ class ConversationListViewModel(
 
   val conversationsState: Flowable<List<Conversation>> = store.mapDistinctForUi { it.conversations }
   val selectedState: Flowable<ConversationSet> = store.mapDistinctForUi { it.selectedConversations }
-  val filterRequestState: Flowable<ConversationFilterRequest> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.filterRequest }.asFlowable()
-  val chatFolderState: Flowable<List<ChatFolderMappingModel>> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.chatFolders }.asFlowable()
+  val filterRequestState: Flowable<ConversationFilterRequest> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.filterRequest }.asFlowable().observeOn(AndroidSchedulers.mainThread())
+  val chatFolderState: Flowable<List<ChatFolderMappingModel>> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.chatFolders }.asFlowable().observeOn(AndroidSchedulers.mainThread())
   val hasNoConversations: Flowable<Boolean>
 
   val controller = ProxyPagingController<Long>()
@@ -317,13 +317,20 @@ class ConversationListViewModel(
     val pinnedCount: Int = 0
   )
 
+  class UnarchivedConversationListViewModel(savedStateHandle: SavedStateHandle) : ConversationListViewModel(isArchived = false, savedStateHandle = savedStateHandle)
+  class ArchivedConversationListViewModel(savedStateHandle: SavedStateHandle) : ConversationListViewModel(isArchived = true, savedStateHandle = savedStateHandle)
+
   class Factory(
     private val isArchived: Boolean
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
       val savedStateHandle = extras.createSavedStateHandle()
 
-      return modelClass.cast(ConversationListViewModel(isArchived, savedStateHandle))!!
+      return if (isArchived) {
+        ArchivedConversationListViewModel(savedStateHandle) as T
+      } else {
+        UnarchivedConversationListViewModel(savedStateHandle) as T
+      }
     }
   }
 }

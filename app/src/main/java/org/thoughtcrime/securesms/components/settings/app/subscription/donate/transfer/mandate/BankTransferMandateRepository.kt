@@ -14,8 +14,14 @@ import java.util.Locale
 object BankTransferMandateRepository {
 
   fun getMandate(paymentSourceType: PaymentSourceType.Stripe): Single<String> {
+    val sourceString = if (paymentSourceType == PaymentSourceType.Stripe.IDEAL) {
+      PaymentSourceType.Stripe.SEPADebit.paymentMethod
+    } else {
+      paymentSourceType.paymentMethod
+    }
+
     return Single
-      .fromCallable { AppDependencies.donationsService.getBankMandate(Locale.getDefault(), paymentSourceType.paymentMethod) }
+      .fromCallable { AppDependencies.donationsService.getBankMandate(Locale.getDefault(), sourceString) }
       .flatMap { it.flattenResult() }
       .map { it.mandate }
       .subscribeOn(Schedulers.io())

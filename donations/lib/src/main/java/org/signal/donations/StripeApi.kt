@@ -265,7 +265,6 @@ class StripeApi(
   private fun createPaymentMethodForIDEAL(paymentSource: IDEALPaymentSource): Response {
     val parameters = mutableMapOf(
       "type" to "ideal",
-      "ideal[bank]" to paymentSource.idealData.bank,
       "billing_details[email]" to paymentSource.idealData.email,
       "billing_details[name]" to paymentSource.idealData.name
     )
@@ -606,7 +605,6 @@ class StripeApi(
 
   @Parcelize
   data class IDEALData(
-    val bank: String,
     val name: String,
     val email: String
   ) : Parcelable

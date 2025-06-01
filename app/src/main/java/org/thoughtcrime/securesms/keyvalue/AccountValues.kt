@@ -161,6 +161,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     }
   }
 
+  @get:JvmName("restoredAccountEntropyPool")
   @get:Synchronized
   val restoredAccountEntropyPool by booleanValue(KEY_RESTORED_ACCOUNT_ENTROPY_KEY, false)
 
@@ -332,6 +333,22 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
         .beginWrite()
         .putBlob(KEY_ACI_IDENTITY_PUBLIC_KEY, publicKey)
         .putBlob(KEY_ACI_IDENTITY_PRIVATE_KEY, privateKey)
+        .commit()
+    }
+  }
+
+  /**
+   * Only to be used as part of Quick Restore, DO NOT USE OTHERWISE.
+   */
+  fun resetAciAndPniIdentityKeysAfterFailedRestore() {
+    synchronized(this) {
+      Log.i(TAG, "Resetting ACI and PNI identity keys after failed quick registration and restore")
+
+      store.beginWrite()
+        .remove(KEY_ACI_IDENTITY_PUBLIC_KEY)
+        .remove(KEY_ACI_IDENTITY_PRIVATE_KEY)
+        .remove(KEY_PNI_IDENTITY_PUBLIC_KEY)
+        .remove(KEY_PNI_IDENTITY_PRIVATE_KEY)
         .commit()
     }
   }

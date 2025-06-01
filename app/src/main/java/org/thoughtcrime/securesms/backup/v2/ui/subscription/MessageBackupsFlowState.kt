@@ -12,7 +12,7 @@ import org.whispersystems.signalservice.api.AccountEntropyPool
 
 data class MessageBackupsFlowState(
   val selectedMessageBackupTier: MessageBackupTier? = SignalStore.backup.backupTier,
-  val currentMessageBackupTier: MessageBackupTier? = SignalStore.backup.backupTier,
+  val currentMessageBackupTier: MessageBackupTier? = null,
   val availableBackupTypes: List<MessageBackupsType> = emptyList(),
   val inAppPayment: InAppPaymentTable.InAppPayment? = null,
   val startScreen: MessageBackupsStage,

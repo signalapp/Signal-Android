@@ -25,6 +25,7 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.Base64
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -122,6 +123,10 @@ class RegistrationViewModel : ViewModel() {
     set(value) {
       store.update {
         it.copy(isReRegister = value)
+      }
+
+      if (value) {
+        SignalStore.misc.needsUsernameRestore = true
       }
     }
 
@@ -894,12 +899,12 @@ class RegistrationViewModel : ViewModel() {
       Log.w(TAG, "Unable to start auth websocket", e)
     }
 
-    if (!remoteResult.storageCapable && SignalStore.registration.restoreDecisionState.isDecisionPending) {
-      Log.v(TAG, "Not storage capable and still pending restore decision, likely an account with no data to restore, skipping post register restore")
+    if (!remoteResult.storageCapable && !SignalStore.account.restoredAccountEntropyPool && SignalStore.registration.restoreDecisionState.isDecisionPending) {
+      Log.v(TAG, "Not storage capable or restored with AEP, and still pending restore decision, likely an account with no data to restore, skipping post register restore")
       SignalStore.registration.restoreDecisionState = RestoreDecisionState.NewAccount
     }
 
-    if (reglockEnabled || SignalStore.svr.hasOptedInWithAccess()) {
+    if (reglockEnabled || SignalStore.account.restoredAccountEntropyPool) {
       SignalStore.onboarding.clearAll()
 
       if (SignalStore.registration.restoreDecisionState.isTerminal) {
@@ -1025,7 +1030,7 @@ class RegistrationViewModel : ViewModel() {
     setInProgress(false)
   }
 
-  fun registerWithBackupKey(context: Context, backupKey: String, e164: String?, pin: String?) {
+  fun registerWithBackupKey(context: Context, backupKey: String, e164: String?, pin: String?, aciIdentityKeyPair: IdentityKeyPair?, pniIdentityKeyPair: IdentityKeyPair?) {
     setInProgress(true)
 
     viewModelScope.launch(context = coroutineExceptionHandler) {
@@ -1035,6 +1040,13 @@ class RegistrationViewModel : ViewModel() {
 
       val accountEntropyPool = AccountEntropyPool(backupKey)
       SignalStore.account.restoreAccountEntropyPool(accountEntropyPool)
+
+      if (aciIdentityKeyPair != null) {
+        SignalStore.account.restoreAciIdentityKeyFromBackup(aciIdentityKeyPair.publicKey.serialize(), aciIdentityKeyPair.privateKey.serialize())
+        if (pniIdentityKeyPair != null) {
+          SignalStore.account.restorePniIdentityKeyFromBackup(pniIdentityKeyPair.publicKey.serialize(), pniIdentityKeyPair.privateKey.serialize())
+        }
+      }
 
       val masterKey = accountEntropyPool.deriveMasterKey()
       setRecoveryPassword(masterKey.deriveRegistrationRecoveryPassword())

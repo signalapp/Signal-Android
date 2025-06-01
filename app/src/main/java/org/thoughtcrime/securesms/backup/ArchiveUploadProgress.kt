@@ -16,6 +16,10 @@ import org.signal.core.util.throttleLatest
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob
+import org.thoughtcrime.securesms.jobs.BackfillDigestJob
+import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import java.util.concurrent.ConcurrentHashMap
@@ -85,11 +89,25 @@ object ArchiveUploadProgress {
     get() = uploadProgress.state != ArchiveUploadProgressState.State.None
 
   fun begin() {
-    updateState {
+    updateState(overrideCancel = true) {
       ArchiveUploadProgressState(
         state = ArchiveUploadProgressState.State.Export
       )
     }
+  }
+
+  fun cancel() {
+    updateState {
+      ArchiveUploadProgressState(
+        state = ArchiveUploadProgressState.State.UserCanceled
+      )
+    }
+
+    AppDependencies.jobManager.cancelAllInQueue(BackfillDigestJob.QUEUE)
+    UploadAttachmentToArchiveJob.getAllQueueKeys().forEach {
+      AppDependencies.jobManager.cancelAllInQueue(it)
+    }
+    AppDependencies.jobManager.cancelAllInQueue(ArchiveThumbnailUploadJob.KEY)
   }
 
   fun onMessageBackupCreated(backupFileSize: Long) {
@@ -144,8 +162,20 @@ object ArchiveUploadProgress {
     updateState { PROGRESS_NONE }
   }
 
-  private fun updateState(notify: Boolean = true, transform: (ArchiveUploadProgressState) -> ArchiveUploadProgressState) {
-    val newState = transform(uploadProgress)
+  private fun updateState(
+    notify: Boolean = true,
+    overrideCancel: Boolean = false,
+    transform: (ArchiveUploadProgressState) -> ArchiveUploadProgressState
+  ) {
+    val newState = transform(uploadProgress).let { state ->
+      val oldArchiveState = uploadProgress.state
+      if (oldArchiveState == ArchiveUploadProgressState.State.UserCanceled && !overrideCancel) {
+        state.copy(state = ArchiveUploadProgressState.State.UserCanceled)
+      } else {
+        state
+      }
+    }
+
     if (uploadProgress == newState) {
       return
     }

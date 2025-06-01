@@ -36,12 +36,15 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.Stable
@@ -52,12 +55,15 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
@@ -93,11 +99,12 @@ import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusRow
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
+import org.thoughtcrime.securesms.components.compose.BetaHeader
+import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.fonts.SignalSymbols
-import org.thoughtcrime.securesms.fonts.SignalSymbols.signalSymbolText
+import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
 import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -153,14 +160,15 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       backupMediaSize = state.backupMediaSize,
       backupState = state.backupState,
       backupRestoreState = restoreState,
-      hasRedemptionError = state.hasRedemptionError
+      hasRedemptionError = state.hasRedemptionError,
+      statusBarColorNestedScrollConnection = remember { StatusBarColorNestedScrollConnection(requireActivity()) }
     )
   }
 
   @Stable
   private inner class Callbacks : ContentCallbacks {
     override fun onNavigationClick() {
-      findNavController().popBackStack()
+      requireActivity().onBackPressedDispatcher.onBackPressed()
     }
 
     override fun onBackupTypeActionClick(tier: MessageBackupTier) {
@@ -217,7 +225,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onCancelMediaRestore() {
-      viewModel.cancelMediaRestore()
+      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.CANCEL_MEDIA_RESTORE_PROTECTION)
     }
 
     override fun onDisplaySkipMediaRestoreProtectionDialog() {
@@ -236,6 +244,10 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       // TODO - [backups] Need process here (cancel first?)
     }
 
+    override fun onCancelUploadClick() {
+      viewModel.cancelUpload()
+    }
+
     override fun onContactSupport() {
       requireActivity().finish()
       requireActivity().startActivity(AppSettingsActivity.help(requireContext(), HelpFragment.REMOTE_BACKUPS_INDEX))
@@ -245,8 +257,12 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       BackupAlertBottomSheet.create(BackupAlert.BackupFailed).show(parentFragmentManager, null)
     }
 
-    override fun onRestoreUsingCellularClick(canUseCellular: Boolean) {
-      viewModel.setCanRestoreUsingCellular(canUseCellular)
+    override fun onRestoreUsingCellularConfirm() {
+      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.RESTORE_OVER_CELLULAR_PROTECTION)
+    }
+
+    override fun onRestoreUsingCellularClick() {
+      viewModel.setCanRestoreUsingCellular()
     }
 
     override fun onRedemptionErrorDetailsClick() {
@@ -319,6 +335,7 @@ private interface ContentCallbacks {
   fun onBackupTypeActionClick(tier: MessageBackupTier) = Unit
   fun onBackUpUsingCellularClick(canUseCellular: Boolean) = Unit
   fun onBackupNowClick() = Unit
+  fun onCancelUploadClick() = Unit
   fun onTurnOffAndDeleteBackupsClick() = Unit
   fun onChangeBackupFrequencyClick() = Unit
   fun onDialogDismissed() = Unit
@@ -334,10 +351,12 @@ private interface ContentCallbacks {
   fun onLearnMoreAboutLostSubscription() = Unit
   fun onContactSupport() = Unit
   fun onLearnMoreAboutBackupFailure() = Unit
-  fun onRestoreUsingCellularClick(canUseCellular: Boolean) = Unit
+  fun onRestoreUsingCellularConfirm() = Unit
+  fun onRestoreUsingCellularClick() = Unit
   fun onRedemptionErrorDetailsClick() = Unit
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun RemoteBackupsSettingsContent(
   backupsEnabled: Boolean,
@@ -352,16 +371,37 @@ private fun RemoteBackupsSettingsContent(
   contentCallbacks: ContentCallbacks,
   backupProgress: ArchiveUploadProgressState?,
   backupMediaSize: Long,
-  hasRedemptionError: Boolean
+  hasRedemptionError: Boolean,
+  statusBarColorNestedScrollConnection: StatusBarColorNestedScrollConnection?
 ) {
   val snackbarHostState = remember {
     SnackbarHostState()
   }
 
-  Scaffolds.Settings(
-    title = stringResource(id = R.string.RemoteBackupsSettingsFragment__signal_backups),
-    onNavigationClick = contentCallbacks::onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
+  val scrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
+
+  Scaffold(
+    topBar = {
+      Scaffolds.DefaultTopAppBar(
+        title = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
+        titleContent = { _, title ->
+          TextWithBetaLabel(text = title, textStyle = MaterialTheme.typography.titleLarge)
+        },
+        onNavigationClick = contentCallbacks::onNavigationClick,
+        navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
+        navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
+        scrollBehavior = scrollBehavior
+      )
+    },
+    modifier = Modifier
+      .then(
+        if (statusBarColorNestedScrollConnection != null) {
+          Modifier.nestedScroll(statusBarColorNestedScrollConnection)
+        } else {
+          Modifier
+        }
+      )
+      .nestedScroll(scrollBehavior.nestedScrollConnection),
     snackbarHost = {
       Snackbars.Host(snackbarHostState = snackbarHostState)
     }
@@ -370,6 +410,10 @@ private fun RemoteBackupsSettingsContent(
       modifier = Modifier
         .padding(it)
     ) {
+      item {
+        BetaHeader(modifier = Modifier.padding(horizontal = 16.dp))
+      }
+
       if (hasRedemptionError) {
         item {
           RedemptionErrorAlert(onDetailsClick = contentCallbacks::onRedemptionErrorDetailsClick)
@@ -406,45 +450,21 @@ private fun RemoteBackupsSettingsContent(
               onBackupTypeActionButtonClicked = contentCallbacks::onBackupTypeActionClick
             )
           }
+
+          RemoteBackupsSettingsState.BackupState.NotFound -> {
+            SubscriptionNotFoundCard(
+              title = stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found),
+              onRenewClick = contentCallbacks::onRenewLostSubscription,
+              onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription
+            )
+          }
         }
       }
 
       if (backupsEnabled) {
-        if (backupRestoreState !is BackupRestoreState.None) {
-          item {
-            Dividers.Default()
-          }
-
-          if (backupRestoreState is BackupRestoreState.FromBackupStatusData) {
-            item {
-              BackupStatusRow(
-                backupStatusData = backupRestoreState.backupStatusData,
-                onCancelClick = contentCallbacks::onCancelMediaRestore,
-                onSkipClick = contentCallbacks::onSkipMediaRestore,
-                onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
-              )
-            }
-
-            item {
-              Rows.ToggleRow(
-                checked = canRestoreUsingCellular,
-                text = stringResource(id = R.string.RemoteBackupsSettingsFragment__restore_using_cellular),
-                onCheckChanged = contentCallbacks::onRestoreUsingCellularClick
-              )
-            }
-          } else if (backupRestoreState is BackupRestoreState.Ready && backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
-            item {
-              BackupReadyToDownloadRow(
-                ready = backupRestoreState,
-                endOfSubscription = backupState.renewalTime,
-                onDownloadClick = contentCallbacks::onStartMediaRestore
-              )
-            }
-          }
-        }
-
         appendBackupDetailsItems(
           backupState = backupState,
+          backupRestoreState = backupRestoreState,
           backupProgress = backupProgress,
           lastBackupTimestamp = lastBackupTimestamp,
           backupMediaSize = backupMediaSize,
@@ -536,6 +556,20 @@ private fun RemoteBackupsSettingsContent(
         onSkipClick = contentCallbacks::onSkipMediaRestore
       )
     }
+
+    RemoteBackupsSettingsState.Dialog.CANCEL_MEDIA_RESTORE_PROTECTION -> {
+      CancelInitialRestoreDialog(
+        onDismiss = contentCallbacks::onDialogDismissed,
+        onSkipClick = contentCallbacks::onSkipMediaRestore
+      )
+    }
+
+    RemoteBackupsSettingsState.Dialog.RESTORE_OVER_CELLULAR_PROTECTION -> {
+      ResumeRestoreOverCellularDialog(
+        onDismiss = contentCallbacks::onDialogDismissed,
+        onResumeOverCellularClick = contentCallbacks::onRestoreUsingCellularClick
+      )
+    }
   }
 
   val snackbarMessageId = remember(requestedSnackbar) {
@@ -567,6 +601,7 @@ private fun RemoteBackupsSettingsContent(
 
 private fun LazyListScope.appendBackupDetailsItems(
   backupState: RemoteBackupsSettingsState.BackupState,
+  backupRestoreState: BackupRestoreState,
   backupProgress: ArchiveUploadProgressState?,
   lastBackupTimestamp: Long,
   backupMediaSize: Long,
@@ -583,7 +618,38 @@ private fun LazyListScope.appendBackupDetailsItems(
     Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
   }
 
-  if (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None) {
+  if (backupRestoreState !is BackupRestoreState.None) {
+    if (backupRestoreState is BackupRestoreState.FromBackupStatusData) {
+      item {
+        BackupStatusRow(
+          backupStatusData = backupRestoreState.backupStatusData,
+          onCancelClick = contentCallbacks::onCancelMediaRestore,
+          onSkipClick = contentCallbacks::onSkipMediaRestore,
+          onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
+        )
+      }
+
+      if (!canRestoreUsingCellular) {
+        item {
+          Rows.TextRow(
+            text = stringResource(R.string.RemoteBackupsSettingsFragment__resume_download),
+            icon = painterResource(R.drawable.symbol_arrow_circle_down_24),
+            onClick = contentCallbacks::onRestoreUsingCellularConfirm
+          )
+        }
+      }
+    } else if (backupRestoreState is BackupRestoreState.Ready) {
+      item {
+        BackupReadyToDownloadRow(
+          ready = backupRestoreState,
+          backupState = backupState,
+          onDownloadClick = contentCallbacks::onStartMediaRestore
+        )
+      }
+    }
+  }
+
+  if (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None || backupProgress.state == ArchiveUploadProgressState.State.UserCanceled) {
     item {
       LastBackupRow(
         lastBackupTimestamp = lastBackupTimestamp,
@@ -592,7 +658,10 @@ private fun LazyListScope.appendBackupDetailsItems(
     }
   } else {
     item {
-      InProgressBackupRow(archiveUploadProgressState = backupProgress)
+      InProgressBackupRow(
+        archiveUploadProgressState = backupProgress,
+        cancelArchiveUpload = contentCallbacks::onCancelUploadClick
+      )
     }
   }
 
@@ -685,10 +754,7 @@ private fun BackupCard(
         }
 
         Text(
-          text = signalSymbolText(
-            text = title,
-            glyphStart = if (backupState.isActive()) SignalSymbols.Glyph.CHECK else null
-          ),
+          text = title,
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           style = MaterialTheme.typography.bodyMedium
         )
@@ -759,25 +825,41 @@ private fun BackupCard(
       )
     }
 
-    val buttonText = when (messageBackupsType) {
-      is MessageBackupsType.Paid -> stringResource(R.string.RemoteBackupsSettingsFragment__manage_or_cancel)
-      is MessageBackupsType.Free -> stringResource(R.string.RemoteBackupsSettingsFragment__upgrade)
-    }
-
     if (backupState.isActive()) {
-      Buttons.LargeTonal(
-        onClick = { onBackupTypeActionButtonClicked(messageBackupsType.tier) },
-        colors = ButtonDefaults.filledTonalButtonColors().copy(
-          containerColor = SignalTheme.colors.colorTransparent5,
-          contentColor = colorResource(R.color.signal_light_colorOnSurface)
-        ),
-        modifier = Modifier.padding(top = 12.dp)
-      ) {
-        Text(
-          text = buttonText
-        )
+      val buttonText = when (messageBackupsType) {
+        is MessageBackupsType.Paid -> stringResource(R.string.RemoteBackupsSettingsFragment__manage_or_cancel)
+        is MessageBackupsType.Free -> stringResource(R.string.RemoteBackupsSettingsFragment__upgrade)
       }
+
+      CallToActionButton(
+        text = buttonText,
+        onClick = { onBackupTypeActionButtonClicked(messageBackupsType.tier) }
+      )
+    } else if (backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
+      CallToActionButton(
+        text = stringResource(R.string.RemoteBackupsSettingsFragment__renew),
+        onClick = { onBackupTypeActionButtonClicked(MessageBackupTier.FREE) }
+      )
     }
+  }
+}
+
+@Composable
+private fun CallToActionButton(
+  text: String,
+  onClick: () -> Unit
+) {
+  Buttons.MediumTonal(
+    onClick = onClick,
+    colors = ButtonDefaults.filledTonalButtonColors().copy(
+      containerColor = SignalTheme.colors.colorTransparent5,
+      contentColor = colorResource(R.color.signal_light_colorOnSurface)
+    ),
+    modifier = Modifier.padding(top = 12.dp)
+  ) {
+    Text(
+      text = text
+    )
   }
 }
 
@@ -806,7 +888,9 @@ private fun RedemptionErrorAlert(
 
     Text(
       text = stringResource(R.string.AppSettingsFragment__couldnt_redeem_your_backups_subscription),
-      modifier = Modifier.padding(start = 16.dp, end = 4.dp).weight(1f)
+      modifier = Modifier
+        .padding(start = 16.dp, end = 4.dp)
+        .weight(1f)
     )
 
     Buttons.Small(onClick = onDetailsClick) {
@@ -842,7 +926,9 @@ private fun LoadingCard() {
 @Composable
 private fun ErrorCard() {
   BoxCard {
-    Column {
+    Column(
+      horizontalAlignment = Alignment.CenterHorizontally
+    ) {
       CircularProgressIndicator(
         strokeWidth = 3.5.dp,
         color = MaterialTheme.colorScheme.secondary,
@@ -896,8 +982,8 @@ private fun PendingCard(
 }
 
 @Composable
-private fun SubscriptionMismatchMissingGooglePlayCard(
-  state: RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay,
+private fun SubscriptionNotFoundCard(
+  title: String,
   onRenewClick: () -> Unit = {},
   onLearnMoreClick: () -> Unit = {}
 ) {
@@ -908,11 +994,9 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
       .background(color = SignalTheme.colors.colorSurface2, shape = RoundedCornerShape(12.dp))
       .padding(24.dp)
   ) {
-    val days by rememberUpdatedState((state.renewalTime - System.currentTimeMillis().milliseconds).inWholeDays)
-
     Row {
       Text(
-        text = pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid, days.toInt(), days),
+        text = title,
         modifier = Modifier
           .weight(1f)
           .padding(end = 13.dp)
@@ -941,7 +1025,7 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
     Row(
       horizontalArrangement = spacedBy(16.dp)
     ) {
-      Buttons.LargeTonal(
+      Buttons.MediumTonal(
         onClick = onRenewClick,
         colors = ButtonDefaults.filledTonalButtonColors().copy(
           containerColor = SignalTheme.colors.colorTransparent5,
@@ -956,7 +1040,7 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
         )
       }
 
-      Buttons.LargeTonal(
+      Buttons.MediumTonal(
         onClick = onLearnMoreClick,
         colors = ButtonDefaults.filledTonalButtonColors().copy(
           containerColor = SignalTheme.colors.colorTransparent5,
@@ -975,8 +1059,24 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
 }
 
 @Composable
+private fun SubscriptionMismatchMissingGooglePlayCard(
+  state: RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay,
+  onRenewClick: () -> Unit = {},
+  onLearnMoreClick: () -> Unit = {}
+) {
+  val days by rememberUpdatedState((state.renewalTime - System.currentTimeMillis().milliseconds).inWholeDays)
+
+  SubscriptionNotFoundCard(
+    title = pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid, days.toInt(), days),
+    onRenewClick = onRenewClick,
+    onLearnMoreClick = onLearnMoreClick
+  )
+}
+
+@Composable
 private fun InProgressBackupRow(
-  archiveUploadProgressState: ArchiveUploadProgressState
+  archiveUploadProgressState: ArchiveUploadProgressState,
+  cancelArchiveUpload: () -> Unit = {}
 ) {
   Row(
     modifier = Modifier
@@ -987,23 +1087,23 @@ private fun InProgressBackupRow(
       modifier = Modifier.weight(1f)
     ) {
       when (archiveUploadProgressState.state) {
-        ArchiveUploadProgressState.State.None -> {
-          LinearProgressIndicator(modifier = Modifier.fillMaxWidth())
+        ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled -> {
+          ArchiveProgressIndicator()
         }
         ArchiveUploadProgressState.State.Export -> {
           val progressValue by animateFloatAsState(targetValue = archiveUploadProgressState.frameExportProgress(), animationSpec = tween(durationMillis = 250))
-          LinearProgressIndicator(
-            modifier = Modifier.fillMaxWidth(),
+          ArchiveProgressIndicator(
             progress = { progressValue },
-            drawStopIndicator = {}
+            isCancelable = true,
+            cancel = cancelArchiveUpload
           )
         }
         ArchiveUploadProgressState.State.UploadBackupFile, ArchiveUploadProgressState.State.UploadMedia -> {
           val progressValue by animateFloatAsState(targetValue = archiveUploadProgressState.uploadProgress(), animationSpec = tween(durationMillis = 250))
-          LinearProgressIndicator(
-            modifier = Modifier.fillMaxWidth(),
+          ArchiveProgressIndicator(
             progress = { progressValue },
-            drawStopIndicator = {}
+            isCancelable = true,
+            cancel = cancelArchiveUpload
           )
         }
       }
@@ -1018,9 +1118,36 @@ private fun InProgressBackupRow(
 }
 
 @Composable
+private fun ArchiveProgressIndicator(
+  progress: () -> Float = { 0f },
+  isCancelable: Boolean = false,
+  cancel: () -> Unit = {}
+) {
+  Row(
+    verticalAlignment = Alignment.CenterVertically
+  ) {
+    LinearProgressIndicator(
+      trackColor = MaterialTheme.colorScheme.secondaryContainer,
+      progress = progress,
+      drawStopIndicator = {},
+      modifier = Modifier.weight(1f).padding(vertical = 12.dp)
+    )
+
+    if (isCancelable) {
+      IconButton(onClick = cancel) {
+        Icon(
+          imageVector = ImageVector.vectorResource(R.drawable.symbol_x_24),
+          contentDescription = stringResource(R.string.RemoteBackupsSettingsFragment__cancel_upload)
+        )
+      }
+    }
+  }
+}
+
+@Composable
 private fun getProgressStateMessage(archiveUploadProgressState: ArchiveUploadProgressState): String {
   return when (archiveUploadProgressState.state) {
-    ArchiveUploadProgressState.State.None -> stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
+    ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled -> stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
     ArchiveUploadProgressState.State.Export -> getBackupExportPhaseProgressString(archiveUploadProgressState)
     ArchiveUploadProgressState.State.UploadBackupFile, ArchiveUploadProgressState.State.UploadMedia -> getBackupUploadPhaseProgressString(archiveUploadProgressState)
   }
@@ -1097,7 +1224,7 @@ private fun LastBackupRow(
       }
     }
 
-    Buttons.Small(onClick = onBackupNowClick) {
+    Buttons.MediumTonal(onClick = onBackupNowClick) {
       Text(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__back_up_now))
     }
   }
@@ -1164,6 +1291,37 @@ private fun SkipDownloadDialog(
   )
 }
 
+@Composable
+private fun CancelInitialRestoreDialog(
+  onSkipClick: () -> Unit = {},
+  onDismiss: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.RemoteBackupsSettingsFragment__skip_restore_question),
+    body = stringResource(R.string.RemoteBackupsSettingsFragment__skip_restore_message),
+    confirm = stringResource(R.string.RemoteBackupsSettingsFragment__skip),
+    dismiss = stringResource(android.R.string.cancel),
+    confirmColor = MaterialTheme.colorScheme.error,
+    onConfirm = onSkipClick,
+    onDismiss = onDismiss
+  )
+}
+
+@Composable
+private fun ResumeRestoreOverCellularDialog(
+  onResumeOverCellularClick: () -> Unit = {},
+  onDismiss: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.ResumeRestoreCellular_resume_using_cellular_title),
+    body = stringResource(R.string.ResumeRestoreCellular_resume_using_cellular_message),
+    confirm = stringResource(R.string.BackupStatus__resume),
+    dismiss = stringResource(android.R.string.cancel),
+    onConfirm = onResumeOverCellularClick,
+    onDismiss = onDismiss
+  )
+}
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun CircularProgressDialog(
@@ -1214,6 +1372,7 @@ private fun BackupFrequencyDialog(
         Text(
           text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_frequency),
           style = MaterialTheme.typography.headlineMedium,
+          color = MaterialTheme.colorScheme.onSurface,
           modifier = Modifier.padding(24.dp)
         )
 
@@ -1253,11 +1412,16 @@ private fun BackupFrequencyDialog(
 @Composable
 private fun BackupReadyToDownloadRow(
   ready: BackupRestoreState.Ready,
-  endOfSubscription: Duration,
+  backupState: RemoteBackupsSettingsState.BackupState,
   onDownloadClick: () -> Unit = {}
 ) {
-  val days = (endOfSubscription - System.currentTimeMillis().milliseconds).inWholeDays.toInt()
-  val string = pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__you_have_s_of_backup_data, days, ready.bytes, days)
+  val string = if (backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
+    val days = (backupState.renewalTime - System.currentTimeMillis().milliseconds).inWholeDays.toInt()
+    pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__you_have_s_of_backup_data, days, ready.bytes, days)
+  } else {
+    stringResource(R.string.RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device, ready.bytes)
+  }
+
   val annotated = buildAnnotatedString {
     append(string)
     val startIndex = string.indexOf(ready.bytes)
@@ -1311,7 +1475,8 @@ private fun RemoteBackupsSettingsContentPreview() {
         messageBackupsType = MessageBackupsType.Free(mediaRetentionDays = 30)
       ),
       backupRestoreState = BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup),
-      hasRedemptionError = true
+      hasRedemptionError = true,
+      statusBarColorNestedScrollConnection = null
     )
   }
 }
@@ -1346,6 +1511,16 @@ private fun PendingCardPreview() {
   Previews.Preview {
     PendingCard(
       price = FiatMoney(BigDecimal.TEN, Currency.getInstance(Locale.getDefault()))
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun SubscriptionNotFoundCardPreview() {
+  Previews.Preview {
+    SubscriptionNotFoundCard(
+      title = stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found)
     )
   }
 }
@@ -1435,7 +1610,7 @@ private fun BackupReadyToDownloadPreview() {
   Previews.Preview {
     BackupReadyToDownloadRow(
       ready = BackupRestoreState.Ready("12GB"),
-      endOfSubscription = System.currentTimeMillis().milliseconds + 30.days
+      backupState = RemoteBackupsSettingsState.BackupState.None
     )
   }
 }
@@ -1467,30 +1642,6 @@ private fun InProgressRowPreview() {
         archiveUploadProgressState = ArchiveUploadProgressState(
           state = ArchiveUploadProgressState.State.Export,
           backupPhase = ArchiveUploadProgressState.BackupPhase.Account
-        )
-      )
-      InProgressBackupRow(
-        archiveUploadProgressState = ArchiveUploadProgressState(
-          state = ArchiveUploadProgressState.State.Export,
-          backupPhase = ArchiveUploadProgressState.BackupPhase.Call
-        )
-      )
-      InProgressBackupRow(
-        archiveUploadProgressState = ArchiveUploadProgressState(
-          state = ArchiveUploadProgressState.State.Export,
-          backupPhase = ArchiveUploadProgressState.BackupPhase.Sticker
-        )
-      )
-      InProgressBackupRow(
-        archiveUploadProgressState = ArchiveUploadProgressState(
-          state = ArchiveUploadProgressState.State.Export,
-          backupPhase = ArchiveUploadProgressState.BackupPhase.Recipient
-        )
-      )
-      InProgressBackupRow(
-        archiveUploadProgressState = ArchiveUploadProgressState(
-          state = ArchiveUploadProgressState.State.Export,
-          backupPhase = ArchiveUploadProgressState.BackupPhase.Thread
         )
       )
       InProgressBackupRow(
@@ -1602,13 +1753,6 @@ private fun BackupFrequencyDialogPreview() {
       onDismiss = {}
     )
   }
-}
-
-private data class BackupProgress(
-  val completed: Long,
-  val total: Long
-) {
-  val progress: Float = if (total > 0) completed / total.toFloat() else 0f
 }
 
 private fun ArchiveUploadProgressState.frameExportProgress(): Float {

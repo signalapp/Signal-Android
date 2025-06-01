@@ -30,6 +30,7 @@ import java.io.FileNotFoundException
 import java.io.IOException
 import java.net.ProtocolException
 import kotlin.random.Random
+import kotlin.random.nextInt
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -45,12 +46,17 @@ class UploadAttachmentToArchiveJob private constructor(
   companion object {
     private val TAG = Log.tag(UploadAttachmentToArchiveJob::class)
     const val KEY = "UploadAttachmentToArchiveJob"
+    const val MAX_JOB_QUEUES = 2
 
     /**
-     * This randomly selects between one of two queues. It's a fun way of limiting the concurrency of the upload jobs to
+     * This randomly selects between one of [MAX_JOB_QUEUES] queues. It's a fun way of limiting the concurrency of the upload jobs to
      * take up at most two job runners.
      */
-    fun buildQueueKey() = "ArchiveAttachmentJobs_${Random.nextInt(0, 2)}"
+    fun buildQueueKey(
+      queue: Int = Random.nextInt(0, MAX_JOB_QUEUES)
+    ) = "ArchiveAttachmentJobs_$queue"
+
+    fun getAllQueueKeys() = (0 until MAX_JOB_QUEUES).map { buildQueueKey(queue = it) }
   }
 
   constructor(attachmentId: AttachmentId) : this(
@@ -182,7 +188,11 @@ class UploadAttachmentToArchiveJob private constructor(
 
     SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachment.attachmentId, uploadResult)
 
-    AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachment.attachmentId))
+    if (!isCanceled) {
+      AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachment.attachmentId))
+    } else {
+      Log.d(TAG, "[$attachmentId] Job was canceled. Skipping copy job.")
+    }
 
     return Result.success()
   }

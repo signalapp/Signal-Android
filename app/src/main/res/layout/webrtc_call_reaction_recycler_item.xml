@@ -10,10 +10,11 @@
     android:layout_gravity="center_vertical"
     android:orientation="horizontal">
 
-    <org.thoughtcrime.securesms.components.emoji.EmojiImageView
+    <org.thoughtcrime.securesms.components.emoji.EmojiTextView
         android:id="@+id/webrtc_call_reaction_emoji_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
+        android:textSize="28sp"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"/>
 

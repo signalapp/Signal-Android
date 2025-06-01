@@ -283,8 +283,18 @@ sealed interface BackupStatusData {
     val restoreStatus: RestoreStatus = RestoreStatus.NORMAL
   ) : BackupStatusData {
     override val iconRes: Int = if (restoreStatus == RestoreStatus.FINISHED) R.drawable.symbol_check_circle_24 else R.drawable.symbol_backup_light
-    override val iconColors: BackupsIconColors = if (restoreStatus == RestoreStatus.FINISHED) BackupsIconColors.Success else BackupsIconColors.Normal
+    override val iconColors: BackupsIconColors = when (restoreStatus) {
+      RestoreStatus.FINISHED -> BackupsIconColors.Success
+      RestoreStatus.NORMAL -> BackupsIconColors.Normal
+      RestoreStatus.LOW_BATTERY,
+      RestoreStatus.WAITING_FOR_INTERNET,
+      RestoreStatus.WAITING_FOR_WIFI -> BackupsIconColors.Warning
+    }
     override val showDismissAction: Boolean = restoreStatus == RestoreStatus.FINISHED
+    override val actionRes: Int = when (restoreStatus) {
+      RestoreStatus.WAITING_FOR_WIFI -> R.string.BackupStatus__resume
+      else -> NONE
+    }
 
     override val title: String
       @Composable get() = stringResource(
@@ -311,7 +321,7 @@ sealed interface BackupStatusData {
         RestoreStatus.FINISHED -> bytesTotal.toUnitString()
       }
 
-    override val progress: Float = if (bytesTotal.bytes > 0 && restoreStatus != RestoreStatus.FINISHED) {
+    override val progress: Float = if (bytesTotal.bytes > 0 && restoreStatus == RestoreStatus.NORMAL) {
       min(1f, max(0f, bytesDownloaded.bytes.toFloat() / bytesTotal.bytes.toFloat()))
     } else {
       NONE.toFloat()

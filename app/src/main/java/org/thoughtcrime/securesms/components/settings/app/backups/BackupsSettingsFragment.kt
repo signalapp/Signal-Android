@@ -27,10 +27,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -46,6 +48,7 @@ import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
+import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
@@ -228,9 +231,7 @@ private fun NeverEnabledBackupsRow(
     },
     text = {
       Column {
-        Text(
-          text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups)
-        )
+        TextWithBetaLabel(text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups))
 
         Text(
           text = stringResource(R.string.BackupsSettingsFragment_automatic_backups_with_signals),
@@ -268,9 +269,23 @@ private fun InactiveBackupsRow(
   onBackupsRowClick: () -> Unit = {}
 ) {
   Rows.TextRow(
-    text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
-    label = stringResource(R.string.preferences_off),
-    icon = painterResource(R.drawable.symbol_backup_24),
+    text = {
+      Column {
+        TextWithBetaLabel(text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups))
+        Text(
+          text = stringResource(R.string.preferences_off),
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+      }
+    },
+    icon = {
+      Icon(
+        imageVector = ImageVector.vectorResource(R.drawable.symbol_backup_24),
+        contentDescription = stringResource(R.string.preferences_chats__backups),
+        tint = MaterialTheme.colorScheme.onSurface
+      )
+    },
     onClick = onBackupsRowClick
   )
 }
@@ -297,9 +312,7 @@ private fun ActiveBackupsRow(
     },
     text = {
       Column {
-        Text(
-          text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups)
-        )
+        TextWithBetaLabel(text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups))
 
         when (enabledState.type) {
           is MessageBackupsType.Paid -> {

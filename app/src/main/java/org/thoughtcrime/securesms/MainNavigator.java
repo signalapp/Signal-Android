@@ -59,11 +59,6 @@ public class MainNavigator {
     activity.startActivity(CreateGroupActivity.newIntent(activity));
   }
 
-  public void goToInvite() {
-    Intent intent = new Intent(activity, InviteActivity.class);
-    activity.startActivity(intent);
-  }
-
   private @NonNull FragmentManager getFragmentManager() {
     return activity.getSupportFragmentManager();
   }

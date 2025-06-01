@@ -26,6 +26,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.minimumInteractiveComponentSize
 import androidx.compose.runtime.Composable
@@ -39,6 +40,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
@@ -194,7 +197,13 @@ object Rows {
           Switch(
             checked = state.checked,
             enabled = state.enabled,
-            onCheckedChange = state.onCheckChanged
+            onCheckedChange = state.onCheckChanged,
+            colors = SwitchDefaults.colors(
+              checkedTrackColor = MaterialTheme.colorScheme.primary,
+              uncheckedBorderColor = MaterialTheme.colorScheme.outline,
+              uncheckedIconColor = MaterialTheme.colorScheme.outline,
+              uncheckedTrackColor = MaterialTheme.colorScheme.surfaceVariant
+            )
           )
         }
       }
@@ -300,13 +309,19 @@ object Rows {
     onLongClick: (() -> Unit)? = null,
     enabled: Boolean = true
   ) {
+    val haptics = LocalHapticFeedback.current
     Row(
       modifier = modifier
         .fillMaxWidth()
         .combinedClickable(
           enabled = enabled && (onClick != null || onLongClick != null),
           onClick = onClick ?: {},
-          onLongClick = onLongClick ?: {}
+          onLongClick = {
+            if (onLongClick != null) {
+              haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+              onLongClick()
+            }
+          }
         )
         .padding(defaultPadding()),
       verticalAlignment = CenterVertically

@@ -27,6 +27,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.channels.awaitClose
+import kotlinx.coroutines.channels.trySendBlocking
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -181,8 +182,10 @@ internal class BillingApiImpl(
           Log.d(TAG, "No pricing available.")
           null
         } else {
+          val price = FiatMoney(BigDecimal.valueOf(pricing.priceAmountMicros, 6), Currency.getInstance(pricing.priceCurrencyCode))
+          Log.d(TAG, "Found product pricing: $price")
           BillingProduct(
-            price = FiatMoney(BigDecimal.valueOf(pricing.priceAmountMicros, 6), Currency.getInstance(pricing.priceCurrencyCode))
+            price = price
           )
         }
       } catch (e: BillingError) {
@@ -308,12 +311,12 @@ internal class BillingApiImpl(
   private fun createConnectionFlow(): Flow<State> {
     return callbackFlow {
       Log.d(TAG, "Starting Google Play Billing connection...", true)
-      trySend(State.Connecting)
+      send(State.Connecting)
 
       billingClient.startConnection(object : BillingClientStateListener {
         override fun onBillingServiceDisconnected() {
           Log.d(TAG, "Google Play Billing became disconnected.", true)
-          trySend(State.Disconnected)
+          trySendBlocking(State.Disconnected)
           cancel(CancellationException("Google Play Billing became disconnected.", RetryException()))
         }
 
@@ -321,13 +324,13 @@ internal class BillingApiImpl(
           Log.d(TAG, "onBillingSetupFinished: ${billingResult.responseCode}")
           if (billingResult.responseCode == BillingResponseCode.OK) {
             Log.d(TAG, "Google Play Billing is ready.", true)
-            trySend(State.Connected)
+            trySendBlocking(State.Connected)
           } else {
             Log.d(TAG, "Google Play Billing failed to connect.", true)
             val billingError = BillingError(
               billingResponseCode = billingResult.responseCode
             )
-            trySend(State.Failure(billingError))
+            trySendBlocking(State.Failure(billingError))
             channel.close()
           }
         }

@@ -11,6 +11,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:navigationIcon="@drawable/symbol_arrow_start_24"
+            app:title="@string/preferences__delete_account" />
+
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/delete_account_fragment_warning"
             android:layout_width="40dp"
@@ -18,7 +29,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar"
             app:srcCompat="@drawable/ic_warning_40"
             app:tint="@color/signal_alert_primary" />
 

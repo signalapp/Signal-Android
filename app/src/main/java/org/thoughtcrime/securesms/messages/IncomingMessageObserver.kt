@@ -60,7 +60,11 @@ import kotlin.time.Duration.Companion.seconds
  * This class is responsible for keeping the authenticated websocket open based on the app's state for incoming messages and
  * observing new inbound messages received over the websocket.
  */
-class IncomingMessageObserver(private val context: Application, private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket) {
+class IncomingMessageObserver(
+  private val context: Application,
+  private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
+  private val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket
+) {
 
   companion object {
     private val TAG = Log.tag(IncomingMessageObserver::class.java)
@@ -89,18 +93,21 @@ class IncomingMessageObserver(private val context: Application, private val auth
   private val connectionNecessarySemaphore = Semaphore(0)
   private var previousProxyInfo: ProxyInfo? = null
   private val networkConnectionListener = NetworkConnectionListener(
-    context,
-    { isNetworkUnavailable ->
+    context = context,
+    onNetworkLost = { isNetworkUnavailable ->
       lock.withLock {
         AppDependencies.libsignalNetwork.onNetworkChange()
         if (isNetworkUnavailable()) {
           Log.w(TAG, "Lost network connection. Resetting the drained state.")
           decryptionDrained = false
+          authWebSocket.disconnect()
+          // TODO [no-more-rest] Move the connection listener to a neutral location so this isn't passed in
+          unauthWebSocket.disconnect()
         }
         connectionNecessarySemaphore.release()
       }
     },
-    { proxyInfo ->
+    onProxySettingsChanged = { proxyInfo ->
       if (proxyInfo != previousProxyInfo) {
         val networkReset = AppDependencies.onSystemHttpProxyChange(proxyInfo?.host, proxyInfo?.port)
         if (networkReset) {
@@ -259,6 +266,8 @@ class IncomingMessageObserver(private val context: Application, private val auth
     SignalExecutors.BOUNDED.execute {
       Log.w(TAG, "Beginning termination. ${this.hashCode()}")
       terminated = true
+      Log.w(TAG, "Disconnecting auth socket as part of termination")
+      authWebSocket.disconnect()
     }
   }
 
@@ -471,6 +480,8 @@ class IncomingMessageObserver(private val context: Application, private val auth
           attempts++
           Log.w(TAG, e)
         } finally {
+          Log.w(TAG, "Disconnecting auth websocket")
+          authWebSocket.disconnect()
           webSocketDisposable.dispose()
           decryptionDrained = false
         }

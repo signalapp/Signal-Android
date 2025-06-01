@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobLogger.format
 import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraint
 import org.thoughtcrime.securesms.jobs.protos.RestoreAttachmentJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -117,8 +118,14 @@ class RestoreAttachmentJob private constructor(
   private constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, queue: String) : this(
     Parameters.Builder()
       .setQueue(queue)
-      .addConstraint(RestoreAttachmentConstraint.KEY)
-      .addConstraint(BatteryNotLowConstraint.KEY)
+      .apply {
+        if (manual) {
+          addConstraint(NetworkConstraint.KEY)
+        } else {
+          addConstraint(RestoreAttachmentConstraint.KEY)
+          addConstraint(BatteryNotLowConstraint.KEY)
+        }
+      }
       .setLifespan(TimeUnit.DAYS.toMillis(30))
       .build(),
     messageId,
@@ -268,7 +275,7 @@ class RestoreAttachmentJob private constructor(
         throw IOException("Failed to delete temp download file following range exception")
       }
     } catch (e: InvalidAttachmentException) {
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, e.message)
       markFailed(attachmentId)
     } catch (e: NonSuccessfulResponseCodeException) {
       if (SignalStore.backup.backsUpMedia) {

@@ -62,6 +62,7 @@ class EnterBackupKeyViewModel : ViewModel() {
 
         if (incorrectKeyError && SignalStore.account.restoredAccountEntropyPool) {
           SignalStore.account.resetAccountEntropyPool()
+          SignalStore.account.resetAciAndPniIdentityKeysAfterFailedRestore()
         }
 
         it.copy(

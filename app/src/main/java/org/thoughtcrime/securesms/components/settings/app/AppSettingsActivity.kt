@@ -78,6 +78,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
         )
 
         StartLocation.BACKUPS_SETTINGS -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment()
+        StartLocation.INVITE -> AppSettingsFragmentDirections.actionDirectToInviteFragment()
       }
     }
 
@@ -223,6 +224,9 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     @JvmStatic
     fun backupsSettings(context: Context): Intent = getIntentForStartLocation(context, StartLocation.BACKUPS_SETTINGS)
 
+    @JvmStatic
+    fun invite(context: Context): Intent = getIntentForStartLocation(context, StartLocation.INVITE)
+
     private fun getIntentForStartLocation(context: Context, startLocation: StartLocation): Intent {
       return Intent(context, AppSettingsActivity::class.java)
         .putExtra(ARG_NAV_GRAPH, R.navigation.app_settings_with_change_number)
@@ -250,7 +254,8 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     REMOTE_BACKUPS(16),
     CHAT_FOLDERS(17),
     CREATE_CHAT_FOLDER(18),
-    BACKUPS_SETTINGS(19);
+    BACKUPS_SETTINGS(19),
+    INVITE(20);
 
     companion object {
       fun fromCode(code: Int?): StartLocation {

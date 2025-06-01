@@ -1,10 +1,14 @@
 package org.thoughtcrime.securesms.components.voice
 
 import android.content.Context
+import android.media.AudioFocusRequest
+import android.media.AudioManager
+import android.os.Build
 import androidx.annotation.OptIn
-import androidx.media3.common.AudioAttributes
+import androidx.core.content.ContextCompat
 import androidx.media3.common.C
 import androidx.media3.common.ForwardingPlayer
+import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.exoplayer.DefaultLoadControl
 import androidx.media3.exoplayer.DefaultRenderersFactory
@@ -32,7 +36,45 @@ class VoiceNotePlayer @JvmOverloads constructor(
 ) : ForwardingPlayer(internalPlayer) {
 
   init {
-    setAudioAttributes(AudioAttributes.Builder().setContentType(C.AUDIO_CONTENT_TYPE_MUSIC).setUsage(C.USAGE_MEDIA).build(), true)
+    val audioManager = ContextCompat.getSystemService(context, AudioManager::class.java)
+
+    val audioFocusRequest = if (Build.VERSION.SDK_INT >= 26) {
+      AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
+        .setAudioAttributes(
+          android.media.AudioAttributes.Builder()
+            .setUsage(android.media.AudioAttributes.USAGE_MEDIA)
+            .setContentType(android.media.AudioAttributes.CONTENT_TYPE_MUSIC)
+            .build()
+        )
+        .setOnAudioFocusChangeListener {
+        }
+        .build()
+    } else {
+      null
+    }
+
+    addListener(object : Player.Listener {
+      override fun onIsPlayingChanged(isPlaying: Boolean) {
+        super.onIsPlayingChanged(isPlaying)
+        if (Build.VERSION.SDK_INT >= 26) {
+          if (isPlaying) {
+            audioManager?.requestAudioFocus(audioFocusRequest!!)
+          } else {
+            audioManager?.abandonAudioFocusRequest(audioFocusRequest!!)
+          }
+        } else {
+          if (isPlaying) {
+            audioManager?.requestAudioFocus(
+              null,
+              AudioManager.STREAM_MUSIC,
+              AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK
+            )
+          } else {
+            audioManager?.abandonAudioFocus(null)
+          }
+        }
+      }
+    })
   }
 
   override fun seekTo(windowIndex: Int, positionMs: Long) {

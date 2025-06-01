@@ -18,7 +18,9 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.annimon.stream.Stream;
 
@@ -61,6 +63,7 @@ public class HelpFragment extends LoggingFragment {
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
     initializeViewModels();
+    initializeToolbar(view);
     initializeViews(view);
     initializeListeners();
     initializeObservers();
@@ -136,6 +139,11 @@ public class HelpFragment extends LoggingFragment {
       next.setEnabled(isValid);
       toaster.setVisibility(isValid ? View.GONE : View.VISIBLE);
     });
+  }
+
+  private void initializeToolbar(@NonNull View view) {
+    Toolbar toolbar = view.findViewById(R.id.toolbar);
+    toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).navigateUp());
   }
 
   private void handleEmojiClicked(@NonNull View clicked) {

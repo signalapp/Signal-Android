@@ -13,7 +13,6 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -26,6 +25,7 @@ import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.create.CreateCallLinkBottomSheetDialogFragment
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
@@ -50,11 +50,13 @@ import org.thoughtcrime.securesms.main.MainToolbarViewModel
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.SnackbarState
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
+import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
 import java.util.Objects
 
 /**
@@ -174,6 +176,10 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       }
     )
 
+    if (resources.getWindowSizeClass().isCompact()) {
+      ViewUtil.setBottomMargin(binding.bottomActionBar, ViewUtil.getNavigationBarHeight(binding.bottomActionBar))
+    }
+
     signalBottomActionBarController = SignalBottomActionBarController(
       binding.bottomActionBar,
       binding.recycler,
@@ -288,7 +294,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   }
 
   override fun onCreateACallLinkClicked() {
-    findNavController().navigate(R.id.createCallLinkBottomSheet)
+    CreateCallLinkBottomSheetDialogFragment().show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
   }
 
   override fun onCallClicked(callLogRow: CallLogRow.Call) {

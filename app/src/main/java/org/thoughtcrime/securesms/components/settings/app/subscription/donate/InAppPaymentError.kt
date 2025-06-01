@@ -33,7 +33,7 @@ class InAppPaymentError(
         is DonationError.PaymentSetupError.StripeCodedError -> InAppPaymentData.Error(type = InAppPaymentData.Error.Type.STRIPE_CODED_ERROR, data_ = donationError.errorCode)
         is DonationError.PaymentSetupError.StripeDeclinedError -> InAppPaymentData.Error(type = InAppPaymentData.Error.Type.STRIPE_DECLINED_ERROR, data_ = donationError.declineCode.rawCode)
         is DonationError.PaymentSetupError.StripeFailureCodeError -> InAppPaymentData.Error(type = InAppPaymentData.Error.Type.STRIPE_FAILURE, data_ = donationError.failureCode.rawCode)
-        is DonationError.UserCancelledPaymentError -> null
+        is DonationError.UserCancelledPaymentError -> InAppPaymentData.Error(type = InAppPaymentData.Error.Type.SETUP_CANCELLED)
         is DonationError.UserLaunchedExternalApplication -> null
       }
 

@@ -146,17 +146,6 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false" />
 
-    <activity android:name=".InviteActivity"
-              android:theme="@style/Signal.Light.NoActionBar.Invite"
-              android:windowSoftInputMode="stateHidden"
-              android:parentActivityName=".MainActivity"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value=".MainActivity" />
-    </activity>
-
     <activity android:name=".DeviceProvisioningActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="true">
@@ -889,13 +878,6 @@
               android:exported="false"/>
 
     <activity android:name=".stickers.StickerManagementActivity"
-              android:launchMode="singleTask"
-              android:theme="@style/TextSecure.LightTheme"
-              android:windowSoftInputMode="stateUnchanged"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false"/>
-
-    <activity android:name=".stickers.StickerManagementActivityV2"
               android:exported="false"
               android:theme="@style/Signal.DayNight.NoActionBar" />
 
@@ -1079,6 +1061,7 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"
               android:windowSoftInputMode="stateUnchanged"
               android:resizeableActivity="true"
+              android:launchMode="singleTask"
               android:exported="false"/>
 
     <activity android:name=".pin.PinRestoreActivity"
@@ -1349,6 +1332,12 @@
     </receiver>
 
     <receiver android:name=".service.LocalBackupListener" android:exported="false">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
+
+    <receiver android:name=".service.MessageBackupListener" android:exported="false">
         <intent-filter>
             <action android:name="android.intent.action.BOOT_COMPLETED" />
         </intent-filter>

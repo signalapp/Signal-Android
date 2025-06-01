@@ -31,6 +31,7 @@ import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupMetadata
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -46,7 +47,6 @@ import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
-import org.thoughtcrime.securesms.jobs.BackfillDigestJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
@@ -218,10 +218,8 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   }
 
   fun haltAllJobs() {
-    AppDependencies.jobManager.cancelAllInQueue(BackfillDigestJob.QUEUE)
-    AppDependencies.jobManager.cancelAllInQueue("ArchiveAttachmentJobs_0")
-    AppDependencies.jobManager.cancelAllInQueue("ArchiveAttachmentJobs_1")
-    AppDependencies.jobManager.cancelAllInQueue("ArchiveThumbnailUploadJob")
+    ArchiveUploadProgress.cancel()
+
     AppDependencies.jobManager.cancelAllInQueue("BackupRestoreJob")
     AppDependencies.jobManager.cancelAllInQueue("__LOCAL_BACKUP__")
   }
@@ -294,6 +292,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
   fun wipeAllDataAndRestoreFromRemote() {
     SignalExecutors.BOUNDED_IO.execute {
+      SignalStore.backup.restoreWithCellular = false
       restoreFromRemote()
     }
   }

@@ -63,6 +63,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.DropdownMenus
@@ -317,6 +319,7 @@ private fun PrimaryToolbar(
       containerColor = state.toolbarColor ?: MaterialTheme.colorScheme.surface
     ),
     navigationIcon = {
+      val contentDescription = stringResource(R.string.conversation_list_settings_shortcut)
       Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier
@@ -327,7 +330,8 @@ private fun PrimaryToolbar(
           recipient = state.self,
           modifier = Modifier
             .clip(CircleShape)
-            .size(28.dp)
+            .size(28.dp),
+          contentDescription = contentDescription
         )
 
         val interactionSource = remember { MutableInteractionSource() }
@@ -336,10 +340,12 @@ private fun PrimaryToolbar(
             .fillMaxSize()
             .clickable(
               onClick = callback::onSettingsClick,
-              onClickLabel = stringResource(R.string.conversation_list_settings_shortcut),
               interactionSource = interactionSource,
               indication = ripple(radius = 14.dp)
             )
+            .semantics {
+              this.contentDescription = contentDescription
+            }
         )
 
         BadgeImageSmall(
@@ -389,6 +395,7 @@ private fun PrimaryToolbar(
         controller = controller
       ) {
         when (state.destination) {
+          MainNavigationListLocation.ARCHIVE -> Unit
           MainNavigationListLocation.CHATS -> ChatDropdownItems(state, callback, dismiss)
           MainNavigationListLocation.CALLS -> CallDropdownItems(state.callFilter, callback, dismiss)
           MainNavigationListLocation.STORIES -> StoryDropDownItems(callback, dismiss)

@@ -24,6 +24,8 @@ import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.GroupProtoUtil
 import org.thoughtcrime.securesms.groups.GroupsInCommonRepository
 import org.thoughtcrime.securesms.groups.LiveGroup
+import org.thoughtcrime.securesms.groups.ui.GroupChangeFailureReason
+import org.thoughtcrime.securesms.groups.ui.GroupChangeResult
 import org.thoughtcrime.securesms.groups.v2.GroupAddMembersResult
 import org.thoughtcrime.securesms.groups.v2.GroupManagementRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -169,14 +171,19 @@ class ConversationSettingsRepository(
     }
   }
 
-  fun block(recipientId: RecipientId) {
-    SignalExecutors.BOUNDED.execute {
+  @WorkerThread
+  fun block(recipientId: RecipientId): GroupChangeResult {
+    return try {
       val recipient = Recipient.resolved(recipientId)
       if (recipient.isGroup) {
         RecipientUtil.block(context, recipient)
       } else {
         RecipientUtil.blockNonGroup(context, recipient)
       }
+      GroupChangeResult.SUCCESS
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to block recipient.", e)
+      GroupChangeResult.failure(GroupChangeFailureReason.fromException(e))
     }
   }
 
@@ -187,10 +194,15 @@ class ConversationSettingsRepository(
     }
   }
 
-  fun block(groupId: GroupId) {
-    SignalExecutors.BOUNDED.execute {
+  @WorkerThread
+  fun block(groupId: GroupId): GroupChangeResult {
+    return try {
       val recipient = Recipient.externalGroupExact(groupId)
       RecipientUtil.block(context, recipient)
+      GroupChangeResult.SUCCESS
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to block group.", e)
+      GroupChangeResult.failure(GroupChangeFailureReason.fromException(e))
     }
   }
 

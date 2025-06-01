@@ -29,6 +29,8 @@ object BackupAlertDelegate {
           BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = SignalStore.backup.daysSinceLastBackup)).show(fragmentManager, null)
         } else if (withContext(Dispatchers.IO) { BackupRepository.shouldDisplayYourMediaWillBeDeletedTodaySheet() }) {
           BackupAlertBottomSheet.create(BackupAlert.MediaWillBeDeletedToday).show(fragmentManager, null)
+        } else if (BackupRepository.shouldDisplayBackupExpiredAndDowngradedSheet()) {
+          BackupAlertBottomSheet.create(BackupAlert.ExpiredAndDowngraded).show(fragmentManager, null)
         }
       }
     }

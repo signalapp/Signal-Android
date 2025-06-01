@@ -16,12 +16,17 @@ import org.thoughtcrime.securesms.util.Util
  * Fragment which only displays the backup key to the user.
  */
 class BackupKeyDisplayFragment : ComposeFragment() {
+
+  companion object {
+    const val CLIPBOARD_TIMEOUT_SECONDS = 60
+  }
+
   @Composable
   override fun FragmentContent() {
     MessageBackupsKeyRecordScreen(
       backupKey = SignalStore.account.accountEntropyPool.displayValue,
       onNavigationClick = { findNavController().popBackStack() },
-      onCopyToClipboardClick = { Util.copyToClipboard(requireContext(), it) },
+      onCopyToClipboardClick = { Util.copyToClipboard(requireContext(), it, CLIPBOARD_TIMEOUT_SECONDS) },
       onNextClick = { findNavController().popBackStack() }
     )
   }

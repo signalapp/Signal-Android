@@ -22,6 +22,7 @@ message ArchiveUploadProgressState {
         Export = 1;
         UploadBackupFile = 2;
         UploadMedia = 3;
+        UserCanceled = 4;
     }
 
     /**

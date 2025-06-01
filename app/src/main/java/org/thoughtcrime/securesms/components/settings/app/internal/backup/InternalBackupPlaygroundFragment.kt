@@ -28,7 +28,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
-import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -55,7 +54,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -81,6 +82,7 @@ import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.compose.RoundCheckbox
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.DialogState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -520,6 +522,22 @@ fun Screen(
 
       Dividers.Default()
 
+      Rows.TextRow(
+        text = "Mark backup failure",
+        label = "This will display the error sheet when returning to the chats list.",
+        onClick = {
+          SignalStore.backup.internalSetBackupFailedErrorState()
+        }
+      )
+
+      Rows.TextRow(
+        text = "Mark backup expired and downgraded",
+        label = "This will not actually downgrade the user.",
+        onClick = {
+          SignalStore.backup.backupExpiredAndDowngraded = true
+        }
+      )
+
       Spacer(modifier = Modifier.height(8.dp))
     }
   }
@@ -604,6 +622,7 @@ fun MediaList(
     }
   }
 
+  val haptics = LocalHapticFeedback.current
   var selectionState by remember { mutableStateOf(MediaMultiSelectState()) }
 
   Box(modifier = Modifier.fillMaxSize()) {
@@ -620,12 +639,13 @@ fun MediaList(
                 selectionState = selectionState.copy(selected = if (selectionState.selected.contains(attachment.id)) selectionState.selected - attachment.id else selectionState.selected + attachment.id)
               }
             }, onLongClick = {
+              haptics.performHapticFeedback(HapticFeedbackType.LongPress)
               selectionState = if (selectionState.selecting) MediaMultiSelectState() else MediaMultiSelectState(selecting = true, selected = setOf(attachment.id))
             })
             .padding(horizontal = 16.dp, vertical = 8.dp)
         ) {
           if (selectionState.selecting) {
-            Checkbox(
+            RoundCheckbox(
               checked = selectionState.selected.contains(attachment.id),
               onCheckedChange = { selected ->
                 selectionState = selectionState.copy(selected = if (selected) selectionState.selected + attachment.id else selectionState.selected - attachment.id)

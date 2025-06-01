@@ -22,11 +22,14 @@ message RegistrationProvisionMessage {
   string e164 = 1;
   bytes aci = 2;
   string accountEntropyPool = 3;
-  string pin = 4;
+  optional string pin = 4;
   Platform platform = 5;
-  uint64 backupTimestampMs = 6;
+  optional uint64 backupTimestampMs = 6;
   optional Tier tier = 7;
-  uint64 backupSizeBytes = 8;
+  optional uint64 backupSizeBytes = 8;
   string restoreMethodToken = 9;
-  reserved 10; // iOSDeviceTransferMessage
+  bytes aciIdentityKeyPublic = 10;
+  bytes aciIdentityKeyPrivate = 11;
+  bytes pniIdentityKeyPublic = 12;
+  bytes pniIdentityKeyPrivate = 13;
 }
