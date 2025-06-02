@@ -210,8 +210,7 @@ internal class BillingApiImpl(
       .setProductType(ProductType.SUBS)
       .build()
 
-    val result = doOnConnectionReady {
-      Log.d(TAG, "Querying purchases.")
+    val result = doOnConnectionReady("queryPurchases") {
       billingClient.queryPurchasesAsync(param)
     }
 
@@ -255,9 +254,8 @@ internal class BillingApiImpl(
       .setProductDetailsParamsList(productDetailParamsList)
       .build()
 
-    doOnConnectionReady {
+    doOnConnectionReady("launchBillingFlow") {
       withContext(Dispatchers.Main) {
-        Log.d(TAG, "Launching billing flow.")
         billingClient.launchBillingFlow(activity, billingFlowParams)
       }
     }
@@ -269,7 +267,7 @@ internal class BillingApiImpl(
    */
   override suspend fun isApiAvailable(): Boolean {
     return try {
-      doOnConnectionReady {
+      doOnConnectionReady("isApiAvailable") {
         billingClient.isFeatureSupported(BillingClient.FeatureType.SUBSCRIPTIONS).responseCode == BillingResponseCode.OK
       }
     } catch (e: BillingError) {
@@ -306,8 +304,7 @@ internal class BillingApiImpl(
         .setProductList(productList)
         .build()
 
-      val result = doOnConnectionReady {
-        Log.d(TAG, "Querying product details.")
+      val result = doOnConnectionReady("queryProductsInternal") {
         billingClient.queryProductDetails(params)
       }
 
@@ -319,11 +316,14 @@ internal class BillingApiImpl(
     }
   }
 
-  private suspend fun <T> doOnConnectionReady(block: suspend () -> T): T {
+  private suspend fun <T> doOnConnectionReady(caller: String, block: suspend () -> T): T {
+    Log.d(TAG, "Awaiting connection from $caller... (current state: ${connectionState.value})", true)
+
     val state = connectionState
       .filter { it == State.Connected || it is State.Failure }
       .first()
 
+    Log.d(TAG, "Handling block from $caller.. (current state: ${connectionState.value})", true)
     return when (state) {
       State.Connected -> block()
       is State.Failure -> throw state.billingError
