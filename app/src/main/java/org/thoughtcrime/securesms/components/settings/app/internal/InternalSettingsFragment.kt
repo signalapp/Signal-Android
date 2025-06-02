@@ -667,8 +667,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         clickPref(
           title = DSLSettingsText.from("Clear keep-alive timestamps"),
           onClick = {
-            SignalStore.inAppPayments.subscriptionEndOfPeriodRedemptionStarted = 0L
-            SignalStore.inAppPayments.subscriptionEndOfPeriodConversionStarted = 0L
             SignalStore.inAppPayments.setLastEndOfPeriod(0L)
             Toast.makeText(context, "Cleared", Toast.LENGTH_SHORT).show()
           }

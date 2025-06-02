@@ -1042,6 +1042,13 @@ object BackupRepository {
     }
   }
 
+  fun enablePaidBackupTier() {
+    Log.i(TAG, "Setting backup tier to PAID", true)
+    SignalStore.backup.backupTier = MessageBackupTier.PAID
+    SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
+    SignalStore.backup.lastCheckInSnoozeMillis = 0
+  }
+
   /**
    * Grabs the backup tier for the given ACI. Note that this will set the user's backup
    * tier to FREE if they are not on PAID, so avoid this method if you don't intend that
