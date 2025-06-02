@@ -99,6 +99,7 @@ import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusRow
+import org.thoughtcrime.securesms.backup.v2.ui.status.RestoreType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
 import org.thoughtcrime.securesms.components.compose.BetaHeader
@@ -402,7 +403,7 @@ private fun RemoteBackupsSettingsContent(
     if (backupDeleteState != DeletionState.NONE && backupDeleteState != DeletionState.CLEAR_LOCAL_STATE) {
       contentCallbacks.onDialogDismissed()
     }
-    
+
     if (backupDeleteState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
       contentCallbacks.onDisplayDownloadingBackupDialog()
     }
@@ -655,6 +656,7 @@ private fun LazyListScope.appendRestoreFromBackupStatusData(
   item {
     BackupStatusRow(
       backupStatusData = backupRestoreState.backupStatusData,
+      restoreType = RestoreType.DOWNLOAD,
       onCancelClick = if (isCancelable) contentCallbacks::onCancelMediaRestore else null,
       onSkipClick = contentCallbacks::onDisplaySkipMediaRestoreProtectionDialog,
       onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
