@@ -370,7 +370,7 @@ private interface ContentCallbacks {
   fun onDisplayProgressDialog() = Unit
   fun onDisplayDownloadingBackupDialog() = Unit
 
-  object Emtpy : ContentCallbacks
+  object Empty : ContentCallbacks
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -1679,7 +1679,7 @@ private fun RemoteBackupsSettingsContentPreview() {
       backupsFrequency = BackupFrequency.MANUAL,
       requestedDialog = RemoteBackupsSettingsState.Dialog.NONE,
       requestedSnackbar = RemoteBackupsSettingsState.Snackbar.NONE,
-      contentCallbacks = ContentCallbacks.Emtpy,
+      contentCallbacks = ContentCallbacks.Empty,
       backupProgress = null,
       backupMediaSize = 2300000,
       backupState = RemoteBackupsSettingsState.BackupState.ActiveFree(
@@ -1996,7 +1996,7 @@ private fun BackupDeletionCardPreview() {
               bytesTotal = 3.gibiBytes
             )
           ),
-          contentCallbacks = ContentCallbacks.Emtpy,
+          contentCallbacks = ContentCallbacks.Empty,
           canRestoreUsingCellular = true
         )
 
