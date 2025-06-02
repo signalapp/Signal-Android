@@ -571,15 +571,19 @@ private fun RemoteBackupsSettingsContent(
     }
 
     RemoteBackupsSettingsState.Dialog.SKIP_MEDIA_RESTORE_PROTECTION -> {
-      SkipDownloadDialog(
-        renewalTime = if (backupState is RemoteBackupsSettingsState.BackupState.WithTypeAndRenewalTime) {
-          backupState.renewalTime
-        } else {
-          error("Unexpected dialog display without renewal time.")
-        },
-        onDismiss = contentCallbacks::onDialogDismissed,
-        onSkipClick = contentCallbacks::onSkipMediaRestore
-      )
+      if (backupDeleteState.hasUx()) {
+        SkipDownloadDuringDeleteDialog()
+      } else {
+        SkipDownloadDialog(
+          renewalTime = if (backupState is RemoteBackupsSettingsState.BackupState.WithTypeAndRenewalTime) {
+            backupState.renewalTime
+          } else {
+            error("Unexpected dialog display without renewal time.")
+          },
+          onDismiss = contentCallbacks::onDialogDismissed,
+          onSkipClick = contentCallbacks::onSkipMediaRestore
+        )
+      }
     }
 
     RemoteBackupsSettingsState.Dialog.CANCEL_MEDIA_RESTORE_PROTECTION -> {
@@ -637,13 +641,14 @@ private fun ReenableBackupsButton(contentCallbacks: ContentCallbacks) {
 private fun LazyListScope.appendRestoreFromBackupStatusData(
   backupRestoreState: BackupRestoreState.FromBackupStatusData,
   canRestoreUsingCellular: Boolean,
-  contentCallbacks: ContentCallbacks
+  contentCallbacks: ContentCallbacks,
+  isCancelable: Boolean = true
 ) {
   item {
     BackupStatusRow(
       backupStatusData = backupRestoreState.backupStatusData,
-      onCancelClick = contentCallbacks::onCancelMediaRestore,
-      onSkipClick = contentCallbacks::onSkipMediaRestore,
+      onCancelClick = if (isCancelable) contentCallbacks::onCancelMediaRestore else null,
+      onSkipClick = contentCallbacks::onDisplaySkipMediaRestoreProtectionDialog,
       onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
     )
   }
@@ -711,7 +716,8 @@ private fun LazyListScope.appendBackupDeletionItems(
         appendRestoreFromBackupStatusData(
           backupRestoreState = backupRestoreState,
           canRestoreUsingCellular = canRestoreUsingCellular,
-          contentCallbacks = contentCallbacks
+          contentCallbacks = contentCallbacks,
+          isCancelable = false
         )
       } else {
         item {
@@ -1454,6 +1460,22 @@ private fun DownloadingYourBackupDialog(
 }
 
 @Composable
+private fun SkipDownloadDuringDeleteDialog(
+  onSkipClick: () -> Unit = {},
+  onDismiss: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.RemoteBackupsSettingsFragment__skip_download_question),
+    body = stringResource(R.string.RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining),
+    confirm = stringResource(R.string.RemoteBackupsSettingsFragment__skip_and_delete_permanently),
+    dismiss = stringResource(android.R.string.cancel),
+    confirmColor = MaterialTheme.colorScheme.error,
+    onConfirm = onSkipClick,
+    onDismiss = onDismiss
+  )
+}
+
+@Composable
 private fun SkipDownloadDialog(
   renewalTime: Duration,
   onSkipClick: () -> Unit = {},
@@ -1909,6 +1931,14 @@ private fun DownloadingYourBackupDialogPreview() {
     DownloadingYourBackupDialog(
       onDismiss = {}
     )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun SkipDownloadDuringDeleteDialogPreview() {
+  Previews.Preview {
+    SkipDownloadDuringDeleteDialog()
   }
 }
 
