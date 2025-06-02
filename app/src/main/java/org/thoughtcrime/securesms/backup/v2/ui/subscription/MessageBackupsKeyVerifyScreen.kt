@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -60,6 +61,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.thoughtcrime.securesms.registrationv3.ui.restore.BackupKeyVisualTransformation
@@ -95,6 +97,7 @@ fun MessageBackupsKeyVerifyScreen(
       verticalArrangement = Arrangement.SpaceBetween,
       modifier = Modifier
         .padding(paddingValues)
+        .imePadding()
         .fillMaxSize()
     ) {
       val scrollState = rememberScrollState()
@@ -212,6 +215,7 @@ fun MessageBackupsKeyVerifyScreen(
       ModalBottomSheet(
         sheetState = sheetState,
         dragHandle = null,
+        containerColor = SignalTheme.colors.colorSurface1,
         onDismissRequest = {
           coroutineScope.launch {
             sheetState.hide()

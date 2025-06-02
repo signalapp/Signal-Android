@@ -790,8 +790,8 @@ private fun DescriptionText(
     style = MaterialTheme.typography.bodyMedium,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier
-      .padding(horizontal = 16.dp)
-      .padding(top = 16.dp)
+      .horizontalGutters()
+      .padding(vertical = 16.dp)
       .then(modifier)
   )
 }

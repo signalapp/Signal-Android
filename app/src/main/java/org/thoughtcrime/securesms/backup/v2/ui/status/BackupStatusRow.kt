@@ -75,6 +75,12 @@ fun BackupStatusRow(
   onCancelClick: (() -> Unit)? = null,
   onLearnMoreClick: () -> Unit = {}
 ) {
+  val endPad = if (onCancelClick == null) {
+    dimensionResource(CoreUiR.dimen.gutter)
+  } else {
+    dimensionResource(CoreUiR.dimen.gutter) - 8.dp
+  }
+
   Column(
     modifier = Modifier.padding(top = 8.dp, bottom = 12.dp)
   ) {
@@ -83,12 +89,17 @@ fun BackupStatusRow(
     ) {
       Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
+        modifier = Modifier.padding(
+          start = dimensionResource(CoreUiR.dimen.gutter),
+          end = endPad
+        )
       ) {
         LinearProgressIndicator(
           color = progressColor(backupStatusData),
           progress = { backupStatusData.progress },
-          modifier = Modifier.weight(1f).padding(vertical = 12.dp)
+          modifier = Modifier.weight(1f).padding(vertical = 12.dp),
+          gapSize = 0.dp,
+          drawStopIndicator = {}
         )
 
         if (onCancelClick != null) {
@@ -261,7 +272,8 @@ fun BackupStatusRowNormalPreview() {
         bytesTotal = ByteSize(100),
         bytesDownloaded = ByteSize(50),
         restoreStatus = BackupStatusData.RestoreStatus.NORMAL
-      )
+      ),
+      onCancelClick = {}
     )
   }
 }
