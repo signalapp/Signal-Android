@@ -52,7 +52,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -278,6 +277,10 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     override fun onDisplayProgressDialog() {
       viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.PROGRESS_SPINNER)
     }
+
+    override fun onDisplayDownloadingBackupDialog() {
+      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.DOWNLOADING_YOUR_BACKUP)
+    }
   }
 
   private fun displayBackupKey() {
@@ -365,6 +368,7 @@ private interface ContentCallbacks {
   fun onRestoreUsingCellularClick() = Unit
   fun onRedemptionErrorDetailsClick() = Unit
   fun onDisplayProgressDialog() = Unit
+  fun onDisplayDownloadingBackupDialog() = Unit
 
   object Emtpy : ContentCallbacks
 }
@@ -397,6 +401,10 @@ private fun RemoteBackupsSettingsContent(
   LaunchedEffect(backupDeleteState) {
     if (backupDeleteState != DeletionState.NONE && backupDeleteState != DeletionState.CLEAR_LOCAL_STATE) {
       contentCallbacks.onDialogDismissed()
+    }
+    
+    if (backupDeleteState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
+      contentCallbacks.onDisplayDownloadingBackupDialog()
     }
   }
 
