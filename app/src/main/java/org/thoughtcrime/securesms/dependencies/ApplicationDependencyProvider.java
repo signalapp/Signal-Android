@@ -345,7 +345,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     SignalWebSocket.AuthenticatedWebSocket webSocket = new SignalWebSocket.AuthenticatedWebSocket(authFactory,
                                                                                                   () -> !SignalStore.misc().isClientDeprecated() && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork(),
                                                                                                   sleepTimer,
-                                                                                                  TimeUnit.SECONDS.toMillis(10));
+                                                                                                  TimeUnit.SECONDS.toMillis(30));
     if (AppForegroundObserver.isForegrounded()) {
       webSocket.registerKeepAliveToken(SignalWebSocket.FOREGROUND_KEEPALIVE);
     }
@@ -381,7 +381,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     SignalWebSocket.UnauthenticatedWebSocket webSocket = new SignalWebSocket.UnauthenticatedWebSocket(unauthFactory,
                                                                                                       () -> !SignalStore.misc().isClientDeprecated() && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork(),
                                                                                                       sleepTimer,
-                                                                                                      TimeUnit.SECONDS.toMillis(10));
+                                                                                                      TimeUnit.SECONDS.toMillis(30));
     if (AppForegroundObserver.isForegrounded()) {
       webSocket.registerKeepAliveToken(SignalWebSocket.FOREGROUND_KEEPALIVE);
     }
