@@ -168,7 +168,7 @@ internal class BillingApiImpl(
       createConnectionFlow()
         .retry { it is RetryException }
         .collect { newState ->
-          Log.d(TAG, "Updating Google Play Billing connection state: $newState")
+          Log.d(TAG, "Updating Google Play Billing connection state: $newState", true)
           connectionState.update {
             newState
           }
@@ -344,7 +344,7 @@ internal class BillingApiImpl(
         }
 
         override fun onBillingSetupFinished(billingResult: BillingResult) {
-          Log.d(TAG, "onBillingSetupFinished: ${billingResult.responseCode}")
+          Log.d(TAG, "onBillingSetupFinished: ${billingResult.responseCode}", true)
           if (billingResult.responseCode == BillingResponseCode.OK) {
             Log.d(TAG, "Google Play Billing is ready.", true)
             trySendBlocking(State.Connected)
@@ -360,6 +360,7 @@ internal class BillingApiImpl(
       })
 
       awaitClose {
+        Log.d(TAG, "Ending Google Play Billing connection.", true)
         billingClient.endConnection()
       }
     }
