@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -249,6 +250,22 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         }
       }
     }
+
+    val callback = object : OnBackPressedCallback(toolbarViewModel.state.value.mode == MainToolbarMode.ACTION_MODE) {
+      override fun handleOnBackPressed() {
+        toolbarCallback.onCloseActionModeClick()
+      }
+    }
+
+    lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        toolbarViewModel.state.collect { state ->
+          callback.isEnabled = state.mode == MainToolbarMode.ACTION_MODE
+        }
+      }
+    }
+
+    onBackPressedDispatcher.addCallback(this, callback)
 
     shareDataTimestampViewModel.setTimestampFromActivityCreation(savedInstanceState, intent)
 
@@ -808,6 +825,15 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
     override fun onCloseArchiveClick() {
       toolbarViewModel.emitEvent(MainToolbarViewModel.Event.Chats.CloseArchive)
+    }
+
+    override fun onCloseActionModeClick() {
+      supportFragmentManager.fragments.forEach { fragment ->
+        when (fragment) {
+          is ConversationListFragment -> fragment.endActionModeIfActive()
+          is CallLogFragment -> fragment.CallLogActionModeCallback().onActionModeWillEnd()
+        }
+      }
     }
 
     override fun onSearchQueryUpdated(query: String) {
