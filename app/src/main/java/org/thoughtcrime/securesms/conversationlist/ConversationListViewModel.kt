@@ -242,7 +242,7 @@ sealed class ConversationListViewModel(
 
   private fun setSelection(newSelection: Collection<Conversation>) {
     store.update {
-      val selection = newSelection.toSet()
+      val selection = newSelection.filter { select -> select.type == Conversation.Type.THREAD }.toSet()
       it.copy(internalSelection = selection, selectedConversations = ConversationSet(selection))
     }
   }
