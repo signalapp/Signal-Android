@@ -82,22 +82,20 @@ class BackupMediaSnapshotSyncJob private constructor(
     return syncDataFromCdn() ?: Result.success()
   }
 
-  override fun onFailure() {
-    SignalDatabase.backupMediaSnapshots.clearLastSeenOnRemote()
-  }
+  override fun onFailure() = Unit
 
   /**
    * Looks through our local snapshot of what attachments we put in the last backup file, and uses that to delete any old attachments from the archive CDN
    * that we no longer need.
    */
   private fun removeLocallyDeletedAttachmentsFromCdn(): Result? {
-    var mediaObjects = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaObjects(syncTime, REMOTE_DELETE_BATCH_SIZE)
+    var mediaObjects = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaObjects(REMOTE_DELETE_BATCH_SIZE)
 
     while (mediaObjects.isNotEmpty()) {
       deleteMediaObjectsFromCdn(mediaObjects)?.let { result -> return result }
-      SignalDatabase.backupMediaSnapshots.deleteMediaObjects(mediaObjects)
+      SignalDatabase.backupMediaSnapshots.deleteOldMediaObjects(mediaObjects)
 
-      mediaObjects = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaObjects(syncTime, CDN_PAGE_SIZE)
+      mediaObjects = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaObjects(CDN_PAGE_SIZE)
     }
 
     return null
@@ -140,7 +138,7 @@ class BackupMediaSnapshotSyncJob private constructor(
       deleteMediaObjectsFromCdn(attachmentsToDelete)?.let { result -> return result }
     }
 
-    val entriesNeedingRepairCursor = SignalDatabase.backupMediaSnapshots.getMediaObjectsLastSeenOnCdnBeforeTime(syncTime)
+    val entriesNeedingRepairCursor = SignalDatabase.backupMediaSnapshots.getMediaObjectsLastSeenOnCdnBeforeSnapshotVersion(syncTime)
     val needRepairCount = entriesNeedingRepairCursor.count
 
     if (needRepairCount > 0) {
@@ -178,7 +176,7 @@ class BackupMediaSnapshotSyncJob private constructor(
 
     SignalDatabase.backupMediaSnapshots.markSeenOnRemote(
       mediaIdBatch = mediaObjects.map { it.mediaId },
-      time = syncTime
+      snapshotVersion = syncTime
     )
 
     val notFoundMediaObjects = SignalDatabase.backupMediaSnapshots.getMediaObjectsThatCantBeFound(mediaObjects)

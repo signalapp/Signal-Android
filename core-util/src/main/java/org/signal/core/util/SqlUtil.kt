@@ -418,9 +418,11 @@ object SqlUtil {
       .toList()
   }
 
-  fun buildSingleBulkInsert(tableName: String, columns: Array<String>, contentValues: List<ContentValues>): Query {
+  fun buildSingleBulkInsert(tableName: String, columns: Array<String>, contentValues: List<ContentValues>, onConflict: String? = null): Query {
+    val conflictString = onConflict?.let { " OR $onConflict" } ?: ""
+
     val builder = StringBuilder()
-    builder.append("INSERT INTO ").append(tableName).append(" (")
+    builder.append("INSERT$conflictString INTO ").append(tableName).append(" (")
 
     val columnString = columns.joinToString(separator = ", ")
     builder.append(columnString)

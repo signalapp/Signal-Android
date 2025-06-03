@@ -272,8 +272,7 @@ class BackupMessagesJob private constructor(
     if (mediaBackupEnabled) {
       db.attachmentTable.getAttachmentsEligibleForArchiveUpload().use {
         SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(
-          mediaObjects = ArchiveMediaItemIterator(it).asSequence(),
-          pendingSyncTime = currentTime
+          mediaObjects = ArchiveMediaItemIterator(it).asSequence()
         )
       }
     }
