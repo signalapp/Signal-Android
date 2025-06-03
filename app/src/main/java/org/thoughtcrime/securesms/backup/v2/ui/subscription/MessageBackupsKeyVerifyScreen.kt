@@ -30,6 +30,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -159,6 +160,10 @@ fun MessageBackupsKeyVerifyScreen(
                 coroutineScope.launch { sheetState.show() }
               }
             }
+          ),
+          colors = TextFieldDefaults.colors(
+            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
           ),
           supportingText = { if (showError) Text(text = stringResource(R.string.MessageBackupsKeyVerifyScreen__incorrect_backup_key)) },
           isError = showError,
