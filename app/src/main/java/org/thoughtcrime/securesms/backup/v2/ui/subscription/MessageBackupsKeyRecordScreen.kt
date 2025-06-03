@@ -218,7 +218,7 @@ fun MessageBackupsKeyRecordScreen(
             Dialogs.SimpleMessageDialog(
               title = stringResource(R.string.MessageBackupsKeyRecordScreen__missing_password_manager_title),
               message = stringResource(R.string.MessageBackupsKeyRecordScreen__missing_password_manager_message),
-              dismiss = stringResource(R.string.MessageBackupsKeyRecordScreen__dismiss),
+              dismiss = stringResource(android.R.string.ok),
               onDismiss = { onSaveToPasswordManagerComplete(CredentialManagerResult.UserCanceled) }
             )
           }
