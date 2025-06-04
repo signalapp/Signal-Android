@@ -435,6 +435,7 @@ object BackupRepository {
     AppDependencies.jobManager.add(BackupDeleteJob())
   }
 
+  @WorkerThread
   private fun createSignalDatabaseSnapshot(baseName: String): SignalDatabase {
     // Need to do a WAL checkpoint to ensure that the database file we're copying has all pending writes
     if (!SignalDatabase.rawDatabase.fullWalCheckpoint()) {
@@ -466,6 +467,7 @@ object BackupRepository {
     }
   }
 
+  @WorkerThread
   private fun createSignalStoreSnapshot(baseName: String): SignalStore {
     val context = AppDependencies.application
 
@@ -495,12 +497,14 @@ object BackupRepository {
     }
   }
 
+  @WorkerThread
   private fun deleteDatabaseSnapshot(name: String) {
     AppDependencies.application.getDatabasePath("$name.db")
       .parentFile
       ?.deleteAllFilesWithPrefix(name)
   }
 
+  @WorkerThread
   fun localExport(
     main: OutputStream,
     localBackupProgressEmitter: ExportProgressListener,
@@ -537,6 +541,7 @@ object BackupRepository {
     }
   }
 
+  @WorkerThread
   @JvmOverloads
   fun export(
     outputStream: OutputStream,
@@ -544,7 +549,7 @@ object BackupRepository {
     messageBackupKey: MessageBackupKey = SignalStore.backup.messageBackupKey,
     plaintext: Boolean = false,
     currentTime: Long = System.currentTimeMillis(),
-    mediaBackupEnabled: Boolean = SignalStore.backup.backsUpMedia,
+    skipMediaBackup: Boolean = false,
     forTransfer: Boolean = false,
     progressEmitter: ExportProgressListener? = null,
     cancellationSignal: () -> Boolean = { false },
@@ -566,7 +571,7 @@ object BackupRepository {
       isLocal = false,
       writer = writer,
       progressEmitter = progressEmitter,
-      mediaBackupEnabled = mediaBackupEnabled,
+      skipMediaBackup = skipMediaBackup,
       forTransfer = forTransfer,
       cancellationSignal = cancellationSignal,
       exportExtras = exportExtras
@@ -576,17 +581,19 @@ object BackupRepository {
   /**
    * Exports to a blob in memory. Should only be used for testing.
    */
+  @WorkerThread
   fun debugExport(plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis()): ByteArray {
     val outputStream = ByteArrayOutputStream()
     export(outputStream = outputStream, append = { mac -> outputStream.write(mac) }, plaintext = plaintext, currentTime = currentTime)
     return outputStream.toByteArray()
   }
 
+  @WorkerThread
   private fun export(
     currentTime: Long,
     isLocal: Boolean,
     writer: BackupExportWriter,
-    mediaBackupEnabled: Boolean = SignalStore.backup.backsUpMedia,
+    skipMediaBackup: Boolean = false,
     forTransfer: Boolean = false,
     progressEmitter: ExportProgressListener? = null,
     cancellationSignal: () -> Boolean = { false },
@@ -597,6 +604,12 @@ object BackupRepository {
     val keyValueDbName = if (isLocal) LOCAL_KEYVALUE_DB_SNAPSHOT_NAME else REMOTE_KEYVALUE_DB_SNAPSHOT_NAME
 
     try {
+      val mediaBackupEnabled = if (skipMediaBackup || !SignalStore.backup.areBackupsEnabled) {
+        false
+      } else {
+        getBackupTier().successOrThrow() == MessageBackupTier.PAID
+      }
+
       val dbSnapshot: SignalDatabase = createSignalDatabaseSnapshot(mainDbName)
       eventTimer.emit("main-db-snapshot")
 
