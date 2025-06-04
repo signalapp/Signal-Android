@@ -163,6 +163,7 @@ fun MessageBackupsTypeSelectionScreen(
         onClick = onNextClicked,
         enabled = isNextEnabled,
         modifier = Modifier
+          .testTag("subscribe-button")
           .fillMaxWidth()
           .padding(vertical = if (hasCurrentBackupTier) 10.dp else 16.dp)
       ) {
