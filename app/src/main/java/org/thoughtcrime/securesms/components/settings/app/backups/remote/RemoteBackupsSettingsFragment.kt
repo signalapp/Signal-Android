@@ -656,14 +656,19 @@ private fun LazyListScope.appendRestoreFromBackupStatusData(
   item {
     BackupStatusRow(
       backupStatusData = backupRestoreState.backupStatusData,
-      restoreType = RestoreType.DOWNLOAD,
+      restoreType = if (isCancelable) RestoreType.DOWNLOAD else RestoreType.RESTORE,
       onCancelClick = if (isCancelable) contentCallbacks::onCancelMediaRestore else null,
       onSkipClick = contentCallbacks::onDisplaySkipMediaRestoreProtectionDialog,
       onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
     )
   }
 
-  if (!canRestoreUsingCellular) {
+  val displayResumeButton = when (val data = backupRestoreState.backupStatusData) {
+    is BackupStatusData.RestoringMedia -> !canRestoreUsingCellular && data.restoreStatus == BackupStatusData.RestoreStatus.WAITING_FOR_WIFI
+    else -> false
+  }
+
+  if (displayResumeButton) {
     item {
       Rows.TextRow(
         text = stringResource(R.string.RemoteBackupsSettingsFragment__resume_download),
