@@ -11,6 +11,7 @@ import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
+import org.whispersystems.signalservice.internal.storage.protos.NotificationProfile
 import org.whispersystems.signalservice.internal.storage.protos.StorageRecord
 import org.whispersystems.signalservice.internal.storage.protos.StoryDistributionListRecord
 
@@ -46,6 +47,10 @@ fun ChatFolderRecord.toSignalChatFolderRecord(storageId: StorageId): SignalChatF
   return SignalChatFolderRecord(storageId, this)
 }
 
+fun NotificationProfile.toSignalNotificationProfileRecord(storageId: StorageId): SignalNotificationProfileRecord {
+  return SignalNotificationProfileRecord(storageId, this)
+}
+
 fun SignalContactRecord.toSignalStorageRecord(): SignalStorageRecord {
   return SignalStorageRecord(id, StorageRecord(contact = this.proto))
 }
@@ -72,4 +77,8 @@ fun SignalCallLinkRecord.toSignalStorageRecord(): SignalStorageRecord {
 
 fun SignalChatFolderRecord.toSignalStorageRecord(): SignalStorageRecord {
   return SignalStorageRecord(id, StorageRecord(chatFolder = this.proto))
+}
+
+fun SignalNotificationProfileRecord.toSignalStorageRecord(): SignalStorageRecord {
+  return SignalStorageRecord(id, StorageRecord(notificationProfile = this.proto))
 }

@@ -338,6 +338,12 @@ private fun StorageRecordRow(record: SignalStorageRecord) {
           ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
         }
       }
+      record.proto.notificationProfile != null -> {
+        Column {
+          Text("Notification Profile", fontWeight = FontWeight.Bold)
+          ManifestItemRow("ID", Hex.toStringCondensed(record.id.raw))
+        }
+      }
       else -> {
         Column {
           Text("Unknown!")

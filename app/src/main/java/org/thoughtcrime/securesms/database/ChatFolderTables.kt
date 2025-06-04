@@ -24,18 +24,12 @@ import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
-import org.signal.libsignal.zkgroup.InvalidInputException
-import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderId
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.database.ThreadTable.Companion.ID
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.BadGroupIdException
-import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -684,44 +678,16 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         RemoteChatFolderRecord.FolderType.UNKNOWN -> throw AssertionError("Folder type cannot be unknown")
       },
       includedChats = record.proto.includedRecipients
-        .mapNotNull { remoteRecipient -> getRecipientIdFromRemoteRecipient(remoteRecipient) }
+        .mapNotNull { remoteRecipient -> StorageSyncModels.remoteToLocalRecipient(remoteRecipient) }
         .map { recipient -> SignalDatabase.threads.getOrCreateThreadIdFor(recipient) },
       excludedChats = record.proto.excludedRecipients
-        .mapNotNull { remoteRecipient -> getRecipientIdFromRemoteRecipient(remoteRecipient) }
+        .mapNotNull { remoteRecipient -> StorageSyncModels.remoteToLocalRecipient(remoteRecipient) }
         .map { recipient -> SignalDatabase.threads.getOrCreateThreadIdFor(recipient) },
       chatFolderId = chatFolderId,
       storageServiceId = StorageId.forChatFolder(record.id.raw),
       storageServiceProto = record.serializedUnknowns,
       deletedTimestampMs = record.proto.deletedAtTimestampMs
     )
-  }
-
-  /**
-   * Parses a remote recipient into a local one. Used when configuring the chats of a remote chat folder into a local one.
-   */
-  private fun getRecipientIdFromRemoteRecipient(remoteRecipient: RemoteChatFolderRecord.Recipient): Recipient? {
-    return if (remoteRecipient.contact != null) {
-      val serviceId = ServiceId.parseOrNull(remoteRecipient.contact!!.serviceId)
-      val e164 = remoteRecipient.contact!!.e164
-      Recipient.externalPush(SignalServiceAddress(serviceId, e164))
-    } else if (remoteRecipient.legacyGroupId != null) {
-      try {
-        Recipient.externalGroupExact(GroupId.v1(remoteRecipient.legacyGroupId!!.toByteArray()))
-      } catch (e: BadGroupIdException) {
-        Log.w(TAG, "Failed to parse groupV1 ID!", e)
-        null
-      }
-    } else if (remoteRecipient.groupMasterKey != null) {
-      try {
-        Recipient.externalGroupExact(GroupId.v2(GroupMasterKey(remoteRecipient.groupMasterKey!!.toByteArray())))
-      } catch (e: InvalidInputException) {
-        Log.w(TAG, "Failed to parse groupV2 master key!", e)
-        null
-      }
-    } else {
-      Log.w(TAG, "Could not find recipient")
-      null
-    }
   }
 
   private fun Collection<Long>.toContentValues(chatFolderId: Long, membershipType: MembershipType): List<ContentValues> {

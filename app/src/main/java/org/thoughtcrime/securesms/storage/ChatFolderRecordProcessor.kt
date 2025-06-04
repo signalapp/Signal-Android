@@ -11,6 +11,7 @@ import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.util.OptionalUtil.asOptional
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord
+import org.whispersystems.signalservice.internal.storage.protos.Recipient
 import java.util.Optional
 import java.util.UUID
 
@@ -96,7 +97,7 @@ class ChatFolderRecordProcessor : DefaultStorageRecordProcessor<SignalChatFolder
     SignalDatabase.chatFolders.updateChatFolderFromStorageSync(update.new)
   }
 
-  private fun containsInvalidServiceId(recipients: List<ChatFolderRecord.Recipient>): Boolean {
+  private fun containsInvalidServiceId(recipients: List<Recipient>): Boolean {
     return recipients.any { recipient ->
       recipient.contact != null && ServiceId.parseOrNull(recipient.contact!!.serviceId) == null
     }

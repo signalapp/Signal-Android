@@ -5,12 +5,14 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logI
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderId
 import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
+import org.thoughtcrime.securesms.database.NotificationProfileTables
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -110,6 +112,18 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     inserts.addAll(newChatFolderInserts)
     allNewStorageIds.addAll(newChatFolderStorageIds.values)
 
+    val oldNotificationProfileStorageIds = SignalDatabase.notificationProfiles.getStorageSyncIdsMap()
+    val newNotificationProfileStorageIds = generateNotificationProfileStorageIds(oldNotificationProfileStorageIds)
+    val newNotificationProfileInserts: List<SignalStorageRecord> = oldNotificationProfileStorageIds.keys
+      .mapNotNull {
+        val query = SqlUtil.buildQuery("${NotificationProfileTables.NotificationProfileTable.NOTIFICATION_PROFILE_ID} = ?", it)
+        SignalDatabase.notificationProfiles.getProfile(query)
+      }
+      .map { record -> StorageSyncModels.localToRemoteRecord(record, newNotificationProfileStorageIds[record.notificationProfileId]!!.raw) }
+
+    inserts.addAll(newNotificationProfileInserts)
+    allNewStorageIds.addAll(newNotificationProfileStorageIds.values)
+
     val recordIkm: RecordIkm? = if (Recipient.self().storageServiceEncryptionV2Capability.isSupported) {
       Log.i(TAG, "Generating and including a new recordIkm.")
       RecordIkm.generate()
@@ -151,6 +165,7 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     SignalDatabase.recipients.applyStorageIdUpdates(newContactStorageIds)
     SignalDatabase.recipients.applyStorageIdUpdates(Collections.singletonMap(Recipient.self().id, accountRecord.id))
     SignalDatabase.chatFolders.applyStorageIdUpdates(newChatFolderStorageIds)
+    SignalDatabase.notificationProfiles.applyStorageIdUpdates(newNotificationProfileStorageIds)
     SignalDatabase.unknownStorageIds.deleteAll()
   }
 
@@ -178,6 +193,12 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     }
 
     return out
+  }
+
+  private fun generateNotificationProfileStorageIds(oldKeys: Map<NotificationProfileId, StorageId>): Map<NotificationProfileId, StorageId> {
+    return oldKeys.mapValues { (_, value) ->
+      value.withNewBytes(StorageSyncHelper.generateKey())
+    }
   }
 
   class Factory : Job.Factory<StorageForcePushJob?> {

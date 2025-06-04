@@ -156,6 +156,11 @@ public final class StorageSyncValidations {
         throw new DuplicateChatFolderError();
       }
 
+      ids = manifest.getStorageIdsByType().get(ManifestRecord.Identifier.Type.NOTIFICATION_PROFILE.getValue());
+      if (ids.size() != new HashSet<>(ids).size()) {
+        throw new DuplicateNotificationProfileError();
+      }
+
       throw new DuplicateRawIdAcrossTypesError();
     }
 
@@ -215,6 +220,9 @@ public final class StorageSyncValidations {
   }
 
   private static final class DuplicateInsertInWriteError extends Error {
+  }
+
+  private static final class DuplicateNotificationProfileError extends Error {
   }
 
   private static final class InsertNotPresentInFullIdSetError extends Error {

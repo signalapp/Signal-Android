@@ -9,6 +9,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.thoughtcrime.securesms.database.ChatFolderTables.ChatFolderTable
+import org.thoughtcrime.securesms.database.NotificationProfileTables
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.storage.ChatFolderRecordProcessor
 import org.thoughtcrime.securesms.storage.ContactRecordProcessor
 import org.thoughtcrime.securesms.storage.GroupV1RecordProcessor
 import org.thoughtcrime.securesms.storage.GroupV2RecordProcessor
+import org.thoughtcrime.securesms.storage.NotificationProfileRecordProcessor
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.WriteOperationResult
 import org.thoughtcrime.securesms.storage.StorageSyncModels
@@ -40,6 +42,7 @@ import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
+import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
@@ -53,6 +56,7 @@ import org.whispersystems.signalservice.api.storage.toSignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
 import org.whispersystems.signalservice.api.storage.toSignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
+import org.whispersystems.signalservice.api.storage.toSignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.toSignalStoryDistributionListRecord
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord
@@ -279,9 +283,10 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       if (idDifference.localOnlyIds.isNotEmpty()) {
         val updatedRecipients = SignalDatabase.recipients.removeStorageIdsFromLocalOnlyUnregisteredRecipients(idDifference.localOnlyIds)
         val updatedFolders = SignalDatabase.chatFolders.removeStorageIdsFromLocalOnlyDeletedFolders(idDifference.localOnlyIds)
+        val updatedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromLocalOnlyDeletedProfiles(idDifference.localOnlyIds)
 
-        if (updatedRecipients > 0 || updatedFolders > 0) {
-          Log.w(TAG, "Found $updatedRecipients recipients and $updatedFolders folders that were deleted remotely but only marked unregistered/deleted locally. Removed those from local store. Recalculating diff.")
+        if (updatedRecipients > 0 || updatedFolders > 0 || updatedProfiles > 0) {
+          Log.w(TAG, "Found $updatedRecipients recipients, $updatedFolders folders, $updatedProfiles notification profiles that were deleted remotely but only marked unregistered/deleted locally. Removed those from local store. Recalculating diff.")
 
           localStorageIdsBeforeMerge = getAllLocalStorageIds(self)
           idDifference = StorageSyncHelper.findIdDifference(remoteManifest.storageIds, localStorageIdsBeforeMerge)
@@ -310,7 +315,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
 
         db.beginTransaction()
         try {
-          Log.i(TAG, "[Remote Sync] Remote-Only :: Contacts: ${remoteOnly.contacts.size}, GV1: ${remoteOnly.gv1.size}, GV2: ${remoteOnly.gv2.size}, Account: ${remoteOnly.account.size}, DLists: ${remoteOnly.storyDistributionLists.size}, call links: ${remoteOnly.callLinkRecords.size}, chat folders: ${remoteOnly.chatFolderRecords.size}")
+          Log.i(TAG, "[Remote Sync] Remote-Only :: Contacts: ${remoteOnly.contacts.size}, GV1: ${remoteOnly.gv1.size}, GV2: ${remoteOnly.gv2.size}, Account: ${remoteOnly.account.size}, DLists: ${remoteOnly.storyDistributionLists.size}, call links: ${remoteOnly.callLinkRecords.size}, chat folders: ${remoteOnly.chatFolderRecords.size}, notification profiles: ${remoteOnly.notificationProfileRecords.size}")
 
           processKnownRecords(context, remoteOnly)
 
@@ -352,13 +357,10 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       self = freshSelf()
 
       val removedUnregistered = SignalDatabase.recipients.removeStorageIdsFromOldUnregisteredRecipients(System.currentTimeMillis())
-      if (removedUnregistered > 0) {
-        Log.i(TAG, "Removed $removedUnregistered recipients from storage service that have been unregistered for longer than 30 days.")
-      }
-
       val removedDeletedFolders = SignalDatabase.chatFolders.removeStorageIdsFromOldDeletedFolders(System.currentTimeMillis())
-      if (removedDeletedFolders > 0) {
-        Log.i(TAG, "Removed $removedDeletedFolders folders from storage service that have been deleted for longer than 30 days.")
+      val removedDeletedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromOldDeletedProfiles(System.currentTimeMillis())
+      if (removedUnregistered > 0 || removedDeletedFolders > 0 || removedDeletedProfiles > 0) {
+        Log.i(TAG, "Removed $removedUnregistered unregistered, $removedDeletedFolders folders, $removedDeletedProfiles notification profiles from storage service that have been deleted for longer than 30 days.")
       }
 
       val localStorageIds = getAllLocalStorageIds(self)
@@ -454,12 +456,14 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     StoryDistributionListRecordProcessor().process(records.storyDistributionLists, StorageSyncHelper.KEY_GENERATOR)
     CallLinkRecordProcessor().process(records.callLinkRecords, StorageSyncHelper.KEY_GENERATOR)
     ChatFolderRecordProcessor().process(records.chatFolderRecords, StorageSyncHelper.KEY_GENERATOR)
+    NotificationProfileRecordProcessor().process(records.notificationProfileRecords, StorageSyncHelper.KEY_GENERATOR)
   }
 
   private fun getAllLocalStorageIds(self: Recipient): List<StorageId> {
     return SignalDatabase.recipients.getContactStorageSyncIds() +
       listOf(StorageId.forAccount(self.storageId)) +
       SignalDatabase.chatFolders.getStorageSyncIds() +
+      SignalDatabase.notificationProfiles.getStorageSyncIds() +
       SignalDatabase.unknownStorageIds.allUnknownIds
   }
 
@@ -533,6 +537,16 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
           }
         }
 
+        ManifestRecord.Identifier.Type.NOTIFICATION_PROFILE -> {
+          val query = SqlUtil.buildQuery("${NotificationProfileTables.NotificationProfileTable.STORAGE_SERVICE_ID} = ?", Base64.encodeWithPadding(id.raw))
+          val notificationProfile = SignalDatabase.notificationProfiles.getProfile(query)
+          if (notificationProfile?.notificationProfileId != null) {
+            records.add(StorageSyncModels.localToRemoteRecord(notificationProfile, id.raw))
+          } else {
+            throw MissingNotificationProfileModelError("Missing local notification profile model! Type: " + id.type)
+          }
+        }
+
         else -> {
           val unknown = SignalDatabase.unknownStorageIds.getById(id.raw)
           if (unknown != null) {
@@ -567,6 +581,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     val storyDistributionLists: MutableList<SignalStoryDistributionListRecord> = mutableListOf()
     val callLinkRecords: MutableList<SignalCallLinkRecord> = mutableListOf()
     val chatFolderRecords: MutableList<SignalChatFolderRecord> = mutableListOf()
+    val notificationProfileRecords: MutableList<SignalNotificationProfileRecord> = mutableListOf()
 
     init {
       for (record in records) {
@@ -584,6 +599,8 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
           callLinkRecords += record.proto.callLink!!.toSignalCallLinkRecord(record.id)
         } else if (record.proto.chatFolder != null) {
           chatFolderRecords += record.proto.chatFolder!!.toSignalChatFolderRecord(record.id)
+        } else if (record.proto.notificationProfile != null) {
+          notificationProfileRecords += record.proto.notificationProfile!!.toSignalNotificationProfileRecord(record.id)
         } else if (record.id.isUnknown) {
           unknown += record
         } else {
@@ -598,6 +615,8 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
   private class MissingRecipientModelError(message: String?) : Error(message)
 
   private class MissingChatFolderModelError(message: String?) : Error(message)
+
+  private class MissingNotificationProfileModelError(message: String?) : Error(message)
 
   private class MissingUnknownModelError(message: String?) : Error(message)
 
