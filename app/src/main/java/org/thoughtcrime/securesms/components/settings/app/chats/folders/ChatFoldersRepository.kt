@@ -13,8 +13,8 @@ object ChatFoldersRepository {
     return SignalDatabase.chatFolders.getCurrentChatFolders()
   }
 
-  fun getUnreadCountAndMutedStatusForFolders(folders: List<ChatFolderRecord>): HashMap<Long, Pair<Int, Boolean>> {
-    return SignalDatabase.chatFolders.getUnreadCountAndMutedStatusForFolders(folders)
+  fun getUnreadCountAndEmptyAndMutedStatusForFolders(folders: List<ChatFolderRecord>): HashMap<Long, Triple<Int, Boolean, Boolean>> {
+    return SignalDatabase.chatFolders.getUnreadCountAndEmptyAndMutedStatusForFolders(folders)
   }
 
   fun createFolder(folder: ChatFolderRecord, includedRecipients: Set<Recipient>, excludedRecipients: Set<Recipient>) {

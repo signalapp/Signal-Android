@@ -236,12 +236,13 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   /**
    * Given a list of folders, maps a folder id to the folder's unread count and whether all the chats in the folder are muted
    */
-  fun getUnreadCountAndMutedStatusForFolders(folders: List<ChatFolderRecord>): HashMap<Long, Pair<Int, Boolean>> {
-    val map: HashMap<Long, Pair<Int, Boolean>> = hashMapOf()
+  fun getUnreadCountAndEmptyAndMutedStatusForFolders(folders: List<ChatFolderRecord>): HashMap<Long, Triple<Int, Boolean, Boolean>> {
+    val map: HashMap<Long, Triple<Int, Boolean, Boolean>> = hashMapOf()
     folders.map { folder ->
       val unreadCount = SignalDatabase.threads.getUnreadCountByChatFolder(folder)
+      val isEmpty = !SignalDatabase.threads.hasChatInFolder(folder)
       val isMuted = !SignalDatabase.threads.hasUnmutedChatsInFolder(folder)
-      map[folder.id] = Pair(unreadCount, isMuted)
+      map[folder.id] = Triple(unreadCount, isEmpty, isMuted)
     }
     return map
   }
