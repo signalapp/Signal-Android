@@ -373,12 +373,12 @@ public abstract class PushSendJob extends SendJob {
 
       try {
         if (MediaUtil.isImageType(attachment.contentType) && attachment.getUri() != null) {
-          thumbnailData = ImageCompressionUtil.compress(context, attachment.contentType, new DecryptableUri(attachment.getUri()), 100, 50);
+          thumbnailData = ImageCompressionUtil.compress(context, attachment.contentType, attachment.contentType, new DecryptableUri(attachment.getUri()), 100, 50);
         } else if (Build.VERSION.SDK_INT >= 23 && MediaUtil.isVideoType(attachment.contentType) && attachment.getUri() != null) {
           Bitmap bitmap = MediaUtil.getVideoThumbnail(context, attachment.getUri(), 1000);
 
           if (bitmap != null) {
-            thumbnailData = ImageCompressionUtil.compress(context, attachment.contentType, new DecryptableUri(attachment.getUri()), 100, 50);
+            thumbnailData = ImageCompressionUtil.compress(context, attachment.contentType, attachment.contentType, new DecryptableUri(attachment.getUri()), 100, 50);
           }
         }
 
