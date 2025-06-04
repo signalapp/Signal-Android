@@ -1082,7 +1082,7 @@ object BackupRepository {
   /**
    * Returns an object with details about the remote backup state.
    */
-  fun getRemoteBackupState(): NetworkResult<BackupMetadata> {
+  fun debugGetRemoteBackupState(): NetworkResult<DebugBackupMetadata> {
     return initBackupAndFetchAuth()
       .then { credential ->
         SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), credential.mediaBackupAccess)
@@ -1091,11 +1091,11 @@ object BackupRepository {
       .then { pair ->
         val (mediaBackupInfo, credential) = pair
         SignalNetwork.archive.debugGetUploadedMediaItemMetadata(SignalStore.account.requireAci(), credential.mediaBackupAccess)
-          .also { Log.i(TAG, "MediaItemMetadataResult: $it") }
           .map { mediaObjects ->
-            BackupMetadata(
+            DebugBackupMetadata(
               usedSpace = mediaBackupInfo.usedSpace ?: 0,
-              mediaCount = mediaObjects.size.toLong()
+              mediaCount = mediaObjects.size.toLong(),
+              mediaSize = mediaObjects.sumOf { it.objectLength }
             )
           }
       }
@@ -1156,7 +1156,7 @@ object BackupRepository {
   /**
    * Returns an object with details about the remote backup state.
    */
-  private fun debugGetArchivedMediaState(): NetworkResult<List<ArchiveGetMediaItemsResponse.StoredMediaObject>> {
+  fun debugGetArchivedMediaState(): NetworkResult<List<ArchiveGetMediaItemsResponse.StoredMediaObject>> {
     return initBackupAndFetchAuth()
       .then { credential ->
         SignalNetwork.archive.debugGetUploadedMediaItemMetadata(SignalStore.account.requireAci(), credential.mediaBackupAccess)
@@ -1648,9 +1648,10 @@ class ImportState(val mediaRootBackupKey: MediaRootBackupKey) {
   }
 }
 
-class BackupMetadata(
+class DebugBackupMetadata(
   val usedSpace: Long,
-  val mediaCount: Long
+  val mediaCount: Long,
+  val mediaSize: Long
 )
 
 sealed class ImportResult {

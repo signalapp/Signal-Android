@@ -11,6 +11,7 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
@@ -18,6 +19,9 @@ import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.Hex
 import org.signal.core.util.bytes
@@ -32,8 +36,8 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
-import org.thoughtcrime.securesms.backup.v2.BackupMetadata
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.DebugBackupMetadata
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveResult
@@ -42,6 +46,8 @@ import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver.FailureCause
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader.Companion.MAC_SIZE
 import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.database.AttachmentTable.DebugAttachmentStats
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
@@ -83,6 +89,8 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     )
   )
   val state: State<ScreenState> = _state
+
+  val statsState: MutableStateFlow<StatsState> = MutableStateFlow(StatsState())
 
   enum class DialogState {
     None,
@@ -256,7 +264,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     disposables += Single
       .fromCallable {
         BackupRepository.restoreBackupTier(SignalStore.account.requireAci())
-        BackupRepository.getRemoteBackupState()
+        BackupRepository.debugGetRemoteBackupState()
       }
       .subscribeOn(Schedulers.io())
       .subscribe { result ->
@@ -348,6 +356,29 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
   }
 
+  fun loadStats() {
+    viewModelScope.launch(Dispatchers.IO) {
+      launch {
+        var stats = SignalDatabase.attachments.debugGetAttachmentStats()
+
+        statsState.update { it.copy(attachmentStats = stats) }
+      }
+    }
+  }
+
+  fun loadRemoteStats() {
+    viewModelScope.launch(Dispatchers.IO) {
+      launch {
+        statsState.update { it.copy(loadingRemoteStats = true) }
+        val (remoteState: DebugBackupMetadata?, errorMsg: String?) = when (val result = BackupRepository.debugGetRemoteBackupState()) {
+          is NetworkResult.Success -> result.result to null
+          else -> null to result.toString()
+        }
+        statsState.update { it.copy(remoteState = remoteState, remoteFailureMsg = errorMsg, loadingRemoteStats = false) }
+      }
+    }
+  }
+
   suspend fun deleteRemoteBackupData(): Boolean = withContext(Dispatchers.IO) {
     when (val result = BackupRepository.debugDeleteAllArchivedMedia()) {
       is NetworkResult.Success -> Log.i(TAG, "Remote data deleted")
@@ -386,7 +417,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   sealed class RemoteBackupState {
     data object Unknown : RemoteBackupState()
     data object NotFound : RemoteBackupState()
-    data class Available(val response: BackupMetadata) : RemoteBackupState()
+    data class Available(val response: DebugBackupMetadata) : RemoteBackupState()
   }
 
   data class MediaState(
@@ -451,4 +482,13 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     val messageBackupKey: MessageBackupKey,
     val aci: ACI
   )
+
+  data class StatsState(
+    val attachmentStats: DebugAttachmentStats? = null,
+    val loadingRemoteStats: Boolean = false,
+    val remoteState: DebugBackupMetadata? = null,
+    val remoteFailureMsg: String? = null
+  ) {
+    val valid = attachmentStats != null
+  }
 }

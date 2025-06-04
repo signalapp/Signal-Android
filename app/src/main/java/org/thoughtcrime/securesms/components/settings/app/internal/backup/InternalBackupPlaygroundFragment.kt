@@ -35,6 +35,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -52,6 +53,7 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -133,6 +135,11 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
   override fun FragmentContent() {
     val context = LocalContext.current
     val state by viewModel.state
+    val statsState by viewModel.statsState.collectAsStateWithLifecycle()
+
+    LaunchedEffect(Unit) {
+      viewModel.loadStats()
+    }
 
     Tabs(
       onBack = { findNavController().popBackStack() },
@@ -225,6 +232,14 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               .show()
           }
         )
+      },
+      statsContent = {
+        InternalBackupStatsTab(
+          statsState,
+          object : StatsCallbacks {
+            override fun loadRemoteState() = viewModel.loadRemoteStats()
+          }
+        )
       }
     )
   }
@@ -234,9 +249,10 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
 @Composable
 fun Tabs(
   onBack: () -> Unit,
-  mainContent: @Composable () -> Unit
+  mainContent: @Composable () -> Unit,
+  statsContent: @Composable () -> Unit
 ) {
-  val tabs = listOf("Main")
+  val tabs = listOf("Main", "Stats")
   var tabIndex by remember { mutableIntStateOf(0) }
 
   val snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
@@ -274,6 +290,7 @@ fun Tabs(
     Surface(modifier = Modifier.padding(it)) {
       when (tabIndex) {
         0 -> mainContent()
+        1 -> statsContent()
       }
     }
   }
