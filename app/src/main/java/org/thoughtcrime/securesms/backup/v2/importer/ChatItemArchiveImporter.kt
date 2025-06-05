@@ -263,7 +263,7 @@ class ChatItemArchiveImporter(
               }
             ),
             CallTable.TIMESTAMP to updateMessage.individualCall.startedCallTimestamp,
-            CallTable.READ to CallTable.ReadState.serialize(CallTable.ReadState.UNREAD)
+            CallTable.READ to updateMessage.individualCall.read
           )
           db.insert(CallTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, values)
         }
@@ -292,7 +292,7 @@ class ChatItemArchiveImporter(
               }
             ),
             CallTable.TIMESTAMP to updateMessage.groupCall.startedCallTimestamp,
-            CallTable.READ to CallTable.ReadState.serialize(CallTable.ReadState.UNREAD)
+            CallTable.READ to CallTable.ReadState.serialize(CallTable.ReadState.READ)
           )
           db.insert(CallTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, values)
         }
@@ -741,7 +741,7 @@ class ChatItemArchiveImporter(
             }
           }
         }
-        this.put(MessageTable.READ, updateMessage.individualCall.read.toInt())
+        this.put(MessageTable.READ, 1)
       }
       updateMessage.groupCall != null -> {
         val startedCallRecipientId = if (updateMessage.groupCall.startedCallRecipientId != null) {
