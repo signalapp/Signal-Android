@@ -63,6 +63,7 @@ class CallLinkPreJoinActionProcessor(
         SignalStore.internal.groupCallingServer,
         callLinkAuthCredentialPresentation.serialize(),
         callLinkRootKey,
+        null,
         callLink.credentials.adminPassBytes,
         ByteArray(0),
         AUDIO_LEVELS_INTERVAL,
