@@ -119,6 +119,8 @@ public final class JobManagerFactories {
       put(AnalyzeDatabaseJob.KEY,                      new AnalyzeDatabaseJob.Factory());
       put(ApkUpdateJob.KEY,                            new ApkUpdateJob.Factory());
       put(ArchiveAttachmentBackfillJob.KEY,            new ArchiveAttachmentBackfillJob.Factory());
+      put(ArchiveAttachmentReconciliationJob.KEY,      new ArchiveAttachmentReconciliationJob.Factory());
+      put(ArchiveCommitAttachmentDeletesJob.KEY,       new ArchiveCommitAttachmentDeletesJob.Factory());
       put(ArchiveThumbnailUploadJob.KEY,               new ArchiveThumbnailUploadJob.Factory());
       put(AttachmentCompressionJob.KEY,                new AttachmentCompressionJob.Factory());
       put(AttachmentCopyJob.KEY,                       new AttachmentCopyJob.Factory());
@@ -285,7 +287,6 @@ public final class JobManagerFactories {
       put(BackfillDigestsMigrationJob.KEY,                new BackfillDigestsMigrationJob.Factory());
       put(BackfillDigestsForDuplicatesMigrationJob.KEY,   new BackfillDigestsForDuplicatesMigrationJob.Factory());
       put(BackupJitterMigrationJob.KEY,                   new BackupJitterMigrationJob.Factory());
-      put(BackupMediaSnapshotSyncJob.KEY,                 new BackupMediaSnapshotSyncJob.Factory());
       put(BackupNotificationMigrationJob.KEY,             new BackupNotificationMigrationJob.Factory());
       put(BackupRefreshJob.KEY,                           new BackupRefreshJob.Factory());
       put(BadE164MigrationJob.KEY,                        new BadE164MigrationJob.Factory());
@@ -390,6 +391,7 @@ public final class JobManagerFactories {
       put("SendGiftJob",                                 new FailingJob.Factory());
       put("InactiveGroupCheckMigrationJob",              new PassingMigrationJob.Factory());
       put("AttachmentMarkUploadedJob",                   new FailingJob.Factory());
+      put("BackupMediaSnapshotSyncJob",                  new FailingJob.Factory());
     }};
   }
 

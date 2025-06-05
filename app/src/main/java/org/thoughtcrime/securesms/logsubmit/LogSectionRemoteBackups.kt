@@ -26,7 +26,7 @@ class LogSectionRemoteBackups : LogSection {
     output.append("Latest tier:                          ${SignalStore.backup.latestBackupTier}\n")
     output.append("Last backup time:                     ${SignalStore.backup.lastBackupTime}\n")
     output.append("Last check-in:                        ${SignalStore.backup.lastCheckInMillis}\n")
-    output.append("Last media sync:                      ${SignalStore.backup.lastMediaSyncTime}\n")
+    output.append("Last media sync:                      ${SignalStore.backup.lastAttachmentReconciliationTime}\n")
     output.append("Days since last backup:               ${SignalStore.backup.daysSinceLastBackup}\n")
     output.append("User manually skipped media restore:  ${SignalStore.backup.userManuallySkippedMediaRestore}\n")
     output.append("Can backup with cellular:             ${SignalStore.backup.backupWithCellular}\n")

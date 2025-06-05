@@ -195,9 +195,9 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
    *
    * We purposely allow pending items here -- so long as they were in the most recent complete snapshot, we want to keep them.
    */
-  fun getMediaObjectsThatCantBeFound(objects: List<ArchivedMediaObject>): List<ArchivedMediaObject> {
+  fun getMediaObjectsThatCantBeFound(objects: List<ArchivedMediaObject>): Set<ArchivedMediaObject> {
     if (objects.isEmpty()) {
-      return emptyList()
+      return emptySet()
     }
 
     val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(
@@ -220,7 +220,7 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
         }
     }
 
-    return objects.filterNot { foundObjects.contains(it.mediaId) }
+    return objects.filterNot { foundObjects.contains(it.mediaId) }.toSet()
   }
 
   /**
@@ -268,7 +268,7 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
   }
 
   /**
-   * Get all media objects who were last seen on the remote server before the given time.
+   * Get all media objects in specified snapshot who were last seen on the CDN before that snapshot.
    * This is used to find media objects that have not been seen on the CDN, even though they should be.
    *
    * The cursor contains rows that can be parsed into [MediaEntry] objects.
@@ -279,7 +279,7 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     return readableDatabase
       .select(MEDIA_ID, CDN, REMOTE_DIGEST, IS_THUMBNAIL)
       .from(TABLE_NAME)
-      .where("$LAST_SEEN_ON_REMOTE_SNAPSHOT_VERSION < $snapshotVersion AND $SNAPSHOT_VERSION = $MAX_VERSION")
+      .where("$LAST_SEEN_ON_REMOTE_SNAPSHOT_VERSION < $snapshotVersion AND $SNAPSHOT_VERSION = $snapshotVersion")
       .run()
   }
 

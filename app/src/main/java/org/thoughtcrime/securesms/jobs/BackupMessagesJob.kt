@@ -194,7 +194,10 @@ class BackupMessagesJob private constructor(
 
     SignalStore.backup.clearMessageBackupFailure()
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
-    BackupMediaSnapshotSyncJob.enqueue(currentTime)
+
+    AppDependencies.jobManager.add(ArchiveCommitAttachmentDeletesJob())
+    AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob())
+
     return Result.success()
   }
 

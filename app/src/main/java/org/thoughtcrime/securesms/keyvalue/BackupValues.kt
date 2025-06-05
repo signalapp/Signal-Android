@@ -45,7 +45,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
     private const val KEY_NEXT_BACKUP_TIME = "backup.nextBackupTime"
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
-    private const val KEY_LAST_BACKUP_MEDIA_SYNC_TIME = "backup.lastBackupMediaSyncTime"
+    private const val KEY_LAST_ATTACHMENT_RECONCILIATION_TIME = "backup.lastBackupMediaSyncTime"
     private const val KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE = "backup.totalRestorableAttachmentSize"
     private const val KEY_BACKUP_FREQUENCY = "backup.backupFrequency"
 
@@ -112,7 +112,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   val daysSinceLastBackup: Int get() = (System.currentTimeMillis().milliseconds - lastBackupTime.milliseconds).inWholeDays.toInt()
 
-  var lastMediaSyncTime: Long by longValue(KEY_LAST_BACKUP_MEDIA_SYNC_TIME, -1)
+  var lastAttachmentReconciliationTime: Long by longValue(KEY_LAST_ATTACHMENT_RECONCILIATION_TIME, -1)
   var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.DAILY, BackupFrequency.Serializer)
 
   var userManuallySkippedMediaRestore: Boolean by booleanValue(KEY_USER_MANUALLY_SKIPPED_MEDIA_RESTORE, false)
