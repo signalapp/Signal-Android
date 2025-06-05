@@ -518,7 +518,7 @@ object BackupRepository {
       append = { main.write(it) }
     )
 
-    export(currentTime = System.currentTimeMillis(), isLocal = true, writer = writer, progressEmitter = localBackupProgressEmitter, cancellationSignal = cancellationSignal) { dbSnapshot ->
+    export(currentTime = System.currentTimeMillis(), isLocal = true, writer = writer, progressEmitter = localBackupProgressEmitter, cancellationSignal = cancellationSignal, mediaBackupEnabled = false) { dbSnapshot ->
       val localArchivableAttachments = dbSnapshot
         .attachmentTable
         .getLocalArchivableAttachments()
@@ -566,12 +566,18 @@ object BackupRepository {
       )
     }
 
+    val mediaBackupEnabled = if (skipMediaBackup || !SignalStore.backup.areBackupsEnabled) {
+      false
+    } else {
+      getBackupTier().successOrThrow() == MessageBackupTier.PAID
+    }
+
     export(
       currentTime = currentTime,
       isLocal = false,
       writer = writer,
       progressEmitter = progressEmitter,
-      skipMediaBackup = skipMediaBackup,
+      mediaBackupEnabled = mediaBackupEnabled,
       forTransfer = forTransfer,
       cancellationSignal = cancellationSignal,
       exportExtras = exportExtras
@@ -584,7 +590,7 @@ object BackupRepository {
   @WorkerThread
   fun debugExport(plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis()): ByteArray {
     val outputStream = ByteArrayOutputStream()
-    export(outputStream = outputStream, append = { mac -> outputStream.write(mac) }, plaintext = plaintext, currentTime = currentTime)
+    export(outputStream = outputStream, append = { mac -> outputStream.write(mac) }, plaintext = plaintext, currentTime = currentTime, skipMediaBackup = true)
     return outputStream.toByteArray()
   }
 
@@ -593,7 +599,7 @@ object BackupRepository {
     currentTime: Long,
     isLocal: Boolean,
     writer: BackupExportWriter,
-    skipMediaBackup: Boolean = false,
+    mediaBackupEnabled: Boolean,
     forTransfer: Boolean = false,
     progressEmitter: ExportProgressListener? = null,
     cancellationSignal: () -> Boolean = { false },
@@ -604,12 +610,6 @@ object BackupRepository {
     val keyValueDbName = if (isLocal) LOCAL_KEYVALUE_DB_SNAPSHOT_NAME else REMOTE_KEYVALUE_DB_SNAPSHOT_NAME
 
     try {
-      val mediaBackupEnabled = if (skipMediaBackup || !SignalStore.backup.areBackupsEnabled) {
-        false
-      } else {
-        getBackupTier().successOrThrow() == MessageBackupTier.PAID
-      }
-
       val dbSnapshot: SignalDatabase = createSignalDatabaseSnapshot(mainDbName)
       eventTimer.emit("main-db-snapshot")
 
