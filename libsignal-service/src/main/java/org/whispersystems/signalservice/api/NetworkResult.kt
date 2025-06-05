@@ -7,6 +7,7 @@ package org.whispersystems.signalservice.api
 
 import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.concurrent.safeBlockingGet
+import org.whispersystems.signalservice.api.NetworkResult.ApplicationError
 import org.whispersystems.signalservice.api.NetworkResult.StatusCodeError
 import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
@@ -24,6 +25,7 @@ import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 typealias StatusCodeErrorAction = (StatusCodeError<*>) -> Unit
+typealias ApplicationErrorAction = (ApplicationError<*>) -> Unit
 
 /**
  * A helper class that wraps the result of a network request, turning common exceptions
@@ -40,7 +42,8 @@ typealias StatusCodeErrorAction = (StatusCodeError<*>) -> Unit
  * the success case and the status code of the error, this can be quite convenient.
  */
 sealed class NetworkResult<T>(
-  private val statusCodeErrorActions: MutableSet<StatusCodeErrorAction> = mutableSetOf()
+  private val statusCodeErrorActions: MutableSet<StatusCodeErrorAction> = mutableSetOf(),
+  private val applicationErrorActions: MutableSet<ApplicationErrorAction> = mutableSetOf()
 ) {
   companion object {
     /**
@@ -210,7 +213,7 @@ sealed class NetworkResult<T>(
         } else {
           null
         }
-      } catch (e: MalformedRequestException) {
+      } catch (_: MalformedRequestException) {
         null
       }
     }
@@ -268,19 +271,21 @@ sealed class NetworkResult<T>(
    * ```
    */
   fun <R> map(transform: (T) -> R): NetworkResult<R> {
-    return when (this) {
+    val map = when (this) {
       is Success -> {
         try {
-          Success(transform(this.result)).runOnStatusCodeError(statusCodeErrorActions)
+          Success(transform(this.result))
         } catch (e: Throwable) {
-          ApplicationError<R>(e).runOnStatusCodeError(statusCodeErrorActions)
+          ApplicationError<R>(e)
         }
       }
 
-      is NetworkError -> NetworkError<R>(exception).runOnStatusCodeError(statusCodeErrorActions)
-      is ApplicationError -> ApplicationError<R>(throwable).runOnStatusCodeError(statusCodeErrorActions)
-      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception).runOnStatusCodeError(statusCodeErrorActions)
+      is NetworkError -> NetworkError<R>(exception)
+      is ApplicationError -> ApplicationError<R>(throwable)
+      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception)
     }
+
+    return map.runOnStatusCodeError(statusCodeErrorActions).runOnApplicationError(applicationErrorActions)
   }
 
   /**
@@ -325,12 +330,14 @@ sealed class NetworkResult<T>(
    * ```
    */
   fun <R> then(result: (T) -> NetworkResult<R>): NetworkResult<R> {
-    return when (this) {
-      is Success -> result(this.result).runOnStatusCodeError(statusCodeErrorActions)
-      is NetworkError -> NetworkError<R>(exception).runOnStatusCodeError(statusCodeErrorActions)
-      is ApplicationError -> ApplicationError<R>(throwable).runOnStatusCodeError(statusCodeErrorActions)
-      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception).runOnStatusCodeError(statusCodeErrorActions)
+    val then = when (this) {
+      is Success -> result(this.result)
+      is NetworkError -> NetworkError<R>(exception)
+      is ApplicationError -> ApplicationError<R>(throwable)
+      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception)
     }
+
+    return then.runOnStatusCodeError(statusCodeErrorActions).runOnApplicationError(applicationErrorActions)
   }
 
   /**
@@ -370,7 +377,7 @@ sealed class NetworkResult<T>(
     return runOnStatusCodeError(setOf(action))
   }
 
-  internal fun runOnStatusCodeError(actions: Collection<StatusCodeErrorAction>): NetworkResult<T> {
+  private fun runOnStatusCodeError(actions: Collection<StatusCodeErrorAction>): NetworkResult<T> {
     if (actions.isEmpty()) {
       return this
     }
@@ -380,6 +387,41 @@ sealed class NetworkResult<T>(
     if (this is StatusCodeError) {
       statusCodeErrorActions.forEach { it.invoke(this) }
       statusCodeErrorActions.clear()
+    }
+
+    return this
+  }
+
+  /**
+   * Specify an action to be run when a application error occurs. When a result is a [ApplicationErrorAction] or is transformed into one further down the chain via
+   * a future [map] or [then], this code will be run. There can only ever be a single application error in a chain, and therefore this lambda will only ever
+   * be run a single time.
+   *
+   * This is a low-visibility way of doing things, so use sparingly.
+   *
+   * ```kotlin
+   * val result = NetworkResult
+   *   .fromFetch { getAuth() }
+   *   .runOnApplicationError { error -> logError(error) }
+   *   .then { credential ->
+   *     NetworkResult.fromFetch { fetchUserDetails(credential) }
+   *   }
+   * ```
+   */
+  fun runOnApplicationError(action: ApplicationErrorAction): NetworkResult<T> {
+    return runOnApplicationError(setOf(action))
+  }
+
+  private fun runOnApplicationError(actions: Collection<ApplicationErrorAction>): NetworkResult<T> {
+    if (actions.isEmpty()) {
+      return this
+    }
+
+    applicationErrorActions += actions
+
+    if (this is ApplicationError) {
+      applicationErrorActions.forEach { it.invoke(this) }
+      applicationErrorActions.clear()
     }
 
     return this

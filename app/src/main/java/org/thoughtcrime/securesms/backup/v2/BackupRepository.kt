@@ -31,6 +31,7 @@ import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.urlEncode
 import org.signal.core.util.withinTransaction
+import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -85,6 +86,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.toMillis
 import org.whispersystems.signalservice.api.AccountEntropyPool
+import org.whispersystems.signalservice.api.ApplicationErrorAction
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.StatusCodeErrorAction
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
@@ -147,6 +149,14 @@ object BackupRepository {
           SignalStore.backup.backupExpiredAndDowngraded = true
         }
       }
+    }
+  }
+
+  private val clearAuthCredentials: ApplicationErrorAction = { error ->
+    if (error.getCause() is VerificationFailedException) {
+      Log.w(TAG, "Unable to verify/receive credentials, clearing cache to fetch new.", error.getCause())
+      SignalStore.backup.messageCredentials.clearAll()
+      SignalStore.backup.mediaCredentials.clearAll()
     }
   }
 
@@ -1504,7 +1514,9 @@ object BackupRepository {
     return if (!RemoteConfig.messageBackups) {
       NetworkResult.StatusCodeError(555, null, null, emptyMap(), NonSuccessfulResponseCodeException(555, "Backups disabled!"))
     } else if (SignalStore.backup.backupsInitialized) {
-      getArchiveServiceAccessPair().runOnStatusCodeError(resetInitializedStateErrorAction)
+      getArchiveServiceAccessPair()
+        .runOnStatusCodeError(resetInitializedStateErrorAction)
+        .runOnApplicationError(clearAuthCredentials)
     } else if (isPreRestoreDuringRegistration()) {
       Log.w(TAG, "Requesting/using auth credentials in pre-restore state", Throwable())
       getArchiveServiceAccessPair()
@@ -1519,6 +1531,7 @@ object BackupRepository {
         .then { credential -> SignalNetwork.archive.setPublicKey(SignalStore.account.requireAci(), credential.mediaBackupAccess).map { credential } }
         .runIfSuccessful { SignalStore.backup.backupsInitialized = true }
         .runOnStatusCodeError(resetInitializedStateErrorAction)
+        .runOnApplicationError(clearAuthCredentials)
     }
   }
 

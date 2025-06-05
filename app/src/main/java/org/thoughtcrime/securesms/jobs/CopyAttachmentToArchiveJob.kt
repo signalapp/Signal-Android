@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -134,8 +135,13 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       }
 
       is NetworkResult.ApplicationError -> {
-        Log.w(TAG, "[$attachmentId] Encountered a fatal error when trying to upload!")
-        Result.fatalFailure(RuntimeException(archiveResult.throwable))
+        if (archiveResult.throwable is VerificationFailedException) {
+          Log.w(TAG, "[$attachmentId] Encountered a verification failure when trying to upload! Retrying.")
+          Result.retry(defaultBackoff())
+        } else {
+          Log.w(TAG, "[$attachmentId] Encountered a fatal error when trying to upload!")
+          Result.fatalFailure(RuntimeException(archiveResult.throwable))
+        }
       }
     }
 
