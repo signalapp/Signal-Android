@@ -84,7 +84,7 @@ import java.util.UUID
 import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
 
 /**
- * An object that will ingest all fo the [ChatItem]s you want to write, buffer them until hitting a specified batch size, and then batch insert them
+ * An object that will ingest all of the [ChatItem]s you want to write, buffer them until hitting a specified batch size, and then batch insert them
  * for fast throughput.
  */
 class ChatItemArchiveImporter(
@@ -519,7 +519,7 @@ class ChatItemArchiveImporter(
       this.paymentNotification != null -> contentValues.addPaymentNotification(this, chatRecipientId)
       this.giftBadge != null -> contentValues.addGiftBadge(this.giftBadge)
       this.viewOnceMessage != null -> contentValues.addViewOnce(this.viewOnceMessage)
-      this.directStoryReplyMessage != null -> contentValues.addDirectStoryReply(this.directStoryReplyMessage)
+      this.directStoryReplyMessage != null -> contentValues.addDirectStoryReply(this.directStoryReplyMessage, toRecipientId)
     }
 
     return contentValues
@@ -874,8 +874,11 @@ class ChatItemArchiveImporter(
     put(MessageTable.VIEW_ONCE, true.toInt())
   }
 
-  private fun ContentValues.addDirectStoryReply(directStoryReply: DirectStoryReplyMessage) {
+  private fun ContentValues.addDirectStoryReply(directStoryReply: DirectStoryReplyMessage, toRecipientId: RecipientId) {
     put(MessageTable.PARENT_STORY_ID, MessageTable.PARENT_STORY_MISSING_ID)
+    put(MessageTable.QUOTE_MISSING, 1)
+    put(MessageTable.QUOTE_ID, MessageTable.QUOTE_TARGET_MISSING_ID)
+    put(MessageTable.QUOTE_AUTHOR, toRecipientId.serialize())
 
     if (directStoryReply.emoji != null) {
       put(MessageTable.BODY, directStoryReply.emoji)
