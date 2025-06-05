@@ -1114,5 +1114,16 @@ object RemoteConfig {
     hotSwappable = true
   )
 
+  /**
+   * Also determines how long an unregistered/deleted record should remain in storage service
+   */
+  val messageQueueTime: Long by remoteValue(
+    key = "global.messageQueueTimeInSeconds",
+    hotSwappable = true
+  ) { value ->
+    val inSeconds = value.asLong(45.days.inWholeSeconds)
+    inSeconds.seconds.inWholeMilliseconds
+  }
+
   // endregion
 }

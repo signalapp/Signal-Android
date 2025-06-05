@@ -120,7 +120,6 @@ import java.io.IOException
 import java.util.Collections
 import java.util.LinkedList
 import java.util.Optional
-import java.util.concurrent.TimeUnit
 import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
 
@@ -129,8 +128,6 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   val TAG = Log.tag(RecipientTable::class.java)
 
   companion object {
-    private val UNREGISTERED_LIFESPAN: Long = TimeUnit.DAYS.toMillis(30)
-
     const val TABLE_NAME = "recipient"
 
     const val ID = "_id"
@@ -1091,14 +1088,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
   }
 
   /**
-   * Removes storageIds from unregistered recipients who were unregistered more than [UNREGISTERED_LIFESPAN] ago.
+   * Removes storageIds from unregistered recipients who were unregistered more than [RemoteConfig.messageQueueTime] ago.
    * @return The number of rows affected.
    */
   fun removeStorageIdsFromOldUnregisteredRecipients(now: Long): Int {
     return writableDatabase
       .update(TABLE_NAME)
       .values(STORAGE_SERVICE_ID to null)
-      .where("$STORAGE_SERVICE_ID NOT NULL AND $UNREGISTERED_TIMESTAMP > 0 AND $UNREGISTERED_TIMESTAMP < ?", now - UNREGISTERED_LIFESPAN)
+      .where("$STORAGE_SERVICE_ID NOT NULL AND $UNREGISTERED_TIMESTAMP > 0 AND $UNREGISTERED_TIMESTAMP < ?", now - RemoteConfig.messageQueueTime)
       .run()
   }
 
