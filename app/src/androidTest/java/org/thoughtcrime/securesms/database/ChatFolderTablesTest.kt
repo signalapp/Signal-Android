@@ -9,6 +9,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -218,9 +219,9 @@ class ChatFolderTablesTest {
     SignalDatabase.chatFolders.createFolder(folder4)
     val actualFolders = SignalDatabase.chatFolders.getCurrentChatFolders()
     val unreadCountAndEmptyAndMutedStatus = SignalDatabase.chatFolders.getUnreadCountAndEmptyAndMutedStatusForFolders(actualFolders)
-    val actualFolderIsEmpty = unreadCountAndEmptyAndMutedStatus[actualFolders.first().id]?.second
+    val actualFolderIsEmpty = unreadCountAndEmptyAndMutedStatus[actualFolders.first().id]!!.second
 
-    assertEquals(true, actualFolderIsEmpty)
+    assertTrue(actualFolderIsEmpty)
   }
 
   private fun createRecipients(count: Int): List<RecipientId> {
