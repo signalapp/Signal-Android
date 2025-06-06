@@ -266,6 +266,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
       .putBoolean(KEY_BACKUP_UPLOADED, false)
       .apply()
     backupTier = null
+    backupTierInternalOverride = null
   }
 
   var backupsInitialized: Boolean by booleanValue(KEY_BACKUPS_INITIALIZED, false)

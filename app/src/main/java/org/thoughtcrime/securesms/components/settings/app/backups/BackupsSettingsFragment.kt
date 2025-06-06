@@ -46,11 +46,13 @@ import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -382,9 +384,12 @@ private fun InternalBackupOverrideRow(
     )
   }
 
+  val deletionState by SignalStore.backup.deletionStateFlow.collectAsStateWithLifecycle(SignalStore.backup.deletionState)
+
   Row(verticalAlignment = Alignment.CenterVertically) {
     options.forEach { option ->
       RadioButton(
+        enabled = deletionState == DeletionState.NONE || deletionState == DeletionState.COMPLETE,
         selected = option.value == backupsSettingsState.backupTierInternalOverride,
         onClick = { onBackupTierInternalOverrideChanged(option.value) }
       )

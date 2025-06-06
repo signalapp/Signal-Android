@@ -21,12 +21,14 @@ import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.RemoteConfig
 import java.util.Currency
@@ -90,13 +92,20 @@ class BackupsSettingsViewModel : ViewModel() {
         }
 
         Log.d(TAG, "Found enabled state $enabledState. Updating UI state.")
-        internalStateFlow.update { it.copy(enabledState = enabledState, showBackupTierInternalOverride = RemoteConfig.internalUser, backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride) }
+        internalStateFlow.update {
+          it.copy(
+            enabledState = enabledState,
+            showBackupTierInternalOverride = RemoteConfig.internalUser || Environment.IS_STAGING,
+            backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride
+          )
+        }
       }
     }
   }
 
   fun onBackupTierInternalOverrideChanged(tier: MessageBackupTier?) {
     SignalStore.backup.backupTierInternalOverride = tier
+    SignalStore.backup.deletionState = DeletionState.NONE
     refreshState()
   }
 

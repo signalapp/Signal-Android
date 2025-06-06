@@ -26,6 +26,7 @@ import org.signal.core.util.getAllTableDefinitions
 import org.signal.core.util.getAllTriggerDefinitions
 import org.signal.core.util.getForeignKeyViolations
 import org.signal.core.util.logging.Log
+import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.stream.NonClosingOutputStream
@@ -57,6 +58,7 @@ import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
+import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -67,6 +69,7 @@ import org.thoughtcrime.securesms.database.OneTimePreKeyTable
 import org.thoughtcrime.securesms.database.SearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignedPreKeyTable
+import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -114,6 +117,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.time.ZonedDateTime
+import java.util.Currency
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.time.Duration.Companion.days
@@ -1463,11 +1467,25 @@ object BackupRepository {
   }
 
   private suspend fun getPaidType(): MessageBackupsType.Paid? {
-    val product = AppDependencies.billingApi.queryProduct() ?: return null
+    val productPrice: FiatMoney? = if (SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID) {
+      Log.d(TAG, "Accessing price via mock subscription.")
+      RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()?.activeSubscription?.let {
+        FiatMoney.fromSignalNetworkAmount(it.amount, Currency.getInstance(it.currency))
+      }
+    } else {
+      Log.d(TAG, "Accessing price via billing api.")
+      AppDependencies.billingApi.queryProduct()?.price
+    }
+
+    if (productPrice == null) {
+      Log.w(TAG, "No pricing available. Exiting.")
+      return null
+    }
+
     val backupLevelConfiguration = getBackupLevelConfiguration() ?: return null
 
     return MessageBackupsType.Paid(
-      pricePerMonth = product.price,
+      pricePerMonth = productPrice,
       storageAllowanceBytes = backupLevelConfiguration.storageAllowanceBytes,
       mediaTtl = backupLevelConfiguration.mediaTtlDays.days
     )
