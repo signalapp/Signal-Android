@@ -261,8 +261,14 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       Log.d(TAG, "[subscriptionStateMismatchDetected] A mismatch was detected.")
 
       val hasActiveGooglePlayBillingSubscription = when (val purchaseResult = AppDependencies.billingApi.queryPurchases()) {
-        is BillingPurchaseResult.Success -> purchaseResult.isAcknowledged && purchaseResult.isWithinTheLastMonth() && purchaseResult.isAutoRenewing
-        else -> false
+        is BillingPurchaseResult.Success -> {
+          Log.d(TAG, "[subscriptionStateMismatchDetected] Found a purchase: $purchaseResult")
+          purchaseResult.isAcknowledged && purchaseResult.isWithinTheLastMonth() && purchaseResult.isAutoRenewing
+        }
+        else -> {
+          Log.d(TAG, "[subscriptionStateMismatchDetected] No purchase found in Google Play Billing: $purchaseResult")
+          false
+        }
       } || SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID
 
       Log.d(TAG, "[subscriptionStateMismatchDetected] hasActiveGooglePlayBillingSubscription: $hasActiveGooglePlayBillingSubscription")
