@@ -44,7 +44,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
       isRemoteRestoreOnlyOption = isOnlyRestoreOption,
       backupTier = SignalStore.backup.backupTier,
       backupTime = SignalStore.backup.lastBackupTime,
-      backupSize = SignalStore.backup.totalBackupSize.bytes
+      backupSize = SignalStore.registration.restoreBackupMediaSize.bytes
     )
   )
 
@@ -64,7 +64,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
             loadState = ScreenState.LoadState.LOADED,
             backupTier = SignalStore.backup.backupTier,
             backupTime = SignalStore.backup.lastBackupTime,
-            backupSize = SignalStore.backup.totalBackupSize.bytes
+            backupSize = SignalStore.registration.restoreBackupMediaSize.bytes
           )
         } else {
           if (SignalStore.backup.isBackupTierRestored || SignalStore.backup.lastBackupTime == 0L) {

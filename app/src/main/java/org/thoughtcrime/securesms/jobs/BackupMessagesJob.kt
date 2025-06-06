@@ -177,17 +177,7 @@ class BackupMessagesJob private constructor(
     }
 
     SignalStore.backup.lastBackupTime = System.currentTimeMillis()
-    SignalStore.backup.usedBackupMediaSpace = when (val result = BackupRepository.getRemoteBackupUsedSpace()) {
-      is NetworkResult.Success -> result.result ?: 0
-      is NetworkResult.NetworkError -> SignalStore.backup.usedBackupMediaSpace // TODO [backup] enqueue a secondary job to fetch the latest number -- no need to fail this one
-      is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "Failed to get used space: ${result.code}")
-        SignalStore.backup.usedBackupMediaSpace
-      }
-
-      is NetworkResult.ApplicationError -> throw result.throwable
-    }
-    stopwatch.split("used-space")
+    stopwatch.split("save-meta")
     stopwatch.stop(TAG)
 
     if (isCanceled) {

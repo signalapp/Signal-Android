@@ -15,8 +15,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.CopyAttachmentToArchiveJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
-import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import java.lang.RuntimeException
 import java.util.concurrent.TimeUnit
 
@@ -154,8 +152,6 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       } else {
         Log.d(TAG, "[$attachmentId] Refusing to enqueue thumb for canceled upload.")
       }
-
-      SignalStore.backup.usedBackupMediaSpace += AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size))
 
       ArchiveUploadProgress.onAttachmentFinished(attachmentId)
     }

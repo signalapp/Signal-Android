@@ -1045,14 +1045,6 @@ object BackupRepository {
       }
   }
 
-  fun getRemoteBackupUsedSpace(): NetworkResult<Long?> {
-    return initBackupAndFetchAuth()
-      .then { credential ->
-        SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), credential.mediaBackupAccess)
-          .map { it.usedSpace }
-      }
-  }
-
   /**
    * If backups are enabled, sync with the network. Otherwise, return a 404.
    * Used in instrumentation tests.
@@ -1433,7 +1425,6 @@ object BackupRepository {
     return initBackupAndFetchAuth()
       .then { credential ->
         SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), credential.mediaBackupAccess).map {
-          SignalStore.backup.usedBackupMediaSpace = it.usedSpace ?: 0L
           "${it.backupDir!!.urlEncode()}/${it.mediaDir!!.urlEncode()}"
         }
       }

@@ -112,6 +112,10 @@ class ByteSize(val bytes: Long) {
     return ByteSize(this.inWholeBytes - other.inWholeBytes)
   }
 
+  operator fun times(other: Long): ByteSize {
+    return ByteSize(this.inWholeBytes * other)
+  }
+
   enum class Size(val label: String) {
     BYTE("B"),
     KIBIBYTE("KB"),

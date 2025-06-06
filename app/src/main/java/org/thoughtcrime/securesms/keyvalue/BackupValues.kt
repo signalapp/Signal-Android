@@ -34,7 +34,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_MEDIA_CDN_READ_CREDENTIALS = "backup.mediaCdnReadCredentials"
     private const val KEY_MEDIA_CDN_READ_CREDENTIALS_TIMESTAMP = "backup.mediaCdnReadCredentialsTimestamp"
     private const val KEY_RESTORE_STATE = "backup.restoreState"
-    private const val KEY_BACKUP_USED_MEDIA_SPACE = "backup.usedMediaSpace"
     private const val KEY_BACKUP_LAST_PROTO_SIZE = "backup.lastProtoSize"
     private const val KEY_BACKUP_TIER = "backup.backupTier"
     private const val KEY_BACKUP_TIER_INTERNAL_OVERRIDE = "backup.backupTier.internalOverride"
@@ -85,7 +84,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   override fun getKeysToIncludeInBackup(): List<String> = emptyList()
 
   var cachedMediaCdnPath: String? by stringValue(KEY_CDN_MEDIA_PATH, null)
-  var usedBackupMediaSpace: Long by longValue(KEY_BACKUP_USED_MEDIA_SPACE, 0L)
+
   var lastBackupProtoSize: Long by longValue(KEY_BACKUP_LAST_PROTO_SIZE, 0L)
 
   private val deletionStateValue = enumValue(KEY_BACKUP_DELETION_STATE, DeletionState.NONE, DeletionState.serializer)
@@ -222,8 +221,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
    * When uploading a backup, we store the progress state here so that it can remain across app restarts.
    */
   var archiveUploadState: ArchiveUploadProgressState? by protoValue(KEY_ARCHIVE_UPLOAD_STATE, ArchiveUploadProgressState.ADAPTER)
-
-  val totalBackupSize: Long get() = lastBackupProtoSize + usedBackupMediaSpace
 
   /** True if the user backs up media, otherwise false. */
   val backsUpMedia: Boolean

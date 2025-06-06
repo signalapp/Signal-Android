@@ -25,6 +25,7 @@ import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import org.signal.core.util.throttleLatest
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
@@ -39,6 +40,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaym
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.database.attachmentUpdates
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
@@ -63,7 +65,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     RemoteBackupsSettingsState(
       backupsEnabled = SignalStore.backup.areBackupsEnabled,
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
-      backupMediaSize = SignalStore.backup.totalBackupSize,
       backupsFrequency = SignalStore.backup.backupFrequency,
       canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
       canRestoreUsingCellular = SignalStore.backup.restoreWithCellular
@@ -78,6 +79,10 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   init {
     viewModelScope.launch(Dispatchers.IO) {
+      _state.update { it.copy(backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize()) }
+    }
+
+    viewModelScope.launch(Dispatchers.IO) {
       SignalStore.backup.deletionStateFlow.collectLatest {
         refresh()
       }
@@ -88,6 +93,16 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         .flatMapLatest { id -> InAppPaymentsRepository.observeUpdates(id).asFlow() }
         .collectLatest { purchase ->
           refreshState(purchase)
+        }
+    }
+
+    viewModelScope.launch(Dispatchers.IO) {
+      AppDependencies
+        .databaseObserver
+        .attachmentUpdates()
+        .throttleLatest(5.seconds)
+        .collectLatest {
+          _state.update { it.copy(backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize()) }
         }
     }
 
@@ -222,7 +237,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         backupsEnabled = SignalStore.backup.areBackupsEnabled,
         backupState = RemoteBackupsSettingsState.BackupState.Loading,
         lastBackupTimestamp = SignalStore.backup.lastBackupTime,
-        backupMediaSize = SignalStore.backup.totalBackupSize,
+        backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize(),
         backupsFrequency = SignalStore.backup.backupFrequency,
         canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
         canRestoreUsingCellular = SignalStore.backup.restoreWithCellular
@@ -391,8 +406,5 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         _state.update { it.copy(backupState = RemoteBackupsSettingsState.BackupState.None) }
       }
     }
-  }
-
-  private fun refreshLocalState() {
   }
 }
