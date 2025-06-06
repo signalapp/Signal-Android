@@ -7241,7 +7241,7 @@
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">Bắt đầu cuộc gọi thoại</string>
     <!-- Notice on call log when no missed calls are available, centered on display -->
-    <string name="CallLogAdapter__no_missed_calls">No missed calls</string>
+    <string name="CallLogAdapter__no_missed_calls">Không có cuộc gọi nhỡ</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -8039,17 +8039,17 @@
     <!-- Text displayed when there was an error deleting backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed to delete backup</string>
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Không thể xóa bản sao lưu</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">An error occurred. Please contact support.</string>
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Có lỗi xảy ra. Vui lòng liên hệ bộ phận hỗ trợ.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
     <!-- Text displayed while we are processing a backup delete -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups have been turned off and your data will be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Đã tắt sao lưu và dữ liệu của bạn sẽ được xóa khỏi dịch vụ lưu trữ bảo mật của Signal.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Đã tắt sao lưu và dữ liệu của bạn đã được xóa khỏi dịch vụ lưu trữ bảo mật của Signal.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
-    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Downloading: %1$s of %2$s (%3$d%%)</string>
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Đang tải: %1$s trên tổng số %2$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8152,11 +8152,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Tất cả bản sao lưu được mã hóa đầu cuối. Signal là một tổ chức phi lợi nhuận—việc chi trả cho cơ chế sao lưu góp phần hỗ trợ sứ mệnh của chúng tôi.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__learn_more">Learn more</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">Tìm hiểu thêm</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Subscribe for %1$s/month</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Đăng ký gói với giá %1$s/tháng</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Đổi loại bản sao lưu</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->

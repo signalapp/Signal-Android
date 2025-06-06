@@ -7241,7 +7241,7 @@
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">음성 통화 시작</string>
     <!-- Notice on call log when no missed calls are available, centered on display -->
-    <string name="CallLogAdapter__no_missed_calls">No missed calls</string>
+    <string name="CallLogAdapter__no_missed_calls">부재중 전화 없음</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -8039,17 +8039,17 @@
     <!-- Text displayed when there was an error deleting backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed to delete backup</string>
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">백업 삭제 실패</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">An error occurred. Please contact support.</string>
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">오류가 발생했습니다. 고객 지원팀에 문의하세요.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
     <!-- Text displayed while we are processing a backup delete -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups have been turned off and your data will be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">백업을 사용하지 않도록 설정했으며, Signal의 안전한 저장소 서비스에서 데이터가 삭제됩니다.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">백업을 사용하지 않도록 설정했으며, Signal의 안전한 저장소 서비스에서 데이터를 삭제했습니다.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
-    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Downloading: %1$s of %2$s (%3$d%%)</string>
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">다운로드하는 중: %1$s/%2$s(%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8152,11 +8152,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">모든 백업 내용은 엔드투엔드로 암호화됩니다. Signal은 비영리 단체입니다. 백업 요금은 Signal의 사명을 지원하는 데 사용됩니다.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__learn_more">Learn more</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">자세히 알아보기</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Subscribe for %1$s/month</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">월 %1$s로 구독</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">백업 유형 변경</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->

@@ -7407,7 +7407,7 @@
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">స్వర కాల్‌ను ప్రారంభించండి</string>
     <!-- Notice on call log when no missed calls are available, centered on display -->
-    <string name="CallLogAdapter__no_missed_calls">No missed calls</string>
+    <string name="CallLogAdapter__no_missed_calls">మిస్డ్ కాల్స్ లేవు</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -8228,7 +8228,7 @@
     <!-- Text displayed after we have deleted a user\'s backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
-    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Downloading: %1$s of %2$s (%3$d%%)</string>
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">డౌన్లోడ్ అవుతోంది: %2$s యొక్క%1$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8331,11 +8331,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">అన్ని బ్యాకప్‌లకు ఎండ్-టు-ఎండ్ గుప్తీకరణ ఉంది. సిగ్నల్ అనేది లాభాపేక్ష లేనిది—బ్యాకప్‌ల కోసం చెల్లించడం అనేది మా లక్ష్యానికి మద్దతుగా సహాయపడుతుంది.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__learn_more">Learn more</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">మరింత తెలుసుకోండి</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Subscribe for %1$s/month</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/నెలకు సబ్‌స్క్రైబ్ చేయండి</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">బ్యాకప్ రకం మార్చండి</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
