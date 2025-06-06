@@ -36,6 +36,7 @@ import kotlin.time.Duration.Companion.days
 class ArchiveAttachmentReconciliationJob private constructor(
   private var snapshotVersion: Long?,
   private var serverCursor: String?,
+  private val forced: Boolean,
   parameters: Parameters
 ) : Job(parameters) {
 
@@ -48,9 +49,10 @@ class ArchiveAttachmentReconciliationJob private constructor(
     private const val CDN_FETCH_LIMIT = 10_000
   }
 
-  constructor() : this(
+  constructor(forced: Boolean = false) : this(
     snapshotVersion = null,
     serverCursor = null,
+    forced = forced,
     parameters = Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
       .setQueue(ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE)
@@ -60,13 +62,17 @@ class ArchiveAttachmentReconciliationJob private constructor(
       .build()
   )
 
-  override fun serialize(): ByteArray = ArchiveAttachmentReconciliationJobData(snapshotVersion, serverCursor ?: "").encode()
+  override fun serialize(): ByteArray = ArchiveAttachmentReconciliationJobData(
+    snapshot = snapshotVersion,
+    serverCursor = serverCursor ?: "",
+    forced = forced
+  ).encode()
 
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
     val timeSinceLastSync = System.currentTimeMillis() - SignalStore.backup.lastAttachmentReconciliationTime
-    if (serverCursor == null && timeSinceLastSync > 0 && timeSinceLastSync < RemoteConfig.archiveReconciliationSyncInterval.inWholeMilliseconds) {
+    if (!forced && serverCursor == null && timeSinceLastSync > 0 && timeSinceLastSync < RemoteConfig.archiveReconciliationSyncInterval.inWholeMilliseconds) {
       Log.d(TAG, "No need to do a remote sync yet. Time since last sync: $timeSinceLastSync ms")
       return Result.success()
     }
@@ -130,6 +136,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
       Log.d(TAG, "No attachments need to be repaired.")
     }
 
+    SignalStore.backup.remoteStorageGarbageCollectionPending = false
     SignalStore.backup.lastAttachmentReconciliationTime = System.currentTimeMillis()
 
     return null
@@ -209,6 +216,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
       return ArchiveAttachmentReconciliationJob(
         snapshotVersion = data.snapshot,
         serverCursor = data.serverCursor.nullIfBlank(),
+        forced = data.forced,
         parameters = parameters
       )
     }

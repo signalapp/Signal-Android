@@ -131,8 +131,8 @@ import org.thoughtcrime.securesms.database.helpers.migration.V273_FixUnreadOrigi
 import org.thoughtcrime.securesms.database.helpers.migration.V274_BackupMediaSnapshotLastSeenOnRemote
 import org.thoughtcrime.securesms.database.helpers.migration.V275_EnsureDefaultAllChatsFolder
 import org.thoughtcrime.securesms.database.helpers.migration.V276_AttachmentCdnDefaultValueMigration
-import org.thoughtcrime.securesms.database.helpers.migration.V278_BackupSnapshotTableVersions
 import org.thoughtcrime.securesms.database.helpers.migration.V277_AddNotificationProfileStorageSync
+import org.thoughtcrime.securesms.database.helpers.migration.V278_BackupSnapshotTableVersions
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**

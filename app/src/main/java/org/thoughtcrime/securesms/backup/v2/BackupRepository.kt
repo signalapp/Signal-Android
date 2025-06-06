@@ -1466,7 +1466,7 @@ object BackupRepository {
     )
   }
 
-  private suspend fun getPaidType(): MessageBackupsType.Paid? {
+  suspend fun getPaidType(): MessageBackupsType.Paid? {
     val productPrice: FiatMoney? = if (SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID) {
       Log.d(TAG, "Accessing price via mock subscription.")
       RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()?.activeSubscription?.let {

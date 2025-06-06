@@ -144,6 +144,7 @@ message UploadAttachmentToArchiveJobData {
 message ArchiveAttachmentReconciliationJobData {
   optional uint64 snapshot = 1;
   string serverCursor = 2;
+  bool forced = 3;
 }
 
 message DeviceNameChangeJobData {

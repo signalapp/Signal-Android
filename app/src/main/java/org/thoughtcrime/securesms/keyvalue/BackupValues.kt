@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollectionPendingConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObserver
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -72,6 +73,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_USER_MANUALLY_SKIPPED_MEDIA_RESTORE = "backup.user.manually.skipped.media.restore"
     private const val KEY_BACKUP_EXPIRED_AND_DOWNGRADED = "backup.expired.and.downgraded"
     private const val KEY_BACKUP_DELETION_STATE = "backup.deletion.state"
+    private const val KEY_REMOTE_STORAGE_GARBAGE_COLLECTION_PENDING = "backup.remoteStorageGarbageCollectionPending"
 
     private const val KEY_MEDIA_ROOT_BACKUP_KEY = "backup.mediaRootBackupKey"
 
@@ -284,6 +286,17 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   /** Store that lets you interact with media ZK credentials. */
   val mediaCredentials = CredentialStore(KEY_MEDIA_CREDENTIALS, KEY_MEDIA_CDN_READ_CREDENTIALS, KEY_MEDIA_CDN_READ_CREDENTIALS_TIMESTAMP)
+
+  /**
+   * If true, it means we have been told that remote storage is full, but we have not yet run any of our "garbage collection" tasks, like committing deletes
+   * or pruning orphaned media.
+   */
+  var remoteStorageGarbageCollectionPending
+    get() = store.getBoolean(KEY_REMOTE_STORAGE_GARBAGE_COLLECTION_PENDING, false)
+    set(value) {
+      store.beginWrite().putBoolean(KEY_REMOTE_STORAGE_GARBAGE_COLLECTION_PENDING, value)
+      NoRemoteArchiveGarbageCollectionPendingConstraint.Observer.notifyListeners()
+    }
 
   fun markMessageBackupFailure() {
     store.beginWrite()

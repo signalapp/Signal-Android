@@ -45,7 +45,7 @@ class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Paramete
 
         when (val result = BackupRepository.deleteAbandonedMediaObjects(chunk)) {
           is NetworkResult.Success -> {
-            Log.i(tag, "Successfully deleted ${chunk.size} attachments off of the CDN.")
+            Log.i(tag, "Successfully deleted ${chunk.size} attachments off of the CDN. (Note: Count includes thumbnails)")
           }
 
           is NetworkResult.NetworkError -> {
