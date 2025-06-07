@@ -59,3 +59,5 @@ Copyright 2013-2025 Signal Messenger, LLC
 Licensed under the GNU AGPLv3: https://www.gnu.org/licenses/agpl-3.0.html
 
 Google Play and the Google Play logo are trademarks of Google LLC.
+
+<!-- build 1 -->
