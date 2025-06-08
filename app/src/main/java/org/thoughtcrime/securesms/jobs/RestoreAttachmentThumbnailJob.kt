@@ -126,7 +126,7 @@ class RestoreAttachmentThumbnailJob private constructor(
       override fun shouldCancel(): Boolean = this@RestoreAttachmentThumbnailJob.isCanceled
     }
 
-    val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MEDIA, attachment.archiveCdn).successOrThrow().headers
+    val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MEDIA, attachment.archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn).successOrThrow().headers
     val pointer = attachment.createArchiveThumbnailPointer()
 
     Log.i(TAG, "Downloading thumbnail for $attachmentId")
@@ -142,7 +142,7 @@ class RestoreAttachmentThumbnailJob private constructor(
         progressListener
       )
 
-    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.remoteDigest!!, downloadResult.dataStream, thumbnailTransferFile)
+    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.remoteDigest, downloadResult.dataStream, thumbnailTransferFile)
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context)

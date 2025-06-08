@@ -106,6 +106,8 @@ public final class CdsiV2Service {
       return new CdsiResourceExhaustedException((int) e.duration.getSeconds());
     } else if (lookupError instanceof IllegalArgumentException) {
       return new CdsiInvalidArgumentException();
+    } else if (lookupError instanceof org.signal.libsignal.net.CdsiProtocolException) {
+      return new IOException(lookupError);
     }
     return lookupError;
   }

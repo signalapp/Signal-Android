@@ -13,7 +13,7 @@
         android:layout_height="@dimen/signal_m3_toolbar_height"
         android:minHeight="@dimen/signal_m3_toolbar_height"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:navigationIcon="@drawable/symbol_arrow_start_24"
         app:title="@string/CreatePaymentFragment__add_note"
         app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 

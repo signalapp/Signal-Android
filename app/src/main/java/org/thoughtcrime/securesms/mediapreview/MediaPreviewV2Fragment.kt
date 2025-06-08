@@ -37,6 +37,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
@@ -45,8 +47,8 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.components.DeleteSyncEducationDialog
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
@@ -259,7 +261,7 @@ class MediaPreviewV2Fragment :
 
     bindTextViews(currentItem, currentState.showThread, currentState.messageBodies)
     bindMenuItems(currentItem)
-    bindMediaPreviewPlaybackControls(currentItem, getMediaPreviewFragmentFromChildFragmentManager(currentPosition))
+    tryBindMediaPreviewPlaybackControls(currentItem, currentPosition)
 
     val albumThumbnailMedia: List<Media> = if (currentState.allMediaInAlbumRail) {
       currentState.mediaRecords.mapNotNull { it.toMedia() }
@@ -350,6 +352,24 @@ class MediaPreviewV2Fragment :
     }
     currentFragment?.setBottomButtonControls(binding.mediaPreviewPlaybackControls)
     currentFragment?.autoPlayIfNeeded()
+  }
+
+  private fun tryBindMediaPreviewPlaybackControls(
+    currentItem: MediaTable.MediaRecord,
+    currentPosition: Int,
+    maxRetries: Int = 5,
+    delayMillis: Long = 50L
+  ) {
+    viewLifecycleOwner.lifecycleScope.launch {
+      repeat(maxRetries) { attempt ->
+        if (!isActive) return@launch
+        val mediaFragment = getMediaPreviewFragmentFromChildFragmentManager(currentPosition)
+        bindMediaPreviewPlaybackControls(currentItem, mediaFragment)
+
+        if (mediaFragment != null) return@launch
+        delay(delayMillis)
+      }
+    }
   }
 
   private fun bindAlbumRail(albumThumbnailMedia: List<Media>, currentItem: MediaTable.MediaRecord) {

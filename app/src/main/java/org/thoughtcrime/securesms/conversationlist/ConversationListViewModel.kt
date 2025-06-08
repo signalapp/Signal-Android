@@ -42,7 +42,7 @@ import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import java.util.concurrent.TimeUnit
 
-class ConversationListViewModel(
+sealed class ConversationListViewModel(
   private val isArchived: Boolean,
   private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
@@ -70,8 +70,8 @@ class ConversationListViewModel(
 
   val conversationsState: Flowable<List<Conversation>> = store.mapDistinctForUi { it.conversations }
   val selectedState: Flowable<ConversationSet> = store.mapDistinctForUi { it.selectedConversations }
-  val filterRequestState: Flowable<ConversationFilterRequest> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.filterRequest }.asFlowable()
-  val chatFolderState: Flowable<List<ChatFolderMappingModel>> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.chatFolders }.asFlowable()
+  val filterRequestState: Flowable<ConversationFilterRequest> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.filterRequest }.asFlowable().observeOn(AndroidSchedulers.mainThread())
+  val chatFolderState: Flowable<List<ChatFolderMappingModel>> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.chatFolders }.asFlowable().observeOn(AndroidSchedulers.mainThread())
   val hasNoConversations: Flowable<Boolean>
 
   val controller = ProxyPagingController<Long>()
@@ -217,7 +217,7 @@ class ConversationListViewModel(
   private fun loadCurrentFolders() {
     viewModelScope.launch(Dispatchers.IO) {
       val folders = ChatFoldersRepository.getCurrentFolders()
-      val unreadCountAndMutedStatus = ChatFoldersRepository.getUnreadCountAndMutedStatusForFolders(folders)
+      val unreadCountAndEmptyAndMutedStatus = ChatFoldersRepository.getUnreadCountAndEmptyAndMutedStatusForFolders(folders)
 
       val selectedFolderId = if (currentFolder.id == -1L) {
         folders.firstOrNull()?.id
@@ -227,8 +227,9 @@ class ConversationListViewModel(
       val chatFolders = folders.map { folder ->
         ChatFolderMappingModel(
           chatFolder = folder,
-          unreadCount = unreadCountAndMutedStatus[folder.id]?.first ?: 0,
-          isMuted = unreadCountAndMutedStatus[folder.id]?.second ?: false,
+          unreadCount = unreadCountAndEmptyAndMutedStatus[folder.id]?.first ?: 0,
+          isEmpty = unreadCountAndEmptyAndMutedStatus[folder.id]?.second ?: false,
+          isMuted = unreadCountAndEmptyAndMutedStatus[folder.id]?.third ?: false,
           isSelected = selectedFolderId == folder.id
         )
       }
@@ -242,7 +243,7 @@ class ConversationListViewModel(
 
   private fun setSelection(newSelection: Collection<Conversation>) {
     store.update {
-      val selection = newSelection.toSet()
+      val selection = newSelection.filter { select -> select.type == Conversation.Type.THREAD }.toSet()
       it.copy(internalSelection = selection, selectedConversations = ConversationSet(selection))
     }
   }
@@ -317,13 +318,20 @@ class ConversationListViewModel(
     val pinnedCount: Int = 0
   )
 
+  class UnarchivedConversationListViewModel(savedStateHandle: SavedStateHandle) : ConversationListViewModel(isArchived = false, savedStateHandle = savedStateHandle)
+  class ArchivedConversationListViewModel(savedStateHandle: SavedStateHandle) : ConversationListViewModel(isArchived = true, savedStateHandle = savedStateHandle)
+
   class Factory(
     private val isArchived: Boolean
   ) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
       val savedStateHandle = extras.createSavedStateHandle()
 
-      return modelClass.cast(ConversationListViewModel(isArchived, savedStateHandle))!!
+      return if (isArchived) {
+        ArchivedConversationListViewModel(savedStateHandle) as T
+      } else {
+        UnarchivedConversationListViewModel(savedStateHandle) as T
+      }
     }
   }
 }

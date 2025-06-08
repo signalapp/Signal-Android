@@ -43,6 +43,7 @@ class ChatFolderAdapter(val callbacks: Callbacks) : MappingAdapter() {
           anchorView = view,
           folderType = model.chatFolder.folderType,
           unreadCount = model.unreadCount,
+          isEmpty = model.isEmpty,
           isMuted = model.isMuted,
           onEdit = { callbacks.onEdit(model.chatFolder) },
           onMuteAll = { callbacks.onMuteAll(model.chatFolder) },

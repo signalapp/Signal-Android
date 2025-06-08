@@ -32,7 +32,7 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
@@ -59,7 +59,7 @@ class AddToFolderBottomSheet private constructor(private val onDismissListener: 
     OTHER(3)
   }
 
-  private val viewModel: ConversationListViewModel by viewModels(
+  private val viewModel: ConversationListViewModel.UnarchivedConversationListViewModel by activityViewModels(
     factoryProducer = {
       ConversationListViewModel.Factory(isArchived = false)
     }

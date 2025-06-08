@@ -173,7 +173,10 @@ class SignalClient {
     store.storePreKey(prekeyId, preKeyRecord)
     store.storeSignedPreKey(prekeyId, SignedPreKeyRecord(prekeyId, System.currentTimeMillis(), signedPreKeyPair, signedPreKeySignature))
 
-    return PreKeyBundle(prekeyId, prekeyId, prekeyId, preKeyRecord.keyPair.publicKey, prekeyId, signedPreKeyPair.publicKey, signedPreKeySignature, store.identityKeyPair.publicKey)
+    return PreKeyBundle(
+      prekeyId, prekeyId, prekeyId, preKeyRecord.keyPair.publicKey, prekeyId, signedPreKeyPair.publicKey, signedPreKeySignature, store.identityKeyPair.publicKey,
+      PreKeyBundle.NULL_PRE_KEY_ID, null, null
+    )
   }
 }
 

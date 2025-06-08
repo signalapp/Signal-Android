@@ -86,6 +86,11 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       return Result.failure()
     }
 
+    if (isCanceled) {
+      Log.w(TAG, "[$attachmentId] Canceled. Refusing to proceed.")
+      return Result.failure()
+    }
+
     if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.NONE) {
       Log.i(TAG, "[$attachmentId] Not marked as pending copy. Enqueueing an upload job instead.")
       AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId))
@@ -113,7 +118,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
           410 -> {
             Log.w(TAG, "[$attachmentId] The attachment no longer exists on the transit tier. Scheduling a re-upload.")
             SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
-            AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId))
+            AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId, canReuseUpload = false))
             Result.success()
           }
           413 -> {
@@ -138,7 +143,12 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       Log.d(TAG, "[$attachmentId] Updating archive transfer state to ${AttachmentTable.ArchiveTransferState.FINISHED}")
       SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
 
-      ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
+      if (!isCanceled) {
+        ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
+      } else {
+        Log.d(TAG, "[$attachmentId] Refusing to enqueue thumb for canceled upload.")
+      }
+
       SignalStore.backup.usedBackupMediaSpace += AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size))
 
       ArchiveUploadProgress.onAttachmentFinished(attachmentId)
@@ -153,7 +163,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.COPY_PENDING)
     } else {
       Log.w(TAG, "[$attachmentId] Job failed, updating archive transfer state to ${AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE}.")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
+      SignalDatabase.attachments.setArchiveTransferStateFailure(attachmentId, AttachmentTable.ArchiveTransferState.TEMPORARY_FAILURE)
     }
 
     ArchiveUploadProgress.onAttachmentFinished(attachmentId)

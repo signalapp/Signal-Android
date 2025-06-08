@@ -32,6 +32,8 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.compose.BetaHeader
+import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.signal.core.ui.R as CoreUiR
 
 /**
@@ -63,6 +65,10 @@ fun MessageBackupsEducationScreen(
           .weight(1f)
       ) {
         item {
+          BetaHeader()
+        }
+
+        item {
           Image(
             painter = painterResource(id = R.drawable.image_signal_backups),
             contentDescription = null,
@@ -73,9 +79,9 @@ fun MessageBackupsEducationScreen(
         }
 
         item {
-          Text(
+          TextWithBetaLabel(
             text = stringResource(id = R.string.RemoteBackupsSettingsFragment__signal_backups),
-            style = MaterialTheme.typography.headlineMedium,
+            textStyle = MaterialTheme.typography.headlineMedium,
             modifier = Modifier.padding(top = 15.dp)
           )
         }

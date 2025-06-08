@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.key
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.compose.ui.unit.dp
@@ -45,17 +45,18 @@ class BannerManager @JvmOverloads constructor(
           return@setContent
         }
 
-        val bannerState by banner.dataFlow.collectAsStateWithLifecycle(initialValue = null)
+        key(banner) {
+          val bannerState by banner.dataFlow.collectAsStateWithLifecycle(initialValue = null)
 
-        bannerState?.let { model ->
-          SignalTheme {
-            Box {
-              banner.DisplayBanner(model, PaddingValues(horizontal = 12.dp, vertical = 8.dp))
+          bannerState?.let { model ->
+            SignalTheme {
+              Box {
+                banner.DisplayBanner(model, PaddingValues(horizontal = 12.dp, vertical = 8.dp))
+              }
             }
-          }
-
-          onNewBannerShownListener()
-        } ?: onNoBannerShownListener()
+            onNewBannerShownListener()
+          } ?: onNoBannerShownListener()
+        }
       }
     }
   }
@@ -65,12 +66,16 @@ class BannerManager @JvmOverloads constructor(
    */
   @Composable
   fun Banner() {
-    val banner by rememberUpdatedState(banners.firstOrNull { it.enabled } as Banner<Any>?)
+    val banner: Banner<Any>? = banners.firstOrNull { it.enabled } as Banner<Any>?
+    if (banner == null) {
+      return
+    }
 
-    banner?.let { nonNullBanner ->
-      val state by nonNullBanner.dataFlow.collectAsStateWithLifecycle(initialValue = null)
-      state?.let { model ->
-        nonNullBanner.DisplayBanner(model, PaddingValues(horizontal = 12.dp, vertical = 8.dp))
+    key(banner) {
+      val bannerState by banner.dataFlow.collectAsStateWithLifecycle(initialValue = null)
+
+      bannerState?.let { model ->
+        banner.DisplayBanner(model, PaddingValues(horizontal = 12.dp, vertical = 8.dp))
       }
     }
   }

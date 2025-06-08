@@ -73,6 +73,41 @@ class MainToolbarViewModel : ViewModel() {
     }
   }
 
+  fun setActionModeCount(count: Int) {
+    internalStateFlow.update {
+      it.copy(actionModeCount = count)
+    }
+  }
+
+  fun isInActionMode(): Boolean = state.value.mode == MainToolbarMode.ACTION_MODE
+
+  fun presentToolbarForConversationListFragment() {
+    setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationListLocation.CHATS, overwriteSearchMode = false)
+  }
+
+  fun presentToolbarForConversationListArchiveFragment() {
+    setToolbarMode(MainToolbarMode.BASIC, destination = MainNavigationListLocation.CHATS)
+  }
+
+  fun presentToolbarForStoriesLandingFragment() {
+    setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationListLocation.STORIES)
+  }
+
+  fun presentToolbarForCallLogFragment() {
+    setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationListLocation.CALLS)
+  }
+
+  fun presentToolbarForMultiselect() {
+    setToolbarMode(MainToolbarMode.ACTION_MODE)
+  }
+
+  fun presentToolbarForCurrentDestination() {
+    when (state.value.destination) {
+      MainNavigationListLocation.ARCHIVE -> setToolbarMode(MainToolbarMode.BASIC)
+      else -> setToolbarMode(MainToolbarMode.FULL)
+    }
+  }
+
   @JvmOverloads
   fun setToolbarMode(
     mode: MainToolbarMode,

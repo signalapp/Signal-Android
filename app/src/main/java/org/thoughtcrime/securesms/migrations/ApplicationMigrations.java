@@ -179,9 +179,12 @@ public class ApplicationMigrations {
     // Need to skip 135 because of hotfix ordering issues
     static final int FIX_CHANGE_NUMBER_ERROR       = 136;
     static final int CHAT_FOLDER_STORAGE_SYNC      = 137;
+    static final int SVR2_ENCLAVE_UPDATE_3         = 138;
+    static final int DUPLICATE_E164_FIX_3          = 139;
+    static final int E164_FORMATTING_2             = 140;
   }
 
-  public static final int CURRENT_VERSION = 137;
+  public static final int CURRENT_VERSION = 140;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -822,6 +825,18 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.CHAT_FOLDER_STORAGE_SYNC) {
       jobs.put(Version.CHAT_FOLDER_STORAGE_SYNC, new SyncChatFoldersMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SVR2_ENCLAVE_UPDATE_3) {
+      jobs.put(Version.SVR2_ENCLAVE_UPDATE_3, new Svr2MirrorMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DUPLICATE_E164_FIX_3) {
+      jobs.put(Version.DUPLICATE_E164_FIX_3, new DuplicateE164MigrationJob());
+    }
+
+    if (lastSeenVersion < Version.E164_FORMATTING_2) {
+      jobs.put(Version.E164_FORMATTING_2, new E164FormattingMigrationJob());
     }
 
     return jobs;

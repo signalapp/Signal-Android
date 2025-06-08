@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blokkerte brukere</string>
     <string name="BlockedUsersActivity__add_blocked_user">Legg til blokkert bruker</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Du kan ikke blokkere deg selv</string>
     <string name="BlockedUsersActivity__blocked_users_will">Blokkerte brukere kan ikke ringe til deg eller sende deg meldinger.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Ingen blokkerte brukere</string>
     <string name="BlockedUsersActivity__block_user">Vil du blokkere brukeren?</string>
@@ -545,6 +545,8 @@
     <string name="ConversationActivity__invite_to_signal">Inviter til Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Du vil få en påminnelse igjen snart.</string>
+    <!-- Toast message shown when trying to record a voice message during an ongoing call -->
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">Det er ikke mulig å ta opp talemeldinger når du er i en samtale.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">Sender formatert tekst</string>
@@ -1719,7 +1721,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Sendt av %1$s til %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Sendt av deg til %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Denne mediefilen er ikke sendt ennå.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Minn meg på det senere</string>
@@ -2480,6 +2482,15 @@
     <!-- Content description for toggling group ring state -->
     <string name="WebRtcCallView__toggle_group_ringing">Slå på/av lyd for gruppeanrop</string>
 
+    <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s deaktiverte varslene fra deg.</string>
+    <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
+    <string name="WebRtcCallView__you_remotely_muted_s">Du deaktiverte varslene fra %1$s.</string>
+    <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s deaktiverte varslene fra %2$s.</string>
+    <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
+    <string name="WebRtcCallView__you_muted_yourself">Du deaktiverte varslene fra deg selv på en annen enhet.</string>
+
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Det oppstod en feil med grensesnittet. Si gjerne ifra til utviklerne våre om denne feilen.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
@@ -2765,12 +2776,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-koden er bekreftet. Vi sender deg en ny påminnelse om en uke.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-koden er bekreftet. Vi sender deg en ny påminnelse om et par uker.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN-koden er bekreftet. Vi sender deg en ny påminnelse om en måned.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">Vi sender deg en ny påminnelse senere.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">Vi sender deg en ny påminnelse i morgen.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">Vi sender deg en ny påminnelse om et par dager.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">Vi sender deg en ny påminnelse om en uke.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">Vi sender deg en ny påminnelse om et par uker.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">Vi sender deg en ny påminnelse om en måned.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Bilde</string>
@@ -2783,37 +2794,84 @@
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s tilbakestilte sikker økt.</string>
     <string name="SmsMessageRecord_duplicate_message">Dupliser melding.</string>
 
-    <!-- StickerManagementActivity -->
-    <string name="StickerManagementActivity_stickers">Klistremerker</string>
-
+    <!-- Sticker management screen default title. -->
+    <string name="StickerManagement_title_stickers">Klistremerker</string>
+    <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
+    <plurals name="StickerManagement_title_n_selected">
+        <item quantity="one">%1$s valgt</item>
+        <item quantity="other">%1$s valgt</item>
+    </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">Tilgjengelig</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
-    <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
-    <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_installed_tab_label">Installert</string>
+    <!-- Shown when there are no sticker packs available for installation. -->
+    <string name="StickerManagement_available_tab_empty_text">Ingen tilgjengelige klistremerkepakker</string>
+    <!-- Shown when there are no sticker packs currently installed. -->
+    <string name="StickerManagement_installed_tab_empty_text">Ingen klistremerkepakker er installert</string>
+    <!-- Message shown when the author of the sticker pack is unknown. -->
+    <string name="StickerManagement_author_unknown">Ukjent</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">Installerte klistremerker</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">Klistremerker du mottok</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Signal Artist Serier</string>
+    <!-- Title shown when sharing a sticker pack with another user. -->
+    <string name="StickerManagement_share_sheet_title">Videresend til</string>
+    <!-- Bottom action bar option to select all sticker packs in the list. -->
+    <string name="StickerManagement_action_select_all">Velg alle</string>
+    <!-- Bottom action bar option to deselect all sticker packs in the list. -->
+    <string name="StickerManagement_action_deselect_all">Tøm valg</string>
+    <!-- Bottom action bar option to uninstall all selected sticker packs. -->
+    <string name="StickerManagement_action_delete_selected">Slett</string>
+    <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation">
+        <item quantity="one">Fjern %1$s klistremerkepakke</item>
+        <item quantity="other">Fjern %1$s klistremerkepakker</item>
+    </plurals>
+    <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
+    <string name="StickerManagement_installed_pack_s">Installert %1$s.</string>
+    <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
+    <string name="StickerManagement_deleted_pack_s">Fjernet %1$s.</string>
+    <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
+    <plurals name="StickerManagement_deleted_n_packs">
+        <item quantity="one">%1$s klistremerkepakke ble fjernet.</item>
+        <item quantity="other">%1$s klistremerkepakker ble fjernet.</item>
+    </plurals>
+    <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
+    <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
+        <item quantity="one">%1$s sticker</item>
+        <item quantity="other">%1$s stickers</item>
+    </plurals>
+
+    <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
+    <string name="StickerManagement_menu_forward_pack">Videresend</string>
+    <!-- Sticker pack list dropdown menu label for the button to mark a sticker pack as selected in order to perform additional actions. -->
+    <string name="StickerManagement_menu_select_pack">Velg</string>
+    <!-- Sticker pack list dropdown menu label for the button to install a sticker pack. -->
+    <string name="StickerManagement_menu_install_pack">Installer</string>
+    <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
+    <string name="StickerManagement_menu_remove_pack">Fjern</string>
+    <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
+    <string name="StickerManagement_menu_select_packs">Velg klistremerkepakker</string>
+
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">Last ned %1$s-klistremerkepakke</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Lastet ned hake</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">Dra og slipp-ikon</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">Last ned</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="StickerManagement_accessibility_open_top_bar_menu">Åpne menyen</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_open_context_menu">Åpne kontekstmenyen</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">Gå ut av valgmodus og tøm valgene</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_no_stickers_installed">Ingen klistremerker installert</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Klistremerker fra innkommende meldinger vises her</string>
     <string name="StickerManagementAdapter_untitled">Uten navn</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2842,7 +2900,7 @@
     <string name="SubmitDebugLogActivity_share">Del</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Denne loggen publiseres på nettet, slik at bidragsytere kan se den. Du kan se over og redigere den før du sender den inn.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Når du klikker på Send inn, legges loggen din ut i 30 dager på en unik og upublisert nettadresse. Du kan også lagre den lokalt først.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3013,10 +3071,6 @@
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Melding kryptert for ikke-eksisterende økt</string>
-
-    <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">Ugyldig kryptert MMS</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-melding kryptert for ikke-eksisterende økt</string>
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Ikke vis varsler</string>
@@ -3747,7 +3801,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Nei takk</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Sist brukte</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Denne meldingen</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nylig brukt</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Smilefjes og mennesker</string>
@@ -3762,15 +3816,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Ingen resultater</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">Sist brukte</string>
+    <string name="GifQuickSearchOption__trending">Populært</string>
+    <string name="GifQuickSearchOption__celebrate">Feiringer</string>
+    <string name="GifQuickSearchOption__love">Kjærlighet</string>
+    <string name="GifQuickSearchOption__thumbs_up">Tommel opp</string>
+    <string name="GifQuickSearchOption__surprised">Overrasket</string>
+    <string name="GifQuickSearchOption__excited">Glede</string>
+    <string name="GifQuickSearchOption__sad">Trist</string>
+    <string name="GifQuickSearchOption__angry">Sinne</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Bruk forvalgt</string>
@@ -4367,7 +4421,7 @@
     <string name="conversation_list_fragment__open_camera_description">Åpne Kamera</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Ingen samtaler enda.\nKom i gang ved å sende en melding til en venn.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Arkiverte samtaler vises her.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Ingen samtaler å vise</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4721,6 +4775,14 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Du har gjort for mange forsøk. Prøv igjen senere.</string>
     <string name="RegistrationActivity_error_connecting_to_service">Feil under tilkobling til tjeneste</string>
     <string name="preferences_chats__backups">Sikkerhetskopiering</string>
+
+    <!-- Button label to indicate that a feature is in beta mode -->
+    <string name="Beta__beta_title">Beta</string>
+    <!-- Content description for info icon -->
+    <string name="Beta__info">Info</string>
+    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
+    <string name="Beta__this_is_beta">Dette er en betafunksjon som vi kommer til å oppdatere kontinuerlig.</string>
+
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Lås opp Signal</string>
     <!-- Description text explaining how to unlock Signal -->
@@ -5743,7 +5805,7 @@
     <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
     <string name="ConversationSettingsFragment__get_badges">Få merker på profilen din ved å støtte Signal. Trykk på et merke for å lese mer.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Denne mediefilen er ikke sendt ennå.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Legg til medlemmer</string>
@@ -5796,6 +5858,8 @@
     <string name="NewConversationActivity__s_has_been_removed">%1$s er fjernet</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s er blokkert</string>
+    <!-- Snackbar message when blocking a contact has failed -->
+    <string name="NewConversationActivity__block_failed">Blokkeringen mislyktes</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Kan ikke fjerne %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -7102,34 +7166,6 @@
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Vil du forlate Signal for å bekrefte betalingen av pengegaven?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Når betalingen er bekreftet, kan du gå tilbake til Signal for å gi pengegaven.</string>
 
-    <!-- IdealBank -->
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__abn_amro">ABN AMRO</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__asn_bank">ASN Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__bunq">bunq</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__ing">ING</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__knab">Knab</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__n26">N26</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__rabobank">Rabobank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__regiobank">RegioBank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__revolut">Revolut</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__sns_bank">SNS Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__triodos_bank">Triodos Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__yoursafe">Yoursafe</string>
-
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
     <string name="BankTransferMandateFragment__bank_transfer">Bankoverføring</string>
@@ -7190,7 +7226,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Velg bank</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Bekreft pengegaven via %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Bekreft pengegaven med iDEAL</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">For å legge inn den gjentakende pengegaven trykker du på «Fortsett» for å bekrefte at 0,01 EUR trekkes fra bankkontoen din. Dette beløpet refunderes automatisk og sikrer at pengegaven på %1$s per måned kan trekkes fra kontoen din.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7370,6 +7406,8 @@
     <string name="CallLogAdapter__start_a_video_call">Start videosamtale</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">Foreta et taleanrop</string>
+    <!-- Notice on call log when no missed calls are available, centered on display -->
+    <string name="CallLogAdapter__no_missed_calls">Ingen ubesvarte anrop</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -7802,6 +7840,12 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Abonnementet på sikkerhetskopiering kunne ikke fornyes</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Sjekk om betalingsmåten din er oppdatert. Trykk på «Administrer abonnement» og velg «Oppdater» under «Betalingsmåter».</string>
+    <!-- Sheet title for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Abonnementet på sikkerhetskopiering har utløpt</string>
+    <!-- Sheet body part 1 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Abonnementet kunne ikke fornyes med denne betalingsmåten. Du må ha et aktivt abonnement for å fortsette sikkerhetskopieringen av mediefilene dine.</string>
+    <!-- Sheet body part 2 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Du beholder tilgangen til gratis sikkerhetskopiering av Signal.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Sikkerhetskopiering kunne ikke fullføres</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7813,6 +7857,8 @@
     <string name="BackupAlertBottomSheet__learn_more">Les mer</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">Hopp over</string>
+    <!-- Primary action button to open backups management screen -->
+    <string name="BackupAlertBottomSheet__manage_backups">Administrer sikkerhetskopier</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">Sikkerhetskopier nå</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -7869,6 +7915,8 @@
     <string name="BackupStatus__restore_complete">Gjenoppretting er utført</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">Detaljer</string>
+    <!-- Status action label for resume restore from a paused state -->
+    <string name="BackupStatus__resume">Fortsett</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Venter på Wi-Fi …</string>
@@ -7890,6 +7938,14 @@
     <string name="BackupStatusRow__restore_no_internet">Gjenoppretting satt på pause: ingen internettilgang …</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">Gjenoppretting satt på pause: lavt batteri</string>
+    <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">Laster ned %1$s av %2$s (%3$s %%)</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
+    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
+    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
+    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Det er ikke nok plass til å lagre sikkerhetskopien. Du trenger minst %1$s mer lagringsplass for å gå videre.</string>
     <!-- Text row label to skip download -->
@@ -7900,6 +7956,11 @@
     <string name="BackupStatusRow__your_last_backup_latest_version">Den siste sikkerhetskopien kunne ikke gjennomføres. Sjekk om du bruker den nyeste versjonen av Signal, og prøv igjen.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Les mer</string>
+
+    <!-- Dialog title to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">Vil du fortsette å bruke mobildata?</string>
+    <!-- Dialog message to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">Gjenoppretting av mediefiler via mobildata kan medføre ekstra kostnader. Du kan koble til et trådløst nettverk for å fortsette automatisk.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7992,6 +8053,8 @@
     <string name="BackupsSettingsFragment_set_up">Konfigurer</string>
 
     <!-- RemoteBackupsSettingsFragment -->
+    <!-- Content description for canceling backup upload -->
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">Avbryt opplastingen</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Sikkerhetskopiering av Signal</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8000,8 +8063,8 @@
     <string name="RemoteBackupsSettingsFragment__payment_history">Betalingshistorikk</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">Info om sikkerhetskopiering</string>
-    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Gjenoppretting via mobilnettverket</string>
+    <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__resume_download">Gjenoppta nedlasting</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Størrelse på sikkerhetskopi</string>
     <!-- Row label for backup frequency -->
@@ -8071,7 +8134,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Vil du slå av og slette sikkerhetskopiene?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">Kortet ditt belastes ikke igjen. Sikkerhetskopiene dine slettes og ingen nye opprettes.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Slå av og slett</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8098,6 +8161,8 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Nedlasting av sikkerhetskopi</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Dette kan ta en stund, avhengig av størrelsen på sikkerhetskopien. Du kan bruke telefonen som normalt mens nedlastingen pågår.</string>
+    <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Abonnementet ble ikke funnet på denne enheten. Forny abonnementet for å fortsette å bruke sikkerhetskopiering av Signal.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">Abonnementet på denne enheten utløper om %1$d dag. Forny det nå for å fortsette å bruke sikkerhetskopiering i Signal.</item>
@@ -8121,17 +8186,27 @@
         <item quantity="one">Du har %1$s med sikkerhetskopierte data som ikke er lagret på denne enheten. Disse dataene slettes når abonnementet ditt utløper om %2$d dag.</item>
         <item quantity="other">Du har %1$s med sikkerhetskopierte data som ikke er lagret på denne enheten. Disse dataene slettes når abonnementet ditt utløper om %2$d dager.</item>
     </plurals>
+    <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Du har %1$s sikkerhetskopierte data som ikke er lagret på denne enheten. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">Last ned</string>
     <!-- Dialog title for skipping download of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_download_question">Vil du hoppe over nedlastingen?</string>
-    <!-- Dialog body for skiping download of backed up media -->
+    <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="one">Dersom du velger å ikke laste ned resten av mediefilene og vedleggene fra sikkerhetskopien, slettes de om %1$d dag.</item>
         <item quantity="other">Dersom du velger å ikke laste ned resten av mediefilene og vedleggene fra sikkerhetskopien, slettes de om %1$d dager.</item>
     </plurals>
+    <!-- Dialog body for skipping download of backed up media during deletion -->
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_question">Vil du hoppe over gjenoppretting?</string>
+    <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">Hvis du velger å hoppe over dette trinnet, kan du laste ned resten av mediefilene og vedleggene i sikkerhetskopien din senere.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Hopp over</string>
+    <!-- Positive dialog action to skip download during deletion -->
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Sikkerhetskopiering kunne ikke slås av og slettes</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8140,6 +8215,20 @@
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Laster opp %1$s av %2$s (%3$d %%)</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Detaljer</string>
+    <!-- Text displayed when there was an error deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <!-- Text displayed as the title in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Sikkerhetskopien kunne ikke slettes</string>
+    <!-- Text displayed as the body in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Det har oppstått en feil. Ta kontakt med brukerstøtten vår.</string>
+    <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <!-- Text displayed while we are processing a backup delete -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Sikkerhetskopiering er slått av, og dataene blir slettet fra Signals sikre lagringstjeneste.</string>
+    <!-- Text displayed after we have deleted a user\'s backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Sikkerhetskopiering er slått av, og dataene ble slettet fra Signals sikre lagringstjeneste.</string>
+    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Laster ned %1$s av %2$s (%3$d %%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8164,6 +8253,8 @@
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Det oppsto en nettverksfeil. Prøv igjen senere.</string>
+    <!-- Toast message if this fragment encounters an in progress deletion -->
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8196,6 +8287,18 @@
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Du trenger denne koden for å gjenopprette kontoen din og dataene dine. Oppbevar koden på en trygg plass. Uten koden kan du ikke gjenopprette kontoen din.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopiere til utklippstavle</string>
+    <!-- Label for the button to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Neste</string>
     <!-- Bottom sheet title -->
@@ -8228,9 +8331,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Alle sikkerhetskopier er ende-til-ende-kryptert. Signal er en ideell organisasjon, og du bidrar til å holde hjulene i gang ved å betale for sikkerhetskopiering.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__read_more">Les mer</string>
-    <!-- Primary action button label when selecting a backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__next">Neste</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">Les mer</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <!-- Primary action button label when selecting the paid backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Bli abonnent for %1$s/måned</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Bytt sikkerhetskopieringstype</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
@@ -8426,15 +8531,25 @@
     <string name="NoBackupToRestore_skip_restore">Hopp over gjenoppretting</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">Lukk søk</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">Fjern søk</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">Flere muligheter</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">Varslingsprofil</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
+
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">Gå opp</string>
+
+    <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
+    <string name="SignalCheckbox_accessibility_on_click_label">Slå på/av</string>
+    <!-- Accessibility label describing a checked checkbox. -->
+    <string name="SignalCheckbox_accessibility_checked_description">Huket av</string>
+    <!-- Accessibility label describing an unchecked checkbox. -->
+    <string name="SignalCheckbox_accessibility_unchecked_description">Ikke huket av</string>
 
     <!-- EOF -->
 </resources>

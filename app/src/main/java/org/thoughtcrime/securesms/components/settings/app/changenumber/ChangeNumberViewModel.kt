@@ -409,16 +409,14 @@ class ChangeNumberViewModel : ViewModel() {
   private suspend fun changeNumberWithRecoveryPassword(): Boolean {
     Log.v(TAG, "changeNumberWithRecoveryPassword()")
     SignalStore.svr.recoveryPassword?.let { recoveryPassword ->
-      if (SignalStore.svr.hasOptedInWithAccess()) {
-        val result = repository.changeNumberWithRecoveryPassword(recoveryPassword = recoveryPassword, newE164 = number.e164Number)
+      val result = repository.changeNumberWithRecoveryPassword(recoveryPassword = recoveryPassword, newE164 = number.e164Number)
 
-        if (result is ChangeNumberResult.Success) {
-          handleSuccessfulChangedRemoteNumber(e164 = result.numberChangeResult.number, pni = ServiceId.PNI.parseOrThrow(result.numberChangeResult.pni), changeNumberOutcome = ChangeNumberOutcome.RecoveryPasswordWorked)
-          return true
-        }
-
-        Log.d(TAG, "Encountered error while trying to change number with recovery password.", result.getCause())
+      if (result is ChangeNumberResult.Success) {
+        handleSuccessfulChangedRemoteNumber(e164 = result.numberChangeResult.number, pni = ServiceId.PNI.parseOrThrow(result.numberChangeResult.pni), changeNumberOutcome = ChangeNumberOutcome.RecoveryPasswordWorked)
+        return true
       }
+
+      Log.d(TAG, "Encountered error while trying to change number with recovery password.", result.getCause())
     }
     return false
   }

@@ -66,8 +66,7 @@ class CallLinkPreJoinActionProcessor(
         callLink.credentials.adminPassBytes,
         ByteArray(0),
         AUDIO_LEVELS_INTERVAL,
-        RingRtcDynamicConfiguration.getAudioProcessingMethod(),
-        RingRtcDynamicConfiguration.shouldUseOboeAdm(),
+        RingRtcDynamicConfiguration.getAudioConfig(),
         webRtcInteractor.groupCallObserver
       )
     } catch (e: InvalidInputException) {

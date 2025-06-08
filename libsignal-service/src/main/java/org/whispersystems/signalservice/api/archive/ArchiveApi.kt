@@ -31,6 +31,7 @@ import java.io.InputStream
 import java.time.Instant
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Class to interact with various archive-related endpoints.
@@ -181,7 +182,7 @@ class ArchiveApi(
    * - 403: Forbidden. The request had insufficient permissions to perform the requested action.
    * - 429: Rate limited.
    */
-  fun refreshBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<Unit> {
+  fun refreshBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Unit> {
     return getCredentialPresentation(aci, archiveServiceAccess)
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->
@@ -203,7 +204,7 @@ class ArchiveApi(
    * - 429: Rate limited.
    *
    */
-  fun deleteBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<Unit> {
+  fun deleteBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Unit> {
     return getCredentialPresentation(aci, archiveServiceAccess)
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->
@@ -346,7 +347,7 @@ class ArchiveApi(
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->
         val request = WebSocketRequestMessage.post("/v1/archives/media/delete", DeleteArchivedMediaRequest(mediaToDelete = mediaToDelete), headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, timeout = 30.seconds)
       }
   }
 

@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 import android.app.Activity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.VisibleForTesting
 import androidx.compose.runtime.Composable
@@ -16,14 +17,21 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.core.os.bundleOf
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.LocalLifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlowable
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.getSerializableCompat
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -43,6 +51,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
 
     @VisibleForTesting
     const val TIER = "tier"
+    const val CLIPBOARD_TIMEOUT_SECONDS = 60
 
     fun create(messageBackupTier: MessageBackupTier?): MessageBackupsFlowFragment {
       return MessageBackupsFlowFragment().apply {
@@ -65,6 +74,27 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
         .filter { it.inAppPayment != null }
         .map { it.inAppPayment!!.id }
     )
+
+    viewLifecycleOwner.lifecycleScope.launch(SignalDispatchers.Main) {
+      repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        viewModel.deletionState.collectLatest {
+          if (it == DeletionState.DELETE_BACKUPS) {
+            Toast.makeText(
+              requireContext(),
+              R.string.MessageBackupsFlowFragment__a_backup_deletion_is_in_progress,
+              Toast.LENGTH_SHORT
+            ).show()
+
+            requireActivity().supportFinishAfterTransition()
+          }
+        }
+      }
+    }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    viewModel.refreshCurrentTier()
   }
 
   @Composable
@@ -112,11 +142,15 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
 
         MessageBackupsKeyRecordScreen(
           backupKey = state.accountEntropyPool.displayValue,
+          keySaveState = state.backupKeySaveState,
           onNavigationClick = viewModel::goToPreviousStage,
           onNextClick = viewModel::goToNextStage,
           onCopyToClipboardClick = {
-            Util.copyToClipboard(context, it)
-          }
+            Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS)
+          },
+          onRequestSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
+          onConfirmSaveToPasswordManager = viewModel::onBackupKeySaveConfirmed,
+          onSaveToPasswordManagerComplete = viewModel::onBackupKeySaveCompleted
         )
       }
 
@@ -131,10 +165,10 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
       composable(route = MessageBackupsStage.Route.TYPE_SELECTION.name) {
         MessageBackupsTypeSelectionScreen(
           stage = state.stage,
-          paymentReadyState = state.paymentReadyState,
           currentBackupTier = state.currentMessageBackupTier,
           selectedBackupTier = state.selectedMessageBackupTier,
           availableBackupTypes = state.availableBackupTypes,
+          isNextEnabled = state.isCheckoutButtonEnabled(),
           onMessageBackupsTierSelected = viewModel::onMessageBackupTierUpdated,
           onNavigationClick = viewModel::goToPreviousStage,
           onReadMoreClicked = {},
@@ -161,6 +195,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           requireActivity().setResult(Activity.RESULT_OK, MessageBackupsCheckoutActivity.createResultData())
           requireActivity().finishAfterTransition()
         }
+
         else -> Unit
       }
     }

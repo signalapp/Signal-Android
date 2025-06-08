@@ -6,10 +6,10 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/clear_filter_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="@string/ConversationListFragment__no_unread_chats"
         android:textAppearance="@style/Signal.Text.BodyLarge"
         android:textColor="@color/signal_colorOnSurfaceVariant" />
 

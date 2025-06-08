@@ -48,10 +48,6 @@ class BackupMessagesJob private constructor(
 
     const val KEY = "BackupMessagesJob"
 
-    /**
-     * Pruning abandoned remote media is relatively expensive, so we should
-     * not do this every time we backup.
-     */
     fun enqueue() {
       val jobManager = AppDependencies.jobManager
 
@@ -104,6 +100,10 @@ class BackupMessagesJob private constructor(
     SignalDatabase.attachments.createKeyIvDigestForAttachmentsThatNeedArchiveUpload().takeIf { it > 0 }?.let { count -> Log.w(TAG, "Needed to create $count key/iv/digests.") }
     stopwatch.split("key-iv-digest")
 
+    if (isCanceled) {
+      return Result.failure()
+    }
+
     val (tempBackupFile, currentTime) = when (val generateBackupFileResult = getOrCreateBackupFile(stopwatch)) {
       is BackupFileResult.Success -> generateBackupFileResult
       BackupFileResult.Failure -> return Result.failure()
@@ -154,7 +154,11 @@ class BackupMessagesJob private constructor(
 
         is NetworkResult.NetworkError -> {
           Log.i(TAG, "Network failure", result.getCause())
-          return Result.retry(defaultBackoff())
+          return if (isCanceled) {
+            Result.failure()
+          } else {
+            Result.retry(defaultBackoff())
+          }
         }
 
         is NetworkResult.StatusCodeError -> {
@@ -185,6 +189,10 @@ class BackupMessagesJob private constructor(
     }
     stopwatch.split("used-space")
     stopwatch.stop(TAG)
+
+    if (isCanceled) {
+      return Result.failure()
+    }
 
     if (SignalStore.backup.backsUpMedia && SignalDatabase.attachments.doAnyAttachmentsNeedArchiveUpload()) {
       Log.i(TAG, "Enqueuing attachment backfill job.")
@@ -222,6 +230,10 @@ class BackupMessagesJob private constructor(
     val currentTime = System.currentTimeMillis()
     BackupRepository.export(outputStream = outputStream, messageBackupKey = backupKey, progressEmitter = ArchiveUploadProgress.ArchiveBackupProgressListener, append = { tempBackupFile.appendBytes(it) }, plaintext = false, cancellationSignal = { this.isCanceled }, currentTime = currentTime) {
       writeMediaCursorToTemporaryTable(it, currentTime = currentTime, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
+    }
+
+    if (isCanceled) {
+      return BackupFileResult.Failure
     }
 
     stopwatch.split("export")

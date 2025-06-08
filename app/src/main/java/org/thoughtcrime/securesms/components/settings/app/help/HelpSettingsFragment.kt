@@ -42,7 +42,7 @@ class HelpSettingsFragment : ComposeFragment() {
     Scaffolds.Settings(
       title = stringResource(R.string.preferences__help),
       onNavigationClick = { navController.popBackStack() },
-      navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
+      navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding ->
       LazyColumn(

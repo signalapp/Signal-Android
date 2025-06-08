@@ -10,6 +10,7 @@ import com.bumptech.glide.load.data.StreamLocalUriFetcher;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -60,7 +61,9 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
     }
 
     try {
-      if (isSafeSize(PartAuthority.getAttachmentThumbnailStream(context, uri))) {
+      if (PartAuthority.isBlobUri(uri) && BlobProvider.isSingleUseMemoryBlob(uri)) {
+        return PartAuthority.getAttachmentThumbnailStream(context, uri);
+      } else if (isSafeSize(PartAuthority.getAttachmentThumbnailStream(context, uri))) {
         return PartAuthority.getAttachmentThumbnailStream(context, uri);
       } else {
         throw new IOException("File dimensions are too large!");

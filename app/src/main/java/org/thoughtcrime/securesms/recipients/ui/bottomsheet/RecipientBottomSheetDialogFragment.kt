@@ -15,7 +15,6 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
@@ -239,15 +238,16 @@ class RecipientBottomSheetDialogFragment : BottomSheetDialogFragment() {
         val chevronGlyph = SignalSymbols.getSpannedString(
           requireContext(),
           SignalSymbols.Weight.BOLD,
-          if (isLtr) SignalSymbols.Glyph.CHEVRON_RIGHT else SignalSymbols.Glyph.CHEVRON_LEFT
+          if (isLtr) SignalSymbols.Glyph.CHEVRON_RIGHT else SignalSymbols.Glyph.CHEVRON_LEFT,
+          R.color.signal_colorOutline
         )
 
         if (isLtr) {
           nameBuilder.append(" ")
-          nameBuilder.append(SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOutline), SpanUtil.ofSize(chevronGlyph, 24)))
+          nameBuilder.append(SpanUtil.ofSize(chevronGlyph, 24))
         } else {
           nameBuilder.insert(0, " ")
-          nameBuilder.insert(0, SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOutline), SpanUtil.ofSize(chevronGlyph, 24)))
+          nameBuilder.insert(0, SpanUtil.ofSize(chevronGlyph, 24))
         }
 
         fullName.text = nameBuilder

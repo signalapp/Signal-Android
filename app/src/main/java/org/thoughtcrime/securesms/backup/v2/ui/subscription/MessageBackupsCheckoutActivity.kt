@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.core.content.IntentCompat
 import androidx.core.os.bundleOf
@@ -38,6 +40,12 @@ class MessageBackupsCheckoutActivity : FragmentWrapperActivity() {
 
       return Intent().putExtras(data)
     }
+  }
+
+  override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
+    super.onCreate(savedInstanceState, ready)
+
+    enableEdgeToEdge()
   }
 
   override fun getFragment(): Fragment = MessageBackupsFlowFragment.create(

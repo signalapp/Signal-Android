@@ -228,7 +228,9 @@ open class ContactSearchAdapter(
 
       if (model.story.recipient.isMyStory && !model.hasBeenNotified) {
         number.setText(R.string.ContactSearchItems__tap_to_choose_your_viewers)
+        number.setSingleLine(false)
       } else {
+        number.setSingleLine(true)
         number.text = when {
           model.story.recipient.isGroup -> context.resources.getQuantityString(R.plurals.ContactSearchItems__group_story_d_viewers, count, count)
           model.story.recipient.isMyStory -> {

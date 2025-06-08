@@ -24,7 +24,7 @@ class RefreshSvrCredentialsJob private constructor(parameters: Parameters) : Bas
 
     @JvmStatic
     fun enqueueIfNecessary() {
-      if (SignalStore.svr.hasOptedInWithAccess() && SignalStore.account.isRegistered) {
+      if (SignalStore.svr.hasPin() && SignalStore.account.isRegistered) {
         val lastTimestamp = SignalStore.svr.lastRefreshAuthTimestamp
         if (lastTimestamp + FREQUENCY.inWholeMilliseconds < System.currentTimeMillis() || lastTimestamp > System.currentTimeMillis()) {
           AppDependencies.jobManager.add(RefreshSvrCredentialsJob())

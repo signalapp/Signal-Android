@@ -16,6 +16,8 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaym
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.toPaymentSource
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -78,6 +80,12 @@ class InAppPaymentStripeRecurringSetupJob private constructor(
 
     info("Requesting status and payment method id from stripe service.")
     val statusAndPaymentMethodId = StripeRepository.getStatusAndPaymentMethodId(intentAccessor, paymentMethodId)
+
+    if (!statusAndPaymentMethodId.status.canProceed()) {
+      warning("Cannot proceed with status ${statusAndPaymentMethodId.status}.")
+      handleFailure(inAppPayment.id, DonationError.UserCancelledPaymentError(DonationErrorSource.ONE_TIME))
+      return Result.failure()
+    }
 
     info("Setting default payment method.")
     StripeRepository.setDefaultPaymentMethod(

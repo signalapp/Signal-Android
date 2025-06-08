@@ -1129,10 +1129,14 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     writableDatabase.withinTransaction {
       for ((originalE164, updatedE164) in mapping) {
-        writableDatabase.update(TABLE_NAME)
-          .values(E164 to updatedE164)
-          .where("$E164 = ?", originalE164)
-          .run(SQLiteDatabase.CONFLICT_IGNORE)
+        try {
+          writableDatabase.update(TABLE_NAME)
+            .values(E164 to updatedE164)
+            .where("$E164 = ?", originalE164)
+            .run()
+        } catch (_: SQLiteConstraintException) {
+          Log.w(TAG, "Unable to update e164 due to constraint, ignoring")
+        }
       }
     }
   }
@@ -3657,6 +3661,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       SqlUtil.buildCollectionQuery(ID, ids).forEach { query ->
         db.update(TABLE_NAME, values, query.where, query.whereArgs)
       }
+    }
+
+    // Invalidate recipient cache so that updated timestamps are reflected
+    ids.forEach { id ->
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
     }
   }
 

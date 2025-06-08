@@ -52,6 +52,7 @@ message ManifestRecord {
       STORY_DISTRIBUTION_LIST = 5;
       CALL_LINK               = 7;
       CHAT_FOLDER             = 8;
+      NOTIFICATION_PROFILE    = 9;
     }
 
     bytes raw  = 1;
@@ -74,6 +75,7 @@ message StorageRecord {
     StoryDistributionListRecord storyDistributionList = 5;
     CallLinkRecord              callLink              = 7;
     ChatFolderRecord            chatFolder            = 8;
+    NotificationProfile         notificationProfile   = 9;
   }
 }
 
@@ -225,48 +227,70 @@ message AccountRecord {
     }
   }
 
-           bytes                  profileKey                            = 1;
-           string                 givenName                             = 2;
-           string                 familyName                            = 3;
-           string                 avatarUrlPath                         = 4;
-           bool                   noteToSelfArchived                    = 5;
-           bool                   readReceipts                          = 6;
-           bool                   sealedSenderIndicators                = 7;
-           bool                   typingIndicators                      = 8;
-           reserved            /* proxiedLinkPreviews */                  9;
-           bool                   noteToSelfMarkedUnread                = 10;
-           bool                   linkPreviews                          = 11;
-           PhoneNumberSharingMode phoneNumberSharingMode                = 12;
-           bool                   unlistedPhoneNumber                   = 13;
-  repeated PinnedConversation     pinnedConversations                   = 14;
-           bool                   preferContactAvatars                  = 15;
-           Payments               payments                              = 16;
-           uint32                 universalExpireTimer                  = 17;
-           bool                   primarySendsSms                       = 18;
-           string                 e164                                  = 19;
-  repeated string                 preferredReactionEmoji                = 20;
-           bytes                  subscriberId                          = 21;
-           string                 subscriberCurrencyCode                = 22;
-           bool                   displayBadgesOnProfile                = 23;
-           bool                   subscriptionManuallyCancelled         = 24;
-           bool                   keepMutedChatsArchived                = 25;
-           bool                   hasSetMyStoriesPrivacy                = 26;
-           bool                   hasViewedOnboardingStory              = 27;
-           reserved            /* storiesDisabled */                      28;
-           bool                   storiesDisabled                       = 29;
-           OptionalBool           storyViewReceiptsEnabled              = 30;
-           reserved            /* hasReadOnboardingStory */               31;
-           bool                   hasSeenGroupStoryEducationSheet       = 32;
-           string                 username                              = 33;
-           bool                   hasCompletedUsernameOnboarding        = 34;
-           UsernameLink           usernameLink                          = 35;
-           reserved            /* backupsSubscriberId */                  36;
-           reserved            /* backupsSubscriberCurrencyCode */        37;
-           reserved            /* backupsSubscriptionManuallyCancelled */ 38;
-  optional bool                   hasBackup                             = 39; // Set to true after backups are enabled and one is uploaded.
-  optional uint64                 backupTier                            = 40; // See zkgroup for integer particular values
-           IAPSubscriberData      backupSubscriberData                  = 41;
-  optional AvatarColor            avatarColor                           = 42;
+  message BackupTierHistory {
+    // See zkgroup for integer particular values. Unset if backups are not enabled.
+    optional uint64 backupTier = 1;
+    optional uint64 endedAtTimestamp = 2;
+  }
+
+  message NotificationProfileManualOverride {
+    message ManuallyEnabled {
+      bytes id = 1;
+
+      // This will be unset if no timespan was chosen in the UI.
+      uint64 endAtTimestampMs = 3;
+    }
+
+    oneof override {
+      uint64 disabledAtTimestampMs = 1;
+      ManuallyEnabled enabled = 2;
+    }
+  }
+
+           bytes                             profileKey                                 = 1;
+           string                            givenName                                  = 2;
+           string                            familyName                                 = 3;
+           string                            avatarUrlPath                              = 4;
+           bool                              noteToSelfArchived                         = 5;
+           bool                              readReceipts                               = 6;
+           bool                              sealedSenderIndicators                     = 7;
+           bool                              typingIndicators                           = 8;
+           reserved                          /* proxiedLinkPreviews */                    9;
+           bool                              noteToSelfMarkedUnread                     = 10;
+           bool                              linkPreviews                               = 11;
+           PhoneNumberSharingMode            phoneNumberSharingMode                     = 12;
+           bool                              unlistedPhoneNumber                        = 13;
+  repeated PinnedConversation                pinnedConversations                        = 14;
+           bool                              preferContactAvatars                       = 15;
+           Payments                          payments                                   = 16;
+           uint32                            universalExpireTimer                       = 17;
+           bool                              primarySendsSms                            = 18;
+           reserved                          /* e164 */                                   19;
+  repeated string                            preferredReactionEmoji                     = 20;
+           bytes                             subscriberId                               = 21;
+           string                            subscriberCurrencyCode                     = 22;
+           bool                              displayBadgesOnProfile                     = 23;
+           bool                              subscriptionManuallyCancelled              = 24;
+           bool                              keepMutedChatsArchived                     = 25;
+           bool                              hasSetMyStoriesPrivacy                     = 26;
+           bool                              hasViewedOnboardingStory                   = 27;
+           reserved                          /* storiesDisabled */                        28;
+           bool                              storiesDisabled                            = 29;
+           OptionalBool                      storyViewReceiptsEnabled                   = 30;
+           reserved                          /* hasReadOnboardingStory */                 31;
+           bool                              hasSeenGroupStoryEducationSheet            = 32;
+           string                            username                                   = 33;
+           bool                              hasCompletedUsernameOnboarding             = 34;
+           UsernameLink                      usernameLink                               = 35;
+           reserved                          /* backupsSubscriberId */                    36;
+           reserved                          /* backupsSubscriberCurrencyCode */          37;
+           reserved                          /* backupsSubscriptionManuallyCancelled */   38;
+  optional bool                              hasBackup                                  = 39; // Set to true after backups are enabled and one is uploaded.
+  optional uint64                            backupTier                                 = 40; // See zkgroup for integer particular values. Unset if backups are not enabled.
+           IAPSubscriberData                 backupSubscriberData                       = 41;
+  optional AvatarColor                       avatarColor                                = 42;
+           BackupTierHistory                 backupTierHistory                          = 43;
+           NotificationProfileManualOverride notificationProfileManualOverride          = 44;
 }
 
 message StoryDistributionListRecord {
@@ -284,20 +308,20 @@ message CallLinkRecord {
   uint64 deletedAtTimestampMs = 3;
 }
 
-message ChatFolderRecord {
-  message Recipient {
-    message Contact {
-      string serviceId = 1;
-      string e164      = 2;
-    }
-
-    oneof identifier {
-      Contact contact = 1;
-      bytes legacyGroupId = 2;
-      bytes groupMasterKey = 3;
-    }
+message Recipient {
+  message Contact {
+    string serviceId = 1;
+    string e164      = 2;
   }
 
+  oneof identifier {
+    Contact contact = 1;
+    bytes legacyGroupId = 2;
+    bytes groupMasterKey = 3;
+  }
+}
+
+message ChatFolderRecord {
   // Represents the default "All chats" folder record vs all other custom folders
   enum FolderType {
     UNKNOWN = 0;
@@ -316,4 +340,31 @@ message ChatFolderRecord {
   repeated Recipient includedRecipients = 9;
   repeated Recipient excludedRecipients = 10;
   uint64 deletedAtTimestampMs = 11;   // When non-zero, `position` should be set to -1 and includedRecipients should be empty
+}
+
+message NotificationProfile {
+  enum DayOfWeek {
+    UNKNOWN = 0; // Interpret as "Monday"
+    MONDAY = 1;
+    TUESDAY = 2;
+    WEDNESDAY = 3;
+    THURSDAY = 4;
+    FRIDAY = 5;
+    SATURDAY = 6;
+    SUNDAY = 7;
+  }
+
+  bytes id = 1;
+  string name = 2;
+  optional string emoji = 3;
+  fixed32 color = 4; // 0xAARRGGBB
+  uint64 createdAtMs = 5;
+  bool allowAllCalls = 6;
+  bool allowAllMentions = 7;
+  repeated Recipient allowedMembers = 8;
+  bool scheduleEnabled = 9;
+  uint32 scheduleStartTime = 10; // 24-hour clock int, 0000-2359 (e.g., 15, 900, 1130, 2345)
+  uint32 scheduleEndTime = 11; // 24-hour clock int, 0000-2359 (e.g., 15, 900, 1130, 2345)
+  repeated DayOfWeek scheduleDaysEnabled = 12;
+  uint64 deletedAtTimestampMs = 13;
 }

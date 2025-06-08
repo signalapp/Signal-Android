@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">தடைசெய்யப்பட்ட பயனர்கள்</string>
     <string name="BlockedUsersActivity__add_blocked_user">தடுக்கப்பட்ட பயனரைச் சேர்</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">உங்களை நீங்களே தடுக்க முடியாது</string>
     <string name="BlockedUsersActivity__blocked_users_will">தடுக்கப்பட்ட பயனர்கள் உங்களை அழைக்கவோ அல்லது உங்களுக்கு மெசேஜ்களை அனுப்பவோ முடியாது.</string>
     <string name="BlockedUsersActivity__no_blocked_users">தடைசெய்யப்பட்ட பயனர்கள் எவருமில்லை</string>
     <string name="BlockedUsersActivity__block_user">பயனரை தடை செய்ய வேண்டுமா?</string>
@@ -545,6 +545,8 @@
     <string name="ConversationActivity__invite_to_signal">Signalக்கு அழை</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">நீங்கள் விரைவில் மீண்டும் நினைவூட்டப்படுவீர்கள்.</string>
+    <!-- Toast message shown when trying to record a voice message during an ongoing call -->
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">அழைப்பின்போது வாய்ஸ் மெசேஜைப் பதிவு செய்ய முடியாது.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">வடிவமைக்கப்பட்ட உரையை அனுப்புகிறது</string>
@@ -1719,7 +1721,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">அனுப்பியது %1$s க்கு%2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">%1$sக்கு நீங்கள் அனுப்பியது </string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">இந்த ஊடகம் இன்னும் அனுப்பப்படவில்லை.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">பிறகு என்னிடம் ஞாபகபடுத்து</string>
@@ -2480,6 +2482,15 @@
     <!-- Content description for toggling group ring state -->
     <string name="WebRtcCallView__toggle_group_ringing">குழு ரிங்கிங்கை நிலைமாற்று</string>
 
+    <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s உங்களை ஒலியடக்கியுள்ளார்.</string>
+    <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
+    <string name="WebRtcCallView__you_remotely_muted_s">நீங்கள் %1$sஐ ஒலியடக்கியுள்ளீர்கள்.</string>
+    <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s என்பவர் %2$sஐ ஒலியடக்கியுள்ளார்.</string>
+    <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
+    <string name="WebRtcCallView__you_muted_yourself">நீங்கள் மற்றொரு சாதனத்தில் இருந்து உங்களை ஒலியடக்கியுள்ளீர்கள்.</string>
+
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI பிழை ஏற்பட்டது. டெவலப்பர்களிடம் இந்தப் பிழையைப் புகாரளிக்கவும்.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
@@ -2765,12 +2776,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. ஒரு வாரத்தில் மீண்டும் உங்களுக்கு நாங்கள் நினைவூட்டுவோம்.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. இரண்டு வாரங்களில் மீண்டும் உங்களுக்கு நாங்கள் நினைவூட்டுவோம்.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">குறியீடு வெற்றிகரமாக சரிபார்க்கப்பட்டது. ஒரு மாதத்தில் மீண்டும் உங்களுக்கு நாங்கள் நினைவூட்டுவோம்.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">பின்னர் மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">நாளை மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">சில நாட்கள் கழித்து மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">ஒரு வாரம் கழித்து மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">இரு வாரங்கள் கழித்து மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">ஒரு மாதம் கழித்து மீண்டும் உங்களுக்கு நினைவூட்டுவோம்.</string>
 
     <!-- Slide -->
     <string name="Slide_image">உருவம்</string>
@@ -2783,37 +2794,84 @@
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s பாதுகாப்பான அமர்வை மீட்டமைக்கவும்.</string>
     <string name="SmsMessageRecord_duplicate_message">நகல் செய்தி.</string>
 
-    <!-- StickerManagementActivity -->
-    <string name="StickerManagementActivity_stickers">ஒட்டிப்படங்கள்</string>
-
+    <!-- Sticker management screen default title. -->
+    <string name="StickerManagement_title_stickers">ஒட்டிப்படங்கள்</string>
+    <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
+    <plurals name="StickerManagement_title_n_selected">
+        <item quantity="one">%1$s தேர்ந்தெடுக்கப்பட்டது</item>
+        <item quantity="other">%1$s தேர்ந்தெடுக்கப்பட்டது</item>
+    </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">கிடைப்பவை</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
-    <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
-    <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_installed_tab_label">நிறுவப்பட்டவை</string>
+    <!-- Shown when there are no sticker packs available for installation. -->
+    <string name="StickerManagement_available_tab_empty_text">கிடைக்கக்கூடிய ஸ்டிக்கர் பேக்குகள் எதுவும் இல்லை</string>
+    <!-- Shown when there are no sticker packs currently installed. -->
+    <string name="StickerManagement_installed_tab_empty_text">நிறுவப்பட்ட ஸ்டிக்கர் பேக்குகள் எதுவும் இல்லை</string>
+    <!-- Message shown when the author of the sticker pack is unknown. -->
+    <string name="StickerManagement_author_unknown">முன் தெரிந்திராத</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">நிறுவப்பட்ட ஒட்டிகள்</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">நீங்கள் பெற்ற ஒட்டிகள்</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Signal கலைஞர் தொடர்</string>
+    <!-- Title shown when sharing a sticker pack with another user. -->
+    <string name="StickerManagement_share_sheet_title">முன்னோக்கி</string>
+    <!-- Bottom action bar option to select all sticker packs in the list. -->
+    <string name="StickerManagement_action_select_all">எல்லாம்</string>
+    <!-- Bottom action bar option to deselect all sticker packs in the list. -->
+    <string name="StickerManagement_action_deselect_all">அனைத்தையும் தேர்வுநீக்கு</string>
+    <!-- Bottom action bar option to uninstall all selected sticker packs. -->
+    <string name="StickerManagement_action_delete_selected">நீக்கு</string>
+    <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation">
+        <item quantity="one">%1$s ஸ்டிக்கர் பேக்கை அகற்றவும்</item>
+        <item quantity="other">%1$s ஸ்டிக்கர் பேக்குகளை அழிக்கவும்</item>
+    </plurals>
+    <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
+    <string name="StickerManagement_installed_pack_s">நிறுவப்பட்டவை%1$s.</string>
+    <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
+    <string name="StickerManagement_deleted_pack_s">அகற்றப்பட்டவை%1$s.</string>
+    <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
+    <plurals name="StickerManagement_deleted_n_packs">
+        <item quantity="one">%1$s ஸ்டிக்கர் பேக் அகற்றப்பட்டது.</item>
+        <item quantity="other">%1$s ஸ்டிக்கர் பேக்குகள் அகற்றப்பட்டன.</item>
+    </plurals>
+    <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
+    <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
+        <item quantity="one">%1$s sticker</item>
+        <item quantity="other">%1$s stickers</item>
+    </plurals>
+
+    <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
+    <string name="StickerManagement_menu_forward_pack">முன்னனுப்புக</string>
+    <!-- Sticker pack list dropdown menu label for the button to mark a sticker pack as selected in order to perform additional actions. -->
+    <string name="StickerManagement_menu_select_pack">தேர்ந்தெடு</string>
+    <!-- Sticker pack list dropdown menu label for the button to install a sticker pack. -->
+    <string name="StickerManagement_menu_install_pack">நிறுவு</string>
+    <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
+    <string name="StickerManagement_menu_remove_pack">அகற்று</string>
+    <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
+    <string name="StickerManagement_menu_select_packs">ஸ்டிக்கர் பேக்குகளைத் தேர்ந்தெடுக்கவும்</string>
+
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">%1$sஸ்டிக்கர் பேக்கைப் பதிவிறக்குக</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">பதிவிறக்கப்பட்ட செக்மார்க்</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">ஹேண்டிலை இழுத்து விடுதல்</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">பதிவிறக்க</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="StickerManagement_accessibility_open_top_bar_menu">மெனுவைத் திறக்கவும்</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_open_context_menu">சூழல் மெனுவைத் திறக்கவும்</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">தேர்வுப் பயன்முறையிலிருந்து வெளியேறி, தேர்வுகளை அழிக்கவும்</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_no_stickers_installed">ஸ்டிக்கர்கள் எதுவும் நிறுவப்படவில்லை</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">உள்வரும் செய்திகளின் ஒட்டிகள் இங்கே தோன்றும்</string>
     <string name="StickerManagementAdapter_untitled">பெயரிடாத</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2842,7 +2900,7 @@
     <string name="SubmitDebugLogActivity_share">பகிர்</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">இது பதிவு பொதுவில் வெளியிடப்படும் நிகழ்நிலைபங்களிப்பாளர்கள் பார்க்க. பதிவேற்றுவதற்கு முன் அதை நீங்கள் ஆராயலாம்.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">நீங்கள் சமர்ப்பி என்பதைக் கிளிக் செய்யும் போது, ​​உங்கள் பதிவு 30 நாட்களுக்கு ஒரு தனித்துவமான, வெளியிடப்படாத இணைப்பு மூலம் ஆன்லைனில் வெளியிடப்படும். நீங்கள் முதலில் அதை உள்நிலையில் சேமிக்கலாம்.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3013,10 +3071,6 @@
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">இல்லாத அமர்வுக்கு மறையாக்கப்பட்ட செய்தி</string>
-
-    <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">தவறாக மறையாக்கப்பட்ட MMS செய்தி</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">இல்லாத அமர்வுக்கு மறையாக்கப்பட்ட MMS செய்தி</string>
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">அறிவிப்புகளை ஒலியடக்கு</string>
@@ -3747,7 +3801,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">தேவையில்லை,நன்றி</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">அண்மையில்</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">இந்த செய்தி</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">சமீபத்தில் பயன்படுத்தப்பட்டது</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">உணர்வு ஓவியங்கள் &amp; மக்கள்</string>
@@ -3762,15 +3816,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">இல்லை முடிவுகள் கிடைத்தன</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">அண்மையில்</string>
+    <string name="GifQuickSearchOption__trending">டிரெண்டிங்</string>
+    <string name="GifQuickSearchOption__celebrate">கொண்டாட்டம்</string>
+    <string name="GifQuickSearchOption__love">காதல்</string>
+    <string name="GifQuickSearchOption__thumbs_up">தம்ஸ் அப்</string>
+    <string name="GifQuickSearchOption__surprised">வியப்பு</string>
+    <string name="GifQuickSearchOption__excited">உற்சாகம்</string>
+    <string name="GifQuickSearchOption__sad">சோகம்</string>
+    <string name="GifQuickSearchOption__angry">கோபம்</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">இயல்புநிலை பயன்படுத்தவும்</string>
@@ -4367,7 +4421,7 @@
     <string name="conversation_list_fragment__open_camera_description">புகைப்படக்கருவியை திறக்கவும்</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">இதுவரை சாட்ஸ் எதுவும் இல்லை.\nநண்பருக்கு மெசேஜ் அனுப்புவதன் மூலம் தொடங்கவும்.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">காப்பகப்படுத்தப்பட்ட சாட்ஸ் இங்கே தோன்றும்.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">காண்பிப்பதற்கான சாட்ஸ் ஏதும் இல்லை</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4721,6 +4775,14 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">நீங்கள் பல முயற்சிகள் செய்துள்ளீர்கள். சிறிது நேரம் கழித்து மீண்டும் முயற்சிக்கவும்.</string>
     <string name="RegistrationActivity_error_connecting_to_service">சேவைக்கு இணைப்பதில் பிழை</string>
     <string name="preferences_chats__backups">காப்புப் பிரதிகள்</string>
+
+    <!-- Button label to indicate that a feature is in beta mode -->
+    <string name="Beta__beta_title">பீட்டா</string>
+    <!-- Content description for info icon -->
+    <string name="Beta__info">தகவல்</string>
+    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
+    <string name="Beta__this_is_beta">இது ஒரு பீட்டா அம்சமாகும், இதில் நாங்கள் செயல்பாட்டைத் தொடர்ச்சியான முறையில் சேர்ப்போம்.</string>
+
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">சிக்னலைத் திற</string>
     <!-- Description text explaining how to unlock Signal -->
@@ -5743,7 +5805,7 @@
     <string name="ConversationSettingsFragment__phone_number">தொலைபேசி எண்</string>
     <string name="ConversationSettingsFragment__get_badges">Signalஐ ஆதரிப்பதன் மூலம் உங்கள் சுயவிவரத்திற்கான பேட்ஜ்களைப் பெறுங்கள். மேலும் அறிய ஒரு பேட்ஜில் தட்டவும்.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">இந்த ஊடகம் இன்னும் அனுப்பப்படவில்லை.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">உறுப்பினர்களைச் சேர்க்கவும்</string>
@@ -5796,6 +5858,8 @@
     <string name="NewConversationActivity__s_has_been_removed">%1$s என்ற தொடர்பு அகற்றப்பட்டது</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s தடைசெய்யப்பட்டார்</string>
+    <!-- Snackbar message when blocking a contact has failed -->
+    <string name="NewConversationActivity__block_failed">தடைசெய்ய முடியவில்லை</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">%1$s ஐ அகற்ற முடியவில்லை</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -7102,34 +7166,6 @@
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">நன்கொடையை உறுதிப்படுத்த சிக்னலை விட்டு வெளியேறுவதா?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">உறுதிசெய்யப்பட்டதும், உங்கள் நன்கொடையைச் செயல்படுத்தலை முடிக்க சிக்னலுக்குத் திரும்பவும்.</string>
 
-    <!-- IdealBank -->
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__abn_amro">ABN AMRO</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__asn_bank">ASN Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__bunq">bunq</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__ing">ING</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__knab">Knab</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__n26">N26</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__rabobank">Rabobank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__regiobank">RegioBank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__revolut">Revolut</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__sns_bank">SNS Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__triodos_bank">Triodos Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__yoursafe">Yoursafe</string>
-
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
     <string name="BankTransferMandateFragment__bank_transfer">வங்கி பணப் பரிமாற்றம்</string>
@@ -7190,7 +7226,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">உங்கள் வங்கியைத் தேர்ந்தெடுக்கவும்</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">உங்கள் நன்கொடையை %1$s உடன் உறுதிப்படுத்தவும்</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">உங்கள் நன்கொடையை iDEAL உடன் உறுதிப்படுத்தவும்.</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">உங்கள் தொடர் நன்கொடையை அமைக்க, உங்கள் வங்கியில் €0,01 கட்டணத்தை உறுதிசெய்ய அழுத்தவும். இது தானாகத் திருப்பி அளிக்கப்படும் மற்றும் உங்கள் %1$s/மாத நன்கொடையை உங்கள் கணக்கிலிருந்து டெபிட் செய்ய அனுமதிக்கும்.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7370,6 +7406,8 @@
     <string name="CallLogAdapter__start_a_video_call">ஒரு தொடங்க வீடியோ அழைப்பு</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">குரல் அழைப்பைத் தொடக்கி வைக்கும்</string>
+    <!-- Notice on call log when no missed calls are available, centered on display -->
+    <string name="CallLogAdapter__no_missed_calls">தவறிய அழைப்புகள் ஏதும் இல்லை</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -7802,6 +7840,12 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">உங்கள் காப்புப் பிரதிகள் சந்தாவைப் புதுப்பிக்க முடியவில்லை</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">உங்கள் கட்டண முறை புதுப்பித்த நிலையில் உள்ளதா எனச் சரிபார்க்கவும். சந்தாவை நிர்வகி என்பதை அழுத்தவும் மற்றும் கட்டண முறைகளின் கீழ் புதுப்பி என்பதை அழுத்தவும்.</string>
+    <!-- Sheet title for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">உங்கள் காப்புப்பிரதிகளின் சந்தா காலாவதியாகிவிட்டது</string>
+    <!-- Sheet body part 1 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">உங்கள் பேமெண்ட் முறையுடன் சந்தாவை மீட்டெடுக்க முடியவில்லை. உங்கள் ஊடகத்தை தொடர்ந்து காப்புப் பிரதி எடுக்க, உங்களிடம் செயலில் உள்ள சந்தா இருக்க வேண்டும்.</string>
+    <!-- Sheet body part 2 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">இலவச சிக்னல் காப்புப்பிரதிகள் திட்டத்தை நீங்கள் தொடர்ந்து அணுகுவீர்கள்.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">பேக்கப்பை நிறைவு செய்ய முடியவில்லை</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7813,6 +7857,8 @@
     <string name="BackupAlertBottomSheet__learn_more">மேலும் அறிக</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">மீட்டமைப்பதைத் தவிர்</string>
+    <!-- Primary action button to open backups management screen -->
+    <string name="BackupAlertBottomSheet__manage_backups">காப்புப்பிரதிகளை நிர்வகி</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">இப்பொழது பாதுகாப்பிற்காக சேமித்து வை காப்புப்பதிவு பயனர் தரவு</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -7864,11 +7910,13 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">மீடியாவை மீட்டமைக்கிறது</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">மீட்டமைப்பு இடைநிறுத்தப்பட்டது</string>
+    <string name="BackupStatus__restore_paused">ஊடகத்தை மீட்டமைப்பது இடைநிறுத்தப்பட்டது</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">மீட்டெடுப்பு முடிந்தது</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">விவரங்கள்</string>
+    <!-- Status action label for resume restore from a paused state -->
+    <string name="BackupStatus__resume">தொடர்க</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi-க்காக காத்துக்கொண்டிருக்கிறது…</string>
@@ -7890,6 +7938,14 @@
     <string name="BackupStatusRow__restore_no_internet">மீட்டமைத்தல் இடைநிறுத்தப்பட்டது: இணையம் இல்லை…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">மீட்டமைத்தல் இடைநிறுத்தப்பட்டது: சாதனத்தின் பேட்டரி குறைவாக உள்ளது</string>
+    <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">பதிவிறக்குகிறது: %2$s இல் %1$s (%3$s%%)</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
+    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
+    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
+    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">உங்கள் காப்பிப்பிரதியை பதிவிறக்கப் போதுமான இடம் இல்லை. தொடர்ந்து %1$s இடத்தை விடுவிக்கவும்.</string>
     <!-- Text row label to skip download -->
@@ -7900,6 +7956,11 @@
     <string name="BackupStatusRow__your_last_backup_latest_version">உங்களின் கடைசிக் காப்புப்பிரதி முழுமையடைவில்லை. சிக்னலின் அண்மைய பதிப்பில் இருப்பதை உறுதிசெய்து, மீண்டும் முயலுங்கள்.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">மேலும் அறிக</string>
+
+    <!-- Dialog title to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">செல்லுலார் தரவைப் பயன்படுத்தித் தொடரவா?</string>
+    <!-- Dialog message to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">செல்லுலார் தரவைப் பயன்படுத்தி உங்கள் ஊடகத்தை மீட்டெடுப்பது தரவு கட்டணங்களை விதிப்பதற்கு வழிவகுக்கும். தானாகவே தொடங்க நீங்கள் Wi-Fi நெட்வொர்க்குடன் இணைக்கலாம்.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7992,6 +8053,8 @@
     <string name="BackupsSettingsFragment_set_up">அமைக்கவும்</string>
 
     <!-- RemoteBackupsSettingsFragment -->
+    <!-- Content description for canceling backup upload -->
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">பதிவேற்றத்தை ரத்துசெய்</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">சிக்னல் காப்புப்பிரதிகள்</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8000,8 +8063,8 @@
     <string name="RemoteBackupsSettingsFragment__payment_history">கட்டண வரலாறு</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">காப்புப்பிரதி விவரங்கள்</string>
-    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">செல்லுலாரைப் பயன்படுத்தி மீட்டமைக்கவும்</string>
+    <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__resume_download">பதிவிறக்கத்தைத் தொடர்க</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">காப்புப்பிரதி அளவு</string>
     <!-- Row label for backup frequency -->
@@ -8071,7 +8134,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">அணைத்துவிட்டு, காப்புப்பிரதிகளை அழிக்கவா?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">உங்களிடம் மீண்டும் கட்டணம் வசூலிக்கப்படாது. உங்கள் காப்புப்பிரதி அழிக்கப்படும் மற்றும் புதிய காப்புப்பிரதிகள் உருவாக்கப்படாது.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ஆஃப் செய்துவிட்டு நீக்கவும்</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8098,6 +8161,8 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">உங்கள் காப்புப்பிரதியை பதிவிறக்குதல்</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">உங்கள் காப்புப்பிரதியின் அளவைப் பொறுத்து, இதற்கு நீண்ட நேரம் ஆகலாம். பதிவிறக்கம் நடைபெறும் போது நீங்கள் வழக்கம் போல் உங்கள் ஃபோனைப் பயன்படுத்தலாம்.</string>
+    <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">உங்கள் சந்தா இந்தச் சாதனத்தில் கிடைக்கப்பெறவில்லை. தொடர்ந்து சிக்னல் காப்புப்பிரதிகளைப் பயன்படுத்த, புதுப்பிக்கவும்.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">இந்தச் சாதனத்தில் உங்கள் சந்தா அடுத்த %1$d நாளுக்குச் செல்லுபடியாகும். சிக்னல் காப்புப் பிரதிகள் அம்சத்தைத் தொடர்ந்து பயன்படுத்தப் புதுப்பிக்கவும்</item>
@@ -8121,17 +8186,27 @@
         <item quantity="one">இந்தச் சாதனத்தில் இல்லாத %1$s காப்புப் பிரதி தரவு உங்களிடம் உள்ளது. உங்கள் சந்தா %2$d நாளில் முடிவடையும் போது உங்கள் காப்புப் பிரதி அழிக்கப்படும்.</item>
         <item quantity="other">இந்தச் சாதனத்தில் இல்லாத %1$s காப்புப் பிரதி தரவு உங்களிடம் உள்ளன. உங்கள் சந்தா %2$d நாட்களில் முடிவடையும் போது உங்கள் காப்புப் பிரதி அழிக்கப்படும்.</item>
     </plurals>
+    <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">உங்களிடம் இந்தச் சாதனத்தில் இல்லாத %1$s காப்புப் பிரதி தரவு உள்ளது. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">பதிவிறக்க</string>
     <!-- Dialog title for skipping download of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_download_question">பதிவிறக்கத்தைத் தவிர்ப்பதா?</string>
-    <!-- Dialog body for skiping download of backed up media -->
+    <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="one">நீங்கள் பதிவிறக்குவதைத் தவிர்த்தால், உங்கள் காப்புப்பிரதியில் மீதமுள்ள ஊடகம் மற்றும் இணைப்புகள் %1$d நாளில் அழிக்கப்படும்.</item>
         <item quantity="other">நீங்கள் பதிவிறக்குவதைத் தவிர்த்தால், உங்கள் காப்புப்பிரதியில் மீதமுள்ள ஊடகம் மற்றும் இணைப்புகள் %1$d நாட்களில் அழிக்கப்படும்.</item>
     </plurals>
+    <!-- Dialog body for skipping download of backed up media during deletion -->
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_question">மீட்டமைப்பதைத் தவிர்ப்பதா?</string>
+    <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">மீதமுள்ள ஊடகத்தை மீட்டெடுப்பதைத் தவிர்த்தால், உங்கள் காப்புப்பிரதியில் உள்ள இணைப்புகளைப் பிற்காலத்தில் பதிவிறக்கம் செய்யலாம்.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">தவிர்</string>
+    <!-- Positive dialog action to skip download during deletion -->
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">காப்புப்பிரதிகளை ஆஃப் செய்ய மற்றும் அழிக்க முடியவில்லை</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8140,6 +8215,20 @@
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">பதிவேற்றுகிறது: %2$s இல் %1$s(%3$d%%)</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">விவரங்கள்</string>
+    <!-- Text displayed when there was an error deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <!-- Text displayed as the title in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed to delete backup</string>
+    <!-- Text displayed as the body in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">An error occurred. Please contact support.</string>
+    <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <!-- Text displayed while we are processing a backup delete -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups have been turned off and your data will be deleted from Signal\'s secure storage service.</string>
+    <!-- Text displayed after we have deleted a user\'s backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
+    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">பதிவிறக்குகிறது: %2$s இல் %1$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8164,6 +8253,8 @@
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">நெட்வொர்க் தோல்வி ஏற்பட்டுள்ளது. பின்னர் மீண்டும் முயலவும்.</string>
+    <!-- Toast message if this fragment encounters an in progress deletion -->
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8196,6 +8287,18 @@
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">உங்கள் கணக்கு மற்றும் தரவை மீட்டெடுக்க இந்தக் குறியீடு தேவை. இந்தக் குறியீட்டைப் பாதுகாப்பான இடத்தில் சேமித்து வைக்கவும். நீங்கள் அதை இழந்துவிட்டால், உங்கள் கணக்கை மீட்டெடுக்க முடியாது.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கவும்</string>
+    <!-- Label for the button to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">அடுத்து</string>
     <!-- Bottom sheet title -->
@@ -8228,9 +8331,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">அனைத்துக் காப்புப்பிரதிகளும் எண்டு-டு-எண்டு குறியாக்கம் செய்யப்பட்டது. சிக்னல் என்பது இலாப நோக்கமற்ற செயலியாகும்—காப்புப்பிரதிகளுக்கு கட்டணம் செலுத்துவது எங்கள் பணியை ஆதரிக்க உதவுகிறது.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__read_more">மேலும் படிக்க</string>
-    <!-- Primary action button label when selecting a backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__next">அடுத்து</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">மேலும் அறிக</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <!-- Primary action button label when selecting the paid backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">மாதத்திற்கு %1$s க்கு சப்ஸ்கிரைப் செய்க</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">பேக்கப் வகையை மாற்று</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
@@ -8426,15 +8531,25 @@
     <string name="NoBackupToRestore_skip_restore">மீட்டமைப்பதைத் தவிர்</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">தேடலை அழி</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">தேடலை நீக்கு</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">அதிக விருப்பத்தேர்வுகள்</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">அறிவிப்பு சுயவிவரம்</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">பதிலி</string>
+
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">மேலே செல்லவும்</string>
+
+    <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
+    <string name="SignalCheckbox_accessibility_on_click_label">நிலைமாற்று</string>
+    <!-- Accessibility label describing a checked checkbox. -->
+    <string name="SignalCheckbox_accessibility_checked_description">தேர்வுசெய்யப்பட்டது</string>
+    <!-- Accessibility label describing an unchecked checkbox. -->
+    <string name="SignalCheckbox_accessibility_unchecked_description">தேர்வுநீக்கப்பட்டது</string>
 
     <!-- EOF -->
 </resources>

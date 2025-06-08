@@ -12,6 +12,8 @@ import org.signal.donations.StripeIntentAccessor
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
+import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
 import org.thoughtcrime.securesms.components.settings.app.subscription.toPaymentSource
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -74,7 +76,13 @@ class InAppPaymentStripeOneTimeSetupJob private constructor(
     )
 
     info("Getting status and payment method id from stripe.")
-    StripeRepository.getStatusAndPaymentMethodId(intentAccessor, paymentMethodId)
+    val data = StripeRepository.getStatusAndPaymentMethodId(intentAccessor, paymentMethodId)
+
+    if (!data.status.canProceed()) {
+      warning("Cannot proceed with status ${data.status}.")
+      handleFailure(inAppPayment.id, DonationError.UserCancelledPaymentError(DonationErrorSource.ONE_TIME))
+      return Result.failure()
+    }
 
     info("Received status and payment method id. Submitting redemption job chain.")
     OneTimeInAppPaymentRepository.submitRedemptionJobChain(inAppPayment, intentAccessor.intentId)

@@ -8,21 +8,16 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.t
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -30,16 +25,13 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
@@ -97,11 +89,6 @@ class IdealTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDele
         findNavController().popBackStack(R.id.donateToSignalFragment, false)
         setFragmentResult(BankTransferRequestKeys.REQUEST_KEY, bundle)
       }
-    }
-
-    setFragmentResultListener(IdealTransferDetailsBankSelectionDialogFragment.IDEAL_SELECTED_BANK) { _, bundle ->
-      val bankCode = bundle.getString(IdealTransferDetailsBankSelectionDialogFragment.IDEAL_SELECTED_BANK)!!
-      viewModel.onBankSelected(IdealBank.fromCode(bankCode))
     }
   }
 
@@ -166,7 +153,7 @@ class IdealTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDele
     if (state.inAppPayment!!.type.recurring) { // TODO [message-requests] -- handle backup
       val formattedMoney = FiatMoneyUtil.format(requireContext().resources, state.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(getString(R.string.IdealTransferDetailsFragment__confirm_your_donation_with_s, getString(state.idealBank!!.getUIValues().name)))
+        .setTitle(getString(R.string.IdealTransferDetailsFragment__confirm_your_donation_with_ideal))
         .setMessage(getString(R.string.IdealTransferDetailsFragment__to_setup_your_recurring_donation, formattedMoney))
         .setPositiveButton(R.string.IdealTransferDetailsFragment__continue) { _, _ ->
           continueTransfer()
@@ -263,15 +250,6 @@ private fun IdealTransferDetailsContent(
         }
 
         item {
-          IdealBankSelector(
-            idealBank = state.idealBank,
-            onSelectBankClick = onSelectBankClick,
-            modifier = Modifier
-              .fillMaxWidth()
-          )
-        }
-
-        item {
           TextField(
             value = state.name,
             onValueChange = onNameChanged,
@@ -345,61 +323,4 @@ private fun IdealTransferDetailsContent(
       }
     }
   }
-}
-
-@Preview
-@Composable
-private fun IdealBankSelectorPreview() {
-  IdealBankSelector(
-    idealBank = null,
-    onSelectBankClick = {}
-  )
-}
-
-@Composable
-private fun IdealBankSelector(
-  idealBank: IdealBank?,
-  onSelectBankClick: () -> Unit,
-  modifier: Modifier = Modifier
-) {
-  val uiValues: IdealBank.UIValues? = remember(idealBank) { idealBank?.getUIValues() }
-  val imagePadding: Dp = if (idealBank == null) 4.dp else 0.dp
-
-  TextField(
-    value = stringResource(id = uiValues?.name ?: R.string.IdealTransferDetailsFragment__choose_your_bank),
-    textStyle = MaterialTheme.typography.bodyLarge,
-    onValueChange = {},
-    enabled = false,
-    readOnly = true,
-    leadingIcon = {
-      Image(
-        painter = painterResource(id = uiValues?.icon ?: R.drawable.bank_transfer),
-        contentDescription = null,
-        colorFilter = if (uiValues?.icon == null) ColorFilter.tint(MaterialTheme.colorScheme.onSurface) else null,
-        modifier = Modifier
-          .padding(start = 16.dp, end = 12.dp)
-          .size(32.dp)
-          .padding(imagePadding)
-      )
-    },
-    trailingIcon = {
-      Icon(
-        painter = painterResource(id = R.drawable.symbol_dropdown_triangle_compat_bold_16),
-        contentDescription = null
-      )
-    },
-    colors = TextFieldDefaults.colors(
-      disabledTextColor = MaterialTheme.colorScheme.onSurface,
-      disabledTrailingIconColor = MaterialTheme.colorScheme.onSurface,
-      disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      disabledIndicatorColor = MaterialTheme.colorScheme.onSurface
-    ),
-    supportingText = {},
-    modifier = modifier
-      .defaultMinSize(minHeight = 78.dp)
-      .clickable(
-        onClick = onSelectBankClick,
-        role = Role.Button
-      )
-  )
 }

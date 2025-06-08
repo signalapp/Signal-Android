@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener
 import org.thoughtcrime.securesms.databinding.ConversationListFilterPullViewBinding
 import org.thoughtcrime.securesms.util.VibrateUtil
+import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.doOnEachLayout
 import kotlin.math.max
 import kotlin.math.min
@@ -104,7 +105,7 @@ class ConversationListFilterPullView @JvmOverloads constructor(
 
     doOnNextLayout {
       when (restoredState.toLatestSettledState()) {
-        FilterPullState.OPEN -> toggle(restoredSource)
+        FilterPullState.OPEN -> open(restoredSource)
         FilterPullState.CLOSED -> Unit
         else -> throw IllegalStateException("Unexpected settled state.")
       }
@@ -195,6 +196,7 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   }
 
   fun openImmediate() {
+    println("openImmediate from $state")
     if (state == FilterPullState.CLOSED) {
       setState(FilterPullState.OPEN_APEX, source)
       setState(FilterPullState.OPENING, source)
@@ -203,6 +205,12 @@ class ConversationListFilterPullView @JvmOverloads constructor(
         animationStartDelay = 0.milliseconds,
         animationDuration = 0.milliseconds
       )
+    }
+  }
+
+  fun openAfterNextLayout() {
+    doAfterNextLayout {
+      openImmediate()
     }
   }
 

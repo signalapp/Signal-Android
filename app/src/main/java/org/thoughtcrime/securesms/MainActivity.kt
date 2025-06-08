@@ -13,8 +13,10 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.view.ViewTreeObserver
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.SystemBarStyle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -33,38 +35,46 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
-import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
 import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
+import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
 import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.unit.Dp
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.rememberFragmentState
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getSerializableCompat
+import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.show
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
+import org.thoughtcrime.securesms.calls.log.CallLogFragment
 import org.thoughtcrime.securesms.calls.new.NewCallActivity
-import org.thoughtcrime.securesms.components.ConnectivityWarningBottomSheet
 import org.thoughtcrime.securesms.components.DebugLogsPromptDialogFragment
-import org.thoughtcrime.securesms.components.DeviceSpecificNotificationBottomSheet
 import org.thoughtcrime.securesms.components.PromptBatterySaverDialogFragment
+import org.thoughtcrime.securesms.components.compose.ConnectivityWarningBottomSheet
+import org.thoughtcrime.securesms.components.compose.DeviceSpecificNotificationBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity.Companion.manageSubscriptions
 import org.thoughtcrime.securesms.components.settings.app.notifications.manual.NotificationProfileSelectionFragment
@@ -74,14 +84,16 @@ import org.thoughtcrime.securesms.conversation.ConversationIntents
 import org.thoughtcrime.securesms.conversation.v2.ConversationFragment
 import org.thoughtcrime.securesms.conversation.v2.MotionEventRelay
 import org.thoughtcrime.securesms.conversation.v2.ShareDataTimestampViewModel
+import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment
+import org.thoughtcrime.securesms.conversationlist.ConversationListFragment
 import org.thoughtcrime.securesms.conversationlist.RelinkDevicesReminderBottomSheetFragment
 import org.thoughtcrime.securesms.conversationlist.RestoreCompleteBottomSheetDialog
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
+import org.thoughtcrime.securesms.conversationlist.model.UnreadPaymentsLiveData
 import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
-import org.thoughtcrime.securesms.main.MainActivityListHostFragment
 import org.thoughtcrime.securesms.main.MainBottomChrome
 import org.thoughtcrime.securesms.main.MainBottomChromeCallback
 import org.thoughtcrime.securesms.main.MainBottomChromeState
@@ -95,7 +107,9 @@ import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainToolbar
 import org.thoughtcrime.securesms.main.MainToolbarCallback
 import org.thoughtcrime.securesms.main.MainToolbarMode
+import org.thoughtcrime.securesms.main.MainToolbarState
 import org.thoughtcrime.securesms.main.MainToolbarViewModel
+import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.NavigationBarSpacerCompat
 import org.thoughtcrime.securesms.main.SnackbarState
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
@@ -105,25 +119,35 @@ import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor
 import org.thoughtcrime.securesms.notifications.VitalsViewModel
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment
 import org.thoughtcrime.securesms.stories.settings.StorySettingsActivity
 import org.thoughtcrime.securesms.util.AppForegroundObserver
 import org.thoughtcrime.securesms.util.AppStartup
+import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CachedInflater
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
+import org.thoughtcrime.securesms.util.Material3OnScrollHelper
 import org.thoughtcrime.securesms.util.SplashScreenUtil
+import org.thoughtcrime.securesms.util.TopToastPopup
+import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.window.AppScaffold
 import org.thoughtcrime.securesms.window.WindowSizeClass
+import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 
-class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner, MainNavigator.NavigatorProvider {
+class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner, MainNavigator.NavigatorProvider, Material3OnScrollHelperBinder, ConversationListFragment.Callback, CallLogFragment.Callback {
 
   companion object {
+    private val TAG = Log.tag(MainActivity::class)
+
     private const val KEY_STARTING_TAB = "STARTING_TAB"
     const val RESULT_CONFIG_CHANGED = Activity.RESULT_FIRST_USER + 901
 
@@ -170,6 +194,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
   private val motionEventRelay: MotionEventRelay by viewModels()
 
   private var onFirstRender = false
+  private var previousTopToastPopup: TopToastPopup? = null
 
   private val mainBottomChromeCallback = BottomChromeCallback()
   private val megaphoneActionController = MainMegaphoneActionController()
@@ -200,27 +225,64 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       }
     })
 
+    UnreadPaymentsLiveData().observe(this) { unread ->
+      toolbarViewModel.setHasUnreadPayments(unread.isPresent)
+    }
+
     lifecycleScope.launch {
-      repeatOnLifecycle(Lifecycle.State.RESUMED) {
-        mainNavigationViewModel.navigationEvents.collectLatest {
-          when (it) {
-            MainNavigationViewModel.NavigationEvent.STORY_CAMERA_FIRST -> {
-              mainBottomChromeCallback.onCameraClick(MainNavigationListLocation.STORIES)
+      launch {
+        repeatOnLifecycle(Lifecycle.State.RESUMED) {
+          mainNavigationViewModel.navigationEvents.collectLatest {
+            when (it) {
+              MainNavigationViewModel.NavigationEvent.STORY_CAMERA_FIRST -> {
+                mainBottomChromeCallback.onCameraClick(MainNavigationListLocation.STORIES)
+              }
             }
+          }
+        }
+      }
+
+      launch {
+        mainNavigationViewModel.getNotificationProfiles().collectLatest { profiles ->
+          withContext(Dispatchers.Main) {
+            updateNotificationProfileStatus(profiles)
           }
         }
       }
     }
 
+    val callback = object : OnBackPressedCallback(toolbarViewModel.state.value.mode == MainToolbarMode.ACTION_MODE) {
+      override fun handleOnBackPressed() {
+        toolbarCallback.onCloseActionModeClick()
+      }
+    }
+
+    lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        toolbarViewModel.state.collect { state ->
+          callback.isEnabled = state.mode == MainToolbarMode.ACTION_MODE
+        }
+      }
+    }
+
+    onBackPressedDispatcher.addCallback(this, callback)
+
     shareDataTimestampViewModel.setTimestampFromActivityCreation(savedInstanceState, intent)
 
     setContent {
-      val listHostState = rememberFragmentState()
-      val detailLocation by mainNavigationViewModel.detailLocationRequests.collectAsStateWithLifecycle()
       val snackbar by mainNavigationViewModel.snackbar.collectAsStateWithLifecycle()
       val mainToolbarState by toolbarViewModel.state.collectAsStateWithLifecycle()
       val megaphone by mainNavigationViewModel.megaphone.collectAsStateWithLifecycle()
       val mainNavigationState by mainNavigationViewModel.mainNavigationState.collectAsStateWithLifecycle()
+
+      LaunchedEffect(mainNavigationState.selectedDestination) {
+        when (mainNavigationState.selectedDestination) {
+          MainNavigationListLocation.CHATS -> toolbarViewModel.presentToolbarForConversationListFragment()
+          MainNavigationListLocation.ARCHIVE -> toolbarViewModel.presentToolbarForConversationListArchiveFragment()
+          MainNavigationListLocation.CALLS -> toolbarViewModel.presentToolbarForCallLogFragment()
+          MainNavigationListLocation.STORIES -> toolbarViewModel.presentToolbarForStoriesLandingFragment()
+        }
+      }
 
       val isNavigationVisible = remember(mainToolbarState.mode) {
         mainToolbarState.mode == MainToolbarMode.FULL
@@ -242,30 +304,10 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       val contentLayoutData = MainContentLayoutData.rememberContentLayoutData()
 
       MainContainer {
-        val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator<Any>(
-          scaffoldDirective = calculatePaneScaffoldDirective(
-            currentWindowAdaptiveInfo()
-          ).copy(
-            maxHorizontalPartitions = if (windowSizeClass.isSplitPane()) 2 else 1,
-            horizontalPartitionSpacerSize = contentLayoutData.partitionWidth,
-            defaultPanePreferredWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
-          )
-        )
-
-        LaunchedEffect(detailLocation) {
-          if (detailLocation is MainNavigationDetailLocation.Conversation) {
-            if (SignalStore.internal.largeScreenUi) {
-              scaffoldNavigator.navigateTo(ThreePaneScaffoldRole.Primary, detailLocation)
-            } else {
-              startActivity((detailLocation as MainNavigationDetailLocation.Conversation).intent)
-            }
-          }
-
-          mainNavigationViewModel.goTo(MainNavigationDetailLocation.Empty)
-        }
+        val wrappedNavigator = rememberNavigator(windowSizeClass, contentLayoutData, maxWidth)
 
         AppScaffold(
-          navigator = scaffoldNavigator,
+          navigator = wrappedNavigator,
           bottomNavContent = {
             if (isNavigationVisible) {
               Column(
@@ -315,11 +357,40 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
               Box(
                 modifier = Modifier.weight(1f)
               ) {
-                AndroidFragment(
-                  clazz = MainActivityListHostFragment::class.java,
-                  fragmentState = listHostState,
-                  modifier = Modifier.fillMaxSize()
-                )
+                when (val destination = mainNavigationState.selectedDestination) {
+                  MainNavigationListLocation.CHATS -> {
+                    val state = key(destination) { rememberFragmentState() }
+                    AndroidFragment(
+                      clazz = ConversationListFragment::class.java,
+                      fragmentState = state,
+                      modifier = Modifier.fillMaxSize()
+                    )
+                  }
+                  MainNavigationListLocation.ARCHIVE -> {
+                    val state = key(destination) { rememberFragmentState() }
+                    AndroidFragment(
+                      clazz = ConversationListArchiveFragment::class.java,
+                      fragmentState = state,
+                      modifier = Modifier.fillMaxSize()
+                    )
+                  }
+                  MainNavigationListLocation.CALLS -> {
+                    val state = key(destination) { rememberFragmentState() }
+                    AndroidFragment(
+                      clazz = CallLogFragment::class.java,
+                      fragmentState = state,
+                      modifier = Modifier.fillMaxSize()
+                    )
+                  }
+                  MainNavigationListLocation.STORIES -> {
+                    val state = key(destination) { rememberFragmentState() }
+                    AndroidFragment(
+                      clazz = StoriesLandingFragment::class.java,
+                      fragmentState = state,
+                      modifier = Modifier.fillMaxSize()
+                    )
+                  }
+                }
 
                 MainBottomChrome(
                   state = mainBottomChromeState,
@@ -331,7 +402,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
             }
           },
           detailContent = {
-            when (val destination = scaffoldNavigator.currentDestination?.contentKey) {
+            when (val destination = wrappedNavigator.currentDestination?.contentKey) {
               is MainNavigationDetailLocation.Conversation -> {
                 val fragmentState = key(destination) { rememberFragmentState() }
                 AndroidFragment(
@@ -377,6 +448,41 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     lifecycleDisposable += vitalsViewModel.vitalsState.subscribe(this::presentVitalsState)
   }
 
+  /**
+   * Creates and wraps a scaffold navigator such that we can use it to operate with both
+   * our split pane and legacy activities.
+   */
+  @OptIn(ExperimentalMaterial3AdaptiveApi::class)
+  @Composable
+  private fun rememberNavigator(
+    windowSizeClass: WindowSizeClass,
+    contentLayoutData: MainContentLayoutData,
+    maxWidth: Dp
+  ): ThreePaneScaffoldNavigator<Any> {
+    val scaffoldNavigator = rememberListDetailPaneScaffoldNavigator<Any>(
+      scaffoldDirective = calculatePaneScaffoldDirective(
+        currentWindowAdaptiveInfo()
+      ).copy(
+        maxHorizontalPartitions = if (windowSizeClass.isSplitPane()) 2 else 1,
+        horizontalPartitionSpacerSize = contentLayoutData.partitionWidth,
+        defaultPanePreferredWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
+      )
+    )
+
+    val coroutine = rememberCoroutineScope()
+
+    return remember(scaffoldNavigator, coroutine) {
+      mainNavigationViewModel.wrapNavigator(coroutine, scaffoldNavigator) { detailLocation ->
+        when (detailLocation) {
+          is MainNavigationDetailLocation.Conversation -> {
+            startActivity(detailLocation.intent)
+          }
+          MainNavigationDetailLocation.Empty -> Unit
+        }
+      }
+    }
+  }
+
   @Composable
   private fun MainContainer(content: @Composable BoxWithConstraintsScope.() -> Unit) {
     val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
@@ -417,6 +523,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
     when (startingTab) {
       MainNavigationListLocation.CHATS -> mainNavigationViewModel.onChatsSelected()
+      MainNavigationListLocation.ARCHIVE -> mainNavigationViewModel.onArchiveSelected()
       MainNavigationListLocation.CALLS -> mainNavigationViewModel.onCallsSelected()
       MainNavigationListLocation.STORIES -> {
         if (Stories.isFeatureEnabled()) {
@@ -436,6 +543,8 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
   override fun onResume() {
     super.onResume()
     dynamicTheme.onResume(this)
+
+    toolbarViewModel.refresh()
 
     if (SignalStore.misc.shouldShowLinkedDevicesReminder) {
       SignalStore.misc.shouldShowLinkedDevicesReminder = false
@@ -500,6 +609,56 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     return navigator
   }
 
+  override fun bindScrollHelper(recyclerView: RecyclerView, lifecycleOwner: LifecycleOwner) {
+    Material3OnScrollHelper(
+      activity = this,
+      views = listOf(),
+      viewStubs = listOf(),
+      onSetToolbarColor = {
+        toolbarViewModel.setToolbarColor(it)
+      },
+      setStatusBarColor = {},
+      lifecycleOwner = lifecycleOwner
+    ).attach(recyclerView)
+  }
+
+  override fun bindScrollHelper(recyclerView: RecyclerView, lifecycleOwner: LifecycleOwner, chatFolders: RecyclerView, setChatFolder: (Int) -> Unit) {
+    Material3OnScrollHelper(
+      activity = this,
+      views = listOf(chatFolders),
+      viewStubs = listOf(),
+      setStatusBarColor = {},
+      onSetToolbarColor = {
+        toolbarViewModel.setToolbarColor(it)
+      },
+      lifecycleOwner = lifecycleOwner,
+      setChatFolderColor = setChatFolder
+    ).attach(recyclerView)
+  }
+
+  override fun updateProxyStatus(state: WebSocketConnectionState) {
+    if (SignalStore.proxy.isProxyEnabled) {
+      val proxyState: MainToolbarState.ProxyState = when (state) {
+        WebSocketConnectionState.CONNECTING, WebSocketConnectionState.DISCONNECTING, WebSocketConnectionState.DISCONNECTED -> MainToolbarState.ProxyState.CONNECTING
+        WebSocketConnectionState.CONNECTED -> MainToolbarState.ProxyState.CONNECTED
+        WebSocketConnectionState.AUTHENTICATION_FAILED, WebSocketConnectionState.FAILED, WebSocketConnectionState.REMOTE_DEPRECATED -> MainToolbarState.ProxyState.FAILED
+        else -> MainToolbarState.ProxyState.NONE
+      }
+
+      toolbarViewModel.setProxyState(proxyState = proxyState)
+    } else {
+      toolbarViewModel.setProxyState(proxyState = MainToolbarState.ProxyState.NONE)
+    }
+  }
+
+  override fun onMultiSelectStarted() {
+    toolbarViewModel.presentToolbarForMultiselect()
+  }
+
+  override fun onMultiSelectFinished() {
+    toolbarViewModel.presentToolbarForCurrentDestination()
+  }
+
   private fun handleDeepLinkIntent(intent: Intent) {
     handleConversationIntent(intent)
     handleGroupLinkInIntent(intent)
@@ -562,6 +721,44 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     }
   }
 
+  private fun updateNotificationProfileStatus(notificationProfiles: List<NotificationProfile>) {
+    val activeProfile = NotificationProfiles.getActiveProfile(notificationProfiles)
+    if (activeProfile != null) {
+      if (activeProfile.id != SignalStore.notificationProfile.lastProfilePopup) {
+        val view = findViewById<ViewGroup>(android.R.id.content)
+
+        view.postDelayed({
+          try {
+            var fragmentView = view ?: return@postDelayed
+
+            SignalStore.notificationProfile.lastProfilePopup = activeProfile.id
+            SignalStore.notificationProfile.lastProfilePopupTime = System.currentTimeMillis()
+
+            if (previousTopToastPopup?.isShowing == true) {
+              previousTopToastPopup?.dismiss()
+            }
+
+            val fragment = supportFragmentManager.findFragmentByTag(BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+            if (fragment != null && fragment.isAdded && fragment.view != null) {
+              fragmentView = fragment.requireView() as ViewGroup
+            }
+
+            previousTopToastPopup = TopToastPopup.show(fragmentView, R.drawable.ic_moon_16, getString(R.string.ConversationListFragment__s_on, activeProfile.name))
+          } catch (e: Exception) {
+            Log.w(TAG, "Unable to show toast popup", e)
+          }
+        }, 500L)
+      }
+      toolbarViewModel.setNotificationProfileEnabled(true)
+    } else {
+      toolbarViewModel.setNotificationProfileEnabled(false)
+    }
+
+    if (!SignalStore.notificationProfile.hasSeenTooltip && Util.hasItems(notificationProfiles)) {
+      toolbarViewModel.setShowNotificationProfilesTooltip(true)
+    }
+  }
+
   inner class ToolbarCallback : MainToolbarCallback {
 
     override fun onNewGroupClick() {
@@ -579,8 +776,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
     }
 
     override fun onInviteFriendsClick() {
-      val intent = Intent(this@MainActivity, InviteActivity::class.java)
-      startActivity(intent)
+      openSettings.launch(AppSettingsActivity.invite(this@MainActivity))
     }
 
     override fun onFilterUnreadChatsClick() {
@@ -629,6 +825,15 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
     override fun onCloseArchiveClick() {
       toolbarViewModel.emitEvent(MainToolbarViewModel.Event.Chats.CloseArchive)
+    }
+
+    override fun onCloseActionModeClick() {
+      supportFragmentManager.fragments.forEach { fragment ->
+        when (fragment) {
+          is ConversationListFragment -> fragment.endActionModeIfActive()
+          is CallLogFragment -> fragment.CallLogActionModeCallback().onActionModeWillEnd()
+        }
+      }
     }
 
     override fun onSearchQueryUpdated(query: String) {
@@ -729,6 +934,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         MainNavigationListLocation.CHATS -> mainNavigationViewModel.onChatsSelected()
         MainNavigationListLocation.CALLS -> mainNavigationViewModel.onCallsSelected()
         MainNavigationListLocation.STORIES -> mainNavigationViewModel.onStoriesSelected()
+        MainNavigationListLocation.ARCHIVE -> mainNavigationViewModel.onArchiveSelected()
       }
     }
   }

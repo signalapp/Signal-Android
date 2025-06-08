@@ -56,6 +56,7 @@ class WebRtcCallViewModel : ViewModel() {
   private val callPeerRepository = CallPeerRepository(viewModelScope)
 
   private val internalMicrophoneEnabled = MutableStateFlow(true)
+  private val remoteMutedBy = MutableStateFlow<CallParticipant?>(null)
   private val isInPipMode = MutableStateFlow(false)
   private val webRtcControls = MutableStateFlow(WebRtcControls.NONE)
   private val foldableState = MutableStateFlow(WebRtcControls.FoldableState.flat())
@@ -63,6 +64,7 @@ class WebRtcCallViewModel : ViewModel() {
   private val isLandscapeEnabled = MutableStateFlow<Boolean?>(null)
   private val canEnterPipMode = MutableStateFlow(false)
   private val ephemeralState = MutableStateFlow<WebRtcEphemeralState?>(null)
+  private val remoteMutesReported = MutableStateFlow(HashSet<CallParticipantId>())
 
   private val controlsWithFoldableState: Flow<WebRtcControls> = combine(foldableState, webRtcControls, this::updateControlsFoldableState)
   private val realWebRtcControls: StateFlow<WebRtcControls> = combine(isInPipMode, controlsWithFoldableState, this::getRealWebRtcControls)
@@ -284,7 +286,23 @@ class WebRtcCallViewModel : ViewModel() {
 
     val localParticipant = webRtcViewModel.localParticipant
 
+    if (remoteMutedBy.value == null && webRtcViewModel.remoteMutedBy != null) {
+      remoteMutedBy.update { webRtcViewModel.remoteMutedBy }
+      viewModelScope.launch {
+        events.emit(
+          CallEvent.ShowRemoteMuteToast(
+            muted = Recipient.self(),
+            mutedBy = remoteMutedBy.value!!.recipient
+          )
+        )
+      }
+    }
+
     internalMicrophoneEnabled.value = localParticipant.isMicrophoneEnabled
+
+    if (internalMicrophoneEnabled.value) {
+      remoteMutedBy.update { null }
+    }
 
     val state: CallParticipantsState = participantsState.value!!
     val wasScreenSharing: Boolean = state.focusedParticipant.isScreenSharing
@@ -303,6 +321,26 @@ class WebRtcCallViewModel : ViewModel() {
         val update = CallParticipantListUpdate.computeDeltaUpdate(previousParticipantList, webRtcViewModel.remoteParticipants)
         viewModelScope.launch {
           callParticipantListUpdate.emit(update)
+        }
+      }
+
+      for (remote in webRtcViewModel.remoteParticipants) {
+        if (remote.remotelyMutedBy == null) {
+          remoteMutesReported.value.remove(remote.callParticipantId)
+        } else if (!remoteMutesReported.value.contains(remote.callParticipantId)) {
+          remoteMutesReported.value.add(remote.callParticipantId)
+          if (remote.callParticipantId.recipientId == remote.remotelyMutedBy.id) {
+            // Ignore self-mutes if we're not the recipient (handled above)
+            continue
+          }
+          viewModelScope.launch {
+            events.emit(
+              CallEvent.ShowRemoteMuteToast(
+                muted = remote.recipient,
+                mutedBy = remote.remotelyMutedBy
+              )
+            )
+          }
         }
       }
 

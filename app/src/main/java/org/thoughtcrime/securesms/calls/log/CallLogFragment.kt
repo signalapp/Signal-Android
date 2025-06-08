@@ -7,13 +7,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AlertDialog
-import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.view.ActionMode
 import androidx.compose.material3.SnackbarDuration
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -26,6 +23,7 @@ import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.calls.links.create.CreateCallLinkBottomSheetDialogFragment
 import org.thoughtcrime.securesms.calls.links.details.CallLinkDetailsActivity
 import org.thoughtcrime.securesms.components.ProgressCardDialogFragment
 import org.thoughtcrime.securesms.components.ScrollToPositionDelegate
@@ -50,11 +48,13 @@ import org.thoughtcrime.securesms.main.MainToolbarViewModel
 import org.thoughtcrime.securesms.main.Material3OnScrollHelperBinder
 import org.thoughtcrime.securesms.main.SnackbarState
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.visible
+import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
 import java.util.Objects
 
 /**
@@ -75,7 +75,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
 
   private val disposables = LifecycleDisposable()
   private val callLogContextMenu = CallLogContextMenu(this, this)
-  private val callLogActionMode = CallLogActionMode(CallLogActionModeCallback())
+  private lateinit var callLogActionMode: CallLogActionMode
   private val conversationUpdateTick: ConversationUpdateTick = ConversationUpdateTick(this::onTimestampTick)
   private var callLogAdapter: CallLogAdapter? = null
 
@@ -88,6 +88,8 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     viewLifecycleOwner.lifecycle.addObserver(conversationUpdateTick)
     viewLifecycleOwner.lifecycle.addObserver(viewModel.callLogPeekHelper)
+
+    callLogActionMode = CallLogActionMode(CallLogActionModeCallback(), mainToolbarViewModel)
 
     val callLogAdapter = CallLogAdapter(this)
     disposables.bindTo(viewLifecycleOwner)
@@ -132,7 +134,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       .subscribe { (selected, totalCount) ->
         if (selected.isNotEmpty(totalCount)) {
           callLogActionMode.setCount(selected.count(totalCount))
-        } else if (callLogActionMode.isInActionMode()) {
+        } else if (mainToolbarViewModel.isInActionMode()) {
           callLogActionMode.end()
         }
       }
@@ -173,6 +175,10 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
         }
       }
     )
+
+    if (resources.getWindowSizeClass().isCompact()) {
+      ViewUtil.setBottomMargin(binding.bottomActionBar, ViewUtil.getNavigationBarHeight(binding.bottomActionBar))
+    }
 
     signalBottomActionBarController = SignalBottomActionBarController(
       binding.bottomActionBar,
@@ -269,7 +275,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
       }
 
       override fun canStartNestedScroll(): Boolean {
-        return !callLogActionMode.isInActionMode() && !isSearchOpen()
+        return !mainToolbarViewModel.isInActionMode() && !isSearchOpen()
       }
     }
 
@@ -288,7 +294,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   }
 
   override fun onCreateACallLinkClicked() {
-    findNavController().navigate(R.id.createCallLinkBottomSheet)
+    CreateCallLinkBottomSheetDialogFragment().show(parentFragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
   }
 
   override fun onCallClicked(callLogRow: CallLogRow.Call) {
@@ -458,17 +464,16 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     override fun onBottomActionBarVisibilityChanged(visibility: Int) = Unit
   }
 
-  private inner class CallLogActionModeCallback : CallLogActionMode.Callback {
-    override fun startActionMode(callback: ActionMode.Callback): ActionMode? {
-      val actionMode = (requireActivity() as AppCompatActivity).startSupportActionMode(callback)
+  inner class CallLogActionModeCallback : CallLogActionMode.Callback {
+    override fun startActionMode() {
       requireListener<Callback>().onMultiSelectStarted()
       signalBottomActionBarController.setVisibility(true)
-      return actionMode
     }
 
     override fun onActionModeWillEnd() {
       requireListener<Callback>().onMultiSelectFinished()
       signalBottomActionBarController.setVisibility(false)
+      viewModel.clearSelected()
     }
 
     override fun getResources(): Resources = resources

@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Blockerade användare</string>
     <string name="BlockedUsersActivity__add_blocked_user">Lägg till blockerad användare</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Du kan inte blockera dig själv</string>
     <string name="BlockedUsersActivity__blocked_users_will">Blockerade användare kommer inte att kunna ringa eller skicka meddelanden till dig.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Inga blockerade användare</string>
     <string name="BlockedUsersActivity__block_user">Blockera användare?</string>
@@ -545,6 +545,8 @@
     <string name="ConversationActivity__invite_to_signal">Bjud in till Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Du kommer snart att bli påmind igen.</string>
+    <!-- Toast message shown when trying to record a voice message during an ongoing call -->
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">Det går inte att spela in röstmeddelande under samtal.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">Skickar formaterad text</string>
@@ -1719,7 +1721,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Skickad av %1$s till %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Skickad av dig till %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Detta media har inte skickats än.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Påminn mig senare</string>
@@ -2480,6 +2482,15 @@
     <!-- Content description for toggling group ring state -->
     <string name="WebRtcCallView__toggle_group_ringing">Växla gruppringning</string>
 
+    <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s har tystat dig.</string>
+    <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
+    <string name="WebRtcCallView__you_remotely_muted_s">Du har tystat %1$s.</string>
+    <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s har tystat %2$s.</string>
+    <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
+    <string name="WebRtcCallView__you_muted_yourself">Du har tystat dig själv från en annan enhet.</string>
+
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Ett UI-fel inträffade. Rapportera detta fel till utvecklarna.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
@@ -2765,12 +2776,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">PIN-kod verifierad. Vi påminner dig igen om en vecka.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">PIN-kod verifierad. Vi påminner dig igen om några dagar.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">PIN-kod verifierad. Vi påminner dig igen om en månad.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">Vi påminner dig igen senare.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">Vi påminner dig igen imorgon.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">Vi påminner dig igen om några dagar.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">Vi påminner dig igen om en vecka.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">Vi påminner dig igen om några veckor.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">Vi påminner dig igen om en månad.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Bilder</string>
@@ -2783,37 +2794,84 @@
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s har återställt den säkra sessionen.</string>
     <string name="SmsMessageRecord_duplicate_message">Duplicerat meddelande.</string>
 
-    <!-- StickerManagementActivity -->
-    <string name="StickerManagementActivity_stickers">Klistermärken</string>
-
+    <!-- Sticker management screen default title. -->
+    <string name="StickerManagement_title_stickers">Stickers</string>
+    <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
+    <plurals name="StickerManagement_title_n_selected">
+        <item quantity="one">%1$s vald</item>
+        <item quantity="other">%1$s valda</item>
+    </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">Tillgängliga</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
-    <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
-    <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_installed_tab_label">Installerad</string>
+    <!-- Shown when there are no sticker packs available for installation. -->
+    <string name="StickerManagement_available_tab_empty_text">Inga klistermärkespaket är tillgängliga</string>
+    <!-- Shown when there are no sticker packs currently installed. -->
+    <string name="StickerManagement_installed_tab_empty_text">Inga klistermärkespaket är installerade</string>
+    <!-- Message shown when the author of the sticker pack is unknown. -->
+    <string name="StickerManagement_author_unknown">Okänt</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">Installerade klistermärken</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">Klistermärken du mottagit</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Signal-artistserier</string>
+    <!-- Title shown when sharing a sticker pack with another user. -->
+    <string name="StickerManagement_share_sheet_title">Vidarebefordra till</string>
+    <!-- Bottom action bar option to select all sticker packs in the list. -->
+    <string name="StickerManagement_action_select_all">Markera alla</string>
+    <!-- Bottom action bar option to deselect all sticker packs in the list. -->
+    <string name="StickerManagement_action_deselect_all">Avmarkera alla</string>
+    <!-- Bottom action bar option to uninstall all selected sticker packs. -->
+    <string name="StickerManagement_action_delete_selected">Ta bort</string>
+    <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation">
+        <item quantity="one">Ta bort %1$s klistermärkespaket</item>
+        <item quantity="other">Ta bort %1$s klistermärkespaket</item>
+    </plurals>
+    <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
+    <string name="StickerManagement_installed_pack_s">Installerade %1$s.</string>
+    <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
+    <string name="StickerManagement_deleted_pack_s">%1$s har tagits bort.</string>
+    <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
+    <plurals name="StickerManagement_deleted_n_packs">
+        <item quantity="one">%1$s klistermärkespaket borttaget.</item>
+        <item quantity="other">%1$s klistermärkespaket borttagna.</item>
+    </plurals>
+    <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
+    <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
+        <item quantity="one">%1$s klistermärke</item>
+        <item quantity="other">%1$s klistermärken</item>
+    </plurals>
+
+    <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
+    <string name="StickerManagement_menu_forward_pack">Vidarebefordra</string>
+    <!-- Sticker pack list dropdown menu label for the button to mark a sticker pack as selected in order to perform additional actions. -->
+    <string name="StickerManagement_menu_select_pack">Markera</string>
+    <!-- Sticker pack list dropdown menu label for the button to install a sticker pack. -->
+    <string name="StickerManagement_menu_install_pack">Installera</string>
+    <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
+    <string name="StickerManagement_menu_remove_pack">Ta bort</string>
+    <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
+    <string name="StickerManagement_menu_select_packs">Välj klistermärkespaket</string>
+
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">Ladda ned klistermärkespaketet %1$s</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Bockmarkering för nedladdad</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">Dra och släpp-handtag</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">Hämta</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="StickerManagement_accessibility_open_top_bar_menu">Öppna menyn</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_open_context_menu">Öppna kontextmeny</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">Avsluta markeringsläget och rensa markeringar</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_no_stickers_installed">Inga klistermärken installerade</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Klistermärken från inkommande meddelanden visas här</string>
     <string name="StickerManagementAdapter_untitled">Utan titel</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2842,7 +2900,7 @@
     <string name="SubmitDebugLogActivity_share">Dela</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Denna logg publiceras på nätet för bidragsgivarna att se. Du kan granska den innan du laddar upp den.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">När du klickar på Skicka kommer din logg att läggas upp på nätet i 30 dagar på en unik, opublicerad webbadress. Du kan spara den lokalt först.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3013,10 +3071,6 @@
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Meddelande som krypterats för obefintlig session</string>
-
-    <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">Felkrypterat MMS</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS som krypterats för obefintlig session</string>
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Tysta aviseringar</string>
@@ -3747,7 +3801,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Nej tack</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Senaste</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Detta meddelande</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Nyligen använda</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Humörsymboler &amp; personer</string>
@@ -3762,15 +3816,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Inga resultat hittades</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">Senaste</string>
+    <string name="GifQuickSearchOption__trending">Populärt</string>
+    <string name="GifQuickSearchOption__celebrate">Fira</string>
+    <string name="GifQuickSearchOption__love">Kärlek</string>
+    <string name="GifQuickSearchOption__thumbs_up">Tummen upp</string>
+    <string name="GifQuickSearchOption__surprised">Överraskad</string>
+    <string name="GifQuickSearchOption__excited">Upprymd</string>
+    <string name="GifQuickSearchOption__sad">Ledsen</string>
+    <string name="GifQuickSearchOption__angry">Arg</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Använd standardinställning</string>
@@ -4367,7 +4421,7 @@
     <string name="conversation_list_fragment__open_camera_description">Öppna kameran</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Inga chattar ännu.\nKom igång genom att skriva till en vän.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Arkiverade chattar kommer att visas här.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Inga chattar att visa</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4721,6 +4775,14 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Du har gjort för många försök. Försök igen senare.</string>
     <string name="RegistrationActivity_error_connecting_to_service">Fel vid anslutning till tjänst</string>
     <string name="preferences_chats__backups">Säkerhetskopior</string>
+
+    <!-- Button label to indicate that a feature is in beta mode -->
+    <string name="Beta__beta_title">Beta</string>
+    <!-- Content description for info icon -->
+    <string name="Beta__info">Info</string>
+    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
+    <string name="Beta__this_is_beta">Detta är en betafunktion som vi kommer att lägga till funktioner till kontinuerligt.</string>
+
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Lås upp Signal</string>
     <!-- Description text explaining how to unlock Signal -->
@@ -5743,7 +5805,7 @@
     <string name="ConversationSettingsFragment__phone_number">Telefonnummer</string>
     <string name="ConversationSettingsFragment__get_badges">Få märken för din profil genom att stöda Signal. Tryck på ett märke för att läsa mer.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Detta media har inte skickats än.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Lägg till medlemmar</string>
@@ -5796,6 +5858,8 @@
     <string name="NewConversationActivity__s_has_been_removed">%1$s har tagits bort</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s har blockerats</string>
+    <!-- Snackbar message when blocking a contact has failed -->
+    <string name="NewConversationActivity__block_failed">Det gick inte att blockera</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Det går inte att ta bort %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -7102,34 +7166,6 @@
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Lämna Signal för att bekräfta donation?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">När du har bekräftat, återgå till Signal för att slutföra bearbetningen av din donation.</string>
 
-    <!-- IdealBank -->
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__abn_amro">ABN AMRO</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__asn_bank">ASN Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__bunq">bunq</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__ing">ING</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__knab">Knab</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__n26">N26</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__rabobank">Rabobank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__regiobank">RegioBank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__revolut">Revolut</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__sns_bank">SNS Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__triodos_bank">Triodos Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__yoursafe">Yoursafe</string>
-
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
     <string name="BankTransferMandateFragment__bank_transfer">Banköverföring</string>
@@ -7190,7 +7226,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Välj din bank</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Bekräfta din donation med %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Bekräfta din donation med iDEAL</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">För att ställa in din återkommande donation, tryck på fortsätt för att bekräfta en debitering på 0,01 € med din bank. Detta återbetalas automatiskt och gör att din donation på %1$s/månad kan debiteras från ditt konto.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7370,6 +7406,8 @@
     <string name="CallLogAdapter__start_a_video_call">Starta ett videosamtal</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">Starta ett röstsamtal</string>
+    <!-- Notice on call log when no missed calls are available, centered on display -->
+    <string name="CallLogAdapter__no_missed_calls">Inga missade samtal</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -7802,6 +7840,12 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Ditt abonnemang för säkerhetskopiering kunde inte förnyas</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Kontrollera att din betalningsmetod är uppdaterad. Tryck på Hantera abonnemang och tryck på Uppdatera under Betalningsmetoder.</string>
+    <!-- Sheet title for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Ditt abonnemang för säkerhetskopiering har upphört</string>
+    <!-- Sheet body part 1 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Ditt abonnemang kunde inte förnyas med din betalningsmetod. För att fortsätta säkerhetskopiera media behöver du ett aktivt abonnemang.</string>
+    <!-- Sheet body part 2 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Du kommer fortfarande att ha tillgång till det kostnadsfria abonnemanget av Säkerhetskopiering av Signal.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Det gick inte slutföra säkerhetskopieringen</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7813,6 +7857,8 @@
     <string name="BackupAlertBottomSheet__learn_more">Läs mer</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">Hoppa över återställning</string>
+    <!-- Primary action button to open backups management screen -->
+    <string name="BackupAlertBottomSheet__manage_backups">Hantera säkerhetskopiering</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">Säkerhetskopiera nu</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -7864,11 +7910,13 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Återställer media</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">Återställning pausad</string>
+    <string name="BackupStatus__restore_paused">Medieåterställning pausad</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">Återställningen är klar</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">Detaljer</string>
+    <!-- Status action label for resume restore from a paused state -->
+    <string name="BackupStatus__resume">Återuppta</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Väntar på wifi …</string>
@@ -7890,6 +7938,14 @@
     <string name="BackupStatusRow__restore_no_internet">Återställning pausad: Inget internet …</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">Återställning pausad: Enheten har låg batterinivå</string>
+    <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">Laddar ned: %1$s av %2$s (%3$s %%)</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
+    <string name="BackupStatusRow__download_waiting_for_wifi">Nedladdning pausad: Väntar på wifi …</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
+    <string name="BackupStatusRow__download_no_internet">Nedladdning pausad: Inget internet …</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
+    <string name="BackupStatusRow__download_device_has_low_battery">Nedladdning pausad: Enheten har låg batterinivå</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Det finns inte tillräckligt med utrymme för att ladda ner din säkerhetskopia. Frigör %1$s utrymme för att fortsätta.</string>
     <!-- Text row label to skip download -->
@@ -7900,6 +7956,11 @@
     <string name="BackupStatusRow__your_last_backup_latest_version">Din senaste säkerhetskopiering kunde inte slutföras. Kontrollera att du använder den senaste versionen av Signal och försök igen.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Läs mer</string>
+
+    <!-- Dialog title to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">Återuppta med användning av mobildata?</string>
+    <!-- Dialog message to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">Återställning av dina mediefiler med mobildata kan leda till dataavgifter. Du kan ansluta till ett wifi-nätverk för att återuppta automatiskt.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7992,6 +8053,8 @@
     <string name="BackupsSettingsFragment_set_up">Ställ in</string>
 
     <!-- RemoteBackupsSettingsFragment -->
+    <!-- Content description for canceling backup upload -->
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">Avbryt uppladdning</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Säkerhetskopiering av Signal</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8000,8 +8063,8 @@
     <string name="RemoteBackupsSettingsFragment__payment_history">Betalningshistorik</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">Information om säkerhetskopiering</string>
-    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Återställ med mobilnät</string>
+    <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__resume_download">Återuppta nedladdning</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Storlek på säkerhetskopia</string>
     <!-- Row label for backup frequency -->
@@ -8071,7 +8134,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Stäng av och ta bort säkerhetskopior?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">Du kommer inte att debiteras igen. Din säkerhetskopia kommer att tas bort och inga nya säkerhetskopior kommer att skapas.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Din säkerhetskopia kommer att tas bort och inga nya säkerhetskopior kommer att skapas. Media som lagras i din säkerhetskopia laddas nu ner till din telefon.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Stäng av och radera</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8098,6 +8161,8 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Laddar ner din säkerhetskopia</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Beroende på hur stor din säkerhetskopia är kan detta ta lång tid. Du kan använda din telefon som vanligt medan nedladdningen pågår.</string>
+    <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Ditt abonnemang hittades inte på den här enheten. Förnya för att fortsätta använda Säkerhetskopiering av Signal.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">Ditt abonnemang på den här enheten är giltigt under den kommande %1$d dagen. Förnya för att fortsätta använda Säkerhetskopiering av Signal</item>
@@ -8121,17 +8186,27 @@
         <item quantity="one">Du har %1$s av säkerhetskopierade data som inte finns på den här enheten. Din säkerhetskopia kommer att tas bort när ditt abonnemang löper ut om %2$d dag.</item>
         <item quantity="other">Du har %1$s av säkerhetskopierade data som inte finns på den här enheten. Din säkerhetskopia kommer att tas bort när ditt abonnemang löper ut om %2$d dagar.</item>
     </plurals>
+    <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Du har %1$s säkerhetskopierad data som inte finns på den här enheten. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">Hämta</string>
     <!-- Dialog title for skipping download of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_download_question">Hoppa över nedladdning?</string>
-    <!-- Dialog body for skiping download of backed up media -->
+    <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="one">Om du hoppar över nedladdningen kommer resterande media och bilagor i säkerhetskopian att tas bort om %1$d dag.</item>
         <item quantity="other">Om du hoppar över nedladdningen kommer resterande media och bilagor i säkerhetskopian att tas bort om %1$d dagar.</item>
     </plurals>
+    <!-- Dialog body for skipping download of backed up media during deletion -->
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Om du hoppar över nedladdningen av återstående media och bilagor i din säkerhetskopia kommer de att tas bort permanent. Denna data kommer inte att kunna återställas.</string>
+    <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_question">Hoppa över återställning?</string>
+    <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">Om du hoppar över återställningen kan återstående media och bilagor i din säkerhetskopia laddas ner vid ett senare tillfälle.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Hoppa över</string>
+    <!-- Positive dialog action to skip download during deletion -->
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Hoppa över och ta bort permanent</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Det gick inte att stänga av och ta bort säkerhetskopior</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8140,6 +8215,20 @@
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Laddar upp: %1$s av %2$s (%3$d %%)</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Detaljer</string>
+    <!-- Text displayed when there was an error deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Säkerhetskopiering har inaktiverats, men det uppstod ett fel när dina data togs bort från Signals säkra lagringstjänst.</string>
+    <!-- Text displayed as the title in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Det gick inte att ta bort säkerhetskopian</string>
+    <!-- Text displayed as the body in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Ett fel inträffade. Kontakta supporten.</string>
+    <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Säkerhetskopiering har inaktiverats, dina data kommer att laddas ner till din enhet och sedan tas bort från Signals säkra lagringstjänst.</string>
+    <!-- Text displayed while we are processing a backup delete -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Säkerhetskopieringar har stängts av och dina data kommer att tas bort från Signals säkra lagringstjänst.</string>
+    <!-- Text displayed after we have deleted a user\'s backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Säkerhetskopieringar har stängts av och dina data har tagits bort från Signals säkra lagringstjänst.</string>
+    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Laddar ned: %1$s av %2$s (%3$d %%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8164,6 +8253,8 @@
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Ett nätverksfel har inträffat. Försök igen senare.</string>
+    <!-- Toast message if this fragment encounters an in progress deletion -->
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">En radering av säkerhetskopia pågår.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8196,6 +8287,18 @@
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Denna nyckel krävs för att återställa ditt konto och dina data. Förvara den här nyckeln på ett säkert ställe. Om du förlorar den kommer du inte att kunna återställa ditt konto.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopiera till urklipp</string>
+    <!-- Label for the button to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Spara i lösenordshanterare</string>
+    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Spara i lösenordshanterare?</string>
+    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Förvara bara din säkerhetskopieringsnyckel i en lösenordshanterare som du litar på är säker. Signal ger ingen rekommendation om vilken lösenordshanterare som är rätt för dig.</string>
+    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Sparad i din lösenordshanterare</string>
+    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Det gick inte att spara i lösenordshanteraren</string>
+    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Du har ingen lösenordshanterare konfigurerad, eller så stöds inte lösenordshanteraren du använder.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Nästa</string>
     <!-- Bottom sheet title -->
@@ -8228,9 +8331,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Alla säkerhetskopior är totalsträckskrypterade. Signal är en ideell organisation – att betala för säkerhetskopior hjälper till att stödja vårt uppdrag.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__read_more">Läs mer</string>
-    <!-- Primary action button label when selecting a backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__next">Nästa</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">Läs mer</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Prenumerera</string>
+    <!-- Primary action button label when selecting the paid backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Prenumerera för %1$s/månad</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Ändra typ av säkerhetskopiering</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
@@ -8426,15 +8531,25 @@
     <string name="NoBackupToRestore_skip_restore">Hoppa över återställning</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">Stäng sökning</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">Rensa sökning</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">Fler alternativ</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">Aviseringsprofil</string>
     <!-- Accessibility label for more options button in MainToolbar -->
     <string name="MainToolbar__proxy_content_description">Proxy</string>
+
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">Navigera upp</string>
+
+    <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
+    <string name="SignalCheckbox_accessibility_on_click_label">Växla</string>
+    <!-- Accessibility label describing a checked checkbox. -->
+    <string name="SignalCheckbox_accessibility_checked_description">Markerad</string>
+    <!-- Accessibility label describing an unchecked checkbox. -->
+    <string name="SignalCheckbox_accessibility_unchecked_description">Avmarkerad</string>
 
     <!-- EOF -->
 </resources>

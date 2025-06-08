@@ -86,6 +86,11 @@ data class RemoteBackupsSettingsState(
     ) : WithTypeAndRenewalTime
 
     /**
+     * User has an active backup but no active subscription
+     */
+    data object NotFound : BackupState
+
+    /**
      * User has a canceled paid tier backup
      */
     data class Canceled(
@@ -115,7 +120,9 @@ data class RemoteBackupsSettingsState(
     DOWNLOADING_YOUR_BACKUP,
     TURN_OFF_FAILED,
     SUBSCRIPTION_NOT_FOUND,
-    SKIP_MEDIA_RESTORE_PROTECTION
+    SKIP_MEDIA_RESTORE_PROTECTION,
+    CANCEL_MEDIA_RESTORE_PROTECTION,
+    RESTORE_OVER_CELLULAR_PROTECTION
   }
 
   enum class Snackbar {

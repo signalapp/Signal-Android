@@ -24,18 +24,12 @@ import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
-import org.signal.libsignal.zkgroup.InvalidInputException
-import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderId
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.database.ThreadTable.Companion.ID
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.BadGroupIdException
-import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -171,6 +165,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
    */
   fun getChatFolder(id: Long?): ChatFolderRecord? {
     if (id == null) {
+      Log.w(TAG, "Chat folder id was null")
       return null
     }
     val includedChats: Map<Long, List<Long>> = getIncludedChats(id)
@@ -241,12 +236,13 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   /**
    * Given a list of folders, maps a folder id to the folder's unread count and whether all the chats in the folder are muted
    */
-  fun getUnreadCountAndMutedStatusForFolders(folders: List<ChatFolderRecord>): HashMap<Long, Pair<Int, Boolean>> {
-    val map: HashMap<Long, Pair<Int, Boolean>> = hashMapOf()
+  fun getUnreadCountAndEmptyAndMutedStatusForFolders(folders: List<ChatFolderRecord>): HashMap<Long, Triple<Int, Boolean, Boolean>> {
+    val map: HashMap<Long, Triple<Int, Boolean, Boolean>> = hashMapOf()
     folders.map { folder ->
       val unreadCount = SignalDatabase.threads.getUnreadCountByChatFolder(folder)
+      val isEmpty = !SignalDatabase.threads.hasChatInFolder(folder)
       val isMuted = !SignalDatabase.threads.hasUnmutedChatsInFolder(folder)
-      map[folder.id] = Pair(unreadCount, isMuted)
+      map[folder.id] = Triple(unreadCount, isEmpty, isMuted)
     }
     return map
   }
@@ -335,7 +331,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
           ChatFolderTable.DELETED_TIMESTAMP_MS to chatFolder.deletedTimestampMs
         )
         .where("${ChatFolderTable.ID} = ?", chatFolder.id)
-        .run(SQLiteDatabase.CONFLICT_IGNORE)
+        .run()
 
       db
         .delete(ChatFolderMembershipTable.TABLE_NAME)
@@ -393,7 +389,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         db.update(ChatFolderTable.TABLE_NAME)
           .values(ChatFolderTable.POSITION to folder.position)
           .where("${ChatFolderTable.ID} = ?", folder.id)
-          .run(SQLiteDatabase.CONFLICT_IGNORE)
+          .run()
       }
       AppDependencies.databaseObserver.notifyChatFolderObservers()
     }
@@ -495,7 +491,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         val encodedKey = cursor.requireNonNullString(ChatFolderTable.STORAGE_SERVICE_ID)
         val key = Base64.decodeOrThrow(encodedKey)
         StorageId.forChatFolder(key)
-      }
+      }.also { Log.i(TAG, "${it.size} folders have storage ids.") }
   }
 
   /**
@@ -532,7 +528,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
             ChatFolderTable.STORAGE_SERVICE_PROTO to storageServiceProto
           )
           .where("${ChatFolderTable.FOLDER_TYPE} = ?", ChatFolderRecord.FolderType.ALL.value)
-          .run(SQLiteDatabase.CONFLICT_IGNORE)
+          .run()
       }
     } else {
       createFolder(remoteChatFolderRecordToLocal(record))
@@ -635,7 +631,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         db.update(ChatFolderTable.TABLE_NAME)
           .values(ChatFolderTable.POSITION to index)
           .where("${ChatFolderTable.ID} = ?", id)
-          .run(SQLiteDatabase.CONFLICT_IGNORE)
+          .run()
       }
     }
   }
@@ -683,44 +679,16 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         RemoteChatFolderRecord.FolderType.UNKNOWN -> throw AssertionError("Folder type cannot be unknown")
       },
       includedChats = record.proto.includedRecipients
-        .mapNotNull { remoteRecipient -> getRecipientIdFromRemoteRecipient(remoteRecipient) }
+        .mapNotNull { remoteRecipient -> StorageSyncModels.remoteToLocalRecipient(remoteRecipient) }
         .map { recipient -> SignalDatabase.threads.getOrCreateThreadIdFor(recipient) },
       excludedChats = record.proto.excludedRecipients
-        .mapNotNull { remoteRecipient -> getRecipientIdFromRemoteRecipient(remoteRecipient) }
+        .mapNotNull { remoteRecipient -> StorageSyncModels.remoteToLocalRecipient(remoteRecipient) }
         .map { recipient -> SignalDatabase.threads.getOrCreateThreadIdFor(recipient) },
       chatFolderId = chatFolderId,
       storageServiceId = StorageId.forChatFolder(record.id.raw),
       storageServiceProto = record.serializedUnknowns,
       deletedTimestampMs = record.proto.deletedAtTimestampMs
     )
-  }
-
-  /**
-   * Parses a remote recipient into a local one. Used when configuring the chats of a remote chat folder into a local one.
-   */
-  private fun getRecipientIdFromRemoteRecipient(remoteRecipient: RemoteChatFolderRecord.Recipient): Recipient? {
-    return if (remoteRecipient.contact != null) {
-      val serviceId = ServiceId.parseOrNull(remoteRecipient.contact!!.serviceId)
-      val e164 = remoteRecipient.contact!!.e164
-      Recipient.externalPush(SignalServiceAddress(serviceId, e164))
-    } else if (remoteRecipient.legacyGroupId != null) {
-      try {
-        Recipient.externalGroupExact(GroupId.v1(remoteRecipient.legacyGroupId!!.toByteArray()))
-      } catch (e: BadGroupIdException) {
-        Log.w(TAG, "Failed to parse groupV1 ID!", e)
-        null
-      }
-    } else if (remoteRecipient.groupMasterKey != null) {
-      try {
-        Recipient.externalGroupExact(GroupId.v2(GroupMasterKey(remoteRecipient.groupMasterKey!!.toByteArray())))
-      } catch (e: InvalidInputException) {
-        Log.w(TAG, "Failed to parse groupV2 master key!", e)
-        null
-      }
-    } else {
-      Log.w(TAG, "Could not find recipient")
-      null
-    }
   }
 
   private fun Collection<Long>.toContentValues(chatFolderId: Long, membershipType: MembershipType): List<ContentValues> {

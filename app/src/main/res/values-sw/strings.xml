@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">Watumiaji waliozuiliwa</string>
     <string name="BlockedUsersActivity__add_blocked_user">Ongeza mtumiaji aliyezuiliwa</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">Huwezi kujizuia mwenyewe</string>
     <string name="BlockedUsersActivity__blocked_users_will">Watumiaji waliozuiliwa hawataweza kukupigia simu au kukutumia ujumbe.</string>
     <string name="BlockedUsersActivity__no_blocked_users">Hakuna watumiaji waliozuiliwa</string>
     <string name="BlockedUsersActivity__block_user">Ungependa kumzuia mtumiaji?</string>
@@ -545,6 +545,8 @@
     <string name="ConversationActivity__invite_to_signal">Mwalike kwenye Signal</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">Utakumbushwa tena hivi karibuni.</string>
+    <!-- Toast message shown when trying to record a voice message during an ongoing call -->
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">Haiwezi kurekodi ujumbe wa sauti wakati wa mazungumzo ya simu.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">Inatuma maandishi yaliyoumbizwa</string>
@@ -1719,7 +1721,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">Umetumwa na %1$s kwa %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">Umetumwa na wewe kwa %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">Video na picha hazijatumwa bado.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">Nikumbushe baadaye</string>
@@ -2480,6 +2482,15 @@
     <!-- Content description for toggling group ring state -->
     <string name="WebRtcCallView__toggle_group_ringing">Washa ama zima upigaji simu wa kikundi</string>
 
+    <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s amekunyamazisha.</string>
+    <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
+    <string name="WebRtcCallView__you_remotely_muted_s">Umemnyamazisha %1$s.</string>
+    <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s amemnyamazisha %2$s.</string>
+    <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
+    <string name="WebRtcCallView__you_muted_yourself">Umejinyamazisha katika kifaa kingine.</string>
+
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">Hitilafu ya UI imetokea. Tafadhali ripoti hitilafu hii kwa wasanifu programu.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
@@ -2765,12 +2776,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">Nenosiri limethibitishwa kwa ufanisi. Tutakukumbusha tena baada ya wiki moja.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">Nenosiri limethibitishwa kwa ufanisi. Tutakukumbusha tena baada ya wiki kadhaa.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">Nenosiri limethibitishwa kwa ufanisi. Tutakukumbusha tena baada ya mwezi.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">Tutakukumbusha tena baadae.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">Tutakukumbusha tena kesho.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">Tutakukumbusha tena baada ya siku chache.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">Tutakukumbusha tena baada ya wiki.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">Tutakukumbusha tena baada ya wiki kadhaa.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">Tutakukumbusha tena baada ya mwezi.</string>
 
     <!-- Slide -->
     <string name="Slide_image">Picha</string>
@@ -2783,37 +2794,84 @@
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s Seti tena kipindi salama</string>
     <string name="SmsMessageRecord_duplicate_message">Ujumbe nakala</string>
 
-    <!-- StickerManagementActivity -->
-    <string name="StickerManagementActivity_stickers">Vibandiko</string>
-
+    <!-- Sticker management screen default title. -->
+    <string name="StickerManagement_title_stickers">Kibandiko</string>
+    <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
+    <plurals name="StickerManagement_title_n_selected">
+        <item quantity="one">%1$s iliyochaguliwa</item>
+        <item quantity="other">%1$siliyochaguliwa</item>
+    </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">Inapatikana</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
-    <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
-    <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_installed_tab_label">Imesimikwa</string>
+    <!-- Shown when there are no sticker packs available for installation. -->
+    <string name="StickerManagement_available_tab_empty_text">Hakuna pakiti za vibandiko zinazopatikana</string>
+    <!-- Shown when there are no sticker packs currently installed. -->
+    <string name="StickerManagement_installed_tab_empty_text">Hakuna pakiti za vibandiko zilizowekwa</string>
+    <!-- Message shown when the author of the sticker pack is unknown. -->
+    <string name="StickerManagement_author_unknown">Isiyojulikana</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">Vibandiko Vilivyosakinishwa</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">Vibandiko Ulivyovipokea</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Mfululizo wa Msanii wa Signal</string>
+    <!-- Title shown when sharing a sticker pack with another user. -->
+    <string name="StickerManagement_share_sheet_title">Shiriki kwa</string>
+    <!-- Bottom action bar option to select all sticker packs in the list. -->
+    <string name="StickerManagement_action_select_all">Chagua zote</string>
+    <!-- Bottom action bar option to deselect all sticker packs in the list. -->
+    <string name="StickerManagement_action_deselect_all">Acha kuchagua vyote</string>
+    <!-- Bottom action bar option to uninstall all selected sticker packs. -->
+    <string name="StickerManagement_action_delete_selected">Futa</string>
+    <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation">
+        <item quantity="one">Ondoa pakiti ya vibandiko %1$s</item>
+        <item quantity="other">Ondoa pakiti za vibandiko %1$s</item>
+    </plurals>
+    <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
+    <string name="StickerManagement_installed_pack_s">Imesakinisha %1$s.</string>
+    <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
+    <string name="StickerManagement_deleted_pack_s">Imeondoa %1$s.</string>
+    <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
+    <plurals name="StickerManagement_deleted_n_packs">
+        <item quantity="one">Pakiti ya vibandiko %1$s imeondolewa.</item>
+        <item quantity="other">Pakiti ya vibandiko %1$s zimeondolewa.</item>
+    </plurals>
+    <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
+    <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
+        <item quantity="one">%1$s sticker</item>
+        <item quantity="other">%1$s stickers</item>
+    </plurals>
+
+    <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
+    <string name="StickerManagement_menu_forward_pack">Shiriki kwa</string>
+    <!-- Sticker pack list dropdown menu label for the button to mark a sticker pack as selected in order to perform additional actions. -->
+    <string name="StickerManagement_menu_select_pack">Chagua</string>
+    <!-- Sticker pack list dropdown menu label for the button to install a sticker pack. -->
+    <string name="StickerManagement_menu_install_pack">Sakinisha</string>
+    <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
+    <string name="StickerManagement_menu_remove_pack">Ondoa</string>
+    <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
+    <string name="StickerManagement_menu_select_packs">Chagua pakiti ya vibandiko</string>
+
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">Pakua pakiti ya vibandiko %1$s</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">Imepakua alama ya kuteua</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">Kiamrishi cha buruta na dondosha</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">Pakua</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="StickerManagement_accessibility_open_top_bar_menu">Fungua menyu</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_open_context_menu">Fungua menyu ya maudhui</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">Toka kwenye hali ya kuchagua na uondoe chaguo zote</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_no_stickers_installed">Hakuna vibandiko vilivyosakinishwa</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">Vibandiko kutoka kwa jumbe zinazoingia zitaonekana hapa</string>
     <string name="StickerManagementAdapter_untitled">Haina kichwa</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2842,7 +2900,7 @@
     <string name="SubmitDebugLogActivity_share">Shiriki</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Kumbukumbu hii itachapishwa hadharani mtandaoni ili wachangiaji waitazame. Unaweza kuichunguza kabla ya kuipakia.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Ukibonyeza Wasilisha, logi yako itachapishwa mtandaoni kwa siku 30 katika anuani ya URL ya kipekee ambayo haijachapishwa. Unaweza kuihifadhi kwenye simu kwanza.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3013,10 +3071,6 @@
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">Ujumbe umesimbwa kwa kipindi kisichopo</string>
-
-    <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">Ujumbe wa MMS umesimbwa vibaya</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">Ujumbe wa MMS umesimbwa kwa kipindi kisichopo</string>
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">Nyamazisha arifa</string>
@@ -3747,7 +3801,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">Hapana nashukuru</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Hivi karibuni</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">Ujumbe huu</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">Iliyotumiwa hivi majuzi</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">Tabasamu na Watu</string>
@@ -3762,15 +3816,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">Hakuna matokeo yaliyopatikana</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">Hivi karibuni</string>
+    <string name="GifQuickSearchOption__trending">Inayovuma</string>
+    <string name="GifQuickSearchOption__celebrate">Nasherehekea</string>
+    <string name="GifQuickSearchOption__love">Nimependa</string>
+    <string name="GifQuickSearchOption__thumbs_up">Bomba</string>
+    <string name="GifQuickSearchOption__surprised">Nimeshangaa</string>
+    <string name="GifQuickSearchOption__excited">Nimesisimka</string>
+    <string name="GifQuickSearchOption__sad">Huzuni</string>
+    <string name="GifQuickSearchOption__angry">Nimekasirika</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">Tumia chaguo msingi</string>
@@ -4367,7 +4421,7 @@
     <string name="conversation_list_fragment__open_camera_description">Fungua Kamera</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">Bado hakuna gumzo.\nAnza kwa kumtumia rafiki ujumbe.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">Magumzo yaliyohifadhiwa yataonekana hapa.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">Hakuna magumzo ya kuonyesha</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4721,6 +4775,14 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Umefanya majaribio mengi sana. Tafadhali jaribu tena baadaye.</string>
     <string name="RegistrationActivity_error_connecting_to_service">Hitilafu kujiunga kwa huduma</string>
     <string name="preferences_chats__backups">Nakala zilizohifadhiwa</string>
+
+    <!-- Button label to indicate that a feature is in beta mode -->
+    <string name="Beta__beta_title">Beta</string>
+    <!-- Content description for info icon -->
+    <string name="Beta__info">Maelezo</string>
+    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
+    <string name="Beta__this_is_beta">Hii ni kipengele cha beta ambacho tutakuwa tunaongeza utendaji mara kwa mara.</string>
+
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Fungua Signal</string>
     <!-- Description text explaining how to unlock Signal -->
@@ -5743,7 +5805,7 @@
     <string name="ConversationSettingsFragment__phone_number">Nambari ya simu</string>
     <string name="ConversationSettingsFragment__get_badges">Pata beji za wasifu wako kwa kuiunga mkono Signal. Bonyeza beji ili kujifunza zaidi.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Video na picha hazijatumwa bado.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">Ongeza wanachama</string>
@@ -5796,6 +5858,8 @@
     <string name="NewConversationActivity__s_has_been_removed">%1$s ameondolewa</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s amezuiliwa</string>
+    <!-- Snackbar message when blocking a contact has failed -->
+    <string name="NewConversationActivity__block_failed">Imeshindwa kuzuia</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">Imeshindikana kumuondoa %1$s</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -7102,34 +7166,6 @@
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">Toka Signal ili kuthibitisha mchango?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">Utakapothibitishwa, rudi Signal kumaliza kuchakata mchango wako.</string>
 
-    <!-- IdealBank -->
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__abn_amro">ABN AMRO</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__asn_bank">ASN Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__bunq">bunq</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__ing">ING</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__knab">Knab</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__n26">N26</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__rabobank">Rabobank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__regiobank">RegioBank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__revolut">Revolut</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__sns_bank">SNS Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__triodos_bank">Triodos Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__yoursafe">Yoursafe</string>
-
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
     <string name="BankTransferMandateFragment__bank_transfer">Uhamishaji kupitia benki</string>
@@ -7190,7 +7226,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">Chagua benki yako</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">Hakiki mchango wako kwa %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">Thibitisha mchango wako kwa kutumia iDEAL</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">Ili kuweka mipangilio ya michango inayojirudia gusa endelea ili kuthibitisha tozo la €0,01 kwenye benki unayotumia. Hii itafidiwa kiotomatiki na inawezesha mchango wako wa %1$s/kila mwezi kukatwa kutoka kwa akaunti yako.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7370,6 +7406,8 @@
     <string name="CallLogAdapter__start_a_video_call">Piga simu ya video</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">Anzisha simu ya sauti</string>
+    <!-- Notice on call log when no missed calls are available, centered on display -->
+    <string name="CallLogAdapter__no_missed_calls">Hakuna simu fifi</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -7802,6 +7840,12 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Usajili wako wa uhifadhi nakala umeshindwa kusasisha</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Angalia kuhakikisha njia yako ya malipo imesasishwa. Gusa Dhibiti usajili na chini ya Njia za malipo gusa Sasisha.</string>
+    <!-- Sheet title for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Usajili wako wa hifadhi nakala ya Signal umeisha muda</string>
+    <!-- Sheet body part 1 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Usajili wako umeshindwa kusasishwa kwa kutumia njia yako ya malipo. Ili uendelee kuhifadhi nakala za picha na video unahitaji usajili unaotumika.</string>
+    <!-- Sheet body part 2 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Utaendelea kuwa na ufikiaji wa mpango wa Hifadhi Nakala ya Signal bila malipo.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Imeshindwa kumaliza nakala</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7813,6 +7857,8 @@
     <string name="BackupAlertBottomSheet__learn_more">Jifunze zaidi</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">Ruka rejesha</string>
+    <!-- Primary action button to open backups management screen -->
+    <string name="BackupAlertBottomSheet__manage_backups">Dhibiti uwekaji nakala hifadhi</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">Hifadhi nakala rudufu Sasa</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -7864,11 +7910,13 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Inarejesha video na picha</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">Urejeshaji umesitishwa</string>
+    <string name="BackupStatus__restore_paused">Urejeshaji wa picha na video umesitishwa</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">Hatua ya kurejesha imekamilika</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">Maelezo</string>
+    <!-- Status action label for resume restore from a paused state -->
+    <string name="BackupStatus__resume">Endelea</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Inasubiria Wi-Fi…</string>
@@ -7890,6 +7938,14 @@
     <string name="BackupStatusRow__restore_no_internet">Urejeshaji umesitishwa: Hakuna intaneti…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">Urejeshaji umesitishwa: Kifaa kina chaji kidogo</string>
+    <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">Inapakua: %1$s ya %2$s (%3$s%%)</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
+    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
+    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
+    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Hakuna nafasi tosha kupakua Hifadhi Nakala yako. Ili uendelee futa ili upate nafasi ya %1$s.</string>
     <!-- Text row label to skip download -->
@@ -7900,6 +7956,11 @@
     <string name="BackupStatusRow__your_last_backup_latest_version">Uhifadhi nakala wako wa mwisho haukukamilika. Hakikisha unatumia toleo jipya zaidi la Signal na ujaribu tena.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Jifunze zaidi</string>
+
+    <!-- Dialog title to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">Ungependa kuendelea kutumia data ya mtandao wa simu?</string>
+    <!-- Dialog message to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">Kurejesha picha na video zako kwa kutumia data ya mtandao wa simu kunaweza kusababisha utozwe gharama za data. Unaweza kuunganisha kwenye mtandao wa Wi-Fi ili uendelee kiotomatiki.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7992,6 +8053,8 @@
     <string name="BackupsSettingsFragment_set_up">Weka mipangilio</string>
 
     <!-- RemoteBackupsSettingsFragment -->
+    <!-- Content description for canceling backup upload -->
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">Sitisha upakiaji</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Chelezo za Signal</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8000,8 +8063,8 @@
     <string name="RemoteBackupsSettingsFragment__payment_history">Historia ya malipo</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">Taarifa za nakala</string>
-    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">Rejesha ukitumia mtandao wa simu</string>
+    <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__resume_download">Endelea kupakua</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Ukubwa wa nakala</string>
     <!-- Row label for backup frequency -->
@@ -8071,7 +8134,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Zima au ufute nakala?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">Hautatozwa tena. Nakala yako itafutwa na hakutakuwa na nakala mpya zitakazotengenezwa.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Zima na futa</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8098,6 +8161,8 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Inapakua nakala hifadhi yako</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Kulingana na ukubwa wa hifadhi nakala yako, hii inaweza kuchukua muda mrefu. Unaweza kutumia simu yako kama kawaida wakati upakuaji unaendelea.</string>
+    <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Usajili wako haujapatikana katika kifaa hiki. Sasisha ili uendelee kutumia Hifadhi Nakala ya Signal.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">Usajili wako kwenye kifaa hiki unatumika kwa siku %1$d ijayo. Sasisha ili uendelee kutumia Hifadhi Nakala ya Signal</item>
@@ -8121,17 +8186,27 @@
         <item quantity="one">Una %1$s ya data ya hifadhi ambayo haiko kwenye kifaa hiki. Hifadhi yako itafutwa usajili wako ukiisha ndani ya siku %2$d.</item>
         <item quantity="other">Una %1$s ya data ya hifadhi ambayo haiko kwenye kifaa hiki. Hifadhi yako itafutwa usajili wako ukiisha ndani ya siku %2$d.</item>
     </plurals>
+    <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Una data ya akiba %1$s ambayo haiko katika kifaa hiki. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">Pakua</string>
     <!-- Dialog title for skipping download of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_download_question">Ungependa kuruka upakuaji?</string>
-    <!-- Dialog body for skiping download of backed up media -->
+    <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="one">Ukiruka kupakua video na picha zilizosalia pamoja na viambatishi kwenye hifadhi yako vitafutwa ndani ya siku %1$d.</item>
         <item quantity="other">Ukiruka kupakua video na picha zilizosalia pamoja na viambatishi kwenye hifadhi yako vitafutwa ndani ya siku %1$d.</item>
     </plurals>
+    <!-- Dialog body for skipping download of backed up media during deletion -->
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_question">Ruka hatua ya kurejesha?</string>
+    <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">Ukiruka kurejesha video, picha na viambatisho vilivyosalia kwenye hifadhi nakala yako vinaweza kupakuliwa baadaye.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Ruka</string>
+    <!-- Positive dialog action to skip download during deletion -->
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Imeshinda kuzima na kufuta hifadhi nakala</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8140,6 +8215,20 @@
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Inapakia: %1$s ya %2$s (%3$d%%)</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Maelezo</string>
+    <!-- Text displayed when there was an error deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <!-- Text displayed as the title in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed to delete backup</string>
+    <!-- Text displayed as the body in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">An error occurred. Please contact support.</string>
+    <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <!-- Text displayed while we are processing a backup delete -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups have been turned off and your data will be deleted from Signal\'s secure storage service.</string>
+    <!-- Text displayed after we have deleted a user\'s backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
+    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Inapakua: %1$s ya %2$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8164,6 +8253,8 @@
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Hitilafu ya mtandao imetokea. Tafadhali jaribu tena baadae.</string>
+    <!-- Toast message if this fragment encounters an in progress deletion -->
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8196,6 +8287,18 @@
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Ufunguo huu unahitajika kurejesha akaunti na data yako. Hifadhi ufunguo huu mahali salama. Ukiipoteza, hutaweza kurejesha akaunti yako.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Nakili kwenye clipbodi</string>
+    <!-- Label for the button to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Inayofuata</string>
     <!-- Bottom sheet title -->
@@ -8228,9 +8331,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Hifadhi nakala zote zimesimbwa fiche. Signal ni shirika lisilo la faida—kulipia hifadhi nakala kunasaidia kuegemeza lengo letu.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__read_more">Soma zaidi</string>
-    <!-- Primary action button label when selecting a backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__next">Inayofuata</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">Jifunze zaidi</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <!-- Primary action button label when selecting the paid backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Sajili kwa %1$s/mwezi</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Badili aina ya nakala</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
@@ -8426,15 +8531,25 @@
     <string name="NoBackupToRestore_skip_restore">Ruka rejesha</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">Funga utafutaji</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">Futa Utafutaji</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">Chaguzi zaidi</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">Arifa ya wasifu</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">Kipengele mbadala</string>
+
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">Nenda juu</string>
+
+    <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
+    <string name="SignalCheckbox_accessibility_on_click_label">Geuza</string>
+    <!-- Accessibility label describing a checked checkbox. -->
+    <string name="SignalCheckbox_accessibility_checked_description">Imewekwa tiki</string>
+    <!-- Accessibility label describing an unchecked checkbox. -->
+    <string name="SignalCheckbox_accessibility_unchecked_description">Imeondolewa tiki</string>
 
     <!-- EOF -->
 </resources>

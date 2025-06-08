@@ -21,13 +21,14 @@ object ConversationMessageComputeWorkers {
 
   fun recomputeFormattedDate(
     context: Context,
-    items: List<ConversationMessageElement>
+    items: List<ConversationMessageElement>,
+    forceUpdate: Boolean = false
   ): Single<Boolean> {
     return Single.fromCallable {
       var hasUpdatedProperties = false
       for (item in items) {
         val oldDate = item.conversationMessage.computedProperties.formattedDate
-        if (oldDate.isRelative) {
+        if (oldDate.isRelative || forceUpdate) {
           val newDate = ConversationMessage.getFormattedDate(context, item.conversationMessage.messageRecord)
           item.conversationMessage.computedProperties.formattedDate = newDate
           hasUpdatedProperties = true

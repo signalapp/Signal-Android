@@ -17,8 +17,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.text.HtmlCompat;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.google.android.material.timepicker.MaterialTimePicker;
 import com.google.android.material.timepicker.TimeFormat;
@@ -77,6 +79,9 @@ public class BackupsPreferenceFragment extends Fragment {
 
   @Override
   public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    Toolbar toolbar = view.findViewById(R.id.toolbar);
+    toolbar.setNavigationOnClickListener(v -> Navigation.findNavController(v).popBackStack());
+
     create          = view.findViewById(R.id.fragment_backup_create);
     folder          = view.findViewById(R.id.fragment_backup_folder);
     verify          = view.findViewById(R.id.fragment_backup_verify);

@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.megaphone
 
-import android.content.Intent
 import androidx.annotation.ColorRes
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -48,8 +47,8 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
-import org.thoughtcrime.securesms.InviteActivity
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.main.EmptyMegaphoneActionController
@@ -86,7 +85,8 @@ fun OnboardingMegaphone(
     Text(
       text = stringResource(R.string.Megaphones_get_started),
       style = MaterialTheme.typography.titleSmall,
-      modifier = Modifier.padding(start = 16.dp, top = 4.dp)
+      modifier = Modifier.padding(start = 16.dp, top = 4.dp),
+      color = MaterialTheme.colorScheme.onSurface
     )
 
     val onboardingItems = remember(onboardingState.displayState) {
@@ -313,7 +313,7 @@ abstract class OnboardingState private constructor(
     override fun onItemActionClick(onboardingListItem: OnboardingListItem) {
       when (onboardingListItem) {
         OnboardingListItem.GROUP -> megaphoneActionController.onMegaphoneNavigationRequested(CreateGroupActivity.newIntent(megaphoneActionController.megaphoneActivity))
-        OnboardingListItem.INVITE -> megaphoneActionController.onMegaphoneNavigationRequested(Intent(megaphoneActionController.megaphoneActivity, InviteActivity::class.java))
+        OnboardingListItem.INVITE -> megaphoneActionController.onMegaphoneNavigationRequested(AppSettingsActivity.invite(megaphoneActionController.megaphoneActivity))
         OnboardingListItem.ADD_PHOTO -> {
           megaphoneActionController.onMegaphoneNavigationRequested(EditProfileActivity.getIntentForAvatarEdit(megaphoneActionController.megaphoneActivity))
           SignalStore.onboarding.setShowAddPhoto(false)

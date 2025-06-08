@@ -92,7 +92,7 @@ class NetworkDependenciesModule(
   val signalServiceMessageSender: SignalServiceMessageSender by _signalServiceMessageSender
 
   val incomingMessageObserver: IncomingMessageObserver by lazy {
-    provider.provideIncomingMessageObserver(authWebSocket)
+    provider.provideIncomingMessageObserver(authWebSocket, unauthWebSocket)
   }
 
   val pushServiceSocket: PushServiceSocket by lazy {
@@ -207,7 +207,7 @@ class NetworkDependenciesModule(
   }
 
   val profileApi: ProfileApi by lazy {
-    provider.provideProfileApi(authWebSocket, pushServiceSocket)
+    provider.provideProfileApi(authWebSocket, unauthWebSocket, pushServiceSocket, groupsV2Operations.profileOperations)
   }
 
   val remoteConfigApi: RemoteConfigApi by lazy {

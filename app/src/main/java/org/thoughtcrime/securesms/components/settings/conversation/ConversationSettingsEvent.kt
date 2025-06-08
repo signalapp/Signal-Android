@@ -25,6 +25,10 @@ sealed class ConversationSettingsEvent {
     val failureReason: GroupChangeFailureReason
   ) : ConversationSettingsEvent()
 
+  class ShowBlockGroupError(
+    val failureReason: GroupChangeFailureReason
+  ) : ConversationSettingsEvent()
+
   class ShowGroupInvitesSentDialog(
     val invitesSentTo: List<Recipient>
   ) : ConversationSettingsEvent()

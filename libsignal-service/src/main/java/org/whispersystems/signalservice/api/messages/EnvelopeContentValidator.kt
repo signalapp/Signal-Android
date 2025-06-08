@@ -77,7 +77,7 @@ object EnvelopeContentValidator {
     }
 
     if (dataMessage.timestamp != envelope.timestamp) {
-      Result.Invalid("[DataMessage] Timestamps don't match! envelope: ${envelope.timestamp}, content: ${dataMessage.timestamp}")
+      return Result.Invalid("[DataMessage] Timestamps don't match! envelope: ${envelope.timestamp}, content: ${dataMessage.timestamp}")
     }
 
     if (dataMessage.quote != null && dataMessage.quote.authorAci.isNullOrInvalidAci()) {

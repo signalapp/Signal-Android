@@ -89,7 +89,7 @@ public class AddMembersActivity extends PushContactSelectionActivity implements 
 
   @Override
   protected void initializeToolbar() {
-    getToolbar().setNavigationIcon(R.drawable.ic_arrow_left_24);
+    getToolbar().setNavigationIcon(R.drawable.symbol_arrow_start_24);
     getToolbar().setNavigationOnClickListener(v -> {
       setResult(RESULT_CANCELED);
       finish();

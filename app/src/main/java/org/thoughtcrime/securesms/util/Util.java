@@ -18,9 +18,12 @@ package org.thoughtcrime.securesms.util;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -40,11 +43,13 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil;
 import com.google.i18n.phonenumbers.Phonenumber;
 
 import org.signal.core.util.Base64;
+import org.signal.core.util.PendingIntentFlags;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ComposeText;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.payments.backup.phrase.ClearClipboardAlarmReceiver;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -439,6 +444,18 @@ public class Util {
   public static void copyToClipboard(@NonNull Context context, @NonNull CharSequence text) {
     ServiceUtil.getClipboardManager(context).setPrimaryClip(ClipData.newPlainText(COPY_LABEL, text));
   }
+
+  public static void copyToClipboard(@NonNull Context context, @NonNull CharSequence text, int expiresInSeconds) {
+    ClipboardManager clipboardManager = ServiceUtil.getClipboardManager(context);
+    clipboardManager.setPrimaryClip(ClipData.newPlainText(context.getString(R.string.app_name), text));
+
+    AlarmManager  alarmManager       = ServiceUtil.getAlarmManager(context);
+    Intent        alarmIntent        = new Intent(context, ClearClipboardAlarmReceiver.class);
+    PendingIntent pendingAlarmIntent = PendingIntent.getBroadcast(context, 0, alarmIntent, PendingIntentFlags.mutable());
+
+    alarmManager.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(expiresInSeconds), pendingAlarmIntent);
+  }
+
 
   public static int parseInt(String integer, int defaultValue) {
     try {

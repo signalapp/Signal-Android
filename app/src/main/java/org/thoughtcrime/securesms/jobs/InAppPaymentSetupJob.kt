@@ -204,7 +204,7 @@ abstract class InAppPaymentSetupJob(
     }
   }
 
-  private fun handleFailure(inAppPaymentId: InAppPaymentTable.InAppPaymentId, exception: Exception) {
+  protected fun handleFailure(inAppPaymentId: InAppPaymentTable.InAppPaymentId, exception: Exception) {
     warning("Failed to process transaction.", exception)
 
     val freshPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!

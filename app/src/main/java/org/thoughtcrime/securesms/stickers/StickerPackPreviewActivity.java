@@ -176,7 +176,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
 
   private void initViewModel(@NonNull String packId, @NonNull String packKey) {
     viewModel = new ViewModelProvider(this, new StickerPackPreviewViewModel.Factory(getApplication(),
-                                                                                    new StickerPackPreviewRepository(this),
+                                                                                    new StickerPackPreviewRepository(),
                                                                                     StickerManagementRepository.INSTANCE)
     ).get(StickerPackPreviewViewModel.class);
 

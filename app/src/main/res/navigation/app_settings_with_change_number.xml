@@ -114,8 +114,8 @@
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
-            android:id="@+id/action_appSettingsFragment_to_inviteActivity"
-            app:destination="@id/inviteActivity"
+            android:id="@+id/action_appSettingsFragment_to_inviteFragment"
+            app:destination="@id/inviteFragment"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -208,12 +208,12 @@
 
     <fragment
         android:id="@+id/advancedPinSettingsFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedAdvancedPinPreferenceFragment"
+        android:name="org.thoughtcrime.securesms.preferences.AdvancedPinPreferenceFragment"
         android:label="advanced_pin_settings_fragment" />
 
     <fragment
         android:id="@+id/deleteAccountFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedDeleteAccountFragment"
+        android:name="org.thoughtcrime.securesms.delete.DeleteAccountFragment"
         android:label="delete_account_fragment"
         tools:layout="@layout/delete_account_fragment" />
 
@@ -387,7 +387,7 @@
 
     <fragment
         android:id="@+id/backupsPreferenceFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedBackupsPreferenceFragment"
+        android:name="org.thoughtcrime.securesms.preferences.BackupsPreferenceFragment"
         android:label="backups_preference_fragment"
         tools:layout="@layout/fragment_backups" />
 
@@ -490,7 +490,7 @@
             app:popExitAnim="@anim/fragment_close_exit" />
         <action
             android:id="@+id/action_dataAndStorageSettingsFragment_to_editProxyFragment"
-            app:destination="@id/editProxyFragment"
+            app:destination="@id/edit_proxy"
             app:enterAnim="@anim/fragment_open_enter"
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
@@ -502,10 +502,7 @@
         android:name="org.thoughtcrime.securesms.components.settings.app.storage.ManageStorageSettingsFragment"
         android:label="storage_preference_fragment" />
 
-    <fragment
-        android:id="@+id/editProxyFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedEditProxyFragment"
-        android:label="edit_proxy_fragment" />
+    <include app:graph="@navigation/edit_proxy" />
 
     <!-- endregion -->
 
@@ -539,7 +536,7 @@
 
     <fragment
         android:id="@+id/helpFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.wrapped.WrappedHelpFragment"
+        android:name="org.thoughtcrime.securesms.help.HelpFragment"
         android:label="help_fragment">
 
         <argument
@@ -560,11 +557,10 @@
         android:label="submit_debug_log_activity" />
     <!-- endregion -->
 
-    <activity
-        android:id="@+id/inviteActivity"
-        android:name="org.thoughtcrime.securesms.InviteActivity"
-        android:label="invite_activity"
-        tools:layout="@layout/invite_activity" />
+    <fragment
+        android:id="@+id/inviteFragment"
+        android:name="org.thoughtcrime.securesms.InviteFragment"
+        android:label="invite_fragment" />
 
     <!-- region Direct-To-Page actions -->
 
@@ -589,7 +585,7 @@
 
     <action
         android:id="@+id/action_direct_to_editProxyFragment"
-        app:destination="@id/editProxyFragment"
+        app:destination="@id/edit_proxy"
         app:enterAnim="@anim/fragment_open_enter"
         app:exitAnim="@anim/fragment_open_exit"
         app:popEnterAnim="@anim/fragment_close_enter"
@@ -733,6 +729,16 @@
     <action
         android:id="@+id/action_direct_to_backupsSettingsFragment"
         app:destination="@id/backupsSettingsFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit"
+        app:popUpTo="@id/app_settings"
+        app:popUpToInclusive="true" />
+
+    <action
+        android:id="@+id/action_direct_to_inviteFragment"
+        app:destination="@id/inviteFragment"
         app:enterAnim="@anim/fragment_open_enter"
         app:exitAnim="@anim/fragment_open_exit"
         app:popEnterAnim="@anim/fragment_close_enter"

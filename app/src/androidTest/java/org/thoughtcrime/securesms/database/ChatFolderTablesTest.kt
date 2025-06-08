@@ -26,6 +26,7 @@ import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.util.UUID
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord as RemoteChatFolderRecord
+import org.whispersystems.signalservice.internal.storage.protos.Recipient as RemoteRecipient
 
 @RunWith(AndroidJUnit4::class)
 class ChatFolderTablesTest {
@@ -168,11 +169,11 @@ class ChatFolderTablesTest {
           folderType = RemoteChatFolderRecord.FolderType.CUSTOM,
           deletedAtTimestampMs = folder1.deletedTimestampMs,
           includedRecipients = listOf(
-            RemoteChatFolderRecord.Recipient(RemoteChatFolderRecord.Recipient.Contact(Recipient.resolved(alice).serviceId.get().toString())),
-            RemoteChatFolderRecord.Recipient(RemoteChatFolderRecord.Recipient.Contact(Recipient.resolved(bob).serviceId.get().toString()))
+            RemoteRecipient(RemoteRecipient.Contact(Recipient.resolved(alice).serviceId.get().toString())),
+            RemoteRecipient(RemoteRecipient.Contact(Recipient.resolved(bob).serviceId.get().toString()))
           ),
           excludedRecipients = listOf(
-            RemoteChatFolderRecord.Recipient(RemoteChatFolderRecord.Recipient.Contact(Recipient.resolved(charlie).serviceId.get().toString()))
+            RemoteRecipient(RemoteRecipient.Contact(Recipient.resolved(charlie).serviceId.get().toString()))
           )
 
         )

@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ബ്ലോക്ക് ചെയ്ത ഉപയോക്താക്കൾ</string>
     <string name="BlockedUsersActivity__add_blocked_user">ബ്ലോക്ക് ചെയ്ത ഉപയോക്താവിനെ ചേർക്കുക</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">നിങ്ങളെത്തന്നെ ബ്ലോക്ക് ചെയ്യാൻ കഴിയില്ല</string>
     <string name="BlockedUsersActivity__blocked_users_will">ബ്ലോക്ക് ചെയ്ത ഉപയോക്താക്കൾക്ക് നിങ്ങളെ വിളിക്കാനോ നിങ്ങൾക്ക് സന്ദേശങ്ങള്‍ അയയ്ക്കാനോ കഴിയില്ല.</string>
     <string name="BlockedUsersActivity__no_blocked_users">ബ്ലോക്ക് ചെയ്ത ഉപയോക്താക്കളൊന്നുമില്ല</string>
     <string name="BlockedUsersActivity__block_user">ഉപയോക്താവിനെ ബ്ലോക്ക് ചെയ്യണോ?</string>
@@ -545,6 +545,8 @@
     <string name="ConversationActivity__invite_to_signal">Signal-ലേക്ക് ക്ഷണിക്കുക</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">ഉടൻ തന്നെ നിങ്ങളെ വീണ്ടും ഓർമ്മിപ്പിക്കും.</string>
+    <!-- Toast message shown when trying to record a voice message during an ongoing call -->
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">കോൾ വേളയിൽ ശബ്ദ സന്ദേശം റെക്കോർഡ് ചെയ്യാൻ കഴിയില്ല.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">ഫോർമാറ്റ് ചെയ്ത ടെക്സ്റ്റ് അയയ്ക്കുന്നു</string>
@@ -1719,7 +1721,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s %2$s-ന് അയച്ചത്.</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">നിങ്ങൾ %1$s-ന് അയച്ചത്.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">ഈ മീഡിയ ഇതുവരെ അയച്ചിട്ടില്ല.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">പിന്നീട് എന്നെ ഓർമ്മിപ്പിക്കുക</string>
@@ -2480,6 +2482,15 @@
     <!-- Content description for toggling group ring state -->
     <string name="WebRtcCallView__toggle_group_ringing">ഗ്രൂപ്പ് റിംഗിംഗ് ടോഗിൾ ചെയ്യുക</string>
 
+    <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s നിങ്ങളെ മ്യൂട്ട് ചെയ്തു.</string>
+    <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
+    <string name="WebRtcCallView__you_remotely_muted_s">നിങ്ങൾ %1$s-നെ മ്യൂട്ട് ചെയ്തു.</string>
+    <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s %2$s-നെ മ്യൂട്ട് ചെയ്തു.</string>
+    <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
+    <string name="WebRtcCallView__you_muted_yourself">നിങ്ങൾ മറ്റൊരു ഉപകരണത്തിൽ നിന്ന് നിങ്ങളെത്തന്നെ മ്യൂട്ട് ചെയ്തു.</string>
+
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">UI പിശക് സംഭവിച്ചു. ഈ പിശക് ഡെവലപ്പർമാർക്ക് റിപ്പോർട്ട് ചെയ്യൂ.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
@@ -2765,12 +2776,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">പിൻ പരിശോധിച്ചുറപ്പിച്ചു. ഒരാഴ്ച്ചയ്ക്കുള്ളിൽ ഞങ്ങൾ വീണ്ടും ഓർമ്മിപ്പിക്കാം.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">പിൻ പരിശോധിച്ചുറപ്പിച്ചു. ഏതാനും ആഴ്ച്ചകൾക്കുള്ളിൽ ഞങ്ങൾ വീണ്ടും ഓർമ്മിപ്പിക്കാം.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">പിൻ പരിശോധിച്ചുറപ്പിച്ചു. ഒരു മാസത്തിനുള്ളിൽ ഞങ്ങൾ വീണ്ടും ഓർമ്മിപ്പിക്കാം.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">ഞങ്ങൾ പിന്നീട് നിങ്ങളെ വീണ്ടും ഓർമ്മിപ്പിക്കും.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">നാളെ ഞങ്ങൾ നിങ്ങളെ വീണ്ടും ഓർമ്മിപ്പിക്കും.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">കുറച്ച് ദിവസങ്ങൾക്കുള്ളിൽ ഞങ്ങൾ നിങ്ങളെ വീണ്ടും ഓർമ്മിപ്പിക്കും.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">ഒരു ആഴ്ചയ്ക്കുള്ളിൽ ഞങ്ങൾ നിങ്ങളെ വീണ്ടും ഓർമ്മിപ്പിക്കും.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">രണ്ടാഴ്ചയ്ക്കുള്ളിൽ ഞങ്ങൾ നിങ്ങളെ വീണ്ടും ഓർമ്മിപ്പിക്കും.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">ഒരു മാസത്തിനുള്ളിൽ ഞങ്ങൾ നിങ്ങളെ വീണ്ടും ഓർമ്മിപ്പിക്കും.</string>
 
     <!-- Slide -->
     <string name="Slide_image">ചിത്രം</string>
@@ -2783,37 +2794,84 @@
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s സുരക്ഷ-സെഷൻ പുതുക്കി.</string>
     <string name="SmsMessageRecord_duplicate_message">ഡൂപ്ലിക്കേറ്റ് സന്ദേശം</string>
 
-    <!-- StickerManagementActivity -->
-    <string name="StickerManagementActivity_stickers">സ്റ്റിക്കറുകൾ</string>
-
+    <!-- Sticker management screen default title. -->
+    <string name="StickerManagement_title_stickers">സ്റ്റിക്കറുകൾ</string>
+    <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
+    <plurals name="StickerManagement_title_n_selected">
+        <item quantity="one">%1$s തിരഞ്ഞെടുത്തു</item>
+        <item quantity="other">%1$s തിരഞ്ഞെടുത്തു</item>
+    </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">ലഭ്യമാണ്</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
-    <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
-    <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_installed_tab_label">ഇൻസ്റ്റാൾ ചെയ്‌തു</string>
+    <!-- Shown when there are no sticker packs available for installation. -->
+    <string name="StickerManagement_available_tab_empty_text">സ്റ്റിക്കർ പായ്ക്കുകളൊന്നും ലഭ്യമല്ല</string>
+    <!-- Shown when there are no sticker packs currently installed. -->
+    <string name="StickerManagement_installed_tab_empty_text">സ്റ്റിക്കർ പായ്ക്കുകളൊന്നും ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല</string>
+    <!-- Message shown when the author of the sticker pack is unknown. -->
+    <string name="StickerManagement_author_unknown">അജ്ഞാതം</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">ഇൻസ്റ്റാളുചെയ്‌ത സ്റ്റിക്കറുകൾ</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">നിങ്ങൾക്ക് ലഭിച്ച സ്റ്റിക്കറുകൾ</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">Signal ആർട്ടിസ്റ്റ് സീരീസ്</string>
+    <!-- Title shown when sharing a sticker pack with another user. -->
+    <string name="StickerManagement_share_sheet_title">ഫോർവേഡ് ചെയ്യുക</string>
+    <!-- Bottom action bar option to select all sticker packs in the list. -->
+    <string name="StickerManagement_action_select_all">എല്ലാം തിരഞ്ഞെടുക്കുക</string>
+    <!-- Bottom action bar option to deselect all sticker packs in the list. -->
+    <string name="StickerManagement_action_deselect_all">തിരഞ്ഞെടുത്തത് റദ്ദാക്കുക</string>
+    <!-- Bottom action bar option to uninstall all selected sticker packs. -->
+    <string name="StickerManagement_action_delete_selected">ഇല്ലാതാക്കൂ</string>
+    <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation">
+        <item quantity="one">%1$s സ്റ്റിക്കർ പായ്ക്ക് നീക്കം ചെയ്യുക</item>
+        <item quantity="other">%1$s സ്റ്റിക്കർ പായ്ക്കുകൾ നീക്കം ചെയ്യുക</item>
+    </plurals>
+    <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
+    <string name="StickerManagement_installed_pack_s">%1$s ഇൻസ്റ്റാൾ ചെയ്തു.</string>
+    <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
+    <string name="StickerManagement_deleted_pack_s">%1$s നീക്കം ചെയ്തു.</string>
+    <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
+    <plurals name="StickerManagement_deleted_n_packs">
+        <item quantity="one">%1$s സ്റ്റിക്കർ പായ്ക്ക് നീക്കം ചെയ്തു.</item>
+        <item quantity="other">%1$s സ്റ്റിക്കർ പായ്ക്കുകൾ നീക്കം ചെയ്തു.</item>
+    </plurals>
+    <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
+    <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
+        <item quantity="one">%1$s sticker</item>
+        <item quantity="other">%1$s stickers</item>
+    </plurals>
+
+    <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
+    <string name="StickerManagement_menu_forward_pack">ഫോർവേഡ് ചെയ്യുക</string>
+    <!-- Sticker pack list dropdown menu label for the button to mark a sticker pack as selected in order to perform additional actions. -->
+    <string name="StickerManagement_menu_select_pack">തിരഞ്ഞെടുക്കൂ</string>
+    <!-- Sticker pack list dropdown menu label for the button to install a sticker pack. -->
+    <string name="StickerManagement_menu_install_pack">ഇൻസ്റ്റാൾ</string>
+    <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
+    <string name="StickerManagement_menu_remove_pack">നീക്കം ചെയ്യൂ</string>
+    <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
+    <string name="StickerManagement_menu_select_packs">സ്റ്റിക്കർ പായ്ക്കുകൾ തിരഞ്ഞെടുക്കുക</string>
+
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">%1$s സ്റ്റിക്കർ പായ്ക്ക് ഡൗൺലോഡ് ചെയ്യുക</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">ഡൗൺലോഡ് ചെയ്ത ചെക്ക്‌മാർക്ക്</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">ഡ്രാഗ് ആൻഡ് ഡ്രോപ്പ് ഹാൻഡിൽ</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">ഡൌൺലോഡ് ചെയ്യുക</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="StickerManagement_accessibility_open_top_bar_menu">മെനു തുറക്കുക</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_open_context_menu">കോൺടെക്സ്റ്റ് മെനു തുറക്കുക</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">തിരഞ്ഞെടുക്കൽ മോഡിൽ നിന്ന് പുറത്തുകടന്ന് തിരഞ്ഞെടുക്കലുകൾ മായ്‌ക്കുക</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_no_stickers_installed">സ്റ്റിക്കറുകളൊന്നും ഇൻസ്റ്റാൾ ചെയ്തിട്ടില്ല</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">വരുന്ന സന്ദേശങ്ങളിൽ നിന്നുള്ള സ്റ്റിക്കറുകൽ ഇവിടെ ദൃശ്യമാകും</string>
     <string name="StickerManagementAdapter_untitled">ശീർ‌ഷകമില്ലാത്തത്</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2842,7 +2900,7 @@
     <string name="SubmitDebugLogActivity_share">പങ്കിടുക</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">സംഭാവന നൽകുന്നവർക്ക് കാണുന്നതിന് ഈ ലോഗ് പരസ്യമായി ഓൺലൈനിൽ പോസ്റ്റുചെയ്യും. അപ്‌ലോഡ് ചെയ്യുന്നതിന് മുമ്പ് നിങ്ങൾക്ക് ഇത് പരിശോധിക്കാവുന്നതാണ്.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">സമർപ്പിക്കുക എന്നതിൽ നിങ്ങൾ ക്ലിക്ക് ചെയ്യുമ്പോൾ, നിങ്ങളുടെ ലോഗ് 30 ദിവസത്തേക്ക് തനതും പ്രസിദ്ധീകരിക്കാത്തതുമായ ഒരു URL-ൽ ഓൺലൈനിൽ പോസ്റ്റ് ചെയ്യും. നിങ്ങൾ അത് ആദ്യം പ്രാദേശികമായി സംരക്ഷിക്കേണ്ടതാണ്.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3013,10 +3071,6 @@
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">നിലവിലില്ലാത്ത സെഷനായി സന്ദേശം എൻ‌ക്രിപ്റ്റ് ചെയ്തു</string>
-
-    <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">മോശമായ എൻ‌ക്രിപ്റ്റ് ചെയ്ത MMS സന്ദേശം</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">നിലവിലില്ലാത്ത സെഷനായി MMS സന്ദേശം എൻ‌ക്രിപ്റ്റ് ചെയ്തു</string>
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">അറിയിപ്പുകൾ മ്യൂട്ട് ചെയ്യുക</string>
@@ -3747,7 +3801,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">വേണ്ട</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">സമീപകാലത്ത് ഉപയോഗിച്ചവ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ഈ സന്ദേശം</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">അടുത്തിടെ ഉപയോഗിച്ചവ</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">സ്മൈലി &amp; ആളുകൾ</string>
@@ -3762,15 +3816,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ഫലങ്ങളൊന്നുമില്ല.</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">സമീപകാലത്ത് ഉപയോഗിച്ചവ</string>
+    <string name="GifQuickSearchOption__trending">ട്രെൻഡിംഗ്</string>
+    <string name="GifQuickSearchOption__celebrate">ആഘോഷിക്കൂ</string>
+    <string name="GifQuickSearchOption__love">സ്നേഹം</string>
+    <string name="GifQuickSearchOption__thumbs_up">വിജയചിഹ്നം</string>
+    <string name="GifQuickSearchOption__surprised">അത്ഭുതപ്പെട്ടത്</string>
+    <string name="GifQuickSearchOption__excited">ആവേശഭരിതം</string>
+    <string name="GifQuickSearchOption__sad">ദുഃഖം</string>
+    <string name="GifQuickSearchOption__angry">ദേഷ്യം</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">സ്ഥിരസ്ഥിതി ഉപയോഗിക്കുക</string>
@@ -4367,7 +4421,7 @@
     <string name="conversation_list_fragment__open_camera_description">ക്യാമറ തുറക്കുക</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ഇതുവരെ ചാറ്റുകളൊന്നുമില്ല.\nഒരു സുഹൃത്തിന് സന്ദേശമയച്ചുകൊണ്ട് ആരംഭിക്കുക.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">ആർക്കൈവ് ചെയ്ത ചാറ്റുകൾ ഇവിടെ ദൃശ്യമാകും.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">പ്രദർശിപ്പിക്കാൻ ചാറ്റുകളൊന്നുമില്ല</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4721,6 +4775,14 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">നിങ്ങൾ വളരെയധികം ശ്രമങ്ങൾ നടത്തി. പിന്നീട് വീണ്ടും ശ്രമിക്കുക.</string>
     <string name="RegistrationActivity_error_connecting_to_service">സേവനത്തിലേക്ക് ബന്ധപ്പിക്കുന്നതിൽ പിശക്</string>
     <string name="preferences_chats__backups">ബാക്കപ്പുകൾ</string>
+
+    <!-- Button label to indicate that a feature is in beta mode -->
+    <string name="Beta__beta_title">ബീറ്റ</string>
+    <!-- Content description for info icon -->
+    <string name="Beta__info">വിവരങ്ങൾ</string>
+    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
+    <string name="Beta__this_is_beta">ഇതൊരു ബീറ്റാ സവിശേഷതയാണ്, ഞങ്ങൾ തുടർച്ചയായി ഇതിലേക്ക് പ്രവർത്തനം ചേർക്കും.</string>
+
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal അൺലോക്ക് ചെയ്യുക</string>
     <!-- Description text explaining how to unlock Signal -->
@@ -5743,7 +5805,7 @@
     <string name="ConversationSettingsFragment__phone_number">ഫോൺ നമ്പർ</string>
     <string name="ConversationSettingsFragment__get_badges">Signal-നെ പിന്തുണച്ച് നിങ്ങളുടെ പ്രൊഫൈലിനായി ബാഡ്‌ജുകൾ കരസ്ഥമാക്കൂ. കൂടുതലറിയാൻ ഒരു ബാഡ്‌ജിൽ ടാപ്പ് ചെയ്യുക.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">ഈ മീഡിയ ഇതുവരെ അയച്ചിട്ടില്ല.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">അംഗങ്ങളെ ചേർക്കുക</string>
@@ -5796,6 +5858,8 @@
     <string name="NewConversationActivity__s_has_been_removed">%1$s എന്നയാളെ നീക്കം ചെയ്‌തു</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s എന്നയാളെ ബ്ലോക്ക് ചെയ്തു</string>
+    <!-- Snackbar message when blocking a contact has failed -->
+    <string name="NewConversationActivity__block_failed">തടയൽ പരാജയപ്പെട്ടു</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">%1$s എന്നയാളെ നീക്കം ചെയ്യാനായില്ല</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -7102,34 +7166,6 @@
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">സംഭാവന സ്ഥിരീകരിക്കാൻ Signal-ൽ നിന്ന് പുറത്ത് കടക്കണോ?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">സ്ഥിരീകരിച്ചുകഴിഞ്ഞാൽ, നിങ്ങളുടെ സംഭാവന പ്രോസസ് ചെയ്യുന്നത് പൂർത്തിയാക്കാൻ Signal-ലേക്ക് മടങ്ങുക.</string>
 
-    <!-- IdealBank -->
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__abn_amro">ABN AMRO</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__asn_bank">ASN Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__bunq">bunq</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__ing">ING</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__knab">Knab</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__n26">N26</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__rabobank">Rabobank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__regiobank">RegioBank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__revolut">Revolut</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__sns_bank">SNS Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__triodos_bank">Triodos Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__yoursafe">Yoursafe</string>
-
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
     <string name="BankTransferMandateFragment__bank_transfer">ബാങ്ക് കൈമാറ്റം</string>
@@ -7190,7 +7226,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">നിങ്ങളുടെ ബാങ്ക് തിരഞ്ഞെടുക്കുക</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">%1$s എന്നതുമായുള്ള നിങ്ങളുടെ സംഭാവന സ്ഥിരീകരിക്കുക</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">iDEAL ഉപയോഗിച്ച് നിങ്ങളുടെ സംഭാവന സ്ഥിരീകരിക്കുക</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">ആവർത്തിച്ചുള്ള സംഭാവന സജ്ജീകരിക്കാൻ, €0,01 നിരക്ക് നിങ്ങളുടെ ബാങ്കുമായി സ്ഥിരീകരിക്കാൻ \'തുടരുക\' ടാപ്പ് ചെയ്യുക. ഇത് ഓട്ടോമാറ്റിയ്ക്കായി റീഫണ്ട് ചെയ്യുകയും നിങ്ങളുടെ അക്കൗണ്ടിൽ നിന്ന് %1$s/മാസം സംഭാവന ഡെബിറ്റ് ചെയ്യാൻ അനുവദിക്കുകയും ചെയ്യും.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7370,6 +7406,8 @@
     <string name="CallLogAdapter__start_a_video_call">വീഡിയോ കോൾ ആരംഭിക്കുക</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">വോയ്സ് കോൾ ആരംഭിച്ചു</string>
+    <!-- Notice on call log when no missed calls are available, centered on display -->
+    <string name="CallLogAdapter__no_missed_calls">മിസ്ഡ് കോളുകളൊന്നുമില്ല</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -7802,6 +7840,12 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">നിങ്ങളുടെ ബാക്കപ്പ് സബ്‌സ്‌ക്രിപ്‌ഷൻ പുതുക്കാനായില്ല</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">നിങ്ങളുടെ പേയ്‌മെൻ്റ് രീതി അപ് ടു ഡേറ്റ് ആണെന്ന് ഉറപ്പാക്കാൻ പരിശോധിക്കുക. സബ്‌സ്‌ക്രിപ്‌ഷൻ മാനേജ് ചെയ്യുക ടാപ്പുചെയ്‌ത് പേയ്‌മെൻ്റ് രീതികൾക്ക് കീഴിൽ അപ്‌ഡേറ്റ് ടാപ്പ് ചെയ്യുക.</string>
+    <!-- Sheet title for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">നിങ്ങളുടെ ബാക്കപ്പ് സബ്സ്ക്രിപ്ഷൻ കാലഹരണപ്പെട്ടു</string>
+    <!-- Sheet body part 1 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">നിങ്ങളുടെ പേയ്‌മെന്റ് രീതി ഉപയോഗിച്ച് സബ്സ്ക്രിപ്ഷൻ പുതുക്കാൻ കഴിഞ്ഞില്ല. മീഡിയ ബാക്കപ്പ് ചെയ്യുന്നത് തുടരാൻ നിങ്ങൾക്ക് ഒരു സജീവ സബ്സ്ക്രിപ്ഷൻ ആവശ്യമാണ്.</string>
+    <!-- Sheet body part 2 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">സൗജന്യ Signal ബാക്കപ്പ് പ്ലാനിലേക്ക് നിങ്ങൾക്ക് തുടർന്നും ആക്‌സസ് ഉണ്ടായിരിക്കും.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">ബാക്കപ്പ് പൂർത്തിയാക്കാൻ കഴിഞ്ഞില്ല</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7813,6 +7857,8 @@
     <string name="BackupAlertBottomSheet__learn_more">കൂടുതലറിയുക</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
+    <!-- Primary action button to open backups management screen -->
+    <string name="BackupAlertBottomSheet__manage_backups">ബാക്കപ്പുകൾ കൈകാര്യം ചെയ്യുക</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">ഇപ്പോൾ ബാക്കപ്പ് ചെയ്യുക</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -7864,11 +7910,13 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">മീഡിയ പുനഃസ്ഥാപിക്കുന്നു</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">പുനഃസ്ഥാപിക്കൽ താൽക്കാലികമായി നിർത്തി</string>
+    <string name="BackupStatus__restore_paused">മീഡിയ പുനഃസ്ഥാപിക്കൽ താൽക്കാലികമായി നിർത്തി</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">പുനഃസ്ഥാപിക്കൽ പൂർത്തിയായി</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">വിശദാംശങ്ങൾ</string>
+    <!-- Status action label for resume restore from a paused state -->
+    <string name="BackupStatus__resume">പുനരാരംഭിക്കുക</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">Wi-Fi-യ്‌ക്കായി കാത്തിരിക്കുന്നു…</string>
@@ -7890,6 +7938,14 @@
     <string name="BackupStatusRow__restore_no_internet">പുനഃസ്ഥാപിക്കൽ താൽക്കാലികമായി നിർത്തി: ഇൻ്റർനെറ്റ് ഇല്ല…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">പുനഃസ്ഥാപിക്കൽ താൽക്കാലികമായി നിർത്തി: ഉപകരണത്തിന് ബാറ്ററി കുറവാണ്</string>
+    <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">ഡൗൺലോഡ് ചെയ്യുന്നു: %1$s / %2$s (%3$s%%)</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
+    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
+    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
+    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">നിങ്ങളുടെ ബാക്കപ്പ് ഡൗൺലോഡ് ചെയ്യാൻ മതിയായ ഇടമില്ല. തുടരാൻ %1$s ഇടം ശൂന്യമാക്കുക.</string>
     <!-- Text row label to skip download -->
@@ -7900,6 +7956,11 @@
     <string name="BackupStatusRow__your_last_backup_latest_version">നിങ്ങളുടെ അവസാന ബാക്കപ്പ് പൂർത്തിയാക്കാനായില്ല. Signal-ന്റെ ഏറ്റവും പുതിയ പതിപ്പാണ് നിങ്ങൾ ഉപയോഗിക്കുന്നതെന്ന് ഉറപ്പാക്കിയതിന് ശേഷം വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">കൂടുതലറിയുക</string>
+
+    <!-- Dialog title to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">സെല്ലുലാർ ഡാറ്റ ഉപയോഗിച്ച് പുനരാരംഭിക്കണോ?</string>
+    <!-- Dialog message to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">സെല്ലുലാർ ഡാറ്റ ഉപയോഗിച്ച് നിങ്ങളുടെ മീഡിയ പുനഃസ്ഥാപിക്കുന്നത് ഡാറ്റ നിരക്കുകൾക്ക് കാരണമായേക്കാം. സ്വയമേവ പുനരാരംഭിക്കുന്നതിന് നിങ്ങൾക്ക് ഒരു Wi-Fi നെറ്റ്‌വർക്കിലേക്ക് കണക്റ്റുചെയ്യാനാകും.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7992,6 +8053,8 @@
     <string name="BackupsSettingsFragment_set_up">സജ്ജമാക്കുക</string>
 
     <!-- RemoteBackupsSettingsFragment -->
+    <!-- Content description for canceling backup upload -->
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">അപ്‌ലോഡ് റദ്ദാക്കുക</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal ബാക്കപ്പുകൾ</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8000,8 +8063,8 @@
     <string name="RemoteBackupsSettingsFragment__payment_history">പേയ്മെൻ്റ് ചരിത്രം</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">ബാക്കപ്പ് വിശദാംശങ്ങൾ</string>
-    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">മൊബൈൽ നെറ്റ്‌വർക്ക് വഴി പുനഃസ്ഥാപിക്കുക</string>
+    <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__resume_download">ഡൗൺലോഡ് പുനരാരംഭിക്കുക</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">ബാക്കപ്പ് വലുപ്പം</string>
     <!-- Row label for backup frequency -->
@@ -8071,7 +8134,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">ബാക്കപ്പുകൾ ഓഫാക്കി ഇല്ലാതാക്കണോ?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">നിങ്ങളിൽ നിന്ന് വീണ്ടും നിരക്ക് ഈടാക്കില്ല. നിങ്ങളുടെ ബാക്കപ്പ് ഇല്ലാതാക്കപ്പെടും, പുതിയ ബാക്കപ്പുകളൊന്നും സൃഷ്ടിക്കപ്പെടില്ല.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ഓഫ് ചെയ്‌ത ശേഷം ഇല്ലാതാക്കുക</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8098,6 +8161,8 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">നിങ്ങളുടെ ബാക്കപ്പ് ഡൗൺലോഡ് ചെയ്യുന്നു</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">നിങ്ങളുടെ ബാക്കപ്പിൻ്റെ വലുപ്പത്തെ ആശ്രയിച്ച്, ഇതിന് വളരെയധികം സമയമെടുത്തേക്കാം. ഡൗൺലോഡ് നടക്കുമ്പോൾ നിങ്ങൾ സാധാരണ ഉപയോഗിക്കുന്നതുപോലെ നിങ്ങളുടെ ഫോൺ ഉപയോഗിക്കാം.</string>
+    <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">ഈ ഉപകരണത്തിൽ നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ കണ്ടെത്തിയില്ല. Signal ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരാൻ പുതുക്കുക.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">ഈ ഉപകരണത്തിലെ നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ അടുത്ത %1$d ദിവസത്തേക്ക് സാധുതയുള്ളതാണ്. Signal ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരാൻ പുതുക്കുക</item>
@@ -8121,17 +8186,27 @@
         <item quantity="one">ഈ ഉപകരണത്തിൽ ഇല്ലാത്ത %1$s ബാക്കപ്പ് ഡാറ്റ നിങ്ങളുടെ പക്കലുണ്ട്. നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ %2$d ദിവസത്തിനുള്ളിൽ അവസാനിക്കുമ്പോൾ നിങ്ങളുടെ ബാക്കപ്പ് ഇല്ലാതാക്കപ്പെടും.</item>
         <item quantity="other">ഈ ഉപകരണത്തിൽ ഇല്ലാത്ത %1$s ബാക്കപ്പ് ഡാറ്റ നിങ്ങളുടെ പക്കലുണ്ട്. നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ %2$d ദിവസത്തിനുള്ളിൽ അവസാനിക്കുമ്പോൾ നിങ്ങളുടെ ബാക്കപ്പ് ഇല്ലാതാക്കപ്പെടും.</item>
     </plurals>
+    <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">ഈ ഉപകരണത്തിൽ ഇല്ലാത്ത %1$s ബാക്കപ്പ് ഡാറ്റ നിങ്ങളുടെ പക്കലുണ്ട്. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">ഡൌൺലോഡ് ചെയ്യുക</string>
     <!-- Dialog title for skipping download of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_download_question">ഡൗൺലോഡ് ഒഴിവാക്കണോ?</string>
-    <!-- Dialog body for skiping download of backed up media -->
+    <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="one">നിങ്ങൾ ഡൗൺലോഡ് ചെയ്യുന്നത് ഒഴിവാക്കുകയാണെങ്കിൽ, നിങ്ങളുടെ ബാക്കപ്പിലെ ശേഷിക്കുന്ന മീഡിയയും അറ്റാച്ച്‌മെൻ്റുകളും %1$d ദിവസത്തിനുള്ളിൽ ഇല്ലാതാക്കപ്പെടും.</item>
         <item quantity="other">നിങ്ങൾ ഡൗൺലോഡ് ചെയ്യുന്നത് ഒഴിവാക്കുകയാണെങ്കിൽ, നിങ്ങളുടെ ബാക്കപ്പിലെ ശേഷിക്കുന്ന മീഡിയയും അറ്റാച്ച്‌മെൻ്റുകളും %1$d ദിവസത്തിനുള്ളിൽ ഇല്ലാതാക്കപ്പെടും.</item>
     </plurals>
+    <!-- Dialog body for skipping download of backed up media during deletion -->
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_question">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കണോ?</string>
+    <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കിയാൽ, നിങ്ങളുടെ ബാക്കപ്പിലെ ശേഷിക്കുന്ന മീഡിയയും അറ്റാച്ചുമെന്റുകളും പിന്നീട് ഡൗൺലോഡ് ചെയ്യാൻ കഴിയും.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">ഒഴിവാക്കുക</string>
+    <!-- Positive dialog action to skip download during deletion -->
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">ബാക്കപ്പുകൾ ഓഫാക്കാനും ഇല്ലാതാക്കാനും കഴിഞ്ഞില്ല</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8140,6 +8215,20 @@
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">അപ്‌ലോഡ് ചെയ്യുന്നു: %1$s / %2$s (%3$d%%)</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">വിശദാംശങ്ങൾ</string>
+    <!-- Text displayed when there was an error deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <!-- Text displayed as the title in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed to delete backup</string>
+    <!-- Text displayed as the body in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">An error occurred. Please contact support.</string>
+    <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <!-- Text displayed while we are processing a backup delete -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups have been turned off and your data will be deleted from Signal\'s secure storage service.</string>
+    <!-- Text displayed after we have deleted a user\'s backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
+    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">ഡൗൺലോഡ് ചെയ്യുന്നു: %1$s / %2$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8164,6 +8253,8 @@
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">ഒരു നെറ്റ്‌വർക്ക് തകരാർ സംഭവിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കൂ.</string>
+    <!-- Toast message if this fragment encounters an in progress deletion -->
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8196,6 +8287,18 @@
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">നിങ്ങളുടെ അക്കൗണ്ടും ഡാറ്റയും വീണ്ടെടുക്കാൻ ഈ കീ ആവശ്യമാണ്. ഈ കീ സുരക്ഷിതമായ ഒരിടത്ത് സൂക്ഷിക്കുക. നിങ്ങൾക്കത് നഷ്‌ടപ്പെടുകയാണെങ്കിൽ, നിങ്ങളുടെ അക്കൗണ്ട് വീണ്ടെടുക്കാൻ നിങ്ങൾക്ക് കഴിയില്ല.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തൂ</string>
+    <!-- Label for the button to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">അടുത്തത്</string>
     <!-- Bottom sheet title -->
@@ -8228,9 +8331,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">എല്ലാ ബാക്കപ്പുകളും എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റ് ചെയ്തിരിക്കുന്നു. Signal ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്നു-ബാക്കപ്പുകൾക്ക് പണം നൽകുന്നത് ഞങ്ങളുടെ ദൗത്യത്തെ പിന്തുണയ്ക്കാൻ സഹായിക്കുന്നു.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__read_more">കൂടുതൽ വായിക്കുക</string>
-    <!-- Primary action button label when selecting a backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__next">അടുത്തത്</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">കൂടുതലറിയുക</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <!-- Primary action button label when selecting the paid backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">പ്രതിമാസം %1$s/-ന് സബ്‌സ്‌ക്രൈബ് ചെയ്യുക</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">ബാക്കപ്പ് തരം മാറ്റുക</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
@@ -8426,15 +8531,25 @@
     <string name="NoBackupToRestore_skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">തിരയൽ അടയ്ക്കുക</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">തിരച്ചിലുകൾ മായ്‌ക്കുക</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">കൂടുതൽ ഓപ്‌ഷനുകൾ</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">അറിയിപ്പ് പ്രൊഫൈൽ</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">പ്രോക്സി</string>
+
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">മുകളിലേക്ക് നാവിഗേറ്റ് ചെയ്യുക</string>
+
+    <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
+    <string name="SignalCheckbox_accessibility_on_click_label">ടോഗിൾ ചെയ്യുക</string>
+    <!-- Accessibility label describing a checked checkbox. -->
+    <string name="SignalCheckbox_accessibility_checked_description">ചെക്ക് മാർക്കിട്ടു</string>
+    <!-- Accessibility label describing an unchecked checkbox. -->
+    <string name="SignalCheckbox_accessibility_unchecked_description">ചെക്ക് മാർക്കിട്ടില്ല</string>
 
     <!-- EOF -->
 </resources>

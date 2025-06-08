@@ -651,6 +651,28 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   /**
+   * Returns whether or not there are chats in a chat folder
+   */
+  fun hasChatInFolder(folder: ChatFolderRecord): Boolean {
+    val chatFolderQuery = folder.toQuery()
+
+    val hasChats =
+      """
+      SELECT EXISTS(
+        SELECT 1
+        FROM $TABLE_NAME
+          LEFT OUTER JOIN ${RecipientTable.TABLE_NAME} ON $TABLE_NAME.$RECIPIENT_ID = ${RecipientTable.TABLE_NAME}.${RecipientTable.ID}
+        WHERE 
+          $ARCHIVED = 0
+          $chatFolderQuery 
+        LIMIT 1
+      )
+      """
+
+    return readableDatabase.rawQuery(hasChats, null).readToSingleBoolean()
+  }
+
+  /**
    * Returns whether or not there are any unmuted chats in a chat folder
    */
   fun hasUnmutedChatsInFolder(folder: ChatFolderRecord): Boolean {
@@ -962,9 +984,19 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun getArchivedRecipients(): Set<RecipientId> {
-    return getArchivedConversationList(ConversationFilter.OFF).readToList { cursor ->
-      RecipientId.from(cursor.requireLong(RECIPIENT_ID))
-    }.toSet()
+    var offset = 0L
+    val result = mutableSetOf<RecipientId>()
+
+    do {
+      val recipientIds = getArchivedConversationList(ConversationFilter.OFF, offset, 500).readToList { cursor ->
+        RecipientId.from(cursor.requireLong(RECIPIENT_ID))
+      }
+
+      result.addAll(recipientIds)
+      offset += recipientIds.size
+    } while (recipientIds.isNotEmpty())
+
+    return result
   }
 
   fun getInboxPositions(): Map<RecipientId, Int> {

@@ -89,7 +89,7 @@ class RestoreViaQrFragment : ComposeFragment() {
           .distinctUntilChanged()
           .collect { message ->
             if (message.platform == RegistrationProvisionMessage.Platform.ANDROID || message.tier != null) {
-              sharedViewModel.registerWithBackupKey(requireContext(), message.accountEntropyPool, message.e164, message.pin)
+              sharedViewModel.registerWithBackupKey(requireContext(), message.accountEntropyPool, message.e164, message.pin, message.aciIdentityKeyPair, message.pniIdentityKeyPair)
             } else {
               findNavController().safeNavigate(RestoreViaQrFragmentDirections.goToNoBackupToRestore())
             }

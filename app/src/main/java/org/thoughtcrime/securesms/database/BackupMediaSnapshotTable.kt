@@ -6,17 +6,22 @@
 package org.thoughtcrime.securesms.database
 
 import android.content.Context
+import android.database.Cursor
 import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
+import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
+import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
 import org.signal.core.util.toInt
+import org.signal.core.util.update
+import org.signal.core.util.updateAll
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 
 /**
@@ -61,6 +66,11 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     const val IS_THUMBNAIL = "is_thumbnail"
 
     /**
+     * Timestamp when media was last seen on archive cdn. Can be reset to default.
+     */
+    const val LAST_SEEN_ON_REMOTE_TIMESTAMP = "last_seen_on_remote_timestamp"
+
+    /**
      * The remote digest for the media object. This is used to find matching attachments in the attachment table when necessary.
      */
     const val REMOTE_DIGEST = "remote_digest"
@@ -73,7 +83,8 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
         $LAST_SYNC_TIME INTEGER DEFAULT 0,
         $PENDING_SYNC_TIME INTEGER,
         $IS_THUMBNAIL INTEGER DEFAULT 0,
-        $REMOTE_DIGEST BLOB NOT NULL
+        $REMOTE_DIGEST BLOB NOT NULL,
+        $LAST_SEEN_ON_REMOTE_TIMESTAMP INTEGER DEFAULT 0
       )
     """.trimIndent()
   }
@@ -127,29 +138,31 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
   /**
    * Given a list of media objects, find the ones that we have no knowledge of in our local store.
    */
-  fun getMediaObjectsThatCantBeFound(objects: List<ArchivedMediaObject>): Set<ArchivedMediaObject> {
+  fun getMediaObjectsThatCantBeFound(objects: List<ArchivedMediaObject>): List<ArchivedMediaObject> {
     if (objects.isEmpty()) {
-      return emptySet()
+      return emptyList()
     }
 
-    val query = SqlUtil.buildSingleCollectionQuery(
+    val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(
       column = MEDIA_ID,
       values = objects.map { it.mediaId },
-      collectionOperator = SqlUtil.CollectionOperator.NOT_IN,
-      prefix = "$IS_THUMBNAIL = 0 AND "
+      collectionOperator = SqlUtil.CollectionOperator.IN
     )
 
-    return readableDatabase
-      .select(MEDIA_ID, CDN)
-      .from(TABLE_NAME)
-      .where(query.where, query.whereArgs)
-      .run()
-      .readToSet {
-        ArchivedMediaObject(
-          mediaId = it.requireNonNullString(MEDIA_ID),
-          cdn = it.requireInt(CDN)
-        )
-      }
+    val foundObjects: MutableSet<String> = mutableSetOf()
+
+    for (query in queries) {
+      foundObjects += readableDatabase
+        .select(MEDIA_ID, CDN)
+        .from(TABLE_NAME)
+        .where(query.where, query.whereArgs)
+        .run()
+        .readToSet {
+          it.requireNonNullString(MEDIA_ID)
+        }
+    }
+
+    return objects.filterNot { foundObjects.contains(it.mediaId) }
   }
 
   /**
@@ -175,6 +188,47 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
         cdn = cursor.requireInt(CDN)
       )
     }
+  }
+
+  /**
+   * Indicate the time that the set of media objects were seen on the archive CDN. Can be used to reconcile our local state with the server state.
+   */
+  fun markSeenOnRemote(mediaIdBatch: Collection<String>, time: Long) {
+    if (mediaIdBatch.isEmpty()) {
+      return
+    }
+
+    val query = SqlUtil.buildFastCollectionQuery(MEDIA_ID, mediaIdBatch)
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(LAST_SEEN_ON_REMOTE_TIMESTAMP to time)
+      .where(query.where, query.whereArgs)
+      .run()
+  }
+
+  /**
+   * Get all media objects who were last seen on the remote server before the given time.
+   * This is used to find media objects that have not been seen on the CDN, even though they should be.
+   *
+   * The cursor contains rows that can be parsed into [MediaEntry] objects.
+   */
+  fun getMediaObjectsLastSeenOnCdnBeforeTime(time: Long): Cursor {
+    return readableDatabase
+      .select(MEDIA_ID, CDN, REMOTE_DIGEST, IS_THUMBNAIL)
+      .from(TABLE_NAME)
+      .where("$LAST_SEEN_ON_REMOTE_TIMESTAMP < $time")
+      .run()
+  }
+
+  /**
+   * Resets the [LAST_SEEN_ON_REMOTE_TIMESTAMP] column back to zero. It's a good idea to do this after you have run a sync and used the value, as it can
+   * mitigate various issues that can arise from having an incorrect local clock.
+   */
+  fun clearLastSeenOnRemote() {
+    writableDatabase
+      .updateAll(TABLE_NAME)
+      .values(LAST_SEEN_ON_REMOTE_TIMESTAMP to 0)
+      .run()
   }
 
   private fun writePendingMediaObjectsChunk(chunk: List<MediaEntry>, pendingSyncTime: Long) {
@@ -204,7 +258,7 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
   class ArchiveMediaItem(
     val mediaId: String,
     val thumbnailMediaId: String,
-    val cdn: Int,
+    val cdn: Int?,
     val digest: ByteArray
   )
 
@@ -213,10 +267,21 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     val cdn: Int
   )
 
-  private data class MediaEntry(
+  class MediaEntry(
     val mediaId: String,
-    val cdn: Int,
+    val cdn: Int?,
     val digest: ByteArray,
     val isThumbnail: Boolean
-  )
+  ) {
+    companion object {
+      fun fromCursor(cursor: Cursor): MediaEntry {
+        return MediaEntry(
+          mediaId = cursor.requireNonNullString(MEDIA_ID),
+          cdn = cursor.requireIntOrNull(CDN),
+          digest = cursor.requireNonNullBlob(REMOTE_DIGEST),
+          isThumbnail = cursor.requireBoolean(IS_THUMBNAIL)
+        )
+      }
+    }
+  }
 }

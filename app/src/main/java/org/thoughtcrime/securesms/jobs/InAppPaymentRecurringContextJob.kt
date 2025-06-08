@@ -13,6 +13,7 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredential
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toInAppPaymentDataChargeFailure
@@ -102,7 +103,12 @@ class InAppPaymentRecurringContextJob private constructor(
     warning("A permanent failure occurred.")
 
     val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
-    if (inAppPayment != null && inAppPayment.data.error == null) {
+    val isRedeemed = inAppPayment?.state == InAppPaymentTable.State.END && inAppPayment.data.redemption?.stage != InAppPaymentData.RedemptionState.Stage.REDEEMED
+    if (isRedeemed) {
+      info("Already redeemed. Exiting quietly.")
+      return
+    } else if (inAppPayment != null && inAppPayment.data.error == null) {
+      warning("Unredeemed payment failed.")
       SignalDatabase.inAppPayments.update(
         inAppPayment.copy(
           notified = false,
@@ -243,6 +249,10 @@ class InAppPaymentRecurringContextJob private constructor(
         ).build()
       )
     )
+
+    if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+      BackupRepository.enablePaidBackupTier()
+    }
   }
 
   private fun getAndValidateInAppPayment(): Pair<InAppPaymentTable.InAppPayment, ReceiptCredentialRequestContext> {

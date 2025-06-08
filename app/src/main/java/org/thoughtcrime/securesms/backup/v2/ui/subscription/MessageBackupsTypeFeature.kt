@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
 import androidx.compose.material3.LocalContentColor
 import androidx.compose.material3.MaterialTheme
@@ -47,7 +48,7 @@ fun MessageBackupsTypeFeatureRow(
       painter = painterResource(id = messageBackupsTypeFeature.iconResourceId),
       contentDescription = null,
       tint = iconTint,
-      modifier = Modifier.padding(end = 8.dp)
+      modifier = Modifier.padding(end = 8.dp).size(20.dp)
     )
 
     Text(

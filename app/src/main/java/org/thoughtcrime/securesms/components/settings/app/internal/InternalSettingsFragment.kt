@@ -568,15 +568,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       radioListPref(
-        title = DSLSettingsText.from("Audio processing method"),
-        listItems = CallManager.AudioProcessingMethod.entries.map { it.name }.toTypedArray(),
-        selected = CallManager.AudioProcessingMethod.entries.indexOf(state.callingAudioProcessingMethod),
-        onSelected = {
-          viewModel.setInternalCallingAudioProcessingMethod(CallManager.AudioProcessingMethod.entries[it])
-        }
-      )
-
-      radioListPref(
         title = DSLSettingsText.from("Bandwidth mode"),
         listItems = CallManager.DataMode.entries.map { it.name }.toTypedArray(),
         selected = CallManager.DataMode.entries.indexOf(state.callingDataMode),
@@ -594,10 +585,55 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from("Enable Oboe ADM"),
-        isChecked = state.callingEnableOboeAdm,
+        title = DSLSettingsText.from("Set Audio Config:"),
+        isChecked = state.callingSetAudioConfig,
         onClick = {
-          viewModel.setInternalCallingEnableOboeAdm(!state.callingEnableOboeAdm)
+          viewModel.setInternalCallingSetAudioConfig(!state.callingSetAudioConfig)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Oboe ADM"),
+        isChecked = state.callingUseOboeAdm,
+        isEnabled = state.callingSetAudioConfig,
+        onClick = {
+          viewModel.setInternalCallingUseOboeAdm(!state.callingUseOboeAdm)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Software AEC"),
+        isChecked = state.callingUseSoftwareAec,
+        isEnabled = state.callingSetAudioConfig,
+        onClick = {
+          viewModel.setInternalCallingUseSoftwareAec(!state.callingUseSoftwareAec)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Software NS"),
+        isChecked = state.callingUseSoftwareNs,
+        isEnabled = state.callingSetAudioConfig,
+        onClick = {
+          viewModel.setInternalCallingUseSoftwareNs(!state.callingUseSoftwareNs)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Input Low Latency"),
+        isChecked = state.callingUseInputLowLatency,
+        isEnabled = state.callingSetAudioConfig,
+        onClick = {
+          viewModel.setInternalCallingUseInputLowLatency(!state.callingUseInputLowLatency)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Input Voice Comm"),
+        isChecked = state.callingUseInputVoiceComm,
+        isEnabled = state.callingSetAudioConfig,
+        onClick = {
+          viewModel.setInternalCallingUseInputVoiceComm(!state.callingUseInputVoiceComm)
         }
       )
 
@@ -631,8 +667,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         clickPref(
           title = DSLSettingsText.from("Clear keep-alive timestamps"),
           onClick = {
-            SignalStore.inAppPayments.subscriptionEndOfPeriodRedemptionStarted = 0L
-            SignalStore.inAppPayments.subscriptionEndOfPeriodConversionStarted = 0L
             SignalStore.inAppPayments.setLastEndOfPeriod(0L)
             Toast.makeText(context, "Cleared", Toast.LENGTH_SHORT).show()
           }

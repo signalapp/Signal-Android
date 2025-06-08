@@ -8,7 +8,7 @@ package org.thoughtcrime.securesms.jobs
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -268,10 +268,7 @@ class InAppPaymentRedemptionJob private constructor(
     )
 
     if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
-      Log.i(TAG, "Setting backup tier to PAID", true)
-      SignalStore.backup.backupTier = MessageBackupTier.PAID
-      SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
-      SignalStore.backup.lastCheckInSnoozeMillis = 0
+      BackupRepository.enablePaidBackupTier()
     }
   }
 

@@ -30,8 +30,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
@@ -77,7 +79,7 @@ class ChatFoldersFragment : ComposeFragment() {
     Scaffolds.Settings(
       title = stringResource(id = R.string.ChatsSettingsFragment__chat_folders),
       onNavigationClick = { requireActivity().onNavigateUp() },
-      navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
+      navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding: PaddingValues ->
       FoldersScreen(
@@ -285,6 +287,7 @@ fun FolderRow(
   showDragHandle: Boolean = false
 ) {
   val menuController = remember { DropdownMenus.MenuController() }
+  val haptics = LocalHapticFeedback.current
 
   Row(
     verticalAlignment = Alignment.CenterVertically,
@@ -292,7 +295,10 @@ fun FolderRow(
       modifier
         .combinedClickable(
           onClick = onClick,
-          onLongClick = { menuController.show() }
+          onLongClick = {
+            haptics.performHapticFeedback(HapticFeedbackType.LongPress)
+            menuController.show()
+          }
         )
         .fillMaxWidth()
         .defaultMinSize(minHeight = dimensionResource(id = R.dimen.chat_folder_row_height))

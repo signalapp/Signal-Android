@@ -15,9 +15,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.map
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.ItemTouchHelper
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.Stopwatch
-import org.signal.core.util.concurrent.LifecycleDisposable
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
 import org.thoughtcrime.securesms.conversation.ManageContextMenu
@@ -25,7 +23,6 @@ import org.thoughtcrime.securesms.databinding.V2MediaGalleryFragmentBinding
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaRepository
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
-import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaGalleryGridItemTouchListener
 import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.permissions.Permissions
@@ -48,10 +45,6 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     factoryProducer = { MediaGalleryViewModel.Factory(null, null, MediaGalleryRepository(requireContext(), MediaRepository())) }
   )
 
-  private val sharedViewModel: MediaSelectionViewModel by viewModels(
-    ownerProducer = { requireActivity() }
-  )
-
   private lateinit var callbacks: Callbacks
 
   private var selectedMediaTouchHelper: ItemTouchHelper? = null
@@ -59,10 +52,9 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
 
   private val galleryAdapter = MappingAdapter()
   private val selectedAdapter = MappingAdapter()
+  private val mediaGalleryGridItemTouchListener = MediaGalleryGridItemTouchListener()
 
   private val viewStateLiveData = MutableLiveData(ViewState())
-
-  private val lifecycleDisposable = LifecycleDisposable()
 
   private val onBackPressedCallback: OnBackPressedCallback = object : OnBackPressedCallback(false) {
     override fun handleOnBackPressed() {
@@ -73,8 +65,6 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     callbacks = requireListener()
     val binding = V2MediaGalleryFragmentBinding.bind(view)
-
-    lifecycleDisposable.bindTo(this)
 
     SystemWindowInsetsSetter.attach(view, viewLifecycleOwner, WindowInsetsCompat.Type.navigationBars())
 
@@ -142,7 +132,6 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     binding.mediaGallerySelected.adapter = selectedAdapter
     selectedMediaTouchHelper?.attachToRecyclerView(binding.mediaGallerySelected)
 
-    val mediaGalleryGridItemTouchListener = MediaGalleryGridItemTouchListener()
     val onDragSelectListener = object : MediaGalleryGridItemTouchListener.OnDragSelectListener {
       override fun onSelectionStarted(start: Int) {
         galleryAdapter.getModel(start).ifPresent {
@@ -262,13 +251,6 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
     }
 
     requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, onBackPressedCallback)
-
-    lifecycleDisposable += sharedViewModel.mediaErrors
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe {
-        mediaGalleryGridItemTouchListener.stopAutoScroll()
-        mediaGalleryGridItemTouchListener.setIsActive(false)
-      }
   }
 
   override fun onResume() {
@@ -328,6 +310,11 @@ class MediaGalleryFragment : Fragment(R.layout.v2_media_gallery_fragment) {
 
   fun onViewStateUpdated(state: ViewState) {
     viewStateLiveData.value = state
+  }
+
+  fun onMediaErrorOccurred() {
+    mediaGalleryGridItemTouchListener.stopAutoScroll()
+    mediaGalleryGridItemTouchListener.setIsActive(false)
   }
 
   fun bindSelectedMediaItemDragHelper(helper: ItemTouchHelper) {

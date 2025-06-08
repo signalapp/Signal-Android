@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.database.model.ParentStoryId
 import org.thoughtcrime.securesms.database.model.ParentStoryId.DirectReply
 import org.thoughtcrime.securesms.database.model.ParentStoryId.GroupReply
+import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
@@ -1075,7 +1076,7 @@ object SyncMessageProcessor {
 
         when (operation.type!!) {
           StickerPackOperation.Type.INSTALL -> jobManager.add(StickerPackDownloadJob.forInstall(packId, packKey, false))
-          StickerPackOperation.Type.REMOVE -> SignalDatabase.stickers.uninstallPack(packId)
+          StickerPackOperation.Type.REMOVE -> SignalDatabase.stickers.uninstallPacks(setOf(StickerPackId(packId)))
         }
       } else {
         warn("Received incomplete sticker pack operation sync.")

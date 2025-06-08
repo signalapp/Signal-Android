@@ -9,7 +9,6 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView.AdapterDataObserver
@@ -66,7 +65,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
 
   private val lifecycleDisposable = LifecycleDisposable()
 
-  private val viewModel: StoriesLandingViewModel by viewModels(
+  private val viewModel: StoriesLandingViewModel by activityViewModels(
     factoryProducer = {
       StoriesLandingViewModel.Factory(StoriesLandingRepository(requireContext()))
     }

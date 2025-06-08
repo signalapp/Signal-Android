@@ -36,7 +36,6 @@ import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.AvatarPreviewActivity
 import org.thoughtcrime.securesms.BlockUnblockDialog
-import org.thoughtcrime.securesms.InviteActivity
 import org.thoughtcrime.securesms.MuteDialog
 import org.thoughtcrime.securesms.PushContactSelectionActivity
 import org.thoughtcrime.securesms.R
@@ -294,6 +293,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
         is ConversationSettingsEvent.AddMembersToGroup -> handleAddMembersToGroup(event)
         ConversationSettingsEvent.ShowGroupHardLimitDialog -> showGroupHardLimitDialog()
         is ConversationSettingsEvent.ShowAddMembersToGroupError -> showAddMembersToGroupError(event)
+        is ConversationSettingsEvent.ShowBlockGroupError -> showBlockGroupError(event)
         is ConversationSettingsEvent.ShowGroupInvitesSentDialog -> showGroupInvitesSentDialog(event)
         is ConversationSettingsEvent.ShowMembersAdded -> showMembersAdded(event)
       }
@@ -388,7 +388,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
             LegacyGroupPreference.Model(
               state = groupState.legacyGroupState,
               onLearnMoreClick = { GroupsLearnMoreBottomSheetDialogFragment.show(parentFragmentManager) },
-              onMmsWarningClick = { startActivity(Intent(requireContext(), InviteActivity::class.java)) }
+              onMmsWarningClick = { startActivity(AppSettingsActivity.invite(requireContext())) }
             )
           )
         }
@@ -970,6 +970,10 @@ class ConversationSettingsFragment : DSLSettingsFragment(
 
   private fun showAddMembersToGroupError(showAddMembersToGroupError: ConversationSettingsEvent.ShowAddMembersToGroupError) {
     Toast.makeText(requireContext(), GroupErrors.getUserDisplayMessage(showAddMembersToGroupError.failureReason), Toast.LENGTH_LONG).show()
+  }
+
+  private fun showBlockGroupError(showBlockGroupError: ConversationSettingsEvent.ShowBlockGroupError) {
+    Toast.makeText(requireContext(), GroupErrors.getUserDisplayMessage(showBlockGroupError.failureReason), Toast.LENGTH_LONG).show()
   }
 
   private fun showGroupInvitesSentDialog(showGroupInvitesSentDialog: ConversationSettingsEvent.ShowGroupInvitesSentDialog) {

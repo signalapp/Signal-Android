@@ -82,7 +82,7 @@
                 android:layout_marginBottom="4dp"
                 app:layout_constraintBottom_toBottomOf="@id/chat_wallpaper_preview_top_bar"
                 app:layout_constraintStart_toStartOf="@id/chat_wallpaper_preview_top_bar"
-                app:srcCompat="@drawable/ic_arrow_left_24"
+                app:srcCompat="@drawable/symbol_arrow_start_24"
                 app:tint="@color/core_white" />
 
             <org.thoughtcrime.securesms.components.AvatarImageView

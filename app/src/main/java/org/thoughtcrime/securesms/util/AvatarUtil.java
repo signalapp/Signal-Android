@@ -120,6 +120,15 @@ public final class AvatarUtil {
     }
   }
 
+  /**
+   * Shortcut icons cannot be created with uris:
+   * https://developer.android.com/reference/android/content/pm/ShortcutInfo.Builder#setIcon(android.graphics.drawable.Icon)
+   */
+  @WorkerThread
+  public static @NonNull IconCompat getIconCompatForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
+    return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient, AdaptiveBitmapMetrics.getInnerWidth()));
+  }
+
   @WorkerThread
   public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient) {
     return getBitmapForNotification(context, recipient, UNDEFINED_SIZE);

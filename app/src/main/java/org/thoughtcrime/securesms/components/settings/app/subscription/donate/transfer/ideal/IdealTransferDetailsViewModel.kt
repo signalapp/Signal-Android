@@ -71,12 +71,6 @@ class IdealTransferDetailsViewModel(inAppPaymentId: InAppPaymentTable.InAppPayme
     }
   }
 
-  fun onBankSelected(idealBank: IdealBank) {
-    internalState.value = internalState.value.copy(
-      idealBank = idealBank
-    )
-  }
-
   enum class Field {
     NAME,
     EMAIL

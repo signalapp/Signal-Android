@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.OptionalLong;
 
+import org.checkerframework.checker.units.qual.N;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
@@ -101,6 +102,10 @@ public class WebRtcServiceStateBuilder {
 
     public @NonNull LocalDeviceStateBuilder isMicrophoneEnabled(boolean enabled) {
       toBuild.setMicrophoneEnabled(enabled);
+      if (enabled) {
+        // Clear any remote mute attribution.
+        toBuild.setRemoteMutedBy(null);
+      }
       return this;
     }
 
@@ -141,6 +146,12 @@ public class WebRtcServiceStateBuilder {
 
     public @NonNull LocalDeviceStateBuilder setHandRaisedTimestamp(long handRaisedTimestamp) {
       toBuild.setHandRaisedTimestamp(handRaisedTimestamp);
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setRemoteMutedBy(@NonNull CallParticipant participant) {
+      toBuild.setRemoteMutedBy(participant);
+      toBuild.setMicrophoneEnabled(false);
       return this;
     }
   }

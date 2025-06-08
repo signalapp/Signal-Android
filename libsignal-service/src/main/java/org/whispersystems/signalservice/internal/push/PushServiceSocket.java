@@ -62,6 +62,7 @@ import org.whispersystems.signalservice.api.push.exceptions.ResumeLocationInvali
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.api.push.exceptions.SubmitVerificationCodeRateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException;
+import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.registration.RestoreMethodBody;
 import org.whispersystems.signalservice.api.svr.Svr3Credentials;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
@@ -74,8 +75,11 @@ import org.whispersystems.signalservice.internal.configuration.SignalUrl;
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupExistsException;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupMismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupNotFoundException;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
+import org.whispersystems.signalservice.internal.push.exceptions.GroupStaleDevicesException;
+import org.whispersystems.signalservice.internal.push.exceptions.InvalidUnidentifiedAccessHeaderException;
 import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException;
 import org.whispersystems.signalservice.internal.push.exceptions.NotInGroupException;
 import org.whispersystems.signalservice.internal.push.exceptions.StaleDevicesException;
@@ -150,6 +154,8 @@ public class PushServiceSocket {
   private static final String TAG = PushServiceSocket.class.getSimpleName();
 
   private static final String SET_RESTORE_METHOD_PATH   = "/v1/devices/restore_account/%s";
+
+  private static final String GROUP_MESSAGE_PATH        = "/v1/messages/multi_recipient?ts=%s&online=%s&urgent=%s&story=%s";
 
   private static final String ATTACHMENT_KEY_DOWNLOAD_PATH   = "attachments/%s";
   private static final String ATTACHMENT_ID_DOWNLOAD_PATH    = "attachments/%d";
@@ -334,6 +340,77 @@ public class PushServiceSocket {
 
   public void requestPushChallenge(String sessionId, String gcmRegistrationId) throws IOException {
     patchVerificationSession(sessionId, gcmRegistrationId, null, null, null, null);
+  }
+
+  public SendGroupMessageResponse sendGroupMessage(byte[] body, @Nonnull SealedSenderAccess sealedSenderAccess, long timestamp, boolean online, boolean urgent, boolean story)
+      throws NonSuccessfulResponseCodeException, PushNetworkException, MalformedResponseException
+  {
+    ServiceConnectionHolder connectionHolder = (ServiceConnectionHolder) getRandom(serviceClients, random);
+
+    String path = String.format(Locale.US, GROUP_MESSAGE_PATH, timestamp, online, urgent, story);
+
+    Request.Builder requestBuilder = new Request.Builder();
+    requestBuilder.url(String.format("%s%s", connectionHolder.getUrl(), path));
+    requestBuilder.put(RequestBody.create(MediaType.get("application/vnd.signal-messenger.mrm"), body));
+    requestBuilder.addHeader(sealedSenderAccess.getHeaderName(), sealedSenderAccess.getHeaderValue());
+
+    if (signalAgent != null) {
+      requestBuilder.addHeader("X-Signal-Agent", signalAgent);
+    }
+
+    if (connectionHolder.getHostHeader().isPresent()) {
+      requestBuilder.addHeader("Host", connectionHolder.getHostHeader().get());
+    }
+
+    Call call = connectionHolder.getUnidentifiedClient().newCall(requestBuilder.build());
+
+    synchronized (connections) {
+      connections.add(call);
+    }
+
+    try (Response response = call.execute()) {
+      switch (response.code()) {
+        case 200:
+          return readBodyJson(response.body(), SendGroupMessageResponse.class);
+        case 401:
+          throw new InvalidUnidentifiedAccessHeaderException();
+        case 404:
+          throw new NotFoundException("At least one unregistered user in message send.");
+        case 409:
+          GroupMismatchedDevices[] mismatchedDevices = readBodyJson(response.body(), GroupMismatchedDevices[].class);
+          throw new GroupMismatchedDevicesException(mismatchedDevices);
+        case 410:
+          GroupStaleDevices[] staleDevices = readBodyJson(response.body(), GroupStaleDevices[].class);
+          throw new GroupStaleDevicesException(staleDevices);
+        case 508:
+          throw new ServerRejectedException();
+        default:
+          throw new NonSuccessfulResponseCodeException(response.code());
+      }
+    } catch (PushNetworkException | NonSuccessfulResponseCodeException | MalformedResponseException e) {
+      throw e;
+    } catch (IOException e) {
+      throw new PushNetworkException(e);
+    } finally {
+      synchronized (connections) {
+        connections.remove(call);
+      }
+    }
+  }
+
+  public SendMessageResponse sendMessage(OutgoingPushMessageList bundle, @Nullable SealedSenderAccess sealedSenderAccess, boolean story)
+      throws IOException
+  {
+    try {
+      String              responseText = makeServiceRequest(String.format("/v1/messages/%s?story=%s", bundle.getDestination(), story ? "true" : "false"), "PUT", JsonUtil.toJson(bundle), NO_HEADERS, NO_HANDLER, sealedSenderAccess);
+      SendMessageResponse response     = JsonUtil.fromJson(responseText, SendMessageResponse.class);
+
+      response.setSentUnidentfied(sealedSenderAccess != null);
+
+      return response;
+    } catch (NotFoundException nfe) {
+      throw new UnregisteredUserException(bundle.getDestination(), nfe);
+    }
   }
 
   public void retrieveBackup(int cdnNumber, Map<String, String> headers, String cdnPath, File destination, long maxSizeBytes, ProgressListener listener)

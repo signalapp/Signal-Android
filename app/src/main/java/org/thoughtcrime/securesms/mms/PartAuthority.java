@@ -224,6 +224,11 @@ public class PartAuthority {
     return match == PART_ROW || match == THUMBNAIL_ROW;
   }
 
+  public static boolean isBlobUri(@NonNull Uri uri) {
+    int match = uriMatcher.match(uri);
+    return match == BLOB_ROW;
+  }
+
   public static @NonNull AttachmentId requireAttachmentId(@NonNull Uri uri) {
     return new PartUriParser(uri).getPartId();
   }

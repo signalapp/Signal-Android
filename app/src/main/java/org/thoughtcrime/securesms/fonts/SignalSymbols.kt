@@ -18,6 +18,7 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.withStyle
+import androidx.core.content.ContextCompat
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 
@@ -190,7 +191,7 @@ object SignalSymbols {
 
     REFRESH('\uE000'),
     ACTIVATE_PAYMENTS('\uE000'),
-    CALENDAR('\uE000')
+    CALENDAR('\uE0A2')
   }
 
   enum class Weight {
@@ -214,7 +215,7 @@ object SignalSymbols {
     text.setSpan(span, 0, text.length, 0)
 
     return if (colorRes != -1) {
-      SpanUtil.color(colorRes, text)
+      SpanUtil.color(ContextCompat.getColor(context, colorRes), text)
     } else {
       text
     }

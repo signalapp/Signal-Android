@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.TimeoutCancellationException
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
@@ -24,8 +25,11 @@ import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
+import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -48,7 +52,7 @@ import kotlin.time.Duration.Companion.seconds
 class MessageBackupsFlowViewModel(
   initialTierSelection: MessageBackupTier?,
   startScreen: MessageBackupsStage = if (SignalStore.backup.backupTier == null) MessageBackupsStage.EDUCATION else MessageBackupsStage.TYPE_SELECTION
-) : ViewModel() {
+) : ViewModel(), BackupKeyCredentialManagerHandler {
 
   companion object {
     private val TAG = Log.tag(MessageBackupsFlowViewModel::class)
@@ -63,10 +67,9 @@ class MessageBackupsFlowViewModel(
   )
 
   val stateFlow: StateFlow<MessageBackupsFlowState> = internalStateFlow
+  val deletionState: Flow<DeletionState> = SignalStore.backup.deletionStateFlow
 
   init {
-    check(SignalStore.backup.backupTier != MessageBackupTier.PAID) { "This screen does not support cancellation or downgrades." }
-
     viewModelScope.launch {
       val result = withContext(SignalDispatchers.IO) {
         BackupRepository.triggerBackupIdReservation()
@@ -156,6 +159,34 @@ class MessageBackupsFlowViewModel(
           else -> goToPreviousStage()
         }
       }
+    }
+  }
+
+  fun refreshCurrentTier() {
+    val tier = SignalStore.backup.backupTier
+    if (tier == MessageBackupTier.PAID) {
+      Log.d(TAG, "Checking active subscription object for paid status.")
+      viewModelScope.launch {
+        val activeSubscription = withContext(SignalDispatchers.IO) {
+          RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
+        }
+
+        activeSubscription.onSuccess {
+          if (it.isCanceled) {
+            Log.d(TAG, "Active subscription is cancelled. Clearing tier.")
+            internalStateFlow.update { it.copy(currentMessageBackupTier = null) }
+          } else if (it.isActive) {
+            Log.d(TAG, "Active subscription is active. Setting tier.")
+            internalStateFlow.update { it.copy(currentMessageBackupTier = SignalStore.backup.backupTier) }
+          } else {
+            Log.w(TAG, "Subscription is inactive. Clearing tier.")
+            internalStateFlow.update { it.copy(currentMessageBackupTier = null) }
+          }
+        }
+      }
+    } else {
+      Log.d(TAG, "User is on tier: $tier")
+      internalStateFlow.update { it.copy(currentMessageBackupTier = tier) }
     }
   }
 
@@ -312,5 +343,9 @@ class MessageBackupsFlowViewModel(
       Log.d(TAG, "Job chain completed successfully.")
       return
     }
+  }
+
+  override fun updateBackupKeySaveState(newState: BackupKeySaveState?) {
+    internalStateFlow.update { it.copy(backupKeySaveState = newState) }
   }
 }

@@ -18,6 +18,10 @@ package org.thoughtcrime.securesms.video;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.media.AudioAttributes;
+import android.media.AudioFocusRequest;
+import android.media.AudioManager;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.Window;
@@ -27,6 +31,7 @@ import android.widget.FrameLayout;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.OptIn;
+import androidx.core.content.ContextCompat;
 import androidx.media3.common.C;
 import androidx.media3.common.MediaItem;
 import androidx.media3.common.PlaybackException;
@@ -70,6 +75,8 @@ public class VideoPlayer extends FrameLayout {
   private ExoPlayerListener                   exoPlayerListener;
   private Player.Listener                     playerListener;
   private boolean                             muted;
+  private AudioFocusRequest                   audioFocusRequest;
+  private boolean                             requestAudioFocus = true;
 
   public VideoPlayer(Context context) {
     this(context, null);
@@ -94,6 +101,23 @@ public class VideoPlayer extends FrameLayout {
     this.progressBar = findViewById(R.id.progress_bar);
     this.exoControls = createPlayerControls(getContext());
 
+    final AudioManager      audioManager = ContextCompat.getSystemService(context, AudioManager.class);
+    if (Build.VERSION.SDK_INT >= 26) {
+      audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
+          .setAudioAttributes(
+              new AudioAttributes.Builder()
+                  .setUsage(AudioAttributes.USAGE_MEDIA)
+                  .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC)
+                  .build()
+          )
+          .setOnAudioFocusChangeListener(focusChange -> {
+
+          })
+          .build();
+    } else {
+      audioFocusRequest = null;
+    }
+
     this.exoPlayerListener = new ExoPlayerListener();
     this.playerListener    = new Player.Listener() {
 
@@ -103,6 +127,39 @@ public class VideoPlayer extends FrameLayout {
           exoPlayer.seekTo(0);
           exoPlayer.setPlayWhenReady(false);
         }
+
+        if (audioManager == null) {
+          return;
+        }
+
+        if (Build.VERSION.SDK_INT >= 26 && audioFocusRequest != null) {
+          if (isPlaying) {
+            if (requestAudioFocus) {
+              audioManager.requestAudioFocus(audioFocusRequest);
+            }
+          } else {
+            audioManager.abandonAudioFocusRequest(audioFocusRequest);
+          }
+        } else {
+          if (isPlaying) {
+            if (requestAudioFocus) {
+              audioManager.requestAudioFocus(
+                  focusChange -> {
+                    // Do nothing
+                  },
+                  AudioManager.STREAM_MUSIC,
+                  AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK
+              );
+            }
+          } else {
+            audioManager.abandonAudioFocus(
+                focusChange -> {
+                  // Do nothing
+                }
+            );
+          }
+        }
+
       }
 
       @Override
@@ -375,6 +432,10 @@ public class VideoPlayer extends FrameLayout {
         exoPlayer.seekTo(0);
       }
     }
+  }
+
+  public void disableAudioFocus() {
+    requestAudioFocus = false;
   }
 
   private @NonNull MediaItem.ClippingConfiguration getClippingConfiguration(long startMs, long endMs) {

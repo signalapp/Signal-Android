@@ -347,6 +347,10 @@ public class MediaUtil {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_AVIF);
   }
 
+  public static boolean isWebpType(String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_WEBP);
+  }
+
   public static boolean isFile(Attachment attachment) {
     return !isGif(attachment) && !isImage(attachment) && !isAudio(attachment) && !isVideo(attachment);
   }

@@ -297,16 +297,22 @@ private fun MegaphoneImage(
 
     LaunchedEffect(megaphone.imageRequestBuilder) {
       drawable = withContext(Dispatchers.IO) {
-        megaphone.imageRequestBuilder?.submit(size, size)?.get()
+        try {
+          megaphone.imageRequestBuilder?.submit(size, size)?.get()
+        } catch (_: Exception) {
+          null
+        }
       }
     }
 
-    Image(
-      painter = painter,
-      contentDescription = null,
-      contentScale = ContentScale.Inside,
-      modifier = sharedModifier
-    )
+    if (drawable != null) {
+      Image(
+        painter = painter,
+        contentDescription = null,
+        contentScale = ContentScale.Inside,
+        modifier = sharedModifier
+      )
+    }
   } else if (megaphone.lottieRes != 0) {
     val lottieComposition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(megaphone.lottieRes))
 

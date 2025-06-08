@@ -16,7 +16,9 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
+import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.toLocalDateTime
 import org.thoughtcrime.securesms.util.toMillis
 
@@ -56,36 +58,43 @@ class NotificationProfilesRepository {
 
   fun createProfile(name: String, selectedEmoji: String): Single<NotificationProfileTables.NotificationProfileChangeResult> {
     return Single.fromCallable { database.createProfile(name = name, emoji = selectedEmoji, color = AvatarColor.random(), createdAt = System.currentTimeMillis()) }
+      .doOnSuccess { StorageSyncHelper.scheduleSyncForDataChange() }
       .subscribeOn(Schedulers.io())
   }
 
   fun updateProfile(profileId: Long, name: String, selectedEmoji: String): Single<NotificationProfileTables.NotificationProfileChangeResult> {
     return Single.fromCallable { database.updateProfile(profileId = profileId, name = name, emoji = selectedEmoji) }
+      .doOnSuccess { scheduleNotificationProfileSync(profileId) }
       .subscribeOn(Schedulers.io())
   }
 
   fun updateProfile(profile: NotificationProfile): Single<NotificationProfileTables.NotificationProfileChangeResult> {
     return Single.fromCallable { database.updateProfile(profile) }
+      .doOnSuccess { scheduleNotificationProfileSync(profile.id) }
       .subscribeOn(Schedulers.io())
   }
 
   fun updateAllowedMembers(profileId: Long, recipients: Set<RecipientId>): Single<NotificationProfile> {
     return Single.fromCallable { database.setAllowedRecipients(profileId, recipients) }
+      .doOnSuccess { scheduleNotificationProfileSync(profileId) }
       .subscribeOn(Schedulers.io())
   }
 
   fun removeMember(profileId: Long, recipientId: RecipientId): Single<NotificationProfile> {
     return Single.fromCallable { database.removeAllowedRecipient(profileId, recipientId) }
+      .doOnSuccess { scheduleNotificationProfileSync(profileId) }
       .subscribeOn(Schedulers.io())
   }
 
   fun addMember(profileId: Long, recipientId: RecipientId): Single<NotificationProfile> {
     return Single.fromCallable { database.addAllowedRecipient(profileId, recipientId) }
+      .doOnSuccess { scheduleNotificationProfileSync(profileId) }
       .subscribeOn(Schedulers.io())
   }
 
   fun deleteProfile(profileId: Long): Completable {
     return Completable.fromCallable { database.deleteProfile(profileId) }
+      .doOnComplete { scheduleNotificationProfileSync(profileId) }
       .subscribeOn(Schedulers.io())
   }
 
@@ -132,7 +141,10 @@ class NotificationProfilesRepository {
         SignalStore.notificationProfile.manuallyDisabledAt = now
       }
     }
-      .doOnComplete { AppDependencies.databaseObserver.notifyNotificationProfileObservers() }
+      .doOnComplete {
+        scheduleManualOverrideSync()
+        AppDependencies.databaseObserver.notifyNotificationProfileObservers()
+      }
       .subscribeOn(Schedulers.io())
   }
 
@@ -142,7 +154,10 @@ class NotificationProfilesRepository {
       SignalStore.notificationProfile.manuallyEnabledUntil = enableUntil
       SignalStore.notificationProfile.manuallyDisabledAt = now
     }
-      .doOnComplete { AppDependencies.databaseObserver.notifyNotificationProfileObservers() }
+      .doOnComplete {
+        scheduleManualOverrideSync()
+        AppDependencies.databaseObserver.notifyNotificationProfileObservers()
+      }
       .subscribeOn(Schedulers.io())
   }
 
@@ -153,8 +168,27 @@ class NotificationProfilesRepository {
       SignalStore.notificationProfile.manuallyEnabledUntil = if (inScheduledWindow) schedule.endDateTime(now.toLocalDateTime()).toMillis() else Long.MAX_VALUE
       SignalStore.notificationProfile.manuallyDisabledAt = if (inScheduledWindow) now else 0
     }
-      .doOnComplete { AppDependencies.databaseObserver.notifyNotificationProfileObservers() }
+      .doOnComplete {
+        scheduleManualOverrideSync()
+        AppDependencies.databaseObserver.notifyNotificationProfileObservers()
+      }
       .subscribeOn(Schedulers.io())
+  }
+
+  /**
+   * Schedules a sync for a notification profile when it changes
+   */
+  fun scheduleNotificationProfileSync(profileId: Long) {
+    SignalDatabase.notificationProfiles.markNeedsSync(profileId)
+    StorageSyncHelper.scheduleSyncForDataChange()
+  }
+
+  /**
+   * Schedules a sync for the self when the manual notification profile changes
+   */
+  private fun scheduleManualOverrideSync() {
+    SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+    StorageSyncHelper.scheduleSyncForDataChange()
   }
 
   class NotificationProfileNotFoundException : Throwable()

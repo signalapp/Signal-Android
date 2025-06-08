@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.map
+import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.core.Observable
@@ -13,8 +14,11 @@ import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.util.Result
 import org.signal.core.util.ThreadUtil
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.readToList
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.ButtonStripPreference
@@ -262,7 +266,15 @@ sealed class ConversationSettingsViewModel(
     }
 
     override fun block() {
-      repository.block(recipientId)
+      viewModelScope.launch {
+        val result = withContext(SignalDispatchers.IO) {
+          repository.block(recipientId)
+        }
+
+        if (!result.isSuccess) {
+          internalEvents.onNext(ConversationSettingsEvent.ShowBlockGroupError(result.getFailureReason()))
+        }
+      }
     }
 
     override fun unblock() {
@@ -476,7 +488,15 @@ sealed class ConversationSettingsViewModel(
     }
 
     override fun block() {
-      repository.block(groupId)
+      viewModelScope.launch {
+        val result = withContext(SignalDispatchers.IO) {
+          repository.block(groupId)
+        }
+
+        if (!result.isSuccess) {
+          internalEvents.onNext(ConversationSettingsEvent.ShowBlockGroupError(result.getFailureReason()))
+        }
+      }
     }
 
     override fun unblock() {

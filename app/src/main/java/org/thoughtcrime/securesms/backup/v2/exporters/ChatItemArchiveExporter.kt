@@ -16,6 +16,7 @@ import org.signal.core.util.ParallelEventTimer
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
+import org.signal.core.util.logging.logW
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.nullIfEmpty
 import org.signal.core.util.orNull
@@ -286,12 +287,12 @@ class ChatItemArchiveExporter(
         }
 
         MessageTypes.isSessionSwitchoverType(record.type) -> {
-          builder.updateMessage = record.toRemoteSessionSwitchoverUpdate()
+          builder.updateMessage = record.toRemoteSessionSwitchoverUpdate(record.dateSent)
           transformTimer.emit("sse")
         }
 
         MessageTypes.isThreadMergeType(record.type) -> {
-          builder.updateMessage = record.toRemoteThreadMergeUpdate()?.takeIf { exportState.recipientIdToAci.contains(builder.authorId) } ?: continue
+          builder.updateMessage = record.toRemoteThreadMergeUpdate(record.dateSent)?.takeIf { exportState.recipientIdToAci.contains(builder.authorId) } ?: continue
           transformTimer.emit("thread-merge")
         }
 
@@ -605,7 +606,7 @@ private fun BackupMessageRecord.toRemoteProfileChangeUpdate(): ChatUpdateMessage
   }
 }
 
-private fun BackupMessageRecord.toRemoteSessionSwitchoverUpdate(): ChatUpdateMessage {
+private fun BackupMessageRecord.toRemoteSessionSwitchoverUpdate(sentTimestamp: Long): ChatUpdateMessage {
   if (this.body == null) {
     return ChatUpdateMessage(sessionSwitchover = SessionSwitchoverChatUpdate())
   }
@@ -613,27 +614,27 @@ private fun BackupMessageRecord.toRemoteSessionSwitchoverUpdate(): ChatUpdateMes
   return ChatUpdateMessage(
     sessionSwitchover = try {
       val event = SessionSwitchoverEvent.ADAPTER.decode(Base64.decodeOrThrow(this.body))
-      SessionSwitchoverChatUpdate(event.e164.e164ToLong() ?: 0)
+      val e164 = event.e164.e164ToLong() ?: return ChatUpdateMessage(sessionSwitchover = SessionSwitchoverChatUpdate()).logW(TAG, ExportOddities.invalidE164InSessionSwitchover(sentTimestamp))
+      SessionSwitchoverChatUpdate(e164)
     } catch (e: IOException) {
       SessionSwitchoverChatUpdate()
     }
   )
 }
 
-private fun BackupMessageRecord.toRemoteThreadMergeUpdate(): ChatUpdateMessage? {
+private fun BackupMessageRecord.toRemoteThreadMergeUpdate(sentTimestamp: Long): ChatUpdateMessage? {
   if (this.body == null) {
     return null
   }
 
   try {
-    val e164 = ThreadMergeEvent.ADAPTER.decode(Base64.decodeOrThrow(this.body)).previousE164.e164ToLong()
-    if (e164 != null) {
-      return ChatUpdateMessage(threadMerge = ThreadMergeChatUpdate(e164))
-    }
+    val event = ThreadMergeEvent.ADAPTER.decode(Base64.decodeOrThrow(this.body))
+    val e164 = event.previousE164.e164ToLong() ?: return null.logW(TAG, ExportSkips.invalidE164InThreadMerge(sentTimestamp))
+    return ChatUpdateMessage(threadMerge = ThreadMergeChatUpdate(e164))
   } catch (_: IOException) {
+    Log.w(TAG, ExportSkips.failedToParseThreadMergeEvent(sentTimestamp))
+    return null
   }
-
-  return null
 }
 
 private fun BackupMessageRecord.toRemoteGroupUpdate(): ChatUpdateMessage? {

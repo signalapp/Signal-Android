@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64.decode
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
@@ -67,11 +68,6 @@ object QuickRegistrationRepository {
         return TransferAccountResult.FAILED
       }
 
-      val pin = SignalStore.svr.pin ?: run {
-        Log.w(TAG, "No pin")
-        return TransferAccountResult.FAILED
-      }
-
       SignalNetwork
         .provisioning
         .sendReRegisterDeviceProvisioningMessage(
@@ -81,16 +77,20 @@ object QuickRegistrationRepository {
             e164 = SignalStore.account.requireE164(),
             aci = SignalStore.account.requireAci().toByteString(),
             accountEntropyPool = SignalStore.account.accountEntropyPool.value,
-            pin = pin,
+            pin = SignalStore.svr.pin,
             platform = RegistrationProvisionMessage.Platform.ANDROID,
-            backupTimestampMs = SignalStore.backup.lastBackupTime.coerceAtLeast(0L),
+            backupTimestampMs = SignalStore.backup.lastBackupTime.coerceAtLeast(0L).takeIf { it > 0 },
             tier = when (SignalStore.backup.backupTier) {
               MessageBackupTier.PAID -> RegistrationProvisionMessage.Tier.PAID
               MessageBackupTier.FREE -> RegistrationProvisionMessage.Tier.FREE
               null -> null
             },
-            backupSizeBytes = SignalStore.backup.totalBackupSize,
-            restoreMethodToken = restoreMethodToken
+            backupSizeBytes = SignalStore.backup.totalBackupSize.takeIf { it > 0 },
+            restoreMethodToken = restoreMethodToken,
+            aciIdentityKeyPublic = SignalStore.account.aciIdentityKey.publicKey.serialize().toByteString(),
+            aciIdentityKeyPrivate = SignalStore.account.aciIdentityKey.privateKey.serialize().toByteString(),
+            pniIdentityKeyPublic = SignalStore.account.pniIdentityKey.publicKey.serialize().toByteString(),
+            pniIdentityKeyPrivate = SignalStore.account.pniIdentityKey.privateKey.serialize().toByteString()
           )
         )
         .successOrThrow()

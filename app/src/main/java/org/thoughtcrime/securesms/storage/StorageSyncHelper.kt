@@ -5,10 +5,12 @@ import androidx.annotation.VisibleForTesting
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64.encodeWithPadding
+import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.getSubscriber
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.isUserManuallyCancelled
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.setSubscriber
+import org.thoughtcrime.securesms.database.NotificationProfileTables
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.RecipientRecord
@@ -18,6 +20,7 @@ import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.keyvalue.AccountValues
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues.PhoneNumberDiscoverabilityMode
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.payments.Entropy
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
@@ -171,6 +174,7 @@ object StorageSyncHelper {
           color = StorageSyncModels.localToRemoteUsernameColor(SignalStore.misc.usernameQrCodeColorScheme)
         )
       }
+      notificationProfileManualOverride = getNotificationProfileManualOverride()
 
       getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)?.let {
         safeSetSubscriber(it.subscriberId.bytes.toByteString(), it.currency?.currencyCode ?: "")
@@ -184,6 +188,24 @@ object StorageSyncHelper {
     }
 
     return accountRecord.toSignalAccountRecord(StorageId.forAccount(storageId)).toSignalStorageRecord()
+  }
+
+  private fun getNotificationProfileManualOverride(): AccountRecord.NotificationProfileManualOverride {
+    val profile = SignalDatabase.notificationProfiles.getProfile(SignalStore.notificationProfile.manuallyEnabledProfile)
+    return if (profile != null && profile.deletedTimestampMs == 0L) {
+      // From [StorageService.proto], end timestamp should be unset if no timespan was chosen in the UI
+      val endTimestamp = if (SignalStore.notificationProfile.manuallyEnabledUntil == Long.MAX_VALUE) 0 else SignalStore.notificationProfile.manuallyEnabledUntil
+      AccountRecord.NotificationProfileManualOverride(
+        enabled = AccountRecord.NotificationProfileManualOverride.ManuallyEnabled(
+          id = UuidUtil.toByteArray(profile.notificationProfileId.uuid).toByteString(),
+          endAtTimestampMs = endTimestamp
+        )
+      )
+    } else {
+      AccountRecord.NotificationProfileManualOverride(
+        disabledAtTimestampMs = SignalStore.notificationProfile.manuallyDisabledAt
+      )
+    }
   }
 
   @JvmStatic
@@ -251,6 +273,33 @@ object StorageSyncHelper {
       )
 
       SignalStore.misc.usernameQrCodeColorScheme = StorageSyncModels.remoteToLocalUsernameColor(update.new.proto.usernameLink!!.color)
+    }
+
+    if (update.new.proto.notificationProfileManualOverride != null) {
+      if (update.new.proto.notificationProfileManualOverride!!.enabled != null) {
+        val remoteProfile = update.new.proto.notificationProfileManualOverride!!.enabled!!
+        val remoteId = UuidUtil.parseOrNull(remoteProfile.id)
+        val remoteEndTime = if (remoteProfile.endAtTimestampMs == 0L) Long.MAX_VALUE else remoteProfile.endAtTimestampMs
+
+        if (remoteId == null) {
+          Log.w(TAG, "Remote notification profile id is not valid")
+        } else {
+          val query = SqlUtil.buildQuery("${NotificationProfileTables.NotificationProfileTable.NOTIFICATION_PROFILE_ID} = ?", NotificationProfileId(remoteId))
+          val localProfile = SignalDatabase.notificationProfiles.getProfile(query)
+
+          if (localProfile == null) {
+            Log.w(TAG, "Unable to find local notification profile with given remote id")
+          } else {
+            SignalStore.notificationProfile.manuallyEnabledProfile = localProfile.id
+            SignalStore.notificationProfile.manuallyEnabledUntil = remoteEndTime
+            SignalStore.notificationProfile.manuallyDisabledAt = System.currentTimeMillis()
+          }
+        }
+      } else {
+        SignalStore.notificationProfile.manuallyEnabledProfile = 0
+        SignalStore.notificationProfile.manuallyEnabledUntil = 0
+        SignalStore.notificationProfile.manuallyDisabledAt = update.new.proto.notificationProfileManualOverride!!.disabledAtTimestampMs!!
+      }
     }
   }
 

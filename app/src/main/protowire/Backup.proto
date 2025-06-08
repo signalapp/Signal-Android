@@ -87,6 +87,7 @@ message AccountData {
     PhoneNumberSharingMode phoneNumberSharingMode = 17;
     ChatStyle defaultChatStyle = 18;
     repeated ChatStyle.CustomChatColor customChatColors = 19;
+    bool optimizeOnDeviceStorage = 20;
   }
 
   message SubscriberData {
@@ -689,6 +690,7 @@ message MessageAttachment {
 
 message FilePointer {
   // References attachments in the backup (media) storage tier.
+  // DEPRECATED; use LocatorInfo instead if available.
   message BackupLocator {
     string mediaName = 1;
     // If present, the cdn number of the succesful upload.
@@ -698,6 +700,7 @@ message FilePointer {
     bytes key = 3;
     bytes digest = 4;
     uint32 size = 5;
+
     // Fallback in case backup tier upload failed.
     optional string transitCdnKey = 6;
     optional uint32 transitCdnNumber = 7;
@@ -707,6 +710,7 @@ message FilePointer {
   // May be downloaded or not when the backup is generated;
   // primarily for free-tier users who cannot copy the
   // attachments to the backup (media) storage tier.
+  // DEPRECATED; use LocatorInfo instead if available.
   message AttachmentLocator {
     string cdnKey = 1;
     uint32 cdnNumber = 2;
@@ -721,12 +725,14 @@ message FilePointer {
   // CDN keys or anything else that makes download attempts impossible.
   // This serves as a 'tombstone' so that the UX can show that an attachment
   // did exist, but for whatever reason it's not retrievable.
+  // DEPRECATED; use LocatorInfo instead if available.
   message InvalidAttachmentLocator {
   }
 
   // References attachments in a local encrypted backup.
   // Importers should first attempt to read the file from the local backup,
   // and on failure fallback to backup and transit cdn if possible.
+  // DEPRECATED; use LocatorInfo instead if available.
   message LocalLocator {
     string mediaName = 1;
     // Separate key used to encrypt this file for the local backup.
@@ -742,7 +748,45 @@ message FilePointer {
     optional uint32 transitCdnNumber = 8;
   }
 
+  message LocatorInfo {
+    // Must be non-empty if transitCdnKey or mediaName are set/nonempty.
+    // Otherwise must be empty.
+    bytes key = 1;
+    // From the sender of the attachment (incl. ourselves)
+    // Must be non-empty if transitCdnKey or mediaName are set/nonempty.
+    // Otherwise must be empty.
+    bytes digest = 2;
+    // Must be non-zero if transitCdnKey or mediaName are set/nonempty.
+    // Otherwise must be zero.
+    uint32 size = 3;
+
+    // Either both transit cdn key and number are set or neither should be set.
+    // Upload timestamp is optional but should only be set if key/number are set.
+    optional string transitCdnKey = 4;
+    optional uint32 transitCdnNumber = 5;
+    optional uint64 transitTierUploadTimestamp = 6;
+
+    // If present, the cdn number of the succesful upload to media tier.
+    // If unset, may still have been uploaded, and clients
+    // can discover the cdn number via the list endpoint.
+    // Exporting clients should set this as long as their subscription
+    // has not rotated since last upload; even if currently free tier.
+    optional uint32 mediaTierCdnNumber = 7;
+
+    // Nonempty any time the attachment was downloaded and its
+    // digest validated, whether free tier or paid subscription.
+    string mediaName = 8;
+
+    // Separate key used to encrypt this file for the local backup.
+    // Generally required for local backups.
+    // Missing field indicates attachment was not available locally
+    // when the backup was generated, but remote backup or transit
+    // info was available.
+    optional bytes localKey = 9;
+  }
+
   // If unset, importers should consider it to be an InvalidAttachmentLocator without throwing an error.
+  // DEPRECATED; use locatorInfo instead.
   oneof locator {
     BackupLocator backupLocator = 1;
     AttachmentLocator attachmentLocator = 2;
@@ -758,6 +802,7 @@ message FilePointer {
   optional uint32 height = 9;
   optional string caption = 10;
   optional string blurHash = 11;
+  LocatorInfo locatorInfo = 13;
 }
 
 message Quote {

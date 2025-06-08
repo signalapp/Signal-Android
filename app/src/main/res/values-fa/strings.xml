@@ -151,7 +151,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">کاربران مسدود شده</string>
     <string name="BlockedUsersActivity__add_blocked_user">افزودن کاربر مسدود شده</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">Cannot block yourself</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">نمی‌توانید خودتان را مسدود کنید</string>
     <string name="BlockedUsersActivity__blocked_users_will">کاربران مسدودشده امکان برقراری تماس یا ارسال پیام به شما را نخواهند داشت.</string>
     <string name="BlockedUsersActivity__no_blocked_users">هیچ کاربر مسدودشده‌ای وجود ندارد</string>
     <string name="BlockedUsersActivity__block_user">کاربر مسدود شود؟</string>
@@ -545,6 +545,8 @@
     <string name="ConversationActivity__invite_to_signal">دعوت به سیگنال</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">به‌زودی دوباره به شما یادآوری خواهد شد.</string>
+    <!-- Toast message shown when trying to record a voice message during an ongoing call -->
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">ضبط پیام صوتی در حین مکالمه امکان‌پذیر نیست.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">در حال ارسال متن قالب‌بندی‌شده</string>
@@ -1719,7 +1721,7 @@
     <string name="MediaOverviewActivity_sent_by_s_to_s">ارسال شد از %1$s به %2$s</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">ارسال شد از شما به %1$s</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">این فایل رسانه هنوز ارسال نشده است.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">بعداً به من یادآوری کن</string>
@@ -2480,6 +2482,15 @@
     <!-- Content description for toggling group ring state -->
     <string name="WebRtcCallView__toggle_group_ringing">تغییر وضعیت زنگ گروه</string>
 
+    <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s شما را بی‌صدا کرد.</string>
+    <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
+    <string name="WebRtcCallView__you_remotely_muted_s">شما %1$s را بی‌صدا کردید.</string>
+    <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s‏، %2$s را بی‌صدا کرد.</string>
+    <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
+    <string name="WebRtcCallView__you_muted_yourself">شما خودتان را از دستگاه دیگری بی‌صدا کردید.</string>
+
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">خطای رابط کاربری رخ داد. لطفاً این خطا را به توسعه‌دهندگان گزارش کنید.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
@@ -2765,12 +2776,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">پین با موفقیت تایید شد. یک هفته بعد دوباره به شما یادآوری خواهیم کرد.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">پین با موفقیت تایید شد. دو هفته بعد دوباره به شما یادآوری خواهیم کرد.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">پین با موفقیت تایید شد. یک ماه بعد دوباره به شما یادآوری خواهیم کرد.</string>
-    <string name="SignalPinReminders__well_remind_you_again_later">We\'ll remind you again later.</string>
-    <string name="SignalPinReminders__well_remind_you_again_tomorrow">We\'ll remind you again tomorrow.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">We\'ll remind you again in a few days.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_week">We\'ll remind you again in a week.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">We\'ll remind you again in a couple weeks.</string>
-    <string name="SignalPinReminders__well_remind_you_again_in_a_month">We\'ll remind you again in a month.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">بعداً دوباره به شما یادآوری خواهیم کرد.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">فردا دوباره به شما یادآوری خواهیم کرد.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">چند روز دیگر دوباره به شما یادآوری خواهیم کرد.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">یک هفته بعد دوباره به شما یادآوری خواهیم کرد.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">دو هفته بعد دوباره به شما یادآوری خواهیم کرد.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">یک ماه بعد دوباره به شما یادآوری خواهیم کرد.</string>
 
     <!-- Slide -->
     <string name="Slide_image">تصویر</string>
@@ -2783,37 +2794,84 @@
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s نشست امن را بازنشانی کرد.</string>
     <string name="SmsMessageRecord_duplicate_message">پیام تکراری.</string>
 
-    <!-- StickerManagementActivity -->
-    <string name="StickerManagementActivity_stickers">استیکرها</string>
-
+    <!-- Sticker management screen default title. -->
+    <string name="StickerManagement_title_stickers">استیکرها</string>
+    <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
+    <plurals name="StickerManagement_title_n_selected">
+        <item quantity="one">%1$s انتخاب شد</item>
+        <item quantity="other">%1$s انتخاب شد</item>
+    </plurals>
     <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
-    <string name="StickerManagement_available_tab_label">Available</string>
+    <string name="StickerManagement_available_tab_label">در دسترس</string>
     <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
-    <string name="StickerManagement_installed_tab_label">Installed</string>
-    <!-- Shown when there are no sticker packs available for installation -->
-    <string name="StickerManagement_available_tab_empty_text">No sticker packs are available</string>
-    <!-- Shown when there are no sticker packs currently installed -->
-    <string name="StickerManagement_installed_tab_empty_text">No sticker packs are installed</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagement_author_unknown">Unknown</string>
+    <string name="StickerManagement_installed_tab_label">نصب شده است</string>
+    <!-- Shown when there are no sticker packs available for installation. -->
+    <string name="StickerManagement_available_tab_empty_text">بسته استیکری موجود نیست</string>
+    <!-- Shown when there are no sticker packs currently installed. -->
+    <string name="StickerManagement_installed_tab_empty_text">بسته استیکری نصب نشده است</string>
+    <!-- Message shown when the author of the sticker pack is unknown. -->
+    <string name="StickerManagement_author_unknown">ناشناخته</string>
     <!-- Sticker pack list section header for packs that are already installed. -->
-    <string name="StickerManagement_installed_stickers_header">Installed stickers</string>
+    <string name="StickerManagement_installed_stickers_header">استیکرهای نصب شده</string>
     <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
-    <string name="StickerManagement_stickers_you_received_header">Stickers you received</string>
+    <string name="StickerManagement_stickers_you_received_header">استیکرهایی که دریافت کردید</string>
     <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
-    <string name="StickerManagement_signal_artist_series_header">Signal artist series</string>
+    <string name="StickerManagement_signal_artist_series_header">مجموعهٔ هنرمند سیگنال</string>
+    <!-- Title shown when sharing a sticker pack with another user. -->
+    <string name="StickerManagement_share_sheet_title">بازارسال به</string>
+    <!-- Bottom action bar option to select all sticker packs in the list. -->
+    <string name="StickerManagement_action_select_all">انتخاب همه</string>
+    <!-- Bottom action bar option to deselect all sticker packs in the list. -->
+    <string name="StickerManagement_action_deselect_all">لغو انتخاب همه</string>
+    <!-- Bottom action bar option to uninstall all selected sticker packs. -->
+    <string name="StickerManagement_action_delete_selected">پاک کردن</string>
+    <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation">
+        <item quantity="one">حذف %1$s بسته استیکر</item>
+        <item quantity="other">حذف %1$s بسته استیکر</item>
+    </plurals>
+    <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
+    <string name="StickerManagement_installed_pack_s">%1$s نصب شد.</string>
+    <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
+    <string name="StickerManagement_deleted_pack_s">%1$s حذف شد.</string>
+    <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
+    <plurals name="StickerManagement_deleted_n_packs">
+        <item quantity="one">%1$s بسته استیکر حذف شد.</item>
+        <item quantity="other">%1$s بسته استیکر حذف شد.</item>
+    </plurals>
+    <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
+    <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
+        <item quantity="one">%1$s sticker</item>
+        <item quantity="other">%1$s stickers</item>
+    </plurals>
+
+    <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
+    <string name="StickerManagement_menu_forward_pack">بازارسال</string>
+    <!-- Sticker pack list dropdown menu label for the button to mark a sticker pack as selected in order to perform additional actions. -->
+    <string name="StickerManagement_menu_select_pack">انتخاب</string>
+    <!-- Sticker pack list dropdown menu label for the button to install a sticker pack. -->
+    <string name="StickerManagement_menu_install_pack">نصب</string>
+    <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
+    <string name="StickerManagement_menu_remove_pack">حذف</string>
+    <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
+    <string name="StickerManagement_menu_select_packs">انتخاب بسته استیکر</string>
+
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_download_pack">Download %1$s sticker pack</string>
+    <string name="StickerManagement_accessibility_download_pack">دانلود بسته استیکر %1$s</string>
     <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
-    <string name="StickerManagement_accessibility_downloaded_checkmark">Downloaded checkmark</string>
+    <string name="StickerManagement_accessibility_downloaded_checkmark">تیک دانلودشده</string>
     <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
-    <string name="StickerManagement_accessibility_drag_handle">Drag and drop handle</string>
+    <string name="StickerManagement_accessibility_drag_handle">دستگیره کشیدن و رها کردن</string>
     <!-- Accessibility label for the button to download a sticker pack. -->
-    <string name="StickerManagement_accessibility_download">Download</string>
+    <string name="StickerManagement_accessibility_download">بارگیری</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="StickerManagement_accessibility_open_top_bar_menu">باز کردن منو</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_open_context_menu">باز کردن منوی زمینه</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">خروج از حالت انتخاب و پاک کردن انتخاب‌ها</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_no_stickers_installed">هیچ استیکری نصب نشده است</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">استیکرهایی که از پیام‌های ورودی دریافت می‌شوند اینجا نمایش داده خواهند شد</string>
     <string name="StickerManagementAdapter_untitled">بدون نام</string>
 
     <!-- StickerPackPreviewActivity -->
@@ -2842,7 +2900,7 @@
     <string name="SubmitDebugLogActivity_share">اشتراک‌گذاری</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">این گزارش به صورت عمومی و آنلاین برای بازنگری مشارکت‌کنندگان منتشر خواهد شد، شما می‌توانید قبل از بارگذاری آن را بازرسی کنید.</string>
     <!-- Banner message shown while submitting debug log -->
-    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">وقتی روی ارسال کلیک می‌کنید، گزارش شما به مدت 30 روز به صورت آنلاین در یک URL منحصربه‌فرد و منتشرنشده پست می‌شود. می‌توانید ابتدا آن را در دستگاه خود ذخیره کنید.</string>
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3013,10 +3071,6 @@
 
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">پیام برای نشست ناموجود رمزگذاری شده است</string>
-
-    <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">پیام چندرسانه‌ای بد رمزگذاری شده است</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">پیام چندرسانه‌ای برای نشست ناموجود رمزگذاری شده است</string>
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">بی‌صدا کردن اعلان‌‌ها</string>
@@ -3747,7 +3801,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">نه ممنون</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
-    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">Recents</string>
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">تماس‌های اخیر</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">این پیام</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">به‌تازگی استفاده شده</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">لبخندها و آدم‌ها</string>
@@ -3762,15 +3816,15 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">هیچ نتیجه‌ای پیدا نشد</string>
 
     <!-- GifQuickSearchOption -->
-    <string name="GifQuickSearchOption__recents">Recents</string>
-    <string name="GifQuickSearchOption__trending">Trending</string>
-    <string name="GifQuickSearchOption__celebrate">Celebrate</string>
-    <string name="GifQuickSearchOption__love">Love</string>
-    <string name="GifQuickSearchOption__thumbs_up">Thumbs Up</string>
-    <string name="GifQuickSearchOption__surprised">Surprised</string>
-    <string name="GifQuickSearchOption__excited">Excited</string>
-    <string name="GifQuickSearchOption__sad">Sad</string>
-    <string name="GifQuickSearchOption__angry">Angry</string>
+    <string name="GifQuickSearchOption__recents">تماس‌های اخیر</string>
+    <string name="GifQuickSearchOption__trending">پرطرفدار</string>
+    <string name="GifQuickSearchOption__celebrate">جشن</string>
+    <string name="GifQuickSearchOption__love">عشق</string>
+    <string name="GifQuickSearchOption__thumbs_up">لایک</string>
+    <string name="GifQuickSearchOption__surprised">متعجب</string>
+    <string name="GifQuickSearchOption__excited">هیجان‌زده</string>
+    <string name="GifQuickSearchOption__sad">غمگین</string>
+    <string name="GifQuickSearchOption__angry">عصبانی</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">استفاده از پیش‌فرض سیستم</string>
@@ -4367,7 +4421,7 @@
     <string name="conversation_list_fragment__open_camera_description">باز کردن دوربین</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">هنوز هیچ گفتگویی وجود ندارد.\n با پیام دادن به یک دوست شروع کنید.</string>
     <!-- Message shown when there are no archived chats to display -->
-    <string name="conversation_list_fragment__archived_chats_will_appear_here">Archived chats will appear here.</string>
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">گفتگوهای بایگانی‌شده اینجا ظاهر می‌شوند.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">گفتگویی برای نمایش وجود ندارد</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4721,6 +4775,14 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">تلاش‌های ناموفق بیش از حد زیاد بودند. لطفاً بعداً دوباره امتحان کنید.</string>
     <string name="RegistrationActivity_error_connecting_to_service">خطا در برقراری ارتباط با سرویس</string>
     <string name="preferences_chats__backups">نسخه‌های پشتیبان</string>
+
+    <!-- Button label to indicate that a feature is in beta mode -->
+    <string name="Beta__beta_title">بتا</string>
+    <!-- Content description for info icon -->
+    <string name="Beta__info">اطلاعات</string>
+    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
+    <string name="Beta__this_is_beta">این یک قابلیت بتا است که به طور مداوم بر عملکرد آن می‌افزاییم.</string>
+
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">باز کردن قفل سیگنال</string>
     <!-- Description text explaining how to unlock Signal -->
@@ -5743,7 +5805,7 @@
     <string name="ConversationSettingsFragment__phone_number">شماره تلفن</string>
     <string name="ConversationSettingsFragment__get_badges">با حمایت از سیگنال نشان‌هایی برای نمایه‌تان دریافت کنید. برای اطلاعات بیشتر روی نشان ضربه بزنید.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
-    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">This media is not sent yet.</string>
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">این فایل رسانه هنوز ارسال نشده است.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">افزودن اعضا</string>
@@ -5796,6 +5858,8 @@
     <string name="NewConversationActivity__s_has_been_removed">%1$s حذف شده است</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s مسدود شده است</string>
+    <!-- Snackbar message when blocking a contact has failed -->
+    <string name="NewConversationActivity__block_failed">مسدود نشد</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">حذف %1$s ممکن نیست</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -7102,34 +7166,6 @@
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">برای تأیید اهدای مالی، از سیگنال خارج می‌شوید؟</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">پس از تأیید، برای تکمیل پردازش اهدای مالی‌تان به سیگنال برگردید.</string>
 
-    <!-- IdealBank -->
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__abn_amro">ABN AMRO</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__asn_bank">ASN Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__bunq">bunq</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__ing">ING</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__knab">Knab</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__n26">N26</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__rabobank">Rabobank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__regiobank">RegioBank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__revolut">Revolut</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__sns_bank">SNS Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__triodos_bank">Triodos Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__yoursafe">Yoursafe</string>
-
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
     <string name="BankTransferMandateFragment__bank_transfer">انتقال بانکی</string>
@@ -7190,7 +7226,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">انتخاب بانک‌تان</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">کمک مالی خود را با %1$s تأیید کنید</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">کمک مالی خود با iDEAL را تأیید کنید</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">برای راه‌اندازی کمک مالی مکرر خود، روی «ادامه» ضربه بزنید تا هزینه ۰,۰۱ یورو را با بانک خود تأیید کنید. این مبلغ به‌طور خودکار به شما برگردانده می‌شود و امکان برداشت کمک مالی شما به مبلغ %1$s در ماه از حساب‌تان را فراهم می‌کند.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7370,6 +7406,8 @@
     <string name="CallLogAdapter__start_a_video_call">شروع تماس تصویری</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">شروع یک تماس صوتی</string>
+    <!-- Notice on call log when no missed calls are available, centered on display -->
+    <string name="CallLogAdapter__no_missed_calls">تماس ازدست‌رفته‌ای وجود ندارد</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -7802,6 +7840,12 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">اشتراک نسخه پشتیبان شما تمدید نشد</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">بررسی کنید تا مطمئن شوید که روش پرداخت شما به‌روز است. روی «مدیریت اشتراک» ضربه بزنید و در قسمت «روش‌های پرداخت»، روی «به‌روزرسانی» ضربه بزنید.</string>
+    <!-- Sheet title for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">اشتراک نسخه پشتیبان شما منقضی شده است</string>
+    <!-- Sheet body part 1 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">اشتراک شما با روش پرداخت شما قابل تمدید نیست. برای ادامه پشتیبان‌گیری از رسانه، به اشتراک فعال نیاز دارید.</string>
+    <!-- Sheet body part 2 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">شما همچنان به طرح رایگان پشتیبان‌های سیگنال دسترسی خواهید داشت.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">پشتیبان‌گیری انجام نشد</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7813,6 +7857,8 @@
     <string name="BackupAlertBottomSheet__learn_more">اطلاعات بیشتر</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">رد کردن بازیابی</string>
+    <!-- Primary action button to open backups management screen -->
+    <string name="BackupAlertBottomSheet__manage_backups">مدیریت پشتیبان‌ها</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">اکنون پشتیبان‌گیری شود</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -7864,11 +7910,13 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">در حال بازیابی رسانه</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">بازیابی موقتاً متوقف شد</string>
+    <string name="BackupStatus__restore_paused">بازیابی رسانه موقتاً متوقف شد</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">بازیابی کامل شد</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">جزئیات</string>
+    <!-- Status action label for resume restore from a paused state -->
+    <string name="BackupStatus__resume">ازسرگیری</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">در انتظار Wi-Fi…</string>
@@ -7890,6 +7938,14 @@
     <string name="BackupStatusRow__restore_no_internet">بازیابی موقتاً متوقف شد: اتصال اینترنت وجود ندارد…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">بازیابی موقتاً متوقف شد: باتری دستگاه کم است</string>
+    <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">در حال دانلود: %1$s از %2$s (%3$s%%)</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
+    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
+    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
+    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">فضای کافی برای دانلود نسخه پشتیبان وجود ندارد. برای ادامه، %1$s فضا خالی کنید.</string>
     <!-- Text row label to skip download -->
@@ -7900,6 +7956,11 @@
     <string name="BackupStatusRow__your_last_backup_latest_version">آخرین پشتیبان‌گیری شما انجام نشد. مطمئن شوید که از جدیدترین نسخه سیگنال استفاده می‌کنید و سپس دوباره امتحان کنید.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">اطلاعات بیشتر</string>
+
+    <!-- Dialog title to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">با استفاده از اینترنت همراه از سر گرفته شود؟</string>
+    <!-- Dialog message to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">بازیابی رسانه با استفاده از اینترنت همراه ممکن است منجر به هزینه اینترنت شود. می‌توانید برای ازسرگیری خودکار، به شبکه Wi-Fi متصل شوید.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7992,6 +8053,8 @@
     <string name="BackupsSettingsFragment_set_up">راه‌اندازی</string>
 
     <!-- RemoteBackupsSettingsFragment -->
+    <!-- Content description for canceling backup upload -->
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">لغو بارگذاری</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">پشتیبان‌های سیگنال</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8000,8 +8063,8 @@
     <string name="RemoteBackupsSettingsFragment__payment_history">تاریخچه پرداخت</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">جزئیات پشتیبان</string>
-    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">بازیابی با استفاده از اینترنت تلفن همراه</string>
+    <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__resume_download">ازسرگیری دانلود</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">اندازه پشتیبان</string>
     <!-- Row label for backup frequency -->
@@ -8071,7 +8134,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">پشتیبان‌ها خاموش و پاگ شوند؟</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">دیگر هزینه‌ای از شما دریافت نمی‌شود. پشتیبان شما پاک خواهد شد و هیچ پشتیبان جدیدی ایجاد نخواهد شد.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">خاموش و پاک کردن</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8098,6 +8161,8 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">در حال دانلود نسخه پشتیبان</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">بسته به اندازه نسخه پشتیبان شما، این امر ممکن است زمان زیادی طول بکشد. هنگام دانلود، می‌توانید به‌صورت معمول از تلفن خود استفاده کنید.</string>
+    <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">اشتراک شما در این دستگاه یافت نشد. برای ادامه استفاده از «پشتیبان‌های سیگنال»، تمدید کنید.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">اشتراک شما در این دستگاه تا %1$d روز آینده معتبر است. برای ادامه استفاده از «پشتیبان‌های سیگنال» تمدید کنید</item>
@@ -8121,17 +8186,27 @@
         <item quantity="one">شما %1$s داده پشتیبان دارید که در این دستگاه وجود ندارد. پس از پایان اشتراکتان تا %2$d روز دیگر، نسخه پشتیبان شما حذف خواهد شد.</item>
         <item quantity="other">شما %1$s داده پشتیبان دارید که در این دستگاه وجود ندارد. پس از پایان اشتراکتان تا %2$d روز دیگر، نسخه پشتیبان شما حذف خواهد شد.</item>
     </plurals>
+    <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">شما %1$s داده پشتیبان‌گیری‌شده دارید که در این دستگاه نیست. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">بارگیری</string>
     <!-- Dialog title for skipping download of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_download_question">دانلود رد شود؟</string>
-    <!-- Dialog body for skiping download of backed up media -->
+    <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="one">اگر دانلود را رد کنید، رسانه و پیوست‌های موجود در نسخه پشتیبان شما ظرف %1$d روز حذف خواهد شد.</item>
         <item quantity="other">اگر دانلود را رد کنید، رسانه و پیوست‌های موجود در نسخه پشتیبان شما ظرف %1$d روز حذف خواهد شد.</item>
     </plurals>
+    <!-- Dialog body for skipping download of backed up media during deletion -->
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_question">بازیابی رد شود؟</string>
+    <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">اگر بازیابی را رد کنید، می‌توانید بعداً رسانه باقیمانده و پیوست‌های موجود در نسخه پشتیبان را دانلود کنید.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">رد کردن</string>
+    <!-- Positive dialog action to skip download during deletion -->
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">پشتیبان‌گیری خاموش و حذف نشد</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8140,6 +8215,20 @@
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">در حال بارگذاری: %1$s از %2$s (%3$d%%)</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">جزئیات</string>
+    <!-- Text displayed when there was an error deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <!-- Text displayed as the title in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">پشتیبان‌گیری حذف نشد</string>
+    <!-- Text displayed as the body in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">خطایی رخ داد. لطفاً با پشتیبانی تماس بگیرید.</string>
+    <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <!-- Text displayed while we are processing a backup delete -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">پشتیبان‌گیری خاموش شده و داده‌های شما از سرویس ذخیره‌سازی امن سیگنال حذف خواهد شد.</string>
+    <!-- Text displayed after we have deleted a user\'s backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">پشتیبان‌گیری خاموش شده و داده‌های شما از سرویس ذخیره‌سازی امن سیگنال حذف شده است.</string>
+    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">در حال دانلود: %1$s از %2$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8164,6 +8253,8 @@
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">خطای شبکه رخ داد. لطفاً بعداً دوباره امتحان کنید.</string>
+    <!-- Toast message if this fragment encounters an in progress deletion -->
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8196,6 +8287,18 @@
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">این کلید برای بازیابی حساب و اطلاعات شما ضروری است. این کلید را در مکانی امن نگهداری کنید. اگر آن را گم کنید، نمی‌توانید حساب خود را بازیابی کنید.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">کپی به کلیپ‌بورد</string>
+    <!-- Label for the button to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">بعدی</string>
     <!-- Bottom sheet title -->
@@ -8228,9 +8331,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">تمام نسخه‌های پشتیبان سرتاسر رمزگذاری شده‌اند. سیگنال یک شرکت غیرانتفاعی است—پرداخت هزینه برای پشتیبان‌گیری به پشتیبانی از مأموریت ما کمک می‌کند.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__read_more">بیشتر بخوانید</string>
-    <!-- Primary action button label when selecting a backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__next">بعدی</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">اطلاعات بیشتر</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <!-- Primary action button label when selecting the paid backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">اشتراک به‌قیمت %1$s در ماه</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">تغییر نوع پشتیبان‌گیری</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
@@ -8426,15 +8531,25 @@
     <string name="NoBackupToRestore_skip_restore">رد کردن بازیابی</string>
 
     <!-- Accessibility label for close search button in MainToolbar -->
-    <string name="MainToolbar__close_search_content_description">Close search</string>
+    <string name="MainToolbar__close_search_content_description">بستن جستجو</string>
     <!-- Accessibility label for clear search query in MainToolbar -->
-    <string name="MainToolbar__clear_search_content_description">Clear search</string>
+    <string name="MainToolbar__clear_search_content_description">پاک کردن جستجو</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__more_options_content_description">More options</string>
+    <string name="MainToolbar__more_options_content_description">گزینه‌های بیشتر</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__notification_profile_content_description">Notification Profile</string>
+    <string name="MainToolbar__notification_profile_content_description">نمایه اعلان‌ها</string>
     <!-- Accessibility label for more options button in MainToolbar -->
-    <string name="MainToolbar__proxy_content_description">Proxy</string>
+    <string name="MainToolbar__proxy_content_description">پروکسی</string>
+
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">حرکت به سمت بالا</string>
+
+    <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
+    <string name="SignalCheckbox_accessibility_on_click_label">تعویض</string>
+    <!-- Accessibility label describing a checked checkbox. -->
+    <string name="SignalCheckbox_accessibility_checked_description">تیک خورده</string>
+    <!-- Accessibility label describing an unchecked checkbox. -->
+    <string name="SignalCheckbox_accessibility_unchecked_description">تیک نخورده</string>
 
     <!-- EOF -->
 </resources>

@@ -32,6 +32,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -169,6 +170,7 @@ private fun PrimaryActionButton(
 ) {
   val onClick = remember(destination) {
     when (destination) {
+      MainNavigationListLocation.ARCHIVE -> error("Not supported")
       MainNavigationListLocation.CHATS -> onNewChatClick
       MainNavigationListLocation.CALLS -> onNewCallClick
       MainNavigationListLocation.STORIES -> {
@@ -182,15 +184,16 @@ private fun PrimaryActionButton(
     shadowElevation = elevation,
     icon = {
       AnimatedContent(destination) { targetState ->
-        val icon = when (targetState) {
-          MainNavigationListLocation.CHATS -> R.drawable.symbol_edit_24
-          MainNavigationListLocation.CALLS -> R.drawable.symbol_phone_plus_24
-          MainNavigationListLocation.STORIES -> R.drawable.symbol_camera_24
+        val (icon, contentDescriptionId) = when (targetState) {
+          MainNavigationListLocation.ARCHIVE -> error("Not supported")
+          MainNavigationListLocation.CHATS -> R.drawable.symbol_edit_24 to R.string.conversation_list_fragment__fab_content_description
+          MainNavigationListLocation.CALLS -> R.drawable.symbol_phone_plus_24 to R.string.CallLogFragment__start_a_new_call
+          MainNavigationListLocation.STORIES -> R.drawable.symbol_camera_24 to R.string.conversation_list_fragment__open_camera_description
         }
 
         Icon(
           imageVector = ImageVector.vectorResource(icon),
-          contentDescription = ""
+          contentDescription = stringResource(contentDescriptionId)
         )
       }
     }
@@ -209,7 +212,7 @@ private fun CameraButton(
     icon = {
       Icon(
         imageVector = ImageVector.vectorResource(R.drawable.symbol_camera_24),
-        contentDescription = ""
+        contentDescription = stringResource(R.string.conversation_list_fragment__open_camera_description)
       )
     },
     colors = colors,

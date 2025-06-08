@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import androidx.core.content.contentValuesOf
 import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.sqlite.db.SupportSQLiteQueryBuilder
+import androidx.sqlite.db.SupportSQLiteStatement
 import org.signal.core.util.SqlUtil.ForeignKeyViolation
 import org.signal.core.util.logging.Log
 import kotlin.time.Duration
@@ -246,8 +247,32 @@ fun SupportSQLiteDatabase.deleteAll(tableName: String): Int {
   return this.delete(tableName, null, arrayOfNulls<String>(0))
 }
 
+/**
+ * Begins an INSERT statement with a helpful builder pattern.
+ */
 fun SupportSQLiteDatabase.insertInto(tableName: String): InsertBuilderPart1 {
   return InsertBuilderPart1(this, tableName)
+}
+
+/**
+ * Bind an arbitrary value to an index. It will handle calling the correct bind method based on the class type.
+ * @param index The index you want to bind to. Important: Indexes start at 1, not 0.
+ */
+fun SupportSQLiteStatement.bindValue(index: Int, value: Any?) {
+  when (value) {
+    null -> this.bindNull(index)
+    is DatabaseId -> this.bindString(index, value.serialize())
+    is Boolean -> this.bindLong(index, value.toInt().toLong())
+    is ByteArray -> this.bindBlob(index, value)
+    is Number -> {
+      if (value.toLong() == value) {
+        this.bindLong(index, value.toLong())
+      } else {
+        this.bindDouble(index, value.toDouble())
+      }
+    }
+    else -> this.bindString(index, value.toString())
+  }
 }
 
 class SelectBuilderPart1(
@@ -422,7 +447,7 @@ class UpdateBuilderPart2(
 ) {
   fun where(where: String, vararg whereArgs: Any): UpdateBuilderPart3 {
     require(where.isNotBlank())
-    return UpdateBuilderPart3(db, tableName, values, where, SqlUtil.buildArgs(*whereArgs))
+    return UpdateBuilderPart3(db, tableName, values, where, whereArgs.toArgs())
   }
 
   fun where(where: String, whereArgs: Array<String>): UpdateBuilderPart3 {
@@ -436,11 +461,35 @@ class UpdateBuilderPart3(
   private val tableName: String,
   private val values: ContentValues,
   private val where: String,
-  private val whereArgs: Array<String>
+  private val whereArgs: Array<out Any?>
 ) {
   @JvmOverloads
-  fun run(conflictStrategy: Int = SQLiteDatabase.CONFLICT_NONE): Int {
-    return db.update(tableName, conflictStrategy, values, where, whereArgs)
+  fun run(): Int {
+    val query = StringBuilder("UPDATE $tableName SET ")
+
+    val contentValuesKeys = values.keySet()
+    for ((index, column) in contentValuesKeys.withIndex()) {
+      query.append(column).append(" = ?")
+      if (index < contentValuesKeys.size - 1) {
+        query.append(", ")
+      }
+    }
+
+    query.append(" WHERE ").append(where)
+
+    val statement = db.compileStatement(query.toString())
+    var bindIndex = 1
+    for (key in contentValuesKeys) {
+      statement.bindValue(bindIndex, values.get(key))
+      bindIndex++
+    }
+
+    for (arg in whereArgs) {
+      statement.bindValue(bindIndex, arg)
+      bindIndex++
+    }
+
+    return statement.use { it.executeUpdateDelete() }
   }
 }
 
@@ -548,6 +597,20 @@ class InsertBuilderPart2(
   fun run(conflictStrategy: Int = SQLiteDatabase.CONFLICT_IGNORE): Long {
     return db.insert(tableName, conflictStrategy, values)
   }
+}
+
+/**
+ * Helper function to massage passed-in arguments into a better form to give to the database.
+ */
+private fun Array<out Any?>.toArgs(): Array<Any?> {
+  return this
+    .map {
+      when (it) {
+        is DatabaseId -> it.serialize()
+        else -> it
+      }
+    }
+    .toTypedArray()
 }
 
 data class ForeignKeyConstraint(

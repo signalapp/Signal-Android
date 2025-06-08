@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
+import android.content.Context
+import android.os.Build
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -16,11 +18,14 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
@@ -29,12 +34,22 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.credentials.CreatePasswordRequest
+import androidx.credentials.CredentialManager
+import androidx.credentials.exceptions.CreateCredentialCancellationException
+import androidx.credentials.exceptions.CreateCredentialInterruptedException
+import androidx.credentials.exceptions.CreateCredentialNoCreateOptionException
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.CredentialManagerError
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.CredentialManagerResult
 import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.signal.core.ui.R as CoreUiR
 
@@ -45,10 +60,15 @@ import org.signal.core.ui.R as CoreUiR
 @Composable
 fun MessageBackupsKeyRecordScreen(
   backupKey: String,
+  keySaveState: BackupKeySaveState?,
   onNavigationClick: () -> Unit = {},
   onCopyToClipboardClick: (String) -> Unit = {},
+  onRequestSaveToPasswordManager: () -> Unit = {},
+  onConfirmSaveToPasswordManager: () -> Unit = {},
+  onSaveToPasswordManagerComplete: (CredentialManagerResult) -> Unit = {},
   onNextClick: () -> Unit = {}
 ) {
+  val snackbarHostState = remember { SnackbarHostState() }
   val backupKeyString = remember(backupKey) {
     backupKey.chunked(4).joinToString("  ")
   }
@@ -56,99 +76,182 @@ fun MessageBackupsKeyRecordScreen(
   Scaffolds.Settings(
     title = "",
     navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
-    onNavigationClick = onNavigationClick
+    onNavigationClick = onNavigationClick,
+    snackbarHost = { Snackbars.Host(snackbarHostState = snackbarHostState) }
   ) { paddingValues ->
-    Column(
+    Box(
       modifier = Modifier
         .padding(paddingValues)
         .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
-        .fillMaxSize(),
-      horizontalAlignment = Alignment.CenterHorizontally
     ) {
-      LazyColumn(
-        horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
-          .weight(1f)
-          .testTag("message-backups-key-record-screen-lazy-column")
+      Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally
       ) {
-        item {
-          Image(
-            painter = painterResource(R.drawable.image_signal_backups_lock),
-            contentDescription = null,
-            modifier = Modifier
-              .padding(top = 24.dp)
-              .size(80.dp)
-          )
-        }
-
-        item {
-          Text(
-            text = stringResource(R.string.MessageBackupsKeyRecordScreen__record_your_backup_key),
-            style = MaterialTheme.typography.headlineMedium,
-            modifier = Modifier.padding(top = 16.dp)
-          )
-        }
-
-        item {
-          Text(
-            text = stringResource(R.string.MessageBackupsKeyRecordScreen__this_key_is_required_to_recover),
-            textAlign = TextAlign.Center,
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(top = 12.dp)
-          )
-        }
-
-        item {
-          Box(
-            modifier = Modifier
-              .padding(top = 24.dp, bottom = 16.dp)
-              .background(
-                color = SignalTheme.colors.colorSurface1,
-                shape = RoundedCornerShape(10.dp)
-              )
-              .padding(24.dp)
-          ) {
-            Text(
-              text = backupKeyString,
-              style = MaterialTheme.typography.bodyLarge
-                .copy(
-                  fontSize = 18.sp,
-                  fontWeight = FontWeight(400),
-                  letterSpacing = 1.44.sp,
-                  lineHeight = 36.sp,
-                  textAlign = TextAlign.Center,
-                  fontFamily = MonoTypeface.fontFamily()
-                )
-            )
-          }
-        }
-
-        item {
-          Buttons.Small(
-            onClick = { onCopyToClipboardClick(backupKeyString) }
-          ) {
-            Text(
-              text = stringResource(R.string.MessageBackupsKeyRecordScreen__copy_to_clipboard)
-            )
-          }
-        }
-      }
-
-      Box(
-        modifier = Modifier
-          .fillMaxWidth()
-          .padding(bottom = 24.dp)
-      ) {
-        Buttons.LargeTonal(
-          onClick = onNextClick,
-          modifier = Modifier.align(Alignment.BottomEnd)
+        LazyColumn(
+          horizontalAlignment = Alignment.CenterHorizontally,
+          modifier = Modifier
+            .weight(1f)
+            .testTag("message-backups-key-record-screen-lazy-column")
         ) {
-          Text(
-            text = stringResource(R.string.MessageBackupsKeyRecordScreen__next)
-          )
+          item {
+            Image(
+              painter = painterResource(R.drawable.image_signal_backups_lock),
+              contentDescription = null,
+              modifier = Modifier
+                .padding(top = 24.dp)
+                .size(80.dp)
+            )
+          }
+
+          item {
+            Text(
+              text = stringResource(R.string.MessageBackupsKeyRecordScreen__record_your_backup_key),
+              style = MaterialTheme.typography.headlineMedium,
+              modifier = Modifier.padding(top = 16.dp)
+            )
+          }
+
+          item {
+            Text(
+              text = stringResource(R.string.MessageBackupsKeyRecordScreen__this_key_is_required_to_recover),
+              textAlign = TextAlign.Center,
+              style = MaterialTheme.typography.bodyLarge,
+              color = MaterialTheme.colorScheme.onSurfaceVariant,
+              modifier = Modifier.padding(top = 12.dp)
+            )
+          }
+
+          item {
+            Box(
+              modifier = Modifier
+                .padding(top = 24.dp, bottom = 16.dp)
+                .background(
+                  color = SignalTheme.colors.colorSurface1,
+                  shape = RoundedCornerShape(10.dp)
+                )
+                .padding(24.dp)
+            ) {
+              Text(
+                text = backupKeyString,
+                style = MaterialTheme.typography.bodyLarge
+                  .copy(
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight(400),
+                    letterSpacing = 1.44.sp,
+                    lineHeight = 36.sp,
+                    textAlign = TextAlign.Center,
+                    fontFamily = MonoTypeface.fontFamily()
+                  )
+              )
+            }
+          }
+
+          item {
+            Buttons.Small(
+              onClick = { onCopyToClipboardClick(backupKeyString) }
+            ) {
+              Text(
+                text = stringResource(R.string.MessageBackupsKeyRecordScreen__copy_to_clipboard)
+              )
+            }
+          }
+
+          if (Build.VERSION.SDK_INT >= 24) {
+            item {
+              Buttons.Small(
+                onClick = { onRequestSaveToPasswordManager() }
+              ) {
+                Text(
+                  text = stringResource(R.string.MessageBackupsKeyRecordScreen__save_to_password_manager)
+                )
+              }
+            }
+          }
+        }
+
+        Box(
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(bottom = 24.dp)
+        ) {
+          Buttons.LargeTonal(
+            onClick = onNextClick,
+            modifier = Modifier.align(Alignment.BottomEnd)
+          ) {
+            Text(
+              text = stringResource(R.string.MessageBackupsKeyRecordScreen__next)
+            )
+          }
         }
       }
+
+      when (keySaveState) {
+        is BackupKeySaveState.RequestingConfirmation -> {
+          Dialogs.SimpleAlertDialog(
+            title = stringResource(R.string.MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title),
+            body = stringResource(R.string.MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body),
+            dismiss = stringResource(android.R.string.cancel),
+            onDismiss = { onSaveToPasswordManagerComplete(CredentialManagerResult.UserCanceled) },
+            confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__continue),
+            onConfirm = onConfirmSaveToPasswordManager
+          )
+        }
+
+        is BackupKeySaveState.AwaitingCredentialManager -> {
+          val context = LocalContext.current
+          LaunchedEffect(keySaveState) {
+            val result = saveKeyToCredentialManager(context, backupKey)
+            onSaveToPasswordManagerComplete(result)
+          }
+        }
+
+        is BackupKeySaveState.Success -> {
+          val snackbarMessage = stringResource(R.string.MessageBackupsKeyRecordScreen__save_to_password_manager_success)
+          LaunchedEffect(keySaveState) {
+            snackbarHostState.showSnackbar(snackbarMessage)
+          }
+        }
+
+        is BackupKeySaveState.Error -> {
+          if (keySaveState.errorType is CredentialManagerError.MissingCredentialManager) {
+            Dialogs.SimpleMessageDialog(
+              title = stringResource(R.string.MessageBackupsKeyRecordScreen__missing_password_manager_title),
+              message = stringResource(R.string.MessageBackupsKeyRecordScreen__missing_password_manager_message),
+              dismiss = stringResource(android.R.string.ok),
+              onDismiss = { onSaveToPasswordManagerComplete(CredentialManagerResult.UserCanceled) }
+            )
+          }
+        }
+
+        null -> Unit
+      }
+    }
+  }
+}
+
+private suspend fun saveKeyToCredentialManager(
+  context: Context,
+  backupKey: String
+): CredentialManagerResult {
+  return try {
+    CredentialManager.create(context)
+      .createCredential(
+        context = context,
+        request = CreatePasswordRequest(
+          id = context.getString(R.string.RemoteBackupsSettingsFragment__signal_backups),
+          password = backupKey,
+          preferImmediatelyAvailableCredentials = false,
+          isAutoSelectAllowed = false
+        )
+      )
+    CredentialManagerResult.Success
+  } catch (e: Exception) {
+    when (e) {
+      is CreateCredentialCancellationException -> CredentialManagerResult.UserCanceled
+      is CreateCredentialInterruptedException -> CredentialManagerResult.Interrupted(e)
+      is CreateCredentialNoCreateOptionException -> CredentialManagerError.MissingCredentialManager(e)
+      else -> CredentialManagerError.Unexpected(e)
     }
   }
 }
@@ -158,7 +261,19 @@ fun MessageBackupsKeyRecordScreen(
 private fun MessageBackupsKeyRecordScreenPreview() {
   Previews.Preview {
     MessageBackupsKeyRecordScreen(
-      backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0"
+      backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0",
+      keySaveState = null
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun SaveKeyConfirmationDialogPreview() {
+  Previews.Preview {
+    MessageBackupsKeyRecordScreen(
+      backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0",
+      keySaveState = BackupKeySaveState.RequestingConfirmation
     )
   }
 }

@@ -117,7 +117,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideIncomingMessageObserver(webSocket: SignalWebSocket.AuthenticatedWebSocket): IncomingMessageObserver {
+  override fun provideIncomingMessageObserver(webSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): IncomingMessageObserver {
     return mockk(relaxed = true)
   }
 
@@ -289,7 +289,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideProfileApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): ProfileApi {
+  override fun provideProfileApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket, clientZkProfileOperations: ClientZkProfileOperations): ProfileApi {
     return mockk(relaxed = true)
   }
 

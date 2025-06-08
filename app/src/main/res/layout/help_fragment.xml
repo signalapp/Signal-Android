@@ -25,6 +25,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:navigationIcon="@drawable/symbol_arrow_start_24"
+                app:title="@string/preferences__help" />
+
             <TextView
                 android:id="@+id/help_fragment_contact"
                 android:layout_width="match_parent"
@@ -37,7 +47,7 @@
                 android:textColor="@color/signal_text_secondary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@id/toolbar" />
 
             <EditText
                 android:id="@+id/help_fragment_problem"

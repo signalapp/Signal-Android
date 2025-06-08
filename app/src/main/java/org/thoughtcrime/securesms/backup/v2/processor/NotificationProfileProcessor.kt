@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.processor
 
 import okio.ByteString.Companion.toByteString
+import org.signal.core.util.Base64
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toInt
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.serialize
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.time.DayOfWeek
 import org.thoughtcrime.securesms.backup.v2.proto.NotificationProfile as NotificationProfileProto
@@ -59,7 +61,8 @@ object NotificationProfileProcessor {
         NotificationProfileTable.CREATED_AT to profile.createdAtMs,
         NotificationProfileTable.ALLOW_ALL_CALLS to profile.allowAllCalls.toInt(),
         NotificationProfileTable.ALLOW_ALL_MENTIONS to profile.allowAllMentions.toInt(),
-        NotificationProfileTable.NOTIFICATION_PROFILE_ID to notificationProfileUuid.toString()
+        NotificationProfileTable.NOTIFICATION_PROFILE_ID to notificationProfileUuid.toString(),
+        NotificationProfileTable.STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey())
       )
       .run()
 

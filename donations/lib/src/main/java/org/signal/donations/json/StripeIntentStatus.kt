@@ -26,6 +26,10 @@ enum class StripeIntentStatus(private val code: String) {
     fun fromCode(code: String): StripeIntentStatus = entries.first { it.code == code }
   }
 
+  fun canProceed(): Boolean {
+    return this == PROCESSING || this == SUCCEEDED
+  }
+
   @JsonValue
   fun toValue(): String {
     return code

@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.keyvalue
 
-import org.signal.ringrtc.CallManager.AudioProcessingMethod
 import org.signal.ringrtc.CallManager.DataMode
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.util.Environment.Calling.defaultSfuUrl
@@ -16,10 +15,14 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val REMOVE_SENDER_KEY_MINIMUM: String = "internal.remove_sender_key_minimum"
     const val DELAY_RESENDS: String = "internal.delay_resends"
     const val CALLING_SERVER: String = "internal.calling_server"
-    const val CALLING_AUDIO_PROCESSING_METHOD: String = "internal.calling_audio_processing_method"
     const val CALLING_DATA_MODE: String = "internal.calling_bandwidth_mode"
     const val CALLING_DISABLE_TELECOM: String = "internal.calling_disable_telecom"
-    const val CALLING_ENABLE_OBOE_ADM: String = "internal.calling_enable_oboe_adm"
+    const val CALLING_SET_AUDIO_CONFIG: String = "internal.calling_set_audio_config"
+    const val CALLING_USE_OBOE_ADM: String = "internal.calling_use_oboe_adm"
+    const val CALLING_USE_SOFTWARE_AEC: String = "internal.calling_use_software_aec"
+    const val CALLING_USE_SOFTWARE_NS: String = "internal.calling_use_software_ns"
+    const val CALLING_USE_INPUT_LOW_LATENCY: String = "internal.calling_use_input_low_latency"
+    const val CALLING_USE_INPUT_VOICE_COMM: String = "internal.calling_use_input_voice_comm"
     const val SHAKE_TO_REPORT: String = "internal.shake_to_report"
     const val DISABLE_STORAGE_SERVICE: String = "internal.disable_storage_service"
     const val FORCE_WEBSOCKET_MODE: String = "internal.force_websocket_mode"
@@ -111,19 +114,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     set(value) = putString(CALLING_SERVER, value)
 
   /**
-   * Setting to override the default handling of hardware/software AEC.
-   */
-  val callingAudioProcessingMethod: AudioProcessingMethod
-    get() {
-      return if (RemoteConfig.internalUser) {
-        val entryIndex = getInteger(CALLING_AUDIO_PROCESSING_METHOD, AudioProcessingMethod.Default.ordinal)
-        AudioProcessingMethod.entries[entryIndex]
-      } else {
-        AudioProcessingMethod.Default
-      }
-    }
-
-  /**
    * Setting to override the default calling bandwidth mode.
    */
   val callingDataMode: DataMode
@@ -144,9 +134,34 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   var callingDisableTelecom by booleanValue(CALLING_DISABLE_TELECOM, true).falseForExternalUsers()
 
   /**
-   * Whether or not the Oboe ADM is used.
+   * Whether or not to override the audio settings from the remote configuration.
    */
-  var callingEnableOboeAdm by booleanValue(CALLING_ENABLE_OBOE_ADM, true).falseForExternalUsers()
+  var callingSetAudioConfig by booleanValue(CALLING_SET_AUDIO_CONFIG, true).falseForExternalUsers()
+
+  /**
+   * If overriding the audio settings, use the Oboe ADM or not.
+   */
+  var callingUseOboeAdm by booleanValue(CALLING_USE_OBOE_ADM, true).defaultForExternalUsers()
+
+  /**
+   * If overriding the audio settings, use the Software AEC or not.
+   */
+  var callingUseSoftwareAec by booleanValue(CALLING_USE_SOFTWARE_AEC, false).defaultForExternalUsers()
+
+  /**
+   * If overriding the audio settings, use the Software NS or not.
+   */
+  var callingUseSoftwareNs by booleanValue(CALLING_USE_SOFTWARE_NS, false).defaultForExternalUsers()
+
+  /**
+   * If overriding the audio settings, use Low Latency for the input or not.
+   */
+  var callingUseInputLowLatency by booleanValue(CALLING_USE_INPUT_LOW_LATENCY, true).defaultForExternalUsers()
+
+  /**
+   * If overriding the audio settings, use Voice Comm for the input or not.
+   */
+  var callingUseInputVoiceComm by booleanValue(CALLING_USE_INPUT_VOICE_COMM, true).defaultForExternalUsers()
 
   /**
    * Whether or not the system is forced to be in 'websocket mode', where FCM is ignored and we use a foreground service to keep the app alive.
@@ -160,8 +175,6 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   var lastScrollPosition: Int by integerValue(LAST_SCROLL_POSITION, 0).defaultForExternalUsers()
 
   var useConversationItemV2Media by booleanValue(CONVERSATION_ITEM_V2_MEDIA, false).defaultForExternalUsers()
-
-  var webSocketShadowingStats by nullableBlobValue(WEB_SOCKET_SHADOWING_STATS, null).defaultForExternalUsers()
 
   var forceSsre2Capability by booleanValue("internal.force_ssre2_capability", false).defaultForExternalUsers()
 

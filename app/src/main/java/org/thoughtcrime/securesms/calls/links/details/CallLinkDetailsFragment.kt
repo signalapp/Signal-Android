@@ -283,7 +283,7 @@ private fun CallLinkDetails(
       YouAreAlreadyInACallSnackbar(showAlreadyInACall)
     },
     onNavigationClick = callback::onNavigationClicked,
-    navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24)
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
   ) { paddingValues ->
     if (state.callLink == null) {
       return@Settings

@@ -15,8 +15,12 @@ import java.util.UUID
 
 class ArchivedAttachment : Attachment {
 
+  companion object {
+    private const val NO_ARCHIVE_CDN = -404
+  }
+
   @JvmField
-  val archiveCdn: Int
+  val archiveCdn: Int?
 
   @JvmField
   val archiveMediaName: String
@@ -31,6 +35,7 @@ class ArchivedAttachment : Attachment {
     contentType: String?,
     size: Long,
     cdn: Int,
+    uploadTimestamp: Long?,
     key: ByteArray,
     iv: ByteArray?,
     cdnKey: String?,
@@ -71,7 +76,7 @@ class ArchivedAttachment : Attachment {
     width = width ?: 0,
     height = height ?: 0,
     incrementalMacChunkSize = incrementalMacChunkSize ?: 0,
-    uploadTimestamp = 0,
+    uploadTimestamp = uploadTimestamp ?: 0,
     caption = caption,
     stickerLocator = stickerLocator,
     blurHash = BlurHash.parseOrNull(blurHash),
@@ -79,14 +84,14 @@ class ArchivedAttachment : Attachment {
     transformProperties = null,
     uuid = uuid
   ) {
-    this.archiveCdn = archiveCdn ?: Cdn.CDN_3.cdnNumber
+    this.archiveCdn = archiveCdn
     this.archiveMediaName = archiveMediaName
     this.archiveMediaId = archiveMediaId
     this.archiveThumbnailMediaId = archiveThumbnailMediaId
   }
 
   constructor(parcel: Parcel) : super(parcel) {
-    archiveCdn = parcel.readInt()
+    archiveCdn = parcel.readInt().takeIf { it != NO_ARCHIVE_CDN }
     archiveMediaName = parcel.readString()!!
     archiveMediaId = parcel.readString()!!
     archiveThumbnailMediaId = parcel.readString()!!
@@ -94,7 +99,7 @@ class ArchivedAttachment : Attachment {
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
     super.writeToParcel(dest, flags)
-    dest.writeInt(archiveCdn)
+    dest.writeInt(archiveCdn ?: NO_ARCHIVE_CDN)
     dest.writeString(archiveMediaName)
     dest.writeString(archiveMediaId)
     dest.writeString(archiveThumbnailMediaId)

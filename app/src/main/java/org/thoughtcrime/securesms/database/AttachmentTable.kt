@@ -54,6 +54,7 @@ import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
+import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.requireNonNullString
@@ -78,6 +79,17 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.COPY_PENDING
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.FINISHED
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.NONE
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.UPLOAD_IN_PROGRESS
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.entries
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_FILE
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_HASH_END
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.PREUPLOAD_MESSAGE_ID
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.TRANSFER_PROGRESS_DONE
+import org.thoughtcrime.securesms.database.AttachmentTable.ThumbnailRestoreState.entries
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
@@ -94,11 +106,13 @@ import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.FileUtils
 import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.util.JsonUtil
@@ -264,7 +278,7 @@ class AttachmentTable(
         $UPLOAD_TIMESTAMP INTEGER DEFAULT 0,
         $DATA_HASH_START TEXT DEFAULT NULL,
         $DATA_HASH_END TEXT DEFAULT NULL,
-        $ARCHIVE_CDN INTEGER DEFAULT 0,
+        $ARCHIVE_CDN INTEGER DEFAULT NULL,
         $ARCHIVE_TRANSFER_FILE TEXT DEFAULT NULL,
         $ARCHIVE_TRANSFER_STATE INTEGER DEFAULT ${ArchiveTransferState.NONE.value},
         $THUMBNAIL_FILE TEXT DEFAULT NULL,
@@ -288,6 +302,10 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS $DATA_FILE_INDEX ON $TABLE_NAME ($DATA_FILE);",
       "CREATE INDEX IF NOT EXISTS attachment_archive_transfer_state ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);",
       "CREATE INDEX IF NOT EXISTS attachment_remote_digest_index ON $TABLE_NAME ($REMOTE_DIGEST);"
+    )
+
+    private val DATA_FILE_INFO_PROJECTION = arrayOf(
+      ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_TRANSFER_STATE, THUMBNAIL_FILE, THUMBNAIL_RESTORE_STATE, THUMBNAIL_RANDOM
     )
 
     @JvmStatic
@@ -555,6 +573,15 @@ class AttachmentTable(
       .readToSingleLong()
   }
 
+  fun getOptimizedMediaAttachmentSize(): Long {
+    return readableDatabase
+      .select("SUM($DATA_SIZE)")
+      .from(TABLE_NAME)
+      .where("$TRANSFER_STATE = ?", TRANSFER_RESTORE_OFFLOADED)
+      .run()
+      .readToSingleLong()
+  }
+
   /**
    * Finds all of the attachmentIds of attachments that need to be uploaded to the archive cdn.
    */
@@ -562,7 +589,7 @@ class AttachmentTable(
     return readableDatabase
       .select(ID)
       .from(TABLE_NAME)
-      .where("$ARCHIVE_TRANSFER_STATE = ? AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value)
+      .where("($ARCHIVE_TRANSFER_STATE = ? or $ARCHIVE_TRANSFER_STATE = ?) AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value, ArchiveTransferState.TEMPORARY_FAILURE.value)
       .orderBy("$ID DESC")
       .run()
       .readToList { AttachmentId(it.requireLong(ID)) }
@@ -627,7 +654,7 @@ class AttachmentTable(
   fun doAnyAttachmentsNeedArchiveUpload(): Boolean {
     return readableDatabase
       .exists(TABLE_NAME)
-      .where("$ARCHIVE_TRANSFER_STATE = ? AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value)
+      .where("($ARCHIVE_TRANSFER_STATE = ? OR $ARCHIVE_TRANSFER_STATE = ?) AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value, ArchiveTransferState.TEMPORARY_FAILURE.value)
       .run()
   }
 
@@ -661,6 +688,41 @@ class AttachmentTable(
         .where("$DATA_FILE = ?", dataFile)
         .run()
     }
+  }
+
+  /**
+   * Sets the archive transfer state for the given attachment and all other attachments that share the same data file iff
+   * the row isn't already marked as a [ArchiveTransferState.PERMANENT_FAILURE].
+   */
+  fun setArchiveTransferStateFailure(id: AttachmentId, state: ArchiveTransferState) {
+    writableDatabase.withinTransaction {
+      val dataFile: String = readableDatabase
+        .select(DATA_FILE)
+        .from(TABLE_NAME)
+        .where("$ID = ?", id.id)
+        .run()
+        .readToSingleObject { it.requireString(DATA_FILE) } ?: return@withinTransaction
+
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(ARCHIVE_TRANSFER_STATE to state.value)
+        .where("$ARCHIVE_TRANSFER_STATE != ? AND $DATA_FILE = ?", ArchiveTransferState.PERMANENT_FAILURE.value, dataFile)
+        .run()
+    }
+  }
+
+  /**
+   * Sets the archive transfer state for the given attachment by digest.
+   */
+  fun resetArchiveTransferStateByDigest(digest: ByteArray) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
+        ARCHIVE_CDN to null
+      )
+      .where("$REMOTE_DIGEST = ?", digest)
+      .run()
   }
 
   /**
@@ -1157,7 +1219,7 @@ class AttachmentTable(
       // We don't look at hash_start here because that could result in us matching on a file that got compressed down to something smaller, effectively lowering
       // the quality of the attachment we received.
       val hashMatch: DataFileInfo? = readableDatabase
-        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN)
+        .select(*DATA_FILE_INFO_PROJECTION)
         .from(TABLE_NAME)
         .where("$DATA_HASH_END = ? AND $DATA_HASH_END NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND $DATA_FILE NOT NULL", fileWriteResult.hash)
         .run()
@@ -1174,6 +1236,10 @@ class AttachmentTable(
         values.put(DATA_HASH_START, hashMatch.hashEnd)
         values.put(DATA_HASH_END, hashMatch.hashEnd)
         values.put(ARCHIVE_CDN, hashMatch.archiveCdn)
+        values.put(ARCHIVE_TRANSFER_STATE, hashMatch.archiveTransferState)
+        values.put(THUMBNAIL_FILE, hashMatch.thumbnailFile)
+        values.put(THUMBNAIL_RANDOM, hashMatch.thumbnailRandom)
+        values.put(THUMBNAIL_RESTORE_STATE, hashMatch.thumbnailRestoreState)
       } else {
         values.put(DATA_FILE, fileWriteResult.file.absolutePath)
         values.put(DATA_SIZE, fileWriteResult.length)
@@ -1725,7 +1791,7 @@ class AttachmentTable(
 
   fun getDataFileInfo(attachmentId: AttachmentId): DataFileInfo? {
     return readableDatabase
-      .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN)
+      .select(*DATA_FILE_INFO_PROJECTION)
       .from(TABLE_NAME)
       .where("$ID = ?", attachmentId.id)
       .run()
@@ -1925,7 +1991,7 @@ class AttachmentTable(
               displayOrder = jsonObject.getInt(DISPLAY_ORDER),
               uploadTimestamp = jsonObject.getLong(UPLOAD_TIMESTAMP),
               dataHash = jsonObject.getString(DATA_HASH_END),
-              archiveCdn = jsonObject.getInt(ARCHIVE_CDN),
+              archiveCdn = if (jsonObject.isNull(ARCHIVE_CDN)) null else jsonObject.getInt(ARCHIVE_CDN),
               thumbnailRestoreState = ThumbnailRestoreState.deserialize(jsonObject.getInt(THUMBNAIL_RESTORE_STATE)),
               archiveTransferState = ArchiveTransferState.deserialize(jsonObject.getInt(ARCHIVE_TRANSFER_STATE)),
               uuid = UuidUtil.parseOrNull(jsonObject.getString(ATTACHMENT_UUID))
@@ -2012,7 +2078,7 @@ class AttachmentTable(
         writableDatabase
           .update(TABLE_NAME)
           .values(
-            ARCHIVE_CDN to 0
+            ARCHIVE_CDN to null
           )
           .where(query.where, query.whereArgs)
           .run()
@@ -2023,7 +2089,7 @@ class AttachmentTable(
     writableDatabase
       .updateAll(TABLE_NAME)
       .values(
-        ARCHIVE_CDN to 0,
+        ARCHIVE_CDN to null,
         ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value
       )
       .run()
@@ -2379,7 +2445,7 @@ class AttachmentTable(
       // First we'll check if our file hash matches the starting or ending hash of any other attachments and has compatible transform properties.
       // We'll prefer the match with the most recent upload timestamp.
       val hashMatch: DataFileInfo? = readableDatabase
-        .select(ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN)
+        .select(*DATA_FILE_INFO_PROJECTION)
         .from(TABLE_NAME)
         .where("$DATA_FILE NOT NULL AND ($DATA_HASH_START = ? OR $DATA_HASH_END = ?)", fileWriteResult.hash, fileWriteResult.hash)
         .run()
@@ -2415,6 +2481,10 @@ class AttachmentTable(
         contentValues.put(DATA_HASH_START, fileWriteResult.hash)
         contentValues.put(DATA_HASH_END, hashMatch.hashEnd)
         contentValues.put(ARCHIVE_CDN, hashMatch.archiveCdn)
+        contentValues.put(ARCHIVE_TRANSFER_STATE, hashMatch.archiveTransferState)
+        contentValues.put(THUMBNAIL_FILE, hashMatch.thumbnailFile)
+        contentValues.put(THUMBNAIL_RANDOM, hashMatch.thumbnailRandom)
+        contentValues.put(THUMBNAIL_RESTORE_STATE, hashMatch.thumbnailRestoreState)
 
         if (hashMatch.transformProperties.skipTransform) {
           Log.i(TAG, "[insertAttachmentWithData] The hash match has a DATA_HASH_END and skipTransform=true, so skipping transform of the new file as well. (MessageId: $messageId, ${attachment.uri})")
@@ -2574,7 +2644,7 @@ class AttachmentTable(
       displayOrder = cursor.requireInt(DISPLAY_ORDER),
       uploadTimestamp = cursor.requireLong(UPLOAD_TIMESTAMP),
       dataHash = cursor.requireString(DATA_HASH_END),
-      archiveCdn = cursor.requireInt(ARCHIVE_CDN),
+      archiveCdn = cursor.requireIntOrNull(ARCHIVE_CDN),
       thumbnailRestoreState = ThumbnailRestoreState.deserialize(cursor.requireInt(THUMBNAIL_RESTORE_STATE)),
       archiveTransferState = ArchiveTransferState.deserialize(cursor.requireInt(ARCHIVE_TRANSFER_STATE)),
       uuid = UuidUtil.parseOrNull(cursor.requireString(ATTACHMENT_UUID))
@@ -2602,7 +2672,11 @@ class AttachmentTable(
       hashEnd = this.requireString(DATA_HASH_END),
       transformProperties = TransformProperties.parse(this.requireString(TRANSFORM_PROPERTIES)),
       uploadTimestamp = this.requireLong(UPLOAD_TIMESTAMP),
-      archiveCdn = this.requireInt(ARCHIVE_CDN)
+      archiveCdn = this.requireIntOrNull(ARCHIVE_CDN),
+      archiveTransferState = this.requireInt(ARCHIVE_TRANSFER_STATE),
+      thumbnailFile = this.requireString(THUMBNAIL_FILE),
+      thumbnailRandom = this.requireBlob(THUMBNAIL_RANDOM),
+      thumbnailRestoreState = this.requireInt(THUMBNAIL_RESTORE_STATE)
     )
   }
 
@@ -2636,16 +2710,74 @@ class AttachmentTable(
     }
   }
 
-  fun debugGetLatestAttachments(): List<DatabaseAttachment> {
-    return readableDatabase
-      .select(*PROJECTION)
-      .from(TABLE_NAME)
-      .where("$REMOTE_LOCATION IS NOT NULL AND $REMOTE_KEY IS NOT NULL")
-      .orderBy("$ID DESC")
-      .limit(30)
-      .run()
-      .readToList { it.readAttachments() }
-      .flatten()
+  fun debugGetAttachmentStats(): DebugAttachmentStats {
+    val count = readableDatabase.count().from(TABLE_NAME).run().readToSingleLong(0)
+
+    val transferStates = mapOf(
+      TRANSFER_PROGRESS_DONE to "TRANSFER_PROGRESS_DONE",
+      TRANSFER_PROGRESS_STARTED to "TRANSFER_PROGRESS_STARTED",
+      TRANSFER_PROGRESS_PENDING to "TRANSFER_PROGRESS_PENDING",
+      TRANSFER_PROGRESS_FAILED to "TRANSFER_PROGRESS_FAILED",
+      TRANSFER_PROGRESS_PERMANENT_FAILURE to "TRANSFER_PROGRESS_PERMANENT_FAILURE",
+      TRANSFER_NEEDS_RESTORE to "TRANSFER_NEEDS_RESTORE",
+      TRANSFER_RESTORE_IN_PROGRESS to "TRANSFER_RESTORE_IN_PROGRESS",
+      TRANSFER_RESTORE_OFFLOADED to "TRANSFER_RESTORE_OFFLOADED"
+    )
+
+    val transferStateCounts = transferStates
+      .map { (state, name) -> name to readableDatabase.count().from(TABLE_NAME).where("$TRANSFER_STATE = $state AND $REMOTE_DIGEST NOT NULL").run().readToSingleLong(-1L) }
+      .toMap()
+
+    val validForArchiveTransferStateCounts = transferStates
+      .map { (state, name) -> name to readableDatabase.count().from(TABLE_NAME).where("$TRANSFER_STATE = $state AND $REMOTE_DIGEST NOT NULL AND $DATA_FILE NOT NULL").run().readToSingleLong(-1L) }
+      .toMap()
+
+    val archiveStateCounts = ArchiveTransferState
+      .entries
+      .associate { it to readableDatabase.count().from(TABLE_NAME).where("$ARCHIVE_TRANSFER_STATE = ${it.value} AND $REMOTE_DIGEST NOT NULL").run().readToSingleLong(-1L) }
+
+    val attachmentFileCount = readableDatabase.query("SELECT COUNT(DISTINCT $DATA_FILE) FROM $TABLE_NAME WHERE $DATA_FILE NOT NULL AND $REMOTE_DIGEST NOT NULL").readToSingleLong(-1L)
+    val finishedAttachmentFileCount = readableDatabase.query("SELECT COUNT(DISTINCT $DATA_FILE) FROM $TABLE_NAME WHERE $DATA_FILE NOT NULL AND $REMOTE_DIGEST NOT NULL AND $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value}").readToSingleLong(-1L)
+    val attachmentDigestCount = readableDatabase.query("SELECT COUNT(DISTINCT $REMOTE_DIGEST) FROM $TABLE_NAME WHERE $REMOTE_DIGEST NOT NULL AND $TRANSFER_STATE in ($TRANSFER_PROGRESS_DONE, $TRANSFER_RESTORE_OFFLOADED, $TRANSFER_RESTORE_IN_PROGRESS, $TRANSFER_NEEDS_RESTORE)").readToSingleLong(-1L)
+    val finishedAttachmentDigestCount = readableDatabase.query("SELECT COUNT(DISTINCT $REMOTE_DIGEST) FROM $TABLE_NAME WHERE $REMOTE_DIGEST NOT NULL AND $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value}").readToSingleLong(-1L)
+    val thumbnailFileCount = readableDatabase.query("SELECT COUNT(DISTINCT $THUMBNAIL_FILE) FROM $TABLE_NAME WHERE $THUMBNAIL_FILE IS NOT NULL").readToSingleLong(-1L)
+    val estimatedThumbnailCount = readableDatabase.query("SELECT COUNT(DISTINCT $REMOTE_DIGEST) FROM $TABLE_NAME WHERE $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND $REMOTE_DIGEST NOT NULL AND ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%')").readToSingleLong(-1L)
+
+    val pendingUploadBytes = getPendingArchiveUploadBytes()
+    val uploadedAttachmentBytes = readableDatabase
+      .rawQuery(
+        """
+          SELECT $DATA_SIZE
+          FROM (
+            SELECT DISTINCT $REMOTE_DIGEST, $DATA_SIZE
+            FROM $TABLE_NAME
+            WHERE 
+              $DATA_FILE NOT NULL AND 
+              $REMOTE_DIGEST NOT NULL AND 
+              $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value}
+          )
+        """.trimIndent()
+      )
+      .readToList { it.requireLong(DATA_SIZE) }
+      .sumOf { AttachmentCipherStreamUtil.getCiphertextLength(AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(it))) }
+
+    val uploadedThumbnailBytes = estimatedThumbnailCount * RemoteConfig.backupMaxThumbnailFileSize.inWholeBytes
+
+    return DebugAttachmentStats(
+      attachmentCount = count,
+      transferStateCounts = transferStateCounts,
+      validForArchiveTransferStateCounts = validForArchiveTransferStateCounts,
+      archiveStateCounts = archiveStateCounts,
+      attachmentFileCount = attachmentFileCount,
+      finishedAttachmentFileCount = finishedAttachmentFileCount,
+      attachmentDigestCount = attachmentDigestCount,
+      finishedAttachmentDigestCount = finishedAttachmentDigestCount,
+      thumbnailFileCount = thumbnailFileCount,
+      estimatedThumbnailCount = estimatedThumbnailCount,
+      pendingUploadBytes = pendingUploadBytes,
+      uploadedAttachmentBytes = uploadedAttachmentBytes,
+      thumbnailBytes = uploadedThumbnailBytes
+    )
   }
 
   class DataFileWriteResult(
@@ -2666,7 +2798,11 @@ class AttachmentTable(
     val hashEnd: String?,
     val transformProperties: TransformProperties,
     val uploadTimestamp: Long,
-    val archiveCdn: Int
+    val archiveCdn: Int?,
+    val archiveTransferState: Int,
+    val thumbnailFile: String?,
+    val thumbnailRandom: ByteArray?,
+    val thumbnailRestoreState: Int
   )
 
   @VisibleForTesting
@@ -2879,4 +3015,20 @@ class AttachmentTable(
       return attachmentId.hashCode()
     }
   }
+
+  data class DebugAttachmentStats(
+    val attachmentCount: Long = 0L,
+    val transferStateCounts: Map<String, Long> = emptyMap(),
+    val archiveStateCounts: Map<ArchiveTransferState, Long> = emptyMap(),
+    val attachmentFileCount: Long = 0L,
+    val finishedAttachmentFileCount: Long = 0L,
+    val attachmentDigestCount: Long = 0L,
+    val finishedAttachmentDigestCount: Long,
+    val thumbnailFileCount: Long = 0L,
+    val pendingUploadBytes: Long = 0L,
+    val uploadedAttachmentBytes: Long = 0L,
+    val thumbnailBytes: Long = 0L,
+    val validForArchiveTransferStateCounts: Map<String, Long>,
+    val estimatedThumbnailCount: Long
+  )
 }

@@ -22,6 +22,7 @@ data class CallParticipant(
   val isMediaKeysReceived: Boolean = true,
   val addedToCallTime: Long = 0,
   val isScreenSharing: Boolean = false,
+  val remotelyMutedBy: Recipient? = null,
   private val deviceOrdinal: DeviceOrdinal = DeviceOrdinal.PRIMARY
 ) {
   val cameraDirection: CameraState.Direction
@@ -68,7 +69,7 @@ data class CallParticipant(
   }
 
   fun withAudioEnabled(audioEnabled: Boolean): CallParticipant {
-    return copy(isMicrophoneEnabled = audioEnabled)
+    return copy(isMicrophoneEnabled = audioEnabled, remotelyMutedBy = if (audioEnabled) null else remotelyMutedBy)
   }
 
   fun withVideoEnabled(videoEnabled: Boolean): CallParticipant {
@@ -83,8 +84,12 @@ data class CallParticipant(
     return copy(handRaisedTimestamp = timestamp)
   }
 
+  fun withRemotelyMutedBy(source: Recipient): CallParticipant {
+    return copy(remotelyMutedBy = source)
+  }
+
   override fun toString(): String {
-    return "CallParticipant(callParticipantId=$callParticipantId, isForwardingVideo=$isForwardingVideo, isVideoEnabled=$isVideoEnabled, isMicrophoneEnabled=$isMicrophoneEnabled, handRaisedTimestamp=$handRaisedTimestamp, isMediaKeysReceived=$isMediaKeysReceived, isScreenSharing=$isScreenSharing)"
+    return "CallParticipant(callParticipantId=$callParticipantId, isForwardingVideo=$isForwardingVideo, isVideoEnabled=$isVideoEnabled, isMicrophoneEnabled=$isMicrophoneEnabled, handRaisedTimestamp=$handRaisedTimestamp, isMediaKeysReceived=$isMediaKeysReceived, isScreenSharing=$isScreenSharing, remotelyMutedBy=$remotelyMutedBy)"
   }
 
   enum class DeviceOrdinal {

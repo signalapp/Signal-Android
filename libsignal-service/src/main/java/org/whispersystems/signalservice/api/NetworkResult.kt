@@ -105,10 +105,12 @@ sealed class NetworkResult<T>(
     @JvmStatic
     fun fromWebSocketRequest(
       signalWebSocket: SignalWebSocket,
-      request: WebSocketRequestMessage
+      request: WebSocketRequestMessage,
+      timeout: Duration = WebSocketConnection.DEFAULT_SEND_TIMEOUT
     ): NetworkResult<Unit> = fromWebSocketRequest(
       signalWebSocket = signalWebSocket,
       request = request,
+      timeout = timeout,
       clazz = Unit::class
     )
 

@@ -30,6 +30,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -119,6 +120,65 @@ public class GroupConnectedActionProcessor extends GroupActionProcessor {
                        .changeLocalDeviceState()
                        .isMicrophoneEnabled(!muted)
                        .build();
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleRemoteMuteRequest(@NonNull WebRtcServiceState currentState, long sourceDemuxId) {
+    Log.i(tag, "handleRemoteMuteRequest():");
+
+    GroupCall                               groupCall    = currentState.getCallInfoState().requireGroupCall();
+    Map<CallParticipantId, CallParticipant> participants = currentState.getCallInfoState().getRemoteCallParticipantsMap();
+
+    if (!currentState.getLocalDeviceState().isMicrophoneEnabled()) {
+      // Nothing to do.
+      return currentState;
+    }
+
+    for (Map.Entry<CallParticipantId, CallParticipant> entry : participants.entrySet()) {
+      if (entry.getKey().getDemuxId() == sourceDemuxId) {
+        try {
+          groupCall.setOutgoingAudioMutedRemotely(sourceDemuxId);
+        } catch (CallException e) {
+          return groupCallFailure(currentState, "Unable to set attribution of remote mute", e);
+        }
+        return currentState.builder().changeLocalDeviceState().setRemoteMutedBy(entry.getValue()).build();
+      }
+    }
+
+    return currentState;
+  }
+
+  @Override
+  protected @NonNull WebRtcServiceState handleObservedRemoteMute(@NonNull WebRtcServiceState currentState, long sourceDemuxId, long targetDemuxId) {
+    Log.i(tag, "handleObservedRemoteMute not processed");
+
+    GroupCall                               groupCall    = currentState.getCallInfoState().requireGroupCall();
+    Map<CallParticipantId, CallParticipant> participants = currentState.getCallInfoState().getRemoteCallParticipantsMap();
+
+    Long      selfDemuxId = groupCall.getLocalDeviceState().getDemuxId();
+    Recipient source      = null;
+    if (selfDemuxId != null && sourceDemuxId == selfDemuxId) {
+      source = Recipient.self();
+    } else {
+      for (Map.Entry<CallParticipantId, CallParticipant> entry : participants.entrySet()) {
+        if (entry.getKey().getDemuxId() == sourceDemuxId) {
+          source = entry.getValue().getRecipient();
+        }
+      }
+    }
+    if (source == null) {
+      Log.w(tag, "handleObservedRemoteMute: source not found");
+      return currentState;
+    }
+
+    for (Map.Entry<CallParticipantId, CallParticipant> entry : participants.entrySet()) {
+      if (entry.getKey().getDemuxId() == targetDemuxId) {
+        WebRtcServiceStateBuilder.CallInfoStateBuilder builder = currentState.builder().changeCallInfoState().putParticipant(entry.getKey(), entry.getValue().withRemotelyMutedBy(source));
+        return builder.build();
+      }
+    }
+
+    return currentState;
   }
 
   @Override

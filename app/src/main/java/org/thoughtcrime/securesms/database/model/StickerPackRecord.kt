@@ -1,5 +1,8 @@
 package org.thoughtcrime.securesms.database.model
 
+import android.net.Uri
+import org.signal.core.util.orNull
+import org.thoughtcrime.securesms.stickers.StickerUrl
 import java.util.Optional
 
 /**
@@ -31,3 +34,21 @@ value class StickerPackId(val value: String)
  */
 @JvmInline
 value class StickerPackKey(val value: String)
+
+data class StickerPackParams(
+  val id: StickerPackId,
+  val key: StickerPackKey
+) {
+  companion object {
+    fun fromExternalUri(uri: Uri?): StickerPackParams? {
+      if (uri == null) return null
+      return (StickerUrl.parseActionUri(uri) ?: StickerUrl.parseShareLink(uri.toString()))
+        .map { parseResult ->
+          StickerPackParams(
+            id = StickerPackId(parseResult.first()),
+            key = StickerPackKey(parseResult.second())
+          )
+        }.orNull()
+    }
+  }
+}

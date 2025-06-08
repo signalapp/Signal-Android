@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 
 data class IdealTransferDetailsState(
   val inAppPayment: InAppPaymentTable.InAppPayment? = null,
-  val idealBank: IdealBank? = null,
   val name: String = "",
   val nameFocusState: FocusState = FocusState.NOT_FOCUSED,
   val email: String = "",
@@ -28,14 +27,13 @@ data class IdealTransferDetailsState(
 
   fun asIDEALData(): StripeApi.IDEALData {
     return StripeApi.IDEALData(
-      bank = idealBank!!.code,
       name = name.trim(),
       email = email.trim()
     )
   }
 
   fun canProceed(): Boolean {
-    return idealBank != null && BankDetailsValidator.validName(name) && (inAppPayment?.type?.recurring != true || BankDetailsValidator.validEmail(email))
+    return BankDetailsValidator.validName(name) && (inAppPayment?.type?.recurring != true || BankDetailsValidator.validEmail(email))
   }
 
   enum class FocusState {

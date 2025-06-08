@@ -5,14 +5,20 @@
 
 package org.thoughtcrime.securesms.stickers
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandHorizontally
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Checkbox
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -21,18 +27,23 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DropdownMenus
+import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.nullIfBlank
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.compose.RoundCheckbox
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressIndicator
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressState
 import org.thoughtcrime.securesms.compose.GlideImage
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
 import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
+import org.thoughtcrime.securesms.util.DeviceProperties
 
 @Composable
 fun StickerPackSectionHeader(
@@ -53,14 +64,20 @@ fun StickerPackSectionHeader(
 @Composable
 fun AvailableStickerPackRow(
   pack: AvailableStickerPack,
-  onInstallClick: () -> Unit = {},
+  menuController: DropdownMenus.MenuController,
+  onForwardClick: (AvailableStickerPack) -> Unit = {},
+  onInstallClick: (AvailableStickerPack) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = modifier
-      .background(MaterialTheme.colorScheme.surface)
-      .padding(start = 24.dp, top = 12.dp, end = 12.dp, bottom = 12.dp)
+      .padding(horizontal = 16.dp)
+      .background(
+        color = MaterialTheme.colorScheme.surface,
+        shape = RoundedCornerShape(18.dp)
+      )
+      .padding(vertical = 10.dp)
   ) {
     StickerPackInfo(
       coverImageUri = DecryptableUri(pack.record.cover.uri),
@@ -83,7 +100,7 @@ fun AvailableStickerPackRow(
           icon = readyIcon,
           startButtonContentDesc = startButtonContentDesc,
           startButtonOnClickLabel = startButtonOnClickLabel,
-          onStartClick = onInstallClick
+          onStartClick = { onInstallClick(pack) }
         )
 
         is DownloadStatus.InProgress -> TransferProgressState.InProgress()
@@ -96,27 +113,63 @@ fun AvailableStickerPackRow(
     }
 
     TransferProgressIndicator(state = transferState)
+
+    DropdownMenus.Menu(
+      controller = menuController,
+      offsetX = 0.dp,
+      offsetY = 12.dp,
+      modifier = modifier.background(SignalTheme.colors.colorSurface2)
+    ) {
+      MenuItem(
+        icon = ImageVector.vectorResource(R.drawable.symbol_arrow_circle_down_24),
+        text = stringResource(R.string.StickerManagement_menu_install_pack),
+        onClick = {
+          onInstallClick(pack)
+          menuController.hide()
+        }
+      )
+
+      MenuItem(
+        icon = ImageVector.vectorResource(R.drawable.symbol_forward_24),
+        text = stringResource(R.string.StickerManagement_menu_forward_pack),
+        onClick = {
+          onForwardClick(pack)
+          menuController.hide()
+        }
+      )
+    }
   }
 }
 
 @Composable
 fun InstalledStickerPackRow(
   pack: InstalledStickerPack,
-  multiSelectModeEnabled: Boolean = false,
-  checked: Boolean = false,
-  onCheckedChange: (Boolean) -> Unit = {},
+  multiSelectEnabled: Boolean = false,
+  selected: Boolean = false,
+  menuController: DropdownMenus.MenuController,
+  onForwardClick: (InstalledStickerPack) -> Unit = {},
+  onRemoveClick: (InstalledStickerPack) -> Unit = {},
+  onSelectionToggle: (InstalledStickerPack) -> Unit = {},
   modifier: Modifier = Modifier
 ) {
   Row(
     verticalAlignment = Alignment.CenterVertically,
     modifier = modifier
-      .background(MaterialTheme.colorScheme.surface)
-      .padding(12.dp)
+      .padding(horizontal = 16.dp)
+      .background(
+        color = if (selected) SignalTheme.colors.colorSurface2 else MaterialTheme.colorScheme.surface,
+        shape = RoundedCornerShape(18.dp)
+      )
+      .padding(horizontal = 4.dp, vertical = 10.dp)
   ) {
-    if (multiSelectModeEnabled) {
-      Checkbox(
-        checked = checked,
-        onCheckedChange = onCheckedChange,
+    AnimatedVisibility(
+      visible = multiSelectEnabled,
+      enter = fadeIn() + expandHorizontally(),
+      exit = fadeOut() + shrinkHorizontally()
+    ) {
+      RoundCheckbox(
+        checked = selected,
+        onCheckedChange = { onSelectionToggle(pack) },
         modifier = Modifier.padding(end = 8.dp)
       )
     }
@@ -137,6 +190,40 @@ fun InstalledStickerPackRow(
         .padding(horizontal = 12.dp)
         .size(24.dp)
     )
+
+    DropdownMenus.Menu(
+      controller = menuController,
+      offsetX = 0.dp,
+      offsetY = 12.dp,
+      modifier = modifier.background(SignalTheme.colors.colorSurface2)
+    ) {
+      MenuItem(
+        icon = ImageVector.vectorResource(R.drawable.symbol_forward_24),
+        text = stringResource(R.string.StickerManagement_menu_forward_pack),
+        onClick = {
+          onForwardClick(pack)
+          menuController.hide()
+        }
+      )
+
+      MenuItem(
+        icon = ImageVector.vectorResource(R.drawable.symbol_check_circle_24),
+        text = stringResource(R.string.StickerManagement_menu_select_pack),
+        onClick = {
+          onSelectionToggle(pack)
+          menuController.hide()
+        }
+      )
+
+      MenuItem(
+        icon = ImageVector.vectorResource(R.drawable.symbol_trash_24),
+        text = stringResource(R.string.StickerManagement_menu_remove_pack),
+        onClick = {
+          onRemoveClick(pack)
+          menuController.hide()
+        }
+      )
+    }
   }
 }
 
@@ -153,6 +240,7 @@ private fun StickerPackInfo(
   ) {
     GlideImage(
       model = coverImageUri,
+      enableApngAnimation = DeviceProperties.shouldAllowApngStickerAnimation(LocalContext.current),
       modifier = Modifier
         .padding(end = 16.dp)
         .size(56.dp)
@@ -205,7 +293,8 @@ private fun AvailableStickerPackRowPreviewBlessed() = SignalTheme {
       title = "Swoon / Faces",
       author = "Swoon",
       isBlessed = true
-    )
+    ),
+    menuController = DropdownMenus.MenuController()
   )
 }
 
@@ -218,7 +307,8 @@ private fun AvailableStickerPackRowPreviewNotBlessed() = SignalTheme {
       author = "Miguel Ángel Camprubí",
       isBlessed = false,
       downloadStatus = DownloadStatus.NotDownloaded
-    )
+    ),
+    menuController = DropdownMenus.MenuController()
   )
 }
 
@@ -231,7 +321,8 @@ private fun AvailableStickerPackRowPreviewDownloading() = SignalTheme {
       author = "Agnes Lee",
       isBlessed = false,
       downloadStatus = DownloadStatus.InProgress
-    )
+    ),
+    menuController = DropdownMenus.MenuController()
   )
 }
 
@@ -244,7 +335,8 @@ private fun AvailableStickerPackRowPreviewDownloaded() = SignalTheme {
       author = "Agnes Lee",
       isBlessed = false,
       downloadStatus = DownloadStatus.Downloaded
-    )
+    ),
+    menuController = DropdownMenus.MenuController()
   )
 }
 
@@ -252,7 +344,8 @@ private fun AvailableStickerPackRowPreviewDownloaded() = SignalTheme {
 @Composable
 private fun InstalledStickerPackRowPreview() = SignalTheme {
   InstalledStickerPackRow(
-    multiSelectModeEnabled = false,
+    multiSelectEnabled = false,
+    menuController = DropdownMenus.MenuController(),
     pack = StickerPreviewDataFactory.installedPack(
       title = "Bandit the Cat",
       author = "Agnes Lee",
@@ -265,11 +358,52 @@ private fun InstalledStickerPackRowPreview() = SignalTheme {
 @Composable
 private fun InstalledStickerPackRowSelectModePreview() = SignalTheme {
   InstalledStickerPackRow(
-    multiSelectModeEnabled = true,
+    multiSelectEnabled = true,
+    menuController = DropdownMenus.MenuController(),
     pack = StickerPreviewDataFactory.installedPack(
       title = "Bandit the Cat",
       author = "Agnes Lee",
       isBlessed = true
     )
+  )
+}
+
+@Composable
+private fun MenuItem(
+  icon: ImageVector,
+  text: String,
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
+) {
+  DropdownMenus.Item(
+    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 12.dp),
+    text = {
+      Row(
+        verticalAlignment = Alignment.CenterVertically
+      ) {
+        Icon(
+          imageVector = icon,
+          contentDescription = null,
+          modifier = Modifier.size(24.dp)
+        )
+        Text(
+          text = text,
+          style = MaterialTheme.typography.bodyLarge,
+          modifier = Modifier.padding(horizontal = 16.dp)
+        )
+      }
+    },
+    onClick = onClick,
+    modifier = modifier
+  )
+}
+
+@SignalPreview
+@Composable
+private fun MenuItemPreview() = Previews.Preview {
+  MenuItem(
+    icon = ImageVector.vectorResource(R.drawable.symbol_forward_24),
+    text = "Forward",
+    onClick = { }
   )
 }
