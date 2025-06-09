@@ -9,6 +9,7 @@ import android.database.Cursor
 import android.os.Environment
 import android.os.StatFs
 import androidx.annotation.WorkerThread
+import kotlinx.coroutines.withContext
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.greenrobot.eventbus.EventBus
@@ -19,6 +20,7 @@ import org.signal.core.util.EventTimer
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.LimitedWorker
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.forceForeignKeyConstraintsEnabled
 import org.signal.core.util.fullWalCheckpoint
@@ -58,6 +60,7 @@ import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupWriter
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
+import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
@@ -124,8 +127,8 @@ import java.util.Currency
 import java.util.Locale
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.time.Duration.Companion.days
-import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 object BackupRepository {
 
@@ -391,45 +394,43 @@ object BackupRepository {
     return SignalStore.backup.hasBackupBeenUploaded && System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime
   }
 
-  fun snoozeYourMediaWillBeDeletedTodaySheet() {
-    SignalStore.backup.lastCheckInSnoozeMillis = System.currentTimeMillis()
+  fun snoozeDownloadYourBackupData() {
+    SignalStore.backup.snoozeDownloadNotifier()
   }
 
   /**
    * Whether or not the "Your media will be deleted today" sheet should be displayed.
    */
-  suspend fun shouldDisplayYourMediaWillBeDeletedTodaySheet(): Boolean {
-    if (shouldNotDisplayBackupFailedMessaging() || !SignalStore.backup.hasBackupBeenUploaded || !SignalStore.backup.optimizeStorage) {
-      return false
+  suspend fun getDownloadYourBackupData(): BackupAlert.DownloadYourBackupData? {
+    if (shouldNotDisplayBackupFailedMessaging()) {
+      return null
     }
 
-    val paidType = try {
-      getPaidType()
-    } catch (e: IOException) {
-      Log.w(TAG, "Failed to retrieve paid type.", e)
-      return false
+    val state = SignalStore.backup.backupDownloadNotifierState ?: return null
+    val nextSheetDisplayTime = state.lastSheetDisplaySeconds.seconds + state.intervalSeconds.seconds
+
+    val remainingAttachmentSize = withContext(SignalDispatchers.IO) {
+      SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
     }
 
-    if (paidType == null) {
-      Log.w(TAG, "Paid type is not available on this device.")
-      return false
+    if (remainingAttachmentSize <= 0L) {
+      SignalStore.backup.clearDownloadNotifierState()
+      return null
     }
 
-    val lastCheckIn = SignalStore.backup.lastCheckInMillis.milliseconds
-    if (lastCheckIn == 0.milliseconds) {
-      Log.w(TAG, "LastCheckIn has not yet been set.")
-      return false
-    }
-
-    val lastSnoozeTime = SignalStore.backup.lastCheckInSnoozeMillis.milliseconds
     val now = System.currentTimeMillis().milliseconds
-    val mediaTtl = paidType.mediaTtl
-    val mediaExpiration = lastCheckIn + mediaTtl
 
-    val isNowAfterSnooze = now < lastSnoozeTime || now >= lastSnoozeTime + 4.hours
-    val isNowWithin24HoursOfMediaExpiration = now < mediaExpiration && (mediaExpiration - now) <= 1.days
+    return if (nextSheetDisplayTime <= now) {
+      val lastDay = state.entitlementExpirationSeconds.seconds - 1.days
 
-    return isNowAfterSnooze && isNowWithin24HoursOfMediaExpiration
+      BackupAlert.DownloadYourBackupData(
+        isLastDay = now >= lastDay,
+        formattedSize = remainingAttachmentSize.bytes.toUnitString(),
+        type = state.type
+      )
+    } else {
+      null
+    }
   }
 
   private fun shouldNotDisplayBackupFailedMessaging(): Boolean {
@@ -1088,6 +1089,7 @@ object BackupRepository {
     SignalStore.backup.backupTier = MessageBackupTier.PAID
     SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
     SignalStore.backup.lastCheckInSnoozeMillis = 0
+    SignalStore.backup.clearDownloadNotifierState()
   }
 
   /**

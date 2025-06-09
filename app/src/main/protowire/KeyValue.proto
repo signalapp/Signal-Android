@@ -50,3 +50,15 @@ message ArchiveUploadProgressState {
     uint64 mediaUploadedBytes = 7;
     uint64 mediaTotalBytes = 8;
 }
+
+message BackupDownloadNotifierState {
+    enum Type {
+      SHEET = 0;
+      DIALOG = 1;
+    }
+
+    uint64 entitlementExpirationSeconds = 1;
+    uint64 lastSheetDisplaySeconds = 2;
+    uint64 intervalSeconds = 3;
+    Type type = 4;
+}

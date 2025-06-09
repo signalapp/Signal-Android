@@ -1028,7 +1028,7 @@ private fun BackupCard(
       )
     } else if (backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
       CallToActionButton(
-        text = stringResource(R.string.RemoteBackupsSettingsFragment__renew),
+        text = stringResource(R.string.RemoteBackupsSettingsFragment__resubscribe),
         enabled = buttonsEnabled,
         onClick = { onBackupTypeActionButtonClicked(MessageBackupTier.FREE) }
       )
@@ -1634,8 +1634,7 @@ private fun BackupReadyToDownloadRow(
   onDownloadClick: () -> Unit = {}
 ) {
   val string = if (backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
-    val days = (backupState.renewalTime - System.currentTimeMillis().milliseconds).inWholeDays.toInt()
-    pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__you_have_s_of_backup_data, days, ready.bytes, days)
+    stringResource(R.string.RemoteBackupsSettingsFragment__you_have_s_of_backup_data, ready.bytes)
   } else {
     stringResource(R.string.RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device, ready.bytes)
   }
@@ -1837,6 +1836,24 @@ private fun BackupReadyToDownloadPreview() {
     BackupReadyToDownloadRow(
       ready = BackupRestoreState.Ready("12GB"),
       backupState = RemoteBackupsSettingsState.BackupState.None
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun BackupReadyToDownloadAfterCancelPreview() {
+  Previews.Preview {
+    BackupReadyToDownloadRow(
+      ready = BackupRestoreState.Ready("12GB"),
+      backupState = RemoteBackupsSettingsState.BackupState.Canceled(
+        messageBackupsType = MessageBackupsType.Paid(
+          pricePerMonth = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")),
+          storageAllowanceBytes = 10.gibiBytes.bytes,
+          mediaTtl = 30.days
+        ),
+        renewalTime = System.currentTimeMillis().days + 10.days
+      )
     )
   }
 }

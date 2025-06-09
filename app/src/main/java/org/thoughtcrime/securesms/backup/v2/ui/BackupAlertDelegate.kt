@@ -9,11 +9,12 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.repeatOnLifecycle
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.protos.BackupDownloadNotifierState
 
 /**
  * Delegate that controls whether and which backup alert sheet is displayed.
@@ -27,12 +28,25 @@ object BackupAlertDelegate {
           BackupAlertBottomSheet.create(BackupAlert.BackupFailed).show(fragmentManager, null)
         } else if (BackupRepository.shouldDisplayCouldNotCompleteBackupSheet()) {
           BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = SignalStore.backup.daysSinceLastBackup)).show(fragmentManager, null)
-        } else if (withContext(Dispatchers.IO) { BackupRepository.shouldDisplayYourMediaWillBeDeletedTodaySheet() }) {
-          BackupAlertBottomSheet.create(BackupAlert.MediaWillBeDeletedToday).show(fragmentManager, null)
         } else if (BackupRepository.shouldDisplayBackupExpiredAndDowngradedSheet()) {
           BackupAlertBottomSheet.create(BackupAlert.ExpiredAndDowngraded).show(fragmentManager, null)
         }
+
+        displayBackupDownloadNotifier(fragmentManager)
       }
+    }
+  }
+
+  private suspend fun displayBackupDownloadNotifier(fragmentManager: FragmentManager) {
+    val downloadYourBackupToday = withContext(SignalDispatchers.IO) { BackupRepository.getDownloadYourBackupData() }
+    when (downloadYourBackupToday?.type) {
+      BackupDownloadNotifierState.Type.SHEET -> {
+        BackupAlertBottomSheet.create(downloadYourBackupToday).show(fragmentManager, null)
+      }
+      BackupDownloadNotifierState.Type.DIALOG -> {
+        DownloadYourBackupTodayDialog.create(downloadYourBackupToday).show(fragmentManager, null)
+      }
+      null -> Unit
     }
   }
 }

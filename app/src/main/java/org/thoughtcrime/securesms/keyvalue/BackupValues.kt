@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollectionPendingConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObserver
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
+import org.thoughtcrime.securesms.keyvalue.protos.BackupDownloadNotifierState
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
@@ -52,6 +53,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
     private const val KEY_CDN_MEDIA_PATH = "backup.cdn.mediaPath"
 
+    private const val KEY_BACKUP_DOWNLOAD_NOTIFIER_STATE = "backup.downloadNotifierState"
     private const val KEY_BACKUP_OVER_CELLULAR = "backup.useCellular"
     private const val KEY_RESTORE_OVER_CELLULAR = "backup.restore.useCellular"
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
@@ -96,6 +98,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
   var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false)
   var backupWithCellular: Boolean by booleanValue(KEY_BACKUP_OVER_CELLULAR, false)
+
+  var backupDownloadNotifierState: BackupDownloadNotifierState? by protoValue(KEY_BACKUP_DOWNLOAD_NOTIFIER_STATE, BackupDownloadNotifierState.ADAPTER)
+    private set
 
   var restoreWithCellular: Boolean
     get() = getBoolean(KEY_RESTORE_OVER_CELLULAR, false)
@@ -251,6 +256,28 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
    * something bad happened, it can only be utilized as a reference for comparison.
    */
   var spaceAvailableOnDiskBytes: Long by longValue(KEY_BACKUP_FAIL_SPACE_REMAINING, -1L)
+
+  /**
+   * Sets the notifier to trigger half way between now and the entitlement expiration time.
+   */
+  fun setDownloadNotifierToTriggerAtHalfwayPoint(entitlementExpirationTime: Duration) {
+    backupDownloadNotifierState = BackupDownloadNotifierUtil.setDownloadNotifierToTriggerAtHalfwayPoint(backupDownloadNotifierState, entitlementExpirationTime)
+  }
+
+  /**
+   * Sets the notifier to trigger 24hrs before the end of the grace period.
+   *
+   */
+  fun snoozeDownloadNotifier() {
+    backupDownloadNotifierState = BackupDownloadNotifierUtil.snoozeDownloadNotifier(backupDownloadNotifierState)
+  }
+
+  /**
+   * Clears the notifier state, done when the user subscribes to the paid tier.
+   */
+  fun clearDownloadNotifierState() {
+    backupDownloadNotifierState = null
+  }
 
   fun internalSetBackupFailedErrorState() {
     markMessageBackupFailure()
