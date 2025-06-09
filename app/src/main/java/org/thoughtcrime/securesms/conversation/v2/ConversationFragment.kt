@@ -3220,7 +3220,9 @@ class ConversationFragment :
 
     override fun onItemLongClick(itemView: View, item: MultiselectPart) {
       Log.d(TAG, "onItemLongClick")
-      if (actionMode != null) return
+      if (actionMode != null) { return }
+
+      if (item.getMessageRecord().isInMemoryMessageRecord) { return }
 
       val messageRecord = item.getMessageRecord()
       val recipient = viewModel.recipientSnapshot ?: return

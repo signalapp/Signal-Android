@@ -306,6 +306,8 @@ class ConversationAdapterV2(
   }
 
   fun toggleSelection(multiselectPart: MultiselectPart) {
+    if (multiselectPart.getMessageRecord().isInMemoryMessageRecord) { return }
+
     if (multiselectPart in _selected) {
       _selected.remove(multiselectPart)
     } else {
