@@ -152,6 +152,7 @@ data class MainToolbarState(
   val callFilter: CallLogFilter = CallLogFilter.ALL,
   val hasUnreadPayments: Boolean = false,
   val hasFailedBackups: Boolean = false,
+  val isOutOfRemoteStorageSpace: Boolean = false,
   val hasEnabledNotificationProfile: Boolean = false,
   val showNotificationProfilesTooltip: Boolean = false,
   val hasPassphrase: Boolean = false,
@@ -506,14 +507,14 @@ private fun ProxyAction(
 
 @Composable
 private fun HeadsUpIndicator(state: MainToolbarState, modifier: Modifier = Modifier) {
-  if (!state.hasUnreadPayments && !state.hasFailedBackups) {
+  if (!state.hasUnreadPayments && !state.hasFailedBackups && !state.isOutOfRemoteStorageSpace) {
     return
   }
 
-  val color = if (state.hasFailedBackups) {
-    Color(0xFFFFCC00)
-  } else {
-    MaterialTheme.colorScheme.primary
+  val color = when {
+    state.isOutOfRemoteStorageSpace -> Color.Transparent
+    state.hasFailedBackups -> Color(0xFFFFCC00)
+    else -> MaterialTheme.colorScheme.primary
   }
 
   Box(
@@ -521,7 +522,13 @@ private fun HeadsUpIndicator(state: MainToolbarState, modifier: Modifier = Modif
       .size(13.dp)
       .background(color = color, shape = CircleShape)
   ) {
-    // Intentionally empty
+    if (state.isOutOfRemoteStorageSpace) {
+      Icon(
+        imageVector = ImageVector.vectorResource(R.drawable.symbol_error_circle_fill_16),
+        tint = MaterialTheme.colorScheme.error,
+        contentDescription = null
+      )
+    }
   }
 }
 
@@ -736,7 +743,8 @@ private fun FullMainToolbarPreview() {
         destination = MainNavigationListLocation.CHATS,
         hasEnabledNotificationProfile = true,
         proxyState = MainToolbarState.ProxyState.CONNECTED,
-        hasFailedBackups = true
+        hasFailedBackups = true,
+        isOutOfRemoteStorageSpace = false
       ),
       callback = object : MainToolbarCallback by MainToolbarCallback.Empty {
         override fun onSearchClick() {

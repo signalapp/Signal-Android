@@ -74,6 +74,8 @@ class AppSettingsViewModel : ViewModel() {
   private fun getBackupFailureState(): BackupFailureState {
     return if (!RemoteConfig.messageBackups) {
       BackupFailureState.NONE
+    } else if (BackupRepository.shouldDisplayOutOfStorageSpaceUx()) {
+      BackupFailureState.OUT_OF_STORAGE_SPACE
     } else if (BackupRepository.shouldDisplayBackupFailedSettingsRow()) {
       BackupFailureState.BACKUP_FAILED
     } else if (BackupRepository.shouldDisplayCouldNotCompleteBackupSettingsRow()) {

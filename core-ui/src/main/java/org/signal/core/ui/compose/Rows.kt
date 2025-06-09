@@ -293,6 +293,7 @@ object Rows {
     iconModifier: Modifier = Modifier,
     label: String? = null,
     foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
+    iconTint: Color = foregroundTint,
     onClick: (() -> Unit)? = null,
     onLongClick: (() -> Unit)? = null,
     enabled: Boolean = true
@@ -311,7 +312,7 @@ object Rows {
           Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = foregroundTint,
+            tint = iconTint,
             modifier = iconModifier
           )
         }

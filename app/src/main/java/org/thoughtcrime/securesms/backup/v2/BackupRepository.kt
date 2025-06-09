@@ -287,6 +287,10 @@ object BackupRepository {
     AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(RestoreAttachmentJob.constructQueueString(RestoreAttachmentJob.RestoreOperation.MANUAL)))
   }
 
+  fun shouldDisplayOutOfStorageSpaceUx(): Boolean {
+    return false // TODO [message-backups] Wire into actual error handling.
+  }
+
   /**
    * Whether the yellow dot should be displayed on the conversation list avatar.
    */

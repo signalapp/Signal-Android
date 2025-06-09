@@ -240,8 +240,20 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize(),
         backupsFrequency = SignalStore.backup.backupFrequency,
         canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
-        canRestoreUsingCellular = SignalStore.backup.restoreWithCellular
+        canRestoreUsingCellular = SignalStore.backup.restoreWithCellular,
+        isOutOfStorageSpace = BackupRepository.shouldDisplayOutOfStorageSpaceUx()
       )
+    }
+
+    if (BackupRepository.shouldDisplayOutOfStorageSpaceUx()) {
+      val paidType = BackupRepository.getBackupsType(MessageBackupTier.PAID) as? MessageBackupsType.Paid
+      if (paidType != null) {
+        _state.update {
+          it.copy(
+            totalAllowedStorageSpace = paidType.storageAllowanceBytes.bytes.toUnitString()
+          )
+        }
+      }
     }
 
     if (lastPurchase?.state == InAppPaymentTable.State.PENDING) {

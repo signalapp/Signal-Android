@@ -153,20 +153,11 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     val callbacks = remember { Callbacks() }
 
     RemoteBackupsSettingsContent(
-      backupsEnabled = state.backupsEnabled,
-      lastBackupTimestamp = state.lastBackupTimestamp,
-      canBackUpUsingCellular = state.canBackUpUsingCellular,
-      canRestoreUsingCellular = state.canRestoreUsingCellular,
-      backupsFrequency = state.backupsFrequency,
-      requestedDialog = state.dialog,
-      requestedSnackbar = state.snackbar,
-      contentCallbacks = callbacks,
-      backupProgress = backupProgress,
-      backupMediaSize = state.backupMediaSize,
-      backupState = state.backupState,
+      state = state,
       backupRestoreState = restoreState,
       backupDeleteState = deleteState,
-      hasRedemptionError = state.hasRedemptionError,
+      contentCallbacks = callbacks,
+      backupProgress = backupProgress,
       statusBarColorNestedScrollConnection = remember { StatusBarColorNestedScrollConnection(requireActivity()) }
     )
   }
@@ -282,6 +273,11 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     override fun onDisplayDownloadingBackupDialog() {
       viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.DOWNLOADING_YOUR_BACKUP)
     }
+
+    override fun onManageStorageClick() {
+      requireActivity().finish()
+      requireActivity().startActivity(AppSettingsActivity.manageStorage(requireActivity()))
+    }
   }
 
   private fun displayBackupKey() {
@@ -370,6 +366,7 @@ private interface ContentCallbacks {
   fun onRedemptionErrorDetailsClick() = Unit
   fun onDisplayProgressDialog() = Unit
   fun onDisplayDownloadingBackupDialog() = Unit
+  fun onManageStorageClick() = Unit
 
   object Empty : ContentCallbacks
 }
@@ -377,20 +374,11 @@ private interface ContentCallbacks {
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun RemoteBackupsSettingsContent(
-  backupsEnabled: Boolean,
-  backupState: RemoteBackupsSettingsState.BackupState,
+  state: RemoteBackupsSettingsState,
   backupRestoreState: BackupRestoreState,
   backupDeleteState: DeletionState,
-  lastBackupTimestamp: Long,
-  canBackUpUsingCellular: Boolean,
-  canRestoreUsingCellular: Boolean,
-  backupsFrequency: BackupFrequency,
-  requestedDialog: RemoteBackupsSettingsState.Dialog,
-  requestedSnackbar: RemoteBackupsSettingsState.Snackbar,
   contentCallbacks: ContentCallbacks,
   backupProgress: ArchiveUploadProgressState?,
-  backupMediaSize: Long,
-  hasRedemptionError: Boolean,
   statusBarColorNestedScrollConnection: StatusBarColorNestedScrollConnection?
 ) {
   val snackbarHostState = remember {
@@ -443,14 +431,23 @@ private fun RemoteBackupsSettingsContent(
         BetaHeader(modifier = Modifier.padding(horizontal = 16.dp))
       }
 
-      if (hasRedemptionError) {
+      if (state.isOutOfStorageSpace) {
+        item {
+          OutOfStorageSpaceBlock(
+            formattedTotalStorageSpace = state.totalAllowedStorageSpace,
+            onManageStorageClick = contentCallbacks::onManageStorageClick
+          )
+        }
+      }
+
+      if (state.isOutOfStorageSpace) {
         item {
           RedemptionErrorAlert(onDetailsClick = contentCallbacks::onRedemptionErrorDetailsClick)
         }
       }
 
       item {
-        when (backupState) {
+        when (state.backupState) {
           is RemoteBackupsSettingsState.BackupState.Loading -> {
             LoadingCard()
           }
@@ -460,12 +457,12 @@ private fun RemoteBackupsSettingsContent(
           }
 
           is RemoteBackupsSettingsState.BackupState.Pending -> {
-            PendingCard(backupState.price)
+            PendingCard(state.backupState.price)
           }
 
           is RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay -> {
             SubscriptionMismatchMissingGooglePlayCard(
-              state = backupState,
+              state = state.backupState,
               onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription,
               onRenewClick = contentCallbacks::onRenewLostSubscription,
               isRenewEnabled = backupDeleteState != DeletionState.DELETE_BACKUPS
@@ -476,7 +473,7 @@ private fun RemoteBackupsSettingsContent(
 
           is RemoteBackupsSettingsState.BackupState.WithTypeAndRenewalTime -> {
             BackupCard(
-              backupState = backupState,
+              backupState = state.backupState,
               onBackupTypeActionButtonClicked = contentCallbacks::onBackupTypeActionClick,
               buttonsEnabled = backupDeleteState != DeletionState.DELETE_BACKUPS
             )
@@ -497,19 +494,19 @@ private fun RemoteBackupsSettingsContent(
         appendBackupDeletionItems(
           backupDeleteState = backupDeleteState,
           backupRestoreState = backupRestoreState,
-          canRestoreUsingCellular = canRestoreUsingCellular,
+          canRestoreUsingCellular = state.canRestoreUsingCellular,
           contentCallbacks = contentCallbacks
         )
-      } else if (backupsEnabled) {
+      } else if (state.backupsEnabled) {
         appendBackupDetailsItems(
-          backupState = backupState,
+          backupState = state.backupState,
           backupRestoreState = backupRestoreState,
           backupProgress = backupProgress,
-          lastBackupTimestamp = lastBackupTimestamp,
-          backupMediaSize = backupMediaSize,
-          backupsFrequency = backupsFrequency,
-          canBackUpUsingCellular = canBackUpUsingCellular,
-          canRestoreUsingCellular = canRestoreUsingCellular,
+          lastBackupTimestamp = state.lastBackupTimestamp,
+          backupMediaSize = state.backupMediaSize,
+          backupsFrequency = state.backupsFrequency,
+          canBackUpUsingCellular = state.canBackUpUsingCellular,
+          canRestoreUsingCellular = state.canRestoreUsingCellular,
           contentCallbacks = contentCallbacks
         )
       } else {
@@ -541,7 +538,7 @@ private fun RemoteBackupsSettingsContent(
     }
   }
 
-  when (requestedDialog) {
+  when (state.dialog) {
     RemoteBackupsSettingsState.Dialog.NONE -> {}
     RemoteBackupsSettingsState.Dialog.TURN_OFF_FAILED -> {
       FailedToTurnOffBackupDialog(
@@ -558,7 +555,7 @@ private fun RemoteBackupsSettingsContent(
 
     RemoteBackupsSettingsState.Dialog.BACKUP_FREQUENCY -> {
       BackupFrequencyDialog(
-        selected = backupsFrequency,
+        selected = state.backupsFrequency,
         onSelected = contentCallbacks::onSelectBackupsFrequencyChange,
         onDismiss = contentCallbacks::onDialogDismissed
       )
@@ -584,8 +581,8 @@ private fun RemoteBackupsSettingsContent(
         SkipDownloadDuringDeleteDialog()
       } else {
         SkipDownloadDialog(
-          renewalTime = if (backupState is RemoteBackupsSettingsState.BackupState.WithTypeAndRenewalTime) {
-            backupState.renewalTime
+          renewalTime = if (state.backupState is RemoteBackupsSettingsState.BackupState.WithTypeAndRenewalTime) {
+            state.backupState.renewalTime
           } else {
             error("Unexpected dialog display without renewal time.")
           },
@@ -610,8 +607,8 @@ private fun RemoteBackupsSettingsContent(
     }
   }
 
-  val snackbarMessageId = remember(requestedSnackbar) {
-    when (requestedSnackbar) {
+  val snackbarMessageId = remember(state.snackbar) {
+    when (state.snackbar) {
       RemoteBackupsSettingsState.Snackbar.NONE -> -1
       RemoteBackupsSettingsState.Snackbar.BACKUP_DELETED_AND_TURNED_OFF -> R.string.RemoteBackupsSettingsFragment__backup_deleted_and_turned_off
       RemoteBackupsSettingsState.Snackbar.BACKUP_TYPE_CHANGED_AND_SUBSCRIPTION_CANCELLED -> R.string.RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted
@@ -623,8 +620,8 @@ private fun RemoteBackupsSettingsContent(
 
   val snackbarText = if (snackbarMessageId == -1) "" else stringResource(id = snackbarMessageId)
 
-  LaunchedEffect(requestedSnackbar) {
-    when (requestedSnackbar) {
+  LaunchedEffect(state.snackbar) {
+    when (state.snackbar) {
       RemoteBackupsSettingsState.Snackbar.NONE -> {
         snackbarHostState.currentSnackbarData?.dismiss()
       }
@@ -1055,6 +1052,38 @@ private fun CallToActionButton(
       text = text
     )
   }
+}
+
+@Composable
+private fun OutOfStorageSpaceBlock(
+  formattedTotalStorageSpace: String,
+  onManageStorageClick: () -> Unit
+) {
+  Dividers.Default()
+
+  Row(
+    modifier = Modifier.horizontalGutters().padding(vertical = 12.dp)
+  ) {
+    Icon(
+      imageVector = ImageVector.vectorResource(R.drawable.symbol_error_circle_fill_24),
+      tint = MaterialTheme.colorScheme.error,
+      contentDescription = null,
+      modifier = Modifier.padding(top = 4.dp, end = 4.dp, start = 2.dp).size(20.dp)
+    )
+
+    Column {
+      Text(
+        text = stringResource(R.string.RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit, formattedTotalStorageSpace),
+        modifier = Modifier.padding(start = 12.dp)
+      )
+
+      TextButton(onClick = onManageStorageClick) {
+        Text(text = stringResource(R.string.RemoteBackupsSettingsFragment__manage_storage))
+      }
+    }
+  }
+
+  Dividers.Default()
 }
 
 @Composable
@@ -1678,23 +1707,26 @@ private fun getTextForFrequency(backupsFrequency: BackupFrequency): String {
 private fun RemoteBackupsSettingsContentPreview() {
   Previews.Preview {
     RemoteBackupsSettingsContent(
-      backupsEnabled = true,
-      lastBackupTimestamp = -1,
-      canBackUpUsingCellular = false,
-      canRestoreUsingCellular = false,
-      backupsFrequency = BackupFrequency.MANUAL,
-      requestedDialog = RemoteBackupsSettingsState.Dialog.NONE,
-      requestedSnackbar = RemoteBackupsSettingsState.Snackbar.NONE,
-      contentCallbacks = ContentCallbacks.Empty,
-      backupProgress = null,
-      backupMediaSize = 2300000,
-      backupState = RemoteBackupsSettingsState.BackupState.ActiveFree(
-        messageBackupsType = MessageBackupsType.Free(mediaRetentionDays = 30)
+      state = RemoteBackupsSettingsState(
+        backupsEnabled = true,
+        lastBackupTimestamp = -1,
+        canBackUpUsingCellular = false,
+        canRestoreUsingCellular = false,
+        backupsFrequency = BackupFrequency.MANUAL,
+        dialog = RemoteBackupsSettingsState.Dialog.NONE,
+        snackbar = RemoteBackupsSettingsState.Snackbar.NONE,
+        backupMediaSize = 2300000,
+        backupState = RemoteBackupsSettingsState.BackupState.ActiveFree(
+          messageBackupsType = MessageBackupsType.Free(mediaRetentionDays = 30)
+        ),
+        hasRedemptionError = true,
+        isOutOfStorageSpace = true
       ),
+      statusBarColorNestedScrollConnection = null,
       backupDeleteState = DeletionState.NONE,
       backupRestoreState = BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup),
-      hasRedemptionError = true,
-      statusBarColorNestedScrollConnection = null
+      contentCallbacks = ContentCallbacks.Empty,
+      backupProgress = null
     )
   }
 }
