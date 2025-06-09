@@ -765,7 +765,7 @@ class AttachmentTable(
       INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID 
       WHERE
       (
-        $TABLE_NAME.$OFFLOAD_RESTORED_AT < ${now - 24.hours.inWholeMilliseconds} AND
+        $TABLE_NAME.$OFFLOAD_RESTORED_AT < ${now - 7.days.inWholeMilliseconds} AND
         $TABLE_NAME.$TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
         $TABLE_NAME.$ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND
         (
