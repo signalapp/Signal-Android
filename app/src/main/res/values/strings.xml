@@ -1091,6 +1091,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">The device that was linked %1$s is no longer linked.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
+    <!-- Dialog title shown when you don't have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">Not enough storage space</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">You don\'t have enough free storage space on your device to transfer your messages. Free up some space and try again, or link your device without transferring your messages.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->

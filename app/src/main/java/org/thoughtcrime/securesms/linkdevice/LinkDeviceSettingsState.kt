@@ -32,7 +32,7 @@ data class LinkDeviceSettingsState(
     data object Unlinking : DialogState
     data class SyncingMessages(val deviceId: Int, val deviceCreatedAt: Long) : DialogState
     data object SyncingTimedOut : DialogState
-    data class SyncingFailed(val deviceId: Int, val deviceCreatedAt: Long, val canRetry: Boolean) : DialogState
+    data class SyncingFailed(val deviceId: Int, val deviceCreatedAt: Long, val syncFailType: SyncFailType) : DialogState
     data class DeviceUnlinked(val deviceCreatedAt: Long) : DialogState
     data object LoadingDebugLog : DialogState
     data object ContactSupport : DialogState
@@ -54,5 +54,11 @@ data class LinkDeviceSettingsState(
 
   enum class QrCodeState {
     NONE, VALID_WITH_SYNC, VALID_WITHOUT_SYNC, INVALID
+  }
+
+  enum class SyncFailType {
+    NOT_RETRYABLE,
+    RETRYABLE,
+    NOT_ENOUGH_SPACE
   }
 }
