@@ -14,6 +14,7 @@ import okio.ByteString.Companion.toByteString
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
 import org.signal.core.util.ByteSize
+import org.signal.core.util.CursorUtil
 import org.signal.core.util.EventTimer
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.bytes
@@ -69,6 +70,7 @@ import org.thoughtcrime.securesms.database.OneTimePreKeyTable
 import org.thoughtcrime.securesms.database.SearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignedPreKeyTable
+import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
@@ -79,6 +81,7 @@ import org.thoughtcrime.securesms.jobs.CheckRestoreMediaLeftJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
+import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.keyvalue.BackupValues.ArchiveServiceCredentials
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -132,6 +135,7 @@ object BackupRepository {
   private const val REMOTE_KEYVALUE_DB_SNAPSHOT_NAME = "remote-signal-key-value-snapshot"
   private const val LOCAL_MAIN_DB_SNAPSHOT_NAME = "local-signal-snapshot"
   private const val LOCAL_KEYVALUE_DB_SNAPSHOT_NAME = "local-signal-key-value-snapshot"
+  private const val RECENT_RECIPIENTS_MAX = 50
 
   private val resetInitializedStateErrorAction: StatusCodeErrorAction = { error ->
     when (error.code) {
@@ -1014,6 +1018,24 @@ object BackupRepository {
     AppDependencies.recipientCache.clear()
     AppDependencies.recipientCache.warmUp()
     SignalDatabase.threads.clearCache()
+
+    val recipientIds = SignalDatabase.threads.getRecentConversationList(
+      limit = RECENT_RECIPIENTS_MAX,
+      includeInactiveGroups = false,
+      individualsOnly = true,
+      groupsOnly = false,
+      hideV1Groups = true,
+      hideSms = true,
+      hideSelf = true
+    ).use {
+      val recipientSet = mutableSetOf<RecipientId>()
+      while (it.moveToNext()) {
+        recipientSet.add(RecipientId.from(CursorUtil.requireLong(it, ThreadTable.RECIPIENT_ID)))
+      }
+      recipientSet
+    }
+
+    RetrieveProfileJob.enqueue(recipientIds)
 
     val groupJobs = SignalDatabase.groups.getGroups().use { groups ->
       val jobs = mutableListOf<Job>()
