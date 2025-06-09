@@ -467,18 +467,23 @@ object StorageSyncModels {
 
   private fun localToRemoteRecipients(recipientIds: List<RecipientId>): List<RemoteRecipient> {
     return recipientIds.mapNotNull { id ->
-      val recipient = SignalDatabase.recipients.getRecordForSync(id) ?: throw AssertionError("Missing recipient for id")
-      when (recipient.recipientType) {
-        RecipientType.INDIVIDUAL -> {
-          RemoteRecipient(contact = RemoteRecipient.Contact(serviceId = recipient.serviceId?.toString() ?: "", e164 = recipient.e164 ?: ""))
+      val recipient = SignalDatabase.recipients.getRecordForSync(id)
+      if (recipient == null) {
+        Log.w(TAG, "Recipient $id from notification profile cannot be found")
+        null
+      } else {
+        when (recipient.recipientType) {
+          RecipientType.INDIVIDUAL -> {
+            RemoteRecipient(contact = RemoteRecipient.Contact(serviceId = recipient.serviceId?.toString() ?: "", e164 = recipient.e164 ?: ""))
+          }
+          RecipientType.GV1 -> {
+            RemoteRecipient(legacyGroupId = recipient.groupId!!.requireV1().decodedId.toByteString())
+          }
+          RecipientType.GV2 -> {
+            RemoteRecipient(groupMasterKey = recipient.syncExtras.groupMasterKey!!.serialize().toByteString())
+          }
+          else -> null
         }
-        RecipientType.GV1 -> {
-          RemoteRecipient(legacyGroupId = recipient.groupId!!.requireV1().decodedId.toByteString())
-        }
-        RecipientType.GV2 -> {
-          RemoteRecipient(groupMasterKey = recipient.syncExtras.groupMasterKey!!.serialize().toByteString())
-        }
-        else -> null
       }
     }
   }
