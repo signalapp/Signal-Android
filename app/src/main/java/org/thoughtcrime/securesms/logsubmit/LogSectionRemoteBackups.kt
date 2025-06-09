@@ -20,7 +20,7 @@ class LogSectionRemoteBackups : LogSection {
   override fun getContent(context: Context): CharSequence {
     val output = StringBuilder()
 
-    output.append("-- Backup State")
+    output.append("-- Backup State\n")
     output.append("Enabled:                              ${SignalStore.backup.areBackupsEnabled}\n")
     output.append("Current tier:                         ${SignalStore.backup.backupTier}\n")
     output.append("Latest tier:                          ${SignalStore.backup.latestBackupTier}\n")
@@ -35,7 +35,7 @@ class LogSectionRemoteBackups : LogSection {
     output.append("Backup frequency:                     ${SignalStore.backup.backupFrequency.name}\n")
     output.append("Optimize storage:                     ${SignalStore.backup.optimizeStorage}\n")
     output.append("Detected subscription state mismatch: ${SignalStore.backup.subscriptionStateMismatchDetected}\n")
-    output.append("\n -- Subscription State")
+    output.append("\n -- Subscription State\n")
 
     val backupSubscriptionId = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
     val hasGooglePlayBilling = runBlocking { AppDependencies.billingApi.isApiAvailable() }

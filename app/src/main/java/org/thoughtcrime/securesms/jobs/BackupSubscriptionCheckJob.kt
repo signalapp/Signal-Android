@@ -97,7 +97,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()
     Log.i(TAG, "Retrieved purchase result from Billing api: $purchase")
 
-    val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged && purchase.isWithinTheLastMonth() && purchase.isAutoRenewing
+    val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged && purchase.isWithinTheLastMonth()
     val product: BillingProduct? = AppDependencies.billingApi.queryProduct()
 
     if (product == null) {
