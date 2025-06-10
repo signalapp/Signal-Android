@@ -215,7 +215,6 @@ public final class JobManagerFactories {
       put(PaymentNotificationSendJobV2.KEY,            new PaymentNotificationSendJobV2.Factory());
       put(PaymentSendJob.KEY,                          new PaymentSendJob.Factory());
       put(PaymentTransactionCheckJob.KEY,              new PaymentTransactionCheckJob.Factory());
-      put(PnpInitializeDevicesJob.KEY,                 new PnpInitializeDevicesJob.Factory());
       put(PreKeysSyncJob.KEY,                          new PreKeysSyncJob.Factory());
       put(ProfileKeySendJob.KEY,                       new ProfileKeySendJob.Factory());
       put(ProfileUploadJob.KEY,                        new ProfileUploadJob.Factory());
@@ -393,6 +392,7 @@ public final class JobManagerFactories {
       put("InactiveGroupCheckMigrationJob",              new PassingMigrationJob.Factory());
       put("AttachmentMarkUploadedJob",                   new FailingJob.Factory());
       put("BackupMediaSnapshotSyncJob",                  new FailingJob.Factory());
+      put("PnpInitializeDevicesJob",                     new FailingJob.Factory());
     }};
   }
 
