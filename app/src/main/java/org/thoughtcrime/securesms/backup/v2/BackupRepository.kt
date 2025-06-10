@@ -155,9 +155,13 @@ object BackupRepository {
           Log.w(TAG, "Received status 403, but the internal override is set, so not doing anything.", error.exception)
         } else {
           Log.w(TAG, "Received status 403. The user is not in the media tier. Updating local state.", error.exception)
-          SignalStore.backup.backupTier = MessageBackupTier.FREE
+          if (SignalStore.backup.backupTier == MessageBackupTier.PAID) {
+            Log.w(TAG, "Local device thought it was on PAID tier. Downgrading to FREE tier.")
+            SignalStore.backup.backupTier = MessageBackupTier.FREE
+            SignalStore.backup.backupExpiredAndDowngraded = true
+          }
+
           SignalStore.uiHints.markHasEverEnabledRemoteBackups()
-          SignalStore.backup.backupExpiredAndDowngraded = true
         }
       }
     }
