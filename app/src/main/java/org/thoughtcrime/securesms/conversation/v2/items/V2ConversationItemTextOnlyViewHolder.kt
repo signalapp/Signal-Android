@@ -701,7 +701,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       binding.footerDate.text = conversationMessage.computedProperties.formattedDate.value
     } else {
       var dateLabel = conversationMessage.computedProperties.formattedDate.value
-      if (conversationContext.displayMode != ConversationItemDisplayMode.Detailed && record is MmsMessageRecord && record.isEditMessage()) {
+      if (conversationContext.displayMode != ConversationItemDisplayMode.Detailed && record is MmsMessageRecord && record.isEditMessage) {
         dateLabel = if (conversationMessage.computedProperties.formattedDate.isNow) {
           getContext().getString(R.string.ConversationItem_edited_now_timestamp_footer)
         } else if (conversationMessage.computedProperties.formattedDate.isRelative) {
