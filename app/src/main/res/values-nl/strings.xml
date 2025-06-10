@@ -2132,8 +2132,8 @@
     </plurals>
     <!-- Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited -->
     <plurals name="MessageRequestProfileView_invited">
-        <item quantity="one">+ %1$d uitgenodigd</item>
-        <item quantity="other">+ %1$d uitgenodigd</item>
+        <item quantity="one">+%1$d uitgenodigd</item>
+        <item quantity="other">+%1$d uitgenodigd</item>
     </plurals>
     <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
@@ -7683,8 +7683,8 @@
     <string name="PendingParticipantsView__would_like_to_join">Wil graag deelnemen…</string>
     <!-- Displayed in a button on the popup card denoting that there are other pending requests to join a call link -->
     <plurals name="PendingParticipantsView__plus_d_requests">
-        <item quantity="one">+ %1$d verzoek</item>
-        <item quantity="other">+ %1$d verzoeken</item>
+        <item quantity="one">+%1$d verzoek</item>
+        <item quantity="other">+%1$d verzoeken</item>
     </plurals>
 
     <!-- PendingParticipantsBottomSheet -->
@@ -7941,11 +7941,11 @@
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">Voortgang download: %1$s van %2$s (%3$s)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
-    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__download_waiting_for_wifi">Download gepauzeerd: wachten op wifi…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <string name="BackupStatusRow__download_no_internet">Download gepauzeerd: geen internet…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">Download gepauzeerd: batterij van apparaat is bijna leeg</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Niet genoeg opslagruimte om je back-up te downloaden. Maak %1$s ruimte vrij om door te gaan.</string>
     <!-- Text row label to skip download -->
@@ -8134,7 +8134,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Back-ups uitschakelen en verwijderen?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Je back-up wordt verwijderd en er worden geen nieuwe back-ups gemaakt. Alle media die in je back-up zijn opgeslagen, worden nu naar je telefoon gedownload.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Uitschakelen en verwijderen</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8169,7 +8169,7 @@
         <item quantity="other">Je abonnement op dit apparaat is nog %1$d dagen geldig. Verleng om Signal back-ups te blijven gebruiken</item>
     </plurals>
     <!-- Button label to start subscription renewal -->
-    <string name="RemoteBackupsSettingsFragment__renew">Verlengen</string>
+    <string name="RemoteBackupsSettingsFragment__renew">Vernieuwen</string>
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">Meer lezen</string>
     <!-- Linear progress dialog text shown when creating a backup -->
@@ -8198,7 +8198,7 @@
         <item quantity="other">Als je downloaden overslaat, worden de resterende media en bijlagen in je back-up over %1$d dagen verwijderd.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Als je downloaden overslaat, worden de resterende media en bijlagen in je back-up permanent verwijderd. Deze gegevens kunnen niet worden hersteld.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">Herstel overslaan?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8206,7 +8206,7 @@
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Overslaan</string>
     <!-- Positive dialog action to skip download during deletion -->
-    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Overslaan en definitief verwijderen</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Back-ups konden niet worden uitgeschakeld en verwijderd</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8216,25 +8216,25 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Details</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Back-ups zijn uitgeschakeld, maar er heeft zich een fout voorgedaan bij het verwijderen van je gegevens uit de beveiligde opslagservice van Signal.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Kan back-up niet verwijderen</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Er is een fout opgetreden. Neem contact op met ondersteuning.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Back-ups zijn uitgeschakeld, je gegevens worden gedownload naar je apparaat en vervolgens verwijderd uit de beveiligde opslagservice van Signal.</string>
     <!-- Text displayed while we are processing a backup delete -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Back-ups zijn uitgeschakeld en je gegevens worden verwijderd uit de beveiligde opslagservice van Signal.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Back-ups zijn uitgeschakeld en je gegevens zijn verwijderd uit de beveiligde opslagservice van Signal.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
-    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Voortgang download: %1$s van %2$s (%3$d)</string>
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Voortgang download: %1$s van %2$s (%3$d%%)</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
     <string name="SubscriptionNotFoundBottomSheet__subscription_not_found">Abonnement niet gevonden</string>
     <!-- Displayed below title on bottom sheet -->
-    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">Je abonnement kon niet worden hersteld.</string>
+    <string name="SubscriptionNotFoundBottomSheet__your_subscription_couldnt_be_restored">Je abonnement kon niet worden gevonden.</string>
     <!-- Displayed below title on bottom sheet -->
     <string name="SubscriptionNotFoundBottomSheet__this_could_happen_if">Dit kan gebeuren als:</string>
     <!-- First item in a bulleted list of reasons -->
@@ -8254,7 +8254,7 @@
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Er is een netwerkfout opgetreden. Probeer het later opnieuw.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
-    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Er wordt momenteel een back-up verwijderd.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8288,17 +8288,17 @@
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopiëren naar klembord</string>
     <!-- Label for the button to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Opslaan in wachtwoordmanager</string>
     <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Opslaan in wachtwoordmanager?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Bewaar je back-upsleutel alleen in een wachtwoordmanager waarvan je zeker weet dat deze veilig is. Signal doet geen aanbevelingen over geschikte wachtwoordmanagers.</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Opgeslagen in je wachtwoordmanager</string>
     <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Kan niet opslaan in wachtwoordmanager</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Je hebt geen wachtwoordmanager ingesteld of de wachtwoordmanager die je gebruikt, wordt niet ondersteund.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Volgende</string>
     <!-- Bottom sheet title -->
@@ -8329,11 +8329,11 @@
     <!-- Screen headline -->
     <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Kies je back-upabonnement</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Alle back-ups zijn end-to-end versleuteld. Signal is een non-profitorganisatie—door te betalen voor back-ups help je onze missie te ondersteunen.</string>
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Alle back-ups zijn end-to-end versleuteld. Signal is een non-profitorganisatie — door te betalen voor back-ups help je onze missie te ondersteunen.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Meer lezen</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Abonneren</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Abonneren voor %1$s/maand</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

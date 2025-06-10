@@ -2749,7 +2749,7 @@
     </plurals>
     <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
     <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
-        <item quantity="other">%1$s stickers</item>
+        <item quantity="other">%1$s ស្ទីកគ័រ</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -7767,11 +7767,11 @@
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">កំពុងទាញយក៖ %1$s នៃ %2$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
-    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__download_waiting_for_wifi">ការទាញយកត្រូវបានផ្អាក៖ កំពុងរង់ចាំ Wi-Fi…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <string name="BackupStatusRow__download_no_internet">ការទាញយកត្រូវបានផ្អាក៖ គ្មានអ៊ីនធឺណិត…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">ការទាញយកត្រូវបានផ្អាក៖ ឧបករណ៍ជិតអស់ថ្ម</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">មិនមានទំហំផ្ទុកគ្រប់គ្រាន់ដើម្បីទាញយកការបម្រុងទុករបស់អ្នក។ ដើម្បីបន្ត សូមរក្សាទំហំផ្ទុករបស់អ្នកឱ្យទំនេរបាន %1$s។</string>
     <!-- Text row label to skip download -->
@@ -7959,7 +7959,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">បិទ និងលុបការបម្រុងទុកឬ?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">ការបម្រុងទុករបស់អ្នកនឹងត្រូវបានលុប ហើយគ្មានការបម្រុងទុកថ្មីនឹងត្រូវបានបង្កើតឡើងទេ។ មេឌៀណាមួយដែលបានរក្សាទុកនៅក្នុងការបម្រុងទុករបស់អ្នកនឹងត្រូវបានទាញយកទៅក្នុងទូរសព្ទរបស់អ្នកឥឡូវនេះ។</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">បិទ និងលុប</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8019,7 +8019,7 @@
         <item quantity="other">ប្រសិនបើអ្នករំលងការទាញយក នោះមេឌៀ និងឯកសារភ្ជាប់ដែលនៅសល់នៅក្នុងការបម្រុងទុករបស់អ្នកនឹងត្រូវបានលុបក្នុងរយៈពេល %1$d ថ្ងៃ។</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">ប្រសិនបើអ្នករំលងការទាញយកមេឌៀ និងឯកសារភ្ជាប់ដែលនៅសល់នៅក្នុងការបម្រុងទុករបស់អ្នក នោះពួកវានឹងត្រូវបានលុបជារៀងរហូត។ ទិន្នន័យនេះនឹងមិនអាចយកមកវិញបានទេ។</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">រំលងការស្តារឡើងវិញ?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8027,7 +8027,7 @@
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">រំលង</string>
     <!-- Positive dialog action to skip download during deletion -->
-    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">រំលង និងលុបជារៀងរហូត</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">មិនអាចបិទ និងលុបការបម្រុងទុកទេ</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8037,17 +8037,17 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">ព័ត៌មានលម្អិត</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">ការបម្រុងទុកត្រូវបានបិទ ប៉ុន្តែមានបញ្ហាក្នុងការលុបទិន្នន័យរបស់អ្នកចេញពីសេវាកម្មផ្ទុកដ៏មានសុវត្ថិភាពរបស់ Signal។</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed to delete backup</string>
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">មិនអាចលុបការបម្រុងទុកបានទេ</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">An error occurred. Please contact support.</string>
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">បញ្ហាមួយបានកើតឡើង។ សូមទាក់ទងទៅកាន់ផ្នែកជំនួយ។</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">ដោយសារការបម្រុងទុកត្រូវបានបិទ ទិន្នន័យរបស់អ្នកនឹងត្រូវបានទាញយកទៅក្នុងឧបករណ៍របស់អ្នក ហើយនឹងត្រូវបានលុបចោលពីសេវាកម្មផ្ទុកដ៏មានសុវត្ថិភាពរបស់ Signal។</string>
     <!-- Text displayed while we are processing a backup delete -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups have been turned off and your data will be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">ការបម្រុងទុកត្រូវបានបិទ ហើយទិន្នន័យរបស់អ្នកនឹងត្រូវបានលុបចេញពីសេវាកម្មផ្ទុកដ៏មានសុវត្ថិភាពរបស់ Signal។</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">ការបម្រុងទុកត្រូវបានបិទ ហើយទិន្នន័យរបស់អ្នកត្រូវបានលុបចេញពីសេវាកម្មផ្ទុកដ៏មានសុវត្ថិភាពរបស់ Signal។</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">កំពុងទាញយក៖ %1$s នៃ %2$s (%3$d%%)</string>
 
@@ -8075,7 +8075,7 @@
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">មានបញ្ហាបណ្ដាញកើតឡើង។ សូមព្យាយាមម្តងទៀតនៅពេលក្រោយ។</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
-    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">ការលុបការបម្រុងទុកកំពុងដំណើរការ។</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8109,17 +8109,17 @@
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ចម្លងទៅឃ្លីបបត</string>
     <!-- Label for the button to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">រក្សាទុកក្នុងមុខងារគ្រប់គ្រងពាក្យសម្ងាត់</string>
     <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">រក្សាទុកក្នុងមុខងារគ្រប់គ្រងពាក្យសម្ងាត់ឬ?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">រក្សាទុកសោបម្រុងទុករបស់អ្នកតែនៅក្នុងមុខងារគ្រប់គ្រងពាក្យសម្ងាត់ដែលអ្នកជឿជាក់ថាមានសុវត្ថិភាពប៉ុណ្ណោះ។ Signal មិនផ្តល់ការណែនាំថាតើមុខងារគ្រប់គ្រងពាក្យសម្ងាត់មួយណាសក្តិសមសម្រាប់អ្នកនោះឡើយ។</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">បានរក្សាទុកក្នុងមុខងារគ្រប់គ្រងពាក្យសម្ងាត់</string>
     <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">មិនអាចរក្សាទុកក្នុងមុខងារគ្រប់គ្រងពាក្យសម្ងាត់ទេ</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">អ្នកមិនបានរៀបចំមុខងារគ្រប់គ្រងពាក្យសម្ងាត់ទេ ឬមុខងារគ្រប់គ្រងពាក្យសម្ងាត់ដែលអ្នកកំពុងប្រើមិនអាចប្រើប្រាស់បានទេ។</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">បន្ទាប់</string>
     <!-- Bottom sheet title -->
@@ -8154,7 +8154,7 @@
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">ស្វែងយល់បន្ថែម</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">ជាវ</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">ជាវក្នុងតម្លៃ %1$s/ខែ</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

@@ -2841,8 +2841,8 @@
     </plurals>
     <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
     <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
-        <item quantity="one">%1$s sticker</item>
-        <item quantity="other">%1$s stickers</item>
+        <item quantity="one">%1$s स्टिकर</item>
+        <item quantity="other">%1$s स्टिकर्स</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -7941,11 +7941,11 @@
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">%2$s में से %1$s को डाउनलोड किया जा रहा है (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
-    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__download_waiting_for_wifi">डाउनलोड रोका गया: वाई-फ़ाई का इंतज़ार कर रहे हैं…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <string name="BackupStatusRow__download_no_internet">डाउनलोड रोका गया: इंटरनेट नहीं है…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">डाउनलोड रोका गया: डिवाइस में बैटरी कम है</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">आपके बैकअप को डाउनलोड करने के लिए जगह नहीं है। जारी रखने के लिए, %1$s जगह खाली करें।</string>
     <!-- Text row label to skip download -->
@@ -8134,7 +8134,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">बैकअप बंद करें और डिलीट करें?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">आपका बैकअप डिलीट कर दिया जाएगा और कोई नया बैकअप नहीं बनाया जाएगा। आपके बैकअप में स्टोर किया गया हर मीडिया अभी आपके फ़ोन में डाउनलोड किया जाएगा।</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">बंद करें और डिलीट करें</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8198,7 +8198,7 @@
         <item quantity="other">अगर आप अपने बैकअप में बाकी के मीडिया और अटैचमेंट का डाउनलोड छोड़ना चुनते हैं, तो उन्हें %1$d दिनों में डिलीट कर दिया जाएगा।</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">अगर आप बाकी के मीडिया और अटैचमेंट को अपने बैकअप में डाउनलोड करना छोड़ देते हैं, तो उन्हें हमेशा के लिए डिलीट कर दिया जाएगा। इस डेटा को रिकवर नहीं किया जाएगा।</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">रीस्टोर करना छोड़ें?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8206,7 +8206,7 @@
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">छोड़ दे</string>
     <!-- Positive dialog action to skip download during deletion -->
-    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">छोड़ें और हमेशा के लिए डिलीट करें</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">बैकअप को बंद और डिलीट नहीं किया जा सका</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8216,13 +8216,13 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">माहिती</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">बैकअप बंद कर दिए गए हैं, लेकिन Signal की सुरक्षित स्टोरेज सेवा से आपका डेटा डिलीट करने में कोई गड़बड़ी हुई।</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">बैकअप डिलीट नहीं किया जा सका</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">कोई गड़बड़ी हुई। कृपया सपोर्ट से संपर्क करें।</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">बैकअप बंद कर दिए गए हैं, आपका डेटा आपके डिवाइस पर डाउनलोड होगा और फिर उसे Signal की सुरक्षित स्टोरेज सेवा से डिलीट कर दिया जाएगा।</string>
     <!-- Text displayed while we are processing a backup delete -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">बैकअप को बंद कर दिया गया है और आपका डेटा Signal की सुरक्षित स्टोरेज डिवाइस से डिलीट किया जाएगा।</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
@@ -8254,7 +8254,7 @@
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">नेटवर्क में असफलता हुई। कृपया बाद में कोशिश करें।</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
-    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">बैकअप डिलीट हो रहा है।</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8288,17 +8288,17 @@
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">क्लिपबोर्ड पर कॉपी करें</string>
     <!-- Label for the button to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">पासवर्ड मैनेजर में सेव करें</string>
     <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">पासवर्ड मैनेजर में सेव करें?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">सिर्फ़ उस पासवर्ड मैनेजर में अपनी बैकअप की स्टोर करें जिसके सुरक्षित होने पर आपको भरोसा है। Signal इस बारे में कोई सुझाव नहीं देता कि कौनसा पासवर्ड मैनेजर आपके लिए सही है।</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">आपके पासवर्ड मैनेजर में सेव किया गया</string>
     <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">पासवर्ड मैनेजर में सेव नहीं किया जा सका</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">आपका पासवर्ड मैनेजर सेट अप नहीं है या आप जिस पासवर्ड मैनेजर का इस्तेमाल कर रहे हैं वह सपोर्टेड नहीं है।</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">अगला</string>
     <!-- Bottom sheet title -->
@@ -8333,7 +8333,7 @@
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">अधिक जानें</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">सब्सक्राइब करें</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/महीने में सब्सक्राइब करें</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

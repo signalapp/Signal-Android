@@ -2841,8 +2841,8 @@
     </plurals>
     <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
     <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
-        <item quantity="one">%1$s sticker</item>
-        <item quantity="other">%1$s stickers</item>
+        <item quantity="one">%1$sஸ்டிக்கர்</item>
+        <item quantity="other">%1$sஸ்டிக்கர்கள்</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -7941,11 +7941,11 @@
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">பதிவிறக்குகிறது: %2$s இல் %1$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
-    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__download_waiting_for_wifi">பதிவிறக்கம் இடைநிறுத்தப்பட்டது: Wi-Fi க்காக காத்துக்கொண்டிருக்கிறது…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <string name="BackupStatusRow__download_no_internet">பதிவிறக்கம் இடைநிறுத்தப்பட்டது: இணையம் கிடைக்கவில்லை…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">பதிவிறக்கம் இடைநிறுத்தப்பட்டது: சாதனத்தின் பேட்டரி அளவு குறைவாக உள்ளது</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">உங்கள் காப்பிப்பிரதியை பதிவிறக்கப் போதுமான இடம் இல்லை. தொடர்ந்து %1$s இடத்தை விடுவிக்கவும்.</string>
     <!-- Text row label to skip download -->
@@ -8134,7 +8134,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">அணைத்துவிட்டு, காப்புப்பிரதிகளை அழிக்கவா?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">உங்கள் காப்புப்பிரதி அழிக்கப்படும் மற்றும் புதிய காப்புப்பிரதிகள் உருவாக்கப்படாது. உங்கள் காப்புப்பிரதியில் சேமிக்கப்பட்ட எந்த ஊடகமும் இப்போது உங்கள் ஃபோனில் பதிவிறக்கம் செய்யப்படும்.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ஆஃப் செய்துவிட்டு நீக்கவும்</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8198,7 +8198,7 @@
         <item quantity="other">நீங்கள் பதிவிறக்குவதைத் தவிர்த்தால், உங்கள் காப்புப்பிரதியில் மீதமுள்ள ஊடகம் மற்றும் இணைப்புகள் %1$d நாட்களில் அழிக்கப்படும்.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">உங்கள் காப்புப்பிரதியில் மீதமுள்ள ஊடகம் மற்றும் இணைப்புகளைப் பதிவிறக்குவதைத் தவிர்த்தால் அவை நிரந்தரமாக அழிக்கப்படும். இந்தத் தரவை மீட்டெடுக்க முடியாது.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">மீட்டமைப்பதைத் தவிர்ப்பதா?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8206,7 +8206,7 @@
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">தவிர்</string>
     <!-- Positive dialog action to skip download during deletion -->
-    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">தவிர்த்து, நிரந்திரமாக அழிக்கவும்</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">காப்புப்பிரதிகளை ஆஃப் செய்ய மற்றும் அழிக்க முடியவில்லை</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8216,17 +8216,17 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">விவரங்கள்</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">காப்புப்பிரதிகள் ஆஃப் செய்யப்பட்டுள்ளன, ஆனால் சிக்னலின் பாதுகாப்பான சேமிப்பகச் சேவையிலிருந்து உங்கள் தரவை அழிப்பத்தில் ஒரு பிழை ஏற்பட்டுள்ளது.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed to delete backup</string>
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">காப்புப்பிரதியை அழிக்க முடியவில்லை</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">An error occurred. Please contact support.</string>
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">ஒரு பிழை ஏற்பட்டது. ஆதரவு மையத்தைத் தொடர்பு கொள்க.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">காப்புப்பிரதிகள் ஆஃப் செய்யப்பட்டுள்ளன, உங்கள் தரவு உங்கள் சாதனத்தில் பதிவிறக்கம் செய்யப்பட்டு, பின்னர் சிக்னலின் பாதுகாப்பான சேமிப்பகச் சேவையிலிருந்து அழிக்கப்படும்.</string>
     <!-- Text displayed while we are processing a backup delete -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups have been turned off and your data will be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">காப்புப்பிரதிகள் ஆஃப் செய்யப்பட்டுள்ளன, மேலும் உங்களின் காப்புப்பிரதிகள் சிக்னலின் பாதுகாப்பான சேமிப்பகச் சேவையிலிருந்து அழிக்கப்படும்.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">காப்புப்பிரதிகள் ஆஃப் செய்யப்பட்டுள்ளன, மேலும் உங்களின் காப்புப்பிரதிகள் சிக்னலின் பாதுகாப்பான சேமிப்பகச் சேவையிலிருந்து அழிக்கப்பட்டன.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">பதிவிறக்குகிறது: %2$s இல் %1$s (%3$d%%)</string>
 
@@ -8254,7 +8254,7 @@
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">நெட்வொர்க் தோல்வி ஏற்பட்டுள்ளது. பின்னர் மீண்டும் முயலவும்.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
-    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">காப்புப்பிரதியை அழிப்பது செயலாக்கத்தில் உள்ளது.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8288,17 +8288,17 @@
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">கிளிப்போர்டுக்கு நகலெடுக்கவும்</string>
     <!-- Label for the button to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">கடவுச்சொல் மேலாளரில் சேமித்திடுக</string>
     <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">கடவுச்சொல் மேலாளரில் சேமிக்கவா?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">நீங்கள் பாதுகாப்பானது என்று நம்பும் கடவுச்சொல் மேலாளரில் மட்டுமே உங்கள் காப்புபிரதி குறியீட்டைச் சேமித்து வைக்கவும். உங்களுக்கு எந்தக் கடவுச்சொல் மேலாளர் பொருத்தமானது என்பது குறித்துச் சிக்னல் எந்தப் பரிந்துரையும் செய்யாது.</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">உங்கள் கடவுச்சொல் மேலாளரில் சேமிக்கவும்</string>
     <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">கடவுச்சொல் மேலாளரில் சேமிக்க முடியவில்லை</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">உங்களிடம் கடவுச்சொல் மேலாளர் அமைவு இல்லை, அல்லது நீங்கள் பயன்படுத்தும் கடவுச்சொல் மேலாளர் ஆதரிக்கப்படவில்லை.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">அடுத்து</string>
     <!-- Bottom sheet title -->
@@ -8333,7 +8333,7 @@
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">மேலும் அறிக</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">சப்ஸ்கிரைப் செய்க</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">மாதத்திற்கு %1$s க்கு சப்ஸ்கிரைப் செய்க</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

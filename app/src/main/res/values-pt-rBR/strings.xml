@@ -8226,7 +8226,7 @@
     <!-- Text displayed while we are processing a backup delete -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Os backups foram desativados e os dados serão excluídos do sistema seguro de armazenamento do Signal.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Os backups foram desativados e seus dados foram excluídos do serviço seguro de armazenamento do Signal. </string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Os backups foram desativados e seus dados foram excluídos do serviço seguro de armazenamento do Signal.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Baixando: %1$s de %2$s (%3$d%%)</string>
 

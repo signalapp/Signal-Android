@@ -2841,8 +2841,8 @@
     </plurals>
     <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
     <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
-        <item quantity="one">%1$s sticker</item>
-        <item quantity="other">%1$s stickers</item>
+        <item quantity="one">%1$s αυτοκόλλητο</item>
+        <item quantity="other">%1$s αυτοκόλλητα</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -7941,11 +7941,11 @@
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">Λήψη: %1$s από %2$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
-    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__download_waiting_for_wifi">Η λήψη διακόπηκε: Αναμονή για Wi-Fi…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <string name="BackupStatusRow__download_no_internet">Η λήψη διακόπηκε: Δεν υπάρχει σύνδεση στο διαδίκτυο…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">Η λήψη διακόπηκε: Η συσκευή έχει χαμηλή μπαταρία</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Δεν υπάρχει αρκετός χώρος για την αποθήκευση του αντίγραφου ασφαλείας. Για να συνεχίσεις, απελευθέρωσε %1$s χώρου.</string>
     <!-- Text row label to skip download -->
@@ -8134,7 +8134,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Απενεργοποίηση και διαγραφή αντιγράφων ασφαλείας;</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Το αντίγραφο ασφαλείας σου θα διαγραφεί και δεν θα δημιουργηθούν νέα αντίγραφα ασφαλείας. Οποιαδήποτε πολυμέσα είναι αποθηκευμένα στο αντίγραφο ασφαλείας σου θα ληφθούν τώρα στο τηλέφωνό σου.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Απενεργοποίηση και διαγραφή</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8198,7 +8198,7 @@
         <item quantity="other">Αν παραλείψεις τη λήψη των υπόλοιπων πολυμέσων και των συνημμένων στο αντίγραφο ασφαλείας σου θα διαγραφούν σε %1$d ημέρες.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Αν παραλείψεις τη λήψη των υπόλοιπων πολυμέσων και των συνημμένων στο αντίγραφο ασφαλείας σου θα διαγραφούν οριστικά. Αυτά τα δεδομένα δεν θα μπορούν να ανακτηθούν.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">Παράλειψη επαναφοράς;</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8206,7 +8206,7 @@
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Παράλειψη</string>
     <!-- Positive dialog action to skip download during deletion -->
-    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Παράλειψη και οριστική διαγραφή</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Δεν ήταν δυνατή η απενεργοποίηση και η διαγραφή των αντιγράφων ασφαλείας</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8216,13 +8216,13 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Λεπτομέρειες</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Τα αντίγραφα ασφαλείας έχουν απενεργοποιηθεί, αλλά παρουσιάστηκε σφάλμα κατά τη διαγραφή των δεδομένων σου από την υπηρεσία ασφαλούς αποθήκευσης του Signal.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Η διαγραφή αντιγράφων ασφαλείας απέτυχε</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Παρουσιάστηκε σφάλμα. Επικοινώνησε με την υποστήριξη.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Τα αντίγραφα ασφαλείας έχουν απενεργοποιηθεί, τα δεδομένα σου θα ληφθούν στη συσκευή σου και, στη συνέχεια, θα διαγραφούν από την υπηρεσία ασφαλούς αποθήκευσης της Signal.</string>
     <!-- Text displayed while we are processing a backup delete -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Τα αντίγραφα ασφαλείας έχουν απενεργοποιηθεί και τα δεδομένα σου θα διαγραφούν από την υπηρεσία ασφαλούς αποθήκευσης της Signal.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
@@ -8254,7 +8254,7 @@
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Παρουσιάστηκε αποτυχία δικτύου. Δοκίμασε αργότερα.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
-    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Μια διαγραφή αντιγράφου ασφαλείας βρίσκεται σε εξέλιξη.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8288,17 +8288,17 @@
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Αντιγραφή στο πρόχειρο</string>
     <!-- Label for the button to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Αποθήκευση στον διαχειριστή κωδικών πρόσβασης</string>
     <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Αποθήκευση στον διαχειριστή κωδικών πρόσβασης;</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Αποθήκευσε το εφεδρικό κλειδί σου μόνο σε κάποιο διαχειριστή κωδικών πρόσβασης που εμπιστεύεσαι ότι είναι ασφαλής. Το Signal δεν κάνει συστάσεις σχετικά με το ποιος διαχειριστής κωδικών πρόσβασης είναι κατάλληλος για σένα.</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Αποθηκεύτηκε στον διαχειριστή κωδικών πρόσβασης</string>
     <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Δεν είναι δυνατή η αποθήκευση στον διαχειριστή κωδικών πρόσβασης</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Δεν έχεις ορίσει διαχειριστή κωδικών πρόσβασης ή ο διαχειριστής κωδικών πρόσβασης που χρησιμοποιείς δεν υποστηρίζεται.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Επόμενο</string>
     <!-- Bottom sheet title -->
@@ -8333,7 +8333,7 @@
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Μάθε περισσότερα</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Εγγραφή</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Εγγράψου για %1$s/μήνα</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
