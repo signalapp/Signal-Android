@@ -77,7 +77,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     }
 
     if (!RemoteConfig.messageBackups) {
-      Log.i(TAG, "Message backups are not enabled. Clearing mismatch value and exiting.")
+      Log.i(TAG, "Message backups feature is not available. Clearing mismatch value and exiting.")
       SignalStore.backup.subscriptionStateMismatchDetected = false
       return Result.success()
     }
@@ -90,6 +90,12 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
     if (SignalStore.backup.deletionState != DeletionState.NONE) {
       Log.i(TAG, "User is in the process of or has delete their backup. Clearing mismatch value and exiting.")
+      SignalStore.backup.subscriptionStateMismatchDetected = false
+      return Result.success()
+    }
+
+    if (!SignalStore.backup.areBackupsEnabled) {
+      Log.i(TAG, "Backups are not enabled on this device. Clearing mismatch value and exiting.")
       SignalStore.backup.subscriptionStateMismatchDetected = false
       return Result.success()
     }
