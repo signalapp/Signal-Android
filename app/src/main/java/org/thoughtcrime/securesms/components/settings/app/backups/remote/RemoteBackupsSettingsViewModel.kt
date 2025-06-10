@@ -47,7 +47,11 @@ import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.service.MessageBackupListener
+import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
+import java.math.BigDecimal
 import java.util.Currency
+import java.util.Locale
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
@@ -293,12 +297,21 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
       Log.d(TAG, "[subscriptionStateMismatchDetected] hasActiveSignalSubscription: $hasActiveSignalSubscription")
 
-      val type = withContext(Dispatchers.IO) {
-        BackupRepository.getBackupsType(MessageBackupTier.PAID) as MessageBackupsType.Paid
-      }
-
       when {
         hasActiveSignalSubscription && !hasActiveGooglePlayBillingSubscription -> {
+          val type = buildPaidTypeFromSubscription(activeSubscription.activeSubscription)
+
+          if (type == null) {
+            Log.d(TAG, "[subscriptionMismatchDetected] failed to load backup configuration. Likely a network error.")
+            _state.update {
+              it.copy(
+                backupState = RemoteBackupsSettingsState.BackupState.Error
+              )
+            }
+
+            return
+          }
+
           _state.update {
             it.copy(
               backupState = RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay(
@@ -333,7 +346,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         Log.d(TAG, "Attempting to retrieve subscription details for active PAID backup.")
 
         val type = withContext(Dispatchers.IO) {
-          BackupRepository.getBackupsType(tier) as MessageBackupsType.Paid
+          BackupRepository.getBackupsType(tier) as? MessageBackupsType.Paid
         }
 
         Log.d(TAG, "Attempting to retrieve current subscription...")
@@ -347,23 +360,34 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
           val subscription = activeSubscription.getOrThrow().activeSubscription
           if (subscription != null) {
             Log.d(TAG, "Subscription found. Updating UI state with subscription details. Status: ${subscription.status}")
+
+            val subscriberType = type ?: buildPaidTypeFromSubscription(subscription)
+            if (subscriberType == null) {
+              Log.d(TAG, "Failed to create backup type. Possible network error.")
+              _state.update {
+                it.copy(backupState = RemoteBackupsSettingsState.BackupState.Error)
+              }
+
+              return
+            }
+
             _state.update {
               it.copy(
                 hasRedemptionError = lastPurchase?.data?.error?.data_ == "409",
                 backupState = when {
                   subscription.isCanceled && subscription.isActive -> RemoteBackupsSettingsState.BackupState.Canceled(
-                    messageBackupsType = type,
+                    messageBackupsType = subscriberType,
                     renewalTime = subscription.endOfCurrentPeriod.seconds
                   )
 
                   subscription.isActive -> RemoteBackupsSettingsState.BackupState.ActivePaid(
-                    messageBackupsType = type,
+                    messageBackupsType = subscriberType,
                     price = FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency)),
                     renewalTime = subscription.endOfCurrentPeriod.seconds
                   )
 
                   else -> RemoteBackupsSettingsState.BackupState.Inactive(
-                    messageBackupsType = type,
+                    messageBackupsType = subscriberType,
                     renewalTime = subscription.endOfCurrentPeriod.seconds
                   )
                 }
@@ -378,19 +402,42 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
                 )
               }
             } else if (lastPurchase != null && lastPurchase.endOfPeriod > System.currentTimeMillis().milliseconds) {
-              _state.update {
-                it.copy(
-                  backupState = RemoteBackupsSettingsState.BackupState.Canceled(
-                    messageBackupsType = type,
-                    renewalTime = lastPurchase.endOfPeriod
+              val canceledType = type ?: buildPaidTypeFromInAppPayment(lastPurchase)
+              if (canceledType == null) {
+                Log.w(TAG, "Failed to load canceled type information. Possible network error.")
+                _state.update {
+                  it.copy(
+                    backupState = RemoteBackupsSettingsState.BackupState.Error
                   )
-                )
+                }
+              } else {
+                _state.update {
+                  it.copy(
+                    backupState = RemoteBackupsSettingsState.BackupState.Canceled(
+                      messageBackupsType = canceledType,
+                      renewalTime = lastPurchase.endOfPeriod
+                    )
+                  )
+                }
               }
             } else {
-              _state.update {
-                it.copy(
-                  backupState = RemoteBackupsSettingsState.BackupState.Inactive(type)
-                )
+              val inactiveType = type ?: buildPaidTypeWithoutPricing()
+              if (inactiveType == null) {
+                Log.w(TAG, "Failed to load inactive type information. Possible network error.")
+                _state.update {
+                  it.copy(
+                    backupState = RemoteBackupsSettingsState.BackupState.Error
+                  )
+                }
+              } else {
+                _state.update {
+                  it.copy(
+                    backupState = RemoteBackupsSettingsState.BackupState.Inactive(
+                      messageBackupsType = inactiveType,
+                      renewalTime = lastPurchase?.endOfPeriod ?: 0.seconds
+                    )
+                  )
+                }
               }
             }
           }
@@ -424,5 +471,53 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         _state.update { it.copy(backupState = RemoteBackupsSettingsState.BackupState.None) }
       }
     }
+  }
+
+  /**
+   * Builds out a Paid type utilizing pricing information stored in the user's active subscription object.
+   *
+   * @return A paid type, or null if we were unable to get the backup level configuration.
+   */
+  private fun buildPaidTypeFromSubscription(subscription: ActiveSubscription.Subscription): MessageBackupsType.Paid? {
+    val config = BackupRepository.getBackupLevelConfiguration() ?: return null
+
+    val price = FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency))
+    return MessageBackupsType.Paid(
+      pricePerMonth = price,
+      storageAllowanceBytes = config.storageAllowanceBytes,
+      mediaTtl = config.mediaTtlDays.days
+    )
+  }
+
+  /**
+   * Builds out a Paid type utilizing pricing information stored in the given in-app payment.
+   *
+   * @return A paid type, or null if we were unable to get the backup level configuration.
+   */
+  private fun buildPaidTypeFromInAppPayment(inAppPayment: InAppPaymentTable.InAppPayment): MessageBackupsType.Paid? {
+    val config = BackupRepository.getBackupLevelConfiguration() ?: return null
+
+    val price = inAppPayment.data.amount!!.toFiatMoney()
+    return MessageBackupsType.Paid(
+      pricePerMonth = price,
+      storageAllowanceBytes = config.storageAllowanceBytes,
+      mediaTtl = config.mediaTtlDays.days
+    )
+  }
+
+  /**
+   * In the case of an Inactive subscription, we only care about the storage allowance and TTL, both of which we can
+   * grab from the backup level configuration.
+   *
+   * @return A paid type, or null if we were unable to get the backup level configuration.
+   */
+  private fun buildPaidTypeWithoutPricing(): MessageBackupsType? {
+    val config = BackupRepository.getBackupLevelConfiguration() ?: return null
+
+    return MessageBackupsType.Paid(
+      pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance(Locale.getDefault())),
+      storageAllowanceBytes = config.storageAllowanceBytes,
+      mediaTtl = config.mediaTtlDays.days
+    )
   }
 }
