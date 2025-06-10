@@ -374,7 +374,7 @@ private fun RestoreProgressDialog(restoreProgress: RestoreV2Event?) {
           horizontalAlignment = Alignment.CenterHorizontally,
           modifier = Modifier.wrapContentSize()
         ) {
-          if (restoreProgress == null) {
+          if (restoreProgress == null || restoreProgress.type == RestoreV2Event.Type.PROGRESS_FINALIZING) {
             CircularProgressIndicator(
               modifier = Modifier
                 .padding(top = 55.dp, bottom = 16.dp)
@@ -393,7 +393,8 @@ private fun RestoreProgressDialog(restoreProgress: RestoreV2Event?) {
 
           val progressText = when (restoreProgress?.type) {
             RestoreV2Event.Type.PROGRESS_DOWNLOAD -> stringResource(id = R.string.RemoteRestoreActivity__downloading_backup)
-            RestoreV2Event.Type.PROGRESS_RESTORE -> stringResource(id = R.string.RemoteRestoreActivity__downloading_backup)
+            RestoreV2Event.Type.PROGRESS_RESTORE -> stringResource(id = R.string.RemoteRestoreActivity__restoring_messages)
+            RestoreV2Event.Type.PROGRESS_FINALIZING -> stringResource(id = R.string.RemoteRestoreActivity__finishing_restore)
             else -> stringResource(id = R.string.RemoteRestoreActivity__restoring)
           }
 
@@ -403,7 +404,7 @@ private fun RestoreProgressDialog(restoreProgress: RestoreV2Event?) {
             modifier = Modifier.padding(bottom = 12.dp)
           )
 
-          if (restoreProgress != null) {
+          if (restoreProgress != null && restoreProgress.type != RestoreV2Event.Type.PROGRESS_FINALIZING) {
             val progressBytes = restoreProgress.count.toUnitString()
             val totalBytes = restoreProgress.estimatedTotalCount.toUnitString()
             Text(

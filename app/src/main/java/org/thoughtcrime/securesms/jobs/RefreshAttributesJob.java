@@ -40,6 +40,10 @@ public class RefreshAttributesJob extends BaseJob {
 
   private final boolean forced;
 
+  public static RefreshAttributesJob forAccountRestore() {
+    return new RefreshAttributesJob(true, Parameters.PRIORITY_HIGH);
+  }
+
   public RefreshAttributesJob() {
     this(true);
   }
@@ -49,7 +53,12 @@ public class RefreshAttributesJob extends BaseJob {
    *               to run if it hasn't run yet this app cycle.
    */
   public RefreshAttributesJob(boolean forced) {
+    this(forced, Parameters.PRIORITY_DEFAULT);
+  }
+
+  private RefreshAttributesJob(boolean forced, @Parameters.Priority int priority) {
     this(new Job.Parameters.Builder()
+                           .setGlobalPriority(priority)
                            .addConstraint(NetworkConstraint.KEY)
                            .setQueue("RefreshAttributesJob")
                            .setMaxInstancesForFactory(2)

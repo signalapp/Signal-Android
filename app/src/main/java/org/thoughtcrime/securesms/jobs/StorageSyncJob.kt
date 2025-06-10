@@ -151,10 +151,16 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     fun forRemoteChange(): StorageSyncJob {
       return StorageSyncJob(localManifestOutOfDate = true)
     }
+
+    fun forAccountRestore(): StorageSyncJob {
+      return StorageSyncJob(localManifestOutOfDate = true, priority = Parameters.PRIORITY_HIGH)
+    }
   }
 
-  constructor(localManifestOutOfDate: Boolean) : this(
-    Parameters.Builder().addConstraint(NetworkConstraint.KEY)
+  private constructor(localManifestOutOfDate: Boolean, @Parameters.Priority priority: Int = Parameters.PRIORITY_DEFAULT) : this(
+    Parameters.Builder()
+      .addConstraint(NetworkConstraint.KEY)
+      .setGlobalPriority(priority)
       .setQueue(QUEUE_KEY)
       .setMaxInstancesForFactory(2)
       .setLifespan(TimeUnit.DAYS.toMillis(1))

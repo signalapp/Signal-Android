@@ -974,6 +974,8 @@ object BackupRepository {
         eventTimer.emit("chatItem")
       }
 
+      EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_FINALIZING, 0.bytes, 0.bytes))
+
       if (!importState.importedChatFolders) {
         // Add back default All Chats chat folder after clearing data if missing
         SignalDatabase.chatFolders.insertAllChatFolder()

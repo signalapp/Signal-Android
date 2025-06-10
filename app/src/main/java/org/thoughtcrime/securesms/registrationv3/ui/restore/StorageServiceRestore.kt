@@ -41,7 +41,7 @@ object StorageServiceRestore {
 
       AppDependencies
         .jobManager
-        .startChain(StorageSyncJob.forRemoteChange())
+        .startChain(StorageSyncJob.forAccountRestore())
         .then(ReclaimUsernameAndLinkJob())
         .enqueueBlocking(10.seconds)
       stopwatch.split("storage-sync-restore")
