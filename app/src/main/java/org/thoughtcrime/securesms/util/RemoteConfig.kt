@@ -1148,7 +1148,7 @@ object RemoteConfig {
 
   @JvmStatic
   val archiveReconciliationSyncInterval: Duration by remoteDuration(
-    key = "android.archiveReconciliationSyncInterval",
+    key = "global.archive.attachmentReconciliationSyncIntervalDays",
     defaultValue = 7.days,
     hotSwappable = true,
     durationUnit = DurationUnit.DAYS
