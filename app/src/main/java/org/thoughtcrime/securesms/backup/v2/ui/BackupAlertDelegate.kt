@@ -20,16 +20,19 @@ import org.thoughtcrime.securesms.keyvalue.protos.BackupDownloadNotifierState
  * Delegate that controls whether and which backup alert sheet is displayed.
  */
 object BackupAlertDelegate {
+
+  private const val FRAGMENT_TAG = "BackupAlertFragmentTag"
+
   @JvmStatic
   fun delegate(fragmentManager: FragmentManager, lifecycle: Lifecycle) {
     lifecycle.coroutineScope.launch {
       lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
         if (BackupRepository.shouldDisplayBackupFailedSheet()) {
-          BackupAlertBottomSheet.create(BackupAlert.BackupFailed).show(fragmentManager, null)
+          BackupAlertBottomSheet.create(BackupAlert.BackupFailed).show(fragmentManager, FRAGMENT_TAG)
         } else if (BackupRepository.shouldDisplayCouldNotCompleteBackupSheet()) {
-          BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = SignalStore.backup.daysSinceLastBackup)).show(fragmentManager, null)
+          BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = SignalStore.backup.daysSinceLastBackup)).show(fragmentManager, FRAGMENT_TAG)
         } else if (BackupRepository.shouldDisplayBackupExpiredAndDowngradedSheet()) {
-          BackupAlertBottomSheet.create(BackupAlert.ExpiredAndDowngraded).show(fragmentManager, null)
+          BackupAlertBottomSheet.create(BackupAlert.ExpiredAndDowngraded).show(fragmentManager, FRAGMENT_TAG)
         }
 
         displayBackupDownloadNotifier(fragmentManager)
@@ -41,10 +44,10 @@ object BackupAlertDelegate {
     val downloadYourBackupToday = withContext(SignalDispatchers.IO) { BackupRepository.getDownloadYourBackupData() }
     when (downloadYourBackupToday?.type) {
       BackupDownloadNotifierState.Type.SHEET -> {
-        BackupAlertBottomSheet.create(downloadYourBackupToday).show(fragmentManager, null)
+        BackupAlertBottomSheet.create(downloadYourBackupToday).show(fragmentManager, FRAGMENT_TAG)
       }
       BackupDownloadNotifierState.Type.DIALOG -> {
-        DownloadYourBackupTodayDialog.create(downloadYourBackupToday).show(fragmentManager, null)
+        DownloadYourBackupTodayDialog.create(downloadYourBackupToday).show(fragmentManager, FRAGMENT_TAG)
       }
       null -> Unit
     }
