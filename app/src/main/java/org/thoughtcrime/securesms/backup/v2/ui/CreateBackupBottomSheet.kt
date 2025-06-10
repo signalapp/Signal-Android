@@ -42,6 +42,8 @@ import org.signal.core.ui.R as CoreUiR
  */
 class CreateBackupBottomSheet : ComposeBottomSheetDialogFragment() {
 
+  override val peekHeightPercentage: Float = 1f
+
   companion object {
     const val REQUEST_KEY = "CreateBackupBottomSheet"
   }
