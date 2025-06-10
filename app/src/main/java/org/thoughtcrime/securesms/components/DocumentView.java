@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.components;
 
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -23,8 +24,10 @@ import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.ByteSize;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
@@ -138,6 +141,20 @@ public class DocumentView extends FrameLayout {
     this.fileSize.setText(new ByteSize(documentSlide.getFileSize()).toUnitString(2));
     this.document.setText(documentSlide.getFileType(getContext()).orElse("").toLowerCase());
     this.setOnClickListener(new OpenClickedListener(documentSlide));
+
+    if (SignalStore.internal().getShowArchiveStateHint() && documentSlide.asAttachment() instanceof DatabaseAttachment) {
+      DatabaseAttachment dbAttachment = (DatabaseAttachment) documentSlide.asAttachment();
+      View mediaArchive = findViewById(R.id.thumbnail_media_archive);
+      mediaArchive.setVisibility(View.VISIBLE);
+      switch (dbAttachment.archiveTransferState) {
+        case NONE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+        case COPY_PENDING -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+        case UPLOAD_IN_PROGRESS -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.CYAN));
+        case FINISHED -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+        case TEMPORARY_FAILURE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.YELLOW));
+        case PERMANENT_FAILURE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+      }
+    }
   }
 
   @Override

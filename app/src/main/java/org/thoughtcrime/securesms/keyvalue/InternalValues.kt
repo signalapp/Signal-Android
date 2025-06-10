@@ -33,6 +33,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val NEW_CALL_UI: String = "internal.new.call.ui"
     const val LARGE_SCREEN_UI: String = "internal.large.screen.ui"
     const val FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE: String = "internal.force.split.pane.on.compact.landscape.ui"
+    const val SHOW_ARCHIVE_STATE_HINT: String = "internal.show_archive_state_hint"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -177,6 +178,8 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   var useConversationItemV2Media by booleanValue(CONVERSATION_ITEM_V2_MEDIA, false).defaultForExternalUsers()
 
   var forceSsre2Capability by booleanValue("internal.force_ssre2_capability", false).defaultForExternalUsers()
+
+  var showArchiveStateHint by booleanValue(SHOW_ARCHIVE_STATE_HINT, false).defaultForExternalUsers()
 
   private fun <T> SignalStoreValueDelegate<T>.defaultForExternalUsers(): SignalStoreValueDelegate<T> {
     return this.withPrecondition { RemoteConfig.internalUser }

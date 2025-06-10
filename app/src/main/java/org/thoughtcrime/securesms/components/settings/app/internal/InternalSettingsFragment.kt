@@ -248,6 +248,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      switchPref(
+        title = DSLSettingsText.from("Show archive status hint"),
+        summary = DSLSettingsText.from("Shows a color square based on archive status, green good, red bad."),
+        isChecked = state.showArchiveStateHint,
+        onClick = {
+          viewModel.setShowMediaArchiveStateHint(!state.showArchiveStateHint)
+        }
+      )
+
       clickPref(
         title = DSLSettingsText.from("Log dump PreKey ServiceId-KeyIds"),
         onClick = {
