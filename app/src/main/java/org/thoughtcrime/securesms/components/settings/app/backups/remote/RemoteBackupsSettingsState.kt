@@ -13,6 +13,7 @@ import kotlin.time.Duration.Companion.seconds
 
 data class RemoteBackupsSettingsState(
   val backupsEnabled: Boolean,
+  val canViewBackupKey: Boolean = false,
   val canBackUpUsingCellular: Boolean = false,
   val canRestoreUsingCellular: Boolean = false,
   val hasRedemptionError: Boolean = false,

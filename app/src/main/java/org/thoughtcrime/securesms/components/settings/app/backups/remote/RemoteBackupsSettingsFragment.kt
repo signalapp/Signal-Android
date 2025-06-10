@@ -500,6 +500,7 @@ private fun RemoteBackupsSettingsContent(
       } else if (state.backupsEnabled) {
         appendBackupDetailsItems(
           backupState = state.backupState,
+          canViewBackupKey = state.canViewBackupKey,
           backupRestoreState = backupRestoreState,
           backupProgress = backupProgress,
           lastBackupTimestamp = state.lastBackupTimestamp,
@@ -800,6 +801,7 @@ private fun DescriptionText(
 
 private fun LazyListScope.appendBackupDetailsItems(
   backupState: RemoteBackupsSettingsState.BackupState,
+  canViewBackupKey: Boolean,
   backupRestoreState: BackupRestoreState,
   backupProgress: ArchiveUploadProgressState?,
   lastBackupTimestamp: Long,
@@ -901,7 +903,8 @@ private fun LazyListScope.appendBackupDetailsItems(
   item {
     Rows.TextRow(
       text = stringResource(R.string.RemoteBackupsSettingsFragment__view_backup_key),
-      onClick = contentCallbacks::onViewBackupKeyClick
+      onClick = contentCallbacks::onViewBackupKeyClick,
+      enabled = canViewBackupKey
     )
   }
 
