@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.viewModel
 import java.util.Locale
+import kotlin.time.Duration
 
 /**
  * Restore backup from remote source.
@@ -268,7 +269,7 @@ private fun BackupAvailableContent(
         modifier = Modifier.padding(bottom = 6.dp)
       )
 
-      getFeatures(state.backupTier).forEach {
+      getFeatures(state.backupTier, state.backupMediaTTL).forEach {
         MessageBackupsTypeFeatureRow(
           messageBackupsTypeFeature = it,
           iconTint = MaterialTheme.colorScheme.primary,
@@ -322,7 +323,7 @@ private fun RestoreFromBackupContentLoadingPreview() {
 }
 
 @Composable
-private fun getFeatures(tier: MessageBackupTier?): ImmutableList<MessageBackupsTypeFeature> {
+private fun getFeatures(tier: MessageBackupTier?, mediaTTL: Duration): ImmutableList<MessageBackupsTypeFeature> {
   return when (tier) {
     null -> persistentListOf()
     MessageBackupTier.PAID -> {
@@ -342,7 +343,7 @@ private fun getFeatures(tier: MessageBackupTier?): ImmutableList<MessageBackupsT
       persistentListOf(
         MessageBackupsTypeFeature(
           iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = stringResource(id = R.string.RemoteRestoreActivity__your_last_d_days_of_media, 30)
+          label = stringResource(id = R.string.RemoteRestoreActivity__your_last_d_days_of_media, mediaTTL.inWholeDays)
         ),
         MessageBackupsTypeFeature(
           iconResourceId = R.drawable.symbol_recent_compact_bold_16,
