@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.jobs.protos.BackupMessagesJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import java.io.File
@@ -138,8 +139,8 @@ class BackupMessagesJob private constructor(
     }
 
     val progressListener = object : SignalServiceAttachment.ProgressListener {
-      override fun onAttachmentProgress(total: Long, progress: Long) {
-        ArchiveUploadProgress.onMessageBackupUploadProgress(total, progress)
+      override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
+        ArchiveUploadProgress.onMessageBackupUploadProgress(progress)
       }
 
       override fun shouldCancel(): Boolean = isCanceled

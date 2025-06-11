@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.jobs.BackfillDigestJob
 import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.max
 import kotlin.time.Duration.Companion.milliseconds
@@ -143,12 +144,12 @@ object ArchiveUploadProgress {
     }
   }
 
-  fun onMessageBackupUploadProgress(totalBytes: Long, bytesUploaded: Long) {
+  fun onMessageBackupUploadProgress(progress: AttachmentTransferProgress) {
     updateState {
       it.copy(
         state = ArchiveUploadProgressState.State.UploadBackupFile,
-        backupFileUploadedBytes = bytesUploaded,
-        backupFileTotalBytes = totalBytes
+        backupFileUploadedBytes = progress.transmitted.inWholeBytes,
+        backupFileTotalBytes = progress.total.inWholeBytes
       )
     }
   }

@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.AttachmentUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
@@ -279,8 +280,8 @@ class AttachmentDownloadJob private constructor(
       val pointer = createAttachmentPointer(attachment)
 
       val progressListener = object : SignalServiceAttachment.ProgressListener {
-        override fun onAttachmentProgress(total: Long, progress: Long) {
-          EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress))
+        override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
+          EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, progress))
         }
 
         override fun shouldCancel(): Boolean {

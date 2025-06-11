@@ -165,7 +165,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
    */
   private fun checkForFailedOrCanceledSubscriptionState(activeSubscription: ActiveSubscription?) {
     val containsFailedPaymentOrCancellation = activeSubscription?.isFailedPayment == true || activeSubscription?.isCanceled == true
-    if (containsFailedPaymentOrCancellation && activeSubscription.activeSubscription != null) {
+    if (containsFailedPaymentOrCancellation && activeSubscription?.activeSubscription != null) {
       Log.i(TAG, "Subscription either has a payment failure or has been canceled.")
 
       val response = SignalNetwork.account.whoAmI()
