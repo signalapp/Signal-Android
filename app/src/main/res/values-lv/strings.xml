@@ -1112,6 +1112,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">Ierīce, kas tika piesaistīta (%1$s), vairs nav saistīta.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">Ok</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">Not enough storage space</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">You don\'t have enough free storage space on your device to transfer your messages. Free up some space and try again, or link your device without transferring your messages.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1481,6 +1485,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">Rezerves kopija tiek lejupielādēta…</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">Ziņas tiek atjaunotas…</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">Finishing…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">Notiek atjaunošana…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1624,7 +1630,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nevar pievienoties grupai</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Jūs nevarat pievienoties grupai caur grupas saiti, jo adminstrators jums to ir liedzis.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">You can\'t join this group via the group link because an admin removed you. Contact an admin to be added back to the group.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Šī grupas saite vairs nav derīga.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -5469,6 +5475,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">Neizdevās izveidot rezerves kopiju</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Neizdevās izmantot jūsu rezerves kopiju abonementu</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Uzaiciniet draugus</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -8000,9 +8008,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Lai turpinātu multivides rezerves kopiju izveidošanu, jebkurā brīdī varat atsākt maksājumu veikšanu. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Multivide tiks dzēsta šodien</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Jūsu Signal multivides rezerves kopiju plāns tika atcelts, jo nevarējām apstrādāt maksājumu. Šī ir jūsu pēdējā iespēja lejupielādēt multivides rezerves kopiju, pirms tā tiks dzēsta.</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Download your backup data today</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Download your backup data</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">You have %1$s of media that\'s not on this device. The media and attachments stored in your backup will be permanently deleted without a paid subscription.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Atbrīvojiet līdz %1$s šajā ierīcē</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -8042,9 +8052,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Abonēt par %1$s mēnesī</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Lejupielādēt multividi tūlīt</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Download backup now</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Nelejupielādēt multividi</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">Don\'t download backup</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Ne tagad</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -8344,6 +8354,8 @@
         <item quantity="one">Abonements šajā ierīcē ir derīgs vēl %1$d dienu. Atjaunojiet to, lai turpinātu izmantot Signal rezerves kopijas.</item>
         <item quantity="other">Abonements šajā ierīcē ir derīgs vēl %1$d dienas. Atjaunojiet to, lai turpinātu izmantot Signal rezerves kopijas.</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Resubscribe</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Atjaunot</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8359,11 +8371,7 @@
         <item quantity="other">Notiek %1$s no ~%2$s ziņu apstrāde (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="zero">Jums ir %1$s rezerves kopijas datu, kas nav šajā ierīcē. Rezerves kopija tiks dzēsta, kad abonements beigsies pēc %2$d dienām.</item>
-        <item quantity="one">Jums ir %1$s rezerves kopijas datu, kas nav šajā ierīcē. Rezerves kopija tiks dzēsta, kad abonements beigsies pēc %2$d dienas.</item>
-        <item quantity="other">Jums ir %1$s rezerves kopijas datu, kas nav šajā ierīcē. Rezerves kopija tiks dzēsta, kad abonements beigsies pēc %2$d dienām.</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Without a paid subscription media can\'t be offloaded.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Jums ir %1$s rezerves kopiju datu, kas neatrodas šajā ierīcē. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8408,6 +8416,20 @@
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Rezerves kopiju izveide ir izslēgta, un jūsu dati ir izdzēsti no Signal drošās krātuves pakalpojuma.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Lejupielādē: %1$s no %2$s (%3$d%%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Manage storage</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Download your backup today</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Your media and attachments will be permanently deleted without a paid subscription.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">Download</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">Don\'t download</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
