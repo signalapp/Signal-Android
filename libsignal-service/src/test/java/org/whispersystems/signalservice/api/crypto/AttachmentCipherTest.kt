@@ -491,6 +491,155 @@ class AttachmentCipherTest {
     Assert.assertTrue(hitCorrectException)
   }
 
+  @Test
+  @Throws(IOException::class)
+  fun outputStream_writeAfterFlush() {
+    val key = Util.getSecretBytes(64)
+    val iv = Util.getSecretBytes(16)
+    val plaintextInput1 = Util.getSecretBytes(MEBIBYTE)
+    val plaintextInput2 = Util.getSecretBytes(MEBIBYTE)
+
+    val destinationOutputStream = ByteArrayOutputStream()
+    val encryptingOutputStream = AttachmentCipherOutputStreamFactory(key, iv).createFor(destinationOutputStream)
+
+    encryptingOutputStream.write(plaintextInput1)
+    encryptingOutputStream.flush()
+
+    encryptingOutputStream.write(plaintextInput2)
+    encryptingOutputStream.close()
+
+    val encryptedData = destinationOutputStream.toByteArray()
+    val digest = encryptingOutputStream.transmittedDigest
+    val combinedData = plaintextInput1 + plaintextInput2
+
+    val cipherFile = writeToFile(encryptedData)
+    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, combinedData.size.toLong(), key, digest, null, 0)
+    val plaintextOutput = readInputStreamFully(decryptedStream)
+
+    assertThat(plaintextOutput).isEqualTo(combinedData)
+    cipherFile.delete()
+  }
+
+  @Test
+  @Throws(IOException::class)
+  fun outputStream_flushMultipleTimes() {
+    val key = Util.getSecretBytes(64)
+    val iv = Util.getSecretBytes(16)
+    val plaintextInput1 = Util.getSecretBytes(MEBIBYTE)
+    val plaintextInput2 = Util.getSecretBytes(MEBIBYTE)
+
+    val destinationOutputStream = ByteArrayOutputStream()
+    val encryptingOutputStream = AttachmentCipherOutputStreamFactory(key, iv).createFor(destinationOutputStream)
+
+    encryptingOutputStream.write(plaintextInput1)
+
+    encryptingOutputStream.flush()
+    encryptingOutputStream.flush()
+    encryptingOutputStream.flush()
+
+    encryptingOutputStream.write(plaintextInput2)
+    encryptingOutputStream.close()
+
+    val encryptedData = destinationOutputStream.toByteArray()
+    val digest = encryptingOutputStream.transmittedDigest
+    val combinedData = plaintextInput1 + plaintextInput2
+
+    val cipherFile = writeToFile(encryptedData)
+    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, combinedData.size.toLong(), key, digest, null, 0)
+    val plaintextOutput = readInputStreamFully(decryptedStream)
+
+    assertThat(plaintextOutput).isEqualTo(combinedData)
+    cipherFile.delete()
+  }
+
+  @Test
+  @Throws(IOException::class)
+  fun outputStream_singleByteWrite() {
+    val key = Util.getSecretBytes(64)
+    val iv = Util.getSecretBytes(16)
+    val plaintextInput = Util.getSecretBytes(MEBIBYTE)
+    val destinationOutputStream = ByteArrayOutputStream()
+    val encryptingOutputStream = AttachmentCipherOutputStreamFactory(key, iv).createFor(destinationOutputStream)
+
+    for (b in plaintextInput) {
+      encryptingOutputStream.write(b.toInt())
+    }
+
+    encryptingOutputStream.close()
+
+    val encryptedData = destinationOutputStream.toByteArray()
+    val digest = encryptingOutputStream.transmittedDigest
+
+    val cipherFile = writeToFile(encryptedData)
+    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, digest, null, 0)
+    val plaintextOutput = readInputStreamFully(decryptedStream)
+
+    assertThat(plaintextOutput).isEqualTo(plaintextInput)
+    cipherFile.delete()
+  }
+
+  @Test
+  @Throws(IOException::class)
+  fun outputStream_mixedSingleByteAndArrayWrites() {
+    val key = Util.getSecretBytes(64)
+    val iv = Util.getSecretBytes(16)
+    val plaintextInput1 = Util.getSecretBytes(512)
+    val plaintextInput2 = Util.getSecretBytes(512)
+    val destinationOutputStream = ByteArrayOutputStream()
+    val encryptingOutputStream = AttachmentCipherOutputStreamFactory(key, iv).createFor(destinationOutputStream)
+
+    // Write first part as array
+    encryptingOutputStream.write(plaintextInput1)
+
+    // Write second part one byte at a time
+    for (b in plaintextInput2) {
+      encryptingOutputStream.write(b.toInt())
+    }
+
+    encryptingOutputStream.close()
+
+    val expectedData = plaintextInput1 + plaintextInput2
+    val encryptedData = destinationOutputStream.toByteArray()
+    val digest = encryptingOutputStream.transmittedDigest
+
+    val cipherFile = writeToFile(encryptedData)
+    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, expectedData.size.toLong(), key, digest, null, 0)
+    val plaintextOutput = readInputStreamFully(decryptedStream)
+
+    assertThat(plaintextOutput).isEqualTo(expectedData)
+    cipherFile.delete()
+  }
+
+  @Test
+  @Throws(IOException::class)
+  fun outputStream_singleByteWriteWithFlushes() {
+    val key = Util.getSecretBytes(64)
+    val iv = Util.getSecretBytes(16)
+    val plaintextInput = Util.getSecretBytes(256)
+    val destinationOutputStream = ByteArrayOutputStream()
+    val encryptingOutputStream = AttachmentCipherOutputStreamFactory(key, iv).createFor(destinationOutputStream)
+
+    // Write bytes one at a time with occasional flushes
+    for (i in plaintextInput.indices) {
+      encryptingOutputStream.write(plaintextInput[i].toInt())
+      if (i % 64 == 0) {
+        encryptingOutputStream.flush()
+      }
+    }
+
+    encryptingOutputStream.close()
+
+    val encryptedData = destinationOutputStream.toByteArray()
+    val digest = encryptingOutputStream.transmittedDigest
+
+    val cipherFile = writeToFile(encryptedData)
+    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, digest, null, 0)
+    val plaintextOutput = readInputStreamFully(decryptedStream)
+
+    assertThat(plaintextOutput).isEqualTo(plaintextInput)
+    cipherFile.delete()
+  }
+
   private class EncryptResult(val ciphertext: ByteArray, val digest: ByteArray, val incrementalDigest: ByteArray, val chunkSizeChoice: Int)
   companion object {
     init {

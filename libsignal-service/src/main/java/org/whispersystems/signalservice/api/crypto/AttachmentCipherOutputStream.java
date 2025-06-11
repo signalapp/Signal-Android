@@ -69,12 +69,14 @@ public class AttachmentCipherOutputStream extends DigestingOutputStream {
   }
 
   @Override
-  public void write(int b) {
-    throw new AssertionError("NYI");
+  public void write(int b) throws IOException {
+    byte[] input = new byte[1];
+    input[0] = (byte) b;
+    write(input, 0, 1);
   }
 
   @Override
-  public void flush() throws IOException {
+  public void close() throws IOException {
     try {
       byte[] ciphertext = cipher.doFinal();
       byte[] auth       = mac.doFinal(ciphertext);
@@ -82,7 +84,7 @@ public class AttachmentCipherOutputStream extends DigestingOutputStream {
       super.write(ciphertext);
       super.write(auth);
 
-      super.flush();
+      super.close();
     } catch (IllegalBlockSizeException | BadPaddingException e) {
       throw new AssertionError(e);
     }
