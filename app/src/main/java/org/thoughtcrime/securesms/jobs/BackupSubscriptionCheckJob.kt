@@ -140,8 +140,9 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
         null
       }
 
-      if (purchaseToken?.let { hasLocalDevicePurchaseTokenMismatch(purchaseToken) } == true) {
-        Log.i(TAG, "Encountered token mismatch. Attempting to redeem.")
+      val hasTokenMismatch = purchaseToken?.let { hasLocalDevicePurchaseTokenMismatch(purchaseToken) } == true
+      if (hasActiveSignalSubscription && hasTokenMismatch) {
+        Log.i(TAG, "Encountered token mismatch with an active Signal subscription. Attempting to redeem against latest token.")
         enqueueRedemptionForNewToken(purchaseToken, product.price)
         SignalStore.backup.subscriptionStateMismatchDetected = false
         return Result.success()
