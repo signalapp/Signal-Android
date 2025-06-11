@@ -142,6 +142,10 @@
     <string name="AttachmentUploadJob_uploading_media">Uploading media…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Compressing video…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Checking for messages…</string>
 

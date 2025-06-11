@@ -155,7 +155,7 @@ class UploadAttachmentToArchiveJob private constructor(
     }
 
     val progressServiceController = if (attachment.size >= AttachmentUploadUtil.FOREGROUND_LIMIT_BYTES) {
-      AttachmentProgressService.start(context, context.getString(R.string.AttachmentUploadJob_uploading_media))
+      AttachmentProgressService.start(context, context.getString(R.string.UploadAttachmentToArchiveJob_uploading_media))
     } else {
       null
     }
