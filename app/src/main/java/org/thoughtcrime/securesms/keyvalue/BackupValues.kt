@@ -356,8 +356,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   }
 
   fun updateMessageBackupFailureSheetWatermark() {
-    val lastSnoozeTime = getLong(KEY_BACKUP_FAIL_SHEET_SNOOZE_TIME, lastBackupTime).milliseconds
-    val nextSnoozeTime = getNextBackupFailureSheetSnoozeTime(lastSnoozeTime)
+    val nextSnoozeTime = getNextBackupFailureSheetSnoozeTime(System.currentTimeMillis().milliseconds)
 
     putLong(KEY_BACKUP_FAIL_SHEET_SNOOZE_TIME, nextSnoozeTime.inWholeMilliseconds)
   }
