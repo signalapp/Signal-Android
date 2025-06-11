@@ -52,7 +52,7 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
     val CREATE_TABLE: Array<String> = arrayOf(NotificationProfileTable.CREATE_TABLE, NotificationProfileScheduleTable.CREATE_TABLE, NotificationProfileAllowedMembersTable.CREATE_TABLE)
 
     @JvmField
-    val CREATE_INDEXES: Array<String> = arrayOf(NotificationProfileScheduleTable.CREATE_INDEX, NotificationProfileAllowedMembersTable.CREATE_INDEX)
+    val CREATE_INDEXES: Array<String> = arrayOf(NotificationProfileScheduleTable.CREATE_INDEX, NotificationProfileAllowedMembersTable.CREATE_NOTIFICATION_PROFILE_INDEX, NotificationProfileAllowedMembersTable.CREATE_RECIPIENT_ID_INDEX)
   }
 
   object NotificationProfileTable {
@@ -124,12 +124,13 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
         $NOTIFICATION_PROFILE_ID INTEGER NOT NULL REFERENCES ${NotificationProfileTable.TABLE_NAME} (${NotificationProfileTable.ID}) ON DELETE CASCADE,
-        $RECIPIENT_ID INTEGER NOT NULL,
+        $RECIPIENT_ID INTEGER NOT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
         UNIQUE($NOTIFICATION_PROFILE_ID, $RECIPIENT_ID) ON CONFLICT REPLACE
       )
     """
 
-    const val CREATE_INDEX = "CREATE INDEX notification_profile_allowed_members_profile_index ON $TABLE_NAME ($NOTIFICATION_PROFILE_ID)"
+    const val CREATE_NOTIFICATION_PROFILE_INDEX = "CREATE INDEX notification_profile_allowed_members_profile_index ON $TABLE_NAME ($NOTIFICATION_PROFILE_ID)"
+    const val CREATE_RECIPIENT_ID_INDEX = "CREATE INDEX notification_profile_allowed_members_recipient_index ON $TABLE_NAME ($RECIPIENT_ID)"
   }
 
   fun createProfile(name: String, emoji: String, color: AvatarColor, createdAt: Long): NotificationProfileChangeResult {
