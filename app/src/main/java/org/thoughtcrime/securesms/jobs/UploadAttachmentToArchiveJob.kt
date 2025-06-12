@@ -186,30 +186,33 @@ class UploadAttachmentToArchiveJob private constructor(
 
     Log.d(TAG, "[$attachmentId] Beginning upload...")
     progressServiceController.use {
-      val uploadResult: AttachmentUploadResult = when (val result = SignalNetwork.attachments.uploadAttachmentV4(attachmentStream)) {
-        is NetworkResult.Success -> result.result
-        is NetworkResult.ApplicationError -> throw result.throwable
-        is NetworkResult.NetworkError -> {
-          Log.w(TAG, "[$attachmentId] Failed to upload due to network error.", result.exception)
+      val uploadResult: AttachmentUploadResult = attachmentStream.use { managedAttachmentStream ->
+        when (val result = SignalNetwork.attachments.uploadAttachmentV4(managedAttachmentStream)) {
+          is NetworkResult.Success -> result.result
+          is NetworkResult.ApplicationError -> throw result.throwable
+          is NetworkResult.NetworkError -> {
+            Log.w(TAG, "[$attachmentId] Failed to upload due to network error.", result.exception)
 
-          if (result.exception.cause is ProtocolException) {
-            Log.w(TAG, "[$attachmentId] Length may be incorrect. Recalculating.", result.exception)
+            if (result.exception.cause is ProtocolException) {
+              Log.w(TAG, "[$attachmentId] Length may be incorrect. Recalculating.", result.exception)
 
-            val actualLength = SignalDatabase.attachments.getAttachmentStream(attachmentId, 0).readLength()
-            if (actualLength != attachment.size) {
-              Log.w(TAG, "[$attachmentId] Length was incorrect! Will update. Previous: ${attachment.size}, Newly-Calculated: $actualLength", result.exception)
-              SignalDatabase.attachments.updateAttachmentLength(attachmentId, actualLength)
-            } else {
-              Log.i(TAG, "[$attachmentId] Length was correct. No action needed. Will retry.")
+              val actualLength = SignalDatabase.attachments.getAttachmentStream(attachmentId, 0)
+                .use { it.readLength() }
+              if (actualLength != attachment.size) {
+                Log.w(TAG, "[$attachmentId] Length was incorrect! Will update. Previous: ${attachment.size}, Newly-Calculated: $actualLength", result.exception)
+                SignalDatabase.attachments.updateAttachmentLength(attachmentId, actualLength)
+              } else {
+                Log.i(TAG, "[$attachmentId] Length was correct. No action needed. Will retry.")
+              }
             }
+
+            return Result.retry(defaultBackoff())
           }
 
-          return Result.retry(defaultBackoff())
-        }
-
-        is NetworkResult.StatusCodeError -> {
-          Log.w(TAG, "[$attachmentId] Failed to upload due to status code error. Code: ${result.code}", result.exception)
-          return Result.retry(defaultBackoff())
+          is NetworkResult.StatusCodeError -> {
+            Log.w(TAG, "[$attachmentId] Failed to upload due to status code error. Code: ${result.code}", result.exception)
+            return Result.retry(defaultBackoff())
+          }
         }
       }
 
