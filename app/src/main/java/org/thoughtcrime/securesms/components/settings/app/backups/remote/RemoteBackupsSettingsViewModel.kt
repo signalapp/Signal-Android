@@ -150,9 +150,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       ArchiveUploadProgress.progress
         .collect { current ->
           if (previous != null && current.state == ArchiveUploadProgressState.State.None) {
-            _state.update {
-              it.copy(lastBackupTimestamp = SignalStore.backup.lastBackupTime)
-            }
             refreshState(null)
           }
           previous = current.state
@@ -241,7 +238,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     _state.update {
       it.copy(
         backupsEnabled = SignalStore.backup.areBackupsEnabled,
-        backupState = RemoteBackupsSettingsState.BackupState.Loading,
         lastBackupTimestamp = SignalStore.backup.lastBackupTime,
         backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize(),
         backupsFrequency = SignalStore.backup.backupFrequency,
