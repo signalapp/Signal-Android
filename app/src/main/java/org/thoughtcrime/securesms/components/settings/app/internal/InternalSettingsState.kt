@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.emoji.EmojiFiles
 data class InternalSettingsState(
   val seeMoreUserDetails: Boolean,
   val shakeToReport: Boolean,
+  val showArchiveStateHint: Boolean,
   val gv2forceInvites: Boolean,
   val gv2ignoreP2PChanges: Boolean,
   val allowCensorshipSetting: Boolean,

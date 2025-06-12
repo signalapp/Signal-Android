@@ -31,6 +31,7 @@ import java.io.InputStream
 import java.time.Instant
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Class to interact with various archive-related endpoints.
@@ -181,7 +182,7 @@ class ArchiveApi(
    * - 403: Forbidden. The request had insufficient permissions to perform the requested action.
    * - 429: Rate limited.
    */
-  fun refreshBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<Unit> {
+  fun refreshBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Unit> {
     return getCredentialPresentation(aci, archiveServiceAccess)
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->
@@ -203,7 +204,7 @@ class ArchiveApi(
    * - 429: Rate limited.
    *
    */
-  fun deleteBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<Unit> {
+  fun deleteBackup(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<Unit> {
     return getCredentialPresentation(aci, archiveServiceAccess)
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->
@@ -275,6 +276,14 @@ class ArchiveApi(
 
   /**
    * Retrieves a page of media items in the user's archive.
+   *
+   * GET /v1/archives/media?limit={limit}&cursor={cursor}
+   *
+   * - 200: Success
+   * - 400: Bad request, or made on authenticated channel
+   * - 403: Forbidden
+   * - 429: Rate-limited
+   *
    * @param limit The maximum number of items to return.
    * @param cursor A token that can be read from your previous response, telling the server where to start the next page.
    */
@@ -290,13 +299,15 @@ class ArchiveApi(
   /**
    * Copy and re-encrypt media from the attachments cdn into the backup cdn.
    *
-   * Possible errors:
-   *   400: Bad arguments, or made on an authenticated channel
-   *   401: Invalid presentation or signature
-   *   403: Insufficient permissions
-   *   410: The source object was not found
-   *   413: No media space remaining
-   *   429: Rate-limited
+   * PUT /v1/archives/media
+   *
+   * - 200: Success
+   * - 400: Bad arguments, or made on an authenticated channel
+   * - 401: Invalid presentation or signature
+   * - 403: Insufficient permissions
+   * - 410: The source object was not found
+   * - 413: No media space remaining
+   * - 429: Rate-limited
    */
   fun copyAttachmentToArchive(
     aci: ACI,
@@ -346,7 +357,7 @@ class ArchiveApi(
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->
         val request = WebSocketRequestMessage.post("/v1/archives/media/delete", DeleteArchivedMediaRequest(mediaToDelete = mediaToDelete), headers)
-        NetworkResult.fromWebSocketRequest(unauthWebSocket, request)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, timeout = 30.seconds)
       }
   }
 

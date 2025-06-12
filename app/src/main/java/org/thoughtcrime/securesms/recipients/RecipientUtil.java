@@ -94,7 +94,7 @@ public class RecipientUtil {
     ensureUuidsAreAvailable(context, recipients);
 
     return Stream.of(recipients)
-                 .map(Recipient::resolve)
+                 .map(it -> it.live().resolve())
                  .map(r -> new SignalServiceAddress(r.requireServiceId(), r.getE164().orElse(null)))
                  .toList();
   }
@@ -113,7 +113,7 @@ public class RecipientUtil {
     if (recipientsWithoutUuids.size() > 0) {
       ContactDiscovery.refresh(context, recipientsWithoutUuids, false);
 
-      if (recipients.stream().map(Recipient::resolve).anyMatch(Recipient::isUnregistered)) {
+      if (recipients.stream().map(Recipient::resolve).anyMatch(it -> it.isUnregistered() || !it.getHasServiceId())) {
         throw new NotFoundException("1 or more recipients are not registered!");
       }
 

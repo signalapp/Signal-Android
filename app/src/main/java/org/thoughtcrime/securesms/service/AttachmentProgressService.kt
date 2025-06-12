@@ -10,8 +10,15 @@ import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
+import org.signal.core.util.throttleLatest
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -19,6 +26,7 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import java.util.concurrent.CopyOnWriteArraySet
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * A service to show attachment progress. In order to ensure we only show one status notification,
@@ -60,7 +68,7 @@ class AttachmentProgressService : SafeForegroundService() {
       controllerLock.withLock {
         val started = if (controllers.isEmpty()) {
           Log.i(TAG, "[start] First controller. Starting.")
-          SafeForegroundService.start(context, AttachmentProgressService::class.java)
+          start(context, AttachmentProgressService::class.java)
         } else {
           Log.i(TAG, "[start] No need to start the service again. Already have an active controller.")
           true
@@ -78,7 +86,7 @@ class AttachmentProgressService : SafeForegroundService() {
     }
 
     private fun stop(context: Context) {
-      SafeForegroundService.stop(context, AttachmentProgressService::class.java)
+      stop(context, AttachmentProgressService::class.java)
     }
 
     private fun onControllersChanged(context: Context) {
@@ -132,6 +140,17 @@ class AttachmentProgressService : SafeForegroundService() {
   }
 
   class Controller(private val context: Context, title: String) : AutoCloseable {
+    private val coroutineScope = CoroutineScope(Dispatchers.IO)
+    private val progressFlow = MutableSharedFlow<Float>(replay = 0, extraBufferCapacity = 1)
+
+    init {
+      coroutineScope.launch {
+        progressFlow
+          .throttleLatest(500.milliseconds) // avoid OS notification rate limiting
+          .collectLatest { progress = it }
+      }
+    }
+
     var title: String = title
       set(value) {
         field = value
@@ -139,7 +158,7 @@ class AttachmentProgressService : SafeForegroundService() {
       }
 
     var progress: Float = 0f
-      set(value) {
+      private set(value) {
         field = value
         indeterminate = false
         onControllersChanged(context)
@@ -155,8 +174,13 @@ class AttachmentProgressService : SafeForegroundService() {
       onControllersChanged(context)
     }
 
+    fun updateProgress(progress: Float) {
+      progressFlow.tryEmit(progress)
+    }
+
     override fun close() {
       controllerLock.withLock {
+        coroutineScope.cancel()
         controllers.remove(this)
         onControllersChanged(context)
       }

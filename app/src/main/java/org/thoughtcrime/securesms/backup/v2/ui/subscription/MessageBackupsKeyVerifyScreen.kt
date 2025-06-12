@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -29,6 +30,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -60,6 +62,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.thoughtcrime.securesms.registrationv3.ui.restore.BackupKeyVisualTransformation
@@ -95,6 +98,7 @@ fun MessageBackupsKeyVerifyScreen(
       verticalArrangement = Arrangement.SpaceBetween,
       modifier = Modifier
         .padding(paddingValues)
+        .imePadding()
         .fillMaxSize()
     ) {
       val scrollState = rememberScrollState()
@@ -157,6 +161,10 @@ fun MessageBackupsKeyVerifyScreen(
               }
             }
           ),
+          colors = TextFieldDefaults.colors(
+            focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+            unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
+          ),
           supportingText = { if (showError) Text(text = stringResource(R.string.MessageBackupsKeyVerifyScreen__incorrect_backup_key)) },
           isError = showError,
           minLines = 4,
@@ -212,6 +220,7 @@ fun MessageBackupsKeyVerifyScreen(
       ModalBottomSheet(
         sheetState = sheetState,
         dragHandle = null,
+        containerColor = SignalTheme.colors.colorSurface1,
         onDismissRequest = {
           coroutineScope.launch {
             sheetState.hide()

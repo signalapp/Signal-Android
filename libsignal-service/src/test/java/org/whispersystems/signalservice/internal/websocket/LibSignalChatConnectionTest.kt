@@ -477,6 +477,103 @@ class LibSignalChatConnectionTest {
     sendObserver.assertFailure(IOException().javaClass)
   }
 
+  @Test
+  fun regressionTestSendAfterConnectionFutureCompletesButBeforeStateUpdates() {
+    // We used to have a race condition where if sendRequest was called after
+    //   the chatConnectionFuture completed but before the completion handler that
+    //   that updates LibSignalChatConnection's state ran, we would end up with a
+    //   StackOverflowError exception.
+    // We ended up fixing that bug by refactoring that part of the code completely.
+    // This tests that scenario to ensure that we don't regress by introducing
+    //   some other kind of bug in that tricky situation.
+    var connectionFuture: CompletableFuture<UnauthenticatedChatConnection>? = null
+    val futureCompletedLatch = CountDownLatch(1)
+    val requestCompletedLatch = CountDownLatch(1)
+
+    every { network.connectUnauthChat(any()) } answers {
+      chatListener = firstArg()
+      connectionFuture = CompletableFuture<UnauthenticatedChatConnection>()
+
+      // Add a completion handler that blocks to prevent state transition
+      connectionFuture!!.whenComplete { _, _ ->
+        // When we reach this point, we know connectionFuture.complete
+        //   must have been called, and subsequent calls will return false.
+        futureCompletedLatch.countDown()
+        // Block to keep state as CONNECTING
+        requestCompletedLatch.await()
+      }
+
+      connectionFuture!!
+    }
+
+    connection.connect()
+
+    executor.submit {
+      // This will block until all the completion handlers complete, which
+      //    means it will block until requestCompletedLatch is counted down.
+      connectionFuture!!.complete(chatConnection)
+    }
+
+    assertTrue("connectionFuture was never completed", futureCompletedLatch.await(100, TimeUnit.MILLISECONDS))
+
+    // Now calls to connectionFuture.whenComplete will synchronously
+    //   execute the completionHandler given to them, but the state of
+    //   LibSignalChatConnection will still be CONNECTING.
+    // Previously, this caused a bug where the completion handler would see
+    //   the state was still CONNECTING, and call connectionFuture.whenComplete
+    //   again, thus setting off an infinite recursive loop, ending in a
+    //   StackOverflowError.
+    connection.sendRequest(WebSocketRequestMessage("GET", "/test"))
+
+    // The test passed! Unblock the executor thread.
+    requestCompletedLatch.countDown()
+  }
+
+  @Test
+  fun testQueueLargeNumberOfRequestsWhileConnecting() {
+    // Test queuing up 100,000 requests while the connection is still CONNECTING,
+    // then complete the connection to make sure they all send successfully.
+    var connectionCompletionFuture: CompletableFuture<UnauthenticatedChatConnection>? = null
+    val sendRequestCount = 100_000
+    val allSentLatch = CountDownLatch(sendRequestCount)
+
+    every { network.connectUnauthChat(any()) } answers {
+      chatListener = firstArg()
+      connectionCompletionFuture = CompletableFuture<UnauthenticatedChatConnection>()
+      connectionCompletionFuture!!
+    }
+
+    every { chatConnection.send(any()) } answers {
+      delay {
+        it.complete(RESPONSE_SUCCESS)
+        allSentLatch.countDown()
+      }
+    }
+
+    connection.connect()
+
+    val sendObservers = mutableListOf<TestObserver<WebsocketResponse>>()
+    for (i in 0 until sendRequestCount) {
+      val sendSingle = connection.sendRequest(WebSocketRequestMessage("GET", "/test-path-$i"))
+      val observer = sendSingle.test()
+      sendObservers.add(observer)
+    }
+
+    sendObservers.forEach { observer ->
+      observer.assertNotComplete()
+    }
+
+    connectionCompletionFuture!!.complete(chatConnection)
+
+    assertTrue("All $sendRequestCount were not sent", allSentLatch.await(1, TimeUnit.SECONDS))
+
+    sendObservers.forEach { observer ->
+      observer.awaitDone(100, TimeUnit.MILLISECONDS)
+      observer.assertValues(RESPONSE_SUCCESS.toWebsocketResponse(true))
+      observer.assertComplete()
+    }
+  }
+
   private fun <T> delay(action: ((CompletableFuture<T>) -> Unit)): CompletableFuture<T> {
     val future = CompletableFuture<T>()
     executor.submit {

@@ -64,7 +64,7 @@ public enum BackupFileIOError {
     }
   }
 
-  private static @Nullable BackupFileIOError getFromException(@NonNull IOException e) {
+  public static @Nullable BackupFileIOError getFromException(@NonNull IOException e) {
     if (e instanceof FullBackupExporter.InvalidBackupStreamException) {
       return ATTACHMENT_TOO_LARGE;
     } else if (e.getMessage() != null) {

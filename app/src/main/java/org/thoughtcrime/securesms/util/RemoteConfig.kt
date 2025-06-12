@@ -5,7 +5,10 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import org.json.JSONException
 import org.json.JSONObject
+import org.signal.core.util.ByteSize
+import org.signal.core.util.bytes
 import org.signal.core.util.gibiBytes
+import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.thoughtcrime.securesms.BuildConfig
@@ -27,10 +30,13 @@ import kotlin.concurrent.withLock
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.reflect.KProperty
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 /**
  * A location for accessing remotely-configured values.
@@ -422,6 +428,24 @@ object RemoteConfig {
       active = active,
       onChangeListener = onChangeListener,
       transformer = { it.asLong(defaultValue) }
+    )
+  }
+
+  private fun remoteDuration(
+    key: String,
+    defaultValue: Duration,
+    hotSwappable: Boolean,
+    durationUnit: DurationUnit,
+    active: Boolean = true,
+    onChangeListener: OnFlagChange? = null
+  ): Config<Duration> {
+    return remoteValue(
+      key = key,
+      hotSwappable = hotSwappable,
+      sticky = false,
+      active = active,
+      onChangeListener = onChangeListener,
+      transformer = { it?.toString()?.toLongOrNull()?.toDuration(durationUnit) ?: defaultValue }
     )
   }
 
@@ -982,11 +1006,27 @@ object RemoteConfig {
     BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
   }
 
+  val backupFallbackArchiveCdn: Int by remoteInt(
+    key = "global.backups.mediaTierFallbackCdnNumber",
+    hotSwappable = true,
+    active = true,
+    defaultValue = 3
+  )
+
+  /** Max plaintext unpadded file size for backup thumbnails. */
+  val backupMaxThumbnailFileSize: ByteSize by remoteValue(
+    key = "global.backups.maxThumbnailFileSizeBytes",
+    hotSwappable = true,
+    active = true
+  ) { value ->
+    value.asLong(8.kibiBytes.inWholeBytes).bytes
+  }
+
   /** Whether unauthenticated chat web socket is backed by libsignal-net  */
   @JvmStatic
   @get:JvmName("libSignalWebSocketEnabled")
   val libSignalWebSocketEnabled: Boolean by remoteValue(
-    key = "android.libsignalWebSocketEnabled.4",
+    key = "android.libsignalWebSocketEnabled.5",
     hotSwappable = false
   ) { value ->
     value.asBoolean(false) || Environment.IS_NIGHTLY
@@ -1093,6 +1133,25 @@ object RemoteConfig {
     key = "android.useMessageSendRestFallback",
     defaultValue = false,
     hotSwappable = true
+  )
+
+  /**
+   * Also determines how long an unregistered/deleted record should remain in storage service
+   */
+  val messageQueueTime: Long by remoteValue(
+    key = "global.messageQueueTimeInSeconds",
+    hotSwappable = true
+  ) { value ->
+    val inSeconds = value.asLong(45.days.inWholeSeconds)
+    inSeconds.seconds.inWholeMilliseconds
+  }
+
+  @JvmStatic
+  val archiveReconciliationSyncInterval: Duration by remoteDuration(
+    key = "global.archive.attachmentReconciliationSyncIntervalDays",
+    defaultValue = 7.days,
+    hotSwappable = true,
+    durationUnit = DurationUnit.DAYS
   )
 
   // endregion

@@ -80,4 +80,23 @@ public abstract class DeviceAwareActionProcessor extends WebRtcActionProcessor {
                        .cameraState(newCameraState)
                        .build();
   }
+
+  @Override
+  public @NonNull WebRtcServiceState handleCameraSwitchFailure(@NonNull WebRtcServiceState currentState, @NonNull CameraState newCameraState) {
+    Log.i(tag, "handleCameraSwitchFailure():");
+
+    BroadcastVideoSink localSink = currentState.getVideoState().getLocalSink();
+    if (localSink != null) {
+      localSink.setRotateToRightSide(false);
+    }
+    if (currentState.getVideoState().getCamera() != null) {
+      // Retry by recreating with the opposite preferred camera
+      currentState.getVideoState().getCamera().disposeAndFlipCamera();
+    }
+
+    return currentState.builder()
+        .changeLocalDeviceState()
+        .cameraState(newCameraState)
+        .build();
+  }
 }

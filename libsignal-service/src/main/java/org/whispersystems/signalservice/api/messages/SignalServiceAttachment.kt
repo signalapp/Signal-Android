@@ -4,6 +4,8 @@
  */
 package org.whispersystems.signalservice.api.messages
 
+import org.signal.core.util.ByteSize
+import org.signal.core.util.bytes
 import org.whispersystems.signalservice.internal.push.http.CancelationSignal
 import org.whispersystems.signalservice.internal.push.http.ResumableUploadSpec
 import java.io.InputStream
@@ -160,11 +162,8 @@ abstract class SignalServiceAttachment protected constructor(val contentType: St
   interface ProgressListener {
     /**
      * Called on a progress change event.
-     *
-     * @param total    The total amount to transmit/receive in bytes.
-     * @param progress The amount that has been transmitted/received in bytes thus far
      */
-    fun onAttachmentProgress(total: Long, progress: Long)
+    fun onAttachmentProgress(progress: AttachmentTransferProgress)
 
     fun shouldCancel(): Boolean
   }
@@ -175,4 +174,22 @@ abstract class SignalServiceAttachment protected constructor(val contentType: St
       return Builder()
     }
   }
+}
+
+/**
+ * Progress status for an attachment upload/download operation.
+ */
+data class AttachmentTransferProgress(
+  /** The total amount of bytes to transmit/receive. */
+  val total: ByteSize,
+
+  /** The amount of bytes that have been transmitted/received thus far. */
+  val transmitted: ByteSize
+) {
+  constructor(total: Long, transmitted: Long) : this(total.bytes, transmitted.bytes)
+
+  /**
+   * The fractional progress as a float value between 0.0 and 1.0 (inclusive).
+   */
+  val value = transmitted.inWholeBytes.toFloat() / total.inWholeBytes
 }

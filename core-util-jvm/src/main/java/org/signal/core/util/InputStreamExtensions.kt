@@ -127,8 +127,8 @@ fun InputStream.limit(limit: Long): LimitedInputStream {
  *
  * @param closeInputStream If true, the input stream will be closed after the copy is complete.
  */
-fun InputStream.copyTo(outputStream: OutputStream, closeInputStream: Boolean = true): Long {
-  return StreamUtil.copy(this, outputStream, closeInputStream)
+fun InputStream.copyTo(outputStream: OutputStream, closeInputStream: Boolean = true, closeOutputStream: Boolean = true): Long {
+  return StreamUtil.copy(this, outputStream, closeInputStream, closeOutputStream)
 }
 
 /**

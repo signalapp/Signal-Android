@@ -52,15 +52,10 @@ final class LogSectionBadges implements LogSection {
                                 .append("ExpiredBadge                            : ").append(SignalStore.inAppPayments().getExpiredBadge() != null).append("\n")
                                 .append("LastKeepAliveLaunchTime                 : ").append(SignalStore.inAppPayments().getLastKeepAliveLaunchTime()).append("\n")
                                 .append("LastEndOfPeriod                         : ").append(SignalStore.inAppPayments().getLastEndOfPeriod()).append("\n")
-                                .append("SubscriptionEndOfPeriodConversionStarted: ").append(SignalStore.inAppPayments().getSubscriptionEndOfPeriodConversionStarted()).append("\n")
-                                .append("SubscriptionEndOfPeriodRedemptionStarted: ").append(SignalStore.inAppPayments().getSubscriptionEndOfPeriodRedemptionStarted()).append("\n")
-                                .append("SubscriptionEndOfPeriodRedeemed         : ").append(SignalStore.inAppPayments().getSubscriptionEndOfPeriodRedeemed()).append("\n")
                                 .append("IsUserManuallyCancelledDonation         : ").append(SignalStore.inAppPayments().isDonationSubscriptionManuallyCancelled()).append("\n")
                                 .append("DisplayBadgesOnProfile                  : ").append(SignalStore.inAppPayments().getDisplayBadgesOnProfile()).append("\n")
                                 .append("SubscriptionRedemptionFailed            : ").append(SignalStore.inAppPayments().getSubscriptionRedemptionFailed()).append("\n")
-                                .append("ShouldCancelBeforeNextAttempt           : ").append(SignalStore.inAppPayments().getShouldCancelSubscriptionBeforeNextSubscribeAttempt()).append("\n")
-                                .append("Has unconverted request context         : ").append(SignalStore.inAppPayments().getSubscriptionRequestCredential() != null).append("\n")
-                                .append("Has unredeemed receipt presentation     : ").append(SignalStore.inAppPayments().getSubscriptionReceiptCredential() != null).append("\n");
+                                .append("ShouldCancelBeforeNextAttempt           : ").append(SignalStore.inAppPayments().getShouldCancelSubscriptionBeforeNextSubscribeAttempt()).append("\n");
     }
   }
 

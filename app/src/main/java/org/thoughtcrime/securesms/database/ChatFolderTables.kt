@@ -24,22 +24,16 @@ import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
-import org.signal.libsignal.zkgroup.InvalidInputException
-import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderId
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.database.ThreadTable.Companion.ID
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.groups.BadGroupIdException
-import org.thoughtcrime.securesms.groups.GroupId
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.whispersystems.signalservice.api.push.ServiceId
-import org.whispersystems.signalservice.api.push.SignalServiceAddress
+import org.thoughtcrime.securesms.storage.StorageSyncModels
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.util.UuidUtil
-import java.util.concurrent.TimeUnit
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord as RemoteChatFolderRecord
 
 /**
@@ -49,7 +43,6 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
 
   companion object {
     private val TAG = Log.tag(ChatFolderTable::class.java)
-    private val DELETED_LIFESPAN: Long = TimeUnit.DAYS.toMillis(30)
 
     @JvmField
     val CREATE_TABLE: Array<String> = arrayOf(ChatFolderTable.CREATE_TABLE, ChatFolderMembershipTable.CREATE_TABLE)
@@ -242,12 +235,13 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   /**
    * Given a list of folders, maps a folder id to the folder's unread count and whether all the chats in the folder are muted
    */
-  fun getUnreadCountAndMutedStatusForFolders(folders: List<ChatFolderRecord>): HashMap<Long, Pair<Int, Boolean>> {
-    val map: HashMap<Long, Pair<Int, Boolean>> = hashMapOf()
+  fun getUnreadCountAndEmptyAndMutedStatusForFolders(folders: List<ChatFolderRecord>): HashMap<Long, Triple<Int, Boolean, Boolean>> {
+    val map: HashMap<Long, Triple<Int, Boolean, Boolean>> = hashMapOf()
     folders.map { folder ->
       val unreadCount = SignalDatabase.threads.getUnreadCountByChatFolder(folder)
+      val isEmpty = !SignalDatabase.threads.hasChatInFolder(folder)
       val isMuted = !SignalDatabase.threads.hasUnmutedChatsInFolder(folder)
-      map[folder.id] = Pair(unreadCount, isMuted)
+      map[folder.id] = Triple(unreadCount, isEmpty, isMuted)
     }
     return map
   }
@@ -548,13 +542,13 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   }
 
   /**
-   * Removes storageIds from folders that have been deleted for [DELETED_LIFESPAN].
+   * Removes storageIds from folders that have been deleted for [RemoteConfig.messageQueueTime].
    */
   fun removeStorageIdsFromOldDeletedFolders(now: Long): Int {
     return writableDatabase
       .update(ChatFolderTable.TABLE_NAME)
       .values(ChatFolderTable.STORAGE_SERVICE_ID to null)
-      .where("${ChatFolderTable.STORAGE_SERVICE_ID} NOT NULL AND ${ChatFolderTable.DELETED_TIMESTAMP_MS} > 0 AND ${ChatFolderTable.DELETED_TIMESTAMP_MS} < ?", now - DELETED_LIFESPAN)
+      .where("${ChatFolderTable.STORAGE_SERVICE_ID} NOT NULL AND ${ChatFolderTable.DELETED_TIMESTAMP_MS} > 0 AND ${ChatFolderTable.DELETED_TIMESTAMP_MS} < ?", now - RemoteConfig.messageQueueTime)
       .run()
   }
 
@@ -684,44 +678,16 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
         RemoteChatFolderRecord.FolderType.UNKNOWN -> throw AssertionError("Folder type cannot be unknown")
       },
       includedChats = record.proto.includedRecipients
-        .mapNotNull { remoteRecipient -> getRecipientIdFromRemoteRecipient(remoteRecipient) }
+        .mapNotNull { remoteRecipient -> StorageSyncModels.remoteToLocalRecipient(remoteRecipient) }
         .map { recipient -> SignalDatabase.threads.getOrCreateThreadIdFor(recipient) },
       excludedChats = record.proto.excludedRecipients
-        .mapNotNull { remoteRecipient -> getRecipientIdFromRemoteRecipient(remoteRecipient) }
+        .mapNotNull { remoteRecipient -> StorageSyncModels.remoteToLocalRecipient(remoteRecipient) }
         .map { recipient -> SignalDatabase.threads.getOrCreateThreadIdFor(recipient) },
       chatFolderId = chatFolderId,
       storageServiceId = StorageId.forChatFolder(record.id.raw),
       storageServiceProto = record.serializedUnknowns,
       deletedTimestampMs = record.proto.deletedAtTimestampMs
     )
-  }
-
-  /**
-   * Parses a remote recipient into a local one. Used when configuring the chats of a remote chat folder into a local one.
-   */
-  private fun getRecipientIdFromRemoteRecipient(remoteRecipient: RemoteChatFolderRecord.Recipient): Recipient? {
-    return if (remoteRecipient.contact != null) {
-      val serviceId = ServiceId.parseOrNull(remoteRecipient.contact!!.serviceId)
-      val e164 = remoteRecipient.contact!!.e164
-      Recipient.externalPush(SignalServiceAddress(serviceId, e164))
-    } else if (remoteRecipient.legacyGroupId != null) {
-      try {
-        Recipient.externalGroupExact(GroupId.v1(remoteRecipient.legacyGroupId!!.toByteArray()))
-      } catch (e: BadGroupIdException) {
-        Log.w(TAG, "Failed to parse groupV1 ID!", e)
-        null
-      }
-    } else if (remoteRecipient.groupMasterKey != null) {
-      try {
-        Recipient.externalGroupExact(GroupId.v2(GroupMasterKey(remoteRecipient.groupMasterKey!!.toByteArray())))
-      } catch (e: InvalidInputException) {
-        Log.w(TAG, "Failed to parse groupV2 master key!", e)
-        null
-      }
-    } else {
-      Log.w(TAG, "Could not find recipient")
-      null
-    }
   }
 
   private fun Collection<Long>.toContentValues(chatFolderId: Long, membershipType: MembershipType): List<ContentValues> {

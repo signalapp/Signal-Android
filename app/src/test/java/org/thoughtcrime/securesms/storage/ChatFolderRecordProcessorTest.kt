@@ -11,6 +11,7 @@ import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord
+import org.whispersystems.signalservice.internal.storage.protos.Recipient
 import java.util.UUID
 
 /**
@@ -203,7 +204,7 @@ class ChatFolderRecordProcessorTest {
       includeAllGroupChats = false
       folderType = ChatFolderRecord.FolderType.CUSTOM
       deletedAtTimestampMs = 0L
-      includedRecipients = listOf(ChatFolderRecord.Recipient(contact = ChatFolderRecord.Recipient.Contact(serviceId = "bad")))
+      includedRecipients = listOf(Recipient(contact = Recipient.Contact(serviceId = "bad")))
     }.build()
     val record = SignalChatFolderRecord(STORAGE_ID, proto)
 

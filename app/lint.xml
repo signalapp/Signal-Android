@@ -44,4 +44,7 @@
 
     <issue id="OptionalUsedAsFieldOrParameterType" severity="ignore" />
     <issue id="SameParameterValue" severity="ignore" />
+
+    <!-- Disables check for digital asset linking in manifest. It's not needed, since we are not using CredentialManager for passkey support. -->
+    <issue id="CredManMissingDal" severity="ignore" />
 </lint>

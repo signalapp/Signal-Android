@@ -93,7 +93,7 @@ class ExportAccountDataFragment : ComposeFragment() {
     Scaffolds.Settings(
       title = stringResource(id = R.string.AccountSettingsFragment__request_account_data),
       onNavigationClick = onNavigationClick,
-      navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
+      navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding ->
       Surface(

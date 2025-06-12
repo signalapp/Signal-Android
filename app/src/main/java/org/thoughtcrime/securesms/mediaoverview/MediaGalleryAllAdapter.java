@@ -17,6 +17,8 @@
 package org.thoughtcrime.securesms.mediaoverview;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -39,12 +41,14 @@ import org.signal.core.util.ByteSize;
 import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.components.AudioView;
 import org.thoughtcrime.securesms.components.ThumbnailView;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.MediaTable.MediaRecord;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader.GroupedThreadMedia;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewCache;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -520,6 +524,22 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
       super.bind(context, mediaRecord, slide);
 
       documentType.setText(slide.getFileType(context).orElse("").toLowerCase());
+
+      if (SignalStore.internal().getShowArchiveStateHint() && slide.asAttachment() instanceof DatabaseAttachment) {
+        DatabaseAttachment dbAttachment = (DatabaseAttachment) slide.asAttachment();
+        View mediaArchive = itemView.findViewById(R.id.thumbnail_media_archive);
+        if (mediaArchive != null) {
+          mediaArchive.setVisibility(View.VISIBLE);
+          switch (dbAttachment.archiveTransferState) {
+            case NONE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+            case COPY_PENDING -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+            case UPLOAD_IN_PROGRESS -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.CYAN));
+            case FINISHED -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            case TEMPORARY_FAILURE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.YELLOW));
+            case PERMANENT_FAILURE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+          }
+        }
+      }
     }
   }
 
@@ -552,6 +572,22 @@ final class MediaGalleryAllAdapter extends StickyHeaderGridAdapter {
 
       audioView.setOnClickListener(view -> itemClickListener.onMediaClicked(audioView, mediaRecord));
       itemView.setOnClickListener(view -> itemClickListener.onMediaClicked(audioView, mediaRecord));
+
+      if (SignalStore.internal().getShowArchiveStateHint() && slide.asAttachment() instanceof DatabaseAttachment) {
+        DatabaseAttachment dbAttachment = (DatabaseAttachment) slide.asAttachment();
+        View mediaArchive = itemView.findViewById(R.id.thumbnail_media_archive);
+        if (mediaArchive != null) {
+          mediaArchive.setVisibility(View.VISIBLE);
+          switch (dbAttachment.archiveTransferState) {
+            case NONE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+            case COPY_PENDING -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+            case UPLOAD_IN_PROGRESS -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.CYAN));
+            case FINISHED -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+            case TEMPORARY_FAILURE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.YELLOW));
+            case PERMANENT_FAILURE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+          }
+        }
+      }
     }
 
     @Override

@@ -1090,6 +1090,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">Ang device na ni-link %1$s ay hindi na naka-link.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">Not enough storage space</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">You don\'t have enough free storage space on your device to transfer your messages. Free up some space and try again, or link your device without transferring your messages.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1441,6 +1445,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">Dina-download ang backup…</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">Nire-restore ang messages…</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">Finishing…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">Nagre-restore…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1581,7 +1587,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Hindi maka-join sa group</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Hindi ka maka-join sa group na ito gamit ang group link dahil tinanggal ka ng isang admin.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">You can\'t join this group via the group link because an admin removed you. Contact an admin to be added back to the group.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Hindi na valid ang group link na ito.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -2838,6 +2844,11 @@
     <plurals name="StickerManagement_deleted_n_packs">
         <item quantity="one">Inalis ang %1$s sticker pack.</item>
         <item quantity="other">Inalis ang %1$s sticker packs.</item>
+    </plurals>
+    <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
+    <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
+        <item quantity="one">%1$s sticker</item>
+        <item quantity="other">%1$s stickers</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -5333,6 +5344,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">Hindi makumpleto ang backup</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Hindi ma-redeem ang backups subscription mo</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Invite your friends</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7401,6 +7414,8 @@
     <string name="CallLogAdapter__start_a_video_call">Mag-start ng video call</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">Magsimula ng voice call</string>
+    <!-- Notice on call log when no missed calls are available, centered on display -->
+    <string name="CallLogAdapter__no_missed_calls">Walang missed calls</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -7820,9 +7835,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Maaari kang magbayad ulit para sa backups anumang oras para magpatuloy sa pag-back up ng lahat ng media mo. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Mabubura ang media mo ngayong araw</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Kinansela ang Signal media backup plan mo dahil hindi namin maproseso ang iyong payment. Ito na ang huling pagkakataon mong i-download ang media sa iyong backup bago mabura ang mga ito.</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Download your backup data today</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Download your backup data</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">You have %1$s of media that\'s not on this device. The media and attachments stored in your backup will be permanently deleted without a paid subscription.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Magtanggal ng %1$s sa device na ito</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7834,11 +7851,11 @@
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">Siguraduhing updated ang payment method. I-tap ang Manage subscription at sa ilalim ng Payment methods, i-tap ang Update.</string>
     <!-- Sheet title for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Your backups subscription has expired</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Expired na ang backups subscription mo</string>
     <!-- Sheet body part 1 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Your subscription couldn\'t be renewed with your payment method. To continue backing up media you need an active subscription.</string>
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Hindi ma-renew ang iyong subscription gamit ang payment method mo. Kailangan mo ng active subscription upang magpatuloy sa pag-back up ng media.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Backups plan.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Patuloy kang magkakaroon ng access sa free Signal Backups plan.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Hindi makumpleto ang backup</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7851,7 +7868,7 @@
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">I-skip ang restore</string>
     <!-- Primary action button to open backups management screen -->
-    <string name="BackupAlertBottomSheet__manage_backups">Manage backups</string>
+    <string name="BackupAlertBottomSheet__manage_backups">I-manage ang backups</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">Mag-back up na ngayon</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -7861,9 +7878,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Mag-subscribe. %1$s/month.</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">I-download na ang media</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Download backup now</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">\'Wag i-download ang media</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">Don\'t download backup</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Hindi na muna</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -7931,6 +7948,14 @@
     <string name="BackupStatusRow__restore_no_internet">Naka-pause ang pag-restore: Walang internet…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">Naka-pause ang pag-restore: Low batt ang device</string>
+    <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">Nagda-download: %1$s ng %2$s (%3$s%%)</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
+    <string name="BackupStatusRow__download_waiting_for_wifi">Naka-pause ang pag-download: Naghihintay ng Wi-Fi…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
+    <string name="BackupStatusRow__download_no_internet">Naka-pause ang pag-download: Walang internet…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
+    <string name="BackupStatusRow__download_device_has_low_battery">Naka-pause ang pag-download: Low batt ang device</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Walang enough space para i-download ang Backup mo. Para ituloy ang backup, mag-free up ng %1$s ng space.</string>
     <!-- Text row label to skip download -->
@@ -8039,7 +8064,7 @@
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
-    <string name="RemoteBackupsSettingsFragment__cancel_upload">Cancel upload</string>
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">Kanselahin ang pag-upload</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Backups</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8119,7 +8144,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Gusto mo bang i-off at burahin ang backups?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">Hindi ka na ulit macha-charge. Mabubura ang backup mo at walang gagawing bagong backups.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Mabubura ang backup mo at walang gagawing bagong backups. Anumang media na nasa backup mo ay mada-download ngayon sa phone mo.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">I-off at burahin</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8147,12 +8172,14 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Depende sa size ng backup mo, maaari itong tumagal. Maaari mong gamitin ang iyong phone as usual habang isinasagawa ang download.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Backups.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Hindi mahanap ang subscription mo sa device na ito. Mag-renew para patuloy mong magamit ang Signal Backups.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">Ang subscription mo sa device na ito ay valid hanggang sa susunod na %1$d araw. Mag-renew para patuloy na magamit ang Signal Backups</item>
         <item quantity="other">Ang subscription mo sa device na ito ay valid hanggang sa susunod na %1$d araw. Mag-renew para patuloy na magamit ang Signal Backups</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Resubscribe</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Mag-renew</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8167,27 +8194,28 @@
         <item quantity="other">Pinoproseso ang %1$s ng %2$s messages (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="one">Mayroon kang %1$s ng backup data na wala sa device na ito. Mabubura ang backup mo kapag natapos na ang subscription mo pagkatapos ng %2$d araw.</item>
-        <item quantity="other">Mayroon kang %1$s ng backup data na wala sa device na ito. Mabubura ang backup mo kapag natapos na ang subscription mo pagkatapos ng %2$d araw.</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Without a paid subscription media can\'t be offloaded.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Mayroon kang %1$s backup data na wala sa device na ito. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">I-download</string>
     <!-- Dialog title for skipping download of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_download_question">I-skip ang pag-download?</string>
-    <!-- Dialog body for skiping download of backed up media -->
+    <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="one">Kapag pinili mong i-skip ang pag-download, mabubura ang natitirang media at attachments sa backup mo pagkatapos ng %1$d araw.</item>
         <item quantity="other">Kapag pinili mong i-skip ang pag-download, mabubura ang natitirang media at attachments sa backup mo pagkatapos ng %1$d araw.</item>
     </plurals>
+    <!-- Dialog body for skipping download of backed up media during deletion -->
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Kapag pinili mong i-skip ang pag-download ng natitirang media at attachments sa backup mo, permanenteng mabubura ang lahat ng ito. Hindi na maibabalik ang data na ito.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">I-skip ang pag-restore?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_message">Kapag pinili mong i-skip ang pag-restore, ang natitirang media at attachments sa backup mo ay maaari mong i-download sa ibang pagkakataon.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Laktawan</string>
+    <!-- Positive dialog action to skip download during deletion -->
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Mag-skip at permanenteng burahin</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Hindi ma-off at mabura ang backups</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8196,6 +8224,34 @@
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Nag-u-upload: %1$s ng %2$s (%3$d%%)</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Mga Detalye</string>
+    <!-- Text displayed when there was an error deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Naka-off ang backups, pero nagkaroon ng error sa pagbura ng iyong data mula sa secure storage service ng Signal.</string>
+    <!-- Text displayed as the title in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed ang pagbura ng backup</string>
+    <!-- Text displayed as the body in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Nagkaroon ng error. Paki-contact ang support.</string>
+    <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">In-off ang backups at mada-download ang iyong data sa iyong device at mabubura mula sa secure storage service ng Signal.</string>
+    <!-- Text displayed while we are processing a backup delete -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">In-off ang backups at buburahin ang iyong data mula sa secure storage service ng Signal.</string>
+    <!-- Text displayed after we have deleted a user\'s backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">In-off ang backups at binura ang iyong data mula sa secure storage service ng Signal.</string>
+    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Nagda-download: %1$s ng %2$s (%3$d%%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Manage storage</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Download your backup today</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Your media and attachments will be permanently deleted without a paid subscription.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">Download</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">Don\'t download</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8220,6 +8276,8 @@
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Nagkaroon ng network failure. Subukan ulit mamaya.</string>
+    <!-- Toast message if this fragment encounters an in progress deletion -->
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Kasalukuyang isinasagawa ang pagbura ng backup.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8252,6 +8310,18 @@
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Kailangan ang key para ma-recover mo ang iyong account at data. Itago ang key na ito sa ligtas na lugar. Kapag nawala mo ito, hindi mo mare-recover ang iyong account.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopyahin sa clipboard</string>
+    <!-- Label for the button to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">I-save sa password manager</string>
+    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">I-save sa password manager mo?</string>
+    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">I-store lamang ang iyong backup key sa isang password manager na sigurado kang secure. Hindi nagrerekomenda ang Signal ng anumang password manager na tama para sa\'yo.</string>
+    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Nai-save sa iyong password manager</string>
+    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Hindi ma-save sa password manager</string>
+    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Wala ka pang naka-set up na password manager, o hindi suportado ang password manager na ginagamit mo ngayon.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Susunod</string>
     <!-- Bottom sheet title -->
@@ -8284,9 +8354,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">End-to-end encrypted ang lahat ng backups. Ang Signal ay isang non-profit—ang pagbabayad mo sa backups ay makatutulong sa pagsuporta sa aming misyon.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__read_more">Magbasa pa</string>
-    <!-- Primary action button label when selecting a backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__next">Susunod</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">Matuto pa</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Mag-subscribe</string>
+    <!-- Primary action button label when selecting the paid backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Mag-subscribe. %1$s/month.</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Palitan ang uri ng backup</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->

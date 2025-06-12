@@ -47,12 +47,12 @@ object RemoteMegaphoneRepository {
   }
 
   private val finish: Action = Action { context, controller, remote ->
-    if (remote.imageUri != null) {
-      BlobProvider.getInstance().delete(context, remote.imageUri)
-    }
     controller.onMegaphoneSnooze(Megaphones.Event.REMOTE_MEGAPHONE)
     SignalExecutors.BOUNDED_IO.execute {
       db.markFinished(remote.uuid)
+      if (remote.imageUri != null) {
+        BlobProvider.getInstance().delete(context, remote.imageUri)
+      }
     }
   }
 

@@ -129,6 +129,8 @@ class ConversationListAdapter extends ListAdapter<Conversation, RecyclerView.Vie
       return new ClearFilterViewHolder(v, onClearFilterClicked);
     } else if (viewType == TYPE_CLEAR_FILTER_EMPTY) {
       View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_list_item_clear_filter_empty, parent, false);
+      TextView title = v.findViewById(R.id.clear_filter_title);
+      title.setText(R.string.ConversationListFragment__no_unread_chats);
       return new ClearFilterViewHolder(v, onClearFilterClicked);
     } else if (viewType == TYPE_CHAT_FOLDER_EMPTY) {
       View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.conversation_list_item_folder_empty, parent, false);

@@ -51,6 +51,15 @@ class MediaRootBackupKey(override val value: ByteArray) : BackupKey {
     )
   }
 
+  /**
+   * Identifies a the location of a user's backup.
+   */
+  fun deriveBackupId(aci: ACI): BackupId {
+    return BackupId(
+      LibSignalBackupKey(value).deriveBackupId(aci.libSignalAci)
+    )
+  }
+
   class MediaKeyMaterial(
     val id: MediaId,
     val macKey: ByteArray,

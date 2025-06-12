@@ -14,7 +14,7 @@
         android:minHeight="@dimen/signal_m3_toolbar_height"
         android:theme="?attr/settingsToolbarStyle"
         app:navigationContentDescription="@string/DSLSettingsToolbar__navigate_up"
-        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:navigationIcon="@drawable/symbol_arrow_start_24"
         app:title="@string/MyStorySettingsFragment__all_signal_connections"
         app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 

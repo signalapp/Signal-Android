@@ -1090,6 +1090,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">جو ڈیوائس %1$s کو منسلک کی گئی تھی اب مزید منسلک شدہ نہیں ہے۔</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">ٹھیک ہے</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">Not enough storage space</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">You don\'t have enough free storage space on your device to transfer your messages. Free up some space and try again, or link your device without transferring your messages.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1441,6 +1445,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">بیک اپ ڈاؤن لوڈ کر رہے ہیں…</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">میسجز بحال کر رہے ہیں…</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">Finishing…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">بحال کیا جا رہا ہے…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1581,7 +1587,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">گروپ میں شامل نہیں ہو سکتے</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">آپ گروپ لنک کے ذریعے اس گروپ میں شامل نہیں ہو سکتے کیونکہ ایک ایڈمن نے آپ کو ہٹا دیا تھا۔</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">You can\'t join this group via the group link because an admin removed you. Contact an admin to be added back to the group.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">اب یہ گروپ لنک درست نہیں ہے۔</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -2838,6 +2844,11 @@
     <plurals name="StickerManagement_deleted_n_packs">
         <item quantity="one">%1$s اسٹیکر پیک ہٹا دیا گیا۔</item>
         <item quantity="other">%1$s اسٹیکر پیکس ہٹا دیے گئے۔</item>
+    </plurals>
+    <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
+    <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
+        <item quantity="one">%1$s اسٹیکر</item>
+        <item quantity="other">%1$s اسٹیکرز</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -5333,6 +5344,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">بیک اپ مکمل نہیں کر سکے</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">آپ کی بیک اپس کی سبسکرپشن کو ریڈیم نہیں کیا جا سکا</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">اپنے دوستوں کو بلاؤ</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7401,6 +7414,8 @@
     <string name="CallLogAdapter__start_a_video_call">ویڈیو کال شروع کریں</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">ایک وائس کال شروع کریں</string>
+    <!-- Notice on call log when no missed calls are available, centered on display -->
+    <string name="CallLogAdapter__no_missed_calls">کوئی مسڈ کالز نہیں</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -7820,9 +7835,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">آپ اپنے تمام میڈیا کی بیکنگ اپ جاری رکھنے کے لیے کسی بھی وقت بیک اپس کے لیے دوبارہ پیمنٹ کرنے کا آغاز کر سکتے ہیں۔ </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">آپ کا میڈیا آج حذف کر دیا جائے گا</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">آپ کے Signal کے میڈیا کا بیک اپ پلان منسوخ کر دیا گیا ہے کیونکہ ہم آپ کی پیمنٹ پر کارروائی نہیں کر سکے۔ آپ کے پاس اپنے بیک اپ میں موجود میڈیا کو ڈاؤن لوڈ کرنے کا یہ آخری موقع ہے اس سے پہلے کہ اسے حذف کر دیا جائے۔</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Download your backup data today</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Download your backup data</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">You have %1$s of media that\'s not on this device. The media and attachments stored in your backup will be permanently deleted without a paid subscription.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">اس ڈیوائس پر %1$s خالی کریں</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7834,11 +7851,11 @@
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">یہ یقینی بنانے کے لیے چیک کریں کہ آپ کا پیمنٹ کا طریقہ اپ ٹو ڈیٹ ہے۔ سبسکرپشن کا نظم کریں پر ٹیپ کریں اور پیمنٹ کے طریقوں کے تحت اپ ڈیٹ کریں پر ٹیپ کریں۔</string>
     <!-- Sheet title for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Your backups subscription has expired</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">آپ کی بیک اپ سبسکرپشن کی معیاد ختم ہو گئی ہے</string>
     <!-- Sheet body part 1 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Your subscription couldn\'t be renewed with your payment method. To continue backing up media you need an active subscription.</string>
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">آپ کے ادائیگی کے طریقے سے آپ کی رکنیت کی تجدید نہیں ہو سکی۔ آپ کو میڈیا کا بیک اپ جاری رکھنے کے لیے ایک فعال سبسکرپشن کی ضرورت ہے۔</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Backups plan.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Signal بیک اپس کے مفت پلان تک آپ کی رسائی جاری رہے گی۔</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">بیک اپ مکمل نہیں کر سکے</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7851,7 +7868,7 @@
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">بحال کرنا نظر انداز کریں</string>
     <!-- Primary action button to open backups management screen -->
-    <string name="BackupAlertBottomSheet__manage_backups">Manage backups</string>
+    <string name="BackupAlertBottomSheet__manage_backups">بیک اپس کو منظم کریں</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">اب بیک اپ کریں</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -7861,9 +7878,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">%1$s/ماہ کے لیے سبسکرائب کریں</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">ابھی میڈیا ڈاؤن لوڈ کریں</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Download backup now</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">میڈیا ڈاؤن لوڈ نہ کریں</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">Don\'t download backup</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">ابھی نہیں</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -7931,6 +7948,14 @@
     <string name="BackupStatusRow__restore_no_internet">ری اسٹور کا عمل موقوف: انٹرنیٹ نہیں ہے…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">ری اسٹور کا عمل موقوف: ڈیوائس کی بیٹری کم ہے</string>
+    <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">ڈاؤن لوڈ ہو رہا ہے: %2$s کا %1$s (%3$s%%)</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
+    <string name="BackupStatusRow__download_waiting_for_wifi">ڈاؤن لوڈ میں توقف کیا گیا: Wi-Fi کا انتظار کر ہے ہیں…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
+    <string name="BackupStatusRow__download_no_internet">ڈاؤن لوڈ میں توقف کیا گیا: انٹرنیٹ موجود نہیں…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
+    <string name="BackupStatusRow__download_device_has_low_battery">ڈاؤن لوڈ میں توقف کیا گیا: ڈیوائس کی بیٹری کم ہے</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">آپ کے بیک اپ کو ڈاؤن لوڈ کرنے کے لیے جگہ ناکافی ہے۔ جاری رکھنے کے لیے %1$s جگہ خالی کریں۔</string>
     <!-- Text row label to skip download -->
@@ -8039,7 +8064,7 @@
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
-    <string name="RemoteBackupsSettingsFragment__cancel_upload">Cancel upload</string>
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">اپ لوڈ کرنا منسوخ کریں</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal بیک اپس</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8119,7 +8144,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">بند کریں اور بیک اپس حذف کریں؟</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">آپ سے دوبارہ ادائیگی نہیں لی جائے گی۔ آپ کا بیک اپ حذف کر دیا جائے گا اور کوئی نئے بیک اپس تخلیق نہیں کیے جائیں گے۔</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">آپ کا بیک اپ حذف کر دیا جائے گا اور کوئی نئے بیک اپس تخلیق نہیں کیے جائیں گے۔ اب آپ کے بیک اپ میں محفوظ شدہ کوئی بھی میڈیا آپ کے فون میں ڈاؤن لوڈ ہو جائے گا۔</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">آف اور ڈیلیٹ کریں</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8147,12 +8172,14 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">آپ کے بیک اپ کے سائز پر منحصر ہے، یہ زیادہ وقت لے سکتا ہے۔ ڈاؤن لوڈ کے دوران آپ اپنے فون کو معمول کے مطابق استعمال کر سکتے ہیں۔</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Backups.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">اس ڈیوائس پر آپ کی سبسکرپشن نہیں ملی۔ Signal بیک اپس کا استعمال کرنا جاری رکھنے کے لیے تجدید کریں۔</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">اس ڈیوائس پر آپ کی سبسکرپشن اگلے %1$d دن کے لیے مستند ہے۔ Signal کے بیک اپس کا استعمال کرنا جاری رکھنے کے لیے تجدید کریں</item>
         <item quantity="other">اس ڈیوائس پر آپ کی سبسکرپشن اگلے %1$d ایام کے لیے مؤثر ہے۔ Signal کے بیک اپس کا استعمال کرنا جاری رکھنے کے لیے تجدید کریں</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Resubscribe</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">تجدید کریں</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8167,27 +8194,28 @@
         <item quantity="other">%1$s میں سے ~%2$s میسجز پراسیس ہو رہے ہیں (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="one">آپ کے بیک اپ کا %1$s ڈیٹا ہے جو اس ڈیوائس پر نہیں ہے۔ جب آپ کی سبسکرپشن %2$d دن میں ختم ہو جاتی ہے تو آپ کا بیک اپ حذف کر دیا جائے گا۔</item>
-        <item quantity="other">آپ کا %1$s بیک اپ ڈیٹا اس ڈیوائس میں نہیں ہے۔ آپ کا بیک اپ %2$d ایام میں سبسکرپشن ختم ہونے پر حذف ہو جائے گا۔</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Without a paid subscription media can\'t be offloaded.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">آپ کے پاس %1$s بیک اپ ڈیٹا ہے جو اس ڈیوائس پر موجود نہیں ہے۔ </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">ڈاؤن لوڈ کریں</string>
     <!-- Dialog title for skipping download of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_download_question">ڈاؤن لوڈ کو چھوڑ دیں؟</string>
-    <!-- Dialog body for skiping download of backed up media -->
+    <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="one">اگر آپ ڈاؤن لوڈنگ اسکپ کرتے ہیں تو آپ کے بیک اپ میں موجود بقایا میڈیا اور منسلکات کو %1$d یوم میں حذف کر دیا جائے گا۔</item>
         <item quantity="other">اگر آپ ڈاؤن لوڈنگ اسکپ کرتے ہیں تو آپ کے بیک اپ میں موجود بقایا میڈیا اور منسلکات کو %1$d ایام میں حذف کر دیا جائے گا۔</item>
     </plurals>
+    <!-- Dialog body for skipping download of backed up media during deletion -->
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">اگر آپ اپنے بیک اپ میں باقی میڈیا اور منسلکات ڈاؤن لوڈ کرنے کو نظر انداز کرتے ہیں تو وہ مستقل طور پر حذف ہو جائیں گے۔ یہ ڈیٹا قابل بحالی نہیں ہے۔</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">بحال کرنا چھوڑ دیں؟</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_message">اگر آپ ری اسٹور کے عمل کو چھوڑ دیتے ہیں، تو آپ کے بیک اپ میں موجود باقی میڈیا اور اٹیچمنٹس کو بعد میں ڈاؤن لوڈ کیا جا سکتا ہے۔</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">چھوڑ دو</string>
+    <!-- Positive dialog action to skip download during deletion -->
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">نظر انداز کریں اور مستقل طور پر حذف کریں</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">بیک اپس کو غیر فعال اور حذف نہیں کیا جا سکا</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8196,6 +8224,34 @@
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">اپ لوڈ ہو رہا ہے: %2$s کا %1$s (%3$d%%)</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">تفصیلات</string>
+    <!-- Text displayed when there was an error deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">بیک اپس کو بند کر دیا گیا ہے، لیکن آپ کے ڈیٹا کو Signal کی محفوظ شدہ اسٹوریج کی ڈیوائس سے حذف کرنے میں ایک خرابی واقع ہوئی تھی۔</string>
+    <!-- Text displayed as the title in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">بیک اپ حذف کرنے میں ناکام ہو گئے</string>
+    <!-- Text displayed as the body in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">ایک نقص پیش آیا۔ براہ کرم سپورٹ سے رابطہ کریں۔</string>
+    <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">بیک اپس بند کر دیے گئے ہیں، آپ کا ڈیٹا آپ کی ڈیوائس میں ڈاؤن لوڈ ہو جائے گا اور اس کے بعد Signal کی محفوظ شدہ اسٹوریج کی سروس سے خذف ہو جائے گا۔</string>
+    <!-- Text displayed while we are processing a backup delete -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">بیک اپس کو آف کر دیا گیا ہے اور آپ کا ڈیٹا Signal کی محفوظ شدہ اسٹوریج کی سروس سے حذف کر دیا گیا ہے۔</string>
+    <!-- Text displayed after we have deleted a user\'s backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">بیک اپس کو آف کر دیا گیا ہے اور آپ کے ڈیٹا کو Signal کی محفوظ اسٹوریج کی سروس سے حذف کر دیا گیا ہے۔</string>
+    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">ڈاؤن لوڈ ہو رہا ہے: %2$s کا %1$s (%3$d%%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Manage storage</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Download your backup today</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Your media and attachments will be permanently deleted without a paid subscription.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">Download</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">Don\'t download</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8220,6 +8276,8 @@
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">نیٹ ورک میں کوئی خرابی واقع ہوئی ہے۔ براہ کرم کچھ دیر بعد دوبارہ کوشش کریں۔</string>
+    <!-- Toast message if this fragment encounters an in progress deletion -->
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">بیک اپ حذف کرنے کا عمل جاری ہے۔</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8252,6 +8310,18 @@
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">یہ کیی آپ کے اکاؤنٹ اور ڈیٹا کو بحال کرنے کے لیے درکار ہوتی ہے۔ اس کیی کو کسی محفوظ جگہ پر اسٹور کریں۔ اگر آپ اسے کھو دیتے ہیں، تو آپ اپنا اکاؤنٹ بحال نہیں کر سکیں گے۔</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">کلپ بورڈ کو کاپی کریں</string>
+    <!-- Label for the button to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">پاسورڈ مینیجر میں محفوظ کریں</string>
+    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">پاسورڈ مینیجر میں محفوظ کرنا ہے؟</string>
+    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">اپنی بیک اپ کیی کو پاسورڈ مینیجر میں صرف اس وقت محفوظ کریں جب آپ کو بھروسہ ہو کہ وہ محفوظ ہے۔ Signal ایسی کوئی تجویز نہیں دیتا کہ آپ کے لیے کون سا پاسورڈ مینیجر صحیح ہے۔</string>
+    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">آپ کے پاسورڈ مینیجر میں محفوظ ہو گیا</string>
+    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">پاسورڈ مینیجر میں محفوظ نہیں کر سکتے</string>
+    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">آپ کے پاس پاسورڈ مینیجر کا سیٹ اپ نہیں ہے، یا آپ کا استعمال کردہ پاسورڈ مینیجر معاونت یافتہ نہیں ہے۔</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">اگلا</string>
     <!-- Bottom sheet title -->
@@ -8284,9 +8354,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">تمام بیک اپس کلی طور پر تک انکرپٹ کردہ ہیں۔ Signal ایک غیر منافع بخش ادارہ ہے—بیک اپس کے لیے ادائیگی ہمارے مشن میں معاونت کے لیے ہیں۔</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__read_more">مزید پڑھیں</string>
-    <!-- Primary action button label when selecting a backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__next">اگلا</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">مزید جانیں</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">سبسکرائب کریں</string>
+    <!-- Primary action button label when selecting the paid backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/ماہ کے لیے سبسکرائب کریں</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">بیک اپ کی قسم کو تبدیل کریں</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->

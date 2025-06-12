@@ -11,7 +11,7 @@
         android:layout_height="@dimen/signal_m3_toolbar_height"
         android:theme="?actionBarStyle"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:navigationIcon="@drawable/symbol_arrow_start_24"
         app:title="@string/PaymentsSecuritySetupFragment__security_setup"
         app:titleTextAppearance="@style/TextAppearance.Signal.Body1.Bold" />
 

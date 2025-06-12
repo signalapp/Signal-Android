@@ -52,6 +52,9 @@ class StorageServicePlugin : Plugin {
       } else if (record.proto.chatFolder != null) {
         row += "Chat Folder"
         row += record.proto.chatFolder.toString()
+      } else if (record.proto.notificationProfile != null) {
+        row += "Notification Profile"
+        row += record.proto.notificationProfile.toString()
       } else {
         row += "Unknown"
         row += ""

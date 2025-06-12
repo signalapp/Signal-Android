@@ -18,6 +18,7 @@ import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -85,7 +86,7 @@ object QuickRegistrationRepository {
               MessageBackupTier.FREE -> RegistrationProvisionMessage.Tier.FREE
               null -> null
             },
-            backupSizeBytes = SignalStore.backup.totalBackupSize.takeIf { it > 0 },
+            backupSizeBytes = SignalDatabase.attachments.getEstimatedArchiveMediaSize().takeIf { it > 0 },
             restoreMethodToken = restoreMethodToken,
             aciIdentityKeyPublic = SignalStore.account.aciIdentityKey.publicKey.serialize().toByteString(),
             aciIdentityKeyPrivate = SignalStore.account.aciIdentityKey.privateKey.serialize().toByteString(),

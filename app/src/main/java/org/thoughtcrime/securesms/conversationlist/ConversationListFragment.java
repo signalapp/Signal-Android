@@ -30,8 +30,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
@@ -44,9 +42,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.PluralsRes;
 import androidx.annotation.WorkerThread;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.content.res.AppCompatResources;
-import androidx.appcompat.view.ActionMode;
 import androidx.compose.material3.SnackbarDuration;
 import androidx.compose.ui.platform.ComposeView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -184,8 +180,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.Unit;
 
 
-public class ConversationListFragment extends MainFragment implements ActionMode.Callback,
-                                                                      ConversationListAdapter.OnConversationClickListener,
+public class ConversationListFragment extends MainFragment implements ConversationListAdapter.OnConversationClickListener,
                                                                       ClearFilterViewHolder.OnClearFilterClickListener,
                                                                       ChatFolderAdapter.Callbacks,
                                                                       ConversationListAdapter.EmptyFolderViewHolder.OnFolderSettingsClickListener
@@ -201,8 +196,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   private static final int MAX_CHATS_ABOVE_FOLD             = 7;
   private static final int MAX_CONTACTS_ABOVE_FOLD          = 5;
   private static final int MAX_GROUP_MEMBERSHIPS_ABOVE_FOLD = 5;
-
-  private ActionMode                             actionMode;
   private View                                   coordinator;
   private RecyclerView                           chatFolderList;
   private RecyclerView                           list;
@@ -1150,22 +1143,20 @@ public class ConversationListFragment extends MainFragment implements ActionMode
   }
 
   private void startActionMode() {
-    actionMode = ((AppCompatActivity) getActivity()).startSupportActionMode(ConversationListFragment.this);
     ViewUtil.animateIn(bottomActionBar, bottomActionBar.getEnterAnimation());
     requireCallback().onMultiSelectStarted();
   }
 
-  private void endActionModeIfActive() {
-    if (actionMode != null) {
+  public void endActionModeIfActive() {
+    if (mainToolbarViewModel.isInActionMode()) {
       endActionMode();
     }
   }
 
   private void endActionMode() {
-    actionMode.finish();
-    actionMode = null;
     ViewUtil.animateOut(bottomActionBar, bottomActionBar.getExitAnimation());
     requireCallback().onMultiSelectFinished();
+    viewModel.endSelection();
   }
 
   void updateEmptyState(boolean isConversationEmpty) {
@@ -1186,7 +1177,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public void onConversationClick(@NonNull Conversation conversation) {
-    if (actionMode == null) {
+    if (!mainToolbarViewModel.isInActionMode()) {
       handleCreateConversation(conversation.getThreadRecord().getThreadId(), conversation.getThreadRecord().getRecipient(), conversation.getThreadRecord().getDistributionType());
     } else {
       viewModel.toggleConversationSelected(conversation);
@@ -1195,7 +1186,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
 
   @Override
   public boolean onConversationLongClick(@NonNull Conversation conversation, @NonNull View view) {
-    if (actionMode != null) {
+    if (mainToolbarViewModel.isInActionMode()) {
       onConversationClick(conversation);
       return true;
     }
@@ -1269,29 +1260,6 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     return true;
   }
 
-  @Override
-  public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-    mode.setTitle(requireContext().getResources().getQuantityString(R.plurals.ConversationListFragment_s_selected, 1, 1));
-    return true;
-  }
-
-  @Override
-  public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-    updateMultiSelectState();
-    return false;
-  }
-
-  @Override
-  public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-    return true;
-  }
-
-  @Override
-  public void onDestroyActionMode(ActionMode mode) {
-    viewModel.endSelection();
-    endActionModeIfActive();
-  }
-
   @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
   public void onEvent(MessageSender.MessageSentEvent event) {
     EventBus.getDefault().removeStickyEvent(event);
@@ -1351,8 +1319,8 @@ public class ConversationListFragment extends MainFragment implements ActionMode
     boolean hasUnmuted  = Stream.of(viewModel.currentSelectedConversations()).anyMatch(conversation -> !conversation.getThreadRecord().getRecipient().live().get().isMuted());
     boolean canPin      = viewModel.getPinnedCount() < MAXIMUM_PINNED_CONVERSATIONS;
 
-    if (actionMode != null) {
-      actionMode.setTitle(requireContext().getResources().getQuantityString(R.plurals.ConversationListFragment_s_selected, count, count));
+    if (mainToolbarViewModel.isInActionMode()) {
+      mainToolbarViewModel.setActionModeCount(count);
     }
 
     List<ActionItem> items = new ArrayList<>();
@@ -1622,7 +1590,7 @@ public class ConversationListFragment extends MainFragment implements ActionMode
           viewHolder instanceof ConversationListAdapter.HeaderViewHolder ||
           viewHolder instanceof ClearFilterViewHolder ||
           viewHolder instanceof ConversationListAdapter.EmptyFolderViewHolder ||
-          actionMode != null ||
+          mainToolbarViewModel.isInActionMode() ||
           viewHolder.itemView.isSelected() ||
           activeAdapter == searchAdapter)
       {

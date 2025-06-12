@@ -1090,6 +1090,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">%1$s ലിങ്ക് ചെയ്‌തിരിക്കുന്ന ഉപകരണം ഇനി ലിങ്ക് ചെയ്യപ്പെട്ടതായിരിക്കില്ല.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">ശരി</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">Not enough storage space</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">You don\'t have enough free storage space on your device to transfer your messages. Free up some space and try again, or link your device without transferring your messages.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1441,6 +1445,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">ബാക്കപ്പ് ഡൗൺലോഡ് ചെയ്യുന്നു…</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">സന്ദേശങ്ങൾ പുനഃസ്ഥാപിക്കുന്നു…</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">Finishing…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">പുനഃസ്ഥാപിക്കുന്നു…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1581,7 +1587,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">ഗ്രൂപ്പിൽ ചേരാനാവില്ല</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">അഡ്മിൻ നിങ്ങളെ നീക്കം ചെയ്തതിനാൽ ഗ്രൂപ്പ് ലിങ്ക് വഴി നിങ്ങൾക്ക് ഈ ഗ്രൂപ്പിൽ ചേരാൻ കഴിയില്ല.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">You can\'t join this group via the group link because an admin removed you. Contact an admin to be added back to the group.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ഈ ഗ്രൂപ്പ് ലിങ്ക് സജീവമല്ല.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -2838,6 +2844,11 @@
     <plurals name="StickerManagement_deleted_n_packs">
         <item quantity="one">%1$s സ്റ്റിക്കർ പായ്ക്ക് നീക്കം ചെയ്തു.</item>
         <item quantity="other">%1$s സ്റ്റിക്കർ പായ്ക്കുകൾ നീക്കം ചെയ്തു.</item>
+    </plurals>
+    <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
+    <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
+        <item quantity="one">%1$s സ്റ്റിക്കർ</item>
+        <item quantity="other">%1$s സ്റ്റിക്കറുകൾ</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -5333,6 +5344,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">ബാക്കപ്പ് പൂർത്തിയാക്കാൻ കഴിഞ്ഞില്ല</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">നിങ്ങളുടെ ബാക്കപ്പ് സബ്സ്ക്രിപ്ഷൻ റിഡീം ചെയ്യാനായില്ല</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">സുഹൃത്തുക്കളെ ക്ഷണിക്കുക</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7401,6 +7414,8 @@
     <string name="CallLogAdapter__start_a_video_call">വീഡിയോ കോൾ ആരംഭിക്കുക</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">വോയ്സ് കോൾ ആരംഭിച്ചു</string>
+    <!-- Notice on call log when no missed calls are available, centered on display -->
+    <string name="CallLogAdapter__no_missed_calls">മിസ്ഡ് കോളുകളൊന്നുമില്ല</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -7820,9 +7835,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">നിങ്ങളുടെ എല്ലാ മീഡിയയും ബാക്കപ്പ് ചെയ്യുന്നത് തുടരാൻ നിങ്ങൾക്ക് എപ്പോൾ വേണമെങ്കിലും ബാക്കപ്പുകൾക്കായി വീണ്ടും പണമടച്ച് തുടങ്ങാം. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">നിങ്ങളുടെ മീഡിയ ഇന്ന് ഇല്ലാതാക്കപ്പെടും</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">നിങ്ങളുടെ പേയ്‌മെൻ്റ് പ്രോസസ്സ് ചെയ്യാൻ കഴിയാത്തതിനാൽ നിങ്ങളുടെ Signal മീഡിയ ബാക്കപ്പ് പ്ലാൻ റദ്ദാക്കപ്പെട്ടു. നിങ്ങളുടെ ബാക്കപ്പിൽ മീഡിയ ഇല്ലാതാക്കുന്നതിന് മുമ്പ് അത് ഡൗൺലോഡ് ചെയ്യാനുള്ള അവസാന അവസരമാണിത്.</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Download your backup data today</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Download your backup data</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">You have %1$s of media that\'s not on this device. The media and attachments stored in your backup will be permanently deleted without a paid subscription.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">ഈ ഉപകരണത്തിൽ %1$s ശൂന്യമാക്കുക</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7834,11 +7851,11 @@
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">നിങ്ങളുടെ പേയ്‌മെൻ്റ് രീതി അപ് ടു ഡേറ്റ് ആണെന്ന് ഉറപ്പാക്കാൻ പരിശോധിക്കുക. സബ്‌സ്‌ക്രിപ്‌ഷൻ മാനേജ് ചെയ്യുക ടാപ്പുചെയ്‌ത് പേയ്‌മെൻ്റ് രീതികൾക്ക് കീഴിൽ അപ്‌ഡേറ്റ് ടാപ്പ് ചെയ്യുക.</string>
     <!-- Sheet title for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">Your backups subscription has expired</string>
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">നിങ്ങളുടെ ബാക്കപ്പ് സബ്സ്ക്രിപ്ഷൻ കാലഹരണപ്പെട്ടു</string>
     <!-- Sheet body part 1 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Your subscription couldn\'t be renewed with your payment method. To continue backing up media you need an active subscription.</string>
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">നിങ്ങളുടെ പേയ്‌മെന്റ് രീതി ഉപയോഗിച്ച് സബ്സ്ക്രിപ്ഷൻ പുതുക്കാൻ കഴിഞ്ഞില്ല. മീഡിയ ബാക്കപ്പ് ചെയ്യുന്നത് തുടരാൻ നിങ്ങൾക്ക് ഒരു സജീവ സബ്സ്ക്രിപ്ഷൻ ആവശ്യമാണ്.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Backups plan.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">സൗജന്യ Signal ബാക്കപ്പ് പ്ലാനിലേക്ക് നിങ്ങൾക്ക് തുടർന്നും ആക്‌സസ് ഉണ്ടായിരിക്കും.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">ബാക്കപ്പ് പൂർത്തിയാക്കാൻ കഴിഞ്ഞില്ല</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7851,7 +7868,7 @@
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
     <!-- Primary action button to open backups management screen -->
-    <string name="BackupAlertBottomSheet__manage_backups">Manage backups</string>
+    <string name="BackupAlertBottomSheet__manage_backups">ബാക്കപ്പുകൾ കൈകാര്യം ചെയ്യുക</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">ഇപ്പോൾ ബാക്കപ്പ് ചെയ്യുക</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -7861,9 +7878,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">പ്രതിമാസം %1$s/-ന് സബ്‌സ്‌ക്രൈബ് ചെയ്യുക</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">മീഡിയ ഇപ്പോൾ ഡൗൺലോഡ് ചെയ്യുക</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Download backup now</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">മീഡിയ ഡൗൺലോഡ് ചെയ്യരുത്</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">Don\'t download backup</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">ഇപ്പോൾ വേണ്ട</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -7931,6 +7948,14 @@
     <string name="BackupStatusRow__restore_no_internet">പുനഃസ്ഥാപിക്കൽ താൽക്കാലികമായി നിർത്തി: ഇൻ്റർനെറ്റ് ഇല്ല…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">പുനഃസ്ഥാപിക്കൽ താൽക്കാലികമായി നിർത്തി: ഉപകരണത്തിന് ബാറ്ററി കുറവാണ്</string>
+    <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">ഡൗൺലോഡ് ചെയ്യുന്നു: %1$s / %2$s (%3$s%%)</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
+    <string name="BackupStatusRow__download_waiting_for_wifi">ഡൗൺലോഡ് താൽക്കാലികമായി നിർത്തി: Wi-Fi-യ്ക്കായി കാത്തിരിക്കുന്നു…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
+    <string name="BackupStatusRow__download_no_internet">ഡൗൺലോഡ് താൽക്കാലികമായി നിർത്തി: ഇന്റർനെറ്റ് ഇല്ല…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
+    <string name="BackupStatusRow__download_device_has_low_battery">ഡൗൺലോഡ് താൽക്കാലികമായി നിർത്തി: ഉപകരണത്തിൽ ബാറ്ററി കുറവാണ്</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">നിങ്ങളുടെ ബാക്കപ്പ് ഡൗൺലോഡ് ചെയ്യാൻ മതിയായ ഇടമില്ല. തുടരാൻ %1$s ഇടം ശൂന്യമാക്കുക.</string>
     <!-- Text row label to skip download -->
@@ -8039,7 +8064,7 @@
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
-    <string name="RemoteBackupsSettingsFragment__cancel_upload">Cancel upload</string>
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">അപ്‌ലോഡ് റദ്ദാക്കുക</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal ബാക്കപ്പുകൾ</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8119,7 +8144,7 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">ബാക്കപ്പുകൾ ഓഫാക്കി ഇല്ലാതാക്കണോ?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">നിങ്ങളിൽ നിന്ന് വീണ്ടും നിരക്ക് ഈടാക്കില്ല. നിങ്ങളുടെ ബാക്കപ്പ് ഇല്ലാതാക്കപ്പെടും, പുതിയ ബാക്കപ്പുകളൊന്നും സൃഷ്ടിക്കപ്പെടില്ല.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">നിങ്ങളുടെ ബാക്കപ്പ് ഇല്ലാതാക്കപ്പെടും, പുതിയ ബാക്കപ്പുകളൊന്നും സൃഷ്ടിക്കപ്പെടില്ല. നിങ്ങളുടെ ബാക്കപ്പിൽ സംഭരിച്ചിരിക്കുന്ന എല്ലാ മീഡിയയും ഇപ്പോൾ നിങ്ങളുടെ ഫോണിലേക്ക് ഡൗൺലോഡ് ചെയ്യപ്പെടും.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ഓഫ് ചെയ്‌ത ശേഷം ഇല്ലാതാക്കുക</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8147,12 +8172,14 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">നിങ്ങളുടെ ബാക്കപ്പിൻ്റെ വലുപ്പത്തെ ആശ്രയിച്ച്, ഇതിന് വളരെയധികം സമയമെടുത്തേക്കാം. ഡൗൺലോഡ് നടക്കുമ്പോൾ നിങ്ങൾ സാധാരണ ഉപയോഗിക്കുന്നതുപോലെ നിങ്ങളുടെ ഫോൺ ഉപയോഗിക്കാം.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Backups.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">ഈ ഉപകരണത്തിൽ നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ കണ്ടെത്തിയില്ല. Signal ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരാൻ പുതുക്കുക.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">ഈ ഉപകരണത്തിലെ നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ അടുത്ത %1$d ദിവസത്തേക്ക് സാധുതയുള്ളതാണ്. Signal ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരാൻ പുതുക്കുക</item>
         <item quantity="other">ഈ ഉപകരണത്തിലെ നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ അടുത്ത %1$d ദിവസത്തേക്ക് സാധുതയുള്ളതാണ്. Signal ബാക്കപ്പുകൾ ഉപയോഗിക്കുന്നത് തുടരാൻ പുതുക്കുക</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Resubscribe</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">പുതുക്കുക</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8167,27 +8194,28 @@
         <item quantity="other">%2$s സന്ദേശങ്ങളിൽ %1$s പ്രോസസ്സ് ചെയ്യുന്നു (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="one">ഈ ഉപകരണത്തിൽ ഇല്ലാത്ത %1$s ബാക്കപ്പ് ഡാറ്റ നിങ്ങളുടെ പക്കലുണ്ട്. നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ %2$d ദിവസത്തിനുള്ളിൽ അവസാനിക്കുമ്പോൾ നിങ്ങളുടെ ബാക്കപ്പ് ഇല്ലാതാക്കപ്പെടും.</item>
-        <item quantity="other">ഈ ഉപകരണത്തിൽ ഇല്ലാത്ത %1$s ബാക്കപ്പ് ഡാറ്റ നിങ്ങളുടെ പക്കലുണ്ട്. നിങ്ങളുടെ സബ്സ്ക്രിപ്ഷൻ %2$d ദിവസത്തിനുള്ളിൽ അവസാനിക്കുമ്പോൾ നിങ്ങളുടെ ബാക്കപ്പ് ഇല്ലാതാക്കപ്പെടും.</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Without a paid subscription media can\'t be offloaded.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">ഈ ഉപകരണത്തിൽ ഇല്ലാത്ത %1$s ബാക്കപ്പ് ഡാറ്റ നിങ്ങളുടെ പക്കലുണ്ട്. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">ഡൌൺലോഡ് ചെയ്യുക</string>
     <!-- Dialog title for skipping download of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_download_question">ഡൗൺലോഡ് ഒഴിവാക്കണോ?</string>
-    <!-- Dialog body for skiping download of backed up media -->
+    <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="one">നിങ്ങൾ ഡൗൺലോഡ് ചെയ്യുന്നത് ഒഴിവാക്കുകയാണെങ്കിൽ, നിങ്ങളുടെ ബാക്കപ്പിലെ ശേഷിക്കുന്ന മീഡിയയും അറ്റാച്ച്‌മെൻ്റുകളും %1$d ദിവസത്തിനുള്ളിൽ ഇല്ലാതാക്കപ്പെടും.</item>
         <item quantity="other">നിങ്ങൾ ഡൗൺലോഡ് ചെയ്യുന്നത് ഒഴിവാക്കുകയാണെങ്കിൽ, നിങ്ങളുടെ ബാക്കപ്പിലെ ശേഷിക്കുന്ന മീഡിയയും അറ്റാച്ച്‌മെൻ്റുകളും %1$d ദിവസത്തിനുള്ളിൽ ഇല്ലാതാക്കപ്പെടും.</item>
     </plurals>
+    <!-- Dialog body for skipping download of backed up media during deletion -->
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">നിങ്ങളുടെ ബാക്കപ്പിലെ ശേഷിക്കുന്ന മീഡിയയും അറ്റാച്ചുമെന്റുകളും ഡൗൺലോഡ് ചെയ്യുന്നത് ഒഴിവാക്കിയാൽ അവ ശാശ്വതമായി ഇല്ലാതാക്കപ്പെടും. ഈ ഡാറ്റ വീണ്ടെടുക്കാൻ കഴിയില്ല.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കണോ?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_message">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കിയാൽ, നിങ്ങളുടെ ബാക്കപ്പിലെ ശേഷിക്കുന്ന മീഡിയയും അറ്റാച്ചുമെന്റുകളും പിന്നീട് ഡൗൺലോഡ് ചെയ്യാൻ കഴിയും.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">ഒഴിവാക്കുക</string>
+    <!-- Positive dialog action to skip download during deletion -->
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">ഒഴിവാക്കി ശാശ്വതമായി ഇല്ലാതാക്കുക</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">ബാക്കപ്പുകൾ ഓഫാക്കാനും ഇല്ലാതാക്കാനും കഴിഞ്ഞില്ല</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8196,6 +8224,34 @@
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">അപ്‌ലോഡ് ചെയ്യുന്നു: %1$s / %2$s (%3$d%%)</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">വിശദാംശങ്ങൾ</string>
+    <!-- Text displayed when there was an error deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">ബാക്കപ്പുകൾ ഓഫാക്കിയിരിക്കുന്നു, പക്ഷേ Signal-ന്റെ സുരക്ഷിത സംഭരണ സേവനത്തിൽ നിന്ന് നിങ്ങളുടെ ഡാറ്റ ഇല്ലാതാക്കുന്നതിൽ ഒരു പിശക് സംഭവിച്ചു.</string>
+    <!-- Text displayed as the title in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">ബാക്കപ്പ് ഇല്ലാതാക്കാനായില്ല</string>
+    <!-- Text displayed as the body in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">ഒരു പിശകുണ്ടായി. പിന്തുണയുമായി ബന്ധപ്പെടൂ.</string>
+    <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">ബാക്കപ്പുകൾ ഓഫാക്കി, നിങ്ങളുടെ ഡാറ്റ നിങ്ങളുടെ ഉപകരണത്തിലേക്ക് ഡൗൺലോഡ് ചെയ്യപ്പെടുകയും തുടർന്ന് Signal-ന്റെ സുരക്ഷിത സംഭരണ സേവനത്തിൽ നിന്ന് ഇല്ലാതാക്കപ്പെടുകയും ചെയ്യും.</string>
+    <!-- Text displayed while we are processing a backup delete -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">ബാക്കപ്പുകൾ ഓഫാക്കി, Signal-ൻ്റെ സുരക്ഷിത സംഭരണ സേവനത്തിൽ നിന്ന് നിങ്ങളുടെ ഡാറ്റ ഇല്ലാതാക്കപ്പെടും.</string>
+    <!-- Text displayed after we have deleted a user\'s backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">ബാക്കപ്പുകൾ ഓഫാക്കി, Signal-ന്റെ സുരക്ഷിത സംഭരണ സേവനത്തിൽ നിന്ന് നിങ്ങളുടെ ഡാറ്റ ഇല്ലാതാക്കി.</string>
+    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">ഡൗൺലോഡ് ചെയ്യുന്നു: %1$s / %2$s (%3$d%%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Manage storage</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Download your backup today</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Your media and attachments will be permanently deleted without a paid subscription.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">Download</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">Don\'t download</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8220,6 +8276,8 @@
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">ഒരു നെറ്റ്‌വർക്ക് തകരാർ സംഭവിച്ചു. പിന്നീട് വീണ്ടും ശ്രമിക്കൂ.</string>
+    <!-- Toast message if this fragment encounters an in progress deletion -->
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">ഒരു ബാക്കപ്പ് ഇല്ലാതാക്കൽ പുരോഗമിക്കുന്നു.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8252,6 +8310,18 @@
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">നിങ്ങളുടെ അക്കൗണ്ടും ഡാറ്റയും വീണ്ടെടുക്കാൻ ഈ കീ ആവശ്യമാണ്. ഈ കീ സുരക്ഷിതമായ ഒരിടത്ത് സൂക്ഷിക്കുക. നിങ്ങൾക്കത് നഷ്‌ടപ്പെടുകയാണെങ്കിൽ, നിങ്ങളുടെ അക്കൗണ്ട് വീണ്ടെടുക്കാൻ നിങ്ങൾക്ക് കഴിയില്ല.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ക്ലിപ്പ്ബോർഡിലേക്ക് പകർത്തൂ</string>
+    <!-- Label for the button to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">പാസ്‌വേഡ് മാനേജറിൽ സംരക്ഷിക്കുക</string>
+    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">പാസ്‌വേഡ് മാനേജറിൽ സംരക്ഷിക്കണോ?</string>
+    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">സുരക്ഷിതമാണെന്ന് നിങ്ങൾ വിശ്വസിക്കുന്ന ഒരു പാസ്‌വേഡ് മാനേജറിൽ മാത്രം നിങ്ങളുടെ ബാക്കപ്പ് കീ സൂക്ഷിക്കുക. ഏത് പാസ്‌വേഡ് മാനേജറാണ് നിങ്ങൾക്ക് അനുയോജ്യമെന്ന് Signal ശുപാർശ ചെയ്യുന്നില്ല.</string>
+    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">നിങ്ങളുടെ പാസ്‌വേഡ് മാനേജറിൽ സംരക്ഷിച്ചു</string>
+    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">പാസ്‌വേഡ് മാനേജറിൽ സംരക്ഷിക്കാൻ കഴിയില്ല</string>
+    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">നിങ്ങൾ ഒരു പാസ്‌വേഡ് മാനേജർ സജ്ജീകരിച്ചിട്ടില്ല, അല്ലെങ്കിൽ നിങ്ങൾ ഉപയോഗിക്കുന്ന പാസ്‌വേഡ് മാനേജർ പിന്തുണയ്ക്കുന്നില്ല.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">അടുത്തത്</string>
     <!-- Bottom sheet title -->
@@ -8284,9 +8354,11 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">എല്ലാ ബാക്കപ്പുകളും എൻഡ്-ടു-എൻഡ് എൻക്രിപ്റ്റ് ചെയ്തിരിക്കുന്നു. Signal ലാഭേച്ഛയില്ലാതെ പ്രവർത്തിക്കുന്നു-ബാക്കപ്പുകൾക്ക് പണം നൽകുന്നത് ഞങ്ങളുടെ ദൗത്യത്തെ പിന്തുണയ്ക്കാൻ സഹായിക്കുന്നു.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__read_more">കൂടുതൽ വായിക്കുക</string>
-    <!-- Primary action button label when selecting a backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__next">അടുത്തത്</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">കൂടുതലറിയുക</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">സബ്സ്ക്രൈബ് ചെയ്യുക</string>
+    <!-- Primary action button label when selecting the paid backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">പ്രതിമാസം %1$s/-ന് സബ്‌സ്‌ക്രൈബ് ചെയ്യുക</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">ബാക്കപ്പ് തരം മാറ്റുക</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->

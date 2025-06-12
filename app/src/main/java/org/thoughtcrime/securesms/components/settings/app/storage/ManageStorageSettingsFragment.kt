@@ -273,7 +273,7 @@ private fun ManageStorageSettingsScreen(
   Scaffolds.Settings(
     title = stringResource(id = R.string.preferences__storage),
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24)
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
   ) { contentPadding ->
     Column(
       modifier = Modifier
@@ -378,7 +378,7 @@ private fun SetKeepMessagesScreen(
   Scaffolds.Settings(
     title = stringResource(id = R.string.preferences__keep_messages),
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24)
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
   ) { contentPadding ->
     Column(
       modifier = Modifier
@@ -418,7 +418,7 @@ private fun SetChatLengthLimitScreen(
   Scaffolds.Settings(
     title = stringResource(id = R.string.preferences__conversation_length_limit),
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24)
+    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
   ) { contentPadding ->
     Column(
       modifier = Modifier

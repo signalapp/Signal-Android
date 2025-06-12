@@ -79,6 +79,7 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
 
         StartLocation.BACKUPS_SETTINGS -> AppSettingsFragmentDirections.actionDirectToBackupsSettingsFragment()
         StartLocation.INVITE -> AppSettingsFragmentDirections.actionDirectToInviteFragment()
+        StartLocation.MANAGE_STORAGE -> AppSettingsFragmentDirections.actionDirectToStoragePreferenceFragment()
       }
     }
 
@@ -178,6 +179,8 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     @JvmStatic
     fun manageSubscriptions(context: Context): Intent = getIntentForStartLocation(context, StartLocation.MANAGE_SUBSCRIPTIONS)
 
+    fun manageStorage(context: Context): Intent = getIntentForStartLocation(context, StartLocation.MANAGE_STORAGE)
+
     @JvmStatic
     fun notificationProfiles(context: Context): Intent = getIntentForStartLocation(context, StartLocation.NOTIFICATION_PROFILES)
 
@@ -255,7 +258,8 @@ class AppSettingsActivity : DSLSettingsActivity(), GooglePayComponent {
     CHAT_FOLDERS(17),
     CREATE_CHAT_FOLDER(18),
     BACKUPS_SETTINGS(19),
-    INVITE(20);
+    INVITE(20),
+    MANAGE_STORAGE(21);
 
     companion object {
       fun fromCode(code: Int?): StartLocation {

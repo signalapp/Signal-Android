@@ -5,26 +5,32 @@
 
 package org.thoughtcrime.securesms.backup
 
+import androidx.annotation.WorkerThread
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
 import org.signal.core.util.throttleLatest
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.ArchiveCommitAttachmentDeletesJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob
 import org.thoughtcrime.securesms.jobs.BackfillDigestJob
 import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import java.util.concurrent.ConcurrentHashMap
 import kotlin.math.max
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Tracks the progress of uploading your message archive and provides an observable stream of results.
@@ -104,10 +110,28 @@ object ArchiveUploadProgress {
     }
 
     AppDependencies.jobManager.cancelAllInQueue(BackfillDigestJob.QUEUE)
+    AppDependencies.jobManager.cancelAllInQueue(ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE)
     UploadAttachmentToArchiveJob.getAllQueueKeys().forEach {
       AppDependencies.jobManager.cancelAllInQueue(it)
     }
     AppDependencies.jobManager.cancelAllInQueue(ArchiveThumbnailUploadJob.KEY)
+  }
+
+  @WorkerThread
+  suspend fun cancelAndBlock() {
+    Log.d(TAG, "Canceling upload.")
+    cancel()
+
+    withContext(Dispatchers.IO) {
+      Log.d(TAG, "Flushing job manager queue...")
+      AppDependencies.jobManager.flush()
+
+      val queues = setOf(BackfillDigestJob.QUEUE, ArchiveThumbnailUploadJob.KEY, ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE) + UploadAttachmentToArchiveJob.getAllQueueKeys()
+      Log.d(TAG, "Waiting for cancelations to occur...")
+      while (!AppDependencies.jobManager.areQueuesEmpty(queues)) {
+        delay(1.seconds)
+      }
+    }
   }
 
   fun onMessageBackupCreated(backupFileSize: Long) {
@@ -120,12 +144,12 @@ object ArchiveUploadProgress {
     }
   }
 
-  fun onMessageBackupUploadProgress(totalBytes: Long, bytesUploaded: Long) {
+  fun onMessageBackupUploadProgress(progress: AttachmentTransferProgress) {
     updateState {
       it.copy(
         state = ArchiveUploadProgressState.State.UploadBackupFile,
-        backupFileUploadedBytes = bytesUploaded,
-        backupFileTotalBytes = totalBytes
+        backupFileUploadedBytes = progress.transmitted.inWholeBytes,
+        backupFileTotalBytes = progress.total.inWholeBytes
       )
     }
   }

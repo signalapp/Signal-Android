@@ -217,7 +217,7 @@ sealed class ConversationListViewModel(
   private fun loadCurrentFolders() {
     viewModelScope.launch(Dispatchers.IO) {
       val folders = ChatFoldersRepository.getCurrentFolders()
-      val unreadCountAndMutedStatus = ChatFoldersRepository.getUnreadCountAndMutedStatusForFolders(folders)
+      val unreadCountAndEmptyAndMutedStatus = ChatFoldersRepository.getUnreadCountAndEmptyAndMutedStatusForFolders(folders)
 
       val selectedFolderId = if (currentFolder.id == -1L) {
         folders.firstOrNull()?.id
@@ -227,8 +227,9 @@ sealed class ConversationListViewModel(
       val chatFolders = folders.map { folder ->
         ChatFolderMappingModel(
           chatFolder = folder,
-          unreadCount = unreadCountAndMutedStatus[folder.id]?.first ?: 0,
-          isMuted = unreadCountAndMutedStatus[folder.id]?.second ?: false,
+          unreadCount = unreadCountAndEmptyAndMutedStatus[folder.id]?.first ?: 0,
+          isEmpty = unreadCountAndEmptyAndMutedStatus[folder.id]?.second ?: false,
+          isMuted = unreadCountAndEmptyAndMutedStatus[folder.id]?.third ?: false,
           isSelected = selectedFolderId == folder.id
         )
       }
@@ -242,7 +243,7 @@ sealed class ConversationListViewModel(
 
   private fun setSelection(newSelection: Collection<Conversation>) {
     store.update {
-      val selection = newSelection.toSet()
+      val selection = newSelection.filter { select -> select.type == Conversation.Type.THREAD }.toSet()
       it.copy(internalSelection = selection, selectedConversations = ConversationSet(selection))
     }
   }

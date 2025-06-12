@@ -66,6 +66,7 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.viewModel
 import java.util.Locale
+import kotlin.time.Duration
 
 /**
  * Restore backup from remote source.
@@ -268,7 +269,7 @@ private fun BackupAvailableContent(
         modifier = Modifier.padding(bottom = 6.dp)
       )
 
-      getFeatures(state.backupTier).forEach {
+      getFeatures(state.backupTier, state.backupMediaTTL).forEach {
         MessageBackupsTypeFeatureRow(
           messageBackupsTypeFeature = it,
           iconTint = MaterialTheme.colorScheme.primary,
@@ -322,7 +323,7 @@ private fun RestoreFromBackupContentLoadingPreview() {
 }
 
 @Composable
-private fun getFeatures(tier: MessageBackupTier?): ImmutableList<MessageBackupsTypeFeature> {
+private fun getFeatures(tier: MessageBackupTier?, mediaTTL: Duration): ImmutableList<MessageBackupsTypeFeature> {
   return when (tier) {
     null -> persistentListOf()
     MessageBackupTier.PAID -> {
@@ -342,7 +343,7 @@ private fun getFeatures(tier: MessageBackupTier?): ImmutableList<MessageBackupsT
       persistentListOf(
         MessageBackupsTypeFeature(
           iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = stringResource(id = R.string.RemoteRestoreActivity__your_last_d_days_of_media, 30)
+          label = stringResource(id = R.string.RemoteRestoreActivity__your_last_d_days_of_media, mediaTTL.inWholeDays)
         ),
         MessageBackupsTypeFeature(
           iconResourceId = R.drawable.symbol_recent_compact_bold_16,
@@ -373,7 +374,7 @@ private fun RestoreProgressDialog(restoreProgress: RestoreV2Event?) {
           horizontalAlignment = Alignment.CenterHorizontally,
           modifier = Modifier.wrapContentSize()
         ) {
-          if (restoreProgress == null) {
+          if (restoreProgress == null || restoreProgress.type == RestoreV2Event.Type.PROGRESS_FINALIZING) {
             CircularProgressIndicator(
               modifier = Modifier
                 .padding(top = 55.dp, bottom = 16.dp)
@@ -392,7 +393,8 @@ private fun RestoreProgressDialog(restoreProgress: RestoreV2Event?) {
 
           val progressText = when (restoreProgress?.type) {
             RestoreV2Event.Type.PROGRESS_DOWNLOAD -> stringResource(id = R.string.RemoteRestoreActivity__downloading_backup)
-            RestoreV2Event.Type.PROGRESS_RESTORE -> stringResource(id = R.string.RemoteRestoreActivity__downloading_backup)
+            RestoreV2Event.Type.PROGRESS_RESTORE -> stringResource(id = R.string.RemoteRestoreActivity__restoring_messages)
+            RestoreV2Event.Type.PROGRESS_FINALIZING -> stringResource(id = R.string.RemoteRestoreActivity__finishing_restore)
             else -> stringResource(id = R.string.RemoteRestoreActivity__restoring)
           }
 
@@ -402,7 +404,7 @@ private fun RestoreProgressDialog(restoreProgress: RestoreV2Event?) {
             modifier = Modifier.padding(bottom = 12.dp)
           )
 
-          if (restoreProgress != null) {
+          if (restoreProgress != null && restoreProgress.type != RestoreV2Event.Type.PROGRESS_FINALIZING) {
             val progressBytes = restoreProgress.count.toUnitString()
             val totalBytes = restoreProgress.estimatedTotalCount.toUnitString()
             Text(

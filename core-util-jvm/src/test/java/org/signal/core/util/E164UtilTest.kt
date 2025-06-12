@@ -61,6 +61,7 @@ class E164UtilTest {
     Assert.assertEquals("1234", formatter.formatAsE164("01234"))
     Assert.assertEquals(null, formatter.formatAsE164("0"))
     Assert.assertEquals(null, formatter.formatAsE164("0000000"))
+    Assert.assertEquals("12345", formatter.formatAsE164("012345"))
 
     formatter = E164Util.createFormatterForE164("+49 1234 567890")
     Assert.assertEquals("+491234567890", formatter.formatAsE164("+0491234567890"))

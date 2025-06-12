@@ -46,6 +46,7 @@ class MainToolbarViewModel : ViewModel() {
     internalStateFlow.update {
       it.copy(
         hasFailedBackups = BackupRepository.shouldDisplayBackupFailedIndicator() || BackupRepository.shouldDisplayBackupAlreadyRedeemedIndicator(),
+        isOutOfRemoteStorageSpace = BackupRepository.shouldDisplayOutOfStorageSpaceUx(),
         hasPassphrase = !SignalStore.settings.passphraseDisabled
       )
     }
@@ -72,6 +73,14 @@ class MainToolbarViewModel : ViewModel() {
       internalEvents.emit(Event.Search.Query(query))
     }
   }
+
+  fun setActionModeCount(count: Int) {
+    internalStateFlow.update {
+      it.copy(actionModeCount = count)
+    }
+  }
+
+  fun isInActionMode(): Boolean = state.value.mode == MainToolbarMode.ACTION_MODE
 
   fun presentToolbarForConversationListFragment() {
     setToolbarMode(MainToolbarMode.FULL, destination = MainNavigationListLocation.CHATS, overwriteSearchMode = false)

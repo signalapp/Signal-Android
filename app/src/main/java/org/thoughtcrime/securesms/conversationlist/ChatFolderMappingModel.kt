@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 data class ChatFolderMappingModel(
   val chatFolder: ChatFolderRecord,
   val unreadCount: Int,
+  val isEmpty: Boolean,
   val isMuted: Boolean,
   val isSelected: Boolean
 ) : MappingModel<ChatFolderMappingModel>, Parcelable {
@@ -22,6 +23,7 @@ data class ChatFolderMappingModel(
   override fun areContentsTheSame(newItem: ChatFolderMappingModel): Boolean {
     return chatFolder == newItem.chatFolder &&
       unreadCount == newItem.unreadCount &&
+      isEmpty == newItem.isEmpty &&
       isMuted == newItem.isMuted &&
       isSelected == newItem.isSelected
   }

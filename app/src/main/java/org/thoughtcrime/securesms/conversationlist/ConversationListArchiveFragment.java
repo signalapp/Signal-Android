@@ -26,9 +26,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 import androidx.annotation.WorkerThread;
-import androidx.appcompat.view.ActionMode;
 import androidx.compose.material3.SnackbarDuration;
-import androidx.navigation.fragment.NavHostFragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.signal.core.util.concurrent.LifecycleDisposable;
@@ -48,7 +46,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import kotlin.Unit;
 
 
-public class ConversationListArchiveFragment extends ConversationListFragment implements ActionMode.Callback
+public class ConversationListArchiveFragment extends ConversationListFragment
 {
   private View                        coordinator;
   private RecyclerView                list;

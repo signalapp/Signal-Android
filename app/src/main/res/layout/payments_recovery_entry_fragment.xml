@@ -13,7 +13,7 @@
         android:layout_height="@dimen/signal_m3_toolbar_height"
         android:minHeight="@dimen/signal_m3_toolbar_height"
         android:theme="?actionBarStyle"
-        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:navigationIcon="@drawable/symbol_arrow_start_24"
         app:title="@string/PaymentsRecoveryStartFragment__recovery_phrase"
         app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 

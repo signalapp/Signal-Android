@@ -78,7 +78,9 @@ import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageSmall
 import org.thoughtcrime.securesms.conversationlist.model.ConversationFilter
+import org.thoughtcrime.securesms.dependencies.GooglePlayBillingDependencies.context
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.rememberRecipientField
 
 interface MainToolbarCallback {
   fun onNewGroupClick()
@@ -97,6 +99,7 @@ interface MainToolbarCallback {
   fun onStoryPrivacyClick()
   fun onCloseSearchClick()
   fun onCloseArchiveClick()
+  fun onCloseActionModeClick()
   fun onSearchQueryUpdated(query: String)
   fun onNotificationProfileTooltipDismissed()
 
@@ -117,16 +120,27 @@ interface MainToolbarCallback {
     override fun onStoryPrivacyClick() = Unit
     override fun onCloseSearchClick() = Unit
     override fun onCloseArchiveClick() = Unit
+    override fun onCloseActionModeClick() = Unit
     override fun onSearchQueryUpdated(query: String) = Unit
     override fun onNotificationProfileTooltipDismissed() = Unit
   }
 }
 
-enum class MainToolbarMode {
-  ACTION_MODE,
-  FULL,
-  BASIC,
-  SEARCH
+enum class MainToolbarMode(val crossFadeKey: CrossFadeKey) {
+  ACTION_MODE(CrossFadeKey.ACTION_MODE),
+  FULL(CrossFadeKey.FULL),
+  BASIC(CrossFadeKey.BASIC),
+  SEARCH(CrossFadeKey.FULL);
+
+  /**
+   * Since FULL and SEARCH share the same cross-fade target, we use a shared
+   * cross-fade key between them.
+   */
+  enum class CrossFadeKey {
+    ACTION_MODE,
+    FULL,
+    BASIC
+  }
 }
 
 data class MainToolbarState(
@@ -138,12 +152,14 @@ data class MainToolbarState(
   val callFilter: CallLogFilter = CallLogFilter.ALL,
   val hasUnreadPayments: Boolean = false,
   val hasFailedBackups: Boolean = false,
+  val isOutOfRemoteStorageSpace: Boolean = false,
   val hasEnabledNotificationProfile: Boolean = false,
   val showNotificationProfilesTooltip: Boolean = false,
   val hasPassphrase: Boolean = false,
   val proxyState: ProxyState = ProxyState.NONE,
   @StringRes val searchHint: Int = R.string.SearchToolbar_search,
-  val searchQuery: String = ""
+  val searchQuery: String = "",
+  val actionModeCount: Int = 0
 ) {
   enum class ProxyState(@DrawableRes val icon: Int) {
     NONE(-1),
@@ -159,16 +175,11 @@ fun MainToolbar(
   state: MainToolbarState,
   callback: MainToolbarCallback
 ) {
-  if (state.mode == MainToolbarMode.ACTION_MODE) {
-    TopAppBar(title = {})
-    return
-  }
-
   Crossfade(
-    targetState = state.mode != MainToolbarMode.BASIC
+    targetState = state.mode.crossFadeKey
   ) { targetState ->
     when (targetState) {
-      true -> Box {
+      MainToolbarMode.CrossFadeKey.FULL -> Box {
         var revealOffset by remember { mutableStateOf(Offset.Zero) }
 
         BoxWithConstraints {
@@ -203,9 +214,36 @@ fun MainToolbar(
         }
       }
 
-      false -> ArchiveToolbar(state, callback)
+      MainToolbarMode.CrossFadeKey.BASIC -> ArchiveToolbar(state, callback)
+      MainToolbarMode.CrossFadeKey.ACTION_MODE -> ActionModeToolbar(state, callback)
     }
   }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ActionModeToolbar(
+  state: MainToolbarState,
+  callback: MainToolbarCallback
+) {
+  TopAppBar(
+    colors = TopAppBarDefaults.topAppBarColors(
+      containerColor = state.toolbarColor ?: MaterialTheme.colorScheme.surface
+    ),
+    navigationIcon = {
+      IconButtons.IconButton(onClick = {
+        callback.onCloseActionModeClick()
+      }) {
+        Icon(
+          imageVector = ImageVector.vectorResource(R.drawable.symbol_x_24),
+          contentDescription = stringResource(R.string.CallScreenTopBar__go_back)
+        )
+      }
+    },
+    title = {
+      Text(text = context.resources.getQuantityString(R.plurals.ConversationListFragment_s_selected, state.actionModeCount, state.actionModeCount))
+    }
+  )
 }
 
 @Composable
@@ -348,8 +386,10 @@ private fun PrimaryToolbar(
             }
         )
 
+        val badge by rememberRecipientField(state.self) { featuredBadge }
+
         BadgeImageSmall(
-          badge = state.self.featuredBadge,
+          badge = badge,
           modifier = Modifier
             .padding(start = 14.dp, top = 16.dp)
             .size(16.dp)
@@ -467,14 +507,14 @@ private fun ProxyAction(
 
 @Composable
 private fun HeadsUpIndicator(state: MainToolbarState, modifier: Modifier = Modifier) {
-  if (!state.hasUnreadPayments && !state.hasFailedBackups) {
+  if (!state.hasUnreadPayments && !state.hasFailedBackups && !state.isOutOfRemoteStorageSpace) {
     return
   }
 
-  val color = if (state.hasFailedBackups) {
-    Color(0xFFFFCC00)
-  } else {
-    MaterialTheme.colorScheme.primary
+  val color = when {
+    state.isOutOfRemoteStorageSpace -> Color.Transparent
+    state.hasFailedBackups -> Color(0xFFFFCC00)
+    else -> MaterialTheme.colorScheme.primary
   }
 
   Box(
@@ -482,7 +522,13 @@ private fun HeadsUpIndicator(state: MainToolbarState, modifier: Modifier = Modif
       .size(13.dp)
       .background(color = color, shape = CircleShape)
   ) {
-    // Intentionally empty
+    if (state.isOutOfRemoteStorageSpace) {
+      Icon(
+        imageVector = ImageVector.vectorResource(R.drawable.symbol_error_circle_fill_16),
+        tint = MaterialTheme.colorScheme.error,
+        contentDescription = null
+      )
+    }
   }
 }
 
@@ -697,7 +743,8 @@ private fun FullMainToolbarPreview() {
         destination = MainNavigationListLocation.CHATS,
         hasEnabledNotificationProfile = true,
         proxyState = MainToolbarState.ProxyState.CONNECTED,
-        hasFailedBackups = true
+        hasFailedBackups = true,
+        isOutOfRemoteStorageSpace = false
       ),
       callback = object : MainToolbarCallback by MainToolbarCallback.Empty {
         override fun onSearchClick() {

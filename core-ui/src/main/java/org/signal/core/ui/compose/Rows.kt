@@ -44,6 +44,7 @@ import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.R
@@ -226,6 +227,34 @@ object Rows {
     enabled: Boolean = true
   ) {
     TextRow(
+      text = remember(text) { AnnotatedString(text) },
+      label = remember(label) { label?.let { AnnotatedString(label) } },
+      icon = icon,
+      modifier = modifier,
+      iconModifier = iconModifier,
+      foregroundTint = foregroundTint,
+      onClick = onClick,
+      onLongClick = onLongClick,
+      enabled = enabled
+    )
+  }
+
+  /**
+   * Text row that positions [text] and optional [label] in a [TextAndLabel] to the side of an optional [icon].
+   */
+  @Composable
+  fun TextRow(
+    text: AnnotatedString,
+    modifier: Modifier = Modifier,
+    iconModifier: Modifier = Modifier,
+    label: AnnotatedString? = null,
+    icon: Painter? = null,
+    foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
+    onClick: (() -> Unit)? = null,
+    onLongClick: (() -> Unit)? = null,
+    enabled: Boolean = true
+  ) {
+    TextRow(
       text = {
         TextAndLabel(
           text = text,
@@ -264,6 +293,7 @@ object Rows {
     iconModifier: Modifier = Modifier,
     label: String? = null,
     foregroundTint: Color = MaterialTheme.colorScheme.onSurface,
+    iconTint: Color = foregroundTint,
     onClick: (() -> Unit)? = null,
     onLongClick: (() -> Unit)? = null,
     enabled: Boolean = true
@@ -282,7 +312,7 @@ object Rows {
           Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = foregroundTint,
+            tint = iconTint,
             modifier = iconModifier
           )
         }
@@ -350,6 +380,28 @@ object Rows {
     text: String? = null,
     modifier: Modifier = Modifier,
     label: String? = null,
+    enabled: Boolean = true,
+    textColor: Color = MaterialTheme.colorScheme.onSurface,
+    textStyle: TextStyle = MaterialTheme.typography.bodyLarge
+  ) {
+    TextAndLabel(
+      text = remember(text) { text?.let { AnnotatedString(it) } },
+      label = remember(label) { label?.let { AnnotatedString(it) } },
+      modifier = modifier,
+      enabled = enabled,
+      textColor = textColor,
+      textStyle = textStyle
+    )
+  }
+
+  /**
+   * Row component to position text above an optional label.
+   */
+  @Composable
+  fun RowScope.TextAndLabel(
+    text: AnnotatedString? = null,
+    modifier: Modifier = Modifier,
+    label: AnnotatedString? = null,
     enabled: Boolean = true,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
     textStyle: TextStyle = MaterialTheme.typography.bodyLarge

@@ -82,8 +82,8 @@ class MessageBackupsCheckoutActivityTest {
     composeTestRule.onNodeWithTag("message-backups-type-selection-screen-lazy-column")
       .performScrollToNode(hasText(context.getString(R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media)))
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media)).performClick()
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).assertIsEnabled()
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).performClick()
+    composeTestRule.onNodeWithTag("subscribe-button").assertIsEnabled()
+    composeTestRule.onNodeWithTag("subscribe-button").performClick()
     composeTestRule.waitForIdle()
 
     testDispatcher.scheduler.advanceUntilIdle()
@@ -125,8 +125,8 @@ class MessageBackupsCheckoutActivityTest {
     composeTestRule.onNodeWithTag("message-backups-type-selection-screen-lazy-column")
       .performScrollToNode(hasText(context.getString(R.string.MessageBackupsTypeSelectionScreen__free)))
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__free)).performClick()
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).assertIsEnabled()
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).performClick()
+    composeTestRule.onNodeWithTag("subscribe-button").assertIsEnabled()
+    composeTestRule.onNodeWithTag("subscribe-button").performClick()
     composeTestRule.waitForIdle()
 
     assertThat(SignalStore.backup.backupTier).isEqualTo(MessageBackupTier.FREE)
@@ -175,7 +175,7 @@ class MessageBackupsCheckoutActivityTest {
 
     // Type selection screen
     composeTestRule.onNodeWithText(context.getString(R.string.MessagesBackupsTypeSelectionScreen__choose_your_backup_plan)).assertIsDisplayed()
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsTypeSelectionScreen__next)).assertIsNotEnabled()
+    composeTestRule.onNodeWithTag("subscribe-button").assertIsNotEnabled()
   }
 
   private fun launchCheckoutFlow(tier: MessageBackupTier? = null): ActivityScenario<MessageBackupsCheckoutActivity> {

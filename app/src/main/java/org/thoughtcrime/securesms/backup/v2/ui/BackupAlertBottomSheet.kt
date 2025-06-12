@@ -56,6 +56,7 @@ import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
+import org.thoughtcrime.securesms.keyvalue.protos.BackupDownloadNotifierState
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.signal.core.ui.R as CoreUiR
@@ -110,7 +111,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
       BackupAlert.FailedToRenew -> launchManageBackupsSubscription()
       is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
 
-      BackupAlert.MediaWillBeDeletedToday -> {
+      is BackupAlert.DownloadYourBackupData -> {
         performFullMediaDownload()
       }
 
@@ -134,10 +135,7 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
       is BackupAlert.CouldNotCompleteBackup -> Unit
       BackupAlert.FailedToRenew -> Unit
       is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
-      BackupAlert.MediaWillBeDeletedToday -> {
-        displayLastChanceDialog()
-      }
-
+      is BackupAlert.DownloadYourBackupData -> Unit
       is BackupAlert.DiskFull -> {
         displaySkipRestoreDialog()
       }
@@ -153,21 +151,10 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
 
     when (backupAlert) {
       is BackupAlert.CouldNotCompleteBackup, BackupAlert.BackupFailed -> BackupRepository.markBackupFailedSheetDismissed()
-      is BackupAlert.MediaWillBeDeletedToday -> BackupRepository.snoozeYourMediaWillBeDeletedTodaySheet()
+      is BackupAlert.DownloadYourBackupData -> BackupRepository.snoozeDownloadYourBackupData()
       is BackupAlert.ExpiredAndDowngraded -> BackupRepository.markBackupExpiredAndDowngradedSheetDismissed()
       else -> Unit
     }
-  }
-
-  private fun displayLastChanceDialog() {
-    MaterialAlertDialogBuilder(requireContext())
-      .setTitle(R.string.BackupAlertBottomSheet__media_will_be_deleted)
-      .setMessage(R.string.BackupAlertBottomSheet__the_media_stored_in_your_backup)
-      .setPositiveButton(R.string.BackupAlertBottomSheet__download) { _, _ ->
-        performFullMediaDownload()
-      }
-      .setNegativeButton(R.string.BackupAlertBottomSheet__dont_download, null)
-      .show()
   }
 
   private fun displaySkipRestoreDialog() {
@@ -255,7 +242,7 @@ fun BackupAlertSheetContent(
       )
 
       BackupAlert.FailedToRenew -> PaymentProcessingBody()
-      BackupAlert.MediaWillBeDeletedToday -> MediaWillBeDeletedTodayBody()
+      is BackupAlert.DownloadYourBackupData -> DownloadYourBackupData(backupAlert.formattedSize)
       is BackupAlert.DiskFull -> DiskFullBody(requiredSpace = backupAlert.requiredSpace)
       BackupAlert.BackupFailed -> BackupFailedBody()
       BackupAlert.CouldNotRedeemBackup -> CouldNotRedeemBackup()
@@ -377,9 +364,9 @@ private fun PaymentProcessingBody() {
 }
 
 @Composable
-private fun MediaWillBeDeletedTodayBody() {
+private fun DownloadYourBackupData(formattedSize: String) {
   Text(
-    text = stringResource(id = R.string.BackupAlertBottomSheet__your_signal_media_backup_plan_has_been),
+    text = stringResource(id = R.string.BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device, formattedSize),
     textAlign = TextAlign.Center,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 24.dp)
@@ -426,7 +413,7 @@ private fun rememberBackupsIconColors(backupAlert: BackupAlert): BackupsIconColo
     when (backupAlert) {
       BackupAlert.ExpiredAndDowngraded, BackupAlert.FailedToRenew, is BackupAlert.MediaBackupsAreOff -> error("Not icon-based options.")
       is BackupAlert.CouldNotCompleteBackup, BackupAlert.BackupFailed, is BackupAlert.DiskFull, BackupAlert.CouldNotRedeemBackup -> BackupsIconColors.Warning
-      BackupAlert.MediaWillBeDeletedToday -> BackupsIconColors.Error
+      is BackupAlert.DownloadYourBackupData -> BackupsIconColors.Error
     }
   }
 }
@@ -437,7 +424,13 @@ private fun titleString(backupAlert: BackupAlert): String {
     is BackupAlert.CouldNotCompleteBackup -> stringResource(R.string.BackupAlertBottomSheet__couldnt_complete_backup)
     BackupAlert.FailedToRenew -> stringResource(R.string.BackupAlertBottomSheet__your_backups_subscription_failed_to_renew)
     is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
-    BackupAlert.MediaWillBeDeletedToday -> stringResource(R.string.BackupAlertBottomSheet__your_media_will_be_deleted_today)
+    is BackupAlert.DownloadYourBackupData -> {
+      if (backupAlert.isLastDay) {
+        stringResource(R.string.BackupAlertBottomSheet__download_your_backup_data_today)
+      } else {
+        stringResource(R.string.BackupAlertBottomSheet__download_your_backup_data)
+      }
+    }
     is BackupAlert.DiskFull -> stringResource(R.string.BackupAlertBottomSheet__free_up_s_on_this_device, backupAlert.requiredSpace)
     BackupAlert.BackupFailed -> stringResource(R.string.BackupAlertBottomSheet__backup_failed)
     BackupAlert.CouldNotRedeemBackup -> stringResource(R.string.BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription)
@@ -453,7 +446,7 @@ private fun primaryActionString(
     is BackupAlert.CouldNotCompleteBackup -> stringResource(R.string.BackupAlertBottomSheet__back_up_now)
     BackupAlert.FailedToRenew -> stringResource(R.string.BackupAlertBottomSheet__manage_subscription)
     is BackupAlert.MediaBackupsAreOff -> error("Not supported.")
-    BackupAlert.MediaWillBeDeletedToday -> stringResource(R.string.BackupAlertBottomSheet__download_media_now)
+    is BackupAlert.DownloadYourBackupData -> stringResource(R.string.BackupAlertBottomSheet__download_backup_now)
     is BackupAlert.DiskFull -> stringResource(R.string.BackupAlertBottomSheet__got_it)
     is BackupAlert.BackupFailed -> stringResource(R.string.BackupAlertBottomSheet__check_for_update)
     BackupAlert.CouldNotRedeemBackup -> stringResource(R.string.BackupAlertBottomSheet__got_it)
@@ -468,7 +461,7 @@ private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
       is BackupAlert.CouldNotCompleteBackup -> R.string.BackupAlertBottomSheet__try_later
       BackupAlert.FailedToRenew, BackupAlert.ExpiredAndDowngraded -> R.string.BackupAlertBottomSheet__not_now
       is BackupAlert.MediaBackupsAreOff -> error("Not supported.")
-      BackupAlert.MediaWillBeDeletedToday -> R.string.BackupAlertBottomSheet__dont_download_media
+      is BackupAlert.DownloadYourBackupData -> R.string.BackupAlertBottomSheet__dont_download_backup
       is BackupAlert.DiskFull -> R.string.BackupAlertBottomSheet__skip_restore
       is BackupAlert.BackupFailed -> R.string.BackupAlertBottomSheet__learn_more
       BackupAlert.CouldNotRedeemBackup -> R.string.BackupAlertBottomSheet__learn_more
@@ -501,7 +494,10 @@ private fun BackupAlertSheetContentPreviewPayment() {
 private fun BackupAlertSheetContentPreviewDelete() {
   Previews.BottomSheetPreview {
     BackupAlertSheetContent(
-      backupAlert = BackupAlert.MediaWillBeDeletedToday
+      backupAlert = BackupAlert.DownloadYourBackupData(
+        isLastDay = false,
+        formattedSize = "2.3MB"
+      )
     )
   }
 }
@@ -580,9 +576,16 @@ sealed class BackupAlert : Parcelable {
   ) : BackupAlert()
 
   /**
-   * TODO [backups] - This value is driven as "60D after the last time the user pinged their backup"
+   * When a user's subscription becomes cancelled or has a payment failure, we will alert the user
+   * up to two times regarding their media deletion via a sheet, and once in the last 4 hours with a dialog.
+   *
+   * This value drives viewing the sheet.
    */
-  data object MediaWillBeDeletedToday : BackupAlert()
+  data class DownloadYourBackupData(
+    val isLastDay: Boolean,
+    val formattedSize: String,
+    val type: BackupDownloadNotifierState.Type = BackupDownloadNotifierState.Type.SHEET
+  ) : BackupAlert()
 
   /**
    * The disk is full. Contains a value representing the amount of space that must be freed.

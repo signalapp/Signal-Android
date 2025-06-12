@@ -4,6 +4,8 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.isNullOrEmpty
+import org.signal.core.util.logging.Log
+import org.signal.libsignal.zkgroup.InvalidInputException
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
 import org.thoughtcrime.securesms.components.settings.app.chats.folders.ChatFolderRecord
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
@@ -20,14 +22,21 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.inAppPayment
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
+import org.thoughtcrime.securesms.groups.BadGroupIdException
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.recipients.RecipientId
+import org.whispersystems.signalservice.api.push.ServiceId
+import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.storage.SignalCallLinkRecord
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
+import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.SignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.storage.StorageId
@@ -36,6 +45,7 @@ import org.whispersystems.signalservice.api.storage.toSignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.toSignalContactRecord
 import org.whispersystems.signalservice.api.storage.toSignalGroupV1Record
 import org.whispersystems.signalservice.api.storage.toSignalGroupV2Record
+import org.whispersystems.signalservice.api.storage.toSignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.toSignalStorageRecord
 import org.whispersystems.signalservice.api.storage.toSignalStoryDistributionListRecord
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -44,12 +54,17 @@ import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord.IdentityState
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
+import java.time.DayOfWeek
 import java.util.Currency
 import kotlin.math.max
 import org.whispersystems.signalservice.internal.storage.protos.AvatarColor as RemoteAvatarColor
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord as RemoteChatFolder
+import org.whispersystems.signalservice.internal.storage.protos.NotificationProfile.DayOfWeek as RemoteDayOfWeek
+import org.whispersystems.signalservice.internal.storage.protos.Recipient as RemoteRecipient
 
 object StorageSyncModels {
+
+  private val TAG = Log.tag(StorageSyncModels::class.java)
 
   fun localToRemoteRecord(settings: RecipientRecord): SignalStorageRecord {
     if (settings.storageId == null) {
@@ -80,6 +95,10 @@ object StorageSyncModels {
 
   fun localToRemoteRecord(folder: ChatFolderRecord, rawStorageId: ByteArray): SignalStorageRecord {
     return localToRemoteChatFolder(folder, rawStorageId).toSignalStorageRecord()
+  }
+
+  fun localToRemoteRecord(profile: NotificationProfile, rawStorageId: ByteArray): SignalStorageRecord {
+    return localToRemoteNotificationProfile(profile, rawStorageId).toSignalStorageRecord()
   }
 
   @JvmStatic
@@ -396,22 +415,101 @@ object StorageSyncModels {
     }.build().toSignalChatFolderRecord(StorageId.forChatFolder(rawStorageId))
   }
 
-  private fun localToRemoteChatFolderRecipients(threadIds: List<Long>): List<RemoteChatFolder.Recipient> {
-    val recipientIds = SignalDatabase.threads.getRecipientIdsForThreadIds(threadIds)
-    return recipientIds.mapNotNull { id ->
-      val recipient = SignalDatabase.recipients.getRecordForSync(id) ?: throw AssertionError("Missing recipient for id")
-      when (recipient.recipientType) {
-        RecipientType.INDIVIDUAL -> {
-          RemoteChatFolder.Recipient(contact = RemoteChatFolder.Recipient.Contact(serviceId = recipient.serviceId?.toString() ?: "", e164 = recipient.e164 ?: ""))
-        }
-        RecipientType.GV1 -> {
-          RemoteChatFolder.Recipient(legacyGroupId = recipient.groupId!!.requireV1().decodedId.toByteString())
-        }
-        RecipientType.GV2 -> {
-          RemoteChatFolder.Recipient(groupMasterKey = recipient.syncExtras.groupMasterKey!!.serialize().toByteString())
-        }
-        else -> null
+  fun localToRemoteNotificationProfile(profile: NotificationProfile, rawStorageId: ByteArray?): SignalNotificationProfileRecord {
+    return SignalNotificationProfileRecord.newBuilder(profile.storageServiceProto).apply {
+      id = UuidUtil.toByteArray(profile.notificationProfileId.uuid).toByteString()
+      name = profile.name
+      emoji = profile.emoji
+      color = profile.color.colorInt()
+      createdAtMs = profile.createdAt
+      allowAllCalls = profile.allowAllCalls
+      allowAllMentions = profile.allowAllMentions
+      allowedMembers = localToRemoteRecipients(profile.allowedMembers.toList())
+      scheduleEnabled = profile.schedule.enabled
+      scheduleStartTime = profile.schedule.start
+      scheduleEndTime = profile.schedule.end
+      scheduleDaysEnabled = localToRemoteDayOfWeek(profile.schedule.daysEnabled)
+      deletedAtTimestampMs = profile.deletedTimestampMs
+    }.build().toSignalNotificationProfileRecord(StorageId.forNotificationProfile(rawStorageId))
+  }
+
+  private fun localToRemoteDayOfWeek(daysEnabled: Set<DayOfWeek>): List<RemoteDayOfWeek> {
+    return daysEnabled.map { day ->
+      when (day) {
+        DayOfWeek.MONDAY -> RemoteDayOfWeek.MONDAY
+        DayOfWeek.TUESDAY -> RemoteDayOfWeek.TUESDAY
+        DayOfWeek.WEDNESDAY -> RemoteDayOfWeek.WEDNESDAY
+        DayOfWeek.THURSDAY -> RemoteDayOfWeek.THURSDAY
+        DayOfWeek.FRIDAY -> RemoteDayOfWeek.FRIDAY
+        DayOfWeek.SATURDAY -> RemoteDayOfWeek.SATURDAY
+        DayOfWeek.SUNDAY -> RemoteDayOfWeek.SUNDAY
       }
+    }
+  }
+
+  fun RemoteDayOfWeek.toLocal(): DayOfWeek {
+    return when (this) {
+      RemoteDayOfWeek.UNKNOWN -> DayOfWeek.MONDAY
+      RemoteDayOfWeek.MONDAY -> DayOfWeek.MONDAY
+      RemoteDayOfWeek.TUESDAY -> DayOfWeek.TUESDAY
+      RemoteDayOfWeek.WEDNESDAY -> DayOfWeek.WEDNESDAY
+      RemoteDayOfWeek.THURSDAY -> DayOfWeek.THURSDAY
+      RemoteDayOfWeek.FRIDAY -> DayOfWeek.FRIDAY
+      RemoteDayOfWeek.SATURDAY -> DayOfWeek.SATURDAY
+      RemoteDayOfWeek.SUNDAY -> DayOfWeek.SUNDAY
+    }
+  }
+
+  private fun localToRemoteChatFolderRecipients(threadIds: List<Long>): List<RemoteRecipient> {
+    val recipientIds = SignalDatabase.threads.getRecipientIdsForThreadIds(threadIds)
+    return localToRemoteRecipients(recipientIds)
+  }
+
+  private fun localToRemoteRecipients(recipientIds: List<RecipientId>): List<RemoteRecipient> {
+    return recipientIds.mapNotNull { id ->
+      val recipient = SignalDatabase.recipients.getRecordForSync(id)
+      if (recipient == null) {
+        Log.w(TAG, "Recipient $id from notification profile cannot be found")
+        null
+      } else {
+        when (recipient.recipientType) {
+          RecipientType.INDIVIDUAL -> {
+            RemoteRecipient(contact = RemoteRecipient.Contact(serviceId = recipient.serviceId?.toString() ?: "", e164 = recipient.e164 ?: ""))
+          }
+          RecipientType.GV1 -> {
+            RemoteRecipient(legacyGroupId = recipient.groupId!!.requireV1().decodedId.toByteString())
+          }
+          RecipientType.GV2 -> {
+            RemoteRecipient(groupMasterKey = recipient.syncExtras.groupMasterKey!!.serialize().toByteString())
+          }
+          else -> null
+        }
+      }
+    }
+  }
+
+  fun remoteToLocalRecipient(remoteRecipient: RemoteRecipient): Recipient? {
+    return if (remoteRecipient.contact != null) {
+      val serviceId = ServiceId.parseOrNull(remoteRecipient.contact!!.serviceId)
+      val e164 = remoteRecipient.contact!!.e164
+      Recipient.externalPush(SignalServiceAddress(serviceId, e164))
+    } else if (remoteRecipient.legacyGroupId != null) {
+      try {
+        Recipient.externalGroupExact(GroupId.v1(remoteRecipient.legacyGroupId!!.toByteArray()))
+      } catch (e: BadGroupIdException) {
+        Log.w(TAG, "Failed to parse groupV1 ID!", e)
+        null
+      }
+    } else if (remoteRecipient.groupMasterKey != null) {
+      try {
+        Recipient.externalGroupExact(GroupId.v2(GroupMasterKey(remoteRecipient.groupMasterKey!!.toByteArray())))
+      } catch (e: InvalidInputException) {
+        Log.w(TAG, "Failed to parse groupV2 master key!", e)
+        null
+      }
+    } else {
+      Log.w(TAG, "Could not find recipient")
+      null
     }
   }
 }

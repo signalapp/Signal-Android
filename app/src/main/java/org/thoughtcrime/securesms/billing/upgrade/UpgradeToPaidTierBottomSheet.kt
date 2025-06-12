@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.billing.upgrade
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -14,9 +15,17 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlowable
 import org.signal.core.ui.compose.Dialogs
+import org.signal.core.util.concurrent.SignalDispatchers
+import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFlowViewModel
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsStage
@@ -67,6 +76,22 @@ abstract class UpgradeToPaidTierBottomSheet : ComposeBottomSheetDialogFragment()
         .filter { it.inAppPayment != null }
         .map { it.inAppPayment!!.id }
     )
+
+    viewLifecycleOwner.lifecycleScope.launch(SignalDispatchers.Main) {
+      repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        viewModel.deletionState.collectLatest {
+          if (it == DeletionState.DELETE_BACKUPS) {
+            Toast.makeText(
+              requireContext(),
+              R.string.MessageBackupsFlowFragment__a_backup_deletion_is_in_progress,
+              Toast.LENGTH_SHORT
+            ).show()
+
+            dismissAllowingStateLoss()
+          }
+        }
+      }
+    }
   }
 
   @Composable

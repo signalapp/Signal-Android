@@ -75,6 +75,8 @@ public class VideoPlayer extends FrameLayout {
   private ExoPlayerListener                   exoPlayerListener;
   private Player.Listener                     playerListener;
   private boolean                             muted;
+  private AudioFocusRequest                   audioFocusRequest;
+  private boolean                             requestAudioFocus = true;
 
   public VideoPlayer(Context context) {
     this(context, null);
@@ -100,7 +102,6 @@ public class VideoPlayer extends FrameLayout {
     this.exoControls = createPlayerControls(getContext());
 
     final AudioManager      audioManager = ContextCompat.getSystemService(context, AudioManager.class);
-    final AudioFocusRequest audioFocusRequest;
     if (Build.VERSION.SDK_INT >= 26) {
       audioFocusRequest = new AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
           .setAudioAttributes(
@@ -133,19 +134,23 @@ public class VideoPlayer extends FrameLayout {
 
         if (Build.VERSION.SDK_INT >= 26 && audioFocusRequest != null) {
           if (isPlaying) {
-            audioManager.requestAudioFocus(audioFocusRequest);
+            if (requestAudioFocus) {
+              audioManager.requestAudioFocus(audioFocusRequest);
+            }
           } else {
             audioManager.abandonAudioFocusRequest(audioFocusRequest);
           }
         } else {
           if (isPlaying) {
-            audioManager.requestAudioFocus(
-                focusChange -> {
-                  // Do nothing
-                },
-                AudioManager.STREAM_MUSIC,
-                AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK
-            );
+            if (requestAudioFocus) {
+              audioManager.requestAudioFocus(
+                  focusChange -> {
+                    // Do nothing
+                  },
+                  AudioManager.STREAM_MUSIC,
+                  AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK
+              );
+            }
           } else {
             audioManager.abandonAudioFocus(
                 focusChange -> {
@@ -427,6 +432,10 @@ public class VideoPlayer extends FrameLayout {
         exoPlayer.seekTo(0);
       }
     }
+  }
+
+  public void disableAudioFocus() {
+    requestAudioFocus = false;
   }
 
   private @NonNull MediaItem.ClippingConfiguration getClippingConfiguration(long startMs, long endMs) {

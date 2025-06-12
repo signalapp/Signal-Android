@@ -250,6 +250,23 @@ private fun AppSettingsContent(
             }
           }
 
+          BackupFailureState.OUT_OF_STORAGE_SPACE -> {
+            item {
+              Dividers.Default()
+
+              Rows.TextRow(
+                text = stringResource(R.string.AppSettingsFragment__backup_storage_limit_reached),
+                icon = ImageVector.vectorResource(R.drawable.symbol_error_circle_fill_24),
+                iconTint = MaterialTheme.colorScheme.error,
+                onClick = {
+                  callbacks.navigate(R.id.action_appSettingsFragment_to_remoteBackupsSettingsFragment)
+                }
+              )
+
+              Dividers.Default()
+            }
+          }
+
           BackupFailureState.NONE -> Unit
         }
 
@@ -518,7 +535,7 @@ private fun BackupsWarningRow(
     icon = {
       Box {
         Icon(
-          painter = painterResource(R.drawable.symbol_backup_24),
+          imageVector = ImageVector.vectorResource(R.drawable.symbol_backup_24),
           tint = MaterialTheme.colorScheme.onSurface,
           contentDescription = null
         )
@@ -666,7 +683,7 @@ private fun AppSettingsContentPreview() {
         showPayments = true,
         showAppUpdates = true,
         showBackups = true,
-        backupFailureState = BackupFailureState.SUBSCRIPTION_STATE_MISMATCH
+        backupFailureState = BackupFailureState.OUT_OF_STORAGE_SPACE
       ),
       bannerManager = BannerManager(
         banners = listOf(TestBanner())

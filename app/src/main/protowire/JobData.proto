@@ -138,11 +138,13 @@ message CopyAttachmentToArchiveJobData {
 message UploadAttachmentToArchiveJobData {
   uint64 attachmentId = 1;
   ResumableUpload uploadSpec = 2;
+  optional bool canReuseUpload = 3;
 }
 
-message BackupMediaSnapshotSyncJobData {
-  uint64 syncTime = 1;
+message ArchiveAttachmentReconciliationJobData {
+  optional uint64 snapshot = 1;
   string serverCursor = 2;
+  bool forced = 3;
 }
 
 message DeviceNameChangeJobData {
@@ -217,4 +219,23 @@ message InAppPaymentSetupJobData {
 
 message StorageSyncJobData {
   bool localManifestOutOfDate = 1;
+}
+
+message BackupDeleteJobData {
+  enum Stage {
+    UNKNOWN = 0;
+    CANCEL_SUBSCRIBER = 1;
+    DELETE_MESSAGES = 2;
+    DELETE_MEDIA = 3;
+    CLEAR_LOCAL_STATE = 4;
+  }
+
+  enum Tier {
+    UNKNOWN_TIER = 0;
+    FREE = 1;
+    PAID = 2;
+  }
+
+  repeated Stage completed = 1;
+  Tier tier = 2;
 }

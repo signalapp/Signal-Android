@@ -207,7 +207,7 @@ class NetworkDependenciesModule(
   }
 
   val profileApi: ProfileApi by lazy {
-    provider.provideProfileApi(authWebSocket, pushServiceSocket)
+    provider.provideProfileApi(authWebSocket, unauthWebSocket, pushServiceSocket, groupsV2Operations.profileOperations)
   }
 
   val remoteConfigApi: RemoteConfigApi by lazy {
