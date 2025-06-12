@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -33,6 +34,7 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -59,6 +61,7 @@ import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.seconds
 import org.signal.core.ui.R as CoreUiR
@@ -91,16 +94,16 @@ class BackupsSettingsFragment : ComposeFragment() {
       backupsSettingsState = state,
       onNavigationClick = { requireActivity().onNavigateUp() },
       onBackupsRowClick = {
-        when (state.enabledState) {
-          is BackupsSettingsState.EnabledState.Active, BackupsSettingsState.EnabledState.Inactive -> {
-            findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_remoteBackupsSettingsFragment)
-          }
+        when (state.backupState) {
+          BackupState.Loading, BackupState.Error, BackupState.NotAvailable -> Unit
 
-          BackupsSettingsState.EnabledState.Never -> {
+          BackupState.None -> {
             checkoutLauncher.launch(null)
           }
 
-          else -> Unit
+          else -> {
+            findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_remoteBackupsSettingsFragment)
+          }
         }
       },
       onOnDeviceBackupsRowClick = { findNavController().safeNavigate(R.id.action_backupsSettingsFragment_to_backupsPreferenceFragment) },
@@ -152,14 +155,14 @@ private fun BackupsSettingsContent(
       }
 
       item {
-        when (backupsSettingsState.enabledState) {
-          BackupsSettingsState.EnabledState.Loading -> {
+        when (backupsSettingsState.backupState) {
+          BackupState.Loading -> {
             LoadingBackupsRow()
 
             OtherWaysToBackUpHeading()
           }
 
-          BackupsSettingsState.EnabledState.Inactive -> {
+          is BackupState.Inactive -> {
             InactiveBackupsRow(
               onBackupsRowClick = onBackupsRowClick
             )
@@ -167,16 +170,17 @@ private fun BackupsSettingsContent(
             OtherWaysToBackUpHeading()
           }
 
-          is BackupsSettingsState.EnabledState.Active -> {
+          is BackupState.ActiveFree, is BackupState.ActivePaid -> {
             ActiveBackupsRow(
-              enabledState = backupsSettingsState.enabledState,
-              onBackupsRowClick = onBackupsRowClick
+              backupState = backupsSettingsState.backupState,
+              onBackupsRowClick = onBackupsRowClick,
+              lastBackupAt = backupsSettingsState.lastBackupAt
             )
 
             OtherWaysToBackUpHeading()
           }
 
-          BackupsSettingsState.EnabledState.Never -> {
+          BackupState.None -> {
             NeverEnabledBackupsRow(
               onBackupsRowClick = onBackupsRowClick
             )
@@ -184,12 +188,46 @@ private fun BackupsSettingsContent(
             OtherWaysToBackUpHeading()
           }
 
-          BackupsSettingsState.EnabledState.Failed -> {
+          BackupState.Error -> {
             WaitingForNetworkRow()
             OtherWaysToBackUpHeading()
           }
 
-          BackupsSettingsState.EnabledState.NotAvailable -> Unit
+          BackupState.NotAvailable -> Unit
+
+          BackupState.NotFound -> {
+            NotFoundBackupRow(
+              onBackupsRowClick = onBackupsRowClick
+            )
+
+            OtherWaysToBackUpHeading()
+          }
+
+          is BackupState.Pending -> {
+            PendingBackupRow(
+              onBackupsRowClick = onBackupsRowClick
+            )
+
+            OtherWaysToBackUpHeading()
+          }
+
+          is BackupState.Canceled -> {
+            ActiveBackupsRow(
+              backupState = backupsSettingsState.backupState,
+              lastBackupAt = backupsSettingsState.lastBackupAt
+            )
+
+            OtherWaysToBackUpHeading()
+          }
+
+          is BackupState.SubscriptionMismatchMissingGooglePlay -> {
+            ActiveBackupsRow(
+              backupState = backupsSettingsState.backupState,
+              lastBackupAt = backupsSettingsState.lastBackupAt
+            )
+
+            OtherWaysToBackUpHeading()
+          }
         }
       }
 
@@ -293,8 +331,74 @@ private fun InactiveBackupsRow(
 }
 
 @Composable
+private fun NotFoundBackupRow(
+  onBackupsRowClick: () -> Unit = {}
+) {
+  Rows.TextRow(
+    modifier = Modifier.height(IntrinsicSize.Min),
+    icon = {
+      Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+          .fillMaxHeight()
+          .padding(top = 12.dp)
+      ) {
+        Icon(
+          painter = painterResource(R.drawable.symbol_backup_24),
+          contentDescription = null
+        )
+      }
+    },
+    text = {
+      Column {
+        TextWithBetaLabel(text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups))
+        Text(
+          text = stringResource(R.string.BackupsSettingsFragment_subscription_not_found_on_this_device),
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+      }
+    },
+    onClick = onBackupsRowClick
+  )
+}
+
+@Composable
+private fun PendingBackupRow(
+  onBackupsRowClick: () -> Unit = {}
+) {
+  Rows.TextRow(
+    modifier = Modifier.height(IntrinsicSize.Min),
+    icon = {
+      Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+          .fillMaxHeight()
+          .padding(top = 12.dp)
+      ) {
+        CircularProgressIndicator(
+          modifier = Modifier.size(24.dp)
+        )
+      }
+    },
+    text = {
+      Column {
+        TextWithBetaLabel(text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups))
+        Text(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__payment_pending),
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          style = MaterialTheme.typography.bodyMedium
+        )
+      }
+    },
+    onClick = onBackupsRowClick
+  )
+}
+
+@Composable
 private fun ActiveBackupsRow(
-  enabledState: BackupsSettingsState.EnabledState.Active,
+  backupState: BackupState.WithTypeAndRenewalTime,
+  lastBackupAt: Duration,
   onBackupsRowClick: () -> Unit = {}
 ) {
   Rows.TextRow(
@@ -316,13 +420,13 @@ private fun ActiveBackupsRow(
       Column {
         TextWithBetaLabel(text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups))
 
-        when (enabledState.type) {
+        when (val type = backupState.messageBackupsType) {
           is MessageBackupsType.Paid -> {
             Text(
               text = stringResource(
                 R.string.BackupsSettingsFragment_s_month_renews_s,
-                FiatMoneyUtil.format(LocalContext.current.resources, enabledState.type.pricePerMonth),
-                DateUtils.formatDateWithYear(Locale.getDefault(), enabledState.expiresAt.inWholeMilliseconds)
+                FiatMoneyUtil.format(LocalContext.current.resources, type.pricePerMonth),
+                DateUtils.formatDateWithYear(Locale.getDefault(), backupState.renewalTime.inWholeMilliseconds)
               ),
               color = MaterialTheme.colorScheme.onSurfaceVariant,
               style = MaterialTheme.typography.bodyMedium
@@ -346,7 +450,7 @@ private fun ActiveBackupsRow(
             DateUtils.getDatelessRelativeTimeSpanFormattedDate(
               LocalContext.current,
               Locale.getDefault(),
-              enabledState.lastBackupAt.inWholeMilliseconds
+              lastBackupAt.inWholeMilliseconds
             ).value
           ),
           color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -404,14 +508,14 @@ private fun BackupsSettingsContentPreview() {
   Previews.Preview {
     BackupsSettingsContent(
       backupsSettingsState = BackupsSettingsState(
-        enabledState = BackupsSettingsState.EnabledState.Active(
-          type = MessageBackupsType.Paid(
+        backupState = BackupState.ActivePaid(
+          messageBackupsType = MessageBackupsType.Paid(
             pricePerMonth = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD")),
             storageAllowanceBytes = 1_000_000,
             mediaTtl = 30.days
           ),
-          expiresAt = 0.seconds,
-          lastBackupAt = 0.seconds
+          renewalTime = 0.seconds,
+          price = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD"))
         )
       )
     )
@@ -424,7 +528,7 @@ private fun BackupsSettingsContentNotAvailablePreview() {
   Previews.Preview {
     BackupsSettingsContent(
       backupsSettingsState = BackupsSettingsState(
-        enabledState = BackupsSettingsState.EnabledState.NotAvailable
+        backupState = BackupState.NotAvailable
       )
     )
   }
@@ -436,7 +540,7 @@ private fun BackupsSettingsContentBackupTierInternalOverridePreview() {
   Previews.Preview {
     BackupsSettingsContent(
       backupsSettingsState = BackupsSettingsState(
-        enabledState = BackupsSettingsState.EnabledState.Never,
+        backupState = BackupState.None,
         showBackupTierInternalOverride = true,
         backupTierInternalOverride = null
       )
@@ -462,18 +566,35 @@ private fun InactiveBackupsRowPreview() {
 
 @SignalPreview
 @Composable
+private fun NotFoundBackupRowPreview() {
+  Previews.Preview {
+    NotFoundBackupRow()
+  }
+}
+
+@SignalPreview
+@Composable
+private fun PendingBackupRowPreview() {
+  Previews.Preview {
+    PendingBackupRow()
+  }
+}
+
+@SignalPreview
+@Composable
 private fun ActivePaidBackupsRowPreview() {
   Previews.Preview {
     ActiveBackupsRow(
-      enabledState = BackupsSettingsState.EnabledState.Active(
-        type = MessageBackupsType.Paid(
+      backupState = BackupState.ActivePaid(
+        messageBackupsType = MessageBackupsType.Paid(
           pricePerMonth = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD")),
           storageAllowanceBytes = 1_000_000,
           mediaTtl = 30.days
         ),
-        expiresAt = 0.seconds,
-        lastBackupAt = 0.seconds
-      )
+        renewalTime = 0.seconds,
+        price = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD"))
+      ),
+      lastBackupAt = 0.seconds
     )
   }
 }
@@ -483,13 +604,13 @@ private fun ActivePaidBackupsRowPreview() {
 private fun ActiveFreeBackupsRowPreview() {
   Previews.Preview {
     ActiveBackupsRow(
-      enabledState = BackupsSettingsState.EnabledState.Active(
-        type = MessageBackupsType.Free(
+      backupState = BackupState.ActiveFree(
+        messageBackupsType = MessageBackupsType.Free(
           mediaRetentionDays = 30
         ),
-        expiresAt = 0.seconds,
-        lastBackupAt = 0.seconds
-      )
+        renewalTime = 0.seconds
+      ),
+      lastBackupAt = 0.seconds
     )
   }
 }

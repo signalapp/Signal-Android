@@ -8067,6 +8067,8 @@
     <string name="BackupsSettingsFragment_last_backup_s">Last backup %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups with Signal\'s secure end-to-end encrypted storage service.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Set up</string>
 
