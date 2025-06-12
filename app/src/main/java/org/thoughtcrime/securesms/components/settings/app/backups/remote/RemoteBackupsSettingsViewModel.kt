@@ -281,7 +281,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       val hasActiveGooglePlayBillingSubscription = when (val purchaseResult = AppDependencies.billingApi.queryPurchases()) {
         is BillingPurchaseResult.Success -> {
           Log.d(TAG, "[subscriptionStateMismatchDetected] Found a purchase: $purchaseResult")
-          purchaseResult.isAcknowledged && purchaseResult.isWithinTheLastMonth() && purchaseResult.isAutoRenewing
+          purchaseResult.isAcknowledged && purchaseResult.isAutoRenewing
         }
         else -> {
           Log.d(TAG, "[subscriptionStateMismatchDetected] No purchase found in Google Play Billing: $purchaseResult")
