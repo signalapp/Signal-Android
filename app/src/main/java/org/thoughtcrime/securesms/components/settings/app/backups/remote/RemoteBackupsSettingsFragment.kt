@@ -552,6 +552,7 @@ private fun RemoteBackupsSettingsContent(
 
     RemoteBackupsSettingsState.Dialog.TURN_OFF_AND_DELETE_BACKUPS -> {
       TurnOffAndDeleteBackupsDialog(
+        tier = state.tier!!,
         onConfirm = contentCallbacks::onTurnOffAndDeleteBackupsConfirm,
         onDismiss = contentCallbacks::onDialogDismissed
       )
@@ -1482,12 +1483,18 @@ private fun FailedToTurnOffBackupDialog(
 
 @Composable
 private fun TurnOffAndDeleteBackupsDialog(
+  tier: MessageBackupTier,
   onConfirm: () -> Unit,
   onDismiss: () -> Unit
 ) {
+  val body = when (tier) {
+    MessageBackupTier.FREE -> R.string.RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created
+    MessageBackupTier.PAID -> R.string.RemoteBackupsSettingsFragment__your_subscription_will_be_canceled
+  }
+
   Dialogs.SimpleAlertDialog(
     title = stringResource(id = R.string.RemoteBackupsSettingsFragment__turn_off_and_delete_backups),
-    body = stringResource(id = R.string.RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created),
+    body = stringResource(id = body),
     confirm = stringResource(id = R.string.RemoteBackupsSettingsFragment__turn_off_and_delete),
     dismiss = stringResource(id = android.R.string.cancel),
     confirmColor = MaterialTheme.colorScheme.error,
@@ -1988,6 +1995,7 @@ private fun FailedToTurnOffBackupDialogPreview() {
 private fun TurnOffAndDeleteBackupsDialogPreview() {
   Previews.Preview {
     TurnOffAndDeleteBackupsDialog(
+      tier = MessageBackupTier.PAID,
       onConfirm = {},
       onDismiss = {}
     )

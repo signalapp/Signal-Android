@@ -57,6 +57,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   private val _state = MutableStateFlow(
     RemoteBackupsSettingsState(
+      tier = SignalStore.backup.backupTier,
       backupsEnabled = SignalStore.backup.areBackupsEnabled,
       canViewBackupKey = !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
@@ -224,6 +225,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   private suspend fun performStateRefresh(lastPurchase: InAppPaymentTable.InAppPayment?) {
     _state.update {
       it.copy(
+        tier = SignalStore.backup.backupTier,
         backupsEnabled = SignalStore.backup.areBackupsEnabled,
         lastBackupTimestamp = SignalStore.backup.lastBackupTime,
         backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize(),

@@ -6,9 +6,11 @@
 package org.thoughtcrime.securesms.components.settings.app.backups.remote
 
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
 
 data class RemoteBackupsSettingsState(
+  val tier: MessageBackupTier? = null,
   val backupsEnabled: Boolean,
   val canViewBackupKey: Boolean = false,
   val canBackUpUsingCellular: Boolean = false,
