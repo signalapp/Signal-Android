@@ -42,10 +42,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
@@ -132,7 +134,7 @@ class FindByActivity : PassphraseRequiredActivity() {
             Scaffolds.Settings(
               title = stringResource(id = title),
               onNavigationClick = { finishAfterTransition() },
-              navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
+              navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
             ) {
               val context = LocalContext.current
 

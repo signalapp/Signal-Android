@@ -406,7 +406,7 @@ private fun RemoteBackupsSettingsContent(
           TextWithBetaLabel(text = title, textStyle = MaterialTheme.typography.titleLarge)
         },
         onNavigationClick = contentCallbacks::onNavigationClick,
-        navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
+        navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
         navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
         scrollBehavior = scrollBehavior
       )
