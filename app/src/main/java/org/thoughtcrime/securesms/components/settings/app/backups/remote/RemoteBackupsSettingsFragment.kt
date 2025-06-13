@@ -641,7 +641,7 @@ private fun RemoteBackupsSettingsContent(
 
 @Composable
 private fun ReenableBackupsButton(contentCallbacks: ContentCallbacks) {
-  Buttons.LargePrimary(
+  Buttons.LargeTonal(
     onClick = { contentCallbacks.onBackupTypeActionClick(MessageBackupTier.FREE) },
     modifier = Modifier.horizontalGutters()
   ) {
