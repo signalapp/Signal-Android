@@ -50,6 +50,8 @@
             android:imeOptions="actionNext"
             android:inputType="number"
             android:maxLines="1"
+            android:textDirection="ltr"
+            android:textAlignment="viewStart"
             android:nextFocusDown="@id/card_expiry">
 
             <requestFocus />
