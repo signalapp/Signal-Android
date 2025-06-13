@@ -1587,7 +1587,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Impossibile unirsi al gruppo</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">You can\'t join this group via the group link because an admin removed you. Contact an admin to be added back to the group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Non puoi unirti a questo gruppo tramite l\'apposito link perché un admin ti ha rimosso. Contatta un admin per farti aggiungere di nuovo nel gruppo.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Questo link del gruppo non è più valido.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -2106,7 +2106,7 @@
     <string name="MessageRequestBottomView_unblock">Sblocca</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">Vuoi consentire a %1$s di inviarti messaggi e di visualizzare il tuo nome e la tua foto? Ti ricordiamo che in passato avevi rimosso questo utente.</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permettere a %1$s di inviarti messaggi e condividere il tuo nome e la tua foto con loro? Non sapranno che hai visto i loro messaggi finché non accetti.</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">Permettere a %1$s di inviarti messaggi e condividere il tuo nome e la tua foto questa persona? Non saprà che hai visto i suoi messaggi finché non accetti.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">Vuoi condividere il tuo nome e la tua foto con %1$s e permettere a questo utente di inviarti messaggi? Non riceverai messaggi da parte sua finché non sbloccherai il contatto.</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -3734,9 +3734,9 @@
 
     <!-- message_details_header -->
     <string name="message_details_header__issues_need_your_attention">Alcuni problemi necessitano della tua attenzione.</string>
-    <string name="message_details_header_sent">Inviati</string>
-    <string name="message_details_header_received">Ricevuti</string>
-    <string name="message_details_header_disappears">Scomparso</string>
+    <string name="message_details_header_sent">Inviato il</string>
+    <string name="message_details_header_received">Ricevuto il</string>
+    <string name="message_details_header_disappears">Scompare tra</string>
     <string name="message_details_header_via">Tramite</string>
 
     <!-- message_details_recipient_header -->
@@ -5376,11 +5376,11 @@
     <!-- Radio option to export the data as a text file .txt -->
     <string name="ExportAccountDataFragment__export_as_txt">Esporta in formato .txt</string>
     <!-- Label for the text file option -->
-    <string name="ExportAccountDataFragment__export_as_txt_label">Esporta in formato facile da leggere</string>
+    <string name="ExportAccountDataFragment__export_as_txt_label">File di facile lettura</string>
     <!-- Radio option to export the data as a json (java script object notation) file .json -->
     <string name="ExportAccountDataFragment__export_as_json">Esporta in formato JSON</string>
     <!-- Label for the json file option, the account data in a machine readable file format -->
-    <string name="ExportAccountDataFragment__export_as_json_label">File leggibile da computer</string>
+    <string name="ExportAccountDataFragment__export_as_json_label">File leggibile in linguaggio macchina</string>
 
     <!-- Action to cancel (in a dialog) -->
     <string name="ExportAccountDataFragment__cancel_action">Annulla</string>
@@ -5402,10 +5402,10 @@
     <!-- Shown in a dialog with a spinner while the report is downloading -->
     <string name="ExportAccountDataFragment__download_progress">Generazione del report in corso…</string>
     <!-- Explanation that the report is only generated on export and is not saved on the device -->
-    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Il tuo report viene creato solamente quando avviene l\'esportazione dei dati e Signal non archivierà tale report sul tuo dispositivo.</string>
+    <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Il tuo report viene creato solamente quando avviene l\'esportazione dei dati e Signal non lo archivierà sul tuo dispositivo.</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Usa questo per cambiare il tuo numero di telefono attuale con un nuovo numero di telefono. Non puoi annullare questo cambiamento.\n\nPrima di continuare, assicurati che il tuo nuovo numero possa ricevere SMS o chiamate.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Usa questo funzione per cambiare il tuo numero di telefono attuale con un nuovo numero di telefono. Non puoi annullare questo cambiamento.\n\nPrima di continuare, assicurati che il tuo nuovo numero possa ricevere SMS o chiamate.</string>
     <string name="ChangeNumberFragment__continue">Continua</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
     <string name="ChangeNumber__your_phone_number_has_changed_to_s">Il tuo numero di telefono è stato cambiato in %1$s</string>
@@ -6744,7 +6744,7 @@
     <!-- Hint for entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Digita o incolla un URL</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Condividi un link con le persone che hanno visto la tua Storia</string>
+    <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Condividi un link con le persone che vedranno la tua Storia</string>
     <!-- Hint text for searching for a story text post recipient. -->
     <string name="TextStoryPostSendFragment__search">Cerca</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
@@ -7158,8 +7158,8 @@
     <string name="GatewaySelectorBottomSheet__donate_s_to_signal">Dona %1$s a Signal</string>
     <!-- Sheet summary when giving a one-time donation -->
     <plurals name="GatewaySelectorBottomSheet__get_a_s_badge_for_d_days">
-        <item quantity="one">Ricevi un badge Signal %1$s per %2$d giorno</item>
-        <item quantity="other">Ricevi un badge Signal %1$s per %2$d giorni</item>
+        <item quantity="one">Ricevi un badge %1$s per %2$d giorno</item>
+        <item quantity="other">Ricevi un badge %1$s per %2$d giorni</item>
     </plurals>
     <!-- Button label for paying with a bank transfer -->
     <string name="GatewaySelectorBottomSheet__bank_transfer">Bonifico bancario</string>
@@ -7489,7 +7489,7 @@
     <!-- Displayed when the user enables group call ringing -->
     <string name="CallStateUpdatePopupWindow__ringing_on">Squillo chiamata attivato</string>
     <!-- Displayed when the user disables group call ringing -->
-    <string name="CallStateUpdatePopupWindow__ringing_off">Squillo chiamato disattivato</string>
+    <string name="CallStateUpdatePopupWindow__ringing_off">Squillo chiamata disattivato</string>
     <!-- Displayed when the user cannot enable group call ringing -->
     <string name="CallStateUpdatePopupWindow__group_is_too_large">Il gruppo è troppo grande per attivare lo squillo della chiamata per tutti i partecipanti</string>
     <!-- Displayed when the user turns on their mic -->
@@ -8179,7 +8179,7 @@
         <item quantity="other">Il tuo abbonamento su questo dispositivo è valido per ancora %1$d giorni. Rinnovalo per continuare a usare i Backup di Signal</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
-    <string name="RemoteBackupsSettingsFragment__resubscribe">Resubscribe</string>
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Riabbonati</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Rinnova</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8241,7 +8241,7 @@
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
     <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
     <!-- Button label to open storage management screen -->
-    <string name="RemoteBackupsSettingsFragment__manage_storage">Manage storage</string>
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Gestisci memoria</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8251,7 +8251,7 @@
     <!-- Dialog positive action label -->
     <string name="DownloadYourBackupTodayDialog__download">Download</string>
     <!-- Dialog negative action label -->
-    <string name="DownloadYourBackupTodayDialog__dont_download">Don\'t download</string>
+    <string name="DownloadYourBackupTodayDialog__dont_download">Non scaricare</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->

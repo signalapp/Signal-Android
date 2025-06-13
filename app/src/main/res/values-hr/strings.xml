@@ -1673,7 +1673,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nije moguće pridružiti se grupi</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">You can\'t join this group via the group link because an admin removed you. Contact an admin to be added back to the group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Ne možete se pridružiti ovoj grupi putem poveznice grupe jer vas je administrator uklonio. Ako se želite ponovno pridružiti grupi, kontaktirajte administratora.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Poveznica grupe je nevažeća.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -8531,7 +8531,7 @@
         <item quantity="other">Vaša pretplata na ovom uređaju vrijedi još %1$d dana. Obnovite pretplatu da biste nastavili koristiti sigurnosno kopiranje Signala</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
-    <string name="RemoteBackupsSettingsFragment__resubscribe">Resubscribe</string>
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Ponovno se pretplati</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Obnovi</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8597,7 +8597,7 @@
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
     <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
     <!-- Button label to open storage management screen -->
-    <string name="RemoteBackupsSettingsFragment__manage_storage">Manage storage</string>
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Upravljanje prostorom za pohranu</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8605,9 +8605,9 @@
     <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
     <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Your media and attachments will be permanently deleted without a paid subscription.</string>
     <!-- Dialog positive action label -->
-    <string name="DownloadYourBackupTodayDialog__download">Download</string>
+    <string name="DownloadYourBackupTodayDialog__download">Preuzmi</string>
     <!-- Dialog negative action label -->
-    <string name="DownloadYourBackupTodayDialog__dont_download">Don\'t download</string>
+    <string name="DownloadYourBackupTodayDialog__dont_download">Nemoj preuzeti</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->

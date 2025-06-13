@@ -8241,7 +8241,7 @@
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
     <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
     <!-- Button label to open storage management screen -->
-    <string name="RemoteBackupsSettingsFragment__manage_storage">Manage storage</string>
+    <string name="RemoteBackupsSettingsFragment__manage_storage">ಸ್ಟೊರೇಜ್ ನಿರ್ವಹಿಸಿ</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8249,9 +8249,9 @@
     <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
     <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Your media and attachments will be permanently deleted without a paid subscription.</string>
     <!-- Dialog positive action label -->
-    <string name="DownloadYourBackupTodayDialog__download">Download</string>
+    <string name="DownloadYourBackupTodayDialog__download">ಡೌನ್‌ಲೋಡ್ ಮಾಡಿ</string>
     <!-- Dialog negative action label -->
-    <string name="DownloadYourBackupTodayDialog__dont_download">Don\'t download</string>
+    <string name="DownloadYourBackupTodayDialog__dont_download">ಡೌನ್‌ಲೋಡ್ ಮಾಡಬೇಡಿ</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
