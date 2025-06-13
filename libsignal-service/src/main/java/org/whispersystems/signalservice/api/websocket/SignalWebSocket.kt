@@ -98,7 +98,7 @@ sealed class SignalWebSocket(
   }
 
   @Synchronized
-  open fun shouldSendKeepAlives(): Boolean {
+  fun shouldSendKeepAlives(): Boolean {
     return keepAliveTokens.isNotEmpty()
   }
 
@@ -299,11 +299,6 @@ sealed class SignalWebSocket(
       } catch (e: IOException) {
         return Single.error(e)
       }
-    }
-
-    @Synchronized
-    override fun shouldSendKeepAlives(): Boolean {
-      return false
     }
   }
 
