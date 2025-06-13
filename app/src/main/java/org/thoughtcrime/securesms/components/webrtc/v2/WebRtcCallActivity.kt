@@ -140,8 +140,6 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
       window.addFlags(WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED)
     }
 
-    window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
-
     super.onCreate(savedInstanceState)
 
     requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -1124,6 +1122,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
   private inner class ControlsListener : CallScreenControlsListener {
     override fun onStartCall(isVideoCall: Boolean) {
+      if (isVideoCall) { window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON) }
       viewModel.startCall(isVideoCall)
     }
 
@@ -1148,6 +1147,11 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
 
     override fun onVideoChanged(isVideoEnabled: Boolean) {
+      if (isVideoEnabled) {
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+      } else {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+      }
       handleSetMuteVideo(!isVideoEnabled)
     }
 
