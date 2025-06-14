@@ -2964,9 +2964,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Таңбаны белсендірдіңіз</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Cторисіңізге %1$s деп реакция қалдырды</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Жаңалығыңызға %1$s эмоджиімен реакция қалдырды</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Cторисіне %1$s деп реакция қалдырды</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Жаңалыққа %1$s эмоджиімен реакция қалдырды</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Төлем</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -3144,16 +3144,16 @@
     <string name="MessageNotifier_signal_message">Signal хаты</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Байланыстағы тұлға</string>
-    <string name="MessageNotifier_reacted_s_to_s">\"%2$s\" деген хатқа %1$s деп реакция білдірді.</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Видеоңызға %1$s деп реакция білдірді.</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Суретіңізге %1$s деп реакция білдірді.</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">GIF файлыңызға %1$s деп реакция білдірді.</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Файлыңызға %1$s деп реакция білдірді.</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Аудиоңызға %1$s деп реакция білдірді.</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Бір рет көрсетілетін мультимедиа файлыңызға %1$s деп реакция білдірді.</string>
+    <string name="MessageNotifier_reacted_s_to_s">Мына хабарға %1$s эмоджиімен реакция қалдырды: %2$s.</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Бейнеңізге %1$s эмоджиімен реакция қалдырды.</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Суретіңізге %1$s эмоджиімен реакция қалдырды.</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">GIF файлыңызға %1$s эмоджиімен реакция қалдырды.</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Файлыңызға %1$s эмоджиімен реакция қалдырды.</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Аудиоңызға %1$s эмоджиімен реакция қалдырды.</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Бір рет көрінетін мультимедиа файлыңызға %1$s эмоджиімен реакция қалдырды.</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
     <string name="MessageNotifier_reacted_s_to_your_payment">Төлеміңізге %1$s деп реакция қалдырды.</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Стикеріңізге %1$s деп реакция білдірді.</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Стикеріңізге %1$s эмоджиімен реакция қалдырды.</string>
     <string name="MessageNotifier_this_message_was_deleted">Бұл хат жойылды.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Signal-ға контакт қосылғандығы туралы хабарландыруларды өшіру керек пе? Оларды \"Signal &gt; Параметрлер &gt; Хабарландырулар\" бөлімінен қайта қосып қоюыңызға болады. </string>
@@ -8241,7 +8241,7 @@
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
     <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
     <!-- Button label to open storage management screen -->
-    <string name="RemoteBackupsSettingsFragment__manage_storage">Manage storage</string>
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Жадты басқару</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
@@ -8249,9 +8249,9 @@
     <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
     <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Your media and attachments will be permanently deleted without a paid subscription.</string>
     <!-- Dialog positive action label -->
-    <string name="DownloadYourBackupTodayDialog__download">Download</string>
+    <string name="DownloadYourBackupTodayDialog__download">Жүктеп алу</string>
     <!-- Dialog negative action label -->
-    <string name="DownloadYourBackupTodayDialog__dont_download">Don\'t download</string>
+    <string name="DownloadYourBackupTodayDialog__dont_download">Жүктеп алмау</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
