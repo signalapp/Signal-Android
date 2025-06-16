@@ -1069,9 +1069,9 @@
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">ตกลง</string>
     <!-- Dialog title shown when you don\'t have enough storage space -->
-    <string name="LinkDeviceFragment__not_enough_storage_space">Not enough storage space</string>
+    <string name="LinkDeviceFragment__not_enough_storage_space">พื้นที่จัดเก็บไม่เพียงพอ</string>
     <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
-    <string name="LinkDeviceFragment__you_dont_have_enough">You don\'t have enough free storage space on your device to transfer your messages. Free up some space and try again, or link your device without transferring your messages.</string>
+    <string name="LinkDeviceFragment__you_dont_have_enough">อุปกรณ์ของคุณมีพื้นที่ว่างไม่เพียงพอสำหรับการถ่ายโอนข้อความ โปรดเพิ่มพื้นที่จัดเก็บแล้วลองอีกครั้ง หรือเลือกเชื่อมโยงอุปกรณ์โดยไม่ถ่ายโอนข้อความ</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1406,7 +1406,7 @@
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">กำลังกู้คืนข้อความ…</string>
     <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Finishing…</string>
+    <string name="RemoteRestoreActivity__finishing_restore">ใกล้เสร็จสิ้น…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">กำลังกู้คืน…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -5214,7 +5214,7 @@
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">ไม่สามารถใช้งานแพ็กเกจสำรองข้อมูลของคุณได้</string>
     <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
+    <string name="AppSettingsFragment__backup_storage_limit_reached">พื้นที่จัดเก็บข้อมูลสำรองเต็มแล้ว</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">เชิญเพื่อนของคุณ</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7662,11 +7662,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">หากต้องการสำรองข้อมูลสื่อต่อ คุณสามารถเริ่มชำระเงินเพื่อสำรองข้อมูลอีกครั้งได้ทุกเมื่อ </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Download your backup data today</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">ดาวน์โหลดข้อมูลสำรองของคุณวันนี้</string>
     <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data">Download your backup data</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data">ดาวน์โหลดข้อมูลสำรองของคุณ</string>
     <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
-    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">You have %1$s of media that\'s not on this device. The media and attachments stored in your backup will be permanently deleted without a paid subscription.</string>
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">คุณมีไฟล์สื่อ %1$s ที่ยังไม่ได้กู้คืนมายังอุปกรณ์เครื่องนี้ หากไม่มีการสมัครและชำระค่าแพ็กเกจ ไฟล์สื่อและไฟล์แนบที่เก็บอยู่ในข้อมูลสำรองของคุณจะถูกลบอย่างถาวร</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">เพิ่มพื้นที่ %1$s บนอุปกรณ์เครื่องนี้</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7704,9 +7704,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">สมัครใช้งาน %1$s/เดือน</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_backup_now">Download backup now</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">ดาวน์โหลดข้อมูลสำรองเดี๋ยวนี้</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_backup">Don\'t download backup</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">ไม่ต้องดาวน์โหลดข้อมูลสำรอง</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">ไว้ทีหลัง</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -8017,7 +8017,7 @@
         <item quantity="other">กำลังประมวลผล %1$s จาก ~%2$s ข้อความ (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Without a paid subscription media can\'t be offloaded.</string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">คุณมีข้อมูลสำรอง %1$s ที่ยังไม่ได้กู้คืนมายังอุปกรณ์เครื่องนี้ หากไม่มีการสมัครและชำระค่าแพ็กเกจ คุณจะไม่สามารถออฟโหลดไฟล์สื่อได้</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">คุณมีข้อมูลสำรอง %1$s ที่ยังไม่ได้กู้คืนมายังอุปกรณ์เครื่องนี้ </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8061,15 +8061,15 @@
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">กำลังดาวน์โหลด: %1$s จาก %2$s (%3$d%%)</string>
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
-    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">พื้นที่จัดเก็บ %1$s ในแพ็กเกจสำรองข้อมูลของคุณเต็มแล้ว โปรดเพิ่มพื้นที่จัดเก็บเพื่อสำรองข้อมูลแชทและไฟล์สื่อล่าสุด</string>
     <!-- Button label to open storage management screen -->
     <string name="RemoteBackupsSettingsFragment__manage_storage">จัดการพื้นที่จัดเก็บ</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
-    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Download your backup today</string>
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">ดาวน์โหลดข้อมูลสำรองของคุณวันนี้</string>
     <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
-    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Your media and attachments will be permanently deleted without a paid subscription.</string>
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">คุณมีข้อมูลสำรอง %1$s ที่ยังไม่ได้กู้คืนมายังอุปกรณ์เครื่องนี้ หากไม่มีการสมัครและชำระค่าแพ็กเกจ ไฟล์สื่อและไฟล์แนบของคุณจะถูกลบอย่างถาวร</string>
     <!-- Dialog positive action label -->
     <string name="DownloadYourBackupTodayDialog__download">ดาวน์โหลด</string>
     <!-- Dialog negative action label -->

@@ -8003,7 +8003,7 @@
         <item quantity="other">Langganan Anda di perangkat ini berlaku selama %1$d hari ke depan. Perpanjang agar dapat terus menggunakan Pencadangan Signal</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
-    <string name="RemoteBackupsSettingsFragment__resubscribe">Langganan lagi</string>
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Berlangganan ulang</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Perpanjang</string>
     <!-- Button label to learn more about why subscription disappeared -->

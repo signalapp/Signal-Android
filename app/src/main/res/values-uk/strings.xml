@@ -8531,7 +8531,7 @@
         <item quantity="other">Передплата на цьому пристрої буде дійсна ще %1$d дня. Поновіть передплату, щоб і надалі користуватися резервним копіюванням від Signal</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
-    <string name="RemoteBackupsSettingsFragment__resubscribe">Підписатися знову</string>
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Передплачувати знову</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Поновити</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8607,7 +8607,7 @@
     <!-- Dialog positive action label -->
     <string name="DownloadYourBackupTodayDialog__download">Завантажити</string>
     <!-- Dialog negative action label -->
-    <string name="DownloadYourBackupTodayDialog__dont_download">Не вивантажувати</string>
+    <string name="DownloadYourBackupTodayDialog__dont_download">Не завантажувати</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->

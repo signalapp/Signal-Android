@@ -8227,7 +8227,7 @@
     <!-- Text displayed when there was an error deleting backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Se han desactivado las copias de seguridad, pero hubo un error al eliminar tus datos del servicio de almacenamiento seguro de Signal.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">No se ha podido eliminar tu plan de copias de seguridad</string>
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">No se ha podido eliminar tu copia de seguridad</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Se ha producido un error. Contacta con el equipo de asistencia.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
