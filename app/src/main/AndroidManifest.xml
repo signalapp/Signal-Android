@@ -108,6 +108,10 @@
                  android:largeHeap="true">
 
     <meta-data
+            android:name="android.telephony.PROPERTY_SATELLITE_DATA_OPTIMIZED"
+            android:value="org.thoughtcrime.securesms" />
+
+    <meta-data
             android:name="com.google.android.gms.wallet.api.enabled"
             android:value="true" />
 
