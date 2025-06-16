@@ -3399,6 +3399,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val searchSelection = ContactSearchSelection.Builder()
       .withRegistered(true)
       .withGroups(false)
+      .withVerified(true)
       .excludeId(if (includeSelfMode.includeSelf) null else Recipient.self().id)
       .build()
     val selection = searchSelection.where
@@ -3413,6 +3414,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val searchSelection = ContactSearchSelection.Builder()
       .withRegistered(true)
       .withGroups(false)
+      .withVerified(true)
       .excludeId(if (contactSearchQuery.includeSelfMode.includeSelf) null else Recipient.self().id)
       .withSearchQuery(query)
       .build()
@@ -3454,6 +3456,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .withRegistered(includePush)
       .withNonRegistered(includeSms)
       .withGroups(false)
+      .withVerified(true)
       .excludeId(if (includeSelfMode.includeSelf) null else Recipient.self().id)
       .withSearchQuery(inputQuery)
       .build()
@@ -3493,6 +3496,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       .withRegistered(true)
       .withNonRegistered(true)
       .withGroups(false)
+      .withVerified(true)
       .excludeId(if (includeSelfMode.includeSelf) null else Recipient.self().id)
       .build()
     val orderBy = orderByPreferringAlphaOverNumeric(SORT_NAME) + ", " + E164
@@ -4525,6 +4529,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       private var includeRegistered = false
       private var includeNonRegistered = false
       private var includeGroupMembers = false
+      private var includeVerified = false
       private var excludeId: RecipientId? = null
       private var excludeGroups = false
       private var searchQuery: String? = null
@@ -4544,6 +4549,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         return this
       }
 
+      fun withVerified(includeVerified: Boolean): Builder {
+        this.includeVerified = includeVerified
+        return this
+      }
+
       fun excludeId(recipientId: RecipientId?): Builder {
         excludeId = recipientId
         return this
@@ -4560,7 +4570,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       }
 
       fun build(): ContactSearchSelection {
-        check(!(!includeRegistered && !includeNonRegistered && !includeGroupMembers)) { "Must include either registered, non-registered, or group member recipients in search" }
+        check(!(!includeRegistered && !includeNonRegistered && !includeGroupMembers && !includeVerified)) { "Must include either registered, non-registered, group member, or verified recipients in search" }
         val stringBuilder = StringBuilder("(")
         val args: MutableList<Any?> = LinkedList()
         var hasPreceedingSection = false
@@ -4607,6 +4617,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         }
 
         if (includeGroupMembers) {
+          hasPreceedingSection = true
           stringBuilder.append("(")
           args.add(RegisteredState.REGISTERED.id)
           args.add(1)
@@ -4614,6 +4625,24 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
             stringBuilder.append(GROUP_MEMBER_CONTACT)
           } else {
             stringBuilder.append(QUERY_GROUP_MEMBER_CONTACT)
+            args.add(searchQuery)
+            args.add(searchQuery)
+            args.add(searchQuery)
+          }
+
+          stringBuilder.append(")")
+        }
+
+        if (hasPreceedingSection && includeVerified) {
+          stringBuilder.append(" OR ")
+        }
+
+        if (includeVerified) {
+          stringBuilder.append("(")
+          if (Util.isEmpty(searchQuery)) {
+            stringBuilder.append(VERIFIED_CONTACT)
+          } else {
+            stringBuilder.append(QUERY_VERIFIED_CONTACT)
             args.add(searchQuery)
             args.add(searchQuery)
             args.add(searchQuery)
@@ -4663,6 +4692,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       val QUERY_SIGNAL_CONTACT = "$SIGNAL_CONTACT AND ($E164_SEARCH OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
       val GROUP_MEMBER_CONTACT = "$REGISTERED = ? AND $HAS_GROUP_IN_COMMON AND NOT (NULLIF($SYSTEM_JOINED_NAME, '') NOT NULL OR $PROFILE_SHARING = ?) AND ($SORT_NAME NOT NULL OR $USERNAME NOT NULL)"
       val QUERY_GROUP_MEMBER_CONTACT = "$GROUP_MEMBER_CONTACT AND ($E164_SEARCH OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
+      val VERIFIED_CONTACT = "$ACI_COLUMN IN (SELECT ${IdentityTable.ADDRESS} FROM ${IdentityTable.TABLE_NAME} WHERE ${IdentityTable.VERIFIED} = ${VerifiedStatus.VERIFIED.toInt()})"
+      val QUERY_VERIFIED_CONTACT = "$VERIFIED_CONTACT AND ($E164_SEARCH OR $SORT_NAME GLOB ? OR $USERNAME GLOB ?)"
     }
   }
 
