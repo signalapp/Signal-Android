@@ -17,7 +17,7 @@ import kotlin.math.max
  * This is meant as a helper stream to go along with [org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream].
  * That class does not validate the overall digest, nor the overall MAC. This class does that for us.
  *
- * To use, wrap the IncremtalMacInputStream around this class, and then this class should wrap the lowest-level data stream.
+ * To use, wrap the IncrementalMacInputStream around this class, and then this class should wrap the lowest-level data stream.
  */
 class IncrementalMacAdditionalValidationsInputStream(
   wrapped: InputStream,

@@ -74,6 +74,7 @@ class DigestingRequestBody(
       digestStream.close()
       digestStream.toByteArray()
     } else {
+      outputStream.close()
       null
     }
 

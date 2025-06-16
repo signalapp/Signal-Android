@@ -8,7 +8,10 @@ import org.conscrypt.Conscrypt
 import org.junit.Assert
 import org.junit.Test
 import org.signal.core.util.StreamUtil
+import org.signal.core.util.allMatch
 import org.signal.core.util.copyTo
+import org.signal.core.util.readFully
+import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
 import org.signal.libsignal.protocol.incrementalmac.InvalidMacException
@@ -22,7 +25,6 @@ import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
-import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import java.lang.AssertionError
@@ -31,19 +33,23 @@ import java.util.Random
 
 class AttachmentCipherTest {
   @Test
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_encryptDecrypt_nonIncremental() {
     attachment_encryptDecrypt(incremental = false, fileSize = MEBIBYTE)
   }
 
   @Test
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_encryptDecrypt_incremental() {
     attachment_encryptDecrypt(incremental = true, fileSize = MEBIBYTE)
   }
 
   @Test
-  @Throws(IOException::class, InvalidMessageException::class)
+  fun attachment_encryptDecrypt_nonIncremental_manyFileSizes() {
+    for (i in 0..99) {
+      attachment_encryptDecrypt(incremental = false, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
+    }
+  }
+
+  @Test
   fun attachment_encryptDecrypt_incremental_manyFileSizes() {
     // Designed to stress the various boundary conditions of reading the final mac
     for (i in 0..99) {
@@ -51,7 +57,6 @@ class AttachmentCipherTest {
     }
   }
 
-  @Throws(IOException::class, InvalidMessageException::class)
   private fun attachment_encryptDecrypt(incremental: Boolean, fileSize: Int) {
     val key = Util.getSecretBytes(64)
     val plaintextInput = Util.getSecretBytes(fileSize)
@@ -59,27 +64,25 @@ class AttachmentCipherTest {
     val encryptResult = encryptData(plaintextInput, key, incremental)
     val cipherFile = writeToFile(encryptResult.ciphertext)
 
-    val inputStream: InputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
-    val plaintextOutput = readInputStreamFully(inputStream)
+    val inputStream: LimitedInputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
+    val plaintextOutput = inputStream.readFully(autoClose = false)
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
+    assertThat(inputStream.leftoverStream().allMatch { it == 0.toByte() }).isTrue()
 
     cipherFile.delete()
   }
 
   @Test
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_encryptDecryptEmpty_nonIncremental() {
     attachment_encryptDecryptEmpty(incremental = false)
   }
 
   @Test
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_encryptDecryptEmpty_incremental() {
     attachment_encryptDecryptEmpty(incremental = true)
   }
 
-  @Throws(IOException::class, InvalidMessageException::class)
   private fun attachment_encryptDecryptEmpty(incremental: Boolean) {
     val key = Util.getSecretBytes(64)
     val plaintextInput = "".toByteArray()
@@ -87,27 +90,25 @@ class AttachmentCipherTest {
     val encryptResult = encryptData(plaintextInput, key, incremental)
     val cipherFile = writeToFile(encryptResult.ciphertext)
 
-    val inputStream: InputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
-    val plaintextOutput = readInputStreamFully(inputStream)
+    val inputStream: LimitedInputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
+    val plaintextOutput = inputStream.readFully(autoClose = false)
 
     Assert.assertArrayEquals(plaintextInput, plaintextOutput)
+    assertThat(inputStream.leftoverStream().allMatch { it == 0.toByte() }).isTrue()
 
     cipherFile.delete()
   }
 
   @Test(expected = InvalidMessageException::class)
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_decryptFailOnBadKey_nonIncremental() {
     attachment_decryptFailOnBadKey(incremental = false)
   }
 
   @Test(expected = InvalidMessageException::class)
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_decryptFailOnBadKey_incremental() {
     attachment_decryptFailOnBadKey(incremental = true)
   }
 
-  @Throws(IOException::class, InvalidMessageException::class)
   private fun attachment_decryptFailOnBadKey(incremental: Boolean) {
     var cipherFile: File? = null
 
@@ -126,18 +127,15 @@ class AttachmentCipherTest {
   }
 
   @Test(expected = InvalidMessageException::class)
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_decryptFailOnBadMac_nonIncremental() {
     attachment_decryptFailOnBadMac(incremental = false)
   }
 
   @Test(expected = InvalidMessageException::class)
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_decryptFailOnBadMac_incremental() {
     attachment_decryptFailOnBadMac(incremental = true)
   }
 
-  @Throws(IOException::class, InvalidMessageException::class)
   private fun attachment_decryptFailOnBadMac(incremental: Boolean) {
     var cipherFile: File? = null
 
@@ -164,18 +162,15 @@ class AttachmentCipherTest {
   }
 
   @Test(expected = InvalidMessageException::class)
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_decryptFailOnNullDigest_nonIncremental() {
     attachment_decryptFailOnNullDigest(incremental = false)
   }
 
   @Test(expected = InvalidMessageException::class)
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_decryptFailOnNullDigest_incremental() {
     attachment_decryptFailOnNullDigest(incremental = true)
   }
 
-  @Throws(IOException::class, InvalidMessageException::class)
   private fun attachment_decryptFailOnNullDigest(incremental: Boolean) {
     var cipherFile: File? = null
 
@@ -193,18 +188,15 @@ class AttachmentCipherTest {
   }
 
   @Test(expected = InvalidMessageException::class)
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_decryptFailOnBadDigest_nonIncremental() {
     attachment_decryptFailOnBadDigest(incremental = false)
   }
 
   @Test(expected = InvalidMessageException::class)
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_decryptFailOnBadDigest_incremental() {
     attachment_decryptFailOnBadDigest(incremental = true)
   }
 
-  @Throws(IOException::class, InvalidMessageException::class)
   private fun attachment_decryptFailOnBadDigest(incremental: Boolean) {
     var cipherFile: File? = null
 
@@ -229,7 +221,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class)
   fun attachment_decryptFailOnBadIncrementalDigest() {
     var cipherFile: File? = null
     var hitCorrectException = false
@@ -259,7 +250,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class, InvalidMessageException::class)
   fun attachment_encryptDecryptPaddedContent() {
     val lengths = intArrayOf(531, 600, 724, 1019, 1024)
 
@@ -295,7 +285,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class, InvalidMessageException::class)
   fun archive_encryptDecrypt() {
     val key = Util.getSecretBytes(64)
     val keyMaterial = createMediaKeyMaterial(key)
@@ -313,7 +302,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class, InvalidMessageException::class)
   fun archive_encryptDecryptEmpty() {
     val key = Util.getSecretBytes(64)
     val keyMaterial = createMediaKeyMaterial(key)
@@ -331,7 +319,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class)
   fun archive_decryptFailOnBadKey() {
     var cipherFile: File? = null
     var hitCorrectException = false
@@ -356,7 +343,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class, InvalidMessageException::class)
   fun archive_encryptDecryptPaddedContent() {
     val lengths = intArrayOf(531, 600, 724, 1019, 1024)
 
@@ -392,7 +378,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class)
   fun archive_decryptFailOnBadMac() {
     var cipherFile: File? = null
     var hitCorrectException = false
@@ -420,13 +405,12 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class, InvalidMessageException::class)
   fun sticker_encryptDecrypt() {
     LibSignalLibraryUtil.assumeLibSignalSupportedOnOS()
 
     val packKey = Util.getSecretBytes(32)
     val plaintextInput = Util.getSecretBytes(MEBIBYTE)
-    val encryptResult = encryptData(plaintextInput, expandPackKey(packKey), true)
+    val encryptResult = encryptData(plaintextInput, expandPackKey(packKey), withIncremental = false, padded = false)
     val inputStream = AttachmentCipherInputStream.createForStickerData(encryptResult.ciphertext, packKey)
     val plaintextOutput = readInputStreamFully(inputStream)
 
@@ -434,13 +418,12 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class, InvalidMessageException::class)
   fun sticker_encryptDecryptEmpty() {
     LibSignalLibraryUtil.assumeLibSignalSupportedOnOS()
 
     val packKey = Util.getSecretBytes(32)
     val plaintextInput = "".toByteArray()
-    val encryptResult = encryptData(plaintextInput, expandPackKey(packKey), true)
+    val encryptResult = encryptData(plaintextInput, expandPackKey(packKey), withIncremental = false, padded = false)
     val inputStream = AttachmentCipherInputStream.createForStickerData(encryptResult.ciphertext, packKey)
     val plaintextOutput = readInputStreamFully(inputStream)
 
@@ -448,7 +431,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class)
   fun sticker_decryptFailOnBadKey() {
     LibSignalLibraryUtil.assumeLibSignalSupportedOnOS()
 
@@ -469,7 +451,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class)
   fun sticker_decryptFailOnBadMac() {
     LibSignalLibraryUtil.assumeLibSignalSupportedOnOS()
 
@@ -492,7 +473,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class)
   fun outputStream_writeAfterFlush() {
     val key = Util.getSecretBytes(64)
     val iv = Util.getSecretBytes(16)
@@ -521,7 +501,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class)
   fun outputStream_flushMultipleTimes() {
     val key = Util.getSecretBytes(64)
     val iv = Util.getSecretBytes(16)
@@ -553,7 +532,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class)
   fun outputStream_singleByteWrite() {
     val key = Util.getSecretBytes(64)
     val iv = Util.getSecretBytes(16)
@@ -579,7 +557,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class)
   fun outputStream_mixedSingleByteAndArrayWrites() {
     val key = Util.getSecretBytes(64)
     val iv = Util.getSecretBytes(16)
@@ -611,7 +588,6 @@ class AttachmentCipherTest {
   }
 
   @Test
-  @Throws(IOException::class)
   fun outputStream_singleByteWriteWithFlushes() {
     val key = Util.getSecretBytes(64)
     val iv = Util.getSecretBytes(16)
@@ -651,22 +627,27 @@ class AttachmentCipherTest {
 
     private const val MEBIBYTE = 1024 * 1024
 
-    @Throws(IOException::class)
-    private fun encryptData(data: ByteArray, keyMaterial: ByteArray, withIncremental: Boolean): EncryptResult {
+    private fun encryptData(data: ByteArray, keyMaterial: ByteArray, withIncremental: Boolean, padded: Boolean = true): EncryptResult {
+      val actualData = if (padded) {
+        PaddingInputStream(ByteArrayInputStream(data), data.size.toLong()).readFully()
+      } else {
+        data
+      }
+
       val outputStream = ByteArrayOutputStream()
       val incrementalDigestOut = ByteArrayOutputStream()
       val iv = Util.getSecretBytes(16)
       val factory = AttachmentCipherOutputStreamFactory(keyMaterial, iv)
 
       val encryptStream: DigestingOutputStream
-      val sizeChoice = ChunkSizeChoice.inferChunkSize(data.size)
+      val sizeChoice = ChunkSizeChoice.inferChunkSize(actualData.size)
       encryptStream = if (withIncremental) {
-        factory.createIncrementalFor(outputStream, data.size.toLong(), sizeChoice, incrementalDigestOut)
+        factory.createIncrementalFor(outputStream, actualData.size.toLong(), sizeChoice, incrementalDigestOut)
       } else {
         factory.createFor(outputStream)
       }
 
-      encryptStream.write(data)
+      encryptStream.write(actualData)
       encryptStream.flush()
       encryptStream.close()
       incrementalDigestOut.close()
@@ -674,7 +655,6 @@ class AttachmentCipherTest {
       return EncryptResult(outputStream.toByteArray(), encryptStream.transmittedDigest, incrementalDigestOut.toByteArray(), sizeChoice.sizeInBytes)
     }
 
-    @Throws(IOException::class)
     private fun writeToFile(data: ByteArray): File {
       val file = File.createTempFile("temp", ".data")
       val outputStream: OutputStream = FileOutputStream(file)
@@ -685,7 +665,6 @@ class AttachmentCipherTest {
       return file
     }
 
-    @Throws(IOException::class)
     private fun readInputStreamFully(inputStream: InputStream): ByteArray {
       return Util.readFullyAsBytes(inputStream)
     }

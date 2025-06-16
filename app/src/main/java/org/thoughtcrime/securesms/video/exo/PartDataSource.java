@@ -90,6 +90,11 @@ class PartDataSource implements DataSource {
         try {
           long                                       streamLength   = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size));
           AttachmentCipherInputStream.StreamSupplier streamSupplier = () -> new TailerInputStream(() -> new FileInputStream(transferFile), streamLength);
+
+          if (attachment.remoteDigest == null) {
+            throw new InvalidMessageException("Missing digest!");
+          }
+
           this.inputStream = AttachmentCipherInputStream.createForAttachment(streamSupplier, streamLength, attachment.size, decode, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize, false);
         } catch (InvalidMessageException e) {
           throw new IOException("Error decrypting attachment stream!", e);
