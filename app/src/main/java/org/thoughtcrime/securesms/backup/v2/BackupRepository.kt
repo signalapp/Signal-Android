@@ -5,10 +5,12 @@
 
 package org.thoughtcrime.securesms.backup.v2
 
+import android.app.PendingIntent
 import android.database.Cursor
 import android.os.Environment
 import android.os.StatFs
 import androidx.annotation.WorkerThread
+import androidx.core.app.NotificationCompat
 import kotlinx.coroutines.withContext
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
@@ -17,6 +19,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.ByteSize
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.EventTimer
+import org.signal.core.util.PendingIntentFlags.cancelCurrent
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.LimitedWorker
@@ -38,6 +41,7 @@ import org.signal.core.util.withinTransaction
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -62,6 +66,7 @@ import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupWriter
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.crypto.DatabaseSecretProvider
@@ -90,9 +95,12 @@ import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.net.SignalNetwork
+import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.toMillis
 import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.ApplicationErrorAction
@@ -291,8 +299,34 @@ object BackupRepository {
     AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(RestoreAttachmentJob.constructQueueString(RestoreAttachmentJob.RestoreOperation.MANUAL)))
   }
 
+  fun markOutOfRemoteStorageError() {
+    val context = AppDependencies.application
+
+    val pendingIntent = PendingIntent.getActivity(context, 0, AppSettingsActivity.remoteBackups(context), cancelCurrent())
+    val notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().APP_ALERTS)
+      .setSmallIcon(R.drawable.ic_notification)
+      .setContentTitle(context.getString(R.string.Notification_backup_storage_full))
+      .setContentText(context.getString(R.string.Notification_youve_reached_your_backup_storage_limit))
+      .setContentIntent(pendingIntent)
+      .setAutoCancel(true)
+      .build()
+
+    ServiceUtil.getNotificationManager(context).notify(NotificationIds.OUT_OF_REMOTE_STORAGE, notification)
+
+    SignalStore.backup.isNotEnoughRemoteStorageSpace = true
+  }
+
+  fun clearOutOfRemoteStorageError() {
+    SignalStore.backup.isNotEnoughRemoteStorageSpace = false
+    ServiceUtil.getNotificationManager(AppDependencies.application).cancel(NotificationIds.OUT_OF_REMOTE_STORAGE)
+  }
+
   fun shouldDisplayOutOfStorageSpaceUx(): Boolean {
-    return false // TODO [message-backups] Wire into actual error handling.
+    if (shouldNotDisplayBackupFailedMessaging()) {
+      return false
+    }
+
+    return SignalStore.backup.isNotEnoughRemoteStorageSpace
   }
 
   /**

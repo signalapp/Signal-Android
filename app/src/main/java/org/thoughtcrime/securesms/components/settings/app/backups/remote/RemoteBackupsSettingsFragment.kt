@@ -511,6 +511,7 @@ private fun RemoteBackupsSettingsContent(
           backupsFrequency = state.backupsFrequency,
           canBackUpUsingCellular = state.canBackUpUsingCellular,
           canRestoreUsingCellular = state.canRestoreUsingCellular,
+          canBackUpNow = !state.isOutOfStorageSpace,
           contentCallbacks = contentCallbacks
         )
       } else {
@@ -813,6 +814,7 @@ private fun LazyListScope.appendBackupDetailsItems(
   backupsFrequency: BackupFrequency,
   canBackUpUsingCellular: Boolean,
   canRestoreUsingCellular: Boolean,
+  canBackUpNow: Boolean,
   contentCallbacks: ContentCallbacks
 ) {
   item {
@@ -845,6 +847,7 @@ private fun LazyListScope.appendBackupDetailsItems(
     item {
       LastBackupRow(
         lastBackupTimestamp = lastBackupTimestamp,
+        enabled = canBackUpNow,
         onBackupNowClick = contentCallbacks::onBackupNowClick
       )
     }
@@ -1421,6 +1424,7 @@ private fun getBackupUploadPhaseProgressString(state: ArchiveUploadProgressState
 @Composable
 private fun LastBackupRow(
   lastBackupTimestamp: Long,
+  enabled: Boolean,
   onBackupNowClick: () -> Unit
 ) {
   Row(
@@ -1462,7 +1466,7 @@ private fun LastBackupRow(
       }
     }
 
-    Buttons.MediumTonal(onClick = onBackupNowClick) {
+    Buttons.MediumTonal(onClick = onBackupNowClick, enabled = enabled) {
       Text(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__back_up_now))
     }
   }
@@ -1909,6 +1913,7 @@ private fun LastBackupRowPreview() {
   Previews.Preview {
     LastBackupRow(
       lastBackupTimestamp = -1,
+      enabled = true,
       onBackupNowClick = {}
     )
   }

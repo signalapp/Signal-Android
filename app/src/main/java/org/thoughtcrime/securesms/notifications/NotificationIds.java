@@ -32,6 +32,7 @@ public final class NotificationIds {
   public static final int STORY_MESSAGE_DELIVERY_FAILURE    = 900000;
   public static final int UNREGISTERED_NOTIFICATION_ID      = 20230102;
   public static final int NEW_LINKED_DEVICE                 = 120400;
+  public static final int OUT_OF_REMOTE_STORAGE             = 120500;
 
   private NotificationIds() { }
 

@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
+import org.signal.core.util.mebiBytes
 import org.signal.core.util.throttleLatest
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
@@ -223,6 +224,25 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   private suspend fun performStateRefresh(lastPurchase: InAppPaymentTable.InAppPayment?) {
+    if (BackupRepository.shouldDisplayOutOfStorageSpaceUx()) {
+      val paidType = BackupRepository.getBackupsType(MessageBackupTier.PAID) as? MessageBackupsType.Paid
+
+      if (paidType != null) {
+        val remoteStorageAllowance = paidType.storageAllowanceBytes.bytes
+        val estimatedSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize().bytes
+
+        if (estimatedSize + 300.mebiBytes <= remoteStorageAllowance) {
+          BackupRepository.clearOutOfRemoteStorageError()
+        }
+
+        _state.update {
+          it.copy(
+            totalAllowedStorageSpace = estimatedSize.toUnitString()
+          )
+        }
+      }
+    }
+
     _state.update {
       it.copy(
         tier = SignalStore.backup.backupTier,
@@ -235,17 +255,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         isOutOfStorageSpace = BackupRepository.shouldDisplayOutOfStorageSpaceUx(),
         hasRedemptionError = lastPurchase?.data?.error?.data_ == "409"
       )
-    }
-
-    if (BackupRepository.shouldDisplayOutOfStorageSpaceUx()) {
-      val paidType = BackupRepository.getBackupsType(MessageBackupTier.PAID) as? MessageBackupsType.Paid
-      if (paidType != null) {
-        _state.update {
-          it.copy(
-            totalAllowedStorageSpace = paidType.storageAllowanceBytes.bytes.toUnitString()
-          )
-        }
-      }
     }
 
     val state = BackupStateRepository.resolveBackupState(lastPurchase)
