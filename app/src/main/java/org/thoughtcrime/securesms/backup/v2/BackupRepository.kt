@@ -86,6 +86,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
 import org.thoughtcrime.securesms.jobs.CheckRestoreMediaLeftJob
+import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
@@ -1081,6 +1082,8 @@ object BackupRepository {
     }
 
     RetrieveProfileJob.enqueue(recipientIds)
+
+    AppDependencies.jobManager.add(CreateReleaseChannelJob.create())
 
     val groupJobs = SignalDatabase.groups.getGroups().use { groups ->
       val jobs = mutableListOf<Job>()

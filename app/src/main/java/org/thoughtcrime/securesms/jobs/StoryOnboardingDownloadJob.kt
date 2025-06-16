@@ -49,7 +49,8 @@ class StoryOnboardingDownloadJob private constructor(parameters: Parameters) : B
     }
 
     fun enqueueIfNeeded() {
-      if (SignalStore.story.hasDownloadedOnboardingStory) {
+      if (SignalStore.story.hasDownloadedOnboardingStory || SignalStore.story.userHasViewedOnboardingStory) {
+        Log.i(TAG, "Skipping because user has already viewed the onboarding story or it is already downloaded")
         return
       }
 
