@@ -1673,7 +1673,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nedá sa pripojiť ku skupine</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">K tejto skupine sa nemôžete pripojiť prostredníctvom odkazu na skupinu, pretože vás odstránil jej správca. Ak chcete byť opäť pridaní do skupiny, kontaktujte jej správcu.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">K tejto skupine sa nemôžete pripojiť prostredníctvom odkazu na skupinu, pretože vás odstránil jej správca. Ak sa chcete opäť pridať do skupiny, kontaktujte jej správcu.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Tento odkaz do skupiny už nie je platný.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -8181,11 +8181,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Kedykoľvek môžete začať opäť platiť za zálohy. Budete tak môcť pokračovať v zálohovaní všetkých svojich médií. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Stiahnite si svoje zálohované údaje ešte dnes</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Stiahnite si svoje zálohované údaje do konca dňa</string>
     <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data">Stiahnuť zálohované údaje</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Stiahnite si svoje zálohované údaje</string>
     <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
-    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">Máte %1$s médií, ktoré nie sú v tomto zariadení. Médiá a prílohy uložené vo vašej zálohe budú bez plateného predplatného natrvalo vymazané.</string>
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">Máte %1$s médií, ktoré nie sú na tomto zariadení. Médiá a prílohy uložené vo vašej zálohe budú bez plateného predplatného natrvalo vymazané.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Uvoľnite na tomto zariadení %1$s</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -8548,7 +8548,7 @@
         <item quantity="other">Spracováva sa %1$s z približne %2$s správ (%3$d %%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Máte %1$s zálohovaných údajov, ktoré nie sú na tomto zariadení. Bez plateného predplatného nie je možné médiá stiahnuť.</string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Máte %1$s zálohovaných údajov, ktoré nie sú na tomto zariadení. Bez plateného predplatného nie je možné médiá presunúť.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Máte %1$s zálohovaných údajov, ktoré nie sú na tomto zariadení. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8595,19 +8595,19 @@
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Sťahuje sa: %1$s z %2$s (%3$d %%)</string>
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
-    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Dosiahli ste limit úložného priestoru %1$s zahrnutého vo vašom zálohovacom pláne. Ak chcete zálohovať nové čety a médiá, uvoľnite úložný priestor.</string>
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Dosiahli ste limit %1$s úložného priestoru zahrnutého vo vašom zálohovacom pláne. Ak chcete zálohovať nové čety a médiá, uvoľnite úložný priestor.</string>
     <!-- Button label to open storage management screen -->
     <string name="RemoteBackupsSettingsFragment__manage_storage">Spravovať úložisko</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
-    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Stiahnite si svoju zálohu ešte dnes</string>
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Stiahnite si svoju zálohu do konca dňa</string>
     <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
     <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">Máte %1$s zálohovaných údajov, ktoré nie sú na tomto zariadení. Vaše médiá a prílohy budú bez plateného predplatného natrvalo vymazané.</string>
     <!-- Dialog positive action label -->
     <string name="DownloadYourBackupTodayDialog__download">Stiahnuť</string>
     <!-- Dialog negative action label -->
-    <string name="DownloadYourBackupTodayDialog__dont_download">Nestiahnuť</string>
+    <string name="DownloadYourBackupTodayDialog__dont_download">Nesťahovať</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->

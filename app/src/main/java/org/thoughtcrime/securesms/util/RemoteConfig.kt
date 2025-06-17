@@ -1029,7 +1029,7 @@ object RemoteConfig {
     key = "android.libsignalWebSocketEnabled.5",
     hotSwappable = false
   ) { value ->
-    value.asBoolean(false) || Environment.IS_NIGHTLY
+    value.asBoolean(false)
   }
 
   @JvmStatic

@@ -1091,9 +1091,9 @@
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">ठीक</string>
     <!-- Dialog title shown when you don\'t have enough storage space -->
-    <string name="LinkDeviceFragment__not_enough_storage_space">Not enough storage space</string>
+    <string name="LinkDeviceFragment__not_enough_storage_space">पुरेशी साठवणीची जागा नाही</string>
     <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
-    <string name="LinkDeviceFragment__you_dont_have_enough">You don\'t have enough free storage space on your device to transfer your messages. Free up some space and try again, or link your device without transferring your messages.</string>
+    <string name="LinkDeviceFragment__you_dont_have_enough">तुमच्या डिव्हाईसवर तुमचे संदेश हस्तांतरण करण्यासाठी तुमच्याकडे पुरेशी साठवणीची मोकळी जागा नाही. थोडी जागा मोकळी करा आणि पुन्हा प्रयत्न करा, किंवा तुमचे संदेश हस्तांतरण न करता तुमचा डिव्हाईस लिंक करा.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1446,7 +1446,7 @@
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">संदेश पुर्नस्थापित करत आहे…</string>
     <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Finishing…</string>
+    <string name="RemoteRestoreActivity__finishing_restore">पूर्ण होत आहे…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">पुर्नस्थापित करत आहे…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -5345,7 +5345,7 @@
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">तुमचे बॅकअप सदस्यत्व रिडीम करता आले नाही</string>
     <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
+    <string name="AppSettingsFragment__backup_storage_limit_reached">बॅकअप साठवण मर्यादा गाठली</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">आपल्या मित्रांना आमंत्रित करा</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7835,11 +7835,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">आपला सर्व मिडीयाचा बॅकअप घेणे सुरू ठेवण्यासाठी आपण कोणत्याही वेळी बॅकअपसाठी पुहा पैसे देणे सुरू करू शकता. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Download your backup data today</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">तुमचा बॅकअप डेटा आजच डाऊनलोड करा</string>
     <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data">Download your backup data</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data">तुमचा बॅकअप डेटा डाऊनलोड करा</string>
     <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
-    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">You have %1$s of media that\'s not on this device. The media and attachments stored in your backup will be permanently deleted without a paid subscription.</string>
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">तुमच्याकडे %1$s मीडिया आहे जो या डिव्हाईसवर नाही. तुमच्या बॅकअपमध्ये साठवलेला मीडिया आणि अटॅचमेंट्स हे सशुल्क सदस्यत्वाखेरीज कायमचे हटवले जातील.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">या डिव्हाईसवरील %1$s जागा मोकळी करा</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7878,9 +7878,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">%1$s/महिना सदस्यता</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_backup_now">Download backup now</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">बॅकअप आत्ताच डाऊनलोड करा</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_backup">Don\'t download backup</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">बॅकअप डाऊनलोड करू नका</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">आता नाही</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -8194,7 +8194,7 @@
         <item quantity="other">%2$s पैकी %1$s संदेशां वर प्रक्रिया करत आहोत (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Without a paid subscription media can\'t be offloaded.</string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">तुमचा %1$s बॅकअप डेटा या डिव्हाईसवर नाही. सशुल्क सदस्यत्व शिवाय मीडिया ऑफलोड करता येणार नाही.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">तुमच्याकडे या डिव्हाईसवर %1$s नसलेला बॅकअप डेटा आहे. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8239,15 +8239,15 @@
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">डाउनलोड होत आहे: %2$s पैकी %1$s (%3$d%%)</string>
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
-    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">तुमच्या बॅकअप प्लॅनमध्ये समाविष्ट असलेली %1$s साठवणीची मर्यादा तुम्ही गाठली आहे. नवीन चॅट्स आणि मीडिया बॅकअप करण्यासाठी जागा मोकळी करा.</string>
     <!-- Button label to open storage management screen -->
     <string name="RemoteBackupsSettingsFragment__manage_storage">संचयन व्यवस्थापित करा</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
-    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Download your backup today</string>
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">तुमचा बॅकअप आजच डाऊनलोड करा</string>
     <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
-    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Your media and attachments will be permanently deleted without a paid subscription.</string>
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">तुमचा %1$s बॅकअप डेटा या डिव्हाईसवर नाही. तुमचा मीडिया आणि अटॅचमेंट्स हे सशुल्क सदस्यत्व खेरीज कायमचे हटवले जातील.</string>
     <!-- Dialog positive action label -->
     <string name="DownloadYourBackupTodayDialog__download">डाऊनलोड करा</string>
     <!-- Dialog negative action label -->

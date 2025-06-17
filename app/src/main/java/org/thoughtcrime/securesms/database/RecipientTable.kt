@@ -1633,6 +1633,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(PROFILE_KEY, encodedProfileKey)
       putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
       put(SEALED_SENDER_MODE, SealedSenderAccessMode.UNKNOWN.mode)
+      put(LAST_PROFILE_FETCH, 0)
     }
 
     val updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, valuesToCompare)
@@ -1665,6 +1666,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       put(PROFILE_KEY, Base64.encodeWithPadding(profileKey.serialize()))
       putNull(EXPIRING_PROFILE_KEY_CREDENTIAL)
       put(SEALED_SENDER_MODE, SealedSenderAccessMode.UNKNOWN.mode)
+      put(LAST_PROFILE_FETCH, 0)
     }
 
     if (writableDatabase.update(TABLE_NAME, valuesToSet, selection, args) > 0) {

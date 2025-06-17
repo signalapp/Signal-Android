@@ -1091,9 +1091,9 @@
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">సరే</string>
     <!-- Dialog title shown when you don\'t have enough storage space -->
-    <string name="LinkDeviceFragment__not_enough_storage_space">Not enough storage space</string>
+    <string name="LinkDeviceFragment__not_enough_storage_space">తగినంత నిల్వ స్థలం లేదు</string>
     <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
-    <string name="LinkDeviceFragment__you_dont_have_enough">You don\'t have enough free storage space on your device to transfer your messages. Free up some space and try again, or link your device without transferring your messages.</string>
+    <string name="LinkDeviceFragment__you_dont_have_enough">మీ సందేశాలను బదిలీ చేయడానికి మీ పరికరంలో తగినంత ఖాళీ నిల్వ స్థలం మీకు లేదు. కొంత స్థలాన్ని ఖాళీ చేసి మళ్ళీ ప్రయత్నించండి, లేదా మీ సందేశాలను బదిలీ చేయకుండా మీ పరికరాన్ని లింక్ చేయండి.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1446,7 +1446,7 @@
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">సందేశాలు రీస్టోర్ అవుతున్నాయి…</string>
     <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Finishing…</string>
+    <string name="RemoteRestoreActivity__finishing_restore">పూర్తి చేస్తోంది…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">రీస్టోర్ అవుతున్నాయి…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1587,7 +1587,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">గ్రూపులో చేరలేరు</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">You can\'t join this group via the group link because an admin removed you. Contact an admin to be added back to the group.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">అడ్మిన్ మిమ్మల్ని తొలగించడం వల్ల గ్రూప్ లింక్ ద్వారా ఈ గ్రూపులో మీరు చేరలేరు. తిరిగి గ్రూప్‌కు జోడించబడటానికి అడ్మిన్‌ను సంప్రదించండి.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ఈ సమూహ లింక్ ఇకపై చెల్లదు.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -5345,7 +5345,7 @@
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">మీ బ్యాకప్ల సబ్స్క్రిప్షన్‌ను రీడీమ్ చేయడం సాధ్యపడలేదు</string>
     <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
+    <string name="AppSettingsFragment__backup_storage_limit_reached">బ్యాకప్ నిల్వ పరిమితి చేరుకుంది</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">మీ స్నేహితులను ఆహ్వానించండి</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7835,11 +7835,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">మీ మీడియాను అంతా బ్యాకప్ చేయడం కొనసాగించడానికి మీరు ఏ సమయంలోనైనా బ్యాకప్‌ల కోసం మళ్ళీ చెల్లించడం ప్రారంభించవచ్చు. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Download your backup data today</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">మీ బ్యాకప్ డేటాను ఈరోజు డౌన్‌లోడ్ చేసుకోండి</string>
     <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data">Download your backup data</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data">మీ బ్యాకప్ డేటాను డౌన్‌లోడ్ చేసుకోండి</string>
     <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
-    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">You have %1$s of media that\'s not on this device. The media and attachments stored in your backup will be permanently deleted without a paid subscription.</string>
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">మీ వద్ద ఈ పరికరంలో లేని %1$s మీడియా ఉంది. చెల్లింపు సబ్‌స్క్రిప్షన్ లేకుంటే మీ బ్యాకప్‌లో నిల్వ చేయబడిన మీడియా మరియు అటాచ్‌మెంట్‌లు శాశ్వతంగా తొలగించబడతాయి.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">ఈ పరికరంలో %1$s ను ఖాళీ చేయండి</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7878,9 +7878,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">%1$s/నెలకు సబ్‌స్క్రైబ్ చేయండి</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_backup_now">Download backup now</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">బ్యాకప్‌ను ఇప్పుడు డౌన్‌లోడ్ చేసుకోండి</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_backup">Don\'t download backup</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">బ్యాకప్‌ను డౌన్‌లోడ్ చేయవద్దు</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">ఇప్పుడు కాదు</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -8179,7 +8179,7 @@
         <item quantity="other">ఈ పరికరంలో మీ సబ్స్క్రిప్షన్ తదుపరి %1$d రోజుల వరకు చెల్లుబాటు అవుతుంది. Signal బ్యాకప్‌లను ఉపయోగించడం కొనసాగించడానికి పునరుద్ధరించండి</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
-    <string name="RemoteBackupsSettingsFragment__resubscribe">Resubscribe</string>
+    <string name="RemoteBackupsSettingsFragment__resubscribe">రీసబ్‌స్క్రైబ్ చేయండి</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">పునరుద్ధరించండి</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8194,7 +8194,7 @@
         <item quantity="other">~%2$s లో %1$s సందేశాలను ప్రాసెస్ చేస్తోంది (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Without a paid subscription media can\'t be offloaded.</string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">మీ వద్ద ఈ పరికరంలో లేని %1$s బ్యాకప్ డేటా ఉంది. చెల్లింపు సబ్‌స్క్రిప్షన్ లేకుండా మీడియాను ఆఫ్‌లోడ్ చేయడం సాధ్యం కాదు.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">మీ వద్ద ఈ పరికరంలో లేని బ్యాకప్ డేటా యొక్క %1$s ఉంది. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8239,15 +8239,15 @@
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">డౌన్లోడ్ అవుతోంది: %2$s యొక్క%1$s (%3$d%%)</string>
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
-    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">మీరు మీ బ్యాకప్ ప్లాన్‌లో చేర్చబడిన %1$s నిల్వ పరిమితిని చేరుకున్నారు. కొత్త చాట్లు మరియు మీడియాను బ్యాకప్ చేయడానికి స్థలాన్ని ఖాళీ చేయండి.</string>
     <!-- Button label to open storage management screen -->
     <string name="RemoteBackupsSettingsFragment__manage_storage">నిల్వను నిర్వహించండి</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
-    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Download your backup today</string>
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">మీ బ్యాకప్‌ను ఈరోజు డౌన్‌లోడ్ చేసుకోండి</string>
     <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
-    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Your media and attachments will be permanently deleted without a paid subscription.</string>
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">మీ వద్ద ఈ పరికరంలో లేని %1$s బ్యాకప్ డేటా ఉంది. చెల్లింపు సబ్‌స్క్రిప్షన్ లేకుంటే మీ మీడియా మరియు అటాచ్‌మెంట్‌లు శాశ్వతంగా తొలగించబడతాయి.</string>
     <!-- Dialog positive action label -->
     <string name="DownloadYourBackupTodayDialog__download">దిగుమతి</string>
     <!-- Dialog negative action label -->
