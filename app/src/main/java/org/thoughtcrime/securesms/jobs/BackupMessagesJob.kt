@@ -22,6 +22,8 @@ import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
 import org.thoughtcrime.securesms.jobs.protos.BackupMessagesJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -150,6 +152,11 @@ class BackupMessagesJob private constructor(
       when (val result = BackupRepository.uploadBackupFile(backupSpec, it, tempBackupFile.length(), progressListener)) {
         is NetworkResult.Success -> {
           Log.i(TAG, "Successfully uploaded backup file.")
+          if (!SignalStore.backup.hasBackupBeenUploaded) {
+            Log.i(TAG, "First time making a backup - scheduling a storage sync.")
+            SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+            StorageSyncHelper.scheduleSyncForDataChange()
+          }
           SignalStore.backup.hasBackupBeenUploaded = true
         }
 

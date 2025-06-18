@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentPurchaseTokenJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
@@ -236,6 +237,10 @@ class MessageBackupsFlowViewModel(
   private fun validateTypeAndUpdateState(state: MessageBackupsFlowState): MessageBackupsFlowState {
     return when (state.selectedMessageBackupTier!!) {
       MessageBackupTier.FREE -> {
+        viewModelScope.launch(SignalDispatchers.IO) {
+          SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+          StorageSyncHelper.scheduleSyncForDataChange()
+        }
         SignalStore.backup.backupTier = MessageBackupTier.FREE
         SignalStore.uiHints.markHasEverEnabledRemoteBackups()
 

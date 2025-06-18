@@ -26,6 +26,8 @@ import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -108,6 +110,10 @@ class BackupsSettingsViewModel : ViewModel() {
   fun onBackupTierInternalOverrideChanged(tier: MessageBackupTier?) {
     SignalStore.backup.backupTierInternalOverride = tier
     SignalStore.backup.deletionState = DeletionState.NONE
+    viewModelScope.launch(SignalDispatchers.Default) {
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
     refreshState()
   }
 }

@@ -7,6 +7,7 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64.encodeWithPadding
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.getSubscriber
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.isUserManuallyCancelled
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.setSubscriber
@@ -174,6 +175,14 @@ object StorageSyncHelper {
           color = StorageSyncModels.localToRemoteUsernameColor(SignalStore.misc.usernameQrCodeColorScheme)
         )
       }
+
+      hasBackup = SignalStore.backup.areBackupsEnabled && SignalStore.backup.hasBackupBeenUploaded
+      if (SignalStore.backup.areBackupsEnabled && SignalStore.backup.backupTier != null) {
+        backupTier = getBackupLevelValue(SignalStore.backup.backupTier!!)
+      } else if (SignalStore.backup.backupTierInternalOverride != null) {
+        backupTier = getBackupLevelValue(SignalStore.backup.backupTierInternalOverride!!)
+      }
+
       notificationProfileManualOverride = getNotificationProfileManualOverride()
 
       getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)?.let {
@@ -188,6 +197,14 @@ object StorageSyncHelper {
     }
 
     return accountRecord.toSignalAccountRecord(StorageId.forAccount(storageId)).toSignalStorageRecord()
+  }
+
+  // TODO: Currently we don't have access to the private values of the BackupLevel. Update when it becomes available.
+  private fun getBackupLevelValue(tier: MessageBackupTier): Long {
+    return when (tier) {
+      MessageBackupTier.FREE -> 200
+      MessageBackupTier.PAID -> 201
+    }
   }
 
   private fun getNotificationProfileManualOverride(): AccountRecord.NotificationProfileManualOverride {

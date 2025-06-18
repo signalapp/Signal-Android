@@ -100,6 +100,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.toMillis
@@ -168,6 +169,7 @@ object BackupRepository {
             Log.w(TAG, "Local device thought it was on PAID tier. Downgrading to FREE tier.")
             SignalStore.backup.backupTier = MessageBackupTier.FREE
             SignalStore.backup.backupExpiredAndDowngraded = true
+            scheduleSyncForAccountChange()
           }
 
           SignalStore.uiHints.markHasEverEnabledRemoteBackups()
@@ -1137,6 +1139,7 @@ object BackupRepository {
     SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
     SignalStore.backup.lastCheckInSnoozeMillis = 0
     SignalStore.backup.clearDownloadNotifierState()
+    scheduleSyncForAccountChange()
   }
 
   /**
@@ -1653,6 +1656,11 @@ object BackupRepository {
     return !SignalStore.registration.isRegistrationComplete &&
       SignalStore.registration.restoreDecisionState.isDecisionPending &&
       RemoteConfig.restoreAfterRegistration
+  }
+
+  private fun scheduleSyncForAccountChange() {
+    SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+    StorageSyncHelper.scheduleSyncForDataChange()
   }
 
   private fun File.deleteAllFilesWithPrefix(prefix: String) {
