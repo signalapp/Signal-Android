@@ -162,32 +162,6 @@ class AttachmentCipherTest {
   }
 
   @Test(expected = InvalidMessageException::class)
-  fun attachment_decryptFailOnNullDigest_nonIncremental() {
-    attachment_decryptFailOnNullDigest(incremental = false)
-  }
-
-  @Test(expected = InvalidMessageException::class)
-  fun attachment_decryptFailOnNullDigest_incremental() {
-    attachment_decryptFailOnNullDigest(incremental = true)
-  }
-
-  private fun attachment_decryptFailOnNullDigest(incremental: Boolean) {
-    var cipherFile: File? = null
-
-    try {
-      val key = Util.getSecretBytes(64)
-      val plaintextInput = Util.getSecretBytes(MEBIBYTE)
-      val encryptResult = encryptData(plaintextInput, key, incremental)
-
-      cipherFile = writeToFile(encryptResult.ciphertext)
-
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, null, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
-    } finally {
-      cipherFile?.delete()
-    }
-  }
-
-  @Test(expected = InvalidMessageException::class)
   fun attachment_decryptFailOnBadDigest_nonIncremental() {
     attachment_decryptFailOnBadDigest(incremental = false)
   }
@@ -293,7 +267,7 @@ class AttachmentCipherTest {
     val encryptResult = encryptData(plaintextInput, key, false)
     val cipherFile = writeToFile(encryptResult.ciphertext)
 
-    val inputStream = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.size.toLong())
+    val inputStream = AttachmentCipherInputStream.createForArchivedMediaOuterLayer(keyMaterial, cipherFile, plaintextInput.size.toLong())
     val plaintextOutput = readInputStreamFully(inputStream)
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
@@ -310,7 +284,7 @@ class AttachmentCipherTest {
     val encryptResult = encryptData(plaintextInput, key, false)
     val cipherFile = writeToFile(encryptResult.ciphertext)
 
-    val inputStream: InputStream = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.size.toLong())
+    val inputStream: InputStream = AttachmentCipherInputStream.createForArchivedMediaOuterLayer(keyMaterial, cipherFile, plaintextInput.size.toLong())
     val plaintextOutput = readInputStreamFully(inputStream)
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
@@ -332,7 +306,7 @@ class AttachmentCipherTest {
       val encryptResult = encryptData(plaintextInput, key, false)
       cipherFile = writeToFile(encryptResult.ciphertext)
 
-      AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.size.toLong())
+      AttachmentCipherInputStream.createForArchivedMediaOuterLayer(keyMaterial, cipherFile, plaintextInput.size.toLong())
     } catch (e: InvalidMessageException) {
       hitCorrectException = true
     } finally {
@@ -368,13 +342,67 @@ class AttachmentCipherTest {
       val cipherFile = writeToFile(encryptedData)
 
       val keyMaterial = createMediaKeyMaterial(key)
-      val decryptedStream: InputStream = AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, length.toLong())
+      val decryptedStream: InputStream = AttachmentCipherInputStream.createForArchivedMediaOuterLayer(keyMaterial, cipherFile, length.toLong())
       val plaintextOutput = readInputStreamFully(decryptedStream)
 
       Assert.assertArrayEquals(plaintextInput, plaintextOutput)
 
       cipherFile.delete()
     }
+  }
+
+  @Test
+  fun archiveInnerAndOuter_encryptDecrypt_nonIncremental() {
+    archiveInnerAndOuter_encryptDecrypt(incremental = false, fileSize = MEBIBYTE)
+  }
+
+  @Test
+  fun archiveInnerAndOuter_encryptDecrypt_incremental() {
+    archiveInnerAndOuter_encryptDecrypt(incremental = true, fileSize = MEBIBYTE)
+  }
+
+  @Test
+  fun archiveInnerAndOuter_encryptDecrypt_nonIncremental_manyFileSizes() {
+    for (i in 0..99) {
+      archiveInnerAndOuter_encryptDecrypt(incremental = false, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
+    }
+  }
+
+  @Test
+  fun archiveInnerAndOuter_encryptDecrypt_incremental_manyFileSizes() {
+    // Designed to stress the various boundary conditions of reading the final mac
+    for (i in 0..99) {
+      archiveInnerAndOuter_encryptDecrypt(incremental = true, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
+    }
+  }
+
+  private fun archiveInnerAndOuter_encryptDecrypt(incremental: Boolean, fileSize: Int) {
+    val innerKey = Util.getSecretBytes(64)
+    val plaintextInput = Util.getSecretBytes(fileSize)
+
+    val innerEncryptResult = encryptData(plaintextInput, innerKey, incremental)
+    val outerKey = Util.getSecretBytes(64)
+
+    val outerEncryptResult = encryptData(innerEncryptResult.ciphertext, outerKey, false)
+    val cipherFile = writeToFile(outerEncryptResult.ciphertext)
+
+    val keyMaterial = createMediaKeyMaterial(outerKey)
+    val decryptedStream: LimitedInputStream = AttachmentCipherInputStream.createForArchivedMediaOuterAndInnerLayers(
+      archivedMediaKeyMaterial = keyMaterial,
+      file = cipherFile,
+      originalCipherTextLength = innerEncryptResult.ciphertext.size.toLong(),
+      plaintextLength = plaintextInput.size.toLong(),
+      combinedKeyMaterial = innerKey,
+      digest = innerEncryptResult.digest,
+      incrementalDigest = innerEncryptResult.incrementalDigest,
+      incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
+    )
+    val plaintextOutput = decryptedStream.readFully(autoClose = false)
+
+    assertThat(plaintextOutput).isEqualTo(plaintextInput)
+    assertThat(decryptedStream.leftoverStream().allMatch { it == 0.toByte() }).isTrue()
+
+    cipherFile.delete()
   }
 
   @Test
@@ -393,7 +421,7 @@ class AttachmentCipherTest {
       cipherFile = writeToFile(badMacCiphertext)
 
       val keyMaterial = createMediaKeyMaterial(key)
-      AttachmentCipherInputStream.createForArchivedMedia(keyMaterial, cipherFile, plaintextInput.size.toLong())
+      AttachmentCipherInputStream.createForArchivedMediaOuterLayer(keyMaterial, cipherFile, plaintextInput.size.toLong())
       Assert.fail()
     } catch (e: InvalidMessageException) {
       hitCorrectException = true

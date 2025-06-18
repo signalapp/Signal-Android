@@ -149,7 +149,15 @@ class RestoreLocalAttachmentJob private constructor(
     try {
       val iv = ByteArray(16)
       streamSupplier.openStream().use { StreamUtil.readFully(it, iv) }
-      AttachmentCipherInputStream.createForAttachment(streamSupplier, size, attachment.size, combinedKey, attachment.remoteDigest, null, 0, false).use { input ->
+      AttachmentCipherInputStream.createForAttachment(
+        streamSupplier = streamSupplier,
+        streamLength = size,
+        plaintextLength = attachment.size,
+        combinedKeyMaterial = combinedKey,
+        digest = attachment.remoteDigest,
+        incrementalDigest = null,
+        incrementalMacChunkSize = 0
+      ).use { input ->
         SignalDatabase.attachments.finalizeAttachmentAfterDownload(attachment.mmsId, attachment.attachmentId, input, iv)
       }
     } catch (e: InvalidMessageException) {

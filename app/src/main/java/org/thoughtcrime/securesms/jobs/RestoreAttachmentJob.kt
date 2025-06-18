@@ -252,7 +252,6 @@ class RestoreAttachmentJob private constructor(
             pointer,
             attachmentFile,
             maxReceiveSize,
-            false,
             progressListener
           )
       } else {

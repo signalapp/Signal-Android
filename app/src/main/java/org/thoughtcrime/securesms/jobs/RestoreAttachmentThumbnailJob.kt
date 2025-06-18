@@ -132,14 +132,13 @@ class RestoreAttachmentThumbnailJob private constructor(
 
     Log.i(TAG, "Downloading thumbnail for $attachmentId")
     val downloadResult = AppDependencies.signalServiceMessageReceiver
-      .retrieveArchivedAttachment(
+      .retrieveArchivedThumbnail(
         SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.requireThumbnailMediaName()),
         cdnCredentials,
         thumbnailTransferFile,
         pointer,
         thumbnailFile,
         maxThumbnailSize,
-        true,
         progressListener
       )
 
