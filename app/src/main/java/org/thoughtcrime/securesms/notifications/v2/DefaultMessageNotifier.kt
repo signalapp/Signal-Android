@@ -17,7 +17,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.messages.IncomingMessageObserver
 import org.thoughtcrime.securesms.notifications.MessageNotifier
 import org.thoughtcrime.securesms.notifications.MessageNotifier.ReminderReceiver
 import org.thoughtcrime.securesms.notifications.NotificationCancellationHelper
@@ -30,7 +29,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.util.BubbleUtil.BubbleState
 import org.thoughtcrime.securesms.util.ServiceUtil
-import org.thoughtcrime.securesms.webrtc.CallNotificationBuilder
 import org.whispersystems.signalservice.internal.util.Util
 import java.util.Optional
 import java.util.concurrent.ConcurrentHashMap
@@ -333,11 +331,7 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
 }
 
 private fun StatusBarNotification.isMessageNotification(): Boolean {
-  return id != NotificationIds.MESSAGE_SUMMARY &&
-    id != KeyCachingService.SERVICE_RUNNING_ID &&
-    id != IncomingMessageObserver.FOREGROUND_ID &&
-    id != NotificationIds.PENDING_MESSAGES &&
-    !CallNotificationBuilder.isWebRtcNotification(id)
+  return NotificationIds.isMessageNotificationId(id)
 }
 
 private fun NotificationManager.getDisplayedNotificationIds(): Result<Set<Int>> {
