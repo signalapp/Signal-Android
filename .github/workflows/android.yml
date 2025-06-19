@@ -27,8 +27,8 @@ jobs:
         java-version: 17
         cache: gradle
 
-    - name: Validate Gradle Wrapper
-      uses: gradle/wrapper-validation-action@v3
+    - name: Setup Gradle and validate Gradle Wrapper
+      uses: gradle/actions/setup-gradle@v4
 
     - name: Build with Gradle
       run: ./gradlew qa
