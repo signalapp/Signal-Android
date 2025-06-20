@@ -1333,6 +1333,7 @@ object BackupRepository {
           mediaId = it.mediaId
         )
       }
+      .filter { it.cdn == Cdn.CDN_3.cdnNumber }
 
     if (mediaToDelete.isEmpty()) {
       Log.i(TAG, "No media to delete, quick success")
@@ -1375,6 +1376,7 @@ object BackupRepository {
               mediaId = it.mediaId
             )
           }
+          .filter { it.cdn == Cdn.CDN_3.cdnNumber }
           .chunked(itemLimit)
 
         if (mediaChunksToDelete.isEmpty()) {
