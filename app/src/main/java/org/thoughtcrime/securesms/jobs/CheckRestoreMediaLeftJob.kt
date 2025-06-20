@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -40,7 +41,9 @@ class CheckRestoreMediaLeftJob private constructor(parameters: Parameters) : Job
     val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
 
     if (remainingAttachmentSize == 0L) {
+      Log.d(TAG, "Media restore complete: there are no remaining restorable attachments.")
       SignalStore.backup.totalRestorableAttachmentSize = 0
+      SignalStore.backup.restoreState = RestoreState.NONE
     } else if (runAttempt == 0) {
       Log.w(TAG, "Still have remaining data to restore, will retry before checking job queues, queue: ${parameters.queue} estimated remaining: $remainingAttachmentSize")
       return Result.retry(15.seconds.inWholeMilliseconds)
