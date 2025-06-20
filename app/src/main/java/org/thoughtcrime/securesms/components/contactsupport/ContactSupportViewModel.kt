@@ -18,10 +18,12 @@ import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 /**
  * Intended to be used to drive [ContactSupportDialog].
  */
-class ContactSupportViewModel : ViewModel(), ContactSupportCallbacks {
+class ContactSupportViewModel(
+  val showInitially: Boolean = false
+) : ViewModel(), ContactSupportCallbacks {
   private val submitDebugLogRepository: SubmitDebugLogRepository = SubmitDebugLogRepository()
 
-  private val store: MutableStateFlow<ContactSupportState> = MutableStateFlow(ContactSupportState())
+  private val store: MutableStateFlow<ContactSupportState> = MutableStateFlow(ContactSupportState(show = showInitially))
 
   val state: StateFlow<ContactSupportState> = store.asStateFlow()
 

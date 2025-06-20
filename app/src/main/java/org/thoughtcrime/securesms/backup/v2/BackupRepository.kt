@@ -9,6 +9,7 @@ import android.app.PendingIntent
 import android.database.Cursor
 import android.os.Environment
 import android.os.StatFs
+import androidx.annotation.Discouraged
 import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
 import kotlinx.coroutines.withContext
@@ -300,6 +301,37 @@ object BackupRepository {
     AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(RestoreAttachmentJob.constructQueueString(RestoreAttachmentJob.RestoreOperation.RESTORE_OFFLOADED)))
     AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(RestoreAttachmentJob.constructQueueString(RestoreAttachmentJob.RestoreOperation.INITIAL_RESTORE)))
     AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(RestoreAttachmentJob.constructQueueString(RestoreAttachmentJob.RestoreOperation.MANUAL)))
+  }
+
+  fun markBackupFailure() {
+    SignalStore.backup.markMessageBackupFailure()
+    ArchiveUploadProgress.onMainBackupFileUploadFailure()
+
+    if (!SignalStore.backup.hasBackupBeenUploaded) {
+      Log.w(TAG, "Failure of initial backup. Displaying notification.")
+      displayInitialBackupFailureNotification()
+    }
+  }
+
+  @Discouraged("This is only public to allow internal settings to call it directly.")
+  fun displayInitialBackupFailureNotification() {
+    val context = AppDependencies.application
+
+    val pendingIntent = PendingIntent.getActivity(context, 0, AppSettingsActivity.remoteBackups(context), cancelCurrent())
+    val notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().APP_ALERTS)
+      .setSmallIcon(R.drawable.ic_notification)
+      .setContentTitle(context.getString(R.string.Notification_backup_failed))
+      .setContentText(context.getString(R.string.Notification_an_error_occurred_and_your_backup))
+      .setContentIntent(pendingIntent)
+      .setAutoCancel(true)
+      .build()
+
+    ServiceUtil.getNotificationManager(context).notify(NotificationIds.INITIAL_BACKUP_FAILED, notification)
+  }
+
+  fun clearBackupFailure() {
+    SignalStore.backup.clearMessageBackupFailure()
+    ServiceUtil.getNotificationManager(AppDependencies.application).cancel(NotificationIds.INITIAL_BACKUP_FAILED)
   }
 
   fun markOutOfRemoteStorageError() {

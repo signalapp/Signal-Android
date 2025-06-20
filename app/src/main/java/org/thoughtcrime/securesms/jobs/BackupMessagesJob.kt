@@ -92,8 +92,7 @@ class BackupMessagesJob private constructor(
   override fun onFailure() {
     if (!isCanceled) {
       Log.w(TAG, "Failed to backup user messages. Marking failure state.")
-      SignalStore.backup.markMessageBackupFailure()
-      ArchiveUploadProgress.onMainBackupFileUploadFailure()
+      BackupRepository.markBackupFailure()
     }
   }
 
@@ -200,7 +199,7 @@ class BackupMessagesJob private constructor(
       ArchiveUploadProgress.onMessageBackupFinishedEarly()
     }
 
-    SignalStore.backup.clearMessageBackupFailure()
+    BackupRepository.clearBackupFailure()
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     AppDependencies.jobManager.add(ArchiveCommitAttachmentDeletesJob())

@@ -33,11 +33,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.withLink
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.os.BundleCompat
@@ -53,6 +59,7 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
+import org.thoughtcrime.securesms.components.contactsupport.ContactSupportDialogFragment
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
@@ -139,7 +146,12 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
       is BackupAlert.DiskFull -> {
         displaySkipRestoreDialog()
       }
-      BackupAlert.BackupFailed -> CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.backup_failed_support_url))
+      BackupAlert.BackupFailed -> {
+        ContactSupportDialogFragment.create(
+          subject = R.string.BackupAlertBottomSheet_network_failure_support_email,
+          filter = R.string.BackupAlertBottomSheet_export_failure_filter
+        ).show(parentFragmentManager, null)
+      }
       BackupAlert.CouldNotRedeemBackup -> CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.backup_support_url)) // TODO [backups] final url
     }
 
@@ -399,8 +411,24 @@ private fun DiskFullBody(requiredSpace: String) {
 
 @Composable
 private fun BackupFailedBody() {
+  val context = LocalContext.current
+  val text = buildAnnotatedString {
+    append(stringResource(id = R.string.BackupAlertBottomSheet__an_error_occurred))
+    append(" ")
+
+    withLink(
+      LinkAnnotation.Clickable(tag = "learn-more") {
+        CommunicationActions.openBrowserLink(context, context.getString(R.string.backup_failed_support_url))
+      }
+    ) {
+      withStyle(SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+        append(stringResource(id = R.string.BackupAlertBottomSheet__learn_more))
+      }
+    }
+  }
+
   Text(
-    text = stringResource(id = R.string.BackupAlertBottomSheet__an_error_occurred),
+    text = text,
     textAlign = TextAlign.Center,
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 36.dp)
@@ -463,7 +491,7 @@ private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
       is BackupAlert.MediaBackupsAreOff -> error("Not supported.")
       is BackupAlert.DownloadYourBackupData -> R.string.BackupAlertBottomSheet__dont_download_backup
       is BackupAlert.DiskFull -> R.string.BackupAlertBottomSheet__skip_restore
-      is BackupAlert.BackupFailed -> R.string.BackupAlertBottomSheet__learn_more
+      is BackupAlert.BackupFailed -> R.string.BackupAlertBottomSheet__contact_support
       BackupAlert.CouldNotRedeemBackup -> R.string.BackupAlertBottomSheet__learn_more
     }
   }
