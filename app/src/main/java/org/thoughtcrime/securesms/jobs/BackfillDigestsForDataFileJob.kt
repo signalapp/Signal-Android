@@ -32,12 +32,13 @@ class BackfillDigestsForDataFileJob private constructor(
   companion object {
     private val TAG = Log.tag(BackfillDigestsForDataFileJob::class)
     const val KEY = "BackfillDigestsForDataFileJob"
+    const val QUEUE = "BackfillDigestJob"
   }
 
   constructor(dataFile: String) : this(
     dataFile = dataFile,
     params = Parameters.Builder()
-      .setQueue(BackfillDigestJob.QUEUE)
+      .setQueue(QUEUE)
       .setMaxAttempts(3)
       .setLifespan(Parameters.IMMORTAL)
       .build()
@@ -50,7 +51,7 @@ class BackfillDigestsForDataFileJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
-    val (originalKey, originalIv, decryptingStream) = SignalDatabase.rawDatabase.withinTransaction {
+    val (originalKey, decryptingStream) = SignalDatabase.rawDatabase.withinTransaction {
       val attachment = SignalDatabase.attachments.getMostRecentValidAttachmentUsingDataFile(dataFile)
       if (attachment == null) {
         Log.w(TAG, "No attachments using file $dataFile exist anymore! Skipping.")
@@ -65,21 +66,19 @@ class BackfillDigestsForDataFileJob private constructor(
       }
 
       // In order to match the exact digest calculation, we need to use the same padding that we would use when uploading the attachment.
-      Triple(attachment.remoteKey?.let { Base64.decode(it) }, attachment.remoteIv, PaddingInputStream(stream, attachment.size))
+      Pair(attachment.remoteKey?.let { Base64.decode(it) }, PaddingInputStream(stream, attachment.size))
     }
 
     val key = originalKey ?: Util.getSecretBytes(64)
-    val iv = originalIv ?: Util.getSecretBytes(16)
 
-    val cipherOutputStream = AttachmentCipherOutputStream(key, iv, NullOutputStream)
+    val cipherOutputStream = AttachmentCipherOutputStream(key, iv = null, NullOutputStream)
     decryptingStream.copyTo(cipherOutputStream)
 
     val digest = cipherOutputStream.transmittedDigest
 
-    SignalDatabase.attachments.updateKeyIvDigestByDataFile(
+    SignalDatabase.attachments.updateRemoteKeyAndDigestByDataFile(
       dataFile = dataFile,
       key = key,
-      iv = iv,
       digest = digest
     )
 

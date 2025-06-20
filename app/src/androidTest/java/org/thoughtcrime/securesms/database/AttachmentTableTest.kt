@@ -15,6 +15,7 @@ import org.junit.Before
 import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.copyTo
 import org.signal.core.util.readFully
 import org.signal.core.util.stream.NullOutputStream
@@ -200,7 +201,7 @@ class AttachmentTableTest {
 
     // Give data to attachment table
     val cipherInputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintext.size.toLong(), key, badlyPaddedDigest, null, 4)
-    SignalDatabase.attachments.finalizeAttachmentAfterDownload(mmsId, attachmentId, cipherInputStream, iv)
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(mmsId, attachmentId, cipherInputStream)
 
     // Verify the digest has been updated to the properly padded one
     val properlyPaddedPlaintext = PaddingInputStream(plaintext.inputStream(), plaintext.size.toLong()).readFully()
@@ -231,7 +232,7 @@ class AttachmentTableTest {
 
     // Give data to attachment table
     val cipherInputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintext.size.toLong(), key, digest, null, 4)
-    SignalDatabase.attachments.finalizeAttachmentAfterDownload(mmsId, attachmentId, cipherInputStream, iv)
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(mmsId, attachmentId, cipherInputStream)
 
     // Verify the digest hasn't changed
     val newDigest = SignalDatabase.attachments.getAttachment(attachmentId)!!.remoteDigest!!
@@ -239,7 +240,7 @@ class AttachmentTableTest {
   }
 
   @Test
-  fun resetArchiveTransferStateByDigest_singleMatch() {
+  fun resetArchiveTransferStateByPlaintextHashAndRemoteKey_singleMatch() {
     // Given an attachment with some digest
     val blob = BlobProvider.getInstance().forData(byteArrayOf(1, 2, 3, 4, 5)).createForSingleSessionInMemory()
     val attachment = createAttachment(1, blob, AttachmentTable.TransformProperties.empty())
@@ -248,8 +249,9 @@ class AttachmentTableTest {
     SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
 
     // Reset the transfer state by digest
-    val digest = SignalDatabase.attachments.getAttachment(attachmentId)!!.remoteDigest!!
-    SignalDatabase.attachments.resetArchiveTransferStateByDigest(digest)
+    val plaintextHash = SignalDatabase.attachments.getAttachment(attachmentId)!!.dataHash!!.decodeBase64OrThrow()
+    val remoteKey = SignalDatabase.attachments.getAttachment(attachmentId)!!.remoteKey!!.decodeBase64OrThrow()
+    SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKey(plaintextHash, remoteKey)
 
     // Verify it's been reset
     assertThat(SignalDatabase.attachments.getAttachment(attachmentId)!!.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)

@@ -91,9 +91,14 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     const val LAST_SEEN_ON_REMOTE_SNAPSHOT_VERSION = "last_seen_on_remote_snapshot_version"
 
     /**
-     * The remote digest for the media object. This is used to find matching attachments in the attachment table when necessary.
+     * The plaintext hash of the media object. This is used to find matching attachments in the attachment table when necessary.
      */
-    const val REMOTE_DIGEST = "remote_digest"
+    const val PLAINTEXT_HASH = "plaintext_hash"
+
+    /**
+     * The remote that was used for encrypting for the media object. This is used to find matching attachments in the attachment table when necessary.
+     */
+    const val REMOTE_KEY = "remote_key"
 
     /** Constant representing a [SNAPSHOT_VERSION] version that has not yet been set. */
     const val UNKNOWN_VERSION = -1
@@ -111,7 +116,8 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
         $SNAPSHOT_VERSION INTEGER NOT NULL DEFAULT $UNKNOWN_VERSION,
         $IS_PENDING INTEGER NOT NULL DEFAULT 0,
         $IS_THUMBNAIL INTEGER NOT NULL DEFAULT 0,
-        $REMOTE_DIGEST BLOB NOT NULL,
+        $PLAINTEXT_HASH BLOB NOT NULL,
+        $REMOTE_KEY BLOB NOT NULL,
         $LAST_SEEN_ON_REMOTE_SNAPSHOT_VERSION INTEGER NOT NULL DEFAULT 0
       )
     """.trimIndent()
@@ -130,11 +136,11 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
       .chunked(SqlUtil.MAX_QUERY_ARGS)
       .forEach { chunk ->
         writePendingMediaObjectsChunk(
-          chunk.map { MediaEntry(it.mediaId, it.cdn, it.digest, isThumbnail = false) }
+          chunk.map { MediaEntry(it.mediaId, it.cdn, it.plaintextHash, it.remoteKey, isThumbnail = false) }
         )
 
         writePendingMediaObjectsChunk(
-          chunk.map { MediaEntry(it.thumbnailMediaId, it.cdn, it.digest, isThumbnail = true) }
+          chunk.map { MediaEntry(it.thumbnailMediaId, it.cdn, it.plaintextHash, it.remoteKey, isThumbnail = true) }
         )
       }
   }
@@ -238,14 +244,15 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     return readableDatabase.rawQuery(
       """
       WITH input_pairs($MEDIA_ID, $CDN) AS (VALUES $inputValues)
-      SELECT a.$REMOTE_DIGEST, b.$CDN
+      SELECT a.$PLAINTEXT_HASH, a.$REMOTE_KEY b.$CDN
       FROM $TABLE_NAME a
       JOIN input_pairs b ON a.$MEDIA_ID = b.$MEDIA_ID
       WHERE a.$CDN != b.$CDN AND a.$IS_THUMBNAIL = 0 AND $SNAPSHOT_VERSION = $MAX_VERSION
       """
     ).readToList { cursor ->
       CdnMismatchResult(
-        digest = cursor.requireNonNullBlob(REMOTE_DIGEST),
+        plaintextHash = cursor.requireNonNullBlob(PLAINTEXT_HASH),
+        remoteKey = cursor.requireNonNullBlob(REMOTE_KEY),
         cdn = cursor.requireInt(CDN)
       )
     }
@@ -277,7 +284,7 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
    */
   fun getMediaObjectsLastSeenOnCdnBeforeSnapshotVersion(snapshotVersion: Long): Cursor {
     return readableDatabase
-      .select(MEDIA_ID, CDN, REMOTE_DIGEST, IS_THUMBNAIL)
+      .select(MEDIA_ID, CDN, PLAINTEXT_HASH, REMOTE_KEY, IS_THUMBNAIL)
       .from(TABLE_NAME)
       .where("$LAST_SEEN_ON_REMOTE_SNAPSHOT_VERSION < $snapshotVersion AND $SNAPSHOT_VERSION = $snapshotVersion")
       .run()
@@ -288,21 +295,23 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
       contentValuesOf(
         MEDIA_ID to it.mediaId,
         CDN to it.cdn,
-        REMOTE_DIGEST to it.digest,
+        PLAINTEXT_HASH to it.plaintextHash,
+        REMOTE_KEY to it.remoteKey,
         IS_THUMBNAIL to it.isThumbnail.toInt(),
         SNAPSHOT_VERSION to UNKNOWN_VERSION,
         IS_PENDING to 1
       )
     }
 
-    val query = SqlUtil.buildSingleBulkInsert(TABLE_NAME, arrayOf(MEDIA_ID, CDN, REMOTE_DIGEST, IS_THUMBNAIL, SNAPSHOT_VERSION, IS_PENDING), values)
+    val query = SqlUtil.buildSingleBulkInsert(TABLE_NAME, arrayOf(MEDIA_ID, CDN, PLAINTEXT_HASH, REMOTE_KEY, IS_THUMBNAIL, SNAPSHOT_VERSION, IS_PENDING), values)
 
     writableDatabase.execSQL(
       query.where +
         """
         ON CONFLICT($MEDIA_ID) DO UPDATE SET
           $CDN = excluded.$CDN,
-          $REMOTE_DIGEST = excluded.$REMOTE_DIGEST,
+          $PLAINTEXT_HASH = excluded.$PLAINTEXT_HASH,
+          $REMOTE_KEY = excluded.$REMOTE_KEY,
           $IS_THUMBNAIL = excluded.$IS_THUMBNAIL,
           $IS_PENDING = excluded.$IS_PENDING
         """,
@@ -314,18 +323,21 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     val mediaId: String,
     val thumbnailMediaId: String,
     val cdn: Int?,
-    val digest: ByteArray
+    val plaintextHash: ByteArray,
+    val remoteKey: ByteArray
   )
 
   class CdnMismatchResult(
-    val digest: ByteArray,
+    val plaintextHash: ByteArray,
+    val remoteKey: ByteArray,
     val cdn: Int
   )
 
   class MediaEntry(
     val mediaId: String,
     val cdn: Int?,
-    val digest: ByteArray,
+    val plaintextHash: ByteArray,
+    val remoteKey: ByteArray,
     val isThumbnail: Boolean
   ) {
     companion object {
@@ -333,7 +345,8 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
         return MediaEntry(
           mediaId = cursor.requireNonNullString(MEDIA_ID),
           cdn = cursor.requireIntOrNull(CDN),
-          digest = cursor.requireNonNullBlob(REMOTE_DIGEST),
+          plaintextHash = cursor.requireNonNullBlob(PLAINTEXT_HASH),
+          remoteKey = cursor.requireNonNullBlob(REMOTE_KEY),
           isThumbnail = cursor.requireBoolean(IS_THUMBNAIL)
         )
       }

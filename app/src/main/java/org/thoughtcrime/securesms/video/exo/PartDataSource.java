@@ -86,7 +86,7 @@ class PartDataSource implements DataSource {
             throw new InvalidMessageException("Missing digest!");
           }
 
-          this.inputStream = AttachmentCipherInputStream.createForArchivedMediaOuterAndInnerLayers(mediaKeyMaterial, archiveFile, originalCipherLength, attachment.size, decodedKey, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
+          this.inputStream = AttachmentCipherInputStream.createForArchivedMedia(mediaKeyMaterial, archiveFile, originalCipherLength, attachment.size, decodedKey, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
         } catch (InvalidMessageException e) {
           throw new IOException("Error decrypting attachment stream!", e);
         }

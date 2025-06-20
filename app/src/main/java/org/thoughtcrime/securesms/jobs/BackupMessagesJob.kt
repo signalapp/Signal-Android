@@ -100,7 +100,6 @@ class BackupMessagesJob private constructor(
       .addConstraint(if (SignalStore.backup.backupWithCellular) NetworkConstraint.KEY else WifiConstraint.KEY)
       .setMaxAttempts(3)
       .setMaxInstancesForFactory(1)
-      .setQueue(BackfillDigestJob.QUEUE) // We want to ensure digests have been backfilled before this runs. Could eventually remove this constraint.
       .build()
   )
 
@@ -132,7 +131,7 @@ class BackupMessagesJob private constructor(
 
     val stopwatch = Stopwatch("BackupMessagesJob")
 
-    SignalDatabase.attachments.createKeyIvDigestForAttachmentsThatNeedArchiveUpload().takeIf { it > 0 }?.let { count -> Log.w(TAG, "Needed to create $count key/iv/digests.") }
+    SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload().takeIf { it > 0 }?.let { count -> Log.w(TAG, "Needed to create $count key/iv/digests.") }
     stopwatch.split("key-iv-digest")
 
     if (isCanceled) {

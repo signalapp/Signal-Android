@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.backup.v2
 
 import android.text.TextUtils
 import org.signal.core.util.Base64
+import org.signal.core.util.Base64.decodeBase64
+import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -22,8 +24,8 @@ import java.util.Optional
 object DatabaseAttachmentArchiveUtil {
   @JvmStatic
   fun requireMediaName(attachment: DatabaseAttachment): MediaName {
-    require(isDigestValidated(attachment))
-    return MediaName.fromDigest(attachment.remoteDigest!!)
+    require(hadIntegrityCheckPerformed(attachment))
+    return MediaName.fromPlaintextHashAndRemoteKey(attachment.dataHash!!.decodeBase64OrThrow(), attachment.remoteKey!!.decodeBase64OrThrow())
   }
 
   /**
@@ -31,14 +33,21 @@ object DatabaseAttachmentArchiveUtil {
    */
   @JvmStatic
   fun requireMediaNameAsString(attachment: DatabaseAttachment): String {
-    require(isDigestValidated(attachment))
-    return MediaName.fromDigest(attachment.remoteDigest!!).name
+    require(hadIntegrityCheckPerformed(attachment))
+    return MediaName.fromPlaintextHashAndRemoteKey(attachment.dataHash!!.decodeBase64OrThrow(), attachment.remoteKey!!.decodeBase64OrThrow()).name
   }
 
   @JvmStatic
   fun getMediaName(attachment: DatabaseAttachment): MediaName? {
-    return if (isDigestValidated(attachment)) {
-      attachment.remoteDigest?.let { MediaName.fromDigest(it) }
+    return if (hadIntegrityCheckPerformed(attachment)) {
+      val plaintextHash = attachment.dataHash.decodeBase64()
+      val remoteKey = attachment.remoteKey?.decodeBase64()
+
+      if (plaintextHash != null && remoteKey != null) {
+        MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey)
+      } else {
+        null
+      }
     } else {
       null
     }
@@ -46,11 +55,11 @@ object DatabaseAttachmentArchiveUtil {
 
   @JvmStatic
   fun requireThumbnailMediaName(attachment: DatabaseAttachment): MediaName {
-    require(isDigestValidated(attachment))
-    return MediaName.fromDigestForThumbnail(attachment.remoteDigest!!)
+    require(hadIntegrityCheckPerformed(attachment))
+    return MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(attachment.dataHash!!.decodeBase64OrThrow(), attachment.remoteKey!!.decodeBase64OrThrow())
   }
 
-  private fun isDigestValidated(attachment: DatabaseAttachment): Boolean {
+  private fun hadIntegrityCheckPerformed(attachment: DatabaseAttachment): Boolean {
     return when (attachment.transferState) {
       AttachmentTable.TRANSFER_PROGRESS_DONE,
       AttachmentTable.TRANSFER_NEEDS_RESTORE,

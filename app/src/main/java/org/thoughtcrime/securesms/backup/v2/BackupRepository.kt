@@ -691,7 +691,7 @@ object BackupRepository {
       val localArchivableAttachments = dbSnapshot
         .attachmentTable
         .getLocalArchivableAttachments()
-        .associateBy { MediaName.fromDigest(it.remoteDigest) }
+        .associateBy { MediaName.fromPlaintextHashAndRemoteKey(it.plaintextHash, it.remoteKey) }
 
       localBackupProgressEmitter.onAttachment(0, localArchivableAttachments.size.toLong())
 
@@ -1965,13 +1965,14 @@ class ArchiveMediaItemIterator(private val cursor: Cursor) : Iterator<ArchiveMed
   override fun hasNext(): Boolean = !cursor.isAfterLast
 
   override fun next(): ArchiveMediaItem {
-    val digest = cursor.requireNonNullBlob(AttachmentTable.REMOTE_DIGEST)
+    val plaintextHash = cursor.requireNonNullBlob(AttachmentTable.DATA_HASH_END)
+    val remoteKey = cursor.requireNonNullBlob(AttachmentTable.REMOTE_KEY)
     val cdn = cursor.requireIntOrNull(AttachmentTable.ARCHIVE_CDN)
 
-    val mediaId = MediaName.fromDigest(digest).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
-    val thumbnailMediaId = MediaName.fromDigestForThumbnail(digest).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+    val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+    val thumbnailMediaId = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
 
     cursor.moveToNext()
-    return ArchiveMediaItem(mediaId, thumbnailMediaId, cdn, digest)
+    return ArchiveMediaItem(mediaId, thumbnailMediaId, cdn, plaintextHash, remoteKey)
   }
 }

@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
@@ -105,7 +106,7 @@ class ArchiveThumbnailUploadJob private constructor(
       .then { form ->
         SignalNetwork.attachments.getResumableUploadSpec(
           key = mediaRootBackupKey.deriveThumbnailTransitKey(attachment.requireThumbnailMediaName()),
-          iv = attachment.remoteIv!!,
+          iv = Util.getSecretBytes(16),
           uploadForm = form
         )
       }

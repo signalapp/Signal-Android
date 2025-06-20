@@ -47,7 +47,6 @@ class PointerAttachment : Attachment {
     cdn = cdn,
     remoteLocation = location,
     remoteKey = key,
-    remoteIv = iv,
     remoteDigest = digest,
     incrementalDigest = incrementalDigest,
     fastPreflightId = fastPreflightId,

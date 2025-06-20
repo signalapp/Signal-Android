@@ -39,8 +39,6 @@ abstract class Attachment(
   @JvmField
   val remoteKey: String?,
   @JvmField
-  val remoteIv: ByteArray?,
-  @JvmField
   val remoteDigest: ByteArray?,
   @JvmField
   val incrementalDigest: ByteArray?,
@@ -90,7 +88,6 @@ abstract class Attachment(
     cdn = Cdn.deserialize(parcel.readInt()),
     remoteLocation = parcel.readString(),
     remoteKey = parcel.readString(),
-    remoteIv = ParcelUtil.readByteArray(parcel),
     remoteDigest = ParcelUtil.readByteArray(parcel),
     incrementalDigest = ParcelUtil.readByteArray(parcel),
     fastPreflightId = parcel.readString(),

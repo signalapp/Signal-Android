@@ -31,6 +31,7 @@ import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.AttachmentProgressService
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
@@ -131,7 +132,7 @@ class AttachmentUploadJob private constructor(
       throw NotPushRegisteredException()
     }
 
-    SignalDatabase.attachments.createKeyIvIfNecessary(attachmentId)
+    SignalDatabase.attachments.createRemoteKeyIfNecessary(attachmentId)
 
     val databaseAttachment = SignalDatabase.attachments.getAttachment(attachmentId) ?: throw InvalidAttachmentException("Cannot find the specified attachment.")
 
@@ -155,7 +156,7 @@ class AttachmentUploadJob private constructor(
         .then { form ->
           SignalNetwork.attachments.getResumableUploadSpec(
             key = Base64.decode(databaseAttachment.remoteKey!!),
-            iv = databaseAttachment.remoteIv!!,
+            iv = Util.getSecretBytes(16),
             uploadForm = form
           )
         }

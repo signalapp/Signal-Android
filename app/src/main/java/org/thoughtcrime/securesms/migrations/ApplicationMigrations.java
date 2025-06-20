@@ -732,7 +732,7 @@ public class ApplicationMigrations {
     }
 
     if (lastSeenVersion < Version.BACKFILL_DIGESTS_V2) {
-      jobs.put(Version.BACKFILL_DIGESTS_V2, new BackfillDigestsMigrationJob());
+//      jobs.put(Version.BACKFILL_DIGESTS_V2, new BackfillDigestsMigrationJob());
     }
 
     if (lastSeenVersion < Version.CALL_LINK_STORAGE_SYNC) {

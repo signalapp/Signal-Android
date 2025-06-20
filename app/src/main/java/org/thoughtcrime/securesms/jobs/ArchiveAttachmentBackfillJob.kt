@@ -45,7 +45,7 @@ class ArchiveAttachmentBackfillJob private constructor(parameters: Parameters) :
     val jobs = SignalDatabase.attachments.getAttachmentsThatNeedArchiveUpload()
       .map { attachmentId -> UploadAttachmentToArchiveJob(attachmentId) }
 
-    SignalDatabase.attachments.createKeyIvDigestForAttachmentsThatNeedArchiveUpload()
+    SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload()
 
     ArchiveUploadProgress.onAttachmentsStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
 

@@ -131,7 +131,7 @@ class RestoreAttachmentThumbnailJob private constructor(
     val pointer = attachment.createArchiveThumbnailPointer()
 
     Log.i(TAG, "Downloading thumbnail for $attachmentId")
-    val downloadResult = AppDependencies.signalServiceMessageReceiver
+    val decryptingStream = AppDependencies.signalServiceMessageReceiver
       .retrieveArchivedThumbnail(
         SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.requireThumbnailMediaName()),
         cdnCredentials,
@@ -142,7 +142,7 @@ class RestoreAttachmentThumbnailJob private constructor(
         progressListener
       )
 
-    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.remoteDigest, downloadResult.dataStream, thumbnailTransferFile)
+    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.remoteDigest, decryptingStream, thumbnailTransferFile)
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context)

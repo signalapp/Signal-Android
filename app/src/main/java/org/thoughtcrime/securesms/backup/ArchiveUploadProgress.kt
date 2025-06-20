@@ -22,7 +22,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ArchiveCommitAttachmentDeletesJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob
-import org.thoughtcrime.securesms.jobs.BackfillDigestJob
 import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
@@ -109,7 +108,6 @@ object ArchiveUploadProgress {
       )
     }
 
-    AppDependencies.jobManager.cancelAllInQueue(BackfillDigestJob.QUEUE)
     AppDependencies.jobManager.cancelAllInQueue(ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE)
     UploadAttachmentToArchiveJob.getAllQueueKeys().forEach {
       AppDependencies.jobManager.cancelAllInQueue(it)
@@ -126,7 +124,7 @@ object ArchiveUploadProgress {
       Log.d(TAG, "Flushing job manager queue...")
       AppDependencies.jobManager.flush()
 
-      val queues = setOf(BackfillDigestJob.QUEUE, ArchiveThumbnailUploadJob.KEY, ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE) + UploadAttachmentToArchiveJob.getAllQueueKeys()
+      val queues = setOf(ArchiveThumbnailUploadJob.KEY, ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE) + UploadAttachmentToArchiveJob.getAllQueueKeys()
       Log.d(TAG, "Waiting for cancelations to occur...")
       while (!AppDependencies.jobManager.areQueuesEmpty(queues)) {
         delay(1.seconds)

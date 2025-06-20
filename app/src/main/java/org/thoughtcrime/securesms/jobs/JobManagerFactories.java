@@ -50,7 +50,6 @@ import org.thoughtcrime.securesms.migrations.AvatarColorStorageServiceMigrationJ
 import org.thoughtcrime.securesms.migrations.AvatarIdRemovalMigrationJob;
 import org.thoughtcrime.securesms.migrations.AvatarMigrationJob;
 import org.thoughtcrime.securesms.migrations.BackfillDigestsForDuplicatesMigrationJob;
-import org.thoughtcrime.securesms.migrations.BackfillDigestsMigrationJob;
 import org.thoughtcrime.securesms.migrations.BackupJitterMigrationJob;
 import org.thoughtcrime.securesms.migrations.BackupNotificationMigrationJob;
 import org.thoughtcrime.securesms.migrations.BadE164MigrationJob;
@@ -131,7 +130,6 @@ public final class JobManagerFactories {
       put(AutomaticSessionResetJob.KEY,                new AutomaticSessionResetJob.Factory());
       put(AvatarGroupsV1DownloadJob.KEY,               new AvatarGroupsV1DownloadJob.Factory());
       put(AvatarGroupsV2DownloadJob.KEY,               new AvatarGroupsV2DownloadJob.Factory());
-      put(BackfillDigestJob.KEY,                       new BackfillDigestJob.Factory());
       put(BackfillDigestsForDataFileJob.KEY,           new BackfillDigestsForDataFileJob.Factory());
       put(BackupDeleteJob.KEY,                         new BackupDeleteJob.Factory());
       put(BackupMessagesJob.KEY,                       new BackupMessagesJob.Factory());
@@ -284,7 +282,6 @@ public final class JobManagerFactories {
       put(AvatarColorStorageServiceMigrationJob.KEY,      new AvatarColorStorageServiceMigrationJob.Factory());
       put(AvatarIdRemovalMigrationJob.KEY,                new AvatarIdRemovalMigrationJob.Factory());
       put(AvatarMigrationJob.KEY,                         new AvatarMigrationJob.Factory());
-      put(BackfillDigestsMigrationJob.KEY,                new BackfillDigestsMigrationJob.Factory());
       put(BackfillDigestsForDuplicatesMigrationJob.KEY,   new BackfillDigestsForDuplicatesMigrationJob.Factory());
       put(BackupJitterMigrationJob.KEY,                   new BackupJitterMigrationJob.Factory());
       put(BackupNotificationMigrationJob.KEY,             new BackupNotificationMigrationJob.Factory());
@@ -394,6 +391,8 @@ public final class JobManagerFactories {
       put("BackupMediaSnapshotSyncJob",                  new FailingJob.Factory());
       put("PnpInitializeDevicesJob",                     new FailingJob.Factory());
       put("BackupRestoreJob",                            new FailingJob.Factory());
+      put("BackfillDigestsMigrationJob",                 new PassingMigrationJob.Factory());
+      put("BackfillDigestJob",                           new FailingJob.Factory());
     }};
   }
 

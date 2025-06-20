@@ -127,7 +127,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
         val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(it)
         // TODO [backup] Re-enqueue thumbnail uploads if necessary
         if (!entry.isThumbnail) {
-          SignalDatabase.attachments.resetArchiveTransferStateByDigest(entry.digest)
+          SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKey(entry.plaintextHash, entry.remoteKey)
         }
       }
 
@@ -170,7 +170,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
     if (cdnMismatches.isNotEmpty()) {
       Log.w(TAG, "Found ${cdnMismatches.size} items with CDNs that differ from what we have locally. Updating our local store.")
       for (mismatch in cdnMismatches) {
-        SignalDatabase.attachments.setArchiveCdnByDigest(mismatch.digest, mismatch.cdn)
+        SignalDatabase.attachments.setArchiveCdnByPlaintextHashAndRemoteKey(mismatch.plaintextHash, mismatch.remoteKey, mismatch.cdn)
       }
     }
 

@@ -52,8 +52,8 @@ class RestoreLocalAttachmentJob private constructor(
 
         possibleRestorableAttachments
           .forEachIndexed { index, attachment ->
-            val fileInfo = if (attachment.remoteKey != null && attachment.remoteDigest != null) {
-              val mediaName = MediaName.fromDigest(attachment.remoteDigest).name
+            val fileInfo = if (attachment.plaintextHash != null && attachment.remoteKey != null) {
+              val mediaName = MediaName.fromPlaintextHashAndRemoteKey(attachment.plaintextHash, attachment.remoteKey).name
               mediaNameToFileInfo[mediaName]
             } else {
               null
@@ -158,7 +158,7 @@ class RestoreLocalAttachmentJob private constructor(
         incrementalDigest = null,
         incrementalMacChunkSize = 0
       ).use { input ->
-        SignalDatabase.attachments.finalizeAttachmentAfterDownload(attachment.mmsId, attachment.attachmentId, input, iv)
+        SignalDatabase.attachments.finalizeAttachmentAfterDownload(attachment.mmsId, attachment.attachmentId, input)
       }
     } catch (e: InvalidMessageException) {
       Log.w(TAG, "Experienced an InvalidMessageException while trying to read attachment.", e)

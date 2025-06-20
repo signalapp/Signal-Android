@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.jobs.protos.UploadAttachmentToArchiveJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.service.AttachmentProgressService
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
@@ -124,8 +125,8 @@ class UploadAttachmentToArchiveJob private constructor(
       return Result.success()
     }
 
-    if (attachment.remoteKey == null || attachment.remoteIv == null) {
-      Log.w(TAG, "[$attachmentId] Attachment is missing remote key or IV! Cannot upload.")
+    if (attachment.remoteKey == null) {
+      Log.w(TAG, "[$attachmentId] Attachment is missing remote key! Cannot upload.")
       return Result.failure()
     }
 
@@ -144,7 +145,7 @@ class UploadAttachmentToArchiveJob private constructor(
     if (uploadSpec == null) {
       Log.d(TAG, "[$attachmentId] Need an upload spec. Fetching...")
 
-      val (spec, result) = fetchResumableUploadSpec(key = Base64.decode(attachment.remoteKey), iv = attachment.remoteIv)
+      val (spec, result) = fetchResumableUploadSpec(key = Base64.decode(attachment.remoteKey), iv = Util.getSecretBytes(16))
       if (result != null) {
         return result
       }

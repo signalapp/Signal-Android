@@ -23,13 +23,7 @@ class ArchivedAttachment : Attachment {
   val archiveCdn: Int?
 
   @JvmField
-  val archiveMediaName: String
-
-  @JvmField
-  val archiveMediaId: String
-
-  @JvmField
-  val archiveThumbnailMediaId: String
+  val plaintextHash: ByteArray
 
   constructor(
     contentType: String?,
@@ -37,13 +31,9 @@ class ArchivedAttachment : Attachment {
     cdn: Int,
     uploadTimestamp: Long?,
     key: ByteArray,
-    iv: ByteArray?,
     cdnKey: String?,
     archiveCdn: Int?,
-    archiveMediaName: String,
-    archiveMediaId: String,
-    archiveThumbnailMediaId: String,
-    digest: ByteArray,
+    plaintextHash: ByteArray,
     incrementalMac: ByteArray?,
     incrementalMacChunkSize: Int?,
     width: Int?,
@@ -66,8 +56,7 @@ class ArchivedAttachment : Attachment {
     cdn = Cdn.fromCdnNumber(cdn),
     remoteLocation = cdnKey,
     remoteKey = Base64.encodeWithoutPadding(key),
-    remoteIv = iv,
-    remoteDigest = digest,
+    remoteDigest = null,
     incrementalDigest = incrementalMac,
     fastPreflightId = null,
     voiceNote = voiceNote,
@@ -85,24 +74,18 @@ class ArchivedAttachment : Attachment {
     uuid = uuid
   ) {
     this.archiveCdn = archiveCdn
-    this.archiveMediaName = archiveMediaName
-    this.archiveMediaId = archiveMediaId
-    this.archiveThumbnailMediaId = archiveThumbnailMediaId
+    this.plaintextHash = plaintextHash
   }
 
   constructor(parcel: Parcel) : super(parcel) {
     archiveCdn = parcel.readInt().takeIf { it != NO_ARCHIVE_CDN }
-    archiveMediaName = parcel.readString()!!
-    archiveMediaId = parcel.readString()!!
-    archiveThumbnailMediaId = parcel.readString()!!
+    plaintextHash = parcel.createByteArray()!!
   }
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
     super.writeToParcel(dest, flags)
     dest.writeInt(archiveCdn ?: NO_ARCHIVE_CDN)
-    dest.writeString(archiveMediaName)
-    dest.writeString(archiveMediaId)
-    dest.writeString(archiveThumbnailMediaId)
+    dest.writeByteArray(plaintextHash)
   }
 
   override val uri: Uri? = null

@@ -14,8 +14,8 @@ import org.signal.core.util.Hex
 value class MediaName(val name: String) {
 
   companion object {
-    fun fromDigest(digest: ByteArray) = MediaName(Hex.toStringCondensed(digest))
-    fun fromDigestForThumbnail(digest: ByteArray) = MediaName("${Hex.toStringCondensed(digest)}_thumbnail")
+    fun fromPlaintextHashAndRemoteKey(plaintextHash: ByteArray, remoteKey: ByteArray) = MediaName(Hex.toStringCondensed(plaintextHash + remoteKey))
+    fun fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash: ByteArray, remoteKey: ByteArray) = MediaName(Hex.toStringCondensed(plaintextHash + remoteKey) + "_thumbnail")
     fun forThumbnailFromMediaName(mediaName: String) = MediaName("${mediaName}_thumbnail")
 
     /**

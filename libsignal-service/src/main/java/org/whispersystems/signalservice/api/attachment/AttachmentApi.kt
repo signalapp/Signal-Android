@@ -91,7 +91,6 @@ class AttachmentApi(
         remoteId = SignalServiceAttachmentRemoteId.V4(attachmentData.resumableUploadSpec.cdnKey),
         cdnNumber = attachmentData.resumableUploadSpec.cdnNumber,
         key = resumableUploadSpec.attachmentKey,
-        iv = resumableUploadSpec.attachmentIv,
         digest = digestInfo.digest,
         incrementalDigest = digestInfo.incrementalDigest,
         incrementalDigestChunkSize = digestInfo.incrementalMacChunkSize,

@@ -20,7 +20,6 @@ class WallpaperAttachment() : Attachment(
   cdn = Cdn.CDN_0,
   remoteLocation = null,
   remoteKey = null,
-  remoteIv = null,
   remoteDigest = null,
   incrementalDigest = null,
   fastPreflightId = null,

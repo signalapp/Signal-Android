@@ -9,7 +9,6 @@ import org.junit.Assert
 import org.junit.Test
 import org.signal.core.util.StreamUtil
 import org.signal.core.util.allMatch
-import org.signal.core.util.copyTo
 import org.signal.core.util.readFully
 import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.protocol.InvalidMessageException
@@ -224,89 +223,72 @@ class AttachmentCipherTest {
   }
 
   @Test
-  fun attachment_encryptDecryptPaddedContent() {
-    val lengths = intArrayOf(531, 600, 724, 1019, 1024)
-
-    for (length in lengths) {
-      val plaintextInput = ByteArray(length)
-
-      for (i in 0..<length) {
-        plaintextInput[i] = 0x97.toByte()
-      }
-
-      val key = Util.getSecretBytes(64)
-      val iv = Util.getSecretBytes(16)
-      val inputStream = ByteArrayInputStream(plaintextInput)
-      val paddedInputStream = PaddingInputStream(inputStream, length.toLong())
-      val destinationOutputStream = ByteArrayOutputStream()
-
-      val encryptingOutputStream = AttachmentCipherOutputStreamFactory(key, iv).createFor(destinationOutputStream)
-
-      paddedInputStream.copyTo(encryptingOutputStream)
-
-      val encryptedData = destinationOutputStream.toByteArray()
-      val digest = encryptingOutputStream.transmittedDigest
-
-      val cipherFile = writeToFile(encryptedData)
-
-      val decryptedStream: InputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, length.toLong(), key, digest, null, 0)
-      val plaintextOutput = readInputStreamFully(decryptedStream)
-
-      assertThat(plaintextOutput).isEqualTo(plaintextInput)
-
-      cipherFile.delete()
-    }
-  }
-
-  @Test
-  fun archive_encryptDecrypt() {
-    val key = Util.getSecretBytes(64)
-    val keyMaterial = createMediaKeyMaterial(key)
-    val plaintextInput = "Peter Parker".toByteArray()
-
-    val encryptResult = encryptData(plaintextInput, key, false)
-    val cipherFile = writeToFile(encryptResult.ciphertext)
-
-    val inputStream = AttachmentCipherInputStream.createForArchivedMediaOuterLayer(keyMaterial, cipherFile, plaintextInput.size.toLong())
-    val plaintextOutput = readInputStreamFully(inputStream)
-
-    assertThat(plaintextOutput).isEqualTo(plaintextInput)
-
-    cipherFile.delete()
-  }
-
-  @Test
-  fun archive_encryptDecryptEmpty() {
-    val key = Util.getSecretBytes(64)
-    val keyMaterial = createMediaKeyMaterial(key)
+  fun archiveInnerAndOuterLayer_encryptDecryptEmpty() {
+    val innerKey = Util.getSecretBytes(64)
     val plaintextInput = "".toByteArray()
 
-    val encryptResult = encryptData(plaintextInput, key, false)
-    val cipherFile = writeToFile(encryptResult.ciphertext)
+    val innerEncryptResult = encryptData(plaintextInput, innerKey, withIncremental = false)
+    val outerKey = Util.getSecretBytes(64)
 
-    val inputStream: InputStream = AttachmentCipherInputStream.createForArchivedMediaOuterLayer(keyMaterial, cipherFile, plaintextInput.size.toLong())
-    val plaintextOutput = readInputStreamFully(inputStream)
+    val outerEncryptResult = encryptData(innerEncryptResult.ciphertext, outerKey, false)
+    val cipherFile = writeToFile(outerEncryptResult.ciphertext)
+
+    val keyMaterial = createMediaKeyMaterial(outerKey)
+    val decryptedStream: LimitedInputStream = AttachmentCipherInputStream.createForArchivedMedia(
+      archivedMediaKeyMaterial = keyMaterial,
+      file = cipherFile,
+      originalCipherTextLength = innerEncryptResult.ciphertext.size.toLong(),
+      plaintextLength = plaintextInput.size.toLong(),
+      combinedKeyMaterial = innerKey,
+      digest = innerEncryptResult.digest,
+      incrementalDigest = innerEncryptResult.incrementalDigest,
+      incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
+    )
+    val plaintextOutput = decryptedStream.readFully(autoClose = false)
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
+    assertThat(decryptedStream.leftoverStream().allMatch { it == 0.toByte() }).isTrue()
 
     cipherFile.delete()
   }
 
   @Test
-  fun archive_decryptFailOnBadKey() {
+  fun archiveInnerAndOuterLayer_decryptFailOnBadKey_nonIncremental() {
+    archiveInnerAndOuterLayer_decryptFailOnBadKey(incremental = false)
+  }
+
+  @Test
+  fun archiveInnerAndOuterLayer_decryptFailOnBadKey_incremental() {
+    archiveInnerAndOuterLayer_decryptFailOnBadKey(incremental = true)
+  }
+
+  private fun archiveInnerAndOuterLayer_decryptFailOnBadKey(incremental: Boolean) {
     var cipherFile: File? = null
     var hitCorrectException = false
 
     try {
-      val key = Util.getSecretBytes(64)
-      val badKey = Util.getSecretBytes(64)
-      val keyMaterial = createMediaKeyMaterial(badKey)
+      val innerKey = Util.getSecretBytes(64)
+      val badInnerKey = Util.getSecretBytes(64)
       val plaintextInput = "Gwen Stacy".toByteArray()
 
-      val encryptResult = encryptData(plaintextInput, key, false)
-      cipherFile = writeToFile(encryptResult.ciphertext)
+      val innerEncryptResult = encryptData(plaintextInput, innerKey, incremental)
+      val outerKey = Util.getSecretBytes(64)
 
-      AttachmentCipherInputStream.createForArchivedMediaOuterLayer(keyMaterial, cipherFile, plaintextInput.size.toLong())
+      val outerEncryptResult = encryptData(innerEncryptResult.ciphertext, outerKey, false)
+      val cipherFile = writeToFile(outerEncryptResult.ciphertext)
+
+      val keyMaterial = createMediaKeyMaterial(badInnerKey)
+
+      AttachmentCipherInputStream.createForArchivedMedia(
+        archivedMediaKeyMaterial = keyMaterial,
+        file = cipherFile,
+        originalCipherTextLength = innerEncryptResult.ciphertext.size.toLong(),
+        plaintextLength = plaintextInput.size.toLong(),
+        combinedKeyMaterial = innerKey,
+        digest = innerEncryptResult.digest,
+        incrementalDigest = innerEncryptResult.incrementalDigest,
+        incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
+      )
     } catch (e: InvalidMessageException) {
       hitCorrectException = true
     } finally {
@@ -314,41 +296,6 @@ class AttachmentCipherTest {
     }
 
     assertThat(hitCorrectException).isTrue()
-  }
-
-  @Test
-  fun archive_encryptDecryptPaddedContent() {
-    val lengths = intArrayOf(531, 600, 724, 1019, 1024)
-
-    for (length in lengths) {
-      val plaintextInput = ByteArray(length)
-
-      for (i in 0..<length) {
-        plaintextInput[i] = 0x97.toByte()
-      }
-
-      val key = Util.getSecretBytes(64)
-      val iv = Util.getSecretBytes(16)
-      val inputStream = ByteArrayInputStream(plaintextInput)
-      val paddedInputStream = PaddingInputStream(inputStream, length.toLong())
-      val destinationOutputStream = ByteArrayOutputStream()
-
-      val encryptingOutputStream = AttachmentCipherOutputStreamFactory(key, iv).createFor(destinationOutputStream)
-
-      paddedInputStream.copyTo(encryptingOutputStream)
-
-      val encryptedData = destinationOutputStream.toByteArray()
-
-      val cipherFile = writeToFile(encryptedData)
-
-      val keyMaterial = createMediaKeyMaterial(key)
-      val decryptedStream: InputStream = AttachmentCipherInputStream.createForArchivedMediaOuterLayer(keyMaterial, cipherFile, length.toLong())
-      val plaintextOutput = readInputStreamFully(decryptedStream)
-
-      Assert.assertArrayEquals(plaintextInput, plaintextOutput)
-
-      cipherFile.delete()
-    }
   }
 
   @Test
@@ -387,7 +334,7 @@ class AttachmentCipherTest {
     val cipherFile = writeToFile(outerEncryptResult.ciphertext)
 
     val keyMaterial = createMediaKeyMaterial(outerKey)
-    val decryptedStream: LimitedInputStream = AttachmentCipherInputStream.createForArchivedMediaOuterAndInnerLayers(
+    val decryptedStream: LimitedInputStream = AttachmentCipherInputStream.createForArchivedMedia(
       archivedMediaKeyMaterial = keyMaterial,
       file = cipherFile,
       originalCipherTextLength = innerEncryptResult.ciphertext.size.toLong(),
@@ -406,22 +353,38 @@ class AttachmentCipherTest {
   }
 
   @Test
-  fun archive_decryptFailOnBadMac() {
+  fun archiveEncryptDecrypt_decryptFailOnBadMac() {
     var cipherFile: File? = null
     var hitCorrectException = false
 
     try {
-      val key = Util.getSecretBytes(64)
+      val innerKey = Util.getSecretBytes(64)
+      val badInnerKey = Util.getSecretBytes(64)
       val plaintextInput = Util.getSecretBytes(MEBIBYTE)
-      val encryptResult = encryptData(plaintextInput, key, true)
-      val badMacCiphertext = encryptResult.ciphertext.copyOf(encryptResult.ciphertext.size)
 
-      badMacCiphertext[badMacCiphertext.size - 1] = (badMacCiphertext[badMacCiphertext.size - 1] + 1).toByte()
+      val innerEncryptResult = encryptData(plaintextInput, innerKey, withIncremental = true)
+      val outerKey = Util.getSecretBytes(64)
 
-      cipherFile = writeToFile(badMacCiphertext)
+      val outerEncryptResult = encryptData(innerEncryptResult.ciphertext, outerKey, false)
+      val badMacOuterCiphertext = outerEncryptResult.ciphertext.copyOf(outerEncryptResult.ciphertext.size)
 
-      val keyMaterial = createMediaKeyMaterial(key)
-      AttachmentCipherInputStream.createForArchivedMediaOuterLayer(keyMaterial, cipherFile, plaintextInput.size.toLong())
+      badMacOuterCiphertext[badMacOuterCiphertext.size - 1] = (badMacOuterCiphertext[badMacOuterCiphertext.size - 1] + 1).toByte()
+
+      cipherFile = writeToFile(badMacOuterCiphertext)
+
+      val keyMaterial = createMediaKeyMaterial(badInnerKey)
+
+      AttachmentCipherInputStream.createForArchivedMedia(
+        archivedMediaKeyMaterial = keyMaterial,
+        file = cipherFile,
+        originalCipherTextLength = innerEncryptResult.ciphertext.size.toLong(),
+        plaintextLength = plaintextInput.size.toLong(),
+        combinedKeyMaterial = innerKey,
+        digest = innerEncryptResult.digest,
+        incrementalDigest = innerEncryptResult.incrementalDigest,
+        incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
+      )
+
       Assert.fail()
     } catch (e: InvalidMessageException) {
       hitCorrectException = true

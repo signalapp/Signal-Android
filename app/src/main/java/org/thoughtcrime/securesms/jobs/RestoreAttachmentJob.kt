@@ -256,7 +256,7 @@ class RestoreAttachmentJob private constructor(
         }
       }
 
-      val downloadResult = if (useArchiveCdn) {
+      val decryptingStream = if (useArchiveCdn) {
         archiveFile = SignalDatabase.attachments.getOrCreateArchiveTransferFile(attachmentId)
         val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MEDIA, attachment.archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn).successOrThrow().headers
 
@@ -280,7 +280,7 @@ class RestoreAttachmentJob private constructor(
           )
       }
 
-      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, downloadResult.dataStream, downloadResult.iv, if (manual) System.currentTimeMillis().milliseconds else null)
+      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, decryptingStream, if (manual) System.currentTimeMillis().milliseconds else null)
     } catch (e: RangeException) {
       val transferFile = archiveFile ?: attachmentFile
       Log.w(TAG, "Range exception, file size " + transferFile.length(), e)
