@@ -13,8 +13,10 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.takeWhile
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
@@ -112,10 +114,9 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
           Log.d(TAG, "Backup is being restored. Collecting updates.")
           restoreProgress
             .dataFlow
+            .onEach { latest -> _restoreState.update { BackupRestoreState.FromBackupStatusData(latest) } }
             .takeWhile { it !is BackupStatusData.RestoringMedia || it.restoreStatus != BackupStatusData.RestoreStatus.FINISHED }
-            .collectLatest { latest ->
-              _restoreState.update { BackupRestoreState.FromBackupStatusData(latest) }
-            }
+            .collect()
         } else if (
           !SignalStore.backup.optimizeStorage &&
           SignalStore.backup.userManuallySkippedMediaRestore &&
