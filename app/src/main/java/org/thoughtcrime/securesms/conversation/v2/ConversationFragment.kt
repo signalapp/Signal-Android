@@ -2018,6 +2018,7 @@ class ConversationFragment :
     disposables += send
       .doOnSubscribe {
         if (clearCompose) {
+          AppDependencies.typingStatusSender.onTypingStopped(args.threadId)
           composeTextEventsListener?.typingStatusEnabled = false
           composeText.setText("")
           composeTextEventsListener?.typingStatusEnabled = true
