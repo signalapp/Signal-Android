@@ -54,13 +54,14 @@ object AttachmentCipherInputStream {
     digest: ByteArray,
     incrementalDigest: ByteArray?,
     incrementalMacChunkSize: Int
-  ): LimitedInputStream {
+  ): InputStream {
     return create(
       streamSupplier = { FileInputStream(file) },
       streamLength = file.length(),
       plaintextLength = plaintextLength,
       combinedKeyMaterial = combinedKeyMaterial,
-      digest = digest,
+      encryptedDigest = digest,
+      plaintextHash = null,
       incrementalDigest = incrementalDigest,
       incrementalMacChunkSize = incrementalMacChunkSize,
       ignoreDigest = false
@@ -83,13 +84,14 @@ object AttachmentCipherInputStream {
     digest: ByteArray,
     incrementalDigest: ByteArray?,
     incrementalMacChunkSize: Int
-  ): LimitedInputStream {
+  ): InputStream {
     return create(
       streamSupplier = streamSupplier,
       streamLength = streamLength,
       plaintextLength = plaintextLength,
       combinedKeyMaterial = combinedKeyMaterial,
-      digest = digest,
+      encryptedDigest = digest,
+      plaintextHash = null,
       incrementalDigest = incrementalDigest,
       incrementalMacChunkSize = incrementalMacChunkSize,
       ignoreDigest = false
@@ -112,10 +114,10 @@ object AttachmentCipherInputStream {
     originalCipherTextLength: Long,
     plaintextLength: Long,
     combinedKeyMaterial: ByteArray,
-    digest: ByteArray,
+    plaintextHash: ByteArray,
     incrementalDigest: ByteArray?,
     incrementalMacChunkSize: Int
-  ): LimitedInputStream {
+  ): InputStream {
     val keyMaterial = CombinedKeyMaterial.from(combinedKeyMaterial)
     val mac = initMac(keyMaterial.macKey)
 
@@ -128,10 +130,11 @@ object AttachmentCipherInputStream {
       streamLength = originalCipherTextLength,
       plaintextLength = plaintextLength,
       combinedKeyMaterial = combinedKeyMaterial,
-      digest = digest,
+      encryptedDigest = null,
+      plaintextHash = plaintextHash,
       incrementalDigest = incrementalDigest,
       incrementalMacChunkSize = incrementalMacChunkSize,
-      ignoreDigest = false
+      ignoreDigest = true
     )
   }
 
@@ -151,7 +154,7 @@ object AttachmentCipherInputStream {
     originalCipherTextLength: Long,
     plaintextLength: Long,
     combinedKeyMaterial: ByteArray
-  ): LimitedInputStream {
+  ): InputStream {
     val keyMaterial = CombinedKeyMaterial.from(combinedKeyMaterial)
     val mac = initMac(keyMaterial.macKey)
 
@@ -164,7 +167,8 @@ object AttachmentCipherInputStream {
       streamLength = originalCipherTextLength,
       plaintextLength = plaintextLength,
       combinedKeyMaterial = combinedKeyMaterial,
-      digest = null,
+      encryptedDigest = null,
+      plaintextHash = null,
       incrementalDigest = null,
       incrementalMacChunkSize = 0,
       ignoreDigest = true
@@ -229,11 +233,12 @@ object AttachmentCipherInputStream {
     streamLength: Long,
     plaintextLength: Long,
     combinedKeyMaterial: ByteArray,
-    digest: ByteArray?,
+    encryptedDigest: ByteArray?,
+    plaintextHash: ByteArray?,
     incrementalDigest: ByteArray?,
     incrementalMacChunkSize: Int,
     ignoreDigest: Boolean
-  ): LimitedInputStream {
+  ): InputStream {
     val keyMaterial = CombinedKeyMaterial.from(combinedKeyMaterial)
     val mac = initMac(keyMaterial.macKey)
 
@@ -241,7 +246,7 @@ object AttachmentCipherInputStream {
       throw InvalidMessageException("Message shorter than crypto overhead! length: $streamLength")
     }
 
-    if (!ignoreDigest && digest == null) {
+    if (!ignoreDigest && encryptedDigest == null) {
       throw InvalidMessageException("Missing digest!")
     }
 
@@ -250,20 +255,25 @@ object AttachmentCipherInputStream {
 
     if (!hasIncrementalMac) {
       streamSupplier.openStream().use { macVerificationStream ->
-        verifyMac(macVerificationStream, streamLength, mac, digest)
+        verifyMac(macVerificationStream, streamLength, mac, encryptedDigest)
       }
       wrappedStream = streamSupplier.openStream()
     } else {
-      if (digest == null) {
-        throw InvalidMessageException("Missing digest for incremental mac validation!")
+      if (encryptedDigest == null && plaintextHash == null) {
+        throw InvalidMessageException("Missing data (digest or plaintextHas) for incremental mac validation!")
+      }
+
+      val digestValidatingStream = if (encryptedDigest != null) {
+        DigestValidatingInputStream(streamSupplier.openStream(), sha256Digest(), encryptedDigest)
+      } else {
+        streamSupplier.openStream()
       }
 
       wrappedStream = IncrementalMacInputStream(
         IncrementalMacAdditionalValidationsInputStream(
-          wrapped = streamSupplier.openStream(),
+          wrapped = digestValidatingStream,
           fileLength = streamLength,
-          mac = mac,
-          theirDigest = digest
+          mac = mac
         ),
         keyMaterial.macKey,
         ChunkSizeChoice.everyNthByte(incrementalMacChunkSize),
@@ -274,8 +284,17 @@ object AttachmentCipherInputStream {
     val encryptedStreamExcludingMac = LimitedInputStream(wrappedStream, streamLength - mac.macLength)
     val cipher = createCipher(encryptedStreamExcludingMac, keyMaterial.aesKey)
     val decryptingStream: InputStream = BetterCipherInputStream(encryptedStreamExcludingMac, cipher)
+    val paddinglessDecryptingStream = LimitedInputStream(decryptingStream, plaintextLength)
 
-    return LimitedInputStream(decryptingStream, plaintextLength)
+    return if (plaintextHash != null) {
+      if (plaintextHash.size != MessageDigest.getInstance("SHA-256").digestLength) {
+        throw InvalidMessageException("Invalid plaintext hash size: ${plaintextHash.size}")
+      }
+
+      DigestValidatingInputStream(paddinglessDecryptingStream, sha256Digest(), plaintextHash)
+    } else {
+      paddinglessDecryptingStream
+    }
   }
 
   private fun createCipher(inputStream: InputStream, aesKey: ByteArray): Cipher {
@@ -283,6 +302,14 @@ object AttachmentCipherInputStream {
 
     return Cipher.getInstance("AES/CBC/PKCS5Padding").apply {
       init(Cipher.DECRYPT_MODE, SecretKeySpec(aesKey, "AES"), IvParameterSpec(iv))
+    }
+  }
+
+  private fun sha256Digest(): MessageDigest {
+    try {
+      return MessageDigest.getInstance("SHA-256")
+    } catch (e: NoSuchAlgorithmException) {
+      throw AssertionError(e)
     }
   }
 

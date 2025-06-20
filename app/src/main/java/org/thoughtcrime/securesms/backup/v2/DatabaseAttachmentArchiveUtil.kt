@@ -60,6 +60,10 @@ object DatabaseAttachmentArchiveUtil {
   }
 
   private fun hadIntegrityCheckPerformed(attachment: DatabaseAttachment): Boolean {
+    if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
+      return true
+    }
+
     return when (attachment.transferState) {
       AttachmentTable.TRANSFER_PROGRESS_DONE,
       AttachmentTable.TRANSFER_NEEDS_RESTORE,
@@ -92,8 +96,8 @@ fun DatabaseAttachment.createArchiveAttachmentPointer(useArchiveCdn: Boolean): S
     throw InvalidAttachmentException("empty encrypted key")
   }
 
-  if (remoteDigest == null) {
-    throw InvalidAttachmentException("no digest")
+  if (remoteDigest == null && dataHash == null) {
+    throw InvalidAttachmentException("no integrity check available")
   }
 
   return try {

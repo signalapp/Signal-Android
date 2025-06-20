@@ -8,9 +8,7 @@ import org.conscrypt.Conscrypt
 import org.junit.Assert
 import org.junit.Test
 import org.signal.core.util.StreamUtil
-import org.signal.core.util.allMatch
 import org.signal.core.util.readFully
-import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
 import org.signal.libsignal.protocol.incrementalmac.InvalidMacException
@@ -27,6 +25,8 @@ import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
 import java.lang.AssertionError
+import java.security.DigestInputStream
+import java.security.MessageDigest
 import java.security.Security
 import java.util.Random
 
@@ -63,11 +63,10 @@ class AttachmentCipherTest {
     val encryptResult = encryptData(plaintextInput, key, incremental)
     val cipherFile = writeToFile(encryptResult.ciphertext)
 
-    val inputStream: LimitedInputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
+    val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
     val plaintextOutput = inputStream.readFully(autoClose = false)
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
-    assertThat(inputStream.leftoverStream().allMatch { it == 0.toByte() }).isTrue()
 
     cipherFile.delete()
   }
@@ -89,11 +88,10 @@ class AttachmentCipherTest {
     val encryptResult = encryptData(plaintextInput, key, incremental)
     val cipherFile = writeToFile(encryptResult.ciphertext)
 
-    val inputStream: LimitedInputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
+    val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
     val plaintextOutput = inputStream.readFully(autoClose = false)
 
     Assert.assertArrayEquals(plaintextInput, plaintextOutput)
-    assertThat(inputStream.leftoverStream().allMatch { it == 0.toByte() }).isTrue()
 
     cipherFile.delete()
   }
@@ -234,20 +232,19 @@ class AttachmentCipherTest {
     val cipherFile = writeToFile(outerEncryptResult.ciphertext)
 
     val keyMaterial = createMediaKeyMaterial(outerKey)
-    val decryptedStream: LimitedInputStream = AttachmentCipherInputStream.createForArchivedMedia(
+    val decryptedStream = AttachmentCipherInputStream.createForArchivedMedia(
       archivedMediaKeyMaterial = keyMaterial,
       file = cipherFile,
       originalCipherTextLength = innerEncryptResult.ciphertext.size.toLong(),
       plaintextLength = plaintextInput.size.toLong(),
       combinedKeyMaterial = innerKey,
-      digest = innerEncryptResult.digest,
+      plaintextHash = innerEncryptResult.plaintextHash,
       incrementalDigest = innerEncryptResult.incrementalDigest,
       incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
     )
     val plaintextOutput = decryptedStream.readFully(autoClose = false)
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
-    assertThat(decryptedStream.leftoverStream().allMatch { it == 0.toByte() }).isTrue()
 
     cipherFile.delete()
   }
@@ -285,7 +282,7 @@ class AttachmentCipherTest {
         originalCipherTextLength = innerEncryptResult.ciphertext.size.toLong(),
         plaintextLength = plaintextInput.size.toLong(),
         combinedKeyMaterial = innerKey,
-        digest = innerEncryptResult.digest,
+        plaintextHash = innerEncryptResult.digest,
         incrementalDigest = innerEncryptResult.incrementalDigest,
         incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
       )
@@ -299,17 +296,17 @@ class AttachmentCipherTest {
   }
 
   @Test
-  fun archiveInnerAndOuter_encryptDecrypt_nonIncremental() {
+  fun archive_encryptDecrypt_nonIncremental() {
     archiveInnerAndOuter_encryptDecrypt(incremental = false, fileSize = MEBIBYTE)
   }
 
   @Test
-  fun archiveInnerAndOuter_encryptDecrypt_incremental() {
+  fun archive_encryptDecrypt_incremental() {
     archiveInnerAndOuter_encryptDecrypt(incremental = true, fileSize = MEBIBYTE)
   }
 
   @Test
-  fun archiveInnerAndOuter_encryptDecrypt_nonIncremental_manyFileSizes() {
+  fun archive_encryptDecrypt_nonIncremental_manyFileSizes() {
     for (i in 0..99) {
       archiveInnerAndOuter_encryptDecrypt(incremental = false, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
     }
@@ -334,20 +331,19 @@ class AttachmentCipherTest {
     val cipherFile = writeToFile(outerEncryptResult.ciphertext)
 
     val keyMaterial = createMediaKeyMaterial(outerKey)
-    val decryptedStream: LimitedInputStream = AttachmentCipherInputStream.createForArchivedMedia(
+    val decryptedStream = AttachmentCipherInputStream.createForArchivedMedia(
       archivedMediaKeyMaterial = keyMaterial,
       file = cipherFile,
       originalCipherTextLength = innerEncryptResult.ciphertext.size.toLong(),
       plaintextLength = plaintextInput.size.toLong(),
       combinedKeyMaterial = innerKey,
-      digest = innerEncryptResult.digest,
+      plaintextHash = innerEncryptResult.plaintextHash,
       incrementalDigest = innerEncryptResult.incrementalDigest,
       incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
     )
     val plaintextOutput = decryptedStream.readFully(autoClose = false)
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
-    assertThat(decryptedStream.leftoverStream().allMatch { it == 0.toByte() }).isTrue()
 
     cipherFile.delete()
   }
@@ -380,7 +376,7 @@ class AttachmentCipherTest {
         originalCipherTextLength = innerEncryptResult.ciphertext.size.toLong(),
         plaintextLength = plaintextInput.size.toLong(),
         combinedKeyMaterial = innerKey,
-        digest = innerEncryptResult.digest,
+        plaintextHash = innerEncryptResult.digest,
         incrementalDigest = innerEncryptResult.incrementalDigest,
         incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
       )
@@ -607,7 +603,14 @@ class AttachmentCipherTest {
     cipherFile.delete()
   }
 
-  private class EncryptResult(val ciphertext: ByteArray, val digest: ByteArray, val incrementalDigest: ByteArray, val chunkSizeChoice: Int)
+  private class EncryptResult(
+    val ciphertext: ByteArray,
+    val digest: ByteArray,
+    val incrementalDigest: ByteArray,
+    val chunkSizeChoice: Int,
+    val plaintextHash: ByteArray
+  )
+
   companion object {
     init {
       // https://github.com/google/conscrypt/issues/1034
@@ -619,11 +622,15 @@ class AttachmentCipherTest {
     private const val MEBIBYTE = 1024 * 1024
 
     private fun encryptData(data: ByteArray, keyMaterial: ByteArray, withIncremental: Boolean, padded: Boolean = true): EncryptResult {
+      val digestingStream = DigestInputStream(ByteArrayInputStream(data), MessageDigest.getInstance("SHA-256"))
+
       val actualData = if (padded) {
-        PaddingInputStream(ByteArrayInputStream(data), data.size.toLong()).readFully()
+        PaddingInputStream(digestingStream, data.size.toLong()).readFully()
       } else {
-        data
+        digestingStream.readFully()
       }
+
+      val plaintextHash = digestingStream.messageDigest.digest()
 
       val outputStream = ByteArrayOutputStream()
       val incrementalDigestOut = ByteArrayOutputStream()
@@ -643,7 +650,13 @@ class AttachmentCipherTest {
       encryptStream.close()
       incrementalDigestOut.close()
 
-      return EncryptResult(outputStream.toByteArray(), encryptStream.transmittedDigest, incrementalDigestOut.toByteArray(), sizeChoice.sizeInBytes)
+      return EncryptResult(
+        ciphertext = outputStream.toByteArray(),
+        digest = encryptStream.transmittedDigest,
+        incrementalDigest = incrementalDigestOut.toByteArray(),
+        chunkSizeChoice = sizeChoice.sizeInBytes,
+        plaintextHash = plaintextHash
+      )
     }
 
     private fun writeToFile(data: ByteArray): File {

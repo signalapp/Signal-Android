@@ -94,7 +94,7 @@ class AttachmentDownloadJob private constructor(
 
         AttachmentTable.TRANSFER_PROGRESS_PENDING,
         AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
-          if (SignalStore.backup.backsUpMedia && databaseAttachment.remoteLocation == null) {
+          if (SignalStore.backup.backsUpMedia && (databaseAttachment.remoteLocation == null || databaseAttachment.remoteDigest == null)) {
             if (databaseAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
               Log.i(TAG, "Trying to restore attachment from archive cdn")
               RestoreAttachmentJob.restoreAttachment(databaseAttachment)

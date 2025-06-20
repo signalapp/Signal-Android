@@ -131,8 +131,8 @@ class BackupMessagesJob private constructor(
 
     val stopwatch = Stopwatch("BackupMessagesJob")
 
-    SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload().takeIf { it > 0 }?.let { count -> Log.w(TAG, "Needed to create $count key/iv/digests.") }
-    stopwatch.split("key-iv-digest")
+    SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload().takeIf { it > 0 }?.let { count -> Log.w(TAG, "Needed to create $count remote keys.") }
+    stopwatch.split("keygen")
 
     if (isCanceled) {
       return Result.failure()

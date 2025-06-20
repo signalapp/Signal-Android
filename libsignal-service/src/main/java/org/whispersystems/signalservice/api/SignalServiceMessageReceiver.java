@@ -122,6 +122,7 @@ public class SignalServiceMessageReceiver {
    * Retrieves an archived media attachment.
    *
    * @param archivedMediaKeyMaterial Decryption key material for decrypting outer layer of archived media.
+   * @param plaintextHash The plaintext hash of the attachment, used to verify the integrity of the downloaded content.
    * @param readCredentialHeaders Headers to pass to the backup CDN to authorize the download
    * @param archiveDestination The download destination for archived attachment. If this file exists, download will resume.
    * @param pointer The {@link SignalServiceAttachmentPointer} received in a {@link SignalServiceDataMessage}.
@@ -131,6 +132,7 @@ public class SignalServiceMessageReceiver {
    * @return An InputStream that streams the plaintext attachment contents.
    */
   public InputStream retrieveArchivedAttachment(@Nonnull MediaRootBackupKey.MediaKeyMaterial archivedMediaKeyMaterial,
+                                                @Nonnull byte[] plaintextHash,
                                                 @Nonnull Map<String, String> readCredentialHeaders,
                                                 @Nonnull File archiveDestination,
                                                 @Nonnull SignalServiceAttachmentPointer pointer,
@@ -139,10 +141,6 @@ public class SignalServiceMessageReceiver {
                                                 @Nullable ProgressListener listener)
       throws IOException, InvalidMessageException, MissingConfigurationException
   {
-    if (pointer.getDigest().isEmpty()) {
-      throw new InvalidMessageException("No attachment digest!");
-    }
-
     if (pointer.getKey() == null) {
       throw new InvalidMessageException("No key!");
     }
@@ -160,7 +158,7 @@ public class SignalServiceMessageReceiver {
         originalCipherLength,
         pointer.getSize().orElse(0),
         pointer.getKey(),
-        pointer.getDigest().get(),
+        plaintextHash,
         null,
         0
     );

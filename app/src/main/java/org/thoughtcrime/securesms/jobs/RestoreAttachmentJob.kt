@@ -10,6 +10,7 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMacException
@@ -182,9 +183,10 @@ class RestoreAttachmentJob private constructor(
 
     if (attachment.transferState != AttachmentTable.TRANSFER_NEEDS_RESTORE &&
       attachment.transferState != AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS &&
-      (attachment.transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED)
+      attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_FAILED &&
+      attachment.transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED
     ) {
-      Log.w(TAG, "Attachment does not need to be restored.")
+      Log.w(TAG, "Attachment does not need to be restored. Current state: ${attachment.transferState}")
       return
     }
 
@@ -263,6 +265,7 @@ class RestoreAttachmentJob private constructor(
         messageReceiver
           .retrieveArchivedAttachment(
             SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.requireMediaName()),
+            attachment.dataHash!!.decodeBase64OrThrow(),
             cdnCredentials,
             archiveFile,
             pointer,

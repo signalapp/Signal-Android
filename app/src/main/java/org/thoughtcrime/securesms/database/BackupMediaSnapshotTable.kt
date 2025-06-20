@@ -244,7 +244,7 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     return readableDatabase.rawQuery(
       """
       WITH input_pairs($MEDIA_ID, $CDN) AS (VALUES $inputValues)
-      SELECT a.$PLAINTEXT_HASH, a.$REMOTE_KEY b.$CDN
+      SELECT a.$PLAINTEXT_HASH, a.$REMOTE_KEY, b.$CDN
       FROM $TABLE_NAME a
       JOIN input_pairs b ON a.$MEDIA_ID = b.$MEDIA_ID
       WHERE a.$CDN != b.$CDN AND a.$IS_THUMBNAIL = 0 AND $SNAPSHOT_VERSION = $MAX_VERSION

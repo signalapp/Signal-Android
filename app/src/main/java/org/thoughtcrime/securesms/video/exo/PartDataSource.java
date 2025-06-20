@@ -86,7 +86,11 @@ class PartDataSource implements DataSource {
             throw new InvalidMessageException("Missing digest!");
           }
 
-          this.inputStream = AttachmentCipherInputStream.createForArchivedMedia(mediaKeyMaterial, archiveFile, originalCipherLength, attachment.size, decodedKey, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
+          if (attachment.dataHash == null || attachment.dataHash.isEmpty()) {
+            throw new InvalidMessageException("Missing plaintextHash!");
+          }
+
+          this.inputStream = AttachmentCipherInputStream.createForArchivedMedia(mediaKeyMaterial, archiveFile, originalCipherLength, attachment.size, decodedKey, Base64.decodeOrThrow(attachment.dataHash), attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
         } catch (InvalidMessageException e) {
           throw new IOException("Error decrypting attachment stream!", e);
         }

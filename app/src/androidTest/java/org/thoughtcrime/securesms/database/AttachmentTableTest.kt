@@ -183,37 +183,6 @@ class AttachmentTableTest {
   }
 
   @Test
-  fun finalizeAttachmentAfterDownload_fixDigestOnNonZeroPadding() {
-    // Insert attachment metadata for badly-padded attachment
-    val plaintext = byteArrayOf(1, 2, 3, 4)
-    val key = Util.getSecretBytes(64)
-    val iv = Util.getSecretBytes(16)
-
-    val badlyPaddedPlaintext = PaddingInputStream(plaintext.inputStream(), plaintext.size.toLong()).readFully().also { it[it.size - 1] = 0x42 }
-    val badlyPaddedCiphertext = encryptPrePaddedBytes(badlyPaddedPlaintext, key, iv)
-    val badlyPaddedDigest = getDigest(badlyPaddedCiphertext)
-
-    val cipherFile = getTempFile()
-    cipherFile.writeBytes(badlyPaddedCiphertext)
-
-    val mmsId = -1L
-    val attachmentId = SignalDatabase.attachments.insertAttachmentsForMessage(mmsId, listOf(createAttachmentPointer(key, badlyPaddedDigest, plaintext.size)), emptyList()).values.first()
-
-    // Give data to attachment table
-    val cipherInputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintext.size.toLong(), key, badlyPaddedDigest, null, 4)
-    SignalDatabase.attachments.finalizeAttachmentAfterDownload(mmsId, attachmentId, cipherInputStream)
-
-    // Verify the digest has been updated to the properly padded one
-    val properlyPaddedPlaintext = PaddingInputStream(plaintext.inputStream(), plaintext.size.toLong()).readFully()
-    val properlyPaddedCiphertext = encryptPrePaddedBytes(properlyPaddedPlaintext, key, iv)
-    val properlyPaddedDigest = getDigest(properlyPaddedCiphertext)
-
-    val newDigest = SignalDatabase.attachments.getAttachment(attachmentId)!!.remoteDigest!!
-
-    assertArrayEquals(properlyPaddedDigest, newDigest)
-  }
-
-  @Test
   fun finalizeAttachmentAfterDownload_leaveDigestAloneForAllZeroPadding() {
     // Insert attachment metadata for properly-padded attachment
     val plaintext = byteArrayOf(1, 2, 3, 4)
@@ -241,14 +210,14 @@ class AttachmentTableTest {
 
   @Test
   fun resetArchiveTransferStateByPlaintextHashAndRemoteKey_singleMatch() {
-    // Given an attachment with some digest
+    // Given an attachment with some plaintextHash+remoteKey
     val blob = BlobProvider.getInstance().forData(byteArrayOf(1, 2, 3, 4, 5)).createForSingleSessionInMemory()
     val attachment = createAttachment(1, blob, AttachmentTable.TransformProperties.empty())
     val attachmentId = SignalDatabase.attachments.insertAttachmentsForMessage(-1L, listOf(attachment), emptyList()).values.first()
     SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachmentId, AttachmentTableTestUtil.createUploadResult(attachmentId))
     SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
 
-    // Reset the transfer state by digest
+    // Reset the transfer state by plaintextHash+remoteKey
     val plaintextHash = SignalDatabase.attachments.getAttachment(attachmentId)!!.dataHash!!.decodeBase64OrThrow()
     val remoteKey = SignalDatabase.attachments.getAttachment(attachmentId)!!.remoteKey!!.decodeBase64OrThrow()
     SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKey(plaintextHash, remoteKey)

@@ -113,8 +113,8 @@ class RestoreAttachmentThumbnailJob private constructor(
       return
     }
 
-    if (attachment.remoteDigest == null) {
-      Log.w(TAG, "$attachmentId has no digest! Cannot proceed.")
+    if (attachment.dataHash == null) {
+      Log.w(TAG, "$attachmentId has no plaintext hash! Cannot proceed.")
       return
     }
 
@@ -142,7 +142,7 @@ class RestoreAttachmentThumbnailJob private constructor(
         progressListener
       )
 
-    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.remoteDigest, decryptingStream, thumbnailTransferFile)
+    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.dataHash, attachment.remoteKey, decryptingStream, thumbnailTransferFile)
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context)
