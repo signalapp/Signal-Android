@@ -18,6 +18,8 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.BackupDeleteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.NetworkResult
 
 /**
@@ -219,6 +221,8 @@ class BackupDeleteJob private constructor(
 
     Log.d(TAG, "Clearing local backup state.")
     SignalStore.backup.disableBackups()
+    SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+    StorageSyncHelper.scheduleSyncForDataChange()
     SignalDatabase.attachments.clearAllArchiveData()
     addStageToCompletions(BackupDeleteJobData.Stage.CLEAR_LOCAL_STATE)
     return Result.success()

@@ -299,7 +299,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     } else if (messageRecord.isRateLimited()) {
       dateView.setText(R.string.ConversationItem_send_paused);
     } else {
-      long timestamp = messageRecord.getTimestamp();
+      long timestamp = (displayMode == ConversationItemDisplayMode.EditHistory.INSTANCE) ? messageRecord.getDateSent() : messageRecord.getTimestamp();
       FormattedDate date = DateUtils.getDatelessRelativeTimeSpanFormattedDate(getContext(), locale, timestamp);
       String dateLabel = date.getValue();
       if (displayMode != ConversationItemDisplayMode.Detailed.INSTANCE && messageRecord.isEditMessage() && messageRecord.isLatestRevision()) {

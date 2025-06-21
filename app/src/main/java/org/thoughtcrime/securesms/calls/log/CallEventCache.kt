@@ -21,6 +21,7 @@ import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
+import org.signal.core.util.requireObject
 import org.signal.core.util.requireString
 import org.signal.storageservice.protos.groups.Member
 import org.signal.storageservice.protos.groups.local.DecryptedGroup
@@ -145,8 +146,8 @@ class CallEventCache(
     private fun canUserBeginCall(peer: Recipient, decryptedGroup: ByteArray?): Boolean {
       return if (peer.isGroup && decryptedGroup != null) {
         val proto = DecryptedGroup.ADAPTER.decode(decryptedGroup)
-        return proto.isAnnouncementGroup != EnabledState.ENABLED || proto.members
-          .firstOrNull() { it.aciBytes == SignalStore.account.aci?.toByteString() }?.role == Member.Role.ADMINISTRATOR
+        return proto.isAnnouncementGroup != EnabledState.ENABLED ||
+          proto.members.firstOrNull() { it.aciBytes == SignalStore.account.aci?.toByteString() }?.role == Member.Role.ADMINISTRATOR
       } else {
         true
       }
@@ -180,7 +181,8 @@ class CallEventCache(
           messageId = parent.messageId.takeIf { it > 0 },
           ringerRecipient = parent.ringerRecipient.takeIf { it > 0 }?.let { RecipientId.from(it) },
           isGroupCallActive = parent.isGroupCallActive,
-          didLocalUserJoin = parent.didLocalUserJoin
+          didLocalUserJoin = parent.didLocalUserJoin,
+          read = parent.read
         ),
         date = parent.timestamp,
         peer = peer,
@@ -214,7 +216,8 @@ class CallEventCache(
         didLocalUserJoin = this.requireBoolean(CallTable.LOCAL_JOINED),
         messageId = this.requireLong(CallTable.MESSAGE_ID),
         body = this.requireString(MessageTable.BODY),
-        decryptedGroupBytes = this.requireBlob(GroupTable.V2_DECRYPTED_GROUP)
+        decryptedGroupBytes = this.requireBlob(GroupTable.V2_DECRYPTED_GROUP),
+        read = this.requireObject(CallTable.READ, CallTable.ReadState.Serializer) == CallTable.ReadState.READ
       )
     }
   }
@@ -314,6 +317,7 @@ class CallEventCache(
     val isGroupCallActive: Boolean,
     val didLocalUserJoin: Boolean,
     val body: String?,
-    val decryptedGroupBytes: ByteArray?
+    val decryptedGroupBytes: ByteArray?,
+    val read: Boolean
   )
 }

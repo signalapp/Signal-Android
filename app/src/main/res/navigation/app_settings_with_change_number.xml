@@ -208,7 +208,7 @@
 
     <fragment
         android:id="@+id/advancedPinSettingsFragment"
-        android:name="org.thoughtcrime.securesms.preferences.AdvancedPinPreferenceFragment"
+        android:name="org.thoughtcrime.securesms.preferences.AdvancedPinSettingsFragment"
         android:label="advanced_pin_settings_fragment" />
 
     <fragment
@@ -564,6 +564,13 @@
 
     <!-- region Direct-To-Page actions -->
 
+    <action
+        android:id="@+id/action_direct_to_storagePreferenceFragment"
+        app:destination="@id/storagePreferenceFragment"
+        app:enterAnim="@anim/fragment_open_enter"
+        app:exitAnim="@anim/fragment_open_exit"
+        app:popEnterAnim="@anim/fragment_close_enter"
+        app:popExitAnim="@anim/fragment_close_exit" />
 
     <action
         android:id="@+id/action_direct_to_backupsPreferenceFragment"

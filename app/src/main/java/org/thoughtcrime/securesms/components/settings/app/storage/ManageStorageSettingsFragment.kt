@@ -32,10 +32,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.integerArrayResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.TextFieldValue
@@ -273,7 +275,7 @@ private fun ManageStorageSettingsScreen(
   Scaffolds.Settings(
     title = stringResource(id = R.string.preferences__storage),
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
+    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
   ) { contentPadding ->
     Column(
       modifier = Modifier
@@ -378,7 +380,7 @@ private fun SetKeepMessagesScreen(
   Scaffolds.Settings(
     title = stringResource(id = R.string.preferences__keep_messages),
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
+    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
   ) { contentPadding ->
     Column(
       modifier = Modifier
@@ -418,7 +420,7 @@ private fun SetChatLengthLimitScreen(
   Scaffolds.Settings(
     title = stringResource(id = R.string.preferences__conversation_length_limit),
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
+    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
   ) { contentPadding ->
     Column(
       modifier = Modifier

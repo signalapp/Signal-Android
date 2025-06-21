@@ -71,7 +71,8 @@ class PartDataSource implements DataSource {
     final boolean hasData              = attachment.hasData;
 
     if (inProgress && !hasData && hasIncrementalDigest && attachmentKey != null) {
-      final byte[] decode       = Base64.decode(attachmentKey);
+      final byte[] decodedKey = Base64.decode(attachmentKey);
+      
       if (attachment.transferState == AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS && attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
         final File archiveFile = attachmentDatabase.getOrCreateArchiveTransferFile(attachment.attachmentId);
         try {
@@ -81,7 +82,11 @@ class PartDataSource implements DataSource {
           MediaRootBackupKey.MediaKeyMaterial mediaKeyMaterial     = SignalStore.backup().getMediaRootBackupKey().deriveMediaSecretsFromMediaId(mediaId);
           long                                originalCipherLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size));
 
-          this.inputStream = AttachmentCipherInputStream.createStreamingForArchivedAttachment(mediaKeyMaterial, archiveFile, originalCipherLength, attachment.size, attachment.remoteDigest, decode, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
+          if (attachment.remoteDigest == null) {
+            throw new InvalidMessageException("Missing digest!");
+          }
+
+          this.inputStream = AttachmentCipherInputStream.createForArchivedMediaOuterAndInnerLayers(mediaKeyMaterial, archiveFile, originalCipherLength, attachment.size, decodedKey, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
         } catch (InvalidMessageException e) {
           throw new IOException("Error decrypting attachment stream!", e);
         }
@@ -90,7 +95,12 @@ class PartDataSource implements DataSource {
         try {
           long                                       streamLength   = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size));
           AttachmentCipherInputStream.StreamSupplier streamSupplier = () -> new TailerInputStream(() -> new FileInputStream(transferFile), streamLength);
-          this.inputStream = AttachmentCipherInputStream.createForAttachment(streamSupplier, streamLength, attachment.size, decode, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize, false);
+
+          if (attachment.remoteDigest == null) {
+            throw new InvalidMessageException("Missing digest!");
+          }
+
+          this.inputStream = AttachmentCipherInputStream.createForAttachment(streamSupplier, streamLength, attachment.size, decodedKey, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
         } catch (InvalidMessageException e) {
           throw new IOException("Error decrypting attachment stream!", e);
         }

@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.storage.StorageSyncValidations
 import org.thoughtcrime.securesms.storage.StoryDistributionListRecordProcessor
 import org.thoughtcrime.securesms.transport.RetryLaterException
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.crypto.UntrustedIdentityException
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
@@ -63,6 +64,7 @@ import org.whispersystems.signalservice.internal.storage.protos.ManifestRecord
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 import java.util.stream.Collectors
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * Does a full sync of our local storage state with the remote storage state. Will write any pending
@@ -149,10 +151,16 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
     fun forRemoteChange(): StorageSyncJob {
       return StorageSyncJob(localManifestOutOfDate = true)
     }
+
+    fun forAccountRestore(): StorageSyncJob {
+      return StorageSyncJob(localManifestOutOfDate = true, priority = Parameters.PRIORITY_HIGH)
+    }
   }
 
-  constructor(localManifestOutOfDate: Boolean) : this(
-    Parameters.Builder().addConstraint(NetworkConstraint.KEY)
+  private constructor(localManifestOutOfDate: Boolean, @Parameters.Priority priority: Int = Parameters.PRIORITY_DEFAULT) : this(
+    Parameters.Builder()
+      .addConstraint(NetworkConstraint.KEY)
+      .setGlobalPriority(priority)
       .setQueue(QUEUE_KEY)
       .setMaxInstancesForFactory(2)
       .setLifespan(TimeUnit.DAYS.toMillis(1))
@@ -360,7 +368,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
       val removedDeletedFolders = SignalDatabase.chatFolders.removeStorageIdsFromOldDeletedFolders(System.currentTimeMillis())
       val removedDeletedProfiles = SignalDatabase.notificationProfiles.removeStorageIdsFromOldDeletedProfiles(System.currentTimeMillis())
       if (removedUnregistered > 0 || removedDeletedFolders > 0 || removedDeletedProfiles > 0) {
-        Log.i(TAG, "Removed $removedUnregistered unregistered, $removedDeletedFolders folders, $removedDeletedProfiles notification profiles from storage service that have been deleted for longer than 30 days.")
+        Log.i(TAG, "Removed $removedUnregistered unregistered, $removedDeletedFolders folders, $removedDeletedProfiles notification profiles from storage service that have been deleted for longer than ${RemoteConfig.messageQueueTime.milliseconds.inWholeDays} days.")
       }
 
       val localStorageIds = getAllLocalStorageIds(self)

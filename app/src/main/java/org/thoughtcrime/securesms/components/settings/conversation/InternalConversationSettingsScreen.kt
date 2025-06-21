@@ -14,8 +14,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.AnnotatedString
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
@@ -55,7 +56,7 @@ fun InternalConversationSettingsScreen(
   Scaffolds.Settings(
     title = stringResource(R.string.ConversationSettingsFragment__internal_details),
     onNavigationClick = callbacks::onNavigationClick,
-    navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
     navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back)
   ) { paddingValues ->
     LazyColumn(

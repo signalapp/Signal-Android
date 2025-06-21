@@ -349,7 +349,7 @@ public class BlobProvider {
 
   private static @Nullable String getId(@NonNull Uri uri) {
     if (isAuthority(uri)) {
-      return uri.getPathSegments().get(ID_PATH_SEGMENT);
+      return Uri.encode(uri.getPathSegments().get(ID_PATH_SEGMENT));
     }
     return null;
   }
@@ -422,7 +422,7 @@ public class BlobProvider {
   }
 
   private static @NonNull String buildFileName(@NonNull String id) {
-    return id + ".blob";
+    return Uri.encode(id) + ".blob";
   }
 
   private static @NonNull String getDirectory(@NonNull StorageType storageType) {

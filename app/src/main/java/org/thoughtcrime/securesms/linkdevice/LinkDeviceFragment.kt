@@ -197,7 +197,7 @@ class LinkDeviceFragment : ComposeFragment() {
     Scaffolds.Settings(
       title = stringResource(id = R.string.preferences__linked_devices),
       onNavigationClick = { navController.popOrFinish() },
-      navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
+      navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding: PaddingValues ->
       DeviceListScreen(
@@ -314,27 +314,38 @@ fun DeviceListScreen(
         )
       }
       is DialogState.SyncingFailed -> {
-        if (state.dialogState.canRetry) {
-          Dialogs.SimpleAlertDialog(
-            title = stringResource(R.string.LinkDeviceFragment__sync_failure_title),
-            body = stringResource(R.string.LinkDeviceFragment__sync_failure_body),
-            confirm = stringResource(R.string.LinkDeviceFragment__sync_failure_retry_button),
-            onConfirm = onSyncFailureRetryRequested,
-            dismiss = stringResource(R.string.LinkDeviceFragment__sync_failure_dismiss_button),
-            onDismissRequest = onSyncFailureIgnored,
-            onDeny = onSyncFailureIgnored
-          )
-        } else {
-          Dialogs.AdvancedAlertDialog(
-            title = stringResource(R.string.LinkDeviceFragment__sync_failure_title),
-            body = stringResource(R.string.LinkDeviceFragment__sync_failure_body_unretryable),
-            positive = stringResource(R.string.LinkDeviceFragment__contact_support),
-            onPositive = onSyncFailureContactSupport,
-            neutral = stringResource(R.string.LinkDeviceFragment__learn_more),
-            onNeutral = onSyncFailureLearnMore,
-            negative = stringResource(R.string.LinkDeviceFragment__continue),
-            onNegative = onSyncFailureIgnored
-          )
+        when (state.dialogState.syncFailType) {
+          LinkDeviceSettingsState.SyncFailType.NOT_RETRYABLE -> {
+            Dialogs.AdvancedAlertDialog(
+              title = stringResource(R.string.LinkDeviceFragment__sync_failure_title),
+              body = stringResource(R.string.LinkDeviceFragment__sync_failure_body_unretryable),
+              positive = stringResource(R.string.LinkDeviceFragment__contact_support),
+              onPositive = onSyncFailureContactSupport,
+              neutral = stringResource(R.string.LinkDeviceFragment__learn_more),
+              onNeutral = onSyncFailureLearnMore,
+              negative = stringResource(R.string.LinkDeviceFragment__continue),
+              onNegative = onSyncFailureIgnored
+            )
+          }
+          LinkDeviceSettingsState.SyncFailType.RETRYABLE -> {
+            Dialogs.SimpleAlertDialog(
+              title = stringResource(R.string.LinkDeviceFragment__sync_failure_title),
+              body = stringResource(R.string.LinkDeviceFragment__sync_failure_body),
+              confirm = stringResource(R.string.LinkDeviceFragment__sync_failure_retry_button),
+              onConfirm = onSyncFailureRetryRequested,
+              dismiss = stringResource(R.string.LinkDeviceFragment__sync_failure_dismiss_button),
+              onDismissRequest = onSyncFailureIgnored,
+              onDeny = onSyncFailureIgnored
+            )
+          }
+          LinkDeviceSettingsState.SyncFailType.NOT_ENOUGH_SPACE -> {
+            Dialogs.SimpleMessageDialog(
+              message = stringResource(R.string.LinkDeviceFragment__you_dont_have_enough),
+              dismiss = stringResource(id = R.string.LinkDeviceFragment__ok),
+              onDismiss = onSyncFailureRetryRequested,
+              title = stringResource(R.string.LinkDeviceFragment__not_enough_storage_space)
+            )
+          }
         }
       }
       DialogState.SyncingTimedOut -> {
@@ -681,7 +692,11 @@ private fun DeviceListScreenSyncingFailedPreview() {
   Previews.Preview {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
-        dialogState = DialogState.SyncingFailed(1, 1, false),
+        dialogState = DialogState.SyncingFailed(
+          deviceId = 1,
+          deviceCreatedAt = 1,
+          syncFailType = LinkDeviceSettingsState.SyncFailType.NOT_RETRYABLE
+        ),
         seenQrEducationSheet = true,
         seenBioAuthEducationSheet = true
       )
@@ -712,6 +727,24 @@ private fun DeviceListScreenDeviceUnlinkedPreview() {
         dialogState = DialogState.DeviceUnlinked(1736454440342),
         seenBioAuthEducationSheet = true,
         seenQrEducationSheet = true
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun DeviceListScreenNotEnoughStoragePreview() {
+  Previews.Preview {
+    DeviceListScreen(
+      state = LinkDeviceSettingsState(
+        dialogState = DialogState.SyncingFailed(
+          deviceId = 1,
+          deviceCreatedAt = 1,
+          syncFailType = LinkDeviceSettingsState.SyncFailType.NOT_ENOUGH_SPACE
+        ),
+        seenQrEducationSheet = true,
+        seenBioAuthEducationSheet = true
       )
     )
   }

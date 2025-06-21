@@ -129,7 +129,6 @@ import java.util.Optional
 import java.util.UUID
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
-import kotlin.time.Duration.Companion.hours
 
 class AttachmentTable(
   context: Context,
@@ -688,6 +687,8 @@ class AttachmentTable(
         .where("$DATA_FILE = ?", dataFile)
         .run()
     }
+
+    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
   }
 
   /**
@@ -709,6 +710,8 @@ class AttachmentTable(
         .where("$ARCHIVE_TRANSFER_STATE != ? AND $DATA_FILE = ?", ArchiveTransferState.PERMANENT_FAILURE.value, dataFile)
         .run()
     }
+
+    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
   }
 
   /**
@@ -761,7 +764,7 @@ class AttachmentTable(
       INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID 
       WHERE
       (
-        $TABLE_NAME.$OFFLOAD_RESTORED_AT < ${now - 24.hours.inWholeMilliseconds} AND
+        $TABLE_NAME.$OFFLOAD_RESTORED_AT < ${now - 7.days.inWholeMilliseconds} AND
         $TABLE_NAME.$TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
         $TABLE_NAME.$ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND
         (
@@ -2584,6 +2587,51 @@ class AttachmentTable(
       .where("$MESSAGE_ID = $WALLPAPER_MESSAGE_ID")
       .run()
       .readToList { AttachmentId(it.requireLong(ID)) }
+  }
+
+  fun getEstimatedArchiveMediaSize(): Long {
+    val estimatedThumbnailCount = readableDatabase
+      .select("COUNT(DISTINCT $REMOTE_DIGEST)")
+      .from(TABLE_NAME)
+      .where(
+        """
+        $DATA_FILE NOT NULL AND 
+        $REMOTE_DIGEST NOT NULL AND 
+        $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
+        $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value} AND 
+        ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%')
+      """
+      )
+      .run()
+      .readToSingleLong(0L)
+
+    val uploadedAttachmentBytes = readableDatabase
+      .rawQuery(
+        """
+          SELECT $DATA_SIZE
+          FROM (
+            SELECT DISTINCT $REMOTE_DIGEST, $DATA_SIZE
+            FROM $TABLE_NAME
+            WHERE 
+              $DATA_FILE NOT NULL AND 
+              $REMOTE_DIGEST NOT NULL AND 
+              $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
+              $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}
+          )
+        """
+      )
+      .readToList { it.requireLong(DATA_SIZE) }
+      .sumOf {
+        val paddedSize = PaddingInputStream.getPaddedSize(it)
+        val clientEncryptedSize = AttachmentCipherStreamUtil.getCiphertextLength(paddedSize)
+        val serverEncryptedSize = AttachmentCipherStreamUtil.getCiphertextLength(clientEncryptedSize)
+
+        serverEncryptedSize
+      }
+
+    val estimatedUploadedThumbnailBytes = RemoteConfig.backupMaxThumbnailFileSize.inWholeBytes * estimatedThumbnailCount
+
+    return uploadedAttachmentBytes + estimatedUploadedThumbnailBytes
   }
 
   private fun getTransferFile(db: SQLiteDatabase, attachmentId: AttachmentId): File? {

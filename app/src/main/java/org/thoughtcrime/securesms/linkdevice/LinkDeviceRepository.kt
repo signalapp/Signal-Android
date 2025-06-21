@@ -10,6 +10,7 @@ import org.signal.core.util.logging.logI
 import org.signal.core.util.logging.logW
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.Curve
+import org.thoughtcrime.securesms.backup.BackupFileIOError
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
@@ -263,7 +264,12 @@ object LinkDeviceRepository {
       )
     } catch (e: Exception) {
       Log.w(TAG, "[createAndUploadArchive] Failed to export a backup!", e)
-      return LinkUploadArchiveResult.BackupCreationFailure(e)
+      val cause = e.cause
+      return if (cause is IOException && BackupFileIOError.getFromException(cause) == BackupFileIOError.NOT_ENOUGH_SPACE) {
+        LinkUploadArchiveResult.NotEnoughSpace
+      } else {
+        LinkUploadArchiveResult.BackupCreationFailure(e)
+      }
     }
     Log.d(TAG, "[createAndUploadArchive] Successfully created backup.")
     stopwatch.split("create-backup")
@@ -440,6 +446,7 @@ object LinkDeviceRepository {
     data object Success : LinkUploadArchiveResult
     data object BackupCreationCancelled : LinkUploadArchiveResult
     data class BackupCreationFailure(val exception: Exception) : LinkUploadArchiveResult
+    data object NotEnoughSpace : LinkUploadArchiveResult
     data class BadRequest(val exception: IOException) : LinkUploadArchiveResult
     data class NetworkError(val exception: IOException) : LinkUploadArchiveResult
   }

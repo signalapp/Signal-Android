@@ -46,6 +46,7 @@ class MainToolbarViewModel : ViewModel() {
     internalStateFlow.update {
       it.copy(
         hasFailedBackups = BackupRepository.shouldDisplayBackupFailedIndicator() || BackupRepository.shouldDisplayBackupAlreadyRedeemedIndicator(),
+        isOutOfRemoteStorageSpace = BackupRepository.shouldDisplayOutOfStorageSpaceUx(),
         hasPassphrase = !SignalStore.settings.passphraseDisabled
       )
     }

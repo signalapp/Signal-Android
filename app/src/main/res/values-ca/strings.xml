@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">Es penja el contingut…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Es comprimeix el vídeo…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Es comprova si hi ha missatges…</string>
 
@@ -1090,6 +1094,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">El dispositiu enllaçat %1$s ja no està enllaçat.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">D\'acord</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">No hi ha prou espai d\'emmagatzematge</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">No tens prou espai d\'emmagatzematge lliure al dispositiu per transferir els teus missatges. Alliberar una mica d\'espai i torna-ho a provar, o enllaça el dispositiu sense transferir els teus missatges.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1167,6 +1175,11 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Aquesta versió del Signal ha vençut. Actualitzeu-la ara per enviar i rebre missatges.</string>
     <string name="ExpiredBuildReminder_update_now">Actualitza-la ara</string>
+
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1441,6 +1454,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">S\'està descarregant la còpia de seguretat…</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">Restaurant els missatges…</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">Completant…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">S\'està restaurant…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1581,7 +1596,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">No es pot afegir al grup.</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">No podeu afegir-vos-hi mitjançant l\'enllaç de grup perquè un administrador us ha esborrat.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">No pots afegir-t\'hi mitjançant l\'enllaç de grup perquè un administrador t\'ha esborrat. Posa\'t en contacte amb un admin perquè et torni a afegir al grup.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Aquest enllaç de grup ja no és vàlid.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -5338,6 +5353,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">No s\'ha pogut completar la còpia de seguretat</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">No s\'ha pogut activar la teva subscripció a les còpies de seguretat</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">S\'ha assolit el límit d\'emmagatzematge de còpies de seguretat</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Convideu-hi amistats</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7214,7 +7231,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Introdueix el teu banc, nom i correu electrònic. Stripe utilitza aquest correu electrònic per enviar-te actualitzacions sobre la teva donació. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Introdueix els teus detalls bancaris. Signal no recopila ni emmagatzema la teva informació personal. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7827,9 +7844,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Per continuar fent còpies de seguretat de tots els teus arxius, pots tornar a pagar per aquest servei en qualsevol moment. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Els teus arxius s\'eliminaran avui</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">S\'ha cancel·lat el teu pla de còpia de seguretat d\'arxius a Signal perquè no hem pogut processar el teu pagament. Aquesta és la darrera oportunitat de descarregar els arxius de la teva còpia de seguretat abans que aquesta sigui eliminada.</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Descarrega les teves dades de còpia de seguretat avui</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Descarrega les teves dades de còpia de seguretat</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">Tens %1$s d\'arxius que no es troben en aquest dispositiu. Sense una subscripció de pagament, els adjunts i arxius multimèdia emmagatzemats en la teva còpia de seguretat s\'eliminaran permanentment avui.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Allibera %1$s en aquest dispositiu</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7868,9 +7887,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Subscriu-te per %1$s/mes</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Descarregar els arxius ara</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Descarrega la còpia de seguretat ara</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">No descarregar els arxius</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">No descarregar la còpia de seguretat</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Ara no</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -7941,11 +7960,11 @@
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">Descarregant: %1$s de %2$s (%3$s %%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
-    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__download_waiting_for_wifi">Descàrrega interrompuda: esperant una xarxa Wi-Fi…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <string name="BackupStatusRow__download_no_internet">Descàrrega interrompuda: sense connexió a internet…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">Descàrrega interrompuda: el dispositiu té poca bateria</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">No hi ha prou espai per descarregar la còpia de seguretat. Per continuar, allibera %1$s d\'espai.</string>
     <!-- Text row label to skip download -->
@@ -8049,6 +8068,8 @@
     <string name="BackupsSettingsFragment_last_backup_s">Darrera còpia de seguretat %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Còpies de seguretat automàtiques amb el servei d\'emmagatzematge xifrat segur d\'extrem a extrem de Signal.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Configurar</string>
 
@@ -8134,7 +8155,9 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Desactivar i eliminar les còpies de seguretat?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">S\'eliminarà la teva còpia de seguretat i no es crearan noves còpies de seguretat. Tots els arxius emmagatzemats a la teva còpia de seguretat seran descarregats ara al teu telèfon.</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Desactivar i suprimir</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8168,6 +8191,8 @@
         <item quantity="one">La teva subscripció en aquest dispositiu és vàlida durant %1$d dia més. Per continuar utilitzant les Còpies de seguretat de Signal, renova la teva subscripció</item>
         <item quantity="other">La teva subscripció en aquest dispositiu és vàlida durant %1$d dies més. Per continuar utilitzant les Còpies de seguretat de Signal, renova la teva subscripció</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Tornar a subscriure\'m</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Renovar</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8182,10 +8207,7 @@
         <item quantity="other">Processant %1$s de ~%2$s missatges (%3$d %%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="one">Hi ha %1$s de dades de la còpia de seguretat que no s\'han copiat en aquest dispositiu. La teva còpia de seguretat s\'eliminarà quan la teva subscripció finalitzi d\'aquí a %2$d dia.</item>
-        <item quantity="other">Hi ha %1$s de dades de la còpia de seguretat que no s\'han copiat en aquest dispositiu. La teva còpia de seguretat s\'eliminarà quan la teva subscripció finalitzi d\'aquí a %2$d dies.</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Tens %1$s de dades de còpia de seguretat que no es troben en aquest dispositiu. Sense una subscripció de pagament, no es poden descarregar els arxius multimèdia.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Tens %1$s de dades de còpia de seguretat que no es troben en aquest dispositiu. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8198,7 +8220,7 @@
         <item quantity="other">Si decideixes ometre la descàrrega, la resta d\'arxius i adjunts de la teva còpia de seguretat s\'eliminaran d\'aquí a %1$d dies.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Si decideixes ometre la descàrrega, la resta d\'arxius i adjunts de la teva còpia de seguretat s\'eliminaran de forma permanent. Aquestes dades no es podran recuperar.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">Ometre la restauració?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8206,7 +8228,7 @@
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Omet</string>
     <!-- Positive dialog action to skip download during deletion -->
-    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Saltar i eliminar permanentment</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">No s\'ha pogut desactivar i eliminar les còpies de seguretat</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8216,19 +8238,33 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Detalls</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">S\'han desactivat les còpies de seguretat, però s\'ha produït un error en eliminar les teves dades del servei d\'emmagatzematge segur de Signal.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">No s\'ha pogut eliminar la còpia de seguretat</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">S\'ha produït un error. Posa\'t en contacte amb el servei d\'assistència.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">S\'han desactivat les còpies de seguretat; les teves dades es descarregaran al dispositiu i s\'eliminaran del servei d\'emmagatzematge segur de Signal.</string>
     <!-- Text displayed while we are processing a backup delete -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">S\'han desactivat les còpies de seguretat i s\'eliminaran les teves dades del servei d\'emmagatzematge segur de Signal.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">S\'han desactivat les còpies de seguretat i s\'han eliminat les teves dades del servei d\'emmagatzematge segur de Signal.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Descarregant: %1$s de %2$s (%3$d %%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Has arribat al límit d\'emmagatzematge (%1$s) que s\'inclou en el teu pla de còpia de seguretat. Per fer còpies de seguretat de nous xats i arxius multimèdia, allibera espai.</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Gestioneu l\'emmagatzematge</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Descarrega la teva còpia de seguretat avui</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">Tens %1$s de dades de còpia de seguretat que no es troben en aquest dispositiu. Sense una subscripció de pagament, els teus adjunts i arxius multimèdia s\'eliminaran permanentment.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">Baixa</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">No descarregar</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8254,7 +8290,7 @@
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">S\'ha produït un error de xarxa. Torna-ho a provar més tard.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
-    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">S\'està processant una eliminació de còpia de seguretat.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8288,17 +8324,17 @@
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Copia al porta-retalls</string>
     <!-- Label for the button to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Guardar al gestor de contrasenyes</string>
     <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Guardar al gestor de contrasenyes?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Guarda la teva clau de còpia de seguretat només en un gestor de contrasenyes que sàpigues que és segur. Signal no pot fer-te recomanacions sobre quin gestor de contrasenyes és adequat per a tu.</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Guardat al teu gestor de contrasenyes</string>
     <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">No es pot guardar al gestor de contrasenyes</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">No tens configurat un gestor de contrasenyes o el gestor de contrasenyes que utilitzes no és compatible.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Següent</string>
     <!-- Bottom sheet title -->
@@ -8333,7 +8369,7 @@
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Més informació</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscriure\'m</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Subscriu-te per %1$s/mes</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8550,6 +8586,11 @@
     <string name="SignalCheckbox_accessibility_checked_description">Seleccionat</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
     <string name="SignalCheckbox_accessibility_unchecked_description">No seleccionat</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
 
     <!-- EOF -->
 </resources>

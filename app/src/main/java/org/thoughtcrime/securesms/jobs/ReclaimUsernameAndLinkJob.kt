@@ -32,6 +32,7 @@ class ReclaimUsernameAndLinkJob private constructor(parameters: Parameters) : Jo
 
   constructor() : this(
     Parameters.Builder()
+      .setGlobalPriority(Parameters.PRIORITY_HIGH)
       .setQueue(StorageSyncJob.QUEUE_KEY)
       .addConstraint(NetworkConstraint.KEY)
       .setMaxAttempts(Parameters.UNLIMITED)

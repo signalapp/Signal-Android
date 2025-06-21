@@ -1666,7 +1666,7 @@ class ConversationFragment :
       return
     }
 
-    if (editMessage.body == composeText.editableText.toString() &&
+    if (editMessage.body == composeText.editableText.toString().trim() &&
       editMessage.getQuote()?.displayText?.toString() == inputPanel.quote.map { it.text }.orNull() &&
       editMessage.messageRanges == composeText.styling &&
       editMessage.hasLinkPreview() == inputPanel.hasLinkPreview()
@@ -3220,7 +3220,9 @@ class ConversationFragment :
 
     override fun onItemLongClick(itemView: View, item: MultiselectPart) {
       Log.d(TAG, "onItemLongClick")
-      if (actionMode != null) return
+      if (actionMode != null) { return }
+
+      if (item.getMessageRecord().isInMemoryMessageRecord) { return }
 
       val messageRecord = item.getMessageRecord()
       val recipient = viewModel.recipientSnapshot ?: return

@@ -21,7 +21,7 @@ robolectric-robolectric = { module = "org.robolectric:robolectric", version.ref 
 bouncycastle-bcprov-jdk15on = "org.bouncycastle:bcprov-jdk15on:1.70"
 bouncycastle-bcpkix-jdk15on = "org.bouncycastle:bcpkix-jdk15on:1.70"
 assertk = "com.willowtreeapps.assertk:assertk:0.28.1"
-square-okhttp-mockserver = "com.squareup.okhttp3:mockwebserver:4.12.0"
+square-okhttp-mockserver = "com.squareup.okhttp3:mockwebserver:5.0.0-alpha.16"
 mockk = "io.mockk:mockk:1.13.17"
 mockk-android = "io.mockk:mockk-android:1.13.17"
 

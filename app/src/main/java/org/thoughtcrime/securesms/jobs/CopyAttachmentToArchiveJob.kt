@@ -1,6 +1,11 @@
 package org.thoughtcrime.securesms.jobs
 
+import kotlinx.coroutines.runBlocking
+import org.signal.core.util.ByteSize
+import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
+import org.signal.core.util.logging.logW
+import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
@@ -11,11 +16,10 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollectionPendingConstraint
 import org.thoughtcrime.securesms.jobs.protos.CopyAttachmentToArchiveJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
-import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import java.lang.RuntimeException
 import java.util.concurrent.TimeUnit
 
@@ -41,6 +45,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
     attachmentId = attachmentId,
     parameters = Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
+      .addConstraint(NoRemoteArchiveGarbageCollectionPendingConstraint.KEY)
       .setLifespan(TimeUnit.DAYS.toMillis(1))
       .setMaxAttempts(Parameters.UNLIMITED)
       .setQueue(UploadAttachmentToArchiveJob.buildQueueKey())
@@ -111,8 +116,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       is NetworkResult.StatusCodeError -> {
         when (archiveResult.code) {
           403 -> {
-            // TODO [backup] What is the best way to handle this UX-wise?
-            Log.w(TAG, "[$attachmentId] Insufficient permissions to upload. Is the user no longer on media tier?")
+            Log.w(TAG, "[$attachmentId] Insufficient permissions to upload. Handled in parent handler.")
             Result.success()
           }
           410 -> {
@@ -122,9 +126,19 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
             Result.success()
           }
           413 -> {
-            // TODO [backup] What is the best way to handle this UX-wise?
             Log.w(TAG, "[$attachmentId] Insufficient storage space! Can't upload!")
-            Result.success()
+            val remoteStorageQuota = getServerQuota() ?: return Result.retry(defaultBackoff()).logW(TAG, "[$attachmentId] Failed to fetch server quota! Retrying.")
+
+            if (SignalDatabase.attachments.getEstimatedArchiveMediaSize() > remoteStorageQuota.inWholeBytes) {
+              BackupRepository.markOutOfRemoteStorageError()
+              return Result.failure()
+            }
+
+            Log.i(TAG, "[$attachmentId] Remote storage is full, but our local state indicates that once we reconcile our storage, we should have enough. Enqueuing the reconciliation job and retrying.")
+            SignalStore.backup.remoteStorageGarbageCollectionPending = true
+            AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob(forced = true))
+
+            Result.retry(defaultBackoff())
           }
           else -> {
             Log.w(TAG, "[$attachmentId] Got back a non-2xx status code: ${archiveResult.code}. Retrying.")
@@ -134,8 +148,13 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       }
 
       is NetworkResult.ApplicationError -> {
-        Log.w(TAG, "[$attachmentId] Encountered a fatal error when trying to upload!")
-        Result.fatalFailure(RuntimeException(archiveResult.throwable))
+        if (archiveResult.throwable is VerificationFailedException) {
+          Log.w(TAG, "[$attachmentId] Encountered a verification failure when trying to upload! Retrying.")
+          Result.retry(defaultBackoff())
+        } else {
+          Log.w(TAG, "[$attachmentId] Encountered a fatal error when trying to upload!")
+          Result.fatalFailure(RuntimeException(archiveResult.throwable))
+        }
       }
     }
 
@@ -149,12 +168,16 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
         Log.d(TAG, "[$attachmentId] Refusing to enqueue thumb for canceled upload.")
       }
 
-      SignalStore.backup.usedBackupMediaSpace += AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size))
-
       ArchiveUploadProgress.onAttachmentFinished(attachmentId)
     }
 
     return result
+  }
+
+  private fun getServerQuota(): ByteSize? {
+    return runBlocking {
+      BackupRepository.getPaidType()?.storageAllowanceBytes?.bytes
+    }
   }
 
   override fun onFailure() {

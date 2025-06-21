@@ -25,9 +25,10 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -220,7 +221,7 @@ private fun IdealTransferDetailsContent(
   Scaffolds.Settings(
     title = stringResource(id = R.string.GatewaySelectorBottomSheet__ideal),
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
+    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
   ) {
     val focusManager = LocalFocusManager.current
 

@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">Laddar upp media…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Komprimerar video…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Söker efter meddelanden…</string>
 
@@ -1090,6 +1094,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">Enheten som länkades %1$s är inte längre länkad.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">Det finns inte tillräckligt med lagringsutrymme</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">Du har inte tillräckligt med ledigt lagringsutrymme på enheten för att överföra dina meddelanden. Frigör utrymme och försök igen, eller länka din enhet utan att överföra dina meddelanden.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1167,6 +1175,11 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Denna version av Signal har upphört att gälla. Uppdatera nu för att skicka och ta emot meddelanden.</string>
     <string name="ExpiredBuildReminder_update_now">Uppdatera nu</string>
+
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1441,6 +1454,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">Laddar ner säkerhetskopia …</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">Återställer meddelanden …</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">Slutför …</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">Återställer …</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1581,7 +1596,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Det går inte att gå med i gruppen</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kan inte gå med i denna grupp via grupplänken eftersom en administratör tog bort dig.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kan inte gå med i den här gruppen via grupplänken eftersom en administratör tog bort dig. Kontakta en administratör för att läggas till i gruppen igen.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Denna grupplänk är inte längre giltig.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -5338,6 +5353,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">Det gick inte slutföra säkerhetskopieringen</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Det går inte att hämta ditt abonnemang för säkerhetskopiering</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Lagringsgränsen för säkerhetskopiering har nåtts</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Bjud in dina vänner</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7214,7 +7231,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Ange din bank, namn och e-postadress. Stripe använder det här e-postadressen för att skicka uppdateringar om din donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Ange dina bankuppgifter. Signal samlar inte in eller lagrar dina personuppgifter. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7827,9 +7844,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Du kan när som helst börja betala för säkerhetskopiering igen för att fortsätta säkerhetskopiera alla dina medier. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Dina media kommer att tas bort idag</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Din säkerhetskopieringsplan för media på Signal har annullerats eftersom vi inte kunde behandla din betalning. Detta är din sista chans att ladda ner media i din säkerhetskopia innan den tas bort.</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Ladda ner dina säkerhetskopieringsdata idag</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Ladda ner dina säkerhetskopieringsdata</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">Du har %1$s media som inte finns på den här enheten. Media och bilagor som lagras i din säkerhetskopia tas bort permanent utan ett betalt abonnemang.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Frigör %1$s på den här enheten</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7868,9 +7887,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Prenumerera för %1$s/månad</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Ladda ner media nu</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Ladda ner säkerhetskopian nu</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Ladda inte ner media</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">Ladda inte ner säkerhetskopian</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Inte nu</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -8049,6 +8068,8 @@
     <string name="BackupsSettingsFragment_last_backup_s">Senaste säkerhetskopia %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatiska säkerhetskopieringar med Signals säkra totalsträckskrypterade lagringstjänst.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Ställ in</string>
 
@@ -8135,6 +8156,8 @@
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Stäng av och ta bort säkerhetskopior?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Din säkerhetskopia kommer att tas bort och inga nya säkerhetskopior kommer att skapas. Media som lagras i din säkerhetskopia laddas nu ner till din telefon.</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Stäng av och radera</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8168,6 +8191,8 @@
         <item quantity="one">Ditt abonnemang på den här enheten är giltigt under den kommande %1$d dagen. Förnya för att fortsätta använda Säkerhetskopiering av Signal</item>
         <item quantity="other">Ditt abonnemang på den här enheten är giltigt under de kommande %1$d dagarna. Förnya för att fortsätta använda Säkerhetskopiering av Signal</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Prenumerera igen</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Förnya</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8182,10 +8207,7 @@
         <item quantity="other">Bearbetar %1$s av %2$s meddelanden (%3$d %%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="one">Du har %1$s av säkerhetskopierade data som inte finns på den här enheten. Din säkerhetskopia kommer att tas bort när ditt abonnemang löper ut om %2$d dag.</item>
-        <item quantity="other">Du har %1$s av säkerhetskopierade data som inte finns på den här enheten. Din säkerhetskopia kommer att tas bort när ditt abonnemang löper ut om %2$d dagar.</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Du har %1$s säkerhetskopierad data som inte finns på den här enheten. Utan ett betalt abonnemang kan media inte överföras.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Du har %1$s säkerhetskopierad data som inte finns på den här enheten. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8229,6 +8251,20 @@
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Säkerhetskopieringar har stängts av och dina data har tagits bort från Signals säkra lagringstjänst.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Laddar ned: %1$s av %2$s (%3$d %%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Du har nått lagringsgränsen på %1$s som ingår i din säkerhetskopieringsplan. Frigör utrymme för att säkerhetskopiera nya chattar och media.</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Hantera lagring</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Ladda ner din säkerhetskopia idag</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">Du har %1$s säkerhetskopierad data som inte finns på den här enheten. Dina media och bilagor kommer att raderas permanent utan ett betalt abonnemang.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">Hämta</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">Ladda inte ner</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8550,6 +8586,11 @@
     <string name="SignalCheckbox_accessibility_checked_description">Markerad</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
     <string name="SignalCheckbox_accessibility_unchecked_description">Avmarkerad</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
 
     <!-- EOF -->
 </resources>

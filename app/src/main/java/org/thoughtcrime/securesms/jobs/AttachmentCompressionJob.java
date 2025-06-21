@@ -271,7 +271,7 @@ public final class AttachmentCompressionJob extends BaseJob {
             try (OutputStream outputStream = ModernEncryptingPartOutputStream.createFor(attachmentSecret, file, true).second) {
               mdatLength = (int) transcoder.transcode(percent -> {
                 if (notification != null) {
-                  notification.setProgress(percent / 100f);
+                  notification.updateProgress(percent / 100f);
                 }
                 eventBus.postSticky(new PartProgressEvent(attachment,
                                                           PartProgressEvent.Type.COMPRESSION,

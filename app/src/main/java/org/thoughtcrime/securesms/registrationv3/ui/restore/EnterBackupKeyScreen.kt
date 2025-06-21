@@ -280,7 +280,7 @@ private fun NoBackupKeyBottomSheet(
     Spacer(modifier = Modifier.height(24.dp))
 
     Text(
-      text = stringResource(R.string.EnterBackupKey_no_key_paragraph_1),
+      text = stringResource(R.string.EnterBackupKey_no_key_paragraph_2),
       style = MaterialTheme.typography.bodyMedium.copy(textAlign = TextAlign.Center),
       color = MaterialTheme.colorScheme.onSurfaceVariant
     )

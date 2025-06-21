@@ -18,7 +18,9 @@ import org.thoughtcrime.securesms.backup.FullBackupImporter;
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -42,14 +44,20 @@ final class NewDeviceServerTask implements ServerTask {
       DataRestoreConstraint.setRestoringData(true);
       SQLiteDatabase database = SignalDatabase.getBackupDatabase();
 
-      String passphrase = "deadbeef";
+      String passphrase;
+      if (RemoteConfig.restoreAfterRegistration()) {
+        passphrase = SignalStore.account().getAccountEntropyPool().getValue();
+      } else {
+        passphrase = "deadbeef";
+      }
 
       BackupPassphrase.set(context, passphrase);
       FullBackupImporter.importFile(context,
                                     AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
                                     database,
                                     inputStream,
-                                    passphrase);
+                                    passphrase,
+                                    RemoteConfig.restoreAfterRegistration());
 
       SignalDatabase.runPostBackupRestoreTasks(database);
       NotificationChannels.getInstance().restoreContactNotificationChannels();

@@ -204,7 +204,8 @@ class CallEventCacheTest {
     isGroupCallActive: Boolean = false,
     didLocalUserJoin: Boolean = false,
     body: String? = null,
-    decryptedGroupBytes: ByteArray? = null
+    decryptedGroupBytes: ByteArray? = null,
+    read: Boolean = true
   ): CallEventCache.CacheRecord {
     return CallEventCache.CacheRecord(
       rowId = callId,
@@ -219,7 +220,8 @@ class CallEventCacheTest {
       isGroupCallActive = isGroupCallActive,
       didLocalUserJoin = didLocalUserJoin,
       body = body,
-      decryptedGroupBytes = decryptedGroupBytes
+      decryptedGroupBytes = decryptedGroupBytes,
+      read = read
     )
   }
 }

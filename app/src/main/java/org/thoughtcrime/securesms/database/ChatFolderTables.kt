@@ -30,10 +30,10 @@ import org.thoughtcrime.securesms.database.ThreadTable.Companion.ID
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.storage.StorageSyncModels
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalChatFolderRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.util.UuidUtil
-import java.util.concurrent.TimeUnit
 import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord as RemoteChatFolderRecord
 
 /**
@@ -43,7 +43,6 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
 
   companion object {
     private val TAG = Log.tag(ChatFolderTable::class.java)
-    private val DELETED_LIFESPAN: Long = TimeUnit.DAYS.toMillis(30)
 
     @JvmField
     val CREATE_TABLE: Array<String> = arrayOf(ChatFolderTable.CREATE_TABLE, ChatFolderMembershipTable.CREATE_TABLE)
@@ -543,13 +542,13 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
   }
 
   /**
-   * Removes storageIds from folders that have been deleted for [DELETED_LIFESPAN].
+   * Removes storageIds from folders that have been deleted for [RemoteConfig.messageQueueTime].
    */
   fun removeStorageIdsFromOldDeletedFolders(now: Long): Int {
     return writableDatabase
       .update(ChatFolderTable.TABLE_NAME)
       .values(ChatFolderTable.STORAGE_SERVICE_ID to null)
-      .where("${ChatFolderTable.STORAGE_SERVICE_ID} NOT NULL AND ${ChatFolderTable.DELETED_TIMESTAMP_MS} > 0 AND ${ChatFolderTable.DELETED_TIMESTAMP_MS} < ?", now - DELETED_LIFESPAN)
+      .where("${ChatFolderTable.STORAGE_SERVICE_ID} NOT NULL AND ${ChatFolderTable.DELETED_TIMESTAMP_MS} > 0 AND ${ChatFolderTable.DELETED_TIMESTAMP_MS} < ?", now - RemoteConfig.messageQueueTime)
       .run()
   }
 

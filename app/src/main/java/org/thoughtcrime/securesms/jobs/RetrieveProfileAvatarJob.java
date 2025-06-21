@@ -57,6 +57,10 @@ public class RetrieveProfileAvatarJob extends BaseJob {
     SignalExecutors.BOUNDED.execute(() -> AppDependencies.getJobManager().add(new RetrieveProfileAvatarJob(recipient, recipient.resolve().getProfileAvatar(), true, true)));
   }
 
+  public static RetrieveProfileAvatarJob forAccountRestore(Recipient recipient, String profileAvatar, boolean forceUpdate) {
+    return new RetrieveProfileAvatarJob(recipient, profileAvatar, forceUpdate, false, Parameters.PRIORITY_HIGH);
+  }
+
   public RetrieveProfileAvatarJob(Recipient recipient, String profileAvatar) {
     this(recipient, profileAvatar, false);
   }
@@ -66,7 +70,12 @@ public class RetrieveProfileAvatarJob extends BaseJob {
   }
 
   public RetrieveProfileAvatarJob(Recipient recipient, String profileAvatar, boolean forceUpdate, boolean forUnblurred) {
-    this(new Job.Parameters.Builder().setQueue("RetrieveProfileAvatarJob::" + recipient.getId().toQueueKey())
+    this(recipient, profileAvatar, forceUpdate, forUnblurred, Parameters.PRIORITY_DEFAULT);
+  }
+
+  private RetrieveProfileAvatarJob(Recipient recipient, String profileAvatar, boolean forceUpdate, boolean forUnblurred, @Parameters.Priority int priority) {
+    this(new Job.Parameters.Builder().setGlobalPriority(priority)
+                                     .setQueue("RetrieveProfileAvatarJob::" + recipient.getId().toQueueKey())
                                      .addConstraint(NetworkConstraint.KEY)
                                      .setLifespan(TimeUnit.HOURS.toMillis(1))
                                      .build(),

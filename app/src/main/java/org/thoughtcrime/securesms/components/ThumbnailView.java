@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -45,6 +46,8 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.blurhash.BlurHash;
 import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
 import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.keyvalue.InternalValues;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.mms.ImageSlide;
 import org.thoughtcrime.securesms.mms.PartAuthority;
@@ -55,6 +58,7 @@ import org.thoughtcrime.securesms.mms.VideoSlide;
 import org.thoughtcrime.securesms.stories.StoryTextPostModel;
 import org.thoughtcrime.securesms.util.AttachmentUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.views.Stub;
 
@@ -415,7 +419,21 @@ public class ThumbnailView extends FrameLayout {
     Attachment slideAttachment = slide.asAttachment();
     String     id;
     if (slideAttachment instanceof DatabaseAttachment) {
-      id = ((DatabaseAttachment) slideAttachment).attachmentId.serialize();
+      DatabaseAttachment dbAttachment = (DatabaseAttachment) slideAttachment;
+      id = dbAttachment.attachmentId.serialize();
+
+      if (SignalStore.internal().getShowArchiveStateHint()) {
+        View mediaArchive = findViewById(R.id.thumbnail_media_archive);
+        mediaArchive.setVisibility(View.VISIBLE);
+        switch (dbAttachment.archiveTransferState) {
+          case NONE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+          case COPY_PENDING -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+          case UPLOAD_IN_PROGRESS -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.CYAN));
+          case FINISHED -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+          case TEMPORARY_FAILURE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.YELLOW));
+          case PERMANENT_FAILURE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        }
+      }
     } else {
       final Uri uri = slideAttachment.getUri();
       if (uri != null) {

@@ -126,11 +126,21 @@ interface MainToolbarCallback {
   }
 }
 
-enum class MainToolbarMode {
-  ACTION_MODE,
-  FULL,
-  BASIC,
-  SEARCH
+enum class MainToolbarMode(val crossFadeKey: CrossFadeKey) {
+  ACTION_MODE(CrossFadeKey.ACTION_MODE),
+  FULL(CrossFadeKey.FULL),
+  BASIC(CrossFadeKey.BASIC),
+  SEARCH(CrossFadeKey.FULL);
+
+  /**
+   * Since FULL and SEARCH share the same cross-fade target, we use a shared
+   * cross-fade key between them.
+   */
+  enum class CrossFadeKey {
+    ACTION_MODE,
+    FULL,
+    BASIC
+  }
 }
 
 data class MainToolbarState(
@@ -142,6 +152,7 @@ data class MainToolbarState(
   val callFilter: CallLogFilter = CallLogFilter.ALL,
   val hasUnreadPayments: Boolean = false,
   val hasFailedBackups: Boolean = false,
+  val isOutOfRemoteStorageSpace: Boolean = false,
   val hasEnabledNotificationProfile: Boolean = false,
   val showNotificationProfilesTooltip: Boolean = false,
   val hasPassphrase: Boolean = false,
@@ -164,19 +175,11 @@ fun MainToolbar(
   state: MainToolbarState,
   callback: MainToolbarCallback
 ) {
-  if (state.mode == MainToolbarMode.ACTION_MODE) {
-    ActionModeToolbar(
-      state = state,
-      callback = callback
-    )
-    return
-  }
-
   Crossfade(
-    targetState = state.mode != MainToolbarMode.BASIC
+    targetState = state.mode.crossFadeKey
   ) { targetState ->
     when (targetState) {
-      true -> Box {
+      MainToolbarMode.CrossFadeKey.FULL -> Box {
         var revealOffset by remember { mutableStateOf(Offset.Zero) }
 
         BoxWithConstraints {
@@ -211,7 +214,8 @@ fun MainToolbar(
         }
       }
 
-      false -> ArchiveToolbar(state, callback)
+      MainToolbarMode.CrossFadeKey.BASIC -> ArchiveToolbar(state, callback)
+      MainToolbarMode.CrossFadeKey.ACTION_MODE -> ActionModeToolbar(state, callback)
     }
   }
 }
@@ -503,14 +507,14 @@ private fun ProxyAction(
 
 @Composable
 private fun HeadsUpIndicator(state: MainToolbarState, modifier: Modifier = Modifier) {
-  if (!state.hasUnreadPayments && !state.hasFailedBackups) {
+  if (!state.hasUnreadPayments && !state.hasFailedBackups && !state.isOutOfRemoteStorageSpace) {
     return
   }
 
-  val color = if (state.hasFailedBackups) {
-    Color(0xFFFFCC00)
-  } else {
-    MaterialTheme.colorScheme.primary
+  val color = when {
+    state.isOutOfRemoteStorageSpace -> Color.Transparent
+    state.hasFailedBackups -> Color(0xFFFFCC00)
+    else -> MaterialTheme.colorScheme.primary
   }
 
   Box(
@@ -518,7 +522,13 @@ private fun HeadsUpIndicator(state: MainToolbarState, modifier: Modifier = Modif
       .size(13.dp)
       .background(color = color, shape = CircleShape)
   ) {
-    // Intentionally empty
+    if (state.isOutOfRemoteStorageSpace) {
+      Icon(
+        imageVector = ImageVector.vectorResource(R.drawable.symbol_error_circle_fill_16),
+        tint = MaterialTheme.colorScheme.error,
+        contentDescription = null
+      )
+    }
   }
 }
 
@@ -733,7 +743,8 @@ private fun FullMainToolbarPreview() {
         destination = MainNavigationListLocation.CHATS,
         hasEnabledNotificationProfile = true,
         proxyState = MainToolbarState.ProxyState.CONNECTED,
-        hasFailedBackups = true
+        hasFailedBackups = true,
+        isOutOfRemoteStorageSpace = false
       ),
       callback = object : MainToolbarCallback by MainToolbarCallback.Empty {
         override fun onSearchClick() {

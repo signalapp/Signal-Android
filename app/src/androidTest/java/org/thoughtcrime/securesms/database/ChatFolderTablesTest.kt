@@ -9,6 +9,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -41,6 +42,7 @@ class ChatFolderTablesTest {
   private lateinit var folder1: ChatFolderRecord
   private lateinit var folder2: ChatFolderRecord
   private lateinit var folder3: ChatFolderRecord
+  private lateinit var folder4: ChatFolderRecord
 
   private lateinit var recipientIds: List<RecipientId>
 
@@ -97,6 +99,18 @@ class ChatFolderTablesTest {
       folderType = ChatFolderRecord.FolderType.GROUP,
       chatFolderId = ChatFolderId.generate(),
       storageServiceId = StorageId.forChatFolder(byteArrayOf(3, 4, 5))
+    )
+
+    folder4 = ChatFolderRecord(
+      name = "folder4",
+      position = 4,
+      excludedChats = listOf(aliceThread, charlieThread),
+      showUnread = true,
+      showMutedChats = true,
+      showGroupChats = true,
+      folderType = ChatFolderRecord.FolderType.UNREAD,
+      chatFolderId = ChatFolderId.generate(),
+      storageServiceId = StorageId.forChatFolder(byteArrayOf(4, 5, 6))
     )
 
     SignalDatabase.chatFolders.writableDatabase.deleteAll(ChatFolderTables.ChatFolderTable.TABLE_NAME)
@@ -198,6 +212,16 @@ class ChatFolderTablesTest {
     actualFolders.forEachIndexed { index, folder ->
       assertEquals(folder.position, index)
     }
+  }
+
+  @Test
+  fun givenAnEmptyFolder_whenIGetItsEmptyStatus_thenIExpectTrue() {
+    SignalDatabase.chatFolders.createFolder(folder4)
+    val actualFolders = SignalDatabase.chatFolders.getCurrentChatFolders()
+    val unreadCountAndEmptyAndMutedStatus = SignalDatabase.chatFolders.getUnreadCountAndEmptyAndMutedStatusForFolders(actualFolders)
+    val actualFolderIsEmpty = unreadCountAndEmptyAndMutedStatus[actualFolders.first().id]!!.second
+
+    assertTrue(actualFolderIsEmpty)
   }
 
   private fun createRecipients(count: Int): List<RecipientId> {

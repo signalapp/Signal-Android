@@ -13,7 +13,7 @@ androidx-window = "1.3.0"
 glide = "4.15.1"
 gradle = "8.9.0"
 kotlin = "2.1.0"
-libsignal-client = "0.73.2"
+libsignal-client = "0.74.0"
 mp4parser = "1.9.39"
 android-gradle-plugin = "8.7.2"
 accompanist = "0.28.0"
@@ -145,15 +145,15 @@ libsignal-client = { module = "org.signal:libsignal-client", version.ref = "libs
 libsignal-android = { module = "org.signal:libsignal-android", version.ref = "libsignal-client" }
 protobuf-gradle-plugin = { module = "com.google.protobuf:protobuf-gradle-plugin", version.ref = "protobuf-gradle-plugin" }
 signal-aesgcmprovider = "org.signal:aesgcmprovider:0.0.4"
-signal-ringrtc = "org.signal:ringrtc-android:2.52.3"
+signal-ringrtc = "org.signal:ringrtc-android:2.53.0"
 signal-android-database-sqlcipher = "org.signal:sqlcipher-android:4.6.0-S1"
 
 # Third Party
 greenrobot-eventbus = "org.greenrobot:eventbus:3.0.0"
 jackson-core = "com.fasterxml.jackson.core:jackson-databind:2.12.0"
 jackson-module-kotlin = "com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0"
-square-okhttp3 = "com.squareup.okhttp3:okhttp:4.12.0"
-square-okio = "com.squareup.okio:okio:3.9.0"
+square-okhttp3 = "com.squareup.okhttp3:okhttp:5.0.0-alpha.16"
+square-okio = "com.squareup.okio:okio:3.12.0"
 square-leakcanary = "com.squareup.leakcanary:leakcanary-android:2.7"
 rxjava3-rxjava = "io.reactivex.rxjava3:rxjava:3.0.13"
 rxjava3-rxandroid = "io.reactivex.rxjava3:rxandroid:3.0.0"

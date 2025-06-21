@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentPurchaseTokenJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
@@ -109,18 +110,6 @@ class MessageBackupsFlowViewModel(
           is BillingPurchaseResult.Success -> {
             Log.d(TAG, "Got successful purchase result for purchase at ${result.purchaseTime}")
             val id = internalStateFlow.value.inAppPayment!!.id
-
-            if (result.isAcknowledged) {
-              Log.w(TAG, "Payment is already acknowledged. Ignoring.")
-
-              internalStateFlow.update {
-                it.copy(
-                  stage = MessageBackupsStage.COMPLETED
-                )
-              }
-
-              return@collect
-            }
 
             try {
               Log.d(TAG, "Attempting to handle successful purchase.")
@@ -248,6 +237,10 @@ class MessageBackupsFlowViewModel(
   private fun validateTypeAndUpdateState(state: MessageBackupsFlowState): MessageBackupsFlowState {
     return when (state.selectedMessageBackupTier!!) {
       MessageBackupTier.FREE -> {
+        viewModelScope.launch(SignalDispatchers.IO) {
+          SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+          StorageSyncHelper.scheduleSyncForDataChange()
+        }
         SignalStore.backup.backupTier = MessageBackupTier.FREE
         SignalStore.uiHints.markHasEverEnabledRemoteBackups()
 

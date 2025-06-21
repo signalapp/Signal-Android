@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.PartProgressEvent
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobLogger.format
+import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraint
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
@@ -46,6 +48,10 @@ import org.whispersystems.signalservice.api.push.exceptions.RangeException
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import kotlin.math.max
+import kotlin.math.pow
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 
 /**
@@ -196,8 +202,19 @@ class RestoreAttachmentJob private constructor(
   }
 
   override fun onShouldRetry(exception: Exception): Boolean {
-    return exception is PushNetworkException ||
-      exception is RetryLaterException
+    return exception is PushNetworkException || exception is RetryLaterException
+  }
+
+  override fun getNextRunAttemptBackoff(pastAttemptCount: Int, exception: java.lang.Exception): Long {
+    return if (exception is NonSuccessfulResponseCodeException && exception.code == 404) {
+      if (manual) {
+        BackoffUtil.exponentialBackoff(pastAttemptCount, 1.hours.inWholeMilliseconds)
+      } else {
+        1.days.inWholeMilliseconds * 2.0.pow(max(0.0, pastAttemptCount.toDouble()) - 1.0).toInt()
+      }
+    } else {
+      super.getNextRunAttemptBackoff(pastAttemptCount, exception)
+    }
   }
 
   @Throws(IOException::class, RetryLaterException::class)
@@ -230,8 +247,8 @@ class RestoreAttachmentJob private constructor(
       val pointer = attachment.createArchiveAttachmentPointer(useArchiveCdn)
 
       val progressListener = object : SignalServiceAttachment.ProgressListener {
-        override fun onAttachmentProgress(total: Long, progress: Long) {
-          EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress))
+        override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
+          EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, progress))
         }
 
         override fun shouldCancel(): Boolean {
@@ -251,7 +268,6 @@ class RestoreAttachmentJob private constructor(
             pointer,
             attachmentFile,
             maxReceiveSize,
-            false,
             progressListener
           )
       } else {
@@ -284,12 +300,16 @@ class RestoreAttachmentJob private constructor(
           if (RemoteConfig.internalUser) {
             postFailedToDownloadFromArchiveNotification()
           }
+
           retrieveAttachment(messageId, attachmentId, attachment, true)
           return
         } else if (e.code == 401 && useArchiveCdn) {
           SignalStore.backup.mediaCredentials.cdnReadCredentials = null
           SignalStore.backup.cachedMediaCdnPath = null
           throw RetryLaterException(e)
+        } else if (e.code == 404 && attachment.remoteLocation?.isNotBlank() == true) {
+          Log.i(TAG, "Failed to download attachment from transit tier. Scheduling retry.")
+          throw e
         }
       }
 

@@ -34,11 +34,11 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.storage.StorageSyncModels
 import org.thoughtcrime.securesms.storage.StorageSyncModels.toLocal
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import java.time.DayOfWeek
-import kotlin.time.Duration.Companion.days
 
 /**
  * Database for maintaining Notification Profiles, Notification Profile Schedules, and Notification Profile allowed memebers.
@@ -47,13 +47,12 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
 
   companion object {
     private val TAG = Log.tag(NotificationProfileTable::class)
-    private val DELETED_LIFESPAN: Long = 30.days.inWholeMilliseconds
 
     @JvmField
     val CREATE_TABLE: Array<String> = arrayOf(NotificationProfileTable.CREATE_TABLE, NotificationProfileScheduleTable.CREATE_TABLE, NotificationProfileAllowedMembersTable.CREATE_TABLE)
 
     @JvmField
-    val CREATE_INDEXES: Array<String> = arrayOf(NotificationProfileScheduleTable.CREATE_INDEX, NotificationProfileAllowedMembersTable.CREATE_INDEX)
+    val CREATE_INDEXES: Array<String> = arrayOf(NotificationProfileScheduleTable.CREATE_INDEX, NotificationProfileAllowedMembersTable.CREATE_NOTIFICATION_PROFILE_INDEX, NotificationProfileAllowedMembersTable.CREATE_RECIPIENT_ID_INDEX)
   }
 
   object NotificationProfileTable {
@@ -125,12 +124,13 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
         $NOTIFICATION_PROFILE_ID INTEGER NOT NULL REFERENCES ${NotificationProfileTable.TABLE_NAME} (${NotificationProfileTable.ID}) ON DELETE CASCADE,
-        $RECIPIENT_ID INTEGER NOT NULL,
+        $RECIPIENT_ID INTEGER NOT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
         UNIQUE($NOTIFICATION_PROFILE_ID, $RECIPIENT_ID) ON CONFLICT REPLACE
       )
     """
 
-    const val CREATE_INDEX = "CREATE INDEX notification_profile_allowed_members_profile_index ON $TABLE_NAME ($NOTIFICATION_PROFILE_ID)"
+    const val CREATE_NOTIFICATION_PROFILE_INDEX = "CREATE INDEX notification_profile_allowed_members_profile_index ON $TABLE_NAME ($NOTIFICATION_PROFILE_ID)"
+    const val CREATE_RECIPIENT_ID_INDEX = "CREATE INDEX notification_profile_allowed_members_recipient_index ON $TABLE_NAME ($RECIPIENT_ID)"
   }
 
   fun createProfile(name: String, emoji: String, color: AvatarColor, createdAt: Long): NotificationProfileChangeResult {
@@ -496,13 +496,13 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
   }
 
   /**
-   * Removes storageIds from notification profiles that have been deleted for [DELETED_LIFESPAN].
+   * Removes storageIds from notification profiles that have been deleted for [RemoteConfig.messageQueueTime].
    */
   fun removeStorageIdsFromOldDeletedProfiles(now: Long): Int {
     return writableDatabase
       .update(NotificationProfileTable.TABLE_NAME)
       .values(NotificationProfileTable.STORAGE_SERVICE_ID to null)
-      .where("${NotificationProfileTable.STORAGE_SERVICE_ID} NOT NULL AND ${NotificationProfileTable.DELETED_TIMESTAMP_MS} > 0 AND ${NotificationProfileTable.DELETED_TIMESTAMP_MS} < ?", now - DELETED_LIFESPAN)
+      .where("${NotificationProfileTable.STORAGE_SERVICE_ID} NOT NULL AND ${NotificationProfileTable.DELETED_TIMESTAMP_MS} > 0 AND ${NotificationProfileTable.DELETED_TIMESTAMP_MS} < ?", now - RemoteConfig.messageQueueTime)
       .run()
   }
 

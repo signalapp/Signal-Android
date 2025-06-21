@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">Augšupielādē multividi…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Notiek video saspiešana…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Pārbauda, vai ienākušas ziņas…</string>
 
@@ -1112,6 +1116,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">Ierīce, kas tika piesaistīta (%1$s), vairs nav saistīta.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">Ok</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">Trūkst krātuves vietas</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">Jūsu ierīcē trūkst brīvas vietas, lai pārsūtītu ziņojumus. Atbrīvojiet vietu un mēģiniet vēlreiz vai piesaistiet ierīci bez ziņojumu pārsūtīšanas.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1189,6 +1197,11 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Šīs Signal versijas lietošanas termiņš ir beidzies. Lai nosūtītu un saņemtu ziņas, tā jānomaina ar jaunāku.</string>
     <string name="ExpiredBuildReminder_update_now">Aktualizēt tagad</string>
+
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1481,6 +1494,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">Rezerves kopija tiek lejupielādēta…</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">Ziņas tiek atjaunotas…</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">Notiek pabeigšana…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">Notiek atjaunošana…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1624,7 +1639,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nevar pievienoties grupai</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Jūs nevarat pievienoties grupai caur grupas saiti, jo adminstrators jums to ir liedzis.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Jūs nevarat pievienoties šai grupai, izmantojot grupas saiti, jo administrators jūs ir noņēmis no grupas. Sazinieties ar administratoru, lai pievienotos grupai atkārtoti.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Šī grupas saite vairs nav derīga.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -2933,9 +2948,9 @@
     </plurals>
     <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
     <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
-        <item quantity="zero">%1$s stickers</item>
-        <item quantity="one">%1$s sticker</item>
-        <item quantity="other">%1$s stickers</item>
+        <item quantity="zero">%1$s uzlīmes</item>
+        <item quantity="one">%1$s uzlīme</item>
+        <item quantity="other">%1$suzlīmes</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -5469,6 +5484,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">Neizdevās izveidot rezerves kopiju</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Neizdevās izmantot jūsu rezerves kopiju abonementu</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Sasniegts rezerves kopiju krātuves ierobežojums</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Uzaiciniet draugus</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7379,7 +7396,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Norādiet savas bankas nosaukumu, savu vārdu, uzvārdu un e-pasta adresi. Stripe šo e-pasta adresi izmantos, lai sūtītu jums informāciju par jūsu ziedojumu. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Ievadiet bankas rekvizītus. Signal neapkopo un neuzglabā jūsu personas informāciju. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -8000,9 +8017,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Lai turpinātu multivides rezerves kopiju izveidošanu, jebkurā brīdī varat atsākt maksājumu veikšanu. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Multivide tiks dzēsta šodien</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Jūsu Signal multivides rezerves kopiju plāns tika atcelts, jo nevarējām apstrādāt maksājumu. Šī ir jūsu pēdējā iespēja lejupielādēt multivides rezerves kopiju, pirms tā tiks dzēsta.</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Lejupielādējiet savus rezerves kopijas datus šodien</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Lejupielādējiet savus rezerves kopijas datus</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">Jums ir %1$s multivides failu, kas neatrodas šajā ierīcē. Bez maksas abonementa rezerves kopijās saglabātā multivide un pielikumi tiks neatgriezeniski dzēsti.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Atbrīvojiet līdz %1$s šajā ierīcē</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -8042,9 +8061,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Abonēt par %1$s mēnesī</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Lejupielādēt multividi tūlīt</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Lejupielādēt rezerves kopiju tagad</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Nelejupielādēt multividi</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">Nelejupielādēt rezerves kopiju</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Ne tagad</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -8115,11 +8134,11 @@
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">Lejupielādē: %1$s no %2$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
-    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__download_waiting_for_wifi">Lejupielāde apturēta: gaida Wi-Fi savienojumu…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <string name="BackupStatusRow__download_no_internet">Lejupielāde apturēta: nav interneta savienojuma…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">Lejupielāde apturēta: ierīces akumulatora uzlādes līmenis ir zems</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Nepietiek vietas, lai lejupielādētu rezerves kopiju. Lai turpinātu, atbrīvojiet %1$s vietas.</string>
     <!-- Text row label to skip download -->
@@ -8224,6 +8243,8 @@
     <string name="BackupsSettingsFragment_last_backup_s">Pēdējā rezerves kopija: %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automātiska rezerves kopiju izveide, izmantojot Signal drošās un pilnībā šifrētās krātuves pakalpojumu.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Iestatīt</string>
 
@@ -8309,7 +8330,9 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Vai izslēgt rezerves kopiju izveidi un dzēst tās?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Rezerves kopija tiks dzēsta un jaunas kopijas netiks izveidotas. Rezerves kopijā saglabātā multivide tagad tiks lejupielādēta jūsu tālrunī.</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Izslēgt un izdzēst</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8344,6 +8367,8 @@
         <item quantity="one">Abonements šajā ierīcē ir derīgs vēl %1$d dienu. Atjaunojiet to, lai turpinātu izmantot Signal rezerves kopijas.</item>
         <item quantity="other">Abonements šajā ierīcē ir derīgs vēl %1$d dienas. Atjaunojiet to, lai turpinātu izmantot Signal rezerves kopijas.</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Abonēt atkārtoti</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Atjaunot</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8359,11 +8384,7 @@
         <item quantity="other">Notiek %1$s no ~%2$s ziņu apstrāde (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="zero">Jums ir %1$s rezerves kopijas datu, kas nav šajā ierīcē. Rezerves kopija tiks dzēsta, kad abonements beigsies pēc %2$d dienām.</item>
-        <item quantity="one">Jums ir %1$s rezerves kopijas datu, kas nav šajā ierīcē. Rezerves kopija tiks dzēsta, kad abonements beigsies pēc %2$d dienas.</item>
-        <item quantity="other">Jums ir %1$s rezerves kopijas datu, kas nav šajā ierīcē. Rezerves kopija tiks dzēsta, kad abonements beigsies pēc %2$d dienām.</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Jums ir %1$s rezerves kopiju datu, kas neatrodas šajā ierīcē. Bez maksas abonementa multividi bezsaistē lejupielādēt nevar.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Jums ir %1$s rezerves kopiju datu, kas neatrodas šajā ierīcē. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8377,7 +8398,7 @@
         <item quantity="other">Ja izlaidīsiet lejupielādi, rezerves kopijā ietvertā multivide un pielikumi tiks dzēsti pēc %1$d dienām.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Ja izlaidīsiet lejupielādi, rezerves kopijā esošā multivide un pielikumi tiks neatgriezeniski dzēsti. Šie dati nebūs atgūstami.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">Vai izlaist atjaunošanu?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8385,7 +8406,7 @@
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Izlaist</string>
     <!-- Positive dialog action to skip download during deletion -->
-    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Izlaist un neatgriezeniski dzēst</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Neizdevās izslēgt un dzēst rezerves kopijas</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8395,19 +8416,33 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Rekvizīti</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Rezerves kopijas ir izslēgtas, taču, dzēšot datus no Signal drošās krātuves pakalpojuma, radās kļūda.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed to delete backup</string>
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Neizdevās izdzēst rezerves kopiju</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">An error occurred. Please contact support.</string>
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Ir radusies kļūda. Lūdzu, sazinieties ar atbalsta dienestu.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Rezerves kopiju izveide ir izslēgta, jūsu dati tiks lejupielādēti jūsu ierīcē un tad dzēsti no Signal drošās krātuves pakalpojuma.</string>
     <!-- Text displayed while we are processing a backup delete -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups have been turned off and your data will be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Rezerves kopiju izveide ir izslēgta, un jūsu dati tiks dzēsti no Signal drošās krātuves pakalpojuma.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Rezerves kopiju izveide ir izslēgta, un jūsu dati ir izdzēsti no Signal drošās krātuves pakalpojuma.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Lejupielādē: %1$s no %2$s (%3$d%%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Jūs esat sasnieguši jūsu rezerves kopiju plāna krātuves ierobežojumu (%1$s). Atbrīvojiet vietu, lai rezerves kopijā saglabātu jaunas sarunas un multividi.</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Pārvaldīt krātuvi</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Lejupielādējiet savu rezerves kopiju šodien</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">Jums ir %1$s rezerves kopiju datu, kas neatrodas šajā ierīcē. Bez maksas abonementa jūsu multivide un pielikumi tiks pilnībā dzēsti.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">Lejupielādēt</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">Nelejupielādēt</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8433,7 +8468,7 @@
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Radās tīkla kļūda. Lūdzu, vēlāk mēģiniet vēlreiz.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
-    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Notiek rezerves kopijas dzēšana.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8467,17 +8502,17 @@
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopēt starpliktuvē</string>
     <!-- Label for the button to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Saglabāt paroļu pārvaldniekā</string>
     <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Saglabāt paroļu pārvaldniekā?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Saglabājiet rezerves kopijas atslēgu tikai tādā paroļu pārvaldniekā, kura drošībai uzticaties. Signal nesniedz ieteikumus par to, kuru paroļu pārvaldnieku izvēlēties.</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saglabāta paroļu pārvaldniekā</string>
     <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Nevar saglabāt paroļu pārvaldniekā</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Jums nav iestatīts paroļu pārvaldnieks vai jūsu izmantotais paroļu pārvaldnieks netiek atbalstīts.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Tālāk</string>
     <!-- Bottom sheet title -->
@@ -8512,7 +8547,7 @@
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Uzzināt vairāk</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Abonēt</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Abonēt par %1$s mēnesī</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8731,6 +8766,11 @@
     <string name="SignalCheckbox_accessibility_checked_description">Atzīmēts</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
     <string name="SignalCheckbox_accessibility_unchecked_description">Neatzīmēts</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
 
     <!-- EOF -->
 </resources>

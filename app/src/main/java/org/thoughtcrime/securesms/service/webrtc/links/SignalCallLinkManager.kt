@@ -141,7 +141,8 @@ class SignalCallLinkManager(
       callManager.readCallLink(
         SignalStore.internal.groupCallingServer,
         requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes).serialize(),
-        CallLinkRootKey(credentials.linkKeyBytes)
+        CallLinkRootKey(credentials.linkKeyBytes),
+        null
       ) {
         if (it.isSuccess) {
           emitter.onSuccess(ReadCallLinkResult.Success(it.value!!.toAppState()))
@@ -168,6 +169,7 @@ class SignalCallLinkManager(
         SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
+        null,
         credentials.adminPassBytes,
         name
       ) { result ->
@@ -195,6 +197,7 @@ class SignalCallLinkManager(
         SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
+        null,
         credentials.adminPassBytes,
         restrictions
       ) { result ->
@@ -221,6 +224,7 @@ class SignalCallLinkManager(
         SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
+        null,
         credentials.adminPassBytes
       ) { result ->
         if (result.isSuccess && result.value == true) {

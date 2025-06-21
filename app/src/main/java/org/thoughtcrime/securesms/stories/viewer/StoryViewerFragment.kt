@@ -135,7 +135,7 @@ class StoryViewerFragment :
     } else {
       viewModel.refresh()
 
-      if (!SignalStore.story.userHasSeenFirstNavView) {
+      if (!SignalStore.story.userHasSeenFirstNavView && !SignalStore.story.userHasViewedOnboardingStory) {
         StoryFirstTimeNavigationFragment().show(childFragmentManager, null)
       }
     }

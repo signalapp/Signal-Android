@@ -70,6 +70,7 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.DialogState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
@@ -518,6 +519,13 @@ fun Screen(
         label = "This will not actually downgrade the user.",
         onClick = {
           SignalStore.backup.backupExpiredAndDowngraded = true
+        }
+      )
+
+      Rows.TextRow(
+        text = "Mark out of remote storage space",
+        onClick = {
+          BackupRepository.markOutOfRemoteStorageError()
         }
       )
 

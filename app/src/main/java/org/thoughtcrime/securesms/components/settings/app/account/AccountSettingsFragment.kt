@@ -125,7 +125,7 @@ class AccountSettingsFragment : DSLSettingsFragment(R.string.AccountSettingsFrag
       clickPref(
         title = DSLSettingsText.from(R.string.preferences_chats__transfer_account),
         summary = DSLSettingsText.from(R.string.preferences_chats__transfer_account_to_a_new_android_device),
-        isEnabled = state.isNotDeprecatedOrUnregistered(),
+        isEnabled = state.canTransferWhileUnregistered || state.isNotDeprecatedOrUnregistered(),
         onClick = {
           Navigation.findNavController(requireView()).safeNavigate(R.id.action_accountSettingsFragment_to_oldDeviceTransferActivity)
         }

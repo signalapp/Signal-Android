@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.util.JsonUtils;
 import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.IOException;
-import java.util.Collections;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Contact implements Parcelable {
@@ -52,10 +52,14 @@ public class Contact implements Parcelable {
   {
     this.name            = name;
     this.organization    = organization;
-    this.phoneNumbers    = Collections.unmodifiableList(phoneNumbers);
-    this.emails          = Collections.unmodifiableList(emails);
-    this.postalAddresses = Collections.unmodifiableList(postalAddresses);
+    this.phoneNumbers    = new ArrayList<>(phoneNumbers.size());
+    this.emails          = new ArrayList<>(emails.size());
+    this.postalAddresses = new ArrayList<>(postalAddresses.size());
     this.avatar          = avatar;
+
+    this.phoneNumbers.addAll(phoneNumbers);
+    this.emails.addAll(emails);
+    this.postalAddresses.addAll(postalAddresses);
   }
 
   public Contact(@NonNull Contact contact, @Nullable Avatar avatar) {

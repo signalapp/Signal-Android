@@ -133,22 +133,6 @@ class AccountApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSock
   }
 
   /**
-   * Distributes key material to linked devices after an account becomes fully PNP capable.
-   *
-   * PUT /v2/accounts/phone_number_identity_key_distribution
-   * - 200: Success
-   * - 401: Unauthorized
-   * - 403: Called from non-primary device
-   * - 409: Mismatched devices
-   * - 410: Registration ids do not match
-   * - 422: Request is malformed
-   */
-  fun distributePniKeys(distributionRequest: PniKeyDistributionRequest): NetworkResult<VerifyAccountResponse> {
-    val request = WebSocketRequestMessage.put("/v2/accounts/phone_number_identity_key_distribution", distributionRequest)
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request, VerifyAccountResponse::class)
-  }
-
-  /**
    * Reserve a username for the account. This replaces an existing reservation if one exists. The username is guaranteed to be available for 5 minutes and can
    * be confirmed with confirmUsername.
    *

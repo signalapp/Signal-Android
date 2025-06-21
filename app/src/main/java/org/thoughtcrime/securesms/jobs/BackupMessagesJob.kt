@@ -22,7 +22,10 @@ import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
 import org.thoughtcrime.securesms.jobs.protos.BackupMessagesJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import java.io.File
@@ -138,8 +141,8 @@ class BackupMessagesJob private constructor(
     }
 
     val progressListener = object : SignalServiceAttachment.ProgressListener {
-      override fun onAttachmentProgress(total: Long, progress: Long) {
-        ArchiveUploadProgress.onMessageBackupUploadProgress(total, progress)
+      override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
+        ArchiveUploadProgress.onMessageBackupUploadProgress(progress)
       }
 
       override fun shouldCancel(): Boolean = isCanceled
@@ -149,6 +152,11 @@ class BackupMessagesJob private constructor(
       when (val result = BackupRepository.uploadBackupFile(backupSpec, it, tempBackupFile.length(), progressListener)) {
         is NetworkResult.Success -> {
           Log.i(TAG, "Successfully uploaded backup file.")
+          if (!SignalStore.backup.hasBackupBeenUploaded) {
+            Log.i(TAG, "First time making a backup - scheduling a storage sync.")
+            SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+            StorageSyncHelper.scheduleSyncForDataChange()
+          }
           SignalStore.backup.hasBackupBeenUploaded = true
         }
 
@@ -177,17 +185,7 @@ class BackupMessagesJob private constructor(
     }
 
     SignalStore.backup.lastBackupTime = System.currentTimeMillis()
-    SignalStore.backup.usedBackupMediaSpace = when (val result = BackupRepository.getRemoteBackupUsedSpace()) {
-      is NetworkResult.Success -> result.result ?: 0
-      is NetworkResult.NetworkError -> SignalStore.backup.usedBackupMediaSpace // TODO [backup] enqueue a secondary job to fetch the latest number -- no need to fail this one
-      is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "Failed to get used space: ${result.code}")
-        SignalStore.backup.usedBackupMediaSpace
-      }
-
-      is NetworkResult.ApplicationError -> throw result.throwable
-    }
-    stopwatch.split("used-space")
+    stopwatch.split("save-meta")
     stopwatch.stop(TAG)
 
     if (isCanceled) {
@@ -204,7 +202,10 @@ class BackupMessagesJob private constructor(
 
     SignalStore.backup.clearMessageBackupFailure()
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
-    BackupMediaSnapshotSyncJob.enqueue(currentTime)
+
+    AppDependencies.jobManager.add(ArchiveCommitAttachmentDeletesJob())
+    AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob())
+
     return Result.success()
   }
 
@@ -282,8 +283,7 @@ class BackupMessagesJob private constructor(
     if (mediaBackupEnabled) {
       db.attachmentTable.getAttachmentsEligibleForArchiveUpload().use {
         SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(
-          mediaObjects = ArchiveMediaItemIterator(it).asSequence(),
-          pendingSyncTime = currentTime
+          mediaObjects = ArchiveMediaItemIterator(it).asSequence()
         )
       }
     }

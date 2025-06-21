@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">మీడియాను అప్‌లోడ్ చేస్తోంది …</string>
     <string name="AttachmentUploadJob_compressing_video_start">వీడియోను కుదించడం …</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">సందేశాల కోసం తనిఖీ చేస్తోంది…</string>
 
@@ -1090,6 +1094,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">%1$s సమయంలో లింక్ చేయబడిన పరికరం ఇకపై లింక్ చేయబడదు.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">సరే</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">తగినంత నిల్వ స్థలం లేదు</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">మీ సందేశాలను బదిలీ చేయడానికి మీ పరికరంలో తగినంత ఖాళీ నిల్వ స్థలం మీకు లేదు. కొంత స్థలాన్ని ఖాళీ చేసి మళ్ళీ ప్రయత్నించండి, లేదా మీ సందేశాలను బదిలీ చేయకుండా మీ పరికరాన్ని లింక్ చేయండి.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1167,6 +1175,11 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal యొక్క ఈ వెర్షన్ గడువు ముగిసింది. సందేశాలను పంపడానికి మరియు స్వీకరించడానికి ఇప్పుడే నవీకరించండి.</string>
     <string name="ExpiredBuildReminder_update_now">నవీకరణ చేయండి ఇప్పుడు</string>
+
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1441,6 +1454,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">బ్యాకప్ డౌన్‌లోడ్ అవుతోంది…</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">సందేశాలు రీస్టోర్ అవుతున్నాయి…</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">పూర్తి చేస్తోంది…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">రీస్టోర్ అవుతున్నాయి…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1581,7 +1596,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">గ్రూపులో చేరలేరు</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">అడ్మిన్ మిమ్మల్ని తొలగించడం వల్ల మీరు గ్రూప్ లింక్ ద్వారా ఈ గ్రూపులో చేరలేరు.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">అడ్మిన్ మిమ్మల్ని తొలగించడం వల్ల గ్రూప్ లింక్ ద్వారా ఈ గ్రూపులో మీరు చేరలేరు. తిరిగి గ్రూప్‌కు జోడించబడటానికి అడ్మిన్‌ను సంప్రదించండి.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ఈ సమూహ లింక్ ఇకపై చెల్లదు.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -2841,8 +2856,8 @@
     </plurals>
     <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
     <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
-        <item quantity="one">%1$s sticker</item>
-        <item quantity="other">%1$s stickers</item>
+        <item quantity="one">%1$s స్టిక్కర్</item>
+        <item quantity="other">%1$s స్టిక్కర్లు</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -5338,6 +5353,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">బ్యాకప్‌ను పూర్తి చేయలేకపోయాము</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">మీ బ్యాకప్ల సబ్స్క్రిప్షన్‌ను రీడీమ్ చేయడం సాధ్యపడలేదు</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">బ్యాకప్ నిల్వ పరిమితి చేరుకుంది</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">మీ స్నేహితులను ఆహ్వానించండి</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7214,7 +7231,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">మీ బ్యాంక్, పేరు మరియు ఈమెయిల్‌ను ఎంటర్ చేయండి. మీ విరాళం గురించి మీకు అప్‌డేట్‌లను పంపడానికి Stripe ఈ ఈమెయిల్‌ను ఉపయోగిస్తుంది. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">మీ బ్యాంక్ వివరాలు ఎంటర్ చేయండి. Signal మీ వ్యక్తిగత సమాచారాన్ని సేకరించదు లేదా నిల్వ చేయదు. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7827,9 +7844,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">మీ మీడియాను అంతా బ్యాకప్ చేయడం కొనసాగించడానికి మీరు ఏ సమయంలోనైనా బ్యాకప్‌ల కోసం మళ్ళీ చెల్లించడం ప్రారంభించవచ్చు. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">మీ మీడియా ఈరోజు తొలగించబడుతుంది</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">మేము మీ చెల్లింపును ప్రాసెస్ చేయలేనందున మీ Signal మీడియా బ్యాకప్ ప్లాన్ రద్దు చేయబడింది. మీ బ్యాకప్‌లోని మీడియా తొలగిపోక ముందే డౌన్‌లోడ్ చేసుకోవడానికి ఇది మీకు చివరి అవకాశం.</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">మీ బ్యాకప్ డేటాను ఈరోజు డౌన్‌లోడ్ చేసుకోండి</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">మీ బ్యాకప్ డేటాను డౌన్‌లోడ్ చేసుకోండి</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">మీ వద్ద ఈ పరికరంలో లేని %1$s మీడియా ఉంది. చెల్లింపు సబ్‌స్క్రిప్షన్ లేకుంటే మీ బ్యాకప్‌లో నిల్వ చేయబడిన మీడియా మరియు అటాచ్‌మెంట్‌లు శాశ్వతంగా తొలగించబడతాయి.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">ఈ పరికరంలో %1$s ను ఖాళీ చేయండి</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7868,9 +7887,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">%1$s/నెలకు సబ్‌స్క్రైబ్ చేయండి</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">ఇప్పుడే మీడియాను డౌన్‌లోడ్ చేయండి</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">బ్యాకప్‌ను ఇప్పుడు డౌన్‌లోడ్ చేసుకోండి</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">మీడియాను డౌన్‌లోడ్ చేయవద్దు</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">బ్యాకప్‌ను డౌన్‌లోడ్ చేయవద్దు</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">ఇప్పుడు కాదు</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -7941,11 +7960,11 @@
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">డౌన్లోడ్ అవుతోంది: %2$s యొక్క%1$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
-    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__download_waiting_for_wifi">డౌన్‌లోడ్ పాజ్ చేయబడింది: Wi-Fi కోసం వేచి ఉంది…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <string name="BackupStatusRow__download_no_internet">డౌన్‌లోడ్ పాజ్ చేయబడింది: ఇంటర్నెట్ లేదు…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">డౌన్‌లోడ్ పాజ్ చేయబడింది: పరికరంలో బ్యాటరీ తక్కువగా ఉంది</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">మీ బ్యాకప్‌ను డౌన్లోడ్ చేయడానికి తగినంత స్థలం లేదు. కొనసాగించడానికి స్థలంలో %1$s ను ఖాళీ చేయండి.</string>
     <!-- Text row label to skip download -->
@@ -8049,6 +8068,8 @@
     <string name="BackupsSettingsFragment_last_backup_s">మునుపటి బ్యాకప్ %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal యొక్క సురక్షితమైన ఎండ్-టు-ఎండ్ గుప్తీకరించబడిన నిల్వ సేవతో ఆటోమేటిక్ బ్యాకప్స్.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">సెటప్ చేయండి</string>
 
@@ -8134,7 +8155,9 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">బ్యాకప్‌లను ఆఫ్ చేసి మరియు తొలగించేదా?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">మీ బ్యాకప్ తొలగించబడుతుంది మరియు ఎటువంటి కొత్త బ్యాకప్‌లు సృష్టించబడవు. మీ బ్యాకప్‌లో నిల్వ చేయబడిన ఏదైనా మీడియా ఇప్పుడు మీ ఫోన్‌కి డౌన్‌లోడ్ చేయబడుతుంది.</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ఆఫ్ చేయండి మరియు తొలగించండి</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8168,6 +8191,8 @@
         <item quantity="one">ఈ పరికరంలో మీ సబ్స్క్రిప్షన్ తదుపరి %1$d రోజు వరకు చెల్లుబాటు అవుతుంది. Signal బ్యాకప్‌లను ఉపయోగించడం కొనసాగించడానికి పునరుద్ధరించండి</item>
         <item quantity="other">ఈ పరికరంలో మీ సబ్స్క్రిప్షన్ తదుపరి %1$d రోజుల వరకు చెల్లుబాటు అవుతుంది. Signal బ్యాకప్‌లను ఉపయోగించడం కొనసాగించడానికి పునరుద్ధరించండి</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">రీసబ్‌స్క్రైబ్ చేయండి</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">పునరుద్ధరించండి</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8182,10 +8207,7 @@
         <item quantity="other">~%2$s లో %1$s సందేశాలను ప్రాసెస్ చేస్తోంది (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="one">మీ వద్ద ఈ పరికరంలో లేని %1$s బ్యాకప్ డేటా ఉంది. %2$d రోజులో మీ సబ్స్క్రిప్షన్ ముగిసినప్పుడు మీ బ్యాకప్ తొలగించబడుతుంది.</item>
-        <item quantity="other">మీ వద్ద ఈ పరికరంలో లేని %1$s బ్యాకప్ డేటా ఉంది. %2$d రోజుల్లో మీ సబ్స్క్రిప్షన్ ముగిసినప్పుడు మీ బ్యాకప్ తొలగించబడుతుంది.</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">మీ వద్ద ఈ పరికరంలో లేని %1$s బ్యాకప్ డేటా ఉంది. చెల్లింపు సబ్‌స్క్రిప్షన్ లేకుండా మీడియాను ఆఫ్‌లోడ్ చేయడం సాధ్యం కాదు.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">మీ వద్ద ఈ పరికరంలో లేని బ్యాకప్ డేటా యొక్క %1$s ఉంది. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8198,7 +8220,7 @@
         <item quantity="other">ఒకవేళ మీరు డౌన్‌లోడ్ చేయడాన్ని దాటవేస్తే మీ బ్యాకప్‌లో ఉన్న మిగిలిన మీడియా మరియు అటాచ్మెంట్లు %1$d రోజుల్లో తొలగించబడతాయి.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">మీ బ్యాకప్‌లోని మిగిలిన మీడియా మరియు అటాచ్‌మెంట్‌లను డౌన్‌లోడ్ చేయడాన్ని ఒకవేళ మీరు దాటవేస్తే, అవి శాశ్వతంగా తొలగించబడతాయి. ఈ డేటాను తిరిగి పొందడం సాధ్యం కాదు.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">పునరుద్ధరించడాన్ని దాటవేసేదా?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8206,7 +8228,7 @@
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">దాటవేయి</string>
     <!-- Positive dialog action to skip download during deletion -->
-    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">దాటవేసి, శాశ్వతంగా తొలగించండి</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">బ్యాకప్‌లను ఆఫ్ చేయడం మరియు తొలగించడం సాధ్యపడలేదు</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8216,19 +8238,33 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">వివరాలు</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">బ్యాకప్‌లు ఆఫ్ చేయబడ్డాయి, కానీ Signal యొక్క సురక్షిత నిల్వ సేవ నుండి మీ డేటాను తొలగించడంలో లోపం ఏర్పడింది.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed to delete backup</string>
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">బ్యాకప్‌ను తొలగించడంలో విఫలమైంది</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">An error occurred. Please contact support.</string>
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">ఒక లోపం ఏర్పడింది. దయచేసి మద్దతును సంప్రదించండి.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">బ్యాకప్‌లు ఆఫ్ చేయబడ్డాయి, మీ డేటా మీ పరికరంలోకి డౌన్‌లోడ్ చేయబడుతుంది, ఆ తర్వాత Signal యొక్క సురక్షిత నిల్వ సేవ నుండి తొలగించబడుతుంది.</string>
     <!-- Text displayed while we are processing a backup delete -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups have been turned off and your data will be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">బ్యాకప్‌లు ఆఫ్ చేయబడ్డాయి మరియు Signal యొక్క సురక్షిత నిల్వ సేవ నుండి మీ డేటా తొలగించబడుతుంది.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">బ్యాకప్‌లు ఆఫ్ చేయబడ్డాయి మరియు Signal యొక్క సురక్షిత నిల్వ సేవ నుండి మీ డేటా తొలగించబడింది.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">డౌన్లోడ్ అవుతోంది: %2$s యొక్క%1$s (%3$d%%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">మీరు మీ బ్యాకప్ ప్లాన్‌లో చేర్చబడిన %1$s నిల్వ పరిమితిని చేరుకున్నారు. కొత్త చాట్లు మరియు మీడియాను బ్యాకప్ చేయడానికి స్థలాన్ని ఖాళీ చేయండి.</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">నిల్వను నిర్వహించండి</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">మీ బ్యాకప్‌ను ఈరోజు డౌన్‌లోడ్ చేసుకోండి</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">మీ వద్ద ఈ పరికరంలో లేని %1$s బ్యాకప్ డేటా ఉంది. చెల్లింపు సబ్‌స్క్రిప్షన్ లేకుంటే మీ మీడియా మరియు అటాచ్‌మెంట్‌లు శాశ్వతంగా తొలగించబడతాయి.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">దిగుమతి</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">డౌన్‌లోడ్ చేయకండి</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8254,7 +8290,7 @@
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">నెట్‌వర్క్ వైఫల్యం సంభవించింది. దయచేసి తర్వాత మళ్లీ ప్రయత్నించండి.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
-    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">బ్యాకప్ తొలగింపు పురోగతిలో ఉంది.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8288,17 +8324,17 @@
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">తాత్కాలికంగా భద్రపరుచు ప్రదేశముకు నకలు చెయ్యి</string>
     <!-- Label for the button to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">పాస్‌వర్డ్ మేనేజర్‌లో సేవ్ చేయండి</string>
     <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">పాస్‌వర్డ్ మేనేజర్‌లో సేవ్ చేయాలా?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">మీరు సురక్షితమని విశ్వసించే పాస్‌వర్డ్ మేనేజర్‌లో మాత్రమే మీ బ్యాకప్ కీని నిల్వ చేయండి. మీకు ఏ పాస్‌వర్డ్ మేనేజర్ సరైనదో Signal సిఫార్సు చేయదు.</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">మీ పాస్‌వర్డ్ మేనేజర్‌లో సేవ్ చేయబడింది</string>
     <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">పాస్‌వర్డ్ మేనేజర్‌లో సేవ్ చేయడం సాధ్యం కాలేదు</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">మీకు పాస్‌వర్డ్ మేనేజర్ సెటప్ చేయబడలేదు లేదా మీరు ఉపయోగిస్తున్న పాస్‌వర్డ్ మేనేజర్‌కు మద్దతు ఇవ్వబడలేదు.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">తరువాత</string>
     <!-- Bottom sheet title -->
@@ -8333,7 +8369,7 @@
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">మరింత తెలుసుకోండి</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">సబ్‌స్క్రైబ్ చేయండి</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/నెలకు సబ్‌స్క్రైబ్ చేయండి</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8550,6 +8586,11 @@
     <string name="SignalCheckbox_accessibility_checked_description">టిక్ చేయబడింది</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
     <string name="SignalCheckbox_accessibility_unchecked_description">టిక్ తొలగించబడింది</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
 
     <!-- EOF -->
 </resources>

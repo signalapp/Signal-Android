@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">Memuat naik media…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Memampatkan video…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Memeriksa mesej…</string>
 
@@ -1068,6 +1072,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">Peranti yang dipautkan pada %1$s tidak dipautkan lagi.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">Ruang simpanan tidak mencukupi</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">Peranti anda tidak mempunyai ruang storan kosong yang mencukupi untuk memindahkan mesej anda. Kosongkan sedikit ruang dan cuba lagi, atau pautkan peranti anda tanpa memindahkan mesej.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1145,6 +1153,11 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Versi Signal ini telah tamat tempoh. Kemas kini sekarang untuk menghantar dan menerima mesej.</string>
     <string name="ExpiredBuildReminder_update_now">Update sekarang</string>
+
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1401,6 +1414,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">Memuat turun sandaran…</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">Memulihkan mesej…</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">Menyelesaikan…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">Memulihkan…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1538,7 +1553,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Tidak boleh menyertai kumpulan</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Anda tidak boleh menyertai kumpulan ini melalui pautan kumpulan tersebut kerana pentadbir telah mengalih keluar anda.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Anda tidak boleh menyertai kumpulan ini melalui pautan kumpulan kerana pentadbir telah mengalih keluar anda. Hubungi pentadbir untuk ditambahkan semula ke kumpulan.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Pautan kumpulan ini tidak lagi sah.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -2749,7 +2764,7 @@
     </plurals>
     <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
     <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
-        <item quantity="other">%1$s stickers</item>
+        <item quantity="other">%1$s pelekat</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -5207,6 +5222,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">Tidak dapat melengkapkan sandaran</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Tidak dapat menebus langganan sandaran anda</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Had storan sandaran dicapai</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Jemput rakan anda</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7049,7 +7066,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Masukkan bank, nama dan e-mel anda. Stripe menggunakan e-mel ini untuk menghantar kemas kini tentang derma anda. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Masukkan butiran bank anda. Signal tidak mengumpul atau menyimpan maklumat peribadi anda. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7654,9 +7671,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Anda boleh mula membayar untuk sandaran semula pada bila-bila masa untuk terus membuat sandaran semua media anda. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Media anda akan dipadamkan hari ini</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Pelan sandaran media Signal anda telah dibatalkan kerana kami tidak dapat memproses pembayaran anda. Ini adalah peluang terakhir anda untuk memuat turun media dalam sandaran anda sebelum ia dipadamkan.</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Muat turun data sandaran anda hari ini</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Muat turun data sandaran anda</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">Anda mempunyai %1$s media yang tiada pada peranti ini. Media dan lampiran yang disimpan dalam sandaran anda akan dipadam secara kekal tanpa langganan berbayar.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Kosongkan %1$s pada peranti ini</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7694,9 +7713,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Langgan dengan %1$s/bulan</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Muat turun media sekarang</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Muat turun sandaran sekarang</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Jangan muat turun media</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">Jangan muat turun sandaran</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Bukan sekarang</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -7767,11 +7786,11 @@
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">Memuat turun: %1$s daripada %2$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
-    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__download_waiting_for_wifi">Muat turun dijeda: Menunggu Wi-Fi…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <string name="BackupStatusRow__download_no_internet">Muat turun dijeda: Tiada internet…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">Muat turun dijeda: Bateri peranti rendah</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Tidak cukup ruang untuk memuat turun Sandaran anda. Untuk meneruskan, kosongkan %1$s ruang.</string>
     <!-- Text row label to skip download -->
@@ -7874,6 +7893,8 @@
     <string name="BackupsSettingsFragment_last_backup_s">Sandaran terakhir %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Sandaran automatik dengan perkhidmatan storan disulitkan hujung ke hujung yang selamat oleh Signal.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Tetapkan</string>
 
@@ -7959,7 +7980,9 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Matikan dan padamkan sandaran?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Sandaran anda akan dipadam dan tiada sandaran baharu akan dibuat. Sebarang media yang disimpan dalam sandaran anda akan dimuat turun ke telefon anda sekarang.</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Matikan dan padam</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -7992,6 +8015,8 @@
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="other">Langganan anda pada peranti ini sah untuk %1$d hari seterusnya. Perbaharui untuk terus menggunakan Sandaran Signal</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Langgan semula</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Perbaharui</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8005,9 +8030,7 @@
         <item quantity="other">Memproses %1$s daripada ~%2$s mesej (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="other">Anda mempunyai %1$s data sandaran yang tiada pada peranti ini. Sandaran anda akan dipadam apabila langganan anda berakhir dalam %2$d hari.</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Anda mempunyai %1$s data sandaran yang tiada pada peranti ini. Tanpa langganan berbayar, media tidak boleh dimuat turun.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Anda mempunyai %1$s data sandaran yang tiada pada peranti ini. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8019,7 +8042,7 @@
         <item quantity="other">Jika anda melangkau baki muat turun, media dan lampiran dalam sandaran anda akan dipadamkan dalam masa %1$d hari.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Jika anda langkau memuat turun baki media dan lampiran dalam sandaran anda, ia akan dipadam secara kekal. Data ini tidak boleh dipulihkan.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">Langkau pemulihan?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8027,7 +8050,7 @@
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Langkau</string>
     <!-- Positive dialog action to skip download during deletion -->
-    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Langkau dan padam secara kekal</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Tidak dapat mematikan dan memadamkan sandaran</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8037,19 +8060,33 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Butiran</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Sandaran telah dimatikan, tetapi terdapat ralat semasa memadam data anda daripada perkhidmatan storan selamat Signal.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Gagal Memadam Sandaran</string>
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Gagal memadam sandaran</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Ralat telah berlaku. Sila hubungi sokongan.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Sandaran telah dimatikan, data anda akan dimuat turun ke peranti dan kemudian dipadam daripada perkhidmatan storan selamat Signal.</string>
     <!-- Text displayed while we are processing a backup delete -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Sandaran telah dimatikan dan data anda akan dipadam daripada perkhidmatan storan selamat Signal.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Sandaran telah dimatikan dan data anda telah dipadam daripada perkhidmatan storan selamat Signal.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Memuat turun: %1$s daripada %2$s (%3$d%%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Anda telah mencapai had storan %1$s yang disertakan dengan pelan sandaran anda. Untuk membuat sandaran sembang dan media baharu, sila kosongkan ruang</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Uruskan penyimpanan</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Muat turun sandaran anda hari ini</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">Anda mempunyai %1$s data sandaran yang tiada pada peranti ini. Media dan lampiran anda akan dipadam secara kekal tanpa langganan berbayar.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">Muat turun</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">Jangan muat turun</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8075,7 +8112,7 @@
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Kegagalan rangkaian telah berlaku. Sila cuba lagi nanti.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
-    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Pemadaman sandaran sedang dijalankan.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8109,17 +8146,17 @@
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Salin ke papan klip</string>
     <!-- Label for the button to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Simpan ke pengurus kata laluan</string>
     <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Simpan ke pengurus kata laluan?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Hanya simpan kunci sandaran anda dalam pengurus kata laluan yang anda percaya selamat. Signal tidak membuat sebarang cadangan tentang pengurus kata laluan yang sesuai untuk anda.</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Disimpan ke pengurus kata laluan anda</string>
     <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Tidak dapat menyimpan ke pengurus kata laluan</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Anda belum menyediakan pengurus kata laluan, atau pengurus kata laluan yang anda gunakan tidak disokong.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Seterusnya</string>
     <!-- Bottom sheet title -->
@@ -8154,7 +8191,7 @@
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Ketahui lebih lanjut</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Langgan</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Langgan dengan %1$s/bulan</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8369,6 +8406,11 @@
     <string name="SignalCheckbox_accessibility_checked_description">Ditanda</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
     <string name="SignalCheckbox_accessibility_unchecked_description">Tidak ditanda</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
 
     <!-- EOF -->
 </resources>

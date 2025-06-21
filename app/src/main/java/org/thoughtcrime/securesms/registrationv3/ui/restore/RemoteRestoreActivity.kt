@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.registrationv3.ui.restore
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.foundation.background
@@ -31,8 +32,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
 import kotlinx.coroutines.flow.filterIsInstance
@@ -66,6 +69,7 @@ import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.viewModel
 import java.util.Locale
+import kotlin.time.Duration
 
 /**
  * Restore backup from remote source.
@@ -88,19 +92,46 @@ class RemoteRestoreActivity : BaseActivity() {
 
   private val contactSupportViewModel: ContactSupportViewModel by viewModels()
 
+  private lateinit var wakeLock: RemoteRestoreWakeLock
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
 
-    lifecycleScope.launch {
-      val restored = viewModel
-        .state
-        .map { it.importState }
-        .filterIsInstance<RemoteRestoreViewModel.ImportState.Restored>()
-        .firstOrNull()
+    wakeLock = RemoteRestoreWakeLock(this)
 
-      if (restored != null) {
-        startActivity(MainActivity.clearTop(this@RemoteRestoreActivity))
-        finish()
+    lifecycleScope.launch {
+      lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        val restored = viewModel
+          .state
+          .map { it.importState }
+          .filterIsInstance<RemoteRestoreViewModel.ImportState.Restored>()
+          .firstOrNull()
+
+        if (restored != null) {
+          startActivity(MainActivity.clearTop(this@RemoteRestoreActivity))
+          finish()
+        }
+      }
+    }
+
+    lifecycleScope.launch {
+      lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        viewModel
+          .state
+          .map { it.importState }
+          .collect {
+            when (it) {
+              RemoteRestoreViewModel.ImportState.InProgress -> {
+                wakeLock.acquire()
+                window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+              }
+
+              else -> {
+                wakeLock.release()
+                window.clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+              }
+            }
+          }
       }
     }
 
@@ -268,7 +299,7 @@ private fun BackupAvailableContent(
         modifier = Modifier.padding(bottom = 6.dp)
       )
 
-      getFeatures(state.backupTier).forEach {
+      getFeatures(state.backupTier, state.backupMediaTTL).forEach {
         MessageBackupsTypeFeatureRow(
           messageBackupsTypeFeature = it,
           iconTint = MaterialTheme.colorScheme.primary,
@@ -322,7 +353,7 @@ private fun RestoreFromBackupContentLoadingPreview() {
 }
 
 @Composable
-private fun getFeatures(tier: MessageBackupTier?): ImmutableList<MessageBackupsTypeFeature> {
+private fun getFeatures(tier: MessageBackupTier?, mediaTTL: Duration): ImmutableList<MessageBackupsTypeFeature> {
   return when (tier) {
     null -> persistentListOf()
     MessageBackupTier.PAID -> {
@@ -342,7 +373,7 @@ private fun getFeatures(tier: MessageBackupTier?): ImmutableList<MessageBackupsT
       persistentListOf(
         MessageBackupsTypeFeature(
           iconResourceId = R.drawable.symbol_thread_compact_bold_16,
-          label = stringResource(id = R.string.RemoteRestoreActivity__your_last_d_days_of_media, 30)
+          label = stringResource(id = R.string.RemoteRestoreActivity__your_last_d_days_of_media, mediaTTL.inWholeDays)
         ),
         MessageBackupsTypeFeature(
           iconResourceId = R.drawable.symbol_recent_compact_bold_16,
@@ -373,7 +404,7 @@ private fun RestoreProgressDialog(restoreProgress: RestoreV2Event?) {
           horizontalAlignment = Alignment.CenterHorizontally,
           modifier = Modifier.wrapContentSize()
         ) {
-          if (restoreProgress == null) {
+          if (restoreProgress == null || restoreProgress.type == RestoreV2Event.Type.PROGRESS_FINALIZING) {
             CircularProgressIndicator(
               modifier = Modifier
                 .padding(top = 55.dp, bottom = 16.dp)
@@ -392,7 +423,8 @@ private fun RestoreProgressDialog(restoreProgress: RestoreV2Event?) {
 
           val progressText = when (restoreProgress?.type) {
             RestoreV2Event.Type.PROGRESS_DOWNLOAD -> stringResource(id = R.string.RemoteRestoreActivity__downloading_backup)
-            RestoreV2Event.Type.PROGRESS_RESTORE -> stringResource(id = R.string.RemoteRestoreActivity__downloading_backup)
+            RestoreV2Event.Type.PROGRESS_RESTORE -> stringResource(id = R.string.RemoteRestoreActivity__restoring_messages)
+            RestoreV2Event.Type.PROGRESS_FINALIZING -> stringResource(id = R.string.RemoteRestoreActivity__finishing_restore)
             else -> stringResource(id = R.string.RemoteRestoreActivity__restoring)
           }
 
@@ -402,7 +434,7 @@ private fun RestoreProgressDialog(restoreProgress: RestoreV2Event?) {
             modifier = Modifier.padding(bottom = 12.dp)
           )
 
-          if (restoreProgress != null) {
+          if (restoreProgress != null && restoreProgress.type != RestoreV2Event.Type.PROGRESS_FINALIZING) {
             val progressBytes = restoreProgress.count.toUnitString()
             val totalBytes = restoreProgress.estimatedTotalCount.toUnitString()
             Text(

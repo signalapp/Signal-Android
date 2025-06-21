@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.service.LocalBackupListener;
 import org.thoughtcrime.securesms.util.BackupUtil;
 import org.thoughtcrime.securesms.util.JavaTimeExtensionsKt;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.StorageUtil;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
@@ -106,6 +107,8 @@ public class BackupsPreferenceFragment extends Fragment {
     formatter.setMaximumFractionDigits(1);
 
     EventBus.getDefault().register(this);
+
+    updateToggle();
   }
 
   @Override
@@ -283,6 +286,8 @@ public class BackupsPreferenceFragment extends Fragment {
       int minute = timePickerFragment.getMinute();
       applyNewBackupScheduleSetting(frequency, hour, minute);
       updateTimeLabel();
+      TextSecurePreferences.setNextBackupTime(requireContext(), 0);
+      LocalBackupListener.schedule(requireContext());
     });
     timePickerFragment.show(getChildFragmentManager(), "TIME_PICKER");
   }
@@ -345,12 +350,21 @@ public class BackupsPreferenceFragment extends Fragment {
     frequencyLabel.setText(getResources().getString(SignalStore.settings().getBackupFrequency().getResourceId()));
   }
 
+  private void updateToggle() {
+    boolean userUnregistered          = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.getApplication()) || !SignalStore.account().isRegistered();
+    boolean clientDeprecated          = SignalStore.misc().isClientDeprecated();
+    boolean legacyLocalBackupsEnabled = SignalStore.settings().isBackupEnabled() && BackupUtil.canUserAccessBackupDirectory(AppDependencies.getApplication());
+
+    toggle.setEnabled(legacyLocalBackupsEnabled || (!userUnregistered && !clientDeprecated));
+  }
+
   private void setBackupsEnabled() {
     toggle.setText(R.string.BackupsPreferenceFragment__turn_off);
     create.setVisibility(View.VISIBLE);
     verify.setVisibility(View.VISIBLE);
     timer.setVisibility(View.VISIBLE);
     frequencyView.setVisibility(View.VISIBLE);
+    updateToggle();
     updateTimeLabel();
     updateDateLabel();
     setBackupFolderName();
@@ -363,6 +377,7 @@ public class BackupsPreferenceFragment extends Fragment {
     verify.setVisibility(View.GONE);
     timer.setVisibility(View.GONE);
     frequencyView.setVisibility(View.GONE);
+    updateToggle();
     AppDependencies.getJobManager().cancelAllInQueue(LocalBackupJob.QUEUE);
   }
 }

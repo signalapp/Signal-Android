@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">Медиафайл жүктөлүүдө…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Видео кысылууда…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Жаңы билдирүүлөр текшерилүүдө…</string>
 
@@ -1068,6 +1072,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">%1$s байланышкан түзмөк ажыратылды.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">Сактагычта орун жетишсиз</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">Билдирүүлөрдү өткөрүүгө түзмөгүңүздө орун жок. Бир аз орун бошотуңуз же билдирүүлөрүңүздү өткөрбөй туруп түзмөгүңүздү байланыштырыңыз.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1145,6 +1153,11 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal\'дын бул версиясы эскирип калган. Жазышкыңыз келсе, аны жаңыртыңыз.</string>
     <string name="ExpiredBuildReminder_update_now">Жаңыртуу</string>
+
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1401,6 +1414,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">Камдык көчүрмөлөрүңүз жүктөлүп алынууда…</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">Билдирүүлөр калыбына келүүдө…</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">Бүтүп жатат…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">Калыбына келүүдө…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1538,7 +1553,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Топко кошула албайсыз</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Администратор сизди топтон алып салгандыктан, ага шилтеме аркылуу кошула албайсыз.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Администратор сизди топтон алып салгандыктан, ага шилтеме аркылуу кошула албайсыз. Топко кошулгуңуз келсе, администраторго кайрылыңыз.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Бул топтун шилтемеси иштебей калган.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -2749,7 +2764,7 @@
     </plurals>
     <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
     <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
-        <item quantity="other">%1$s stickers</item>
+        <item quantity="other">%1$s стикер</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -5207,6 +5222,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">Камдык көчүрмөлөр сакталган жок</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Камдык көчүрмөлөргө жазылууңузду уланта алган жоксуз</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Камдык көчүрмөлөргө коюлган чекке жеттиңиз</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Досторуңузду чакырыңыз</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7049,7 +7066,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Банкыңызды, атыңызды жана электрондук почта дарегиңизди көрсөтүңүз. Stripe кызматы ушул электрондук почта дареги аркылуу салымыңызга байланыштуу жаңылыктарды кабарлап турат. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Банк эсебиңиздин чоо-жайын киргизиңиз. Signal жеке маалыматыңызды чогултпайт же сактабайт. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7654,9 +7671,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Медиа файлдар сактала бериши үчүн алардын акысын төлөшүңүз керек. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Бүгүн медиа файлдарыңыз өчөт</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Акы төлөнбөгөндүктөн, Signal\'дагы медиа файлдардын камдык көчүрмөлөрүнүн планы токтотулду. Аларды жоготуп алгыңыз келбесе, бүгүнтөн калбай жүктөп алыңыз.</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Камдык көчүрмөлөрүңүздү жүктөп алыңыз</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Камдык көчүрмөлөрүңүздү жүктөп алыңыз</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">%1$s медиа файлдарыңыз түзмөктө эмес. Акы төлөп катталбасаңыз, медиа файлдарыңыздын жана тиркемелериңиздин камдык көчүрмөлөрү биротоло өчүп калат.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Бул түзмөктө %1$s бошотуңуз</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7694,9 +7713,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Айына %1$s төлөп жазылыңыз</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Медиа файлдарды жүктөп алуу</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Камдык көчүрмөлөрдү жүктөп алуу</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Жок, жүктөбөйм</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">Жок, жүктөлбөсүн</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Азыр эмес</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -7767,11 +7786,11 @@
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">Канчасы жүктөлүп алынды: %2$s ичинен %1$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
-    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__download_waiting_for_wifi">Жүктөп алуу тындырылды: Wi-Fi күтүлүүдө…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <string name="BackupStatusRow__download_no_internet">Жүктөп алуу тындырылды: Интернет жок…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">Жүктөп алуу тындырылды: Түзмөктүн батареясы отурайын деп калды</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Камдык көчүрмөңүздү жүктөөгө орун жетишпейт. Улантуу үчүн %1$s орун бошотуңуз.</string>
     <!-- Text row label to skip download -->
@@ -7874,6 +7893,8 @@
     <string name="BackupsSettingsFragment_last_backup_s">Акыркы жолу качан сакталган %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal\'дын баштан аяк шифрленген сактоо кызматы менен автоматтык камдык көчүрүү.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Коюу</string>
 
@@ -7959,7 +7980,9 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Өчүрүп, камдык көчүрмөлөрдү жок кыласызбы?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Камдык көчүрмөлөр өчүрүлүп, жаңылары сакталбайт. Камдык көчүрмөлөрдөгү нерселериңиздин баары телефонуңузга жүктөлөт.</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Өчүрүү жана жок кылуу</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -7992,6 +8015,8 @@
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="other">Бул түзмөктөгү жазылууңуз дагы %1$d күнгө чейин жетет. Signal Backups кызматын үзбөй пайдалангыңыз келсе, азыр узартып коюңуз</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Кайра жазылуу</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Жаңыртуу</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8005,9 +8030,7 @@
         <item quantity="other">%2$s ичинен %1$s билдирүү иштелди (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="other">%1$s камдык көчүрмөңүз бул түзмөктө эмес. Жазылууңуздун мөөнөтү %2$d күндөн кийин аяктаганда, камдык көчүрмөңүз өчүп калат.</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Бул түзмөктөн тышкары жердеги нерселердин %1$s көчүрдүңүз. Акы төлөп жазылбасаңыз, медиа файлдарыңызды чыгара албайсыз.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Бул түзмөктөн тышкары жердеги нерселердин %1$s көчүрдүңүз. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8019,7 +8042,7 @@
         <item quantity="other">Өткөрүп жиберсеңиз, калган медиа файлдарыңыз менен тиркемелериңиз %1$d күндөн кийин өчүп калат.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Эгер камдык көчүрмөлөрүңүздөгү калган медиа файлдарды жана тиркемелерди жүктөп албасаңыз, алар биротоло өчүп калат. Өчкөн нерселер кайра калыбына келбейт.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">Калыбына келтирүү өткөрүп жиберилсинби?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8027,7 +8050,7 @@
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Өткөрүп жиберүү</string>
     <!-- Positive dialog action to skip download during deletion -->
-    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Жүктөбөйм, биротоло өчө берсин</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Камдык көчүрмөлөрдү токтотуп, өчүрүү мүмкүн болгон жок</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8037,19 +8060,33 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Чоо-жайы</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Камдык көчүрмөлөрдү сактоо функциясы өчүрүлдү, бирок Signal\'дын коопсуз сактагычындагы нерселер өчүп жатканда ката кетти.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed to delete backup</string>
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Камдык көчүрмөлөр өчпөй калды</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">An error occurred. Please contact support.</string>
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Ката кетти. Кардарларды колдоо кызматына кайрылыңыз.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Камдык көчүрмөлөрдү сактоо функциясы өчүрүлгөндүктөн, ал жердеги нерселер түзмөгүңүзгө жүктөлүп, андан соң Signal\'дын коопсуз сактагычынан өчүрүлөт.</string>
     <!-- Text displayed while we are processing a backup delete -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups have been turned off and your data will be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Камдык көчүрмөлөрдү сактоо функциясы өчүрүлгөндүктөн, Signal\'дын сактагычындагы нерселериңиз өчүп калат.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Камдык көчүрмөлөрдү сактоо функциясы өчүрүлгөндүктөн, Signal\'дын сактагычындагы нерселериңиз өчүп калды.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Канчасы жүктөлүп алынды: %2$s ичинен %1$s (%3$d%%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Тарифтик планыңызда каралган %1$s сактоо чегине жеттиңиз. Жаңы маектериңиз менен медиа файлдарыңызды сактоо үчүн орун бошотуңуз.</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Сактагычты башкаруу</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Бүгүнтөн калбай камдык көчүрмөлөрүңүздү жүктөп алыңыз</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">Бул түзмөктөн тышкары жердеги нерселердин %1$s көчүрдүңүз. Акы төлөп жазылбасаңыз, медиа файлдарыңыз менен тиркемелериңиз биротоло өчүп калат.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">Жүктөп алуу</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">Жок, жүктөбөйм</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8075,7 +8112,7 @@
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Интернет жоголуп кетти. Бир аздан кийин кайталап көрүңүз.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
-    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Камдык көчүрмө өчүрүлүүдө.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8109,17 +8146,17 @@
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Буферге көчүрүү</string>
     <!-- Label for the button to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Сырсөздөрдү башкаргычка сактоо</string>
     <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Сырсөздөрдү башкаргычка сактайсызбы?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Камдык көчүрмөнүн ачкычын ишенимдүү сырсөздөрдү башкаргычка сактаңыз. Signal кайсы сырсөздөрдү башкаргычты колдонуу керектигин сунуштабайт.</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Сырсөздөрдү башкаргычыңызга сакталды</string>
     <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Сырсөздөрдү башкаргычка сактоо мүмкүн болгон жок</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Сырсөздөрдү башкаргычты орното элексиз же сиз колдонуп жаткан башкаргыч колдоого алынбайт.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Кийинки</string>
     <!-- Bottom sheet title -->
@@ -8154,7 +8191,7 @@
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Кененирээк маалымат</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Катталуу</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Айына %1$s төлөп жазылыңыз</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8369,6 +8406,11 @@
     <string name="SignalCheckbox_accessibility_checked_description">Белгиленди</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
     <string name="SignalCheckbox_accessibility_unchecked_description">Белгиленген жок</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
 
     <!-- EOF -->
 </resources>

@@ -28,6 +28,7 @@ import org.whispersystems.signalservice.api.account.AccountAttributes;
 import org.whispersystems.signalservice.api.account.PreKeyCollection;
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2AuthorizationString;
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
@@ -653,7 +654,7 @@ public class PushServiceSocket {
           if ((totalRead += read) > maxSizeBytes) throw new PushNetworkException("Response exceeded max size!");
 
           if (listener != null) {
-            listener.onAttachmentProgress(body.contentLength() + offset, totalRead);
+            listener.onAttachmentProgress(new AttachmentTransferProgress(body.contentLength() + offset, totalRead));
             if (listener.shouldCancel()) {
               call.cancel();
               throw new PushNetworkException("Canceled by listener check.");

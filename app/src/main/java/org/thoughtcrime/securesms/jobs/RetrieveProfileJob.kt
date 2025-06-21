@@ -87,12 +87,13 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
     val stopwatch = Stopwatch("RetrieveProfile")
 
+    val recipients = recipientIds.map { Recipient.live(it).refresh().resolve() }
+
     RecipientUtil.ensureUuidsAreAvailable(
       context,
-      Recipient.resolvedList(recipientIds).filter { it.registered != RecipientTable.RegisteredState.NOT_REGISTERED }
+      recipients.filter { it.registered != RecipientTable.RegisteredState.NOT_REGISTERED }
     )
 
-    val recipients = Recipient.resolvedList(recipientIds)
     stopwatch.split("resolve-ensure")
 
     val currentTime = System.currentTimeMillis()

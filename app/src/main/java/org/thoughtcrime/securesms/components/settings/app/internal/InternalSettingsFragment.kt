@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
-import org.thoughtcrime.securesms.jobs.PnpInitializeDevicesJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -246,6 +245,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         isChecked = state.shakeToReport,
         onClick = {
           viewModel.setShakeToReport(!state.shakeToReport)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("Show archive status hint"),
+        summary = DSLSettingsText.from("Shows a color square based on archive status, green good, red bad."),
+        isChecked = state.showArchiveStateHint,
+        onClick = {
+          viewModel.setShowMediaArchiveStateHint(!state.showArchiveStateHint)
         }
       )
 
@@ -817,23 +825,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("PNP"))
-
-      clickPref(
-        title = DSLSettingsText.from("Trigger 'Hello World' event"),
-        isEnabled = true,
-        onClick = {
-          SimpleTask.run(viewLifecycleOwner.lifecycle, {
-            AppDependencies.jobManager.runSynchronously(PnpInitializeDevicesJob(), 10.seconds.inWholeMilliseconds)
-          }, { state ->
-            if (state.isPresent) {
-              Toast.makeText(context, "Job finished with result: ${state.get()}!", Toast.LENGTH_SHORT).show()
-              viewModel.refresh()
-            } else {
-              Toast.makeText(context, "Job timed out after 10 seconds!", Toast.LENGTH_SHORT).show()
-            }
-          })
-        }
-      )
 
       clickPref(
         title = DSLSettingsText.from("Reset 'PNP initialized' state"),

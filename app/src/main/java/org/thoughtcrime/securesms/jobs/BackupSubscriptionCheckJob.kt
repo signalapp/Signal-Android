@@ -26,11 +26,14 @@ import org.thoughtcrime.securesms.jobmanager.CoroutineJob
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
+import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import kotlin.concurrent.withLock
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Checks and rectifies state pertaining to backups subscriptions.
@@ -74,7 +77,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     }
 
     if (!RemoteConfig.messageBackups) {
-      Log.i(TAG, "Message backups are not enabled. Clearing mismatch value and exiting.")
+      Log.i(TAG, "Message backups feature is not available. Clearing mismatch value and exiting.")
       SignalStore.backup.subscriptionStateMismatchDetected = false
       return Result.success()
     }
@@ -91,10 +94,16 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
+    if (!SignalStore.backup.areBackupsEnabled) {
+      Log.i(TAG, "Backups are not enabled on this device. Clearing mismatch value and exiting.")
+      SignalStore.backup.subscriptionStateMismatchDetected = false
+      return Result.success()
+    }
+
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()
     Log.i(TAG, "Retrieved purchase result from Billing api: $purchase")
 
-    val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged && purchase.isWithinTheLastMonth() && purchase.isAutoRenewing
+    val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged
     val product: BillingProduct? = AppDependencies.billingApi.queryProduct()
 
     if (product == null) {
@@ -114,6 +123,8 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       val activeSubscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()
       val hasActiveSignalSubscription = activeSubscription?.isActive == true
 
+      checkForFailedOrCanceledSubscriptionState(activeSubscription)
+
       Log.i(TAG, "Synchronizing backup tier with value from server.")
       BackupRepository.getBackupTier().runIfSuccessful {
         SignalStore.backup.backupTier = it
@@ -129,8 +140,9 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
         null
       }
 
-      if (purchaseToken?.let { hasLocalDevicePurchaseTokenMismatch(purchaseToken) } == true) {
-        Log.i(TAG, "Encountered token mismatch. Attempting to redeem.")
+      val hasTokenMismatch = purchaseToken?.let { hasLocalDevicePurchaseTokenMismatch(purchaseToken) } == true
+      if (hasActiveSignalSubscription && hasTokenMismatch) {
+        Log.i(TAG, "Encountered token mismatch with an active Signal subscription. Attempting to redeem against latest token.")
         enqueueRedemptionForNewToken(purchaseToken, product.price)
         SignalStore.backup.subscriptionStateMismatchDetected = false
         return Result.success()
@@ -144,6 +156,32 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
           SignalStore.backup.subscriptionStateMismatchDetected = true
           return Result.success()
         }
+      }
+    }
+  }
+
+  /**
+   * Checks for a payment failure / subscription cancellation. If either of these things occur, we will mark when to display
+   * the "download your data" notifier sheet.
+   */
+  private fun checkForFailedOrCanceledSubscriptionState(activeSubscription: ActiveSubscription?) {
+    val containsFailedPaymentOrCancellation = activeSubscription?.isFailedPayment == true || activeSubscription?.isCanceled == true
+    if (containsFailedPaymentOrCancellation && activeSubscription?.activeSubscription != null) {
+      Log.i(TAG, "Subscription either has a payment failure or has been canceled.")
+
+      val response = SignalNetwork.account.whoAmI()
+      response.runIfSuccessful { whoAmI ->
+        val backupExpiration = whoAmI.entitlements?.backup?.expirationSeconds?.seconds
+        if (backupExpiration != null) {
+          Log.i(TAG, "Marking subscription failed or canceled.")
+          SignalStore.backup.setDownloadNotifierToTriggerAtHalfwayPoint(backupExpiration)
+        } else {
+          Log.w(TAG, "Failed to mark, no entitlement was found on WhoAmIResponse")
+        }
+      }
+
+      if (response.getCause() != null) {
+        Log.w(TAG, "Failed to get WhoAmI from service.", response.getCause())
       }
     }
   }

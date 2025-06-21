@@ -32,6 +32,8 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
 import org.whispersystems.signalservice.api.provisioning.RestoreMethod
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.days
 
 class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
 
@@ -44,7 +46,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
       isRemoteRestoreOnlyOption = isOnlyRestoreOption,
       backupTier = SignalStore.backup.backupTier,
       backupTime = SignalStore.backup.lastBackupTime,
-      backupSize = SignalStore.backup.totalBackupSize.bytes
+      backupSize = SignalStore.registration.restoreBackupMediaSize.bytes
     )
   )
 
@@ -64,7 +66,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
             loadState = ScreenState.LoadState.LOADED,
             backupTier = SignalStore.backup.backupTier,
             backupTime = SignalStore.backup.lastBackupTime,
-            backupSize = SignalStore.backup.totalBackupSize.bytes
+            backupSize = SignalStore.registration.restoreBackupMediaSize.bytes
           )
         } else {
           if (SignalStore.backup.isBackupTierRestored || SignalStore.backup.lastBackupTime == 0L) {
@@ -74,6 +76,15 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
           } else {
             it
           }
+        }
+      }
+    }
+
+    viewModelScope.launch(Dispatchers.IO) {
+      val config = BackupRepository.getBackupLevelConfiguration()
+      if (config != null) {
+        store.update {
+          it.copy(backupMediaTTL = config.mediaTtlDays.days)
         }
       }
     }
@@ -161,6 +172,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
 
   data class ScreenState(
     val isRemoteRestoreOnlyOption: Boolean = false,
+    val backupMediaTTL: Duration = 30.days,
     val backupTier: MessageBackupTier? = null,
     val backupTime: Long = -1,
     val backupSize: ByteSize = 0.bytes,

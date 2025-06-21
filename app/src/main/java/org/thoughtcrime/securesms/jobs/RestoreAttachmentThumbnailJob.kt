@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
@@ -122,7 +123,7 @@ class RestoreAttachmentThumbnailJob private constructor(
     val thumbnailFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
 
     val progressListener = object : SignalServiceAttachment.ProgressListener {
-      override fun onAttachmentProgress(total: Long, progress: Long) = Unit
+      override fun onAttachmentProgress(progress: AttachmentTransferProgress) = Unit
       override fun shouldCancel(): Boolean = this@RestoreAttachmentThumbnailJob.isCanceled
     }
 
@@ -131,14 +132,13 @@ class RestoreAttachmentThumbnailJob private constructor(
 
     Log.i(TAG, "Downloading thumbnail for $attachmentId")
     val downloadResult = AppDependencies.signalServiceMessageReceiver
-      .retrieveArchivedAttachment(
+      .retrieveArchivedThumbnail(
         SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.requireThumbnailMediaName()),
         cdnCredentials,
         thumbnailTransferFile,
         pointer,
         thumbnailFile,
         maxThumbnailSize,
-        true,
         progressListener
       )
 

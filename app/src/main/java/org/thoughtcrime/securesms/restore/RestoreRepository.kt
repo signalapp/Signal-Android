@@ -60,7 +60,8 @@ object RestoreRepository {
         AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
         database,
         backupFileUri,
-        passphrase
+        passphrase,
+        SignalStore.registration.localRegistrationMetadata != null
       )
 
       Log.i(TAG, "Backup importer complete.")

@@ -227,7 +227,7 @@ private fun TopAppBar(
   Scaffolds.DefaultTopAppBar(
     title = "", // TODO collapse title into top app bar on scroll
     titleContent = { _, text -> Text(text = text, style = MaterialTheme.typography.titleLarge) },
-    navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
     navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
     onNavigationClick = onNavigateUp,
     actions = {

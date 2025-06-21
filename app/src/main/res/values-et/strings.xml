@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">Meedia üleslaadimine…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Video tihendamine…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Sõnumite kontrollimine…</string>
 
@@ -1090,6 +1094,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">%1$s lingitud seade ei ole enam lingitud.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">Pole piisavalt salvestusruumi</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">Sinu seadmes pole sõnumite edastamiseks piisavalt vaba salvestusruumi. Vabasta ruumi ja proovi uuesti või seo oma seade ilma sõnumeid edastamata.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1167,6 +1175,11 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">See Signali versioon on aegunud. Sõnumite saatmiseks ja vastuvõtmiseks uuenda kohe.</string>
     <string name="ExpiredBuildReminder_update_now">Uuenda kohe</string>
+
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1441,6 +1454,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">Varukoopia allalaadimine …</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">Sõnumite taastamine …</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">Lõpuleviimine …</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">Taastamine …</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1581,7 +1596,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Grupiga ei saa liituda</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Sa ei saa grupiga grupilingi kaudu liituda, sest administraator on su eemaldanud.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Sa ei saa selle grupiga grupilingi kaudu liituda, sest administraator on su eemaldanud. Võta administraatoriga ühendust, et ta su uuesti gruppi lisaks.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">See grupilink pole enam kehtiv.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -2841,8 +2856,8 @@
     </plurals>
     <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
     <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
-        <item quantity="one">%1$s sticker</item>
-        <item quantity="other">%1$s stickers</item>
+        <item quantity="one">%1$s kleebis</item>
+        <item quantity="other">%1$s kleebist</item>
     </plurals>
 
     <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
@@ -2958,9 +2973,9 @@
     <!-- Displayed in the notification when the user has opened a received gift -->
     <string name="ThreadRecord__you_redeemed_a_badge">Lunastasid märgi</string>
     <!-- Displayed in the conversation list when someone reacted to your story -->
-    <string name="ThreadRecord__reacted_s_to_your_story">Reageeris sinu loole: %1$s</string>
+    <string name="ThreadRecord__reacted_s_to_your_story">Reaktsioon %1$s sinu loole</string>
     <!-- Displayed in the conversation list when you reacted to someone\'s story -->
-    <string name="ThreadRecord__reacted_s_to_their_story">Reageeris tema loole: %1$s</string>
+    <string name="ThreadRecord__reacted_s_to_their_story">Reaktsioon %1$s tema loole</string>
     <!-- Displayed in the conversation list when your most recent message is a payment to or from the person the conversation is with -->
     <string name="ThreadRecord_payment">Makse</string>
     <!-- Displayed in the conversation list when your only message in a conversation is a scheduled send. -->
@@ -3138,16 +3153,16 @@
     <string name="MessageNotifier_signal_message">Signali sõnum</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
-    <string name="MessageNotifier_reacted_s_to_s">Reageeris küsimusele „%2$s“: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_video">Reageeris sinu videole: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_image">Reageeris sinu pildile: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_gif">Reageeris sinu GIF-ile: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_file">Reageeris sinu failile: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_audio">Reageeris sinu häälsõnumile: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reageeris sinu ühekordselt vaadatavale sisule: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_s">Reaktsioon %1$s küsimusele „%2$s“</string>
+    <string name="MessageNotifier_reacted_s_to_your_video">Reaktsioon %1$s sinu videole</string>
+    <string name="MessageNotifier_reacted_s_to_your_image">Reaktsioon %1$s sinu pildile</string>
+    <string name="MessageNotifier_reacted_s_to_your_gif">Reaktsioon %1$s sinu GIF-ile</string>
+    <string name="MessageNotifier_reacted_s_to_your_file">Reaktsioon %1$s sinu failile</string>
+    <string name="MessageNotifier_reacted_s_to_your_audio">Reaktsioon %1$s sinu häälsõnumile</string>
+    <string name="MessageNotifier_reacted_s_to_your_view_once_media">Reaktsioon %1$s sinu ühekordselt vaadatavale sisule</string>
     <!-- Body of notification shown to user when someone they sent a payment to reacts to it. Placeholder is the emoji used in the reaction. -->
-    <string name="MessageNotifier_reacted_s_to_your_payment">Reageeris sinu maksele: %1$s</string>
-    <string name="MessageNotifier_reacted_s_to_your_sticker">Reageeris sinu kleebisele: %1$s</string>
+    <string name="MessageNotifier_reacted_s_to_your_payment">Reaktsioon %1$s sinu maksele</string>
+    <string name="MessageNotifier_reacted_s_to_your_sticker">Reaktsioon %1$s sinu kleebisele</string>
     <string name="MessageNotifier_this_message_was_deleted">See sõnum kustutati.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Kas lülitada Signaliga liitumise teavitused välja? Neid saab uuesti lubada, valides Signal &gt; Seaded &gt; Teavitused.</string>
@@ -5338,6 +5353,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">Varundamine ei õnnestunud</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Sinu varukoopiate tellimust ei saanud laadida</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Varukoopiate salvestuslimiit on täis</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Kutsu enda sõbrad</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7214,7 +7231,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Sisesta oma pank, nimi ja meiliaadress. Stripe kasutab seda meiliaadressi sinu annetuse kohta teavituste saatmiseks. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Sisesta oma pangaandmed. Signal ei kogu ega salvesta sinu isikuandmeid. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7827,9 +7844,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Selleks, et oma meedia varundamist jätkata, saad igal ajal uuesti varundamise eest tasumist alustada. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">Sinu meedia kustutatakse täna</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">Sinu Signali meedia varundamise plaan on tühistatud, sest meil ei õnnestunud su makset töödelda. See on su viimane võimalus varundatud meediat alla laadida enne kui need kustutatakse.</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Lae oma varukoopia andmed täna alla</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Lae alla oma varukoopia andmed</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">Sul on %1$s meediat, mida ei ole selles seadmes. Varukoopiasse salvestatud meedia ja manused kustutatakse jäädavalt, kui sul ei ole tasulist tellimust.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Vabasta selles seadmes %1$s</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7868,9 +7887,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Telli hinnaga %1$s kuus</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">Lae meedia alla</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Lae varukoopia kohe alla</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">Ära lae meediat alla</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">Ära lae varukoopiat alla</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Mitte praegu</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -7941,11 +7960,11 @@
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">Allalaadimine: %1$s kogumahust %2$s (%3$s%%)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
-    <string name="BackupStatusRow__download_waiting_for_wifi">Download paused: Waiting for Wi-Fi…</string>
+    <string name="BackupStatusRow__download_waiting_for_wifi">Allalaadimine on peatatud: Wi-Fi ootel …</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
-    <string name="BackupStatusRow__download_no_internet">Download paused: No internet…</string>
+    <string name="BackupStatusRow__download_no_internet">Allalaadimine on peatatud: internetiühendus puudub …</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download paused: Device has low battery</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">Allalaadimine on peatatud: seadme akutase on madal</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">Sinu varukoopia allalaadimiseks ei ole piisavalt ruumi. Jätkamiseks vabasta %1$s ruumi.</string>
     <!-- Text row label to skip download -->
@@ -8049,6 +8068,8 @@
     <string name="BackupsSettingsFragment_last_backup_s">Viimane varukoopia: %1$s</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automaatsed varukoopiad Signali turvalise otspunktkrüptitud salvestusteenuse abil.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Seadista</string>
 
@@ -8134,7 +8155,9 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Kas lülitada välja ja kustutada varukoopiad?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Your backup will be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Sinu varukoopia kustutatakse ja uusi varukoopiaid ei looda. Sinu varukoopiasse salvestatud meedia laetakse nüüd su telefoni.</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Lülita välja ja kustuta</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8168,6 +8191,8 @@
         <item quantity="one">Sinu tellimus kehtib selles seadmes veel %1$d päeva. Uuenda, et jätkata Signali varukoopiate kasutamist.</item>
         <item quantity="other">Sinu tellimus kehtib selles seadmes veel %1$d päeva. Uuenda, et jätkata Signali varukoopiate kasutamist.</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">Telli uuesti</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">Uuenda</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8182,10 +8207,7 @@
         <item quantity="other">Töötlen %1$s sõnumit ~%2$s-st (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="one">Sul on %1$s varundatud andmeid, mis ei ole selles seadmes. Sinu varukoopia kustutatakse, kui su tellimus %2$d päeva pärast lõpeb.</item>
-        <item quantity="other">Sul on %1$s varundatud andmeid, mis ei ole selles seadmes. Sinu varukoopia kustutatakse, kui su tellimus %2$d päeva pärast lõpeb.</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Sul on %1$s varukoopia andmeid, mida ei ole selles seadmes. Ilma tasulise tellimuseta ei saa meediat alla laadida.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Sul on %1$s varukoopia andmeid, mida ei ole selles seadmes. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8198,7 +8220,7 @@
         <item quantity="other">Kui jätad allalaadimise vahele, kustutatakse allesjäänud meedia ja manused sinu varukoopiast %1$d päeva pärast.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">If you skip downloading the remaining media and attachments in your backup they will be permanently deleted. This data won\'t be recoverable.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Kui jätad ülejäänud meedia ja manuste allalaadimise vahele, kustutatakse need jäädavalt sinu varukoopiast. Neid andmeid ei saa taastada.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">Kas jätta taastamine vahele?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8206,7 +8228,7 @@
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">Jäta vahele</string>
     <!-- Positive dialog action to skip download during deletion -->
-    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Skip and delete permanently</string>
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Jäta vahele ja kustuta jäädavalt</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Varukoopiaid ei saanud välja lülitada ega kustutada</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8216,19 +8238,33 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Üksikasjad</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups have been turned off, but there was an error deleting your data from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Varundamine on välja lülitatud, kuid sinu andmete kustutatamisel Signali turvalisest salvestusteenusest tekkis tõrge.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Failed to delete backup</string>
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Varukoopia kustutamine nurjus</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">An error occurred. Please contact support.</string>
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Tekkis viga. Palun võta ühendust kasutajatoega.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups have been turned off, your data will download to your device and then be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Varundamine on välja lülitatud, sinu andmed laetakse su seadmesse ja seejärel kustutatakse Signali turvalisest salvestusteenusest.</string>
     <!-- Text displayed while we are processing a backup delete -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups have been turned off and your data will be deleted from Signal\'s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Varundamine on välja lülitatud ja sinu andmed kustutatakse Signali turvalisest salvestusteenusest.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups have been turned off and your data has been deleted from Signal’s secure storage service.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Varundamine on välja lülitatud ja sinu andmed on Signali turvalisest salvestusteenusest kustutatud.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Allalaadimine: %1$s kogumahust %2$s (%3$d%%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Sinu varukoopia paketiga kaasasolev salvestuslimiit %1$s on täitunud. Uute vestluste ja meedia varundamiseks vabasta ruumi.</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">Halda salvestusruumi</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Lae oma varukoopia täna alla</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">Sul on %1$s varukoopia andmeid, mida ei ole selles seadmes. Varukoopiasse salvestatud meedia ja manused kustutatakse jäädavalt, kui sul ei ole tasulist tellimust.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">Laadi alla</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">Ära laadi alla</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8254,7 +8290,7 @@
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">Tekkis võrgu viga. Proovi hiljem uuesti.</string>
     <!-- Toast message if this fragment encounters an in progress deletion -->
-    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">A backup deletion is in progress.</string>
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">Varukoopia kustutamine on pooleli.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8288,17 +8324,17 @@
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopeeri lõikelauale</string>
     <!-- Label for the button to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Salvesta paroolihaldurisse</string>
     <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Save to password manager?</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Kas salvestada paroolihaldurisse?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your backup key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Hoia oma varukoopia võtit ainult paroolihalduris, mille turvalisust usaldad. Signal ei anna soovitust, milline paroolihaldur sulle sobib.</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Saved to your password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Salvestatud paroolihaldurisse</string>
     <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Paroolihaldurisse ei saa salvestada</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">You don\'t have a password manager set up, or the password manager you\'re using isn\'t supported.</string>
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Sul pole paroolihaldurit seadistatud või sinu kasutatavat paroolihaldurit ei toetata.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Edasi</string>
     <!-- Bottom sheet title -->
@@ -8333,7 +8369,7 @@
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Rohkem teavet</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribe</string>
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">Telli</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Telli hinnaga %1$s kuus</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8550,6 +8586,11 @@
     <string name="SignalCheckbox_accessibility_checked_description">Märgitud</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
     <string name="SignalCheckbox_accessibility_unchecked_description">Märge eemaldatud</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
 
     <!-- EOF -->
 </resources>

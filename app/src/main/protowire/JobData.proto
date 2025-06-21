@@ -141,9 +141,10 @@ message UploadAttachmentToArchiveJobData {
   optional bool canReuseUpload = 3;
 }
 
-message BackupMediaSnapshotSyncJobData {
-  uint64 syncTime = 1;
+message ArchiveAttachmentReconciliationJobData {
+  optional uint64 snapshot = 1;
   string serverCursor = 2;
+  bool forced = 3;
 }
 
 message DeviceNameChangeJobData {

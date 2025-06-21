@@ -9,6 +9,7 @@ import assertk.assertions.isTrue
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
+import io.mockk.mockkStatic
 import io.mockk.verify
 import org.junit.Before
 import org.junit.Rule
@@ -23,11 +24,14 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaym
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toInAppPaymentDataChargeFailure
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsTestRule
 import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
@@ -51,12 +55,23 @@ class InAppPaymentRecurringContextJobTest {
   @get:Rule
   val inAppPaymentsTestRule = InAppPaymentsTestRule()
 
+  lateinit var recipientTable: RecipientTable
+
   @Before
   fun setUp() {
     Log.initialize(SystemOutLogger())
 
     every { mockSignalStore.account.isRegistered } returns true
     every { mockSignalStore.inAppPayments.setLastEndOfPeriod(any()) } returns Unit
+
+    recipientTable = mockk(relaxed = true)
+    every { SignalDatabase.recipients } returns recipientTable
+
+    mockkObject(Recipient)
+    every { Recipient.self() } returns Recipient()
+
+    mockkStatic(StorageSyncHelper::class)
+    every { StorageSyncHelper.scheduleSyncForDataChange() } returns Unit
 
     mockkObject(InAppPaymentsRepository)
     every { InAppPaymentsRepository.generateRequestCredential() } returns mockk {

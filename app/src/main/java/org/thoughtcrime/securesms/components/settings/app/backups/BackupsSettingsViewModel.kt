@@ -20,19 +20,18 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
-import org.signal.core.util.money.FiatMoney
-import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.signal.donations.InAppPaymentType
+import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
-import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
-import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
 import org.thoughtcrime.securesms.util.RemoteConfig
-import java.util.Currency
-import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.Duration.Companion.seconds
 
 class BackupsSettingsViewModel : ViewModel() {
 
@@ -54,7 +53,7 @@ class BackupsSettingsViewModel : ViewModel() {
         .drop(1)
         .collect {
           Log.d(TAG, "Triggering refresh from internet reconnect.")
-          loadRequests.tryEmit(Unit)
+          loadRequests.emit(Unit)
         }
     }
 
@@ -65,6 +64,13 @@ class BackupsSettingsViewModel : ViewModel() {
         Log.d(TAG, "-- Completed state load.")
       }
     }
+
+    viewModelScope.launch(SignalDispatchers.Default) {
+      InAppPaymentsRepository.observeLatestBackupPayment().collect {
+        Log.d(TAG, "Triggering refresh from payment state change.")
+        loadRequests.emit(Unit)
+      }
+    }
   }
 
   override fun onCleared() {
@@ -73,7 +79,9 @@ class BackupsSettingsViewModel : ViewModel() {
 
   fun refreshState() {
     Log.d(TAG, "Refreshing state from manual call.")
-    loadRequests.tryEmit(Unit)
+    viewModelScope.launch(SignalDispatchers.Default) {
+      loadRequests.emit(Unit)
+    }
   }
 
   @WorkerThread
@@ -81,80 +89,31 @@ class BackupsSettingsViewModel : ViewModel() {
     return viewModelScope.launch(SignalDispatchers.IO) {
       if (!RemoteConfig.messageBackups) {
         Log.w(TAG, "Remote backups are not available on this device.")
-        internalStateFlow.update { it.copy(enabledState = BackupsSettingsState.EnabledState.NotAvailable, showBackupTierInternalOverride = false) }
+        internalStateFlow.update { it.copy(backupState = BackupState.NotAvailable, showBackupTierInternalOverride = false) }
       } else {
-        val enabledState = when (SignalStore.backup.backupTier) {
-          MessageBackupTier.FREE -> getEnabledStateForFreeTier()
-          MessageBackupTier.PAID -> getEnabledStateForPaidTier()
-          null -> getEnabledStateForNoTier()
-        }
+        val latestPurchase = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
+        val enabledState = BackupStateRepository.resolveBackupState(latestPurchase)
 
         Log.d(TAG, "Found enabled state $enabledState. Updating UI state.")
-        internalStateFlow.update { it.copy(enabledState = enabledState, showBackupTierInternalOverride = RemoteConfig.internalUser, backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride) }
+        internalStateFlow.update {
+          it.copy(
+            backupState = enabledState,
+            lastBackupAt = SignalStore.backup.lastBackupTime.milliseconds,
+            showBackupTierInternalOverride = RemoteConfig.internalUser || Environment.IS_STAGING,
+            backupTierInternalOverride = SignalStore.backup.backupTierInternalOverride
+          )
+        }
       }
     }
   }
 
   fun onBackupTierInternalOverrideChanged(tier: MessageBackupTier?) {
     SignalStore.backup.backupTierInternalOverride = tier
+    SignalStore.backup.deletionState = DeletionState.NONE
+    viewModelScope.launch(SignalDispatchers.Default) {
+      SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
     refreshState()
-  }
-
-  private suspend fun getEnabledStateForFreeTier(): BackupsSettingsState.EnabledState {
-    return try {
-      Log.d(TAG, "Attempting to grab enabled state for free tier.")
-      val backupType = BackupRepository.getBackupsType(MessageBackupTier.FREE)!!
-
-      Log.d(TAG, "Retrieved backup type. Returning active state...")
-      BackupsSettingsState.EnabledState.Active(
-        expiresAt = 0.seconds,
-        lastBackupAt = SignalStore.backup.lastBackupTime.milliseconds,
-        type = backupType
-      )
-    } catch (e: Exception) {
-      Log.w(TAG, "Failed to build enabled state.", e)
-      BackupsSettingsState.EnabledState.Failed
-    }
-  }
-
-  @WorkerThread
-  private fun getEnabledStateForPaidTier(): BackupsSettingsState.EnabledState {
-    return try {
-      Log.d(TAG, "Attempting to grab enabled state for paid tier.")
-      val backupConfiguration = BackupRepository.getBackupLevelConfiguration() ?: return BackupsSettingsState.EnabledState.Failed
-
-      Log.d(TAG, "Retrieved backup type. Grabbing active subscription...")
-      val activeSubscription = RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrThrow()
-
-      Log.d(TAG, "Retrieved subscription. Active? ${activeSubscription.isActive}")
-      if (activeSubscription.isActive) {
-        BackupsSettingsState.EnabledState.Active(
-          expiresAt = activeSubscription.activeSubscription.endOfCurrentPeriod.seconds,
-          lastBackupAt = SignalStore.backup.lastBackupTime.milliseconds,
-          type = MessageBackupsType.Paid(
-            pricePerMonth = FiatMoney.fromSignalNetworkAmount(
-              activeSubscription.activeSubscription.amount,
-              Currency.getInstance(activeSubscription.activeSubscription.currency)
-            ),
-            storageAllowanceBytes = backupConfiguration.storageAllowanceBytes,
-            mediaTtl = backupConfiguration.mediaTtlDays.days
-          )
-        )
-      } else {
-        BackupsSettingsState.EnabledState.Inactive
-      }
-    } catch (e: Exception) {
-      Log.w(TAG, "Failed to build enabled state.", e)
-      BackupsSettingsState.EnabledState.Failed
-    }
-  }
-
-  private fun getEnabledStateForNoTier(): BackupsSettingsState.EnabledState {
-    Log.d(TAG, "Grabbing enabled state for no tier.")
-    return if (SignalStore.uiHints.hasEverEnabledRemoteBackups) {
-      BackupsSettingsState.EnabledState.Inactive
-    } else {
-      BackupsSettingsState.EnabledState.Never
-    }
   }
 }

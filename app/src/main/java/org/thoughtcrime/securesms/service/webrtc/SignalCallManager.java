@@ -417,7 +417,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                                                                    CallLinkSecretParams.deriveFromRootKey(callLinkRootKey.getKeyBytes())
                                                                                                );
 
-        callManager.peekCallLinkCall(SignalStore.internal().getGroupCallingServer(), callLinkAuthCredentialPresentation.serialize(), callLinkRootKey, peekInfo -> {
+        callManager.peekCallLinkCall(SignalStore.internal().getGroupCallingServer(), callLinkAuthCredentialPresentation.serialize(), callLinkRootKey, null, peekInfo -> {
           PeekInfo info = peekInfo.getValue();
           if (info == null) {
             Log.w(TAG, "Failed to get peek info: " + peekInfo.getStatus());
