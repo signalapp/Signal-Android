@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.util
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.Hex
 import org.signal.core.util.emptyIfNull
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.nullIfBlank
@@ -224,6 +225,9 @@ fun DatabaseAttachment.toLocatorInfo(): FilePointer.LocatorInfo {
     }
     AttachmentType.INVALID -> Unit
   }
+
+  locatorBuilder.legacyDigest = this.remoteDigest?.toByteString() ?: ByteString.EMPTY
+  locatorBuilder.legacyMediaName = Hex.toStringCondensed(this.remoteDigest ?: byteArrayOf())
 
   return locatorBuilder.build()
 }
