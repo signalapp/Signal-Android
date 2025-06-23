@@ -13,6 +13,7 @@ import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
 import org.signal.libsignal.protocol.incrementalmac.InvalidMacException
 import org.signal.libsignal.protocol.kdf.HKDF
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherTestHelper.createMediaKeyMaterial
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.push.http.AttachmentCipherOutputStreamFactory
@@ -32,19 +33,39 @@ import java.util.Random
 
 class AttachmentCipherTest {
   @Test
-  fun attachment_encryptDecrypt_nonIncremental() {
-    attachment_encryptDecrypt(incremental = false, fileSize = MEBIBYTE)
+  fun attachment_encryptDecrypt_nonIncremental_encryptedDigest() {
+    attachment_encryptDecrypt(incremental = false, fileSize = MEBIBYTE, integrityCheckMode = IntegrityCheckMode.ENCRYPTED_DIGEST)
   }
 
   @Test
-  fun attachment_encryptDecrypt_incremental() {
-    attachment_encryptDecrypt(incremental = true, fileSize = MEBIBYTE)
+  fun attachment_encryptDecrypt_nonIncremental_plaintextHash() {
+    attachment_encryptDecrypt(incremental = false, fileSize = MEBIBYTE, integrityCheckMode = IntegrityCheckMode.PLAINTEXT_HASH)
+  }
+
+  @Test
+  fun attachment_encryptDecrypt_nonIncremental_bothIntegrityChecks() {
+    attachment_encryptDecrypt(incremental = false, fileSize = MEBIBYTE, integrityCheckMode = IntegrityCheckMode.BOTH)
+  }
+
+  @Test
+  fun attachment_encryptDecrypt_incremental_encryptedDigest() {
+    attachment_encryptDecrypt(incremental = true, fileSize = MEBIBYTE, integrityCheckMode = IntegrityCheckMode.ENCRYPTED_DIGEST)
+  }
+
+  @Test
+  fun attachment_encryptDecrypt_incremental_plaintextHash() {
+    attachment_encryptDecrypt(incremental = true, fileSize = MEBIBYTE, integrityCheckMode = IntegrityCheckMode.PLAINTEXT_HASH)
+  }
+
+  @Test
+  fun attachment_encryptDecrypt_incremental_bothIntegrityChecks() {
+    attachment_encryptDecrypt(incremental = true, fileSize = MEBIBYTE, integrityCheckMode = IntegrityCheckMode.BOTH)
   }
 
   @Test
   fun attachment_encryptDecrypt_nonIncremental_manyFileSizes() {
     for (i in 0..99) {
-      attachment_encryptDecrypt(incremental = false, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
+      attachment_encryptDecrypt(incremental = false, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024), integrityCheckMode = IntegrityCheckMode.BOTH)
     }
   }
 
@@ -52,18 +73,44 @@ class AttachmentCipherTest {
   fun attachment_encryptDecrypt_incremental_manyFileSizes() {
     // Designed to stress the various boundary conditions of reading the final mac
     for (i in 0..99) {
-      attachment_encryptDecrypt(incremental = true, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
+      attachment_encryptDecrypt(incremental = true, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024), IntegrityCheckMode.BOTH)
     }
   }
 
-  private fun attachment_encryptDecrypt(incremental: Boolean, fileSize: Int) {
+  private fun attachment_encryptDecrypt(incremental: Boolean, fileSize: Int, integrityCheckMode: IntegrityCheckMode) {
     val key = Util.getSecretBytes(64)
     val plaintextInput = Util.getSecretBytes(fileSize)
+    val plaintextHash = MessageDigest.getInstance("SHA-256").digest(plaintextInput)
 
     val encryptResult = encryptData(plaintextInput, key, incremental)
     val cipherFile = writeToFile(encryptResult.ciphertext)
 
-    val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
+    val integrityCheck = when (integrityCheckMode) {
+      IntegrityCheckMode.ENCRYPTED_DIGEST -> IntegrityCheck.forEncryptedDigest(encryptResult.digest)
+      IntegrityCheckMode.PLAINTEXT_HASH -> IntegrityCheck.forPlaintextHash(plaintextHash)
+      IntegrityCheckMode.BOTH -> IntegrityCheck(
+        encryptedDigest = encryptResult.digest,
+        plaintextHash = plaintextHash
+      )
+    }
+    val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
+    val plaintextOutput = inputStream.readFully(autoClose = false)
+
+    assertThat(plaintextOutput).isEqualTo(plaintextInput)
+
+    cipherFile.delete()
+  }
+
+  private fun attachment_encryptDecrypt_plaintextHash(incremental: Boolean, fileSize: Int) {
+    val key = Util.getSecretBytes(64)
+    val plaintextInput = Util.getSecretBytes(fileSize)
+    val plaintextHash = MessageDigest.getInstance("SHA-256").digest(plaintextInput)
+
+    val encryptResult = encryptData(plaintextInput, key, incremental)
+    val cipherFile = writeToFile(encryptResult.ciphertext)
+
+    val integrityCheck = IntegrityCheck.forPlaintextHash(plaintextHash)
+    val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
     val plaintextOutput = inputStream.readFully(autoClose = false)
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
@@ -88,7 +135,8 @@ class AttachmentCipherTest {
     val encryptResult = encryptData(plaintextInput, key, incremental)
     val cipherFile = writeToFile(encryptResult.ciphertext)
 
-    val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
+    val integrityCheck = IntegrityCheck.forEncryptedDigest(encryptResult.digest)
+    val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
     val plaintextOutput = inputStream.readFully(autoClose = false)
 
     Assert.assertArrayEquals(plaintextInput, plaintextOutput)
@@ -117,7 +165,8 @@ class AttachmentCipherTest {
       cipherFile = writeToFile(encryptResult.ciphertext)
 
       val badKey = ByteArray(64)
-      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), badKey, encryptResult.digest, null, 0)
+      val integrityCheck = IntegrityCheck.forEncryptedDigest(encryptResult.digest)
+      AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), badKey, integrityCheck, null, 0)
     } finally {
       cipherFile?.delete()
     }
@@ -147,7 +196,8 @@ class AttachmentCipherTest {
 
       cipherFile = writeToFile(badMacCiphertext)
 
-      val stream: InputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
+      val integrityCheck = IntegrityCheck.forEncryptedDigest(encryptResult.digest)
+      val stream: InputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
 
       // In incremental mode, we'll only check the digest after reading the whole thing
       if (incremental) {
@@ -159,16 +209,26 @@ class AttachmentCipherTest {
   }
 
   @Test(expected = InvalidMessageException::class)
-  fun attachment_decryptFailOnBadDigest_nonIncremental() {
-    attachment_decryptFailOnBadDigest(incremental = false)
+  fun attachment_decryptFailOnBadEncryptedDigest_nonIncremental() {
+    attachment_decryptFailOnBadEncryptedDigest(incremental = false)
   }
 
   @Test(expected = InvalidMessageException::class)
-  fun attachment_decryptFailOnBadDigest_incremental() {
-    attachment_decryptFailOnBadDigest(incremental = true)
+  fun attachment_decryptFailOnBadEncryptedDigest_incremental() {
+    attachment_decryptFailOnBadEncryptedDigest(incremental = true)
   }
 
-  private fun attachment_decryptFailOnBadDigest(incremental: Boolean) {
+  @Test(expected = InvalidMessageException::class)
+  fun attachment_decryptFailOnBadPlaintextHash_nonIncremental() {
+    attachment_decryptFailOnBadPlaintextHash(incremental = false)
+  }
+
+  @Test(expected = InvalidMessageException::class)
+  fun attachment_decryptFailOnBadPlaintextHash_incremental() {
+    attachment_decryptFailOnBadPlaintextHash(incremental = true)
+  }
+
+  private fun attachment_decryptFailOnBadEncryptedDigest(incremental: Boolean) {
     var cipherFile: File? = null
 
     try {
@@ -180,12 +240,36 @@ class AttachmentCipherTest {
 
       cipherFile = writeToFile(encryptResult.ciphertext)
 
-      val stream: InputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, badDigest, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
+      val integrityCheck = IntegrityCheck.forEncryptedDigest(badDigest)
+      val stream: InputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
 
       // In incremental mode, we'll only check the digest after reading the whole thing
       if (incremental) {
         StreamUtil.readFully(stream)
       }
+    } finally {
+      cipherFile?.delete()
+    }
+  }
+
+  private fun attachment_decryptFailOnBadPlaintextHash(incremental: Boolean) {
+    var cipherFile: File? = null
+
+    try {
+      val key = Util.getSecretBytes(64)
+      val plaintextInput = Util.getSecretBytes(MEBIBYTE)
+      val badPlaintextHash = MessageDigest.getInstance("SHA-256").digest(plaintextInput).apply {
+        this[0] = (this[0] + 1).toByte()
+      }
+
+      val encryptResult = encryptData(plaintextInput, key, incremental)
+
+      cipherFile = writeToFile(encryptResult.ciphertext)
+
+      val integrityCheck = IntegrityCheck.forPlaintextHash(badPlaintextHash)
+      val stream: InputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
+
+      StreamUtil.readFully(stream)
     } finally {
       cipherFile?.delete()
     }
@@ -205,7 +289,8 @@ class AttachmentCipherTest {
 
       cipherFile = writeToFile(encryptResult.ciphertext)
 
-      val decryptedStream: InputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, encryptResult.digest, badDigest, encryptResult.chunkSizeChoice)
+      val integrityCheck = IntegrityCheck.forEncryptedDigest(encryptResult.digest)
+      val decryptedStream: InputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, badDigest, encryptResult.chunkSizeChoice)
       val plaintextOutput = readInputStreamFully(decryptedStream)
 
       fail(AssertionError("Expected to fail before hitting this line"))
@@ -480,7 +565,8 @@ class AttachmentCipherTest {
     val combinedData = plaintextInput1 + plaintextInput2
 
     val cipherFile = writeToFile(encryptedData)
-    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, combinedData.size.toLong(), key, digest, null, 0)
+    val integrityCheck = IntegrityCheck.forEncryptedDigest(digest)
+    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, combinedData.size.toLong(), key, integrityCheck, null, 0)
     val plaintextOutput = readInputStreamFully(decryptedStream)
 
     assertThat(plaintextOutput).isEqualTo(combinedData)
@@ -511,7 +597,8 @@ class AttachmentCipherTest {
     val combinedData = plaintextInput1 + plaintextInput2
 
     val cipherFile = writeToFile(encryptedData)
-    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, combinedData.size.toLong(), key, digest, null, 0)
+    val integrityCheck = IntegrityCheck.forEncryptedDigest(digest)
+    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, combinedData.size.toLong(), key, integrityCheck, null, 0)
     val plaintextOutput = readInputStreamFully(decryptedStream)
 
     assertThat(plaintextOutput).isEqualTo(combinedData)
@@ -536,7 +623,8 @@ class AttachmentCipherTest {
     val digest = encryptingOutputStream.transmittedDigest
 
     val cipherFile = writeToFile(encryptedData)
-    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, digest, null, 0)
+    val integrityCheck = IntegrityCheck.forEncryptedDigest(digest)
+    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, null, 0)
     val plaintextOutput = readInputStreamFully(decryptedStream)
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
@@ -567,7 +655,8 @@ class AttachmentCipherTest {
     val digest = encryptingOutputStream.transmittedDigest
 
     val cipherFile = writeToFile(encryptedData)
-    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, expectedData.size.toLong(), key, digest, null, 0)
+    val integrityCheck = IntegrityCheck.forEncryptedDigest(digest)
+    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, expectedData.size.toLong(), key, integrityCheck, null, 0)
     val plaintextOutput = readInputStreamFully(decryptedStream)
 
     assertThat(plaintextOutput).isEqualTo(expectedData)
@@ -596,7 +685,8 @@ class AttachmentCipherTest {
     val digest = encryptingOutputStream.transmittedDigest
 
     val cipherFile = writeToFile(encryptedData)
-    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, digest, null, 0)
+    val integrityCheck = IntegrityCheck.forEncryptedDigest(digest)
+    val decryptedStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, null, 0)
     val plaintextOutput = readInputStreamFully(decryptedStream)
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
@@ -676,5 +766,11 @@ class AttachmentCipherTest {
     private fun expandPackKey(shortKey: ByteArray): ByteArray {
       return HKDF.deriveSecrets(shortKey, "Sticker Pack".toByteArray(), 64)
     }
+  }
+
+  enum class IntegrityCheckMode {
+    ENCRYPTED_DIGEST,
+    PLAINTEXT_HASH,
+    BOTH
   }
 }

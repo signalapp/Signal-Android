@@ -127,7 +127,13 @@ class ArchiveAttachmentReconciliationJob private constructor(
         val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(it)
         // TODO [backup] Re-enqueue thumbnail uploads if necessary
         if (!entry.isThumbnail) {
-          SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKey(entry.plaintextHash, entry.remoteKey)
+          val success = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKey(entry.plaintextHash, entry.remoteKey)
+          if (!success) {
+            Log.e(TAG, "Failed to reset archive transfer state by remote hash/key!")
+            if (RemoteConfig.internalUser) {
+              throw RuntimeException("Failed to reset archive transfer state by remote hash/key!")
+            }
+          }
         }
       }
 

@@ -31,10 +31,6 @@ value class MediaName(val name: String) {
     return mediaRootBackupKey.deriveMediaId(this)
   }
 
-  fun toByteArray(): ByteArray {
-    return name.toByteArray()
-  }
-
   override fun toString(): String {
     return name
   }

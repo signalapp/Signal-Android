@@ -19,6 +19,7 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
+import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.ByteSize
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.EventTimer
@@ -37,7 +38,7 @@ import org.signal.core.util.getForeignKeyViolations
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.requireIntOrNull
-import org.signal.core.util.requireNonNullBlob
+import org.signal.core.util.requireNonNullString
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.urlEncode
 import org.signal.core.util.withinTransaction
@@ -1290,11 +1291,11 @@ object BackupRepository {
     return initBackupAndFetchAuth()
       .then { credential ->
         SignalNetwork.archive.getMessageBackupUploadForm(SignalStore.account.requireAci(), credential.messageBackupAccess)
-          .also { Log.i(TAG, "UploadFormResult: $it") }
+          .also { Log.i(TAG, "UploadFormResult: ${it::class.simpleName}") }
       }
       .then { form ->
         SignalNetwork.archive.getBackupResumableUploadUrl(form)
-          .also { Log.i(TAG, "ResumableUploadUrlResult: $it") }
+          .also { Log.i(TAG, "ResumableUploadUrlResult: ${it::class.simpleName}") }
           .map { ResumableMessagesBackupUploadSpec(attachmentUploadForm = form, resumableUri = it) }
       }
   }
@@ -1307,7 +1308,7 @@ object BackupRepository {
   ): NetworkResult<Unit> {
     val (form, resumableUploadUrl) = resumableSpec
     return SignalNetwork.archive.uploadBackupFile(form, resumableUploadUrl, backupStream, backupStreamLength, progressListener)
-      .also { Log.i(TAG, "UploadBackupFileResult: $it") }
+      .also { Log.i(TAG, "UploadBackupFileResult: ${it::class.simpleName}") }
   }
 
   fun downloadBackupFile(destination: File, listener: ProgressListener? = null): NetworkResult<Unit> {
@@ -1395,7 +1396,7 @@ object BackupRepository {
       .map { response ->
         SignalDatabase.attachments.setArchiveCdn(attachmentId = attachment.attachmentId, archiveCdn = response.cdn)
       }
-      .also { Log.i(TAG, "archiveMediaResult: $it") }
+      .also { Log.i(TAG, "archiveMediaResult: ${it::class.simpleName}") }
   }
 
   fun deleteAbandonedMediaObjects(mediaObjects: Collection<ArchivedMediaObject>): NetworkResult<Unit> {
@@ -1421,7 +1422,7 @@ object BackupRepository {
           mediaToDelete = mediaToDelete
         )
       }
-      .also { Log.i(TAG, "deleteAbandonedMediaObjectsResult: $it") }
+      .also { Log.i(TAG, "deleteAbandonedMediaObjectsResult: ${it::class.simpleName}") }
   }
 
   fun deleteBackup(): NetworkResult<Unit> {
@@ -1477,7 +1478,7 @@ object BackupRepository {
       .map {
         SignalDatabase.attachments.clearAllArchiveData()
       }
-      .also { Log.i(TAG, "debugDeleteAllArchivedMediaResult: $it") }
+      .also { Log.i(TAG, "debugDeleteAllArchivedMediaResult: ${it::class.simpleName}") }
   }
 
   /**
@@ -1512,7 +1513,7 @@ object BackupRepository {
           credentialStore.cdnReadCredentials = it.result
         }
       }
-      .also { Log.i(TAG, "getCdnReadCredentialsResult: $it") }
+      .also { Log.i(TAG, "getCdnReadCredentialsResult: ${it::class.simpleName}") }
   }
 
   fun restoreBackupTier(aci: ACI): MessageBackupTier? {
@@ -1965,8 +1966,8 @@ class ArchiveMediaItemIterator(private val cursor: Cursor) : Iterator<ArchiveMed
   override fun hasNext(): Boolean = !cursor.isAfterLast
 
   override fun next(): ArchiveMediaItem {
-    val plaintextHash = cursor.requireNonNullBlob(AttachmentTable.DATA_HASH_END)
-    val remoteKey = cursor.requireNonNullBlob(AttachmentTable.REMOTE_KEY)
+    val plaintextHash = cursor.requireNonNullString(AttachmentTable.DATA_HASH_END).decodeBase64OrThrow()
+    val remoteKey = cursor.requireNonNullString(AttachmentTable.REMOTE_KEY).decodeBase64OrThrow()
     val cdn = cursor.requireIntOrNull(AttachmentTable.ARCHIVE_CDN)
 
     val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()

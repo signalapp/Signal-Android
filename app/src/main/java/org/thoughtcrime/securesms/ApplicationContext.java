@@ -110,6 +110,7 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
+import org.whispersystems.signalservice.api.backup.MediaName;
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 
 import java.io.InterruptedIOException;

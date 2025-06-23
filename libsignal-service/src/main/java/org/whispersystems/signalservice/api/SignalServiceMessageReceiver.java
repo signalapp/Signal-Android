@@ -7,10 +7,12 @@
 package org.whispersystems.signalservice.api;
 
 import org.signal.core.util.StreamUtil;
+import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
@@ -63,9 +65,9 @@ public class SignalServiceMessageReceiver {
    * @throws IOException
    * @throws InvalidMessageException
    */
-  public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, long maxSizeBytes)
+  public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, long maxSizeBytes, IntegrityCheck integrityCheck)
       throws IOException, InvalidMessageException, MissingConfigurationException {
-    return retrieveAttachment(pointer, destination, maxSizeBytes, null);
+    return retrieveAttachment(pointer, destination, maxSizeBytes, integrityCheck, null);
   }
 
   public InputStream retrieveProfileAvatar(String path, File destination, ProfileKey profileKey, long maxSizeBytes)
@@ -96,9 +98,9 @@ public class SignalServiceMessageReceiver {
    * @throws IOException
    * @throws InvalidMessageException
    */
-  public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, long maxSizeBytes, ProgressListener listener)
+  public InputStream retrieveAttachment(SignalServiceAttachmentPointer pointer, File destination, long maxSizeBytes, IntegrityCheck integrityCheck, ProgressListener listener)
       throws IOException, InvalidMessageException, MissingConfigurationException {
-    if (pointer.getDigest().isEmpty()) throw new InvalidMessageException("No attachment digest!");
+    if (integrityCheck == null) throw new InvalidMessageException("No integrity check!");
     if (pointer.getKey() == null) throw new InvalidMessageException("No key!");
 
     socket.retrieveAttachment(pointer.getCdnNumber(), Collections.emptyMap(), pointer.getRemoteId(), destination, maxSizeBytes, listener);
@@ -112,7 +114,7 @@ public class SignalServiceMessageReceiver {
       destination,
       pointer.getSize().orElse(0),
       pointer.getKey(),
-      pointer.getDigest().get(),
+      integrityCheck,
       null,
       0
     );
@@ -126,7 +128,6 @@ public class SignalServiceMessageReceiver {
    * @param readCredentialHeaders Headers to pass to the backup CDN to authorize the download
    * @param archiveDestination The download destination for archived attachment. If this file exists, download will resume.
    * @param pointer The {@link SignalServiceAttachmentPointer} received in a {@link SignalServiceDataMessage}.
-   * @param attachmentDestination The download destination for this attachment. If this file exists, it is assumed that this is previously-downloaded content that can be resumed.
    * @param listener An optional listener (may be null) to receive callbacks on download progress.
    *
    * @return An InputStream that streams the plaintext attachment contents.
@@ -136,7 +137,6 @@ public class SignalServiceMessageReceiver {
                                                 @Nonnull Map<String, String> readCredentialHeaders,
                                                 @Nonnull File archiveDestination,
                                                 @Nonnull SignalServiceAttachmentPointer pointer,
-                                                @Nonnull File attachmentDestination,
                                                 long maxSizeBytes,
                                                 @Nullable ProgressListener listener)
       throws IOException, InvalidMessageException, MissingConfigurationException
@@ -154,7 +154,7 @@ public class SignalServiceMessageReceiver {
 
     return AttachmentCipherInputStream.createForArchivedMedia(
         archivedMediaKeyMaterial,
-        attachmentDestination,
+        archiveDestination,
         originalCipherLength,
         pointer.getSize().orElse(0),
         pointer.getKey(),
@@ -171,7 +171,6 @@ public class SignalServiceMessageReceiver {
    * @param readCredentialHeaders Headers to pass to the backup CDN to authorize the download
    * @param archiveDestination The download destination for archived attachment. If this file exists, download will resume.
    * @param pointer The {@link SignalServiceAttachmentPointer} received in a {@link SignalServiceDataMessage}.
-   * @param attachmentDestination The download destination for this attachment. If this file exists, it is assumed that this is previously-downloaded content that can be resumed.
    * @param listener An optional listener (may be null) to receive callbacks on download progress.
    *
    * @return An InputStream that streams the plaintext attachment contents.
@@ -180,7 +179,6 @@ public class SignalServiceMessageReceiver {
                                                @Nonnull Map<String, String> readCredentialHeaders,
                                                @Nonnull File archiveDestination,
                                                @Nonnull SignalServiceAttachmentPointer pointer,
-                                               @Nonnull File attachmentDestination,
                                                long maxSizeBytes,
                                                @Nullable ProgressListener listener)
       throws IOException, InvalidMessageException, MissingConfigurationException
@@ -198,7 +196,7 @@ public class SignalServiceMessageReceiver {
 
     return AttachmentCipherInputStream.createForArchivedThumbnail(
         archivedMediaKeyMaterial,
-        attachmentDestination,
+        archiveDestination,
         originalCipherLength,
         pointer.getSize().orElse(0),
         pointer.getKey()

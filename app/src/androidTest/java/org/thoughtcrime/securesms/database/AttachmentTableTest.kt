@@ -8,7 +8,6 @@ import androidx.test.platform.app.InstrumentationRegistry
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotEqualTo
-import org.junit.Assert.assertArrayEquals
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotEquals
 import org.junit.Before
@@ -17,7 +16,6 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.copyTo
-import org.signal.core.util.readFully
 import org.signal.core.util.stream.NullOutputStream
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
@@ -27,13 +25,10 @@ import org.thoughtcrime.securesms.mms.MediaStream
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream
 import org.whispersystems.signalservice.api.crypto.NoCipherOutputStream
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
-import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.Optional
@@ -180,32 +175,6 @@ class AttachmentTableTest {
     assertThat(secondHighInfo.file).isEqualTo(highInfo.file)
     assertThat(standardInfo.file.exists()).isEqualTo(true)
     assertThat(highInfo.file.exists()).isEqualTo(true)
-  }
-
-  @Test
-  fun finalizeAttachmentAfterDownload_leaveDigestAloneForAllZeroPadding() {
-    // Insert attachment metadata for properly-padded attachment
-    val plaintext = byteArrayOf(1, 2, 3, 4)
-    val key = Util.getSecretBytes(64)
-    val iv = Util.getSecretBytes(16)
-
-    val paddedPlaintext = PaddingInputStream(plaintext.inputStream(), plaintext.size.toLong()).readFully()
-    val ciphertext = encryptPrePaddedBytes(paddedPlaintext, key, iv)
-    val digest = getDigest(ciphertext)
-
-    val cipherFile = getTempFile()
-    cipherFile.writeBytes(ciphertext)
-
-    val mmsId = -1L
-    val attachmentId = SignalDatabase.attachments.insertAttachmentsForMessage(mmsId, listOf(createAttachmentPointer(key, digest, plaintext.size)), emptyList()).values.first()
-
-    // Give data to attachment table
-    val cipherInputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintext.size.toLong(), key, digest, null, 4)
-    SignalDatabase.attachments.finalizeAttachmentAfterDownload(mmsId, attachmentId, cipherInputStream)
-
-    // Verify the digest hasn't changed
-    val newDigest = SignalDatabase.attachments.getAttachment(attachmentId)!!.remoteDigest!!
-    assertArrayEquals(digest, newDigest)
   }
 
   @Test

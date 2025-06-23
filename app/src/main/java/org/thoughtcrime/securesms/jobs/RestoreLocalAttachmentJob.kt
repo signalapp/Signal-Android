@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MmsException
 import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.StreamSupplier
 import java.io.IOException
 
@@ -154,7 +155,10 @@ class RestoreLocalAttachmentJob private constructor(
         streamLength = size,
         plaintextLength = attachment.size,
         combinedKeyMaterial = combinedKey,
-        digest = attachment.remoteDigest,
+        integrityCheck = IntegrityCheck.forEncryptedDigestAndPlaintextHash(
+          encryptedDigest = attachment.remoteDigest,
+          plaintextHash = attachment.dataHash
+        ),
         incrementalDigest = null,
         incrementalMacChunkSize = 0
       ).use { input ->

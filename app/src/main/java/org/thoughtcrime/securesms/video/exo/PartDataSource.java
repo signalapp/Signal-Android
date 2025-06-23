@@ -23,6 +23,7 @@ import org.signal.core.util.Base64;
 import org.whispersystems.signalservice.api.backup.MediaName;
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.signal.core.util.stream.TailerInputStream;
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream;
@@ -100,11 +101,13 @@ class PartDataSource implements DataSource {
           long                                       streamLength   = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size));
           AttachmentCipherInputStream.StreamSupplier streamSupplier = () -> new TailerInputStream(() -> new FileInputStream(transferFile), streamLength);
 
-          if (attachment.remoteDigest == null) {
+          if (attachment.remoteDigest == null && attachment.dataHash == null) {
             throw new InvalidMessageException("Missing digest!");
           }
 
-          this.inputStream = AttachmentCipherInputStream.createForAttachment(streamSupplier, streamLength, attachment.size, decodedKey, attachment.remoteDigest, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
+          IntegrityCheck integrityCheck = IntegrityCheck.forEncryptedDigestAndPlaintextHash(attachment.remoteDigest, attachment.dataHash);
+
+          this.inputStream = AttachmentCipherInputStream.createForAttachment(streamSupplier, streamLength, attachment.size, decodedKey, integrityCheck, attachment.getIncrementalDigest(), attachment.incrementalMacChunkSize);
         } catch (InvalidMessageException e) {
           throw new IOException("Error decrypting attachment stream!", e);
         }

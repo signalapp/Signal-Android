@@ -85,8 +85,8 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.success()
     }
 
-    if (attachment.remoteDigest == null) {
-      Log.w(TAG, "$attachmentId was never uploaded! Cannot proceed.")
+    if (attachment.remoteDigest == null && attachment.dataHash == null) {
+      Log.w(TAG, "$attachmentId has no integrity check! Cannot proceed.")
       return Result.success()
     }
 
@@ -153,7 +153,7 @@ class ArchiveThumbnailUploadJob private constructor(
           data = thumbnailResult.data
         )
 
-        Log.d(TAG, "Successfully archived thumbnail for $attachmentId mediaName=${attachment.requireThumbnailMediaName()}")
+        Log.d(TAG, "Successfully archived thumbnail for $attachmentId")
         Result.success()
       }
 

@@ -120,7 +120,6 @@ class RestoreAttachmentThumbnailJob private constructor(
 
     val maxThumbnailSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val thumbnailTransferFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
-    val thumbnailFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
 
     val progressListener = object : SignalServiceAttachment.ProgressListener {
       override fun onAttachmentProgress(progress: AttachmentTransferProgress) = Unit
@@ -137,7 +136,6 @@ class RestoreAttachmentThumbnailJob private constructor(
         cdnCredentials,
         thumbnailTransferFile,
         pointer,
-        thumbnailFile,
         maxThumbnailSize,
         progressListener
       )

@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.AttachmentUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -277,12 +278,18 @@ class AttachmentDownloadJob private constructor(
         }
       }
 
+      if (attachment.remoteDigest == null && attachment.dataHash == null) {
+        Log.w(TAG, "Attachment has no integrity check!")
+        throw InvalidAttachmentException("Attachment has no integrity check!")
+      }
+
       val decryptingStream = AppDependencies
         .signalServiceMessageReceiver
         .retrieveAttachment(
           pointer,
           attachmentFile,
           maxReceiveSize,
+          IntegrityCheck.forEncryptedDigestAndPlaintextHash(attachment.remoteDigest, attachment.dataHash),
           progressListener
         )
 

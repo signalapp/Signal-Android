@@ -292,11 +292,6 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     }
   }
 
-  fun onBackupTierSelected(backupTier: MessageBackupTier?) {
-    SignalStore.backup.backupTier = backupTier
-    _state.value = _state.value.copy(backupTier = backupTier)
-  }
-
   fun onImportSelected() {
     _state.value = _state.value.copy(dialog = DialogState.ImportCredentials)
   }
@@ -396,6 +391,10 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     }
 
     return@withContext false
+  }
+
+  suspend fun clearLocalMediaBackupState() = withContext(Dispatchers.IO) {
+    SignalDatabase.attachments.clearAllArchiveData()
   }
 
   override fun onCleared() {
