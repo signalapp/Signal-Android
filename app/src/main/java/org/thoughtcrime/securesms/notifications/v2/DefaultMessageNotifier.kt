@@ -178,22 +178,6 @@ class DefaultMessageNotifier(context: Application) : MessageNotifier {
       return
     }
 
-    val displayedNotifications: Set<Int>? = ServiceUtil.getNotificationManager(context).getDisplayedNotificationIds().getOrNull()
-    if (displayedNotifications != null) {
-      val cleanedUpThreads: MutableSet<ConversationId> = mutableSetOf()
-      state.conversations.filterNot { it.hasNewNotifications() || displayedNotifications.contains(it.notificationId) }
-        .forEach { conversation ->
-          cleanedUpThreads += conversation.thread
-          conversation.notificationItems.forEach { item ->
-            SignalDatabase.messages.markAsNotified(item.id)
-          }
-        }
-      if (cleanedUpThreads.isNotEmpty()) {
-        Log.i(TAG, "Cleaned up ${cleanedUpThreads.size} thread(s) with dangling notifications")
-        state = state.copy(conversations = state.conversations.filterNot { cleanedUpThreads.contains(it.thread) })
-      }
-    }
-
     val retainStickyThreadIds: Set<ConversationId> = state.getThreadsWithMostRecentNotificationFromSelf()
     stickyThreads.keys.retainAll { retainStickyThreadIds.contains(it) }
 
