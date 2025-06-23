@@ -6,6 +6,7 @@ import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteException
 import android.text.TextUtils
+import androidx.sqlite.db.SupportSQLiteDatabase
 import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.intellij.lang.annotations.Language
 import org.signal.core.util.SqlUtil
@@ -270,7 +271,7 @@ class SearchTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
    * Drops all tables and recreates them.
    */
   @JvmOverloads
-  fun fullyResetTables(db: SQLiteDatabase = writableDatabase.sqlCipherDatabase, useTransaction: Boolean = true) {
+  fun fullyResetTables(db: SupportSQLiteDatabase = writableDatabase.sqlCipherDatabase, useTransaction: Boolean = true) {
     if (useTransaction) {
       db.beginTransaction()
     }

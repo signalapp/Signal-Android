@@ -10,7 +10,6 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.conversation.colors.ChatColors;
 import org.thoughtcrime.securesms.conversation.v2.ConversationActivity;
@@ -34,7 +33,7 @@ import io.reactivex.rxjava3.core.Single;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class ConversationIntents {
-  private static final String TAG = Log.tag(ConversationIntents.class);
+  public static final String ACTION = "ConversationIntents.ViewConversation";
 
   private static final String BUBBLE_AUTHORITY                       = "bubble";
   private static final String NOTIFICATION_CUSTOM_SCHEME             = "custom";
@@ -127,6 +126,10 @@ public class ConversationIntents {
 
   static boolean isNotificationIntentUri(@Nullable Uri uri) {
     return uri != null && Objects.equals(uri.getScheme(), NOTIFICATION_CUSTOM_SCHEME);
+  }
+
+  public static boolean isConversationIntent(@NonNull Intent intent) {
+    return ACTION.equals(intent.getAction());
   }
 
   public final static class Args {
@@ -394,8 +397,7 @@ public class ConversationIntents {
       }
 
       Intent intent = new Intent(context, conversationActivityClass);
-
-      intent.setAction(Intent.ACTION_DEFAULT);
+      intent.setAction(ConversationIntents.ACTION);
 
       if (conversationScreenType.isInBubble()) {
         intent.setData(new Uri.Builder().authority(BUBBLE_AUTHORITY)

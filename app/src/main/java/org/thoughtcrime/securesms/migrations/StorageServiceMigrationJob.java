@@ -54,12 +54,12 @@ public class StorageServiceMigrationJob extends MigrationJob {
 
     if (SignalStore.account().hasLinkedDevices()) {
       Log.i(TAG, "Multi-device.");
-      jobManager.startChain(new StorageSyncJob())
+      jobManager.startChain(StorageSyncJob.forLocalChange())
                 .then(new MultiDeviceKeysUpdateJob())
                 .enqueue();
     } else {
       Log.i(TAG, "Single-device.");
-      jobManager.add(new StorageSyncJob());
+      jobManager.add(StorageSyncJob.forLocalChange());
     }
   }
 

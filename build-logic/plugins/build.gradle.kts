@@ -18,6 +18,9 @@ kotlin {
   jvmToolchain {
     languageVersion.set(JavaLanguageVersion.of(signalKotlinJvmTarget))
   }
+  compilerOptions {
+    suppressWarnings = true
+  }
 }
 
 dependencies {

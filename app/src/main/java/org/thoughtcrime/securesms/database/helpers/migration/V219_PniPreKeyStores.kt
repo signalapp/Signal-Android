@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Changes our PNI prekey stores to use a constant indicating it's for a PNI rather than the specific PNI.

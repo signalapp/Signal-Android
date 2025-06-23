@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:title="@string/GiftFlowRecipientSelectionFragment__choose_recipient"
-        app:navigationIcon="@drawable/ic_arrow_left_24" />
+        app:navigationIcon="@drawable/symbol_arrow_start_24" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/multiselect_container"

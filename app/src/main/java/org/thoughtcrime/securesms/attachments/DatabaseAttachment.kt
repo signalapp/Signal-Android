@@ -14,6 +14,10 @@ import java.util.UUID
 
 class DatabaseAttachment : Attachment {
 
+  companion object {
+    private const val NO_ARCHIVE_CDN = -404
+  }
+
   @JvmField
   val attachmentId: AttachmentId
 
@@ -27,13 +31,7 @@ class DatabaseAttachment : Attachment {
   val dataHash: String?
 
   @JvmField
-  val archiveCdn: Int
-
-  @JvmField
-  val archiveMediaName: String?
-
-  @JvmField
-  val archiveMediaId: String?
+  val archiveCdn: Int?
 
   @JvmField
   val thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState
@@ -41,7 +39,6 @@ class DatabaseAttachment : Attachment {
   @JvmField
   val archiveTransferState: AttachmentTable.ArchiveTransferState
 
-  private val hasArchiveThumbnail: Boolean
   private val hasThumbnail: Boolean
   val displayOrder: Int
 
@@ -50,7 +47,6 @@ class DatabaseAttachment : Attachment {
     mmsId: Long,
     hasData: Boolean,
     hasThumbnail: Boolean,
-    hasArchiveThumbnail: Boolean,
     contentType: String?,
     transferProgress: Int,
     size: Long,
@@ -77,9 +73,7 @@ class DatabaseAttachment : Attachment {
     displayOrder: Int,
     uploadTimestamp: Long,
     dataHash: String?,
-    archiveCdn: Int,
-    archiveMediaName: String?,
-    archiveMediaId: String?,
+    archiveCdn: Int?,
     thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState,
     archiveTransferState: AttachmentTable.ArchiveTransferState,
     uuid: UUID?
@@ -114,11 +108,8 @@ class DatabaseAttachment : Attachment {
     this.hasData = hasData
     this.dataHash = dataHash
     this.hasThumbnail = hasThumbnail
-    this.hasArchiveThumbnail = hasArchiveThumbnail
     this.displayOrder = displayOrder
     this.archiveCdn = archiveCdn
-    this.archiveMediaName = archiveMediaName
-    this.archiveMediaId = archiveMediaId
     this.thumbnailRestoreState = thumbnailRestoreState
     this.archiveTransferState = archiveTransferState
   }
@@ -130,10 +121,7 @@ class DatabaseAttachment : Attachment {
     hasThumbnail = ParcelUtil.readBoolean(parcel)
     mmsId = parcel.readLong()
     displayOrder = parcel.readInt()
-    archiveCdn = parcel.readInt()
-    archiveMediaName = parcel.readString()
-    archiveMediaId = parcel.readString()
-    hasArchiveThumbnail = ParcelUtil.readBoolean(parcel)
+    archiveCdn = parcel.readInt().takeIf { it != NO_ARCHIVE_CDN }
     thumbnailRestoreState = AttachmentTable.ThumbnailRestoreState.deserialize(parcel.readInt())
     archiveTransferState = AttachmentTable.ArchiveTransferState.deserialize(parcel.readInt())
   }
@@ -146,10 +134,7 @@ class DatabaseAttachment : Attachment {
     ParcelUtil.writeBoolean(dest, hasThumbnail)
     dest.writeLong(mmsId)
     dest.writeInt(displayOrder)
-    dest.writeInt(archiveCdn)
-    dest.writeString(archiveMediaName)
-    dest.writeString(archiveMediaId)
-    ParcelUtil.writeBoolean(dest, hasArchiveThumbnail)
+    dest.writeInt(archiveCdn ?: NO_ARCHIVE_CDN)
     dest.writeInt(thumbnailRestoreState.value)
     dest.writeInt(archiveTransferState.value)
   }
@@ -169,7 +154,7 @@ class DatabaseAttachment : Attachment {
     }
 
   override val thumbnailUri: Uri?
-    get() = if (hasArchiveThumbnail) {
+    get() = if (thumbnailRestoreState == AttachmentTable.ThumbnailRestoreState.FINISHED) {
       PartAuthority.getAttachmentThumbnailUri(attachmentId)
     } else {
       null

@@ -3,7 +3,7 @@ package org.signal.donations
 import com.google.android.gms.wallet.PaymentData
 import org.json.JSONObject
 
-class GooglePayPaymentSource(private val paymentData: PaymentData) : StripeApi.PaymentSource {
+class GooglePayPaymentSource(private val paymentData: PaymentData) : PaymentSource {
   override val type = PaymentSourceType.Stripe.GooglePay
 
   override fun parameterize(): JSONObject {

@@ -230,7 +230,6 @@ public abstract class WebRtcActionProcessor {
                                                       messageAgeSec,
                                                       WebRtcUtil.getCallMediaTypeFromOfferType(offerMetadata.getOfferType()),
                                                       SignalStore.account().getDeviceId(),
-                                                      SignalStore.account().isPrimaryDevice(),
                                                       remoteIdentityKey,
                                                       localIdentityKey);
     } catch (CallException | InvalidKeyException e) {
@@ -570,6 +569,11 @@ public abstract class WebRtcActionProcessor {
     return currentState;
   }
 
+  public @NonNull WebRtcServiceState handleCameraSwitchFailure(@NonNull WebRtcServiceState currentState, @NonNull CameraState newCameraState) {
+    Log.i(tag, "handleCameraSwitchFailure not processed");
+    return currentState;
+  }
+
   public @NonNull WebRtcServiceState handleNetworkChanged(@NonNull WebRtcServiceState currentState, boolean available) {
     Log.i(tag, "handleNetworkChanged not processed");
     return currentState;
@@ -628,6 +632,18 @@ public abstract class WebRtcActionProcessor {
                        .setOrientation(Orientation.fromDegrees(stateRotationDegrees))
                        .setLandscapeEnabled(isLandscapeEnabled)
                        .setDeviceOrientation(Orientation.fromDegrees(orientationDegrees))
+                       .build();
+  }
+
+  protected @NonNull WebRtcServiceState handleSetCameraDirection(@NonNull WebRtcServiceState currentState, CameraState state) {
+    BroadcastVideoSink sink = currentState.getVideoState().getLocalSink();
+    if (sink != null) {
+      sink.setRotateToRightSide(state.getActiveDirection() == CameraState.Direction.BACK);
+    }
+
+    return currentState.builder()
+                       .changeLocalDeviceState()
+                       .cameraState(state)
                        .build();
   }
 
@@ -784,6 +800,21 @@ public abstract class WebRtcActionProcessor {
 
   protected @NonNull WebRtcServiceState handleGroupCallEnded(@NonNull WebRtcServiceState currentState, int groupCallHash, @NonNull GroupCall.GroupCallEndReason groupCallEndReason) {
     Log.i(tag, "handleGroupCallEnded not processed");
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleRemoteMuteRequest(@NonNull WebRtcServiceState currentState, long sourceDemuxId) {
+    Log.i(tag, "handleRemoteMuteRequest not processed");
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleObservedRemoteMute(@NonNull WebRtcServiceState currentState, long sourceDemuxId, long targetDemuxId) {
+    Log.i(tag, "handleObservedRemoteMute not processed");
+    return currentState;
+  }
+
+  protected @NonNull WebRtcServiceState handleGroupCallSpeechEvent(@NonNull WebRtcServiceState currentState, @NonNull GroupCall.SpeechEvent speechEvent) {
+    Log.i(tag, "handleGroupCallSpeechEvent not processed");
     return currentState;
   }
 

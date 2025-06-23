@@ -5,9 +5,6 @@
 
 package org.signal.core.util.billing
 
-import kotlin.time.Duration.Companion.days
-import kotlin.time.Duration.Companion.milliseconds
-
 /**
  * Sealed class hierarchy representing the different success
  * and error states of google play billing purchases.
@@ -21,15 +18,16 @@ sealed interface BillingPurchaseResult {
     val isAutoRenewing: Boolean
   ) : BillingPurchaseResult {
 
-    /**
-     * @return true if purchaseTime is within the last month.
-     */
-    fun isWithinTheLastMonth(): Boolean {
-      val now = System.currentTimeMillis().milliseconds
-      val oneMonthAgo = now - 31.days
-      val purchaseTime = this.purchaseTime.milliseconds
-
-      return oneMonthAgo >= purchaseTime
+    override fun toString(): String {
+      return """
+        BillingPurchaseResult {
+          purchaseState: $purchaseState
+          purchaseToken: <redacted>
+          purchaseTime: $purchaseTime
+          isAcknowledged: $isAcknowledged
+          isAutoRenewing: $isAutoRenewing
+        }
+      """.trimIndent()
     }
   }
   data object UserCancelled : BillingPurchaseResult

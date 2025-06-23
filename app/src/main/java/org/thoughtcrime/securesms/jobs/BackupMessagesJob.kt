@@ -10,8 +10,8 @@ import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
+import org.thoughtcrime.securesms.backup.v2.ArchiveMediaItemIterator
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
-import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObjectIterator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ResumableMessagesBackupUploadSpec
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -22,7 +22,11 @@ import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
 import org.thoughtcrime.securesms.jobs.protos.BackupMessagesJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.providers.BlobProvider
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
 import java.io.File
 import java.io.FileInputStream
@@ -47,18 +51,10 @@ class BackupMessagesJob private constructor(
 
     const val KEY = "BackupMessagesJob"
 
-    /**
-     * Pruning abandoned remote media is relatively expensive, so we should
-     * not do this every time we backup.
-     */
-    fun enqueue(pruneAbandonedRemoteMedia: Boolean = false) {
+    fun enqueue() {
       val jobManager = AppDependencies.jobManager
 
       val chain = jobManager.startChain(BackupMessagesJob())
-
-      if (pruneAbandonedRemoteMedia) {
-        chain.then(SyncArchivedMediaJob())
-      }
 
       if (SignalStore.backup.optimizeStorage && SignalStore.backup.backsUpMedia) {
         chain.then(OptimizeMediaJob())
@@ -89,6 +85,10 @@ class BackupMessagesJob private constructor(
 
   override fun getFactoryKey(): String = KEY
 
+  override fun onAdded() {
+    ArchiveUploadProgress.begin()
+  }
+
   override fun onFailure() {
     if (!isCanceled) {
       Log.w(TAG, "Failed to backup user messages. Marking failure state.")
@@ -103,11 +103,17 @@ class BackupMessagesJob private constructor(
     SignalDatabase.attachments.createKeyIvDigestForAttachmentsThatNeedArchiveUpload().takeIf { it > 0 }?.let { count -> Log.w(TAG, "Needed to create $count key/iv/digests.") }
     stopwatch.split("key-iv-digest")
 
+    if (isCanceled) {
+      return Result.failure()
+    }
+
     val (tempBackupFile, currentTime) = when (val generateBackupFileResult = getOrCreateBackupFile(stopwatch)) {
       is BackupFileResult.Success -> generateBackupFileResult
       BackupFileResult.Failure -> return Result.failure()
       BackupFileResult.Retry -> return Result.retry(defaultBackoff())
     }
+
+    ArchiveUploadProgress.onMessageBackupCreated(tempBackupFile.length())
 
     this.syncTime = currentTime
     this.dataFile = tempBackupFile.path
@@ -134,16 +140,33 @@ class BackupMessagesJob private constructor(
       is NetworkResult.ApplicationError -> throw result.throwable
     }
 
+    val progressListener = object : SignalServiceAttachment.ProgressListener {
+      override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
+        ArchiveUploadProgress.onMessageBackupUploadProgress(progress)
+      }
+
+      override fun shouldCancel(): Boolean = isCanceled
+    }
+
     FileInputStream(tempBackupFile).use {
-      when (val result = BackupRepository.uploadBackupFile(backupSpec, it, tempBackupFile.length(), ArchiveUploadProgress.ArchiveUploadProgressListener { isCanceled })) {
+      when (val result = BackupRepository.uploadBackupFile(backupSpec, it, tempBackupFile.length(), progressListener)) {
         is NetworkResult.Success -> {
           Log.i(TAG, "Successfully uploaded backup file.")
+          if (!SignalStore.backup.hasBackupBeenUploaded) {
+            Log.i(TAG, "First time making a backup - scheduling a storage sync.")
+            SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+            StorageSyncHelper.scheduleSyncForDataChange()
+          }
           SignalStore.backup.hasBackupBeenUploaded = true
         }
 
         is NetworkResult.NetworkError -> {
           Log.i(TAG, "Network failure", result.getCause())
-          return Result.retry(defaultBackoff())
+          return if (isCanceled) {
+            Result.failure()
+          } else {
+            Result.retry(defaultBackoff())
+          }
         }
 
         is NetworkResult.StatusCodeError -> {
@@ -162,18 +185,12 @@ class BackupMessagesJob private constructor(
     }
 
     SignalStore.backup.lastBackupTime = System.currentTimeMillis()
-    SignalStore.backup.usedBackupMediaSpace = when (val result = BackupRepository.getRemoteBackupUsedSpace()) {
-      is NetworkResult.Success -> result.result ?: 0
-      is NetworkResult.NetworkError -> SignalStore.backup.usedBackupMediaSpace // TODO [backup] enqueue a secondary job to fetch the latest number -- no need to fail this one
-      is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "Failed to get used space: ${result.code}")
-        SignalStore.backup.usedBackupMediaSpace
-      }
-
-      is NetworkResult.ApplicationError -> throw result.throwable
-    }
-    stopwatch.split("used-space")
+    stopwatch.split("save-meta")
     stopwatch.stop(TAG)
+
+    if (isCanceled) {
+      return Result.failure()
+    }
 
     if (SignalStore.backup.backsUpMedia && SignalDatabase.attachments.doAnyAttachmentsNeedArchiveUpload()) {
       Log.i(TAG, "Enqueuing attachment backfill job.")
@@ -185,7 +202,10 @@ class BackupMessagesJob private constructor(
 
     SignalStore.backup.clearMessageBackupFailure()
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
-    BackupMediaSnapshotSyncJob.enqueue(currentTime)
+
+    AppDependencies.jobManager.add(ArchiveCommitAttachmentDeletesJob())
+    AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob())
+
     return Result.success()
   }
 
@@ -204,7 +224,6 @@ class BackupMessagesJob private constructor(
 
     BlobProvider.getInstance().clearTemporaryBackupsDirectory(AppDependencies.application)
 
-    ArchiveUploadProgress.begin()
     val tempBackupFile = BlobProvider.getInstance().forTemporaryBackup(AppDependencies.application)
 
     val outputStream = FileOutputStream(tempBackupFile)
@@ -212,6 +231,10 @@ class BackupMessagesJob private constructor(
     val currentTime = System.currentTimeMillis()
     BackupRepository.export(outputStream = outputStream, messageBackupKey = backupKey, progressEmitter = ArchiveUploadProgress.ArchiveBackupProgressListener, append = { tempBackupFile.appendBytes(it) }, plaintext = false, cancellationSignal = { this.isCanceled }, currentTime = currentTime) {
       writeMediaCursorToTemporaryTable(it, currentTime = currentTime, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
+    }
+
+    if (isCanceled) {
+      return BackupFileResult.Failure
     }
 
     stopwatch.split("export")
@@ -244,8 +267,6 @@ class BackupMessagesJob private constructor(
       return BackupFileResult.Failure
     }
 
-    ArchiveUploadProgress.onMessageBackupCreated()
-
     return BackupFileResult.Success(tempBackupFile, currentTime)
   }
 
@@ -260,10 +281,9 @@ class BackupMessagesJob private constructor(
 
   private fun writeMediaCursorToTemporaryTable(db: SignalDatabase, mediaBackupEnabled: Boolean, currentTime: Long) {
     if (mediaBackupEnabled) {
-      db.attachmentTable.getMediaIdCursor().use {
+      db.attachmentTable.getAttachmentsEligibleForArchiveUpload().use {
         SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(
-          mediaObjects = ArchivedMediaObjectIterator(it).asSequence(),
-          pendingSyncTime = currentTime
+          mediaObjects = ArchiveMediaItemIterator(it).asSequence()
         )
       }
     }

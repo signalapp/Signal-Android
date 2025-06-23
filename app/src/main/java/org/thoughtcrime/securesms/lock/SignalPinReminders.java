@@ -40,6 +40,14 @@ public class SignalPinReminders {
     put(FOUR_WEEKS, R.string.SignalPinReminders_well_remind_you_again_in_a_month);
   }};
 
+  private static final Map<Long, Integer> SKIP_STRINGS = new HashMap<Long, Integer>() {{
+    put(ONE_DAY, R.string.SignalPinReminders__well_remind_you_again_tomorrow);
+    put(THREE_DAYS, R.string.SignalPinReminders__well_remind_you_again_in_a_few_days);
+    put(ONE_WEEK, R.string.SignalPinReminders__well_remind_you_again_in_a_week);
+    put(TWO_WEEKS, R.string.SignalPinReminders__well_remind_you_again_in_a_couple_weeks);
+    put(FOUR_WEEKS, R.string.SignalPinReminders__well_remind_you_again_in_a_month);
+  }};
+
   public static final long INITIAL_INTERVAL = INTERVALS.first();
 
   public static long getNextInterval(long currentInterval) {
@@ -60,6 +68,17 @@ public class SignalPinReminders {
     } else {
       Log.w(TAG, "Couldn't find a string for interval " + interval);
       return R.string.SignalPinReminders_well_remind_you_again_later;
+    }
+  }
+
+  public static @StringRes int getSkipReminderString(long interval) {
+    Integer stringRes = SKIP_STRINGS.get(interval);
+
+    if (stringRes != null) {
+      return stringRes;
+    } else {
+      Log.w(TAG, "Couldn't find a string for interval " + interval);
+      return R.string.SignalPinReminders__well_remind_you_again_later;
     }
   }
 }

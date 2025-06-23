@@ -217,7 +217,7 @@ object RegistrationRepository {
       SvrRepository.onRegistrationComplete(masterKey, data.pin, hasPin, data.reglockEnabled)
 
       AppDependencies.resetNetwork()
-      AppDependencies.incomingMessageObserver
+      AppDependencies.startNetwork()
       PreKeysSyncJob.enqueue()
 
       val jobManager = AppDependencies.jobManager

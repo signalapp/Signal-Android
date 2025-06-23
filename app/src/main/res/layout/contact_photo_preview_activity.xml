@@ -7,13 +7,12 @@
     android:layout_height="match_parent"
     android:background="@color/core_grey_95">
 
-    <ImageView
+    <com.github.chrisbanes.photoview.PhotoView
         android:id="@+id/avatar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center_vertical"
         android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
         android:transitionName="avatar"
         tools:src="@tools:sample/avatars" />
 

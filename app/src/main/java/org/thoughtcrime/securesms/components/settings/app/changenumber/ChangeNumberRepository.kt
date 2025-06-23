@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.keyvalue.CertificateType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.pin.SvrRepository
 import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -45,11 +46,11 @@ import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
 import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
+import org.whispersystems.signalservice.internal.push.MismatchedDevices
 import org.whispersystems.signalservice.internal.push.OutgoingPushMessage
 import org.whispersystems.signalservice.internal.push.SyncMessage
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import org.whispersystems.signalservice.internal.push.WhoAmIResponse
-import org.whispersystems.signalservice.internal.push.exceptions.MismatchedDevicesException
 import java.io.IOException
 import java.security.MessageDigest
 import java.security.SecureRandom
@@ -160,7 +161,7 @@ class ChangeNumberRepository(
       pniMetadataStore.activeSignedPreKeyId = signedPreKey.id
       Log.i(TAG, "Submitting prekeys with PNI identity key: ${pniIdentityKeyPair.publicKey.fingerprint}")
 
-      accountManager.setPreKeys(
+      SignalNetwork.keys.setPreKeys(
         PreKeyUpload(
           serviceIdType = ServiceIdType.PNI,
           signedPreKey = signedPreKey,
@@ -168,7 +169,7 @@ class ChangeNumberRepository(
           lastResortKyberPreKey = lastResortKyberPreKey,
           oneTimeKyberPreKeys = oneTimeKyberPreKeys
         )
-      )
+      ).successOrThrow()
       pniMetadataStore.isSignedPreKeyRegistered = true
       pniMetadataStore.lastResortKyberPreKeyId = pniLastResortKyberPreKeyId
 
@@ -190,7 +191,7 @@ class ChangeNumberRepository(
     StorageSyncHelper.scheduleSyncForDataChange()
 
     AppDependencies.resetNetwork()
-    AppDependencies.incomingMessageObserver
+    AppDependencies.startNetwork()
 
     AppDependencies.jobManager.add(RefreshAttributesJob())
 
@@ -205,8 +206,8 @@ class ChangeNumberRepository(
 
     for (certificateType in certificateTypes) {
       val certificate: ByteArray? = when (certificateType) {
-        CertificateType.ACI_AND_E164 -> accountManager.senderCertificate
-        CertificateType.ACI_ONLY -> accountManager.senderCertificateForPhoneNumberPrivacy
+        CertificateType.ACI_AND_E164 -> SignalNetwork.certificate.getSenderCertificate().successOrThrow()
+        CertificateType.ACI_ONLY -> SignalNetwork.certificate.getSenderCertificateForPhoneNumberPrivacy().successOrThrow()
         else -> throw AssertionError()
       }
 
@@ -266,12 +267,14 @@ class ChangeNumberRepository(
 
       SignalStore.misc.setPendingChangeNumberMetadata(metadata)
       withContext(Dispatchers.IO) {
-        result = accountManager.registrationApi.changeNumber(request)
+        result = SignalNetwork.account.changeNumber(request)
       }
 
-      val possibleError = result.getCause() as? MismatchedDevicesException
-      if (possibleError != null) {
-        messageSender.handleChangeNumberMismatchDevices(possibleError.mismatchedDevices)
+      if (result is NetworkResult.StatusCodeError && result.code == 409) {
+        val mismatchedDevices: MismatchedDevices? = result.parseJsonBody()
+        if (mismatchedDevices != null) {
+          messageSender.handleChangeNumberMismatchDevices(mismatchedDevices)
+        }
         attempts++
       } else {
         completed = true

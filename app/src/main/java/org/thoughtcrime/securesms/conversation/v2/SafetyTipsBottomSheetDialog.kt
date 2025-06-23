@@ -45,9 +45,9 @@ import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import kotlinx.coroutines.launch
-import org.signal.core.ui.BottomSheets
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 
@@ -88,6 +88,7 @@ data class SafetyTipData(
 )
 
 private val tips = listOf(
+  SafetyTipData(heroImage = R.drawable.safety_tip0, titleText = R.string.SafetyTips_tip0_title, messageText = R.string.SafetyTips_tip0_message),
   SafetyTipData(heroImage = R.drawable.safety_tip1, titleText = R.string.SafetyTips_tip1_title, messageText = R.string.SafetyTips_tip1_message),
   SafetyTipData(heroImage = R.drawable.safety_tip2, titleText = R.string.SafetyTips_tip2_title, messageText = R.string.SafetyTips_tip2_message),
   SafetyTipData(heroImage = R.drawable.safety_tip3, titleText = R.string.SafetyTips_tip3_title, messageText = R.string.SafetyTips_tip3_message),

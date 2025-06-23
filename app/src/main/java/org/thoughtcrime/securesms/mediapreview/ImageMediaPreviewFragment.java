@@ -53,6 +53,7 @@ public final class ImageMediaPreviewFragment extends MediaPreviewFragment {
     zoomingImageView.setImageUri(requestManager, uri, contentType, () -> events.onMediaReady());
 
     zoomingImageView.setOnClickListener(v -> events.singleTapOnMedia());
+    zoomingImageView.setOnLongClickListener(v -> events.singleTapOnMedia());
 
     lifecycleDisposable.add(viewModel.getState().distinctUntilChanged().subscribe(state -> {
       zoomingImageView.setAlpha(state.isInSharedAnimation() ? 0f : 1f);

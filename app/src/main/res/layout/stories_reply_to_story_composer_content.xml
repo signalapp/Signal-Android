@@ -8,12 +8,11 @@
     android:background="@color/signal_colorSurface"
     android:paddingTop="10dp">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/emoji_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:orientation="horizontal">
+        app:layout_constraintTop_toTopOf="parent">
 
         <org.thoughtcrime.securesms.components.emoji.EmojiPageView
             android:id="@+id/reaction_emoji_view"
@@ -21,7 +20,11 @@
             android:layout_weight="1"
             android:requiresFadingEdge="horizontal"
             android:fadingEdgeLength="8dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/any_reaction" />
 
         <ImageView
             android:id="@+id/any_reaction"
@@ -30,10 +33,13 @@
             android:layout_marginStart="6dp"
             android:layout_marginEnd="16dp"
             android:layout_gravity="center_vertical"
+            android:contentDescription="@string/StoryViewerPageFragment_any_reaction_content_description"
             android:src="@drawable/ic_any_emoji_32"
-            />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/bubble"

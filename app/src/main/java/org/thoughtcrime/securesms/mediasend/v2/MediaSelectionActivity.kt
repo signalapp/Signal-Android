@@ -3,12 +3,12 @@ package org.thoughtcrime.securesms.mediasend.v2
 import android.animation.ValueAnimator
 import android.content.Context
 import android.content.Intent
-import android.content.pm.ActivityInfo
 import android.graphics.Color
 import android.os.Bundle
 import android.view.KeyEvent
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
@@ -17,15 +17,19 @@ import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.ContextCompat
 import androidx.core.view.updateLayoutParams
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
 import com.google.android.material.animation.ArgbEvaluatorCompat
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.BreakIteratorCompat
+import org.signal.core.util.OVERRIDE_TRANSITION_CLOSE_COMPAT
+import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableArrayListExtraCompat
 import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.logging.Log
+import org.signal.core.util.overrideActivityTransitionCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener
@@ -63,6 +67,8 @@ class MediaSelectionActivity :
 
   lateinit var viewModel: MediaSelectionViewModel
 
+  private val lifecycleDisposable = LifecycleDisposable()
+
   private val textViewModel: TextStoryPostCreationViewModel by viewModels(
     factoryProducer = {
       TextStoryPostCreationViewModel.Factory(TextStoryPostSendRepository())
@@ -90,10 +96,6 @@ class MediaSelectionActivity :
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
     setContentView(R.layout.media_selection_activity)
-
-    if (false) {
-      requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
-    }
 
     FullscreenHelper.showSystemUI(window)
     WindowUtil.setNavigationBarColor(this, 0x01000000)
@@ -175,7 +177,28 @@ class MediaSelectionActivity :
       }
     }
 
+    lifecycleDisposable.bindTo(this)
+    lifecycleDisposable += viewModel.mediaErrors
+      .observeOn(AndroidSchedulers.mainThread())
+      .subscribe(this::handleError)
+
     onBackPressedDispatcher.addCallback(OnBackPressed())
+  }
+
+  private fun handleError(error: MediaValidator.FilterError) {
+    when (error) {
+      MediaValidator.FilterError.None -> return
+      MediaValidator.FilterError.ItemTooLarge -> Toast.makeText(this, R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()
+      MediaValidator.FilterError.ItemInvalidType -> Toast.makeText(this, R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
+      MediaValidator.FilterError.TooManyItems -> Toast.makeText(this, R.string.MediaReviewFragment__too_many_items_selected, Toast.LENGTH_SHORT).show()
+      is MediaValidator.FilterError.NoItems -> {
+        if (error.cause != null) {
+          handleError(error.cause)
+        }
+      }
+    }
+
+    viewModel.clearMediaErrors()
   }
 
   private fun animateTextStyling(selectedSwitch: TextView, unselectedSwitch: TextView, duration: Long) {
@@ -252,7 +275,7 @@ class MediaSelectionActivity :
     )
 
     finish()
-    overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom)
+    overrideActivityTransitionCompat(OVERRIDE_TRANSITION_CLOSE_COMPAT, R.anim.stationary, R.anim.camera_slide_to_bottom)
   }
 
   override fun onSentWithoutResult() {
@@ -260,7 +283,7 @@ class MediaSelectionActivity :
     setResult(RESULT_OK, intent)
 
     finish()
-    overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom)
+    overrideActivityTransitionCompat(OVERRIDE_TRANSITION_CLOSE_COMPAT, R.anim.stationary, R.anim.camera_slide_to_bottom)
   }
 
   override fun onSendError(error: Throwable) {
@@ -276,7 +299,7 @@ class MediaSelectionActivity :
       Log.w(TAG, "Failed to send message.", error)
 
       finish()
-      overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom)
+      overrideActivityTransitionCompat(OVERRIDE_TRANSITION_CLOSE_COMPAT, R.anim.stationary, R.anim.camera_slide_to_bottom)
     }
   }
 
@@ -285,7 +308,7 @@ class MediaSelectionActivity :
 
     setResult(RESULT_CANCELED)
     finish()
-    overridePendingTransition(R.anim.stationary, R.anim.camera_slide_to_bottom)
+    overrideActivityTransitionCompat(OVERRIDE_TRANSITION_CLOSE_COMPAT, R.anim.stationary, R.anim.camera_slide_to_bottom)
   }
 
   override fun onPopFromReview() {
@@ -336,7 +359,7 @@ class MediaSelectionActivity :
 
   private inner class OnBackPressed : OnBackPressedCallback(true) {
     override fun handleOnBackPressed() {
-      val navController = Navigation.findNavController(this@MediaSelectionActivity, R.id.fragment_container)
+      val navController = this@MediaSelectionActivity.findNavController(R.id.fragment_container)
 
       if (shareToTextStory && navController.currentDestination?.id == R.id.textStoryPostCreationFragment) {
         finish()

@@ -9,6 +9,7 @@ import org.signal.libsignal.protocol.LegacyMessageException;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SessionCipher;
 import org.signal.libsignal.protocol.UntrustedIdentityException;
+import org.signal.libsignal.protocol.UsePqRatchet;
 import org.signal.libsignal.protocol.message.CiphertextMessage;
 import org.signal.libsignal.protocol.message.PreKeySignalMessage;
 import org.signal.libsignal.protocol.message.SignalMessage;
@@ -35,7 +36,7 @@ public class SignalSessionCipher {
 
   public byte[] decrypt(PreKeySignalMessage ciphertext) throws DuplicateMessageException, LegacyMessageException, InvalidMessageException, InvalidKeyIdException, InvalidKeyException, org.signal.libsignal.protocol.UntrustedIdentityException {
     try (SignalSessionLock.Lock unused = lock.acquire()) {
-      return cipher.decrypt(ciphertext);
+      return cipher.decrypt(ciphertext, UsePqRatchet.NO);
     }
   }
 

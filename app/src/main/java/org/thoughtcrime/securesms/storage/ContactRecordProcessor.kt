@@ -231,6 +231,7 @@ class ContactRecordProcessor(
       nickname = remote.proto.nickname
       pniSignatureVerified = remote.proto.pniSignatureVerified || local.proto.pniSignatureVerified
       note = remote.proto.note.nullIfBlank() ?: ""
+      avatarColor = local.proto.avatarColor
     }.build().toSignalContactRecord(StorageId.forContact(keyGenerator.generate()))
 
     val matchesRemote = doParamsMatch(remote, merged)

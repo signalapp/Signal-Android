@@ -2,87 +2,88 @@
   ~ Copyright 2023 Signal Messenger, LLC
   ~ SPDX-License-Identifier: AGPL-3.0-only
   -->
-
-<androidx.appcompat.widget.LinearLayoutCompat
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
-
-    <View
-        android:layout_width="48dp"
-        android:layout_height="2dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="16dp"
-        android:background="@color/signal_icon_tint_tab_unselected"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_debug_log"
-        android:layout_marginTop="32dp"
-        android:layout_gravity="center_horizontal"/>
-
-    <TextView
-        android:id="@+id/title"
-        style="@style/Signal.Text.TitleLarge"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:layout_marginTop="16dp"
-        android:text="@string/PromptLogsSlowNotificationsDialog__title"
-        />
-
-    <TextView
-        style="@style/Signal.Text.BodyMedium"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center"
-        android:layout_marginTop="12dp"
-        android:layout_marginHorizontal="24dp"
-        android:text="@string/PromptLogsSlowNotificationsDialog__message"
-        />
+    android:layout_height="wrap_content">
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:minWidth="320dp"
-        android:gravity="center_horizontal"
-        android:layout_marginHorizontal="34dp">
+        android:orientation="vertical">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/decline"
-            style="@style/Signal.Widget.Button.Medium.Tonal"
+        <View
+            android:layout_width="48dp"
+            android:layout_height="2dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="16dp"
+            android:background="@color/signal_icon_tint_tab_unselected" />
+
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            android:minWidth="160dp"
-            android:layout_weight="1"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
-            android:text="@string/DebugLogsPromptDialogFragment__no_thanks"/>
+            android:src="@drawable/ic_debug_log" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/submit"
-            style="@style/Signal.Widget.Button.Medium.Tonal"
+        <TextView
+            android:id="@+id/title"
+            style="@style/Signal.Text.TitleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="32dp"
-            android:layout_marginBottom="32dp"
-            android:minWidth="160dp"
-            android:layout_weight="1"
-            android:layout_marginStart="6dp"
-            android:layout_marginEnd="6dp"
-            android:text="@string/DebugLogsPromptDialogFragment__submit"/>
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="@string/PromptLogsSlowNotificationsDialog__title" />
+
+        <TextView
+            style="@style/Signal.Text.BodyMedium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="@string/PromptLogsSlowNotificationsDialog__message" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="34dp"
+            android:gravity="center_horizontal"
+            android:minWidth="320dp"
+            android:orientation="horizontal">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/decline"
+                style="@style/Signal.Widget.Button.Medium.Tonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="32dp"
+                android:layout_weight="1"
+                android:minWidth="160dp"
+                android:text="@string/DebugLogsPromptDialogFragment__no_thanks" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/submit"
+                style="@style/Signal.Widget.Button.Medium.Tonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginEnd="6dp"
+                android:layout_marginBottom="32dp"
+                android:layout_weight="1"
+                android:minWidth="160dp"
+                android:text="@string/DebugLogsPromptDialogFragment__submit" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
     </androidx.appcompat.widget.LinearLayoutCompat>
 
-</androidx.appcompat.widget.LinearLayoutCompat>
+</androidx.core.widget.NestedScrollView>

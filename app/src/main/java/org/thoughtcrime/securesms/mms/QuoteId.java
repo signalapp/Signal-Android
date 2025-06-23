@@ -54,8 +54,17 @@ public class QuoteId {
   public static @Nullable QuoteId deserialize(@NonNull Context context, @NonNull String serialized) {
     try {
       JSONObject  json = new JSONObject(serialized);
-      RecipientId id   = json.has(AUTHOR) ? RecipientId.from(json.getString(AUTHOR))
-                                          : Recipient.external(context, json.getString(AUTHOR_DEPRECATED)).getId();
+      RecipientId id;
+      if (json.has(AUTHOR)) {
+        id = RecipientId.from(json.getString(AUTHOR));
+      } else {
+        Recipient recipient = Recipient.external(json.getString(AUTHOR_DEPRECATED));
+        if (recipient != null) {
+          id = recipient.getId();
+        } else {
+          return null;
+        }
+      }
 
       return new QuoteId(json.getLong(ID), id);
     } catch (JSONException e) {

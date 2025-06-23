@@ -123,7 +123,11 @@ class FcmFetchForegroundService : Service() {
 
   override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
     Log.d(TAG, "onStartCommand()")
-    postForegroundNotification()
+    try {
+      postForegroundNotification()
+    } catch (e: RuntimeException) {
+      Log.w(TAG, "Failed to start foreground service! StopSelf: ${intent?.getBooleanExtra(KEY_STOP_SELF, false)}", e)
+    }
 
     return if (intent != null && intent.getBooleanExtra(KEY_STOP_SELF, false)) {
       WakeLockUtil.release(wakeLock, WAKELOCK_TAG)
@@ -142,7 +146,7 @@ class FcmFetchForegroundService : Service() {
     startForeground(
       NotificationIds.FCM_FETCH,
       NotificationCompat.Builder(this, NotificationChannels.getInstance().OTHER)
-        .setSmallIcon(R.drawable.ic_notification)
+        .setSmallIcon(R.drawable.ic_signal_refresh)
         .setContentTitle(getString(R.string.BackgroundMessageRetriever_checking_for_messages))
         .setCategory(NotificationCompat.CATEGORY_SERVICE)
         .setProgress(0, 0, true)

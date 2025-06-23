@@ -11,6 +11,7 @@ import org.signal.libsignal.protocol.InvalidMessageException;
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
@@ -37,7 +38,12 @@ class AttachmentStreamLocalUriFetcher implements DataFetcher<InputStream> {
   public void loadData(@NonNull Priority priority, @NonNull DataCallback<? super InputStream> callback) {
     try {
       if (!digest.isPresent()) throw new InvalidMessageException("No attachment digest!");
-      is = AttachmentCipherInputStream.createForAttachment(attachment, plaintextLength, key, digest.get(), null, 0);
+      is = AttachmentCipherInputStream.createForAttachment(attachment,
+                                                           plaintextLength,
+                                                           key,
+                                                           digest.get(),
+                                                           null,
+                                                           0);
       callback.onDataReady(is);
     } catch (IOException | InvalidMessageException e) {
       callback.onLoadFailed(e);

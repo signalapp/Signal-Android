@@ -5,13 +5,12 @@
 
 package org.thoughtcrime.securesms.recipients
 
-import android.content.Context
 import androidx.annotation.WorkerThread
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.phonenumbers.NumberUtil
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
+import org.thoughtcrime.securesms.util.SignalE164Util
 import java.io.IOException
 
 /**
@@ -29,10 +28,10 @@ object RecipientRepository {
    */
   @WorkerThread
   @JvmStatic
-  fun lookupNewE164(context: Context, inputE164: String): LookupResult {
-    val e164 = PhoneNumberFormatter.get(context).format(inputE164)
+  fun lookupNewE164(inputE164: String): LookupResult {
+    val e164 = SignalE164Util.formatAsE164(inputE164)
 
-    if (!NumberUtil.isVisuallyValidNumber(e164)) {
+    if (e164 == null || !NumberUtil.isVisuallyValidNumber(e164)) {
       return LookupResult.InvalidEntry
     }
 

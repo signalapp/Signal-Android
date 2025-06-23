@@ -92,7 +92,7 @@ abstract class BaseStoryRecipientSelectionFragment : Fragment(R.layout.stories_b
       when (action) {
         is BaseStoryRecipientSelectionViewModel.Action.ExitFlow -> exitFlow()
         is BaseStoryRecipientSelectionViewModel.Action.GoToNextScreen -> goToNextScreen(
-          getAttachedContactSelectionFragment().selectedContacts.map { it.getOrCreateRecipientId(requireContext()) }.toSet()
+          getAttachedContactSelectionFragment().selectedContacts.map { it.getOrCreateRecipientId() }.toSet()
         )
       }
     }

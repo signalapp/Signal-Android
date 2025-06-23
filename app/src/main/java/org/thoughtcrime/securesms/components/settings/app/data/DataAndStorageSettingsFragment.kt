@@ -3,13 +3,13 @@ package org.thoughtcrime.securesms.components.settings.app.data
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation
 import androidx.preference.PreferenceManager
+import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
 import org.thoughtcrime.securesms.mms.SentMediaQuality
-import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.webrtc.CallDataMode
@@ -46,7 +46,7 @@ class DataAndStorageSettingsFragment : DSLSettingsFragment(R.string.preferences_
     return configure {
       clickPref(
         title = DSLSettingsText.from(R.string.preferences_data_and_storage__manage_storage),
-        summary = DSLSettingsText.from(Util.getPrettyFileSize(state.totalStorageUse)),
+        summary = DSLSettingsText.from(state.totalStorageUse.bytes.toUnitString()),
         onClick = {
           Navigation.findNavController(requireView()).safeNavigate(R.id.action_dataAndStorageSettingsFragment_to_storagePreferenceFragment)
         }

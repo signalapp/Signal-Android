@@ -217,7 +217,7 @@ class ConversationDataSource(
   }
 
   private fun loadThreadHeader(): ThreadHeader {
-    return ThreadHeader(messageRequestRepository.getRecipientInfo(threadRecipient.id, threadId))
+    return ThreadHeader(messageRequestRepository.getRecipientInfo(threadRecipient.id, threadId), AvatarDownloadStateCache.getDownloadState(threadRecipient))
   }
 
   private fun ConversationMessage.toMappingModel(): MappingModel<*> {

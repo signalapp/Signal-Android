@@ -3,7 +3,7 @@ package org.thoughtcrime.securesms.components.settings.app.chats.folders
 import android.os.Parcelable
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
-import org.thoughtcrime.securesms.recipients.Recipient
+import org.whispersystems.signalservice.api.storage.StorageId
 
 /**
  * Represents an entry in the [org.thoughtcrime.securesms.database.ChatFolderTables].
@@ -15,17 +15,16 @@ data class ChatFolderRecord(
   val position: Int = -1,
   val includedChats: List<Long> = emptyList(),
   val excludedChats: List<Long> = emptyList(),
-  @IgnoredOnParcel
-  val includedRecipients: Set<Recipient> = emptySet(),
-  @IgnoredOnParcel
-  val excludedRecipients: Set<Recipient> = emptySet(),
   val showUnread: Boolean = false,
   val showMutedChats: Boolean = true,
   val showIndividualChats: Boolean = false,
   val showGroupChats: Boolean = false,
-  val isMuted: Boolean = false,
   val folderType: FolderType = FolderType.CUSTOM,
-  val unreadCount: Int = 0
+  val chatFolderId: ChatFolderId = ChatFolderId.generate(),
+  @IgnoredOnParcel
+  val storageServiceId: StorageId? = null,
+  val storageServiceProto: ByteArray? = null,
+  val deletedTimestampMs: Long = 0
 ) : Parcelable {
   enum class FolderType(val value: Int) {
     /** Folder containing all chats */

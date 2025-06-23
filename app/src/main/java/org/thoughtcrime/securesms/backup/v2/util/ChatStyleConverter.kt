@@ -130,7 +130,7 @@ fun ChatStyle.toLocal(importState: ImportState): ChatColors? {
   if (this.customColorId != null) {
     return importState.remoteToLocalColorId[this.customColorId]?.let { localId ->
       val colorId = ChatColors.Id.forLongValue(localId)
-      ChatColorsPalette.Bubbles.default.withId(colorId)
+      return SignalDatabase.chatColors.getById(colorId)
     }
   }
 

@@ -145,7 +145,10 @@ class JobController {
         List<Job> dependents = onFailure(job);
         job.setContext(application);
         job.onFailure();
-        Stream.of(dependents).forEach(Job::onFailure);
+        for (Job child : dependents) {
+          child.markCascadingFailure();
+          child.onFailure();
+        }
         return;
       }
 

@@ -37,12 +37,12 @@ public final class SignalProxyUtil {
   private SignalProxyUtil() {}
 
   public static void startListeningToWebsocket() {
-    if (SignalStore.proxy().isProxyEnabled() && AppDependencies.getSignalWebSocket().getWebSocketState().firstOrError().blockingGet().isFailure()) {
+    if (SignalStore.proxy().isProxyEnabled() && AppDependencies.getAuthWebSocket().getState().firstOrError().blockingGet().isFailure()) {
       Log.w(TAG, "Proxy is in a failed state. Restarting.");
       AppDependencies.resetNetwork();
     }
 
-    AppDependencies.getIncomingMessageObserver();
+    SignalExecutors.UNBOUNDED.execute(AppDependencies::startNetwork);
   }
 
   /**
@@ -88,8 +88,8 @@ public final class SignalProxyUtil {
       return testWebsocketConnectionUnregistered(timeout);
     }
 
-    return AppDependencies.getSignalWebSocket()
-                          .getWebSocketState()
+    return AppDependencies.getAuthWebSocket()
+                          .getState()
                           .subscribeOn(Schedulers.trampoline())
                           .observeOn(Schedulers.trampoline())
                           .timeout(timeout, TimeUnit.MILLISECONDS)

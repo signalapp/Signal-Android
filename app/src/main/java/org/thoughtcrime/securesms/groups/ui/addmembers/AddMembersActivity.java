@@ -89,7 +89,7 @@ public class AddMembersActivity extends PushContactSelectionActivity implements 
 
   @Override
   protected void initializeToolbar() {
-    getToolbar().setNavigationIcon(R.drawable.ic_arrow_left_24);
+    getToolbar().setNavigationIcon(R.drawable.symbol_arrow_start_24);
     getToolbar().setNavigationOnClickListener(v -> {
       setResult(RESULT_CANCELED);
       finish();
@@ -116,7 +116,7 @@ public class AddMembersActivity extends PushContactSelectionActivity implements 
 
     AlertDialog progress = SimpleProgressDialog.show(this);
 
-    SimpleTask.run(getLifecycle(), () -> RecipientRepository.lookupNewE164(this, number), result -> {
+    SimpleTask.run(getLifecycle(), () -> RecipientRepository.lookupNewE164(number), result -> {
       progress.dismiss();
 
       if (result instanceof RecipientRepository.LookupResult.Success) {

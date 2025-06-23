@@ -81,6 +81,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     private const val KEY_ACI = "account.aci"
     private const val KEY_PNI = "account.pni"
     private const val KEY_IS_REGISTERED = "account.is_registered"
+    private const val KEY_ACCOUNT_REGISTERED_AT = "account.registered_at"
 
     private const val KEY_HAS_LINKED_DEVICES = "account.has_linked_devices"
 
@@ -160,6 +161,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     }
   }
 
+  @get:JvmName("restoredAccountEntropyPool")
   @get:Synchronized
   val restoredAccountEntropyPool by booleanValue(KEY_RESTORED_ACCOUNT_ENTROPY_KEY, false)
 
@@ -335,6 +337,22 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     }
   }
 
+  /**
+   * Only to be used as part of Quick Restore, DO NOT USE OTHERWISE.
+   */
+  fun resetAciAndPniIdentityKeysAfterFailedRestore() {
+    synchronized(this) {
+      Log.i(TAG, "Resetting ACI and PNI identity keys after failed quick registration and restore")
+
+      store.beginWrite()
+        .remove(KEY_ACI_IDENTITY_PUBLIC_KEY)
+        .remove(KEY_ACI_IDENTITY_PRIVATE_KEY)
+        .remove(KEY_PNI_IDENTITY_PUBLIC_KEY)
+        .remove(KEY_PNI_IDENTITY_PRIVATE_KEY)
+        .commit()
+    }
+  }
+
   /** Only to be used when restoring an identity public key from an old backup */
   fun restoreLegacyIdentityPublicKeyFromBackup(base64: String) {
     Log.w(TAG, "Restoring legacy identity public key from backup.")
@@ -417,7 +435,19 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     if (previous && !registered) {
       clearLocalCredentials()
     }
+
+    if (!previous && registered) {
+      registeredAtTimestamp = System.currentTimeMillis()
+    } else if (!registered) {
+      registeredAtTimestamp = -1
+    }
   }
+
+  /**
+   * Milliseconds since epoch when account was registered or a negative value if not known.
+   */
+  var registeredAtTimestamp: Long by longValue(KEY_ACCOUNT_REGISTERED_AT, -1)
+    private set
 
   /**
    * Function for testing backup/restore

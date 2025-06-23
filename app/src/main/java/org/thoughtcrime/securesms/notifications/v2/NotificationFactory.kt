@@ -311,7 +311,8 @@ object NotificationFactory {
     if (!NotificationChannels.getInstance().areNotificationsEnabled() ||
       !SignalStore.settings.isMessageNotificationsInChatSoundsEnabled ||
       ServiceUtil.getAudioManager(context).ringerMode != AudioManager.RINGER_MODE_NORMAL ||
-      (System.currentTimeMillis() - lastAudibleNotification) < DefaultMessageNotifier.MIN_AUDIBLE_PERIOD_MILLIS
+      (System.currentTimeMillis() - lastAudibleNotification) < DefaultMessageNotifier.MIN_AUDIBLE_PERIOD_MILLIS ||
+      InChatNotificationSoundSuppressor.isSuppressed
     ) {
       return
     }
@@ -342,8 +343,8 @@ object NotificationFactory {
     ringtone.play()
   }
 
-  fun notifyMessageDeliveryFailed(context: Context, recipient: Recipient, thread: ConversationId, visibleThread: ConversationId?) {
-    if (thread == visibleThread) {
+  fun notifyMessageDeliveryFailed(context: Context, recipient: Recipient, thread: ConversationId, visibleThread: ConversationId?, visibleBubbleThread: ConversationId?) {
+    if (thread == visibleThread || thread == visibleBubbleThread) {
       notifyInThread(context, recipient, 0)
       return
     }

@@ -13,13 +13,13 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber.PhoneNumber
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
+import org.signal.core.util.E164Util
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
 import org.thoughtcrime.securesms.registration.ui.countrycode.CountryUtils
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
 import org.thoughtcrime.securesms.util.Util
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter
 
 /**
  * ViewModel for the phone number entry screen.
@@ -74,7 +74,7 @@ class EnterPhoneNumberViewModel : ViewModel() {
         countryPrefixIndex = prefixIndex,
         phoneNumberRegionCode = regionCode,
         country = existingCountry ?: Country(
-          name = PhoneNumberFormatter.getRegionDisplayName(regionCode).orElse(""),
+          name = E164Util.getRegionDisplayName(regionCode).orElse(""),
           emoji = CountryUtils.countryToEmoji(regionCode),
           countryCode = countryCode,
           regionCode = regionCode
@@ -122,7 +122,7 @@ class EnterPhoneNumberViewModel : ViewModel() {
 
     val regionCode = supportedCountryPrefixes[matchingIndex].regionCode
     val matchedCountry = Country(
-      name = PhoneNumberFormatter.getRegionDisplayName(regionCode).orElse(""),
+      name = E164Util.getRegionDisplayName(regionCode).orElse(""),
       emoji = CountryUtils.countryToEmoji(regionCode),
       countryCode = digits,
       regionCode = regionCode

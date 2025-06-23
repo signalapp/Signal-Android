@@ -32,8 +32,8 @@ public class VoiceCallShare extends Activity {
         if (cursor != null && cursor.moveToNext()) {
           String destination = cursor.getString(cursor.getColumnIndexOrThrow(ContactsContract.RawContacts.Data.DATA1));
 
-          SimpleTask.run(() -> Recipient.external(this, destination), recipient -> {
-            if (!TextUtils.isEmpty(destination)) {
+          SimpleTask.run(() -> Recipient.external(destination), recipient -> {
+            if (recipient != null && !TextUtils.isEmpty(destination)) {
               if (VIDEO_CALL_MIME_TYPE.equals(getIntent().getType())) {
                 AppDependencies.getSignalCallManager().startOutgoingVideoCall(recipient);
               } else {

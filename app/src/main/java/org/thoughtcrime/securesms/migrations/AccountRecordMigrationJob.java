@@ -47,7 +47,7 @@ public class AccountRecordMigrationJob extends MigrationJob {
     }
 
     SignalDatabase.recipients().markNeedsSync(Recipient.self().getId());
-    AppDependencies.getJobManager().add(new StorageSyncJob());
+    AppDependencies.getJobManager().add(StorageSyncJob.forLocalChange());
   }
 
   @Override

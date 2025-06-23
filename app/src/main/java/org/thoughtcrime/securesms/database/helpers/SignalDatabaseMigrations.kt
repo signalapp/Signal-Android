@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.database.helpers
 import android.app.Application
 import android.content.Context
 import android.database.sqlite.SQLiteException
-import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.areForeignKeyConstraintsEnabled
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -121,6 +120,21 @@ import org.thoughtcrime.securesms.database.helpers.migration.V261_RemapCallRinge
 import org.thoughtcrime.securesms.database.helpers.migration.V263_InAppPaymentsSubscriberTableRebuild
 import org.thoughtcrime.securesms.database.helpers.migration.V264_FixGroupAddMemberUpdate
 import org.thoughtcrime.securesms.database.helpers.migration.V265_FixFtsTriggers
+import org.thoughtcrime.securesms.database.helpers.migration.V266_UniqueThreadPinOrder
+import org.thoughtcrime.securesms.database.helpers.migration.V267_FixGroupInvitationDeclinedUpdate
+import org.thoughtcrime.securesms.database.helpers.migration.V268_FixInAppPaymentsErrorStateConsistency
+import org.thoughtcrime.securesms.database.helpers.migration.V269_BackupMediaSnapshotChanges
+import org.thoughtcrime.securesms.database.helpers.migration.V270_FixChatFolderColumnsForStorageSync
+import org.thoughtcrime.securesms.database.helpers.migration.V271_AddNotificationProfileIdColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V272_UpdateUnreadCountIndices
+import org.thoughtcrime.securesms.database.helpers.migration.V273_FixUnreadOriginalMessages
+import org.thoughtcrime.securesms.database.helpers.migration.V274_BackupMediaSnapshotLastSeenOnRemote
+import org.thoughtcrime.securesms.database.helpers.migration.V275_EnsureDefaultAllChatsFolder
+import org.thoughtcrime.securesms.database.helpers.migration.V276_AttachmentCdnDefaultValueMigration
+import org.thoughtcrime.securesms.database.helpers.migration.V277_AddNotificationProfileStorageSync
+import org.thoughtcrime.securesms.database.helpers.migration.V278_BackupSnapshotTableVersions
+import org.thoughtcrime.securesms.database.helpers.migration.V279_AddNotificationProfileForeignKey
+import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
  * Contains all of the database migrations for [SignalDatabase]. Broken into a separate file for cleanliness.
@@ -245,13 +259,27 @@ object SignalDatabaseMigrations {
     // V263 was originally V262, but a typo in the version mapping caused it not to be run.
     263 to V263_InAppPaymentsSubscriberTableRebuild,
     264 to V264_FixGroupAddMemberUpdate,
-    265 to V265_FixFtsTriggers
+    265 to V265_FixFtsTriggers,
+    266 to V266_UniqueThreadPinOrder,
+    267 to V267_FixGroupInvitationDeclinedUpdate,
+    268 to V268_FixInAppPaymentsErrorStateConsistency,
+    269 to V269_BackupMediaSnapshotChanges,
+    270 to V270_FixChatFolderColumnsForStorageSync,
+    271 to V271_AddNotificationProfileIdColumn,
+    272 to V272_UpdateUnreadCountIndices,
+    273 to V273_FixUnreadOriginalMessages,
+    274 to V274_BackupMediaSnapshotLastSeenOnRemote,
+    275 to V275_EnsureDefaultAllChatsFolder,
+    276 to V276_AttachmentCdnDefaultValueMigration,
+    277 to V277_AddNotificationProfileStorageSync,
+    278 to V278_BackupSnapshotTableVersions,
+    279 to V279_AddNotificationProfileForeignKey
   )
 
-  const val DATABASE_VERSION = 265
+  const val DATABASE_VERSION = 279
 
   @JvmStatic
-  fun migrate(context: Application, db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+  fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {
     val initialForeignKeyState = db.areForeignKeyConstraintsEnabled()
 
     for (migrationData in migrations) {

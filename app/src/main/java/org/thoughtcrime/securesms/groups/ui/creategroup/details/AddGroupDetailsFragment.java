@@ -252,6 +252,8 @@ public class AddGroupDetailsFragment extends LoggingFragment {
       default:
         throw new IllegalStateException("Unexpected error: " + error.getErrorType().name());
     }
+
+    create.cancelSpinning();
   }
 
   private void toast(@StringRes int toastStringId) {
@@ -260,11 +262,8 @@ public class AddGroupDetailsFragment extends LoggingFragment {
   }
 
   private void setCreateEnabled(boolean isEnabled) {
-    if (create.isClickable() == isEnabled) {
-      return;
-    }
-
     create.setClickable(isEnabled);
+    create.setEnabled(isEnabled);
   }
 
   private void showAvatarPicker() {

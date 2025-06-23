@@ -291,15 +291,11 @@ class UnarchivedConversationListDataSourceTest {
       position = -1,
       includedChats = emptyList(),
       excludedChats = emptyList(),
-      includedRecipients = emptySet(),
-      excludedRecipients = emptySet(),
       showUnread = false,
       showMutedChats = false,
       showIndividualChats = false,
       showGroupChats = false,
-      isMuted = false,
-      folderType = ChatFolderRecord.FolderType.ALL,
-      unreadCount = 0
+      folderType = ChatFolderRecord.FolderType.ALL
     )
   }
 }

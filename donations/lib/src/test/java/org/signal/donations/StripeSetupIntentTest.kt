@@ -63,7 +63,7 @@ class StripeSetupIntentTest {
 
     assertEquals(intent.id, "seti_1LyzgK2eZvKYlo2C3AhgI5IC")
     assertEquals(intent.clientSecret, "seti_1LyzgK2eZvKYlo2C3AhgI5IC_secret_MiQXAjP1ZBdORqQWNuJOcLqk9570HkA")
-    assertEquals(intent.paymentMethod, "pm_sldalskdjhfalskjdhf")
+    assertEquals(intent.paymentMethodId, "pm_sldalskdjhfalskjdhf")
     assertEquals(intent.status, StripeIntentStatus.REQUIRES_PAYMENT_METHOD)
     assertEquals(intent.customer, "cus_Fh6d95jDS2fVSL")
   }

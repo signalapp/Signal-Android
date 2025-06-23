@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.exifinterface.media.ExifInterface;
 
 import com.bumptech.glide.RequestManager;
@@ -78,6 +79,12 @@ public class ZoomingImageView extends FrameLayout {
 
     this.gifView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
     this.subsamplingImageView.setOnClickListener(v -> ZoomingImageView.this.callOnClick());
+  }
+
+  @Override
+  public void setOnLongClickListener(@Nullable OnLongClickListener l) {
+    this.gifView.setOnLongClickListener(l);
+    this.subsamplingImageView.setOnLongClickListener(l);
   }
 
   @SuppressLint("StaticFieldLeak")

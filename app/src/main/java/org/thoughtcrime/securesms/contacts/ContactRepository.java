@@ -12,7 +12,7 @@ import org.signal.libsignal.protocol.util.Pair;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchSortOrder;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
+import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.thoughtcrime.securesms.util.Util;
 
 import java.util.ArrayList;
@@ -59,7 +59,7 @@ public class ContactRepository {
       String email = CursorUtil.requireString(cursor, RecipientTable.EMAIL);
 
       if (phone != null) {
-        phone = PhoneNumberFormatter.prettyPrint(phone);
+        phone = SignalE164Util.prettyPrint(phone);
       }
 
       return Util.getFirstNonEmpty(phone, email);

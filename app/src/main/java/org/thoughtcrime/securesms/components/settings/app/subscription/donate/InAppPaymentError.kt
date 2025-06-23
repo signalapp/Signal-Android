@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
  */
 class InAppPaymentError(
   val inAppPaymentDataError: InAppPaymentData.Error
-) : Exception() {
+) : Exception(inAppPaymentDataError.toString()) {
   companion object {
     fun fromDonationError(donationError: DonationError): InAppPaymentError? {
       val inAppPaymentDataError: InAppPaymentData.Error? = when (donationError) {
@@ -33,7 +33,7 @@ class InAppPaymentError(
         is DonationError.PaymentSetupError.StripeCodedError -> InAppPaymentData.Error(type = InAppPaymentData.Error.Type.STRIPE_CODED_ERROR, data_ = donationError.errorCode)
         is DonationError.PaymentSetupError.StripeDeclinedError -> InAppPaymentData.Error(type = InAppPaymentData.Error.Type.STRIPE_DECLINED_ERROR, data_ = donationError.declineCode.rawCode)
         is DonationError.PaymentSetupError.StripeFailureCodeError -> InAppPaymentData.Error(type = InAppPaymentData.Error.Type.STRIPE_FAILURE, data_ = donationError.failureCode.rawCode)
-        is DonationError.UserCancelledPaymentError -> null
+        is DonationError.UserCancelledPaymentError -> InAppPaymentData.Error(type = InAppPaymentData.Error.Type.SETUP_CANCELLED)
         is DonationError.UserLaunchedExternalApplication -> null
       }
 

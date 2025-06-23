@@ -19,8 +19,8 @@ import org.thoughtcrime.securesms.database.RecipientTable.Companion.PNI_COLUMN
 import org.thoughtcrime.securesms.database.RecipientTable.Companion.TABLE_NAME
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.util.SignalE164Util
 
 /**
  * Through testing, we've discovered that some badly-formatted e164's wound up in the e164 column of the recipient table.
@@ -89,7 +89,7 @@ internal class BadE164MigrationJob(
         continue
       }
 
-      val formattedNumber = PhoneNumberFormatter.get(context).formatOrNull(entry.e164)
+      val formattedNumber = SignalE164Util.formatAsE164(entry.e164)
       if (formattedNumber == null) {
         Log.w(TAG, "We have encountered an e164-only recipient, with messages, whose value characters are all valid, but still remains completely unparsable.")
         continue

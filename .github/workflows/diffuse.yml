@@ -8,7 +8,7 @@ permissions:
   pull-requests: write # to comment on PR
 
 env:
-  NDK_VERSION: '27.0.12077973'
+  NDK_VERSION: '28.0.13004108'
 
 jobs:
   assemble-base:
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest-8-cores
     
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: true
         ref: ${{ github.event.pull_request.base.sha }}
@@ -36,7 +36,7 @@ jobs:
 
     - name: Cache base apk
       id: cache-base
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: diffuse-base.apk
         key: diffuse-${{ github.event.pull_request.base.sha }}
@@ -49,7 +49,7 @@ jobs:
       if: steps.cache-base.outputs.cache-hit != 'true'
       run: mv app/build/outputs/apk/playProd/release/*arm64*.apk diffuse-base.apk
 
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         submodules: true
         clean: 'false'

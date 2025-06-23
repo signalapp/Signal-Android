@@ -828,9 +828,11 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     )
 
     if (call != null) {
-      Log.d(TAG, "Updating call database record.")
-      updateGroupCallState(call, peekJoinedUuids)
-      AppDependencies.databaseObserver.notifyCallUpdateObservers()
+      Log.d(TAG, "Updating call database record for call $callId.")
+      if (updateGroupCallState(call, peekJoinedUuids)) {
+        Log.d(TAG, "Change detected for call $callId, notifying update observers.")
+        AppDependencies.databaseObserver.notifyCallUpdateObservers()
+      }
     } else {
       Log.d(TAG, "No call database record to update!")
     }
@@ -1311,7 +1313,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     val timestamp: Long,
     val ringerRecipient: RecipientId?,
     val isGroupCallActive: Boolean,
-    val didLocalUserJoin: Boolean
+    val didLocalUserJoin: Boolean,
+    val read: Boolean
   ) {
     val messageType: Long = getMessageType(type, direction, event)
 
@@ -1358,7 +1361,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
             }
           },
           isGroupCallActive = data.requireBoolean(GROUP_CALL_ACTIVE),
-          didLocalUserJoin = data.requireBoolean(LOCAL_JOINED)
+          didLocalUserJoin = data.requireBoolean(LOCAL_JOINED),
+          read = data.requireObject(READ, ReadState.Serializer) == ReadState.READ
         )
       }
     }

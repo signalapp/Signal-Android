@@ -13,7 +13,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.toMillis
 import java.time.LocalDateTime
 import java.util.Random
-import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
 
 class MessageBackupListener : PersistentAlarmManagerListener() {
@@ -27,15 +26,13 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
 
   override fun onAlarm(context: Context, scheduledTime: Long): Long {
     if (SignalStore.backup.areBackupsEnabled) {
-      val timeSinceLastSync = System.currentTimeMillis() - SignalStore.backup.lastMediaSyncTime
-      BackupMessagesJob.enqueue(pruneAbandonedRemoteMedia = timeSinceLastSync >= BACKUP_MEDIA_SYNC_INTERVAL || timeSinceLastSync < 0)
+      BackupMessagesJob.enqueue()
     }
     return setNextBackupTimeToIntervalFromNow()
   }
 
   companion object {
     private val BACKUP_JITTER_WINDOW_SECONDS = 10.minutes.inWholeSeconds.toInt()
-    private val BACKUP_MEDIA_SYNC_INTERVAL = 7.days.inWholeMilliseconds
 
     @JvmStatic
     fun schedule(context: Context?) {

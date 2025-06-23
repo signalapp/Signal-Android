@@ -33,8 +33,8 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.os.bundleOf
 import androidx.core.text.method.LinkMovementMethodCompat
 import androidx.core.text.util.LinkifyCompat
-import org.signal.core.ui.BottomSheets
-import org.signal.core.ui.Previews
+import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.Previews
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView

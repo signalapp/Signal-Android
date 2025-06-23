@@ -17,7 +17,6 @@ Truths which we believe to be self-evident:
 
 ## Building
 
-1. You'll need to get the `libwebp` submodule after checking out the repository with `git submodule init && git submodule update`
 1. Most things are pretty straightforward, and opening the project in Android Studio should get you most of the way there.
 1. Depending on your configuration, you'll also likely need to install additional SDK Tool components, namely the versions of NDK and CMake we are currently using in our [Docker](https://github.com/signalapp/Signal-Android/blob/main/reproducible-builds/Dockerfile#L30) configuration.
 

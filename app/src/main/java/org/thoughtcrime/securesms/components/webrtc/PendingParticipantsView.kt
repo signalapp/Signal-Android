@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.components.webrtc
 
 import android.content.Context
-import android.text.SpannableStringBuilder
 import android.util.AttributeSet
 import android.view.View
 import android.widget.TextView
@@ -19,7 +18,7 @@ import org.thoughtcrime.securesms.components.webrtc.v2.PendingParticipantsListen
 import org.thoughtcrime.securesms.fonts.SignalSymbols
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.PendingParticipantCollection
-import org.thoughtcrime.securesms.util.SpanUtil
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 
 /**
@@ -59,14 +58,11 @@ class PendingParticipantsView @JvmOverloads constructor(
     avatar.setAvatar(firstRecipient)
     avatar.setOnClickListener { listener?.onLaunchRecipientSheet(firstRecipient) }
 
-    name.text = SpannableStringBuilder(firstRecipient.getShortDisplayName(context))
-      .append(" ")
-      .append(
-        SpanUtil.ofSize(
-          SignalSymbols.getSpannedString(context, SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.CHEVRON_RIGHT),
-          16
-        )
-      )
+    name.text = SignalSymbols.getSignalSymbolText(
+      context = context,
+      text = firstRecipient.getShortDisplayName(context),
+      glyphEnd = if (ViewUtil.isLtr(context)) SignalSymbols.Glyph.CHEVRON_RIGHT else SignalSymbols.Glyph.CHEVRON_LEFT
+    )
     name.setOnClickListener { listener?.onLaunchRecipientSheet(firstRecipient) }
 
     allow.setOnClickListener { listener?.onAllowPendingRecipient(firstRecipient) }

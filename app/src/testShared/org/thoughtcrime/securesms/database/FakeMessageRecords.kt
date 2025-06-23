@@ -72,7 +72,6 @@ object FakeMessageRecords {
       mmsId = mmsId,
       hasData = hasData,
       hasThumbnail = hasThumbnail,
-      hasArchiveThumbnail = hasArchiveThumbnail,
       contentType = contentType,
       transferProgress = transferProgress,
       size = size,
@@ -100,8 +99,6 @@ object FakeMessageRecords {
       uploadTimestamp = uploadTimestamp,
       dataHash = dataHash,
       archiveCdn = archiveCdn,
-      archiveMediaName = archiveMediaId,
-      archiveMediaId = archiveMediaName,
       thumbnailRestoreState = thumbnailRestoreState,
       archiveTransferState = archiveTransferState,
       uuid = null

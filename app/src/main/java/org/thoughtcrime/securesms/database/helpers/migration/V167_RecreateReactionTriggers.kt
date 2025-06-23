@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Forgot to recreate the triggers for the reactions table in [V166_ThreadAndMessageForeignKeys]. So we gotta fix stuff up and do it here.

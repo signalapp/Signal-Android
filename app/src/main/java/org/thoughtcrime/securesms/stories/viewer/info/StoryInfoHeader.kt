@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.stories.viewer.info
 import android.view.View
 import android.widget.TextView
 import android.widget.Toast
+import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.Util
@@ -60,7 +61,7 @@ object StoryInfoHeader {
       if (model.size > 0L) {
         sizeView.visible = true
         sizeHeader.visible = true
-        sizeView.text = Util.getPrettyFileSize(model.size)
+        sizeView.text = model.size.bytes.toUnitString()
       } else {
         sizeView.visible = false
         sizeHeader.visible = false

@@ -19,9 +19,9 @@ import org.thoughtcrime.securesms.contactshare.Contact.Name;
 import org.thoughtcrime.securesms.contactshare.Contact.Phone;
 import org.thoughtcrime.securesms.contactshare.Contact.PostalAddress;
 import org.thoughtcrime.securesms.mms.PartAuthority;
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.thoughtcrime.securesms.util.SignalE164Util;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -130,7 +130,11 @@ public class SharedContactRepository {
     List<PhoneDetails> phoneDetails = SystemContactsRepository.getPhoneDetails(context, contactId);
 
     for (PhoneDetails phone : phoneDetails) {
-      String number    = ContactUtil.getNormalizedPhoneNumber(context, phone.getNumber());
+      String number = ContactUtil.getNormalizedPhoneNumber(phone.getNumber());
+      if (number == null) {
+        continue;
+      }
+
       Phone  existing  = numberMap.get(number);
       Phone  candidate = new Phone(number, VCardUtil.phoneTypeFromContactType(phone.getType()), phone.getLabel());
 
@@ -182,7 +186,12 @@ public class SharedContactRepository {
     }
 
     for (Phone phoneNumber : phoneNumbers) {
-      AvatarInfo recipientAvatar = getRecipientAvatarInfo(PhoneNumberFormatter.get(context).format(phoneNumber.getNumber()));
+      String formattedNumber = SignalE164Util.formatAsE164(phoneNumber.getNumber());
+      if (formattedNumber == null) {
+        continue;
+      }
+
+      AvatarInfo recipientAvatar = getRecipientAvatarInfo(formattedNumber);
       if (recipientAvatar != null) {
         return recipientAvatar;
       }
@@ -202,7 +211,11 @@ public class SharedContactRepository {
 
   @WorkerThread
   private @Nullable AvatarInfo getRecipientAvatarInfo(String address) {
-    Recipient    recipient    = Recipient.external(context, address);
+    Recipient recipient = Recipient.external(address);
+    if (recipient == null) {
+      return null;
+    }
+
     ContactPhoto contactPhoto = recipient.getContactPhoto();
 
     if (contactPhoto != null) {

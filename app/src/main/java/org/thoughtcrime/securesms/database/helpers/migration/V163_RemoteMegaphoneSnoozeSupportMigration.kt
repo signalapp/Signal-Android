@@ -2,7 +2,7 @@ package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
 import androidx.sqlite.db.SupportSQLiteDatabase
-import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Add columns needed to track remote megaphone specific snooze rates.

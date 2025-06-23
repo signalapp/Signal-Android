@@ -4,13 +4,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.greenrobot.eventbus.EventBus;
-import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.JsonJobData;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.ratelimit.RateLimitUtil;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.thoughtcrime.securesms.util.ExceptionHelper;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
 
 import java.util.concurrent.TimeUnit;
 
@@ -51,7 +52,7 @@ public final class SubmitRateLimitPushChallengeJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    AppDependencies.getSignalServiceAccountManager().submitRateLimitPushChallenge(challenge);
+    NetworkResultUtil.toBasicLegacy(SignalNetwork.rateLimitChallenge().submitPushChallenge(challenge));
     SignalStore.rateLimit().onProofAccepted();
     EventBus.getDefault().post(new SuccessEvent());
     RateLimitUtil.retryAllRateLimitedMessages(context);
@@ -59,7 +60,7 @@ public final class SubmitRateLimitPushChallengeJob extends BaseJob {
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception e) {
-    return e instanceof PushNetworkException;
+    return ExceptionHelper.isRetryableIOException(e);
   }
 
   @Override

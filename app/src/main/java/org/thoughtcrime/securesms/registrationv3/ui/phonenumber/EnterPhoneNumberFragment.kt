@@ -46,7 +46,6 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationEnterPhoneNumberBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import org.thoughtcrime.securesms.registration.data.network.Challenge
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationResult
@@ -66,6 +65,7 @@ import org.thoughtcrime.securesms.registrationv3.ui.RegistrationViewModel
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.PlayServicesUtil
+import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -130,6 +130,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       fragmentViewModel.supportedCountryPrefixes
     )
     binding.registerButton.setOnClickListener { onRegistrationButtonClicked() }
+    binding.cancelButton.setOnClickListener { popBackStack() }
 
     binding.toolbar.title = ""
     val activity = requireActivity() as AppCompatActivity
@@ -160,17 +161,23 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
         handleRegistrationErrorResponse(it)
         sharedViewModel.registerAccountErrorShown()
       }
-
-      if (sharedState.challengesRequested.contains(Challenge.CAPTCHA) && sharedState.captchaToken.isNotNullOrBlank()) {
-        sharedViewModel.submitCaptchaToken(requireContext())
-      } else if (sharedState.challengesRemaining.isNotEmpty()) {
-        handleChallenges(sharedState.challengesRemaining)
-      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
-        moveToEnterPinScreen()
-      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
-        moveToVerificationEntryScreen()
-      }
     }
+
+    sharedViewModel
+      .uiState
+      .map { it.toNavigationStateOnly() }
+      .distinctUntilChanged()
+      .observe(viewLifecycleOwner) { sharedState ->
+        if (sharedState.challengesRequested.contains(Challenge.CAPTCHA) && sharedState.captchaToken.isNotNullOrBlank()) {
+          sharedViewModel.submitCaptchaToken(requireContext())
+        } else if (sharedState.challengesRemaining.isNotEmpty()) {
+          handleChallenges(sharedState.challengesRemaining)
+        } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
+          moveToEnterPinScreen()
+        } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
+          moveToVerificationEntryScreen()
+        }
+      }
 
     fragmentViewModel
       .uiState
@@ -638,7 +645,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
     }
 
     val message: CharSequence = SpannableStringBuilder().apply {
-      append(SpanUtil.bold(PhoneNumberFormatter.prettyPrint(phoneNumber.toE164())))
+      append(SpanUtil.bold(SignalE164Util.prettyPrint(phoneNumber.toE164())))
       if (!canSkipSms) {
         append("\n\n")
         append(getString(R.string.RegistrationActivity_a_verification_code_will_be_sent_to_this_number))

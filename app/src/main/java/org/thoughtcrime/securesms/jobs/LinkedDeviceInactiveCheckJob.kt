@@ -68,7 +68,10 @@ class LinkedDeviceInactiveCheckJob private constructor(
     }
 
     val devices = try {
-      AppDependencies.signalServiceAccountManager.devices
+      AppDependencies
+        .linkDeviceApi
+        .getDevices()
+        .successOrThrow()
         .filter { it.id != SignalServiceAddress.DEFAULT_DEVICE_ID }
     } catch (e: IOException) {
       return Result.retry(defaultBackoff())

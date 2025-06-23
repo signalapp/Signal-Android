@@ -10,6 +10,7 @@ import org.signal.core.util.decodeOrNull
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
+import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireLong
 import org.thoughtcrime.securesms.backup.v2.proto.Chat
 import org.thoughtcrime.securesms.backup.v2.util.ChatStyleConverter
@@ -54,7 +55,7 @@ class ChatArchiveExporter(private val cursor: Cursor, private val db: SignalData
       id = cursor.requireLong(ThreadTable.ID),
       recipientId = cursor.requireLong(ThreadTable.RECIPIENT_ID),
       archived = cursor.requireBoolean(ThreadTable.ARCHIVED),
-      pinnedOrder = cursor.requireInt(ThreadTable.PINNED).takeIf { it > 0 },
+      pinnedOrder = cursor.requireIntOrNull(ThreadTable.PINNED_ORDER),
       expirationTimerMs = cursor.requireLong(RecipientTable.MESSAGE_EXPIRATION_TIME).seconds.inWholeMilliseconds.takeIf { it > 0 },
       expireTimerVersion = cursor.requireInt(RecipientTable.MESSAGE_EXPIRATION_TIME_VERSION),
       muteUntilMs = cursor.requireLong(RecipientTable.MUTE_UNTIL).takeIf { it > 0 },

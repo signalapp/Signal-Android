@@ -32,6 +32,14 @@ val RestoreDecisionState.isWantingManualRemoteRestore: Boolean
     else -> false
   }
 
+val RestoreDecisionState.includeDeviceToDeviceTransfer: Boolean
+  get() = when (this.decisionState) {
+    RestoreDecisionState.State.INTEND_TO_RESTORE -> {
+      this.intendToRestoreData?.hasOldDevice == true
+    }
+    else -> true
+  }
+
 /** Has a final decision been made regarding restoring. */
 val RestoreDecisionState.isTerminal: Boolean
   get() = !isDecisionPending

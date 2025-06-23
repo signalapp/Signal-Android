@@ -70,6 +70,7 @@ class RestoreLocalAttachmentJob private constructor(
         SignalDatabase.attachments.setRestoreTransferState(notRestorableAttachments, AttachmentTable.TRANSFER_PROGRESS_FAILED)
 
         // Intentionally enqueues one at a time for safer attachment transfer state management
+        Log.d(TAG, "Adding ${restoreAttachmentJobs.size} restore local attachment jobs")
         restoreAttachmentJobs.forEach { jobManager.add(it) }
       } while (restoreAttachmentJobs.isNotEmpty())
 
@@ -100,7 +101,7 @@ class RestoreLocalAttachmentJob private constructor(
     size = info.size
   )
 
-  override fun serialize(): ByteArray? {
+  override fun serialize(): ByteArray {
     return RestoreLocalAttachmentJobData(
       attachmentId = attachmentId.id,
       messageId = messageId,
@@ -111,6 +112,10 @@ class RestoreLocalAttachmentJob private constructor(
 
   override fun getFactoryKey(): String {
     return KEY
+  }
+
+  override fun onAdded() {
+    SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS)
   }
 
   override fun run(): Result {
@@ -144,7 +149,15 @@ class RestoreLocalAttachmentJob private constructor(
     try {
       val iv = ByteArray(16)
       streamSupplier.openStream().use { StreamUtil.readFully(it, iv) }
-      AttachmentCipherInputStream.createForAttachment(streamSupplier, size, attachment.size, combinedKey, attachment.remoteDigest, null, 0, false).use { input ->
+      AttachmentCipherInputStream.createForAttachment(
+        streamSupplier = streamSupplier,
+        streamLength = size,
+        plaintextLength = attachment.size,
+        combinedKeyMaterial = combinedKey,
+        digest = attachment.remoteDigest,
+        incrementalDigest = null,
+        incrementalMacChunkSize = 0
+      ).use { input ->
         SignalDatabase.attachments.finalizeAttachmentAfterDownload(attachment.mmsId, attachment.attachmentId, input, iv)
       }
     } catch (e: InvalidMessageException) {

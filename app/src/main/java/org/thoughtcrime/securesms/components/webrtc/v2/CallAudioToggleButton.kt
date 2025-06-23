@@ -32,10 +32,10 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.DarkPreview
-import org.signal.core.ui.IconButtons
-import org.signal.core.ui.Previews
-import org.signal.core.ui.Rows
+import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.IconButtons
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Rows
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.AudioStateUpdater
 import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState

@@ -23,17 +23,20 @@ import androidx.media3.common.MediaItem;
 import com.bumptech.glide.RequestManager;
 
 import org.signal.core.util.concurrent.SignalExecutors;
-import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
 import org.thoughtcrime.securesms.conversation.ConversationItem;
 import org.thoughtcrime.securesms.conversation.ConversationMessage;
 import org.thoughtcrime.securesms.conversation.colors.Colorizable;
 import org.thoughtcrime.securesms.conversation.colors.Colorizer;
 import org.thoughtcrime.securesms.conversation.ConversationItemDisplayMode;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4Playable;
 import org.thoughtcrime.securesms.giph.mp4.GiphyMp4PlaybackPolicyEnforcer;
 import org.thoughtcrime.securesms.messagedetails.MessageDetailsAdapter.Callbacks;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.sms.MessageSender;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
@@ -44,6 +47,7 @@ import org.thoughtcrime.securesms.util.ProjectionList;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
@@ -137,7 +141,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
   }
 
   private void bindErrorState(MessageRecord messageRecord) {
-    if (messageRecord.hasFailedWithNetworkFailures()) {
+    if (isFailedWithNetworkFailures(messageRecord)) {
       errorText.setVisibility(View.VISIBLE);
       resendButton.setVisibility(View.VISIBLE);
       resendButton.setOnClickListener(unused -> {
@@ -145,7 +149,7 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
         SignalExecutors.BOUNDED.execute(() -> MessageSender.resend(itemView.getContext().getApplicationContext(), messageRecord));
       });
       messageMetadata.setVisibility(View.GONE);
-    } else if (messageRecord.isFailed()) {
+    } else if (isPermanentFailed(messageRecord)) {
       errorText.setVisibility(View.VISIBLE);
       resendButton.setVisibility(View.GONE);
       resendButton.setOnClickListener(null);
@@ -156,6 +160,20 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
       resendButton.setOnClickListener(null);
       messageMetadata.setVisibility(View.VISIBLE);
     }
+  }
+
+  private boolean isMmsFailedWithState(MessageRecord messageRecord, int expectedTransferState) {
+    return messageRecord.isAttachmentInExpectedState(expectedTransferState) && messageRecord.isOutgoing();
+  }
+
+  private boolean isPermanentFailed(MessageRecord messageRecord) {
+    return isMmsFailedWithState(messageRecord, AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE)
+           || (!(messageRecord instanceof MmsMessageRecord) && messageRecord.isFailed());
+  }
+
+  private boolean isFailedWithNetworkFailures(MessageRecord messageRecord) {
+    return isMmsFailedWithState(messageRecord, AttachmentTable.TRANSFER_PROGRESS_FAILED)
+           || (!(messageRecord instanceof MmsMessageRecord) && messageRecord.hasFailedWithNetworkFailures());
   }
 
   private void bindSentReceivedDates(MessageRecord messageRecord) {

@@ -35,6 +35,9 @@ public abstract class MappingViewHolder<Model> extends RecyclerView.ViewHolder {
   public void onDetachedFromWindow() {
   }
 
+  public void onViewRecycled() {
+  }
+
   public abstract void bind(@NonNull Model model);
 
   public void setPayload(@NonNull List<Object> payload) {

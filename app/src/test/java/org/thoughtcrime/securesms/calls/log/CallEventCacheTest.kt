@@ -172,6 +172,26 @@ class CallEventCacheTest {
     assertThat(result).size().isEqualTo(3)
   }
 
+  @Test
+  fun `Given two call link entries in a row, when I clusterCallEvents, then I expect two entries`() {
+    val testData = listOf(
+      createCacheRecord(
+        callId = 1,
+        peer = 1,
+        type = Type.AD_HOC_CALL.code
+      ),
+      createCacheRecord(
+        callId = 2,
+        peer = 2,
+        type = Type.AD_HOC_CALL.code
+      )
+    )
+
+    val filterState = CallEventCache.FilterState()
+    val result = CallEventCache.clusterCallEvents(testData, filterState)
+    assertThat(result).size().isEqualTo(2)
+  }
+
   private fun createCacheRecord(
     callId: Long,
     peer: Long = 1,
@@ -184,7 +204,8 @@ class CallEventCacheTest {
     isGroupCallActive: Boolean = false,
     didLocalUserJoin: Boolean = false,
     body: String? = null,
-    decryptedGroupBytes: ByteArray? = null
+    decryptedGroupBytes: ByteArray? = null,
+    read: Boolean = true
   ): CallEventCache.CacheRecord {
     return CallEventCache.CacheRecord(
       rowId = callId,
@@ -199,7 +220,8 @@ class CallEventCacheTest {
       isGroupCallActive = isGroupCallActive,
       didLocalUserJoin = didLocalUserJoin,
       body = body,
-      decryptedGroupBytes = decryptedGroupBytes
+      decryptedGroupBytes = decryptedGroupBytes,
+      read = read
     )
   }
 }

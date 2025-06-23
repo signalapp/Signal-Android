@@ -57,12 +57,12 @@ public class ProfileCipherOutputStream extends DigestingOutputStream {
   }
 
   @Override
-  public void flush() throws IOException {
+  public void close() throws IOException {
     try {
       byte[] output = cipher.doFinal();
 
       super.write(output);
-      super.flush();
+      super.close();
     } catch (BadPaddingException | IllegalBlockSizeException e) {
       throw new AssertionError(e);
     }

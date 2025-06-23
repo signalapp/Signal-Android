@@ -181,7 +181,7 @@ class LinkDeviceViewModel : ViewModel() {
     if (LinkDeviceRepository.isValidQr(uri)) {
       _state.update {
         it.copy(
-          qrCodeState = if (uri.supportsLinkAndSync() && RemoteConfig.linkAndSync) QrCodeState.VALID_WITH_SYNC else QrCodeState.VALID_WITHOUT_SYNC,
+          qrCodeState = if (uri.supportsLinkAndSync()) QrCodeState.VALID_WITH_SYNC else QrCodeState.VALID_WITHOUT_SYNC,
           linkUri = uri,
           showFrontCamera = null
         )
@@ -225,7 +225,7 @@ class LinkDeviceViewModel : ViewModel() {
       Log.i(TAG, "Adding device with sync.")
       addDeviceWithSync(linkUri)
     } else {
-      Log.i(TAG, "Adding device without sync. (uri: ${linkUri.supportsLinkAndSync()}, remoteConfig: ${RemoteConfig.linkAndSync})")
+      Log.i(TAG, "Adding device without sync. (uri: ${linkUri.supportsLinkAndSync()})")
       addDeviceWithoutSync(linkUri)
     }
   }
@@ -288,7 +288,7 @@ class LinkDeviceViewModel : ViewModel() {
     Log.d(TAG, "[addDeviceWithSync] Got result: $result")
 
     if (result !is LinkDeviceResult.Success) {
-      Log.w(TAG, "[addDeviceWithSync] Unable to link device $result")
+      Log.w(TAG, "[addDeviceWithSync] Unable to link device $result", if (result is LinkDeviceResult.NetworkError) result.error else null)
       _state.update {
         it.copy(
           dialogState = DialogState.None
@@ -339,17 +339,39 @@ class LinkDeviceViewModel : ViewModel() {
         }
         loadDevices()
       }
-      is LinkDeviceRepository.LinkUploadArchiveResult.BackupCreationFailure,
-      is LinkDeviceRepository.LinkUploadArchiveResult.BadRequest,
-      is LinkDeviceRepository.LinkUploadArchiveResult.NetworkError -> {
-        Log.w(TAG, "[addDeviceWithSync] Failed to upload the archive! Result: $uploadResult")
-        val canRetry = uploadResult !is LinkDeviceRepository.LinkUploadArchiveResult.BackupCreationFailure
+      is LinkDeviceRepository.LinkUploadArchiveResult.NotEnoughSpace -> {
+        Log.w(TAG, "[addDeviceWithSync] Failed to upload the archive because there is not enough space")
         _state.update {
           it.copy(
             dialogState = DialogState.SyncingFailed(
               deviceId = waitResult.id,
               deviceCreatedAt = waitResult.created,
-              canRetry = canRetry
+              syncFailType = LinkDeviceSettingsState.SyncFailType.NOT_ENOUGH_SPACE
+            )
+          )
+        }
+      }
+      is LinkDeviceRepository.LinkUploadArchiveResult.BackupCreationFailure -> {
+        Log.w(TAG, "[addDeviceWithSync] Failed to upload the archive because of backup creation failure")
+        _state.update {
+          it.copy(
+            dialogState = DialogState.SyncingFailed(
+              deviceId = waitResult.id,
+              deviceCreatedAt = waitResult.created,
+              syncFailType = LinkDeviceSettingsState.SyncFailType.NOT_RETRYABLE
+            )
+          )
+        }
+      }
+      is LinkDeviceRepository.LinkUploadArchiveResult.BadRequest,
+      is LinkDeviceRepository.LinkUploadArchiveResult.NetworkError -> {
+        Log.w(TAG, "[addDeviceWithSync] Failed to upload the archive! Result: $uploadResult")
+        _state.update {
+          it.copy(
+            dialogState = DialogState.SyncingFailed(
+              deviceId = waitResult.id,
+              deviceCreatedAt = waitResult.created,
+              syncFailType = LinkDeviceSettingsState.SyncFailType.RETRYABLE
             )
           )
         }
@@ -377,7 +399,7 @@ class LinkDeviceViewModel : ViewModel() {
     }
 
     if (result !is LinkDeviceResult.Success) {
-      Log.w(TAG, "Unable to link device $result")
+      Log.w(TAG, "Unable to link device $result", if (result is LinkDeviceResult.NetworkError) result.error else null)
       _state.update {
         it.copy(
           dialogState = DialogState.None
@@ -457,11 +479,13 @@ class LinkDeviceViewModel : ViewModel() {
       }
     }
 
+    val shouldLaunchQrScanner = !(dialogState is DialogState.SyncingFailed && dialogState.syncFailType != LinkDeviceSettingsState.SyncFailType.NOT_ENOUGH_SPACE)
+
     _state.update {
       it.copy(
         linkDeviceResult = LinkDeviceResult.None,
         dialogState = DialogState.None,
-        oneTimeEvent = OneTimeEvent.LaunchQrCodeScanner
+        oneTimeEvent = if (shouldLaunchQrScanner) OneTimeEvent.LaunchQrCodeScanner else OneTimeEvent.None
       )
     }
   }

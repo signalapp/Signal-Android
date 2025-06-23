@@ -7,7 +7,7 @@ package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
 import androidx.sqlite.db.SupportSQLiteDatabase
-import net.zetetic.database.sqlcipher.SQLiteDatabase
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Keep track of a "stale timestamp" for one-time prekeys so that we can know when it's safe to delete them.

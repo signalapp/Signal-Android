@@ -7,7 +7,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.Annotation;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.Selection;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -254,7 +253,7 @@ public class ComposeText extends EmojiEditText {
   }
 
   public @NonNull List<Mention> getMentions() {
-    return MentionAnnotation.getMentionsFromAnnotations(getText());
+    return MentionAnnotation.getMentionsFromAnnotations(getTextTrimmed());
   }
 
   public boolean hasStyling() {

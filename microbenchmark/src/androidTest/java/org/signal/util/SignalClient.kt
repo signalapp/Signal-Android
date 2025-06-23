@@ -9,6 +9,7 @@ import org.signal.libsignal.metadata.certificate.SenderCertificate
 import org.signal.libsignal.metadata.certificate.ServerCertificate
 import org.signal.libsignal.protocol.SessionBuilder
 import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.signal.libsignal.protocol.UsePqRatchet
 import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
@@ -74,7 +75,7 @@ class SignalClient {
    */
   fun initializeSession(to: SignalClient) {
     val address = SignalProtocolAddress(to.aci.toString(), 1)
-    SessionBuilder(store, address).process(to.createPreKeyBundle())
+    SessionBuilder(store, address).process(to.createPreKeyBundle(), UsePqRatchet.NO)
   }
 
   fun initializedGroupSession(distributionId: DistributionId): SenderKeyDistributionMessage {
@@ -173,7 +174,10 @@ class SignalClient {
     store.storePreKey(prekeyId, preKeyRecord)
     store.storeSignedPreKey(prekeyId, SignedPreKeyRecord(prekeyId, System.currentTimeMillis(), signedPreKeyPair, signedPreKeySignature))
 
-    return PreKeyBundle(prekeyId, prekeyId, prekeyId, preKeyRecord.keyPair.publicKey, prekeyId, signedPreKeyPair.publicKey, signedPreKeySignature, store.identityKeyPair.publicKey)
+    return PreKeyBundle(
+      prekeyId, prekeyId, prekeyId, preKeyRecord.keyPair.publicKey, prekeyId, signedPreKeyPair.publicKey, signedPreKeySignature, store.identityKeyPair.publicKey,
+      PreKeyBundle.NULL_PRE_KEY_ID, null, null
+    )
   }
 }
 

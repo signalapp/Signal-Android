@@ -288,6 +288,7 @@ public class JobManager implements ConstraintObserver.Notifier {
    * Search through the list of pending jobs and find all that match a given predicate. Note that there will always be races here, and the result you get back
    * may not be valid anymore by the time you get it. Use with caution.
    */
+  @WorkerThread
   public @NonNull List<JobSpec> find(@NonNull Predicate<JobSpec> predicate) {
     waitUntilInitialized();
     return jobController.findJobs(predicate);
@@ -532,18 +533,6 @@ public class JobManager implements ConstraintObserver.Notifier {
       if (!jobs.isEmpty()) {
         this.jobs.add(new ArrayList<>(jobs));
       }
-      return this;
-    }
-
-    public Chain after(@NonNull Job job) {
-      return after(Collections.singletonList(job));
-    }
-
-    public Chain after(@NonNull List<? extends Job> jobs) {
-      if (!jobs.isEmpty()) {
-        this.jobs.add(0, new ArrayList<>(jobs));
-      }
-
       return this;
     }
 

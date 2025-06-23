@@ -93,7 +93,15 @@
         android:id="@+id/enterBackupKey"
         android:name="org.thoughtcrime.securesms.restore.enterbackupkey.PostRegistrationEnterBackupKeyFragment">
 
+        <action
+            android:id="@+id/go_to_remote_restore_activity"
+            app:destination="@id/remoteRestoreActivity"
+            app:popUpTo="@id/selectRestoreMethod" />
     </fragment>
+
+    <activity
+        android:id="@+id/remoteRestoreActivity"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.restore.RemoteRestoreActivity" />
 
     <fragment
         android:id="@+id/choose_local_backup_fragment"

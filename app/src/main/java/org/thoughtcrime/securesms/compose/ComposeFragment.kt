@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 import androidx.fragment.compose.content
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.util.DynamicTheme
 

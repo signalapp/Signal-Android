@@ -71,14 +71,17 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
   private fun processContactFile(inputStream: InputStream) {
     val deviceContacts = DeviceContactsInputStream(inputStream)
     val recipients = SignalDatabase.recipients
-    val threads = SignalDatabase.threads
 
     var contact: DeviceContact? = deviceContacts.read()
     while (contact != null) {
-      val recipient = if (contact.aci.isPresent) {
+      val recipient: Recipient? = if (contact.aci.isPresent) {
         Recipient.externalPush(SignalServiceAddress(contact.aci.get(), contact.e164.orElse(null)))
       } else {
-        Recipient.external(context, contact.e164.get())
+        Recipient.external(contact.e164.get())
+      }
+
+      if (recipient == null) {
+        continue
       }
 
       if (recipient.isSelf) {

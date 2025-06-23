@@ -8,12 +8,12 @@ import android.view.View
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import org.signal.core.util.bytes
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
-import org.thoughtcrime.securesms.util.Util
 import java.io.IOException
 import java.util.Optional
 
@@ -54,7 +54,7 @@ class MediaSendDocumentFragment : Fragment(R.layout.mediasend_document_fragment)
     if (fileInfo != null) {
       media.setFileName(fileInfo.first)
       name.text = fileInfo.first ?: getString(R.string.DocumentView_unnamed_file)
-      size.text = Util.getPrettyFileSize(fileInfo.second)
+      size.text = fileInfo.second.bytes.toUnitString()
 
       val extensionText: String = MediaUtil.getFileType(requireContext(), Optional.ofNullable(fileInfo.first), media.uri).orElse("")
       if (extensionText.length <= 3) {

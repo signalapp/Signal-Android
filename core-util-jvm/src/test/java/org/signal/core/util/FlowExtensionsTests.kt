@@ -60,4 +60,20 @@ class FlowExtensionsTests {
 
     assertEquals(listOf(1, 5, 10, 15, 20, 25, 30), output)
   }
+
+  @Test
+  fun `throttleLatest - respects skipThrottle`() = runTest {
+    val testFlow = flow {
+      for (i in 1..30) {
+        emit(i)
+        delay(10)
+      }
+    }
+
+    val output = testFlow
+      .throttleLatest(50.milliseconds) { it in setOf(2, 3, 4, 26, 27, 28) }
+      .toList()
+
+    assertEquals(listOf(1, 2, 3, 4, 5, 10, 15, 20, 25, 26, 27, 28, 30), output)
+  }
 }

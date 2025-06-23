@@ -50,8 +50,7 @@ public class GroupPreJoinActionProcessor extends GroupActionProcessor {
                                                                             SignalStore.internal().getGroupCallingServer(),
                                                                             new byte[0],
                                                                             AUDIO_LEVELS_INTERVAL,
-                                                                            RingRtcDynamicConfiguration.getAudioProcessingMethod(),
-                                                                            RingRtcDynamicConfiguration.shouldUseOboeAdm(),
+                                                                            RingRtcDynamicConfiguration.getAudioConfig(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
     if (groupCall == null) {

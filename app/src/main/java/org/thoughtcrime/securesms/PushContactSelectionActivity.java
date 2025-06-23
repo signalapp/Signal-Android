@@ -58,7 +58,7 @@ public class PushContactSelectionActivity extends ContactSelectionActivity {
   protected final void onFinishedSelection() {
     Intent                resultIntent     = getIntent();
     List<SelectedContact> selectedContacts = contactsFragment.getSelectedContacts();
-    List<RecipientId>     recipients       = Stream.of(selectedContacts).map(sc -> sc.getOrCreateRecipientId(this)).toList();
+    List<RecipientId>     recipients       = Stream.of(selectedContacts).map(sc -> sc.getOrCreateRecipientId()).toList();
 
     resultIntent.putParcelableArrayListExtra(KEY_SELECTED_RECIPIENTS, new ArrayList<>(recipients));
 

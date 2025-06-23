@@ -112,12 +112,15 @@ object InAppPaymentsRepository {
    * Common logic for handling errors coming from the Rx chains that handle payments. These errors
    * are analyzed and then either written to the database or dispatched to the temporary error processor.
    */
+  @WorkerThread
   fun handlePipelineError(
     inAppPaymentId: InAppPaymentTable.InAppPaymentId,
-    donationErrorSource: DonationErrorSource,
-    paymentSourceType: PaymentSourceType,
     error: Throwable
   ) {
+    val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+    val donationErrorSource = inAppPayment.type.toErrorSource()
+    val paymentSourceType = inAppPayment.data.paymentMethodType.toPaymentSourceType()
+
     if (error is InAppPaymentError) {
       setErrorIfNotPresent(inAppPaymentId, error.inAppPaymentDataError)
       return
@@ -132,7 +135,7 @@ object InAppPaymentsRepository {
     val inAppPaymentError = InAppPaymentError.fromDonationError(donationError)?.inAppPaymentDataError
     if (inAppPaymentError != null) {
       Log.w(TAG, "Detected a terminal error.")
-      setErrorIfNotPresent(inAppPaymentId, inAppPaymentError).subscribe()
+      setErrorIfNotPresent(inAppPaymentId, inAppPaymentError)
     } else {
       Log.w(TAG, "Detected a temporary error.")
       temporaryErrorProcessor.onNext(inAppPaymentId to donationError)
@@ -150,20 +153,19 @@ object InAppPaymentsRepository {
   /**
    * Writes the given error to the database, if and only if there is not already an error set.
    */
-  private fun setErrorIfNotPresent(inAppPaymentId: InAppPaymentTable.InAppPaymentId, error: InAppPaymentData.Error?): Completable {
-    return Completable.fromAction {
-      val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
-      if (inAppPayment.data.error == null) {
-        Log.d(TAG, "Setting error on InAppPayment[$inAppPaymentId]")
-        SignalDatabase.inAppPayments.update(
-          inAppPayment.copy(
-            notified = false,
-            state = InAppPaymentTable.State.END,
-            data = inAppPayment.data.copy(error = error)
-          )
+  @WorkerThread
+  private fun setErrorIfNotPresent(inAppPaymentId: InAppPaymentTable.InAppPaymentId, error: InAppPaymentData.Error?) {
+    val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+    if (inAppPayment.data.error == null) {
+      Log.d(TAG, "Setting error on InAppPayment[$inAppPaymentId]")
+      SignalDatabase.inAppPayments.update(
+        inAppPayment.copy(
+          notified = false,
+          state = InAppPaymentTable.State.END,
+          data = inAppPayment.data.copy(error = error)
         )
-      }
-    }.subscribeOn(Schedulers.io())
+      )
+    }
   }
 
   /**
@@ -516,13 +518,14 @@ object InAppPaymentsRepository {
 
       val value = when (inAppPayment.state) {
         InAppPaymentTable.State.CREATED -> error("This should have been filtered out.")
-        InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION -> {
+        InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION, InAppPaymentTable.State.REQUIRES_ACTION -> {
           DonationRedemptionJobStatus.PendingExternalVerification(
             pendingOneTimeDonation = inAppPayment.toPendingOneTimeDonation(),
             nonVerifiedMonthlyDonation = inAppPayment.toNonVerifiedMonthlyDonation()
           )
         }
-        InAppPaymentTable.State.PENDING -> {
+
+        InAppPaymentTable.State.PENDING, InAppPaymentTable.State.TRANSACTING, InAppPaymentTable.State.REQUIRED_ACTION_COMPLETED -> {
           if (inAppPayment.data.redemption?.keepAlive == true) {
             DonationRedemptionJobStatus.PendingKeepAlive
           } else if (inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED) {
@@ -531,6 +534,7 @@ object InAppPaymentsRepository {
             DonationRedemptionJobStatus.PendingReceiptRequest
           }
         }
+
         InAppPaymentTable.State.END -> {
           if (type.recurring && inAppPayment.data.error != null) {
             DonationRedemptionJobStatus.FailedSubscription
@@ -590,7 +594,7 @@ object InAppPaymentsRepository {
       timestamp = insertedAt.inWholeMilliseconds,
       price = data.amount!!.toFiatMoney(),
       level = data.level.toInt(),
-      checkedVerification = data.waitForAuth!!.checkedVerification
+      checkedVerification = data.waitForAuth?.checkedVerification ?: false
     )
   }
 

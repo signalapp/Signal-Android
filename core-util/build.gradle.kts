@@ -12,8 +12,10 @@ dependencies {
 
   implementation(libs.androidx.sqlite)
   implementation(libs.androidx.documentfile)
+  testImplementation(libs.androidx.sqlite.framework)
 
   testImplementation(testLibs.junit.junit)
+  testImplementation(testLibs.assertk)
   testImplementation(testLibs.robolectric.robolectric)
 }
 

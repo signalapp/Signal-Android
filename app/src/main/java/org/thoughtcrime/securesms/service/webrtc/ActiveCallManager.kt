@@ -17,9 +17,9 @@ import android.net.ConnectivityManager
 import android.os.Build
 import android.telephony.PhoneStateListener
 import android.telephony.TelephonyManager
-import androidx.annotation.MainThread
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.IntentCompat
 import androidx.core.os.bundleOf
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
@@ -27,7 +27,6 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.PendingIntentFlags
-import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.UnableToStartException
@@ -45,8 +44,6 @@ import org.thoughtcrime.securesms.webrtc.audio.SignalAudioManager.Companion.crea
 import org.thoughtcrime.securesms.webrtc.locks.LockManager
 import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.withLock
-import kotlin.time.Duration
-import kotlin.time.Duration.Companion.minutes
 
 /**
  * Entry point for [SignalCallManager] and friends to interact with the Android system.
@@ -60,6 +57,8 @@ class ActiveCallManager(
 
   companion object {
     private val TAG = Log.tag(ActiveCallManager::class.java)
+
+    private const val WEBSOCKET_KEEP_ALIVE_TOKEN: String = "ActiveCall"
 
     private val requiresAsyncNotificationLoad = Build.VERSION.SDK_INT <= 29
 
@@ -142,7 +141,6 @@ class ActiveCallManager(
   private var networkReceiver: NetworkReceiver? = null
   private var powerButtonReceiver: PowerButtonReceiver? = null
   private var uncaughtExceptionHandlerManager: UncaughtExceptionHandlerManager? = null
-  private val webSocketKeepAliveTask: WebSocketKeepAliveTask = WebSocketKeepAliveTask()
   private var signalAudioManager: SignalAudioManager? = null
   private var previousNotificationId = -1
   private var previousNotificationDisposable = Disposable.disposed()
@@ -153,7 +151,8 @@ class ActiveCallManager(
     registerUncaughtExceptionHandler()
     registerNetworkReceiver()
 
-    webSocketKeepAliveTask.start()
+    AppDependencies.authWebSocket.registerKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
+    AppDependencies.unauthWebSocket.registerKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
   }
 
   fun shutdown() {
@@ -170,7 +169,8 @@ class ActiveCallManager(
     unregisterNetworkReceiver()
     unregisterPowerButtonReceiver()
 
-    webSocketKeepAliveTask.stop()
+    AppDependencies.authWebSocket.removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
+    AppDependencies.unauthWebSocket.removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
 
     if (!ActiveCallForegroundService.stop(application) && previousNotificationId != -1) {
       NotificationManagerCompat.from(application).cancel(previousNotificationId)
@@ -233,6 +233,7 @@ class ActiveCallManager(
   private fun registerNetworkReceiver() {
     if (networkReceiver == null) {
       networkReceiver = NetworkReceiver()
+      @Suppress("DEPRECATION")
       application.registerReceiver(networkReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
   }
@@ -316,6 +317,7 @@ class ActiveCallManager(
         return type
       }
 
+    @Suppress("DEPRECATION")
     private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
     private var notificationDisposable: Disposable = Disposable.disposed()
 
@@ -334,6 +336,7 @@ class ActiveCallManager(
 
       if (!AndroidTelecomUtil.telecomSupported) {
         try {
+          @Suppress("DEPRECATION")
           TelephonyUtil.getManager(application).listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_CALL_STATE)
         } catch (e: SecurityException) {
           Log.w(TAG, "Failed to listen to PSTN call answers!", e)
@@ -349,6 +352,7 @@ class ActiveCallManager(
       super.onDestroy()
 
       if (!AndroidTelecomUtil.telecomSupported) {
+        @Suppress("DEPRECATION")
         TelephonyUtil.getManager(application).listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_NONE)
       }
     }
@@ -367,7 +371,7 @@ class ActiveCallManager(
       }
 
       val type = intent.getIntExtra(EXTRA_TYPE, 0)
-      val recipient: Recipient = Recipient.resolved(intent.getParcelableExtra(EXTRA_RECIPIENT_ID)!!)
+      val recipient: Recipient = Recipient.resolved(IntentCompat.getParcelableExtra(intent, EXTRA_RECIPIENT_ID, RecipientId::class.java)!!)
       val isVideoCall = intent.getBooleanExtra(EXTRA_IS_VIDEO_CALL, false)
 
       if (requiresAsyncNotificationLoad) {
@@ -403,6 +407,7 @@ class ActiveCallManager(
 
     @Suppress("deprecation")
     private class HangUpRtcOnPstnCallAnsweredListener : PhoneStateListener() {
+      @Deprecated("Deprecated in Java")
       override fun onCallStateChanged(state: Int, phoneNumber: String) {
         super.onCallStateChanged(state, phoneNumber)
         if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
@@ -433,42 +438,7 @@ class ActiveCallManager(
     }
   }
 
-  /**
-   * Periodically request the web socket stay open if we are doing anything call related.
-   */
-  private class WebSocketKeepAliveTask : Runnable {
-
-    companion object {
-      private val REQUEST_WEBSOCKET_STAY_OPEN_DELAY: Duration = 1.minutes
-      private val WEBSOCKET_KEEP_ALIVE_TOKEN: String = WebSocketKeepAliveTask::class.java.simpleName
-    }
-
-    private var keepRunning = false
-
-    @MainThread
-    fun start() {
-      if (!keepRunning) {
-        keepRunning = true
-        run()
-      }
-    }
-
-    @MainThread
-    fun stop() {
-      keepRunning = false
-      ThreadUtil.cancelRunnableOnMain(this)
-      AppDependencies.incomingMessageObserver.removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
-    }
-
-    @MainThread
-    override fun run() {
-      if (keepRunning) {
-        AppDependencies.incomingMessageObserver.registerKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
-        ThreadUtil.runOnMainDelayed(this, REQUEST_WEBSOCKET_STAY_OPEN_DELAY.inWholeMilliseconds)
-      }
-    }
-  }
-
+  @Suppress("DEPRECATION")
   private class NetworkReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
       val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

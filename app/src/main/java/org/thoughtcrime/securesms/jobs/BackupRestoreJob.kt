@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.jobs
 
 import org.greenrobot.eventbus.EventBus
-import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.R
@@ -23,6 +22,7 @@ import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.BackupProgressService
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
 import java.io.IOException
 
@@ -71,13 +71,13 @@ class BackupRestoreJob private constructor(parameters: Parameters) : BaseJob(par
     SignalStore.backup.restoreState = RestoreState.RESTORING_DB
 
     val progressListener = object : ProgressListener {
-      override fun onAttachmentProgress(total: Long, progress: Long) {
+      override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
         controller.update(
           title = context.getString(R.string.BackupProgressService_title_downloading),
-          progress = progress.toFloat() / total.toFloat(),
+          progress = progress.value,
           indeterminate = false
         )
-        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.bytes, total.bytes))
+        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.transmitted, progress.total))
       }
 
       override fun shouldCancel() = isCanceled

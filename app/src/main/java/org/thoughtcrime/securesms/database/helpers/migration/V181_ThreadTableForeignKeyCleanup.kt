@@ -1,9 +1,9 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * We saw evidence (via failed backup restores) that some people have recipients in their thread table that do not exist in the recipient table.

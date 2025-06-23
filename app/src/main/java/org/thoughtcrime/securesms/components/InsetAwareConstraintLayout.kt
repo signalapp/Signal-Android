@@ -6,6 +6,7 @@ import android.os.Build
 import android.util.AttributeSet
 import android.util.DisplayMetrics
 import android.view.Surface
+import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Guideline
 import androidx.core.content.withStyledAttributes
@@ -65,9 +66,31 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private var overridingKeyboard: Boolean = false
   private var previousKeyboardHeight: Int = 0
   private var otherKeyboardAnimator: ValueAnimator? = null
+  private var applyRootInsets: Boolean = false
+
+  private var insets: WindowInsetsCompat? = null
+  private var windowTypes: Int = InsetAwareConstraintLayout.windowTypes
+
+  private val windowInsetsListener = androidx.core.view.OnApplyWindowInsetsListener { _, insets ->
+    this.insets = insets
+    applyInsets(windowInsets = insets.getInsets(windowTypes), keyboardInsets = insets.getInsets(keyboardType))
+    insets
+  }
 
   val isKeyboardShowing: Boolean
     get() = previousKeyboardHeight > 0
+
+  override fun onAttachedToWindow() {
+    super.onAttachedToWindow()
+
+    ViewCompat.setOnApplyWindowInsetsListener(insetTarget(), windowInsetsListener)
+  }
+
+  override fun onDetachedFromWindow() {
+    super.onDetachedFromWindow()
+
+    ViewCompat.setOnApplyWindowInsetsListener(insetTarget(), null)
+  }
 
   init {
     ViewCompat.setOnApplyWindowInsetsListener(this) { _, windowInsetsCompat ->
@@ -77,10 +100,31 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
     if (attrs != null) {
       context.withStyledAttributes(attrs, R.styleable.InsetAwareConstraintLayout) {
+        applyRootInsets = getBoolean(R.styleable.InsetAwareConstraintLayout_applyRootInsets, false)
+
         if (getBoolean(R.styleable.InsetAwareConstraintLayout_animateKeyboardChanges, false)) {
-          ViewCompat.setWindowInsetsAnimationCallback(this@InsetAwareConstraintLayout, keyboardAnimator)
+          ViewCompat.setWindowInsetsAnimationCallback(insetTarget(), keyboardAnimator)
         }
       }
+    }
+  }
+
+  private fun insetTarget(): View = if (applyRootInsets) rootView else this
+
+  /**
+   * Specifies whether or not window insets should be accounted for when applying
+   * insets. This is useful when choosing whether to display the content in this
+   * constraint layout as a full-window view or as a framed view.
+   */
+  fun setUseWindowTypes(useWindowTypes: Boolean) {
+    windowTypes = if (useWindowTypes) {
+      InsetAwareConstraintLayout.windowTypes
+    } else {
+      0
+    }
+
+    if (insets != null) {
+      applyInsets(insets!!.getInsets(windowTypes), insets!!.getInsets(keyboardType))
     }
   }
 
@@ -117,10 +161,12 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
     if (keyboardInsets.bottom > 0) {
       setKeyboardHeight(keyboardInsets.bottom)
-      if (!keyboardAnimator.animating) {
-        keyboardGuideline?.setGuidelineEnd(keyboardInsets.bottom)
-      } else {
-        keyboardAnimator.endingGuidelineEnd = keyboardInsets.bottom
+      if (!overridingKeyboard) {
+        if (!keyboardAnimator.animating) {
+          keyboardGuideline?.setGuidelineEnd(keyboardInsets.bottom)
+        } else {
+          keyboardAnimator.endingGuidelineEnd = keyboardInsets.bottom
+        }
       }
     } else if (!overridingKeyboard) {
       if (!keyboardAnimator.animating) {

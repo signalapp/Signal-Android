@@ -4,10 +4,12 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
+import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.res.use
 import com.bumptech.glide.RequestManager
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
+import org.thoughtcrime.securesms.conversation.colors.AvatarGradientColors.getGradientDrawable
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.Stories
@@ -76,8 +78,16 @@ class AvatarView @JvmOverloads constructor(
   /**
    * Displays Note-to-Self
    */
-  fun displayChatAvatar(requestManager: RequestManager, recipient: Recipient, isQuickContactEnabled: Boolean) {
-    avatar.setAvatar(requestManager, recipient, isQuickContactEnabled)
+  fun displayChatAvatar(requestManager: RequestManager, recipient: Recipient, isQuickContactEnabled: Boolean, useBlurGradient: Boolean) {
+    avatar.setAvatar(requestManager, recipient, isQuickContactEnabled, false, useBlurGradient)
+  }
+
+  fun displayLoadingAvatar() {
+    avatar.setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.circle_profile_photo))
+  }
+
+  fun displayGradientBlur(recipient: Recipient) {
+    avatar.setImageDrawable(getGradientDrawable(recipient))
   }
 
   /**

@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.database.MessageTypes
 import org.thoughtcrime.securesms.databinding.CallLogAdapterItemBinding
 import org.thoughtcrime.securesms.databinding.CallLogCreateCallLinkItemBinding
 import org.thoughtcrime.securesms.databinding.ConversationListItemClearFilterBinding
+import org.thoughtcrime.securesms.databinding.ConversationListItemClearFilterEmptyBinding
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.DateUtils
@@ -62,13 +63,19 @@ class CallLogAdapter(
       )
     )
     registerFactory(
+      ClearFilterEmptyModel::class.java,
+      BindingFactory(
+        creator = { ClearFilterEmptyViewHolder(it, callbacks::onClearFilterClicked) },
+        inflater = ConversationListItemClearFilterEmptyBinding::inflate
+      )
+    )
+    registerFactory(
       CreateCallLinkModel::class.java,
       BindingFactory(
         creator = { CreateCallLinkViewHolder(it, callbacks::onCreateACallLinkClicked) },
         inflater = CallLogCreateCallLinkItemBinding::inflate
       )
     )
-
     registerFactory(
       CallLinkModel::class.java,
       BindingFactory(
@@ -95,6 +102,7 @@ class CallLogAdapter(
           is CallLogRow.Call -> CallModel(it, selectionState, itemCount, it.peer.id == localCallRecipientId)
           is CallLogRow.CallLink -> CallLinkModel(it, selectionState, itemCount, it.recipient.id == localCallRecipientId)
           is CallLogRow.ClearFilter -> ClearFilterModel()
+          is CallLogRow.ClearFilterEmpty -> ClearFilterEmptyModel()
           is CallLogRow.CreateCallLink -> CreateCallLinkModel()
         }
       }
@@ -176,6 +184,11 @@ class CallLogAdapter(
   private class ClearFilterModel : MappingModel<ClearFilterModel> {
     override fun areItemsTheSame(newItem: ClearFilterModel): Boolean = true
     override fun areContentsTheSame(newItem: ClearFilterModel): Boolean = true
+  }
+
+  private class ClearFilterEmptyModel : MappingModel<ClearFilterEmptyModel> {
+    override fun areItemsTheSame(newItem: ClearFilterEmptyModel): Boolean = true
+    override fun areContentsTheSame(newItem: ClearFilterEmptyModel): Boolean = true
   }
 
   private class CreateCallLinkModel : MappingModel<CreateCallLinkModel> {
@@ -461,6 +474,19 @@ class CallLogAdapter(
     }
 
     override fun bind(model: ClearFilterModel) = Unit
+  }
+
+  private class ClearFilterEmptyViewHolder(
+    binding: ConversationListItemClearFilterEmptyBinding,
+    onClearFilterClicked: () -> Unit
+  ) : BindingViewHolder<ClearFilterEmptyModel, ConversationListItemClearFilterEmptyBinding>(binding) {
+
+    init {
+      binding.clearFilter.setOnClickListener { onClearFilterClicked() }
+      binding.clearFilterTitle.setText(R.string.CallLogAdapter__no_missed_calls)
+    }
+
+    override fun bind(model: ClearFilterEmptyModel) = Unit
   }
 
   private class CreateCallLinkViewHolder(

@@ -19,12 +19,12 @@ import androidx.annotation.Nullable;
 import com.google.i18n.phonenumbers.AsYouTypeFormatter;
 import com.google.i18n.phonenumbers.PhoneNumberUtil;
 
+import org.signal.core.util.E164Util;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.LabeledEditText;
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country;
 import org.thoughtcrime.securesms.registration.ui.countrycode.CountryUtils;
 import org.thoughtcrime.securesms.registration.viewmodel.NumberViewState;
-import org.whispersystems.signalservice.api.util.PhoneNumberFormatter;
 
 /**
  * Handle the logic and formatting of phone number input specifically for change number flows.
@@ -248,7 +248,7 @@ public final class ChangeNumberInputController {
       }
 
       if (!isUpdating) {
-        Country country = new Country(CountryUtils.countryToEmoji(regionCode), PhoneNumberFormatter.getRegionDisplayName(regionCode).orElse(""), countryCode, regionCode);
+        Country country = new Country(CountryUtils.countryToEmoji(regionCode), E164Util.getRegionDisplayName(regionCode).orElse(""), countryCode, regionCode);
         callbacks.setCountry(country);
       }
     }

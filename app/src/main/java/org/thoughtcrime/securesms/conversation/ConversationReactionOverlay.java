@@ -26,12 +26,16 @@ import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.core.content.ContextCompat;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewKt;
+import androidx.core.view.WindowInsetsCompat;
 import androidx.vectordrawable.graphics.drawable.AnimatorInflaterCompat;
 
 import com.annimon.stream.Stream;
 
 import org.signal.core.util.DimensionUnit;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
@@ -53,6 +57,7 @@ import kotlin.Unit;
 
 public final class ConversationReactionOverlay extends FrameLayout {
 
+  private static final String       TAG          = Log.tag(ConversationReactionOverlay.class);
   private static final Interpolator INTERPOLATOR = new DecelerateInterpolator();
 
   private final Rect  emojiViewGlobalRect = new Rect();
@@ -165,11 +170,21 @@ public final class ConversationReactionOverlay extends FrameLayout {
 
     setupSelectedEmoji();
 
-    View statusBarBackground = activity.findViewById(android.R.id.statusBarBackground);
-    statusBarHeight = statusBarBackground == null ? 0 : statusBarBackground.getHeight();
+    View               root             = activity.findViewById(android.R.id.content).getRootView();
+    WindowInsetsCompat rootWindowInsets = ViewCompat.getRootWindowInsets(root);
 
-    View navigationBarBackground = activity.findViewById(android.R.id.navigationBarBackground);
-    bottomNavigationBarHeight = navigationBarBackground == null ? 0 : navigationBarBackground.getHeight();
+    if (rootWindowInsets != null) {
+      Log.i(TAG, "Capturing insets from root view.");
+
+      Insets insets = rootWindowInsets.getInsets(WindowInsetsCompat.Type.systemBars());
+      statusBarHeight = insets.top;
+      bottomNavigationBarHeight = insets.bottom;
+    } else {
+      Log.i(TAG, "Capturing insets from util methods.");
+
+      statusBarHeight           = ViewUtil.getStatusBarHeight(root);
+      bottomNavigationBarHeight = ViewUtil.getNavigationBarHeight(root);
+    }
 
     if (zeroNavigationBarHeightForConfiguration()) {
       bottomNavigationBarHeight = 0;

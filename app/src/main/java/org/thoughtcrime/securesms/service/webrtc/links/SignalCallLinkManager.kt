@@ -6,9 +6,7 @@
 package org.thoughtcrime.securesms.service.webrtc.links
 
 import io.reactivex.rxjava3.core.Single
-import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
-import org.signal.core.util.or
 import org.signal.libsignal.zkgroup.GenericServerPublicParams
 import org.signal.libsignal.zkgroup.calllinks.CallLinkAuthCredentialPresentation
 import org.signal.libsignal.zkgroup.calllinks.CallLinkSecretParams
@@ -22,8 +20,9 @@ import org.signal.ringrtc.CallLinkState.Restrictions
 import org.signal.ringrtc.CallManager
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.whispersystems.signalservice.internal.ServiceResponse
+import org.whispersystems.signalservice.api.NetworkResult
 import java.io.IOException
 
 /**
@@ -51,27 +50,28 @@ class SignalCallLinkManager(
 
     Log.d(TAG, "Requesting call link credential response.")
 
-    val serviceResponse: ServiceResponse<CreateCallLinkCredentialResponse> = AppDependencies.callLinksService.getCreateCallLinkAuthCredential(request)
-    if (serviceResponse.result.isAbsent()) {
-      throw IOException("Failed to create credential response", serviceResponse.applicationError.or(serviceResponse.executionError).get())
+    when (val result: NetworkResult<CreateCallLinkCredentialResponse> = SignalNetwork.calling.createCallLinkCredential(request)) {
+      is NetworkResult.Success -> {
+        Log.d(TAG, "Requesting call link credential.")
+
+        val createCallLinkCredential: CreateCallLinkCredential = requestContext.receiveResponse(
+          result.result,
+          userAci.libSignalAci,
+          genericServerPublicParams
+        )
+
+        Log.d(TAG, "Requesting and returning call link presentation.")
+
+        return createCallLinkCredential.present(
+          roomId,
+          userAci.libSignalAci,
+          genericServerPublicParams,
+          CallLinkSecretParams.deriveFromRootKey(linkRootKey)
+        )
+      }
+
+      else -> throw IOException("Failed to create credential response", result.getCause())
     }
-
-    Log.d(TAG, "Requesting call link credential.")
-
-    val createCallLinkCredential: CreateCallLinkCredential = requestContext.receiveResponse(
-      serviceResponse.result.get(),
-      userAci.libSignalAci,
-      genericServerPublicParams
-    )
-
-    Log.d(TAG, "Requesting and returning call link presentation.")
-
-    return createCallLinkCredential.present(
-      roomId,
-      userAci.libSignalAci,
-      genericServerPublicParams,
-      CallLinkSecretParams.deriveFromRootKey(linkRootKey)
-    )
   }
 
   private fun requestCallLinkAuthCredentialPresentation(
@@ -141,7 +141,8 @@ class SignalCallLinkManager(
       callManager.readCallLink(
         SignalStore.internal.groupCallingServer,
         requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes).serialize(),
-        CallLinkRootKey(credentials.linkKeyBytes)
+        CallLinkRootKey(credentials.linkKeyBytes),
+        null
       ) {
         if (it.isSuccess) {
           emitter.onSuccess(ReadCallLinkResult.Success(it.value!!.toAppState()))
@@ -168,6 +169,7 @@ class SignalCallLinkManager(
         SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
+        null,
         credentials.adminPassBytes,
         name
       ) { result ->
@@ -195,6 +197,7 @@ class SignalCallLinkManager(
         SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
+        null,
         credentials.adminPassBytes,
         restrictions
       ) { result ->
@@ -221,6 +224,7 @@ class SignalCallLinkManager(
         SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
+        null,
         credentials.adminPassBytes
       ) { result ->
         if (result.isSuccess && result.value == true) {

@@ -1,8 +1,6 @@
 package org.thoughtcrime.securesms.util
 
-import android.content.Context
 import com.google.i18n.phonenumbers.PhoneNumberUtil
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
 import java.util.Locale
 
 internal object SignalMeUtil {
@@ -12,7 +10,7 @@ internal object SignalMeUtil {
    * If this is a valid signal.me link and has a valid e164, it will return the e164. Otherwise, it will return null.
    */
   @JvmStatic
-  fun parseE164FromLink(context: Context, link: String?): String? {
+  fun parseE164FromLink(link: String?): String? {
     if (link.isNullOrBlank()) {
       return null
     }
@@ -21,7 +19,7 @@ internal object SignalMeUtil {
       val e164: String = match.groups[2]?.value ?: return@let null
 
       if (PhoneNumberUtil.getInstance().isPossibleNumber(e164, Locale.getDefault().country)) {
-        PhoneNumberFormatter.get(context).format(e164)
+        SignalE164Util.formatAsE164(e164)
       } else {
         null
       }

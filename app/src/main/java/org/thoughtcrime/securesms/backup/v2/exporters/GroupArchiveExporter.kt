@@ -12,6 +12,7 @@ import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullBlob
+import org.signal.core.util.requireString
 import org.signal.storageservice.protos.groups.AccessControl
 import org.signal.storageservice.protos.groups.Member
 import org.signal.storageservice.protos.groups.local.DecryptedBannedMember
@@ -23,6 +24,8 @@ import org.signal.storageservice.protos.groups.local.EnabledState
 import org.thoughtcrime.securesms.backup.v2.ArchiveGroup
 import org.thoughtcrime.securesms.backup.v2.ArchiveRecipient
 import org.thoughtcrime.securesms.backup.v2.proto.Group
+import org.thoughtcrime.securesms.backup.v2.util.toRemote
+import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
@@ -59,7 +62,8 @@ class GroupArchiveExporter(private val selfAci: ServiceId.ACI, private val curso
         blocked = cursor.requireBoolean(RecipientTable.BLOCKED),
         hideStory = extras?.hideStory() ?: false,
         storySendMode = showAsStoryState.toRemote(),
-        snapshot = decryptedGroup.toRemote(isActive, selfAci)
+        snapshot = decryptedGroup.toRemote(isActive, selfAci),
+        avatarColor = cursor.requireString(RecipientTable.AVATAR_COLOR)?.let { AvatarColor.deserialize(it) }?.toRemote()
       )
     )
   }

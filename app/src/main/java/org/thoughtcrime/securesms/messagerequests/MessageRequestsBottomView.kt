@@ -90,7 +90,8 @@ class MessageRequestsBottomView @JvmOverloads constructor(context: Context, attr
         accept.setText(R.string.MessageRequestBottomView_accept)
       }
 
-      MessageRequestState.State.INDIVIDUAL -> {
+      MessageRequestState.State.INDIVIDUAL,
+      MessageRequestState.State.INDIVIDUAL_FEW_CONNECTIONS -> {
         question.text = HtmlCompat.fromHtml(
           context.getString(
             R.string.MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept,

@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.contacts;
 
-import android.content.Context;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -45,11 +43,16 @@ public final class SelectedContact {
     this.chatType    = chatType;
   }
 
-  public @NonNull RecipientId getOrCreateRecipientId(@NonNull Context context) {
+  public @NonNull RecipientId getOrCreateRecipientId() {
     if (recipientId != null) {
       return recipientId;
     } else if (number != null) {
-      return Recipient.external(context, number).getId();
+      Recipient recipient = Recipient.external(number);
+      if (recipient != null) {
+        return recipient.getId();
+      } else {
+        throw new AssertionError("Invalid phone number provided!");
+      }
     } else {
       throw new AssertionError();
     }

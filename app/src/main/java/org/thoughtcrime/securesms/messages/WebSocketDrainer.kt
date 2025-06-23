@@ -51,7 +51,6 @@ object WebSocketDrainer {
     var websocketDrainTimeout = requestedWebsocketDrainTimeoutMs
 
     val context = AppDependencies.application
-    val incomingMessageObserver = AppDependencies.incomingMessageObserver
     val powerManager = ServiceUtil.getPowerManager(context)
 
     val doze = PowerManagerCompat.isDeviceIdleMode(powerManager)
@@ -70,7 +69,7 @@ object WebSocketDrainer {
     val wakeLock = WakeLockUtil.acquire(AppDependencies.application, PowerManager.PARTIAL_WAKE_LOCK, websocketDrainTimeout + QUEUE_TIMEOUT, wakeLockTag)
 
     return try {
-      drainAndProcess(websocketDrainTimeout, incomingMessageObserver, keepAliveToken)
+      drainAndProcess(websocketDrainTimeout, keepAliveToken)
     } finally {
       WakeLockUtil.release(wakeLock, wakeLockTag)
     }
@@ -83,7 +82,7 @@ object WebSocketDrainer {
    * so that we know the queue has been drained.
    */
   @WorkerThread
-  private fun drainAndProcess(timeout: Long, incomingMessageObserver: IncomingMessageObserver, keepAliveToken: String): Boolean {
+  private fun drainAndProcess(timeout: Long, keepAliveToken: String): Boolean {
     val stopwatch = Stopwatch("websocket-strategy")
 
     val jobManager = AppDependencies.jobManager
@@ -94,7 +93,7 @@ object WebSocketDrainer {
       queueListener
     )
 
-    val successfullyDrained = blockUntilWebsocketDrained(incomingMessageObserver, timeout, keepAliveToken)
+    val successfullyDrained = blockUntilWebsocketDrained(timeout, keepAliveToken)
     if (!successfullyDrained) {
       return false
     }
@@ -116,19 +115,17 @@ object WebSocketDrainer {
     return true
   }
 
-  private fun blockUntilWebsocketDrained(incomingMessageObserver: IncomingMessageObserver, timeoutMs: Long, keepAliveToken: String): Boolean {
+  private fun blockUntilWebsocketDrained(timeoutMs: Long, keepAliveToken: String): Boolean {
     try {
       val latch = CountDownLatch(1)
       var success = false
-      incomingMessageObserver.registerKeepAliveToken(keepAliveToken) {
-        Log.w(TAG, "Keep alive token purged")
-        latch.countDown()
-      }
-      incomingMessageObserver.addDecryptionDrainedListener(object : Runnable {
+      AppDependencies.authWebSocket.registerKeepAliveToken(keepAliveToken)
+
+      AppDependencies.incomingMessageObserver.addDecryptionDrainedListener(object : Runnable {
         override fun run() {
           success = true
           latch.countDown()
-          incomingMessageObserver.removeDecryptionDrainedListener(this)
+          AppDependencies.incomingMessageObserver.removeDecryptionDrainedListener(this)
         }
       })
 
@@ -142,7 +139,7 @@ object WebSocketDrainer {
         false
       }
     } finally {
-      incomingMessageObserver.removeKeepAliveToken(keepAliveToken)
+      AppDependencies.authWebSocket.removeKeepAliveToken(keepAliveToken)
     }
   }
 

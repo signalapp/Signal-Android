@@ -7,9 +7,11 @@ package org.whispersystems.signalservice.api.storage
 
 import org.whispersystems.signalservice.internal.storage.protos.AccountRecord
 import org.whispersystems.signalservice.internal.storage.protos.CallLinkRecord
+import org.whispersystems.signalservice.internal.storage.protos.ChatFolderRecord
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
 import org.whispersystems.signalservice.internal.storage.protos.GroupV1Record
 import org.whispersystems.signalservice.internal.storage.protos.GroupV2Record
+import org.whispersystems.signalservice.internal.storage.protos.NotificationProfile
 import org.whispersystems.signalservice.internal.storage.protos.StorageRecord
 import org.whispersystems.signalservice.internal.storage.protos.StoryDistributionListRecord
 
@@ -41,6 +43,14 @@ fun CallLinkRecord.toSignalCallLinkRecord(storageId: StorageId): SignalCallLinkR
   return SignalCallLinkRecord(storageId, this)
 }
 
+fun ChatFolderRecord.toSignalChatFolderRecord(storageId: StorageId): SignalChatFolderRecord {
+  return SignalChatFolderRecord(storageId, this)
+}
+
+fun NotificationProfile.toSignalNotificationProfileRecord(storageId: StorageId): SignalNotificationProfileRecord {
+  return SignalNotificationProfileRecord(storageId, this)
+}
+
 fun SignalContactRecord.toSignalStorageRecord(): SignalStorageRecord {
   return SignalStorageRecord(id, StorageRecord(contact = this.proto))
 }
@@ -63,4 +73,12 @@ fun SignalStoryDistributionListRecord.toSignalStorageRecord(): SignalStorageReco
 
 fun SignalCallLinkRecord.toSignalStorageRecord(): SignalStorageRecord {
   return SignalStorageRecord(id, StorageRecord(callLink = this.proto))
+}
+
+fun SignalChatFolderRecord.toSignalStorageRecord(): SignalStorageRecord {
+  return SignalStorageRecord(id, StorageRecord(chatFolder = this.proto))
+}
+
+fun SignalNotificationProfileRecord.toSignalStorageRecord(): SignalStorageRecord {
+  return SignalStorageRecord(id, StorageRecord(notificationProfile = this.proto))
 }

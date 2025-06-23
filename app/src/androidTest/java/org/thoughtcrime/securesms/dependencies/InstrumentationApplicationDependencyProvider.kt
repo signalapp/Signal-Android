@@ -26,8 +26,13 @@ import org.thoughtcrime.securesms.testing.runSync
 import org.thoughtcrime.securesms.testing.success
 import org.whispersystems.signalservice.api.SignalServiceDataStore
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
-import org.whispersystems.signalservice.api.SignalWebSocket
+import org.whispersystems.signalservice.api.archive.ArchiveApi
+import org.whispersystems.signalservice.api.attachment.AttachmentApi
+import org.whispersystems.signalservice.api.donations.DonationsApi
+import org.whispersystems.signalservice.api.keys.KeysApi
+import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.push.TrustStore
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.configuration.SignalCdnUrl
 import org.whispersystems.signalservice.internal.configuration.SignalCdsiUrl
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
@@ -92,6 +97,7 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
       networkInterceptors = emptyList(),
       dns = Optional.of(SignalServiceNetworkAccess.DNS),
       signalProxy = Optional.empty(),
+      systemHttpProxy = Optional.empty(),
       zkGroupServerPublicParams = Base64.decode(BuildConfig.ZKGROUP_SERVER_PUBLIC_PARAMS),
       genericServerPublicParams = Base64.decode(BuildConfig.GENERIC_SERVER_PUBLIC_PARAMS),
       backupServerPublicParams = Base64.decode(BuildConfig.BACKUP_SERVER_PUBLIC_PARAMS),
@@ -120,13 +126,23 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
     return recipientCache
   }
 
+  override fun provideArchiveApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket): ArchiveApi {
+    return mockk()
+  }
+
+  override fun provideDonationsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): DonationsApi {
+    return mockk()
+  }
+
   override fun provideSignalServiceMessageSender(
-    signalWebSocket: SignalWebSocket,
     protocolStore: SignalServiceDataStore,
-    pushServiceSocket: PushServiceSocket
+    pushServiceSocket: PushServiceSocket,
+    attachmentApi: AttachmentApi,
+    messageApi: MessageApi,
+    keysApi: KeysApi
   ): SignalServiceMessageSender {
     if (signalServiceMessageSender == null) {
-      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(signalWebSocket, protocolStore, pushServiceSocket))
+      signalServiceMessageSender = spyk(objToCopy = default.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, attachmentApi, messageApi, keysApi))
     }
     return signalServiceMessageSender!!
   }

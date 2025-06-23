@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable;
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto;
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto;
+import org.thoughtcrime.securesms.conversation.colors.AvatarGradientColors;
 import org.thoughtcrime.securesms.providers.AvatarProvider;
 import org.thoughtcrime.securesms.recipients.Recipient;
 
@@ -119,6 +120,15 @@ public final class AvatarUtil {
     }
   }
 
+  /**
+   * Shortcut icons cannot be created with uris:
+   * https://developer.android.com/reference/android/content/pm/ShortcutInfo.Builder#setIcon(android.graphics.drawable.Icon)
+   */
+  @WorkerThread
+  public static @NonNull IconCompat getIconCompatForShortcut(@NonNull Context context, @NonNull Recipient recipient) {
+    return IconCompat.createWithBitmap(getBitmapForNotification(context, recipient, AdaptiveBitmapMetrics.getInnerWidth()));
+  }
+
   @WorkerThread
   public static Bitmap getBitmapForNotification(@NonNull Context context, @NonNull Recipient recipient) {
     return getBitmapForNotification(context, recipient, UNDEFINED_SIZE);
@@ -132,10 +142,14 @@ public final class AvatarUtil {
       AvatarTarget   avatarTarget   = new AvatarTarget(size);
       RequestManager requestManager = Glide.with(context);
 
-      requestCircle(requestManager.asBitmap(), context, recipient, size).into(avatarTarget);
+      if (recipient.getShouldBlurAvatar() && recipient.getHasAvatar()) {
+        return DrawableUtil.toBitmap(AvatarGradientColors.getGradientDrawable(recipient), size, size);
+      } else {
+        requestCircle(requestManager.asBitmap(), context, recipient, size).into(avatarTarget);
 
-      Bitmap bitmap = avatarTarget.await();
-      return Objects.requireNonNullElseGet(bitmap, () -> DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size));
+        Bitmap bitmap = avatarTarget.await();
+        return Objects.requireNonNullElseGet(bitmap, () -> DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size));
+      }
     } catch (InterruptedException e) {
       return DrawableUtil.toBitmap(getFallback(context, recipient, size), size, size);
     }
@@ -168,14 +182,7 @@ public final class AvatarUtil {
                                                 .diskCacheStrategy(DiskCacheStrategy.ALL)
                                                 .override(size);
 
-    if (recipient.getShouldBlurAvatar()) {
-      BlurTransformation blur = new BlurTransformation(context, 0.25f, BlurTransformation.MAX_RADIUS);
-      if (transformation != null) {
-        return request.transform(blur, transformation);
-      } else {
-        return request.transform(blur);
-      }
-    } else if (transformation != null) {
+    if (transformation != null) {
       return request.transform(transformation);
     } else {
       return request;

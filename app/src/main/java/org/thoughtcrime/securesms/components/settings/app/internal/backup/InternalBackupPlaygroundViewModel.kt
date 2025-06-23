@@ -11,13 +11,18 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.documentfile.provider.DocumentFile
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.util.Hex
 import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.SignalExecutors
@@ -29,9 +34,10 @@ import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
-import org.thoughtcrime.securesms.backup.v2.BackupMetadata
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.DebugBackupMetadata
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveResult
@@ -39,25 +45,18 @@ import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver.FailureCause
 import org.thoughtcrime.securesms.backup.v2.local.SnapshotFileSystem
 import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader.Companion.MAC_SIZE
-import org.thoughtcrime.securesms.database.MessageType
+import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.database.AttachmentTable.DebugAttachmentStats
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
-import org.thoughtcrime.securesms.jobs.BackfillDigestJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
-import org.thoughtcrime.securesms.jobs.CopyAttachmentToArchiveJob
-import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
-import org.thoughtcrime.securesms.jobs.RestoreAttachmentThumbnailJob
 import org.thoughtcrime.securesms.jobs.RestoreLocalAttachmentJob
-import org.thoughtcrime.securesms.jobs.SyncArchivedMediaJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import java.io.FileOutputStream
@@ -91,8 +90,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   )
   val state: State<ScreenState> = _state
 
-  private val _mediaState: MutableState<MediaState> = mutableStateOf(MediaState())
-  val mediaState: State<MediaState> = _mediaState
+  val statsState: MutableStateFlow<StatsState> = MutableStateFlow(StatsState())
 
   enum class DialogState {
     None,
@@ -155,6 +153,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
             Log.w(TAG, "Validation failed! Details: ${result.messageDetails}", result.exception)
             "Validation failed :( Check the logs for details."
           }
+
           is ArchiveValidator.ValidationResult.RecipientDuplicateE164Error -> {
             Log.w(TAG, "Validation failed with a duplicate recipient! Details: ${result.details}", result.exception)
             "Validation failed :( Check the logs for details."
@@ -216,10 +215,8 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   }
 
   fun haltAllJobs() {
-    AppDependencies.jobManager.cancelAllInQueue(BackfillDigestJob.QUEUE)
-    AppDependencies.jobManager.cancelAllInQueue("ArchiveAttachmentJobs_0")
-    AppDependencies.jobManager.cancelAllInQueue("ArchiveAttachmentJobs_1")
-    AppDependencies.jobManager.cancelAllInQueue("ArchiveThumbnailUploadJob")
+    ArchiveUploadProgress.cancel()
+
     AppDependencies.jobManager.cancelAllInQueue("BackupRestoreJob")
     AppDependencies.jobManager.cancelAllInQueue("__LOCAL_BACKUP__")
   }
@@ -267,7 +264,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     disposables += Single
       .fromCallable {
         BackupRepository.restoreBackupTier(SignalStore.account.requireAci())
-        BackupRepository.getRemoteBackupState()
+        BackupRepository.debugGetRemoteBackupState()
       }
       .subscribeOn(Schedulers.io())
       .subscribe { result ->
@@ -292,6 +289,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
   fun wipeAllDataAndRestoreFromRemote() {
     SignalExecutors.BOUNDED_IO.execute {
+      SignalStore.backup.restoreWithCellular = false
       restoreFromRemote()
     }
   }
@@ -348,7 +346,6 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       AppDependencies
         .jobManager
         .startChain(BackupRestoreJob())
-        .then(SyncArchivedMediaJob())
         .then(BackupRestoreMediaJob())
         .enqueueAndBlockUntilCompletion(120.seconds.inWholeMilliseconds)
     }
@@ -359,177 +356,50 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
   }
 
-  fun loadMedia() {
-    disposables += Single
-      .fromCallable { SignalDatabase.attachments.debugGetLatestAttachments() }
-      .subscribeOn(Schedulers.io())
-      .observeOn(Schedulers.single())
-      .subscribeBy {
-        _mediaState.set { update(attachments = it.map { a -> BackupAttachment(dbAttachment = a) }) }
+  fun loadStats() {
+    viewModelScope.launch(Dispatchers.IO) {
+      launch {
+        var stats = SignalDatabase.attachments.debugGetAttachmentStats()
+
+        statsState.update { it.copy(attachmentStats = stats) }
       }
+    }
   }
 
-  fun archiveAttachmentMedia(attachments: Set<AttachmentId>) {
-    disposables += Single
-      .fromCallable {
-        val toArchive = mediaState.value
-          .attachments
-          .filter { attachments.contains(it.dbAttachment.attachmentId) }
-          .map { it.dbAttachment }
-
-        BackupRepository.copyAttachmentToArchive(toArchive)
-      }
-      .subscribeOn(Schedulers.io())
-      .observeOn(Schedulers.single())
-      .doOnSubscribe { _mediaState.set { update(inProgress = inProgressMediaIds + attachments) } }
-      .doOnTerminate { _mediaState.set { update(inProgress = inProgressMediaIds - attachments) } }
-      .subscribeBy { result ->
-        when (result) {
-          is NetworkResult.Success -> {
-            loadMedia()
-            result
-              .result
-              .sourceNotFoundResponses
-              .forEach {
-                reUploadAndArchiveMedia(result.result.mediaIdToAttachmentId(it.mediaId))
-              }
-          }
-
-          else -> _mediaState.set { copy(error = MediaStateError(errorText = "$result")) }
+  fun loadRemoteStats() {
+    viewModelScope.launch(Dispatchers.IO) {
+      launch {
+        statsState.update { it.copy(loadingRemoteStats = true) }
+        val (remoteState: DebugBackupMetadata?, errorMsg: String?) = when (val result = BackupRepository.debugGetRemoteBackupState()) {
+          is NetworkResult.Success -> result.result to null
+          else -> null to result.toString()
         }
+        statsState.update { it.copy(remoteState = remoteState, remoteFailureMsg = errorMsg, loadingRemoteStats = false) }
       }
+    }
   }
 
-  fun archiveAttachmentMedia(attachment: BackupAttachment) {
-    disposables += Single.fromCallable { BackupRepository.copyAttachmentToArchive(attachment.dbAttachment) }
-      .subscribeOn(Schedulers.io())
-      .observeOn(Schedulers.single())
-      .doOnSubscribe { _mediaState.set { update(inProgress = inProgressMediaIds + attachment.dbAttachment.attachmentId) } }
-      .doOnTerminate { _mediaState.set { update(inProgress = inProgressMediaIds - attachment.dbAttachment.attachmentId) } }
-      .subscribeBy { result ->
-        when (result) {
-          is NetworkResult.Success -> loadMedia()
-          is NetworkResult.StatusCodeError -> {
-            if (result.code == 410) {
-              reUploadAndArchiveMedia(attachment.id)
-            } else {
-              _mediaState.set { copy(error = MediaStateError(errorText = "$result")) }
-            }
-          }
-
-          else -> _mediaState.set { copy(error = MediaStateError(errorText = "$result")) }
-        }
+  suspend fun deleteRemoteBackupData(): Boolean = withContext(Dispatchers.IO) {
+    when (val result = BackupRepository.debugDeleteAllArchivedMedia()) {
+      is NetworkResult.Success -> Log.i(TAG, "Remote data deleted")
+      else -> {
+        Log.w(TAG, "Unable to delete media", result.getCause())
+        return@withContext false
       }
-  }
+    }
 
-  private fun reUploadAndArchiveMedia(attachmentId: AttachmentId) {
-    disposables += Single
-      .fromCallable {
-        AppDependencies
-          .jobManager
-          .startChain(AttachmentUploadJob(attachmentId))
-          .then(CopyAttachmentToArchiveJob(attachmentId))
-          .enqueueAndBlockUntilCompletion(15.seconds.inWholeMilliseconds)
+    when (val result = BackupRepository.deleteBackup()) {
+      is NetworkResult.Success -> {
+        SignalStore.backup.backupsInitialized = false
+        SignalStore.backup.messageCredentials.clearAll()
+        SignalStore.backup.mediaCredentials.clearAll()
+        SignalStore.backup.cachedMediaCdnPath = null
+        return@withContext true
       }
-      .subscribeOn(Schedulers.io())
-      .observeOn(Schedulers.single())
-      .doOnSubscribe { _mediaState.set { update(inProgress = inProgressMediaIds + attachmentId) } }
-      .doOnTerminate { _mediaState.set { update(inProgress = inProgressMediaIds - attachmentId) } }
-      .subscribeBy {
-        if (it.isPresent && it.get().isComplete) {
-          loadMedia()
-        } else {
-          _mediaState.set { copy(error = MediaStateError(errorText = "Reupload slow or failed, try again")) }
-        }
-      }
-  }
+      else -> Log.w(TAG, "Unable to delete remote data", result.getCause())
+    }
 
-  fun deleteArchivedMedia(attachmentIds: Set<AttachmentId>) {
-    deleteArchivedMedia(mediaState.value.attachments.filter { attachmentIds.contains(it.dbAttachment.attachmentId) })
-  }
-
-  fun deleteArchivedMedia(attachment: BackupAttachment) {
-    deleteArchivedMedia(listOf(attachment))
-  }
-
-  private fun deleteArchivedMedia(attachments: List<BackupAttachment>) {
-    val ids = attachments.map { it.dbAttachment.attachmentId }.toSet()
-    disposables += Single.fromCallable { BackupRepository.deleteArchivedMedia(attachments.map { it.dbAttachment }) }
-      .subscribeOn(Schedulers.io())
-      .observeOn(Schedulers.single())
-      .doOnSubscribe { _mediaState.set { update(inProgress = inProgressMediaIds + ids) } }
-      .doOnTerminate { _mediaState.set { update(inProgress = inProgressMediaIds - ids) } }
-      .subscribeBy {
-        when (it) {
-          is NetworkResult.Success -> loadMedia()
-          else -> _mediaState.set { copy(error = MediaStateError(errorText = "$it")) }
-        }
-      }
-  }
-
-  fun deleteAllArchivedMedia() {
-    disposables += Single
-      .fromCallable { BackupRepository.debugDeleteAllArchivedMedia() }
-      .subscribeOn(Schedulers.io())
-      .observeOn(Schedulers.single())
-      .subscribeBy { result ->
-        when (result) {
-          is NetworkResult.Success -> loadMedia()
-          else -> _mediaState.set { copy(error = MediaStateError(errorText = "$result")) }
-        }
-      }
-  }
-
-  fun restoreArchivedMedia(attachment: BackupAttachment, asThumbnail: Boolean) {
-    disposables += Completable
-      .fromCallable {
-        val recipientId = SignalStore.releaseChannel.releaseChannelRecipientId!!
-        val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(Recipient.resolved(recipientId))
-
-        val message = IncomingMessage(
-          type = MessageType.NORMAL,
-          from = recipientId,
-          sentTimeMillis = System.currentTimeMillis(),
-          serverTimeMillis = System.currentTimeMillis(),
-          receivedTimeMillis = System.currentTimeMillis(),
-          body = "Restored from Archive!?",
-          serverGuid = UUID.randomUUID().toString()
-        )
-
-        val insertMessage = SignalDatabase.messages.insertMessageInbox(message, threadId).get()
-
-        SignalDatabase.attachments.debugCopyAttachmentForArchiveRestore(
-          mmsId = insertMessage.messageId,
-          attachment = attachment.dbAttachment,
-          forThumbnail = asThumbnail
-        )
-
-        val archivedAttachment = SignalDatabase.attachments.getAttachmentsForMessage(insertMessage.messageId).first()
-
-        if (asThumbnail) {
-          AppDependencies.jobManager.add(
-            RestoreAttachmentThumbnailJob(
-              messageId = insertMessage.messageId,
-              attachmentId = archivedAttachment.attachmentId,
-              highPriority = false
-            )
-          )
-        } else {
-          AppDependencies.jobManager.add(
-            RestoreAttachmentJob.forInitialRestore(
-              messageId = insertMessage.messageId,
-              attachmentId = archivedAttachment.attachmentId
-            )
-          )
-        }
-      }
-      .subscribeOn(Schedulers.io())
-      .observeOn(Schedulers.single())
-      .subscribeBy(
-        onError = {
-          _mediaState.set { copy(error = MediaStateError(errorText = "$it")) }
-        }
-      )
+    return@withContext false
   }
 
   override fun onCleared() {
@@ -547,7 +417,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   sealed class RemoteBackupState {
     data object Unknown : RemoteBackupState()
     data object NotFound : RemoteBackupState()
-    data class Available(val response: BackupMetadata) : RemoteBackupState()
+    data class Available(val response: DebugBackupMetadata) : RemoteBackupState()
   }
 
   data class MediaState(
@@ -559,24 +429,16 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       attachments: List<BackupAttachment> = this.attachments,
       inProgress: Set<AttachmentId> = this.inProgressMediaIds
     ): MediaState {
-      val backupKey = SignalStore.backup.messageBackupKey
-      val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
-
       val updatedAttachments = attachments.map {
         val state = if (inProgress.contains(it.dbAttachment.attachmentId)) {
           BackupAttachment.State.IN_PROGRESS
-        } else if (it.dbAttachment.archiveMediaName != null) {
-          if (it.dbAttachment.remoteDigest != null) {
-            val mediaId = mediaRootBackupKey.deriveMediaId(MediaName(it.dbAttachment.archiveMediaName)).encode()
-            if (it.dbAttachment.archiveMediaId == mediaId) {
-              BackupAttachment.State.UPLOADED_FINAL
-            } else {
-              BackupAttachment.State.UPLOADED_UNDOWNLOADED
-            }
+        } else if (it.dbAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
+          if (it.dbAttachment.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE) {
+            BackupAttachment.State.UPLOADED_FINAL
           } else {
             BackupAttachment.State.UPLOADED_UNDOWNLOADED
           }
-        } else if (it.dbAttachment.dataHash == null) {
+        } else if (it.dbAttachment.remoteLocation != null) {
           BackupAttachment.State.ATTACHMENT_CDN
         } else {
           BackupAttachment.State.LOCAL_ONLY
@@ -620,4 +482,13 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     val messageBackupKey: MessageBackupKey,
     val aci: ACI
   )
+
+  data class StatsState(
+    val attachmentStats: DebugAttachmentStats? = null,
+    val loadingRemoteStats: Boolean = false,
+    val remoteState: DebugBackupMetadata? = null,
+    val remoteFailureMsg: String? = null
+  ) {
+    val valid = attachmentStats != null
+  }
 }

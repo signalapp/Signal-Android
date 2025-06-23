@@ -8,6 +8,7 @@ import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
 import org.signal.libsignal.protocol.logging.Log
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream
 import org.whispersystems.signalservice.api.crypto.SkippingOutputStream
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest
 import java.io.ByteArrayOutputStream
@@ -58,7 +59,7 @@ class DigestingRequestBody(
         throw IOException("Canceled!")
       }
       outputStream.write(buffer, 0, read)
-      progressListener?.onAttachmentProgress(contentLength, outputStream.totalBytesWritten)
+      progressListener?.onAttachmentProgress(AttachmentTransferProgress(total = contentLength, transmitted = outputStream.totalBytesWritten))
     }
 
     outputStream.flush()
@@ -73,6 +74,7 @@ class DigestingRequestBody(
       digestStream.close()
       digestStream.toByteArray()
     } else {
+      outputStream.close()
       null
     }
 

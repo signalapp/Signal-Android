@@ -34,13 +34,14 @@ class CreateStoryWithViewersViewModel(
     store.update { it.copy(saveState = CreateStoryWithViewersState.SaveState.Saving) }
 
     val label = store.state.label
-    if (label.isEmpty()) {
+    if (label.isBlank()) {
       store.update {
         it.copy(
           error = CreateStoryWithViewersState.NameError.NO_LABEL,
           saveState = CreateStoryWithViewersState.SaveState.Init
         )
       }
+      return
     }
 
     disposables += repository.createList(label, members).subscribeBy(

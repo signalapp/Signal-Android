@@ -11,13 +11,15 @@ import org.thoughtcrime.securesms.database.RecipientTable.CdsV2Result
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.phonenumbers.PhoneNumberFormatter
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalE164Util
+import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.cds.CdsiV2Service
 import org.whispersystems.signalservice.api.push.exceptions.CdsiInvalidTokenException
 import org.whispersystems.signalservice.api.push.exceptions.CdsiResourceExhaustedException
-import org.whispersystems.signalservice.api.services.CdsiV2Service
 import java.io.IOException
 import java.util.Optional
 import kotlin.math.roundToInt
@@ -45,7 +47,7 @@ object ContactDiscoveryRefreshV2 {
   @JvmStatic
   fun refreshAll(context: Context, timeoutMs: Long? = null): ContactDiscovery.RefreshResult {
     val recipientE164s: Set<String> = SignalDatabase.recipients.getAllE164s().sanitize()
-    val systemE164s: Set<String> = SystemContactsRepository.getAllDisplayNumbers(context).toE164s(context).sanitize()
+    val systemE164s: Set<String> = SystemContactsRepository.getAllDisplayNumbers(context).toE164s().sanitize()
 
     return refreshInternal(
       recipientE164s = recipientE164s,
@@ -89,24 +91,38 @@ object ContactDiscoveryRefreshV2 {
   @WorkerThread
   @Synchronized
   fun lookupE164(e164: String): ContactDiscovery.LookupResult? {
-    val response: CdsiV2Service.Response = try {
-      AppDependencies.signalServiceAccountManager.getRegisteredUsersWithCdsi(
-        emptySet(),
-        setOf(e164),
-        SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
-        Optional.empty(),
-        10_000,
-        AppDependencies.libsignalNetwork
-      ) {
-        Log.i(TAG, "Ignoring token for one-off lookup.")
+    val result = SignalNetwork.cdsApi.getRegisteredUsers(
+      previousE164s = emptySet(),
+      newE164s = setOf(e164),
+      serviceIds = SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
+      token = Optional.empty(),
+      timeoutMs = 10_000,
+      libsignalNetwork = AppDependencies.libsignalNetwork
+    ) {
+      Log.i(TAG, "Ignoring token for one-off lookup.")
+    }
+
+    val response = when (result) {
+      is NetworkResult.Success -> result.result
+      is NetworkResult.StatusCodeError -> {
+        when (val e = result.exception) {
+          is CdsiResourceExhaustedException -> {
+            Log.w(TAG, "CDS resource exhausted! Can try again in ${e.retryAfterSeconds} seconds.")
+            SignalStore.misc.cdsBlockedUtil = System.currentTimeMillis() + e.retryAfterSeconds.seconds.inWholeMilliseconds
+            throw e
+          }
+
+          is CdsiInvalidTokenException -> {
+            Log.w(TAG, "We did not provide a token, but still got a token error! Unexpected, but ignoring.")
+            throw e
+          }
+
+          else -> throw e
+        }
       }
-    } catch (e: CdsiResourceExhaustedException) {
-      Log.w(TAG, "CDS resource exhausted! Can try again in ${e.retryAfterSeconds} seconds.")
-      SignalStore.misc.cdsBlockedUtil = System.currentTimeMillis() + e.retryAfterSeconds.seconds.inWholeMilliseconds
-      throw e
-    } catch (e: CdsiInvalidTokenException) {
-      Log.w(TAG, "We did not provide a token, but still got a token error! Unexpected, but ignoring.")
-      throw e
+
+      is NetworkResult.NetworkError -> throw result.exception
+      is NetworkResult.ApplicationError -> throw result.throwable
     }
 
     return response.results[e164]?.let { item ->
@@ -153,35 +169,49 @@ object ContactDiscoveryRefreshV2 {
 
     stopwatch.split("preamble")
 
-    val response: CdsiV2Service.Response = try {
-      AppDependencies.signalServiceAccountManager.getRegisteredUsersWithCdsi(
-        previousE164s,
-        newE164s,
-        SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
-        Optional.ofNullable(token),
-        timeoutMs,
-        AppDependencies.libsignalNetwork
-      ) { tokenToSave ->
-        stopwatch.split("network-pre-token")
-        if (!isPartialRefresh) {
-          SignalStore.misc.cdsToken = tokenToSave
-          SignalDatabase.cds.updateAfterFullCdsQuery(previousE164s + newE164s, allE164s + newE164s)
-          Log.d(TAG, "Token saved!")
-        } else {
-          SignalDatabase.cds.updateAfterPartialCdsQuery(newE164s)
-          Log.d(TAG, "Ignoring token.")
-        }
-        stopwatch.split("cds-db")
+    val result = SignalNetwork.cdsApi.getRegisteredUsers(
+      previousE164s = previousE164s,
+      newE164s = newE164s,
+      serviceIds = SignalDatabase.recipients.getAllServiceIdProfileKeyPairs(),
+      token = Optional.ofNullable(token),
+      timeoutMs = timeoutMs,
+      libsignalNetwork = AppDependencies.libsignalNetwork
+    ) { tokenToSave ->
+      stopwatch.split("network-pre-token")
+      if (!isPartialRefresh) {
+        SignalStore.misc.cdsToken = tokenToSave
+        SignalDatabase.cds.updateAfterFullCdsQuery(previousE164s + newE164s, allE164s + newE164s)
+        Log.d(TAG, "Token saved!")
+      } else {
+        SignalDatabase.cds.updateAfterPartialCdsQuery(newE164s)
+        Log.d(TAG, "Ignoring token.")
       }
-    } catch (e: CdsiResourceExhaustedException) {
-      Log.w(TAG, "CDS resource exhausted! Can try again in ${e.retryAfterSeconds} seconds.")
-      SignalStore.misc.cdsBlockedUtil = System.currentTimeMillis() + e.retryAfterSeconds.seconds.inWholeMilliseconds
-      throw e
-    } catch (e: CdsiInvalidTokenException) {
-      Log.w(TAG, "Our token was invalid! Only thing we can do now is clear our local state :(")
-      SignalStore.misc.cdsToken = null
-      SignalDatabase.cds.clearAll()
-      throw e
+      stopwatch.split("cds-db")
+    }
+
+    val response: CdsiV2Service.Response = when (result) {
+      is NetworkResult.Success -> result.result
+      is NetworkResult.StatusCodeError -> {
+        when (val e = result.exception) {
+          is CdsiResourceExhaustedException -> {
+            Log.w(TAG, "CDS resource exhausted! Can try again in ${e.retryAfterSeconds} seconds.")
+            SignalStore.misc.cdsBlockedUtil = System.currentTimeMillis() + e.retryAfterSeconds.seconds.inWholeMilliseconds
+            throw e
+          }
+
+          is CdsiInvalidTokenException -> {
+            Log.w(TAG, "Our token was invalid! Only thing we can do now is clear our local state :(")
+            SignalStore.misc.cdsToken = null
+            SignalDatabase.cds.clearAll()
+            throw e
+          }
+
+          else -> throw e
+        }
+      }
+
+      is NetworkResult.NetworkError -> throw result.exception
+      is NetworkResult.ApplicationError -> throw result.throwable
     }
 
     if (!isPartialRefresh && SignalStore.misc.isCdsBlocked) {
@@ -244,8 +274,8 @@ object ContactDiscoveryRefreshV2 {
       .toSet()
   }
 
-  private fun Set<String>.toE164s(context: Context): Set<String> {
-    return this.map { PhoneNumberFormatter.get(context).format(it) }.toSet()
+  private fun Set<String>.toE164s(): Set<String> {
+    return this.mapNotNull { SignalE164Util.formatAsE164(it) }.toSet()
   }
 
   private fun Set<String>.sanitize(): Set<String> {

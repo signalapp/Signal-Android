@@ -9,13 +9,10 @@ import org.thoughtcrime.securesms.pin.SvrWrongPinException
 import org.thoughtcrime.securesms.registration.data.network.RegistrationResult
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
-import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException
-import org.whispersystems.signalservice.api.push.exceptions.IncorrectRegistrationRecoveryPasswordException
-import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException
-import org.whispersystems.signalservice.api.push.exceptions.RateLimitException
+import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
-import org.whispersystems.signalservice.internal.push.LockedException
+import org.whispersystems.signalservice.internal.push.PushServiceSocket.RegistrationLockFailure
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 
 /**
@@ -29,27 +26,29 @@ sealed class ChangeNumberResult(cause: Throwable?) : RegistrationResult(cause) {
         is NetworkResult.ApplicationError -> UnknownError(networkResult.throwable)
         is NetworkResult.NetworkError -> UnknownError(networkResult.exception)
         is NetworkResult.StatusCodeError -> {
-          when (val cause = networkResult.exception) {
-            is IncorrectRegistrationRecoveryPasswordException -> IncorrectRecoveryPassword(cause)
-            is AuthorizationFailedException -> AuthorizationFailed(cause)
-            is MalformedRequestException -> MalformedRequest(cause)
-            is RateLimitException -> createRateLimitProcessor(cause)
-            is LockedException -> RegistrationLocked(cause = cause, timeRemaining = cause.timeRemaining, svr2Credentials = cause.svr2Credentials, svr3Credentials = cause.svr3Credentials)
-            else -> {
-              if (networkResult.code == 422) {
-                ValidationError(cause)
+          when (networkResult.code) {
+            403 -> IncorrectRecoveryPassword(networkResult.exception)
+            401 -> AuthorizationFailed(networkResult.exception)
+            400 -> MalformedRequest(networkResult.exception)
+            429 -> createRateLimitProcessor(networkResult.exception, networkResult.header("retry-after")?.toLongOrNull())
+            423 -> {
+              val registrationLockFailure: RegistrationLockFailure? = networkResult.parseJsonBody()
+              if (registrationLockFailure != null) {
+                RegistrationLocked(cause = networkResult.exception, timeRemaining = registrationLockFailure.timeRemaining, svr2Credentials = registrationLockFailure.svr2Credentials, svr3Credentials = registrationLockFailure.svr3Credentials)
               } else {
-                UnknownError(cause)
+                UnknownError(networkResult.exception)
               }
             }
+            422 -> ValidationError(networkResult.exception)
+            else -> UnknownError(networkResult.exception)
           }
         }
       }
     }
 
-    private fun createRateLimitProcessor(exception: RateLimitException): ChangeNumberResult {
-      return if (exception.retryAfterMilliseconds.isPresent) {
-        RateLimited(exception, exception.retryAfterMilliseconds.get())
+    private fun createRateLimitProcessor(exception: NonSuccessfulResponseCodeException, retryAfter: Long?): ChangeNumberResult {
+      return if (retryAfter != null) {
+        RateLimited(exception, retryAfter)
       } else {
         AttemptsExhausted(exception)
       }

@@ -9,17 +9,21 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import org.signal.core.util.concurrent.SignalExecutors;
+import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
 import org.thoughtcrime.securesms.conversation.ConversationMessage.ConversationMessageFactory;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.DatabaseObserver;
-import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.GroupReceiptTable;
+import org.thoughtcrime.securesms.database.GroupTable;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.documents.IdentityKeyMismatch;
 import org.thoughtcrime.securesms.database.documents.NetworkFailure;
 import org.thoughtcrime.securesms.database.model.MessageId;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.whispersystems.signalservice.api.push.DistributionId;
@@ -122,7 +126,7 @@ public final class MessageDetailsRepository {
 
           recipients.add(new RecipientDeliveryStatus(messageRecord,
                                                      recipient,
-                                                     getStatusFor(info.getStatus(), messageRecord.isPending(), recipientFailure),
+                                                     getStatusFor(messageRecord, info.getStatus(), messageRecord.isPending(), recipientFailure),
                                                      info.isUnidentified(),
                                                      info.getTimestamp(),
                                                      failure,
@@ -158,24 +162,44 @@ public final class MessageDetailsRepository {
   }
 
   private @NonNull RecipientDeliveryStatus.Status getStatusFor(MessageRecord messageRecord) {
-    if (messageRecord.isViewed())       return RecipientDeliveryStatus.Status.VIEWED;
-    if (messageRecord.hasReadReceipt()) return RecipientDeliveryStatus.Status.READ;
-    if (messageRecord.isDelivered())    return RecipientDeliveryStatus.Status.DELIVERED;
-    if (messageRecord.isSent())         return RecipientDeliveryStatus.Status.SENT;
-    if (messageRecord.isPending())      return RecipientDeliveryStatus.Status.PENDING;
+    if (messageRecord.isViewed()) {
+      return RecipientDeliveryStatus.Status.VIEWED;
+    } else if (messageRecord.hasReadReceipt()) {
+      return RecipientDeliveryStatus.Status.READ;
+    } else if (messageRecord.isDelivered()) {
+      return RecipientDeliveryStatus.Status.DELIVERED;
+    } else if (messageRecord.isSent()) {
+      return RecipientDeliveryStatus.Status.SENT;
+    } else if (messageRecord.isAttachmentInExpectedState(AttachmentTable.TRANSFER_PROGRESS_FAILED) || (!(messageRecord instanceof MmsMessageRecord) && messageRecord.hasFailedWithNetworkFailures())) {
+      return RecipientDeliveryStatus.Status.UNKNOWN;
+    } else if (messageRecord.isAttachmentInExpectedState(AttachmentTable.TRANSFER_PROGRESS_STARTED) || messageRecord.isPending()) {
+      return RecipientDeliveryStatus.Status.PENDING;
+    }
 
     return RecipientDeliveryStatus.Status.UNKNOWN;
   }
 
-  private @NonNull RecipientDeliveryStatus.Status getStatusFor(int groupStatus, boolean pending, boolean failed) {
-    if      (groupStatus == GroupReceiptTable.STATUS_READ)                    return RecipientDeliveryStatus.Status.READ;
-    else if (groupStatus == GroupReceiptTable.STATUS_DELIVERED)               return RecipientDeliveryStatus.Status.DELIVERED;
-    else if (groupStatus == GroupReceiptTable.STATUS_UNDELIVERED && failed)   return RecipientDeliveryStatus.Status.UNKNOWN;
-    else if (groupStatus == GroupReceiptTable.STATUS_UNDELIVERED && !pending) return RecipientDeliveryStatus.Status.SENT;
-    else if (groupStatus == GroupReceiptTable.STATUS_UNDELIVERED)             return RecipientDeliveryStatus.Status.PENDING;
-    else if (groupStatus == GroupReceiptTable.STATUS_UNKNOWN)                 return RecipientDeliveryStatus.Status.UNKNOWN;
-    else if (groupStatus == GroupReceiptTable.STATUS_VIEWED)                  return RecipientDeliveryStatus.Status.VIEWED;
-    else if (groupStatus == GroupReceiptTable.STATUS_SKIPPED)                 return RecipientDeliveryStatus.Status.SKIPPED;
+  private @NonNull RecipientDeliveryStatus.Status getStatusFor(MessageRecord messageRecord, int groupStatus, boolean pending, boolean failed) {
+    if (groupStatus == GroupReceiptTable.STATUS_READ) {
+      return RecipientDeliveryStatus.Status.READ;
+    } else if (groupStatus == GroupReceiptTable.STATUS_DELIVERED) {
+      return RecipientDeliveryStatus.Status.DELIVERED;
+    } else if (groupStatus == GroupReceiptTable.STATUS_UNDELIVERED && failed) {
+      return RecipientDeliveryStatus.Status.UNKNOWN;
+    } else if (messageRecord.isAttachmentInExpectedState(AttachmentTable.TRANSFER_PROGRESS_FAILED) || (!(messageRecord instanceof MmsMessageRecord) && messageRecord.hasFailedWithNetworkFailures())) {
+      return RecipientDeliveryStatus.Status.UNKNOWN;
+    } else if (groupStatus == GroupReceiptTable.STATUS_UNDELIVERED && !pending) {
+      return RecipientDeliveryStatus.Status.SENT;
+    } else if (messageRecord.isAttachmentInExpectedState(AttachmentTable.TRANSFER_PROGRESS_STARTED) || groupStatus == GroupReceiptTable.STATUS_UNDELIVERED) {
+      return RecipientDeliveryStatus.Status.PENDING;
+    } else if (groupStatus == GroupReceiptTable.STATUS_UNKNOWN) {
+      return RecipientDeliveryStatus.Status.UNKNOWN;
+    } else if (groupStatus == GroupReceiptTable.STATUS_VIEWED) {
+      return RecipientDeliveryStatus.Status.VIEWED;
+    } else if (groupStatus == GroupReceiptTable.STATUS_SKIPPED) {
+      return RecipientDeliveryStatus.Status.SKIPPED;
+    }
+
     throw new AssertionError();
   }
 }

@@ -92,12 +92,12 @@ class InAppPaymentPurchaseTokenJob private constructor(
       return Result.failure()
     }
 
-    val purchaseState: BillingPurchaseState = when (val purchase = AppDependencies.billingApi.queryPurchases()) {
-      is BillingPurchaseResult.Success -> purchase.purchaseState
-      else -> BillingPurchaseState.UNSPECIFIED
+    val purchase: BillingPurchaseResult = when (val purchase = AppDependencies.billingApi.queryPurchases()) {
+      is BillingPurchaseResult.Success -> purchase
+      else -> BillingPurchaseResult.None
     }
 
-    if (purchaseState != BillingPurchaseState.PURCHASED) {
+    if (purchase !is BillingPurchaseResult.Success || purchase.purchaseState != BillingPurchaseState.PURCHASED) {
       warning("Billing purchase not in the PURCHASED state. Retrying later.")
       return Result.retry(defaultBackoff())
     }
@@ -109,9 +109,12 @@ class InAppPaymentPurchaseTokenJob private constructor(
       return Result.failure()
     }
 
+    info("Attempting to link purchase token for purchase")
+    info("$purchase")
+
     val response = AppDependencies.donationsService.linkGooglePlayBillingPurchaseTokenToSubscriberId(
       inAppPayment.subscriberId!!,
-      inAppPayment.data.redemption!!.googlePlayBillingPurchaseToken!!,
+      purchase.purchaseToken,
       InAppPaymentSubscriberRecord.Type.BACKUP.lock
     )
 
@@ -158,11 +161,6 @@ class InAppPaymentPurchaseTokenJob private constructor(
       throw IOException("InAppPayment has already started redemption.")
     }
 
-    if (inAppPayment.data.redemption.googlePlayBillingPurchaseToken == null) {
-      warning("No purchase token for linking!")
-      throw IOException("InAppPayment does not have a purchase token!")
-    }
-
     return inAppPayment
   }
 
@@ -188,7 +186,7 @@ class InAppPaymentPurchaseTokenJob private constructor(
 
         try {
           info("Generating a new subscriber id.")
-          RecurringInAppPaymentRepository.ensureSubscriberId(InAppPaymentSubscriberRecord.Type.BACKUP, true).blockingAwait()
+          RecurringInAppPaymentRepository.ensureSubscriberIdSync(InAppPaymentSubscriberRecord.Type.BACKUP, true)
 
           info("Writing the new subscriber id to the InAppPayment.")
           val latest = SignalDatabase.inAppPayments.getById(inAppPaymentId)!!

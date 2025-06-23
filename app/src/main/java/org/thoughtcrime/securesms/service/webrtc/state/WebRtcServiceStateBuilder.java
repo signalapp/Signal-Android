@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 
 import com.annimon.stream.OptionalLong;
 
+import org.checkerframework.checker.units.qual.N;
 import org.signal.ringrtc.CallId;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.sensors.Orientation;
@@ -12,6 +13,7 @@ import org.thoughtcrime.securesms.components.webrtc.BroadcastVideoSink;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.CallParticipantId;
+import org.thoughtcrime.securesms.events.GroupCallSpeechEvent;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -100,6 +102,10 @@ public class WebRtcServiceStateBuilder {
 
     public @NonNull LocalDeviceStateBuilder isMicrophoneEnabled(boolean enabled) {
       toBuild.setMicrophoneEnabled(enabled);
+      if (enabled) {
+        // Clear any remote mute attribution.
+        toBuild.setRemoteMutedBy(null);
+      }
       return this;
     }
 
@@ -140,6 +146,12 @@ public class WebRtcServiceStateBuilder {
 
     public @NonNull LocalDeviceStateBuilder setHandRaisedTimestamp(long handRaisedTimestamp) {
       toBuild.setHandRaisedTimestamp(handRaisedTimestamp);
+      return this;
+    }
+
+    public @NonNull LocalDeviceStateBuilder setRemoteMutedBy(@NonNull CallParticipant participant) {
+      toBuild.setRemoteMutedBy(participant);
+      toBuild.setMicrophoneEnabled(false);
       return this;
     }
   }
@@ -372,6 +384,11 @@ public class WebRtcServiceStateBuilder {
 
     public @NonNull CallInfoStateBuilder setGroupCallEndReason(@Nullable GroupCall.GroupCallEndReason groupCallEndReason) {
       toBuild.setGroupCallEndReason(groupCallEndReason);
+      return this;
+    }
+
+    public @NonNull CallInfoStateBuilder setGroupCallSpeechEvent(@Nullable GroupCallSpeechEvent groupCallSpeechEvent) {
+      toBuild.setGroupCallSpeechEvent(groupCallSpeechEvent);
       return this;
     }
   }

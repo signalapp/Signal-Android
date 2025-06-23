@@ -471,15 +471,21 @@ final class GroupManagerV2 {
         Log.i(TAG, "Profile Key does not match that in group " + groupId);
       }
 
-      GroupCandidate groupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
+      GroupCandidate selfGroupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
 
-      if (!groupCandidate.hasValidProfileKeyCredential()) {
+      if (!selfGroupCandidate.hasValidProfileKeyCredential()) {
         Log.w(TAG, "[updateSelfProfileKeyInGroup] No credential available, repairing");
-        AppDependencies.getJobManager().add(new ProfileUploadJob());
-        return null;
+        ProfileUtil.uploadProfile(context);
+        selfGroupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
+
+        if (!selfGroupCandidate.hasValidProfileKeyCredential()) {
+          Log.w(TAG, "[updateSelfProfileKeyInGroup] Still unable to get credential");
+          AppDependencies.getJobManager().add(new ProfileUploadJob());
+          throw new GroupChangeFailedException("No profile credential for self, unable to update profile key in group");
+        }
       }
 
-      return commitChangeWithConflictResolution(selfAci, groupOperations.createUpdateProfileKeyCredentialChange(groupCandidate.requireExpiringProfileKeyCredential()));
+      return commitChangeWithConflictResolution(selfAci, groupOperations.createUpdateProfileKeyCredentialChange(selfGroupCandidate.requireExpiringProfileKeyCredential()));
     }
 
     @WorkerThread
@@ -497,18 +503,24 @@ final class GroupManagerV2 {
       Optional<DecryptedPendingMember> aciInPending = DecryptedGroupUtil.findPendingByServiceId(group.pendingMembers, selfAci);
       Optional<DecryptedPendingMember> pniInPending = DecryptedGroupUtil.findPendingByServiceId(group.pendingMembers, selfPni);
 
-      GroupCandidate groupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
+      GroupCandidate selfGroupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
 
-      if (!groupCandidate.hasValidProfileKeyCredential()) {
-        Log.w(TAG, "[AcceptInvite] No credential available, repairing");
-        AppDependencies.getJobManager().add(new ProfileUploadJob());
-        return null;
+      if (!selfGroupCandidate.hasValidProfileKeyCredential()) {
+        Log.w(TAG, "[acceptInvite] No credential available, repairing");
+        ProfileUtil.uploadProfile(context);
+        selfGroupCandidate = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
+
+        if (!selfGroupCandidate.hasValidProfileKeyCredential()) {
+          Log.w(TAG, "[acceptInvite] Still unable to get credential");
+          AppDependencies.getJobManager().add(new ProfileUploadJob());
+          throw new GroupChangeFailedException("No profile credential for self, unable to accept invite");
+        }
       }
 
       if (aciInPending.isPresent()) {
-        return commitChangeWithConflictResolution(selfAci, groupOperations.createAcceptInviteChange(groupCandidate.requireExpiringProfileKeyCredential()));
+        return commitChangeWithConflictResolution(selfAci, groupOperations.createAcceptInviteChange(selfGroupCandidate.requireExpiringProfileKeyCredential()));
       } else if (pniInPending.isPresent()) {
-        return commitChangeWithConflictResolution(selfPni, groupOperations.createAcceptPniInviteChange(groupCandidate.requireExpiringProfileKeyCredential()));
+        return commitChangeWithConflictResolution(selfPni, groupOperations.createAcceptPniInviteChange(selfGroupCandidate.requireExpiringProfileKeyCredential()));
       }
 
       throw new GroupChangeFailedException("Unable to accept invite when not in pending list");
@@ -789,6 +801,8 @@ final class GroupManagerV2 {
       throw new MembershipNotSuitableForV2Exception("At least one potential new member does not support GV2 capability or we don't have their UUID");
     }
 
+    SignalDatabase.recipients().clearProfileKeyCredential(Recipient.self().getId());
+
     GroupCandidate      self       = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
     Set<GroupCandidate> candidates = new HashSet<>(groupCandidateHelper.recipientIdsToCandidates(members));
 
@@ -798,8 +812,16 @@ final class GroupManagerV2 {
     }
 
     if (!self.hasValidProfileKeyCredential()) {
-      Log.w(TAG, "Cannot create a V2 group as self does not have a versioned profile");
-      throw new MembershipNotSuitableForV2Exception("Cannot create a V2 group as self does not have a versioned profile");
+      Log.w(TAG, "[createGroupOnServer] No profile credential for self, repairing");
+      ProfileUtil.uploadProfile(context);
+
+      self = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
+
+      if (!self.hasValidProfileKeyCredential()) {
+        Log.w(TAG, "[createGroupOnServer] Still unable to get credential");
+        AppDependencies.getJobManager().add(new ProfileUploadJob());
+        throw new MembershipNotSuitableForV2Exception("Cannot create a V2 group as self does not have a versioned profile");
+      }
     }
 
     GroupsV2Operations.NewGroup newGroup = groupsV2Operations.createNewGroup(groupSecretParams,
@@ -1038,7 +1060,15 @@ final class GroupManagerV2 {
       GroupCandidate self = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
 
       if (!self.hasValidProfileKeyCredential()) {
-        throw new MembershipNotSuitableForV2Exception("No profile key credential for self");
+        Log.w(TAG, "[joinGroupOnServer] No profile credential for self, repairing");
+        ProfileUtil.uploadProfile(context);
+        self = groupCandidateHelper.recipientIdToCandidate(Recipient.self().getId());
+
+        if (!self.hasValidProfileKeyCredential()) {
+          Log.w(TAG, "[joinGroupOnServer] Still unable to get credential");
+          AppDependencies.getJobManager().add(new ProfileUploadJob());
+          throw new MembershipNotSuitableForV2Exception("Unable to join group, no profile key credential for self");
+        }
       }
 
       ExpiringProfileKeyCredential expiringProfileKeyCredential = self.requireExpiringProfileKeyCredential();

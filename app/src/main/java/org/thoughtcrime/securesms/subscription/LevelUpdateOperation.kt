@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.subscription
 
 import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
+import java.io.Closeable
 
 /**
  * Binds a Subscription level update with an idempotency key.
@@ -10,4 +11,8 @@ import org.whispersystems.signalservice.api.subscriptions.IdempotencyKey
 data class LevelUpdateOperation(
   val idempotencyKey: IdempotencyKey,
   val level: String
-)
+) : Closeable {
+  override fun close() {
+    LevelUpdate.updateProcessingState(false)
+  }
+}

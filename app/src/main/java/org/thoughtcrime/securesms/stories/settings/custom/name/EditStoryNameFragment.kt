@@ -59,8 +59,8 @@ class EditStoryNameFragment : Fragment(R.layout.stories_edit_story_name_fragment
     }
 
     storyName.doAfterTextChanged {
-      saveButton.isEnabled = !it.isNullOrEmpty()
-      saveButton.alpha = if (it.isNullOrEmpty()) 0.5f else 1f
+      saveButton.isEnabled = !it.isNullOrBlank() && it.toString().trim() != initialName
+      saveButton.alpha = if (!saveButton.isEnabled) 0.5f else 1f
       storyNameWrapper.error = null
     }
 
@@ -68,6 +68,8 @@ class EditStoryNameFragment : Fragment(R.layout.stories_edit_story_name_fragment
     saveButton.setOnClickListener {
       onSaveClicked()
     }
+    saveButton.isEnabled = false
+    saveButton.alpha = 0.5f
 
     ViewUtil.focusAndShowKeyboard(storyName)
   }

@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.components.settings.app.usernamelinks.Username
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
+import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
@@ -37,6 +38,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.ProfileUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.push.UsernameLinkComponents
+import org.whispersystems.signalservice.api.storage.IAPSubscriptionId.AppleIAPOriginalTransactionId
+import org.whispersystems.signalservice.api.storage.IAPSubscriptionId.GooglePlayBillingPurchaseToken
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
@@ -61,6 +64,8 @@ object AccountDataArchiveProcessor {
     val chatColors = SignalStore.chatColors.chatColors
     val chatWallpaper = SignalStore.wallpaper.currentRawWallpaper
 
+    val backupSubscriberRecord = db.inAppPaymentSubscriberTable.getBackupsSubscriber()
+
     emitter.emit(
       Frame(
         account = AccountData(
@@ -68,6 +73,7 @@ object AccountDataArchiveProcessor {
           givenName = selfRecord.signalProfileName.givenName,
           familyName = selfRecord.signalProfileName.familyName,
           avatarUrlPath = selfRecord.signalProfileAvatar ?: "",
+          svrPin = SignalStore.svr.pin ?: "",
           username = selfRecord.username?.takeIf { it.isNotBlank() },
           usernameLink = if (selfRecord.username.isNotNullOrBlank() && signalStore.accountValues.usernameLink != null) {
             AccountData.UsernameLink(
@@ -97,6 +103,7 @@ object AccountDataArchiveProcessor {
             hasSeenGroupStoryEducationSheet = signalStore.storyValues.userHasSeenGroupStoryEducationSheet,
             hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding(),
             customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors(),
+            optimizeOnDeviceStorage = signalStore.backupValues.optimizeStorage,
             defaultChatStyle = ChatStyleConverter.constructRemoteChatStyle(
               db = db,
               chatColors = chatColors,
@@ -104,7 +111,8 @@ object AccountDataArchiveProcessor {
               chatWallpaper = chatWallpaper
             )
           ),
-          donationSubscriberData = donationSubscriber?.toSubscriberData(signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled())
+          donationSubscriberData = donationSubscriber?.toSubscriberData(signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled()),
+          backupsSubscriberData = backupSubscriberRecord?.toIAPSubscriberData()
         )
       )
     )
@@ -114,6 +122,9 @@ object AccountDataArchiveProcessor {
     SignalDatabase.recipients.restoreSelfFromBackup(accountData, selfId)
 
     SignalStore.account.setRegistered(true)
+    if (accountData.svrPin.isNotBlank()) {
+      SignalStore.svr.setPin(accountData.svrPin)
+    }
 
     val context = AppDependencies.application
     val settings = accountData.accountSettings
@@ -142,6 +153,26 @@ object AccountDataArchiveProcessor {
       if (accountData.donationSubscriberData.manuallyCancelled) {
         SignalStore.inAppPayments.updateLocalStateForManualCancellation(InAppPaymentSubscriberRecord.Type.DONATION)
       }
+    }
+
+    if (accountData.backupsSubscriberData != null && accountData.backupsSubscriberData.subscriberId.size > 0 && (accountData.backupsSubscriberData.purchaseToken != null || accountData.backupsSubscriberData.originalTransactionId != null)) {
+      val remoteSubscriberId = SubscriberId.fromBytes(accountData.backupsSubscriberData.subscriberId.toByteArray())
+      val localSubscriber = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
+
+      val subscriber = InAppPaymentSubscriberRecord(
+        subscriberId = remoteSubscriberId,
+        currency = localSubscriber?.currency,
+        type = InAppPaymentSubscriberRecord.Type.BACKUP,
+        requiresCancel = localSubscriber?.requiresCancel ?: false,
+        paymentMethodType = InAppPaymentData.PaymentMethodType.UNKNOWN,
+        iapSubscriptionId = if (accountData.backupsSubscriberData.purchaseToken != null) {
+          GooglePlayBillingPurchaseToken(accountData.backupsSubscriberData.purchaseToken)
+        } else {
+          AppleIAPOriginalTransactionId(accountData.backupsSubscriberData.originalTransactionId!!)
+        }
+      )
+
+      InAppPaymentsRepository.setSubscriber(subscriber)
     }
 
     if (accountData.avatarUrlPath.isNotEmpty()) {
@@ -180,6 +211,7 @@ object AccountDataArchiveProcessor {
     SignalStore.story.isFeatureDisabled = settings.storiesDisabled
     SignalStore.story.userHasSeenGroupStoryEducationSheet = settings.hasSeenGroupStoryEducationSheet
     SignalStore.story.viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
+    SignalStore.backup.optimizeStorage = settings.optimizeOnDeviceStorage
 
     settings.customChatColors
       .mapNotNull { chatColor ->
@@ -282,6 +314,23 @@ object AccountDataArchiveProcessor {
     val subscriberId = subscriberId.bytes.toByteString()
     val currencyCode = currency!!.currencyCode
     return AccountData.SubscriberData(subscriberId = subscriberId, currencyCode = currencyCode, manuallyCancelled = manuallyCancelled)
+  }
+
+  private fun InAppPaymentSubscriberRecord?.toIAPSubscriberData(): AccountData.IAPSubscriberData? {
+    if (this == null) {
+      return null
+    }
+
+    val builder = AccountData.IAPSubscriberData.Builder()
+      .subscriberId(this.subscriberId.bytes.toByteString())
+
+    if (this.iapSubscriptionId?.purchaseToken != null) {
+      builder.purchaseToken(this.iapSubscriptionId.purchaseToken)
+    } else if (this.iapSubscriptionId?.originalTransactionId != null) {
+      builder.originalTransactionId(this.iapSubscriptionId.originalTransactionId)
+    }
+
+    return builder.build()
   }
 
   private fun List<ChatColors>.toRemoteChatColors(): List<ChatStyle.CustomChatColor> {

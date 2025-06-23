@@ -66,7 +66,7 @@ class RegistrationUtilTest {
     every { signalStore.registration.isRegistrationComplete } returns false
     every { signalStore.account.isRegistered } returns true
     every { Recipient.self() } returns Recipient(profileName = ProfileName.fromParts("Dark", "Helmet"))
-    every { signalStore.svr.hasOptedInWithAccess() } returns true
+    every { signalStore.svr.hasPin() } returns true
     every { RemoteConfig.restoreAfterRegistration } returns false
 
     RegistrationUtil.maybeMarkRegistrationComplete()
@@ -79,7 +79,7 @@ class RegistrationUtilTest {
     every { signalStore.registration.isRegistrationComplete } returns false
     every { signalStore.account.isRegistered } returns true
     every { Recipient.self() } returns Recipient(profileName = ProfileName.fromParts("Dark", "Helmet"))
-    every { signalStore.svr.hasOptedInWithAccess() } returns false
+    every { signalStore.svr.hasPin() } returns false
     every { signalStore.svr.hasOptedOut() } returns true
     every { RemoteConfig.restoreAfterRegistration } returns false
 
@@ -93,7 +93,7 @@ class RegistrationUtilTest {
     every { signalStore.registration.isRegistrationComplete } returns false
     every { signalStore.account.isRegistered } returns true
     every { Recipient.self() } returns Recipient(profileName = ProfileName.fromParts("Dark", "Helmet"))
-    every { signalStore.svr.hasOptedInWithAccess() } returns true
+    every { signalStore.svr.hasPin() } returns true
     every { RemoteConfig.restoreAfterRegistration } returns true
     every { signalStore.registration.restoreDecisionState } returns RestoreDecisionState.Skipped
 
@@ -115,12 +115,12 @@ class RegistrationUtilTest {
     RegistrationUtil.maybeMarkRegistrationComplete()
 
     every { Recipient.self() } returns Recipient(profileName = ProfileName.fromParts("Dark", "Helmet"))
-    every { signalStore.svr.hasOptedInWithAccess() } returns false
+    every { signalStore.svr.hasPin() } returns false
     every { signalStore.svr.hasOptedOut() } returns false
 
     RegistrationUtil.maybeMarkRegistrationComplete()
 
-    every { signalStore.svr.hasOptedInWithAccess() } returns true
+    every { signalStore.svr.hasPin() } returns true
     every { RemoteConfig.restoreAfterRegistration } returns true
     every { signalStore.registration.restoreDecisionState } returns RestoreDecisionState.Start
 

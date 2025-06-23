@@ -72,6 +72,7 @@ class ShareRepository(context: Context) {
   @WorkerThread
   private fun resolve(externalMultiShare: UnresolvedShareData.ExternalMultiShare): ResolvedShareData {
     val mimeTypes: Map<Uri, String> = externalMultiShare.uris
+      .filter { UriUtil.isValidExternalUri(appContext, it) }
       .associateWith { uri -> getMimeType(appContext, uri, null) }
       .filterValues {
         MediaUtil.isImageType(it) || MediaUtil.isVideoType(it)

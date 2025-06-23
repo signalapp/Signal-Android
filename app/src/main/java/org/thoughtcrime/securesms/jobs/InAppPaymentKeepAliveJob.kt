@@ -95,6 +95,16 @@ class InAppPaymentKeepAliveJob private constructor(
   }
 
   private fun doRun() {
+    if (!SignalStore.account.isRegistered) {
+      warn(type, "User is not registered. Skipping.")
+      return
+    }
+
+    if (SignalDatabase.inAppPayments.hasPrePendingRecurringTransaction(type.inAppPaymentType)) {
+      info(type, "We are currently processing a transaction for this type. Skipping.")
+      return
+    }
+
     val subscriber: InAppPaymentSubscriberRecord? = InAppPaymentsRepository.getSubscriber(type)
     if (subscriber == null) {
       info(type, "Subscriber not present. Skipping.")
@@ -141,17 +151,18 @@ class InAppPaymentKeepAliveJob private constructor(
       InAppPaymentData.RedemptionState.Stage.INIT -> {
         info(type, "Transitioning payment from INIT to CONVERSION_STARTED and generating a request credential")
         val payment = activeInAppPayment.copy(
-          data = activeInAppPayment.data.copy(
+          data = activeInAppPayment.data.newBuilder().redemption(
             redemption = activeInAppPayment.data.redemption.copy(
               stage = InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED,
               receiptCredentialRequestContext = InAppPaymentsRepository.generateRequestCredential().serialize().toByteString()
             )
-          )
+          ).build()
         )
 
         SignalDatabase.inAppPayments.update(payment)
         InAppPaymentRecurringContextJob.createJobChain(payment).enqueue()
       }
+
       InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED -> {
         if (activeInAppPayment.data.redemption.receiptCredentialRequestContext == null) {
           warn(type, "We are in the CONVERSION_STARTED state without a request credential. Exiting.")
@@ -161,6 +172,7 @@ class InAppPaymentKeepAliveJob private constructor(
         info(type, "We have a request credential we have not turned into a token.")
         InAppPaymentRecurringContextJob.createJobChain(activeInAppPayment).enqueue()
       }
+
       InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED -> {
         if (activeInAppPayment.data.redemption.receiptCredentialPresentation == null) {
           warn(type, "We are in the REDEMPTION_STARTED state without a request credential. Exiting.")
@@ -170,6 +182,7 @@ class InAppPaymentKeepAliveJob private constructor(
         info(type, "We have a receipt credential presentation but have not yet redeemed it.")
         InAppPaymentRedemptionJob.enqueueJobChainForRecurringKeepAlive(activeInAppPayment)
       }
+
       else -> info(type, "Nothing to do. Exiting.")
     }
   }
@@ -187,6 +200,7 @@ class InAppPaymentKeepAliveJob private constructor(
         403, 404 -> {
           warn(type, "Invalid or malformed subscriber id. Status: ${serviceResponse.status}", error)
         }
+
         else -> {
           warn(type, "An unknown server error occurred: ${serviceResponse.status}", error)
           throw InAppPaymentRetryException(error)
@@ -203,11 +217,11 @@ class InAppPaymentKeepAliveJob private constructor(
     val type = subscriber.type
     val current: InAppPaymentTable.InAppPayment? = SignalDatabase.inAppPayments.getByEndOfPeriod(type.inAppPaymentType, endOfCurrentPeriod)
 
-    return if (current == null) {
+    val inAppPayment = if (current == null) {
       val oldInAppPayment = SignalDatabase.inAppPayments.getByLatestEndOfPeriod(type.inAppPaymentType)
       val oldEndOfPeriod = oldInAppPayment?.endOfPeriod ?: InAppPaymentsRepository.getFallbackLastEndOfPeriod(type)
       if (oldEndOfPeriod > endOfCurrentPeriod) {
-        warn(type, "Active subscription returned an old end-of-period. Exiting. (old: $oldEndOfPeriod, new: $endOfCurrentPeriod)")
+        warn(type, "Active subscription returned an old end-of-period. Exiting. (old: ${oldEndOfPeriod.inWholeSeconds}, new: ${endOfCurrentPeriod.inWholeSeconds})")
         return null
       }
 
@@ -230,10 +244,32 @@ class InAppPaymentKeepAliveJob private constructor(
         oldInAppPayment.data.badge
       }
 
-      info(type, "End of period has changed. Requesting receipt refresh. (old: $oldEndOfPeriod, new: $endOfCurrentPeriod)")
+      info(type, "End of period has changed. Requesting receipt refresh. (old: ${oldEndOfPeriod.inWholeSeconds}, new: ${endOfCurrentPeriod.inWholeSeconds})")
       if (type == InAppPaymentSubscriberRecord.Type.DONATION) {
         SignalStore.inAppPayments.setLastEndOfPeriod(endOfCurrentPeriod.inWholeSeconds)
       }
+
+      val subscriptionPaymentMethodType: InAppPaymentData.PaymentMethodType = subscription.paymentMethod.toInAppPaymentDataPaymentMethodType()
+      val subscriberPaymentMethodType: InAppPaymentData.PaymentMethodType = subscriber.paymentMethodType
+
+      val newInAppPaymentMethodType: InAppPaymentData.PaymentMethodType = when (subscriptionPaymentMethodType) {
+        InAppPaymentData.PaymentMethodType.CARD -> {
+          if (subscriberPaymentMethodType == InAppPaymentData.PaymentMethodType.GOOGLE_PAY) {
+            InAppPaymentData.PaymentMethodType.GOOGLE_PAY
+          } else {
+            InAppPaymentData.PaymentMethodType.CARD
+          }
+        }
+
+        InAppPaymentData.PaymentMethodType.UNKNOWN -> {
+          subscriberPaymentMethodType
+        }
+
+        else -> subscriptionPaymentMethodType
+      }
+
+      info(type, "Resolved payment method type from subscription: $newInAppPaymentMethodType")
+      SignalDatabase.inAppPaymentSubscribers.setPaymentMethod(subscriber.subscriberId, paymentMethodType = newInAppPaymentMethodType)
 
       val inAppPaymentId = SignalDatabase.inAppPayments.insert(
         type = type.inAppPaymentType,
@@ -241,7 +277,7 @@ class InAppPaymentKeepAliveJob private constructor(
         subscriberId = subscriber.subscriberId,
         endOfPeriod = endOfCurrentPeriod,
         inAppPaymentData = InAppPaymentData(
-          paymentMethodType = subscriber.paymentMethodType,
+          paymentMethodType = newInAppPaymentMethodType,
           badge = badge,
           amount = FiatValue(
             currencyCode = subscription.currency,
@@ -288,6 +324,31 @@ class InAppPaymentKeepAliveJob private constructor(
     } else {
       current
     }
+
+    if (
+      inAppPayment != null &&
+      inAppPayment.state == InAppPaymentTable.State.END &&
+      ActiveSubscription.Status.getStatus(subscription.status) == ActiveSubscription.Status.ACTIVE &&
+      inAppPayment.endOfPeriodSeconds == subscription.endOfCurrentPeriod &&
+      inAppPayment.data.error != null &&
+      inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED &&
+      inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.SEPA_DEBIT
+    ) {
+      warn(type, "Detected possible timeout failure due to SEPA bug. We will resubmit.")
+
+      SignalDatabase.inAppPayments.update(
+        inAppPayment.copy(
+          state = InAppPaymentTable.State.PENDING,
+          data = inAppPayment.data.newBuilder()
+            .error(null)
+            .build()
+        )
+      )
+
+      return SignalDatabase.inAppPayments.getById(inAppPayment.id)
+    } else {
+      return inAppPayment
+    }
   }
 
   private fun info(type: InAppPaymentSubscriberRecord.Type, message: String) {
@@ -296,6 +357,18 @@ class InAppPaymentKeepAliveJob private constructor(
 
   private fun warn(type: InAppPaymentSubscriberRecord.Type, message: String, throwable: Throwable? = null) {
     Log.w(TAG, "[$type] $message", throwable, true)
+  }
+
+  private fun ActiveSubscription.PaymentMethod.toInAppPaymentDataPaymentMethodType(): InAppPaymentData.PaymentMethodType {
+    return when (this) {
+      ActiveSubscription.PaymentMethod.UNKNOWN -> InAppPaymentData.PaymentMethodType.UNKNOWN
+      ActiveSubscription.PaymentMethod.CARD -> InAppPaymentData.PaymentMethodType.CARD
+      ActiveSubscription.PaymentMethod.PAYPAL -> InAppPaymentData.PaymentMethodType.PAYPAL
+      ActiveSubscription.PaymentMethod.SEPA_DEBIT -> InAppPaymentData.PaymentMethodType.SEPA_DEBIT
+      ActiveSubscription.PaymentMethod.IDEAL -> InAppPaymentData.PaymentMethodType.IDEAL
+      ActiveSubscription.PaymentMethod.GOOGLE_PLAY_BILLING -> InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING
+      ActiveSubscription.PaymentMethod.APPLE_APP_STORE -> InAppPaymentData.PaymentMethodType.UNKNOWN
+    }
   }
 
   override fun serialize(): ByteArray? = JsonJobData.Builder().putInt(DATA_TYPE, type.code).build().serialize()

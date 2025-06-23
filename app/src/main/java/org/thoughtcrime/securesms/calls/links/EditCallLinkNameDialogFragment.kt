@@ -25,18 +25,18 @@ import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
-import androidx.navigation.fragment.navArgs
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Scaffolds
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.util.BreakIteratorCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeDialogFragment
@@ -45,11 +45,11 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
 
   companion object {
     const val RESULT_KEY = "edit_call_link_name"
-
-    private const val MAX_CHARACTER_COUNT = 32
+    const val ARG_NAME = "name"
   }
 
-  private val args: EditCallLinkNameDialogFragmentArgs by navArgs()
+  private val argName: String
+    get() = requireArguments().getString(ARG_NAME)!!
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -69,8 +69,8 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
     var callName by remember {
       mutableStateOf(
         TextFieldValue(
-          text = args.name,
-          selection = TextRange(args.name.length)
+          text = argName,
+          selection = TextRange(argName.length)
         )
       )
     }
@@ -78,7 +78,7 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
     Scaffolds.Settings(
       title = stringResource(id = R.string.EditCallLinkNameDialogFragment__edit_call_name),
       onNavigationClick = this::dismiss,
-      navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
+      navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { paddingValues ->
       val focusRequester = remember { FocusRequester() }

@@ -60,8 +60,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
   @Px       private int                   thumbSizePixels;
   @Px       private int                   thumbTouchRadius;
   @ColorInt private int                   thumbColor;
-            private long                  actualPosition;
-            private long                  dragPosition;
+            private long                  thumbPosition;
   @Px       private int                   thumbHintTextSize;
   @ColorInt private int                   thumbHintTextColor;
   @ColorInt private int                   thumbHintBackgroundColor;
@@ -146,15 +145,15 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
   }
 
   public void setActualPosition(long position) {
-    if (this.actualPosition != position) {
-      this.actualPosition = position;
+    if (this.thumbPosition != position) {
+      this.thumbPosition = position;
       invalidate();
     }
   }
 
-  private void setDragPosition(long position) {
-    if (this.dragPosition != position) {
-      this.dragPosition = Math.max(getMinValue(), Math.min(getMaxValue(), position));
+  private void setThumbPosition(long position) {
+    if (this.thumbPosition != position) {
+      this.thumbPosition = Math.max(getMinValue(), Math.min(getMaxValue(), position));
       invalidate();
     }
   }
@@ -171,7 +170,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
     long min = getMinValue();
     long max = getMaxValue();
 
-    long drawPosAt = dragThumb == Thumb.POSITION ? dragPosition : actualPosition;
+    long drawPosAt = thumbPosition;
 
     left   = duration != 0 ? (int) ((min * drawableWidth) / duration) : 0;
     right  = duration != 0 ? (int) ((max * drawableWidth) / duration) : drawableWidth;
@@ -337,7 +336,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
     int actionMasked = event.getActionMasked();
     if (actionMasked == MotionEvent.ACTION_DOWN) {
       xDown           = event.getX();
-      downCursor      = actualPosition;
+      downCursor      = thumbPosition;
       downMin         = getMinValue();
       downMax         = getMaxValue();
       dragThumb       = closestThumb(event.getX());
@@ -350,7 +349,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
       long    delta   = pixelToDuration(event.getX() - xDown);
       boolean changed = switch (dragThumb) {
         case POSITION -> {
-          setDragPosition(pixelToDuration(event.getX()));
+          setThumbPosition(pixelToDuration(event.getX()));
           yield true;
         }
         case MIN -> setMinValue(downMin + delta);
@@ -358,7 +357,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
       };
       if (changed) {
         if (dragThumb == Thumb.POSITION) {
-          onPositionDrag(dragPosition);
+          onPositionDrag(thumbPosition);
         } else {
           onRangeDrag(getMinValue(), getMaxValue(), getDuration(), false);
         }
@@ -369,7 +368,7 @@ public final class VideoThumbnailsRangeSelectorView extends VideoThumbnailsView 
     if (actionMasked == MotionEvent.ACTION_UP) {
       if (editorOnRangeChangeListener != null) {
         if (dragThumb == Thumb.POSITION) {
-          onEndPositionDrag(dragPosition);
+          onEndPositionDrag(thumbPosition);
         } else {
           onRangeDrag(getMinValue(), getMaxValue(), getDuration(), true);
         }

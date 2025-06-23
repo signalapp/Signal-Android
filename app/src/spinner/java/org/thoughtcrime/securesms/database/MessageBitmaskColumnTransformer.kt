@@ -51,6 +51,7 @@ import org.thoughtcrime.securesms.database.MessageTypes.RELEASE_CHANNEL_DONATION
 import org.thoughtcrime.securesms.database.MessageTypes.SECURE_MESSAGE_BIT
 import org.thoughtcrime.securesms.database.MessageTypes.SMS_EXPORT_TYPE
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPES_MASK
+import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_BLOCKED
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_GIFT_BADGE
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
@@ -58,6 +59,7 @@ import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_PAYMENTS_AC
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_REPORTED_SPAM
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_STORY_REACTION
+import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_UNBLOCKED
 import org.thoughtcrime.securesms.database.MessageTypes.THREAD_MERGE_TYPE
 import org.thoughtcrime.securesms.database.MessageTypes.UNSUPPORTED_MESSAGE_TYPE
 
@@ -135,6 +137,8 @@ object MessageBitmaskColumnTransformer : ColumnTransformer {
       isPaymentsActivated:${type and SPECIAL_TYPES_MASK == SPECIAL_TYPE_PAYMENTS_ACTIVATED}
       isReportSpam:${type and SPECIAL_TYPES_MASK == SPECIAL_TYPE_REPORTED_SPAM}
       isMessageRequestAccepted:${type and SPECIAL_TYPES_MASK == SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED}
+      isBlockedType:${type and SPECIAL_TYPES_MASK == SPECIAL_TYPE_BLOCKED}
+      isUnblockedType:${type and SPECIAL_TYPES_MASK == SPECIAL_TYPE_UNBLOCKED}
     """.trimIndent()
 
     return "$type<br><br>" + describe.replace(Regex("is[A-Z][A-Za-z0-9]*:false\n?"), "").replace("\n", "<br>")

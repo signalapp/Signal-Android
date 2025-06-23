@@ -62,7 +62,6 @@ import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
 import org.thoughtcrime.securesms.database.model.Quote;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
 import org.thoughtcrime.securesms.keyboard.KeyboardPage;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewRepository;
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
@@ -221,6 +220,9 @@ public class InputPanel extends ConstraintLayout
                        @NonNull QuoteModel.Type quoteType)
   {
     this.quoteView.setQuote(requestManager, id, author, body, false, attachments, null, quoteType);
+    if (listener != null) {
+      this.quoteView.setOnClickListener(v -> listener.onQuoteClicked(id, author.getId()));
+    }
 
     int originalHeight = this.quoteView.getVisibility() == VISIBLE ? this.quoteView.getMeasuredHeight()
                                                                    : 0;
@@ -314,6 +316,10 @@ public class InputPanel extends ConstraintLayout
     } else {
       return Optional.empty();
     }
+  }
+
+  public boolean hasLinkPreview() {
+    return linkPreview.getVisibility() == View.VISIBLE;
   }
 
   public void setLinkPreviewLoading() {
@@ -567,6 +573,11 @@ public class InputPanel extends ConstraintLayout
   }
 
   @Override
+  public void onRecorderAlreadyInUse() {
+    if (listener != null) listener.onRecorderAlreadyInUse();
+  }
+
+  @Override
   public void onRecordPressed() {
     if (listener != null) listener.onRecorderStarted();
     recordTime.display();
@@ -625,8 +636,19 @@ public class InputPanel extends ConstraintLayout
     if (listener != null) listener.onRecorderLocked();
   }
 
+  @Override
+  public void onRecordSaved() {
+    Log.d(TAG, "Recording saved");
+    onRecordHideEvent();
+    if (listener != null) listener.onRecorderSaveDraft();
+  }
+
   public void onPause() {
     this.microphoneRecorderView.cancelAction(false);
+  }
+
+  public void onSaveRecordDraft() {
+    this.microphoneRecorderView.saveAction();
   }
 
   public @NonNull Observer<VoiceNotePlaybackState> getPlaybackStateObserver() {
@@ -692,7 +714,7 @@ public class InputPanel extends ConstraintLayout
     return microphoneRecorderView.isRecordingLocked();
   }
 
-  public void releaseRecordingLock() {
+  public void releaseRecordingLockAndSend() {
     microphoneRecorderView.unlockAction();
   }
 
@@ -774,11 +796,15 @@ public class InputPanel extends ConstraintLayout
   }
 
   private void updateVisibility() {
-    if (hideForGroupState || hideForBlockedState || hideForSearch || hideForSelection || hideForMessageRequestState) {
+    if (isHidden()) {
       setVisibility(GONE);
     } else {
       setVisibility(VISIBLE);
     }
+  }
+
+  public boolean isHidden() {
+    return hideForGroupState || hideForBlockedState || hideForSearch || hideForSelection || hideForMessageRequestState;
   }
 
   public @Nullable MessageRecord getEditMessage() {
@@ -794,14 +820,17 @@ public class InputPanel extends ConstraintLayout
   public interface Listener extends VoiceNoteDraftView.Listener {
     void onRecorderStarted();
     void onRecorderLocked();
+    void onRecorderSaveDraft();
     void onRecorderFinished();
     void onRecorderCanceled(boolean byUser);
     void onRecorderPermissionRequired();
+    void onRecorderAlreadyInUse();
     void onEmojiToggle();
     void onLinkPreviewCanceled();
     void onStickerSuggestionSelected(@NonNull StickerRecord sticker);
     void onQuoteChanged(long id, @NonNull RecipientId author);
     void onQuoteCleared();
+    void onQuoteClicked(long quoteId, RecipientId authorId);
     void onEnterEditMode();
     void onExitEditMode();
     void onQuickCameraToggleClicked();

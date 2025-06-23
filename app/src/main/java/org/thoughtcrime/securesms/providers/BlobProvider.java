@@ -96,6 +96,10 @@ public class BlobProvider {
     return new BlobBuilder(data, fileSize);
   }
 
+  public static boolean isSingleUseMemoryBlob(Uri uri) throws IOException {
+    return StorageType.decode(uri.getPathSegments().get(STORAGE_TYPE_PATH_SEGMENT)) == StorageType.SINGLE_USE_MEMORY;
+  }
+
   public synchronized boolean hasStream(@NonNull Context context, @NonNull Uri uri) {
     waitUntilInitialized();
     try {
@@ -345,7 +349,7 @@ public class BlobProvider {
 
   private static @Nullable String getId(@NonNull Uri uri) {
     if (isAuthority(uri)) {
-      return uri.getPathSegments().get(ID_PATH_SEGMENT);
+      return Uri.encode(uri.getPathSegments().get(ID_PATH_SEGMENT));
     }
     return null;
   }
@@ -418,7 +422,7 @@ public class BlobProvider {
   }
 
   private static @NonNull String buildFileName(@NonNull String id) {
-    return id + ".blob";
+    return Uri.encode(id) + ".blob";
   }
 
   private static @NonNull String getDirectory(@NonNull StorageType storageType) {

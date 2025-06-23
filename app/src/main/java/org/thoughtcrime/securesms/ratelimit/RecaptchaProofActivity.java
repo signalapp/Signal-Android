@@ -19,12 +19,13 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.BuildConfig;
 import org.thoughtcrime.securesms.PassphraseRequiredActivity;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.util.DynamicTheme;
+import org.thoughtcrime.securesms.util.ExceptionHelper;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.views.SimpleProgressDialog;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
 
 import java.io.IOException;
 
@@ -98,12 +99,16 @@ public class RecaptchaProofActivity extends PassphraseRequiredActivity {
       try {
         for (int i = 0; i < 3; i++) {
           try {
-            AppDependencies.getSignalServiceAccountManager().submitRateLimitRecaptchaChallenge(challenge, token);
+            NetworkResultUtil.toBasicLegacy(SignalNetwork.rateLimitChallenge().submitCaptchaChallenge(challenge, token));
             RateLimitUtil.retryAllRateLimitedMessages(this);
             Log.i(TAG, "Successfully completed reCAPTCHA.");
             return new TokenResult(true, true);
-          } catch (PushNetworkException e) {
-            Log.w(TAG, "Network error during submission. Retrying.", e);
+          } catch (IOException e) {
+            if (ExceptionHelper.isRetryableIOException(e)) {
+              Log.w(TAG, "Network error during submission. Retrying.", e);
+            } else {
+              throw e;
+            }
           }
         }
       } catch (IOException e) {

@@ -9,6 +9,7 @@ import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.navGraphViewModels
 import com.google.android.gms.wallet.PaymentData
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -17,15 +18,18 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.util.concurrent.LifecycleDisposable
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.GooglePayApi
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
+import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppDonations
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.card.CreditCardFragment
@@ -54,15 +58,12 @@ class InAppPaymentCheckoutDelegate(
     private val TAG = Log.tag(InAppPaymentCheckoutDelegate::class.java)
   }
 
-  private val inAppPaymentComponent: InAppPaymentComponent by lazy { fragment.requireListener() }
+  private val googlePayComponent: GooglePayComponent by lazy { fragment.requireListener() }
   private val disposables = LifecycleDisposable()
   private val viewModel: DonationCheckoutViewModel by fragment.viewModels()
 
   private val stripePaymentViewModel: StripePaymentInProgressViewModel by fragment.navGraphViewModels(
-    R.id.checkout_flow,
-    factoryProducer = {
-      StripePaymentInProgressViewModel.Factory(inAppPaymentComponent.stripeRepository)
-    }
+    R.id.checkout_flow
   )
 
   init {
@@ -129,12 +130,17 @@ class InAppPaymentCheckoutDelegate(
   }
 
   private fun handleSuccessfulDonationProcessorActionResult(result: InAppPaymentProcessorActionResult) {
-    setActivityResult(result.action, result.inAppPaymentType)
-
     if (result.action == InAppPaymentProcessorAction.CANCEL_SUBSCRIPTION) {
-      callback.onSubscriptionCancelled(result.inAppPaymentType)
+      setActivityResult(result.action, InAppPaymentType.RECURRING_DONATION)
+      callback.onSubscriptionCancelled(InAppPaymentType.RECURRING_DONATION)
     } else {
-      callback.onPaymentComplete(result.inAppPayment!!)
+      fragment.lifecycleScope.launch {
+        val inAppPayment = withContext(SignalDispatchers.IO) {
+          SignalDatabase.inAppPayments.getById(result.inAppPaymentId!!)!!
+        }
+
+        callback.onPaymentComplete(inAppPayment)
+      }
     }
   }
 
@@ -158,7 +164,7 @@ class InAppPaymentCheckoutDelegate(
 
   private fun launchGooglePay(inAppPayment: InAppPaymentTable.InAppPayment) {
     viewModel.provideGatewayRequestForGooglePay(inAppPayment)
-    inAppPaymentComponent.stripeRepository.requestTokenFromGooglePay(
+    googlePayComponent.googlePayRepository.requestTokenFromGooglePay(
       price = inAppPayment.data.amount!!.toFiatMoney(),
       label = InAppDonations.resolveLabel(fragment.requireContext(), inAppPayment.type, inAppPayment.data.level),
       requestCode = InAppPaymentsRepository.getGooglePayRequestCode(inAppPayment.type)
@@ -178,10 +184,10 @@ class InAppPaymentCheckoutDelegate(
   }
 
   private fun registerGooglePayCallback() {
-    disposables += inAppPaymentComponent.googlePayResultPublisher.subscribeBy(
+    disposables += googlePayComponent.googlePayResultPublisher.subscribeBy(
       onNext = { paymentResult ->
         viewModel.consumeGatewayRequestForGooglePay()?.let {
-          inAppPaymentComponent.stripeRepository.onActivityResult(
+          googlePayComponent.googlePayRepository.onActivityResult(
             paymentResult.requestCode,
             paymentResult.resultCode,
             paymentResult.data,
@@ -206,6 +212,7 @@ class InAppPaymentCheckoutDelegate(
       InAppPaymentsRepository.updateInAppPayment(
         inAppPayment.copy(
           notified = false,
+          state = InAppPaymentTable.State.END,
           data = inAppPayment.data.copy(
             error = InAppPaymentData.Error(
               type = InAppPaymentData.Error.Type.GOOGLE_PAY_REQUEST_TOKEN

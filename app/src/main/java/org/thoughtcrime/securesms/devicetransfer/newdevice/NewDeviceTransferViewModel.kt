@@ -12,6 +12,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.keyvalue.Completed
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
@@ -24,6 +26,8 @@ class NewDeviceTransferViewModel : ViewModel() {
         RegistrationRepository.registerAccountLocally(context, metadata)
         SignalStore.registration.localRegistrationMetadata = null
         RegistrationUtil.maybeMarkRegistrationComplete()
+
+        AppDependencies.jobManager.add(ReclaimUsernameAndLinkJob())
       }
 
       SignalStore.registration.restoreDecisionState = RestoreDecisionState.Completed

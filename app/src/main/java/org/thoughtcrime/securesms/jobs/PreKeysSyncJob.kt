@@ -18,18 +18,16 @@ import org.thoughtcrime.securesms.jobs.protos.PreKeysSyncJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.isRetryableIOException
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.account.PreKeyUpload
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceIdType
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
-import org.whispersystems.signalservice.internal.push.OneTimePreKeyCounts
 import java.io.IOException
 import java.net.ProtocolException
 import java.util.concurrent.TimeUnit
-import kotlin.jvm.Throws
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.DurationUnit
@@ -169,8 +167,7 @@ class PreKeysSyncJob private constructor(
       return
     }
 
-    val accountManager = AppDependencies.signalServiceAccountManager
-    val availablePreKeyCounts: OneTimePreKeyCounts = accountManager.getPreKeyCounts(serviceIdType)
+    val availablePreKeyCounts = SignalNetwork.keys.getAvailablePreKeyCounts(serviceIdType).successOrThrow()
 
     val signedPreKeyToUpload: SignedPreKeyRecord? = signedPreKeyUploadIfNeeded(serviceIdType, protocolStore, metadataStore, forceRotation)
 
@@ -194,7 +191,7 @@ class PreKeysSyncJob private constructor(
 
     if (signedPreKeyToUpload != null || oneTimeEcPreKeysToUpload != null || lastResortKyberPreKeyToUpload != null || oneTimeKyberPreKeysToUpload != null) {
       log(serviceIdType, "Something to upload. SignedPreKey: ${signedPreKeyToUpload != null}, OneTimeEcPreKeys: ${oneTimeEcPreKeysToUpload != null}, LastResortKyberPreKey: ${lastResortKyberPreKeyToUpload != null}, OneTimeKyberPreKeys: ${oneTimeKyberPreKeysToUpload != null}")
-      accountManager.setPreKeys(
+      SignalNetwork.keys.setPreKeys(
         PreKeyUpload(
           serviceIdType = serviceIdType,
           signedPreKey = signedPreKeyToUpload,
@@ -202,7 +199,7 @@ class PreKeysSyncJob private constructor(
           lastResortKyberPreKey = lastResortKyberPreKeyToUpload,
           oneTimeKyberPreKeys = oneTimeKyberPreKeysToUpload
         )
-      )
+      ).successOrThrow()
 
       if (signedPreKeyToUpload != null) {
         log(serviceIdType, "Successfully uploaded signed prekey.")
@@ -292,11 +289,7 @@ class PreKeysSyncJob private constructor(
   }
 
   override fun onShouldRetry(e: Exception): Boolean {
-    return when (e) {
-      is NonSuccessfulResponseCodeException -> false
-      is PushNetworkException -> true
-      else -> false
-    }
+    return e.isRetryableIOException()
   }
 
   override fun onFailure() {

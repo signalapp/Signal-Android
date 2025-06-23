@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.AttachmentUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
@@ -88,18 +89,19 @@ class AttachmentDownloadJob private constructor(
       return when (val transferState = databaseAttachment.transferState) {
         AttachmentTable.TRANSFER_PROGRESS_DONE -> null
 
+        AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS,
         AttachmentTable.TRANSFER_RESTORE_OFFLOADED,
         AttachmentTable.TRANSFER_NEEDS_RESTORE -> RestoreAttachmentJob.restoreAttachment(databaseAttachment)
 
         AttachmentTable.TRANSFER_PROGRESS_PENDING,
         AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
           if (SignalStore.backup.backsUpMedia && databaseAttachment.remoteLocation == null) {
-            if (databaseAttachment.archiveMediaName.isNullOrEmpty()) {
-              Log.w(TAG, "No remote location or archive media name, can't download")
-              null
-            } else {
+            if (databaseAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
               Log.i(TAG, "Trying to restore attachment from archive cdn")
               RestoreAttachmentJob.restoreAttachment(databaseAttachment)
+            } else {
+              Log.w(TAG, "No remote location, and the archive transfer state is unfinished. Can't download.")
+              null
             }
           } else {
             val downloadJob = AttachmentDownloadJob(
@@ -112,7 +114,6 @@ class AttachmentDownloadJob private constructor(
           }
         }
 
-        AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS,
         AttachmentTable.TRANSFER_PROGRESS_STARTED,
         AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE -> {
           Log.d(TAG, "${databaseAttachment.attachmentId} is downloading or permanently failed, transferState: $transferState")
@@ -200,8 +201,8 @@ class AttachmentDownloadJob private constructor(
     }
 
     if (SignalStore.backup.backsUpMedia && attachment.remoteLocation == null) {
-      if (attachment.archiveMediaName.isNullOrEmpty()) {
-        throw InvalidAttachmentException("No remote location or archive media name")
+      if (attachment.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED) {
+        throw InvalidAttachmentException("No remote location, and the archive transfer state is unfinished. Can't download.")
       }
 
       Log.i(TAG, "Trying to restore attachment from archive cdn instead")
@@ -279,8 +280,8 @@ class AttachmentDownloadJob private constructor(
       val pointer = createAttachmentPointer(attachment)
 
       val progressListener = object : SignalServiceAttachment.ProgressListener {
-        override fun onAttachmentProgress(total: Long, progress: Long) {
-          EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress))
+        override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
+          EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, progress))
         }
 
         override fun shouldCancel(): Boolean {
@@ -310,7 +311,7 @@ class AttachmentDownloadJob private constructor(
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     } catch (e: NonSuccessfulResponseCodeException) {
-      if (SignalStore.backup.backsUpMedia && e.code == 404 && attachment.archiveMediaName?.isNotEmpty() == true) {
+      if (SignalStore.backup.backsUpMedia && e.code == 404 && attachment.archiveTransferState === AttachmentTable.ArchiveTransferState.FINISHED) {
         Log.i(TAG, "Retrying download from archive CDN")
         RestoreAttachmentJob.restoreAttachment(attachment)
         return false

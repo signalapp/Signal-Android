@@ -42,6 +42,7 @@ public abstract class Job {
   private long lastRunAttemptTime;
   private long nextBackoffInterval;
 
+  private volatile boolean cascadingFailure;
   private volatile boolean canceled;
 
   protected Context context;
@@ -104,6 +105,16 @@ public abstract class Job {
   /** Should only be invoked by {@link JobController} */
   final void cancel() {
     this.canceled = true;
+  }
+
+  /** Indicates that this job is failing because a job earlier in the chain failed. */
+  final void markCascadingFailure() {
+    this.cascadingFailure = true;
+  }
+
+  /** Whether or not this job is failing because a job earlier in the chain failed. */
+  protected boolean isCascadingFailure() {
+    return this.cascadingFailure;
   }
 
   /** Provides a default exponential backoff given the current run attempt. */

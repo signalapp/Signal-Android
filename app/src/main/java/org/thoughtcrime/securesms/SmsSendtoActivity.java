@@ -47,12 +47,19 @@ public class SmsSendtoActivity extends Activity {
       nextIntent.putExtra(Intent.EXTRA_TEXT, destination.getBody());
       Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
     } else {
-      Recipient recipient = Recipient.external(this, destination.getDestination());
-      long      threadId  = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
+      Recipient recipient = Recipient.external(destination.getDestination());
 
-      nextIntent = ConversationIntents.createBuilderSync(this, recipient.getId(), threadId)
-                                      .withDraftText(destination.getBody())
-                                      .build();
+      if (recipient != null) {
+        long threadId = SignalDatabase.threads().getOrCreateThreadIdFor(recipient);
+
+        nextIntent = ConversationIntents.createBuilderSync(this, recipient.getId(), threadId)
+                                        .withDraftText(destination.getBody())
+                                        .build();
+      } else {
+        nextIntent = new Intent(this, NewConversationActivity.class);
+        nextIntent.putExtra(Intent.EXTRA_TEXT, destination.getBody());
+        Toast.makeText(this, R.string.ConversationActivity_specify_recipient, Toast.LENGTH_LONG).show();
+      }
     }
     return nextIntent;
   }

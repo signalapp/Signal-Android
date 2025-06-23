@@ -677,7 +677,6 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
       mmsId = this.mmsId,
       hasData = this.hasData,
       hasThumbnail = false,
-      hasArchiveThumbnail = false,
       contentType = this.contentType,
       transferProgress = this.transferState,
       size = this.size,
@@ -705,8 +704,6 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
       uploadTimestamp = this.uploadTimestamp,
       dataHash = this.dataHash,
       archiveCdn = this.archiveCdn,
-      archiveMediaName = this.archiveMediaName,
-      archiveMediaId = this.archiveMediaId,
       thumbnailRestoreState = this.thumbnailRestoreState,
       archiveTransferState = this.archiveTransferState,
       uuid = uuid

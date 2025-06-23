@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.testing.SignalDatabaseRule
 import org.whispersystems.signalservice.api.push.DistributionId
 import java.util.UUID
+import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSQLiteDatabase
 
 @RunWith(AndroidJUnit4::class)
 class MyStoryMigrationTest {
@@ -111,7 +112,7 @@ class MyStoryMigrationTest {
   private fun runMigration() {
     V151_MyStoryMigration.migrate(
       InstrumentationRegistry.getInstrumentation().targetContext.applicationContext as Application,
-      SignalDatabase.rawDatabase,
+      SignalSQLiteDatabase(SignalDatabase.rawDatabase),
       0,
       1
     )

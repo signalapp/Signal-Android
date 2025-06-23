@@ -8,21 +8,16 @@ package org.thoughtcrime.securesms.components.settings.app.subscription.donate.t
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -30,34 +25,32 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.onFocusChanged
-import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.core.os.bundleOf
 import androidx.fragment.app.setFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.navigation.navGraphViewModels
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.Texts
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.Texts
 import org.signal.core.util.getParcelableCompat
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.TemporaryScreenshotSecurity
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentCheckoutDelegate
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorAction
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorActionResult
@@ -69,7 +62,6 @@ import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.fragments.requireListener
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
 
@@ -80,20 +72,17 @@ class IdealTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDele
 
   private val args: IdealTransferDetailsFragmentArgs by navArgs()
   private val viewModel: IdealTransferDetailsViewModel by viewModel {
-    IdealTransferDetailsViewModel(args.inAppPayment.type.recurring)
+    IdealTransferDetailsViewModel(args.inAppPaymentId)
   }
 
   private val stripePaymentViewModel: StripePaymentInProgressViewModel by navGraphViewModels(
-    R.id.checkout_flow,
-    factoryProducer = {
-      StripePaymentInProgressViewModel.Factory(requireListener<InAppPaymentComponent>().stripeRepository)
-    }
+    R.id.checkout_flow
   )
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     TemporaryScreenshotSecurity.bindToViewLifecycleOwner(this)
 
-    InAppPaymentCheckoutDelegate.ErrorHandler().attach(this, this, args.inAppPayment.id)
+    InAppPaymentCheckoutDelegate.ErrorHandler().attach(this, this, args.inAppPaymentId)
 
     setFragmentResultListener(StripePaymentInProgressFragment.REQUEST_KEY) { _, bundle ->
       val result: InAppPaymentProcessorActionResult = bundle.getParcelableCompat(StripePaymentInProgressFragment.REQUEST_KEY, InAppPaymentProcessorActionResult::class.java)!!
@@ -102,33 +91,33 @@ class IdealTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDele
         setFragmentResult(BankTransferRequestKeys.REQUEST_KEY, bundle)
       }
     }
-
-    setFragmentResultListener(IdealTransferDetailsBankSelectionDialogFragment.IDEAL_SELECTED_BANK) { _, bundle ->
-      val bankCode = bundle.getString(IdealTransferDetailsBankSelectionDialogFragment.IDEAL_SELECTED_BANK)!!
-      viewModel.onBankSelected(IdealBank.fromCode(bankCode))
-    }
   }
 
   @Composable
   override fun FragmentContent() {
-    val state by viewModel.state
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
-    val donateLabel = remember(args.inAppPayment) {
-      if (args.inAppPayment.type.recurring) { // TODO [message-request] -- Handle backups
+    val iap = remember(state.inAppPayment) { state.inAppPayment }
+    if (iap == null) {
+      return
+    }
+
+    val donateLabel = remember(iap) {
+      if (iap.type.recurring) { // TODO [message-request] -- Handle backups
         getString(
           R.string.BankTransferDetailsFragment__donate_s_month,
-          FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+          FiatMoneyUtil.format(resources, iap.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
         )
       } else {
         getString(
           R.string.BankTransferDetailsFragment__donate_s,
-          FiatMoneyUtil.format(resources, args.inAppPayment.data.amount!!.toFiatMoney())
+          FiatMoneyUtil.format(resources, iap.data.amount!!.toFiatMoney())
         )
       }
     }
 
-    val idealDirections = remember(args.inAppPayment) {
-      if (args.inAppPayment.type.recurring) { // TODO [message-request] -- Handle backups
+    val idealDirections = remember(iap) {
+      if (iap.type.recurring) { // TODO [message-request] -- Handle backups
         R.string.IdealTransferDetailsFragment__enter_your_bank
       } else {
         R.string.IdealTransferDetailsFragment__enter_your_bank_details_one_time
@@ -157,16 +146,15 @@ class IdealTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDele
       findNavController().safeNavigate(
         IdealTransferDetailsFragmentDirections.actionBankTransferDetailsFragmentToStripePaymentInProgressFragment(
           InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
-          args.inAppPayment,
-          args.inAppPayment.type
+          args.inAppPaymentId
         )
       )
     }
 
-    if (args.inAppPayment.type.recurring) { // TODO [message-requests] -- handle backup
-      val formattedMoney = FiatMoneyUtil.format(requireContext().resources, args.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
+    if (state.inAppPayment!!.type.recurring) { // TODO [message-requests] -- handle backup
+      val formattedMoney = FiatMoneyUtil.format(requireContext().resources, state.inAppPayment.data.amount!!.toFiatMoney(), FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
       MaterialAlertDialogBuilder(requireContext())
-        .setTitle(getString(R.string.IdealTransferDetailsFragment__confirm_your_donation_with_s, getString(state.idealBank!!.getUIValues().name)))
+        .setTitle(getString(R.string.IdealTransferDetailsFragment__confirm_your_donation_with_ideal))
         .setMessage(getString(R.string.IdealTransferDetailsFragment__to_setup_your_recurring_donation, formattedMoney))
         .setPositiveButton(R.string.IdealTransferDetailsFragment__continue) { _, _ ->
           continueTransfer()
@@ -204,7 +192,7 @@ class IdealTransferDetailsFragment : ComposeFragment(), InAppPaymentCheckoutDele
 @Composable
 private fun IdealTransferDetailsContentPreview() {
   IdealTransferDetailsContent(
-    state = IdealTransferDetailsState(isMonthly = true),
+    state = IdealTransferDetailsState(),
     idealDirections = R.string.IdealTransferDetailsFragment__enter_your_bank,
     donateLabel = "Donate $5/month",
     onNavigationClick = {},
@@ -233,7 +221,7 @@ private fun IdealTransferDetailsContent(
   Scaffolds.Settings(
     title = stringResource(id = R.string.GatewaySelectorBottomSheet__ideal),
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24)
+    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
   ) {
     val focusManager = LocalFocusManager.current
 
@@ -259,15 +247,6 @@ private fun IdealTransferDetailsContent(
               color = MaterialTheme.colorScheme.onSurfaceVariant
             ),
             modifier = Modifier.padding(vertical = 12.dp)
-          )
-        }
-
-        item {
-          IdealBankSelector(
-            idealBank = state.idealBank,
-            onSelectBankClick = onSelectBankClick,
-            modifier = Modifier
-              .fillMaxWidth()
           )
         }
 
@@ -299,7 +278,7 @@ private fun IdealTransferDetailsContent(
           )
         }
 
-        if (state.isMonthly) {
+        if (state.inAppPayment!!.type.recurring) {
           item {
             TextField(
               value = state.email,
@@ -345,61 +324,4 @@ private fun IdealTransferDetailsContent(
       }
     }
   }
-}
-
-@Preview
-@Composable
-private fun IdealBankSelectorPreview() {
-  IdealBankSelector(
-    idealBank = null,
-    onSelectBankClick = {}
-  )
-}
-
-@Composable
-private fun IdealBankSelector(
-  idealBank: IdealBank?,
-  onSelectBankClick: () -> Unit,
-  modifier: Modifier = Modifier
-) {
-  val uiValues: IdealBank.UIValues? = remember(idealBank) { idealBank?.getUIValues() }
-  val imagePadding: Dp = if (idealBank == null) 4.dp else 0.dp
-
-  TextField(
-    value = stringResource(id = uiValues?.name ?: R.string.IdealTransferDetailsFragment__choose_your_bank),
-    textStyle = MaterialTheme.typography.bodyLarge,
-    onValueChange = {},
-    enabled = false,
-    readOnly = true,
-    leadingIcon = {
-      Image(
-        painter = painterResource(id = uiValues?.icon ?: R.drawable.bank_transfer),
-        contentDescription = null,
-        colorFilter = if (uiValues?.icon == null) ColorFilter.tint(MaterialTheme.colorScheme.onSurface) else null,
-        modifier = Modifier
-          .padding(start = 16.dp, end = 12.dp)
-          .size(32.dp)
-          .padding(imagePadding)
-      )
-    },
-    trailingIcon = {
-      Icon(
-        painter = painterResource(id = R.drawable.symbol_dropdown_triangle_compat_bold_16),
-        contentDescription = null
-      )
-    },
-    colors = TextFieldDefaults.colors(
-      disabledTextColor = MaterialTheme.colorScheme.onSurface,
-      disabledTrailingIconColor = MaterialTheme.colorScheme.onSurface,
-      disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-      disabledIndicatorColor = MaterialTheme.colorScheme.onSurface
-    ),
-    supportingText = {},
-    modifier = modifier
-      .defaultMinSize(minHeight = 78.dp)
-      .clickable(
-        onClick = onSelectBankClick,
-        role = Role.Button
-      )
-  )
 }

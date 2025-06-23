@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import kotlinx.collections.immutable.PersistentList
+import kotlinx.collections.immutable.persistentListOf
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
@@ -25,8 +27,12 @@ data class CallScreenState(
   val displayVideoTooltip: Boolean = false,
   val displaySwipeToSpeakerHint: Boolean = false,
   val displayWifiToCellularPopup: Boolean = false,
-  val displayAdditionalActionsPopup: Boolean = false,
+  val displayAdditionalActionsDialog: Boolean = false,
+  val displayMissingPermissionsNotice: Boolean = false,
   val pendingParticipantsState: PendingParticipantsState? = null,
   val isParticipantUpdatePopupEnabled: Boolean = false,
-  val isCallStateUpdatePopupEnabled: Boolean = false
-)
+  val isCallStateUpdatePopupEnabled: Boolean = false,
+  val reactions: PersistentList<String> = persistentListOf()
+) {
+  fun isDisplayingControlMenu(): Boolean = isDisplayingAudioToggleSheet || displayAdditionalActionsDialog
+}

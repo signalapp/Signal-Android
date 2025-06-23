@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
 import org.thoughtcrime.securesms.database.model.IncomingSticker
+import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
@@ -252,10 +253,10 @@ class StickerTable(
     notifyStickerPackListeners()
   }
 
-  fun markPackAsInstalled(packKey: String, notify: Boolean) {
+  fun markPackAsInstalled(packId: String, notify: Boolean) {
     updatePackInstalled(
       db = databaseHelper.signalWritableDatabase,
-      packId = packKey,
+      packId = packId,
       installed = true,
       notify = notify
     )
@@ -296,16 +297,22 @@ class StickerTable(
   }
 
   fun uninstallPack(packId: String) {
+    uninstallPacks(setOf(StickerPackId(packId)))
+  }
+
+  fun uninstallPacks(packIds: Set<StickerPackId>) {
     writableDatabase.withinTransaction { db ->
-      updatePackInstalled(db = db, packId = packId, installed = false, notify = false)
-      deleteStickersInPackExceptCover(db, packId)
+      packIds.forEach { packId ->
+        updatePackInstalled(db = db, packId = packId.value, installed = false, notify = false)
+        deleteStickersInPackExceptCover(db, packId.value)
+      }
     }
 
     notifyStickerPackListeners()
     notifyStickerListeners()
   }
 
-  fun updatePackOrder(packsInOrder: MutableList<StickerPackRecord>) {
+  fun updatePackOrder(packsInOrder: List<StickerPackRecord>) {
     writableDatabase.withinTransaction { db ->
       for ((i, pack) in packsInOrder.withIndex()) {
         db.update(TABLE_NAME)
@@ -468,6 +475,12 @@ class StickerTable(
         cover = cover,
         isInstalled = cursor.requireBoolean(INSTALLED)
       )
+    }
+
+    fun asSequence(): Sequence<StickerPackRecord> = sequence {
+      while (getNext() != null) {
+        yield(getCurrent())
+      }
     }
 
     override fun close() {

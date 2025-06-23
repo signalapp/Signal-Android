@@ -131,6 +131,10 @@ class TextStoryPostCreationViewModel(private val repository: TextStoryPostSendRe
     )
   }
 
+  fun getLinkInputPreset(): String? {
+    return store.state.linkPreviewUri
+  }
+
   class Factory(private val repository: TextStoryPostSendRepository) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
       return modelClass.cast(TextStoryPostCreationViewModel(repository)) as T

@@ -9,7 +9,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.profiles.manage.UsernameRepository.reclaimUsernameIfNecessary
 import org.thoughtcrime.securesms.recipients.Recipient.Companion.self
-import org.thoughtcrime.securesms.storage.StorageSyncHelper.applyAccountStorageSyncUpdates
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
 import org.whispersystems.signalservice.api.storage.SignalStorageManifest
@@ -33,6 +33,7 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
 
   constructor() : this(
     Parameters.Builder()
+      .setGlobalPriority(Parameters.PRIORITY_HIGH)
       .setQueue(StorageSyncJob.QUEUE_KEY)
       .addConstraint(NetworkConstraint.KEY)
       .setMaxInstancesForFactory(1)
@@ -111,7 +112,7 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
     Log.i(TAG, "Applying changes locally...")
     SignalDatabase.rawDatabase.beginTransaction()
     try {
-      applyAccountStorageSyncUpdates(context, self().fresh(), accountRecord, false)
+      StorageSyncHelper.applyAccountStorageSyncUpdates(context, self().fresh(), accountRecord, false)
       SignalDatabase.rawDatabase.setTransactionSuccessful()
     } finally {
       SignalDatabase.rawDatabase.endTransaction()
@@ -129,7 +130,7 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
 
     if (accountRecord.proto.avatarUrlPath.isNotEmpty()) {
       Log.i(TAG, "Fetching avatar...")
-      val state = AppDependencies.jobManager.runSynchronously(RetrieveProfileAvatarJob(self(), accountRecord.proto.avatarUrlPath), LIFESPAN / 2)
+      val state = AppDependencies.jobManager.runSynchronously(RetrieveProfileAvatarJob.forAccountRestore(self(), accountRecord.proto.avatarUrlPath, true), LIFESPAN / 2)
 
       if (state.isPresent) {
         Log.i(TAG, "Avatar retrieved successfully. ${state.get()}")
@@ -141,7 +142,7 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
     }
 
     Log.i(TAG, "Refreshing attributes...")
-    val state = AppDependencies.jobManager.runSynchronously(RefreshAttributesJob(), LIFESPAN / 2)
+    val state = AppDependencies.jobManager.runSynchronously(RefreshAttributesJob.forAccountRestore(), LIFESPAN / 2)
 
     if (state.isPresent) {
       Log.i(TAG, "Attributes refreshed successfully. ${state.get()}")

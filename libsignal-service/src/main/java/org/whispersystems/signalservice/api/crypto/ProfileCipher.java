@@ -16,6 +16,7 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Locale;
 import java.util.Optional;
 
+import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
@@ -105,7 +106,7 @@ public class ProfileCipher {
   /**
    * Encrypts a string's UTF bytes representation.
    */
-  public byte[] encryptString(String input, int paddedLength) {
+  public byte[] encryptString(@Nonnull String input, int paddedLength) {
     return encrypt(input.getBytes(StandardCharsets.UTF_8), paddedLength);
   }
 

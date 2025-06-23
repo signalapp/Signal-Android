@@ -23,12 +23,9 @@
             app:nullable="false" />
 
         <argument
-            android:name="in_app_payment"
-            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
+            android:name="in_app_payment_id"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPaymentId"
             app:nullable="true" />
-        <argument
-            android:name="in_app_payment_type"
-            app:argType="org.signal.donations.InAppPaymentType" />
 
         <argument
             android:name="is_long_running"
@@ -46,8 +43,8 @@
         tools:layout="@layout/credit_card_fragment">
 
         <argument
-            android:name="in_app_payment"
-            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
+            android:name="in_app_payment_id"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPaymentId"
             app:nullable="false" />
 
         <action
@@ -75,7 +72,7 @@
             app:nullable="false" />
 
         <argument
-            android:name="in_app_payment"
+            android:name="waiting_for_auth_payment"
             app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
             app:nullable="false" />
     </dialog>
@@ -98,12 +95,10 @@
             app:nullable="false" />
 
         <argument
-            android:name="in_app_payment"
-            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
+            android:name="in_app_payment_id"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPaymentId"
             app:nullable="true" />
-        <argument
-            android:name="in_app_payment_type"
-            app:argType="org.signal.donations.InAppPaymentType" />
+
         <action
             android:id="@+id/action_paypalPaymentInProgressFragment_to_paypalConfirmationFragment"
             app:destination="@id/paypalConfirmationFragment" />
@@ -132,8 +127,8 @@
         tools:layout="@layout/dsl_settings_bottom_sheet">
 
         <argument
-            android:name="in_app_payment"
-            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
+            android:name="in_app_payment_id"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPaymentId"
             app:nullable="false" />
     </dialog>
 
@@ -143,8 +138,8 @@
         android:label="bank_transfer_mandate_fragment">
 
         <argument
-            android:name="in_app_payment"
-            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
+            android:name="in_app_payment_id"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPaymentId"
             app:nullable="false" />
         <action
             android:id="@+id/action_bankTransferMandateFragment_to_bankTransferDetailsFragment"
@@ -163,8 +158,8 @@
         android:label="bank_transfer_details_fragment">
 
         <argument
-            android:name="in_app_payment"
-            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
+            android:name="in_app_payment_id"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPaymentId"
             app:nullable="false" />
         <action
             android:id="@+id/action_bankTransferDetailsFragment_to_stripePaymentInProgressFragment"
@@ -181,8 +176,8 @@
         tools:layout="@layout/dsl_settings_bottom_sheet">
 
         <argument
-            android:name="in_app_payment"
-            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
+            android:name="in_app_payment_id"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPaymentId"
             app:nullable="false" />
     </dialog>
 
@@ -192,8 +187,8 @@
         android:label="ideal_transfer_details_fragment">
 
         <argument
-            android:name="in_app_payment"
-            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
+            android:name="in_app_payment_id"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPaymentId"
             app:nullable="false" />
         <action
             android:id="@+id/action_bankTransferDetailsFragment_to_stripePaymentInProgressFragment"
@@ -270,8 +265,8 @@
         tools:layout="@layout/dsl_settings_bottom_sheet">
 
         <argument
-            android:name="in_app_payment"
-            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPayment"
+            android:name="in_app_payment_id"
+            app:argType="org.thoughtcrime.securesms.database.InAppPaymentTable$InAppPaymentId"
             app:nullable="false" />
 
     </dialog>

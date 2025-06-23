@@ -650,22 +650,6 @@ message SyncMessage {
   }
 
   message DeleteForMe {
-    message ConversationIdentifier {
-      oneof identifier {
-        string threadServiceId = 1;
-        bytes threadGroupId = 2;
-        string threadE164 = 3;
-      }
-    }
-
-    message AddressableMessage {
-      oneof author {
-        string authorServiceId = 1;
-        string authorE164 = 2;
-      }
-      optional uint64 sentTimestamp = 3;
-    }
-
     message MessageDeletes {
       optional ConversationIdentifier conversation = 1;
       repeated AddressableMessage messages = 2;
@@ -704,6 +688,42 @@ message SyncMessage {
     optional uint32 deviceId = 2;
   }
 
+  message AttachmentBackfillRequest {
+    optional AddressableMessage targetMessage = 1;
+    optional ConversationIdentifier targetConversation = 2;
+  }
+
+  message AttachmentBackfillResponse {
+    message AttachmentData {
+      enum Status {
+        PENDING = 0;
+        TERMINAL_ERROR = 1;
+      }
+
+      oneof data {
+        AttachmentPointer attachment = 1;
+        Status status = 2;
+      }
+    }
+
+    enum Error {
+      MESSAGE_NOT_FOUND = 0;
+    }
+
+    message AttachmentDataList {
+      repeated AttachmentData attachments = 1;
+      optional AttachmentData longText = 2;
+    }
+
+    optional AddressableMessage targetMessage = 1;
+    optional ConversationIdentifier targetConversation = 2;
+
+    oneof data {
+      AttachmentDataList attachments = 3;
+      Error error = 4;
+    }
+  }
+
   optional Sent sent = 1;
   optional Contacts contacts = 2;
   reserved /*groups*/ 3;
@@ -727,6 +747,8 @@ message SyncMessage {
   optional CallLogEvent callLogEvent = 21;
   optional DeleteForMe deleteForMe = 22;
   optional DeviceNameChange deviceNameChange = 23;
+  optional AttachmentBackfillRequest attachmentBackfillRequest = 24;
+  optional AttachmentBackfillResponse attachmentBackfillResponse = 25;
 }
 
 message AttachmentPointer {
@@ -835,5 +857,21 @@ message BodyRange {
   oneof associatedValue {
     string mentionAci = 3;
     Style style = 4;
+  }
+}
+
+message AddressableMessage {
+  oneof author {
+    string authorServiceId = 1;
+    string authorE164 = 2;
+  }
+  optional uint64 sentTimestamp = 3;
+}
+
+message ConversationIdentifier {
+  oneof identifier {
+    string threadServiceId = 1;
+    bytes threadGroupId = 2;
+    string threadE164 = 3;
   }
 }

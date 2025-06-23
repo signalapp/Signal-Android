@@ -7,6 +7,7 @@ import android.net.NetworkInfo;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
+import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.GroupCall;
 import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
@@ -52,8 +53,7 @@ public class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcesso
                                                                             SignalStore.internal().getGroupCallingServer(),
                                                                             new byte[0],
                                                                             null,
-                                                                            RingRtcDynamicConfiguration.getAudioProcessingMethod(),
-                                                                            RingRtcDynamicConfiguration.shouldUseOboeAdm(),
+                                                                            RingRtcDynamicConfiguration.getAudioConfig(),
                                                                             webRtcInteractor.getGroupCallObserver());
 
     if (groupCall == null) {
@@ -71,6 +71,13 @@ public class GroupNetworkUnavailableActionProcessor extends WebRtcActionProcesso
   @Override
   protected @NonNull WebRtcServiceState handleCancelPreJoinCall(@NonNull WebRtcServiceState currentState) {
     Log.i(TAG, "handleCancelPreJoinCall():");
+
+    GroupCall groupCall = currentState.getCallInfoState().requireGroupCall();
+    try {
+      groupCall.disconnect();
+    } catch (CallException e) {
+      return groupCallFailure(currentState, "Unable to disconnect from group call", e);
+    }
 
     WebRtcVideoUtil.deinitializeVideo(currentState);
     EglBaseWrapper.releaseEglBase(RemotePeer.GROUP_CALL_ID.longValue());

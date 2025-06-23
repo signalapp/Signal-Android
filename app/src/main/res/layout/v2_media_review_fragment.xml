@@ -87,6 +87,7 @@
             android:layout_marginBottom="15dp"
             android:alpha="0"
             android:background="@drawable/media_gallery_button_background"
+            android:contentDescription="@string/MediaReviewFragment__add_media_accessibility_label"
             android:padding="4dp"
             android:scaleType="centerInside"
             android:visibility="gone"
@@ -126,12 +127,13 @@
             android:layout_height="48dp"
             android:alpha="0"
             android:animateFirstView="false"
+            android:contentDescription="@string/MediaReviewFragment__view_once_toggle_accessibility_label"
             android:inAnimation="@anim/fade_in"
             android:outAnimation="@anim/fade_out"
             android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@id/add_a_message"
-            app:layout_constraintTop_toTopOf="@id/add_a_message"
             app:layout_constraintEnd_toEndOf="@id/add_a_message"
+            app:layout_constraintTop_toTopOf="@id/add_a_message"
             tools:alpha="1"
             tools:visibility="visible">
 
@@ -159,6 +161,7 @@
             android:layout_height="48dp"
             android:layout_gravity="center"
             android:background="@color/transparent"
+            android:contentDescription="@string/MediaReviewFragment__emoji_toggle_accessibility_label"
             android:scaleType="centerInside"
             android:src="@drawable/symbol_emoji_24"
             android:visibility="gone"
@@ -188,8 +191,8 @@
             app:thumbHintTextSize="14sp"
             app:thumbTouchRadius="24dp"
             app:thumbWidth="6dp"
-            tools:visibility="visible"
-            tools:targetApi="23" />
+            tools:targetApi="23"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/video_size_hint"
@@ -217,6 +220,7 @@
             android:layout_marginBottom="16dp"
             android:alpha="0"
             android:background="@drawable/media_gallery_button_background"
+            android:contentDescription="@string/MediaReviewFragment__brush_pen_accessibility_label"
             android:padding="6dp"
             android:scaleType="centerInside"
             android:visibility="gone"
@@ -236,6 +240,7 @@
             android:layout_marginBottom="16dp"
             android:alpha="0"
             android:background="@drawable/media_gallery_button_background"
+            android:contentDescription="@string/MediaReviewFragment__crop_rotate_accessibility_label"
             android:padding="4dp"
             android:scaleType="centerInside"
             android:visibility="gone"
@@ -256,6 +261,7 @@
             android:layout_marginBottom="16dp"
             android:alpha="0"
             android:background="@drawable/media_gallery_button_background"
+            android:contentDescription="@string/MediaReviewFragment__change_media_quality_accessibility_label"
             android:padding="4dp"
             android:scaleType="centerInside"
             android:visibility="gone"
@@ -275,6 +281,7 @@
             android:layout_marginStart="12dp"
             android:layout_marginBottom="16dp"
             android:background="@drawable/media_gallery_button_background"
+            android:contentDescription="@string/MediaReviewFragment__save_media_accessibility_label"
             android:padding="4dp"
             android:scaleType="centerInside"
             android:visibility="gone"
@@ -294,6 +301,7 @@
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="16dp"
             android:background="@color/signal_light_colorPrimary"
+            android:contentDescription="@string/MediaReviewFragment__send_media_accessibility_label"
             android:padding="4dp"
             android:scaleType="centerInside"
             android:visibility="gone"
@@ -305,7 +313,7 @@
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.Signal.Circle"
             app:srcCompat="@drawable/symbol_send_fill_24"
             app:tint="@color/signal_colorOnSurface"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

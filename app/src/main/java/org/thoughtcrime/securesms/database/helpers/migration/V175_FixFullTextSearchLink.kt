@@ -1,8 +1,8 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import net.zetetic.database.sqlcipher.SQLiteDatabase
 import org.signal.core.util.SqlUtil
+import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
  * Turns out renaming a table will automatically update all of your indexes, foreign keys, triggers, basically everything... except full-text search tables.

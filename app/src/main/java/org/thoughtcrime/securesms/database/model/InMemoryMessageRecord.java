@@ -7,6 +7,7 @@ import androidx.annotation.Nullable;
 import androidx.annotation.StringRes;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -93,7 +94,7 @@ public class InMemoryMessageRecord extends MessageRecord {
     @Override
     public @Nullable UpdateDescription getUpdateDisplayBody(@NonNull Context context, @Nullable Consumer<RecipientId> recipientClickHandler) {
       return UpdateDescription.staticDescription(context.getString(R.string.ConversationUpdateItem_hidden_contact_message_to_add_back),
-                                                 R.drawable.symbol_info_compact_16);
+                                                 Glyph.INFO);
     }
 
     @Override
@@ -122,7 +123,7 @@ public class InMemoryMessageRecord extends MessageRecord {
       String update = context.getString(R.string.ConversationUpdateItem_the_disappearing_message_time_will_be_set_to_s_when_you_message_them,
                                         ExpirationUtil.getExpirationDisplayValue(context, SignalStore.settings().getUniversalExpireTimer()));
 
-      return UpdateDescription.staticDescription(update, R.drawable.symbol_timer_compact_24);
+      return UpdateDescription.staticDescription(update, Glyph.TIMER);
     }
 
     @Override

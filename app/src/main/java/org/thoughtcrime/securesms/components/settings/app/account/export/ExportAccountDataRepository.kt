@@ -5,22 +5,22 @@ import com.fasterxml.jackson.databind.JsonNode
 import com.fasterxml.jackson.databind.node.ObjectNode
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.schedulers.Schedulers
-import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.util.JsonUtils
-import org.whispersystems.signalservice.api.SignalServiceAccountManager
-import java.io.IOException
+import org.whispersystems.signalservice.api.NetworkResult
 
-class ExportAccountDataRepository(
-  private val accountManager: SignalServiceAccountManager = AppDependencies.signalServiceAccountManager
-) {
+class ExportAccountDataRepository {
 
   fun downloadAccountDataReport(exportAsJson: Boolean): Single<ExportedReport> {
     return Single.create {
-      try {
-        it.onSuccess(generateAccountDataReport(accountManager.accountDataReport, exportAsJson))
-      } catch (e: IOException) {
-        it.onError(e)
+      when (val result = SignalNetwork.account.accountDataReport()) {
+        is NetworkResult.Success -> {
+          it.onSuccess(generateAccountDataReport(result.result, exportAsJson))
+        }
+        else -> {
+          it.onError(result.getCause()!!)
+        }
       }
     }.subscribeOn(Schedulers.io())
   }

@@ -2,6 +2,9 @@ package org.thoughtcrime.securesms.contacts.paged
 
 import android.content.Context
 import android.database.Cursor
+import androidx.annotation.WorkerThread
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import org.signal.core.util.CursorUtil
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.ContactRepository
@@ -13,6 +16,8 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.GroupRecord
+import org.thoughtcrime.securesms.groups.GroupsInCommonRepository
+import org.thoughtcrime.securesms.groups.GroupsInCommonSummary
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.StorySend
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -105,14 +110,13 @@ open class ContactSearchPagedDataSourceRepository(
     return Recipient.resolved(RecipientId.from(CursorUtil.requireLong(cursor, RecipientTable.ID)))
   }
 
-  open fun getGroupsInCommon(recipient: Recipient): GroupsInCommon {
-    val groupsInCommon = SignalDatabase.groups.getPushGroupsContainingMember(recipient.id)
-    val groupRecipientIds = groupsInCommon.take(2).map { it.recipientId }
-    val names = Recipient.resolvedList(groupRecipientIds)
-      .map { it.getDisplayName(context) }
-      .sorted()
-
-    return GroupsInCommon(groupsInCommon.size, names)
+  @WorkerThread
+  open fun getGroupsInCommon(recipient: Recipient): GroupsInCommonSummary {
+    return runBlocking {
+      GroupsInCommonRepository
+        .getGroupsInCommonSummary(context, recipient.id)
+        .first()
+    }
   }
 
   open fun getRecipientFromGroupRecord(groupRecord: GroupRecord): Recipient {

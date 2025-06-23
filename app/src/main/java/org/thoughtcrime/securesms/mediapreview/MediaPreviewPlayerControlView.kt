@@ -15,6 +15,7 @@ import androidx.appcompat.widget.AppCompatImageButton
 import androidx.core.content.ContextCompat
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.ui.LegacyPlayerControlView
+import androidx.media3.ui.TimeBar
 import androidx.recyclerview.widget.RecyclerView
 import com.airbnb.lottie.LottieAnimationView
 import com.airbnb.lottie.LottieProperty
@@ -23,8 +24,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.visible
 import kotlin.time.Duration
-import kotlin.time.DurationUnit
-import kotlin.time.toDuration
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * The bottom bar for the media preview. This includes the standard seek bar as well as playback controls,
@@ -41,9 +41,13 @@ class MediaPreviewPlayerControlView @JvmOverloads constructor(
   val recyclerView: RecyclerView = findViewById(R.id.media_preview_album_rail)
   private val durationBar: LinearLayout = findViewById(R.id.exo_duration_viewgroup)
   private val videoControls: LinearLayout = findViewById(R.id.exo_button_viewgroup)
-  private val durationLabel: TextView = findViewById(R.id.exo_duration)
+  private val exoProgress: TimeBar = findViewById(R.id.exo_progress)
+  private val currentPositionLabel: TextView = findViewById(R.id.exo_position_label)
+  private val remainingDurationLabel: TextView = findViewById(R.id.exo_duration_label)
   private val shareButton: ImageButton = findViewById(R.id.exo_share)
   private val forwardButton: ImageButton = findViewById(R.id.exo_forward)
+
+  private var wasPlaying: Boolean = false
 
   enum class MediaMode {
     IMAGE,
@@ -72,20 +76,45 @@ class MediaPreviewPlayerControlView @JvmOverloads constructor(
     durationBar.visible = mediaMode == MediaMode.VIDEO
     videoControls.visibility = if (mediaMode == MediaMode.VIDEO) VISIBLE else INVISIBLE
     if (mediaMode == MediaMode.VIDEO) {
-      setProgressUpdateListener { position, _ ->
-        val finalPlayer = player ?: return@setProgressUpdateListener
-        val remainingDuration = (finalPlayer.duration - position).toDuration(DurationUnit.MILLISECONDS)
-        if (remainingDuration >= Duration.ZERO) {
-          val minutes: Long = remainingDuration.inWholeMinutes
-          val seconds: Long = remainingDuration.inWholeSeconds % 60
-          durationLabel.text = "–${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}"
-        } else {
-          durationLabel.text = ""
+      exoProgress.addListener(
+        object : TimeBar.OnScrubListener {
+          override fun onScrubStart(p0: TimeBar, position: Long) {
+            wasPlaying = player?.isPlaying == true
+            player?.pause()
+            updateTimeLabels(position)
+          }
+
+          override fun onScrubMove(p0: TimeBar, position: Long) {
+            updateTimeLabels(position)
+          }
+
+          override fun onScrubStop(p0: TimeBar, position: Long, p2: Boolean) {
+            updateTimeLabels(position)
+            if (wasPlaying) {
+              player?.play()
+            }
+          }
         }
+      )
+      setProgressUpdateListener { position, _ ->
+        updateTimeLabels(position)
       }
     } else {
       setProgressUpdateListener(null)
     }
+  }
+
+  private fun updateTimeLabels(position: Long) {
+    val finalPlayer = player ?: return
+    val currentPosition: Duration = position.milliseconds
+    val currentMinutes: Long = currentPosition.inWholeMinutes
+    val currentSeconds: Long = currentPosition.inWholeSeconds % 60
+    val videoDuration: Duration = finalPlayer.duration.milliseconds
+    currentPositionLabel.text = "${currentMinutes.toString().padStart(2, '0')}:${currentSeconds.toString().padStart(2, '0')}"
+    val remainingDuration: Duration = videoDuration - currentPosition
+    val remainingMinutes: Long = remainingDuration.inWholeMinutes.coerceAtLeast(0L)
+    val remainingSeconds: Long = (remainingDuration.inWholeSeconds % 60).coerceAtLeast(0L)
+    remainingDurationLabel.text = "–${remainingMinutes.toString().padStart(2, '0')}:${remainingSeconds.toString().padStart(2, '0')}"
   }
 
   fun setShareButtonListener(listener: OnClickListener?) = shareButton.setOnClickListener(listener)

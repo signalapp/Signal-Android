@@ -10,11 +10,25 @@
         android:id="@+id/message_request_avatar"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        app:layout_constraintBottom_toTopOf="@id/message_request_title"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:indeterminate="true"
+        style="?android:attr/progressBarStyleLarge"
+        android:indeterminateTint="@color/signal_colorOnSurfaceVariant"
+        app:layout_constraintTop_toTopOf="@id/message_request_avatar"
+        app:layout_constraintBottom_toBottomOf="@id/message_request_avatar"
+        app:layout_constraintStart_toStartOf="@id/message_request_avatar"
+        app:layout_constraintEnd_toEndOf="@id/message_request_avatar"
+        tools:visibility="visible" />
 
     <org.thoughtcrime.securesms.badges.BadgeImageView
         android:id="@+id/message_request_badge"
@@ -31,8 +45,6 @@
         android:id="@+id/message_request_avatar_tap_to_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="@drawable/circle_tint_darker"
-        android:foreground="?attr/selectableItemBackground"
         android:gravity="center"
         android:orientation="vertical"
         android:visibility="gone"
@@ -67,7 +79,6 @@
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textAppearance="@style/Signal.Text.HeadlineMedium"
-        app:layout_constraintBottom_toTopOf="@id/message_request_about"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/message_request_avatar"
@@ -78,22 +89,61 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textAlignment="center"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textAppearance="@style/Signal.Text.MessageRequest.Subtitle"
-        app:layout_constraintBottom_toTopOf="@id/message_request_divider"
         app:layout_constraintTop_toBottomOf="@id/message_request_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="Hangin' on the web" />
 
     <View
         android:id="@+id/message_request_divider"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
+        android:foregroundGravity="center"
+        android:layout_marginHorizontal="32dp"
         android:background="@color/signal_dark_colorTransparentInverse2"
-        app:layout_constraintBottom_toTopOf="@id/message_request_info"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/message_request_about" />
+
+    <LinearLayout
+        android:id="@+id/release_header_container"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:orientation="vertical"
+        android:background="@drawable/release_header_background"
+        android:minWidth="288dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/message_request_divider"
+        app:layout_constraintWidth_max="@dimen/conversation_header_max_size"
+        android:visibility="gone"
+        tools:visibility="visible">
+
+        <TextView
+            android:id="@+id/release_header_description_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ReleaseNotes__this_is_official_chat_period"
+            style="@style/Signal.Text.BodyMedium"
+            android:textAlignment="center" />
+
+        <TextView
+            android:id="@+id/release_header_description_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ReleaseNotes__keep_up_to_date_period"
+            style="@style/Signal.Text.BodyMedium"
+            android:textAlignment="center"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
 
     <View
         android:id="@+id/message_request_info_outline"
@@ -109,14 +159,47 @@
         android:id="@+id/message_request_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:paddingVertical="16dp"
+        android:paddingHorizontal="32dp"
+        android:layout_marginTop="16dp"
         app:layout_constrainedWidth="true"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/message_request_divider"
-        app:layout_constraintWidth_max="308dp"
-        app:layout_constraintWidth_min="256dp">
+        app:layout_constraintWidth_max="@dimen/conversation_header_max_size" >
+
+        <TextView
+            android:id="@+id/message_request_review_carefully"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/ConversationFragment_review_carefully"
+            android:textColor="#A88746"
+            android:textAppearance="@style/Signal.Text.BodyMedium"
+            android:fontFamily="sans-serif-medium"
+            android:visibility="gone"
+            app:drawableStartCompat="@drawable/symbol_error_triangle_filled_16"
+            android:drawablePadding="6dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/message_request_profile_name_unverified" />
+
+        <TextView
+            android:id="@+id/message_request_profile_name_unverified"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="@style/Signal.Text.BodyMedium"
+            android:text="@string/ConversationFragment_profile_names_not_verified"
+            android:visibility="gone"
+            android:textAlignment="center"
+            android:layout_marginBottom="8dp"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message_request_review_carefully"
+            app:layout_constraintBottom_toTopOf="@id/message_request_subtitle" />
 
         <TextView
             android:id="@+id/message_request_subtitle"
@@ -125,10 +208,12 @@
             android:gravity="center"
             android:textAppearance="@style/Signal.Text.BodyMedium"
             app:layout_constrainedWidth="true"
+            android:layout_marginBottom="8dp"
+            app:layout_goneMarginBottom="0dp"
             app:layout_constraintBottom_toTopOf="@id/message_request_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/message_request_profile_name_unverified"
             tools:drawableStartCompat="@drawable/symbol_person_24"
             tools:text="\@caycepollard" />
 
@@ -136,7 +221,6 @@
             android:id="@+id/message_request_description"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
             android:gravity="center"
             android:textAppearance="@style/Signal.Text.BodyMedium"
             android:visibility="gone"
@@ -145,7 +229,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/message_request_subtitle"
-            app:layout_goneMarginTop="0dp"
             tools:text="Member of NYC Rock Climbers, Dinner Party and Friends"
             tools:visibility="visible" />
 
@@ -154,7 +237,7 @@
             style="@style/Widget.Signal.Button.Small"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="16dp"
             android:textColor="@color/signal_colorOnSurface"
             app:layout_constrainedWidth="true"
             app:layout_constraintBottom_toBottomOf="parent"

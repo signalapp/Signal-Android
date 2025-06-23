@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -17,6 +18,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job(parameters) {
 
   companion object {
+    private val TAG = Log.tag(RestoreOptimizedMediaJob::class)
     const val KEY = "RestoreOptimizeMediaJob"
 
     fun enqueue() {
@@ -32,7 +34,7 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
     }
   }
 
-  private constructor() : this(
+  constructor() : this(
     parameters = Parameters.Builder()
       .setQueue("RestoreOptimizeMediaJob")
       .setMaxInstancesForQueue(2)
@@ -42,6 +44,12 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
 
   override fun run(): Result {
     if (SignalStore.backup.optimizeStorage && !SignalStore.backup.userManuallySkippedMediaRestore) {
+      Log.i(TAG, "User is optimizing media and has not skipped restore, skipping.")
+      return Result.success()
+    }
+
+    if (!SignalStore.backup.optimizeStorage && SignalStore.backup.userManuallySkippedMediaRestore) {
+      Log.i(TAG, "User is not optimizing media but elected to skip media restore, skipping.")
       return Result.success()
     }
 

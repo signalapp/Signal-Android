@@ -11,7 +11,6 @@ import org.signal.core.util.Base64
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.inRoundedDays
 import org.signal.core.util.logging.Log
-import org.signal.core.util.mebiBytes
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -34,6 +33,7 @@ import org.thoughtcrime.securesms.service.AttachmentProgressService
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException
@@ -64,11 +64,6 @@ class AttachmentUploadJob private constructor(
     private val NETWORK_RESET_THRESHOLD = 1.minutes.inWholeMilliseconds
 
     val UPLOAD_REUSE_THRESHOLD = 3.days.inWholeMilliseconds
-
-    /**
-     * Foreground notification shows while uploading attachments above this.
-     */
-    private val FOREGROUND_LIMIT = 10.mebiBytes.inWholeBytes
 
     @JvmStatic
     val maxPlaintextSize: Long
@@ -138,7 +133,6 @@ class AttachmentUploadJob private constructor(
 
     SignalDatabase.attachments.createKeyIvIfNecessary(attachmentId)
 
-    val messageSender = AppDependencies.signalServiceMessageSender
     val databaseAttachment = SignalDatabase.attachments.getAttachment(attachmentId) ?: throw InvalidAttachmentException("Cannot find the specified attachment.")
 
     val timeSinceUpload = System.currentTimeMillis() - databaseAttachment.uploadTimestamp
@@ -197,6 +191,7 @@ class AttachmentUploadJob private constructor(
       if (lastReset > now || lastReset + NETWORK_RESET_THRESHOLD > now) {
         Log.w(TAG, "Our existing connections is getting repeatedly denied by the server, reset network to establish new connections")
         AppDependencies.resetNetwork()
+        AppDependencies.startNetwork()
         SignalStore.misc.lastNetworkResetDueToStreamResets = now
       } else {
         Log.i(TAG, "Stream reset during upload, not resetting network yet, last reset: $lastReset")
@@ -225,7 +220,7 @@ class AttachmentUploadJob private constructor(
   }
 
   private fun getAttachmentNotificationIfNeeded(attachment: Attachment): AttachmentProgressService.Controller? {
-    return if (attachment.size >= FOREGROUND_LIMIT) {
+    return if (attachment.size >= AttachmentUploadUtil.FOREGROUND_LIMIT_BYTES) {
       AttachmentProgressService.start(context, context.getString(R.string.AttachmentUploadJob_uploading_media))
     } else {
       null
@@ -264,17 +259,10 @@ class AttachmentUploadJob private constructor(
         uploadSpec = resumableUploadSpec,
         cancellationSignal = { isCanceled },
         progressListener = object : SignalServiceAttachment.ProgressListener {
-          private var lastUpdate = 0L
-          private val updateRate = 500.milliseconds.inWholeMilliseconds
-
-          override fun onAttachmentProgress(total: Long, progress: Long) {
-            val now = System.currentTimeMillis()
-            if (now < lastUpdate || lastUpdate + updateRate < now || progress >= total) {
-              SignalExecutors.BOUNDED_IO.execute {
-                EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress))
-                notification?.progress = (progress.toFloat() / total)
-              }
-              lastUpdate = now
+          override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
+            SignalExecutors.BOUNDED_IO.execute {
+              EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, progress))
+              notification?.updateProgress(progress.value)
             }
           }
 

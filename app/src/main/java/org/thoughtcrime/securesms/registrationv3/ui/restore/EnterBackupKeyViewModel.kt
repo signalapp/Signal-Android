@@ -62,6 +62,7 @@ class EnterBackupKeyViewModel : ViewModel() {
 
         if (incorrectKeyError && SignalStore.account.restoredAccountEntropyPool) {
           SignalStore.account.resetAccountEntropyPool()
+          SignalStore.account.resetAciAndPniIdentityKeysAfterFailedRestore()
         }
 
         it.copy(
@@ -88,7 +89,7 @@ class EnterBackupKeyViewModel : ViewModel() {
   fun handleBackupTierNotRestored() {
     store.update {
       it.copy(
-        showBackupTierNotRestoreError = true
+        showBackupTierNotRestoreError = if (SignalStore.backup.isBackupTierRestored) TierRestoreError.NOT_FOUND else TierRestoreError.NETWORK_ERROR
       )
     }
   }
@@ -96,9 +97,13 @@ class EnterBackupKeyViewModel : ViewModel() {
   fun hideRestoreBackupKeyFailed() {
     store.update {
       it.copy(
-        showBackupTierNotRestoreError = false
+        showBackupTierNotRestoreError = null
       )
     }
+  }
+
+  fun incrementBackupTierRetry() {
+    store.update { it.copy(tierRetryAttempts = it.tierRetryAttempts + 1) }
   }
 
   data class EnterBackupKeyState(
@@ -107,8 +112,14 @@ class EnterBackupKeyViewModel : ViewModel() {
     val chunkLength: Int,
     val isRegistering: Boolean = false,
     val showRegistrationError: Boolean = false,
-    val showBackupTierNotRestoreError: Boolean = false,
+    val showBackupTierNotRestoreError: TierRestoreError? = null,
     val registerAccountResult: RegisterAccountResult? = null,
-    val aepValidationError: AEPValidationError? = null
+    val aepValidationError: AEPValidationError? = null,
+    val tierRetryAttempts: Int = 0
   )
+
+  enum class TierRestoreError {
+    NOT_FOUND,
+    NETWORK_ERROR
+  }
 }

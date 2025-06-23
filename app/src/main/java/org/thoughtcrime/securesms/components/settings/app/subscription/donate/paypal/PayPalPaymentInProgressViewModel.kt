@@ -1,43 +1,34 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.paypal
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
+import io.reactivex.rxjava3.core.SingleSource
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
+import org.signal.donations.PayPalPaymentSource
 import org.signal.donations.PaymentSourceType
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
-import org.thoughtcrime.securesms.components.settings.app.subscription.OneTimeInAppPaymentRepository
-import org.thoughtcrime.securesms.components.settings.app.subscription.PayPalRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.donate.InAppPaymentProcessorStage
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationError
-import org.thoughtcrime.securesms.components.settings.app.subscription.errors.DonationErrorSource
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.RequiredActionHandler
+import org.thoughtcrime.securesms.components.settings.app.subscription.donate.SharedInAppPaymentPipeline
 import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.MultiDeviceSubscriptionSyncRequestJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.rx.RxStore
-import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentIntentResponse
-import org.whispersystems.signalservice.api.subscriptions.PayPalCreatePaymentMethodResponse
 import org.whispersystems.signalservice.api.util.Preconditions
 
-class PayPalPaymentInProgressViewModel(
-  private val payPalRepository: PayPalRepository
-) : ViewModel() {
+class PayPalPaymentInProgressViewModel : ViewModel() {
 
   companion object {
     private val TAG = Log.tag(PayPalPaymentInProgressViewModel::class.java)
@@ -67,36 +58,38 @@ class PayPalPaymentInProgressViewModel(
     disposables.clear()
   }
 
-  fun processNewDonation(
-    inAppPayment: InAppPaymentTable.InAppPayment,
-    routeToOneTimeConfirmation: (PayPalCreatePaymentIntentResponse) -> Single<PayPalConfirmationResult>,
-    routeToMonthlyConfirmation: (PayPalCreatePaymentMethodResponse) -> Single<PayPalPaymentMethodId>
-  ) {
-    Log.d(TAG, "Proceeding with donation...", true)
-
-    return if (inAppPayment.type.recurring) {
-      proceedMonthly(inAppPayment, routeToMonthlyConfirmation)
-    } else {
-      proceedOneTime(inAppPayment, routeToOneTimeConfirmation)
-    }
+  fun getInAppPaymentType(inAppPaymentId: InAppPaymentTable.InAppPaymentId): Single<InAppPaymentType> {
+    return InAppPaymentsRepository.requireInAppPayment(inAppPaymentId).map { it.type }.observeOn(AndroidSchedulers.mainThread())
   }
 
-  fun updateSubscription(inAppPayment: InAppPaymentTable.InAppPayment) {
+  fun updateSubscription(inAppPaymentId: InAppPaymentTable.InAppPaymentId) {
     Log.d(TAG, "Beginning subscription update...", true)
 
     store.update { InAppPaymentProcessorStage.PAYMENT_PIPELINE }
-    disposables += RecurringInAppPaymentRepository.cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType()).andThen(RecurringInAppPaymentRepository.setSubscriptionLevel(inAppPayment, PaymentSourceType.PayPal))
-      .subscribeBy(
-        onComplete = {
-          Log.w(TAG, "Completed subscription update", true)
-          store.update { InAppPaymentProcessorStage.COMPLETE }
-        },
-        onError = { throwable ->
-          Log.w(TAG, "Failed to update subscription", throwable, true)
-          store.update { InAppPaymentProcessorStage.FAILED }
-          InAppPaymentsRepository.handlePipelineError(inAppPayment.id, DonationErrorSource.MONTHLY, PaymentSourceType.PayPal, throwable)
+    val iap = InAppPaymentsRepository.requireInAppPayment(inAppPaymentId)
+
+    disposables += iap.flatMap { inAppPayment ->
+      RecurringInAppPaymentRepository.cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType()).andThen(
+        SingleSource<InAppPaymentTable.InAppPayment> {
+          val freshPayment = SignalDatabase.inAppPayments.moveToTransacting(inAppPayment.id)!!
+          RecurringInAppPaymentRepository.setSubscriptionLevelSync(freshPayment)
         }
-      )
+      ).flatMap {
+        SharedInAppPaymentPipeline.awaitRedemption(it, PaymentSourceType.PayPal)
+      }
+    }.subscribeBy(
+      onSuccess = {
+        Log.w(TAG, "Completed subscription update", true)
+        store.update { InAppPaymentProcessorStage.COMPLETE }
+      },
+      onError = { throwable ->
+        Log.w(TAG, "Failed to update subscription", throwable, true)
+        store.update { InAppPaymentProcessorStage.FAILED }
+        SignalExecutors.BOUNDED_IO.execute {
+          InAppPaymentsRepository.handlePipelineError(inAppPaymentId, throwable)
+        }
+      }
+    )
   }
 
   fun cancelSubscription(subscriberType: InAppPaymentSubscriberRecord.Type) {
@@ -118,86 +111,29 @@ class PayPalPaymentInProgressViewModel(
     )
   }
 
-  private fun proceedOneTime(
-    inAppPayment: InAppPaymentTable.InAppPayment,
-    routeToPaypalConfirmation: (PayPalCreatePaymentIntentResponse) -> Single<PayPalConfirmationResult>
+  fun processNewDonation(
+    inAppPaymentId: InAppPaymentTable.InAppPaymentId,
+    oneTimeActionHandler: RequiredActionHandler,
+    monthlyActionHandler: RequiredActionHandler
   ) {
-    check(inAppPayment.data.paymentMethodType.toPaymentSourceType() == PaymentSourceType.PayPal)
-
-    Log.d(TAG, "Proceeding with one-time payment pipeline...", true)
     store.update { InAppPaymentProcessorStage.PAYMENT_PIPELINE }
-    val verifyUser = if (inAppPayment.type == InAppPaymentType.ONE_TIME_GIFT) {
-      OneTimeInAppPaymentRepository.verifyRecipientIsAllowedToReceiveAGift(RecipientId.from(inAppPayment.data.recipientId!!))
-    } else {
-      Completable.complete()
-    }
 
-    disposables += verifyUser
-      .andThen(
-        payPalRepository
-          .createOneTimePaymentIntent(
-            amount = inAppPayment.data.amount!!.toFiatMoney(),
-            badgeRecipient = inAppPayment.data.recipientId?.let { RecipientId.from(it) } ?: Recipient.self().id,
-            badgeLevel = inAppPayment.data.level
-          )
-      )
-      .flatMap(routeToPaypalConfirmation)
-      .flatMap { result ->
-        payPalRepository.confirmOneTimePaymentIntent(
-          amount = inAppPayment.data.amount.toFiatMoney(),
-          badgeLevel = inAppPayment.data.level,
-          paypalConfirmationResult = result
-        )
-      }
-      .flatMapCompletable { response ->
-        OneTimeInAppPaymentRepository.waitForOneTimeRedemption(
-          inAppPayment = inAppPayment,
-          paymentIntentId = response.paymentId
-        )
-      }
-      .subscribeOn(Schedulers.io())
-      .subscribeBy(
-        onError = { throwable ->
-          Log.w(TAG, "Failure in one-time payment pipeline...", throwable, true)
-          store.update { InAppPaymentProcessorStage.FAILED }
-          InAppPaymentsRepository.handlePipelineError(inAppPayment.id, DonationErrorSource.ONE_TIME, PaymentSourceType.PayPal, throwable)
-        },
-        onComplete = {
-          Log.d(TAG, "Finished one-time payment pipeline...", true)
-          store.update { InAppPaymentProcessorStage.COMPLETE }
+    disposables += SharedInAppPaymentPipeline.awaitTransaction(
+      inAppPaymentId,
+      PayPalPaymentSource(),
+      oneTimeActionHandler,
+      monthlyActionHandler
+    ).subscribeOn(Schedulers.io()).subscribeBy(
+      onSuccess = {
+        Log.d(TAG, "Finished ${it.type} payment pipeline...", true)
+        store.update { InAppPaymentProcessorStage.COMPLETE }
+      },
+      onError = {
+        store.update { InAppPaymentProcessorStage.FAILED }
+        SignalExecutors.BOUNDED_IO.execute {
+          InAppPaymentsRepository.handlePipelineError(inAppPaymentId, it)
         }
-      )
-  }
-
-  private fun proceedMonthly(inAppPayment: InAppPaymentTable.InAppPayment, routeToPaypalConfirmation: (PayPalCreatePaymentMethodResponse) -> Single<PayPalPaymentMethodId>) {
-    Log.d(TAG, "Proceeding with monthly payment pipeline for InAppPayment::${inAppPayment.id} of type ${inAppPayment.type}...", true)
-
-    val setup = RecurringInAppPaymentRepository.ensureSubscriberId(inAppPayment.type.requireSubscriberType())
-      .andThen(RecurringInAppPaymentRepository.cancelActiveSubscriptionIfNecessary(inAppPayment.type.requireSubscriberType()))
-      .andThen(payPalRepository.createPaymentMethod(inAppPayment.type.requireSubscriberType()))
-      .flatMap(routeToPaypalConfirmation)
-      .flatMapCompletable { payPalRepository.setDefaultPaymentMethod(inAppPayment.type.requireSubscriberType(), it.paymentId) }
-      .onErrorResumeNext { Completable.error(DonationError.getPaymentSetupError(DonationErrorSource.MONTHLY, it, PaymentSourceType.PayPal)) }
-
-    disposables += setup.andThen(RecurringInAppPaymentRepository.setSubscriptionLevel(inAppPayment, PaymentSourceType.PayPal))
-      .subscribeBy(
-        onError = { throwable ->
-          Log.w(TAG, "Failure in monthly payment pipeline...", throwable, true)
-          store.update { InAppPaymentProcessorStage.FAILED }
-          InAppPaymentsRepository.handlePipelineError(inAppPayment.id, DonationErrorSource.MONTHLY, PaymentSourceType.PayPal, throwable)
-        },
-        onComplete = {
-          Log.d(TAG, "Finished subscription payment pipeline...", true)
-          store.update { InAppPaymentProcessorStage.COMPLETE }
-        }
-      )
-  }
-
-  class Factory(
-    private val payPalRepository: PayPalRepository = PayPalRepository(AppDependencies.donationsService)
-  ) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(PayPalPaymentInProgressViewModel(payPalRepository)) as T
-    }
+      }
+    )
   }
 }

@@ -14,6 +14,6 @@ data class StripeSetupIntent @JsonCreator constructor(
   @JsonProperty("id") val id: String,
   @JsonProperty("client_secret") val clientSecret: String,
   @JsonProperty("status") val status: StripeIntentStatus,
-  @JsonProperty("payment_method") val paymentMethod: String?,
+  @JsonProperty("payment_method") val paymentMethodId: String?,
   @JsonProperty("customer") val customer: String?
 )

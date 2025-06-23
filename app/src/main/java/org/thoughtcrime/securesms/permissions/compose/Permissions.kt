@@ -16,7 +16,7 @@ import androidx.compose.ui.res.stringResource
 import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.google.accompanist.permissions.isGranted
 import com.google.accompanist.permissions.rememberPermissionState
-import org.signal.core.ui.Dialogs
+import org.signal.core.ui.compose.Dialogs
 import org.thoughtcrime.securesms.R
 
 /**
