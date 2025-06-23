@@ -29,6 +29,8 @@ val maxHotfixVersions = 100
 val keystores: Map<String, Properties?> = mapOf("debug" to loadKeystoreProperties("keystore.debug.properties"))
 
 val selectableVariants = listOf(
+  "nightlyBackupRelease",
+  "nightlyBackupSpinner",
   "nightlyProdSpinner",
   "nightlyProdPerf",
   "nightlyProdRelease",
@@ -411,6 +413,18 @@ android {
 
       buildConfigField("String", "BUILD_ENVIRONMENT_TYPE", "\"Staging\"")
       buildConfigField("String", "STRIPE_PUBLISHABLE_KEY", "\"pk_test_sngOd8FnXNkpce9nPXawKrJD00kIDngZkD\"")
+      buildConfigField("boolean", "MESSAGE_BACKUP_RESTORE_ENABLED", "true")
+    }
+
+    create("backup") {
+      initWith(getByName("staging"))
+
+      dimension = "environment"
+
+      applicationIdSuffix = ".backup"
+
+      buildConfigField("boolean", "MANAGES_APP_UPDATES", "true")
+      buildConfigField("String", "BUILD_ENVIRONMENT_TYPE", "\"Backup\"")
       buildConfigField("boolean", "MESSAGE_BACKUP_RESTORE_ENABLED", "true")
     }
   }
