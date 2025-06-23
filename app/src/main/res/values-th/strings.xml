@@ -143,7 +143,7 @@
 
     <!-- UploadAttachmentToArchiveJob -->
     <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
-    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+    <string name="UploadAttachmentToArchiveJob_uploading_media">กำลังสำรองไฟล์สื่อ…</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">กำลังตรวจหาข้อความ…</string>
@@ -1155,9 +1155,9 @@
     <string name="ExpiredBuildReminder_update_now">ปรับรุ่นเดี๋ยวนี้</string>
 
     <!-- Title of notification telling users to update Signal -->
-    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <string name="DeprecatedNotificationJob_update_signal">อัปเดต Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
-    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">Signal เวอร์ชันนี้หมดอายุแล้ว แตะอัปเดตที่นี่เพื่อใช้งานการส่งและรับข้อความต่อไป</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -7066,7 +7066,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">โปรดกรอกชื่อและอีเมลของคุณ โดย Stripe จะส่งข้อมูลอัปเดตเกี่ยวกับการบริจาคของคุณไปยังอีเมลนี้ %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">โปรดกรอกข้อมูลธนาคารของคุณ โดย Signal จะไม่รวบรวมหรือจัดเก็บข้อมูลส่วนบุคคลของคุณ %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7894,7 +7894,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">สำรองข้อมูลอัตโนมัติด้วยบริการจัดเก็บที่ปลอดภัยและถูกเข้ารหัสตั้งแต่ต้นทางถึงปลายทางของ Signal</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
-    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"ไม่พบการสมัครแพ็กเกจบนอุปกรณ์เครื่องนี้"</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">ตั้งชื่อผู้ใช้</string>
 
@@ -7982,7 +7982,7 @@
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">ข้อมูลสำรองของคุณจะถูกลบและระบบจะไม่สำรองข้อมูลใหม่ขึ้นอีก เมื่อกดยืนยัน ไฟล์สื่อทั้งหมดที่เก็บอยู่ในข้อมูลสำรองของคุณจะถูกดาวน์โหลดไปยังโทรศัพท์</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">แพ็กเกจของคุณจะถูกยกเลิกและคุณจะไม่ถูกเรียกเก็บเงินอีก โดยข้อมูลสำรองของคุณจะถูกลบและระบบจะไม่สำรองข้อมูลใหม่ขึ้นอีก เมื่อกดยืนยัน ไฟล์สื่อทั้งหมดที่เก็บอยู่ในข้อมูลสำรองของคุณจะถูกดาวน์โหลดไปยังโทรศัพท์</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ปิดใช้งานและลบ</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8408,9 +8408,9 @@
     <string name="SignalCheckbox_accessibility_unchecked_description">ไม่มีเครื่องหมายถูก</string>
 
     <!-- Notification title for when user is out of remote storage -->
-    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <string name="Notification_backup_storage_full">พื้นที่จัดเก็บข้อมูลสำรองเต็มแล้ว</string>
     <!-- Notification body for when user is out of remote storage -->
-    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
+    <string name="Notification_youve_reached_your_backup_storage_limit">พื้นที่จัดเก็บข้อมูลสำรองของคุณเต็มแล้ว โปรดเพิ่มพื้นที่จัดเก็บใน Signal เพื่อสำรองข้อมูลแชทและไฟล์สื่อต่อไป</string>
 
     <!-- EOF -->
 </resources>

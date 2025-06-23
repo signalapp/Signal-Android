@@ -143,7 +143,7 @@
 
     <!-- UploadAttachmentToArchiveJob -->
     <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
-    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Creando copia de seguridad de archivos…</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Comprobando mensajes…</string>
@@ -1177,9 +1177,9 @@
     <string name="ExpiredBuildReminder_update_now">Actualizar ahora</string>
 
     <!-- Title of notification telling users to update Signal -->
-    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <string name="DeprecatedNotificationJob_update_signal">Actualizar Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
-    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">Esta versión de Signal ha caducado. Toca para actualizarla y seguir chateando.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -3769,7 +3769,7 @@
     <string name="AndroidManifest__select_contacts">Seleccionar contactos</string>
     <string name="AndroidManifest__change_passphrase">Cambiar frase de contraseña</string>
     <string name="AndroidManifest__verify_safety_number">Verificar número de seguridad</string>
-    <string name="AndroidManifest__media_preview">Vista previa del archivo</string>
+    <string name="AndroidManifest__media_preview">Vista previa</string>
     <string name="AndroidManifest__message_details">Detalles del mensaje</string>
     <string name="AndroidManifest__linked_devices">Dispositivos vinculados</string>
     <string name="AndroidManifest__invite_friends">Invitar personas</string>
@@ -4368,7 +4368,7 @@
     <string name="contact_selection_list__unknown_contact_add_to_group">Añadir al grupo</string>
 
     <!-- conversation_callable_insecure -->
-    <string name="conversation_callable_insecure__menu_call">Llamar</string>
+    <string name="conversation_callable_insecure__menu_call">Llamada</string>
 
     <!-- conversation_callable_secure -->
     <string name="conversation_callable_secure__menu_call">Llamada de Signal</string>
@@ -6696,7 +6696,7 @@
     <!-- Privacy setting title for only sharing your story with specified connections -->
     <string name="MyStorySettingsFragment__only_share_with">Compartir solo con…</string>
     <!-- Privacy setting description for only sharing your story with specified connections -->
-    <string name="MyStorySettingsFragment__only_share_with_selected_people">Comparte solo con las personas que elijas</string>
+    <string name="MyStorySettingsFragment__only_share_with_selected_people">Solo compartir con personas específicas</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
         <item quantity="one">%1$d persona</item>
@@ -7231,7 +7231,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Introduce tu nombre y correo electrónico. Stripe utiliza este correo electrónico para enviarte actualizaciones sobre tu donación. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Introduce tus datos bancarios. Signal no recoge ni almacena tu información personal. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7315,9 +7315,9 @@
 
     <!-- PaymentMessageView -->
     <!-- In-chat conversation message shown when you sent a payment to another person, placeholder is the other person name -->
-    <string name="PaymentMessageView_you_sent_s">Enviado a %1$s</string>
+    <string name="PaymentMessageView_you_sent_s">Has enviado un pago a %1$s</string>
     <!-- In-chat conversation message shown when another person sent a payment to you, placeholder is the other person name -->
-    <string name="PaymentMessageView_s_sent_you">%1$s te lo ha enviado</string>
+    <string name="PaymentMessageView_s_sent_you">Has recibido un pago de %1$s</string>
 
     <!-- YourInformationIsPrivateBottomSheet -->
     <string name="YourInformationIsPrivateBottomSheet__your_information_is_private">Tu información es privada</string>
@@ -7444,18 +7444,18 @@
     <!-- Displayed when deleting call history items -->
     <string name="CallLogFragment__deleting">Eliminando…</string>
     <!-- Displayed in a toast when a deletion fails for an unknown reason -->
-    <string name="CallLogFragment__deletion_failed">Fallo al eliminar.</string>
+    <string name="CallLogFragment__deletion_failed">No se ha podido eliminar.</string>
     <!-- Displayed as message in error dialog when can\'t delete links -->
     <plurals name="CallLogFragment__cant_delete_call_link">
         <item quantity="one">No se ha podido eliminar el enlace. Comprueba tu conexión a Internet e inténtalo de nuevo.</item>
         <item quantity="other">No se han podido eliminar todos los enlaces. Comprueba tu conexión e inténtalo de nuevo.</item>
     </plurals>
     <!-- Snackbar text after clearing the call history -->
-    <string name="CallLogFragment__cleared_call_history">Eliminar historial de llamadas</string>
+    <string name="CallLogFragment__cleared_call_history">Se ha eliminado el historial de llamadas</string>
     <!-- Dialog title to clear all call events -->
     <string name="CallLogFragment__clear_call_history_question">¿Eliminar historial de llamadas?</string>
     <!-- Dialog body to clear all call events -->
-    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Esto eliminará permanentemente todo tu historial de llamadas</string>
+    <string name="CallLogFragment__this_will_permanently_delete_all_call_history">Se eliminará de forma permanente todo tu historial de llamadas</string>
     <!-- Action bar menu item to delete all call events -->
     <string name="CallLogFragment__clear_call_history">Eliminar historial de llamadas</string>
     <!-- Action bar menu item to only display missed calls -->
@@ -7506,9 +7506,9 @@
     <!-- Displayed when the user turns off their mic -->
     <string name="CallStateUpdatePopupWindow__mic_off">Micrófono desactivado</string>
     <!-- Displayed when the user turns on their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_on">Altavoz encendido</string>
+    <string name="CallStateUpdatePopupWindow__speaker_on">Altavoz activado</string>
     <!-- Displayed when the user turns off their speakerphone -->
-    <string name="CallStateUpdatePopupWindow__speaker_off">Altavoz apagado</string>
+    <string name="CallStateUpdatePopupWindow__speaker_off">Altavoz desactivado</string>
 
     <!-- Accessibility label describing the capture button on the camera screen -->
     <string name="CameraControls_capture_button_accessibility_label">Botón de captura</string>
@@ -7600,7 +7600,7 @@
     <!-- Title of dialog shown alerting user that edit message is in beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_title">Editar mensaje</string>
     <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Si editas un mensaje, solo será visible para las personas que tengan las últimas versiones de Signal. Podrán ver que has editado un mensaje.</string>
+    <string name="SendingEditMessageBetaOnlyDialog_body">Si editas un mensaje, solo será visible para las personas que tengan las últimas versiones de Signal. También podrán ver que has editado un mensaje.</string>
     <!-- Button to cancel sending edit message as it is beta only -->
     <string name="SendingEditMessageBetaOnlyDialog_cancel">Cancelar</string>
     <!-- Button to continue sending edit message despite it being beta only -->
@@ -7638,7 +7638,7 @@
     <!-- Button label for the color selector button in the username link settings -->
     <string name="UsernameLinkSettings_color_button_label">Color</string>
     <!-- Description text for QR code and links in the username link settings -->
-    <string name="UsernameLinkSettings_qr_description">Comparte tu código QR y enlace solo con personas en las que confíes. Cuando lo compartas, otras personas podrán ver tu alias e iniciar un chat contigo.</string>
+    <string name="UsernameLinkSettings_qr_description">Comparte tu código QR y enlace solo con personas de confianza. Las personas con las que los compartas podrán ver tu alias e iniciar un chat contigo.</string>
     <!-- Content of a toast that will show after the username is copied to the clipboard -->
     <string name="UsernameLinkSettings_username_copied_toast">Alias copiado</string>
     <!-- Content of a toast that will show after the username link is copied to the clipboard -->
@@ -7646,7 +7646,7 @@
     <!-- Content of a text field that is shown when the user has not yet set a username link -->
     <string name="UsernameLinkSettings_link_not_set_label">Enlace no configurado</string>
     <!-- Content of a text field that is shown when the user is actively resetting the username link and waiting for the operation to finish -->
-    <string name="UsernameLinkSettings_resetting_link_label">Reiniciando enlace…</string>
+    <string name="UsernameLinkSettings_resetting_link_label">Restableciendo enlace…</string>
     <!-- Title of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
     <string name="UsernameLinkSettings_reset_link_dialog_title">¿Reiniciar código QR?</string>
     <!-- Body of a dialog prompting the user to confirm whether they would like to reset their username link and QR code -->
@@ -7666,7 +7666,7 @@
     <!-- App bar title for the username QR code color picker screen -->
     <string name="UsernameLinkSettings_color_picker_app_bar_title">Color</string>
     <!-- Body of a dialog that is displayed when we failed to read a username QR code. -->
-    <string name="UsernameLinkSettings_qr_result_invalid">El código QR no es válido.</string>
+    <string name="UsernameLinkSettings_qr_result_invalid">El código QR escaneado no es válido.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found. -->
     <string name="UsernameLinkSettings_qr_result_not_found">No se ha podido encontrar el usuario con el alias %1$s.</string>
     <!-- Body of a dialog that is displayed when the username we looked up could not be found and we also could not parse the username. -->
@@ -7676,7 +7676,7 @@
     <!-- Body of a dialog that is displayed when we failed to reset your username link because you had no internet. -->
     <string name="UsernameLinkSettings_reset_link_result_network_unavailable">No tienes acceso a la red. No se ha restablecido tu enlace. Inténtalo de nuevo más tarde.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of a transient network issue. -->
-    <string name="UsernameLinkSettings_reset_link_result_network_error">Se ha producido un fallo al tratar de restablecer tu enlace. Inténtalo de nuevo más tarde.</string>
+    <string name="UsernameLinkSettings_reset_link_result_network_error">Se ha producido un error de red al intentar restablecer tu enlace. Inténtalo de nuevo más tarde.</string>
     <!-- Body of a dialog that is displayed when we failed to reset your username link because of an unknown error. -->
     <string name="UsernameLinkSettings_reset_link_result_unknown_error">Se ha producido un error inesperado al intentar restablecer tu enlace. Inténtalo de nuevo más tarde.</string>
     <!-- Body of a dialog that is displayed when we successfully reset you username link. -->
@@ -7689,7 +7689,7 @@
     <string name="UsernameLinkSettings_try_scanning_another_image_containing_a_signal_qr_code">Intenta escanear otra imagen que contenga un código QR de Signal.</string>
 
     <!-- Explanatory text at the top of a bottom sheet describing how username links work -->
-    <string name="UsernameLinkShareBottomSheet_title">Cualquiera que tenga este enlace puede ver tu alias y empezar un chat contigo. Compártelo solo con personas de confianza.</string>
+    <string name="UsernameLinkShareBottomSheet_title">Cualquiera que tenga este enlace puede ver tu alias e iniciar un chat contigo. Compártelo solo con personas de confianza.</string>
     <!-- A button label for a button that, when pressed, will copy your username link to the clipboard -->
     <string name="UsernameLinkShareBottomSheet_copy_link">Copiar enlace</string>
     <!-- A button label for a button that, when pressed, will open a share sheet for sharing your username link -->
@@ -7724,7 +7724,7 @@
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">¿Activar las notificaciones de pantalla completa?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
-    <string name="GrantFullScreenIntentPermission_megaphone_body">Nunca te pierdas una llamada de tus contactos o grupos.</string>
+    <string name="GrantFullScreenIntentPermission_megaphone_body">No pierdas ni una llamada de tus contactos o grupos.</string>
     <!-- Button on the megaphone megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls that starts the fix process -->
     <string name="GrantFullScreenIntentPermission_megaphone_turn_on">Activar</string>
     <!-- Button on the megaphone shown at the bottom of the chatlist when a user has disabled the system setting for showing full screen notifications used showing incoming calls that dismisses the megaphone -->
@@ -7734,7 +7734,7 @@
     <!-- Subtitle of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications -->
     <string name="GrantFullScreenIntentPermission_bottomsheet_subtitle">Para recibir notificaciones de llamadas de tus contactos y grupos:</string>
     <!-- Step 2 of bottom sheet shown after tapping "Turn on" from the megaphone to re-enable full screen notifications for incoming call notifications, it indicates the name of the setting that needs to be re-enabled -->
-    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Activa las notificaciones de pantalla completa</string>
+    <string name="GrantFullScreenIntentPermission_bottomsheet_step2">2. %1$s Activa las notificaciones de pantalla completa.</string>
 
     <!-- Bottom sheet dialog shown when a monthly donation fails to renew, title for dialog -->
     <string name="MonthlyDonationCanceled__title">Donación mensual cancelada</string>
@@ -7885,7 +7885,7 @@
     <!-- Primary action button to manage subscription in Google Play -->
     <string name="BackupAlertBottomSheet__manage_subscription">Gestionar suscripción</string>
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
-    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Suscríbete por %1$s/mes</string>
+    <string name="BackupAlertBottomSheet__subscribe_for_s_month">Suscribirme por %1$s/mes</string>
     <!-- Primary action button text prompting user to download their media -->
     <string name="BackupAlertBottomSheet__download_backup_now">Descargar copia de seguridad ahora</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
@@ -8031,7 +8031,7 @@
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de las copias de seguridad de Signal. Actualiza tu plan de copias de seguridad para empezar a usar esta función.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Suscríbete por %1$s/mes</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Suscribirme por %1$s/mes</string>
 
     <!-- UpgradeToStartMediaBackupSheet -->
     <!-- Title on a bottom sheet, detailing that in order to start backing up media, they need to upgrade to paid backup storage -->
@@ -8042,7 +8042,7 @@
         <item quantity="other">Tu plan de copia de seguridad actual de Signal incluye tus últimos %1$d días de archivos multimedia. Para comenzar a hacer una copia de seguridad de todos tus archivos, actualiza tu suscripción ahora.</item>
     </plurals>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
-    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Suscríbete por %1$s/mes</string>
+    <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Suscribirme por %1$s/mes</string>
 
     <!-- MediaNoLongerAvailableSheet -->
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
@@ -8069,7 +8069,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Copias de seguridad automáticas con el servicio de almacenamiento seguro y cifrado de extremo a extremo de Signal.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
-    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Suscripción no encontrada en este dispositivo."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Configurar</string>
 
@@ -8157,7 +8157,7 @@
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Se eliminará tu copia de seguridad y no se crearán copias nuevas. Todos los archivos almacenados en tu copia de seguridad se descargarán ahora en tu teléfono.</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Se cancelará tu suscripción y no se te volverá a cobrar. Además, se eliminará tu copia de seguridad y no se crearán copias nuevas. Todos los archivos almacenados en tu copia de seguridad se descargarán ahora en tu teléfono.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Desactivar y eliminar</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8588,9 +8588,9 @@
     <string name="SignalCheckbox_accessibility_unchecked_description">No seleccionado</string>
 
     <!-- Notification title for when user is out of remote storage -->
-    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <string name="Notification_backup_storage_full">Almacenamiento de copia de seguridad lleno</string>
     <!-- Notification body for when user is out of remote storage -->
-    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
+    <string name="Notification_youve_reached_your_backup_storage_limit">Has alcanzado el límite de almacenamiento de las copias de seguridad. Libera espacio en Signal para seguir haciendo copias de seguridad de tus chats y archivos multimedia.</string>
 
     <!-- EOF -->
 </resources>

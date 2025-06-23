@@ -143,7 +143,7 @@
 
     <!-- UploadAttachmentToArchiveJob -->
     <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
-    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+    <string name="UploadAttachmentToArchiveJob_uploading_media">మీడియాను బ్యాకప్ చేస్తోంది…</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">సందేశాల కోసం తనిఖీ చేస్తోంది…</string>
@@ -1177,9 +1177,9 @@
     <string name="ExpiredBuildReminder_update_now">నవీకరణ చేయండి ఇప్పుడు</string>
 
     <!-- Title of notification telling users to update Signal -->
-    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <string name="DeprecatedNotificationJob_update_signal">Signal ను నవీకరించండి</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
-    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">Signal యొక్క ఈ వెర్షన్ గడువు తీరింది. సందేశాలను పంపడానికి మరియు పొందడానికి అప్‌డేట్ చేయడానికి తట్టండి.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -7231,7 +7231,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">మీ పేరు మరియు ఈమెయిల్‌ను ఎంటర్ చేయండి. మీ విరాళం గురించి మీకు అప్‌డేట్‌లను పంపడానికి Stripe ఈ ఈమెయిల్‌ను ఉపయోగిస్తుంది. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">మీ బ్యాంక్ వివరాలు ఎంటర్ చేయండి. Signal మీ వ్యక్తిగత సమాచారాన్ని సేకరించదు లేదా నిల్వ చేయదు. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -8069,7 +8069,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal యొక్క సురక్షితమైన ఎండ్-టు-ఎండ్ గుప్తీకరించబడిన నిల్వ సేవతో ఆటోమేటిక్ బ్యాకప్స్.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
-    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"ఈ పరికరంలో సబ్‌స్క్రిప్షన్ కనుగొనబడలేదు."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">సెటప్ చేయండి</string>
 
@@ -8157,7 +8157,7 @@
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">మీ బ్యాకప్ తొలగించబడుతుంది మరియు ఎటువంటి కొత్త బ్యాకప్‌లు సృష్టించబడవు. మీ బ్యాకప్‌లో నిల్వ చేయబడిన ఏదైనా మీడియా ఇప్పుడు మీ ఫోన్‌కి డౌన్‌లోడ్ చేయబడుతుంది.</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">మీ సబ్‌స్క్రిప్షన్ రద్దు చేయబడుతుంది మరియు మీకు మళ్ళీ ఛార్జీ విధించబడదు. మీ బ్యాకప్ కూడా తొలగించబడుతుంది మరియు ఎటువంటి కొత్త బ్యాకప్‌లు సృష్టించబడవు. మీ బ్యాకప్‌లో నిల్వ చేయబడిన ఏ మీడియా అయినా ఇప్పుడు మీ ఫోన్‌కి డౌన్‌లోడ్ చేయబడుతుంది.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ఆఫ్ చేయండి మరియు తొలగించండి</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8588,9 +8588,9 @@
     <string name="SignalCheckbox_accessibility_unchecked_description">టిక్ తొలగించబడింది</string>
 
     <!-- Notification title for when user is out of remote storage -->
-    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <string name="Notification_backup_storage_full">బ్యాకప్ నిల్వ నిండింది</string>
     <!-- Notification body for when user is out of remote storage -->
-    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
+    <string name="Notification_youve_reached_your_backup_storage_limit">మీరు మీ బ్యాకప్ నిల్వ పరిమితిని చేరుకున్నారు. చాట్‌లు మరియు మీడియాను బ్యాకప్ చేయడం కొనసాగించడానికి Signal లో స్థలాన్ని ఖాళీ చేయండి.</string>
 
     <!-- EOF -->
 </resources>

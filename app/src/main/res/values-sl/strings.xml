@@ -143,7 +143,7 @@
 
     <!-- UploadAttachmentToArchiveJob -->
     <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
-    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Varnostno kopiranje medijev …</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Pregled sporočil …</string>
@@ -1221,9 +1221,9 @@
     <string name="ExpiredBuildReminder_update_now">Posodobi zdaj</string>
 
     <!-- Title of notification telling users to update Signal -->
-    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <string name="DeprecatedNotificationJob_update_signal">Posodobite aplikacijo Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
-    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">Ta različica aplikacije Signal je potekla. Tapnite za posodobitev, da boste lahko spet pošiljali in prejemali sporočila.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -7561,7 +7561,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Vnesite svoje ime in e-pošto. Stripe uporablja ta e-poštni naslov, da vam pošilja posodobitve o vaši donaciji. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Vnesite svoje bančne podatke. Signal ne zbira in ne hrani vaših osebnih podatkov. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -8419,7 +8419,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Samodejno varnostno kopiranje s Signalovo varno storitvijo šifriranega shranjevanja od konca do konca.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
-    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Naročnina ni bila najdena v tej napravi."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Nastavi</string>
 
@@ -8507,7 +8507,7 @@
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Vaša varnostna kopija bo izbrisana in nove varnostne kopije ne bodo ustvarjene. Vsi mediji, shranjeni v varnostni kopiji, bodo zdaj preneseni v telefon.</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Vaša naročnina bo preklicana in ne bomo vam več zaračunavali. Vaša varnostna kopija bo prav tako izbrisana in nove varnostne kopije ne bodo ustvarjene. Vsi mediji, shranjeni v varnostni kopiji, bodo zdaj preneseni v telefon.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Izklopi in izbriši</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8948,9 +8948,9 @@
     <string name="SignalCheckbox_accessibility_unchecked_description">Neoznačeno</string>
 
     <!-- Notification title for when user is out of remote storage -->
-    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <string name="Notification_backup_storage_full">Pomnilnik za shranjevanje varnostne kopije je poln</string>
     <!-- Notification body for when user is out of remote storage -->
-    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
+    <string name="Notification_youve_reached_your_backup_storage_limit">Dosegli ste omejitev shranjevanja varnostne kopije. Sprostite prostor v Signalu za nadaljevanje varnostnega kopiranja klepetov in medijev.</string>
 
     <!-- EOF -->
 </resources>

@@ -53,7 +53,7 @@
     <string name="ApplicationPreferencesActivity_disable_passphrase">禁用密码？</string>
     <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">这将永久解锁 Signal 和消息通知。</string>
     <string name="ApplicationPreferencesActivity_disable">禁用</string>
-    <string name="ApplicationPreferencesActivity_error_connecting_to_server">连接服务出错！</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">连接服务器出错！</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">PIN 对于注册锁定是必需的。如需禁用 PIN，请先禁用注册锁定。</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN 已创建。</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">已禁用 PIN。</string>
@@ -143,7 +143,7 @@
 
     <!-- UploadAttachmentToArchiveJob -->
     <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
-    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+    <string name="UploadAttachmentToArchiveJob_uploading_media">正在备份媒体…</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">正在检查消息…</string>
@@ -1155,9 +1155,9 @@
     <string name="ExpiredBuildReminder_update_now">现在升级</string>
 
     <!-- Title of notification telling users to update Signal -->
-    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <string name="DeprecatedNotificationJob_update_signal">升级 Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
-    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">此 Signal 版本已过期。请点击以更新版本并继续收发消息。</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -7066,7 +7066,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">请输入您的姓名和电子邮件地址。Stripe 将使用此电子邮件地址给您发送关于您捐款的最新动态。%1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">请输入您的银行信息。Signal 不会收集或储存您的个人信息。%1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7894,7 +7894,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">通过 Signal 的安全端对端加密存储服务自动备份。</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
-    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"未在此设备上找到备份套餐。"</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">设置</string>
 
@@ -7982,7 +7982,7 @@
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">您的备份将被删除，并且不会创建新的备份。您在备份中存储的任何媒体现在将下载到您的手机中。</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">您的备份套餐将会被取消，系统不会再向您收费。您的备份也将会被删除，并且不会创建新的备份。您在备份中存储的任何媒体现在将下载到您的手机中。</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">关闭和删除</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8408,9 +8408,9 @@
     <string name="SignalCheckbox_accessibility_unchecked_description">未勾选</string>
 
     <!-- Notification title for when user is out of remote storage -->
-    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <string name="Notification_backup_storage_full">备份存储空间已满</string>
     <!-- Notification body for when user is out of remote storage -->
-    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
+    <string name="Notification_youve_reached_your_backup_storage_limit">您已达到备份存储空间的上限。请释放 Signal 的空间，以继续备份聊天记录和媒体。</string>
 
     <!-- EOF -->
 </resources>

@@ -143,7 +143,7 @@
 
     <!-- UploadAttachmentToArchiveJob -->
     <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
-    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+    <string name="UploadAttachmentToArchiveJob_uploading_media">မီဒီယာကို ဘက်ခ်အပ်လုပ်နေသည်…</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">မက်ဆေ့ချ်များ စစ်နေပါသည်…</string>
@@ -1155,9 +1155,9 @@
     <string name="ExpiredBuildReminder_update_now">ယခု Update လုပ်ပါ။</string>
 
     <!-- Title of notification telling users to update Signal -->
-    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <string name="DeprecatedNotificationJob_update_signal">Signal ကို အပ်ဒိတ်လုပ်ပါ။</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
-    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">ဤ Signal ဗားရှင်းသည် သက်တမ်းကုန်သွားပါပြီ။ မက်ဆေ့ချ်ပေးပို့ခြင်းနှင့် လက်ခံခြင်းကို အပ်ဒိတ်လုပ်ရန် နှိပ်ပါ။</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -7066,7 +7066,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">သင့်အမည်နှင့် အီးမေးလ်ကို ထည့်သွင်းပါ။ Stripe သည် သင့်လှူဒါန်းမှုနှင့်ပတ်သက်၍ အပ်ဒိတ်များပေးပို့ရန် ဤအီးမေးလ်ကို အသုံးပြုပါသည်။ %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">သင့်ဘဏ်အချက်အလက် အသေးစိတ်ကို ဖြည့်ပါ။ Signal သည် သင်၏ ကိုယ်ရေးအချက်အလက်များကို စုဆောင်းခြင်း သို့မဟုတ် သိမ်းဆည်းခြင်း မပြုပါ။ %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7894,7 +7894,7 @@
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal ၏ လုံခြုံသော ဟိုဘက်သည်ဘက် ကုဒ်ပြောင်းဝှက်ထားသည့် သိုလှောင်ရေးဝန်ဆောင်မှုဖြင့် အလိုအလျောက် ဘက်ခ်အပ်။</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
-    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"ပုံမှန်လှူဒါန်းမှုကို ဤစက်တွင်ရှာမတွေ့ပါ။"</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">သတ်မှတ်ရန်</string>
 
@@ -7982,7 +7982,7 @@
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">သင်၏ ဘက်ခ်အပ်ကို ဖျက်လိုက်မည်ဖြစ်ပြီး ဘက်ခ်အပ်အသစ်များကို ဖန်တီးမည်မဟုတ်ပါ။ သင့်ဘက်ခ်အပ်တွင် သိမ်းဆည်းထားသည့် မည်သည့်မီဒီယာမဆို ယခု သင့်ဖုန်းသို့ ဒေါင်းလုဒ်လုပ်ပါမည်။</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">သင်၏ပုံမှန်လှူဒါန်းမှုကို ပယ်ဖျက်မည်ဖြစ်ပြီး ထပ်မံကောက်ခံမည်မဟုတ်ပါ။ သင်၏ဘက်ခ်အပ်ကိုလည်း ဖျက်လိုက်မည်ဖြစ်ပြီး ဘက်ခ်အပ်အသစ်များကို ဖန်တီးမည်မဟုတ်ပါ။ သင့်ဘက်ခ်အပ်တွင် သိမ်းဆည်းထားသည့် မီဒီယာအားလုံးကို ယခု သင့်ဖုန်းသို့ ဒေါင်းလုဒ်လုပ်ပါမည်။</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">ပိတ်ပြီး ဖျက်ရန်</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8408,9 +8408,9 @@
     <string name="SignalCheckbox_accessibility_unchecked_description">အမှန်မခြစ်ထားပါ</string>
 
     <!-- Notification title for when user is out of remote storage -->
-    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <string name="Notification_backup_storage_full">ဘက်ခ်အပ်ထားသိုမှု ပြည့်သွားပါပြီ</string>
     <!-- Notification body for when user is out of remote storage -->
-    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
+    <string name="Notification_youve_reached_your_backup_storage_limit">ဘက်ခ်အပ်ထားသိုမှု ကန့်သတ်ချက် ပြည့်သွားပါပြီ။ ချက်(တ်)များနှင့် မီဒီယာများကို ဆက်လက် ဘက်ခ်အပ်လုပ်ရန် Signal တွင် နေရာလွတ်လုပ်ပေးပါ။</string>
 
     <!-- EOF -->
 </resources>
