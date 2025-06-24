@@ -169,7 +169,7 @@ private fun BackupsSettingsContent(
             OtherWaysToBackUpHeading()
           }
 
-          is BackupState.ActiveFree, is BackupState.ActivePaid -> {
+          is BackupState.ActiveFree, is BackupState.ActivePaid, is BackupState.Canceled -> {
             ActiveBackupsRow(
               backupState = backupsSettingsState.backupState,
               onBackupsRowClick = onBackupsRowClick,
@@ -205,15 +205,6 @@ private fun BackupsSettingsContent(
           is BackupState.Pending -> {
             PendingBackupRow(
               onBackupsRowClick = onBackupsRowClick
-            )
-
-            OtherWaysToBackUpHeading()
-          }
-
-          is BackupState.Canceled -> {
-            ActiveBackupsRow(
-              backupState = backupsSettingsState.backupState,
-              lastBackupAt = backupsSettingsState.lastBackupAt
             )
 
             OtherWaysToBackUpHeading()
@@ -421,13 +412,25 @@ private fun ActiveBackupsRow(
 
         when (val type = backupState.messageBackupsType) {
           is MessageBackupsType.Paid -> {
-            Text(
-              text = stringResource(
+            val body = if (backupState is BackupState.Canceled) {
+              stringResource(R.string.BackupsSettingsFragment__subscription_canceled)
+            } else {
+              stringResource(
                 R.string.BackupsSettingsFragment_s_month_renews_s,
                 FiatMoneyUtil.format(LocalContext.current.resources, type.pricePerMonth),
                 DateUtils.formatDateWithYear(Locale.getDefault(), backupState.renewalTime.inWholeMilliseconds)
-              ),
-              color = MaterialTheme.colorScheme.onSurfaceVariant,
+              )
+            }
+
+            val color = if (backupState is BackupState.Canceled) {
+              MaterialTheme.colorScheme.error
+            } else {
+              MaterialTheme.colorScheme.onSurfaceVariant
+            }
+
+            Text(
+              text = body,
+              color = color,
               style = MaterialTheme.typography.bodyMedium
             )
           }
