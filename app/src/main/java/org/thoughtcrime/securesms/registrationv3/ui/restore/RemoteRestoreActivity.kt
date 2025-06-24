@@ -311,7 +311,8 @@ private fun BackupAvailableContent(
     when (state.importState) {
       RemoteRestoreViewModel.ImportState.None -> Unit
       RemoteRestoreViewModel.ImportState.InProgress -> RestoreProgressDialog(state.restoreProgress)
-      is RemoteRestoreViewModel.ImportState.Restored -> Unit
+      RemoteRestoreViewModel.ImportState.Restored -> Unit
+      RemoteRestoreViewModel.ImportState.NetworkFailure -> RestoreNetworkFailedDialog(onDismiss = onImportErrorDialogDismiss)
       RemoteRestoreViewModel.ImportState.Failed -> {
         if (SignalStore.backup.hasInvalidBackupVersion) {
           InvalidBackupVersionDialog(onUpdateSignal = onUpdateSignal, onDismiss = onImportErrorDialogDismiss)
@@ -484,6 +485,19 @@ fun RestoreFailedDialog(
   Dialogs.SimpleAlertDialog(
     title = stringResource(R.string.RemoteRestoreActivity__couldnt_transfer),
     body = stringResource(R.string.RemoteRestoreActivity__error_occurred),
+    confirm = stringResource(android.R.string.ok),
+    onConfirm = onDismiss,
+    onDismiss = onDismiss
+  )
+}
+
+@Composable
+fun RestoreNetworkFailedDialog(
+  onDismiss: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.RemoteRestoreActivity__couldnt_transfer),
+    body = stringResource(R.string.RegistrationActivity_error_connecting_to_service),
     confirm = stringResource(android.R.string.ok),
     onConfirm = onDismiss,
     onDismiss = onDismiss

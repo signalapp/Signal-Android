@@ -12,6 +12,8 @@ import android.os.StatFs
 import androidx.annotation.Discouraged
 import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
@@ -48,6 +50,7 @@ import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
+import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.copyAttachmentToArchive
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataArchiveProcessor
@@ -84,8 +87,10 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
+import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CheckRestoreMediaLeftJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
@@ -99,8 +104,10 @@ import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
+import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.BackupProgressService
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ServiceUtil
@@ -121,6 +128,7 @@ import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
@@ -1723,6 +1731,75 @@ object BackupRepository {
     )
   }
 
+  suspend fun restoreRemoteBackup(): RemoteRestoreResult {
+    val context = AppDependencies.application
+    SignalStore.backup.restoreState = RestoreState.PENDING
+
+    try {
+      DataRestoreConstraint.isRestoringData = true
+      return withContext(Dispatchers.IO) {
+        return@withContext BackupProgressService.start(context, context.getString(R.string.BackupProgressService_title)).use {
+          restoreRemoteBackup(controller = it, cancellationSignal = { !isActive })
+        }
+      }
+    } finally {
+      DataRestoreConstraint.isRestoringData = false
+    }
+  }
+
+  private fun restoreRemoteBackup(controller: BackupProgressService.Controller, cancellationSignal: () -> Boolean): RemoteRestoreResult {
+    SignalStore.backup.restoreState = RestoreState.RESTORING_DB
+
+    val progressListener = object : ProgressListener {
+      override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
+        controller.update(
+          title = AppDependencies.application.getString(R.string.BackupProgressService_title_downloading),
+          progress = progress.value,
+          indeterminate = false
+        )
+        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.transmitted, progress.total))
+      }
+
+      override fun shouldCancel() = cancellationSignal()
+    }
+
+    Log.i(TAG, "[remoteRestore] Downloading backup")
+    val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
+    when (val result = downloadBackupFile(tempBackupFile, progressListener)) {
+      is NetworkResult.Success -> Log.i(TAG, "[remoteRestore] Download successful")
+      else -> {
+        Log.w(TAG, "[remoteRestore] Failed to download backup file", result.getCause())
+        return RemoteRestoreResult.NetworkError
+      }
+    }
+
+    if (cancellationSignal()) {
+      return RemoteRestoreResult.Canceled
+    }
+
+    controller.update(
+      title = AppDependencies.application.getString(R.string.BackupProgressService_title),
+      progress = 0f,
+      indeterminate = true
+    )
+
+    val self = Recipient.self()
+    val selfData = SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+    Log.i(TAG, "[remoteRestore] Importing backup")
+    val result = import(length = tempBackupFile.length(), inputStreamFactory = tempBackupFile::inputStream, selfData = selfData, backupKey = SignalStore.backup.messageBackupKey, cancellationSignal = cancellationSignal)
+    if (result == ImportResult.Failure) {
+      Log.w(TAG, "[remoteRestore] Failed to import backup")
+      return RemoteRestoreResult.Failure
+    }
+
+    SignalStore.backup.restoreState = RestoreState.RESTORING_MEDIA
+
+    AppDependencies.jobManager.add(BackupRestoreMediaJob())
+
+    Log.i(TAG, "[remoteRestore] Restore successful")
+    return RemoteRestoreResult.Success
+  }
+
   interface ExportProgressListener {
     fun onAccount()
     fun onRecipient()
@@ -1792,6 +1869,13 @@ class DebugBackupMetadata(
 sealed class ImportResult {
   data class Success(val backupTime: Long) : ImportResult()
   data object Failure : ImportResult()
+}
+
+sealed interface RemoteRestoreResult {
+  data object Success : RemoteRestoreResult
+  data object NetworkError : RemoteRestoreResult
+  data object Canceled : RemoteRestoreResult
+  data object Failure : RemoteRestoreResult
 }
 
 /**

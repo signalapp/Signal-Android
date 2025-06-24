@@ -9,7 +9,6 @@ import org.thoughtcrime.securesms.jobmanager.Constraint;
 import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
-import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollectionPendingConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.AutoDownloadEmojiConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.CellServiceConstraintObserver;
@@ -24,6 +23,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraintOb
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollectionPendingConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NotInCallConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraint;
@@ -135,7 +135,6 @@ public final class JobManagerFactories {
       put(BackfillDigestsForDataFileJob.KEY,           new BackfillDigestsForDataFileJob.Factory());
       put(BackupDeleteJob.KEY,                         new BackupDeleteJob.Factory());
       put(BackupMessagesJob.KEY,                       new BackupMessagesJob.Factory());
-      put(BackupRestoreJob.KEY,                        new BackupRestoreJob.Factory());
       put(BackupRestoreMediaJob.KEY,                   new BackupRestoreMediaJob.Factory());
       put(BackupSubscriptionCheckJob.KEY,              new BackupSubscriptionCheckJob.Factory());
       put(BuildExpirationConfirmationJob.KEY,          new BuildExpirationConfirmationJob.Factory());
@@ -394,6 +393,7 @@ public final class JobManagerFactories {
       put("AttachmentMarkUploadedJob",                   new FailingJob.Factory());
       put("BackupMediaSnapshotSyncJob",                  new FailingJob.Factory());
       put("PnpInitializeDevicesJob",                     new FailingJob.Factory());
+      put("BackupRestoreJob",                            new FailingJob.Factory());
     }};
   }
 
