@@ -41,6 +41,7 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.exceptions.CreateCredentialCancellationException
 import androidx.credentials.exceptions.CreateCredentialInterruptedException
 import androidx.credentials.exceptions.CreateCredentialNoCreateOptionException
+import androidx.credentials.exceptions.CreateCredentialUnknownException
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
@@ -48,12 +49,15 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.CredentialManagerError
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.CredentialManagerResult
 import org.thoughtcrime.securesms.fonts.MonoTypeface
 import org.signal.core.ui.R as CoreUiR
+
+private const val TAG = "MessageBackupsKeyRecordScreen"
 
 /**
  * Screen displaying the backup key allowing the user to write it down
@@ -253,6 +257,24 @@ private suspend fun saveKeyToCredentialManager(
       is CreateCredentialCancellationException -> CredentialManagerResult.UserCanceled
       is CreateCredentialInterruptedException -> CredentialManagerResult.Interrupted(e)
       is CreateCredentialNoCreateOptionException -> CredentialManagerError.MissingCredentialManager(e)
+      is CreateCredentialUnknownException -> {
+        when {
+          Build.VERSION.SDK_INT <= 33 && e.message?.contains("[28431]") == true -> {
+            // This error only impacts Android 13 and earlier, when Google is the designated autofill provider. The error can be safely disregarded, since users
+            // will receive a save prompt from autofill and the password will be stored in Google Password Manager, which syncs with the Credential Manager API.
+            Log.d(TAG, "Disregarding CreateCredentialUnknownException and treating credential creation as success: \"${e.message}\".")
+            CredentialManagerResult.Success
+          }
+
+          e.message?.contains("[28434]") == true -> {
+            Log.w(TAG, "Detected MissingCredentialManager error based on CreateCredentialUnknownException message: \"${e.message}\"")
+            CredentialManagerError.MissingCredentialManager(e)
+          }
+
+          else -> CredentialManagerError.Unexpected(e)
+        }
+      }
+
       else -> CredentialManagerError.Unexpected(e)
     }
   }
