@@ -216,7 +216,6 @@ class AttachmentTable(
       DATA_HASH_START,
       DATA_HASH_END,
       ARCHIVE_CDN,
-      ARCHIVE_TRANSFER_FILE,
       THUMBNAIL_FILE,
       THUMBNAIL_RESTORE_STATE,
       ARCHIVE_TRANSFER_STATE,
@@ -260,7 +259,6 @@ class AttachmentTable(
         $DATA_HASH_START TEXT DEFAULT NULL,
         $DATA_HASH_END TEXT DEFAULT NULL,
         $ARCHIVE_CDN INTEGER DEFAULT NULL,
-        $ARCHIVE_TRANSFER_FILE TEXT DEFAULT NULL,
         $ARCHIVE_TRANSFER_STATE INTEGER DEFAULT ${ArchiveTransferState.NONE.value},
         $THUMBNAIL_FILE TEXT DEFAULT NULL,
         $THUMBNAIL_RANDOM BLOB DEFAULT NULL,
@@ -1203,7 +1201,6 @@ class AttachmentTable(
       values.put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE)
       values.put(TRANSFER_FILE, null as String?)
       values.put(TRANSFORM_PROPERTIES, TransformProperties.forSkipTransform().serialize())
-      values.put(ARCHIVE_TRANSFER_FILE, null as String?)
       values.put(REMOTE_LOCATION, existingPlaceholder.remoteLocation)
       values.put(CDN_NUMBER, existingPlaceholder.cdn.serialize())
       values.put(REMOTE_KEY, existingPlaceholder.remoteKey!!)
@@ -1618,24 +1615,6 @@ class AttachmentTable(
     writableDatabase
       .update(TABLE_NAME)
       .values(TRANSFER_FILE to transferFile.absolutePath)
-      .where("$ID = ?", attachmentId.id)
-      .run()
-
-    return transferFile
-  }
-
-  @Throws(IOException::class)
-  fun getOrCreateArchiveTransferFile(attachmentId: AttachmentId): File {
-    val existing = getArchiveTransferFile(writableDatabase, attachmentId)
-    if (existing != null) {
-      return existing
-    }
-
-    val transferFile = newTransferFile()
-
-    writableDatabase
-      .update(TABLE_NAME)
-      .values(ARCHIVE_TRANSFER_FILE to transferFile.absolutePath)
       .where("$ID = ?", attachmentId.id)
       .run()
 
@@ -2452,18 +2431,6 @@ class AttachmentTable(
       .run()
       .readToSingleObject { cursor ->
         cursor.requireString(TRANSFER_FILE)?.let { File(it) }
-      }
-  }
-
-  private fun getArchiveTransferFile(db: SQLiteDatabase, attachmentId: AttachmentId): File? {
-    return db
-      .select(ARCHIVE_TRANSFER_FILE)
-      .from(TABLE_NAME)
-      .where("$ID = ?", attachmentId.id)
-      .limit(1)
-      .run()
-      .readToSingleObject { cursor ->
-        cursor.requireString(ARCHIVE_TRANSFER_FILE)?.let { File(it) }
       }
   }
 

@@ -230,7 +230,6 @@ class RestoreAttachmentJob private constructor(
   ) {
     val maxReceiveSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val attachmentFile: File = SignalDatabase.attachments.getOrCreateTransferFile(attachmentId)
-    var archiveFile: File? = null
     var useArchiveCdn = false
 
     if (attachment.remoteDigest == null && attachment.dataHash == null) {
@@ -267,9 +266,6 @@ class RestoreAttachmentJob private constructor(
       }
 
       val decryptingStream = if (useArchiveCdn) {
-        // TODO next PR: remove archive transfer file and just use the regular attachment file
-        archiveFile = attachmentFile
-//        archiveFile = SignalDatabase.attachments.getOrCreateArchiveTransferFile(attachmentId)
         val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MEDIA, attachment.archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn).successOrThrow().headers
 
         messageReceiver
@@ -277,7 +273,7 @@ class RestoreAttachmentJob private constructor(
             SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.requireMediaName()),
             attachment.dataHash!!.decodeBase64OrThrow(),
             cdnCredentials,
-            archiveFile,
+            attachmentFile,
             pointer,
             maxReceiveSize,
             progressListener
@@ -295,9 +291,8 @@ class RestoreAttachmentJob private constructor(
 
       SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, decryptingStream, if (manual) System.currentTimeMillis().milliseconds else null)
     } catch (e: RangeException) {
-      val transferFile = archiveFile ?: attachmentFile
-      Log.w(TAG, "[$attachmentId] Range exception, file size " + transferFile.length(), e)
-      if (transferFile.delete()) {
+      Log.w(TAG, "[$attachmentId] Range exception, file size " + attachmentFile.length(), e)
+      if (attachmentFile.delete()) {
         Log.i(TAG, "Deleted temp download file to recover")
         throw RetryLaterException(e)
       } else {

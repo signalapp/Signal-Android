@@ -75,7 +75,7 @@ class PartDataSource implements DataSource {
       final byte[] decodedKey = Base64.decode(attachmentKey);
       
       if (attachment.transferState == AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS && attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
-        final File archiveFile = attachmentDatabase.getOrCreateArchiveTransferFile(attachment.attachmentId);
+        final File archiveFile = attachmentDatabase.getOrCreateTransferFile(attachment.attachmentId);
         try {
           String mediaName = DatabaseAttachmentArchiveUtil.requireMediaNameAsString(attachment);
           String mediaId   = MediaName.toMediaIdString(mediaName, SignalStore.backup().getMediaRootBackupKey());
