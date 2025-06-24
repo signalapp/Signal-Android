@@ -1061,7 +1061,6 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout"
               android:windowSoftInputMode="stateUnchanged"
               android:resizeableActivity="true"
-              android:launchMode="singleTask"
               android:exported="false"/>
 
     <activity android:name=".pin.PinRestoreActivity"
