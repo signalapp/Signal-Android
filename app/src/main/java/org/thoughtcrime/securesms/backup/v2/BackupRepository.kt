@@ -519,7 +519,7 @@ object BackupRepository {
   }
 
   private fun shouldNotDisplayBackupFailedMessaging(): Boolean {
-    return !RemoteConfig.messageBackups || !SignalStore.backup.areBackupsEnabled
+    return !SignalStore.account.isRegistered || !RemoteConfig.messageBackups || !SignalStore.backup.areBackupsEnabled
   }
 
   /**
