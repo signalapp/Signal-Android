@@ -436,9 +436,11 @@ class LinkDeviceViewModel : ViewModel() {
     return if (RemoteConfig.internalUser) {
       this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true ||
         this.getQueryParameter("capabilities")?.split(",")?.contains("backup2") == true ||
-        this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true ||
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup4") == true
     } else {
-      this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true
+      this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true ||
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup4") == true
     }
   }
 
