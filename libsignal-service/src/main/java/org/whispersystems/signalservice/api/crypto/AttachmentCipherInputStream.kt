@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api.crypto
 import org.signal.core.util.Base64
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.stream.LimitedInputStream
+import org.signal.core.util.stream.TrimmingInputStream
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
 import org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream
@@ -134,38 +135,45 @@ object AttachmentCipherInputStream {
   }
 
   /**
-   * When you archive an attachment, you give the server an encrypted attachment, and the server wraps it in *another* layer of encryption.
+   * When you archive an attachment thumbnail, you give the server an encrypted attachment, and the server wraps it in *another* layer of encryption.
    *
    * This creates a stream decrypt both the inner and outer layers of an archived attachment at the same time by basically double-decrypting it.
    *
-   * @param incrementalDigest If null, incremental mac validation is disabled.
-   * @param incrementalMacChunkSize If 0, incremental mac validation is disabled.
+   * Archive thumbnails are also special in that we:
+   * - don't know how long they are (meaning you'll get them back with padding at the end, image viewers are ok with this)
+   * - don't care about external integrity checks (we still validate the MACs)
+   *
+   * So there's some code duplication here just to avoid mucking up the reusable functions with special cases.
    */
   @JvmStatic
   @Throws(InvalidMessageException::class, IOException::class)
   fun createForArchivedThumbnail(
     archivedMediaKeyMaterial: MediaKeyMaterial,
     file: File,
-    originalCipherTextLength: Long,
-    plaintextLength: Long,
-    combinedKeyMaterial: ByteArray
+    innerCombinedKeyMaterial: ByteArray
   ): InputStream {
-    val keyMaterial = CombinedKeyMaterial.from(combinedKeyMaterial)
-    val mac = initMac(keyMaterial.macKey)
+    val outerMac = initMac(archivedMediaKeyMaterial.macKey)
 
-    if (originalCipherTextLength <= BLOCK_SIZE + mac.macLength) {
-      throw InvalidMessageException("Message shorter than crypto overhead! Expected at least ${BLOCK_SIZE + mac.macLength} bytes, got $originalCipherTextLength")
+    if (file.length() <= BLOCK_SIZE + outerMac.macLength) {
+      throw InvalidMessageException("Message shorter than crypto overhead! Expected at least ${BLOCK_SIZE + outerMac.macLength} bytes, got ${file.length()}")
     }
 
-    return create(
-      streamSupplier = { createForArchivedMediaOuterLayer(archivedMediaKeyMaterial, file, originalCipherTextLength) },
-      streamLength = originalCipherTextLength,
-      plaintextLength = plaintextLength,
-      combinedKeyMaterial = combinedKeyMaterial,
-      integrityCheck = null,
-      incrementalDigest = null,
-      incrementalMacChunkSize = 0
-    )
+    FileInputStream(file).use { macVerificationStream ->
+      verifyMacAndMaybeEncryptedDigest(macVerificationStream, file.length(), outerMac, null)
+    }
+
+    val outerEncryptedStreamExcludingMac = LimitedInputStream(FileInputStream(file), maxBytes = file.length() - outerMac.macLength)
+    val outerCipher = createCipher(outerEncryptedStreamExcludingMac, archivedMediaKeyMaterial.aesKey)
+    val innerEncryptedStream = BetterCipherInputStream(outerEncryptedStreamExcludingMac, outerCipher)
+
+    val innerKeyMaterial = CombinedKeyMaterial.from(innerCombinedKeyMaterial)
+    val innerMac = initMac(innerKeyMaterial.macKey)
+
+    val innerEncryptedStreamWithMac = MacValidatingInputStream(innerEncryptedStream, innerMac)
+    val innerEncryptedStreamExcludingMac = TrimmingInputStream(innerEncryptedStreamWithMac, trimSize = innerMac.macLength, drain = true)
+    val innerCipher = createCipher(innerEncryptedStreamExcludingMac, innerKeyMaterial.aesKey)
+
+    return BetterCipherInputStream(innerEncryptedStreamExcludingMac, innerCipher)
   }
 
   /**

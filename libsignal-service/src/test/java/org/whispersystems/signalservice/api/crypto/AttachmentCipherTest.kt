@@ -94,7 +94,7 @@ class AttachmentCipherTest {
       )
     }
     val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
-    val plaintextOutput = inputStream.readFully(autoClose = false)
+    val plaintextOutput = inputStream.readFully()
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
 
@@ -111,7 +111,7 @@ class AttachmentCipherTest {
 
     val integrityCheck = IntegrityCheck.forPlaintextHash(plaintextHash)
     val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
-    val plaintextOutput = inputStream.readFully(autoClose = false)
+    val plaintextOutput = inputStream.readFully()
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
 
@@ -137,7 +137,7 @@ class AttachmentCipherTest {
 
     val integrityCheck = IntegrityCheck.forEncryptedDigest(encryptResult.digest)
     val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
-    val plaintextOutput = inputStream.readFully(autoClose = false)
+    val plaintextOutput = inputStream.readFully()
 
     Assert.assertArrayEquals(plaintextInput, plaintextOutput)
 
@@ -327,7 +327,7 @@ class AttachmentCipherTest {
       incrementalDigest = innerEncryptResult.incrementalDigest,
       incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
     )
-    val plaintextOutput = decryptedStream.readFully(autoClose = false)
+    val plaintextOutput = decryptedStream.readFully()
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
 
@@ -382,37 +382,36 @@ class AttachmentCipherTest {
 
   @Test
   fun archive_encryptDecrypt_nonIncremental() {
-    archiveInnerAndOuter_encryptDecrypt(incremental = false, fileSize = MEBIBYTE)
+    archive_encryptDecrypt(incremental = false, fileSize = MEBIBYTE)
   }
 
   @Test
   fun archive_encryptDecrypt_incremental() {
-    archiveInnerAndOuter_encryptDecrypt(incremental = true, fileSize = MEBIBYTE)
+    archive_encryptDecrypt(incremental = true, fileSize = MEBIBYTE)
   }
 
   @Test
   fun archive_encryptDecrypt_nonIncremental_manyFileSizes() {
     for (i in 0..99) {
-      archiveInnerAndOuter_encryptDecrypt(incremental = false, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
+      archive_encryptDecrypt(incremental = false, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
     }
   }
 
   @Test
-  fun archiveInnerAndOuter_encryptDecrypt_incremental_manyFileSizes() {
+  fun archive_encryptDecrypt_incremental_manyFileSizes() {
     // Designed to stress the various boundary conditions of reading the final mac
     for (i in 0..99) {
-      archiveInnerAndOuter_encryptDecrypt(incremental = true, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
+      archive_encryptDecrypt(incremental = true, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
     }
   }
 
-  private fun archiveInnerAndOuter_encryptDecrypt(incremental: Boolean, fileSize: Int) {
+  private fun archive_encryptDecrypt(incremental: Boolean, fileSize: Int) {
     val innerKey = Util.getSecretBytes(64)
     val plaintextInput = Util.getSecretBytes(fileSize)
-
     val innerEncryptResult = encryptData(plaintextInput, innerKey, incremental)
-    val outerKey = Util.getSecretBytes(64)
 
-    val outerEncryptResult = encryptData(innerEncryptResult.ciphertext, outerKey, false)
+    val outerKey = Util.getSecretBytes(64)
+    val outerEncryptResult = encryptData(innerEncryptResult.ciphertext, outerKey, withIncremental = false, padded = false) // Server doesn't pad
     val cipherFile = writeToFile(outerEncryptResult.ciphertext)
 
     val keyMaterial = createMediaKeyMaterial(outerKey)
@@ -426,7 +425,7 @@ class AttachmentCipherTest {
       incrementalDigest = innerEncryptResult.incrementalDigest,
       incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
     )
-    val plaintextOutput = decryptedStream.readFully(autoClose = false)
+    val plaintextOutput = decryptedStream.readFully()
 
     assertThat(plaintextOutput).isEqualTo(plaintextInput)
 
@@ -434,26 +433,56 @@ class AttachmentCipherTest {
   }
 
   @Test
-  fun archiveEncryptDecrypt_decryptFailOnBadMac() {
+  fun archiveThumbnail_encryptDecrypt_manyFileSizes() {
+    for (i in 0..99) {
+      archiveThumbnail_encryptDecrypt(fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
+    }
+  }
+
+  private fun archiveThumbnail_encryptDecrypt(fileSize: Int) {
+    val innerKey = Util.getSecretBytes(64)
+    val plaintextInput = Util.getSecretBytes(fileSize)
+    val innerEncryptResult = encryptData(plaintextInput, innerKey, withIncremental = false)
+
+    val outerKey = Util.getSecretBytes(64)
+    val outerEncryptResult = encryptData(innerEncryptResult.ciphertext, outerKey, withIncremental = false, padded = false) // Server doesn't pad
+    val cipherFile = writeToFile(outerEncryptResult.ciphertext)
+
+    val keyMaterial = createMediaKeyMaterial(outerKey)
+    val decryptedStream = AttachmentCipherInputStream.createForArchivedThumbnail(
+      archivedMediaKeyMaterial = keyMaterial,
+      file = cipherFile,
+      innerCombinedKeyMaterial = innerKey
+    )
+    val plaintextOutput = decryptedStream.readFully()
+
+    // We knowingly keep padding on thumbnails, so for the test to work, we strip the padding off, but check to make sure the sizes match up beforehand
+    assertThat(plaintextOutput.size).isEqualTo(PaddingInputStream.getPaddedSize(plaintextInput.size.toLong()).toInt())
+    assertThat(plaintextOutput.copyOfRange(fromIndex = 0, toIndex = plaintextInput.size)).isEqualTo(plaintextInput)
+
+    cipherFile.delete()
+  }
+
+  @Test
+  fun archiveEncryptDecrypt_decryptFailOnInnerBadMac() {
     var cipherFile: File? = null
     var hitCorrectException = false
 
     try {
       val innerKey = Util.getSecretBytes(64)
-      val badInnerKey = Util.getSecretBytes(64)
       val plaintextInput = Util.getSecretBytes(MEBIBYTE)
 
-      val innerEncryptResult = encryptData(plaintextInput, innerKey, withIncremental = true)
+      val innerEncryptResult = encryptData(plaintextInput, innerKey, withIncremental = true, padded = false) // Server doesn't pad
+      val badMacInnerCipherText = innerEncryptResult.ciphertext.copyOf().also {
+        it[it.size - 1] = (it[it.size - 1] + 1).toByte()
+      }
+
       val outerKey = Util.getSecretBytes(64)
+      val outerEncryptResult = encryptData(badMacInnerCipherText, outerKey, false)
 
-      val outerEncryptResult = encryptData(innerEncryptResult.ciphertext, outerKey, false)
-      val badMacOuterCiphertext = outerEncryptResult.ciphertext.copyOf(outerEncryptResult.ciphertext.size)
+      cipherFile = writeToFile(outerEncryptResult.ciphertext)
 
-      badMacOuterCiphertext[badMacOuterCiphertext.size - 1] = (badMacOuterCiphertext[badMacOuterCiphertext.size - 1] + 1).toByte()
-
-      cipherFile = writeToFile(badMacOuterCiphertext)
-
-      val keyMaterial = createMediaKeyMaterial(badInnerKey)
+      val keyMaterial = createMediaKeyMaterial(innerKey)
 
       AttachmentCipherInputStream.createForArchivedMedia(
         archivedMediaKeyMaterial = keyMaterial,
@@ -464,6 +493,122 @@ class AttachmentCipherTest {
         plaintextHash = innerEncryptResult.digest,
         incrementalDigest = innerEncryptResult.incrementalDigest,
         incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
+      )
+
+      Assert.fail()
+    } catch (e: InvalidMessageException) {
+      hitCorrectException = true
+    } finally {
+      cipherFile?.delete()
+    }
+
+    Assert.assertTrue(hitCorrectException)
+  }
+
+  @Test
+  fun archiveEncryptDecrypt_decryptFailOnOuterMac() {
+    var cipherFile: File? = null
+    var hitCorrectException = false
+
+    try {
+      val innerKey = Util.getSecretBytes(64)
+      val plaintextInput = Util.getSecretBytes(MEBIBYTE)
+
+      val innerEncryptResult = encryptData(plaintextInput, innerKey, withIncremental = true, padded = false) // Server doesn't pad
+      val outerKey = Util.getSecretBytes(64)
+
+      val outerEncryptResult = encryptData(innerEncryptResult.ciphertext, outerKey, false)
+      val badMacOuterCiphertext = outerEncryptResult.ciphertext.copyOf().also {
+        it[it.size - 1] = (it[it.size - 1] + 1).toByte()
+      }
+
+      cipherFile = writeToFile(badMacOuterCiphertext)
+
+      val keyMaterial = createMediaKeyMaterial(innerKey)
+
+      AttachmentCipherInputStream.createForArchivedMedia(
+        archivedMediaKeyMaterial = keyMaterial,
+        file = cipherFile,
+        originalCipherTextLength = innerEncryptResult.ciphertext.size.toLong(),
+        plaintextLength = plaintextInput.size.toLong(),
+        combinedKeyMaterial = innerKey,
+        plaintextHash = innerEncryptResult.digest,
+        incrementalDigest = innerEncryptResult.incrementalDigest,
+        incrementalMacChunkSize = innerEncryptResult.chunkSizeChoice
+      )
+
+      Assert.fail()
+    } catch (e: InvalidMessageException) {
+      hitCorrectException = true
+    } finally {
+      cipherFile?.delete()
+    }
+
+    Assert.assertTrue(hitCorrectException)
+  }
+
+  @Test
+  fun archiveThumbnailEncryptDecrypt_decryptFailOnInnerBadMac() {
+    var cipherFile: File? = null
+    var hitCorrectException = false
+
+    try {
+      val innerKey = Util.getSecretBytes(64)
+      val plaintextInput = Util.getSecretBytes(MEBIBYTE)
+
+      val innerEncryptResult = encryptData(plaintextInput, innerKey, withIncremental = true, padded = false) // Server doesn't pad
+      val badMacInnerCipherText = innerEncryptResult.ciphertext.copyOf().also {
+        it[it.size - 1] = (it[it.size - 1] + 1).toByte()
+      }
+
+      val outerKey = Util.getSecretBytes(64)
+      val outerEncryptResult = encryptData(badMacInnerCipherText, outerKey, false)
+
+      cipherFile = writeToFile(outerEncryptResult.ciphertext)
+
+      val keyMaterial = createMediaKeyMaterial(innerKey)
+
+      AttachmentCipherInputStream.createForArchivedThumbnail(
+        archivedMediaKeyMaterial = keyMaterial,
+        file = cipherFile,
+        innerCombinedKeyMaterial = innerKey
+      ).readFully()
+
+      Assert.fail()
+    } catch (e: InvalidMessageException) {
+      hitCorrectException = true
+    } finally {
+      cipherFile?.delete()
+    }
+
+    Assert.assertTrue(hitCorrectException)
+  }
+
+  @Test
+  fun archiveThumbnailEncryptDecrypt_decryptFailOnOuterMac() {
+    var cipherFile: File? = null
+    var hitCorrectException = false
+
+    try {
+      val innerKey = Util.getSecretBytes(64)
+      val plaintextInput = Util.getSecretBytes(MEBIBYTE)
+
+      val innerEncryptResult = encryptData(plaintextInput, innerKey, withIncremental = true, padded = false) // Server doesn't pad
+      val outerKey = Util.getSecretBytes(64)
+
+      val outerEncryptResult = encryptData(innerEncryptResult.ciphertext, outerKey, false)
+      val badMacOuterCiphertext = outerEncryptResult.ciphertext.copyOf().also {
+        it[it.size - 1] = (it[it.size - 1] + 1).toByte()
+      }
+
+      cipherFile = writeToFile(badMacOuterCiphertext)
+
+      val keyMaterial = createMediaKeyMaterial(innerKey)
+
+      AttachmentCipherInputStream.createForArchivedThumbnail(
+        archivedMediaKeyMaterial = keyMaterial,
+        file = cipherFile,
+        innerCombinedKeyMaterial = innerKey
       )
 
       Assert.fail()

@@ -189,16 +189,9 @@ public class SignalServiceMessageReceiver {
 
     socket.retrieveAttachment(pointer.getCdnNumber(), readCredentialHeaders, pointer.getRemoteId(), archiveDestination, maxSizeBytes, listener);
 
-    long originalCipherLength = pointer.getSize()
-                                       .filter(s -> s > 0)
-                                       .map(s -> AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(s)))
-                                       .orElse(0L);
-
     return AttachmentCipherInputStream.createForArchivedThumbnail(
         archivedMediaKeyMaterial,
         archiveDestination,
-        originalCipherLength,
-        pointer.getSize().orElse(0),
         pointer.getKey()
     );
   }

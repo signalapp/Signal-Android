@@ -131,7 +131,7 @@ private fun BackupsSettingsContent(
         item {
           Column(modifier = Modifier.padding(horizontal = dimensionResource(id = org.signal.core.ui.R.dimen.gutter))) {
             Text(
-              text = "INTERNAL ONLY",
+              text = "ALPHA ONLY",
               style = MaterialTheme.typography.titleMedium
             )
             Text(
