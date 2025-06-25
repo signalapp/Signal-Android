@@ -23,9 +23,12 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessa
 import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
 import java.io.IOException
+import java.util.concurrent.CopyOnWriteArraySet
 import java.util.concurrent.TimeoutException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+
+private typealias Listener = () -> Unit
 
 /**
  * Base wrapper around a [WebSocketConnection] to provide a more developer friend interface to websocket
@@ -54,7 +57,7 @@ sealed class SignalWebSocket(
   protected var disposable: CompositeDisposable = CompositeDisposable()
 
   private val keepAliveTokens: MutableSet<String> = mutableSetOf()
-  var keepAliveChangedListener: (() -> Unit)? = null
+  private val keepAliveChangeListeners: MutableSet<Listener> = CopyOnWriteArraySet()
 
   private var delayedDisconnectThread: DelayedDisconnectThread? = null
 
@@ -123,7 +126,7 @@ sealed class SignalWebSocket(
     }
 
     if (changed) {
-      keepAliveChangedListener?.invoke()
+      keepAliveChangeListeners.forEach { it() }
     }
   }
 
@@ -132,8 +135,12 @@ sealed class SignalWebSocket(
     if (keepAliveTokens.remove(token)) {
       Log.v(TAG, "$connectionName Removing keepAliveToken: $token, remaining: $keepAliveTokens")
       startDelayedDisconnectIfNecessary()
-      keepAliveChangedListener?.invoke()
+      keepAliveChangeListeners.forEach { it() }
     }
+  }
+
+  fun addKeepAliveChangeListener(listener: Listener) {
+    keepAliveChangeListeners.add(listener)
   }
 
   fun request(request: WebSocketRequestMessage): Single<WebsocketResponse> {
