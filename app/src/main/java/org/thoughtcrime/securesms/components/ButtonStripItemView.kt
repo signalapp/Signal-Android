@@ -8,6 +8,7 @@ import android.widget.TextView
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.constraintlayout.widget.ConstraintLayout
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.conversation.AttachmentKeyboardButton
 
 class ButtonStripItemView @JvmOverloads constructor(
   context: Context,
@@ -41,5 +42,11 @@ class ButtonStripItemView @JvmOverloads constructor(
 
   fun setOnIconClickedListener(onIconClickedListener: (() -> Unit)?) {
     iconView.setOnClickListener { onIconClickedListener?.invoke() }
+  }
+
+  /** Fills the icon/label from the given button enum */
+  fun fillFromButton(button: AttachmentKeyboardButton) {
+    iconView.setImageResource(button.iconRes)
+    labelView.setText(button.titleRes)
   }
 }

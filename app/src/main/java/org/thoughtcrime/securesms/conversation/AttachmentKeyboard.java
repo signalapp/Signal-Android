@@ -12,7 +12,6 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -42,9 +41,9 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
 
   private View                            container;
   private AttachmentKeyboardMediaAdapter  mediaAdapter;
-  private AttachmentKeyboardButtonAdapter buttonAdapter;
   private Callback                        callback;
 
+  private AttachmentKeyboardButtonList buttonList;
   private RecyclerView   mediaList;
   private TextView       permissionText;
   private MaterialButton permissionButton;
@@ -69,16 +68,14 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
     this.permissionButton = findViewById(R.id.attachment_keyboard_permission_button);
     this.manageButton     = findViewById(R.id.attachment_keyboard_manage_button);
 
-    RecyclerView buttonList = findViewById(R.id.attachment_keyboard_button_list);
-    buttonList.setItemAnimator(null);
-
     mediaAdapter  = new AttachmentKeyboardMediaAdapter(Glide.with(this), media -> {
       if (callback != null) {
         callback.onAttachmentMediaClicked(media);
       }
     });
 
-    buttonAdapter = new AttachmentKeyboardButtonAdapter(button -> {
+    buttonList = findViewById(R.id.attachment_keyboard_button_list);
+    buttonList.setOnButtonClickedCallback(button -> {
       if (callback != null) {
         callback.onAttachmentSelectorClicked(button);
       }
@@ -95,14 +92,10 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
 
     mediaList.setAdapter(mediaAdapter);
     mediaList.addOnScrollListener(new ScrollListener(manageButton.getMeasuredWidth()));
-    buttonList.setAdapter(buttonAdapter);
-
-    buttonAdapter.registerAdapterDataObserver(new AttachmentButtonCenterHelper(buttonList));
 
     mediaList.setLayoutManager(new GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false));
-    buttonList.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
 
-    buttonAdapter.setButtons(DEFAULT_BUTTONS);
+    buttonList.setButtons(DEFAULT_BUTTONS);
   }
 
   public void setCallback(@NonNull Callback callback) {
@@ -111,9 +104,9 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
 
   public void filterAttachmentKeyboardButtons(@Nullable Predicate<AttachmentKeyboardButton> buttonPredicate) {
     if (buttonPredicate == null) {
-      buttonAdapter.setButtons(DEFAULT_BUTTONS);
+      buttonList.setButtons(DEFAULT_BUTTONS);
     } else {
-      buttonAdapter.setButtons(DEFAULT_BUTTONS.stream().filter(buttonPredicate).collect(Collectors.toList()));
+      buttonList.setButtons(DEFAULT_BUTTONS.stream().filter(buttonPredicate).collect(Collectors.toList()));
     }
   }
 
@@ -163,7 +156,6 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
     } else {
       container.setBackgroundColor(getContext().getResources().getColor(R.color.signal_background_primary));
     }
-    buttonAdapter.setWallpaperEnabled(wallpaperEnabled);
   }
 
   @Override

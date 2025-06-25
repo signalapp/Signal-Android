@@ -45,13 +45,11 @@
             android:visibility="gone"
             app:icon="@drawable/symbol_settings_android_24" />
 
-        <androidx.recyclerview.widget.RecyclerView
+        <org.thoughtcrime.securesms.conversation.AttachmentKeyboardButtonList
             android:id="@+id/attachment_keyboard_button_list"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
