@@ -13,7 +13,6 @@ import org.signal.libsignal.metadata.certificate.CertificateValidator;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -186,7 +185,7 @@ public class SealedSenderAccessUtil {
 
     private static CertificateValidator buildCertificateValidator() {
       try {
-        ECPublicKey unidentifiedSenderTrustRoot = Curve.decodePoint(Base64.decode(BuildConfig.UNIDENTIFIED_SENDER_TRUST_ROOT), 0);
+        ECPublicKey unidentifiedSenderTrustRoot = new ECPublicKey(Base64.decode(BuildConfig.UNIDENTIFIED_SENDER_TRUST_ROOT));
         return new CertificateValidator(unidentifiedSenderTrustRoot);
       } catch (InvalidKeyException | IOException e) {
         throw new AssertionError(e);

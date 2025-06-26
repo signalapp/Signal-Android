@@ -384,7 +384,7 @@ class ArchiveApi(
     val presentation: ByteArray,
     val signedPresentation: ByteArray
   ) {
-    val publicKey: ECPublicKey = privateKey.publicKey()
+    val publicKey: ECPublicKey = privateKey.getPublicKey()
 
     companion object {
       fun from(backupKey: BackupKey, aci: ACI, credential: BackupAuthCredential, backupServerPublicParams: GenericServerPublicParams): CredentialPresentationData {

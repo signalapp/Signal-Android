@@ -20,9 +20,7 @@ package org.thoughtcrime.securesms.crypto;
 import androidx.annotation.NonNull;
 
 import org.signal.core.util.logging.Log;
-import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidKeyIdException;
-import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECKeyPair;
 import org.signal.libsignal.protocol.ecc.ECPrivateKey;
 import org.signal.libsignal.protocol.kem.KEMKeyPair;
@@ -66,7 +64,7 @@ public class PreKeyUtil {
 
     for (int i = 0; i < BATCH_SIZE; i++) {
       int          preKeyId = (startingId + i) % Medium.MAX_VALUE;
-      ECKeyPair    keyPair  = Curve.generateKeyPair();
+      ECKeyPair    keyPair  = ECKeyPair.generate();
       PreKeyRecord record   = new PreKeyRecord(preKeyId, keyPair);
 
       records.add(record);
@@ -155,14 +153,10 @@ public class PreKeyUtil {
   public synchronized static @NonNull SignedPreKeyRecord generateSignedPreKey(int signedPreKeyId, @NonNull ECPrivateKey privateKey) {
     Log.i(TAG, "Generating signed prekeys...");
 
-    try {
-      ECKeyPair keyPair   = Curve.generateKeyPair();
-      byte[]    signature = Curve.calculateSignature(privateKey, keyPair.getPublicKey().serialize());
+    ECKeyPair keyPair   = ECKeyPair.generate();
+    byte[]    signature = privateKey.calculateSignature(keyPair.getPublicKey().serialize());
 
-      return new SignedPreKeyRecord(signedPreKeyId, System.currentTimeMillis(), keyPair, signature);
-    } catch (InvalidKeyException e) {
-      throw new AssertionError(e);
-    }
+    return new SignedPreKeyRecord(signedPreKeyId, System.currentTimeMillis(), keyPair, signature);
   }
 
   public synchronized static void storeSignedPreKey(@NonNull SignalProtocolStore protocolStore, @NonNull PreKeyMetadataStore metadataStore, SignedPreKeyRecord record) {

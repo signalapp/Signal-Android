@@ -88,6 +88,8 @@ message AccountData {
     ChatStyle defaultChatStyle = 18;
     repeated ChatStyle.CustomChatColor customChatColors = 19;
     bool optimizeOnDeviceStorage = 20;
+    // See zkgroup for integer particular values. Unset if backups are not enabled.
+    optional uint64 backupTier = 21;
   }
 
   message SubscriberData {

@@ -13,6 +13,6 @@ import org.signal.libsignal.protocol.kdf.HKDF
 object Crypto {
 
   fun hkdf(inputKeyMaterial: ByteArray, info: ByteArray, outputLength: Int, salt: ByteArray? = null): ByteArray {
-    return HKDF.deriveSecrets(inputKeyMaterial, salt, info, outputLength)
+    return HKDF.deriveSecrets(inputKeyMaterial, salt ?: byteArrayOf(), info, outputLength)
   }
 }

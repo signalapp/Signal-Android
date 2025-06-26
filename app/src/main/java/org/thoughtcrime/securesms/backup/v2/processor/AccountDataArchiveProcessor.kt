@@ -10,8 +10,10 @@ import okio.ByteString.Companion.EMPTY
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.ImportState
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.database.restoreSelfFromBackup
 import org.thoughtcrime.securesms.backup.v2.database.restoreWallpaperAttachment
 import org.thoughtcrime.securesms.backup.v2.proto.AccountData
@@ -104,6 +106,7 @@ object AccountDataArchiveProcessor {
             hasCompletedUsernameOnboarding = signalStore.uiHintValues.hasCompletedUsernameOnboarding(),
             customChatColors = db.chatColorsTable.getSavedChatColors().toRemoteChatColors(),
             optimizeOnDeviceStorage = signalStore.backupValues.optimizeStorage,
+            backupTier = signalStore.backupValues.backupTier.toRemoteBackupTier(),
             defaultChatStyle = ChatStyleConverter.constructRemoteChatStyle(
               db = db,
               chatColors = chatColors,
@@ -212,6 +215,7 @@ object AccountDataArchiveProcessor {
     SignalStore.story.userHasSeenGroupStoryEducationSheet = settings.hasSeenGroupStoryEducationSheet
     SignalStore.story.viewedReceiptsEnabled = settings.storyViewReceiptsEnabled ?: settings.readReceipts
     SignalStore.backup.optimizeStorage = settings.optimizeOnDeviceStorage
+    SignalStore.backup.backupTier = settings.backupTier?.toLocalBackupTier()
 
     settings.customChatColors
       .mapNotNull { chatColor ->
@@ -355,5 +359,21 @@ object AccountDataArchiveProcessor {
           null
         }
       }
+  }
+
+  private fun MessageBackupTier?.toRemoteBackupTier(): Long? {
+    return when (this) {
+      MessageBackupTier.FREE -> BackupLevel.FREE.value.toLong()
+      MessageBackupTier.PAID -> BackupLevel.PAID.value.toLong()
+      null -> null
+    }
+  }
+
+  private fun Long?.toLocalBackupTier(): MessageBackupTier? {
+    return when (this) {
+      BackupLevel.FREE.value.toLong() -> MessageBackupTier.FREE
+      BackupLevel.PAID.value.toLong() -> MessageBackupTier.PAID
+      else -> null
+    }
   }
 }

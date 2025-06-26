@@ -20,7 +20,6 @@ package org.thoughtcrime.securesms.crypto;
 import org.signal.core.util.Conversions;
 import org.signal.libsignal.protocol.InvalidKeyException;
 import org.signal.libsignal.protocol.InvalidMessageException;
-import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECKeyPair;
 import org.signal.libsignal.protocol.ecc.ECPrivateKey;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
@@ -62,20 +61,16 @@ public class AsymmetricMasterCipher {
   }
 
   public byte[] encryptBytes(byte[] body) {
-    try {
-      ECPublicKey  theirPublic        = asymmetricMasterSecret.getDjbPublicKey();
-      ECKeyPair    ourKeyPair         = Curve.generateKeyPair();
-      byte[]       secret             = Curve.calculateAgreement(theirPublic, ourKeyPair.getPrivateKey());
-      MasterCipher masterCipher       = getMasterCipherForSecret(secret);
-      byte[]       encryptedBodyBytes = masterCipher.encryptBytes(body);
+    ECPublicKey  theirPublic        = asymmetricMasterSecret.getDjbPublicKey();
+    ECKeyPair    ourKeyPair         = ECKeyPair.generate();
+    byte[]       secret             = ourKeyPair.getPrivateKey().calculateAgreement(theirPublic);
+    MasterCipher masterCipher       = getMasterCipherForSecret(secret);
+    byte[]       encryptedBodyBytes = masterCipher.encryptBytes(body);
 
-      PublicKey    ourPublicKey       = new PublicKey(31337, ourKeyPair.getPublicKey());
-      byte[]       publicKeyBytes     = ourPublicKey.serialize();
+    PublicKey    ourPublicKey       = new PublicKey(31337, ourKeyPair.getPublicKey());
+    byte[]       publicKeyBytes     = ourPublicKey.serialize();
 
-      return Util.combine(publicKeyBytes, encryptedBodyBytes);
-    } catch (InvalidKeyException e) {
-      throw new AssertionError(e);
-    }
+    return Util.combine(publicKeyBytes, encryptedBodyBytes);
   }
 
   public byte[] decryptBytes(byte[] combined) throws IOException, InvalidMessageException {
@@ -84,7 +79,7 @@ public class AsymmetricMasterCipher {
       PublicKey theirPublicKey = new PublicKey(parts[0], 0);
 
       ECPrivateKey ourPrivateKey = asymmetricMasterSecret.getPrivateKey();
-      byte[]       secret        = Curve.calculateAgreement(theirPublicKey.getKey(), ourPrivateKey);
+      byte[]       secret        = ourPrivateKey.calculateAgreement(theirPublicKey.getKey());
       MasterCipher masterCipher  = getMasterCipherForSecret(secret);
 
       return masterCipher.decryptBytes(parts[1]);

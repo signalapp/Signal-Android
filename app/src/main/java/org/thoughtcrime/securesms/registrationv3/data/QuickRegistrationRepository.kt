@@ -15,7 +15,7 @@ import org.signal.core.util.Base64.decode
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidKeyException
-import org.signal.libsignal.protocol.ecc.Curve
+import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -62,12 +62,13 @@ object QuickRegistrationRepository {
     try {
       val ephemeralId: String? = uri.getQueryParameter("uuid")
       val publicKeyEncoded: String? = uri.getQueryParameter("pub_key")
-      val publicKey = Curve.decodePoint(publicKeyEncoded?.let { decode(it) }, 0)
 
       if (ephemeralId == null || publicKeyEncoded == null) {
         Log.w(TAG, "Invalid link data hasId: ${ephemeralId != null} hasKey: ${publicKeyEncoded != null}")
         return TransferAccountResult.FAILED
       }
+
+      val publicKey = ECPublicKey(decode(publicKeyEncoded))
 
       SignalNetwork
         .provisioning

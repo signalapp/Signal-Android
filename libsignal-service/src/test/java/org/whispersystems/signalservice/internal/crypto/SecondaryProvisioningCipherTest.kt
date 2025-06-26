@@ -12,7 +12,7 @@ import okio.ByteString
 import org.junit.Test
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
-import org.signal.libsignal.protocol.ecc.Curve
+import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.whispersystems.signalservice.internal.push.ProvisionEnvelope
 import org.whispersystems.signalservice.internal.push.ProvisionMessage
@@ -59,7 +59,7 @@ class SecondaryProvisioningCipherTest {
 
   companion object {
     fun generateIdentityKeyPair(): IdentityKeyPair {
-      val djbKeyPair = Curve.generateKeyPair()
+      val djbKeyPair = ECKeyPair.generate()
       val djbIdentityKey = IdentityKey(djbKeyPair.publicKey)
       val djbPrivateKey = djbKeyPair.privateKey
 

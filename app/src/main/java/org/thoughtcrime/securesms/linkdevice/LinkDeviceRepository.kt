@@ -9,7 +9,7 @@ import org.signal.core.util.logging.logD
 import org.signal.core.util.logging.logI
 import org.signal.core.util.logging.logW
 import org.signal.libsignal.protocol.InvalidKeyException
-import org.signal.libsignal.protocol.ecc.Curve
+import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.thoughtcrime.securesms.backup.BackupFileIOError
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -149,7 +149,7 @@ object LinkDeviceRepository {
     val ephemeralId: String = uri.getQueryParameter("uuid") ?: return LinkDeviceResult.BadCode
     val publicKey = try {
       val publicKeyEncoded: String = uri.getQueryParameter("pub_key") ?: return LinkDeviceResult.BadCode
-      Curve.decodePoint(Base64.decode(publicKeyEncoded), 0)
+      ECPublicKey(Base64.decode(publicKeyEncoded))
     } catch (e: InvalidKeyException) {
       return LinkDeviceResult.KeyError
     }

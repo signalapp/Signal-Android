@@ -10,8 +10,9 @@ import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
 import org.signal.core.util.requireNonNullString
 import org.signal.libsignal.protocol.InvalidKeyException
-import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
+import org.signal.libsignal.protocol.ecc.ECPrivateKey
+import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.IOException
@@ -50,8 +51,8 @@ class SignedPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Data
     readableDatabase.query(TABLE_NAME, null, "$ACCOUNT_ID = ? AND $KEY_ID = ?", SqlUtil.buildArgs(serviceId.toAccountId(), keyId), null, null, null).use { cursor ->
       if (cursor.moveToFirst()) {
         try {
-          val publicKey = Curve.decodePoint(Base64.decode(cursor.requireNonNullString(PUBLIC_KEY)), 0)
-          val privateKey = Curve.decodePrivatePoint(Base64.decode(cursor.requireNonNullString(PRIVATE_KEY)))
+          val publicKey = ECPublicKey(Base64.decode(cursor.requireNonNullString(PUBLIC_KEY)))
+          val privateKey = ECPrivateKey(Base64.decode(cursor.requireNonNullString(PRIVATE_KEY)))
           val signature = Base64.decode(cursor.requireNonNullString(SIGNATURE))
           val timestamp = cursor.requireLong(TIMESTAMP)
           return SignedPreKeyRecord(keyId, timestamp, ECKeyPair(publicKey, privateKey), signature)
@@ -72,8 +73,8 @@ class SignedPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Data
       while (cursor.moveToNext()) {
         try {
           val keyId = cursor.requireInt(KEY_ID)
-          val publicKey = Curve.decodePoint(Base64.decode(cursor.requireNonNullString(PUBLIC_KEY)), 0)
-          val privateKey = Curve.decodePrivatePoint(Base64.decode(cursor.requireNonNullString(PRIVATE_KEY)))
+          val publicKey = ECPublicKey(Base64.decode(cursor.requireNonNullString(PUBLIC_KEY)))
+          val privateKey = ECPrivateKey(Base64.decode(cursor.requireNonNullString(PRIVATE_KEY)))
           val signature = Base64.decode(cursor.requireNonNullString(SIGNATURE))
           val timestamp = cursor.requireLong(TIMESTAMP)
           results.add(SignedPreKeyRecord(keyId, timestamp, ECKeyPair(publicKey, privateKey), signature))
