@@ -14,6 +14,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.isAbsent
+import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.roundedString
 import org.signal.core.util.withinTransaction
@@ -46,6 +47,10 @@ import kotlin.time.DurationUnit
  */
 @Stable
 class InternalConversationSettingsFragment : ComposeFragment(), InternalConversationSettingsScreenCallbacks {
+
+  companion object {
+    val TAG = Log.tag(InternalConversationSettingsFragment::class.java)
+  }
 
   private val viewModel: InternalViewModel by viewModels(
     factoryProducer = {
@@ -248,6 +253,21 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
     SignalDatabase.recipients.debugClearProfileData(recipient.id)
 
     Toast.makeText(context, "Done! Split the ACI and profile key off into $aciRecipientId", Toast.LENGTH_SHORT).show()
+  }
+
+  override fun clearSenderKey(recipientId: RecipientId) {
+    val group = SignalDatabase.groups.getGroup(recipientId).orNull()
+    if (group == null) {
+      Log.w(TAG, "Couldn't find group for recipientId: $recipientId")
+      return
+    }
+
+    if (group.distributionId == null) {
+      Log.w(TAG, "No distributionId for recipientId: $recipientId")
+      return
+    }
+
+    SignalDatabase.senderKeyShared.deleteAllFor(group.distributionId)
   }
 
   class InternalViewModel(
