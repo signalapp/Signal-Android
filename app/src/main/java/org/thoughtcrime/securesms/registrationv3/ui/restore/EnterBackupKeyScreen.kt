@@ -66,6 +66,7 @@ import org.whispersystems.signalservice.api.AccountEntropyPool
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun EnterBackupKeyScreen(
+  isDisplayedDuringManualRestore: Boolean,
   backupKey: String,
   inProgress: Boolean,
   isBackupKeyValid: Boolean,
@@ -191,7 +192,8 @@ fun EnterBackupKeyScreen(
             }
             onLearnMore()
           },
-          onSkip = onSkip
+          onSkip = onSkip,
+          showSecondParagraph = isDisplayedDuringManualRestore
         )
       }
     }
@@ -218,7 +220,8 @@ private fun EnterBackupKeyScreenPreview() {
       isBackupKeyValid = true,
       inProgress = false,
       chunkLength = 4,
-      aepValidationError = null
+      aepValidationError = null,
+      isDisplayedDuringManualRestore = true
     ) {}
   }
 }
@@ -232,13 +235,15 @@ private fun EnterBackupKeyScreenErrorPreview() {
       isBackupKeyValid = true,
       inProgress = false,
       chunkLength = 4,
-      aepValidationError = AccountEntropyPoolVerification.AEPValidationError.Invalid
+      aepValidationError = AccountEntropyPoolVerification.AEPValidationError.Invalid,
+      isDisplayedDuringManualRestore = true
     ) {}
   }
 }
 
 @Composable
 private fun NoBackupKeyBottomSheet(
+  showSecondParagraph: Boolean,
   onLearnMore: () -> Unit = {},
   onSkip: () -> Unit = {}
 ) {
@@ -277,13 +282,15 @@ private fun NoBackupKeyBottomSheet(
       color = MaterialTheme.colorScheme.onSurfaceVariant
     )
 
-    Spacer(modifier = Modifier.height(24.dp))
+    if (showSecondParagraph) {
+      Spacer(modifier = Modifier.height(24.dp))
 
-    Text(
-      text = stringResource(R.string.EnterBackupKey_no_key_paragraph_2),
-      style = MaterialTheme.typography.bodyMedium.copy(textAlign = TextAlign.Center),
-      color = MaterialTheme.colorScheme.onSurfaceVariant
-    )
+      Text(
+        text = stringResource(R.string.EnterBackupKey_no_key_paragraph_2),
+        style = MaterialTheme.typography.bodyMedium.copy(textAlign = TextAlign.Center),
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+      )
+    }
 
     Spacer(modifier = Modifier.height(36.dp))
 
@@ -316,6 +323,18 @@ private fun NoBackupKeyBottomSheet(
 @Composable
 private fun NoBackupKeyBottomSheetPreview() {
   Previews.BottomSheetPreview {
-    NoBackupKeyBottomSheet()
+    NoBackupKeyBottomSheet(
+      showSecondParagraph = true
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun NoBackupKeyBottomSheetNoSecondParagraphPreview() {
+  Previews.BottomSheetPreview {
+    NoBackupKeyBottomSheet(
+      showSecondParagraph = false
+    )
   }
 }

@@ -64,6 +64,7 @@ class PostRegistrationEnterBackupKeyFragment : ComposeFragment() {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     EnterBackupKeyScreen(
+      isDisplayedDuringManualRestore = false,
       backupKey = viewModel.backupKey,
       isBackupKeyValid = state.backupKeyValid,
       inProgress = state.inProgress,
