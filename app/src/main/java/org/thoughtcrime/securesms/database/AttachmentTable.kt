@@ -75,6 +75,16 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecret
 import org.thoughtcrime.securesms.crypto.ClassicDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernDecryptingPartInputStream
 import org.thoughtcrime.securesms.crypto.ModernEncryptingPartOutputStream
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.COPY_PENDING
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.FINISHED
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.NONE
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE
+import org.thoughtcrime.securesms.database.AttachmentTable.ArchiveTransferState.UPLOAD_IN_PROGRESS
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_FILE
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.DATA_HASH_END
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.PREUPLOAD_MESSAGE_ID
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.REMOTE_KEY
+import org.thoughtcrime.securesms.database.AttachmentTable.Companion.TRANSFER_PROGRESS_DONE
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.threads
@@ -1227,7 +1237,7 @@ class AttachmentTable(
     val threadId = messages.getThreadIdForMessage(mmsId)
 
     if (!messages.isStory(mmsId)) {
-      threads.updateSnippetUriSilently(threadId, PartAuthority.getAttachmentDataUri(attachmentId))
+      threads.updateSnippetUriSilently(threadId, snippetMessageId = mmsId, attachment = PartAuthority.getAttachmentDataUri(attachmentId))
     }
 
     notifyConversationListeners(threadId)

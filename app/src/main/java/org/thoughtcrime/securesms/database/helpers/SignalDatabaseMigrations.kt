@@ -136,6 +136,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V278_BackupSnapshot
 import org.thoughtcrime.securesms.database.helpers.migration.V279_AddNotificationProfileForeignKey
 import org.thoughtcrime.securesms.database.helpers.migration.V280_RemoveAttachmentIv
 import org.thoughtcrime.securesms.database.helpers.migration.V281_RemoveArchiveTransferFile
+import org.thoughtcrime.securesms.database.helpers.migration.V282_AddSnippetMessageIdColumnToThreadTable
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -277,10 +278,11 @@ object SignalDatabaseMigrations {
     278 to V278_BackupSnapshotTableVersions,
     279 to V279_AddNotificationProfileForeignKey,
     280 to V280_RemoveAttachmentIv,
-    281 to V281_RemoveArchiveTransferFile
+    281 to V281_RemoveArchiveTransferFile,
+    282 to V282_AddSnippetMessageIdColumnToThreadTable
   )
 
-  const val DATABASE_VERSION = 281
+  const val DATABASE_VERSION = 282
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {
