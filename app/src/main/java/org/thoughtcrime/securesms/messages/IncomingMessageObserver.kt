@@ -155,11 +155,11 @@ class IncomingMessageObserver(
 
     AppForegroundObserver.addListener(object : AppForegroundObserver.Listener {
       override fun onForeground() {
-        onAppForegrounded()
+        SignalExecutors.BOUNDED.execute { onAppForegrounded() }
       }
 
       override fun onBackground() {
-        onAppBackgrounded()
+        SignalExecutors.BOUNDED.execute { onAppBackgrounded() }
       }
     })
 
@@ -177,8 +177,10 @@ class IncomingMessageObserver(
       }
 
     authWebSocket.addKeepAliveChangeListener {
-      lock.withLock {
-        connectionNecessarySemaphore.release()
+      SignalExecutors.BOUNDED.execute {
+        lock.withLock {
+          connectionNecessarySemaphore.release()
+        }
       }
     }
   }

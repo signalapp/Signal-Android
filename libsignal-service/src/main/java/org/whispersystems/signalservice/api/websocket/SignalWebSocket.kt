@@ -56,7 +56,7 @@ sealed class SignalWebSocket(
   private val _state: BehaviorSubject<WebSocketConnectionState> = BehaviorSubject.createDefault(WebSocketConnectionState.DISCONNECTED)
   protected var disposable: CompositeDisposable = CompositeDisposable()
 
-  private val keepAliveTokens: MutableSet<String> = mutableSetOf()
+  private val keepAliveTokens: MutableSet<String> = CopyOnWriteArraySet()
   private val keepAliveChangeListeners: MutableSet<Listener> = CopyOnWriteArraySet()
 
   private var delayedDisconnectThread: DelayedDisconnectThread? = null
@@ -100,29 +100,29 @@ sealed class SignalWebSocket(
     }
   }
 
-  @Synchronized
   fun shouldSendKeepAlives(): Boolean {
     return keepAliveTokens.isNotEmpty()
   }
 
-  @Synchronized
   fun registerKeepAliveToken(token: String) {
-    delayedDisconnectThread?.abort()
-    delayedDisconnectThread = null
-
     val changed = keepAliveTokens.add(token)
     if (changed) {
       Log.v(TAG, "$connectionName Adding keepAliveToken: $token, current: $keepAliveTokens")
     }
 
-    if (canConnect.canConnect()) {
-      try {
-        connect()
-      } catch (e: WebSocketUnavailableException) {
-        Log.w(TAG, "$connectionName Keep alive requested, but connection not available", e)
+    synchronized(this) {
+      delayedDisconnectThread?.abort()
+      delayedDisconnectThread = null
+
+      if (canConnect.canConnect()) {
+        try {
+          connect()
+        } catch (e: WebSocketUnavailableException) {
+          Log.w(TAG, "$connectionName Keep alive requested, but connection not available", e)
+        }
+      } else {
+        Log.w(TAG, "$connectionName Keep alive requested, but connection not available")
       }
-    } else {
-      Log.w(TAG, "$connectionName Keep alive requested, but connection not available")
     }
 
     if (changed) {
@@ -130,13 +130,15 @@ sealed class SignalWebSocket(
     }
   }
 
-  @Synchronized
   fun removeKeepAliveToken(token: String) {
     if (keepAliveTokens.remove(token)) {
       Log.v(TAG, "$connectionName Removing keepAliveToken: $token, remaining: $keepAliveTokens")
-      startDelayedDisconnectIfNecessary()
-      keepAliveChangeListeners.forEach { it() }
+      synchronized(this) {
+        startDelayedDisconnectIfNecessary()
+      }
     }
+
+    keepAliveChangeListeners.forEach { it() }
   }
 
   fun addKeepAliveChangeListener(listener: Listener) {
