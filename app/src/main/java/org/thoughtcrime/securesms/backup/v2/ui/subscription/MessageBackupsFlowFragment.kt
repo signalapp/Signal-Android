@@ -171,7 +171,12 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           isNextEnabled = state.isCheckoutButtonEnabled(),
           onMessageBackupsTierSelected = viewModel::onMessageBackupTierUpdated,
           onNavigationClick = viewModel::goToPreviousStage,
-          onReadMoreClicked = {},
+          onReadMoreClicked = {
+            CommunicationActions.openBrowserLink(
+              requireContext(),
+              getString(R.string.backup_support_url)
+            )
+          },
           onNextClicked = viewModel::goToNextStage
         )
       }

@@ -17,7 +17,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,10 +38,11 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withAnnotation
+import androidx.compose.ui.text.withLink
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.persistentListOf
@@ -119,28 +119,26 @@ fun MessageBackupsTypeSelectionScreen(
           val primaryColor = MaterialTheme.colorScheme.primary
           val readMoreString = buildAnnotatedString {
             append(stringResource(id = R.string.MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted))
-
-            val readMore = stringResource(id = R.string.MessageBackupsTypeSelectionScreen__learn_more)
             append(" ")
-            withAnnotation(tag = "URL", annotation = "learn-more") {
+
+            withLink(
+              LinkAnnotation.Clickable(tag = "learn-more") {
+                onReadMoreClicked()
+              }
+            ) {
               withStyle(
                 style = SpanStyle(
                   color = primaryColor
                 )
               ) {
-                append(readMore)
+                append(stringResource(id = R.string.MessageBackupsTypeSelectionScreen__learn_more))
               }
             }
           }
 
-          ClickableText(
+          Text(
             text = readMoreString,
             style = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSurfaceVariant),
-            onClick = { offset ->
-              readMoreString
-                .getStringAnnotations(tag = "URL", start = offset, end = offset)
-                .firstOrNull()?.let { onReadMoreClicked() }
-            },
             modifier = Modifier.padding(top = 8.dp)
           )
         }
