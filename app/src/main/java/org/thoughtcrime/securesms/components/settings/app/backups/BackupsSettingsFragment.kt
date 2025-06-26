@@ -446,14 +446,20 @@ private fun ActiveBackupsRow(
           }
         }
 
+        val lastBackupString = if (lastBackupAt.inWholeMilliseconds > 0) {
+          DateUtils.getDatelessRelativeTimeSpanFormattedDate(
+            LocalContext.current,
+            Locale.getDefault(),
+            lastBackupAt.inWholeMilliseconds
+          ).value
+        } else {
+          stringResource(R.string.RemoteBackupsSettingsFragment__never)
+        }
+
         Text(
           text = stringResource(
             R.string.BackupsSettingsFragment_last_backup_s,
-            DateUtils.getDatelessRelativeTimeSpanFormattedDate(
-              LocalContext.current,
-              Locale.getDefault(),
-              lastBackupAt.inWholeMilliseconds
-            ).value
+            lastBackupString
           ),
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           style = MaterialTheme.typography.bodyMedium
