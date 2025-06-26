@@ -339,6 +339,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
       .putBoolean(KEY_BACKUP_FAIL, true)
       .putLong(KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_TIME, System.currentTimeMillis())
       .putLong(KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_COUNT, 0)
+      .putLong(KEY_BACKUP_FAIL_SHEET_SNOOZE_TIME, System.currentTimeMillis())
       .apply()
   }
 
