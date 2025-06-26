@@ -7724,11 +7724,11 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__body">Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="TurnOnSignalBackups__body">જ્યારે તમે નવો ફોન મેળવો અથવા Signalને ફરીથી ઇન્સ્ટોલ કરો ત્યારે ક્યારેય કોઈ મેસેજ ગુમાવશો નહીં.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
-    <string name="TurnOnSignalBackups__turn_on">Turn on</string>
+    <string name="TurnOnSignalBackups__turn_on">ચાલુ કરો</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
-    <string name="TurnOnSignalBackups__not_now">Not now</string>
+    <string name="TurnOnSignalBackups__not_now">અત્યારે નહીં</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">ફૂલ સ્ક્રીન નોટિફિકેશન ચાલુ કરવા છે?</string>
@@ -7884,7 +7884,7 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">વધુ જાણો</string>
     <!-- Clickable text to enter contact support flow -->
-    <string name="BackupAlertBottomSheet__contact_support">Contact support</string>
+    <string name="BackupAlertBottomSheet__contact_support">સપોર્ટનો સંપર્ક કરો</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
     <!-- Primary action button to open backups management screen -->
@@ -8090,7 +8090,7 @@
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">છેલ્લું બેકઅપ %1$s</string>
     <!-- Subtitle for row for canceled backup -->
-    <string name="BackupsSettingsFragment__subscription_canceled">Subscription canceled</string>
+    <string name="BackupsSettingsFragment__subscription_canceled">સબ્સ્ક્રિપ્શન રદ કર્યું</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signalની સુરક્ષિત, એન્ડ-ટૂ-એન્ડ એન્ક્રિપ્ટેડ સ્ટોરેજ સેવા સાથે ઓટોમેટિક બેકઅપ.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
@@ -8622,7 +8622,7 @@
     <!-- Notification body for when user is out of remote storage -->
     <string name="Notification_youve_reached_your_backup_storage_limit">તમે તમારી બેકઅપ સ્ટોરેજ મર્યાદા સુધી પહોંચી ગયા છો. ચેટ અને મીડિયાનો બેકઅપ લેવાનું ચાલુ રાખવા માટે Signalમાં જગ્યા ખાલી કરો.</string>
     <!-- Notification title for when initial backup failed -->
-    <string name="Notification_backup_failed">Backup failed</string>
+    <string name="Notification_backup_failed">બૅકઅપ નિષ્ફળ</string>
     <!-- Notification body for when initial backup failed -->
     <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->

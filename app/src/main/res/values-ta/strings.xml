@@ -7724,11 +7724,11 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__body">Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="TurnOnSignalBackups__body">புதிய தொலைபேசியைப் பெறும்போது அல்லது சிக்னலை மீண்டும் நிறுவும் போது எந்த செய்தியையும் தவறவிடாதீர்கள்.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
-    <string name="TurnOnSignalBackups__turn_on">Turn on</string>
+    <string name="TurnOnSignalBackups__turn_on">இயக்கு</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
-    <string name="TurnOnSignalBackups__not_now">Not now</string>
+    <string name="TurnOnSignalBackups__not_now">இப்போது வேண்டாம்</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">முழுத் திரை அறிவிப்புகளை இயக்க வேண்டுமா?</string>
@@ -7884,7 +7884,7 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">மேலும் அறிக</string>
     <!-- Clickable text to enter contact support flow -->
-    <string name="BackupAlertBottomSheet__contact_support">Contact support</string>
+    <string name="BackupAlertBottomSheet__contact_support">ஆதரவைத் தொடர்பு கொள்க</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">மீட்டமைப்பதைத் தவிர்</string>
     <!-- Primary action button to open backups management screen -->
@@ -8090,7 +8090,7 @@
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">கடைசி காப்புப்பிரதி %1$s அன்று நடந்தது</string>
     <!-- Subtitle for row for canceled backup -->
-    <string name="BackupsSettingsFragment__subscription_canceled">Subscription canceled</string>
+    <string name="BackupsSettingsFragment__subscription_canceled">சந்தா ரத்துசெய்யப்பட்டது</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">சிக்னலின் பாதுகாப்பான எண்ட்-டு-எண்ட் குறியாக்கம் செய்யப்பட்ட சேமிப்பக சேவையுடன் தானியங்கி காப்புப்பிரதிகள்.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
@@ -8622,7 +8622,7 @@
     <!-- Notification body for when user is out of remote storage -->
     <string name="Notification_youve_reached_your_backup_storage_limit">உங்கள் காப்புப்பிரதி சேமிப்பு வரம்பை அடைந்துவிட்டீர்கள். சாட்ஸ் மற்றும் ஊடகங்களைக் காப்புப்பிரதி எடுக்க சிக்னலில் இடத்தைக் காலியாக்கவும்.</string>
     <!-- Notification title for when initial backup failed -->
-    <string name="Notification_backup_failed">Backup failed</string>
+    <string name="Notification_backup_failed">மறுபிரதி தோல்வியுற்றது</string>
     <!-- Notification body for when initial backup failed -->
     <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->

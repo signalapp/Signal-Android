@@ -7553,11 +7553,11 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__body">Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="TurnOnSignalBackups__body">當你使用新手機或重新安裝 Signal 時，絕不會遺失訊息。</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
-    <string name="TurnOnSignalBackups__turn_on">Turn on</string>
+    <string name="TurnOnSignalBackups__turn_on">開啟</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
-    <string name="TurnOnSignalBackups__not_now">Not now</string>
+    <string name="TurnOnSignalBackups__not_now">現在不要</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">要開啟全螢幕通知？</string>
@@ -7710,7 +7710,7 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">了解更多</string>
     <!-- Clickable text to enter contact support flow -->
-    <string name="BackupAlertBottomSheet__contact_support">Contact support</string>
+    <string name="BackupAlertBottomSheet__contact_support">聯絡支援團隊</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">跳過還原</string>
     <!-- Primary action button to open backups management screen -->
@@ -7913,7 +7913,7 @@
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">上次備份 %1$s</string>
     <!-- Subtitle for row for canceled backup -->
-    <string name="BackupsSettingsFragment__subscription_canceled">Subscription canceled</string>
+    <string name="BackupsSettingsFragment__subscription_canceled">備份定期贊助已取消</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">使用 Signal 的安全端對端加密儲存服務自動備份。</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
@@ -8440,7 +8440,7 @@
     <!-- Notification body for when user is out of remote storage -->
     <string name="Notification_youve_reached_your_backup_storage_limit">已達備份儲存上限。在 Signal 中釋放空間以繼續備份聊天和媒體。</string>
     <!-- Notification title for when initial backup failed -->
-    <string name="Notification_backup_failed">Backup failed</string>
+    <string name="Notification_backup_failed">備份失敗</string>
     <!-- Notification body for when initial backup failed -->
     <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->

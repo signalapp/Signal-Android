@@ -7724,11 +7724,11 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__body">Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="TurnOnSignalBackups__body">Non volverás a perder ningunha mensaxe ao cambiar de móbil ou ao volver a instalar Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
-    <string name="TurnOnSignalBackups__turn_on">Turn on</string>
+    <string name="TurnOnSignalBackups__turn_on">Acender</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
-    <string name="TurnOnSignalBackups__not_now">Not now</string>
+    <string name="TurnOnSignalBackups__not_now">Agora non</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Activar as notificacións de pantalla completa?</string>
@@ -7884,7 +7884,7 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Máis información</string>
     <!-- Clickable text to enter contact support flow -->
-    <string name="BackupAlertBottomSheet__contact_support">Contact support</string>
+    <string name="BackupAlertBottomSheet__contact_support">Contactar co centro de axuda</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">Saltar restauración</string>
     <!-- Primary action button to open backups management screen -->
@@ -8090,7 +8090,7 @@
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Última copia %1$s</string>
     <!-- Subtitle for row for canceled backup -->
-    <string name="BackupsSettingsFragment__subscription_canceled">Subscription canceled</string>
+    <string name="BackupsSettingsFragment__subscription_canceled">Cancelouse a subscrición</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Copias de seguranza automáticas mediante o servizo de almacenamento seguro e cifrado de extremo a extremo de Signal.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
@@ -8622,7 +8622,7 @@
     <!-- Notification body for when user is out of remote storage -->
     <string name="Notification_youve_reached_your_backup_storage_limit">Alcanzaches o límite do teu almacenamento de seguranza. Libera espazo en Signal para seguir gardando conversas e arquivos na copia de seguranza.</string>
     <!-- Notification title for when initial backup failed -->
-    <string name="Notification_backup_failed">Backup failed</string>
+    <string name="Notification_backup_failed">Erro na copia de seguranza</string>
     <!-- Notification body for when initial backup failed -->
     <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->

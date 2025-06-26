@@ -7553,11 +7553,11 @@
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__body">Never lose a message when you get a new phone or reinstall Signal.</string>
+    <string name="TurnOnSignalBackups__body">새 휴대폰을 구매하거나 Signal을 다시 설치하는 경우에도 메시지를 손실할 염려가 없습니다.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
-    <string name="TurnOnSignalBackups__turn_on">Turn on</string>
+    <string name="TurnOnSignalBackups__turn_on">사용</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
-    <string name="TurnOnSignalBackups__not_now">Not now</string>
+    <string name="TurnOnSignalBackups__not_now">나중에</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">전체 화면 알림을 켜시겠습니까?</string>
@@ -7710,7 +7710,7 @@
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">자세히 알아보기</string>
     <!-- Clickable text to enter contact support flow -->
-    <string name="BackupAlertBottomSheet__contact_support">Contact support</string>
+    <string name="BackupAlertBottomSheet__contact_support">지원팀에 문의</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">복원 건너뛰기</string>
     <!-- Primary action button to open backups management screen -->
@@ -7913,7 +7913,7 @@
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">마지막 백업 %1$s</string>
     <!-- Subtitle for row for canceled backup -->
-    <string name="BackupsSettingsFragment__subscription_canceled">Subscription canceled</string>
+    <string name="BackupsSettingsFragment__subscription_canceled">구독을 취소했습니다.</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signal의 안전한 엔드투엔드 암호화 스토리지 서비스를 사용하는 자동 백업.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
@@ -8440,7 +8440,7 @@
     <!-- Notification body for when user is out of remote storage -->
     <string name="Notification_youve_reached_your_backup_storage_limit">백업 저장 용량이 한도에 도달했습니다. 채팅과 미디어를 계속 백업하려면 Signal에 사용 가능한 공간을 확보하세요.</string>
     <!-- Notification title for when initial backup failed -->
-    <string name="Notification_backup_failed">Backup failed</string>
+    <string name="Notification_backup_failed">백업에 실패했습니다.</string>
     <!-- Notification body for when initial backup failed -->
     <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
