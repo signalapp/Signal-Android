@@ -325,7 +325,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
         throw new WebSocketUnavailableException("Invalid auth credentials");
       }
 
-      if (false && RemoteConfig.libSignalWebSocketEnabled()) {
+      if (RemoteConfig.libSignalWebSocketEnabled()) {
         Network network = libSignalNetworkSupplier.get();
         return new LibSignalChatConnection("libsignal-auth",
                                            network,
@@ -361,7 +361,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     SignalWebSocketHealthMonitor healthMonitor = new SignalWebSocketHealthMonitor(sleepTimer);
 
     WebSocketFactory unauthFactory = () -> {
-      if (false && RemoteConfig.libSignalWebSocketEnabled()) {
+      if (RemoteConfig.libSignalWebSocketEnabled()) {
         Network network = libSignalNetworkSupplier.get();
         return new LibSignalChatConnection("libsignal-unauth",
                                            network,
