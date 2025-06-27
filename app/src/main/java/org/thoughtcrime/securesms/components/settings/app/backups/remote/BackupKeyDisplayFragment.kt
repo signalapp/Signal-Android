@@ -38,7 +38,11 @@ class BackupKeyDisplayFragment : ComposeFragment() {
       onRequestSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
       onConfirmSaveToPasswordManager = viewModel::onBackupKeySaveConfirmed,
       onSaveToPasswordManagerComplete = viewModel::onBackupKeySaveCompleted,
-      onNextClick = { findNavController().popBackStack() }
+      onNextClick = { findNavController().popBackStack() },
+      onGoToDeviceSettingsClick = {
+        val intent = BackupKeyCredentialManagerHandler.getCredentialManagerSettingsIntent(requireContext())
+        requireContext().startActivity(intent)
+      }
     )
   }
 }

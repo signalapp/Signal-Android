@@ -5,6 +5,13 @@
 
 package org.thoughtcrime.securesms.components.settings.app.backups.remote
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
+import android.view.autofill.AutofillManager
+import androidx.core.content.getSystemService
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
 
@@ -14,6 +21,37 @@ import org.signal.core.util.logging.logW
 interface BackupKeyCredentialManagerHandler {
   companion object {
     private val TAG = Log.tag(BackupKeyCredentialManagerHandler::class)
+
+    val isCredentialManagerSupported: Boolean = Build.VERSION.SDK_INT >= 19
+
+    /**
+     * Returns an [Intent] that can be used to launch the device's password manager settings.
+     */
+    fun getCredentialManagerSettingsIntent(context: Context): Intent? {
+      if (Build.VERSION.SDK_INT >= 34) {
+        val intent = Intent(
+          Settings.ACTION_CREDENTIAL_PROVIDER,
+          Uri.fromParts("package", context.packageName, null)
+        )
+
+        if (intent.resolveActivity(context.packageManager) != null) {
+          return intent
+        }
+      }
+
+      if (Build.VERSION.SDK_INT >= 26) {
+        val isAutofillSupported = context.getSystemService<AutofillManager>()?.isAutofillSupported() == true
+        if (isAutofillSupported) {
+          val intent = Intent(
+            Settings.ACTION_REQUEST_SET_AUTOFILL_SERVICE,
+            Uri.fromParts("package", context.packageName, null)
+          )
+          return intent.takeIf { it.resolveActivity(context.packageManager) != null }
+        }
+      }
+
+      return null
+    }
   }
 
   /** Updates the [BackupKeySaveState]. Implementers must update their associated state to match [newState]. */
@@ -48,6 +86,11 @@ interface BackupKeyCredentialManagerHandler {
         updateBackupKeySaveState(newState = BackupKeySaveState.Error(result))
       }
 
+      is CredentialManagerError.SavePromptDisabled -> {
+        Log.w(TAG, "Error saving backup key to credential manager: the user has disabled the save prompt.", result.exception)
+        updateBackupKeySaveState(newState = BackupKeySaveState.Error(result))
+      }
+
       is CredentialManagerError.Unexpected -> {
         throw result.exception.logW(TAG, "Unexpected error when saving backup key to credential manager.")
       }
@@ -79,5 +122,9 @@ sealed class CredentialManagerError : CredentialManagerResult {
 
   /** No password manager is configured on the device. */
   data class MissingCredentialManager(override val exception: Exception) : CredentialManagerError()
+
+  /** The user has added this app to the "never save" list in the smart lock for passwords settings. **/
+  data class SavePromptDisabled(override val exception: Exception) : CredentialManagerError()
+
   data class Unexpected(override val exception: Exception) : CredentialManagerError()
 }

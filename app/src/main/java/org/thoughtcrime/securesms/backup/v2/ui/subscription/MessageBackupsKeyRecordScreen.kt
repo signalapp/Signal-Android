@@ -51,6 +51,7 @@ import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.CredentialManagerError
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.CredentialManagerResult
@@ -72,7 +73,8 @@ fun MessageBackupsKeyRecordScreen(
   onRequestSaveToPasswordManager: () -> Unit = {},
   onConfirmSaveToPasswordManager: () -> Unit = {},
   onSaveToPasswordManagerComplete: (CredentialManagerResult) -> Unit = {},
-  onNextClick: () -> Unit = {}
+  onNextClick: () -> Unit = {},
+  onGoToDeviceSettingsClick: () -> Unit = {}
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
   val backupKeyString = remember(backupKey) {
@@ -163,7 +165,7 @@ fun MessageBackupsKeyRecordScreen(
             }
           }
 
-          if (Build.VERSION.SDK_INT >= 24) {
+          if (BackupKeyCredentialManagerHandler.isCredentialManagerSupported) {
             item {
               Buttons.Small(
                 onClick = { onRequestSaveToPasswordManager() }
@@ -220,13 +222,30 @@ fun MessageBackupsKeyRecordScreen(
         }
 
         is BackupKeySaveState.Error -> {
-          if (keySaveState.errorType is CredentialManagerError.MissingCredentialManager) {
-            Dialogs.SimpleMessageDialog(
-              title = stringResource(R.string.MessageBackupsKeyRecordScreen__missing_password_manager_title),
-              message = stringResource(R.string.MessageBackupsKeyRecordScreen__missing_password_manager_message),
-              dismiss = stringResource(android.R.string.ok),
-              onDismiss = { onSaveToPasswordManagerComplete(CredentialManagerResult.UserCanceled) }
-            )
+          when (keySaveState.errorType) {
+            is CredentialManagerError.MissingCredentialManager -> {
+              Dialogs.SimpleAlertDialog(
+                title = stringResource(R.string.MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title),
+                body = stringResource(R.string.MessageBackupsKeyRecordScreen__missing_password_manager_message),
+                confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__go_to_settings),
+                onConfirm = { onGoToDeviceSettingsClick() },
+                dismiss = stringResource(android.R.string.cancel),
+                onDismiss = { onSaveToPasswordManagerComplete(CredentialManagerResult.UserCanceled) }
+              )
+            }
+
+            is CredentialManagerError.SavePromptDisabled -> {
+              Dialogs.SimpleAlertDialog(
+                title = stringResource(R.string.MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title),
+                body = stringResource(R.string.MessageBackupsKeyRecordScreen__missing_password_manager_message),
+                confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__go_to_settings),
+                onConfirm = { onGoToDeviceSettingsClick() },
+                dismiss = stringResource(android.R.string.cancel),
+                onDismiss = { onSaveToPasswordManagerComplete(CredentialManagerResult.UserCanceled) }
+              )
+            }
+
+            is CredentialManagerError.Unexpected -> Unit
           }
         }
 
@@ -269,6 +288,11 @@ private suspend fun saveKeyToCredentialManager(
           e.message?.contains("[28434]") == true -> {
             Log.w(TAG, "Detected MissingCredentialManager error based on CreateCredentialUnknownException message: \"${e.message}\"")
             CredentialManagerError.MissingCredentialManager(e)
+          }
+
+          e.message?.contains("[28435]") == true -> {
+            Log.w(TAG, "CreateCredentialUnknownException: \"${e.message}\"")
+            CredentialManagerError.SavePromptDisabled(e)
           }
 
           else -> CredentialManagerError.Unexpected(e)
