@@ -35,8 +35,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
     ManageStorageState(
       keepMessagesDuration = SignalStore.settings.keepMessagesDuration,
       lengthLimit = if (SignalStore.settings.isTrimByLengthEnabled) SignalStore.settings.threadTrimLength else ManageStorageState.NO_LIMIT,
-      syncTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes(),
-      onDeviceStorageOptimizationState = getOnDeviceStorageOptimizationState()
+      syncTrimDeletes = SignalStore.settings.shouldSyncThreadTrimDeletes()
     )
   )
   val state = store.asStateFlow()
@@ -48,6 +47,12 @@ class ManageStorageSettingsViewModel : ViewModel() {
           .collectLatest { payment ->
             store.update { it.copy(isPaidTierPending = payment.state == InAppPaymentTable.State.PENDING) }
           }
+      }
+
+      viewModelScope.launch {
+        store.update {
+          it.copy(onDeviceStorageOptimizationState = getOnDeviceStorageOptimizationState())
+        }
       }
     }
   }
@@ -109,14 +114,16 @@ class ManageStorageSettingsViewModel : ViewModel() {
   }
 
   fun setOptimizeStorage(enabled: Boolean) {
-    val storageState = getOnDeviceStorageOptimizationState()
-    if (storageState >= OnDeviceStorageOptimizationState.DISABLED) {
-      SignalStore.backup.optimizeStorage = enabled
-      store.update {
-        it.copy(
-          onDeviceStorageOptimizationState = if (enabled) OnDeviceStorageOptimizationState.ENABLED else OnDeviceStorageOptimizationState.DISABLED,
-          storageOptimizationStateChanged = true
-        )
+    viewModelScope.launch {
+      val storageState = getOnDeviceStorageOptimizationState()
+      if (storageState >= OnDeviceStorageOptimizationState.DISABLED) {
+        SignalStore.backup.optimizeStorage = enabled
+        store.update {
+          it.copy(
+            onDeviceStorageOptimizationState = if (enabled) OnDeviceStorageOptimizationState.ENABLED else OnDeviceStorageOptimizationState.DISABLED,
+            storageOptimizationStateChanged = true
+          )
+        }
       }
     }
   }
@@ -125,9 +132,9 @@ class ManageStorageSettingsViewModel : ViewModel() {
     return state.value.lengthLimit == ManageStorageState.NO_LIMIT || (newLimit != ManageStorageState.NO_LIMIT && newLimit < state.value.lengthLimit)
   }
 
-  private fun getOnDeviceStorageOptimizationState(): OnDeviceStorageOptimizationState {
+  private suspend fun getOnDeviceStorageOptimizationState(): OnDeviceStorageOptimizationState {
     return when {
-      !RemoteConfig.messageBackups || !SignalStore.backup.areBackupsEnabled -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
+      !RemoteConfig.messageBackups || !SignalStore.backup.areBackupsEnabled || !AppDependencies.billingApi.isApiAvailable() -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
       SignalStore.backup.backupTier != MessageBackupTier.PAID -> OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER
       SignalStore.backup.optimizeStorage -> OnDeviceStorageOptimizationState.ENABLED
       else -> OnDeviceStorageOptimizationState.DISABLED
@@ -172,7 +179,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
     val lengthLimit: Int,
     val syncTrimDeletes: Boolean,
     val breakdown: MediaTable.StorageBreakdown? = null,
-    val onDeviceStorageOptimizationState: OnDeviceStorageOptimizationState,
+    val onDeviceStorageOptimizationState: OnDeviceStorageOptimizationState = OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE,
     val storageOptimizationStateChanged: Boolean = false,
     val isPaidTierPending: Boolean = false
   ) {
