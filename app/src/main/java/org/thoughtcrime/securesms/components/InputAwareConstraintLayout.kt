@@ -10,6 +10,8 @@ import android.util.AttributeSet
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ViewUtil
 
@@ -22,6 +24,10 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
   attrs: AttributeSet? = null,
   defStyleAttr: Int = 0
 ) : InsetAwareConstraintLayout(context, attrs, defStyleAttr) {
+
+  companion object {
+    private val TAG = Log.tag(InputAwareConstraintLayout::class)
+  }
 
   private var inputId: Int? = null
   private var input: Fragment? = null
@@ -80,13 +86,16 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
   }
 
   fun toggleInput(fragmentCreator: FragmentCreator, imeTarget: EditText, showSoftKeyOnHide: Boolean = wasKeyboardVisibleBeforeToggle) {
+    Log.w(TAG, "yolo InputAwareConstraintLayout.toggleInput")
     if (fragmentCreator.id == inputId) {
+      Log.w(TAG, "yolo InputAwareConstraintLayout.toggleInput - fragmentCreator.id == ${fragmentCreator.id} == inputId")
       if (showSoftKeyOnHide) {
         showSoftkey(imeTarget)
       } else {
         hideInput(resetKeyboardGuideline = true)
       }
     } else {
+      Log.w(TAG, "yolo InputAwareConstraintLayout.toggleInput - the else case")
       wasKeyboardVisibleBeforeToggle = isKeyboardShowing
       hideInput(resetKeyboardGuideline = false)
       showInput(fragmentCreator, imeTarget)
@@ -124,11 +133,13 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
   }
 
   private fun hideInput(resetKeyboardGuideline: Boolean) {
+    Log.w(TAG, "yolo hideInput called ${input.toString()}, resetKeyboardGuideline=$resetKeyboardGuideline")
     val inputHidden = input != null
     input?.let {
       (input as? InputFragment)?.hide()
       fragmentManager
         .beginTransaction()
+        .setCustomAnimations(0, R.anim.fade_out_slowly)
         .remove(it)
         .commit()
     }

@@ -164,15 +164,20 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
       if (!overridingKeyboard) {
         if (!keyboardAnimator.animating) {
           keyboardGuideline?.setGuidelineEnd(keyboardInsets.bottom)
+          Log.w(TAG, "yolo InsetAwareConstraintLayout.applyInsets (keyboardInsets): setting guideline=${keyboardInsets.bottom}")
+          //animateKeyboardGuidelineTo(windowInsets.bottom)
         } else {
+          Log.w(TAG, "yolo InsetAwareConstraintLayout.applyInsets (keyboardInsets/else): ${keyboardInsets.bottom}")
           keyboardAnimator.endingGuidelineEnd = keyboardInsets.bottom
         }
       }
     } else if (!overridingKeyboard) {
       if (!keyboardAnimator.animating) {
         keyboardGuideline?.setGuidelineEnd(windowInsets.bottom)
-        // animateKeyboardGuidelineTo(windowInsets.bottom)
+        Log.w(TAG, "yolo InsetAwareConstraintLayout.applyInsets (windowInsets): setting guideline=${windowInsets.bottom}")
+        //animateKeyboardGuidelineTo(windowInsets.bottom)
       } else {
+        Log.w(TAG, "yolo InsetAwareConstraintLayout.applyInsets (windowInsets/else): ${windowInsets.bottom}")
         keyboardAnimator.endingGuidelineEnd = windowInsets.bottom
       }
     }
@@ -198,6 +203,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   protected fun clearKeyboardGuidelineOverride() {
     overridingKeyboard = false
+    Log.w(TAG, "yolo InsetAwareConstraintLayout.clearKeyboardGuidelineOverride: ${keyboardGuideline.guidelineEnd}")
   }
 
   protected fun resetKeyboardGuideline() {
@@ -207,19 +213,16 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   }
 
   private fun animateKeyboardGuidelineTo(target: Int) {
-    if (keyboardGuideline != null) {
+    if (otherKeyboardAnimator?.isRunning == true) {
       otherKeyboardAnimator?.end()
       otherKeyboardAnimator = null
     }
-    otherKeyboardAnimator = ValueAnimator.ofInt(target, target, keyboardGuideline.guidelineEnd, target, keyboardGuideline.guidelineEnd, target).apply {
-      duration = 10_000
+    Log.w(TAG, "yolo InsetAwareConstraintLayout.ValueAnimator: animating ${keyboardGuideline.guidelineEnd} -> $target")
+    otherKeyboardAnimator = ValueAnimator.ofInt(keyboardGuideline.guidelineEnd, target).apply {
+      duration = 2_500
       addUpdateListener { animation ->
         (animation.animatedValue as? Int)?.let { currentValue ->
           keyboardGuideline?.setGuidelineEnd(currentValue)
-          forceLayout()
-          requestLayout()
-          invalidate()
-          forceLayout()
         }
       }
       start()
@@ -305,6 +308,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
       animating = true
       startingGuidelineEnd = keyboardGuideline.guidelineEnd
+      Log.w(TAG, "yolo InsetAwareConstraintLayout.WindowInsetsAnimationCompat: animating from $startingGuidelineEnd")
     }
 
     override fun onProgress(insets: WindowInsetsCompat, runningAnimations: MutableList<WindowInsetsAnimationCompat>): WindowInsetsCompat {
@@ -324,8 +328,10 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
       }.toInt()
 
       if (growing) {
+        Log.w(TAG, "yolo InsetAwareConstraintLayout.WindowInsetsAnimationCompat: progress ${estimatedKeyboardHeight.coerceAtLeast(startingGuidelineEnd)}")
         keyboardGuideline?.setGuidelineEnd(estimatedKeyboardHeight.coerceAtLeast(startingGuidelineEnd))
       } else {
+        Log.w(TAG, "yolo InsetAwareConstraintLayout.WindowInsetsAnimationCompat: progress ${estimatedKeyboardHeight.coerceAtLeast(endingGuidelineEnd)}")
         keyboardGuideline?.setGuidelineEnd(estimatedKeyboardHeight.coerceAtLeast(endingGuidelineEnd))
       }
 
@@ -338,6 +344,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
       }
 
       keyboardGuideline?.setGuidelineEnd(endingGuidelineEnd)
+      Log.w(TAG, "yolo InsetAwareConstraintLayout.WindowInsetsAnimationCompat: animated to $endingGuidelineEnd")
       animating = false
     }
   }
