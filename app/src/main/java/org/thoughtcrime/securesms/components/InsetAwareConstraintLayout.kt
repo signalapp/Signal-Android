@@ -225,7 +225,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     }
     Log.w(TAG, "yolo InsetAwareConstraintLayout.ValueAnimator: animating ${keyboardGuideline.guidelineEnd} -> $target")
     otherKeyboardAnimator = ValueAnimator.ofInt(keyboardGuideline.guidelineEnd, target).apply {
-      duration = 2_500
+      duration = resources.getInteger(R.integer.fake_keyboard_hide_duration).toLong()
       addUpdateListener { animation ->
         (animation.animatedValue as? Int)?.let { currentValue ->
           keyboardGuideline?.setGuidelineEnd(currentValue)
