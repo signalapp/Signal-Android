@@ -9,4 +9,6 @@
     <integer name="segmentedprogressbar_default_time_per_segment_ms">5000</integer>
 
     <integer name="text_entry_exit_duration">150</integer>
+
+    <integer name="fake_keyboard_hide_duration">300</integer>
 </resources>
