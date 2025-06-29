@@ -218,6 +218,11 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
       otherKeyboardAnimator?.end()
       otherKeyboardAnimator = null
     }
+    if (keyboardAnimator.animating) {
+      // If Android is animating the keyboard in/out, forgo our own animation.
+      keyboardGuideline?.setGuidelineEnd(target)
+      return
+    }
     Log.w(TAG, "yolo InsetAwareConstraintLayout.ValueAnimator: animating ${keyboardGuideline.guidelineEnd} -> $target")
     otherKeyboardAnimator = ValueAnimator.ofInt(keyboardGuideline.guidelineEnd, target).apply {
       duration = 2_500
@@ -307,6 +312,11 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
         return
       }
 
+      if (otherKeyboardAnimator?.isRunning == true) {
+        // Terminate other keyboard guideline animations if they're still running
+        otherKeyboardAnimator?.end()
+        otherKeyboardAnimator = null
+      }
       animating = true
       startingGuidelineEnd = keyboardGuideline.guidelineEnd
       Log.w(TAG, "yolo InsetAwareConstraintLayout.WindowInsetsAnimationCompat: animating from $startingGuidelineEnd")
