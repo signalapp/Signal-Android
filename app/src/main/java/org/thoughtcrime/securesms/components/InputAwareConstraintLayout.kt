@@ -86,16 +86,13 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
   }
 
   fun toggleInput(fragmentCreator: FragmentCreator, imeTarget: EditText, showSoftKeyOnHide: Boolean = wasKeyboardVisibleBeforeToggle) {
-    Log.w(TAG, "yolo InputAwareConstraintLayout.toggleInput")
     if (fragmentCreator.id == inputId) {
-      Log.w(TAG, "yolo InputAwareConstraintLayout.toggleInput - fragmentCreator.id == ${fragmentCreator.id} == inputId")
       if (showSoftKeyOnHide) {
         showSoftkey(imeTarget)
       } else {
         hideInput(resetKeyboardGuideline = true)
       }
     } else {
-      Log.w(TAG, "yolo InputAwareConstraintLayout.toggleInput - the else case")
       wasKeyboardVisibleBeforeToggle = isKeyboardShowing
       hideInput(resetKeyboardGuideline = false)
       showInput(fragmentCreator, imeTarget)
@@ -133,7 +130,7 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
   }
 
   private fun hideInput(resetKeyboardGuideline: Boolean) {
-    Log.w(TAG, "yolo hideInput called ${input.toString()}, resetKeyboardGuideline=$resetKeyboardGuideline")
+    Log.d(TAG, "hideInput: ${input.toString()}, resetKeyboardGuideline=$resetKeyboardGuideline")
     val inputHidden = input != null
     input?.let {
       (input as? InputFragment)?.hide()
