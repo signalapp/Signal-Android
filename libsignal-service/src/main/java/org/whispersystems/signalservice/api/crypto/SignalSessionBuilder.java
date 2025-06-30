@@ -20,9 +20,9 @@ public class SignalSessionBuilder {
     this.builder = builder;
   }
 
-  public void process(PreKeyBundle preKey) throws InvalidKeyException, UntrustedIdentityException {
+  public void process(PreKeyBundle preKey, UsePqRatchet usePqRatchet) throws InvalidKeyException, UntrustedIdentityException {
     try (SignalSessionLock.Lock unused = lock.acquire()) {
-      builder.process(preKey, UsePqRatchet.NO);
+      builder.process(preKey, usePqRatchet);
     }
   }
 }

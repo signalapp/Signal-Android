@@ -142,7 +142,7 @@ object MessageDecryptor {
 
     return try {
       val startTimeNanos = System.nanoTime()
-      val cipherResult: SignalServiceCipherResult? = cipher.decrypt(envelope, serverDeliveredTimestamp)
+      val cipherResult: SignalServiceCipherResult? = cipher.decrypt(envelope, serverDeliveredTimestamp, RemoteConfig.usePqRatchet)
       val endTimeNanos = System.nanoTime()
 
       if (cipherResult == null) {

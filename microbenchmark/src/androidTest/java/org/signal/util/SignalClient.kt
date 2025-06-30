@@ -163,7 +163,7 @@ class SignalClient {
   }
 
   fun decryptMessage(envelope: Envelope) {
-    cipher.decrypt(envelope, System.currentTimeMillis())
+    cipher.decrypt(envelope, System.currentTimeMillis(), UsePqRatchet.NO)
   }
 
   private fun createPreKeyBundle(): PreKeyBundle {

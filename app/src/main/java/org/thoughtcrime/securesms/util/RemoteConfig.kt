@@ -11,6 +11,7 @@ import org.signal.core.util.gibiBytes
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
+import org.signal.libsignal.protocol.UsePqRatchet
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
@@ -1153,6 +1154,16 @@ object RemoteConfig {
     hotSwappable = true,
     durationUnit = DurationUnit.DAYS
   )
+
+  /** Whether or not to use the new post-quantum ratcheting. */
+  @JvmStatic
+  @get:JvmName("usePqRatchet")
+  val usePqRatchet: UsePqRatchet by remoteValue(
+    key = "global.usePqRatchet",
+    hotSwappable = true
+  ) { value ->
+    if (value.asBoolean(false)) UsePqRatchet.YES else UsePqRatchet.NO
+  }
 
   // endregion
 }

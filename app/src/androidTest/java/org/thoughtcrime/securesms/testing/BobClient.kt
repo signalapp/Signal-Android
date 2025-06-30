@@ -6,6 +6,7 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SessionBuilder
 import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.signal.libsignal.protocol.UsePqRatchet
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.groups.state.SenderKeyRecord
 import org.signal.libsignal.protocol.state.IdentityKeyStore
@@ -68,7 +69,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
 
     if (!aciStore.containsSession(getAliceProtocolAddress())) {
       val sessionBuilder = SignalSessionBuilder(sessionLock, SessionBuilder(aciStore, getAliceProtocolAddress()))
-      sessionBuilder.process(getAlicePreKeyBundle())
+      sessionBuilder.process(getAlicePreKeyBundle(), UsePqRatchet.NO)
     }
 
     return cipher.encrypt(getAliceProtocolAddress(), getAliceUnidentifiedAccess(), envelopeContent)
@@ -77,7 +78,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
 
   fun decrypt(envelope: Envelope, serverDeliveredTimestamp: Long) {
     val cipher = SignalServiceCipher(serviceAddress, 1, aciStore, sessionLock, SealedSenderAccessUtil.getCertificateValidator())
-    cipher.decrypt(envelope, serverDeliveredTimestamp)
+    cipher.decrypt(envelope, serverDeliveredTimestamp, UsePqRatchet.NO)
   }
 
   private fun getAliceServiceId(): ServiceId {
