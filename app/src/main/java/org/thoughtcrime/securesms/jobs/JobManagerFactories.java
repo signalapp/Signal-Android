@@ -256,6 +256,8 @@ public final class JobManagerFactories {
       put(SyncSystemContactLinksJob.KEY,               new SyncSystemContactLinksJob.Factory());
       put(MultiDeviceStorySendSyncJob.KEY,             new MultiDeviceStorySendSyncJob.Factory());
       put(ResetSvrGuessCountJob.KEY,                   new ResetSvrGuessCountJob.Factory());
+      put(RetryPendingSendsJob.KEY,                    new RetryPendingSendsJob.Factory());
+      put(RetryPendingSendSecondCheckJob.KEY,          new RetryPendingSendSecondCheckJob.Factory());
       put(ServiceOutageDetectionJob.KEY,               new ServiceOutageDetectionJob.Factory());
       put(StickerDownloadJob.KEY,                      new StickerDownloadJob.Factory());
       put(StickerPackDownloadJob.KEY,                  new StickerPackDownloadJob.Factory());

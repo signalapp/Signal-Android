@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.jobs.CheckServiceReachabilityJob;
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.jobs.FcmRefreshJob;
+import org.thoughtcrime.securesms.jobs.RetryPendingSendsJob;
 import org.thoughtcrime.securesms.jobs.FontDownloaderJob;
 import org.thoughtcrime.securesms.jobs.GroupRingCleanupJob;
 import org.thoughtcrime.securesms.jobs.GroupV2UpdateSelfProfileKeyJob;
@@ -110,7 +111,6 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
-import org.whispersystems.signalservice.api.backup.MediaName;
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 
 import java.io.InterruptedIOException;
@@ -229,6 +229,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
                             .addPostRender(() -> ActiveCallManager.clearNotifications(this))
                             .addPostRender(() -> GroupSendEndorsementInternalNotifier.init())
                             .addPostRender(RestoreOptimizedMediaJob::enqueueIfNecessary)
+                            .addPostRender(RetryPendingSendsJob::enqueueForAll)
                             .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
