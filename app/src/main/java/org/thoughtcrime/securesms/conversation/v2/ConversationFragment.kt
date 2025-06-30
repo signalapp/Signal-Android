@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.v2
 
 import android.Manifest
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.app.ActivityOptions
 import android.app.PendingIntent
@@ -1023,8 +1024,12 @@ class ConversationFragment :
 
     sendEditButton.setOnClickListener { handleSendEditMessage() }
 
-    val attachListener = { _: View ->
+    val attachListener = { v: View ->
       container.toggleInput(AttachmentKeyboardFragmentCreator, composeText)
+      ObjectAnimator.ofFloat(v, "rotation", v.rotation, (v.rotation + 45) % 360).run {
+        setDuration(resources.getInteger(R.integer.fake_keyboard_hide_duration).toLong())
+        start()
+      }
     }
     binding.conversationInputPanel.attachButton.setOnClickListener(attachListener)
     binding.conversationInputPanel.inlineAttachmentButton.setOnClickListener(attachListener)
