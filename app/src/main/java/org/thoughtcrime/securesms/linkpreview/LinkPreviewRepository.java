@@ -64,6 +64,7 @@ import org.whispersystems.signalservice.api.util.OptionalUtil;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
@@ -187,6 +188,17 @@ public class LinkPreviewRepository {
         } else if (response.body() == null) {
           Log.w(TAG, "No response body.");
           callback.accept(Metadata.empty());
+          return;
+        }
+
+        if (MediaUtil.isImageType(response.header("Content-Type"))) {
+          // We've been linked directly to an image.
+          okhttp3.HttpUrl imageUrl = response.request().url();
+          // The best we can do for a title is the filename in the URL itself,
+          // but that's no worse than the body of the message.
+          List<String> requestedUrlPathSegments = imageUrl.pathSegments();
+          String       filename                 = requestedUrlPathSegments.get(requestedUrlPathSegments.size() - 1);
+          callback.accept(new Metadata(Optional.of(filename), Optional.empty(), 0, Optional.of(imageUrl.toString())));
           return;
         }
 
