@@ -149,6 +149,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey.RecipientSearc
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.contactshare.ContactUtil
 import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity
+import org.thoughtcrime.securesms.conversation.AttachmentKeyboard
 import org.thoughtcrime.securesms.conversation.AttachmentKeyboardButton
 import org.thoughtcrime.securesms.conversation.BadDecryptLearnMoreDialog
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
@@ -367,6 +368,7 @@ class ConversationFragment :
   StickerEventListener,
   StickerKeyboardPageFragment.Callback,
   MediaKeyboard.MediaKeyboardListener,
+  AttachmentKeyboard.AttachmentKeyboardListener,
   EmojiSearchFragment.Callback,
   ScheduleMessageTimePickerBottomSheet.ScheduleCallback,
   ScheduleMessageDialogCallback,
@@ -864,6 +866,14 @@ class ConversationFragment :
   override fun onHidden() {
     inputPanel.mediaKeyboardListener.onHidden()
     closeEmojiSearch()
+  }
+
+  override fun onAttachmentKeyboardShown() {
+    inputPanel.rotateAttachButtonsToClose()
+  }
+
+  override fun onAttachmentKeyboardHidden() {
+    inputPanel.rotateAttachButtonsToOpen()
   }
 
   override fun onKeyboardChanged(page: KeyboardPage) {

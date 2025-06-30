@@ -254,4 +254,9 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
     void onAttachmentPermissionsRequested();
     void onDisplayMoreContextMenu(View v, boolean showAbove, boolean showAtStart);
   }
+
+  public interface AttachmentKeyboardListener {
+    void onAttachmentKeyboardShown();
+    void onAttachmentKeyboardHidden();
+  }
 }

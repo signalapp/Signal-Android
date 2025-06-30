@@ -18,6 +18,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.InputAwareConstraintLayout
 import org.thoughtcrime.securesms.conversation.AttachmentKeyboard
 import org.thoughtcrime.securesms.conversation.AttachmentKeyboardButton
 import org.thoughtcrime.securesms.conversation.ManageContextMenu
@@ -27,13 +28,14 @@ import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.permissions.PermissionCompat
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.fragments.findListener
 import java.util.function.Predicate
 
 /**
  * Fragment wrapped version of [AttachmentKeyboard] to help encapsulate logic the view
  * needs from external sources.
  */
-class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_fragment), AttachmentKeyboard.Callback {
+class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_fragment), AttachmentKeyboard.Callback, InputAwareConstraintLayout.InputFragment {
 
   companion object {
     const val RESULT_KEY = "AttachmentKeyboardFragmentResult"
@@ -137,5 +139,13 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
     } else {
       attachmentKeyboardView.filterAttachmentKeyboardButtons(removePaymentFilter)
     }
+  }
+
+  override fun show() {
+    findListener<AttachmentKeyboard.AttachmentKeyboardListener>()?.onAttachmentKeyboardShown();
+  }
+
+  override fun hide() {
+    findListener<AttachmentKeyboard.AttachmentKeyboardListener>()?.onAttachmentKeyboardHidden();
   }
 }
