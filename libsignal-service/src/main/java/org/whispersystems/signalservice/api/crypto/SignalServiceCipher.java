@@ -127,7 +127,7 @@ public class SignalServiceCipher {
         return content.processUnsealedSender(sessionCipher, destination);
       }
     } catch (NoSessionException e) {
-      throw new InvalidSessionException("Session not found.");
+      throw new InvalidSessionException("Session not found: " + destination);
     }
   }
 

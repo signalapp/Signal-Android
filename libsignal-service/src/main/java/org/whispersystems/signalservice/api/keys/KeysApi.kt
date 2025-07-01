@@ -219,16 +219,13 @@ class KeysApi(
           signedPreKeyId = device.getSignedPreKey().keyId
           signedPreKeySignature = device.getSignedPreKey().signature
         } else {
-          Log.w(TAG, "No signed prekey for device! Skipping.")
+          Log.w(TAG, "No signed prekey for device ${device.deviceId}! Skipping.")
           continue
         }
 
         if (device.getPreKey() != null) {
           preKeyId = device.getPreKey().keyId
           preKey = device.getPreKey().publicKey
-        } else {
-          Log.w(TAG, "No prekey for device! Skipping.")
-          continue
         }
 
         if (device.getKyberPreKey() != null) {
@@ -236,7 +233,7 @@ class KeysApi(
           kyberPreKeyId = device.getKyberPreKey().keyId
           kyberPreKeySignature = device.getKyberPreKey().signature
         } else {
-          Log.w(TAG, "No kyber prekey for device! Skipping.")
+          Log.w(TAG, "No kyber prekey for device ${device.deviceId}! Skipping.")
           continue
         }
 
