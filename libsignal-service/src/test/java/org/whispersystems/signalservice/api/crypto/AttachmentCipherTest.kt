@@ -102,7 +102,7 @@ class AttachmentCipherTest {
   }
 
   @Test
-  fun attachment_encryptDecrypt_skipAll_manyFileSizes(){
+  fun attachment_encryptDecrypt_skipAll_manyFileSizes() {
     for (i in 0..99) {
       attachment_encryptDecrypt_skipAll(incremental = false, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
     }
@@ -121,7 +121,7 @@ class AttachmentCipherTest {
       plaintextHash = plaintextHash
     )
     val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
-    while(inputStream.skip(cipherFile.length()) > 0) {
+    while (inputStream.skip(cipherFile.length()) > 0) {
       // Empty body, just skipping
     }
     cipherFile.delete()
