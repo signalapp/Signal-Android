@@ -2232,7 +2232,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         NOTIFIED to 1,
         REACTIONS_LAST_SEEN to System.currentTimeMillis()
       )
-      .where("$ID = ?", id)
+      .where("$ID = ? OR $ORIGINAL_MESSAGE_ID = ? OR $LATEST_REVISION_ID = ?", id, id, id)
       .run()
   }
 
@@ -2708,6 +2708,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     } else {
       contentValues.put(QUOTE_ID, 0)
       contentValues.put(QUOTE_AUTHOR, 0)
+    }
+
+    if (editedMessage != null) {
+      val notified = readableDatabase
+        .select(NOTIFIED)
+        .from(TABLE_NAME)
+        .where(ID_WHERE, editedMessage.id)
+        .run()
+        .readToSingleInt(0)
+
+      contentValues.put(NOTIFIED, notified.toInt())
     }
 
     val (messageId, insertedAttachments) = insertMediaMessage(
@@ -4876,7 +4887,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         AND $STORY_TYPE = 0 
         AND $LATEST_REVISION_ID IS NULL 
         AND (
-          $READ = 0 
+          ($READ = 0 AND ($ORIGINAL_MESSAGE_ID IS NULL OR EXISTS (SELECT 1 FROM $TABLE_NAME AS m WHERE m.$ID = $TABLE_NAME.$ORIGINAL_MESSAGE_ID AND m.$READ = 0)))
           OR $REACTIONS_UNREAD = 1 
           ${if (stickyQuery.isNotEmpty()) "OR ($stickyQuery)" else ""}
           OR ($IS_MISSED_CALL_TYPE_CLAUSE AND EXISTS (SELECT 1 FROM ${CallTable.TABLE_NAME} WHERE ${CallTable.MESSAGE_ID} = $TABLE_NAME.$ID AND ${CallTable.EVENT} = ${CallTable.Event.serialize(CallTable.Event.MISSED)} AND ${CallTable.READ} = 0)) 
