@@ -101,6 +101,32 @@ class AttachmentCipherTest {
     cipherFile.delete()
   }
 
+  @Test
+  fun attachment_encryptDecrypt_skipAll_manyFileSizes(){
+    for (i in 0..99) {
+      attachment_encryptDecrypt_skipAll(incremental = false, fileSize = MEBIBYTE + Random().nextInt(1, 64 * 1024))
+    }
+  }
+
+  private fun attachment_encryptDecrypt_skipAll(incremental: Boolean, fileSize: Int) {
+    val key = Util.getSecretBytes(64)
+    val plaintextInput = Util.getSecretBytes(fileSize)
+    val plaintextHash = MessageDigest.getInstance("SHA-256").digest(plaintextInput)
+
+    val encryptResult = encryptData(plaintextInput, key, incremental)
+    val cipherFile = writeToFile(encryptResult.ciphertext)
+
+    val integrityCheck = IntegrityCheck(
+      encryptedDigest = encryptResult.digest,
+      plaintextHash = plaintextHash
+    )
+    val inputStream = AttachmentCipherInputStream.createForAttachment(cipherFile, plaintextInput.size.toLong(), key, integrityCheck, encryptResult.incrementalDigest, encryptResult.chunkSizeChoice)
+    while(inputStream.skip(cipherFile.length()) > 0) {
+      // Empty body, just skipping
+    }
+    cipherFile.delete()
+  }
+
   private fun attachment_encryptDecrypt_plaintextHash(incremental: Boolean, fileSize: Int) {
     val key = Util.getSecretBytes(64)
     val plaintextInput = Util.getSecretBytes(fileSize)
