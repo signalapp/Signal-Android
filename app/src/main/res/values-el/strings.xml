@@ -7722,7 +7722,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Απόρριψη όλων</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">Ενεργοποίηση των Αντιγράφων ασφαλείας Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Δε θα χάσεις τα μηνύματά σου αν αγοράσεις νέο τηλέφωνο ή επανεγκαταστήσεις το Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8075,13 +8075,13 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Δεν υπάρχουν αντίγραφα ασφαλείας για %1$d ημέρα</item>
+        <item quantity="other">Δεν υπάρχουν αντίγραφα ασφαλείας για %1$d ημέρες</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="one">You haven\'t completed a backup for %1$d day. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="one">Δεν έχεις ολοκληρώσει τη δημιουργία αντιγράφων ασφαλείας για %1$d ημέρα. Για να διασφαλίσεις ότι τα μηνύματα και τα πολυμέσα σου θα διατηρηθούν, δημιούργησε ένα αντίγραφο ασφαλείας τώρα.</item>
+        <item quantity="other">Δεν έχεις ολοκληρώσει τη δημιουργία αντιγράφων ασφαλείας για %1$d ημέρες. Για να διασφαλίσεις ότι τα μηνύματα και τα πολυμέσα σου θα διατηρηθούν, δημιούργησε ένα αντίγραφο ασφαλείας τώρα.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -8525,7 +8525,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Σφάλμα δικτύου κατά την εξαγωγή Αντιγράφων ασφαλείας Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -8624,16 +8624,16 @@
     <!-- Notification title for when initial backup failed -->
     <string name="Notification_backup_failed">Η δημιουργία αντίγραφου ασφαλείας απέτυχε</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">Παρουσιάστηκε σφάλμα και η δημιουργία αντιγράφων ασφαλείας δεν ήταν δυνατό να ολοκληρωθεί. Πάτησε για λεπτομέρειες.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Δεν δημιουργήθηκαν αντίγραφα ασφαλείας για %1$d ημέρα</item>
+        <item quantity="other">Δεν δημιουργήθηκαν αντίγραφα ασφαλείας για %1$d ημέρες</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="one">You haven’t completed a backup for %1$d day. Create a backup now.</item>
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="one">Δεν έχεις ολοκληρώσει τη δημιουργία αντιγράφων ασφαλείας για %1$d ημέρα. Δημιούργησε ένα αντίγραφο ασφαλείας τώρα.</item>
+        <item quantity="other">Δεν έχεις ολοκληρώσει τη δημιουργία αντιγράφων ασφαλείας για %1$d ημέρες. Δημιούργησε ένα αντίγραφο ασφαλείας τώρα.</item>
     </plurals>
 
     <!-- EOF -->

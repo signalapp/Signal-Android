@@ -7722,7 +7722,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">అన్నిటిని తిరస్కరించండి</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">Signal బ్యాకప్‌లను ఆన్ చేయండి</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">మీరు కొత్త ఫోన్ కొనుక్కునప్పుడు లేదా Signal రీ-ఇన్‌స్టాల్ చేసినప్పుడు ఎప్పుడూ ఒక్క సందేశాన్ని కూడా కోల్పోవద్దు.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8075,13 +8075,13 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">%1$d రోజుకు బ్యాకప్ లేదు</item>
+        <item quantity="other">%1$d రోజులకు బ్యాకప్ లేదు</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="one">You haven\'t completed a backup for %1$d day. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="one">మీరు %1$d రోజుకు బ్యాకప్‌ను పూర్తి చేయలేదు. మీ సందేశాలు మరియు మీడియా భద్రపరచబడ్డాయని నిర్ధారించుకోవడానికి, ఇప్పుడే బ్యాకప్‌ను సృష్టించండి.</item>
+        <item quantity="other">మీరు %1$d రోజులకు బ్యాకప్‌ను పూర్తి చేయలేదు. మీ సందేశాలు మరియు మీడియా భద్రపరచబడ్డాయని నిర్ధారించుకోవడానికి, ఇప్పుడే బ్యాకప్‌ను సృష్టించండి.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -8525,7 +8525,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android బ్యాకప్ ఎగుమతి నెట్‌వర్క్ పొరపాటు</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -8624,16 +8624,16 @@
     <!-- Notification title for when initial backup failed -->
     <string name="Notification_backup_failed">ప్రత్యామ్నాయ విఫలమైంది</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">ఒక పొరపాటు సంభవించింది మరియు మీ బ్యాకప్ పూర్తి చేయబడలేదు. వివరాల కోసం తట్టండి.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">%1$d రోజుకు బ్యాకప్ లేదు</item>
+        <item quantity="other">%1$d రోజులకు బ్యాకప్ లేదు</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="one">You haven’t completed a backup for %1$d day. Create a backup now.</item>
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="one">మీరు %1$d రోజుకు బ్యాకప్‌ను పూర్తి చేయలేదు. ఇప్పుడే బ్యాకప్‌ను సృష్టించండి.</item>
+        <item quantity="other">మీరు %1$d రోజులకు బ్యాకప్‌ను పూర్తి చేయలేదు. ఇప్పుడే బ్యాకప్‌ను సృష్టించండి.</item>
     </plurals>
 
     <!-- EOF -->

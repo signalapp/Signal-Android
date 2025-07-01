@@ -8064,7 +8064,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Visus atmesti</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">Įjungti „Signal“ atsargines kopijas</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Nepraraskite nė vienos žinutes įsigiję naują telefoną arba iš naujo įdiegę „Signal“.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8425,17 +8425,17 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="few">No backup for %1$d days</item>
-        <item quantity="many">No backup for %1$d days</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Atsarginė kopija nesukurta %1$d dieną</item>
+        <item quantity="few">Atsarginė kopija nesukurta %1$d dienas</item>
+        <item quantity="many">Atsarginė kopija nesukurta %1$d dienos</item>
+        <item quantity="other">Atsarginė kopija nesukurta %1$d dienų</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="one">You haven\'t completed a backup for %1$d day. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="few">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="many">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="one">Jau %1$d dieną nesukūrėte atsarginės kopijos. Sukurkite atsarginę kopiją dabar, kad jūsų žinutės ir įrašai būtų išsaugoti.</item>
+        <item quantity="few">Jau %1$d dienas nesukūrėte atsarginės kopijos. Sukurkite atsarginę kopiją dabar, kad jūsų žinutės ir įrašai būtų išsaugoti.</item>
+        <item quantity="many">Jau %1$d dienos nesukūrėte atsarginės kopijos. Sukurkite atsarginę kopiją dabar, kad jūsų žinutės ir įrašai būtų išsaugoti.</item>
+        <item quantity="other">Jau %1$d dienų nesukūrėte atsarginės kopijos. Sukurkite atsarginę kopiją dabar, kad jūsų žinutės ir įrašai būtų išsaugoti.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -8889,7 +8889,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">„Signal“ „Android“ atsarginės kopijos eksportavimo tinklo klaida</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -8988,20 +8988,20 @@
     <!-- Notification title for when initial backup failed -->
     <string name="Notification_backup_failed">Atsarginė kopija nepavyko</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">Įvyko klaida ir nepavyko užbaigti atsarginės kopijos. Bakstelėkite peržiūrėti informaciją.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="few">No backup for %1$d days</item>
-        <item quantity="many">No backup for %1$d days</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Atsarginė kopija nesukurta %1$d dieną</item>
+        <item quantity="few">Atsarginė kopija nesukurta %1$d dienas</item>
+        <item quantity="many">Atsarginė kopija nesukurta %1$d dienos</item>
+        <item quantity="other">Atsarginė kopija nesukurta %1$d dienų</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="one">You haven’t completed a backup for %1$d day. Create a backup now.</item>
-        <item quantity="few">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="many">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="one">Nesukūrėte atsarginės kopijos jau %1$d dieną. Kurkite atsarginę kopiją dabar.</item>
+        <item quantity="few">Nesukūrėte atsarginės kopijos jau %1$d dienas. Kurkite atsarginę kopiją dabar.</item>
+        <item quantity="many">Nesukūrėte atsarginės kopijos jau %1$d dienos. Kurkite atsarginę kopiją dabar.</item>
+        <item quantity="other">Nesukūrėte atsarginės kopijos jau %1$d dienų. Kurkite atsarginę kopiją dabar.</item>
     </plurals>
 
     <!-- EOF -->

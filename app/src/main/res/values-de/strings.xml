@@ -7722,9 +7722,9 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Alle ablehnen</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">Signal Backups einschalten</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__body">Verliere keine alten Nachrichten, wenn du ein neues Mobiltelefon hast bzw. Signal erneut installierst.</string>
+    <string name="TurnOnSignalBackups__body">Verliere keine alten Nachrichten, wenn du ein neues Mobiltelefon hast oder Signal erneut installierst.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">Einschalten</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
@@ -8075,13 +8075,13 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Kein Backup seit %1$d Tag</item>
+        <item quantity="other">Kein Backup seit %1$d Tagen</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="one">You haven\'t completed a backup for %1$d day. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="one">Du hast seit %1$d Tag kein Backup mehr durchgeführt. Mach lieber gleich ein Backup, damit deine Nachrichten und Medien sicher sind.</item>
+        <item quantity="other">Du hast seit %1$d Tagen kein Backup mehr durchgeführt. Mach lieber gleich ein Backup, damit deine Nachrichten und Medien sicher sind.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -8525,7 +8525,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup-Export: Netzwerk-Problem</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -8622,18 +8622,18 @@
     <!-- Notification body for when user is out of remote storage -->
     <string name="Notification_youve_reached_your_backup_storage_limit">Dein Speicherplatz für Backups ist aufgebraucht. Mach Platz in Signal, um Chats und Medien weiterhin sichern zu können.</string>
     <!-- Notification title for when initial backup failed -->
-    <string name="Notification_backup_failed">Datensicherung gescheitert</string>
+    <string name="Notification_backup_failed">Backup gescheitert</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">Aufgrund eines Fehlers konnte dein letztes Backup nicht abgeschlossen werden. Für Details antippen.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Kein Backup seit %1$d Tag</item>
+        <item quantity="other">Kein Backup seit %1$d Tagen</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="one">You haven’t completed a backup for %1$d day. Create a backup now.</item>
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="one">Du hast seit %1$d Tag kein Backup mehr durchgeführt. Erstelle jetzt ein Backup.</item>
+        <item quantity="other">Du hast seit %1$d Tagen kein Backup mehr durchgeführt. Erstelle jetzt ein Backup.</item>
     </plurals>
 
     <!-- EOF -->

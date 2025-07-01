@@ -8064,7 +8064,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Отклонить все</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">Включить резервное копирование Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Вы не потеряете ни одно сообщение при покупке нового телефона или переустановке Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8425,17 +8425,17 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="few">No backup for %1$d days</item>
-        <item quantity="many">No backup for %1$d days</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Нет резервного копирования: %1$d день</item>
+        <item quantity="few">Нет резервного копирования: %1$d дня</item>
+        <item quantity="many">Нет резервного копирования: %1$d дней</item>
+        <item quantity="other">Нет резервного копирования: %1$d дня</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="one">You haven\'t completed a backup for %1$d day. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="few">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="many">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="one">Вы не выполняли резервное копирование в течение %1$d дня. Чтобы обеспечить сохранность сообщений и медиафайлов, создайте резервную копию прямо сейчас.</item>
+        <item quantity="few">Вы не выполняли резервное копирование в течение %1$d дней. Чтобы обеспечить сохранность сообщений и медиафайлов, создайте резервную копию прямо сейчас.</item>
+        <item quantity="many">Вы не выполняли резервное копирование в течение %1$d дней. Чтобы обеспечить сохранность сообщений и медиафайлов, создайте резервную копию прямо сейчас.</item>
+        <item quantity="other">Вы не выполняли резервное копирование в течение %1$d дня. Чтобы обеспечить сохранность сообщений и медиафайлов, создайте резервную копию прямо сейчас.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -8889,7 +8889,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Ошибка сетевого экспорта резервной копии Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -8988,20 +8988,20 @@
     <!-- Notification title for when initial backup failed -->
     <string name="Notification_backup_failed">Резервное копирование не удалось</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">Произошла ошибка, резервное копирование не может быть завершено. Показать подробности.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="few">No backup for %1$d days</item>
-        <item quantity="many">No backup for %1$d days</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Нет резервного копирования: %1$d день</item>
+        <item quantity="few">Нет резервного копирования: %1$d дня</item>
+        <item quantity="many">Нет резервного копирования: %1$d дней</item>
+        <item quantity="other">Нет резервного копирования: %1$d дня</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="one">You haven’t completed a backup for %1$d day. Create a backup now.</item>
-        <item quantity="few">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="many">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="one">Вы не выполняли резервное копирование в течение %1$d дня. Создайте резервную копию прямо сейчас.</item>
+        <item quantity="few">Вы не выполняли резервное копирование в течение %1$d дней. Создайте резервную копию прямо сейчас.</item>
+        <item quantity="many">Вы не выполняли резервное копирование в течение %1$d дней. Создайте резервную копию прямо сейчас.</item>
+        <item quantity="other">Вы не выполняли резервное копирование в течение %1$d дня. Создайте резервную копию прямо сейчас.</item>
     </plurals>
 
     <!-- EOF -->

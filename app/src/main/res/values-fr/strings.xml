@@ -7722,7 +7722,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Tout refuser</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">Activez les sauvegardes Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Besoin de changer de téléphone ou de réinstaller Signal ? Vos contenus restent à portée de main.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8075,13 +8075,13 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Aucune sauvegarde effectuée depuis %1$d jour</item>
+        <item quantity="other">Aucune sauvegarde effectuée depuis %1$d jours</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="one">You haven\'t completed a backup for %1$d day. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="one">Vous n\'avez effectué aucune sauvegarde depuis %1$d jour. Pour conserver vos messages et vos médias, créez-en une sans attendre.</item>
+        <item quantity="other">Vous n\'avez effectué aucune sauvegarde depuis %1$d jours. Pour conserver vos messages et vos médias, créez-en une sans attendre.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -8525,7 +8525,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Erreur réseau – Exportation de sauvegarde Signal pour Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -8624,16 +8624,16 @@
     <!-- Notification title for when initial backup failed -->
     <string name="Notification_backup_failed">Échec de la sauvegarde</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">Une erreur nous empêche de terminer la sauvegarde. En savoir plus.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Aucune sauvegarde effectuée depuis %1$d jour</item>
+        <item quantity="other">Aucune sauvegarde effectuée depuis %1$d jours</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="one">You haven’t completed a backup for %1$d day. Create a backup now.</item>
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="one">Vous n\'avez effectué aucune sauvegarde depuis %1$d jour. Créez-en une sans attendre.</item>
+        <item quantity="other">Vous n\'avez effectué aucune sauvegarde depuis %1$d jours. Créez-en une sans attendre.</item>
     </plurals>
 
     <!-- EOF -->

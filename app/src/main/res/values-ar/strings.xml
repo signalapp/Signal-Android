@@ -8406,9 +8406,9 @@
     <string name="PendingParticipantsBottomSheet__deny_all">رفض الكل</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">تفعيل النسخ الاحتياطية لسيجنال</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__body">لا تفقد رسالة عندما تستخدم هاتفًا جديدًا أو تعيد تثبيت سيجنال.</string>
+    <string name="TurnOnSignalBackups__body">لا تُفوِّت رسالة عندما تستخدم هاتفًا جديدًا أو تعيد تثبيت سيجنال.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
     <string name="TurnOnSignalBackups__turn_on">تشغيل</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
@@ -8775,21 +8775,21 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="zero">No backup for %1$d days</item>
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="two">No backup for %1$d days</item>
-        <item quantity="few">No backup for %1$d days</item>
-        <item quantity="many">No backup for %1$d days</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="zero">لم يُجرَ نسخ احتياطي منذ %1$d أيام.</item>
+        <item quantity="one">لم يُجرَ نسخ احتياطي منذ %1$d يوم.</item>
+        <item quantity="two">لم يُجرَ نسخ احتياطي منذ %1$d يومين.</item>
+        <item quantity="few">لم يُجرَ نسخ احتياطي منذ %1$d أيام.</item>
+        <item quantity="many">لم يُجرَ نسخ احتياطي منذ %1$d يومًا.</item>
+        <item quantity="other">لم يُجرَ نسخ احتياطي منذ %1$d يوم.</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="zero">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="one">You haven\'t completed a backup for %1$d day. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="two">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="few">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="many">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="zero">لم تُكمِل نسخة احتياطية منذ %1$d يوم. لضمان الحفاظ على رسائلك ووسائطك، أنشِئ نسخة احتياطية الآن.</item>
+        <item quantity="one">لم تُكمِل نسخة احتياطية منذ %1$d يوم. لضمان الحفاظ على رسائلك ووسائطك، أنشِئ نسخة احتياطية الآن.</item>
+        <item quantity="two">لم تُكمِل نسخة احتياطية منذ %1$d يومين. لضمان الحفاظ على رسائلك ووسائطك، أنشِئ نسخة احتياطية الآن.</item>
+        <item quantity="few">لم تُكمِل نسخة احتياطية منذ %1$d أيام. لضمان الحفاظ على رسائلك ووسائطك، أنشِئ نسخة احتياطية الآن.</item>
+        <item quantity="many">لم تُكمِل نسخة احتياطية منذ %1$d يومًا. لضمان الحفاظ على رسائلك ووسائطك، أنشِئ نسخة احتياطية الآن.</item>
+        <item quantity="other">لم تُكمِل نسخة احتياطية منذ %1$d يوم. لضمان الحفاظ على رسائلك ووسائطك، أنشِئ نسخة احتياطية الآن.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -9253,7 +9253,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">خطأ في الشبكة عند استعادة النسخة الاحتياطية لسيجنال أندرويد</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -9352,24 +9352,24 @@
     <!-- Notification title for when initial backup failed -->
     <string name="Notification_backup_failed">فشل النسخ الاحتياطي</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">حدث خطأ منعَ إكمال عملية النسخ الاحتياطي التي بدأتَ بها. انقر للمزيد من التفاصيل.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="zero">No backup for %1$d days</item>
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="two">No backup for %1$d days</item>
-        <item quantity="few">No backup for %1$d days</item>
-        <item quantity="many">No backup for %1$d days</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="zero">لم يُجرَ نسخ احتياطي منذ %1$d أيام.</item>
+        <item quantity="one">لم يُجرَ نسخ احتياطي منذ %1$d يوم.</item>
+        <item quantity="two">لم يُجرَ نسخ احتياطي منذ %1$d يومين.</item>
+        <item quantity="few">لم يُجرَ نسخ احتياطي منذ %1$d أيام.</item>
+        <item quantity="many">لم يُجرَ نسخ احتياطي منذ %1$d يومًا.</item>
+        <item quantity="other">لم يُجرَ نسخ احتياطي منذ %1$d يوم.</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="zero">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="one">You haven’t completed a backup for %1$d day. Create a backup now.</item>
-        <item quantity="two">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="few">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="many">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="zero">لم تُكمِل نسخة احتياطية منذ %1$d أيام. أنشِئ نسخة احتياطية الآن.</item>
+        <item quantity="one">لم تُكمِل نسخة احتياطية منذ %1$d يوم. أنشِئ نسخة احتياطية الآن.</item>
+        <item quantity="two">لم تُكمِل نسخة احتياطية منذ %1$d يومين. أنشِئ نسخة احتياطية الآن.</item>
+        <item quantity="few">لم تُكمِل نسخة احتياطية منذ %1$d أيام. أنشِئ نسخة احتياطية الآن.</item>
+        <item quantity="many">لم تُكمِل نسخة احتياطية منذ %1$d يومًا. أنشِئ نسخة احتياطية الآن.</item>
+        <item quantity="other">لم تُكمِل نسخة احتياطية منذ %1$d يوم. أنشِئ نسخة احتياطية الآن.</item>
     </plurals>
 
     <!-- EOF -->

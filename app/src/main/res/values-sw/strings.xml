@@ -49,11 +49,11 @@
     <string name="ApplicationMigrationActivity__signal_is_updating">Signal inasasishwa…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bado haujaweka sisitizo.</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">Lemaza ufafanuzi</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hii itafungua kabisa Signal na arifu za ujumbe</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">Bado haujaweka sisitizo!</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">Lemaza ufafanuzi?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">Hii itafungua kabisa Signal na arifu za ujumbe.</string>
     <string name="ApplicationPreferencesActivity_disable">Lemaza</string>
-    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hitilafu kuunganisha kwa mtambo.</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">Hitilafu kuunganisha kwa mtambo!</string>
     <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">Nambari za Siri zinahitajika kwenye kufuli ya usajili. Ili kulemaza Nambari za Siri, tafadhali kwanza lemaza kufuli ya usajili.</string>
     <string name="ApplicationPreferencesActivity_pin_created">PIN imeundwa.</string>
     <string name="ApplicationPreferencesActivity_pin_disabled">PIN imezimwa.</string>
@@ -138,7 +138,7 @@
     <string name="AttachmentManager__cancel">Ghairi</string>
 
     <!-- AttachmentUploadJob -->
-    <string name="AttachmentUploadJob_uploading_media">Media inapakiwa…</string>
+    <string name="AttachmentUploadJob_uploading_media">Picha na video zinapakia…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Video inafinyazwa…</string>
 
     <!-- UploadAttachmentToArchiveJob -->
@@ -7722,7 +7722,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Wakatalie wote</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">Washa Hifadhi Nakala ya Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Usipoteze ujumbe unapopata simu mpya au kusakinisha tena Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8075,13 +8075,13 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Hakuna hifadhi ya siku %1$d</item>
+        <item quantity="other">Hakuna hifadhi ya siku %1$d</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="one">You haven\'t completed a backup for %1$d day. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="one">Hujakamilisha kuhifadhi nakala nakala kwa siku %1$d. Ili kuhakikisha jumbe, picha na video zako zimehifadhiwa, tengeneza hifadhi nakala.</item>
+        <item quantity="other">Hujakamilisha kuhifadhi nakala nakala kwa siku %1$d. Ili kuhakikisha jumbe, picha na video zako zimehifadhiwa, tengeneza hifadhi nakala.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -8525,7 +8525,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Hitilafu ya kimtandao ya Hifadhi ya Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -8624,16 +8624,16 @@
     <!-- Notification title for when initial backup failed -->
     <string name="Notification_backup_failed">Nakala hifadhi haijawekwa</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">Hitilafu imetokea na mchakato wa kuhifadhi nakala yako haukukamilika. Gusa ili upate taarifa zaidi.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Hakuna hifadhi kwa siku %1$d</item>
+        <item quantity="other">Hakuna hifadhi kwa siku %1$d</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="one">You haven’t completed a backup for %1$d day. Create a backup now.</item>
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="one">Hujakamilisha hifadhi kwa siku %1$d. Unda hifadhi sasa.</item>
+        <item quantity="other">Hujakamilisha hifadhi kwa siku %1$d. Unda hifadhi sasa.</item>
     </plurals>
 
     <!-- EOF -->

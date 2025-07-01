@@ -8064,7 +8064,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Zavrni vse</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">Vključite Varnostne kopije Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Nikoli ne izgubite sporočila, ko dobite nov telefon ali ponovno namestite Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8425,17 +8425,17 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="two">No backup for %1$d days</item>
-        <item quantity="few">No backup for %1$d days</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Brez varnostne kopije %1$d dan</item>
+        <item quantity="two">Brez varnostne kopije %1$d dneva</item>
+        <item quantity="few">Brez varnostne kopije %1$d dneve</item>
+        <item quantity="other">Brez varnostne kopije %1$d dni</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="one">You haven\'t completed a backup for %1$d day. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="two">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="few">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="one">Varnostne kopije niste izdelali že %1$d dan. Če želite zagotoviti, da bodo vaša sporočila in mediji ohranjeni, ustvarite varnostno kopijo.</item>
+        <item quantity="two">Varnostne kopije niste izdelali že %1$d dneva. Če želite zagotoviti, da bodo vaša sporočila in mediji ohranjeni, ustvarite varnostno kopijo.</item>
+        <item quantity="few">Varnostne kopije niste izdelali že %1$d dneve. Če želite zagotoviti, da bodo vaša sporočila in mediji ohranjeni, ustvarite varnostno kopijo.</item>
+        <item quantity="other">Varnostne kopije niste izdelali že %1$d dni. Če želite zagotoviti, da bodo vaša sporočila in mediji ohranjeni, ustvarite varnostno kopijo.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -8889,7 +8889,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Napaka omrežja ob izvozu varnostne kopije Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -8988,20 +8988,20 @@
     <!-- Notification title for when initial backup failed -->
     <string name="Notification_backup_failed">Izdelava varnostne kopije ni uspela</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">Zgodila se je napaka in varnostnega kopiranja ni bilo mogoče dokončati. Tapnite za več informacij.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="two">No backup for %1$d days</item>
-        <item quantity="few">No backup for %1$d days</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Brez varnostne kopije %1$d dan</item>
+        <item quantity="two">Brez varnostne kopije %1$d dneva</item>
+        <item quantity="few">Brez varnostne kopije %1$d dneve</item>
+        <item quantity="other">Brez varnostne kopije %1$d dni</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="one">You haven’t completed a backup for %1$d day. Create a backup now.</item>
-        <item quantity="two">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="few">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="one">Varnostne kopije niste izdelali že %1$d dan. Ustvarite varnostno kopijo.</item>
+        <item quantity="two">Varnostne kopije niste izdelali že %1$d dneva. Ustvarite varnostno kopijo.</item>
+        <item quantity="few">Varnostne kopije niste izdelali že %1$d dneve. Ustvarite varnostno kopijo.</item>
+        <item quantity="other">Varnostne kopije niste izdelali že %1$d dni. Ustvarite varnostno kopijo.</item>
     </plurals>
 
     <!-- EOF -->

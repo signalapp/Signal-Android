@@ -8064,7 +8064,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Zamítnout všechny</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">Zapněte zálohování služby Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Už nepřijdete o žádnou zprávu, když si pořídíte nový telefon nebo přeinstalujete aplikaci Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8425,17 +8425,17 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="few">No backup for %1$d days</item>
-        <item quantity="many">No backup for %1$d days</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Žádná záloha po dobu %1$d dne</item>
+        <item quantity="few">Žádná záloha po dobu %1$d dnů</item>
+        <item quantity="many">Žádná záloha po dobu %1$d dnů</item>
+        <item quantity="other">Žádná záloha po dobu %1$d dnů</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="one">You haven\'t completed a backup for %1$d day. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="few">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="many">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="one">Nedokončili jste zálohování po dobu %1$d dne. Pokud chcete mít zachované zprávy a média, vytvořte zálohu nyní.</item>
+        <item quantity="few">Nedokončili jste zálohování po dobu %1$d dnů. Pokud chcete mít zachované zprávy a média, vytvořte zálohu nyní.</item>
+        <item quantity="many">Nedokončili jste zálohování po dobu %1$d dnů. Pokud chcete mít zachované zprávy a média, vytvořte zálohu nyní.</item>
+        <item quantity="other">Nedokončili jste zálohování po dobu %1$d dnů. Pokud chcete mít zachované zprávy a média, vytvořte zálohu nyní.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -8889,7 +8889,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Chyba sítě při exportu zálohy Signal Android</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -8988,20 +8988,20 @@
     <!-- Notification title for when initial backup failed -->
     <string name="Notification_backup_failed">Zálohování se nezdařilo</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">Vyskytla se chyba a vaši zálohu se nepodařilo dokončit. Klepnutím zobrazíte podrobnosti.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="one">No backup for %1$d day</item>
-        <item quantity="few">No backup for %1$d days</item>
-        <item quantity="many">No backup for %1$d days</item>
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="one">Žádná záloha po dobu %1$d dne</item>
+        <item quantity="few">Žádná záloha po dobu %1$d dnů</item>
+        <item quantity="many">Žádná záloha po dobu %1$d dnů</item>
+        <item quantity="other">Žádná záloha po dobu %1$d dnů</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="one">You haven’t completed a backup for %1$d day. Create a backup now.</item>
-        <item quantity="few">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="many">You haven’t completed a backup for %1$d days. Create a backup now.</item>
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="one">Nedokončili jste zálohování po dobu %1$d dne. Vytvořte zálohu nyní.</item>
+        <item quantity="few">Nedokončili jste zálohování po dobu %1$d dnů. Vytvořte zálohu nyní.</item>
+        <item quantity="many">Nedokončili jste zálohování po dobu %1$d dnů. Vytvořte zálohu nyní.</item>
+        <item quantity="other">Nedokončili jste zálohování po dobu %1$d dnů. Vytvořte zálohu nyní.</item>
     </plurals>
 
     <!-- EOF -->

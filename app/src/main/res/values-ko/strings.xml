@@ -7551,11 +7551,11 @@
     <string name="PendingParticipantsBottomSheet__deny_all">모두 거부</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">Signal 백업 켜기</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">새 휴대폰을 구매하거나 Signal을 다시 설치하는 경우에도 메시지를 손실할 염려가 없습니다.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
-    <string name="TurnOnSignalBackups__turn_on">사용</string>
+    <string name="TurnOnSignalBackups__turn_on">켜기</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">나중에</string>
 
@@ -7900,11 +7900,11 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="other">%1$d일 동안 백업 없음</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="other">%1$d일 동안 백업을 만들지 않았습니다. 메시지와 미디어가 보존될 수 있도록 지금 백업을 만드세요.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -8343,7 +8343,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android 백업 내보내기 네트워크 오류</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -8442,14 +8442,14 @@
     <!-- Notification title for when initial backup failed -->
     <string name="Notification_backup_failed">백업에 실패했습니다.</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">오류가 발생하여 백업을 완료하지 못했습니다. 탭하여 자세한 내용을 확인하세요.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="other">%1$d일 동안 백업 없음</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="other">%1$d일 동안 백업을 완료하지 않았습니다. 지금 백업을 만드세요.</item>
     </plurals>
 
     <!-- EOF -->

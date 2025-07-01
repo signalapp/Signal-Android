@@ -7551,7 +7551,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Баарын четке кагуу</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Backups</string>
+    <string name="TurnOnSignalBackups__title">Signal\'дын камдык көчүрмөлөрүн иштетүү</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Алардын баарын жаңы телефонуңузга же жаңы Signal\'га өткөрүп аласыз.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7900,11 +7900,11 @@
     <!-- NoManualBackupBottomSheet -->
     <!-- Title for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="other">%1$d күндөн бери эч нерсе сактала элек</item>
     </plurals>
     <!-- Body for bottom sheet, placeholder is number of days. -->
     <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
-        <item quantity="other">You haven\'t completed a backup for %1$d days. To ensure your messages and media are preserved, create a backup now.</item>
+        <item quantity="other">%1$d күндөн бери бир да камдык көчүрмө сактала элек. Билдирүүлөрүңүз менен медиа файлдарыңызды жоготуп албаш үчүн алардын камдык көчүрмөлөрүн сактап коюңуз.</item>
     </plurals>
 
     <!-- BackupsSettingsFragment -->
@@ -8343,7 +8343,7 @@
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
-    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android түзмөгүндөгү камдык көчүрмөнү калыбына келтирүүдө ката кетти</string>
     <!-- Email filter when contacting support on a create backup failure -->
   <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
@@ -8442,14 +8442,14 @@
     <!-- Notification title for when initial backup failed -->
     <string name="Notification_backup_failed">Камдык көчүрмө сакталган жок</string>
     <!-- Notification body for when initial backup failed -->
-    <string name="Notification_an_error_occurred_and_your_backup">An error occurred and your backup could not be completed. Tap for details.</string>
+    <string name="Notification_an_error_occurred_and_your_backup">Ката кетти. Көбүрөөк билүү үчүн басып коюңуз.</string>
     <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_no_backup_for_d_days">
-        <item quantity="other">No backup for %1$d days</item>
+        <item quantity="other">%1$d күндөн бери эч нерсе сактала элек</item>
     </plurals>
     <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
     <plurals name="Notification_you_have_not_completed_a_backup">
-        <item quantity="other">You haven’t completed a backup for %1$d days. Create a backup now.</item>
+        <item quantity="other">%1$d күндөн бери бир да камдык көчүрмө сактала элек. Азыр сактаңыз.</item>
     </plurals>
 
     <!-- EOF -->
