@@ -414,7 +414,7 @@ open class V2ConversationItemTextOnlyViewHolder<Model : MappingModel<Model>>(
       linkifyMessageBody(styledText)
     }
 
-    styledText = SearchUtil.getHighlightedSpan(Locale.getDefault(), STYLE_FACTORY, styledText, conversationContext.searchQuery, SearchUtil.STRICT)
+    styledText = SearchUtil.getHighlightedSpan(Locale.getDefault(), STYLE_FACTORY, styledText, conversationContext.searchQuery, SearchUtil.MATCH_ALL)
     if (record.hasExtraText()) {
       binding.body.setOverflowText(getLongMessageSpan())
     } else {
