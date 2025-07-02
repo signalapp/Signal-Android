@@ -1027,10 +1027,10 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("libSignalWebSocketEnabled")
   val libSignalWebSocketEnabled: Boolean by remoteValue(
-    key = "android.libsignalWebSocketEnabled.5",
+    key = "android.libsignalWebSocketEnabled.7",
     hotSwappable = false
   ) { value ->
-    value.asBoolean(false)
+    value.asBoolean(false) || Environment.IS_NIGHTLY
   }
 
   @JvmStatic
