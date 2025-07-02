@@ -20,6 +20,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
+import org.thoughtcrime.securesms.backup.v2.RestoreTimestampResult
 import org.thoughtcrime.securesms.backup.v2.RestoreV2Event
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.keyvalue.Completed
@@ -54,22 +55,28 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
   fun reload() {
     viewModelScope.launch(Dispatchers.IO) {
       store.update { it.copy(loadState = ScreenState.LoadState.LOADING, loadAttempts = it.loadAttempts + 1) }
-      val tier: MessageBackupTier? = BackupRepository.restoreBackupTier(SignalStore.account.requireAci())
+      val result = BackupRepository.restoreBackupFileTimestamp()
       store.update {
-        if (tier != null && SignalStore.backup.lastBackupTime > 0) {
-          it.copy(
-            loadState = ScreenState.LoadState.LOADED,
-            backupTier = SignalStore.backup.backupTier,
-            backupTime = SignalStore.backup.lastBackupTime,
-            backupSize = SignalStore.registration.restoreBackupMediaSize.bytes
-          )
-        } else {
-          if (SignalStore.backup.isBackupTierRestored || SignalStore.backup.lastBackupTime == 0L) {
+        when (result) {
+          is RestoreTimestampResult.Success -> {
+            it.copy(
+              loadState = ScreenState.LoadState.LOADED,
+              backupTier = SignalStore.backup.backupTier,
+              backupTime = SignalStore.backup.lastBackupTime,
+              backupSize = SignalStore.registration.restoreBackupMediaSize.bytes
+            )
+          }
+
+          is RestoreTimestampResult.NotFound -> {
             it.copy(loadState = ScreenState.LoadState.NOT_FOUND)
-          } else if (it.loadState == ScreenState.LoadState.LOADING) {
-            it.copy(loadState = ScreenState.LoadState.FAILURE)
-          } else {
-            it
+          }
+
+          else -> {
+            if (it.loadState == ScreenState.LoadState.LOADING) {
+              it.copy(loadState = ScreenState.LoadState.FAILURE)
+            } else {
+              it
+            }
           }
         }
       }

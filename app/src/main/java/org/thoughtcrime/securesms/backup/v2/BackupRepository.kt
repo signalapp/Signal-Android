@@ -1324,17 +1324,16 @@ object BackupRepository {
       }
   }
 
-  fun getBackupFileLastModified(): NetworkResult<ZonedDateTime?> {
+  fun getBackupFileLastModified(): NetworkResult<ZonedDateTime> {
     return initBackupAndFetchAuth()
       .then { credential ->
         SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), credential.messageBackupAccess)
       }
-      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn ?: Cdn.CDN_3.cdnNumber).map { it.headers to info } }
+      .then { info -> getCdnReadCredentials(CredentialType.MESSAGE, info.cdn ?: RemoteConfig.backupFallbackArchiveCdn).map { it.headers to info } }
       .then { pair ->
         val (cdnCredentials, info) = pair
-        val messageReceiver = AppDependencies.signalServiceMessageReceiver
         NetworkResult.fromFetch {
-          messageReceiver.getCdnLastModifiedTime(info.cdn!!, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
+          AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(info.cdn!!, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
         }
       }
   }
@@ -1516,48 +1515,29 @@ object BackupRepository {
       .also { Log.i(TAG, "getCdnReadCredentialsResult: ${it::class.simpleName}") }
   }
 
-  fun restoreBackupTier(aci: ACI): MessageBackupTier? {
-    val tierResult = getBackupTier(aci)
+  fun restoreBackupFileTimestamp(): RestoreTimestampResult {
+    val timestampResult: NetworkResult<ZonedDateTime> = getBackupFileLastModified()
+
     when {
-      tierResult is NetworkResult.Success -> {
-        SignalStore.backup.backupTier = tierResult.result
-        Log.d(TAG, "Backup tier restored: ${SignalStore.backup.backupTier}")
+      timestampResult is NetworkResult.Success -> {
+        SignalStore.backup.lastBackupTime = timestampResult.result.toMillis()
+        SignalStore.backup.isBackupTimestampRestored = true
+        SignalStore.uiHints.markHasEverEnabledRemoteBackups()
+        return RestoreTimestampResult.Success(SignalStore.backup.lastBackupTime)
       }
 
-      tierResult is NetworkResult.StatusCodeError && tierResult.code == 404 -> {
-        Log.i(TAG, "Backups not enabled")
-        SignalStore.backup.backupTier = null
+      timestampResult is NetworkResult.StatusCodeError && timestampResult.code == 404 -> {
+        Log.i(TAG, "No backup file exists")
+        SignalStore.backup.lastBackupTime = 0L
+        SignalStore.backup.isBackupTimestampRestored = true
+        return RestoreTimestampResult.NotFound
       }
 
       else -> {
-        Log.w(TAG, "Could not retrieve backup tier.", tierResult.getCause())
-        return SignalStore.backup.backupTier
+        Log.w(TAG, "Could not check for backup file.", timestampResult.getCause())
+        return RestoreTimestampResult.Failure
       }
     }
-
-    SignalStore.backup.isBackupTierRestored = true
-
-    if (SignalStore.backup.backupTier != null) {
-      val timestampResult = getBackupFileLastModified()
-      when {
-        timestampResult is NetworkResult.Success -> {
-          SignalStore.backup.lastBackupTime = timestampResult.result?.toMillis() ?: 0L
-        }
-
-        timestampResult is NetworkResult.StatusCodeError && timestampResult.code == 404 -> {
-          Log.i(TAG, "No backup file exists")
-          SignalStore.backup.lastBackupTime = 0L
-        }
-
-        else -> {
-          Log.w(TAG, "Could not check for backup file.", timestampResult.getCause())
-        }
-      }
-
-      SignalStore.uiHints.markHasEverEnabledRemoteBackups()
-    }
-
-    return SignalStore.backup.backupTier
   }
 
   fun verifyBackupKeyAssociatedWithAccount(aci: ACI, aep: AccountEntropyPool): MessageBackupTier? {
@@ -1942,6 +1922,12 @@ sealed interface RemoteRestoreResult {
   data object NetworkError : RemoteRestoreResult
   data object Canceled : RemoteRestoreResult
   data object Failure : RemoteRestoreResult
+}
+
+sealed interface RestoreTimestampResult {
+  data class Success(val timestamp: Long) : RestoreTimestampResult
+  data object NotFound : RestoreTimestampResult
+  data object Failure : RestoreTimestampResult
 }
 
 /**

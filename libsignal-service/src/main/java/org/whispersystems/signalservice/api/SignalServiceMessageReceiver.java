@@ -200,8 +200,7 @@ public class SignalServiceMessageReceiver {
     socket.retrieveBackup(cdnNumber, headers, cdnPath, destination, 1_000_000_000L, listener);
   }
 
-  @Nullable
-  public ZonedDateTime getCdnLastModifiedTime(int cdnNumber, Map<String, String> headers, String cdnPath) throws MissingConfigurationException, IOException {
+  public @Nonnull ZonedDateTime getCdnLastModifiedTime(int cdnNumber, Map<String, String> headers, String cdnPath) throws MissingConfigurationException, IOException {
     return socket.getCdnLastModifiedTime(cdnNumber, headers, cdnPath);
   }
 

@@ -40,7 +40,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_BACKUP_LAST_PROTO_SIZE = "backup.lastProtoSize"
     private const val KEY_BACKUP_TIER = "backup.backupTier"
     private const val KEY_BACKUP_TIER_INTERNAL_OVERRIDE = "backup.backupTier.internalOverride"
-    private const val KEY_BACKUP_TIER_RESTORED = "backup.backupTierRestored"
+    private const val KEY_BACKUP_TIMESTAMP_RESTORED = "backup.backupTimeRestored"
     private const val KEY_LATEST_BACKUP_TIER = "backup.latestBackupTier"
     private const val KEY_LAST_CHECK_IN_MILLIS = "backup.lastCheckInMilliseconds"
     private const val KEY_LAST_CHECK_IN_SNOOZE_MILLIS = "backup.lastCheckInSnoozeMilliseconds"
@@ -215,7 +215,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         store.beginWrite()
           .putLong(KEY_BACKUP_TIER, serializedValue)
           .putLong(KEY_LATEST_BACKUP_TIER, serializedValue)
-          .putBoolean(KEY_BACKUP_TIER_RESTORED, true)
+          .putBoolean(KEY_BACKUP_TIMESTAMP_RESTORED, true)
           .apply()
 
         deletionState = DeletionState.NONE
@@ -227,7 +227,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   /** An internal setting that can override the backup tier for a user. */
   var backupTierInternalOverride: MessageBackupTier? by enumValue(KEY_BACKUP_TIER_INTERNAL_OVERRIDE, null, MessageBackupTier.Serializer).withPrecondition { RemoteConfig.internalUser }
 
-  var isBackupTierRestored: Boolean by booleanValue(KEY_BACKUP_TIER_RESTORED, false)
+  /** Set to true if we successfully restored a backup file timestamp or didn't find a file at all so a "no timestamp" value is restored. */
+  var isBackupTimestampRestored: Boolean by booleanValue(KEY_BACKUP_TIMESTAMP_RESTORED, false)
 
   /**
    * When uploading a backup, we store the progress state here so that it can remain across app restarts.

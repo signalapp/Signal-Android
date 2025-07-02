@@ -27,11 +27,9 @@ import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.RestoreTimestampResult
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.MultiDeviceProfileContentUpdateJob
-import org.thoughtcrime.securesms.jobs.MultiDeviceProfileKeyUpdateJob
-import org.thoughtcrime.securesms.jobs.ProfileUploadJob
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.keyvalue.NewAccount
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -71,7 +69,6 @@ import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequ
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult.TokenNotAccepted
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult.UnknownError
 import org.thoughtcrime.securesms.registration.ui.toE164
-import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
 import org.thoughtcrime.securesms.registrationv3.ui.restore.StorageServiceRestore
@@ -916,24 +913,27 @@ class RegistrationViewModel : ViewModel() {
     }
 
     if (SignalStore.account.restoredAccountEntropyPool) {
-      Log.d(TAG, "Restoring backup tier")
+      Log.d(TAG, "Restoring backup timestamp")
       var tries = 0
-      while (tries < 3 && !SignalStore.backup.isBackupTierRestored) {
+      while (tries < 3) {
         if (tries > 0) {
           delay(1.seconds)
         }
-        BackupRepository.restoreBackupTier(SignalStore.account.requireAci())
+        if (BackupRepository.restoreBackupFileTimestamp() !is RestoreTimestampResult.Failure) {
+          break
+        }
         tries++
       }
     }
 
     refreshRemoteConfig()
 
-    val checkpoint = if (SignalStore.registration.restoreDecisionState.isDecisionPending &&
+    val checkpoint = if (
+      SignalStore.registration.restoreDecisionState.isDecisionPending &&
       SignalStore.registration.restoreDecisionState.isWantingManualRemoteRestore &&
-      (!SignalStore.backup.isBackupTierRestored || SignalStore.backup.lastBackupTime == 0L)
+      SignalStore.backup.lastBackupTime == 0L
     ) {
-      RegistrationCheckpoint.BACKUP_TIER_NOT_RESTORED
+      RegistrationCheckpoint.BACKUP_TIMESTAMP_NOT_RESTORED
     } else {
       RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE
     }
@@ -963,19 +963,19 @@ class RegistrationViewModel : ViewModel() {
     }
   }
 
-  fun restoreBackupTier() {
+  fun checkForBackupFile() {
     store.update {
       it.copy(inProgress = true, registrationCheckpoint = RegistrationCheckpoint.SERVICE_REGISTRATION_COMPLETED)
     }
 
-    viewModelScope.launch {
+    viewModelScope.launch(Dispatchers.IO) {
       val start = System.currentTimeMillis()
-      val tierUnknown = BackupRepository.restoreBackupTier(SignalStore.account.requireAci()) == null
+      val result = BackupRepository.restoreBackupFileTimestamp()
       delay(max(0L, 500L - (System.currentTimeMillis() - start)))
 
-      if (tierUnknown || SignalStore.backup.lastBackupTime == 0L) {
+      if (result !is RestoreTimestampResult.Success) {
         store.update {
-          it.copy(registrationCheckpoint = RegistrationCheckpoint.BACKUP_TIER_NOT_RESTORED)
+          it.copy(registrationCheckpoint = RegistrationCheckpoint.BACKUP_TIMESTAMP_NOT_RESTORED)
         }
       } else {
         store.update {
@@ -983,11 +983,6 @@ class RegistrationViewModel : ViewModel() {
         }
       }
     }
-  }
-
-  fun completeRegistration() {
-    AppDependencies.jobManager.startChain(ProfileUploadJob()).then(listOf(MultiDeviceProfileKeyUpdateJob(), MultiDeviceProfileContentUpdateJob())).enqueue()
-    RegistrationUtil.maybeMarkRegistrationComplete()
   }
 
   fun networkErrorShown() {
