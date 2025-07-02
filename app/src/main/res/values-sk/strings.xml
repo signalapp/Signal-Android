@@ -1572,6 +1572,8 @@
     <string name="RemoteRestoreActivity__update_signal">Aktualizovať Signal</string>
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Teraz nie</string>
+    <!-- Text shown on restore screen as information on what will happen if you skip -->
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">If you choose not to restore now, you won\'t be able to restore later. Your media will restore in the background.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozorni ma na Spomenutia</string>
@@ -8716,10 +8718,14 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Záložný kľúč ukladajte iba do takého správcu hesiel, ktorému dôverujete, že je bezpečný. Signal neposkytuje odporúčania, ktorý správca hesiel je pre vás ten správny.</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Uložené do správcu hesiel</string>
-    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Nedá sa uložiť do správcu hesiel</string>
+    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Can\'t save to password manager</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Nemáte nastaveného správcu hesiel alebo správca hesiel, ktorého používate, nie je podporovaný.</string>
+    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
+    <!-- Label for a button that navigates to the device settings -->
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Go to settings</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Ďalej</string>
     <!-- Bottom sheet title -->

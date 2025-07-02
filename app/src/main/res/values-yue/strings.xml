@@ -1452,6 +1452,8 @@
     <string name="RemoteRestoreActivity__update_signal">更新 Signal</string>
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">遲啲先啦</string>
+    <!-- Text shown on restore screen as information on what will happen if you skip -->
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">If you choose not to restore now, you won\'t be able to restore later. Your media will restore in the background.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">點名講起我嘅時候通知</string>
@@ -8176,10 +8178,14 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">只可以將備份金鑰儲存喺你相信安全嘅密碼管理器入面。Signal 唔會推薦最啱你嘅密碼管理器。</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">已經儲存咗去密碼管理器</string>
-    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">儲存唔到去密碼管理器</string>
+    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Can\'t save to password manager</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">你冇設定密碼管理器，或者你用緊嘅密碼管理器唔支援。</string>
+    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
+    <!-- Label for a button that navigates to the device settings -->
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Go to settings</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">下一步</string>
     <!-- Bottom sheet title -->

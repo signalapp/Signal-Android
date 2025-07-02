@@ -1492,6 +1492,8 @@
     <string name="RemoteRestoreActivity__update_signal">Signal லைப் புதுப்பிக்கவும்</string>
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">இப்போது வேண்டாம்</string>
+    <!-- Text shown on restore screen as information on what will happen if you skip -->
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">If you choose not to restore now, you won\'t be able to restore later. Your media will restore in the background.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">என் பெயர் குறிப்புகளை எனக்கு அறிவி</string>
@@ -8356,10 +8358,14 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">நீங்கள் பாதுகாப்பானது என்று நம்பும் கடவுச்சொல் மேலாளரில் மட்டுமே உங்கள் காப்புபிரதி குறியீட்டைச் சேமித்து வைக்கவும். உங்களுக்கு எந்தக் கடவுச்சொல் மேலாளர் பொருத்தமானது என்பது குறித்துச் சிக்னல் எந்தப் பரிந்துரையும் செய்யாது.</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">உங்கள் கடவுச்சொல் மேலாளரில் சேமிக்கவும்</string>
-    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">கடவுச்சொல் மேலாளரில் சேமிக்க முடியவில்லை</string>
+    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Can\'t save to password manager</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">உங்களிடம் கடவுச்சொல் மேலாளர் அமைவு இல்லை, அல்லது நீங்கள் பயன்படுத்தும் கடவுச்சொல் மேலாளர் ஆதரிக்கப்படவில்லை.</string>
+    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
+    <!-- Label for a button that navigates to the device settings -->
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Go to settings</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">அடுத்து</string>
     <!-- Bottom sheet title -->
