@@ -46,6 +46,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.coroutines.launch
@@ -93,6 +94,7 @@ fun EnterBackupKeyScreen(
       ) {
         TextButton(
           enabled = !inProgress,
+          modifier = Modifier.weight(weight = 1f, fill = false),
           onClick = {
             coroutineScope.launch {
               sheetState.show()
@@ -103,6 +105,8 @@ fun EnterBackupKeyScreen(
             text = stringResource(id = R.string.EnterBackupKey_no_backup_key)
           )
         }
+
+        Spacer(modifier = Modifier.size(24.dp))
 
         AnimatedContent(
           targetState = inProgress,
