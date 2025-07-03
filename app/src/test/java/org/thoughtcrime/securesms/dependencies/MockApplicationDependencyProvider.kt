@@ -293,7 +293,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideRemoteConfigApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): RemoteConfigApi {
+  override fun provideRemoteConfigApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): RemoteConfigApi {
     return mockk(relaxed = true)
   }
 

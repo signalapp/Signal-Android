@@ -8,6 +8,7 @@ package org.whispersystems.signalservice.api.remoteconfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.get
+import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.JsonUtil
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
@@ -17,7 +18,7 @@ import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
  *
  * Configuration values change over time, and the list should be refreshed periodically.
  */
-class RemoteConfigApi(val authWebSocket: SignalWebSocket.AuthenticatedWebSocket) {
+class RemoteConfigApi(val authWebSocket: SignalWebSocket.AuthenticatedWebSocket, val pushServiceSocket: PushServiceSocket) {
 
   /**
    * Get remote config data from the server.
@@ -28,6 +29,16 @@ class RemoteConfigApi(val authWebSocket: SignalWebSocket.AuthenticatedWebSocket)
   fun getRemoteConfig(): NetworkResult<RemoteConfigResult> {
     val request = WebSocketRequestMessage.get("/v1/config")
     return NetworkResult.fromWebSocketRequest(signalWebSocket = authWebSocket, request = request, webSocketResponseConverter = RemoteConfigResultWebSocketResponseConverter())
+      .fallback {
+        NetworkResult.fromFetch {
+          val response = pushServiceSocket.getRemoteConfig()
+          val transformed = response.config.associate { it.name to (it.value ?: it.isEnabled) }
+          RemoteConfigResult(
+            config = transformed,
+            serverEpochTimeMilliseconds = response.serverEpochTime.takeIf { it > 0 }?.times(1000) ?: System.currentTimeMillis()
+          )
+        }
+      }
   }
 
   /**

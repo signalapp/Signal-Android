@@ -211,7 +211,7 @@ class NetworkDependenciesModule(
   }
 
   val remoteConfigApi: RemoteConfigApi by lazy {
-    provider.provideRemoteConfigApi(authWebSocket)
+    provider.provideRemoteConfigApi(authWebSocket, pushServiceSocket)
   }
 
   val donationsApi: DonationsApi by lazy {

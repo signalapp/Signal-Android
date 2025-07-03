@@ -35,6 +35,7 @@ import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.AlreadyVerifiedException;
+import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigResponse;
 import org.whispersystems.signalservice.api.push.exceptions.AuthorizationFailedException;
 import org.whispersystems.signalservice.api.push.exceptions.ChallengeRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.ConflictException;
@@ -531,6 +532,11 @@ public class PushServiceSocket {
     try (Response response = makeStorageRequest(null, "/ping", "GET", null, NO_HANDLER)) {
       return;
     }
+  }
+
+  public RemoteConfigResponse getRemoteConfig() throws IOException {
+    String response = makeServiceRequest("/v1/config", "GET", null);
+    return JsonUtil.fromJson(response, RemoteConfigResponse.class);
   }
 
   public void cancelInFlightRequests() {
