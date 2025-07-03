@@ -36,11 +36,11 @@ private fun DecryptedGroup.formatAsHtml(): String {
   return """
     Revision:     $revision
     Title:        $title
-    Avatar:       ${(avatar?.length ?: 0) != 0}
-    Timer:        ${disappearingMessagesTimer!!.duration}
+    Avatar:       ${(avatar.length) != 0}
+    Timer:        ${disappearingMessagesTimer?.duration}
     Description:  "$description"
     Announcement: $isAnnouncementGroup
-    Access:       attributes(${accessControl!!.attributes}) members(${accessControl!!.members}) link(${accessControl!!.addFromInviteLink})
+    Access:       attributes(${accessControl?.attributes}) members(${accessControl?.members}) link(${accessControl?.addFromInviteLink})
     Members:      $members
     Pending:      $pending
     Requesting:   $requesting

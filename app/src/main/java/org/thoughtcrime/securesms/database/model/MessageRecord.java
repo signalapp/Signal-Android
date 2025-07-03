@@ -24,12 +24,10 @@ import android.text.style.RelativeSizeSpan;
 import android.text.style.StyleSpan;
 
 import androidx.annotation.ColorInt;
-import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
-import androidx.compose.ui.text.AnnotatedString;
 import androidx.core.content.ContextCompat;
 
 import com.annimon.stream.Stream;
@@ -40,6 +38,8 @@ import org.signal.core.util.logging.Log;
 import org.signal.storageservice.protos.groups.local.DecryptedGroup;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupChange;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.v2.proto.GroupChangeChatUpdate;
+import org.thoughtcrime.securesms.backup.v2.proto.GroupCreationUpdate;
 import org.thoughtcrime.securesms.components.emoji.EmojiProvider;
 import org.thoughtcrime.securesms.components.emoji.parsing.EmojiParser;
 import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
@@ -55,9 +55,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchove
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
-import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
-import org.thoughtcrime.securesms.fonts.SignalSymbols.Weight;
 import org.thoughtcrime.securesms.groups.GroupMigrationMembershipChange;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -305,12 +303,22 @@ public abstract class MessageRecord extends DisplayRecord {
   public boolean isSelfCreatedGroup() {
     DecryptedGroupV2Context decryptedGroupV2Context = getDecryptedGroupV2Context();
 
-    if (decryptedGroupV2Context == null) {
-      return false;
-    }
-    DecryptedGroupChange change = decryptedGroupV2Context.change;
+    if (decryptedGroupV2Context != null) {
+      DecryptedGroupChange change = decryptedGroupV2Context.change;
 
-    return selfCreatedGroup(change);
+      return selfCreatedGroup(change);
+    }
+
+    GroupChangeChatUpdate groupChangeChatUpdate = getGroupChangeChatUpdate();
+    if (groupChangeChatUpdate != null) {
+      GroupCreationUpdate update = groupChangeChatUpdate.updates.stream().filter(u -> u.groupCreationUpdate != null).map(u -> u.groupCreationUpdate).findFirst().orElse(null);
+
+      return update != null &&
+             update.updaterAci != null &&
+             update.updaterAci.equals(SignalStore.account().requireAci().toByteString());
+    }
+
+    return false;
   }
 
   public @Nullable MessageExtras getMessageExtras() {
@@ -341,6 +349,18 @@ public abstract class MessageRecord extends DisplayRecord {
       decryptedGroupV2Context = null;
     }
     return decryptedGroupV2Context;
+  }
+
+  private @Nullable GroupChangeChatUpdate getGroupChangeChatUpdate() {
+    if (!isGroupUpdate() || !isGroupV2()) {
+      return null;
+    }
+
+    if (messageExtras != null && messageExtras.gv2UpdateDescription != null) {
+      return messageExtras.gv2UpdateDescription.groupChangeUpdate;
+    }
+
+    return null;
   }
 
   private static boolean selfCreatedGroup(@Nullable DecryptedGroupChange change) {
@@ -552,6 +572,12 @@ public abstract class MessageRecord extends DisplayRecord {
     if (decryptedGroupV2Context != null) {
       return decryptedGroupV2Context.change != null && decryptedGroupV2Context.change.newDescription != null;
     }
+
+    GroupChangeChatUpdate updates = getGroupChangeChatUpdate();
+    if (updates != null) {
+      return updates.updates.stream().anyMatch(update -> update.groupDescriptionUpdate != null);
+    }
+
     return false;
   }
 
@@ -559,6 +585,15 @@ public abstract class MessageRecord extends DisplayRecord {
     DecryptedGroupV2Context decryptedGroupV2Context = getDecryptedGroupV2Context();
     if (decryptedGroupV2Context != null && decryptedGroupV2Context.change != null) {
       return decryptedGroupV2Context.change.newDescription != null ? decryptedGroupV2Context.change.newDescription.value_ : "";
+    }
+
+    GroupChangeChatUpdate updates = getGroupChangeChatUpdate();
+    if (updates != null) {
+      return updates.updates.stream()
+                            .filter(u -> u.groupDescriptionUpdate != null)
+                            .map(u -> u.groupDescriptionUpdate.newDescription)
+                            .findFirst()
+                            .orElse("");
     }
     return "";
   }
@@ -594,7 +629,7 @@ public abstract class MessageRecord extends DisplayRecord {
     return false;
   }
 
-  public static @NonNull String createNewContextWithAppendedDeleteJoinRequest(@NonNull MessageRecord messageRecord, int revision, @NonNull ByteString id) {
+  public static @NonNull DecryptedGroupV2Context createNewContextWithAppendedDeleteJoinRequest(@NonNull MessageRecord messageRecord, int revision, @NonNull ByteString id) {
     DecryptedGroupV2Context decryptedGroupV2Context = messageRecord.getDecryptedGroupV2Context();
 
     if (decryptedGroupV2Context != null && decryptedGroupV2Context.change != null) {
@@ -603,13 +638,12 @@ public abstract class MessageRecord extends DisplayRecord {
       List<ByteString> deleteRequestingMembers = new ArrayList<>(change.deleteRequestingMembers);
       deleteRequestingMembers.add(id);
 
-      return Base64.encodeWithPadding(decryptedGroupV2Context.newBuilder()
-                                                       .change(change.newBuilder()
-                                                                     .revision(revision)
-                                                                     .deleteRequestingMembers(deleteRequestingMembers)
-                                                                     .build())
-                                                       .build()
-                                                       .encode());
+      return decryptedGroupV2Context.newBuilder()
+                                    .change(change.newBuilder()
+                                                  .revision(revision)
+                                                  .deleteRequestingMembers(deleteRequestingMembers)
+                                                  .build())
+                                    .build();
     }
 
     throw new AssertionError("Attempting to modify a message with no change");
