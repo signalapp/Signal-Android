@@ -118,7 +118,7 @@ class RemoteRestoreActivity : BaseActivity() {
 
         if (restored != null) {
           startActivity(MainActivity.clearTop(this@RemoteRestoreActivity))
-          finish()
+          finishAffinity()
         }
       }
     }
