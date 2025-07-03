@@ -18,6 +18,7 @@ import com.bumptech.glide.RequestManager
 import org.junit.Assert.assertEquals
 import org.junit.Rule
 import org.junit.Test
+import org.signal.ringrtc.CallLinkEpoch
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState
 import org.thoughtcrime.securesms.contactshare.Contact
@@ -326,7 +327,7 @@ class V2ConversationItemShapeTest {
 
     override fun onShowGroupDescriptionClicked(groupName: String, description: String, shouldLinkifyWebLinks: Boolean) = Unit
 
-    override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) = Unit
+    override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey, callLinkEpoch: CallLinkEpoch?) = Unit
 
     override fun onItemClick(item: MultiselectPart?) = Unit
 

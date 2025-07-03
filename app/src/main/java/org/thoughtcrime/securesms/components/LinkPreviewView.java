@@ -172,11 +172,11 @@ public class LinkPreviewView extends FrameLayout {
     spinner.setVisibility(GONE);
     noPreview.setVisibility(GONE);
 
-    CallLinkRootKey callLinkRootKey = CallLinks.parseUrl(linkPreview.getUrl());
+    CallLinks.CallLinkParseResult linkParseResult = CallLinks.parseUrl(linkPreview.getUrl());
     if (!Util.isEmpty(linkPreview.getTitle())) {
       title.setText(linkPreview.getTitle());
       title.setVisibility(VISIBLE);
-    } else if (callLinkRootKey != null) {
+    } else if (linkParseResult != null) {
       title.setText(R.string.Recipient_signal_call);
       title.setVisibility(VISIBLE);
     } else {
@@ -186,7 +186,7 @@ public class LinkPreviewView extends FrameLayout {
     if (showDescription && !Util.isEmpty(linkPreview.getDescription())) {
       description.setText(linkPreview.getDescription());
       description.setVisibility(VISIBLE);
-    } else if (callLinkRootKey != null) {
+    } else if (linkParseResult != null) {
       description.setText(R.string.LinkPreviewView__use_this_link_to_join_a_signal_call);
       description.setVisibility(VISIBLE);
     } else {
@@ -221,14 +221,14 @@ public class LinkPreviewView extends FrameLayout {
       thumbnail.get().setImageResource(requestManager, new ImageSlide(linkPreview.getThumbnail().get()), type == TYPE_CONVERSATION && !scheduleMessageMode, false);
       thumbnail.get().showSecondaryText(false);
       thumbnail.get().setOutlineEnabled(true);
-    } else if (callLinkRootKey != null) {
+    } else if (linkParseResult != null) {
       thumbnail.setVisibility(VISIBLE);
       thumbnailState.applyState(thumbnail);
       thumbnail.get().setImageDrawable(
           requestManager,
           new FallbackAvatarDrawable(
               getContext(),
-              new FallbackAvatar.Resource.CallLink(AvatarColorHash.forCallLink(callLinkRootKey.getKeyBytes()))
+              new FallbackAvatar.Resource.CallLink(AvatarColorHash.forCallLink(linkParseResult.getRootKey().getKeyBytes()))
           ).circleCrop()
       );
       thumbnail.get().showSecondaryText(false);

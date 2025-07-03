@@ -20,6 +20,7 @@ import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.protocol.util.Pair;
 import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey;
+import org.signal.ringrtc.CallLinkEpoch;
 import org.signal.ringrtc.CallLinkRootKey;
 import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
 import org.thoughtcrime.securesms.R;
@@ -326,15 +327,20 @@ public class LinkPreviewRepository {
                                                         @NonNull String callLinkUrl,
                                                         @NonNull Callback callback) {
 
-    CallLinkRootKey callLinkRootKey = CallLinks.parseUrl(callLinkUrl);
-    if (callLinkRootKey == null) {
+    CallLinks.CallLinkParseResult linkParseResult = CallLinks.parseUrl(callLinkUrl);
+    if (linkParseResult == null) {
       callback.onError(Error.PREVIEW_NOT_AVAILABLE);
       return () -> { };
     }
 
+    CallLinkEpoch epoch = linkParseResult.getEpoch();
+    byte[] epochBytes = epoch != null ? epoch.getBytes() : null;
+
     Disposable disposable = AppDependencies.getSignalCallManager()
                                            .getCallLinkManager()
-                                           .readCallLink(new CallLinkCredentials(callLinkRootKey.getKeyBytes(), null))
+                                           .readCallLink(new CallLinkCredentials(linkParseResult.getRootKey().getKeyBytes(),
+                                                                                 epochBytes,
+                                                                                 null))
                                            .observeOn(Schedulers.io())
                                            .subscribe(
                                                         result -> {

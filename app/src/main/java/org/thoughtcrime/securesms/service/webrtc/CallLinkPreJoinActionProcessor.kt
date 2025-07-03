@@ -70,7 +70,7 @@ class CallLinkPreJoinActionProcessor(
         serverPublicParams.endorsementPublicKey,
         callLinkAuthCredentialPresentation.serialize(),
         callLinkRootKey,
-        null,
+        callLink.credentials.epoch,
         callLink.credentials.adminPassBytes,
         ByteArray(0),
         AUDIO_LEVELS_INTERVAL,
