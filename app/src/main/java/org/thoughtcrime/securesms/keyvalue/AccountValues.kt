@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.impl.RegisteredConstraint
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
@@ -176,6 +177,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
   fun setAci(aci: ACI) {
     putString(KEY_ACI, aci.toString())
+    RegisteredConstraint.Observer.notifyListeners()
   }
 
   /** The local user's [PNI]. */
@@ -441,6 +443,8 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     } else if (!registered) {
       registeredAtTimestamp = -1
     }
+
+    RegisteredConstraint.Observer.notifyListeners()
   }
 
   /**

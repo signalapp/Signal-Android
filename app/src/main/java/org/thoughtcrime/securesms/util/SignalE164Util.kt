@@ -54,11 +54,36 @@ object SignalE164Util {
   }
 
   /**
+   * Formats the number as an E164, or null if the number cannot be reasonably interpreted as a phone number, or if
+   * the number is a shortcode (<= 6 digits, excluding leading '+' and zeroes).
+   *
+   * This does not check if the number is *valid* for a given region. Instead, it's very lenient and just
+   * does it's best to interpret the input string as a number that could be put into the E164 format.
+   *
+   * Note that shortcodes will not have leading '+' signs.
+   *
+   * In other words, if this method returns null, you likely do not have anything that could be considered
+   * a phone number.
+   */
+  @JvmStatic
+  fun formatNonShortCodeAsE164(input: String): String? {
+    return getFormatter().formatAsE164(input)?.takeIf { input.trimStart('+', '0').length > 6 }
+  }
+
+  /**
    * Returns true if the input string can be considered an E164. Specifically, it returns true if we could figure out how to format it as an E164.
    */
   @JvmStatic
   fun isPotentialE164(input: String): Boolean {
     return formatAsE164(input) != null
+  }
+
+  /**
+   * Performs the same check as [isPotentialE164], with the additional validation to check if there are more than 6 digits in the number.
+   * When counting digits, leading zeroes and '+' will be ignored.
+   */
+  fun isPotentialNonShortCodeE164(input: String): Boolean {
+    return formatNonShortCodeAsE164(input) != null
   }
 
   private fun getFormatter(): E164Util.Formatter {

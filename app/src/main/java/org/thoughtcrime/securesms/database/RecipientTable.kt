@@ -2374,7 +2374,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     val record = getRecord(recipientId)
 
     val pni = record.pni
-    val e164 = record.e164?.takeIf { SignalE164Util.isPotentialE164(it) }
+    val e164 = record.e164?.takeIf { SignalE164Util.isPotentialNonShortCodeE164(it) }
 
     if (pni == null && e164 == null) {
       return
@@ -4114,7 +4114,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     check(e164 != null || pni != null || aci != null) { "Must provide some sort of identifier!" }
 
     val values = contentValuesOf(
-      E164 to e164,
+      E164 to e164.nullIfBlank()?.let { SignalE164Util.formatAsE164(it) },
       ACI_COLUMN to aci?.toString(),
       PNI_COLUMN to pni?.toString(),
       PNI_SIGNATURE_VERIFIED to pniVerified.toInt(),
@@ -4139,7 +4139,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
       put(ACI_COLUMN, contact.proto.signalAci?.toString())
       put(PNI_COLUMN, contact.proto.signalPni?.toString())
-      put(E164, contact.proto.e164.nullIfBlank())
+      put(E164, contact.proto.e164.nullIfBlank()?.let { SignalE164Util.formatAsE164(it) })
       put(PROFILE_GIVEN_NAME, profileName.givenName)
       put(PROFILE_FAMILY_NAME, profileName.familyName)
       put(PROFILE_JOINED_NAME, profileName.toString())
