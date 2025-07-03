@@ -9,6 +9,9 @@ import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
 
+/**
+ * @param includeDebuglog The state for whether or not we should include a debuglog in the backup. If `null`, hide the setting.
+ */
 data class RemoteBackupsSettingsState(
   val tier: MessageBackupTier? = null,
   val backupsEnabled: Boolean,
@@ -23,7 +26,8 @@ data class RemoteBackupsSettingsState(
   val backupsFrequency: BackupFrequency = BackupFrequency.DAILY,
   val lastBackupTimestamp: Long = 0,
   val dialog: Dialog = Dialog.NONE,
-  val snackbar: Snackbar = Snackbar.NONE
+  val snackbar: Snackbar = Snackbar.NONE,
+  val includeDebuglog: Boolean? = null
 ) {
 
   enum class Dialog {

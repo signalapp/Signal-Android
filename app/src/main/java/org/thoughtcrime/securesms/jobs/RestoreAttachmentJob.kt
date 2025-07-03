@@ -12,6 +12,7 @@ import androidx.core.app.NotificationManagerCompat
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMacException
 import org.signal.libsignal.protocol.InvalidMessageException
@@ -302,22 +303,32 @@ class RestoreAttachmentJob private constructor(
       Log.w(TAG, e.message)
       markFailed(attachmentId)
     } catch (e: NonSuccessfulResponseCodeException) {
-      if (SignalStore.backup.backsUpMedia) {
-        if (e.code == 404 && !forceTransitTier && attachment.remoteLocation?.isNotBlank() == true) {
-          Log.i(TAG, "[$attachmentId] Failed to download attachment from archive! Should only happen for recent attachments in a narrow window. Retrying download from transit CDN.")
-          if (RemoteConfig.internalUser) {
-            postFailedToDownloadFromArchiveNotification()
-          }
+      when (e.code) {
+        404 -> {
+          if (forceTransitTier) {
+            Log.w(TAG, "[$attachmentId] Completely failed to restore an attachment! Failed downloading from both the archive and transit CDN.")
+            maybePostFailedToDownloadFromArchiveAndTransitNotification()
+          } else if (SignalStore.backup.backsUpMedia && attachment.remoteLocation.isNotNullOrBlank()) {
+            Log.w(TAG, "[$attachmentId] Failed to download attachment from the archive CDN! Retrying download from transit CDN.")
+            maybePostFailedToDownloadFromArchiveNotification()
 
-          retrieveAttachment(messageId, attachmentId, attachment, true)
-          return
-        } else if (e.code == 401 && useArchiveCdn) {
-          SignalStore.backup.mediaCredentials.cdnReadCredentials = null
-          SignalStore.backup.cachedMediaCdnPath = null
-          throw RetryLaterException(e)
-        } else if (e.code == 404 && attachment.remoteLocation?.isNotBlank() == true) {
-          Log.i(TAG, "Failed to download attachment from transit tier. Scheduling retry.")
-          throw e
+            return retrieveAttachment(messageId, attachmentId, attachment, forceTransitTier = true)
+          } else if (SignalStore.backup.backsUpMedia) {
+            Log.w(TAG, "[$attachmentId] Completely failed to restore an attachment! Failed to download from archive CDN, and there's not transit CDN info.")
+            maybePostFailedToDownloadFromArchiveAndTransitNotification()
+          } else if (attachment.remoteLocation.isNotNullOrBlank()) {
+            Log.w(TAG, "[$attachmentId] Failed to restore an attachment for a free tier user. Likely just older than 45 days.")
+          }
+        }
+        401 -> {
+          if (useArchiveCdn) {
+            Log.w(TAG, "[$attachmentId] Had a credential issue when downloading an attachment. Clearing credentials and retrying.")
+            SignalStore.backup.mediaCredentials.cdnReadCredentials = null
+            SignalStore.backup.cachedMediaCdnPath = null
+            throw RetryLaterException(e)
+          } else {
+            Log.w(TAG, "[$attachmentId] Unexpected 401 response for transit CDN restore.")
+          }
         }
       }
 
@@ -348,10 +359,29 @@ class RestoreAttachmentJob private constructor(
     SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE)
   }
 
-  private fun postFailedToDownloadFromArchiveNotification() {
+  private fun maybePostFailedToDownloadFromArchiveNotification() {
+    if (!RemoteConfig.internalUser || !SignalStore.backup.backsUpMedia) {
+      return
+    }
+
     val notification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
       .setSmallIcon(R.drawable.ic_notification)
-      .setContentTitle("[Internal-only] Failed to download attachment from archive!")
+      .setContentTitle("[Internal-only] Failed to restore attachment from Archive CDN!")
+      .setContentText("Tap to send a debug log")
+      .setContentIntent(PendingIntent.getActivity(context, 0, Intent(context, SubmitDebugLogActivity::class.java), PendingIntentFlags.mutable()))
+      .build()
+
+    NotificationManagerCompat.from(context).notify(NotificationIds.INTERNAL_ERROR, notification)
+  }
+
+  private fun maybePostFailedToDownloadFromArchiveAndTransitNotification() {
+    if (!RemoteConfig.internalUser || !SignalStore.backup.backsUpMedia) {
+      return
+    }
+
+    val notification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
+      .setSmallIcon(R.drawable.ic_notification)
+      .setContentTitle("[Internal-only] Completely failed to restore attachment!")
       .setContentText("Tap to send a debug log")
       .setContentIntent(PendingIntent.getActivity(context, 0, Intent(context, SubmitDebugLogActivity::class.java), PendingIntentFlags.mutable()))
       .build()

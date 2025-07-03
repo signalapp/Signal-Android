@@ -29,12 +29,14 @@ import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.LimitedWorker
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.decodeOrNull
 import org.signal.core.util.forceForeignKeyConstraintsEnabled
 import org.signal.core.util.fullWalCheckpoint
 import org.signal.core.util.getAllIndexDefinitions
 import org.signal.core.util.getAllTableDefinitions
 import org.signal.core.util.getAllTriggerDefinitions
 import org.signal.core.util.getForeignKeyViolations
+import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.requireIntOrNull
@@ -62,6 +64,7 @@ import org.thoughtcrime.securesms.backup.v2.processor.ChatItemArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.NotificationProfileProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.RecipientArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.StickerArchiveProcessor
+import org.thoughtcrime.securesms.backup.v2.proto.BackupDebugInfo
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.stream.BackupExportWriter
 import org.thoughtcrime.securesms.backup.v2.stream.BackupImportReader
@@ -104,6 +107,7 @@ import org.thoughtcrime.securesms.keyvalue.BackupValues.ArchiveServiceCredential
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
+import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
@@ -147,7 +151,10 @@ import java.io.OutputStream
 import java.time.ZonedDateTime
 import java.util.Currency
 import java.util.Locale
+import java.util.concurrent.CountDownLatch
+import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
+import kotlin.jvm.optionals.getOrNull
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -798,7 +805,8 @@ object BackupRepository {
             version = VERSION,
             backupTimeMs = exportState.backupTime,
             mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey.value.toByteString(),
-            firstAppVersion = SignalStore.backup.firstAppVersion
+            firstAppVersion = SignalStore.backup.firstAppVersion,
+            debugInfo = buildDebugInfo()
           )
         )
         frameCount++
@@ -1211,6 +1219,7 @@ object BackupRepository {
     stopwatch.split("group-jobs")
 
     SignalStore.backup.firstAppVersion = header.firstAppVersion
+    SignalStore.internal.importedBackupDebugInfo = header.debugInfo.let { BackupDebugInfo.ADAPTER.decodeOrNull(it.toByteArray()) }
 
     Log.d(TAG, "[import] Finished! ${eventTimer.stop().summary}")
     stopwatch.stop(TAG)
@@ -1844,6 +1853,38 @@ object BackupRepository {
 
     Log.i(TAG, "[remoteRestore] Restore successful")
     return RemoteRestoreResult.Success
+  }
+
+  private fun buildDebugInfo(): ByteString {
+    if (!RemoteConfig.internalUser) {
+      return ByteString.EMPTY
+    }
+
+    var debuglogUrl: String? = null
+
+    if (SignalStore.internal.includeDebuglogInBackup) {
+      Log.i(TAG, "User has debuglog inclusion enabled. Generating a debuglog.")
+      val latch = CountDownLatch(1)
+      SubmitDebugLogRepository().buildAndSubmitLog { url ->
+        debuglogUrl = url.getOrNull()
+        latch.countDown()
+      }
+
+      try {
+        val success = latch.await(10, TimeUnit.SECONDS)
+        if (!success) {
+          Log.w(TAG, "Timed out waiting for debuglog!")
+        }
+      } catch (e: Exception) {
+        Log.w(TAG, "Hit an error while generating the debuglog!")
+      }
+    }
+
+    return BackupDebugInfo(
+      debuglogUrl = debuglogUrl ?: "",
+      attachmentDetails = SignalDatabase.attachments.debugAttachmentStatsForBackupProto(),
+      usingPaidTier = SignalStore.backup.backupTier == MessageBackupTier.PAID
+    ).encodeByteString()
   }
 
   interface ExportProgressListener {

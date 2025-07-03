@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+option java_package = "org.thoughtcrime.securesms.backup.v2.proto";
+
+message BackupDebugInfo {
+  message AttachmentDetails {
+    uint32 notStartedCount = 1;
+    uint32 uploadInProgressCount = 2;
+    uint32 copyPendingCount = 3;
+    uint32 finishedCount = 4;
+    uint32 permanentFailureCount = 5;
+    uint32 temporaryFailureCount = 6;
+  }
+
+  string debuglogUrl = 1;
+  AttachmentDetails attachmentDetails = 2;
+  bool usingPaidTier = 3;
+}

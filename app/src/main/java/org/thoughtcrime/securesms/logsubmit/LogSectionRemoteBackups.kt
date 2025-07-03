@@ -55,7 +55,23 @@ class LogSectionRemoteBackups : LogSection {
       output.append("IAP error type (or null):          ${inAppPayment.data.error?.type}\n")
       output.append("IAP cancellation reason (or null): ${inAppPayment.data.cancellation?.reason}\n")
     } else {
-      output.append("No in-app payment data available.")
+      output.append("No in-app payment data available.\n")
+    }
+
+    output.append("\n -- Imported DebugInfo\n")
+    if (SignalStore.internal.importedBackupDebugInfo != null) {
+      val info = SignalStore.internal.importedBackupDebugInfo!!
+      output.append("Debuglog          : ${info.debuglogUrl}\n")
+      output.append("Using Paid Tier   : ${info.usingPaidTier}\n")
+      output.append("Attachment Details:\n")
+      output.append("  NONE              : ${info.attachmentDetails?.notStartedCount ?: "N/A"}\n")
+      output.append("  UPLOAD_IN_PROGRESS: ${info.attachmentDetails?.uploadInProgressCount ?: "N/A"}\n")
+      output.append("  COPY_PENDING      : ${info.attachmentDetails?.copyPendingCount ?: "N/A"}\n")
+      output.append("  FINISHED          : ${info.attachmentDetails?.finishedCount ?: "N/A"}\n")
+      output.append("  PERMANENT_FAILURE : ${info.attachmentDetails?.permanentFailureCount ?: "N/A"}\n")
+      output.append("  TEMPORARY_FAILURE : ${info.attachmentDetails?.temporaryFailureCount ?: "N/A"}\n")
+    } else {
+      output.append("None\n")
     }
 
     return output

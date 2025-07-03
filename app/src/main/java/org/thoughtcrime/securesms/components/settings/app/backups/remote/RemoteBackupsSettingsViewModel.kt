@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.service.MessageBackupListener
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import kotlin.time.Duration.Companion.seconds
 
@@ -66,7 +67,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
       backupsFrequency = SignalStore.backup.backupFrequency,
       canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
-      canRestoreUsingCellular = SignalStore.backup.restoreWithCellular
+      canRestoreUsingCellular = SignalStore.backup.restoreWithCellular,
+      includeDebuglog = SignalStore.internal.includeDebuglogInBackup.takeIf { RemoteConfig.internalUser }
     )
   )
 
@@ -212,6 +214,11 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   fun cancelUpload() {
     ArchiveUploadProgress.cancel()
+  }
+
+  fun setIncludeDebuglog(includeDebuglog: Boolean) {
+    SignalStore.internal.includeDebuglogInBackup = includeDebuglog
+    _state.update { it.copy(includeDebuglog = includeDebuglog) }
   }
 
   private suspend fun refreshState(lastPurchase: InAppPaymentTable.InAppPayment?) {

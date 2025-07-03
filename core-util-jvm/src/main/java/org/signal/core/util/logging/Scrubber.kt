@@ -75,7 +75,7 @@ object Scrubber {
   private val CALL_LINK_PATTERN = Pattern.compile("([bBcCdDfFgGhHkKmMnNpPqQrRsStTxXzZ]{4})(-[bBcCdDfFgGhHkKmMnNpPqQrRsStTxXzZ]{4}){7}")
   private const val CALL_LINK_CENSOR_SUFFIX = "-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX-XXXX"
 
-  private val CALL_LINK_ROOM_ID_PATTERN = Pattern.compile("[0-9a-f]{61}([0-9a-f]{3})")
+  private val CALL_LINK_ROOM_ID_PATTERN = Pattern.compile("([^/])([0-9a-f]{61})([0-9a-f]{3})")
 
   @JvmStatic
   @Volatile
@@ -180,7 +180,7 @@ object Scrubber {
   private fun CharSequence.scrubDomains(): CharSequence {
     return scrub(this, DOMAIN_PATTERN) { matcher, output ->
       val match: String = matcher.group(0)!!
-      if (matcher.groupCount() == 2 && TOP_100_TLDS.contains(matcher.group(2)!!.lowercase()) && !match.endsWith("signal.org")) {
+      if (matcher.groupCount() == 2 && TOP_100_TLDS.contains(matcher.group(2)!!.lowercase()) && !match.endsWith("signal.org") && !match.endsWith("debuglogs.org")) {
         output
           .append(DOMAIN_CENSOR)
           .append(matcher.group(2))
@@ -209,10 +209,10 @@ object Scrubber {
 
   private fun CharSequence.scrubCallLinkRoomIds(): CharSequence {
     return scrub(this, CALL_LINK_ROOM_ID_PATTERN) { matcher, output ->
-      val match = matcher.group(1)
       output
-        .append("[REDACTED]")
-        .append(match)
+        .append(matcher.group(1))
+        .append("*************************************************************")
+        .append(matcher.group(3))
     }
   }
 

@@ -11,6 +11,7 @@ message BackupInfo {
   bytes mediaRootBackupKey = 3; // 32-byte random value generated when the backup is uploaded for the first time.
   string currentAppVersion = 4;
   string firstAppVersion = 5;
+  bytes debugInfo = 6; // Client-specific data field for debug info during testing
 }
 
 // Frames must follow in the following ordering rules:

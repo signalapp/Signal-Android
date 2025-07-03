@@ -279,6 +279,10 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       requireActivity().finish()
       requireActivity().startActivity(AppSettingsActivity.manageStorage(requireActivity()))
     }
+
+    override fun onIncludeDebuglogClick(newState: Boolean) {
+      viewModel.setIncludeDebuglog(newState)
+    }
   }
 
   private fun displayBackupKey() {
@@ -368,6 +372,7 @@ private interface ContentCallbacks {
   fun onDisplayProgressDialog() = Unit
   fun onDisplayDownloadingBackupDialog() = Unit
   fun onManageStorageClick() = Unit
+  fun onIncludeDebuglogClick(newState: Boolean) = Unit
 
   object Empty : ContentCallbacks
 }
@@ -512,6 +517,7 @@ private fun RemoteBackupsSettingsContent(
           canBackUpUsingCellular = state.canBackUpUsingCellular,
           canRestoreUsingCellular = state.canRestoreUsingCellular,
           canBackUpNow = !state.isOutOfStorageSpace,
+          includeDebuglog = state.includeDebuglog,
           contentCallbacks = contentCallbacks
         )
       } else {
@@ -815,6 +821,7 @@ private fun LazyListScope.appendBackupDetailsItems(
   canBackUpUsingCellular: Boolean,
   canRestoreUsingCellular: Boolean,
   canBackUpNow: Boolean,
+  includeDebuglog: Boolean?,
   contentCallbacks: ContentCallbacks
 ) {
   item {
@@ -840,6 +847,12 @@ private fun LazyListScope.appendBackupDetailsItems(
           onDownloadClick = contentCallbacks::onStartMediaRestore
         )
       }
+    }
+  }
+
+  if (includeDebuglog != null) {
+    item {
+      IncludeDebuglogRow(includeDebuglog) { contentCallbacks.onIncludeDebuglogClick(it) }
     }
   }
 
@@ -1422,6 +1435,19 @@ private fun getBackupUploadPhaseProgressString(state: ArchiveUploadProgressState
 }
 
 @Composable
+private fun IncludeDebuglogRow(
+  enabled: Boolean,
+  onToggle: (Boolean) -> Unit
+) {
+  Rows.ToggleRow(
+    checked = enabled,
+    text = "[INTERNAL ONLY] Include debuglog?",
+    label = "If enabled, we will capture a debuglog and include it in the backup file.",
+    onCheckChanged = onToggle
+  )
+}
+
+@Composable
 private fun LastBackupRow(
   lastBackupTimestamp: Long,
   enabled: Boolean,
@@ -1738,6 +1764,36 @@ private fun RemoteBackupsSettingsContentPreview() {
         ),
         hasRedemptionError = true,
         isOutOfStorageSpace = true
+      ),
+      statusBarColorNestedScrollConnection = null,
+      backupDeleteState = DeletionState.NONE,
+      backupRestoreState = BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup),
+      contentCallbacks = ContentCallbacks.Empty,
+      backupProgress = null
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun RemoteBackupsSettingsInternalUserContentPreview() {
+  Previews.Preview {
+    RemoteBackupsSettingsContent(
+      state = RemoteBackupsSettingsState(
+        backupsEnabled = true,
+        lastBackupTimestamp = -1,
+        canBackUpUsingCellular = false,
+        canRestoreUsingCellular = false,
+        backupsFrequency = BackupFrequency.MANUAL,
+        dialog = RemoteBackupsSettingsState.Dialog.NONE,
+        snackbar = RemoteBackupsSettingsState.Snackbar.NONE,
+        backupMediaSize = 2300000,
+        backupState = BackupState.ActiveFree(
+          messageBackupsType = MessageBackupsType.Free(mediaRetentionDays = 30)
+        ),
+        hasRedemptionError = false,
+        isOutOfStorageSpace = false,
+        includeDebuglog = true
       ),
       statusBarColorNestedScrollConnection = null,
       backupDeleteState = DeletionState.NONE,
