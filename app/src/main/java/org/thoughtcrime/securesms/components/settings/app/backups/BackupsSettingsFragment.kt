@@ -379,10 +379,23 @@ private fun PendingBackupRow(
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           style = MaterialTheme.typography.bodyMedium
         )
+
+        ViewSettingsButton(onBackupsRowClick)
       }
-    },
-    onClick = onBackupsRowClick
+    }
   )
+}
+
+@Composable
+private fun ViewSettingsButton(onClick: () -> Unit) {
+  Buttons.MediumTonal(
+    onClick = onClick,
+    modifier = Modifier.padding(top = 12.dp)
+  ) {
+    Text(
+      text = stringResource(R.string.BackupsSettingsFragment_view_settings)
+    )
+  }
 }
 
 @Composable
@@ -464,9 +477,10 @@ private fun ActiveBackupsRow(
           color = MaterialTheme.colorScheme.onSurfaceVariant,
           style = MaterialTheme.typography.bodyMedium
         )
+
+        ViewSettingsButton(onBackupsRowClick)
       }
-    },
-    onClick = onBackupsRowClick
+    }
   )
 }
 
