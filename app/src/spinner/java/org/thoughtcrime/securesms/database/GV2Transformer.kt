@@ -45,6 +45,7 @@ private fun DecryptedGroup.formatAsHtml(): String {
     Pending:      $pending
     Requesting:   $requesting
     Banned:       $banned
+    Placeholder:  $isPlaceholderGroup
   """.trimIndent().replace("\n", "<br>")
 }
 

@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.RecipientExtras
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
@@ -133,6 +134,10 @@ private fun Group.MemberBanned.toLocal(): DecryptedBannedMember {
 }
 
 private fun Group.GroupSnapshot.toLocal(operations: GroupsV2Operations.GroupOperations): DecryptedGroup {
+  val selfAciBytes = SignalStore.account.aci?.toByteString()
+  val requestingMembers = this.membersPendingAdminApproval.map { requesting -> requesting.toLocal() }
+  val isPlaceholder = requestingMembers.any { it.aciBytes == selfAciBytes }
+
   return DecryptedGroup(
     title = this.title?.title ?: "",
     avatar = this.avatarUrl,
@@ -141,10 +146,11 @@ private fun Group.GroupSnapshot.toLocal(operations: GroupsV2Operations.GroupOper
     revision = this.version,
     members = this.members.map { member -> member.toLocal() },
     pendingMembers = this.membersPendingProfileKey.map { pending -> pending.toLocal(operations) },
-    requestingMembers = this.membersPendingAdminApproval.map { requesting -> requesting.toLocal() },
+    requestingMembers = requestingMembers,
     inviteLinkPassword = this.inviteLinkPassword,
     description = this.description?.descriptionText ?: "",
     isAnnouncementGroup = if (this.announcements_only) EnabledState.ENABLED else EnabledState.DISABLED,
-    bannedMembers = this.members_banned.map { it.toLocal() }
+    bannedMembers = this.members_banned.map { it.toLocal() },
+    isPlaceholderGroup = isPlaceholder
   )
 }
