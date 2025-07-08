@@ -176,7 +176,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
 
   private fun getServerQuota(): ByteSize? {
     return runBlocking {
-      BackupRepository.getPaidType()?.storageAllowanceBytes?.bytes
+      BackupRepository.getPaidType().successOrThrow()?.storageAllowanceBytes?.bytes
     }
   }
 

@@ -27,6 +27,7 @@ import org.thoughtcrime.securesms.keyvalue.Completed
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
@@ -84,9 +85,9 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
 
     viewModelScope.launch(Dispatchers.IO) {
       val config = BackupRepository.getBackupLevelConfiguration()
-      if (config != null) {
+      if (config is NetworkResult.Success) {
         store.update {
-          it.copy(backupMediaTTL = config.mediaTtlDays.days)
+          it.copy(backupMediaTTL = config.result.mediaTtlDays.days)
         }
       }
     }

@@ -194,7 +194,12 @@ object BackupStateRepository {
 
   private suspend fun getFreeBackupState(): BackupState {
     val type = withContext(Dispatchers.IO) {
-      BackupRepository.getBackupsType(MessageBackupTier.FREE) as MessageBackupsType.Free
+      BackupRepository.getBackupsType(MessageBackupTier.FREE) as MessageBackupsType.Free?
+    }
+
+    if (type == null) {
+      Log.w(TAG, "Failed to load FREE type. Possible network error.")
+      return BackupState.Error
     }
 
     val backupState = if (SignalStore.backup.areBackupsEnabled) {
@@ -213,7 +218,7 @@ object BackupStateRepository {
    * @return A paid type, or null if we were unable to get the backup level configuration.
    */
   private fun buildPaidTypeFromSubscription(subscription: ActiveSubscription.Subscription): MessageBackupsType.Paid? {
-    val config = BackupRepository.getBackupLevelConfiguration() ?: return null
+    val config = BackupRepository.getBackupLevelConfiguration().successOrThrow()
 
     val price = FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency))
     return MessageBackupsType.Paid(
@@ -229,7 +234,7 @@ object BackupStateRepository {
    * @return A paid type, or null if we were unable to get the backup level configuration.
    */
   private fun buildPaidTypeFromInAppPayment(inAppPayment: InAppPaymentTable.InAppPayment): MessageBackupsType.Paid? {
-    val config = BackupRepository.getBackupLevelConfiguration() ?: return null
+    val config = BackupRepository.getBackupLevelConfiguration().successOrThrow()
 
     val price = inAppPayment.data.amount!!.toFiatMoney()
     return MessageBackupsType.Paid(
@@ -246,7 +251,7 @@ object BackupStateRepository {
    * @return A paid type, or null if we were unable to get the backup level configuration.
    */
   private fun buildPaidTypeWithoutPricing(): MessageBackupsType? {
-    val config = BackupRepository.getBackupLevelConfiguration() ?: return null
+    val config = BackupRepository.getBackupLevelConfiguration().successOrThrow()
 
     return MessageBackupsType.Paid(
       pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance(Locale.getDefault())),

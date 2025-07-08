@@ -1615,29 +1615,44 @@ object BackupRepository {
   }
 
   suspend fun getBackupsType(tier: MessageBackupTier): MessageBackupsType? {
-    return when (tier) {
+    val result = when (tier) {
       MessageBackupTier.FREE -> getFreeType()
       MessageBackupTier.PAID -> getPaidType()
+    }
+
+    return if (result is NetworkResult.Success) {
+      result.result
+    } else {
+      null
     }
   }
 
   @WorkerThread
-  fun getBackupLevelConfiguration(): SubscriptionsConfiguration.BackupLevelConfiguration? {
-    val config = getSubscriptionsConfiguration()
-
-    return config.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL]
+  fun getBackupLevelConfiguration(): NetworkResult<SubscriptionsConfiguration.BackupLevelConfiguration> {
+    return AppDependencies.donationsApi
+      .getDonationsConfiguration(Locale.getDefault())
+      .then {
+        val config = it.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL]
+        if (config != null) {
+          NetworkResult.Success(config)
+        } else {
+          NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(404))
+        }
+      }
   }
 
   @WorkerThread
-  private fun getFreeType(): MessageBackupsType.Free {
-    val config = getSubscriptionsConfiguration()
-
-    return MessageBackupsType.Free(
-      mediaRetentionDays = config.backupConfiguration.freeTierMediaDays
-    )
+  private fun getFreeType(): NetworkResult<MessageBackupsType.Free> {
+    return AppDependencies.donationsApi
+      .getDonationsConfiguration(Locale.getDefault())
+      .map {
+        MessageBackupsType.Free(
+          mediaRetentionDays = it.backupConfiguration.freeTierMediaDays
+        )
+      }
   }
 
-  suspend fun getPaidType(): MessageBackupsType.Paid? {
+  suspend fun getPaidType(): NetworkResult<MessageBackupsType.Paid> {
     val productPrice: FiatMoney? = if (SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID) {
       Log.d(TAG, "Accessing price via mock subscription.")
       RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()?.activeSubscription?.let {
@@ -1650,37 +1665,17 @@ object BackupRepository {
 
     if (productPrice == null) {
       Log.w(TAG, "No pricing available. Exiting.")
-      return null
+      return NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(404))
     }
 
-    val backupLevelConfiguration = getBackupLevelConfiguration() ?: return null
-
-    return MessageBackupsType.Paid(
-      pricePerMonth = productPrice,
-      storageAllowanceBytes = backupLevelConfiguration.storageAllowanceBytes,
-      mediaTtl = backupLevelConfiguration.mediaTtlDays.days
-    )
-  }
-
-  @WorkerThread
-  private fun getSubscriptionsConfiguration(): SubscriptionsConfiguration {
-    val serviceResponse = AppDependencies
-      .donationsService
-      .getDonationsConfiguration(Locale.getDefault())
-
-    if (serviceResponse.result.isEmpty) {
-      if (serviceResponse.applicationError.isPresent) {
-        throw serviceResponse.applicationError.get()
+    return getBackupLevelConfiguration()
+      .map {
+        MessageBackupsType.Paid(
+          pricePerMonth = productPrice,
+          storageAllowanceBytes = it.storageAllowanceBytes,
+          mediaTtl = it.mediaTtlDays.days
+        )
       }
-
-      if (serviceResponse.executionError.isPresent) {
-        throw serviceResponse.executionError.get()
-      }
-
-      error("Unhandled error occurred while downloading configuration.")
-    }
-
-    return serviceResponse.result.get()
   }
 
   /**
