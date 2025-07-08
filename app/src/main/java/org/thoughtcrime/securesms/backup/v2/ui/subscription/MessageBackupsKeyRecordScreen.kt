@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2.ui.subscription
 
 import android.content.Context
-import android.os.Build
+import androidx.annotation.UiContext
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -36,13 +36,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.credentials.CreatePasswordRequest
-import androidx.credentials.CredentialManager
-import androidx.credentials.exceptions.CreateCredentialCancellationException
-import androidx.credentials.exceptions.CreateCredentialInterruptedException
-import androidx.credentials.exceptions.CreateCredentialNoCreateOptionException
-import androidx.credentials.exceptions.CreateCredentialProviderConfigurationException
-import androidx.credentials.exceptions.CreateCredentialUnknownException
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
@@ -50,16 +43,13 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.theme.SignalTheme
-import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeyCredentialManagerHandler
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
-import org.thoughtcrime.securesms.components.settings.app.backups.remote.CredentialManagerError
-import org.thoughtcrime.securesms.components.settings.app.backups.remote.CredentialManagerResult
 import org.thoughtcrime.securesms.fonts.MonoTypeface
+import org.thoughtcrime.securesms.util.storage.AndroidCredentialRepository
+import org.thoughtcrime.securesms.util.storage.CredentialManagerError
+import org.thoughtcrime.securesms.util.storage.CredentialManagerResult
 import org.signal.core.ui.R as CoreUiR
-
-private const val TAG = "MessageBackupsKeyRecordScreen"
 
 /**
  * Screen displaying the backup key allowing the user to write it down
@@ -167,7 +157,7 @@ fun MessageBackupsKeyRecordScreen(
             }
           }
 
-          if (BackupKeyCredentialManagerHandler.isCredentialManagerSupported) {
+          if (AndroidCredentialRepository.isCredentialManagerSupported) {
             item {
               Buttons.Small(
                 onClick = { onRequestSaveToPasswordManager() }
@@ -279,52 +269,14 @@ private fun BackupKeySaveErrorDialog(
 }
 
 private suspend fun saveKeyToCredentialManager(
-  context: Context,
+  @UiContext activityContext: Context,
   backupKey: String
 ): CredentialManagerResult {
-  return try {
-    CredentialManager.create(context)
-      .createCredential(
-        context = context,
-        request = CreatePasswordRequest(
-          id = context.getString(R.string.RemoteBackupsSettingsFragment__signal_backups),
-          password = backupKey,
-          preferImmediatelyAvailableCredentials = false,
-          isAutoSelectAllowed = false
-        )
-      )
-    CredentialManagerResult.Success
-  } catch (e: Exception) {
-    when (e) {
-      is CreateCredentialCancellationException -> CredentialManagerResult.UserCanceled
-      is CreateCredentialInterruptedException -> CredentialManagerResult.Interrupted(e)
-      is CreateCredentialNoCreateOptionException, is CreateCredentialProviderConfigurationException -> CredentialManagerError.MissingCredentialManager(e)
-      is CreateCredentialUnknownException -> {
-        when {
-          Build.VERSION.SDK_INT <= 33 && e.message?.contains("[28431]") == true -> {
-            // This error only impacts Android 13 and earlier, when Google is the designated autofill provider. The error can be safely disregarded, since users
-            // will receive a save prompt from autofill and the password will be stored in Google Password Manager, which syncs with the Credential Manager API.
-            Log.d(TAG, "Disregarding CreateCredentialUnknownException and treating credential creation as success: \"${e.message}\".")
-            CredentialManagerResult.Success
-          }
-
-          e.message?.contains("[28434]") == true -> {
-            Log.w(TAG, "Detected MissingCredentialManager error based on CreateCredentialUnknownException message: \"${e.message}\"")
-            CredentialManagerError.MissingCredentialManager(e)
-          }
-
-          e.message?.contains("[28435]") == true -> {
-            Log.w(TAG, "CreateCredentialUnknownException: \"${e.message}\"")
-            CredentialManagerError.SavePromptDisabled(e)
-          }
-
-          else -> CredentialManagerError.Unexpected(e)
-        }
-      }
-
-      else -> CredentialManagerError.Unexpected(e)
-    }
-  }
+  return AndroidCredentialRepository.saveCredential(
+    activityContext = activityContext,
+    username = activityContext.getString(R.string.MessageBackupsKeyRecordScreen__backup_key_password_manager_id),
+    password = backupKey
+  )
 }
 
 @SignalPreview
