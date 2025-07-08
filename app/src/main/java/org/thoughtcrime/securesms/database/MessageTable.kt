@@ -1656,8 +1656,23 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           )
         """
 
+      val storyRepliesQuery = """
+        SELECT $ID FROM $TABLE_NAME
+        WHERE 
+          $PARENT_STORY_ID < 0 AND 
+          ABS($PARENT_STORY_ID) IN (
+            SELECT $ID 
+            FROM $TABLE_NAME 
+            WHERE $storiesBeforeTimestampWhere
+          )
+        """
+
       db.execSQL(deleteStoryRepliesQuery, sharedArgs)
       db.execSQL(disassociateQuoteQuery, sharedArgs)
+      db.rawQuery(storyRepliesQuery, sharedArgs).forEach { cursor: Cursor ->
+        val mmsId = cursor.requireLong(ID)
+        attachments.deleteAttachmentsForMessage(mmsId)
+      }
 
       db.select(FROM_RECIPIENT_ID)
         .from(TABLE_NAME)
@@ -1720,8 +1735,23 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           )
         """
 
+      val storyRepliesQuery = """
+        SELECT $ID FROM $TABLE_NAME
+        WHERE 
+          $PARENT_STORY_ID < 0 AND 
+          ABS($PARENT_STORY_ID) IN (
+            SELECT $ID 
+            FROM $TABLE_NAME 
+            WHERE $storesInRecipientThread
+          )
+        """
+
       db.execSQL(deleteStoryRepliesQuery, sharedArgs)
       db.execSQL(disassociateQuoteQuery, sharedArgs)
+      db.rawQuery(storyRepliesQuery, sharedArgs).forEach { cursor: Cursor ->
+        val mmsId = cursor.requireLong(ID)
+        attachments.deleteAttachmentsForMessage(mmsId)
+      }
 
       AppDependencies.databaseObserver.notifyStoryObservers(recipientId)
 
