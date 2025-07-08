@@ -63,7 +63,6 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
         $ROOT_KEY BLOB,
-        $EPOCH BLOB,
         $ROOM_ID TEXT NOT NULL UNIQUE,
         $ADMIN_KEY BLOB,
         $NAME TEXT NOT NULL,
@@ -71,7 +70,8 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         $REVOKED INTEGER NOT NULL,
         $EXPIRATION INTEGER NOT NULL,
         $RECIPIENT_ID INTEGER UNIQUE REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
-        $DELETION_TIMESTAMP INTEGER DEFAULT 0 NOT NULL
+        $DELETION_TIMESTAMP INTEGER DEFAULT 0 NOT NULL,
+        $EPOCH BLOB DEFAULT NULL
       )
     """
 
