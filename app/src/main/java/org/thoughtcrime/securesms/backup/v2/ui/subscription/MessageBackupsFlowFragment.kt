@@ -140,22 +140,19 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
 
       composable(route = MessageBackupsStage.Route.BACKUP_KEY_RECORD.name) {
         val context = LocalContext.current
+        val passwordManagerSettingsIntent = BackupKeyCredentialManagerHandler.getCredentialManagerSettingsIntent(requireContext())
 
         MessageBackupsKeyRecordScreen(
           backupKey = state.accountEntropyPool.displayValue,
           keySaveState = state.backupKeySaveState,
+          canOpenPasswordManagerSettings = passwordManagerSettingsIntent != null,
           onNavigationClick = viewModel::goToPreviousStage,
           onNextClick = viewModel::goToNextStage,
-          onCopyToClipboardClick = {
-            Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS)
-          },
+          onCopyToClipboardClick = { Util.copyToClipboard(context, it, CLIPBOARD_TIMEOUT_SECONDS) },
           onRequestSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
           onConfirmSaveToPasswordManager = viewModel::onBackupKeySaveConfirmed,
           onSaveToPasswordManagerComplete = viewModel::onBackupKeySaveCompleted,
-          onGoToDeviceSettingsClick = {
-            val intent = BackupKeyCredentialManagerHandler.getCredentialManagerSettingsIntent(requireContext())
-            requireContext().startActivity(intent)
-          }
+          onGoToPasswordManagerSettingsClick = { requireContext().startActivity(passwordManagerSettingsIntent) }
         )
       }
 

@@ -29,20 +29,19 @@ class BackupKeyDisplayFragment : ComposeFragment() {
   @Composable
   override fun FragmentContent() {
     val state by viewModel.uiState.collectAsStateWithLifecycle()
+    val passwordManagerSettingsIntent = BackupKeyCredentialManagerHandler.getCredentialManagerSettingsIntent(requireContext())
 
     MessageBackupsKeyRecordScreen(
       backupKey = SignalStore.account.accountEntropyPool.displayValue,
       keySaveState = state.keySaveState,
+      canOpenPasswordManagerSettings = passwordManagerSettingsIntent != null,
       onNavigationClick = { findNavController().popBackStack() },
       onCopyToClipboardClick = { Util.copyToClipboard(requireContext(), it, CLIPBOARD_TIMEOUT_SECONDS) },
       onRequestSaveToPasswordManager = viewModel::onBackupKeySaveRequested,
       onConfirmSaveToPasswordManager = viewModel::onBackupKeySaveConfirmed,
       onSaveToPasswordManagerComplete = viewModel::onBackupKeySaveCompleted,
       onNextClick = { findNavController().popBackStack() },
-      onGoToDeviceSettingsClick = {
-        val intent = BackupKeyCredentialManagerHandler.getCredentialManagerSettingsIntent(requireContext())
-        requireContext().startActivity(intent)
-      }
+      onGoToPasswordManagerSettingsClick = { requireContext().startActivity(passwordManagerSettingsIntent) }
     )
   }
 }

@@ -41,6 +41,7 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.exceptions.CreateCredentialCancellationException
 import androidx.credentials.exceptions.CreateCredentialInterruptedException
 import androidx.credentials.exceptions.CreateCredentialNoCreateOptionException
+import androidx.credentials.exceptions.CreateCredentialProviderConfigurationException
 import androidx.credentials.exceptions.CreateCredentialUnknownException
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dialogs
@@ -68,13 +69,14 @@ private const val TAG = "MessageBackupsKeyRecordScreen"
 fun MessageBackupsKeyRecordScreen(
   backupKey: String,
   keySaveState: BackupKeySaveState?,
+  canOpenPasswordManagerSettings: Boolean,
   onNavigationClick: () -> Unit = {},
   onCopyToClipboardClick: (String) -> Unit = {},
   onRequestSaveToPasswordManager: () -> Unit = {},
   onConfirmSaveToPasswordManager: () -> Unit = {},
   onSaveToPasswordManagerComplete: (CredentialManagerResult) -> Unit = {},
   onNextClick: () -> Unit = {},
-  onGoToDeviceSettingsClick: () -> Unit = {}
+  onGoToPasswordManagerSettingsClick: () -> Unit = {}
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
   val backupKeyString = remember(backupKey) {
@@ -221,37 +223,58 @@ fun MessageBackupsKeyRecordScreen(
           }
         }
 
-        is BackupKeySaveState.Error -> {
-          when (keySaveState.errorType) {
-            is CredentialManagerError.MissingCredentialManager -> {
-              Dialogs.SimpleAlertDialog(
-                title = stringResource(R.string.MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title),
-                body = stringResource(R.string.MessageBackupsKeyRecordScreen__missing_password_manager_message),
-                confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__go_to_settings),
-                onConfirm = { onGoToDeviceSettingsClick() },
-                dismiss = stringResource(android.R.string.cancel),
-                onDismiss = { onSaveToPasswordManagerComplete(CredentialManagerResult.UserCanceled) }
-              )
-            }
-
-            is CredentialManagerError.SavePromptDisabled -> {
-              Dialogs.SimpleAlertDialog(
-                title = stringResource(R.string.MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title),
-                body = stringResource(R.string.MessageBackupsKeyRecordScreen__missing_password_manager_message),
-                confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__go_to_settings),
-                onConfirm = { onGoToDeviceSettingsClick() },
-                dismiss = stringResource(android.R.string.cancel),
-                onDismiss = { onSaveToPasswordManagerComplete(CredentialManagerResult.UserCanceled) }
-              )
-            }
-
-            is CredentialManagerError.Unexpected -> Unit
-          }
-        }
+        is BackupKeySaveState.Error -> BackupKeySaveErrorDialog(
+          error = keySaveState,
+          showPasswordManagerSettingsButton = canOpenPasswordManagerSettings,
+          onGoToPasswordManagerSettingsClick = onGoToPasswordManagerSettingsClick,
+          onDismiss = { onSaveToPasswordManagerComplete(CredentialManagerResult.UserCanceled) }
+        )
 
         null -> Unit
       }
     }
+  }
+}
+
+@Composable
+private fun BackupKeySaveErrorDialog(
+  error: BackupKeySaveState.Error,
+  showPasswordManagerSettingsButton: Boolean,
+  onGoToPasswordManagerSettingsClick: () -> Unit = {},
+  onDismiss: () -> Unit = {}
+) {
+  val title: String
+  val message: String
+  when (error.errorType) {
+    is CredentialManagerError.MissingCredentialManager -> {
+      title = stringResource(R.string.MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title)
+      message = stringResource(R.string.MessageBackupsKeyRecordScreen__missing_password_manager_message)
+    }
+
+    is CredentialManagerError.SavePromptDisabled -> {
+      title = stringResource(R.string.MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title)
+      message = stringResource(R.string.MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message)
+    }
+
+    is CredentialManagerError.Unexpected -> return
+  }
+
+  if (showPasswordManagerSettingsButton) {
+    Dialogs.SimpleAlertDialog(
+      title = title,
+      body = message,
+      confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__go_to_settings),
+      onConfirm = { onGoToPasswordManagerSettingsClick() },
+      dismiss = stringResource(android.R.string.cancel),
+      onDismiss = onDismiss
+    )
+  } else {
+    Dialogs.SimpleMessageDialog(
+      title = title,
+      message = message,
+      dismiss = stringResource(android.R.string.ok),
+      onDismiss = onDismiss
+    )
   }
 }
 
@@ -275,7 +298,7 @@ private suspend fun saveKeyToCredentialManager(
     when (e) {
       is CreateCredentialCancellationException -> CredentialManagerResult.UserCanceled
       is CreateCredentialInterruptedException -> CredentialManagerResult.Interrupted(e)
-      is CreateCredentialNoCreateOptionException -> CredentialManagerError.MissingCredentialManager(e)
+      is CreateCredentialNoCreateOptionException, is CreateCredentialProviderConfigurationException -> CredentialManagerError.MissingCredentialManager(e)
       is CreateCredentialUnknownException -> {
         when {
           Build.VERSION.SDK_INT <= 33 && e.message?.contains("[28431]") == true -> {
@@ -310,7 +333,8 @@ private fun MessageBackupsKeyRecordScreenPreview() {
   Previews.Preview {
     MessageBackupsKeyRecordScreen(
       backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0",
-      keySaveState = null
+      keySaveState = null,
+      canOpenPasswordManagerSettings = true
     )
   }
 }
@@ -321,7 +345,8 @@ private fun SaveKeyConfirmationDialogPreview() {
   Previews.Preview {
     MessageBackupsKeyRecordScreen(
       backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0",
-      keySaveState = BackupKeySaveState.RequestingConfirmation
+      keySaveState = BackupKeySaveState.RequestingConfirmation,
+      canOpenPasswordManagerSettings = true
     )
   }
 }
