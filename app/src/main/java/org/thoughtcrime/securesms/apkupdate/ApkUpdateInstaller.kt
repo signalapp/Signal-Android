@@ -99,6 +99,9 @@ object ApkUpdateInstaller {
       }
     }
 
+    val activeSessionCount = packageInstaller.mySessions.count { it.isActive }
+    Log.d(TAG, "Active session count: $activeSessionCount")
+
     Log.d(TAG, "Creating install session...")
     val sessionId: Int = packageInstaller.createSession(sessionParams)
     val session: PackageInstaller.Session = packageInstaller.openSession(sessionId)
