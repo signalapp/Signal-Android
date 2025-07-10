@@ -4568,6 +4568,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">পিন তৈরি করা হয়েছে।</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">PIN পুনঃপ্রবেশ করান</string>
     <string name="ConfirmKbsPinFragment__creating_pin">পিন তৈরি করা হচ্ছে …</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">পিনের সাথে পরিচিত হন</string>
@@ -8099,6 +8101,8 @@
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"এই ডিভাইসে সাবস্ক্রিপশন পাওয়া যায়নি।"</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">সেট আপ করুন</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">View settings</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8356,6 +8360,8 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">পাসওয়ার্ড ম্যানেজারে সেভ করবেন?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">আপনার ব্যাকআপ \'কি\' শুধুমাত্র সেই পাসওয়ার্ড ম্যানেজারে সংরক্ষণ করুন যেটিকে আপনি বিশ্বাসযোগ্য ও নিরাপদ বলে মনে করেন। কোন পাসওয়ার্ড ম্যানেজার আপনার জন্য সঠিক সে বিষয়ে Signal পরামর্শ দেয় না।</string>
+    <!-- ID used when saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">আপনার পাসওয়ার্ড ম্যানেজারে সেভ করা হয়েছে</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->

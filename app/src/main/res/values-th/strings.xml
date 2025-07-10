@@ -4450,6 +4450,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">สร้างรหัส PIN แล้ว</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">ใส่รหัส PIN ของคุณอีกครั้ง</string>
     <string name="ConfirmKbsPinFragment__creating_pin">สร้างรหัส PIN…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">แนะนำรหัส PINs</string>
@@ -7922,6 +7924,8 @@
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"ไม่พบการสมัครแพ็กเกจบนอุปกรณ์เครื่องนี้"</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">ตั้งชื่อผู้ใช้</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">View settings</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8176,6 +8180,8 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">บันทึกไปยังตัวจัดการรหัสผ่านใช่หรือไม่</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">โปรดเก็บกุญแจสำรองของคุณไว้กับตัวจัดการรหัสผ่านที่คุณมั่นใจว่าปลอดภัยเท่านั้น โดย Signal จะไม่แนะนำตัวจัดการรหัสผ่านที่เหมาะกับคุณตัวใดตัวหนึ่งเป็นพิเศษ</string>
+    <!-- ID used when saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">บันทึกไปยังตัวจัดการรหัสผ่านของคุณแล้ว</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->

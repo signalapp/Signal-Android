@@ -4568,6 +4568,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">PIN സൃഷ്ടിച്ചു.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">നിങ്ങളുടെ PIN വീണ്ടും നൽകുക</string>
     <string name="ConfirmKbsPinFragment__creating_pin">PIN സൃഷ്ടിക്കുന്നു…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">അവതരിപ്പിക്കുന്നു PIN-കൾ</string>
@@ -8099,6 +8101,8 @@
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"ഈ ഉപകരണത്തിൽ സബ്സ്ക്രിപ്ഷൻ കണ്ടെത്തിയില്ല."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">സജ്ജമാക്കുക</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">View settings</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8356,6 +8360,8 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">പാസ്‌വേഡ് മാനേജറിൽ സംരക്ഷിക്കണോ?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">സുരക്ഷിതമാണെന്ന് നിങ്ങൾ വിശ്വസിക്കുന്ന ഒരു പാസ്‌വേഡ് മാനേജറിൽ മാത്രം നിങ്ങളുടെ ബാക്കപ്പ് കീ സൂക്ഷിക്കുക. ഏത് പാസ്‌വേഡ് മാനേജറാണ് നിങ്ങൾക്ക് അനുയോജ്യമെന്ന് Signal ശുപാർശ ചെയ്യുന്നില്ല.</string>
+    <!-- ID used when saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">നിങ്ങളുടെ പാസ്‌വേഡ് മാനേജറിൽ സംരക്ഷിച്ചു</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->

@@ -4568,6 +4568,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">PIN બનાવ્યો.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">તમારો પિન ફરી દાખલ કરો</string>
     <string name="ConfirmKbsPinFragment__creating_pin">PIN બનાવી રહ્યાં છે…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">PIN રજૂ કરી રહ્યા છીએ</string>
@@ -8099,6 +8101,8 @@
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"આ ડિવાઇસ પર સબ્સ્ક્રિપ્શન મળ્યું નથી."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">સેટ કરો</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">View settings</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8356,6 +8360,8 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">પાસવર્ડ મેનેજરમાં સેવ કરવું છે?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">તમારી બેકઅપ કી ફક્ત એવા પાસવર્ડ મેનેજરમાં સ્ટોર કરો જેના પર તમને વિશ્વાસ હોય કે તે સુરક્ષિત છે. Signal તમારા માટે કયું પાસવર્ડ મેનેજર યોગ્ય છે તેની ભલામણ કરતું નથી.</string>
+    <!-- ID used when saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">તમારા પાસવર્ડ મેનેજરમાં સેવ કર્યું</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->

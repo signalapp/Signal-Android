@@ -4450,6 +4450,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">PIN 已创建。</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">重新入您的 PIN</string>
     <string name="ConfirmKbsPinFragment__creating_pin">正在创建 PIN…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">新推出 PIN 密码功能</string>
@@ -7922,6 +7924,8 @@
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"未在此设备上找到备份套餐。"</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">设置</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">View settings</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8176,6 +8180,8 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">要保存到密码管理器吗？</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">请仅将您的备份密钥存储到您信任的安全密码管理器中。Signal 不会推荐哪款密码管理器适合您。</string>
+    <!-- ID used when saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">已保存到您的密码管理器</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
