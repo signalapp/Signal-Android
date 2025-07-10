@@ -1137,6 +1137,11 @@
             android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
             android:exported="false"/>
 
+    <activity android:name=".backup.v2.ui.verify.VerifyBackupKeyActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Signal.DayNight.NoActionBar" />
+
     <activity android:name=".groups.ui.incommon.GroupsInCommonActivity"
               android:exported="false"
               android:theme="@style/Signal.DayNight.NoActionBar" />
