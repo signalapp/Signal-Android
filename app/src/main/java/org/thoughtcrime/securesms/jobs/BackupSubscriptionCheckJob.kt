@@ -100,6 +100,12 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
+    if (SignalStore.backup.backupTierInternalOverride != null) {
+      Log.i(TAG, "User has internal override set for backup version. Clearing mismatch value and exiting.", true)
+      SignalStore.backup.subscriptionStateMismatchDetected = false
+      return Result.success()
+    }
+
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()
     Log.i(TAG, "Retrieved purchase result from Billing api: $purchase", true)
 
