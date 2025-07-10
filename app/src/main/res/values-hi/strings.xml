@@ -1493,7 +1493,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">अभी नहीं</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">If you choose not to restore now, you won\'t be able to restore later. Your media will restore in the background.</string>
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">अगर आप अभी रीस्टोर करना नहीं चुनते, तो आप बाद में रीस्टोर नहीं कर पाएँगे। आपके मीडिया को बैकग्राउंड में रीस्टोर किया जाएगा।</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">मेंछन किए जाने पर मुझे सूचित करें</string>
@@ -8359,13 +8359,13 @@
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">आपके पासवर्ड मैनेजर में सेव किया गया</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">पासवर्ड मैनेजर में सेव नहीं किया जा सका</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">आपका पासवर्ड मैनेजर सेट अप नहीं है या आप जिस पासवर्ड मैनेजर का इस्तेमाल कर रहे हैं वह सपोर्टेड नहीं है।</string>
     <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">आपने पहले Google Password Manager में Signal के पासवर्ड सेव न करना चुना था। अपने Google Password Manager की सेटिंग्स में, Signal को \"अस्वीकार की गई साइटें और ऐप्स\" से हटाकर फिर से कोशिश करें।</string>
     <!-- Label for a button that navigates to the device settings -->
-    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Go to settings</string>
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">सेटिंग्स पर जाएँ</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">अगला</string>
     <!-- Bottom sheet title -->

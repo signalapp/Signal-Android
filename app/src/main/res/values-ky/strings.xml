@@ -1453,7 +1453,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Азыр эмес</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">If you choose not to restore now, you won\'t be able to restore later. Your media will restore in the background.</string>
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Азыр калыбына келтирбесеңиз, кийин калыбына келтире албай каласыз. Медиа файлдар фондо калыбына келет.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Мени айтып өткөндөр тууралуу билип турайын</string>
@@ -8179,13 +8179,13 @@
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Сырсөздөрдү башкаргычыңызга сакталды</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Сырсөздөрдү башкаргычка сактоо мүмкүн болгон жок</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Сырсөздөрдү башкаргычты орното элексиз же сиз колдонуп жаткан башкаргыч колдоого алынбайт.</string>
     <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Signal\'дын сырсөздөрү Google Сырсөздөрдү башкаргычта сакталбасын дегенсиз. Google Сырсөздөрдү сактагычтын параметрлериндеги \"Четке кагылган сайттар менен колдонмолордон\" Signal\'ды өчүрүп, кайталап көрүңүз.</string>
     <!-- Label for a button that navigates to the device settings -->
-    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Go to settings</string>
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Тууралоо бөлүмүнө өтүү</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Кийинки</string>
     <!-- Bottom sheet title -->

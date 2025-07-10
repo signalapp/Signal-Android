@@ -1493,7 +1493,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Plus tard</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">If you choose not to restore now, you won\'t be able to restore later. Your media will restore in the background.</string>
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Vos médias seront restaurés en arrière-plan. Si vous décidez de ne pas les restaurer maintenant, vous ne pourrez pas le faire plus tard.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me prévenir quand on me mentionne</string>
@@ -8359,13 +8359,13 @@
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Clé enregistrée dans le gestionnaire de mots de passe</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Impossible d\'enregistrer la clé dans le gestionnaire de mots de passe</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Vous n\'avez pas configuré de gestionnaire de mots de passe ou celui que vous utilisez n\'est pas compatible avec Signal.</string>
     <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Vous aviez choisi de ne pas enregistrer vos mots de passe Signal dans le gestionnaire de mots de passe Google. Dans les paramètres de votre gestionnaire de mots de passe Google, retirez Signal de la liste des \"sites et applis refusés\", puis réessayez.</string>
     <!-- Label for a button that navigates to the device settings -->
-    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Go to settings</string>
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Accéder aux paramètres</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Suivant</string>
     <!-- Bottom sheet title -->

@@ -146,7 +146,7 @@
     <string name="UploadAttachmentToArchiveJob_uploading_media">Back-up van media maken…</string>
 
     <!-- BackgroundMessageRetriever -->
-    <string name="BackgroundMessageRetriever_checking_for_messages">Aan het nagaan of er nieuwe berichten zijn…</string>
+    <string name="BackgroundMessageRetriever_checking_for_messages">Controleren op nieuwe berichten…</string>
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
@@ -1091,7 +1091,7 @@
     <!-- Dialog title shown when a device is unlinked -->
     <string name="LinkDeviceFragment__device_unlinked">Apparaat ontkoppeld</string>
     <!-- Dialog body shown when a device is unlinked where %1$s is the date and time the device was originally linked (eg Jan 15 at 9:00pm) -->
-    <string name="LinkDeviceFragment__the_device_that_was">Het apparaat dat %1$s werd gekoppeld, is nu ontkoppeld.</string>
+    <string name="LinkDeviceFragment__the_device_that_was">Het apparaat dat %1$s werd gekoppeld, is niet langer gekoppeld.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
     <!-- Dialog title shown when you don\'t have enough storage space -->
@@ -1493,7 +1493,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Niet nu</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">If you choose not to restore now, you won\'t be able to restore later. Your media will restore in the background.</string>
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Als je er nu voor kiest om niet te herstellen, dan is dat op een later moment niet meer mogelijk. Je media worden op de achtergrond hersteld.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij vermeldingen</string>
@@ -3566,7 +3566,7 @@
     <string name="EnableCallNotificationSettingsDialog__to_receive_call_notifications_tap_settings_and_enable_background_activity_in_battery_settings">Tik op ‘Instellingen’ en schakel in de batterij -instellingen achtergrondactiviteit in om oproepmeldingen te ontvangen.</string>
 
     <!-- country_selection_fragment -->
-    <string name="country_selection_fragment__loading_countries">Landen aan het laden…</string>
+    <string name="country_selection_fragment__loading_countries">Landen laden…</string>
     <string name="country_selection_fragment__search">Zoeken</string>
     <string name="country_selection_fragment__no_matching_countries">Geen overeenkomende landen</string>
 
@@ -4129,7 +4129,7 @@
     <string name="PaymentsHomeFragment_introducing_payments">Betalingen via Signal</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">Je kunt Signal ook gebruiken om een privacygerichte valuta genaamd MobileCoin te versturen en ontvangen. Activeer om te beginnen.</string>
     <string name="PaymentsHomeFragment__activate_payments">Betalingen inschakelen</string>
-    <string name="PaymentsHomeFragment__activating_payments">Betalingen aan het inschakelen…</string>
+    <string name="PaymentsHomeFragment__activating_payments">Betalingen inschakelen…</string>
     <string name="PaymentsHomeFragment__restore_payments_account">Betalingsaccount herstellen</string>
     <string name="PaymentsHomeFragment__no_recent_activity_yet">Er zijn nog geen recente gebeurtenissen</string>
     <string name="PaymentsHomeFragment__recent_activity">Recente gebeurtenissen</string>
@@ -4885,7 +4885,7 @@
     <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Tik op beide apparaten op ‘Account overzetten’ en dan op ‘Doorgaan’"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Aan het voorbereiden om verbinding te maken met je oude Android-apparaat…</string>
+    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Voorbereiden op verbinding maken met je oude Android-apparaat…</string>
     <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">Een moment, dit duurt niet lang</string>
     <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Aan het wachten tot je oude Android-apparaat verbinding maakt…</string>
     <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Om je oude Android-apparaat te kunnen detecteren en om er verbinding mee te maken, heeft Signal een machtiging nodig om je locatie te lezen.</string>
@@ -4977,8 +4977,8 @@
 
     <!-- DeviceToDeviceTransferService -->
     <string name="DeviceToDeviceTransferService_content_title">Account overzetten</string>
-    <string name="DeviceToDeviceTransferService_status_ready">Aan het voorbereiden om verbinding te maken met je andere Android-apparaat…</string>
-    <string name="DeviceToDeviceTransferService_status_starting_up">Aan het voorbereiden om verbinding te maken met je andere Android-apparaat…</string>
+    <string name="DeviceToDeviceTransferService_status_ready">Voorbereiden op verbinding maken met je andere Android-apparaat…</string>
+    <string name="DeviceToDeviceTransferService_status_starting_up">Voorbereiden op verbinding maken met je andere Android-apparaat…</string>
     <string name="DeviceToDeviceTransferService_status_discovery">Er wordt gezocht naar je andere Android-apparaat…</string>
     <string name="DeviceToDeviceTransferService_status_network_connected">Verbinding aan het maken met je andere Android-apparaat…</string>
     <string name="DeviceToDeviceTransferService_status_verification_required">Verificatie vereist</string>
@@ -5135,7 +5135,7 @@
     <string name="DeleteAccountFragment__failed_to_delete_local_data">Het wissen van lokale gegevens is mislukt. Je kunt de lokale gegevens zelf wissen via het ‘apps’-menu in de Android-Instellingen-app.</string>
     <string name="DeleteAccountFragment__launch_app_settings">App-instellingen openen</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process is leaving all groups -->
-    <string name="DeleteAccountFragment__leaving_groups">Groepen aan het verlaten…</string>
+    <string name="DeleteAccountFragment__leaving_groups">Groepen verlaten…</string>
     <!-- Title of progress dialog shown when a user deletes their account and the process has left all groups -->
     <string name="DeleteAccountFragment__deleting_account">Account aan het verwijderen…</string>
     <!-- Message of progress dialog shown when a user deletes their account and the process is canceling their subscription -->
@@ -6160,7 +6160,7 @@
     <!-- Displayed in the pending help dialog, used to launch user to more details about bank transfers -->
     <string name="MySupportPreference__learn_more">Meer lezen</string>
     <!-- Displayed when a subscription refresh is being performed -->
-    <string name="MySupportPreference__checking_subscription">Abonnement aan het controleren…</string>
+    <string name="MySupportPreference__checking_subscription">Donatie aan het controleren…</string>
 
     <!-- Title of dialog telling user they need to update signal as it expired -->
     <string name="UpdateSignalExpiredDialog__title">Signal bijwerken</string>
@@ -6280,7 +6280,7 @@
     <!-- Gift badge view action label -->
     <string name="GiftMessageView__view">Weergeven</string>
     <!-- Gift badge redeeming action label -->
-    <string name="GiftMessageView__redeeming">In ontvangst aan het nemen…</string>
+    <string name="GiftMessageView__redeeming">In ontvangst nemen…</string>
     <!-- Gift badge redeemed label -->
     <string name="GiftMessageView__redeemed">In ontvangst genomen</string>
 
@@ -6911,7 +6911,7 @@
     <!-- Primary action for pending gift sheet to redeem badge later -->
     <string name="ViewReceivedGiftSheet__not_now">Niet nu</string>
     <!-- Dialog text while redeeming a gift -->
-    <string name="ViewReceivedGiftSheet__redeeming_badge">In ontvangst aan het nemen…</string>
+    <string name="ViewReceivedGiftSheet__redeeming_badge">Badge in ontvangst nemen…</string>
     <!-- Description text in gift thanks sheet -->
     <string name="GiftThanksSheet__youve_made_a_donation">Je hebt namens %1$s een donatie gedaan aan Signal. Ze krijgen de mogelijkheid om hun steun op hun profiel te tonen.</string>
     <!-- Expired gift sheet title -->
@@ -8234,7 +8234,7 @@
         <item quantity="other">%1$s van ~%2$s berichten aan het verwerken (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Je hebt %1$s aan back-upgegevens die niet op dit apparaat staan. Zonder een betaald abonnement kun je je media niet downloaden.</string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Je hebt %1$s aan back-upgegevens die niet op dit apparaat staan. Alleen met een betaald abonnement kun je media automatisch verplaatsen naar je back-up zodat je opslagruimte op je apparaat bespaart.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Je hebt %1$s aan back-upgegevens die niet op dit apparaat staan. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8359,13 +8359,13 @@
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Opgeslagen in je wachtwoordmanager</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Kan niet opslaan in wachtwoordmanager</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Je hebt geen wachtwoordmanager ingesteld of de wachtwoordmanager die je gebruikt, wordt niet ondersteund.</string>
     <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Je hebt er eerder voor gekozen om Signal-wachtwoorden niet op te slaan in Google Wachtwoordmanager. Open de Android-Instellingen-app en zoek naar de wachtwoordmanager. Tik vervolgens op Instellingen, verwijder Signal uit ‘Geweigerde sites en apps’ en probeer het opnieuw.</string>
     <!-- Label for a button that navigates to the device settings -->
-    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Go to settings</string>
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Ga naar instellingen</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Volgende</string>
     <!-- Bottom sheet title -->

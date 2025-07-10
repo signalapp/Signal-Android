@@ -1493,7 +1493,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">ಈಗಲ್ಲ</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">If you choose not to restore now, you won\'t be able to restore later. Your media will restore in the background.</string>
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">ನೀವು ಈಗ ರಿಸ್ಟೋರ್ ಮಾಡದಿರುವುದನ್ನು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡಲ್ಲಿ, ನಂತರದಲ್ಲಿ ನಿಮಗೆ ರಿಸ್ಟೋರ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ನಿಮ್ಮ ಮೀಡಿಯಾ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ರಿಸ್ಟೋರ್ ಆಗುತ್ತದೆ.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">\@ಉಲ್ಲೇಖಗಳು ಬಂದರೆ ಎಚ್ಚರಿಸು</string>
@@ -8359,13 +8359,13 @@
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್‌ಗೆ ಸೇವ್ ಮಾಡಲಾಗಿದೆ</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್‌ಗೆ ಸೇವ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">ನೀವು ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಸೆಟಪ್ ಹೊಂದಿಲ್ಲ ಅಥವಾ ನೀವು ಬಳಸುತ್ತಿರುವ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಬೆಂಬಲಿತವಾಗಿಲ್ಲ.</string>
     <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">ನೀವು ಈ ಹಿಂದೆ Signal ಗಾಗಿ ಪಾಸ್‌ವರ್ಡ್‌ಗಳನ್ನು Google ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್‌ನಲ್ಲಿ ಸೇವ್ ಮಾಡದಿರುವುದನ್ನು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡಿದ್ದೀರಿ. ನಿಮ್ಮ Google ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳಲ್ಲಿ, \"ನಿರಾಕರಿಸಿದ ಸೈಟ್‌ಗಳು ಮತ್ತು ಆ್ಯಪ್‌ಗಳು\" ಎಂಬುದರಿಂದ Signal ಅನ್ನು ತೆಗೆದುಹಾಕಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Label for a button that navigates to the device settings -->
-    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Go to settings</string>
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳಿಗೆ ಹೋಗಿ</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">ಮುಂದೆ</string>
     <!-- Bottom sheet title -->

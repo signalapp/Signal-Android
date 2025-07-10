@@ -1493,7 +1493,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Jetzt nicht</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">If you choose not to restore now, you won\'t be able to restore later. Your media will restore in the background.</string>
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Falls du jetzt nicht wiederherstellst, wirst du dies später nicht nachholen können. Deine Medien werden im Hintergrund wiederhergestellt.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Mich bei Erwähnungen benachrichtigen</string>
@@ -8120,9 +8120,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Datensicherung über das Mobilfunknetz</string>
     <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">Datensicherungsschlüssel anzeigen</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Backup-Schlüssel anzeigen</string>
     <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Entsperren, um Datensicherungsschlüssel anzuzeigen</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Entsperren, um Backup-Schlüssel anzuzeigen</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Datensicherung ausschalten und löschen</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8335,9 +8335,9 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Dein Datensicherungsschlüssel</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Dein Backup-Schlüssel</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Dein Datensicherungsschlüssel ist ein 64-stelliger Code, mit dem du deine Datensicherung wiederherstellen kannst, wenn du Signal neu installierst.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Dein Backup-Schlüssel ist ein 64-stelliger Code, mit dem du dein Backup wiederherstellen kannst, wenn du Signal neu installierst.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ohne Schlüssel kannst du deine Datensicherung nicht wiederherstellen. Signal kann dir nicht helfen, deine Datensicherung wiederherzustellen.</string>
     <!-- Action button label -->
@@ -8345,7 +8345,7 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Sichere deinen Datensicherungsschlüssel</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Sichere deinen Backup-Schlüssel</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Dieser Schlüssel wird benötigt, um dein Konto und deine Daten wiederherzustellen. Bewahre diesen Schlüssel sicher auf. Wenn du ihn verlierst, kannst du dein Konto nicht wiederherstellen.</string>
     <!-- Copy to clipboard button label -->
@@ -8359,13 +8359,13 @@
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">In deinem Passwortmanager gespeichert</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Kann nicht im Passwortmanager gespeichert werden</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Du hast keinen Passwortmanager eingerichtet, oder dein Passwortmanager wird nicht unterstützt.</string>
     <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Du hast vorher ausgewählt, dass Passwörter für Signal nicht im Google Passwortmanager gespeichert werden sollen. Entferne Signal in den Einstellungen deines Google Passwortmanagers aus »Abgelehnte Websites und Apps« und versuche es noch mal.</string>
     <!-- Label for a button that navigates to the device settings -->
-    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Go to settings</string>
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Zu Einstellungen</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Weiter</string>
     <!-- Bottom sheet title -->
@@ -8380,11 +8380,11 @@
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Schlüssel erneut anzeigen</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Bestätige deinen Datensicherungsschlüssel</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Bestätige deinen Backup-Schlüssel</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Gib den Datensicherungsschlüssel ein, den du eben aufgezeichnet hast</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Gib den Backup-Schlüssel ein, den du eben aufgezeichnet hast</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Datensicherungsschlüssel</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Backup-Schlüssel</string>
     <!-- Confirm your key text entry error text -->
     <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Falscher Backup-Schlüssel</string>
     <!-- Confirm your key button text to return to record key screen. -->
@@ -8484,17 +8484,17 @@
     <string name="RestoreLocalBackup_subtitle">Stelle deine Nachrichten mithilfe einer auf deinem Gerät gespeicherten Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
 
     <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Gib deinen Datensicherungsschlüssel ein</string>
+    <string name="EnterBackupKey_title">Gib deinen Backup-Schlüssel ein</string>
     <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Dein Datensicherungsschlüssel ist ein 64-stelliger Code, den du benötigst, um dein Konto und deine Daten wiederherzustellen.</string>
+    <string name="EnterBackupKey_subtitle">Dein Backup-Schlüssel ist ein 64-stelliger Code, den du benötigst, um dein Konto und deine Daten wiederherzustellen.</string>
     <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Kein Datensicherungsschlüssel?</string>
+    <string name="EnterBackupKey_no_backup_key">Kein Backup-Schlüssel?</string>
     <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Datensicherungsschlüssel</string>
+    <string name="EnterBackupKey_backup_key">Backup-Schlüssel</string>
     <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Datensicherungen können ohne den 64-stelligen Code nicht wiederhergestellt werden. Wenn du deinen Datensicherungsschlüssel verloren hast, kann dir Signal nicht helfen, dein Backup wiederherzustellen.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups können ohne den 64-stelligen Code nicht wiederhergestellt werden. Wenn du deinen Backup-Schlüssel verloren hast, kann dir Signal nicht helfen, dein Backup wiederherzustellen.</string>
     <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Auf deinem alten Gerät kannst du deinen Datensicherungsschlüssel in Einstellungen &gt; Backups sehen. Tippe dann auf »Datensicherungsschlüssel anzeigen«.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">Auf deinem alten Gerät kannst du deinen Backup-Schlüssel in Einstellungen &gt; Backups sehen. Tippe dann auf »Backup-Schlüssel anzeigen«.</string>
     <!-- Backup key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Mehr erfahren</string>
     <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
@@ -8502,7 +8502,7 @@
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_title">Falscher Backup-Schlüssel</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Registriere dich unbedingt mit derselben Telefonnummer und demselben 64-stelligen Datensicherungsschlüssel, den du beim Aktivieren von Signal Backups gespeichert hast. Datensicherungen können ohne diesen Schlüssel nicht wiederhergestellt werden.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Registriere dich unbedingt mit derselben Telefonnummer und demselben 64-stelligen Backup-Schlüssel, den du beim Aktivieren von Signal Backups gespeichert hast. Backups können ohne diesen Schlüssel nicht wiederhergestellt werden.</string>
     <!-- Dialog positive button text to try entering their backup key again -->
     <string name="EnterBackupKey_try_again">Erneut versuchen</string>
     <!-- Dialog negative button text to get help with backup key -->
@@ -8516,7 +8516,7 @@
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Backup nicht gefunden</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Der von dir eingegebene Datensicherungsschlüssel ist korrekt, diesem ist aber kein Back-up zugeordnet. Falls du dein altes Telefon noch hast, stelle sicher, dass Datensicherungen aktiviert sind und dass eine Datensicherung abgeschlossen wurde. Versuche es dann erneut.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Der von dir eingegebene Backup-Schlüssel ist korrekt, diesem ist aber kein Backup zugeordnet. Falls du dein altes Telefon noch hast, stelle sicher, dass Backups aktiviert sind und dass ein Backup abgeschlossen wurde. Versuche es dann erneut.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Wiederherstellen überspringen</string>
     <!-- Dialog title text when encountering backup restore network error -->

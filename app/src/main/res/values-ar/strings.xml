@@ -1635,7 +1635,7 @@
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">أُجريت آخِر نسخة احتياطية في %1$s عند الساعة %2$s.</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">أُجريت آخِر نسخة احتياطية في %1$s عند الساعة %2$s. حجم نسختك الاحتياطية هو %3$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">أُجريتَ آخِر نسخة احتياطية في %1$s عند الساعة %2$s. حجم نسختك الاحتياطية هو %3$s.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">جارٍ إعداد تفاصيل النسخة الاحتياطية…</string>
     <!-- Text label button to skip restore from remote -->
@@ -1643,7 +1643,7 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">تعذَّر إنهاء عملية النقل</string>
     <!-- Dialog message displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__error_occurred">حدث خطأ وتعذّر نقل حسابك إثر ذلك. حاوِل مرّة أخرى من خلال اختيار طريقة النقل.</string>
+    <string name="RemoteRestoreActivity__error_occurred">حدث خطأ وتعذَّر نقل حسابك بسبب ذلك. حاوِل مرّة أخرى من خلال اختيار طريقة النقل.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
     <string name="RemoteRestoreActivity__couldnt_restore">تعذَّرت استعادة هذه النسخة الاحتياطية.</string>
     <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
@@ -2345,7 +2345,7 @@
     <!-- Update message shown in chat after you unblock a person -->
     <string name="MessageRecord_you_unblocked_this_person">رفعتَ الحظر عن هذا الشخص</string>
     <!-- Update message shown in chat after you block a group -->
-    <string name="MessageRecord_you_blocked_this_group">قُمتَ بحظر هذه المجموعة</string>
+    <string name="MessageRecord_you_blocked_this_group">حظرتَ هذه المجموعة</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">رفعتَ الحظر عن هذه المجموعة</string>
 
@@ -2416,7 +2416,7 @@
     <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
     <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
     <!-- Text for an empty group or when you are the only member -->
-    <string name="MessageRequestProfileView_group_members_zero">لا يوجد أعضاء آخرون في المجموعة حتى الآن</string>
+    <string name="MessageRequestProfileView_group_members_zero">لا يوجد أعضاء آخرون في المجموعة حتى الآن.</string>
     <!-- Text for a group with one member (not you). %1$s is their name -->
     <string name="MessageRequestProfileView_group_members_one">%1$s</string>
     <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
@@ -2718,7 +2718,7 @@
 
     <!-- WebRtcCallView -->
     <string name="WebRtcCallView__signal_call">مكالمة سيجنال</string>
-    <string name="WebRtcCallView__signal_video_call">مكالمة سيجنال بالفيديو</string>
+    <string name="WebRtcCallView__signal_video_call">مكالمة فيديو عبر سيجنال</string>
     <string name="WebRtcCallView__start_call">بدء المكالمة</string>
     <string name="WebRtcCallView__join_call">الانضمام للمكالمة</string>
     <string name="WebRtcCallView__call_is_full">المكالمة ممتلئة</string>
@@ -3243,7 +3243,7 @@
     <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
     <string name="StickerManagement_menu_remove_pack">إزالة</string>
     <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
-    <string name="StickerManagement_menu_select_packs">اختيار مجموعات المُلصقات</string>
+    <string name="StickerManagement_menu_select_packs">حدِّد مجموعات المُلصقات</string>
 
     <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
     <string name="StickerManagement_accessibility_download_pack">نزِّل حزمة المُلصَقات \"%1$s\"</string>
@@ -4582,7 +4582,7 @@
     <string name="PaymentsAllActivityFragment__received">تمَّ الاستلام</string>
 
     <!-- Displayed on a welcome screen for payments -->
-    <string name="PaymentsHomeFragment_introducing_payments">نُقدم لكم عمليات الدفع</string>
+    <string name="PaymentsHomeFragment_introducing_payments">نُقدِّم لكم عمليات الدفع</string>
     <string name="PaymentsHomeFragment__use_signal_to_send_and_receive">استخدِم سيجنال لإرسال واستلام MobileCoin، عُملة رقمية جديدة ترتكز على الخصوصية. يُرجى تفعيلها للبدء بالاستخدام.</string>
     <string name="PaymentsHomeFragment__activate_payments">تفعيل المدفوعات</string>
     <string name="PaymentsHomeFragment__activating_payments">يجري تفعيل المدفوعات…</string>
@@ -4685,7 +4685,7 @@
     <!-- Title to enable payment lock -->
     <string name="PaymentsSecuritySetupFragment__protect_your_funds">اِحم أموالك</string>
     <!-- Description as to why payment lock is required -->
-    <string name="PaymentsSecuritySetupFragment__help_prevent">ساعد في منع أي شخص يستخدم هاتفكَ من الوصول إلى أموالك عن طريقة إضافة طبقة أخرى من الأمان. يُمكنك تعطيل هذا الخيار في الإعدادات.</string>
+    <string name="PaymentsSecuritySetupFragment__help_prevent">ساعِد في منع أي شخص يستخدم هاتفكَ من الوصول إلى أموالك عن طريقة إضافة طبقة أخرى من الأمان. يُمكنك تعطيل هذا الخيار في الإعدادات.</string>
     <!-- Option to enable payment lock -->
     <string name="PaymentsSecuritySetupFragment__enable_payment_lock">تفعيل قفل عمليات الدفع</string>
     <!-- Option to cancel -->
@@ -4711,7 +4711,7 @@
     <string name="PaymentsDetailsFragment__details">التفاصيل</string>
     <string name="PaymentsDetailsFragment__status">الحالة</string>
     <string name="PaymentsDetailsFragment__submitting_payment">يجري إرسال المبلغ…</string>
-    <string name="PaymentsDetailsFragment__processing_payment">تجري معالجة الدفوعات…</string>
+    <string name="PaymentsDetailsFragment__processing_payment">تجري معالجة المدفوعات…</string>
     <string name="PaymentsDetailsFragment__payment_complete">تمَّ الدفع</string>
     <string name="PaymentsDetailsFragment__payment_failed">فشِلت عملية الدفع</string>
     <string name="PaymentsDetailsFragment__network_fee">رسوم الشبكة</string>
@@ -4830,7 +4830,7 @@
 
     <!-- conversation_callable_secure -->
     <string name="conversation_callable_secure__menu_call">مكالمة سيجنال</string>
-    <string name="conversation_callable_secure__menu_video">مكالمة سيجنال بالفيديو</string>
+    <string name="conversation_callable_secure__menu_video">مكالمة فيديو عبر سيجنال</string>
 
     <!-- conversation_context -->
 
@@ -5146,13 +5146,13 @@
     <!-- Displayed in a notification when a Signal voice call is ringing -->
     <string name="CallNotificationBuilder__incoming_signal_voice_call">مكالمة صوتية واردة على سيجنال</string>
     <!-- Displayed in a notification when a Signal video call is ringing -->
-    <string name="CallNotificationBuilder__incoming_signal_video_call">مكالمة فيديو واردة على سيجنال</string>
+    <string name="CallNotificationBuilder__incoming_signal_video_call">مكالمة فيديو واردة عبر سيجنال</string>
     <!-- Displayed in a notification when a Signal group call is ringing -->
     <string name="CallNotificationBuilder__incoming_signal_group_call">مكالمة جماعية واردة على سيجنال</string>
     <!-- Displayed in a notification when a Signal voice call is in progress -->
     <string name="CallNotificationBuilder__ongoing_signal_voice_call">مكالمة صوتية جارية على سيجنال</string>
     <!-- Displayed in a notification when a Signal video call is in progress -->
-    <string name="CallNotificationBuilder__ongoing_signal_video_call">مكالمة فيديو جارية على سيجنال</string>
+    <string name="CallNotificationBuilder__ongoing_signal_video_call">مكالمة فيديو جارية عبر سيجنال</string>
     <!-- Displayed in a notification when a Signal group call is in progress -->
     <string name="CallNotificationBuilder__ongoing_signal_group_call">مكالمة جماعية جارية على سيجنال</string>
 
@@ -6568,7 +6568,7 @@
     <!-- Accessibility label describing the brush and pen button on the Media review screen -->
     <string name="MediaReviewFragment__brush_pen_accessibility_label">فرشاة وقلم</string>
     <!-- Accessibility label describing the crop and rotate button on the Media review screen -->
-    <string name="MediaReviewFragment__crop_rotate_accessibility_label">قص وأدر</string>
+    <string name="MediaReviewFragment__crop_rotate_accessibility_label">قص وتدوير</string>
     <!-- Accessibility label describing the change media quality button on the Media review screen -->
     <string name="MediaReviewFragment__change_media_quality_accessibility_label">تغيير جودة الوسائط</string>
     <!-- Accessibility label describing the save media button on the Media review screen -->
@@ -8166,7 +8166,7 @@
     <!-- Shown during empty state -->
     <string name="CallLogFragment__get_started_by_calling_a_friend">ابدأ بالاتصال بصديق.</string>
     <!-- Displayed as a message in a dialog when deleting multiple items -->
-    <string name="CallLogFragment__call_links_youve_created">لن تشتغل روابط الاتصال التي أنشأتها بالنسبة للأشخاص الذين تحصّلوا عليها.</string>
+    <string name="CallLogFragment__call_links_youve_created">لن تشتغل روابط المكالمات التي أنشأتها بالنسبة للأشخاص الذين حصلوا عليها.</string>
 
     <!-- New call activity -->
     <!-- Activity title in title bar -->
@@ -8249,7 +8249,7 @@
     <!-- Displayed when we can\'t find a suitable way to open the system share picker -->
     <string name="CreateCallLinkBottomSheetDialogFragment__failed_to_open_share_sheet">تعذَّرت مشاركة رابط المكالمة.</string>
     <!-- Displayed when we copy the call link to the clipboard -->
-    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">تم النسخ إلى الحافظة</string>
+    <string name="CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard">تمَّ النسخ إلى الحافظة</string>
 
     <!-- CallLinkIncomingRequestSheet -->
     <!-- Displayed as line item in sheet for approving or denying a single user -->
@@ -8971,7 +8971,7 @@
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">هل ترغبُ بتخطِّي الاستعادة؟</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
-    <string name="RemoteBackupsSettingsFragment__skip_restore_message">إذا تخطّيت الاستعادة، يُمكن تنزيل الوسائط والمرفقات المتبقية في نسختك الاحتياطية في وقتٍ لاحق.</string>
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">إذا تخطّيت الاستعادة، يُمكن تنزيل الوسائط والملفات المُرفقة المتبقية في نسختك الاحتياطية في وقتٍ لاحق.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">تخطّي</string>
     <!-- Positive dialog action to skip download during deletion -->
@@ -9079,13 +9079,13 @@
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">تمَّ الحفظ في مدير كلمات المرور.</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">تعذَّر الحفظ في مدير كلمات المرور.</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">لم تقم بإعداد مدير كلمات المرور، أو مدير كلمات المرور الذي تستخدمه غير مدعوم.</string>
     <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
     <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
     <!-- Label for a button that navigates to the device settings -->
-    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Go to settings</string>
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">انتقِل إلى الإعدادات</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">التالي</string>
     <!-- Bottom sheet title -->
@@ -9345,7 +9345,7 @@
     <string name="DefaultTopAppBar__navigate_up_content_description">التصفُّح نحو اﻷعلى</string>
 
     <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
-    <string name="SignalCheckbox_accessibility_on_click_label">تبديل</string>
+    <string name="SignalCheckbox_accessibility_on_click_label">تفعيل</string>
     <!-- Accessibility label describing a checked checkbox. -->
     <string name="SignalCheckbox_accessibility_checked_description">مُحدَّد</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
