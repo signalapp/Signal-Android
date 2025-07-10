@@ -128,7 +128,7 @@ public final class Megaphones {
       // Feature-introduction megaphones should *probably* be added below this divider
       put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
       put(Event.PNP_LAUNCH, shouldShowPnpLaunchMegaphone() ? ALWAYS : NEVER);
-      put(Event.TURN_ON_SIGNAL_BACKUPS, shouldShowTurnOnBackupsMegaphone(context) ? ALWAYS : NEVER);
+      put(Event.TURN_ON_SIGNAL_BACKUPS, shouldShowTurnOnBackupsMegaphone(context) ? new RecurringSchedule(TimeUnit.DAYS.toMillis(30), TimeUnit.DAYS.toMillis(90)) : NEVER);
       put(Event.VERIFY_BACKUP_KEY, new VerifyBackupKeyReminderSchedule());
     }};
   }
@@ -470,10 +470,10 @@ public final class Megaphones {
           Intent intent = AppSettingsActivity.remoteBackups(controller.getMegaphoneActivity());
 
           controller.onMegaphoneNavigationRequested(intent);
-          controller.onMegaphoneCompleted(Event.TURN_ON_SIGNAL_BACKUPS);
+          controller.onMegaphoneSnooze(Event.TURN_ON_SIGNAL_BACKUPS);
         })
         .setSecondaryButton(R.string.TurnOnSignalBackups__not_now, (megaphone, controller) -> {
-          controller.onMegaphoneCompleted(Event.TURN_ON_SIGNAL_BACKUPS);
+          controller.onMegaphoneSnooze(Event.TURN_ON_SIGNAL_BACKUPS);
         })
         .build();
   }
