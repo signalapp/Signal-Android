@@ -1159,8 +1159,8 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("usePqRatchet")
   val usePqRatchet: UsePqRatchet by remoteValue(
-    key = "global.usePqRatchet",
-    hotSwappable = true
+    key = "android.usePqRatchet",
+    hotSwappable = false
   ) { value ->
     if (value.asBoolean(false)) UsePqRatchet.YES else UsePqRatchet.NO
   }
