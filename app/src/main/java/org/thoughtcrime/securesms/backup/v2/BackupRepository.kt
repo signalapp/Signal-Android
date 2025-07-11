@@ -1611,19 +1611,17 @@ object BackupRepository {
   }
 
   suspend fun getAvailableBackupsTypes(availableBackupTiers: List<MessageBackupTier>): List<MessageBackupsType> {
-    return availableBackupTiers.mapNotNull { getBackupsType(it) }
+    return availableBackupTiers.mapNotNull {
+      val type = getBackupsType(it)
+
+      if (type is NetworkResult.Success) type.result else null
+    }
   }
 
-  suspend fun getBackupsType(tier: MessageBackupTier): MessageBackupsType? {
-    val result = when (tier) {
+  private suspend fun getBackupsType(tier: MessageBackupTier): NetworkResult<out MessageBackupsType> {
+    return when (tier) {
       MessageBackupTier.FREE -> getFreeType()
       MessageBackupTier.PAID -> getPaidType()
-    }
-
-    return if (result is NetworkResult.Success) {
-      result.result
-    } else {
-      null
     }
   }
 
@@ -1642,7 +1640,7 @@ object BackupRepository {
   }
 
   @WorkerThread
-  private fun getFreeType(): NetworkResult<MessageBackupsType.Free> {
+  fun getFreeType(): NetworkResult<MessageBackupsType.Free> {
     return AppDependencies.donationsApi
       .getDonationsConfiguration(Locale.getDefault())
       .map {

@@ -31,9 +31,7 @@ import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
-import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupStateRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
@@ -47,6 +45,7 @@ import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.service.MessageBackupListener
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.whispersystems.signalservice.api.NetworkResult
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -233,10 +232,10 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   private suspend fun performStateRefresh(lastPurchase: InAppPaymentTable.InAppPayment?) {
     if (BackupRepository.shouldDisplayOutOfStorageSpaceUx()) {
-      val paidType = BackupRepository.getBackupsType(MessageBackupTier.PAID) as? MessageBackupsType.Paid
+      val paidType = BackupRepository.getPaidType()
 
-      if (paidType != null) {
-        val remoteStorageAllowance = paidType.storageAllowanceBytes.bytes
+      if (paidType is NetworkResult.Success) {
+        val remoteStorageAllowance = paidType.result.storageAllowanceBytes.bytes
         val estimatedSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize().bytes
 
         if (estimatedSize + 300.mebiBytes <= remoteStorageAllowance) {
@@ -248,6 +247,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
             totalAllowedStorageSpace = estimatedSize.toUnitString()
           )
         }
+      } else {
+        Log.w(TAG, "Failed to load PAID type.", paidType.getCause())
       }
     }
 
