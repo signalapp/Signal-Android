@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.keyvalue.isDecisionPending
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -55,6 +56,11 @@ class BackupMessagesJob private constructor(
 
     private fun isBackupAllowed(): Boolean {
       return when {
+        !RemoteConfig.messageBackups -> {
+          Log.i(TAG, "Remote config for backups is disabled.")
+          false
+        }
+
         SignalStore.registration.restoreDecisionState.isDecisionPending -> {
           Log.i(TAG, "Backup not allowed: a restore decision is pending.")
           false

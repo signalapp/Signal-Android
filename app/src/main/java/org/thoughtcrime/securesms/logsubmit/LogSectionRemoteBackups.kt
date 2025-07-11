@@ -24,6 +24,7 @@ class LogSectionRemoteBackups : LogSection {
     output.append("Enabled:                              ${SignalStore.backup.areBackupsEnabled}\n")
     output.append("Current tier:                         ${SignalStore.backup.backupTier}\n")
     output.append("Latest tier:                          ${SignalStore.backup.latestBackupTier}\n")
+    output.append("Backup override tier:                 ${SignalStore.backup.backupTierInternalOverride}\n")
     output.append("Last backup time:                     ${SignalStore.backup.lastBackupTime}\n")
     output.append("Last check-in:                        ${SignalStore.backup.lastCheckInMillis}\n")
     output.append("Last media sync:                      ${SignalStore.backup.lastAttachmentReconciliationTime}\n")
