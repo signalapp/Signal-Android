@@ -1,0 +1,59 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FIPS Signal Web Test Interface"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/server_status"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Starting web server..."
+        android:textSize="16sp"
+        android:background="#e7f3ff"
+        android:padding="12dp"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Instructions:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="1. Open a web browser\n2. Navigate to the URL shown above\n3. Use the web interface to run FIPS tests\n4. View real-time test results\n5. Export test reports"
+        android:textSize="14sp"
+        android:lineSpacingExtra="4dp"
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Features:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="• Run individual FIPS compliance tests\n• Execute full test suites\n• Real-time status monitoring\n• Automated test scheduling\n• Detailed error reporting\n• Test result export"
+        android:textSize="14sp"
+        android:lineSpacingExtra="4dp" />
+
+</LinearLayout>

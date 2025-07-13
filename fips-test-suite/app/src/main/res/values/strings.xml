@@ -1,0 +1,13 @@
+
+<resources>
+    <string name="app_name">FIPS Signal Test Suite</string>
+    <string name="test_fips_init">Test FIPS Initialization</string>
+    <string name="test_encryption">Test Encryption/Decryption</string>
+    <string name="test_key_exchange">Test Key Exchange</string>
+    <string name="test_session">Test Session Establishment</string>
+    <string name="test_policy">Test Policy Enforcement</string>
+    <string name="run_all_tests">Run All Tests</string>
+    <string name="export_results">Export Results</string>
+    <string name="test_results">Test Results</string>
+    <string name="web_interface">Web Test Interface</string>
+</resources>

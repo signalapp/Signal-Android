@@ -1,0 +1,131 @@
+
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="FIPS Signal Test Suite"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <Button
+            android:id="@+id/run_tests_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Run All Tests"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/export_results_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Export Results"
+            android:layout_marginStart="8dp" />
+
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginBottom="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Individual Tests:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <Button
+                android:id="@+id/test_fips_initialization"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test FIPS Initialization"
+                android:layout_marginBottom="4dp" />
+
+            <Button
+                android:id="@+id/test_encryption"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test Encryption/Decryption"
+                android:layout_marginBottom="4dp" />
+
+            <Button
+                android:id="@+id/test_key_exchange"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test Key Exchange"
+                android:layout_marginBottom="4dp" />
+
+            <Button
+                android:id="@+id/test_session_establishment"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test Session Establishment"
+                android:layout_marginBottom="4dp" />
+
+            <Button
+                android:id="@+id/test_policy_enforcement"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Test Policy Enforcement"
+                android:layout_marginBottom="16dp" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Test Results:"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="2">
+
+        <TextView
+            android:id="@+id/test_results"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="No tests run yet."
+            android:fontFamily="monospace"
+            android:textSize="12sp"
+            android:background="#f5f5f5"
+            android:padding="8dp" />
+
+    </ScrollView>
+
+</LinearLayout>
