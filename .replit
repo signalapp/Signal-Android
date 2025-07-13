@@ -2,6 +2,7 @@ modules = ["java-graalvm22.3", "python-3.12", "web", "rust-stable"]
 
 [nix]
 channel = "stable-24_05"
+packages = ["android-tools"]
 
 [workflows]
 runButton = "Build FIPS Signal"
