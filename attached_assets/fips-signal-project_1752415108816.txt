@@ -1,0 +1,48 @@
+fips-signal-project/
+│
+├── README.md
+│
+├── docs/
+│   ├── 01_Architecture_and_Implementation_Plan.md
+│   ├── 02_Security_and_Ownership_Report.md
+│   ├── 03_Compilation_Guide.md
+│   └── 04_Testing_Guide.md
+│
+├── infographics/
+│   └── Architecture_Roadmap_Infographic.html
+│
+├── app/  (The main Signal application module)
+│   └── src/main/
+│       ├── java/org/thoughtcrime/securesms/
+│       │   ├── conversation/
+│       │   │   └── FipsConversationActivity.kt
+│       │   └── crypto/
+│       │       ├── fips/
+│       │       │   ├── FipsKeyStoreManager.kt
+│       │       │   ├── StartChatDialogFragment.kt
+│       │       │   └── FipsHandshakeFailedDialogFragment.kt
+│       │       ├── storage/
+│       │       │   ├── SessionBuilder.kt
+│       │       │   └── SessionCipher.kt
+│       │       ├── FipsBridge.kt
+│       │       └── FipsRouter.kt
+│       └── res/
+│           └── xml/
+│               └── app_restrictions.xml
+│
+└── fips-crypto-bridge/  (The new native library module)
+    ├── build.gradle.kts
+    ├── libs/
+    │   └── openssl/
+    │       ├── include/
+    │       │   └── ... (OpenSSL header files)
+    │       ├── arm64-v8a/
+    │       │   ├── libcrypto.so
+    │       │   └── fips.so
+    │       └── ... (other ABI directories)
+    └── src/main/
+        ├── c/
+        │   ├── openssl_fips_bridge.c
+        │   └── CMakeLists.txt
+        └── rust/
+            └── lib.rs
