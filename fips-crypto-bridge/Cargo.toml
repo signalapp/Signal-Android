@@ -1,0 +1,21 @@
+
+[package]
+name = "fips_signal_bridge"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+jni = "0.21"
+log = "0.4"
+android_logger = "0.13"
+
+[build-dependencies]
+
+# Android-specific configuration
+[profile.release]
+lto = true
+opt-level = "z"
+codegen-units = 1

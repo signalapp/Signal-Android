@@ -2,3 +2,19 @@ modules = ["java-graalvm22.3", "python-3.12", "web", "rust-stable"]
 
 [nix]
 channel = "stable-24_05"
+
+[workflows]
+runButton = "Build FIPS Signal"
+
+[[workflows.workflow]]
+name = "Build FIPS Signal"
+author = 44488675
+mode = "sequential"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "source ./setup-fips-env.sh"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "./build-fips-signal.sh"
