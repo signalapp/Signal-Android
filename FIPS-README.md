@@ -5,42 +5,61 @@ This repository contains the FIPS-compliant Signal Android implementation based 
 
 ## Prerequisites
 
-1. Run the setup script to install dependencies:
+1. **Java Development Kit (JDK)**: Version 11 or higher
+   ```bash
+   # On Ubuntu
+   sudo apt-get install openjdk-11-jdk
+   ```
+
+2. **Android Studio**: Download and install the latest version
+   - Install Android SDK Platform for API Level 34
+   - Install Android NDK version 25.1.8937393
+
+3. **Environment Variables**: Add to your shell profile
+   ```bash
+   export ANDROID_HOME=$HOME/Android/Sdk
+   export ANDROID_NDK_HOME=$HOME/Android/Sdk/ndk/25.1.8937393
+   export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+   ```
+
+4. **Rust Toolchain**: Install Rust and Android targets
+   ```bash
+   curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
+   source "$HOME/.cargo/env"
+   rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
+   ```
+
+5. **CMake**: Version 3.22.1 or higher
+
+6. **Setup Script**: Run the environment setup
    ```bash
    ./setup-fips-env.sh
    ```
 
-2. Download and install Android Studio with NDK 25.2.9519653
-
-3. Download OpenSSL source code (e.g., openssl-3.5.0.tar.gz) and extract to `~/openssl-build/`
-
 ## Build Process
 
-### 1. Build OpenSSL FIPS Provider for Host (One-time)
+### Option 1: Automated Build (Recommended)
 ```bash
-cd ~/openssl-build/openssl-fips-3.1.2
-./config enable-fips no-shared --prefix=/opt/openssl-out/fips-3.1.2
-make -j$(nproc)
-sudo make install_sw
-sudo make install_fips
-openssl fipsinstall -out /opt/openssl-out/fips-3.1.2/fipsmodule.cnf -module /opt/openssl-out/fips-3.1.2/lib64/ossl-modules/fips.so
+# This will build OpenSSL, copy libraries, and build the APK
+./build-fips-signal.sh
 ```
 
-### 2. Cross-compile OpenSSL for Android ABIs
+### Option 2: Manual Step-by-Step Build
+
+#### 1. Build OpenSSL for All Android ABIs
 ```bash
 source ./setup-fips-env.sh
-
-# Build for each ABI
-build_openssl_for_abi arm64-v8a android-arm64
-build_openssl_for_abi armeabi-v7a android-arm
-build_openssl_for_abi x86_64 android-x86_64
-build_openssl_for_abi x86 android-x86
+build_openssl_all
 ```
 
-### 3. Copy Libraries and Build
+#### 2. Copy Libraries to Project
 ```bash
 copy_openssl_libs
-./build-fips-signal.sh
+```
+
+#### 3. Build the APK
+```bash
+./gradlew clean assembleDebug
 ```
 
 ## Sync with Upstream

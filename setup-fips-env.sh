@@ -23,30 +23,51 @@ echo "ANDROID_NDK_HOME: $ANDROID_NDK_HOME"
 echo "Directory structure created for FIPS build"
 echo "To make environment variables permanent, add them to ~/.bashrc"
 
+# Function to build OpenSSL for all Android ABIs
+build_openssl_all() {
+    echo "Building OpenSSL for all Android architectures..."
+    
+    if [ ! -f "./build_openssl_android.sh" ]; then
+        echo "Error: build_openssl_android.sh not found in current directory"
+        return 1
+    fi
+    
+    chmod +x ./build_openssl_android.sh
+    ./build_openssl_android.sh
+}
+
 # Function to build OpenSSL for specific Android ABI
 build_openssl_for_abi() {
     local abi=$1
     local android_arch=$2
-    local output_dir="/opt/openssl-out/$abi"
+    local output_dir="./openssl_build/$abi"
     
     echo "Building OpenSSL for $abi..."
     
     # Set NDK toolchain path
     export PATH=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin:$PATH
     
-    # Navigate to OpenSSL source (assumes ~/openssl-build/openssl-3.5.0)
-    cd ~/openssl-build/openssl-*
+    # Download OpenSSL if not present
+    if [ ! -d "openssl-3.1.2" ]; then
+        if [ ! -f "openssl-3.1.2.tar.gz" ]; then
+            wget "https://www.openssl.org/source/openssl-3.1.2.tar.gz"
+        fi
+        tar -xzf "openssl-3.1.2.tar.gz"
+    fi
+    
+    cd openssl-3.1.2
     
     # Clean previous build
     make clean 2>/dev/null || true
     
     # Configure for Android
-    ./Configure $android_arch -D__ANDROID_API__=23 enable-fips --prefix=$output_dir
+    ./Configure $android_arch -D__ANDROID_API__=23 enable-fips --prefix="$(pwd)/../openssl_build/$abi"
     
     # Build and install
     make -j$(nproc)
-    sudo make install_sw
+    make install_sw
     
+    cd ..
     echo "OpenSSL built for $abi at $output_dir"
 }
 
@@ -54,11 +75,36 @@ build_openssl_for_abi() {
 copy_openssl_libs() {
     echo "Copying OpenSSL libraries to project..."
     
+    # Create include directory and copy headers
+    mkdir -p fips-crypto-bridge/libs/openssl/include
+    if [ -d "openssl_build/arm64-v8a/include" ]; then
+        cp -r openssl_build/arm64-v8a/include/* fips-crypto-bridge/libs/openssl/include/
+    fi
+    
     # Copy for each ABI
-    cp /opt/openssl-out/arm64-v8a/lib64/libcrypto.so fips-crypto-bridge/libs/openssl/arm64-v8a/ 2>/dev/null || echo "arm64-v8a lib not found"
-    cp /opt/openssl-out/armeabi-v7a/lib/libcrypto.so fips-crypto-bridge/libs/openssl/armeabi-v7a/ 2>/dev/null || echo "armeabi-v7a lib not found"
-    cp /opt/openssl-out/x86_64/lib64/libcrypto.so fips-crypto-bridge/libs/openssl/x86_64/ 2>/dev/null || echo "x86_64 lib not found"
-    cp /opt/openssl-out/x86/lib/libcrypto.so fips-crypto-bridge/libs/openssl/x86/ 2>/dev/null || echo "x86 lib not found"
+    for abi in "arm64-v8a" "armeabi-v7a" "x86_64" "x86"; do
+        mkdir -p "fips-crypto-bridge/libs/openssl/$abi"
+        
+        # Determine lib directory (some use lib, some use lib64)
+        libdir="openssl_build/$abi/lib"
+        if [ -d "openssl_build/$abi/lib64" ]; then
+            libdir="openssl_build/$abi/lib64"
+        fi
+        
+        if [ -f "$libdir/libcrypto.so" ]; then
+            cp "$libdir/libcrypto.so" "fips-crypto-bridge/libs/openssl/$abi/"
+            echo "Copied libcrypto.so for $abi"
+        else
+            echo "Warning: libcrypto.so not found for $abi"
+        fi
+        
+        if [ -f "$libdir/fips.so" ]; then
+            cp "$libdir/fips.so" "fips-crypto-bridge/libs/openssl/$abi/"
+            echo "Copied fips.so for $abi"
+        else
+            echo "Warning: fips.so not found for $abi"
+        fi
+    done
     
     echo "OpenSSL libraries copied to project"
 }
@@ -78,11 +124,13 @@ sync_upstream() {
 }
 
 # Export functions for use in terminal
+export -f build_openssl_all
 export -f build_openssl_for_abi
 export -f copy_openssl_libs
 export -f sync_upstream
 
 echo "Setup complete! Functions available:"
-echo "  build_openssl_for_abi <abi> <android_arch>"
-echo "  copy_openssl_libs"
-echo "  sync_upstream <upstream_directory>"
+echo "  build_openssl_all - Build OpenSSL for all Android architectures"
+echo "  build_openssl_for_abi <abi> <android_arch> - Build for specific ABI"
+echo "  copy_openssl_libs - Copy built libraries to project"
+echo "  sync_upstream <upstream_directory> - Sync from upstream Signal"

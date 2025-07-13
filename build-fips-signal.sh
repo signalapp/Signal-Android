@@ -16,6 +16,20 @@ if [ ! -f "build.gradle.kts" ]; then
     exit 1
 fi
 
+# Check if OpenSSL libraries are available
+echo "Checking for OpenSSL libraries..."
+if [ ! -f "fips-crypto-bridge/libs/openssl/arm64-v8a/libcrypto.so" ]; then
+    echo "OpenSSL libraries not found. Building OpenSSL..."
+    build_openssl_all
+    copy_openssl_libs
+else
+    echo "OpenSSL libraries found."
+fi
+
+# Install required Rust targets if not already installed
+echo "Ensuring Rust targets are installed..."
+rustup target add aarch64-linux-android armv7-linux-androideabi i686-linux-android x86_64-linux-android
+
 # Build the debug APK
 echo "Building debug APK..."
 ./gradlew clean assembleDebug
@@ -23,6 +37,9 @@ echo "Building debug APK..."
 if [ $? -eq 0 ]; then
     echo "✓ BUILD SUCCESSFUL"
     echo "Debug APK location: app/build/outputs/apk/debug/"
+    echo ""
+    echo "You can install the APK using:"
+    echo "adb install app/build/outputs/apk/debug/app-debug.apk"
 else
     echo "✗ BUILD FAILED"
     exit 1
