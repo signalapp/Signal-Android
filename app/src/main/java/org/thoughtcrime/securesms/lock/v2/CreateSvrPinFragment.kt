@@ -1,10 +1,12 @@
 package org.thoughtcrime.securesms.lock.v2
 
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import android.widget.EditText
 import androidx.annotation.PluralsRes
 import androidx.core.content.ContextCompat
+import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.Navigation.findNavController
 import org.thoughtcrime.securesms.R
@@ -21,8 +23,10 @@ class CreateSvrPinFragment : BaseSvrPinFragment<CreateSvrPinViewModel?>() {
     } else {
       initializeViewStatesForPinCreate()
     }
+
     label.text = getPinLengthRestrictionText(R.plurals.CreateKbsPinFragment__pin_must_be_at_least_digits)
     confirm.isEnabled = false
+    ViewCompat.setImportantForAutofill(input, View.IMPORTANT_FOR_AUTOFILL_NO)
   }
 
   private fun initializeViewStatesForPinChange() {
