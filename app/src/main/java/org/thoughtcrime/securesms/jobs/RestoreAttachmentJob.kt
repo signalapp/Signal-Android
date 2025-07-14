@@ -203,6 +203,15 @@ class RestoreAttachmentJob private constructor(
       Log.w(TAG, format(this, "onFailure() messageId: $messageId  attachmentId: $attachmentId"))
 
       markFailed(attachmentId)
+
+      Log.w(TAG, "onFailure(): Attempting to fall back on attachment thumbnail.")
+      val restoreThumbnailAttachmentJob = RestoreAttachmentThumbnailJob(
+        messageId = messageId,
+        attachmentId = attachmentId,
+        highPriority = manual
+      )
+
+      AppDependencies.jobManager.add(restoreThumbnailAttachmentJob)
     }
   }
 

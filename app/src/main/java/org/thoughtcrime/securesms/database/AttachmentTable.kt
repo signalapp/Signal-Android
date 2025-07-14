@@ -119,6 +119,7 @@ import java.util.Optional
 import java.util.UUID
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 
 class AttachmentTable(
   context: Context,
@@ -506,6 +507,54 @@ class AttachmentTable(
           size = it.requireLong(DATA_SIZE),
           remoteKey = it.requireBlob(REMOTE_KEY)!!,
           plaintextHash = Base64.decode(it.requireNonNullString(DATA_HASH_END))
+        )
+      }
+  }
+
+  /**
+   * Grabs the last 30 days worth of restorable attachments with respect to the message's server timestamp,
+   * up to the given batch size.
+   */
+  fun getLast30DaysOfRestorableAttachments(batchSize: Int): List<RestorableAttachment> {
+    val thirtyDaysAgo = System.currentTimeMillis().milliseconds - 30.days
+    return readableDatabase
+      .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY)
+      .from("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID")
+      .where("$TRANSFER_STATE = ? AND ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} >= ?", TRANSFER_NEEDS_RESTORE, thirtyDaysAgo.inWholeMilliseconds)
+      .limit(batchSize)
+      .orderBy("$TABLE_NAME.$ID DESC")
+      .run()
+      .readToList {
+        RestorableAttachment(
+          attachmentId = AttachmentId(it.requireLong(ID)),
+          mmsId = it.requireLong(MESSAGE_ID),
+          size = it.requireLong(DATA_SIZE),
+          plaintextHash = it.requireBlob(DATA_HASH_END),
+          remoteKey = it.requireBlob(REMOTE_KEY)
+        )
+      }
+  }
+
+  /**
+   * Grabs attachments outside of the last 30 days with respect to the message's server timestamp,
+   * up to the given batch size.
+   */
+  fun getOlderRestorableAttachments(batchSize: Int): List<RestorableAttachment> {
+    val thirtyDaysAgo = System.currentTimeMillis().milliseconds - 30.days
+    return readableDatabase
+      .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY)
+      .from("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID")
+      .where("$TRANSFER_STATE = ? AND ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < ?", TRANSFER_NEEDS_RESTORE, thirtyDaysAgo.inWholeMilliseconds)
+      .limit(batchSize)
+      .orderBy("$TABLE_NAME.$ID DESC")
+      .run()
+      .readToList {
+        RestorableAttachment(
+          attachmentId = AttachmentId(it.requireLong(ID)),
+          mmsId = it.requireLong(MESSAGE_ID),
+          size = it.requireLong(DATA_SIZE),
+          plaintextHash = it.requireBlob(DATA_HASH_END),
+          remoteKey = it.requireBlob(REMOTE_KEY)
         )
       }
   }
