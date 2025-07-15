@@ -375,7 +375,7 @@
     <!-- Header for conversation search section labeled "Messages" -->
     <string name="ContactsCursorLoader__messages">Mensajes</string>
     <!-- Header for conversation search section labeled "Chat types" -->
-    <string name="ContactsCursorLoader__chat_types">Tipos de chat</string>
+    <string name="ContactsCursorLoader__chat_types">Tipos de chats</string>
 
     <!-- ContactsDatabase -->
     <string name="ContactsDatabase_message_s">Enviar mensaje a %1$s</string>
@@ -1051,7 +1051,7 @@
     <!-- Title on bottom sheet explaining our usage of biometrics to link a device -->
     <string name="LinkDeviceFragment__before_linking">Antes de vincular tu dispositivo, confirma que eres tú</string>
     <!-- Body of bottom sheet explaining that users should use their device pin or biometrics and not their Signal pin -->
-    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Toca continuar e introduce el patrón de bloqueo de tu teléfono para confirmar. No introduzcas tu PIN de Signal.</string>
+    <string name="LinkDeviceFragment__tap_continue_and_enter_phone">Toca Continuar e introduce el patrón de bloqueo de tu teléfono para confirmar. No introduzcas tu PIN de Signal.</string>
     <!-- Button that dismisses the bottom sheet -->
     <string name="LinkDeviceFragment__continue">Continuar</string>
     <!-- Option on button to contact support -->
@@ -4057,11 +4057,11 @@
     <string name="preferences_chats__chats">Chats</string>
     <string name="preferences_app_updates__title">Actualizaciones de la app</string>
     <string name="preferences_data_and_storage__manage_storage">Gestionar almacenamiento</string>
-    <string name="preferences_data_and_storage__use_less_data_for_calls">Ahorrar datos en llamadas</string>
+    <string name="preferences_data_and_storage__use_less_data_for_calls">Ahorrar datos</string>
     <string name="preferences_data_and_storage__never">Nunca</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi y datos móviles</string>
     <string name="preferences_data_and_storage__mobile_data_only">Solo datos móviles</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Ahorrar datos puede mejorar la calidad de las llamadas en redes con mala cobertura.</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Esta opción puede mejorar la calidad de las llamadas en redes con mala cobertura.</string>
     <string name="preferences_notifications__in_chat_sounds">Sonidos en el chat</string>
     <string name="preferences_notifications__show">Mostrar</string>
     <string name="preferences_notifications__ringtone">Tono de llamada</string>
@@ -4569,7 +4569,7 @@
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Vuelve a introducir tu PIN</string>
     <string name="ConfirmKbsPinFragment__creating_pin">Creando PIN…</string>
     <!-- ID used when saving the PIN to the device password manager. -->
-    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">PIN de Signal</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">¡Los PIN han llegado a Signal!</string>
@@ -5539,7 +5539,7 @@
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
         <item quantity="one">%1$d tipo de chat</item>
-        <item quantity="other">%1$d tipos de chat</item>
+        <item quantity="other">%1$d tipos de chats</item>
     </plurals>
     <!-- Text describing the number of chat in a folder -->
     <plurals name="ChatFoldersFragment__d_chats">
@@ -5576,7 +5576,7 @@
     <!-- Explanation of unread toggle option -->
     <string name="CreateFoldersFragment__when_enabled_only_chats">Cuando esta opción está habilitada, solo se mostrarán en esta carpeta los chats con mensajes no leídos.</string>
     <!-- Toggle switch to display muted chats in chat folders -->
-    <string name="CreateFoldersFragment__include_muted_chats">Considerar chats silenciados</string>
+    <string name="CreateFoldersFragment__include_muted_chats">Incluir chats silenciados</string>
     <!-- Button text to create a folder -->
     <string name="CreateFoldersFragment__create">Crear</string>
     <!-- Section title shown when editing an existing folder   -->
@@ -5600,7 +5600,7 @@
 
     <!-- ChooseChatsFragment -->
     <!-- Section title representing chat types that can be added to the folder  -->
-    <string name="ChooseChatsFragment__chat_types">Tipos de chat</string>
+    <string name="ChooseChatsFragment__chat_types">Tipos de chats</string>
     <!-- Done button label to save selected chats to folder -->
     <string name="ChooseChatsFragment__done">Listo</string>
 
@@ -6130,7 +6130,7 @@
     <string name="ManageDonationsFragment__my_support">Mi contribución</string>
     <string name="ManageDonationsFragment__manage_subscription">Gestionar suscripción</string>
     <!-- Label for Donation Receipts button -->
-    <string name="ManageDonationsFragment__donation_receipts">Justificantes de donación</string>
+    <string name="ManageDonationsFragment__donation_receipts">Recibos de donación</string>
     <string name="ManageDonationsFragment__badges">Insignias</string>
     <string name="ManageDonationsFragment__subscription_faq">Preguntas frecuentes sobre las suscripciones</string>
     <!-- Preference heading for other ways to donate -->
@@ -6529,17 +6529,17 @@
     <!-- Donation receipts date paid heading -->
     <string name="DonationReceiptDetailsFragment__date_paid">Fecha del pago</string>
     <!-- Donation receipts share PNG -->
-    <string name="DonationReceiptDetailsFragment__share_receipt">Compartir justificante</string>
+    <string name="DonationReceiptDetailsFragment__share_receipt">Compartir recibo</string>
     <!-- Donation receipts list end note -->
-    <string name="DonationReceiptListFragment__if_you_have">Si has vuelto a instalar Signal, los justificantes de donaciones anteriores no estarán disponibles.</string>
+    <string name="DonationReceiptListFragment__if_you_have">Si has vuelto a instalar Signal, los recibos de donaciones anteriores no estarán disponibles.</string>
     <!-- Donation receipts document title -->
-    <string name="DonationReceiptDetailsFragment__donation_receipt">Justificante de donación</string>
+    <string name="DonationReceiptDetailsFragment__donation_receipt">Recibo de donación</string>
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Importe</string>
     <!-- Donation receipts thanks -->
     <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Gracias por apoyar a Signal. Con tu contribución, impulsas nuestra misión de desarrollar tecnología de código abierto centrada en la privacidad, que protege la libertad de expresión y permite una comunicación segura para millones de personas en todo el mundo. Si resides en Estados Unidos, guarda este recibo para tus declaraciones fiscales. Signal Technology Foundation es una organización sin ánimo de lucro exenta de impuestos en Estados Unidos bajo la sección 501(c)(3) del código tributario de EE. UU (Internal Revenue Code). Nuestro número de identificación fiscal es 82–4506840.</string>
     <!-- Donation reciepts screen empty state title -->
-    <string name="DonationReceiptListFragment__no_receipts">No hay justificantes</string>
+    <string name="DonationReceiptListFragment__no_receipts">No hay recibos</string>
 
     <!-- region "Stories Tab" -->
 
@@ -7867,7 +7867,7 @@
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">Para terminar de descargar tu copia de seguridad de Signal, tu dispositivo necesita %1$s de espacio de almacenamiento.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
-    <string name="BackupAlertBottomSheet__to_free_up_space_offload">Para liberar espacio, elimina aplicaciones que no uses o archivos de gran tamaño.</string>
+    <string name="BackupAlertBottomSheet__to_free_up_space_offload">Para liberar espacio, desinstala o elimina aplicaciones que no uses o contenido de gran tamaño.</string>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">No se ha renovado tu suscripción a las copias de seguridad</string>
     <!-- Sheet body when user payment failed to process -->
@@ -8036,7 +8036,7 @@
     <!-- Setting row title for storage optimization -->
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizar almacenamiento en el dispositivo</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Los archivos multimedia no utilizados se inhabilitarán, pero podrás descargarlos desde tu copia de seguridad en cualquier momento.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Los archivos multimedia no utilizados se eliminarán del dispositivo, pero podrás descargarlos desde tu copia de seguridad en cualquier momento.</string>
     <!-- Dialog message for paid tier pending dialog -->
     <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de las copias de seguridad de Signal. Tu suscripción a las copias de seguridad se está procesando y todavía no está activa. Inténtalo de nuevo más tarde.</string>
 
@@ -8102,7 +8102,7 @@
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Configurar</string>
     <!-- Action button label to open remote backup settings -->
-    <string name="BackupsSettingsFragment_view_settings">View settings</string>
+    <string name="BackupsSettingsFragment_view_settings">Ver ajustes</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8166,7 +8166,7 @@
     <!-- Section header for other ways to back up -->
     <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Otras formas de hacer copias de seguridad</string>
     <!-- Row title for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__on_device_backups">Copias de seguridad en el dispositivo</string>
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">Copias de seguridad locales</string>
     <!-- Row label for performing on-device backup -->
     <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Guarda tus copias de seguridad en una carpeta de este dispositivo</string>
     <!-- Button label to manage or cancel backups -->
@@ -8238,7 +8238,7 @@
         <item quantity="other">Procesando %1$s de ~%2$s mensajes (%3$d %%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Tienes %1$s de datos de copia de seguridad que no están en este dispositivo. Sin una suscripción de pago, no se pueden transferir los archivos.</string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Tienes %1$s de datos en tu copia de seguridad que no están en este dispositivo. Sin una suscripción de pago, no se pueden transferir los archivos.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Tienes %1$s de datos de copia de seguridad que no están en este dispositivo. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8361,7 +8361,7 @@
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Guarda tu clave de copia de seguridad únicamente en un gestor de contraseñas que sepas que es seguro. Signal no puede hacer recomendaciones sobre qué gestor de contraseñas es el adecuado para ti.</string>
     <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Copias de seguridad de Signal</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Guardado en tu gestor de contraseñas</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->

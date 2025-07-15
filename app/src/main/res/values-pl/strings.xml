@@ -109,9 +109,9 @@
 
     <!-- AttachmentManager -->
     <string name="AttachmentManager_cant_open_media_selection">Nie udało się znaleźć aplikacji, w której można by wybrać multimedia.</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Signal wymaga pozwolenia na przechowywanie w celu dołączania zdjęć, filmów lub dźwięków, ale zostało one na stałe odrzucone. Przejdź do menu ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Przechowywanie\".</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Signal wymaga pozwolenia na dostęp do kontaktów w celu dołączenia informacji o kontaktach, ale zostało one na stałe odrzucone. Przejdź do menu ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Kontakty\".</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Signal wymaga pozwolenia na dostęp do lokalizacji w celu załączenia lokalizacji w wiadomościach, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Lokalizacja\".</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">Aby załączać do wiadomości zdjęcia, filmy lub pliki audio, musisz zezwolić aplikacji Signal na dostęp do pamięci urządzenia. Uprawnienie to zostało jednak na stałe wyłączone. Przejdź do menu ustawień aplikacji, otwórz sekcję „Uprawnienia” i włącz uprawnienie „Pamięć”.</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">Aby załączać do wiadomości kontakty, musisz zezwolić aplikacji Signal na dostęp do kontaków na urządzeniu. Uprawnienie to zostało jednak na stałe wyłączone. Przejdź do menu ustawień aplikacji, otwórz sekcję „Uprawnienia” i włącz uprawnienie „Kontakty”.</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">Aby udostępniać w wiadomościach lokalizację, musisz zezwolić aplikacji Signal na dostęp do lokalizacji urządzenia. Uprawnienie to zostało jednak na stałe wyłączone. Przejdź do menu ustawień aplikacji, otwórz sekcję „Uprawnienia” i włącz uprawnienie „Lokalizacja”.</string>
 
     <!-- Dialog title asking users for location permission -->
     <string name="AttachmentManager_signal_allow_access_location">Zezwól na dostęp do lokalizacji</string>
@@ -241,9 +241,9 @@
     <string name="BucketedThreadMedia_Yesterday">Wczoraj</string>
     <string name="BucketedThreadMedia_This_week">W tym tygodniu</string>
     <string name="BucketedThreadMedia_This_month">W tym miesiącu</string>
-    <string name="BucketedThreadMedia_Large">Duży</string>
-    <string name="BucketedThreadMedia_Medium">Średni</string>
-    <string name="BucketedThreadMedia_Small">Mały</string>
+    <string name="BucketedThreadMedia_Large">Duże</string>
+    <string name="BucketedThreadMedia_Medium">Średnie</string>
+    <string name="BucketedThreadMedia_Small">Małe</string>
 
     <!-- CallInfoView -->
     <!-- Unknown people row text when the only people in the call are unknowns -->
@@ -321,11 +321,11 @@
         <item quantity="many">Możesz udostępnić maksymalnie %1$d czatów.</item>
         <item quantity="other">Możesz udostępnić maksymalnie %1$d czatu.</item>
     </plurals>
-    <string name="CameraContacts_select_signal_recipients">Wybierz adresatów wśród kontakótw Signal</string>
+    <string name="CameraContacts_select_signal_recipients">Wybierz odbiorców wśród kontakótw Signal</string>
     <string name="CameraContacts_no_signal_contacts">Brak kontaktów Signal</string>
     <string name="CameraContacts_you_can_only_use_the_camera_button">Za pomocą przycisku aparatu możesz wysyłać zdjęcia tylko kontaktom Signal. </string>
     <string name="CameraContacts_cant_find_who_youre_looking_for">Nie możesz znaleźć kontaktu?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">Zaproś tę osobę do korzystania z Signal</string>
+    <string name="CameraContacts_invite_a_contact_to_join_signal">Zaproś do aplikacji Signal</string>
     <string name="CameraContacts__menu_search">Wyszukaj</string>
 
     <!-- Censorship Circumvention Megaphone -->
@@ -384,9 +384,9 @@
     <string name="ContactsCursorLoader__chat_types">Rodzaje czatu</string>
 
     <!-- ContactsDatabase -->
-    <string name="ContactsDatabase_message_s">Wiadomość %1$s</string>
-    <string name="ContactsDatabase_signal_call_s">Połączenie głosowe Signal %1$s</string>
-    <string name="ContactsDatabase_signal_video_call_s">Połączenie wideo Signal %1$s</string>
+    <string name="ContactsDatabase_message_s">Wiadomość na nr %1$s</string>
+    <string name="ContactsDatabase_signal_call_s">Zadzwoń przez Signal na nr %1$s</string>
+    <string name="ContactsDatabase_signal_video_call_s">Zadzwoń z wideo przez Signal na nr %1$s</string>
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
@@ -403,7 +403,7 @@
     <string name="ContactShareEditActivity_type_mobile">Komórka</string>
     <string name="ContactShareEditActivity_type_work">Praca</string>
     <string name="ContactShareEditActivity_type_missing">Inny</string>
-    <string name="ContactShareEditActivity_invalid_contact">Wybrany kontakt był nieprawidłowy</string>
+    <string name="ContactShareEditActivity_invalid_contact">Wybrano nieprawidłowy kontakt</string>
     <!-- Content descrption for name edit button on contact share edit activity -->
     <string name="ContactShareEditActivity__edit_name">Edytuj nazwę</string>
     <!-- Content description for user avatar in edit activity -->
@@ -487,9 +487,9 @@
     <string name="ConversationActivity_transport_signal">Wiadomość Signal</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">Wyślij wiadomość</string>
-    <string name="ConversationActivity_lets_switch_to_signal">Skorzystajmy z komunikatora Signal %1$s</string>
+    <string name="ConversationActivity_lets_switch_to_signal">Korzystajmy z komunikatora Signal %1$s</string>
     <string name="ConversationActivity_specify_recipient">Wybierz kontakt</string>
-    <string name="ConversationActivity_attachment_exceeds_size_limits">Załącznik przekracza limit rozmiaru obowiązujący w wiadomości tego typu.</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">Załącznik przekracza limit rozmiaru w wiadomości tego typu.</string>
     <string name="ConversationActivity_unable_to_record_audio">Nie można nagrać dźwięku</string>
     <string name="ConversationActivity_you_cant_send_messages_to_this_group">Nie możesz wysyłać wiadomości w tej grupie, ponieważ już do niej nie należysz.</string>
     <string name="ConversationActivity_only_s_can_send_messages">Tylko %1$s mogą wysyłać wiadomości.</string>
@@ -497,7 +497,7 @@
     <string name="ConversationActivity_message_an_admin">Napisz do administratora</string>
     <string name="ConversationActivity_cant_start_group_call">Nie można rozpocząć połączenia grupowego</string>
     <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">Tylko administratorzy mogą rozpoczynać połączenia w tej grupie.</string>
-    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na Twoim urządzeniu nie ma aplikacji, w której można by otworzyć ten link.</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">Na urządzeniu nie ma aplikacji, w której można by otworzyć ten link.</string>
     <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">Twoja prośba o przyjęcie do grupy została wysłana do administratora. Gdy zostanie rozpatrzona, otrzymasz powiadomienie.</string>
     <string name="ConversationActivity_cancel_request">Anuluj prośbę</string>
 
@@ -509,23 +509,23 @@
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">Aby wysyłać wiadomości głosowe, zezwól Signal na dostęp do mikrofonu.</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
     <string name="ConversationActivity_signal_needs_microphone_access_voice_message">Aby nagrać wiadomość głosową, Signal potrzebuje dostępu do mikrofonu.</string>
-    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Signal wymaga pozwolenia na dostęp do mikrofonu w celu umożliwienia wysyłania wiadomości głosowych, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Mikrofon\".</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">Aby wysyłać wiadomości głosowe, musisz zezwolić aplikacji Signal na dostęp do mikrofonu. Uprawnienie to zostało jednak na stałe wyłączone. Przejdź do menu ustawień aplikacji, otwórz sekcję „Uprawnienia” i włącz uprawnienie „Mikrofon”.</string>
 
-    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Signal wymaga pozwolenia na dostęp do mikrofonu i aparatu, aby zadzwonić do %1$s, ale zostały one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Aparat\" oraz \"Mikrofon\".</string>
+    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">Aby wykonać połączenie, które odbierze %1$s, musisz zezwolić aplikacji Signal na dostęp do mikrofonu i aparatu. Uprawnienia te zostały jednak na stałe wyłączone. Przejdź do menu ustawień aplikacji, otwórz sekcję „Uprawnienia” i włącz uprawnienia „Mikrofon” oraz „Aparat”.</string>
     <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">Aby robić zdjęcia i nagrywać wideo, zezwól aplikacji Signal na dostęp do aparatu.</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal wymaga pozwolenia na dostęp do aparatu w celu umożliwienia robienia zdjęć i nagrywania filmów, ale zostało one na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Aparat\".</string>
-    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal wymaga pozwolenia na dostęp do aparatu w celu umożliwienia robienia zdjęć i nagrywania filmów</string>
-    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Włącz uprawnienia mikrofonu, aby nagrać wideo z dźwiękiem.</string>
-    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Aby nagrać wideo, Signal wymaga pozwolenia na dostęp do mikrofonu, ale zostało ono odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Mikrofon\" oraz \"Aparat\".</string>
-    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Aby nagrać wideo, Signal potrzebuje dostępu do mikrofonu.</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Aby robić zdjęcia lub nagrywać wideo, musisz zezwolić aplikacji Signal na dostęp do aparatu. Uprawnienie to zostało jednak na stałe wyłączone. Przejdź do menu ustawień aplikacji, otwórz sekcję „Uprawnienia” i włącz uprawnienie „Aparat”</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Aby robić zdjęcia lub nagrywać wideo, Signal musi mieć dostęp do aparatu</string>
+    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">Aby nagrywać wideo z dźwiękiem, zezwól na dostęp do mikrofonu.</string>
+    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Aby nagrywać wideo, musisz zezwolić aplikacji Signal na dostęp do mikrofonu i aparatu. Uprawnienia te zostały jednak na stałe wyłączone. Przejdź do menu ustawień aplikacji, otwórz sekcję „Uprawnienia” i włącz uprawnienia „Mikrofon” oraz „Aparat”.</string>
+    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Aby nagrywać wideo, Signal musi mieć dostęp do mikrofonu.</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s %2$s</string>
     <string name="ConversationActivity_no">Nie</string>
     <string name="ConversationActivity_search_position">%1$d z %2$d</string>
-    <string name="ConversationActivity_no_results">Brak wyników</string>
+    <string name="ConversationActivity_no_results">Nic nie znaleziono</string>
 
     <string name="ConversationActivity_sticker_pack_installed">Pakiet naklejek zainstalowany</string>
-    <string name="ConversationActivity_new_say_it_with_stickers">Nowość! Niech naklejki przemówią za Ciebie</string>
+    <string name="ConversationActivity_new_say_it_with_stickers">Nowość! Niech naklejki powiedzą to za Ciebie</string>
 
     <string name="ConversationActivity_cancel">Anuluj</string>
     <string name="ConversationActivity_delete_conversation">Usunąć czat?</string>
@@ -611,7 +611,7 @@
     <string name="ConversationFragment_dont_show_again">Nie pokazuj ponownie</string>
     <string name="ConversationFragment_pending">Oczekiwanie…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
-    <string name="ConversationFragment_push">Dane (Signal)</string>
+    <string name="ConversationFragment_push">dane (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
     <string name="ConversationFragment_deleting">Usuwanie</string>
@@ -836,7 +836,7 @@
     <!-- Tooltip shown after you have created your first notification profile -->
     <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">Tu włączysz lub wyłączysz swój profil powiadomień.</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
-    <string name="ConversationListFragment__s_on">%1$s włączony</string>
+    <string name="ConversationListFragment__s_on">Profil %1$s włączony</string>
     <!-- -->
     <string name="ConversationListFragment_username_recovered_toast">Twój kod QR i link zostały zresetowane, a Twoja nazwa użytkownika to %1$s</string>
 
@@ -972,8 +972,8 @@
     <!-- Progress of backup where %d is the number of files completed so far -->
     <string name="BackupsPreferenceFragment__d_so_far">%1$d…</string>
     <!-- Show percentage of completion of backup -->
-    <string name="BackupsPreferenceFragment__s_so_far">%1$s%%…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal wymaga dostępu do pamięci zewnętrznej urządzenia, aby móc tworzyć kopie zapasowe, ale uprawnienia zostały na stałe odrzucone. Przejdź do ustawień aplikacji, wybierz \"Uprawnienia\" i włącz \"Pamięć\".</string>
+    <string name="BackupsPreferenceFragment__s_so_far">Już %1$s%%…</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Aby tworzyć kopie zapasowe, musisz zezwolić aplikacji Signal na dostęp do pamięci urządzenia. Uprawnienie to zostało jednak na stałe wyłączone. Przejdź do menu ustawień aplikacji, otwórz sekcję „Uprawnienia” i włącz uprawnienie „Pamięć”.</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
     <string name="BackupsPreferenceFragment__set_backup_time">Ustaw godzinę kopii zapasowej</string>
 
@@ -985,7 +985,7 @@
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
     <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">Aby zrobić zdjęcie, zezwól aplikacji na dostęp do aparatu.</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Przeglądanie galerii wymaga uprawnień dostępu do pamięci.</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">Aby przeglądać galerię, zezwól aplikacji na dostęp do pamięci.</string>
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">Teraz</string>
@@ -1250,14 +1250,14 @@
     <string name="AddToGroupActivity_s_added_to_s">Do grupy %2$s dodano tę osobę: %1$s.</string>
     <string name="AddToGroupActivity_add_to_group">Dodaj do grupy</string>
     <string name="AddToGroupActivity_add_to_groups">Dodaj do grup</string>
-    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Nie można dodać tej osoby do Starych grup.</string>
+    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">Tej osoby nie można dodawać do starych grup.</string>
     <string name="AddToGroupActivity_add">Dodaj</string>
     <string name="AddToGroupActivity_add_to_a_group">Dodaj do grupy</string>
 
     <!-- ChooseNewAdminActivity -->
     <string name="ChooseNewAdminActivity_choose_new_admin">Wybierz nowego administratora</string>
     <string name="ChooseNewAdminActivity_done">Gotowe</string>
-    <string name="ChooseNewAdminActivity_you_left">Opuściłeś(aś) \"%1$s\".</string>
+    <string name="ChooseNewAdminActivity_you_left">Opuszczasz grupę %1$s.</string>
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_you">Ty</string>
@@ -1280,24 +1280,24 @@
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
         <item quantity="one">Wysłano zaproszenie</item>
-        <item quantity="few">%1$d zaproszenia wysłane</item>
-        <item quantity="many">%1$d zaproszeń wysłanych</item>
-        <item quantity="other">%1$d zaproszeń wysłanych</item>
+        <item quantity="few">Wysłano %1$d zaproszenia</item>
+        <item quantity="many">Wysłano %1$d zaproszeń</item>
+        <item quantity="other">Wysłano %1$d zaproszenia</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
-    <string name="GroupManagement_invite_single_user">Nie możesz automatycznie dodać \"%1$s\" do tej grupy.\n\nUżytkownik został zaproszony i nie zobaczy żadnych wiadomości grupowych, dopóki nie przyjmie zaproszenia.</string>
-    <string name="GroupManagement_invite_multiple_users">Nie możesz automatycznie dodać tych użytkowników do tej grupy.\n\nUżytkownicy zostali zaproszeni i nie zobaczą żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia.</string>
+    <string name="GroupManagement_invite_single_user">Nie możesz automatycznie dodać tej osoby do grupy.\n\n%1$s otrzyma zaproszenie i dopóki go nie zaakceptuje, nie będzie mieć dostępu do wiadomości grupowych.</string>
+    <string name="GroupManagement_invite_multiple_users">Nie możesz automatycznie dodać tych osób do grupy.\n\nOtrzymają one zaproszenie i dopóki go nie zaakceptują, nie będą mieć dostępu do wiadomości grupowych.</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Czym są Nowe grupy?</string>
-    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">Nowe grupy posiadają takie funkcje jak @wzmianki i administratorzy, a w przyszłości będą obsługiwać więcej funkcji.</string>
+    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">Co to są nowe grupy?</string>
+    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">W nowych grupach można korzystać z takich funkcji jak @wzmianki i administracja. W przyszłości opcji będzie jeszcze więcej.</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">Cała historia wiadomości i multimedia zostały zachowane po aktualizacji.</string>
-    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Musisz ponownie zaakceptować zaproszenie do tej grupy i nie otrzymasz wiadomości grupowych, dopóki tego nie zrobisz.</string>
+    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">Aby ponownie dołączyć do tej grupy, musisz zaakceptować zaproszenie. Dopóki tego nie zrobisz, nie będziesz otrzymywać wiadomości grupowych.</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-        <item quantity="one">Ten członek będzie musiał zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzyma żadnych wiadomości grupowych, dopóki nie przyjmie zaproszenia:</item>
-        <item quantity="few">Ci członkowie będą musieli zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzymają żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia:</item>
-        <item quantity="many">Ci członkowie będą musieli zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzymają żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia:</item>
-        <item quantity="other">Ci członkowie będą musieli zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzymają żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia:</item>
+        <item quantity="one">Aby ponownie dołączyć do grupy, ta osoba musi zaakceptować zaproszenie. Dopóki tego nie zrobi, nie będzie otrzymywać wiadomości grupowych.</item>
+        <item quantity="few">Aby ponownie dołączyć do grupy, te osoby muszą zaakceptować zaproszenie. Dopóki tego nie zrobią, nie będą otrzymywać wiadomości grupowych.</item>
+        <item quantity="many">Aby ponownie dołączyć do grupy, te osoby muszą zaakceptować zaproszenie. Dopóki tego nie zrobią, nie będą otrzymywać wiadomości grupowych.</item>
+        <item quantity="other">Aby ponownie dołączyć do grupy, ta osoba musi zaakceptować zaproszenie. Dopóki tego nie zrobi, nie będzie otrzymywać wiadomości grupowych.</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
         <item quantity="one">Ten członek został usunięty z grupy i nie będzie mógł ponownie do niej dołączyć, dopóki nie zaktualizuje aplikacji:</item>
@@ -1307,17 +1307,17 @@
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Zaktualizuj do Nowej grupy</string>
+    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">Zaktualizuj do nowej wersji grup</string>
     <string name="GroupsV1MigrationInitiation_upgrade_this_group">Zaktualizuj tę grupę</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">Nowe grupy posiadają takie funkcje jak @wzmianki i administratorzy, a w przyszłości będą obsługiwać więcej funkcji.</string>
+    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">W nowych grupach można korzystać z takich funkcji jak @wzmianki i administracja. W przyszłości opcji będzie jeszcze więcej.</string>
     <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">Cała historia wiadomości i multimedia zostaną zachowane po aktualizacji.</string>
-    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Wystąpił błąd sieci. Spróbuj później.</string>
+    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">Wystąpił błąd sieci. Spróbuj ponownie później.</string>
     <string name="GroupsV1MigrationInitiation_failed_to_upgrade">Nie udało się zaktualizować.</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-        <item quantity="one">Ten członek będzie musiał zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzyma żadnych wiadomości grupowych, dopóki nie przyjmie zaproszenia:</item>
-        <item quantity="few">Ci członkowie będą musieli zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzymają żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia:</item>
-        <item quantity="many">Ci członkowie będą musieli zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzymają żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia:</item>
-        <item quantity="other">Ci członkowie będą musieli zaakceptować zaproszenie, aby ponownie dołączyć do grupy i nie otrzymają żadnych wiadomości grupowych, dopóki nie przyjmą zaproszenia:</item>
+        <item quantity="one">Aby ponownie dołączyć do grupy, ta osoba musi zaakceptować zaproszenie. Dopóki tego nie zrobi, nie będzie otrzymywać wiadomości grupowych.</item>
+        <item quantity="few">Aby ponownie dołączyć do grupy, te osoby muszą zaakceptować zaproszenie. Dopóki tego nie zrobią, nie będą otrzymywać wiadomości grupowych.</item>
+        <item quantity="many">Aby ponownie dołączyć do grupy, te osoby muszą zaakceptować zaproszenie. Dopóki tego nie zrobią, nie będą otrzymywać wiadomości grupowych.</item>
+        <item quantity="other">Aby ponownie dołączyć do grupy, ta osoba musi zaakceptować zaproszenie. Dopóki tego nie zrobi, nie będzie otrzymywać wiadomości grupowych.</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
         <item quantity="one">Ten członek nie może dołączyć do Nowych grup i zostanie usunięty z grupy:</item>
@@ -1328,72 +1328,72 @@
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-        <item quantity="one">%1$d członek nie mógł zostać ponownie dodany do Nowej grupy. Czy chcesz go teraz dodać?</item>
-        <item quantity="few">%1$d członków nie mogło zostać ponow3nie dodanych do Nowej grupy. Czy chcesz ich teraz dodać?</item>
-        <item quantity="many">%1$d członków nie mogło zostać ponow3nie dodanych do Nowej grupy. Czy chcesz ich teraz dodać?</item>
-        <item quantity="other">%1$d członków nie mogło zostać ponow3nie dodanych do Nowej grupy. Czy chcesz ich teraz dodać?</item>
+        <item quantity="one">Nie udało się dodać do nowej grupy %1$d osoby. Czy chcesz ją dodać teraz?</item>
+        <item quantity="few">Nie udało się dodać do nowej grupy %1$d osób. Czy chcesz je dodać teraz?</item>
+        <item quantity="many">Nie udało się dodać do nowej grupy %1$d osób. Czy chcesz je dodać teraz?</item>
+        <item quantity="other">Nie udało się dodać do nowej grupy %1$d osoby. Czy chcesz ją dodać teraz?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
-        <item quantity="one">Dodaj członka</item>
-        <item quantity="few">Dodaj członków</item>
-        <item quantity="many">Dodaj członków</item>
-        <item quantity="other">Dodaj członków</item>
+        <item quantity="one">Dodaj osobę</item>
+        <item quantity="few">Dodaj osoby</item>
+        <item quantity="many">Dodaj osoby</item>
+        <item quantity="other">Dodaj osobę</item>
     </plurals>
-    <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nie, dzięki</string>
+    <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">Nie dodawaj</string>
 
     <!-- GroupsV1MigrationSuggestionsDialog -->
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
-        <item quantity="one">Dodać członka?</item>
-        <item quantity="few">Dodać członków?</item>
-        <item quantity="many">Dodać członków?</item>
-        <item quantity="other">Dodać członków?</item>
+        <item quantity="one">Dodać osobę?</item>
+        <item quantity="few">Dodać osoby?</item>
+        <item quantity="many">Dodać osoby?</item>
+        <item quantity="other">Dodać osobę?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-        <item quantity="one">Ten członek nie mógł zostać automatycznie dodany do Nowej grupy, gdy została zaktualizowana:</item>
-        <item quantity="few">Ci członkowie nie mogli zostać automatycznie dodani do Nowej grupy, gdy została zaktualizowana:</item>
-        <item quantity="many">Ci członkowie nie mogli zostać automatycznie dodani do Nowej grupy, gdy została zaktualizowana:</item>
-        <item quantity="other">Ci członkowie nie mogli zostać automatycznie dodani do Nowej grupy, gdy została zaktualizowana:</item>
+        <item quantity="one">Po aktualizacji grupy nie udało się do niej dodać tej osoby.</item>
+        <item quantity="few">Po aktualizacji grupy nie udało się do niej dodać tych osób.</item>
+        <item quantity="many">Po aktualizacji grupy nie udało się do niej dodać tych osób.</item>
+        <item quantity="other">Po aktualizacji grupy nie udało się do niej dodać tej osoby.</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
-        <item quantity="one">Dodaj członka</item>
-        <item quantity="few">Dodaj członków</item>
-        <item quantity="many">Dodaj członków</item>
-        <item quantity="other">Dodaj członków</item>
+        <item quantity="one">Dodaj osobę</item>
+        <item quantity="few">Dodaj osoby</item>
+        <item quantity="many">Dodaj osoby</item>
+        <item quantity="other">Dodaj osobę</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
-        <item quantity="one">Nie udało się dodać członka. Spróbuj później.</item>
-        <item quantity="few">Nie udało się dodać członków. Spróbuj później.</item>
-        <item quantity="many">Nie udało się dodać członków. Spróbuj później.</item>
-        <item quantity="other">Nie udało się dodać członków. Spróbuj później.</item>
+        <item quantity="one">Nie udało się dodać osoby. Spróbuj ponownie później.</item>
+        <item quantity="few">Nie udało się dodać osób. Spróbuj ponownie później.</item>
+        <item quantity="many">Nie udało się dodać osób. Spróbuj ponownie później.</item>
+        <item quantity="other">Nie udało się dodać osoby. Spróbuj ponownie później.</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
-        <item quantity="one">Nie można dodać członka.</item>
-        <item quantity="few">Nie można dodać członków.</item>
-        <item quantity="many">Nie można dodać członków.</item>
-        <item quantity="other">Nie można dodać członków.</item>
+        <item quantity="one">Nie można dodać osoby.</item>
+        <item quantity="few">Nie można dodać osób.</item>
+        <item quantity="many">Nie można dodać osób.</item>
+        <item quantity="other">Nie można dodać osoby.</item>
     </plurals>
 
     <!-- LeaveGroupDialog -->
     <string name="LeaveGroupDialog_leave_group">Opuścić grupę?</string>
-    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Nie będziesz już móc odbierać lub wysyłać wiadomości w tej grupie.</string>
+    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">Stracisz możliwość wysyłania i otrzymywania wiadomości w tej grupie.</string>
     <string name="LeaveGroupDialog_leave">Opuść</string>
     <string name="LeaveGroupDialog_choose_new_admin">Wybierz nowego administratora</string>
-    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Przed opuszczeniem tej grupy musisz wybrać co najmniej jednego nowego administratora.</string>
+    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">Zanim opuścisz grupę, musisz wybrać co najmniej jednego nowego administratora.</string>
     <string name="LeaveGroupDialog_choose_admin">Wybierz administratora</string>
 
     <!-- LinkPreviewView -->
-    <string name="LinkPreviewView_no_link_preview_available">Brak dostępnego podglądu linku</string>
-    <string name="LinkPreviewView_this_group_link_is_not_active">Link do tej grupy jest nieaktywny</string>
+    <string name="LinkPreviewView_no_link_preview_available">Podgląd linku niedostępny</string>
+    <string name="LinkPreviewView_this_group_link_is_not_active">Ten link do grupy jest nieaktywny</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
     <!-- Description for Call Link url previews -->
     <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Użyj linku, aby dołączyć do rozmowy Signal</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
-        <item quantity="one">%1$d członek</item>
-        <item quantity="few">%1$d członków</item>
-        <item quantity="many">%1$d członków</item>
-        <item quantity="other">%1$d członków</item>
+        <item quantity="one">%1$d osoba</item>
+        <item quantity="few">%1$d osoby</item>
+        <item quantity="many">%1$d osób</item>
+        <item quantity="other">%1$d osoby</item>
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
@@ -1437,11 +1437,11 @@
     <string name="PendingMembersActivity_pending_group_invites">Prośby o przyjęcie i zaproszenia</string>
     <string name="PendingMembersActivity_requests">Prośby</string>
     <string name="PendingMembersActivity_invites">Zaproszenia</string>
-    <string name="PendingMembersActivity_people_you_invited">Ludzie, których zaprosiłeś(aś)</string>
+    <string name="PendingMembersActivity_people_you_invited">Osoby zaproszone przez Ciebie</string>
     <string name="PendingMembersActivity_you_have_no_pending_invites">Nie masz oczekujących zaproszeń.</string>
-    <string name="PendingMembersActivity_invites_by_other_group_members">Zaproszenia innych członków grupy</string>
-    <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Brak oczekujących zaproszeń innych członków grupy.</string>
-    <string name="PendingMembersActivity_missing_detail_explanation">Dane osób zaproszonych przez innych członków grupy nie są pokazywane. Jeśli zaproszeni postanowią dołączyć, ich dane zostaną udostępnione grupie. Nie zobaczą żadnych wiadomości grupy, dopóki do niej nie dołączą.</string>
+    <string name="PendingMembersActivity_invites_by_other_group_members">Osoby zaproszone przez innych członków grupy</string>
+    <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">Nie ma oczekujących zaproszeń od innych członków grupy.</string>
+    <string name="PendingMembersActivity_missing_detail_explanation">Dane osób zaproszonych przez innych członków grupy nie są widoczne. Gdy przyjmą one zaproszenie, dane zostaną udostępnione grupie. Dopóki zaproszone osoby nie dołączą do grupy, nie będą mogły w niej wyświetlić żadnych wiadomości.</string>
 
     <string name="PendingMembersActivity_revoke_invite">Cofnij zaproszenie</string>
     <string name="PendingMembersActivity_revoke_invites">Cofnij zaproszenia</string>
@@ -1449,25 +1449,25 @@
         <item quantity="one">Cofnij zaproszenie</item>
         <item quantity="few">Cofnij %1$d zaproszenia</item>
         <item quantity="many">Cofnij %1$d zaproszeń</item>
-        <item quantity="other">Cofnij %1$d zaproszeń</item>
+        <item quantity="other">Cofnij %1$d zaproszenia</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
-        <item quantity="one">Błąd przy cofaniu zaproszenia</item>
-        <item quantity="few">Błąd przy cofaniu zaproszeń</item>
-        <item quantity="many">Błąd przy cofaniu zaproszeń</item>
-        <item quantity="other">Błąd przy cofaniu zaproszeń</item>
+        <item quantity="one">Podczas cofania zaproszenia wystąpił błąd</item>
+        <item quantity="few">Podczas cofania zaproszeń wystąpił błąd</item>
+        <item quantity="many">Podczas cofania zaproszeń wystąpił błąd</item>
+        <item quantity="other">Podczas cofania zaproszenia wystąpił błąd</item>
     </plurals>
 
     <!-- RequestingMembersFragment -->
     <string name="RequestingMembersFragment_pending_member_requests">Oczekujące prośby o przyjęcie</string>
-    <string name="RequestingMembersFragment_no_member_requests_to_show">Brak próśb o przyjęcie do grupy.</string>
-    <string name="RequestingMembersFragment_explanation">Osoby na tej liście próbują dołączyć do tej grupy przez link do grupy.</string>
-    <string name="RequestingMembersFragment_added_s">"Dodałeś(aś) \"%1$s\""</string>
-    <string name="RequestingMembersFragment_denied_s">"Odrzuciłeś(aś) \"%1$s\""</string>
+    <string name="RequestingMembersFragment_no_member_requests_to_show">Nie ma oczekujących próśb o przyjęcie do grupy.</string>
+    <string name="RequestingMembersFragment_explanation">Osoby na tej liście chcą dołączyć do grupy za pomocą linku.</string>
+    <string name="RequestingMembersFragment_added_s">"%1$s należy teraz do grupy"</string>
+    <string name="RequestingMembersFragment_denied_s">"Prośba, której nadawcą jest %1$s, zostaje odrzucona"</string>
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">Gotowe</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Nie można dodać tej osoby do Starych grup.</string>
+    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">Tej osoby nie można dodawać do starych grup.</string>
     <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">Czy %1$s ma należeć do grupy „%2$s”?</item>
@@ -1476,18 +1476,18 @@
         <item quantity="other">Dodać %3$d osoby do grupy „%2$s”?</item>
     </plurals>
     <string name="AddMembersActivity__add">Dodaj</string>
-    <string name="AddMembersActivity__add_members">Dodaj członków</string>
+    <string name="AddMembersActivity__add_members">Dodaj osoby</string>
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">Nazwij grupę</string>
     <string name="AddGroupDetailsFragment__create_group">Utwórz grupę</string>
     <string name="AddGroupDetailsFragment__create">Utwórz</string>
     <string name="AddGroupDetailsFragment__members">Członkowie</string>
-    <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Możesz dodać lub zaprosić znajomych po utworzeniu tej grupy.</string>
-    <string name="AddGroupDetailsFragment__group_name_required">Nazwa grupy (wymagane)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">Nazwa grupy (opcjonalne)</string>
+    <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">Możesz dodać lub zaprosić do grupy znajomych po jej utworzeniu.</string>
+    <string name="AddGroupDetailsFragment__group_name_required">Nazwa grupy (wymagana)</string>
+    <string name="AddGroupDetailsFragment__group_name_optional">Nazwa grupy (opcjonalna)</string>
     <string name="AddGroupDetailsFragment__this_field_is_required">To pole jest wymagane.</string>
-    <string name="AddGroupDetailsFragment__group_creation_failed">Tworzenie grupy nie powiodło się.</string>
+    <string name="AddGroupDetailsFragment__group_creation_failed">Nie udało się utworzyć grupy.</string>
     <string name="AddGroupDetailsFragment__try_again_later">Spróbuj ponownie później.</string>
     <string name="AddGroupDetailsFragment__remove">Usuń</string>
     <string name="AddGroupDetailsFragment__sms_contact">Kontakt SMS</string>
@@ -1498,32 +1498,32 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">Zaznaczono kontakt, który nie obsługuje grup Signal, więc ta grupa będzie grupą MMS. Niestandardowe nazwy i zdjęcia grup MMS będą widoczne tylko dla Ciebie. Ponieważ chcemy skupić się na wiadomościach szyfrowanych, wkrótce grupy MMS przestaną być obsługiwane.</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_who_can_add_new_members">Kto może dodawać nowych członków?</string>
-    <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kto może edytować informacje o tej grupie?</string>
+    <string name="ManageGroupActivity_who_can_add_new_members">Kto może dodawać nowe osoby?</string>
+    <string name="ManageGroupActivity_who_can_edit_this_groups_info">Kto może edytować informacje o grupie?</string>
 
     <plurals name="ManageGroupActivity_added">
-        <item quantity="one">Dodano %1$d członka.</item>
-        <item quantity="few">Dodano %1$d członków.</item>
-        <item quantity="many">Dodano %1$d członków.</item>
-        <item quantity="other">Dodano %1$d członków.</item>
+        <item quantity="one">Dodano %1$d osobę.</item>
+        <item quantity="few">Dodano %1$d osoby.</item>
+        <item quantity="many">Dodano %1$d osób.</item>
+        <item quantity="other">Dodano %1$d osoby.</item>
     </plurals>
 
-    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nie masz uprawnień, aby to zrobić</string>
-    <string name="ManageGroupActivity_not_capable">Ktoś, kogo dodałeś, nie obsługuje nowych grup i musi zaktualizować Signal.</string>
-    <string name="ManageGroupActivity_not_announcement_capable">Ktoś, kogo dodałeś(aś), nie obsługuje grup informacyjnych i musi zaktualizować Signal</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Aktualizacja grupy nie powiodła się</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nie jesteś członkiem tej grupy</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Aktualizacja grupy nie powiodła się, spróbuj później</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Aktualizacja grupy nie powiodła się z powodu błędu sieci, spróbuj później</string>
+    <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Nie masz do tego uprawnień</string>
+    <string name="ManageGroupActivity_not_capable">Któraś z dodanych przez Ciebie osób musi zaktualizować Signal, ponieważ ma wersję aplikacji, która nie obsługuje nowych grup.</string>
+    <string name="ManageGroupActivity_not_announcement_capable">Któraś z dodanych przez Ciebie osób musi zaktualizować Signal, ponieważ ma wersję aplikacji, która nie obsługuje grup informacyjnych.</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group">Nie udało się zaktualizować grupy</string>
+    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Nie należysz do tej grupy</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Nie udało się zaktualizować grupy. Spróbuj ponownie później</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Nie udało się zaktualizować grupy z powodu błędu sieci. Spróbuj ponownie później</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Edytuj nazwę i zdjęcie</string>
     <string name="ManageGroupActivity_legacy_group">Stara grupa</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
-    <string name="ManageGroupActivity_legacy_group_learn_more">To stara wersja grupy. Takie funkcje jak administratorzy grup są dostępne tylko w Nowej grupie.</string>
+    <string name="ManageGroupActivity_legacy_group_learn_more">To jest tzw. stara grupa. Funkcje takie jak administracja są dostępne tylko w nowej wersji grup.</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
-    <string name="ManageGroupActivity_legacy_group_upgrade">To Stara grupa. Aby móc korzystać z takich funkcji jak @wzmianki i administratorzy grup,</string>
-    <string name="ManageGroupActivity_legacy_group_too_large">Ta Stara grupa nie może zostać zaktualizowana do Nowej grupy, ponieważ jest zbyt duża. Maksymalny rozmiar grupy to %1$d.</string>
-    <string name="ManageGroupActivity_upgrade_this_group">zaktualizuj tę grupę.</string>
+    <string name="ManageGroupActivity_legacy_group_upgrade">To jest tzw. stara grupa. Aby korzystać z nowych funkcji, takich jak @wzmianki i administracja,</string>
+    <string name="ManageGroupActivity_legacy_group_too_large">Nie można zaktualizować tej grupy do nowej wersji, ponieważ jest ona zbyt duża. Grupa może się składać z maksymalnie %1$d osób.</string>
+    <string name="ManageGroupActivity_upgrade_this_group">zaktualizuj grupę do nowej wersji.</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">To niezabezpieczona grupa MMS. Zaproś swoje kontakty do korzystania z Signal, aby prowadzić prywatny czat.</string>
     <string name="ManageGroupActivity_invite_now">Zaproś teraz</string>
     <string name="ManageGroupActivity_more">więcej</string>
@@ -1576,7 +1576,7 @@
     <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Jeśli nie przywrócisz multimediów teraz, nie będzie można tego zrobić później. Multimedia zostaną przywrócone w tle.</string>
 
     <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Powiadom mnie o wzmiankach</string>
+    <string name="GroupMentionSettingDialog_notify_me_for_mentions">Powiadamiaj mnie o wzmiankach</string>
     <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">Powiadamiać, gdy zostaniesz wspomniany(-a) w wyciszonych czatach?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">Zawsze powiadamiaj</string>
     <string name="GroupMentionSettingDialog_dont_notify_me">Nie powiadamiaj</string>
@@ -1586,7 +1586,7 @@
     <string name="ManageProfileFragment__your_username">Twoja nazwa użytkownika, kod QR i link nie są widoczne na Twoim profilu. Udostępniaj swoją nazwę użytkownika tylko zaufanym osobom.</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
     <string name="ManageProfileFragment__username_footer_no_username">Od teraz użytkownicy mogą wysyłać Ci wiadomości, używając Twojej opcjonalnej nazwy użytkownika. Nie musisz już podawać swojego numeru telefonu. </string>
-    <string name="ManageProfileFragment_profile_name">Nazwa profilu</string>
+    <string name="ManageProfileFragment_profile_name">Imię w profilu</string>
     <string name="ManageProfileFragment_username">Nazwa użytkownika</string>
     <string name="ManageProfileFragment_about">O mnie</string>
     <string name="ManageProfileFragment_failed_to_set_avatar">Nie udało się ustawić awatara</string>
@@ -1599,9 +1599,9 @@
     <!-- Body of a tooltip educating the user about a button on the screen that will take them to the username share screen -->
     <string name="ManageProfileFragment__link_tooltip_body">Pozwól innym na rozpoczęcie z Tobą rozmowy poprzez udostępnienie im unikatowego kodu QR lub linku.</string>
     <!-- Snackbar message after creating username -->
-    <string name="ManageProfileFragment__username_created">Utworzono nazwę użytkownika</string>
+    <string name="ManageProfileFragment__username_created">Nazwa użytkownika utworzona</string>
     <!-- Snackbar message after copying username -->
-    <string name="ManageProfileFragment__username_copied">Skopiowano nazwę użytkownika</string>
+    <string name="ManageProfileFragment__username_copied">Nazwa użytkownika skopiowana</string>
     <!-- Snackbar message after network failure while trying to delete username -->
     <string name="ManageProfileFragment__couldnt_delete_username">Nie udało się skasować nazwy użytkownika. Spróbuj ponownie później.</string>
     <!-- Snackbar message after successful deletion of username -->
@@ -1626,22 +1626,22 @@
         <item quantity="one">%1$d wspólna grupa</item>
         <item quantity="few">%1$d wspólne grupy</item>
         <item quantity="many">%1$d wspólnych grup</item>
-        <item quantity="other">%1$d wspólne grupy</item>
+        <item quantity="other">%1$d wspólnej grupy</item>
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s zaprosił(a) 1 osobę</item>
-        <item quantity="few">%1$s zaprosił(a) %2$d osoby</item>
-        <item quantity="many">%1$s zaprosił(a) %2$d osób</item>
-        <item quantity="other">%1$s zaprosił(a) %2$d osób</item>
+        <item quantity="one">%1$s zaprasza %2$d osobę</item>
+        <item quantity="few">%1$s zaprasza %2$d osoby</item>
+        <item quantity="many">%1$s zaprasza %2$d osób</item>
+        <item quantity="other">%1$s zaprasza %2$d osoby</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
-    <string name="CustomNotificationsDialogFragment__custom_notifications">Niestandardowe powiadomienia</string>
+    <string name="CustomNotificationsDialogFragment__custom_notifications">Powiadomienia niestandardowe</string>
     <string name="CustomNotificationsDialogFragment__messages">Wiadomości</string>
-    <string name="CustomNotificationsDialogFragment__use_custom_notifications">Użyj niestandardowych powiadomień</string>
+    <string name="CustomNotificationsDialogFragment__use_custom_notifications">Użyj powiadomień niestandardowych </string>
     <string name="CustomNotificationsDialogFragment__notification_sound">Dźwięk powiadomień</string>
-    <string name="CustomNotificationsDialogFragment__vibrate">Wibracja</string>
+    <string name="CustomNotificationsDialogFragment__vibrate">Wibracje</string>
     <!-- Button text for customizing notification options -->
     <string name="CustomNotificationsDialogFragment__customize">Dostosuj</string>
     <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">Zmień dźwięk i wibracje</string>
@@ -1657,43 +1657,43 @@
     <string name="ShareableGroupLinkDialogFragment__share">Udostępnij</string>
     <string name="ShareableGroupLinkDialogFragment__reset_link">Zresetuj link</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">Wymagaj potwierdzenia administratora</string>
-    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Wymagaj akceptacji nowych członków, dołączających do grupy przez link, przez administratora.</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Na pewno chcesz zresetować link do grupy? Ludzie nie będą mogli dołączyć do grupy, używając obecnego linku.</string>
+    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">Wymagaj zatwierdzania przez administratora nowych osób dołączających do grupy za pomocą linku.</string>
+    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">Chcesz zresetować link do grupy? Inne osoby nie będą już mogły do niej dołączać za pomocą dotychczasowego linku.</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">Kod QR</string>
-    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Osoby, które zeskanują ten kod, będą mogły dołączyć do Twojej grupy. Administratorzy wciąż będą musieli zaakceptować nowych członków, jeśli masz włączoną tę opcję.</string>
+    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">Osoby, które zeskanują ten kod, będą mogły dołączyć do grupy. Administratorzy wciąż będą musieli zatwierdzać nowe osoby, jeśli takie wymaganie jest włączone.</string>
     <string name="GroupLinkShareQrDialogFragment__share_code">Udostępnij kod</string>
 
     <!-- GV2 Invite Revoke confirmation dialog -->
-    <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Czy chcesz cofnąć zaproszenie wysłane do %1$s?</string>
+    <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">Czy chcesz cofnąć zaproszenie, którego adresatem jest %1$s?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">Czy chcesz cofnąć zaproszenie wysłane przez %1$s?</item>
-        <item quantity="few">Czy chcesz cofnąć %2$d zaproszenia wysłane przez %1$s?</item>
-        <item quantity="many">Czy chcesz cofnąć %2$d zaproszeń wysłanych przez %1$s?</item>
-        <item quantity="other">Czy chcesz cofnąć %2$d zaproszeń wysłanych przez %1$s?</item>
+        <item quantity="one">Czy chcesz cofnąć zaproszenie, którego nadawcą jest %1$s?</item>
+        <item quantity="few">Czy chcesz cofnąć %2$d zaproszenia, których nadawcą jest %1$s?</item>
+        <item quantity="many">Czy chcesz cofnąć %2$d zaproszeń, których nadawcą jest %1$s?</item>
+        <item quantity="other">Czy chcesz cofnąć %2$d zaproszenia, którego nadawcą jest %1$s?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Jesteś już członkiem</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">Już należysz do tej grupy</string>
     <string name="GroupJoinBottomSheetDialogFragment_join">Dołącz</string>
     <string name="GroupJoinBottomSheetDialogFragment_request_to_join">Poproś o przyjęcie</string>
-    <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Nie udało się dołączyć do grupy. Spróbuj później.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">Nie udało się dołączyć do grupy. Spróbuj ponownie później</string>
     <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">Wystąpił błąd sieci.</string>
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Link do tej grupy jest nieaktywny</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">Ten link do grupy jest nieaktywny</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Nie można dołączyć do grupy</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
     <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Nie możesz dołączyć do tej grupy przez link, ponieważ administrator Cię z niej usunął. Skontaktuj się z administratorem i poproś go o ponowne dodanie Cię do grupy.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Link do tej grupy jest nieaktualny.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Ten link do grupy jest nieważny.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_link_error">Błąd linku</string>
     <!-- Message shown when you try to get information for a group via link but an unknown issue occurred -->
-    <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Dołączanie przez link nie powiodło się. Spróbuj później.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">Nie udało się dołączyć za pomocą linku. Spróbuj ponownie później.</string>
 
-    <string name="GroupJoinBottomSheetDialogFragment_direct_join">Czy chcesz dołączyć do tej grupy i udostępnić swoje imię i zdjęcie jej członkom?</string>
-    <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Administrator tej grupy musi zaakceptować Twoją prośbę, zanim będziesz móc dołączyć do grupy. Gdy poprosisz o przyjęcie, Twoje imię i zdjęcie zostanie udostępnione członkom grupy.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_direct_join">Czy chcesz dołączyć do tej grupy i udostępnić jej członkom swoje imię oraz zdjęcie?</string>
+    <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">Twoją prośbę o przyjęcie do grupy musi zaakceptować jej administrator. Gdy poprosisz o przyjęcie do grupy, jej członkom zostaną udostępnione Twoje imię i zdjęcie.</string>
     <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
         <item quantity="one">Grupa · %1$d członek</item>
         <item quantity="few">Grupa · %1$d członków</item>
@@ -1760,7 +1760,7 @@
         <item quantity="many">Wysłać %1$d zaproszeń SMS?</item>
         <item quantity="other">Wysłać %1$d zaproszeń SMS?</item>
     </plurals>
-    <string name="InviteActivity_lets_switch_to_signal">Zacznij używać Signal: %1$s</string>
+    <string name="InviteActivity_lets_switch_to_signal">Korzystajmy z komunikatora Signal: %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
     <string name="InviteActivity_no_app_to_share_to">Wygląda na to, że nie masz żadnych aplikacji z którymi możesz się podzielić.</string>
 
@@ -4805,7 +4805,7 @@
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Ponownie wpisz PIN</string>
     <string name="ConfirmKbsPinFragment__creating_pin">Tworzenie PIN-u…</string>
     <!-- ID used when saving the PIN to the device password manager. -->
-    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">PIN Signal</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Przedstawiamy kody PIN</string>
@@ -8456,7 +8456,7 @@
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Ustaw</string>
     <!-- Action button label to open remote backup settings -->
-    <string name="BackupsSettingsFragment_view_settings">View settings</string>
+    <string name="BackupsSettingsFragment_view_settings">Pokaż ustawienia</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8721,7 +8721,7 @@
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Przechowuj kod kopii zapasowej tylko w takim menedżerze haseł, który uważasz za bezpieczny i godny zaufania. Signal nie rekomenduje konkretnych rozwiązań w tym zakresie – decyzja należy do Ciebie.</string>
     <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Kopie zapasowe Signal</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Zapisano w menedżerze haseł</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->

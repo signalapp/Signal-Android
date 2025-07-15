@@ -4569,7 +4569,7 @@
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">पिन फिर से डालें</string>
     <string name="ConfirmKbsPinFragment__creating_pin">नया पिन बन रहा है़…</string>
     <!-- ID used when saving the PIN to the device password manager. -->
-    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal पिन</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">पेश है, पिन</string>
@@ -8102,7 +8102,7 @@
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">सेटअप करें</string>
     <!-- Action button label to open remote backup settings -->
-    <string name="BackupsSettingsFragment_view_settings">View settings</string>
+    <string name="BackupsSettingsFragment_view_settings">सेटिंग्स देखें</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8361,7 +8361,7 @@
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">सिर्फ़ उस पासवर्ड मैनेजर में अपनी बैकअप की स्टोर करें जिसके सुरक्षित होने पर आपको भरोसा है। Signal इस बारे में कोई सुझाव नहीं देता कि कौनसा पासवर्ड मैनेजर आपके लिए सही है।</string>
     <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal बैकअप</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">आपके पासवर्ड मैनेजर में सेव किया गया</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->

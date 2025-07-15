@@ -4569,7 +4569,7 @@
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">ನಿಮ್ಮ ಪಿನ್ ಅನ್ನು ಮತ್ತೆ ನಮೂದಿಸಿ</string>
     <string name="ConfirmKbsPinFragment__creating_pin">ಪಿನ್ ರಚಿಸುತ್ತಿದೆ…</string>
     <!-- ID used when saving the PIN to the device password manager. -->
-    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal ಪಿನ್</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">ಪಿನ್‌ಗಳನ್ನು ಪರಿಚಯಿಸಲಾಗುತ್ತಿದೆ</string>
@@ -8102,7 +8102,7 @@
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">ಸೆಟ್ ಅಪ್</string>
     <!-- Action button label to open remote backup settings -->
-    <string name="BackupsSettingsFragment_view_settings">View settings</string>
+    <string name="BackupsSettingsFragment_view_settings">ಸೆಟ್ಟಿಂಗ್‌ಗಳನ್ನು ನೋಡಿ</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8361,7 +8361,7 @@
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">ನೀವು ಸುರಕ್ಷಿತ ಎಂದು ವಿಶ್ವಾಸವಿಡುವ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್‌ನಲ್ಲಿ ಮಾತ್ರ ಬ್ಯಾಕಪ್ ಕೀಯನ್ನು ಸಂಗ್ರಹಿಸಿ. ನಿಮಗೆ ಯಾವ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್ ಸೂಕ್ತ ಎಂಬುದರ ಕುರಿತು Signal ಶಿಫಾರಸು ಮಾಡುವುದಿಲ್ಲ.</string>
     <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal ಬ್ಯಾಕಪ್‌ಗಳು</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">ನಿಮ್ಮ ಪಾಸ್‌ವರ್ಡ್ ಮ್ಯಾನೇಜರ್‌ಗೆ ಸೇವ್ ಮಾಡಲಾಗಿದೆ</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->

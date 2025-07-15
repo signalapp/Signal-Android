@@ -4569,7 +4569,7 @@
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">پین خود را دوباره وارد نمایید</string>
     <string name="ConfirmKbsPinFragment__creating_pin">ایجاد پین…</string>
     <!-- ID used when saving the PIN to the device password manager. -->
-    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">پین سیگنال</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">معرفی پین‌ها</string>
@@ -8102,7 +8102,7 @@
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">راه‌اندازی</string>
     <!-- Action button label to open remote backup settings -->
-    <string name="BackupsSettingsFragment_view_settings">View settings</string>
+    <string name="BackupsSettingsFragment_view_settings">مشاهدهٔ تنظیمات</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8361,7 +8361,7 @@
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">رمز پشتیبان خود را فقط در یک برنامه مدیر رمز عبور که به امنیت آن اعتماد دارید، ذخیره کنید. سیگنال توصیه‌ای درباره اینکه کدام برنامه مدیر رمز عبور برای شما مناسب است، ارائه نمی‌دهد.</string>
     <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">پشتیبان‌های سیگنال</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">در مدیر رمز عبور ذخیره شد</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->

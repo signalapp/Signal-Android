@@ -1573,7 +1573,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Не зараз</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">If you choose not to restore now, you won\'t be able to restore later. Your media will restore in the background.</string>
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Калі вы не зробіце аднаўленне зараз, пазней аднавіць гэта ўжо не атрымаецца. Вашы медыяфайлы будуць аднаўляцца ў фонавым рэжыме.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Апавяшчаць мяне аб згадваннях</string>
@@ -4804,6 +4804,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">PIN-код створаны.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Увядзіце паўторна ваш PIN-код</string>
     <string name="ConfirmKbsPinFragment__creating_pin">Стварэнне PIN-кода…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">PIN-код Signal</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Прадстаўляем PIN-коды</string>
@@ -8453,6 +8455,8 @@
     <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"На гэтай прыладзе падпіска не знойдзена."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Наладзіць</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">Прагледзець налады</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8716,16 +8720,18 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Захаваць у менеджары пароляў?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Захоўвайце ключ для рэзервовага капіравання толькі ў надзейным менеджары пароляў. Signal не раіць вам адносна таго, які менеджар пароляў падыходзіць менавіта вам.</string>
+    <!-- ID used when saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Рэзервовыя копіі Signal</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Захавана у менеджары пароляў</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Can\'t save to password manager</string>
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Немагчыма захаваць у менеджары пароляў</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Вы не маеце наладжанага менеджара пароляў, або той, што вы выкарыстоўваеце, не падтрымліваецца.</string>
     <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">You previously chose not to save passwords for Signal to Google Password Manager. In your Google Password Manager settings, remove Signal from \"Declined sites and apps\" and try again.</string>
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Раней вы вырашылі не захоўваць паролі для Signal у менеджары пароляў Google. У наладах менеджара пароляў Google выдаліце Signal з раздзела «Адхіленыя сайты і праграмы» і паспрабуйце яшчэ раз.</string>
     <!-- Label for a button that navigates to the device settings -->
-    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Go to settings</string>
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Перайсці ў налады</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Далей</string>
     <!-- Bottom sheet title -->

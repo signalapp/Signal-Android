@@ -4451,7 +4451,7 @@
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">វាយបញ្ចូលលេខ PIN របស់អ្នកម្តងទៀត</string>
     <string name="ConfirmKbsPinFragment__creating_pin">កំពុងបង្កើត PIN…</string>
     <!-- ID used when saving the PIN to the device password manager. -->
-    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">លេខកូដ PIN Signal</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">ការណែនាំ លេខPINs</string>
@@ -7925,7 +7925,7 @@
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">រៀបចំ</string>
     <!-- Action button label to open remote backup settings -->
-    <string name="BackupsSettingsFragment_view_settings">View settings</string>
+    <string name="BackupsSettingsFragment_view_settings">មើលការកំណត់ផ្សេងៗ</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8181,7 +8181,7 @@
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">រក្សាទុកសោបម្រុងទុករបស់អ្នកតែនៅក្នុងមុខងារគ្រប់គ្រងពាក្យសម្ងាត់ដែលអ្នកជឿជាក់ថាមានសុវត្ថិភាពប៉ុណ្ណោះ។ Signal មិនផ្តល់ការណែនាំថាតើមុខងារគ្រប់គ្រងពាក្យសម្ងាត់មួយណាសក្តិសមសម្រាប់អ្នកនោះឡើយ។</string>
     <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">ការបម្រុងទុក Signal</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">បានរក្សាទុកក្នុងមុខងារគ្រប់គ្រងពាក្យសម្ងាត់</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->

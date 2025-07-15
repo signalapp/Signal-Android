@@ -4805,7 +4805,7 @@
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">הכנס מחדש את ה־PIN שלך</string>
     <string name="ConfirmKbsPinFragment__creating_pin">יוצר PIN…</string>
     <!-- ID used when saving the PIN to the device password manager. -->
-    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">PIN של Signal</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">היכרות עם PIN</string>
@@ -8456,7 +8456,7 @@
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">הגדרה</string>
     <!-- Action button label to open remote backup settings -->
-    <string name="BackupsSettingsFragment_view_settings">View settings</string>
+    <string name="BackupsSettingsFragment_view_settings">הצג הגדרות</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8721,7 +8721,7 @@
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">חשוב לאחסן את מפתח הגיבוי שלך רק במנהל סיסמאות שידוע לך בוודאות שהוא מאובטח. Signal לא ממליצה על מנהל סיסמאות מסוים שמתאים עבורך.</string>
     <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">גיבויי Signal</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">נשמר במנהל הסיסמאות שלך</string>
     <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
