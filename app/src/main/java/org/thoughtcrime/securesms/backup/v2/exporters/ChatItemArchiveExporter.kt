@@ -568,7 +568,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
     val expiresAt = builder.expireStartDate!! + builder.expiresInMs!!
     val threshold = if (exportState.forTransfer) backupStartTime else backupStartTime + cutoffDuration
 
-    if (expiresAt < threshold || builder.expiresInMs!! <= cutoffDuration) {
+    if (expiresAt < threshold || (builder.expiresInMs!! <= cutoffDuration && !exportState.forTransfer)) {
       Log.w(TAG, ExportSkips.messageExpiresTooSoon(record.dateSent))
       return null
     }
