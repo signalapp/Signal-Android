@@ -12,8 +12,10 @@ import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob.Companion.isForArchiveThumbnailUploadJob
 import org.thoughtcrime.securesms.jobs.protos.ArchiveAttachmentReconciliationJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -122,24 +124,53 @@ class ArchiveAttachmentReconciliationJob private constructor(
       return Result.failure()
     }
 
-    val mediaObjectsThatNeedReUpload = SignalDatabase.backupMediaSnapshots.getMediaObjectsLastSeenOnCdnBeforeSnapshotVersion(snapshotVersion)
-    val needReUploadCount = mediaObjectsThatNeedReUpload.count
+    val mediaObjectsThatMayNeedReUpload = SignalDatabase.backupMediaSnapshots.getMediaObjectsLastSeenOnCdnBeforeSnapshotVersion(snapshotVersion)
+    val mayNeedReUploadCount = mediaObjectsThatMayNeedReUpload.count
 
-    if (needReUploadCount > 0) {
-      Log.w(TAG, "Found $needReUploadCount attachments that we thought were uploaded, but could not be found on the CDN. Clearing state and enqueuing uploads.")
+    if (mayNeedReUploadCount > 0) {
+      Log.w(TAG, "Found $mayNeedReUploadCount attachments that are present in the target snapshot, but could not be found on the CDN. This could be a bookkeeping error, or the upload may still be in progress. Checking.")
 
-      mediaObjectsThatNeedReUpload.forEach {
-        val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(it)
-        // TODO [backup] Re-enqueue thumbnail uploads if necessary
-        if (!entry.isThumbnail) {
-          val success = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKey(entry.plaintextHash, entry.remoteKey)
-          if (!success) {
-            Log.e(TAG, "Failed to reset archive transfer state by remote hash/key!")
+      var newBackupJobRequired = false
+      var bookkeepingErrorCount = 0
+
+      mediaObjectsThatMayNeedReUpload.forEach { mediaObjectCursor ->
+        val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(mediaObjectCursor)
+
+        if (entry.isThumbnail) {
+          val parentAttachmentId = SignalDatabase.attachments.getAttachmentIdByPlaintextHashAndRemoteKey(entry.plaintextHash, entry.remoteKey)
+          if (parentAttachmentId == null) {
+            Log.w(TAG, "Failed to find parent attachment for thumbnail that may need reupload. Skipping.")
+            return@forEach
+          }
+
+          if (AppDependencies.jobManager.find { it.isForArchiveThumbnailUploadJob(parentAttachmentId) }.isEmpty()) {
+            Log.w(TAG, "A thumbnail was missing from remote for $parentAttachmentId and no in-progress job was found. Re-enqueueing one.")
+            ArchiveThumbnailUploadJob.enqueueIfNecessary(parentAttachmentId)
+            bookkeepingErrorCount++
+          } else {
+            Log.i(TAG, "A thumbnail was missing from remote for $parentAttachmentId, but a job is already in progress.")
+          }
+        } else {
+          val wasReset = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
+          if (wasReset) {
+            newBackupJobRequired = true
+            bookkeepingErrorCount++
+          } else {
+            Log.w(TAG, "Did not need to reset the the transfer state by hash/key because the attachment either no longer exists or the upload is already in-progress.")
           }
         }
       }
 
-      BackupMessagesJob.enqueue()
+      if (bookkeepingErrorCount > 0) {
+        Log.w(TAG, "Found that $bookkeepingErrorCount/$mayNeedReUploadCount of the CDN mismatches were bookkeeping errors.")
+      } else {
+        Log.i(TAG, "None of the $mayNeedReUploadCount CDN mismatches were bookkeeping errors.")
+      }
+
+      if (newBackupJobRequired) {
+        Log.w(TAG, "Some of the errors require re-uploading a new backup job to resolve.")
+        BackupMessagesJob.enqueue()
+      }
     } else {
       Log.d(TAG, "No attachments need to be repaired.")
     }

@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.protos.ArchiveThumbnailUploadJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
@@ -57,6 +58,10 @@ class ArchiveThumbnailUploadJob private constructor(
       if (SignalStore.backup.backsUpMedia) {
         AppDependencies.jobManager.add(ArchiveThumbnailUploadJob(attachmentId))
       }
+    }
+
+    fun JobSpec.isForArchiveThumbnailUploadJob(attachmentId: AttachmentId): Boolean {
+      return this.factoryKey == KEY && this.serializedData?.let { ArchiveThumbnailUploadJobData.ADAPTER.decode(it).attachmentId } == attachmentId.id
     }
   }
 

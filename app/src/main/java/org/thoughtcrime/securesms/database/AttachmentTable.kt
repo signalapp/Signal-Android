@@ -276,6 +276,7 @@ class AttachmentTable(
       """
 
     private const val DATA_FILE_INDEX = "attachment_data_index"
+    private const val DATA_HASH_REMOTE_KEY_INDEX = "attachment_data_hash_end_remote_key_index"
 
     @JvmField
     val CREATE_INDEXS = arrayOf(
@@ -283,7 +284,7 @@ class AttachmentTable(
       "CREATE INDEX IF NOT EXISTS attachment_transfer_state_index ON $TABLE_NAME ($TRANSFER_STATE);",
       "CREATE INDEX IF NOT EXISTS attachment_sticker_pack_id_index ON $TABLE_NAME ($STICKER_PACK_ID);",
       "CREATE INDEX IF NOT EXISTS attachment_data_hash_start_index ON $TABLE_NAME ($DATA_HASH_START);",
-      "CREATE INDEX IF NOT EXISTS attachment_data_hash_end_remote_key_index ON $TABLE_NAME ($DATA_HASH_END, $REMOTE_KEY);",
+      "CREATE INDEX IF NOT EXISTS $DATA_HASH_REMOTE_KEY_INDEX ON $TABLE_NAME ($DATA_HASH_END, $REMOTE_KEY);",
       "CREATE INDEX IF NOT EXISTS $DATA_FILE_INDEX ON $TABLE_NAME ($DATA_FILE);",
       "CREATE INDEX IF NOT EXISTS attachment_archive_transfer_state ON $TABLE_NAME ($ARCHIVE_TRANSFER_STATE);",
       "CREATE INDEX IF NOT EXISTS attachment_remote_digest_index ON $TABLE_NAME ($REMOTE_DIGEST);"
@@ -419,6 +420,15 @@ class AttachmentTable(
       .readToList { it.readAttachments() }
       .flatten()
       .firstOrNull()
+  }
+
+  fun getAttachmentIdByPlaintextHashAndRemoteKey(plaintextHash: ByteArray, remoteKey: ByteArray): AttachmentId? {
+    return readableDatabase
+      .select(ID)
+      .from("$TABLE_NAME INDEXED BY $DATA_HASH_REMOTE_KEY_INDEX")
+      .where("$DATA_HASH_END = ? AND $REMOTE_KEY = ?", Base64.encodeWithPadding(plaintextHash), Base64.encodeWithPadding(remoteKey))
+      .run()
+      .readToSingleObject { AttachmentId(it.requireLong(ID)) }
   }
 
   fun getAttachmentsForMessage(mmsId: Long): List<DatabaseAttachment> {
@@ -730,16 +740,16 @@ class AttachmentTable(
   }
 
   /**
-   * Sets the archive transfer state for the given attachment by digest.
+   * Resets the archive upload state by hash/key if we believe the attachment should have been uploaded already.
    */
-  fun resetArchiveTransferStateByPlaintextHashAndRemoteKey(plaintextHash: ByteArray, remoteKey: ByteArray): Boolean {
+  fun resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(plaintextHash: ByteArray, remoteKey: ByteArray): Boolean {
     return writableDatabase
       .update(TABLE_NAME)
       .values(
         ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
         ARCHIVE_CDN to null
       )
-      .where("$DATA_HASH_END = ? AND $REMOTE_KEY = ?", Base64.encodeWithPadding(plaintextHash), Base64.encodeWithPadding(remoteKey))
+      .where("$DATA_HASH_END = ? AND $REMOTE_KEY = ? AND $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value}", Base64.encodeWithPadding(plaintextHash), Base64.encodeWithPadding(remoteKey))
       .run() > 0
   }
 

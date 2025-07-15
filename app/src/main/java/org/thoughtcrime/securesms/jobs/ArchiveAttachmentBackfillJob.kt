@@ -25,7 +25,7 @@ class ArchiveAttachmentBackfillJob private constructor(parameters: Parameters) :
 
   constructor() : this(
     parameters = Parameters.Builder()
-      .setQueue("ArchiveAttachmentBackfillJob")
+      .setQueue(ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE)
       .setMaxInstancesForQueue(2)
       .setLifespan(30.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
