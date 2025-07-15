@@ -251,6 +251,18 @@ class ScrubberTest(private val input: String, private val expected: String) {
           "Recipient::123"
         ),
         arrayOf(
+          "url with text before https://example.com/v1/endpoint;asdf123%20$[]?asdf&asdf#asdf and stuff afterwards",
+          "url with text before https://***.com/*** and stuff afterwards"
+        ),
+        arrayOf(
+          "https://signal.org/v1/endpoint",
+          "https://signal.org/v1/endpoint"
+        ),
+        arrayOf(
+          "https://cdn3.signal.org/v1/endpoint",
+          "https://***.org/***"
+        ),
+        arrayOf(
           "https://debuglogs.org/android/7.47.2/2b5ccf4e3e58e44f12b3c92cfd5b526a2432f1dd0f81c8f89dededb176f1122d",
           "https://debuglogs.org/android/7.47.2/2b5ccf4e3e58e44f12b3c92cfd5b526a2432f1dd0f81c8f89dededb176f1122d"
         )
