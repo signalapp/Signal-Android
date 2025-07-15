@@ -95,13 +95,12 @@ public class SubmitDebugLogActivity extends BaseActivity {
     SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
-        viewModel.onQueryUpdated(query);
         return true;
       }
 
       @Override
       public boolean onQueryTextChange(String query) {
-        viewModel.onQueryUpdated(query);
+        onQueryChanged(query);
         return true;
       }
     };
@@ -116,7 +115,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
       @Override
       public boolean onMenuItemActionCollapse(MenuItem item) {
         searchView.setOnQueryTextListener(null);
-        viewModel.onSearchClosed();
+        onQueryChanged("");
         return true;
       }
     });
@@ -173,55 +172,6 @@ public class SubmitDebugLogActivity extends BaseActivity {
 //  }
 
   private void initWebView() {
-    StringBuilder body = new StringBuilder();
-
-    int backgroundColor = ContextCompat.getColor(this, R.color.signal_colorBackground);
-    int noneColor       = ContextCompat.getColor(this, R.color.debuglog_color_none);
-    int verboseColor    = ContextCompat.getColor(this, R.color.debuglog_color_verbose);
-    int debugColor      = ContextCompat.getColor(this, R.color.debuglog_color_debug);
-    int infoColor       = ContextCompat.getColor(this, R.color.debuglog_color_info);
-    int warningColor    = ContextCompat.getColor(this, R.color.debuglog_color_warn);
-    int errorColor      = ContextCompat.getColor(this, R.color.debuglog_color_error);
-
-    String css = String.format("""
-      <style>
-        body     {background-color: %s;}
-        div      {white-space: pre; margin-top: 8; margin-bottom: 8; height: 10px;}
-        .none    {color: %s;}
-        .verbose {color: %s;}
-        .debug   {color: %s;}
-        .info    {color: %s;}
-        .warning {color: %s;}
-        .error   {color: %s;}
-      </style>
-      """,
-      intToCssHex(backgroundColor),
-      intToCssHex(noneColor),
-      intToCssHex(verboseColor),
-      intToCssHex(debugColor),
-      intToCssHex(infoColor),
-      intToCssHex(warningColor),
-      intToCssHex(errorColor)
-    );
-
-    String js = """
-      <script type='text/javascript'>
-        function appendLine(text, style) {
-          var container = document.getElementById('container');
-          var line = document.createElement('div');
-          line.className = style;
-          line.textContent = text;
-          container.appendChild(line);
-        }
-      </script>
-      """;
-
-    body.append(String.format("<html><head>%s%s</head><body style=\"font-family: monospace; font-size: 12px; overflow-y: scroll;\"><div id=\"container\"></div></body></html>", css, js));
-
-    String htmlContent = body.toString();
-
-    logWebView.loadDataWithBaseURL(null, htmlContent, "text/html", "UTF-8", null);
-
     logWebView.getSettings().setBuiltInZoomControls(true);
     logWebView.getSettings().setDisplayZoomControls(false);
     logWebView.getSettings().setUseWideViewPort(true);
@@ -279,6 +229,10 @@ public class SubmitDebugLogActivity extends BaseActivity {
   }
 
   private void presentLines(@NonNull List<LogLine> lines) {
+    if (!isPageLoaded) {
+      initWebView();
+    }
+
     if (progressCard != null && lines.size() > 0) {
       progressCard.setVisibility(View.GONE);
 
@@ -286,11 +240,63 @@ public class SubmitDebugLogActivity extends BaseActivity {
       submitButton.setVisibility(View.VISIBLE);
     }
 
-    if (!isPageLoaded) {
-      initWebView();
-    }
+    StringBuilder body = new StringBuilder();
 
-    StringBuilder appendScript = new StringBuilder();
+    int backgroundColor = ContextCompat.getColor(this, R.color.signal_colorBackground);
+    int noneColor       = ContextCompat.getColor(this, R.color.debuglog_color_none);
+    int verboseColor    = ContextCompat.getColor(this, R.color.debuglog_color_verbose);
+    int debugColor      = ContextCompat.getColor(this, R.color.debuglog_color_debug);
+    int infoColor       = ContextCompat.getColor(this, R.color.debuglog_color_info);
+    int warningColor    = ContextCompat.getColor(this, R.color.debuglog_color_warn);
+    int errorColor      = ContextCompat.getColor(this, R.color.debuglog_color_error);
+
+    String css = String.format("""
+      <style>
+        body     {background-color: %s;}
+        div      {white-space: pre; margin-top: 8; margin-bottom: 8; height: 10px;}
+        .none    {color: %s;}
+        .verbose {color: %s;}
+        .debug   {color: %s;}
+        .info    {color: %s;}
+        .warning {color: %s;}
+        .error   {color: %s;}
+        .hidden  {display: none;}
+      </style>
+      """,
+      intToCssHex(backgroundColor),
+      intToCssHex(noneColor),
+      intToCssHex(verboseColor),
+      intToCssHex(debugColor),
+      intToCssHex(infoColor),
+      intToCssHex(warningColor),
+      intToCssHex(errorColor)
+    );
+
+    String js = """
+      <script type='text/javascript'>
+        let debounceTimer = null;
+        function filterLogLines(query) {
+          clearTimeout(debounceTimer);
+          debounceTimer = setTimeout(function() {
+            const container = document.getElementById('container');
+            if (!container) return;
+            const lower = query.toLowerCase();
+            const lines = container.getElementsByTagName('div');
+            for (let i = 0; i < lines.length; i++) {
+              const line = lines[i];
+              const text = line.textContent.toLowerCase();
+              if (text.includes(lower)) {
+                line.classList.remove('hidden');
+              } else {
+                line.classList.add('hidden');
+              }
+            }
+          }, 100);
+        }
+      </script>
+      """;
+
+    body.append(String.format("<html><head>%s%s</head><body style=\"font-family: monospace; font-size: 12px; overflow-y: scroll;\"><div id=\"container\">", css, js));
 
     for (LogLine line : lines) {
       if (line == null) continue;
@@ -305,17 +311,20 @@ public class SubmitDebugLogActivity extends BaseActivity {
         default -> "none";
       };
 
-      String script = String.format(
-        "appendLine(%s, %s);\n",
-        JSONObject.quote(newLine),
-        JSONObject.quote(lineClass)
-      );
-
-      appendScript.append(script);
+      body.append(String.format("<div class=%s>%s</div>", lineClass, newLine));
     }
 
-    String scriptContent = appendScript.toString();
-    logWebView.evaluateJavascript(scriptContent, null);
+    body.append("</div></body></html>");
+
+    String htmlContent = body.toString();
+
+    logWebView.loadDataWithBaseURL(null, htmlContent, "text/html", "UTF-8", null);
+  }
+
+  private void onQueryChanged(String query) {
+    String script = String.format("filterLogLines(%s);\n", JSONObject.quote(query));
+
+    logWebView.evaluateJavascript(script, null);
   }
 
   private void presentMode(@NonNull SubmitDebugLogViewModel.Mode mode) {
@@ -328,7 +337,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
         // TODO [greyson][log] Not yet implemented
 //        editMenuItem.setVisible(true);
 //        doneMenuItem.setVisible(false);
-//        searchMenuItem.setVisible(true);
+        searchMenuItem.setVisible(true);
         break;
       case SUBMITTING:
         editBanner.setVisibility(View.GONE);
