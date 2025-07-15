@@ -71,6 +71,11 @@ class ArchiveAttachmentReconciliationJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
+    if (!SignalStore.backup.backsUpMedia) {
+      Log.w(TAG, "This user doesn't back up media! Skipping.")
+      return Result.success()
+    }
+
     val timeSinceLastSync = System.currentTimeMillis() - SignalStore.backup.lastAttachmentReconciliationTime
     if (!forced && serverCursor == null && timeSinceLastSync > 0 && timeSinceLastSync < RemoteConfig.archiveReconciliationSyncInterval.inWholeMilliseconds) {
       Log.d(TAG, "No need to do a remote sync yet. Time since last sync: $timeSinceLastSync ms")

@@ -240,8 +240,10 @@ class BackupMessagesJob private constructor(
     BackupRepository.clearBackupFailure()
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
-    AppDependencies.jobManager.add(ArchiveCommitAttachmentDeletesJob())
-    AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob())
+    if (SignalStore.backup.backsUpMedia) {
+      AppDependencies.jobManager.add(ArchiveCommitAttachmentDeletesJob())
+      AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob())
+    }
 
     return Result.success()
   }
