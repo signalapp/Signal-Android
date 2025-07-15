@@ -62,7 +62,7 @@ class MessageBackupsFlowViewModel(
   private val internalStateFlow = MutableStateFlow(
     MessageBackupsFlowState(
       availableBackupTypes = emptyList(),
-      selectedMessageBackupTier = initialTierSelection ?: SignalStore.backup.backupTier,
+      selectedMessageBackupTier = initialTierSelection ?: SignalStore.backup.backupTier ?: MessageBackupTier.FREE,
       startScreen = startScreen
     )
   )
@@ -88,7 +88,7 @@ class MessageBackupsFlowViewModel(
     }
 
     viewModelScope.launch {
-      val availableBackupTypes = try {
+      val availableBackupTypes: List<MessageBackupsType> = try {
         withContext(SignalDispatchers.IO) {
           BackupRepository.getAvailableBackupsTypes(
             if (!RemoteConfig.messageBackups) emptyList() else listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)
@@ -99,8 +99,11 @@ class MessageBackupsFlowViewModel(
         emptyList()
       }
 
-      internalStateFlow.update {
-        it.copy(availableBackupTypes = availableBackupTypes)
+      internalStateFlow.update { state ->
+        state.copy(
+          availableBackupTypes = availableBackupTypes,
+          selectedMessageBackupTier = if (state.selectedMessageBackupTier in availableBackupTypes.map { it.tier }) state.selectedMessageBackupTier else availableBackupTypes.firstOrNull()?.tier
+        )
       }
     }
 
