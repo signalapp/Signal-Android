@@ -9,9 +9,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.isAbsent
 import org.signal.core.util.logging.Log
@@ -24,10 +28,12 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.database.AttachmentTable
+import org.thoughtcrime.securesms.database.MessageType
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.providers.BlobProvider
@@ -167,43 +173,57 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
   }
 
   override fun add1000Messages(recipientId: RecipientId) {
-    val recipient = Recipient.live(recipientId).get()
-    val messageCount = 10
-    val startTime = System.currentTimeMillis() - messageCount
-    SignalDatabase.rawDatabase.withinTransaction {
-      val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-      for (i in 1..messageCount) {
-        val time = startTime + i
-        val attachment = makeDummyAttachment()
-        val id = SignalDatabase.messages.insertMessageOutbox(
-          message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i", attachments = listOf(attachment)),
-          threadId = targetThread
-        )
-        SignalDatabase.messages.markAsSent(id, true)
+    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+      val recipient = Recipient.live(recipientId).get()
+      val messageCount = 1000
+      val startTime = System.currentTimeMillis() - messageCount
+      SignalDatabase.rawDatabase.withinTransaction {
+        val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+        for (i in 1..messageCount) {
+          val time = startTime + i
+          if (Math.random() > 0.5) {
+            val id = SignalDatabase.messages.insertMessageOutbox(
+              message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i"),
+              threadId = targetThread
+            )
+            SignalDatabase.messages.markAsSent(id, true)
+          } else {
+            SignalDatabase.messages.insertMessageInbox(
+              retrieved = IncomingMessage(type = MessageType.NORMAL, from = recipient.id, sentTimeMillis = time, serverTimeMillis = time, receivedTimeMillis = System.currentTimeMillis(), body = "Incoming: $i"),
+              candidateThreadId = targetThread
+            )
+          }
+        }
+      }
+
+      withContext(Dispatchers.Main) {
+        Toast.makeText(context, "Done!", Toast.LENGTH_SHORT).show()
       }
     }
-
-    Toast.makeText(context, "Done!", Toast.LENGTH_SHORT).show()
   }
 
   override fun add10Messages(recipientId: RecipientId) {
-    val recipient = Recipient.live(recipientId).get()
-    val messageCount = 10
-    val startTime = System.currentTimeMillis() - messageCount
-    SignalDatabase.rawDatabase.withinTransaction {
-      val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-      for (i in 1..messageCount) {
-        val time = startTime + i
-        val attachment = makeDummyAttachment()
-        val id = SignalDatabase.messages.insertMessageOutbox(
-          message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i", attachments = listOf(attachment)),
-          threadId = targetThread
-        )
-        SignalDatabase.messages.markAsSent(id, true)
+    viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
+      val recipient = Recipient.live(recipientId).get()
+      val messageCount = 10
+      val startTime = System.currentTimeMillis() - messageCount
+      SignalDatabase.rawDatabase.withinTransaction {
+        val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+        for (i in 1..messageCount) {
+          val time = startTime + i
+          val attachment = makeDummyAttachment()
+          val id = SignalDatabase.messages.insertMessageOutbox(
+            message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i", attachments = listOf(attachment)),
+            threadId = targetThread
+          )
+          SignalDatabase.messages.markAsSent(id, true)
+        }
+      }
+
+      withContext(Dispatchers.Main) {
+        Toast.makeText(context, "Done!", Toast.LENGTH_SHORT).show()
       }
     }
-
-    Toast.makeText(context, "Done!", Toast.LENGTH_SHORT).show()
   }
 
   override fun splitAndCreateThreads(recipientId: RecipientId) {
