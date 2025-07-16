@@ -183,9 +183,10 @@ public class ApplicationMigrations {
     static final int DUPLICATE_E164_FIX_3          = 139;
     static final int E164_FORMATTING_2             = 140;
     static final int E164_FORMATTING_3             = 141;
+    static final int STORAGE_LOCAL_UNKNOWNS_FIX_2  = 142;
   }
 
-  public static final int CURRENT_VERSION = 141;
+  public static final int CURRENT_VERSION = 142;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -842,6 +843,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.E164_FORMATTING_3) {
       jobs.put(Version.E164_FORMATTING_3, new E164FormattingMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.STORAGE_LOCAL_UNKNOWNS_FIX_2) {
+      jobs.put(Version.STORAGE_LOCAL_UNKNOWNS_FIX_2, new StorageFixLocalUnknownMigrationJob());
     }
 
     return jobs;
