@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraintObserver
 import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollectionPendingConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObserver
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
@@ -60,7 +61,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_OPTIMIZE_STORAGE = "backup.optimizeStorage"
     private const val KEY_BACKUPS_INITIALIZED = "backup.initialized"
 
-    private const val KEY_ARCHIVE_UPLOAD_STATE = "backup.archiveUploadState"
+    const val KEY_ARCHIVE_UPLOAD_STATE = "backup.archiveUploadState"
 
     private const val KEY_BACKUP_UPLOADED = "backup.backupUploaded"
     private const val KEY_SUBSCRIPTION_STATE_MISMATCH = "backup.subscriptionStateMismatch"
@@ -104,7 +105,12 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
   var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false)
-  var backupWithCellular: Boolean by booleanValue(KEY_BACKUP_OVER_CELLULAR, false)
+  var backupWithCellular: Boolean
+    get() = getBoolean(KEY_BACKUP_OVER_CELLULAR, false)
+    set(value) {
+      putBoolean(KEY_BACKUP_OVER_CELLULAR, value)
+      BackupMessagesConstraintObserver.onChange()
+    }
 
   var backupDownloadNotifierState: BackupDownloadNotifierState? by protoValue(KEY_BACKUP_DOWNLOAD_NOTIFIER_STATE, BackupDownloadNotifierState.ADAPTER)
     private set

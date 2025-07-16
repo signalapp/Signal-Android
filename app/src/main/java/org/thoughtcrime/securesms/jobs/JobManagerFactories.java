@@ -10,6 +10,8 @@ import org.thoughtcrime.securesms.jobmanager.ConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobMigration;
 import org.thoughtcrime.securesms.jobmanager.impl.AutoDownloadEmojiConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraint;
+import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.CellServiceConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraint;
@@ -404,6 +406,7 @@ public final class JobManagerFactories {
     return new HashMap<String, Constraint.Factory>() {{
       put(NoRemoteArchiveGarbageCollectionPendingConstraint.KEY, new NoRemoteArchiveGarbageCollectionPendingConstraint.Factory());
       put(AutoDownloadEmojiConstraint.KEY,                       new AutoDownloadEmojiConstraint.Factory(application));
+      put(BackupMessagesConstraint.KEY,                          new BackupMessagesConstraint.Factory(application));
       put(BatteryNotLowConstraint.KEY,                           new BatteryNotLowConstraint.Factory());
       put(ChangeNumberConstraint.KEY,                            new ChangeNumberConstraint.Factory());
       put(ChargingConstraint.KEY,                                new ChargingConstraint.Factory());
@@ -431,7 +434,8 @@ public final class JobManagerFactories {
                          DataRestoreConstraintObserver.INSTANCE,
                          RestoreAttachmentConstraintObserver.INSTANCE,
                          NoRemoteArchiveGarbageCollectionPendingConstraint.Observer.INSTANCE,
-                         RegisteredConstraint.Observer.INSTANCE);
+                         RegisteredConstraint.Observer.INSTANCE,
+                         BackupMessagesConstraintObserver.INSTANCE);
   }
 
   public static List<JobMigration> getJobMigrations(@NonNull Application application) {

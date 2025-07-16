@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.attachmentUpdates
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraint
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
@@ -62,6 +63,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     RemoteBackupsSettingsState(
       tier = SignalStore.backup.backupTier,
       backupsEnabled = SignalStore.backup.areBackupsEnabled,
+      canBackupMessagesJobRun = BackupMessagesConstraint.isMet(AppDependencies.application),
       canViewBackupKey = !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
       backupsFrequency = SignalStore.backup.backupFrequency,
@@ -152,7 +154,12 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   fun setCanBackUpUsingCellular(canBackUpUsingCellular: Boolean) {
     SignalStore.backup.backupWithCellular = canBackUpUsingCellular
-    _state.update { it.copy(canBackUpUsingCellular = canBackUpUsingCellular) }
+    _state.update {
+      it.copy(
+        canBackupMessagesJobRun = BackupMessagesConstraint.isMet(AppDependencies.application),
+        canBackUpUsingCellular = canBackUpUsingCellular
+      )
+    }
   }
 
   fun setCanRestoreUsingCellular() {
@@ -257,6 +264,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         tier = SignalStore.backup.backupTier,
         backupsEnabled = SignalStore.backup.areBackupsEnabled,
         lastBackupTimestamp = SignalStore.backup.lastBackupTime,
+        canBackupMessagesJobRun = BackupMessagesConstraint.isMet(AppDependencies.application),
         backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize(),
         backupsFrequency = SignalStore.backup.backupFrequency,
         canBackUpUsingCellular = SignalStore.backup.backupWithCellular,

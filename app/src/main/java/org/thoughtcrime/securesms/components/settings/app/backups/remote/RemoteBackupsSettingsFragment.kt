@@ -511,6 +511,7 @@ private fun RemoteBackupsSettingsContent(
           canViewBackupKey = state.canViewBackupKey,
           backupRestoreState = backupRestoreState,
           backupProgress = backupProgress,
+          canBackupMessagesRun = state.canBackupMessagesJobRun,
           lastBackupTimestamp = state.lastBackupTimestamp,
           backupMediaSize = state.backupMediaSize,
           backupsFrequency = state.backupsFrequency,
@@ -815,6 +816,7 @@ private fun LazyListScope.appendBackupDetailsItems(
   canViewBackupKey: Boolean,
   backupRestoreState: BackupRestoreState,
   backupProgress: ArchiveUploadProgressState?,
+  canBackupMessagesRun: Boolean,
   lastBackupTimestamp: Long,
   backupMediaSize: Long,
   backupsFrequency: BackupFrequency,
@@ -868,6 +870,8 @@ private fun LazyListScope.appendBackupDetailsItems(
     item {
       InProgressBackupRow(
         archiveUploadProgressState = backupProgress,
+        canBackupMessagesRun = canBackupMessagesRun,
+        canBackupUsingCellular = canBackUpUsingCellular,
         cancelArchiveUpload = contentCallbacks::onCancelUploadClick
       )
     }
@@ -1326,6 +1330,8 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
 @Composable
 private fun InProgressBackupRow(
   archiveUploadProgressState: ArchiveUploadProgressState,
+  canBackupMessagesRun: Boolean = true,
+  canBackupUsingCellular: Boolean = true,
   cancelArchiveUpload: () -> Unit = {}
 ) {
   Row(
@@ -1361,7 +1367,7 @@ private fun InProgressBackupRow(
       }
 
       Text(
-        text = getProgressStateMessage(archiveUploadProgressState),
+        text = getProgressStateMessage(archiveUploadProgressState, canBackupMessagesRun, canBackupUsingCellular),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )
@@ -1399,18 +1405,26 @@ private fun ArchiveProgressIndicator(
 }
 
 @Composable
-private fun getProgressStateMessage(archiveUploadProgressState: ArchiveUploadProgressState): String {
+private fun getProgressStateMessage(archiveUploadProgressState: ArchiveUploadProgressState, canBackupMessagesRun: Boolean, canBackupUsingCellular: Boolean): String {
   return when (archiveUploadProgressState.state) {
     ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled -> stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
-    ArchiveUploadProgressState.State.Export -> getBackupExportPhaseProgressString(archiveUploadProgressState)
+    ArchiveUploadProgressState.State.Export -> getBackupExportPhaseProgressString(archiveUploadProgressState, canBackupMessagesRun, canBackupUsingCellular)
     ArchiveUploadProgressState.State.UploadBackupFile, ArchiveUploadProgressState.State.UploadMedia -> getBackupUploadPhaseProgressString(archiveUploadProgressState)
   }
 }
 
 @Composable
-private fun getBackupExportPhaseProgressString(state: ArchiveUploadProgressState): String {
+private fun getBackupExportPhaseProgressString(state: ArchiveUploadProgressState, canBackupMessagesRun: Boolean, canBackupUsingCellular: Boolean): String {
   return when (state.backupPhase) {
-    ArchiveUploadProgressState.BackupPhase.BackupPhaseNone -> stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
+    ArchiveUploadProgressState.BackupPhase.BackupPhaseNone -> {
+      if (canBackupMessagesRun) {
+        stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
+      } else if (canBackupUsingCellular) {
+        stringResource(R.string.RemoteBackupsSettingsFragment__Waiting_for_internet_connection)
+      } else {
+        stringResource(R.string.RemoteBackupsSettingsFragment__Waiting_for_Wifi)
+      }
+    }
     ArchiveUploadProgressState.BackupPhase.Message -> {
       pluralStringResource(
         R.plurals.RemoteBackupsSettingsFragment__processing_messages_progress_text,

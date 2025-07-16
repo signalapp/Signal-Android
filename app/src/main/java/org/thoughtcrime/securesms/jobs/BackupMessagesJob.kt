@@ -18,8 +18,7 @@ import org.thoughtcrime.securesms.backup.v2.ResumableMessagesBackupUploadSpec
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraint
 import org.thoughtcrime.securesms.jobs.protos.BackupMessagesJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
@@ -96,6 +95,10 @@ class BackupMessagesJob private constructor(
 
       chain.enqueue()
     }
+
+    fun cancel() {
+      AppDependencies.jobManager.find { it.factoryKey == KEY }.forEach { AppDependencies.jobManager.cancel(it.id) }
+    }
   }
 
   constructor() : this(
@@ -103,7 +106,7 @@ class BackupMessagesJob private constructor(
     dataFile = "",
     resumableMessagesBackupUploadSpec = null,
     parameters = Parameters.Builder()
-      .addConstraint(if (SignalStore.backup.backupWithCellular) NetworkConstraint.KEY else WifiConstraint.KEY)
+      .addConstraint(BackupMessagesConstraint.KEY)
       .setMaxAttempts(3)
       .setMaxInstancesForFactory(1)
       .build()

@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
 import org.signal.core.util.throttleLatest
@@ -22,6 +23,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ArchiveCommitAttachmentDeletesJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob
+import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
@@ -88,6 +90,7 @@ object ArchiveUploadProgress {
     .onEach { updated ->
       updateState(notify = false) { updated }
     }
+    .onStart { emit(uploadProgress) }
     .flowOn(Dispatchers.IO)
 
   val inProgress
@@ -107,6 +110,8 @@ object ArchiveUploadProgress {
         state = ArchiveUploadProgressState.State.UserCanceled
       )
     }
+
+    BackupMessagesJob.cancel()
 
     AppDependencies.jobManager.cancelAllInQueue(ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE)
     UploadAttachmentToArchiveJob.getAllQueueKeys().forEach {

@@ -27,7 +27,8 @@ data class RemoteBackupsSettingsState(
   val lastBackupTimestamp: Long = 0,
   val dialog: Dialog = Dialog.NONE,
   val snackbar: Snackbar = Snackbar.NONE,
-  val includeDebuglog: Boolean? = null
+  val includeDebuglog: Boolean? = null,
+  val canBackupMessagesJobRun: Boolean = false
 ) {
 
   enum class Dialog {
