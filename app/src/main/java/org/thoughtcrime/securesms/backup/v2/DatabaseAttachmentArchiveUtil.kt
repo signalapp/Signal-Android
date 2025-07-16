@@ -59,7 +59,10 @@ object DatabaseAttachmentArchiveUtil {
     return MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(attachment.dataHash!!.decodeBase64OrThrow(), attachment.remoteKey!!.decodeBase64OrThrow())
   }
 
-  private fun hadIntegrityCheckPerformed(attachment: DatabaseAttachment): Boolean {
+  /**
+   * Returns whether an integrity check has been performed at some point by checking against its transfer state
+   */
+  fun hadIntegrityCheckPerformed(attachment: DatabaseAttachment): Boolean {
     if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
       return true
     }

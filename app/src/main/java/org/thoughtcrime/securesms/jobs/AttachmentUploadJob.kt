@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -139,6 +140,11 @@ class AttachmentUploadJob private constructor(
     val timeSinceUpload = System.currentTimeMillis() - databaseAttachment.uploadTimestamp
     if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD && !TextUtils.isEmpty(databaseAttachment.remoteLocation)) {
       Log.i(TAG, "We can re-use an already-uploaded file. It was uploaded $timeSinceUpload ms (${timeSinceUpload.milliseconds.inRoundedDays()} days) ago. Skipping.")
+      SignalDatabase.attachments.setTransferState(databaseAttachment.mmsId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE)
+      if (BackupRepository.shouldCopyAttachmentToArchive(databaseAttachment.attachmentId, databaseAttachment.mmsId)) {
+        Log.i(TAG, "[$attachmentId] The re-used file was not copied to the archive. Copying now.")
+        AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachmentId))
+      }
       return
     } else if (databaseAttachment.uploadTimestamp > 0) {
       Log.i(TAG, "This file was previously-uploaded, but too long ago to be re-used. Age: $timeSinceUpload ms (${timeSinceUpload.milliseconds.inRoundedDays()} days)")
@@ -173,9 +179,17 @@ class AttachmentUploadJob private constructor(
           val uploadResult: AttachmentUploadResult = SignalNetwork.attachments.uploadAttachmentV4(localAttachment).successOrThrow()
           SignalDatabase.attachments.finalizeAttachmentAfterUpload(databaseAttachment.attachmentId, uploadResult)
           if (SignalStore.backup.backsUpMedia) {
+            val messageId = SignalDatabase.attachments.getMessageId(databaseAttachment.attachmentId)
+            val isStory = SignalDatabase.messages.isStory(messageId)
             when {
               databaseAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED -> {
                 Log.i(TAG, "[$attachmentId] Already archived. Skipping.")
+              }
+              isStory -> {
+                Log.i(TAG, "[$attachmentId] Attachment is a story. Skipping.")
+              }
+              messageId == AttachmentTable.PREUPLOAD_MESSAGE_ID -> {
+                Log.i(TAG, "[$attachmentId] Avoid uploading preuploaded attachments to archive. Skipping.")
               }
               else -> {
                 Log.i(TAG, "[$attachmentId] Enqueuing job to copy to archive.")

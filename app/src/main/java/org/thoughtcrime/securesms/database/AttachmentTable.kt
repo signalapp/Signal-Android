@@ -629,10 +629,10 @@ class AttachmentTable(
    */
   fun getAttachmentsThatNeedArchiveUpload(): List<AttachmentId> {
     return readableDatabase
-      .select(ID)
-      .from(TABLE_NAME)
-      .where("($ARCHIVE_TRANSFER_STATE = ? or $ARCHIVE_TRANSFER_STATE = ?) AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value, ArchiveTransferState.TEMPORARY_FAILURE.value)
-      .orderBy("$ID DESC")
+      .select("$TABLE_NAME.$ID")
+      .from("$TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
+      .where("($ARCHIVE_TRANSFER_STATE = ? or $ARCHIVE_TRANSFER_STATE = ?) AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL)", ArchiveTransferState.NONE.value, ArchiveTransferState.TEMPORARY_FAILURE.value)
+      .orderBy("$TABLE_NAME.$ID DESC")
       .run()
       .readToList { AttachmentId(it.requireLong(ID)) }
   }
@@ -677,8 +677,8 @@ class AttachmentTable(
    */
   fun doAnyAttachmentsNeedArchiveUpload(): Boolean {
     return readableDatabase
-      .exists(TABLE_NAME)
-      .where("($ARCHIVE_TRANSFER_STATE = ? OR $ARCHIVE_TRANSFER_STATE = ?) AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE", ArchiveTransferState.NONE.value, ArchiveTransferState.TEMPORARY_FAILURE.value)
+      .exists("$TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
+      .where("($ARCHIVE_TRANSFER_STATE = ? OR $ARCHIVE_TRANSFER_STATE = ?) AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL)", ArchiveTransferState.NONE.value, ArchiveTransferState.TEMPORARY_FAILURE.value)
       .run()
   }
 
@@ -829,12 +829,13 @@ class AttachmentTable(
           SELECT SUM($DATA_SIZE)
           FROM (
             SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY, $DATA_SIZE
-            FROM $TABLE_NAME
+            FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
             WHERE 
               $DATA_FILE NOT NULL AND 
               $DATA_HASH_END NOT NULL AND 
               $REMOTE_KEY NOT NULL AND
-              $ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value})
+              $ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value}) AND
+              (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL)
           )
         """.trimIndent()
       )
@@ -1488,6 +1489,15 @@ class AttachmentTable(
     }
 
     return getAttachment(result.values.iterator().next()) ?: throw MmsException("Failed to retrieve attachment we just inserted!")
+  }
+
+  fun getMessageId(attachmentId: AttachmentId): Long {
+    return readableDatabase
+      .select(MESSAGE_ID)
+      .from(TABLE_NAME)
+      .where("$ID = ?", attachmentId.id)
+      .run()
+      .readToSingleLong()
   }
 
   fun updateMessageId(attachmentIds: Collection<AttachmentId>, mmsId: Long, isStory: Boolean) {

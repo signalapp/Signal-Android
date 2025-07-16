@@ -49,6 +49,7 @@ import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
@@ -1368,6 +1369,28 @@ object BackupRepository {
       .then { credential ->
         SignalNetwork.archive.getMediaUploadForm(SignalStore.account.requireAci(), credential.mediaBackupAccess)
       }
+  }
+
+  /**
+   * Returns if an attachment should be copied to the archive if it meets certain requirements eg
+   * not a story, not already uploaded to the archive cdn, not a preuploaded attachment, etc.
+   */
+  @JvmStatic
+  fun shouldCopyAttachmentToArchive(attachmentId: AttachmentId, messageId: Long): Boolean {
+    if (!SignalStore.backup.backsUpMedia) {
+      return false
+    }
+
+    val attachment = SignalDatabase.attachments.getAttachment(attachmentId)
+
+    return when {
+      attachment == null -> false
+      attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED -> false
+      !DatabaseAttachmentArchiveUtil.hadIntegrityCheckPerformed(attachment) -> false
+      messageId == AttachmentTable.PREUPLOAD_MESSAGE_ID -> false
+      SignalDatabase.messages.isStory(messageId) -> false
+      else -> true
+    }
   }
 
   /**

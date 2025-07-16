@@ -220,6 +220,7 @@ class AttachmentDownloadJob private constructor(
     }
 
     if (SignalStore.backup.backsUpMedia) {
+      val isStory = SignalDatabase.messages.isStory(messageId)
       when {
         attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED -> {
           Log.i(TAG, "[$attachmentId] Already archived. Skipping.")
@@ -228,6 +229,10 @@ class AttachmentDownloadJob private constructor(
         attachment.cdn !in CopyAttachmentToArchiveJob.ALLOWED_SOURCE_CDNS -> {
           Log.i(TAG, "[$attachmentId] Attachment CDN doesn't support copying to archive. Re-uploading to archive.")
           AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId))
+        }
+
+        isStory -> {
+          Log.i(TAG, "[$attachmentId] Attachment is a story. Skipping.")
         }
 
         else -> {
