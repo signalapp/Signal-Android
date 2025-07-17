@@ -94,6 +94,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       latestPurchaseId
         .flatMapLatest { id -> InAppPaymentsRepository.observeUpdates(id).asFlow() }
         .collectLatest { purchase ->
+          Log.d(TAG, "Refreshing state after archive IAP update.")
           refreshState(purchase)
         }
     }
@@ -145,6 +146,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       ArchiveUploadProgress.progress
         .collect { current ->
           if (previous != null && current.state == ArchiveUploadProgressState.State.None) {
+            Log.d(TAG, "Refreshing state after archive upload.")
             refreshState(null)
           }
           previous = current.state
