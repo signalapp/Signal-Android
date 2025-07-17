@@ -10,6 +10,7 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.asList
 import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.Sticker
 import org.thoughtcrime.securesms.backup.v2.proto.ViewOnceMessage
 import org.thoughtcrime.securesms.backup.v2.util.toLocalAttachment
 import org.thoughtcrime.securesms.contactshare.Contact
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
@@ -63,6 +65,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PaymentTombstone
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.payments.CryptoValueUtil
 import org.thoughtcrime.securesms.payments.Direction
@@ -74,6 +77,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.MessageUtil
 import org.whispersystems.signalservice.api.payments.Money
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -371,14 +375,17 @@ class ChatItemArchiveImporter(
     }
 
     if (this.directStoryReplyMessage != null) {
-      val longTextAttachment: Attachment? = this.directStoryReplyMessage.textReply?.longText?.toLocalAttachment(
-        importState = importState,
-        contentType = "text/x-signal-plain"
-      )
+      val (trimmedBodyText, longTextAttachment) = this.directStoryReplyMessage.parseBodyText(importState)
+      if (trimmedBodyText != null) {
+        contentValues.put(MessageTable.BODY, trimmedBodyText)
+      }
 
       if (longTextAttachment != null) {
         followUps += { messageRowId ->
-          SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, listOf(longTextAttachment), emptyList())
+          val ids = SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, listOf(longTextAttachment), emptyList())
+          ids.values.firstOrNull()?.let { attachmentId ->
+            SignalDatabase.attachments.setTransferState(messageRowId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE)
+          }
         }
       }
     }
@@ -396,21 +403,27 @@ class ChatItemArchiveImporter(
         attachment.toLocalAttachment()
       }
 
-      val longTextAttachments: List<Attachment> = this.standardMessage.longText?.toLocalAttachment(
-        importState = importState,
-        contentType = "text/x-signal-plain"
-      )?.let { listOf(it) } ?: emptyList()
+      val (trimmedBodyText, longTextAttachment) = this.standardMessage.parseBodyText(importState)
+      if (trimmedBodyText != null) {
+        contentValues.put(MessageTable.BODY, trimmedBodyText)
+      }
 
       val quoteAttachments: List<Attachment> = this.standardMessage.quote?.toLocalAttachments() ?: emptyList()
 
-      val hasAttachments = attachments.isNotEmpty() || linkPreviewAttachments.isNotEmpty() || quoteAttachments.isNotEmpty() || longTextAttachments.isNotEmpty()
+      val hasAttachments = attachments.isNotEmpty() || linkPreviewAttachments.isNotEmpty() || quoteAttachments.isNotEmpty() || longTextAttachment != null
 
       if (hasAttachments || linkPreviews.isNotEmpty()) {
         followUps += { messageRowId ->
           val attachmentMap = if (hasAttachments) {
-            SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments + linkPreviewAttachments + longTextAttachments, quoteAttachments)
+            SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments + linkPreviewAttachments + longTextAttachment.asList(), quoteAttachments)
           } else {
             emptyMap()
+          }
+
+          if (longTextAttachment != null) {
+            attachmentMap[longTextAttachment]?.let { attachmentId ->
+              SignalDatabase.attachments.setTransferState(messageRowId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE)
+            }
           }
 
           if (linkPreviews.isNotEmpty()) {
@@ -451,6 +464,54 @@ class ChatItemArchiveImporter(
     }
 
     return MessageInsert(contentValues, followUp)
+  }
+
+  /**
+   * Text that we import from the [StandardMessage.text] field may be too long to put in a database column, needing to instead be broken into a separate
+   * attachment. This handles looking at the state of the frame and giving back the components we need to insert.
+   *
+   * @return If the returned String is non-null, then that means you should replace what we currently have stored as the body with this new, trimmed string.
+   *   If the attachment is non-null, then you should store it along with the message, as it contains the long text.
+   */
+  private fun StandardMessage.parseBodyText(importState: ImportState): Pair<String?, Attachment?> {
+    if (this.longText != null) {
+      return null to this.longText.toLocalAttachment(importState, contentType = "text/x-signal-plain")
+    }
+
+    if (this.text?.body == null) {
+      return null to null
+    }
+
+    val splitResult = MessageUtil.getSplitMessage(AppDependencies.application, this.text.body)
+    if (splitResult.textSlide.isPresent) {
+      return splitResult.body to splitResult.textSlide.get().asAttachment()
+    }
+
+    return null to null
+  }
+
+  /**
+   * Text that we import from the [DirectStoryReplyMessage.textReply] field may be too long to put in a database column, needing to instead be broken into a separate
+   * attachment. This handles looking at the state of the frame and giving back the components we need to insert.
+   *
+   * @return If the returned String is non-null, then that means you should replace what we currently have stored as the body with this new, trimmed string.
+   *   If the attachment is non-null, then you should store it along with the message, as it contains the long text.
+   */
+  private fun DirectStoryReplyMessage.parseBodyText(importState: ImportState): Pair<String?, Attachment?> {
+    if (this.textReply?.longText != null) {
+      return null to this.textReply.longText.toLocalAttachment(importState, contentType = "text/x-signal-plain")
+    }
+
+    if (this.textReply?.text == null) {
+      return null to null
+    }
+
+    val splitResult = MessageUtil.getSplitMessage(AppDependencies.application, this.textReply.text.body)
+    if (splitResult.textSlide.isPresent) {
+      return splitResult.body to splitResult.textSlide.get().asAttachment()
+    }
+
+    return null to null
   }
 
   private fun ChatItem.toMessageContentValues(fromRecipientId: RecipientId, chatRecipientId: RecipientId, threadId: Long): ContentValues {
