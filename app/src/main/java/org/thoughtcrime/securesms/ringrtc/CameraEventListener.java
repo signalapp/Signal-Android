@@ -8,8 +8,7 @@ import androidx.annotation.NonNull;
  * onCameraSwitchCompleted is triggered by {@link org.webrtc.CameraVideoCapturer.CameraSwitchHandler}
  */
 public interface CameraEventListener {
-  void onFullyInitialized(@NonNull CameraState newCameraState);
+  void onFullyInitialized();
   void onCameraSwitchCompleted(@NonNull CameraState newCameraState);
-  void onCameraSwitchFailure(@NonNull CameraState newCameraState);
   void onCameraStopped();
 }
