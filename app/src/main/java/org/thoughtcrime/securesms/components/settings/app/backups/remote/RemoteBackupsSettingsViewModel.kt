@@ -145,7 +145,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       var previous: ArchiveUploadProgressState.State? = null
       ArchiveUploadProgress.progress
         .collect { current ->
-          if (previous != null && current.state == ArchiveUploadProgressState.State.None) {
+          if (previous != null && previous != current.state && current.state == ArchiveUploadProgressState.State.None) {
             Log.d(TAG, "Refreshing state after archive upload.")
             refreshState(null)
           }
