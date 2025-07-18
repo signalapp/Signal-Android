@@ -354,7 +354,7 @@ class ChatItemArchiveExporter(
         }
 
         record.viewOnce -> {
-          builder.viewOnceMessage = record.toRemoteViewOnceMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = extraData.reactionsById[id], attachments = extraData.attachmentsById[id])
+          builder.viewOnceMessage = record.toRemoteViewOnceMessage(exportState = exportState, reactionRecords = extraData.reactionsById[id], attachments = extraData.attachmentsById[id])
           transformTimer.emit("voice")
         }
 
@@ -862,11 +862,18 @@ private fun LinkPreview.toRemoteLinkPreview(mediaArchiveEnabled: Boolean): org.t
   )
 }
 
-private fun BackupMessageRecord.toRemoteViewOnceMessage(mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): ViewOnceMessage {
-  val attachment: DatabaseAttachment? = attachments?.firstOrNull()?.takeUnless { !it.hasData && it.size == 0L && it.remoteDigest == null && it.width == 0 && it.height == 0 && it.blurHash == null }
+private fun BackupMessageRecord.toRemoteViewOnceMessage(exportState: ExportState, reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): ViewOnceMessage {
+  val attachment: MessageAttachment? = if (exportState.forTransfer) {
+    attachments
+      ?.firstOrNull()
+      ?.takeUnless { !it.hasData && it.size == 0L && it.remoteDigest == null && it.width == 0 && it.height == 0 && it.blurHash == null }
+      ?.toRemoteMessageAttachment(mediaArchiveEnabled = false)
+  } else {
+    null
+  }
 
   return ViewOnceMessage(
-    attachment = attachment?.toRemoteMessageAttachment(mediaArchiveEnabled),
+    attachment = attachment,
     reactions = reactionRecords?.toRemote() ?: emptyList()
   )
 }
