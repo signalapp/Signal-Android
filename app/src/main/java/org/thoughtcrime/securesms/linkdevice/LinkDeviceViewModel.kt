@@ -261,16 +261,6 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  fun markBioAuthEducationSheetSeen(seen: Boolean) {
-    SignalStore.uiHints.lastSeenLinkDeviceAuthSheetTime = System.currentTimeMillis()
-    _state.update {
-      it.copy(
-        seenBioAuthEducationSheet = seen,
-        needsBioAuthEducationSheet = false
-      )
-    }
-  }
-
   private fun addDeviceWithSync(linkUri: Uri) {
     Log.d(TAG, "[addDeviceWithSync] Beginning device adding process.")
 

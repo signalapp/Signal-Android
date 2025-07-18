@@ -31,6 +31,7 @@ import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.BiometricDeviceLockContract
+import org.thoughtcrime.securesms.DevicePinAuthEducationSheet
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.EnterKeyScreen
@@ -66,7 +67,14 @@ class VerifyBackupKeyActivity : PassphraseRequiredActivity() {
         VerifyBackupPinScreen(
           backupKey = SignalStore.account.accountEntropyPool.displayValue,
           onForgotKeyClick = {
-            if (!biometricDeviceAuthentication.authenticate(this, true) { biometricDeviceLockLauncher.launch(getString(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key)) }) {
+            if (biometricDeviceAuthentication.shouldShowEducationSheet(this)) {
+              DevicePinAuthEducationSheet.show(getString(R.string.RemoteBackupsSettingsFragment__to_view_your_key), supportFragmentManager)
+              supportFragmentManager.setFragmentResultListener(DevicePinAuthEducationSheet.REQUEST_KEY, this) { _, _ ->
+                if (!biometricDeviceAuthentication.authenticate(this, true) { biometricDeviceLockLauncher.launch(getString(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key)) }) {
+                  displayBackupKey()
+                }
+              }
+            } else if (!biometricDeviceAuthentication.authenticate(this, true) { biometricDeviceLockLauncher.launch(getString(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key)) }) {
               displayBackupKey()
             }
           },

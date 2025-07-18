@@ -1,6 +1,7 @@
-package org.thoughtcrime.securesms.linkdevice
+package org.thoughtcrime.securesms
 
 import android.content.DialogInterface
+import android.os.Bundle
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -16,55 +17,73 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.setFragmentResult
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
-import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
+import org.thoughtcrime.securesms.util.BottomSheetUtil
 
 /**
- * Education sheet shown before biometrics when linking a device
+ * Education sheet shown before authentication explaining that users should use their device credentials
  */
-class LinkDeviceAuthEducationSheet : ComposeBottomSheetDialogFragment() {
+class DevicePinAuthEducationSheet : ComposeBottomSheetDialogFragment() {
 
   override val peekHeightPercentage: Float = 0.67f
 
-  private val viewModel: LinkDeviceViewModel by activityViewModels()
+  companion object {
+    const val REQUEST_KEY = "DevicePinAuthEducationSheet"
+
+    private const val ARG_TITLE = "arg.title"
+
+    @JvmStatic
+    fun show(title: String, fragmentManager: FragmentManager) {
+      DevicePinAuthEducationSheet().apply {
+        arguments = Bundle().apply {
+          putString(ARG_TITLE, title)
+        }
+      }.show(fragmentManager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG)
+    }
+  }
+
+  private val title: String
+    get() = requireArguments().getString(ARG_TITLE)!!
+
+  override fun onDismiss(dialog: DialogInterface) {
+    setFragmentResult(REQUEST_KEY, Bundle())
+    super.onDismiss(dialog)
+  }
 
   @Composable
   override fun SheetContent() {
-    DeviceEducationSheet(this::onDismiss)
-  }
-
-  override fun onCancel(dialog: DialogInterface) {
-    viewModel.markBioAuthEducationSheetSeen(true)
-    super.onCancel(dialog)
-  }
-
-  fun onDismiss() {
-    viewModel.markBioAuthEducationSheetSeen(true)
-    dismissAllowingStateLoss()
+    DevicePinAuthEducationSheet(
+      title = title,
+      onClick = { dismissAllowingStateLoss() }
+    )
   }
 }
 
 @Composable
-private fun DeviceEducationSheet(onClick: () -> Unit) {
+fun DevicePinAuthEducationSheet(
+  title: String,
+  onClick: () -> Unit
+) {
   return Column(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier.fillMaxWidth()
   ) {
     BottomSheets.Handle()
     Icon(
-      painter = painterResource(R.drawable.ic_phone_lock),
+      painter = painterResource(R.drawable.phone_lock),
       contentDescription = null,
       tint = Color.Unspecified,
       modifier = Modifier.padding(top = 24.dp)
     )
 
     Text(
-      text = stringResource(R.string.LinkDeviceFragment__before_linking),
+      text = title,
       style = MaterialTheme.typography.titleLarge,
       textAlign = TextAlign.Center,
       modifier = Modifier.padding(top = 20.dp, bottom = 8.dp),
@@ -89,8 +108,11 @@ private fun DeviceEducationSheet(onClick: () -> Unit) {
 
 @SignalPreview
 @Composable
-fun DeviceEducationSheetPreview() {
+fun DevicePinAuthEducationSheetPreview() {
   Previews.BottomSheetPreview {
-    DeviceEducationSheet(onClick = {})
+    DevicePinAuthEducationSheet(
+      title = "To continue, confirm it's you",
+      onClick = {}
+    )
   }
 }

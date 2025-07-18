@@ -91,6 +91,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
+import org.thoughtcrime.securesms.DevicePinAuthEducationSheet
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
@@ -214,7 +215,14 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onViewBackupKeyClick() {
-      if (!biometricDeviceAuthentication.authenticate(requireContext(), true, this@RemoteBackupsSettingsFragment::showConfirmDeviceCredentialIntent)) {
+      if (biometricDeviceAuthentication.shouldShowEducationSheet(requireContext())) {
+        DevicePinAuthEducationSheet.show(getString(R.string.RemoteBackupsSettingsFragment__to_view_your_key), parentFragmentManager)
+        parentFragmentManager.setFragmentResultListener(DevicePinAuthEducationSheet.REQUEST_KEY, viewLifecycleOwner) { _, _ ->
+          if (!biometricDeviceAuthentication.authenticate(requireContext(), true, this@RemoteBackupsSettingsFragment::showConfirmDeviceCredentialIntent)) {
+            displayBackupKey()
+          }
+        }
+      } else if (!biometricDeviceAuthentication.authenticate(requireContext(), true, this@RemoteBackupsSettingsFragment::showConfirmDeviceCredentialIntent)) {
         displayBackupKey()
       }
     }

@@ -8144,6 +8144,8 @@
     <string name="RemoteBackupsSettingsFragment__view_backup_key">View backup key</string>
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view backup key</string>
+    <!-- Title of bottom sheet explaining that authentication is required to view your key -->
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">To view your key, confirm it\'s you</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Turn off and delete backup</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->

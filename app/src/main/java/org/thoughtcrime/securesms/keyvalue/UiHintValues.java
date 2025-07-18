@@ -30,7 +30,6 @@ public class UiHintValues extends SignalStoreValues {
   private static final String HAS_EVER_ENABLED_REMOTE_BACKUPS          = "uihints.has_ever_enabled_remote_backups";
   private static final String HAS_SEEN_CHAT_FOLDERS_EDUCATION_SHEET    = "uihints.has_seen_chat_folders_education_sheet";
   private static final String HAS_SEEN_LINK_DEVICE_QR_EDUCATION_SHEET  = "uihints.has_seen_link_device_qr_education_sheet";
-  private static final String LAST_SEEN_LINK_DEVICE_AUTH_SHEET_TIME    = "uihints.last_seen_link_device_auth_sheet_time";
   private static final String HAS_DISMISSED_SAVE_STORAGE_WARNING       = "uihints.has_dismissed_save_storage_warning";
 
   UiHintValues(@NonNull KeyValueStore store) {
@@ -228,14 +227,6 @@ public class UiHintValues extends SignalStoreValues {
 
   public boolean hasSeenLinkDeviceQrEducationSheet() {
     return getBoolean(HAS_SEEN_LINK_DEVICE_QR_EDUCATION_SHEET, false);
-  }
-
-  public void setLastSeenLinkDeviceAuthSheetTime(long time) {
-    putLong(LAST_SEEN_LINK_DEVICE_AUTH_SHEET_TIME, time);
-  }
-
-  public long getLastSeenLinkDeviceAuthSheetTime() {
-    return getLong(LAST_SEEN_LINK_DEVICE_AUTH_SHEET_TIME, 0);
   }
 
   public boolean hasDismissedSaveStorageWarning() {
