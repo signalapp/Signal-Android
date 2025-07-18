@@ -132,6 +132,10 @@ class ChatItemArchiveExporter(
   private val cursorGenerator: (Long, Int) -> Cursor
 ) : Iterator<ChatItem?>, Closeable {
 
+  companion object {
+    val EXPIRATION_CUTOFF = 1.days
+  }
+
   /** Timer for more macro-level events, like fetching extra data vs transforming the data. */
   private val eventTimer = EventTimer()
 
@@ -567,7 +571,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
   }
 
   if (!MessageTypes.isExpirationTimerUpdate(record.type) && builder.expiresInMs != null && builder.expireStartDate != null) {
-    val cutoffDuration = 1.days.inWholeMilliseconds
+    val cutoffDuration = ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds
     val expiresAt = builder.expireStartDate!! + builder.expiresInMs!!
     val threshold = if (exportState.forTransfer) backupStartTime else backupStartTime + cutoffDuration
 

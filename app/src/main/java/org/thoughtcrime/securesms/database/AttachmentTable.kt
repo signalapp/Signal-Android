@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.WallpaperAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
+import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
 import org.thoughtcrime.securesms.backup.v2.proto.BackupDebugInfo
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.crypto.AttachmentSecret
@@ -2454,20 +2455,23 @@ class AttachmentTable(
   }
 
   fun getEstimatedArchiveMediaSize(): Long {
+    val expirationCutoff = ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds
+
     val estimatedThumbnailCount = readableDatabase
       .select("COUNT(*)")
       .from(
         """
         (
           SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY
-          FROM $TABLE_NAME
+          FROM $TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} AS m ON $TABLE_NAME.$MESSAGE_ID = m.${MessageTable.ID}
           WHERE 
             $DATA_FILE NOT NULL AND 
             $DATA_HASH_END NOT NULL AND 
             $REMOTE_KEY NOT NULL AND
             $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
             $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value} AND 
-            ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%')
+            ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
+            (m.${MessageTable.EXPIRES_IN} = 0 OR (m.${MessageTable.EXPIRES_IN} > $expirationCutoff AND (m.${MessageTable.EXPIRE_STARTED} + m.${MessageTable.EXPIRES_IN} + $expirationCutoff < ${System.currentTimeMillis()})))
         )
         """
       )
@@ -2480,13 +2484,14 @@ class AttachmentTable(
           SELECT $DATA_SIZE
           FROM (
             SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY, $DATA_SIZE
-            FROM $TABLE_NAME
+            FROM $TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} AS m ON $TABLE_NAME.$MESSAGE_ID = m.${MessageTable.ID}
             WHERE 
               $DATA_FILE NOT NULL AND 
               $DATA_HASH_END NOT NULL AND 
               $REMOTE_KEY NOT NULL AND 
               $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
-              $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}
+              $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value} AND
+              (m.${MessageTable.EXPIRES_IN} = 0 OR (m.${MessageTable.EXPIRES_IN} > $expirationCutoff AND (m.${MessageTable.EXPIRE_STARTED} + m.${MessageTable.EXPIRES_IN} + $expirationCutoff < ${System.currentTimeMillis()})))
           )
         """
       )
