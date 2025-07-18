@@ -152,7 +152,12 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       val hasTokenMismatch = purchaseToken?.let { hasLocalDevicePurchaseTokenMismatch(purchaseToken) } == true
       if (hasActiveSignalSubscription && hasTokenMismatch) {
         Log.i(TAG, "Encountered token mismatch with an active Signal subscription. Attempting to redeem against latest token.", true)
-        enqueueRedemptionForNewToken(purchaseToken, product.price)
+        rotateAndRedeem(purchaseToken, product.price)
+        SignalStore.backup.subscriptionStateMismatchDetected = false
+        return Result.success()
+      } else if (purchaseToken != null && hasActiveSignalSubscription && !hasActivePaidBackupTier && !SignalDatabase.inAppPayments.hasPendingBackupRedemption()) {
+        Log.i(TAG, "We have an active signal subscription and active purchase, but no entitlement and no pending redemption. Enqueuing a redemption now.")
+        rotateAndRedeem(purchaseToken, product.price)
         SignalStore.backup.subscriptionStateMismatchDetected = false
         return Result.success()
       } else {
@@ -203,7 +208,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     }
   }
 
-  private fun enqueueRedemptionForNewToken(localDevicePurchaseToken: String, localProductPrice: FiatMoney) {
+  private fun rotateAndRedeem(localDevicePurchaseToken: String, localProductPrice: FiatMoney) {
     RecurringInAppPaymentRepository.ensureSubscriberIdSync(
       subscriberType = InAppPaymentSubscriberRecord.Type.BACKUP,
       isRotation = true,
