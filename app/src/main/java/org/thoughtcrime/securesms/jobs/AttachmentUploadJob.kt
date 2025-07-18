@@ -31,6 +31,9 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.AttachmentProgressService
+import org.thoughtcrime.securesms.transport.UndeliverableMessageException
+import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
@@ -136,6 +139,10 @@ class AttachmentUploadJob private constructor(
     SignalDatabase.attachments.createRemoteKeyIfNecessary(attachmentId)
 
     val databaseAttachment = SignalDatabase.attachments.getAttachment(attachmentId) ?: throw InvalidAttachmentException("Cannot find the specified attachment.")
+
+    if (MediaUtil.isLongTextType(databaseAttachment.contentType) && databaseAttachment.size > MessageUtil.MAX_TOTAL_BODY_SIZE_BYTES) {
+      throw UndeliverableMessageException("Long text attachment is too long! Max size: ${MessageUtil.MAX_TOTAL_BODY_SIZE_BYTES} bytes, Actual size: ${databaseAttachment.size} bytes.")
+    }
 
     val timeSinceUpload = System.currentTimeMillis() - databaseAttachment.uploadTimestamp
     if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD && !TextUtils.isEmpty(databaseAttachment.remoteLocation)) {
