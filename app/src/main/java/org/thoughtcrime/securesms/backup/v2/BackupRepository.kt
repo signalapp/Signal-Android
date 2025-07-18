@@ -9,10 +9,12 @@ import android.app.PendingIntent
 import android.database.Cursor
 import android.os.Environment
 import android.os.StatFs
+import androidx.annotation.CheckResult
 import androidx.annotation.Discouraged
 import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationCompat
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
 import okio.ByteString
@@ -97,9 +99,11 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
+import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CheckRestoreMediaLeftJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
+import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
@@ -175,10 +179,7 @@ object BackupRepository {
     when (error.code) {
       401 -> {
         Log.w(TAG, "Received status 401. Resetting initialized state + auth credentials.", error.exception)
-        SignalStore.backup.backupsInitialized = false
-        SignalStore.backup.messageCredentials.clearAll()
-        SignalStore.backup.mediaCredentials.clearAll()
-        SignalStore.backup.cachedMediaCdnPath = null
+        resetInitializedStateAndAuthCredentials()
       }
 
       403 -> {
@@ -204,6 +205,41 @@ object BackupRepository {
       Log.w(TAG, "Unable to verify/receive credentials, clearing cache to fetch new.", error.getCause())
       SignalStore.backup.messageCredentials.clearAll()
       SignalStore.backup.mediaCredentials.clearAll()
+    }
+  }
+
+  /**
+   * Generates a new AEP that the user can choose to confirm.
+   */
+  @CheckResult
+  fun stageAEPKeyRotation(): AccountEntropyPool {
+    return AccountEntropyPool.generate()
+  }
+
+  /**
+   * Saves the AEP to the local storage and kicks off a backup upload.
+   */
+  suspend fun commitAEPKeyRotation(accountEntropyPool: AccountEntropyPool) {
+    haltAllJobs()
+    resetInitializedStateAndAuthCredentials()
+    SignalStore.account.rotateAccountEntropyPool(accountEntropyPool)
+    BackupMessagesJob.enqueue()
+  }
+
+  private fun resetInitializedStateAndAuthCredentials() {
+    SignalStore.backup.backupsInitialized = false
+    SignalStore.backup.messageCredentials.clearAll()
+    SignalStore.backup.mediaCredentials.clearAll()
+    SignalStore.backup.cachedMediaCdnPath = null
+  }
+
+  private suspend fun haltAllJobs() {
+    ArchiveUploadProgress.cancelAndBlock()
+    AppDependencies.jobManager.cancelAllInQueue(LocalBackupJob.QUEUE)
+
+    Log.d(TAG, "Waiting for local backup job cancelations to occur...")
+    while (!AppDependencies.jobManager.areQueuesEmpty(setOf(LocalBackupJob.QUEUE))) {
+      delay(1.seconds)
     }
   }
 

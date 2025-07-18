@@ -141,6 +141,15 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
       }
     }
 
+  fun rotateAccountEntropyPool(aep: AccountEntropyPool) {
+    AEP_LOCK.withLock {
+      store
+        .beginWrite()
+        .putString(KEY_ACCOUNT_ENTROPY_POOL, aep.value)
+        .commit()
+    }
+  }
+
   fun restoreAccountEntropyPool(aep: AccountEntropyPool) {
     AEP_LOCK.withLock {
       store

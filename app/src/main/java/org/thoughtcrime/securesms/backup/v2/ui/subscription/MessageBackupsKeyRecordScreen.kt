@@ -11,29 +11,39 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.requiredWidthIn
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ModalBottomSheet
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.Stable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.Buttons
@@ -42,6 +52,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.backups.remote.BackupKeySaveState
@@ -50,6 +61,16 @@ import org.thoughtcrime.securesms.util.storage.AndroidCredentialRepository
 import org.thoughtcrime.securesms.util.storage.CredentialManagerError
 import org.thoughtcrime.securesms.util.storage.CredentialManagerResult
 import org.signal.core.ui.R as CoreUiR
+
+@Stable
+sealed interface MessageBackupsKeyRecordMode {
+  data class Next(val onNextClick: () -> Unit) : MessageBackupsKeyRecordMode
+  data class CreateNewKey(
+    val onCreateNewKeyClick: () -> Unit,
+    val onTurnOffAndDownloadClick: () -> Unit,
+    val isOptimizedStorageEnabled: Boolean
+  ) : MessageBackupsKeyRecordMode
+}
 
 /**
  * Screen displaying the backup key allowing the user to write it down
@@ -65,8 +86,8 @@ fun MessageBackupsKeyRecordScreen(
   onRequestSaveToPasswordManager: () -> Unit = {},
   onConfirmSaveToPasswordManager: () -> Unit = {},
   onSaveToPasswordManagerComplete: (CredentialManagerResult) -> Unit = {},
-  onNextClick: () -> Unit = {},
-  onGoToPasswordManagerSettingsClick: () -> Unit = {}
+  onGoToPasswordManagerSettingsClick: () -> Unit = {},
+  mode: MessageBackupsKeyRecordMode = MessageBackupsKeyRecordMode.Next(onNextClick = {})
 ) {
   val snackbarHostState = remember { SnackbarHostState() }
   val backupKeyString = remember(backupKey) {
@@ -96,7 +117,7 @@ fun MessageBackupsKeyRecordScreen(
         ) {
           item {
             Image(
-              painter = painterResource(R.drawable.image_signal_backups_lock),
+              imageVector = ImageVector.vectorResource(R.drawable.image_signal_backups_lock),
               contentDescription = null,
               modifier = Modifier
                 .padding(top = 24.dp)
@@ -170,19 +191,23 @@ fun MessageBackupsKeyRecordScreen(
           }
         }
 
-        Box(
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(bottom = 24.dp)
-        ) {
-          Buttons.LargeTonal(
-            onClick = onNextClick,
-            modifier = Modifier.align(Alignment.BottomEnd)
+        if (mode is MessageBackupsKeyRecordMode.Next) {
+          Box(
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(bottom = 24.dp)
           ) {
-            Text(
-              text = stringResource(R.string.MessageBackupsKeyRecordScreen__next)
-            )
+            Buttons.LargeTonal(
+              onClick = mode.onNextClick,
+              modifier = Modifier.align(Alignment.BottomEnd)
+            ) {
+              Text(
+                text = stringResource(R.string.MessageBackupsKeyRecordScreen__next)
+              )
+            }
           }
+        } else if (mode is MessageBackupsKeyRecordMode.CreateNewKey) {
+          CreateNewKeyButton(mode)
         }
       }
 
@@ -222,6 +247,51 @@ fun MessageBackupsKeyRecordScreen(
 
         null -> Unit
       }
+    }
+  }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun CreateNewKeyButton(
+  mode: MessageBackupsKeyRecordMode.CreateNewKey
+) {
+  var displayBottomSheet by remember { mutableStateOf(false) }
+  var displayDialog by remember { mutableStateOf(false) }
+
+  TextButton(
+    onClick = { displayBottomSheet = true },
+    modifier = Modifier
+      .padding(bottom = 24.dp)
+      .horizontalGutters()
+      .fillMaxWidth()
+      .requiredWidthIn(min = Dp.Unspecified, max = 264.dp)
+  ) {
+    Text(text = stringResource(R.string.MessageBackupsKeyRecordScreen__create_new_key))
+  }
+
+  if (displayDialog) {
+    DownloadMediaDialog(
+      onTurnOffAndDownloadClick = mode.onTurnOffAndDownloadClick,
+      onCancelClick = { displayDialog = false }
+    )
+  }
+
+  if (displayBottomSheet) {
+    ModalBottomSheet(
+      onDismissRequest = { displayBottomSheet = false },
+      sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true)
+    ) {
+      CreateNewBackupKeySheetContent(
+        onContinueClick = {
+          if (mode.isOptimizedStorageEnabled) {
+            displayDialog = true
+          } else {
+            mode.onCreateNewKeyClick()
+          }
+        },
+        onCancelClick = { displayBottomSheet = false }
+      )
     }
   }
 }
@@ -268,6 +338,78 @@ private fun BackupKeySaveErrorDialog(
   }
 }
 
+@Composable
+private fun ColumnScope.CreateNewBackupKeySheetContent(
+  onContinueClick: () -> Unit = {},
+  onCancelClick: () -> Unit = {}
+) {
+  Image(
+    imageVector = ImageVector.vectorResource(R.drawable.image_signal_backups_key),
+    contentDescription = null,
+    modifier = Modifier
+      .align(Alignment.CenterHorizontally)
+      .padding(top = 38.dp, bottom = 18.dp)
+      .size(80.dp)
+  )
+
+  Text(
+    text = stringResource(R.string.MessageBackupsKeyRecordScreen__create_a_new_backup_key),
+    style = MaterialTheme.typography.titleLarge,
+    textAlign = TextAlign.Center,
+    modifier = Modifier
+      .align(Alignment.CenterHorizontally)
+      .padding(bottom = 12.dp)
+      .horizontalGutters()
+  )
+
+  Text(
+    text = stringResource(R.string.MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary),
+    style = MaterialTheme.typography.bodyLarge,
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
+    textAlign = TextAlign.Center,
+    modifier = Modifier
+      .padding(bottom = 91.dp, start = 36.dp, end = 36.dp)
+      .align(Alignment.CenterHorizontally)
+  )
+
+  Buttons.LargeTonal(
+    onClick = onContinueClick,
+    modifier = Modifier
+      .padding(bottom = 16.dp)
+      .fillMaxWidth()
+      .requiredWidthIn(min = Dp.Unspecified, max = 220.dp)
+      .align(Alignment.CenterHorizontally)
+  ) {
+    Text(text = stringResource(R.string.MessageBackupsKeyRecordScreen__continue))
+  }
+
+  TextButton(
+    onClick = onCancelClick,
+    modifier = Modifier
+      .padding(bottom = 48.dp)
+      .fillMaxWidth()
+      .requiredWidthIn(min = Dp.Unspecified, max = 220.dp)
+      .align(Alignment.CenterHorizontally)
+  ) {
+    Text(text = stringResource(android.R.string.cancel))
+  }
+}
+
+@Composable
+private fun DownloadMediaDialog(
+  onTurnOffAndDownloadClick: () -> Unit = {},
+  onCancelClick: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.MessageBackupsKeyRecordScreen__download_media),
+    body = stringResource(R.string.MessageBackupsKeyRecordScreen__to_create_a_new_backup_key),
+    confirm = stringResource(R.string.MessageBackupsKeyRecordScreen__turn_off_and_download),
+    dismiss = stringResource(android.R.string.cancel),
+    onConfirm = onTurnOffAndDownloadClick,
+    onDeny = onCancelClick
+  )
+}
+
 private suspend fun saveKeyToCredentialManager(
   @UiContext activityContext: Context,
   backupKey: String
@@ -286,7 +428,12 @@ private fun MessageBackupsKeyRecordScreenPreview() {
     MessageBackupsKeyRecordScreen(
       backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0",
       keySaveState = null,
-      canOpenPasswordManagerSettings = true
+      canOpenPasswordManagerSettings = true,
+      mode = MessageBackupsKeyRecordMode.CreateNewKey(
+        onCreateNewKeyClick = {},
+        onTurnOffAndDownloadClick = {},
+        isOptimizedStorageEnabled = true
+      )
     )
   }
 }
@@ -298,7 +445,27 @@ private fun SaveKeyConfirmationDialogPreview() {
     MessageBackupsKeyRecordScreen(
       backupKey = (0 until 63).map { (('A'..'Z') + ('0'..'9')).random() }.joinToString("") + "0",
       keySaveState = BackupKeySaveState.RequestingConfirmation,
-      canOpenPasswordManagerSettings = true
+      canOpenPasswordManagerSettings = true,
+      mode = MessageBackupsKeyRecordMode.Next(onNextClick = {})
     )
+  }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@SignalPreview
+@Composable
+private fun CreateNewBackupKeySheetContentPreview() {
+  Previews.BottomSheetPreview {
+    Column {
+      CreateNewBackupKeySheetContent()
+    }
+  }
+}
+
+@SignalPreview
+@Composable
+private fun DownloadMediaDialogPreview() {
+  Previews.Preview {
+    DownloadMediaDialog()
   }
 }
