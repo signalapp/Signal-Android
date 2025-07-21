@@ -158,7 +158,7 @@ class BackupMessagesJob private constructor(
     this.syncTime = currentTime
     this.dataFile = tempBackupFile.path
 
-    val backupSpec: ResumableMessagesBackupUploadSpec = resumableMessagesBackupUploadSpec ?: when (val result = BackupRepository.getResumableMessagesBackupUploadSpec()) {
+    val backupSpec: ResumableMessagesBackupUploadSpec = resumableMessagesBackupUploadSpec ?: when (val result = BackupRepository.getResumableMessagesBackupUploadSpec(tempBackupFile.length())) {
       is NetworkResult.Success -> {
         Log.i(TAG, "Successfully generated a new upload spec.")
 
@@ -173,7 +173,15 @@ class BackupMessagesJob private constructor(
       }
 
       is NetworkResult.StatusCodeError -> {
-        Log.i(TAG, "Status code failure", result.getCause())
+        when (result.code) {
+          413 -> {
+            Log.i(TAG, "Backup file is too large! Size: ${tempBackupFile.length()} bytes", result.getCause())
+            // TODO [backup] Need to show the user an error
+          }
+          else -> {
+            Log.i(TAG, "Status code failure", result.getCause())
+          }
+        }
         return Result.retry(defaultBackoff())
       }
 

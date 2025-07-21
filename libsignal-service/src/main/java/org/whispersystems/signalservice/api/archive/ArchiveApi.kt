@@ -143,13 +143,14 @@ class ArchiveApi(
    * - 200: Success
    * - 400: Bad args, or made on an authenticated channel
    * - 403: Insufficient permissions
+   * - 413: The backup is too large
    * - 429: Rate-limited
    */
-  fun getMessageBackupUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<AttachmentUploadForm> {
+  fun getMessageBackupUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>, backupFileSize: Long): NetworkResult<AttachmentUploadForm> {
     return getCredentialPresentation(aci, archiveServiceAccess)
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->
-        val request = WebSocketRequestMessage.get("/v1/archives/upload/form", headers)
+        val request = WebSocketRequestMessage.get("/v1/archives/upload/form?uploadLength=$backupFileSize", headers)
         NetworkResult.fromWebSocketRequest(unauthWebSocket, request, AttachmentUploadForm::class)
       }
   }
