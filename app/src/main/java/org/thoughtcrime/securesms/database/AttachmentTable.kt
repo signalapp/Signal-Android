@@ -630,12 +630,6 @@ class AttachmentTable(
       .readToSingleLong()
   }
 
-  private fun getMessageDoesNotExpireWithinTimeoutClause(): String {
-    val messageHasExpiration = "${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} > 0"
-    val messageExpiresInOneDayAfterViewing = "$messageHasExpiration AND  ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} < ${1.days.inWholeMilliseconds}"
-    return "NOT $messageExpiresInOneDayAfterViewing"
-  }
-
   /**
    * Finds all of the attachmentIds of attachments that need to be uploaded to the archive cdn.
    */
@@ -643,11 +637,7 @@ class AttachmentTable(
     return readableDatabase
       .select("$TABLE_NAME.$ID")
       .from("$TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
-      .where(
-        "($ARCHIVE_TRANSFER_STATE = ? or $ARCHIVE_TRANSFER_STATE = ?) AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND ${getMessageDoesNotExpireWithinTimeoutClause()}",
-        ArchiveTransferState.NONE.value,
-        ArchiveTransferState.TEMPORARY_FAILURE.value
-      )
+      .where(buildAttachmentsThatNeedUploadQuery())
       .orderBy("$TABLE_NAME.$ID DESC")
       .run()
       .readToList { AttachmentId(it.requireLong(ID)) }
@@ -691,14 +681,10 @@ class AttachmentTable(
   /**
    * Similar to [getAttachmentsThatNeedArchiveUpload], but returns if the list would be non-null in a more efficient way.
    */
-  fun doAnyAttachmentsNeedArchiveUpload(): Boolean {
+  fun doAnyAttachmentsNeedArchiveUpload(currentTime: Long): Boolean {
     return readableDatabase
       .exists("$TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
-      .where(
-        "($ARCHIVE_TRANSFER_STATE = ? OR $ARCHIVE_TRANSFER_STATE = ?) AND $DATA_FILE NOT NULL AND $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND ${getMessageDoesNotExpireWithinTimeoutClause()}",
-        ArchiveTransferState.NONE.value,
-        ArchiveTransferState.TEMPORARY_FAILURE.value
-      )
+      .where(buildAttachmentsThatNeedUploadQuery())
       .run()
   }
 
@@ -856,7 +842,7 @@ class AttachmentTable(
               $REMOTE_KEY NOT NULL AND
               $ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value}) AND
               (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND
-              ${getMessageDoesNotExpireWithinTimeoutClause()}
+              (${MessageTable.EXPIRES_IN} = 0 OR ${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds})
           )
         """.trimIndent()
       )
@@ -2547,6 +2533,16 @@ class AttachmentTable(
       }
   }
 
+  private fun buildAttachmentsThatNeedUploadQuery(): String {
+    return """
+      $ARCHIVE_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value}) AND 
+      $DATA_FILE NOT NULL AND 
+      $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND 
+      (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND 
+      (${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} <= 0 OR ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds}) AND
+      $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}'
+    """
+  }
   private fun getAttachment(cursor: Cursor): DatabaseAttachment {
     val contentType = cursor.requireString(CONTENT_TYPE)
 

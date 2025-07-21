@@ -836,16 +836,20 @@ object BackupRepository {
       var frameCount = 0L
 
       writer.use {
+        val debugInfo = buildDebugInfo()
+        eventTimer.emit("debug-info")
+
         writer.write(
           BackupInfo(
             version = VERSION,
             backupTimeMs = exportState.backupTime,
             mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey.value.toByteString(),
             firstAppVersion = SignalStore.backup.firstAppVersion,
-            debugInfo = buildDebugInfo()
+            debugInfo = debugInfo
           )
         )
         frameCount++
+        eventTimer.emit("header")
 
         // We're using a snapshot, so the transaction is more for perf than correctness
         dbSnapshot.rawWritableDatabase.withinTransaction {

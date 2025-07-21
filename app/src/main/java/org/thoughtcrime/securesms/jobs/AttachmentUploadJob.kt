@@ -198,9 +198,11 @@ class AttachmentUploadJob private constructor(
               messageId == AttachmentTable.PREUPLOAD_MESSAGE_ID -> {
                 Log.i(TAG, "[$attachmentId] Avoid uploading preuploaded attachments to archive. Skipping.")
               }
-
               SignalDatabase.messages.willMessageExpireBeforeCutoff(messageId) -> {
                 Log.i(TAG, "[$attachmentId] Message will expire within 24hrs. Skipping.")
+              }
+              databaseAttachment.contentType == MediaUtil.LONG_TEXT -> {
+                Log.i(TAG, "[$attachmentId] Long text attachment. Skipping.")
               }
               else -> {
                 Log.i(TAG, "[$attachmentId] Enqueuing job to copy to archive.")
