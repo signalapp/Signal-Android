@@ -235,6 +235,10 @@ class AttachmentDownloadJob private constructor(
           Log.i(TAG, "[$attachmentId] Attachment is a story. Skipping.")
         }
 
+        SignalDatabase.messages.willMessageExpireBeforeCutoff(messageId) -> {
+          Log.i(TAG, "[$attachmentId] Message will expire within 24hrs. Skipping.")
+        }
+
         else -> {
           Log.i(TAG, "[$attachmentId] Enqueuing job to copy to archive.")
           AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachmentId))

@@ -38,7 +38,6 @@ import org.signal.core.util.getAllIndexDefinitions
 import org.signal.core.util.getAllTableDefinitions
 import org.signal.core.util.getAllTriggerDefinitions
 import org.signal.core.util.getForeignKeyViolations
-import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.requireIntOrNull
@@ -1425,6 +1424,7 @@ object BackupRepository {
       !DatabaseAttachmentArchiveUtil.hadIntegrityCheckPerformed(attachment) -> false
       messageId == AttachmentTable.PREUPLOAD_MESSAGE_ID -> false
       SignalDatabase.messages.isStory(messageId) -> false
+      SignalDatabase.messages.willMessageExpireBeforeCutoff(messageId) -> false
       else -> true
     }
   }

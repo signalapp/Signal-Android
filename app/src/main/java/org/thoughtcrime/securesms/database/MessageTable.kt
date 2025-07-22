@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment.DisplayOrderComparator
+import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.database.EarlyDeliveryReceiptCache.Receipt
@@ -630,6 +631,23 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun getExpirationStartedMessages(): Cursor {
     val where = "$EXPIRE_STARTED > 0"
     return rawQueryWithAttachments(where, null)
+  }
+
+  /**
+   * Returns true iff
+   * - the message will expire within [ChatItemArchiveExporter.EXPIRATION_CUTOFF] once viewed
+   */
+  fun willMessageExpireBeforeCutoff(messageId: Long): Boolean {
+    val expiresIn = readableDatabase
+      .select(EXPIRES_IN)
+      .from(TABLE_NAME)
+      .where(ID_WHERE, messageId)
+      .run()
+      .readToSingleObject {
+        it.requireLong(EXPIRES_IN)
+      } ?: 0L
+
+    return expiresIn > 0L && expiresIn < ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds
   }
 
   fun getMessagesBySentTimestamp(sentTimestamp: Long): List<MessageRecord> {
