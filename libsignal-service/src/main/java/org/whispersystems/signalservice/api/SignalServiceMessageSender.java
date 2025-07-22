@@ -1944,7 +1944,8 @@ public class SignalServiceMessageSender {
                  MismatchedDevicesException |
                  StaleDevicesException |
                  ProofRequiredException |
-                 ServerRejectedException e) {
+                 ServerRejectedException |
+                 RateLimitException e) {
           // Non-technical failures shouldn't be retried with socket
           throw e;
         } catch (WebSocketUnavailableException e) {
@@ -2166,7 +2167,8 @@ public class SignalServiceMessageSender {
                 throwable instanceof MismatchedDevicesException ||
                 throwable instanceof StaleDevicesException ||
                 throwable instanceof ProofRequiredException ||
-                throwable instanceof ServerRejectedException)
+                throwable instanceof ServerRejectedException ||
+                throwable instanceof RateLimitException)
             {
               // Non-technical failures shouldn't be retried with socket
               return Single.error(throwable);
@@ -2456,7 +2458,8 @@ public class SignalServiceMessageSender {
                  NotFoundException |
                  GroupMismatchedDevicesException |
                  GroupStaleDevicesException |
-                 ServerRejectedException e) {
+                 ServerRejectedException |
+                 RateLimitException e) {
           // Non-technical failures shouldn't be retried with socket
           throw e;
         } catch (WebSocketUnavailableException e) {
