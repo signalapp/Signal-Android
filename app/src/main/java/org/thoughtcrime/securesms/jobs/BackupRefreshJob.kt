@@ -49,6 +49,8 @@ class BackupRefreshJob private constructor(
               .build()
           )
         )
+      } else {
+        Log.i(TAG, "Do not need to refresh backups. Last refresh: ${lastCheckIn.inWholeMilliseconds}")
       }
     }
 

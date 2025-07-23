@@ -190,9 +190,10 @@ class InAppPaymentRecurringContextJob private constructor(
     }
 
     if (hasEntitlementAlready(updatedInAppPayment, subscription.endOfCurrentPeriod)) {
-      info("Already have entitlement for this badge. Marking complete.")
+      info("Already have entitlement for this InAppPayment of type ${updatedInAppPayment.type}. Marking complete.")
       markInAppPaymentCompleted(updatedInAppPayment, subscription)
     } else {
+      info("No entitlement for InAppPayment of type ${updatedInAppPayment.type}. Submitting and validating credentials.")
       submitAndValidateCredentials(updatedInAppPayment, subscription, requestContext)
     }
   }
