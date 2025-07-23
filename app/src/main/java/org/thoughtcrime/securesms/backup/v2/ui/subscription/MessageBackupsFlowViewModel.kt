@@ -163,11 +163,11 @@ class MessageBackupsFlowViewModel(
           RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
         }
 
-        activeSubscription.onSuccess {
-          if (it.isCanceled) {
+        activeSubscription.onSuccess { subscription ->
+          if (subscription.isCanceled) {
             Log.d(TAG, "Active subscription is cancelled. Clearing tier.")
             internalStateFlow.update { it.copy(currentMessageBackupTier = null) }
-          } else if (it.isActive) {
+          } else if (subscription.isActive) {
             Log.d(TAG, "Active subscription is active. Setting tier.")
             internalStateFlow.update { it.copy(currentMessageBackupTier = SignalStore.backup.backupTier) }
           } else {
