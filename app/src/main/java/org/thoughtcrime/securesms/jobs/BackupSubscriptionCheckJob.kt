@@ -219,8 +219,8 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
     val id = SignalDatabase.inAppPayments.insert(
       type = InAppPaymentType.RECURRING_BACKUP,
-      state = InAppPaymentTable.State.CREATED,
-      subscriberId = null,
+      state = InAppPaymentTable.State.PENDING,
+      subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId,
       endOfPeriod = null,
       inAppPaymentData = InAppPaymentData(
         badge = null,
@@ -234,7 +234,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       )
     )
 
-    InAppPaymentRecurringContextJob.createJobChain(
+    InAppPaymentPurchaseTokenJob.createJobChain(
       inAppPayment = SignalDatabase.inAppPayments.getById(id)!!
     ).enqueue()
   }
