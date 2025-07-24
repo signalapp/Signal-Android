@@ -13,6 +13,11 @@ import androidx.lifecycle.ViewModelProvider;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
+import org.signal.paging.LivePagedData;
+import org.signal.paging.PagedData;
+import org.signal.paging.PagingConfig;
+import org.signal.paging.PagingController;
+import org.signal.paging.ProxyPagingController;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
@@ -27,6 +32,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
   private final SubmitDebugLogRepository        repo;
   private final MutableLiveData<Mode>           mode;
+  private final ProxyPagingController<Long>     pagingController;
   private final List<LogLine>                   staticLines;
   private final MediatorLiveData<List<LogLine>> lines;
   private final SingleLiveEvent<Event>          event;
@@ -38,6 +44,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
     this.repo             = new SubmitDebugLogRepository();
     this.mode             = new MutableLiveData<>();
     this.trace            = Tracer.getInstance().serialize();
+    this.pagingController = new ProxyPagingController<>();
     this.firstViewTime    = System.currentTimeMillis();
     this.staticLines      = new ArrayList<>();
     this.lines            = new MediatorLiveData<>();
@@ -49,12 +56,17 @@ public class SubmitDebugLogViewModel extends ViewModel {
       Log.blockUntilAllWritesFinished();
       LogDatabase.getInstance(AppDependencies.getApplication()).logs().trimToSize();
 
-      LogDataSource dataSource  = new LogDataSource(AppDependencies.getApplication(), staticLines, firstViewTime);
-      int size                  = dataSource.size();
-      List<LogLine> allLogLines = new ArrayList<>(dataSource.load(0, size, size, () -> false));
+      LogDataSource dataSource = new LogDataSource(AppDependencies.getApplication(), staticLines, firstViewTime);
+      PagingConfig  config     = new PagingConfig.Builder().setPageSize(100)
+                                                           .setBufferPages(3)
+                                                           .setStartIndex(0)
+                                                           .build();
+
+      LivePagedData<Long, LogLine> pagedData = PagedData.createForLiveData(dataSource, config);
 
       ThreadUtil.runOnMain(() -> {
-        lines.setValue(allLogLines);
+        pagingController.set(pagedData.getController());
+        lines.addSource(pagedData.getData(), lines::setValue);
         mode.setValue(Mode.NORMAL);
       });
     });
@@ -62,6 +74,10 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
   @NonNull LiveData<List<LogLine>> getLines() {
     return lines;
+  }
+
+  @NonNull PagingController getPagingController() {
+    return pagingController;
   }
 
   @NonNull LiveData<Mode> getMode() {

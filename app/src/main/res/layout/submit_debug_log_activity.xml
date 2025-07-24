@@ -44,7 +44,7 @@
       app:barrierDirection="bottom"
       app:constraint_referenced_ids="debug_log_warning_banner,debug_log_edit_banner" />
 
-  <WebView
+  <androidx.recyclerview.widget.RecyclerView
       android:id="@+id/debug_log_lines"
       android:layout_width="match_parent"
       android:layout_height="0dp"

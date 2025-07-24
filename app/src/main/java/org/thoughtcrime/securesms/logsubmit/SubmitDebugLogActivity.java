@@ -11,8 +11,6 @@ import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,13 +19,13 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ShareCompat;
-import androidx.core.content.ContextCompat;
 import androidx.core.text.util.LinkifyCompat;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import org.json.JSONObject;
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ProgressCard;
@@ -40,13 +38,13 @@ import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
 import java.util.List;
 
-public class SubmitDebugLogActivity extends BaseActivity {
+public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugLogAdapter.Listener {
 
   private static final int CODE_SAVE = 24601;
 
-  private WebView                 logWebView;
+  private RecyclerView            lineList;
+  private SubmitDebugLogAdapter   adapter;
   private SubmitDebugLogViewModel viewModel;
-  private boolean                 isPageLoaded;
 
   private View                           warningBanner;
   private View                           editBanner;
@@ -95,12 +93,13 @@ public class SubmitDebugLogActivity extends BaseActivity {
     SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
       @Override
       public boolean onQueryTextSubmit(String query) {
+        viewModel.onQueryUpdated(query);
         return true;
       }
 
       @Override
       public boolean onQueryTextChange(String query) {
-        onQueryChanged(query);
+        viewModel.onQueryUpdated(query);
         return true;
       }
     };
@@ -115,7 +114,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
       @Override
       public boolean onMenuItemActionCollapse(MenuItem item) {
         searchView.setOnQueryTextListener(null);
-        onQueryChanged("");
+        viewModel.onSearchClosed();
         return true;
       }
     });
@@ -166,32 +165,13 @@ public class SubmitDebugLogActivity extends BaseActivity {
     }
   }
 
-  // TODO [lisa][debug-log-delete]
-//  public void onLogDeleted(@NonNull LogLine logLine) {
-//    viewModel.onLogDeleted(logLine);
-//  }
-
-  private void initWebView() {
-    logWebView.getSettings().setBuiltInZoomControls(true);
-    logWebView.getSettings().setDisplayZoomControls(false);
-    logWebView.getSettings().setUseWideViewPort(true);
-    logWebView.getSettings().setJavaScriptEnabled(true);
-    logWebView.setHorizontalScrollBarEnabled(true);
-
-    logWebView.setWebViewClient(new WebViewClient() {
-      @Override
-      public void onPageFinished(WebView view, String url) {
-        isPageLoaded = true;
-      }
-    });
-  }
-
-  private String intToCssHex(int color) {
-    return String.format("#%06X", 0xFFFFFF & color);
+  @Override
+  public void onLogDeleted(@NonNull LogLine logLine) {
+    viewModel.onLogDeleted(logLine);
   }
 
   private void initView() {
-    this.logWebView           = findViewById(R.id.debug_log_lines);
+    this.lineList             = findViewById(R.id.debug_log_lines);
     this.warningBanner        = findViewById(R.id.debug_log_warning_banner);
     this.editBanner           = findViewById(R.id.debug_log_edit_banner);
     this.submitButton         = findViewById(R.id.debug_log_submit_button);
@@ -199,27 +179,35 @@ public class SubmitDebugLogActivity extends BaseActivity {
     this.scrollToTopButton    = findViewById(R.id.debug_log_scroll_to_top);
     this.progressCard         = findViewById(R.id.debug_log_progress_card);
 
-    initWebView();
+    this.adapter = new SubmitDebugLogAdapter(this, viewModel.getPagingController());
+
+    this.lineList.setLayoutManager(new LinearLayoutManager(this));
+    this.lineList.setAdapter(adapter);
+    this.lineList.setItemAnimator(null);
 
     submitButton.setOnClickListener(v -> onSubmitClicked());
 
-    scrollToBottomButton.setOnClickListener(v -> logWebView.pageDown(true));
-    scrollToTopButton.setOnClickListener(v -> logWebView.pageUp(true));
+    scrollToBottomButton.setOnClickListener(v -> lineList.scrollToPosition(adapter.getItemCount() - 1));
+    scrollToTopButton.setOnClickListener(v -> lineList.scrollToPosition(0));
 
-    logWebView.getViewTreeObserver().addOnScrollChangedListener(() -> {
-      if (logWebView.getScrollY() + logWebView.getHeight() < logWebView.getContentHeight() * logWebView.getScale() - 10) {
-        scrollToBottomButton.setVisibility(View.VISIBLE);
-      } else {
-        scrollToBottomButton.setVisibility(View.GONE);
-      }
+    lineList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+      @Override
+      public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+        if (((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition() < adapter.getItemCount() - 10) {
+          scrollToBottomButton.setVisibility(View.VISIBLE);
+        } else {
+          scrollToBottomButton.setVisibility(View.GONE);
+        }
 
-      if (logWebView.getScrollY() > 10) {
-        scrollToTopButton.setVisibility(View.VISIBLE);
-      } else {
-        scrollToTopButton.setVisibility(View.GONE);
+        if (((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition() > 10) {
+          scrollToTopButton.setVisibility(View.VISIBLE);
+        } else {
+          scrollToTopButton.setVisibility(View.GONE);
+        }
       }
     });
     this.progressCard.setVisibility(View.VISIBLE);
+
   }
 
   private void initViewModel() {
@@ -229,10 +217,6 @@ public class SubmitDebugLogActivity extends BaseActivity {
   }
 
   private void presentLines(@NonNull List<LogLine> lines) {
-    if (!isPageLoaded) {
-      initWebView();
-    }
-
     if (progressCard != null && lines.size() > 0) {
       progressCard.setVisibility(View.GONE);
 
@@ -240,108 +224,23 @@ public class SubmitDebugLogActivity extends BaseActivity {
       submitButton.setVisibility(View.VISIBLE);
     }
 
-    StringBuilder body = new StringBuilder();
-
-    int backgroundColor = ContextCompat.getColor(this, R.color.signal_colorBackground);
-    int noneColor       = ContextCompat.getColor(this, R.color.debuglog_color_none);
-    int verboseColor    = ContextCompat.getColor(this, R.color.debuglog_color_verbose);
-    int debugColor      = ContextCompat.getColor(this, R.color.debuglog_color_debug);
-    int infoColor       = ContextCompat.getColor(this, R.color.debuglog_color_info);
-    int warningColor    = ContextCompat.getColor(this, R.color.debuglog_color_warn);
-    int errorColor      = ContextCompat.getColor(this, R.color.debuglog_color_error);
-
-    String css = String.format("""
-      <style>
-        body     {background-color: %s;}
-        div      {white-space: pre; margin-top: 8; margin-bottom: 8; height: 10px;}
-        .none    {color: %s;}
-        .verbose {color: %s;}
-        .debug   {color: %s;}
-        .info    {color: %s;}
-        .warning {color: %s;}
-        .error   {color: %s;}
-        .hidden  {display: none;}
-      </style>
-      """,
-      intToCssHex(backgroundColor),
-      intToCssHex(noneColor),
-      intToCssHex(verboseColor),
-      intToCssHex(debugColor),
-      intToCssHex(infoColor),
-      intToCssHex(warningColor),
-      intToCssHex(errorColor)
-    );
-
-    String js = """
-      <script type='text/javascript'>
-        let debounceTimer = null;
-        function filterLogLines(query) {
-          clearTimeout(debounceTimer);
-          debounceTimer = setTimeout(function() {
-            const container = document.getElementById('container');
-            if (!container) return;
-            const lower = query.toLowerCase();
-            const lines = container.getElementsByTagName('div');
-            for (let i = 0; i < lines.length; i++) {
-              const line = lines[i];
-              const text = line.textContent.toLowerCase();
-              if (text.includes(lower)) {
-                line.classList.remove('hidden');
-              } else {
-                line.classList.add('hidden');
-              }
-            }
-          }, 100);
-        }
-      </script>
-      """;
-
-    body.append(String.format("<html><head>%s%s</head><body style=\"font-family: monospace; font-size: 12px; overflow-y: scroll;\"><div id=\"container\">", css, js));
-
-    for (LogLine line : lines) {
-      if (line == null) continue;
-
-      String newLine = line.getText();
-      String lineClass = switch (line.getStyle()) {
-        case VERBOSE -> "verbose";
-        case DEBUG -> "debug";
-        case INFO -> "info";
-        case WARNING -> "warning";
-        case ERROR -> "error";
-        default -> "none";
-      };
-
-      body.append(String.format("<div class=%s>%s</div>", lineClass, newLine));
-    }
-
-    body.append("</div></body></html>");
-
-    String htmlContent = body.toString();
-
-    logWebView.loadDataWithBaseURL(null, htmlContent, "text/html", "UTF-8", null);
-  }
-
-  private void onQueryChanged(String query) {
-    String script = String.format("filterLogLines(%s);\n", JSONObject.quote(query));
-
-    logWebView.evaluateJavascript(script, null);
+    adapter.submitList(lines);
   }
 
   private void presentMode(@NonNull SubmitDebugLogViewModel.Mode mode) {
     switch (mode) {
       case NORMAL:
         editBanner.setVisibility(View.GONE);
-        // TODO [lisa][debug-log-editing]
-//        setEditing(false);
+        adapter.setEditing(false);
         saveMenuItem.setVisible(true);
         // TODO [greyson][log] Not yet implemented
 //        editMenuItem.setVisible(true);
 //        doneMenuItem.setVisible(false);
-        searchMenuItem.setVisible(true);
+//        searchMenuItem.setVisible(true);
         break;
       case SUBMITTING:
         editBanner.setVisibility(View.GONE);
-//        setEditing(false);
+        adapter.setEditing(false);
         editMenuItem.setVisible(false);
         doneMenuItem.setVisible(false);
         searchMenuItem.setVisible(false);
@@ -349,7 +248,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
         break;
       case EDIT:
         editBanner.setVisibility(View.VISIBLE);
-//        setEditing(true);
+        adapter.setEditing(true);
         editMenuItem.setVisible(false);
         doneMenuItem.setVisible(true);
         searchMenuItem.setVisible(true);
