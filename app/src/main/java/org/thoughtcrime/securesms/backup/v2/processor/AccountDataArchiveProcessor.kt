@@ -115,7 +115,7 @@ object AccountDataArchiveProcessor {
             )
           ),
           donationSubscriberData = donationSubscriber?.toSubscriberData(signalStore.inAppPaymentValues.isDonationSubscriptionManuallyCancelled()),
-          backupsSubscriberData = backupSubscriberRecord?.toIAPSubscriberData()
+          backupsSubscriberData = backupSubscriberRecord?.takeIf { SignalStore.backup.backupTier == MessageBackupTier.PAID }?.toIAPSubscriberData()
         )
       )
     )
