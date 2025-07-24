@@ -396,7 +396,7 @@ public abstract class WebRtcActionProcessor {
     Log.i(tag, "handleReceivedHangup(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
 
     try {
-      webRtcInteractor.getCallManager().receivedHangup(callMetadata.getCallId(), callMetadata.getRemoteDevice(), hangupMetadata.getCallHangupType(), hangupMetadata.getDeviceId());
+      webRtcInteractor.getCallManager().receivedHangup(callMetadata.getCallId(), callMetadata.getRemotePeer(), callMetadata.getRemoteDevice(), hangupMetadata.getCallHangupType(), hangupMetadata.getDeviceId());
     } catch (CallException e) {
       return callFailure(currentState, "receivedHangup() failed: ", e);
     }
@@ -516,7 +516,7 @@ public abstract class WebRtcActionProcessor {
     Log.i(tag, "handleReceivedIceCandidates(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()) + ", count: " + iceCandidates.size());
 
     try {
-      webRtcInteractor.getCallManager().receivedIceCandidates(callMetadata.getCallId(), callMetadata.getRemoteDevice(), iceCandidates);
+      webRtcInteractor.getCallManager().receivedIceCandidates(callMetadata.getCallId(), callMetadata.getRemotePeer(), callMetadata.getRemoteDevice(), iceCandidates);
     } catch (CallException e) {
       return callFailure(currentState, "receivedIceCandidates() failed: ", e);
     }
