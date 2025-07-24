@@ -117,6 +117,14 @@ object LinkDeviceRepository {
       return false
     }
 
+    if (uri.scheme != "sgnl") {
+      return false
+    }
+
+    if (uri.host != "linkdevice") {
+      return false
+    }
+
     val ephemeralId: String? = uri.getQueryParameter("uuid")
     val publicKeyEncoded: String? = uri.getQueryParameter("pub_key")
     return ephemeralId.isNotNullOrBlank() && publicKeyEncoded.isNotNullOrBlank()
