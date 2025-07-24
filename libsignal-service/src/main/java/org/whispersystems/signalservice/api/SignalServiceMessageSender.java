@@ -6,6 +6,7 @@
 package org.whispersystems.signalservice.api;
 
 import org.signal.core.util.Base64;
+import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.IdentityKeyPair;
 import org.signal.libsignal.protocol.InvalidKeyException;
@@ -138,6 +139,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
@@ -286,7 +288,7 @@ public class SignalServiceMessageSender {
   public void sendGroupTyping(DistributionId distributionId,
                               List<SignalServiceAddress> recipients,
                               List<UnidentifiedAccess> unidentifiedAccess,
-                              @Nullable GroupSendEndorsements groupSendEndorsements,
+                              @Nonnull GroupSendEndorsements groupSendEndorsements,
                               SignalServiceTypingMessage message)
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
   {
@@ -388,7 +390,7 @@ public class SignalServiceMessageSender {
   public List<SendMessageResult> sendCallMessage(DistributionId distributionId,
                                                  List<SignalServiceAddress> recipients,
                                                  List<UnidentifiedAccess> unidentifiedAccess,
-                                                 @Nullable GroupSendEndorsements groupSendEndorsements,
+                                                 @Nonnull GroupSendEndorsements groupSendEndorsements,
                                                  SignalServiceCallMessage message,
                                                  PartialSendBatchCompleteListener partialListener)
       throws IOException, UntrustedIdentityException, InvalidKeyException, NoSessionException, InvalidRegistrationIdException
@@ -2356,6 +2358,7 @@ public class SignalServiceMessageSender {
       return Collections.emptyList();
     }
 
+    Preconditions.checkArgument(groupSendEndorsements != null || story, "[" + timestamp + "] GSE is null and not sending a story");
     Preconditions.checkArgument(recipients.size() == unidentifiedAccess.size(), "[" + timestamp + "] Unidentified access mismatch!");
 
     Map<ServiceId, UnidentifiedAccess> accessBySid     = new HashMap<>();
@@ -2366,7 +2369,8 @@ public class SignalServiceMessageSender {
       accessBySid.put(addressIterator.next().getServiceId(), accessIterator.next());
     }
 
-    SealedSenderAccess sealedSenderAccess = SealedSenderAccess.forGroupSend(groupSendEndorsements, unidentifiedAccess, story);
+    SenderCertificate  senderCertificate  = unidentifiedAccess.stream().filter(Objects::nonNull).findFirst().map(UnidentifiedAccess::getUnidentifiedCertificate).orElse(null);
+    SealedSenderAccess sealedSenderAccess = SealedSenderAccess.forGroupSend(senderCertificate, groupSendEndorsements, story);
 
     for (int i = 0; i < RETRY_COUNT; i++) {
             GroupTargetInfo targetInfo         = buildGroupTargetInfo(recipients);
@@ -2493,12 +2497,8 @@ public class SignalServiceMessageSender {
           handleStaleDevices(address, stale.getDevices());
         }
       } catch (InvalidUnidentifiedAccessHeaderException e) {
-        sealedSenderAccess = sealedSenderAccess.switchToFallback();
-        if (sealedSenderAccess != null) {
-          Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Handling invalid group send endorsements. (" + e.getMessage() + ")");
-        } else {
-          throw e;
-        }
+        Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Invalid access header. (" + e.getMessage() + ")");
+        throw e;
       }
 
       Log.w(TAG, "[sendGroupMessage][" + timestamp + "] Attempt failed (i = " + i + ")");

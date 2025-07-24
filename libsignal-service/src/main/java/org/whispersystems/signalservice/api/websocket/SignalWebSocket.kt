@@ -287,7 +287,9 @@ sealed class SignalWebSocket(
   class UnauthenticatedWebSocket(connectionFactory: WebSocketFactory, canConnect: CanConnect, sleepTimer: SleepTimer, disconnectTimeoutMs: Long) : SignalWebSocket(connectionFactory, canConnect, sleepTimer, disconnectTimeoutMs.milliseconds) {
     fun request(requestMessage: WebSocketRequestMessage, sealedSenderAccess: SealedSenderAccess): Single<WebsocketResponse> {
       val headers: MutableList<String> = requestMessage.headers.toMutableList()
-      headers.add(sealedSenderAccess.header)
+      if (sealedSenderAccess.applyHeader()) {
+        headers.add(sealedSenderAccess.header)
+      }
 
       val message = requestMessage
         .newBuilder()
