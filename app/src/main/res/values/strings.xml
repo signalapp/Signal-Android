@@ -4872,7 +4872,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restore your messages from a local backup. If you don’t restore now, you won\'t be able to restore later.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Restore local backup</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restore Signal backup</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Restore all your text messages + your last 30 days of media</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">More options</string>
 
