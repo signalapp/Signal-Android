@@ -544,10 +544,10 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
   }
 
   /**
-   * Whether or not the user has linked devices.
+   * Whether or not the user is a multi-device account (has linked devices or is a linked device).
    */
-  @get:JvmName("hasLinkedDevices")
-  var hasLinkedDevices by booleanValue(KEY_HAS_LINKED_DEVICES, false)
+  @get:JvmName("isMultiDevice")
+  var isMultiDevice by booleanValue(KEY_HAS_LINKED_DEVICES, false)
 
   /** Do not alter. If you need to migrate more stuff, create a new method. */
   private fun migrateFromSharedPrefsV1(context: Context) {

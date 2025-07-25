@@ -110,7 +110,7 @@ object StickerManagementRepository {
 
     jobManager.add(StickerPackDownloadJob.forInstall(packId.value, packKey.value, notify))
 
-    if (SignalStore.account.hasLinkedDevices) {
+    if (SignalStore.account.isMultiDevice) {
       jobManager.add(MultiDeviceStickerPackOperationJob(packId.value, packKey.value, MultiDeviceStickerPackOperationJob.Type.INSTALL))
     }
   }
@@ -125,7 +125,7 @@ object StickerManagementRepository {
   suspend fun uninstallStickerPacks(packKeysById: Map<StickerPackId, StickerPackKey>) = withContext(Dispatchers.IO) {
     stickersDbTable.uninstallPacks(packIds = packKeysById.keys)
 
-    if (SignalStore.account.hasLinkedDevices) {
+    if (SignalStore.account.isMultiDevice) {
       packKeysById.forEach { (packId, packKey) ->
         AppDependencies.jobManager.add(MultiDeviceStickerPackOperationJob(packId.value, packKey.value, MultiDeviceStickerPackOperationJob.Type.REMOVE))
       }

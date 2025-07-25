@@ -100,6 +100,11 @@ class InAppPaymentKeepAliveJob private constructor(
       return
     }
 
+    if (SignalStore.account.isLinkedDevice) {
+      info(type, "Not primary, skipping")
+      return
+    }
+
     if (SignalDatabase.inAppPayments.hasPrePendingRecurringTransaction(type.inAppPaymentType)) {
       info(type, "We are currently processing a transaction for this type. Skipping.")
       return

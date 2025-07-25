@@ -21,7 +21,11 @@ internal class SyncKeysMigrationJob(
   override fun isUiBlocking(): Boolean = false
 
   override fun performMigration() {
-    if (SignalStore.account.hasLinkedDevices) {
+    if (SignalStore.account.isLinkedDevice) {
+      return
+    }
+
+    if (SignalStore.account.isMultiDevice) {
       AppDependencies.jobManager.add(MultiDeviceKeysUpdateJob())
     }
   }

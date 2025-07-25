@@ -94,7 +94,7 @@ public class MultiDeviceVerifiedUpdateJob extends BaseJob {
     }
 
     try {
-      if (!SignalStore.account().hasLinkedDevices()) {
+      if (!SignalStore.account().isMultiDevice()) {
         Log.i(TAG, "Not multi device...");
         return;
       }

@@ -74,7 +74,7 @@ public class MultiDeviceStickerPackOperationJob extends BaseJob {
 
   @Override
   protected void onRun() throws Exception {
-    if (!SignalStore.account().hasLinkedDevices()) {
+    if (!SignalStore.account().isMultiDevice()) {
       Log.i(TAG, "Not multi device, aborting...");
       return;
     }

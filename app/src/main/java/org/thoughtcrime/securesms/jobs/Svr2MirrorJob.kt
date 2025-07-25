@@ -54,6 +54,11 @@ class Svr2MirrorJob private constructor(parameters: Parameters, private var seri
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
+    if (SignalStore.account.isLinkedDevice) {
+      Log.i(TAG, "Not primary device, skipping mirror")
+      return Result.success()
+    }
+
     if (!Svr3Migration.shouldWriteToSvr2) {
       Log.w(TAG, "Writes to SVR2 are disabled. Skipping.")
       return Result.success()

@@ -180,7 +180,7 @@ object LinkDeviceRepository {
 
     return when (deviceLinkResult) {
       is NetworkResult.Success -> {
-        SignalStore.account.hasLinkedDevices = true
+        SignalStore.account.isMultiDevice = true
         LinkDeviceResult.Success(verificationCodeResult.tokenIdentifier)
       }
       is NetworkResult.ApplicationError -> throw deviceLinkResult.throwable
