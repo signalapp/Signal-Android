@@ -8419,15 +8419,15 @@
     <string name="TurnOnSignalBackups__not_now">ليس الآن</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">Verify your backup key</string>
+    <string name="VerifyBackupKey__title">تحقّق من مفتاح النسخ الاحتياطي الخاص بك</string>
     <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
     <string name="VerifyBackupKey__body">To help you remember your key, we\'ll periodically ask you for it.</string>
     <!-- Button of a megaphone that will take users to the verify backup key screen -->
-    <string name="VerifyBackupKey__verify">Verify</string>
+    <string name="VerifyBackupKey__verify">التحقُّق</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
-    <string name="VerifyBackupKey__not_now">Not now</string>
+    <string name="VerifyBackupKey__not_now">ليس الآن</string>
     <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Backup key correct. Keep your key safe.</string>
+    <string name="VerifyBackupKey__backup_key_correct">مفتاح النسخ الاحتياطي صحيح. حافِظ على مفتاحك في مكانٍ آمن.</string>
     <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">We will ask you again in a week.</string>
 
@@ -8962,9 +8962,9 @@
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">جارٍ تحضير النسخة الاحتياطية…</string>
     <!-- Linear progress dialog text shown when backup is paused because unmetered connectivity, such as WiFi, is unavailable. -->
-    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">Waiting for WiFi…</string>
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">في انتظار الاتصال بالواي فاي…</string>
     <!-- Linear progress dialog text shown when backup is paused because internet is unavailable. -->
-    <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">Waiting for Internet connection…</string>
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">في انتظار اتصال بالإنترنت…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
         <item quantity="zero">جارٍ معالجة %1$s من ~%2$s رسائل (%3$d%%)</item>
@@ -9162,11 +9162,11 @@
     <string name="MessageBackupsKeyVerifyScreen__next">التالي</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">Enter your backup key</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">أدخِل مفتاح النسخة الاحتياطية الخاص بك</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-digit code you recorded when you enabled backups.</string>
     <!-- Button text when you forget your backup key -->
-    <string name="VerifyBackupPinScreen__forgot_key">Forgot key?</string>
+    <string name="VerifyBackupPinScreen__forgot_key">هل نسيت المفتاح؟</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
