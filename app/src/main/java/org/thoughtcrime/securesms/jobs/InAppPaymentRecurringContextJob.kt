@@ -32,6 +32,7 @@ import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.Subscription
 import org.whispersystems.signalservice.internal.ServiceResponse
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.io.IOException
 import java.util.Currency
 import kotlin.concurrent.withLock
@@ -220,6 +221,11 @@ class InAppPaymentRecurringContextJob private constructor(
 
     return when (inAppPayment.type) {
       InAppPaymentType.RECURRING_BACKUP -> {
+        if (whoAmIResponse.entitlements?.backup?.backupLevel != SubscriptionsConfiguration.BACKUPS_LEVEL.toLong()) {
+          info("Entitlement level does not match expected paid backups level.")
+          return false
+        }
+
         val backupExpirationSeconds = whoAmIResponse.entitlements?.backup?.expirationSeconds ?: return false
 
         backupExpirationSeconds >= endOfCurrentSubscriptionPeriod
