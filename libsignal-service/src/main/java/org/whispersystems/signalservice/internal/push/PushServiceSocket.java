@@ -179,7 +179,7 @@ public class PushServiceSocket {
 
   private static final String REGISTRATION_PATH    = "/v1/registration";
 
-  private static final String BACKUP_AUTH_CHECK_V2 = "/v2/backup/auth/check";
+  private static final String BACKUP_AUTH_CHECK_V2 = "/v2/svr/auth/check";
   private static final String BACKUP_AUTH_CHECK_V3 = "/v3/backup/auth/check";
 
   private static final String ARCHIVE_MEDIA_DOWNLOAD_PATH = "backups/%s/%s";
