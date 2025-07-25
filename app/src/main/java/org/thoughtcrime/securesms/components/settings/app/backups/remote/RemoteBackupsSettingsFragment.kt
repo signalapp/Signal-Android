@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -69,7 +68,6 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
@@ -487,7 +485,7 @@ private fun RemoteBackupsSettingsContent(
               state = state.backupState,
               onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription,
               onRenewClick = contentCallbacks::onRenewLostSubscription,
-              isRenewEnabled = backupDeleteState != DeletionState.DELETE_BACKUPS
+              isRenewEnabled = backupDeleteState.isIdle()
             )
           }
 
@@ -497,7 +495,7 @@ private fun RemoteBackupsSettingsContent(
             BackupCard(
               backupState = state.backupState,
               onBackupTypeActionButtonClicked = contentCallbacks::onBackupTypeActionClick,
-              buttonsEnabled = backupDeleteState != DeletionState.DELETE_BACKUPS
+              buttonsEnabled = backupDeleteState.isIdle()
             )
           }
 
@@ -506,7 +504,7 @@ private fun RemoteBackupsSettingsContent(
               title = stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found),
               onRenewClick = contentCallbacks::onRenewLostSubscription,
               onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription,
-              isRenewEnabled = backupDeleteState != DeletionState.DELETE_BACKUPS
+              isRenewEnabled = backupDeleteState.isIdle()
             )
           }
 
@@ -535,6 +533,7 @@ private fun RemoteBackupsSettingsContent(
           canRestoreUsingCellular = state.canRestoreUsingCellular,
           canBackUpNow = !state.isOutOfStorageSpace,
           includeDebuglog = state.includeDebuglog,
+          backupMediaDetails = state.backupMediaDetails,
           contentCallbacks = contentCallbacks
         )
       } else {
@@ -591,7 +590,7 @@ private fun RemoteBackupsSettingsContent(
     }
 
     RemoteBackupsSettingsState.Dialog.PROGRESS_SPINNER -> {
-      CircularProgressDialog(onDismiss = contentCallbacks::onDialogDismissed)
+      Dialogs.IndeterminateProgressDialog(onDismissRequest = { contentCallbacks.onDialogDismissed() })
     }
 
     RemoteBackupsSettingsState.Dialog.DOWNLOADING_YOUR_BACKUP -> {
@@ -764,13 +763,13 @@ private fun LazyListScope.appendBackupDeletionItems(
       } else {
         item {
           LinearProgressIndicator(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.horizontalGutters().fillMaxWidth()
           )
         }
       }
     }
 
-    DeletionState.DELETE_BACKUPS -> {
+    DeletionState.MEDIA_DOWNLOAD_FINISHED, DeletionState.DELETE_BACKUPS -> {
       item {
         DescriptionText(text = stringResource(R.string.RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data))
       }
@@ -841,6 +840,7 @@ private fun LazyListScope.appendBackupDetailsItems(
   canRestoreUsingCellular: Boolean,
   canBackUpNow: Boolean,
   includeDebuglog: Boolean?,
+  backupMediaDetails: RemoteBackupsSettingsState.BackupMediaDetails?,
   contentCallbacks: ContentCallbacks
 ) {
   item {
@@ -849,6 +849,16 @@ private fun LazyListScope.appendBackupDetailsItems(
 
   item {
     Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
+  }
+
+  if (backupMediaDetails != null) {
+    item {
+      Column(modifier = Modifier.horizontalGutters()) {
+        Text("[Internal Only] Backup Media Details")
+        Text("Awaiting Restore: ${backupMediaDetails.awaitingRestore.toUnitString()}")
+        Text("Offloaded: ${backupMediaDetails.offloaded.toUnitString()}")
+      }
+    }
   }
 
   if (backupRestoreState !is BackupRestoreState.None) {
@@ -1645,35 +1655,6 @@ private fun ResumeRestoreOverCellularDialog(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun CircularProgressDialog(
-  onDismiss: () -> Unit
-) {
-  BasicAlertDialog(
-    onDismissRequest = onDismiss,
-    properties = DialogProperties(
-      dismissOnBackPress = false,
-      dismissOnClickOutside = false
-    )
-  ) {
-    Surface(
-      shape = Dialogs.Defaults.shape,
-      color = Dialogs.Defaults.containerColor
-    ) {
-      Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.aspectRatio(1f)
-      ) {
-        CircularProgressIndicator(
-          modifier = Modifier
-            .size(48.dp)
-        )
-      }
-    }
-  }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
 private fun BackupFrequencyDialog(
   selected: BackupFrequency,
   onSelected: (BackupFrequency) -> Unit,
@@ -2118,16 +2099,6 @@ private fun SkipDownloadDialogPreview() {
   Previews.Preview {
     SkipDownloadDialog(
       renewalTime = System.currentTimeMillis().milliseconds + 30.days
-    )
-  }
-}
-
-@SignalPreview
-@Composable
-private fun CircularProgressDialogPreview() {
-  Previews.Preview {
-    CircularProgressDialog(
-      onDismiss = {}
     )
   }
 }

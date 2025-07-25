@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraintObserver
+import org.thoughtcrime.securesms.jobmanager.impl.DeletionNotAwaitingMediaDownloadConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollectionPendingConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObserver
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
@@ -100,7 +101,17 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   var lastBackupProtoSize: Long by longValue(KEY_BACKUP_LAST_PROTO_SIZE, 0L)
 
   private val deletionStateValue = enumValue(KEY_BACKUP_DELETION_STATE, DeletionState.NONE, DeletionState.serializer)
-  var deletionState by deletionStateValue
+  private var internalDeletionState by deletionStateValue
+
+  var deletionState: DeletionState
+    get() {
+      return internalDeletionState
+    }
+    set(value) {
+      internalDeletionState = value
+      DeletionNotAwaitingMediaDownloadConstraint.Observer.notifyListeners()
+    }
+
   val deletionStateFlow: Flow<DeletionState> = deletionStateValue.toFlow()
 
   var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)

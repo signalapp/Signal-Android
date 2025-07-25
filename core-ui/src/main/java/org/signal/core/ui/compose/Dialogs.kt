@@ -184,9 +184,11 @@ object Dialogs {
    * let the user know that some action is completing.
    */
   @Composable
-  fun IndeterminateProgressDialog() {
+  fun IndeterminateProgressDialog(
+    onDismissRequest: () -> Unit = {}
+  ) {
     BaseAlertDialog(
-      onDismissRequest = {},
+      onDismissRequest = onDismissRequest,
       confirmButton = {},
       dismissButton = {},
       text = {

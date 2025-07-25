@@ -22,6 +22,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
+import kotlinx.coroutines.withContext
 import org.signal.core.util.bytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
@@ -44,6 +45,7 @@ import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.service.MessageBackupListener
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.NetworkResult
@@ -81,7 +83,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   init {
     viewModelScope.launch(Dispatchers.IO) {
-      _state.update { it.copy(backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize()) }
+      refreshBackupMediaSizeState()
     }
 
     viewModelScope.launch(Dispatchers.IO) {
@@ -105,7 +107,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         .attachmentUpdates()
         .throttleLatest(5.seconds)
         .collectLatest {
-          _state.update { it.copy(backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize()) }
+          refreshBackupMediaSizeState()
         }
     }
 
@@ -209,10 +211,14 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   fun turnOffAndDeleteBackups() {
-    requestDialog(RemoteBackupsSettingsState.Dialog.PROGRESS_SPINNER)
+    viewModelScope.launch {
+      requestDialog(RemoteBackupsSettingsState.Dialog.PROGRESS_SPINNER)
 
-    viewModelScope.launch(Dispatchers.IO) {
-      BackupRepository.turnOffAndDisableBackups()
+      withContext(Dispatchers.IO) {
+        BackupRepository.turnOffAndDisableBackups()
+      }
+
+      requestDialog(RemoteBackupsSettingsState.Dialog.NONE)
     }
   }
 
@@ -227,6 +233,20 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   fun setIncludeDebuglog(includeDebuglog: Boolean) {
     SignalStore.internal.includeDebuglogInBackup = includeDebuglog
     _state.update { it.copy(includeDebuglog = includeDebuglog) }
+  }
+
+  private fun refreshBackupMediaSizeState() {
+    _state.update {
+      it.copy(
+        backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize(),
+        backupMediaDetails = if (RemoteConfig.internalUser || Environment.IS_STAGING) {
+          RemoteBackupsSettingsState.BackupMediaDetails(
+            awaitingRestore = SignalDatabase.attachments.getRemainingRestorableAttachmentSize().bytes,
+            offloaded = SignalDatabase.attachments.getOptimizedMediaAttachmentSize().bytes
+          )
+        } else null
+      )
+    }
   }
 
   private suspend fun refreshState(lastPurchase: InAppPaymentTable.InAppPayment?) {

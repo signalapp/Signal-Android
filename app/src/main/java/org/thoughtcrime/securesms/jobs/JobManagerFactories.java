@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.DecryptionsDrainedConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.impl.DeletionNotAwaitingMediaDownloadConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkOrCellServiceConstraint;
@@ -412,6 +413,7 @@ public final class JobManagerFactories {
       put(ChargingConstraint.KEY,                                new ChargingConstraint.Factory());
       put(DataRestoreConstraint.KEY,                             new DataRestoreConstraint.Factory());
       put(DecryptionsDrainedConstraint.KEY,                      new DecryptionsDrainedConstraint.Factory());
+      put(DeletionNotAwaitingMediaDownloadConstraint.KEY,        new DeletionNotAwaitingMediaDownloadConstraint.Factory());
       put(NetworkConstraint.KEY,                                 new NetworkConstraint.Factory(application));
       put(NetworkOrCellServiceConstraint.KEY,                    new NetworkOrCellServiceConstraint.Factory(application));
       put(NetworkOrCellServiceConstraint.LEGACY_KEY,             new NetworkOrCellServiceConstraint.Factory(application));
@@ -435,7 +437,8 @@ public final class JobManagerFactories {
                          RestoreAttachmentConstraintObserver.INSTANCE,
                          NoRemoteArchiveGarbageCollectionPendingConstraint.Observer.INSTANCE,
                          RegisteredConstraint.Observer.INSTANCE,
-                         BackupMessagesConstraintObserver.INSTANCE);
+                         BackupMessagesConstraintObserver.INSTANCE,
+                         DeletionNotAwaitingMediaDownloadConstraint.Observer.INSTANCE);
   }
 
   public static List<JobMigration> getJobMigrations(@NonNull Application application) {
