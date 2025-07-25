@@ -185,9 +185,10 @@ public class ApplicationMigrations {
     static final int E164_FORMATTING_3             = 141;
     static final int STORAGE_LOCAL_UNKNOWNS_FIX_2  = 142;
     static final int SVR2_ENCLAVE_UPDATE_4         = 143;
+    static final int RESET_ARCHIVE_TIER            = 144;
   }
 
-  public static final int CURRENT_VERSION = 143;
+  public static final int CURRENT_VERSION = 144;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -852,6 +853,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.SVR2_ENCLAVE_UPDATE_4) {
       jobs.put(Version.SVR2_ENCLAVE_UPDATE_4, new Svr2MirrorMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.RESET_ARCHIVE_TIER) {
+      jobs.put(Version.RESET_ARCHIVE_TIER, new ResetArchiveTierMigrationJob());
     }
 
     return jobs;
