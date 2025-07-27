@@ -15,10 +15,15 @@ import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -36,6 +41,7 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
@@ -214,20 +220,27 @@ object Dialogs {
       dismissButton = {},
       text = {
         Column(
-          verticalArrangement = Arrangement.Center,
           horizontalAlignment = Alignment.CenterHorizontally,
-          modifier = Modifier.fillMaxWidth().fillMaxHeight()
+          modifier = Modifier
+            .fillMaxWidth()
+            .padding(24.dp)
         ) {
-          Spacer(modifier = Modifier.size(24.dp))
           CircularProgressIndicator()
-          Spacer(modifier = Modifier.size(20.dp))
-          Text(text = message, textAlign = TextAlign.Center)
+          Spacer(modifier = Modifier.height(16.dp))
+          Text(
+            text = message,
+            textAlign = TextAlign.Center,
+            style = MaterialTheme.typography.bodyLarge
+          )
         }
       },
       modifier = Modifier
-        .size(200.dp)
+        .wrapContentHeight()
+        .fillMaxWidth(0.9f)
     )
   }
+
+
 
   /**
    * Customizable progress spinner that can be dismissed while showing [message]
