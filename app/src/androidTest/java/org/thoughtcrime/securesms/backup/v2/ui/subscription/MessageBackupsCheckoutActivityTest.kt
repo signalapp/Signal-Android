@@ -4,7 +4,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertIsEnabled
-import androidx.compose.ui.test.assertIsNotEnabled
+import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createEmptyComposeRule
 import androidx.compose.ui.test.onNodeWithTag
@@ -175,7 +175,8 @@ class MessageBackupsCheckoutActivityTest {
 
     // Type selection screen
     composeTestRule.onNodeWithText(context.getString(R.string.MessagesBackupsTypeSelectionScreen__choose_your_backup_plan)).assertIsDisplayed()
-    composeTestRule.onNodeWithTag("subscribe-button").assertIsNotEnabled()
+    composeTestRule.onNodeWithTag("message-backups-type-block-free").assertIsSelected()
+    composeTestRule.onNodeWithTag("subscribe-button").assertIsEnabled()
   }
 
   private fun launchCheckoutFlow(tier: MessageBackupTier? = null): ActivityScenario<MessageBackupsCheckoutActivity> {

@@ -535,7 +535,7 @@ object RemoteConfig {
     key = "android.internalUser",
     hotSwappable = true
   ) { value ->
-    value.asBoolean(false) || Environment.IS_NIGHTLY || Environment.IS_STAGING
+    value.asBoolean(false) || Environment.IS_NIGHTLY || Environment.IS_STAGING || Environment.IS_INSTRUMENTATION
   }
 
   /** The raw client expiration JSON string.  */
