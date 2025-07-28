@@ -323,6 +323,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     store
       .beginWrite()
       .putLong(KEY_NEXT_BACKUP_TIME, -1)
+      .putLong(KEY_LAST_BACKUP_TIME, -1)
       .putBoolean(KEY_BACKUPS_INITIALIZED, false)
       .putBoolean(KEY_BACKUP_UPLOADED, false)
       .putLong(KEY_LAST_VERIFY_KEY_TIME, -1)

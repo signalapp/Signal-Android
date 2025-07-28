@@ -171,7 +171,7 @@ private fun BackupsSettingsContent(
 
           is BackupState.ActiveFree, is BackupState.ActivePaid, is BackupState.Canceled -> {
             ActiveBackupsRow(
-              backupState = backupsSettingsState.backupState as BackupState.WithTypeAndRenewalTime,
+              backupState = backupsSettingsState.backupState,
               onBackupsRowClick = onBackupsRowClick,
               lastBackupAt = backupsSettingsState.lastBackupAt
             )
@@ -188,7 +188,10 @@ private fun BackupsSettingsContent(
           }
 
           BackupState.Error -> {
-            WaitingForNetworkRow()
+            WaitingForNetworkRow(
+              onBackupsRowClick = onBackupsRowClick
+            )
+
             OtherWaysToBackUpHeading()
           }
 
@@ -283,10 +286,13 @@ private fun NeverEnabledBackupsRow(
 }
 
 @Composable
-private fun WaitingForNetworkRow() {
+private fun WaitingForNetworkRow(onBackupsRowClick: () -> Unit = {}) {
   Rows.TextRow(
     text = {
-      Text(text = stringResource(R.string.RemoteBackupsSettingsFragment__waiting_for_network))
+      Column {
+        Text(text = stringResource(R.string.RemoteBackupsSettingsFragment__waiting_for_network))
+        ViewSettingsButton(onBackupsRowClick)
+      }
     },
     icon = {
       CircularProgressIndicator()
@@ -307,6 +313,7 @@ private fun InactiveBackupsRow(
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.onSurfaceVariant
         )
+        ViewSettingsButton(onBackupsRowClick)
       }
     },
     icon = {
@@ -315,8 +322,7 @@ private fun InactiveBackupsRow(
         contentDescription = stringResource(R.string.preferences_chats__backups),
         tint = MaterialTheme.colorScheme.onSurface
       )
-    },
-    onClick = onBackupsRowClick
+    }
   )
 }
 
@@ -347,9 +353,9 @@ private fun NotFoundBackupRow(
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.onSurfaceVariant
         )
+        ViewSettingsButton(onBackupsRowClick)
       }
-    },
-    onClick = onBackupsRowClick
+    }
   )
 }
 

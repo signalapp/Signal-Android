@@ -630,6 +630,12 @@ class AttachmentTable(
       .readToSingleLong()
   }
 
+  private fun getMessageDoesNotExpireWithinTimeoutClause(tablePrefix: String = MessageTable.TABLE_NAME): String {
+    val messageHasExpiration = "$tablePrefix.${MessageTable.EXPIRES_IN} > 0"
+    val messageExpiresInOneDayAfterViewing = "$messageHasExpiration AND  $tablePrefix.${MessageTable.EXPIRES_IN} < ${1.days.inWholeMilliseconds}"
+    return "NOT $messageExpiresInOneDayAfterViewing"
+  }
+
   /**
    * Finds all of the attachmentIds of attachments that need to be uploaded to the archive cdn.
    */
@@ -2467,8 +2473,6 @@ class AttachmentTable(
   }
 
   fun getEstimatedArchiveMediaSize(): Long {
-    val expirationCutoff = ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds
-
     val estimatedThumbnailCount = readableDatabase
       .select("COUNT(*)")
       .from(
@@ -2483,7 +2487,7 @@ class AttachmentTable(
             $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
             $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value} AND 
             ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
-            (m.${MessageTable.EXPIRES_IN} = 0 OR (m.${MessageTable.EXPIRES_IN} > $expirationCutoff AND (m.${MessageTable.EXPIRE_STARTED} + m.${MessageTable.EXPIRES_IN} + $expirationCutoff < ${System.currentTimeMillis()})))
+            ${getMessageDoesNotExpireWithinTimeoutClause(tablePrefix = "m")}
         )
         """
       )
@@ -2503,7 +2507,7 @@ class AttachmentTable(
               $REMOTE_KEY NOT NULL AND 
               $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
               $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value} AND
-              (m.${MessageTable.EXPIRES_IN} = 0 OR (m.${MessageTable.EXPIRES_IN} > $expirationCutoff AND (m.${MessageTable.EXPIRE_STARTED} + m.${MessageTable.EXPIRES_IN} + $expirationCutoff < ${System.currentTimeMillis()})))
+              ${getMessageDoesNotExpireWithinTimeoutClause(tablePrefix = "m")}
           )
         """
       )

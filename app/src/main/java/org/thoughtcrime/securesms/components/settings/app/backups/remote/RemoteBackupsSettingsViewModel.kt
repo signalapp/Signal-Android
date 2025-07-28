@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
 import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupStateRepository
@@ -238,7 +239,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   private fun refreshBackupMediaSizeState() {
     _state.update {
       it.copy(
-        backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize(),
+        backupMediaSize = getBackupMediaSize(),
         backupMediaDetails = if (RemoteConfig.internalUser || Environment.IS_STAGING) {
           RemoteBackupsSettingsState.BackupMediaDetails(
             awaitingRestore = SignalDatabase.attachments.getRemainingRestorableAttachmentSize().bytes,
@@ -287,7 +288,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         backupsEnabled = SignalStore.backup.areBackupsEnabled,
         lastBackupTimestamp = SignalStore.backup.lastBackupTime,
         canBackupMessagesJobRun = BackupMessagesConstraint.isMet(AppDependencies.application),
-        backupMediaSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize(),
+        backupMediaSize = getBackupMediaSize(),
         backupsFrequency = SignalStore.backup.backupFrequency,
         canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
         canRestoreUsingCellular = SignalStore.backup.restoreWithCellular,
@@ -299,6 +300,14 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     val state = BackupStateRepository.resolveBackupState(lastPurchase)
     _state.update {
       it.copy(backupState = state)
+    }
+  }
+
+  private fun getBackupMediaSize(): Long {
+    return if (SignalStore.backup.backupTier == MessageBackupTier.PAID && SignalStore.backup.hasBackupBeenUploaded) {
+      SignalDatabase.attachments.getEstimatedArchiveMediaSize()
+    } else {
+      0L
     }
   }
 }
