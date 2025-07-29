@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 
 /**
@@ -69,7 +70,7 @@ fun BetaHeader(modifier: Modifier = Modifier) {
     verticalAlignment = Alignment.CenterVertically,
     modifier = modifier
       .background(
-        color = MaterialTheme.colorScheme.surfaceVariant,
+        color = SignalTheme.colors.colorSurface2,
         shape = RoundedCornerShape(12.dp)
       )
       .padding(16.dp)

@@ -177,6 +177,8 @@ fun MessageBackupsTypeSelectionScreen(
             }
 
             stringResource(R.string.MessageBackupsTypeSelectionScreen__subscribe_for_x_month, price)
+          } else if (selectedBackupTier == MessageBackupTier.FREE) {
+            stringResource(R.string.MessageBackupsTypeSelectionScreen__choose_free_plan)
           } else {
             stringResource(R.string.MessageBackupsTypeSelectionScreen__subscribe)
           }
@@ -205,7 +207,7 @@ private fun MessageBackupsTypeSelectionScreenPreview() {
   Previews.Preview {
     MessageBackupsTypeSelectionScreen(
       stage = MessageBackupsStage.TYPE_SELECTION,
-      selectedBackupTier = MessageBackupTier.FREE,
+      selectedBackupTier = selectedBackupsType,
       availableBackupTypes = testBackupTypes(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },
       onNavigationClick = {},
@@ -225,7 +227,7 @@ private fun MessageBackupsTypeSelectionScreenWithCurrentTierPreview() {
   Previews.Preview {
     MessageBackupsTypeSelectionScreen(
       stage = MessageBackupsStage.TYPE_SELECTION,
-      selectedBackupTier = MessageBackupTier.FREE,
+      selectedBackupTier = selectedBackupsType,
       availableBackupTypes = testBackupTypes(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },
       onNavigationClick = {},

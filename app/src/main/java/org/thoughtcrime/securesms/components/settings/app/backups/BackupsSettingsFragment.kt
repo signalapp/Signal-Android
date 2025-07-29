@@ -264,7 +264,10 @@ private fun NeverEnabledBackupsRow(
     },
     text = {
       Column {
-        TextWithBetaLabel(text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups))
+        TextWithBetaLabel(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
+          textStyle = MaterialTheme.typography.bodyLarge
+        )
 
         Text(
           text = stringResource(R.string.BackupsSettingsFragment_automatic_backups_with_signals),
@@ -307,7 +310,11 @@ private fun InactiveBackupsRow(
   Rows.TextRow(
     text = {
       Column {
-        TextWithBetaLabel(text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups))
+        TextWithBetaLabel(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
+          textStyle = MaterialTheme.typography.bodyLarge
+        )
+
         Text(
           text = stringResource(R.string.preferences_off),
           style = MaterialTheme.typography.bodyMedium,
@@ -347,7 +354,11 @@ private fun NotFoundBackupRow(
     },
     text = {
       Column {
-        TextWithBetaLabel(text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups))
+        TextWithBetaLabel(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
+          textStyle = MaterialTheme.typography.bodyLarge
+        )
+
         Text(
           text = stringResource(R.string.BackupsSettingsFragment_subscription_not_found_on_this_device),
           style = MaterialTheme.typography.bodyMedium,
@@ -379,7 +390,11 @@ private fun PendingBackupRow(
     },
     text = {
       Column {
-        TextWithBetaLabel(text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups))
+        TextWithBetaLabel(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
+          textStyle = MaterialTheme.typography.bodyLarge
+        )
+
         Text(
           text = stringResource(R.string.RemoteBackupsSettingsFragment__payment_pending),
           color = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -427,7 +442,10 @@ private fun ActiveBackupsRow(
     },
     text = {
       Column {
-        TextWithBetaLabel(text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups))
+        TextWithBetaLabel(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
+          textStyle = MaterialTheme.typography.bodyLarge
+        )
 
         when (val type = backupState.messageBackupsType) {
           is MessageBackupsType.Paid -> {
