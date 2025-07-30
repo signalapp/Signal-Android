@@ -961,7 +961,7 @@ public class PushServiceSocket {
       if (response.isSuccessful()) {
         return file.getAttachmentDigest();
       } else {
-        throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
+        throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response, response.body().string());
       }
     } catch (PushNetworkException | NonSuccessfulResponseCodeException e) {
       throw e;

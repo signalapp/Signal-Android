@@ -231,6 +231,12 @@ class UploadAttachmentToArchiveJob private constructor(
 
           is NetworkResult.StatusCodeError -> {
             Log.w(TAG, "[$attachmentId] Failed to upload due to status code error. Code: ${result.code}", result.exception)
+            when (result.code) {
+              400 -> {
+                Log.w(TAG, "[$attachmentId] 400 likely means bad resumable state. Clearing upload spec before retrying.")
+                uploadSpec = null
+              }
+            }
             return Result.retry(defaultBackoff())
           }
         }
