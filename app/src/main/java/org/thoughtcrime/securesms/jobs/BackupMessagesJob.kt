@@ -22,6 +22,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraint
 import org.thoughtcrime.securesms.jobs.protos.BackupMessagesJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -196,8 +197,16 @@ class BackupMessagesJob private constructor(
       override fun shouldCancel(): Boolean = isCanceled
     }
 
-    FileInputStream(tempBackupFile).use {
-      when (val result = BackupRepository.uploadBackupFile(backupSpec, it, tempBackupFile.length(), progressListener)) {
+    FileInputStream(tempBackupFile).use { fileStream ->
+      val uploadResult = SignalNetwork.archive.uploadBackupFile(
+        uploadForm = backupSpec.attachmentUploadForm,
+        resumableUploadUrl = backupSpec.resumableUri,
+        data = fileStream,
+        dataLength = tempBackupFile.length(),
+        progressListener = progressListener
+      )
+
+      when (uploadResult) {
         is NetworkResult.Success -> {
           Log.i(TAG, "Successfully uploaded backup file.")
           if (!SignalStore.backup.hasBackupBeenUploaded) {
@@ -209,7 +218,7 @@ class BackupMessagesJob private constructor(
         }
 
         is NetworkResult.NetworkError -> {
-          Log.i(TAG, "Network failure", result.getCause())
+          Log.i(TAG, "Network failure", uploadResult.getCause())
           return if (isCanceled) {
             Result.failure()
           } else {
@@ -218,11 +227,17 @@ class BackupMessagesJob private constructor(
         }
 
         is NetworkResult.StatusCodeError -> {
-          Log.i(TAG, "Status code failure", result.getCause())
+          Log.i(TAG, "Status code failure", uploadResult.getCause())
+          when (uploadResult.code) {
+            400 -> {
+              Log.w(TAG, "400 likely means bad resumable state. Resetting the upload spec before retrying.")
+              resumableMessagesBackupUploadSpec = null
+            }
+          }
           return Result.retry(defaultBackoff())
         }
 
-        is NetworkResult.ApplicationError -> throw result.throwable
+        is NetworkResult.ApplicationError -> throw uploadResult.throwable
       }
     }
     stopwatch.split("upload")

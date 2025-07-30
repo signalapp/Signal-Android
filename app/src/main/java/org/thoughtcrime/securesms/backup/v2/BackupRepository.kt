@@ -1353,17 +1353,6 @@ object BackupRepository {
       }
   }
 
-  fun uploadBackupFile(
-    resumableSpec: ResumableMessagesBackupUploadSpec,
-    backupStream: InputStream,
-    backupStreamLength: Long,
-    progressListener: ProgressListener? = null
-  ): NetworkResult<Unit> {
-    val (form, resumableUploadUrl) = resumableSpec
-    return SignalNetwork.archive.uploadBackupFile(form, resumableUploadUrl, backupStream, backupStreamLength, progressListener)
-      .also { Log.i(TAG, "UploadBackupFileResult: ${it::class.simpleName}") }
-  }
-
   fun downloadBackupFile(destination: File, listener: ProgressListener? = null): NetworkResult<Unit> {
     return initBackupAndFetchAuth()
       .then { credential ->
