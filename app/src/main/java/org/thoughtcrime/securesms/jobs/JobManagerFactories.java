@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.migrations.AccountConsistencyMigrationJob;
 import org.thoughtcrime.securesms.migrations.AccountRecordMigrationJob;
 import org.thoughtcrime.securesms.migrations.AepMigrationJob;
 import org.thoughtcrime.securesms.migrations.ApplyUnknownFieldsToSelfMigrationJob;
+import org.thoughtcrime.securesms.migrations.ArchiveBackupIdReservationMigrationJob;
 import org.thoughtcrime.securesms.migrations.AttachmentCleanupMigrationJob;
 import org.thoughtcrime.securesms.migrations.AttachmentHashBackfillMigrationJob;
 import org.thoughtcrime.securesms.migrations.AttributesMigrationJob;
@@ -125,6 +126,7 @@ public final class JobManagerFactories {
       put(ApkUpdateJob.KEY,                            new ApkUpdateJob.Factory());
       put(ArchiveAttachmentBackfillJob.KEY,            new ArchiveAttachmentBackfillJob.Factory());
       put(ArchiveAttachmentReconciliationJob.KEY,      new ArchiveAttachmentReconciliationJob.Factory());
+      put(ArchiveBackupIdReservationJob.KEY,           new ArchiveBackupIdReservationJob.Factory());
       put(ArchiveCommitAttachmentDeletesJob.KEY,       new ArchiveCommitAttachmentDeletesJob.Factory());
       put(ArchiveThumbnailUploadJob.KEY,               new ArchiveThumbnailUploadJob.Factory());
       put(AttachmentCompressionJob.KEY,                new AttachmentCompressionJob.Factory());
@@ -284,6 +286,7 @@ public final class JobManagerFactories {
       put(AccountRecordMigrationJob.KEY,                  new AccountRecordMigrationJob.Factory());
       put(AepMigrationJob.KEY,                            new AepMigrationJob.Factory());
       put(ApplyUnknownFieldsToSelfMigrationJob.KEY,       new ApplyUnknownFieldsToSelfMigrationJob.Factory());
+      put(ArchiveBackupIdReservationMigrationJob.KEY,     new ArchiveBackupIdReservationMigrationJob.Factory());
       put(AttachmentCleanupMigrationJob.KEY,              new AttachmentCleanupMigrationJob.Factory());
       put(AttachmentHashBackfillMigrationJob.KEY,         new AttachmentHashBackfillMigrationJob.Factory());
       put(AttributesMigrationJob.KEY,                     new AttributesMigrationJob.Factory());

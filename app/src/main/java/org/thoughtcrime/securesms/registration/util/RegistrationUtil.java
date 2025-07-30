@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.registration.util;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
+import org.thoughtcrime.securesms.jobs.ArchiveBackupIdReservationJob;
 import org.thoughtcrime.securesms.jobs.DirectoryRefreshJob;
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob;
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob;
@@ -52,6 +53,8 @@ public final class RegistrationUtil {
 
       SignalStore.emoji().clearSearchIndexMetadata();
       EmojiSearchIndexDownloadJob.scheduleImmediately();
+
+      AppDependencies.getJobManager().add(new ArchiveBackupIdReservationJob());
 
     } else if (!SignalStore.registration().isRegistrationComplete()) {
       Log.i(TAG, "Registration is not yet complete.", new Throwable());
