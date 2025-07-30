@@ -555,7 +555,8 @@ public class CameraXFragment extends LoggingFragment implements CameraFragment {
       public void onCaptureSuccess(@NonNull ImageProxy image) {
         flashHelper.endFlash();
 
-        final boolean flip = cameraController.getCameraSelector() == CameraSelector.DEFAULT_FRONT_CAMERA;
+//        final boolean flip = cameraController.getCameraSelector() == CameraSelector.DEFAULT_FRONT_CAMERA;
+        final boolean flip = false;
         SimpleTask.run(CameraXFragment.this.getViewLifecycleOwner().getLifecycle(), () -> {
           stopwatch.split("captured");
           try {
