@@ -14,6 +14,7 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toInAppPaymentDataChargeFailure
@@ -27,6 +28,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
@@ -223,6 +225,19 @@ class InAppPaymentRecurringContextJob private constructor(
       InAppPaymentType.RECURRING_BACKUP -> {
         if (whoAmIResponse.entitlements?.backup?.backupLevel != SubscriptionsConfiguration.BACKUPS_LEVEL.toLong()) {
           info("Entitlement level does not match expected paid backups level.")
+          return false
+        }
+
+        val tier = when (val result = BackupRepository.getBackupTier()) {
+          is NetworkResult.Success -> result.result
+          else -> {
+            warning("Failed to get backup tier via zk check.")
+            MessageBackupTier.FREE
+          }
+        }
+
+        if (tier != MessageBackupTier.PAID) {
+          warning("ZK credential does not align with entitlement. Forcing a redemption.")
           return false
         }
 
