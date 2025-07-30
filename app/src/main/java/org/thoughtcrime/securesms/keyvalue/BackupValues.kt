@@ -16,7 +16,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObs
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.keyvalue.protos.BackupDownloadNotifierState
 import org.thoughtcrime.securesms.util.RemoteConfig
-import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.archive.ArchiveServiceCredential
 import org.whispersystems.signalservice.api.archive.GetArchiveCdnCredentialsResponse
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
@@ -187,15 +186,15 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
           return MediaRootBackupKey(value)
         }
 
-        Log.i(TAG, "Generating MediaRootBackupKey...", Throwable())
-        val bytes = Util.getSecretBytes(32)
-        store.beginWrite().putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, bytes).commit()
-        return MediaRootBackupKey(bytes)
+        Log.i(TAG, "Generating MediaRootBackupKey...", Throwable(), true)
+        val newKey = MediaRootBackupKey.generate()
+        store.beginWrite().putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, newKey.value).commit()
+        return newKey
       }
     }
     set(value) {
       lock.withLock {
-        Log.i(TAG, "Setting MediaRootBackupKey", Throwable())
+        Log.i(TAG, "Setting MediaRootBackupKey...", Throwable(), true)
         store.beginWrite().putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, value.value).commit()
         mediaCredentials.clearAll()
         cachedMediaCdnPath = null

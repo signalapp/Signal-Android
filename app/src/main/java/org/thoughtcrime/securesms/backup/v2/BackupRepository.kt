@@ -211,17 +211,21 @@ object BackupRepository {
    * Generates a new AEP that the user can choose to confirm.
    */
   @CheckResult
-  fun stageAEPKeyRotation(): AccountEntropyPool {
-    return AccountEntropyPool.generate()
+  fun stageBackupKeyRotations(): StagedBackupKeyRotations {
+    return StagedBackupKeyRotations(
+      aep = AccountEntropyPool.generate(),
+      mediaRootBackupKey = MediaRootBackupKey.generate()
+    )
   }
 
   /**
    * Saves the AEP to the local storage and kicks off a backup upload.
    */
-  suspend fun commitAEPKeyRotation(accountEntropyPool: AccountEntropyPool) {
+  suspend fun commitAEPKeyRotation(stagedKeyRotations: StagedBackupKeyRotations) {
     haltAllJobs()
     resetInitializedStateAndAuthCredentials()
-    SignalStore.account.rotateAccountEntropyPool(accountEntropyPool)
+    SignalStore.account.rotateAccountEntropyPool(stagedKeyRotations.aep)
+    SignalStore.backup.mediaRootBackupKey = stagedKeyRotations.mediaRootBackupKey
     BackupMessagesJob.enqueue()
   }
 
@@ -2007,6 +2011,11 @@ class DebugBackupMetadata(
   val usedSpace: Long,
   val mediaCount: Long,
   val mediaSize: Long
+)
+
+data class StagedBackupKeyRotations(
+  val aep: AccountEntropyPool,
+  val mediaRootBackupKey: MediaRootBackupKey
 )
 
 sealed class ImportResult {

@@ -134,7 +134,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
           return AccountEntropyPool(it)
         }
 
-        Log.i(TAG, "Generating Account Entropy Pool (AEP)...")
+        Log.i(TAG, "Generating Account Entropy Pool (AEP)...", Throwable(), true)
         val newAep = LibSignalAccountEntropyPool.generate()
         putString(KEY_ACCOUNT_ENTROPY_POOL, newAep)
         return AccountEntropyPool(newAep)
@@ -143,6 +143,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
   fun rotateAccountEntropyPool(aep: AccountEntropyPool) {
     AEP_LOCK.withLock {
+      Log.i(TAG, "Rotating Account Entropy Pool (AEP)...", Throwable(), true)
       store
         .beginWrite()
         .putString(KEY_ACCOUNT_ENTROPY_POOL, aep.value)
