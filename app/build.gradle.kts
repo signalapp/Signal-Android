@@ -501,6 +501,7 @@ dependencies {
   implementation(project(":device-transfer"))
   implementation(project(":image-editor"))
   implementation(project(":donations"))
+  implementation(project(":debuglogs-viewer"))
   implementation(project(":contacts"))
   implementation(project(":qr"))
   implementation(project(":sticky-header-grid"))

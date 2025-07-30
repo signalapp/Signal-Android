@@ -68,6 +68,8 @@ include(":image-editor")
 include(":image-editor-app")
 include(":donations")
 include(":donations-app")
+include(":debuglogs-viewer")
+include(":debuglogs-viewer-app")
 include(":spinner")
 include(":spinner-app")
 include(":contacts")
@@ -95,6 +97,9 @@ project(":image-editor-app").projectDir = file("image-editor/app")
 
 project(":donations").projectDir = file("donations/lib")
 project(":donations-app").projectDir = file("donations/app")
+
+project(":debuglogs-viewer").projectDir = file("debuglogs-viewer/lib")
+project(":debuglogs-viewer-app").projectDir = file("debuglogs-viewer/app")
 
 project(":spinner").projectDir = file("spinner/lib")
 project(":spinner-app").projectDir = file("spinner/app")

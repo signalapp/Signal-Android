@@ -11,13 +11,9 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.ThreadUtil;
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
-import org.signal.paging.LivePagedData;
-import org.signal.paging.PagedData;
-import org.signal.paging.PagingConfig;
-import org.signal.paging.PagingController;
-import org.signal.paging.ProxyPagingController;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
@@ -32,52 +28,49 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
   private final SubmitDebugLogRepository        repo;
   private final MutableLiveData<Mode>           mode;
-  private final ProxyPagingController<Long>     pagingController;
   private final List<LogLine>                   staticLines;
   private final MediatorLiveData<List<LogLine>> lines;
   private final SingleLiveEvent<Event>          event;
   private final long                            firstViewTime;
   private final byte[]                          trace;
-
+  private final List<LogLine>                   allLines;
 
   private SubmitDebugLogViewModel() {
     this.repo             = new SubmitDebugLogRepository();
     this.mode             = new MutableLiveData<>();
     this.trace            = Tracer.getInstance().serialize();
-    this.pagingController = new ProxyPagingController<>();
     this.firstViewTime    = System.currentTimeMillis();
     this.staticLines      = new ArrayList<>();
     this.lines            = new MediatorLiveData<>();
     this.event            = new SingleLiveEvent<>();
+    this.allLines         = new ArrayList<>();
 
     repo.getPrefixLogLines(staticLines -> {
       this.staticLines.addAll(staticLines);
 
       Log.blockUntilAllWritesFinished();
       LogDatabase.getInstance(AppDependencies.getApplication()).logs().trimToSize();
+      SignalExecutors.UNBOUNDED.execute(() -> {
+        allLines.clear();
+        allLines.addAll(staticLines);
 
-      LogDataSource dataSource = new LogDataSource(AppDependencies.getApplication(), staticLines, firstViewTime);
-      PagingConfig  config     = new PagingConfig.Builder().setPageSize(100)
-                                                           .setBufferPages(3)
-                                                           .setStartIndex(0)
-                                                           .build();
+        try (LogDatabase.LogTable.CursorReader logReader = (LogDatabase.LogTable.CursorReader) LogDatabase.getInstance(AppDependencies.getApplication()).logs().getAllBeforeTime(firstViewTime)) {
+          while (logReader.hasNext()) {
+            String next = logReader.next();
+            allLines.add(new SimpleLogLine(next, LogStyleParser.parseStyle(next), LogLine.Placeholder.NONE));
+          }
+        }
 
-      LivePagedData<Long, LogLine> pagedData = PagedData.createForLiveData(dataSource, config);
-
-      ThreadUtil.runOnMain(() -> {
-        pagingController.set(pagedData.getController());
-        lines.addSource(pagedData.getData(), lines::setValue);
-        mode.setValue(Mode.NORMAL);
+        ThreadUtil.runOnMain(() -> {
+          lines.setValue(allLines);
+          mode.setValue(Mode.NORMAL);
+        });
       });
     });
   }
 
   @NonNull LiveData<List<LogLine>> getLines() {
     return lines;
-  }
-
-  @NonNull PagingController getPagingController() {
-    return pagingController;
   }
 
   @NonNull LiveData<Mode> getMode() {
