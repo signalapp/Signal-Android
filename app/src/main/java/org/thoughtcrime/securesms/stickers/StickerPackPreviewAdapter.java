@@ -14,7 +14,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.glide.cache.ApngOptions;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,7 +77,7 @@ public final class StickerPackPreviewAdapter extends RecyclerView.Adapter<Sticke
               boolean allowApngAnimation)
     {
       currentEmoji      = sticker.getEmoji();
-      currentGlideModel = sticker.getUri().isPresent() ? new DecryptableStreamUriLoader.DecryptableUri(sticker.getUri().get())
+      currentGlideModel = sticker.getUri().isPresent() ? new DecryptableUri(sticker.getUri().get())
                                                        : new StickerRemoteUri(sticker.getPackId(), sticker.getPackKey(), sticker.getId());
       requestManager.load(currentGlideModel)
                    .transition(DrawableTransitionOptions.withCrossFade())

@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.protos.ArchiveThumbnailUploadJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.MediaUtil

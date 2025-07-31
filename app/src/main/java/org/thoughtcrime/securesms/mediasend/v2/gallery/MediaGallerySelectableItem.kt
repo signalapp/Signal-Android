@@ -20,7 +20,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.MediaFolder
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaGalleryGridItemTouchListener
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
@@ -73,7 +73,7 @@ object MediaGallerySelectableItem {
 
   private fun Uri.toGlideModel(): Any {
     return if (PartAuthority.isLocalUri(this)) {
-      DecryptableStreamUriLoader.DecryptableUri(this)
+      DecryptableUri(this)
     } else {
       this
     }

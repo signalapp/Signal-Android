@@ -58,7 +58,7 @@ import org.thoughtcrime.securesms.mediasend.camerax.CameraXModePolicy;
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil;
 import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations;
 import org.thoughtcrime.securesms.mediasend.v2.MediaCountIndicatorButton;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.mms.MediaConstraints;
 import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;

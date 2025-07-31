@@ -41,7 +41,6 @@ import org.thoughtcrime.securesms.glide.cache.EncryptedCacheDecoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedCacheEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedGifDrawableResourceEncoder;
 import org.thoughtcrime.securesms.glide.cache.WebpSanDecoder;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUri;
 import org.thoughtcrime.securesms.stickers.StickerRemoteUriLoader;
 import org.thoughtcrime.securesms.stories.StoryTextPostModel;

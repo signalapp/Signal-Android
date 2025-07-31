@@ -13,7 +13,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.model.StickerRecord;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 
 import java.util.ArrayList;
 import java.util.List;

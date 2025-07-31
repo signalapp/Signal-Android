@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.database.model.IncomingSticker
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.stickers.BlessedPacks
 import org.thoughtcrime.securesms.stickers.StickerPackInstallEvent
 import org.thoughtcrime.securesms.util.MediaUtil

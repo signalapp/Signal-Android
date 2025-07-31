@@ -10,7 +10,7 @@ import com.bumptech.glide.load.engine.GlideException
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.stories.viewer.page.StoryCache
 import org.thoughtcrime.securesms.stories.viewer.page.StoryDisplay
 
@@ -87,7 +87,7 @@ class StoryImageLoader(
   private fun loadViaGlide(storySize: StoryDisplay.Size) {
     Log.d(TAG, "Image not in cache. Loading via glide...")
     Glide.with(postImage)
-      .load(DecryptableStreamUriLoader.DecryptableUri(imagePost.imageUri))
+      .load(DecryptableUri(imagePost.imageUri))
       .override(storySize.width, storySize.height)
       .centerInside()
       .addListener(object : RequestListener<Drawable> {

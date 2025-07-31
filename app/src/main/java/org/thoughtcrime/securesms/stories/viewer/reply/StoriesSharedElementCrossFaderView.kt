@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.animation.transitions.CrossfaderTransition
 import org.thoughtcrime.securesms.blurhash.BlurHash
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import kotlin.reflect.KProperty
 
@@ -82,7 +82,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
     latestSource = uri
 
     Glide.with(sourceView)
-      .load(DecryptableStreamUriLoader.DecryptableUri(uri))
+      .load(DecryptableUri(uri))
       .addListener(
         OnReadyListener {
           isSourceReady = true
@@ -152,7 +152,7 @@ class StoriesSharedElementCrossFaderView @JvmOverloads constructor(
     latestTarget = uri
 
     Glide.with(targetView)
-      .load(DecryptableStreamUriLoader.DecryptableUri(uri))
+      .load(DecryptableUri(uri))
       .addListener(
         OnReadyListener {
           isTargetReady = true

@@ -24,14 +24,11 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.subsampling.AttachmentBitmapDecoder;
 import org.thoughtcrime.securesms.components.subsampling.AttachmentRegionDecoder;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.util.ActionRequestListener;
-import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
-import org.signal.core.util.concurrent.SimpleTask;
 
 import java.io.IOException;
 import java.io.InputStream;

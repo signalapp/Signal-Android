@@ -48,7 +48,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
 import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.QuoteModel;
