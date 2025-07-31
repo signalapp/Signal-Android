@@ -27,6 +27,7 @@ class GenericForegroundService : Service() {
   private val allActiveMessages = LinkedHashMap<Int, Entry>()
   private val lock = ReentrantLock()
 
+  var hasTimedOut = false
   private var lastPosted: Entry? = null
 
   companion object {
@@ -173,6 +174,16 @@ class GenericForegroundService : Service() {
   override fun onTrimMemory(level: Int) {
     Log.d(TAG, "[onTrimMemory] level: $level")
     super.onTrimMemory(level)
+  }
+
+  override fun onTimeout(startId: Int, foregroundServiceType: Int) {
+    Log.i(TAG, "[onTimeout] startId: $startId, fgsType: $foregroundServiceType")
+    lock.withLock {
+      hasTimedOut = true
+      allActiveMessages.clear()
+    }
+    ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
+    stopSelf()
   }
 
   fun replaceTitle(id: Int, title: String) {

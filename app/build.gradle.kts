@@ -736,13 +736,18 @@ fun getMapsKey(): String {
 }
 
 fun Project.languageList(): List<String> {
+  // In API 35, language codes for Hebrew and Indonesian now use the ISO 639-1 code ("he" and "id").
+  // However, the value resources still only support the outdated code ("iw" and "in") so we have
+  // to manually indicate that we support these languages.
+  val updatedLanguageCodes = listOf("he", "id")
+
   return fileTree("src/main/res") { include("**/strings.xml") }
     .map { stringFile -> stringFile.parentFile.name }
     .map { valuesFolderName -> valuesFolderName.replace("values-", "") }
     .filter { valuesFolderName -> valuesFolderName != "values" }
     .map { languageCode -> languageCode.replace("-r", "_") }
     .distinct()
-    .sorted() + "en"
+    .sorted() + updatedLanguageCodes + "en"
 }
 
 fun String.capitalize(): String {

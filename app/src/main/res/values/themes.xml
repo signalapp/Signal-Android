@@ -146,6 +146,7 @@
     <style name="TextSecure.BaseLightTheme" parent="@style/Theme.Material3.Light">
         <item name="theme_type">light</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
 
         <!-- Material 3 -->
         <item name="colorPrimary">@color/signal_colorPrimary</item>
@@ -239,6 +240,7 @@
     <style name="TextSecure.BaseDarkTheme" parent="@style/Theme.Material3.Dark">
         <item name="theme_type">dark</item>
         <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
+        <item name="android:windowOptOutEdgeToEdgeEnforcement" tools:targetApi="35">true</item>
 
         <!-- Material 3 -->
         <item name="colorPrimary">@color/signal_colorPrimary</item>
