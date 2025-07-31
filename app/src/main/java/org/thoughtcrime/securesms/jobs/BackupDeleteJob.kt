@@ -52,6 +52,16 @@ class BackupDeleteJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
+    val result = doRun()
+
+    if (result.isFailure) {
+      clearLocalBackupStateOnFailure()
+    }
+
+    return result
+  }
+
+  private fun doRun(): Result {
     if (SignalStore.backup.deletionState.isIdle()) {
       Log.w(TAG, "Invalid state ${SignalStore.backup.deletionState}. Exiting.")
       return Result.failure()
@@ -212,7 +222,7 @@ class BackupDeleteJob private constructor(
 
   private fun deleteLocalState(): Result {
     if (backupDeleteJobData.completed.contains(BackupDeleteJobData.Stage.CLEAR_LOCAL_STATE)) {
-      Log.d(TAG, "Already deleted messages.")
+      Log.d(TAG, "Already cleared local backup state.")
       return Result.success()
     }
 
@@ -232,13 +242,27 @@ class BackupDeleteJob private constructor(
     ).build()
 
     Log.d(TAG, "Clearing local backup state.")
+    clearLocalBackupState()
+    addStageToCompletions(BackupDeleteJobData.Stage.CLEAR_LOCAL_STATE)
+    return Result.success()
+  }
+
+  private fun clearLocalBackupStateOnFailure() {
+    if (backupDeleteJobData.completed.contains(BackupDeleteJobData.Stage.CLEAR_LOCAL_STATE)) {
+      Log.d(TAG, "[onFailure] Already cleared local backup state.")
+      return
+    }
+
+    Log.d(TAG, "[onFailure] Clearing local backup state.")
+    clearLocalBackupState()
+  }
+
+  private fun clearLocalBackupState() {
     SignalStore.backup.disableBackups()
     SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
     StorageSyncHelper.scheduleSyncForDataChange()
     SignalDatabase.attachments.clearAllArchiveData()
     SignalStore.backup.optimizeStorage = false
-    addStageToCompletions(BackupDeleteJobData.Stage.CLEAR_LOCAL_STATE)
-    return Result.success()
   }
 
   private fun addStageToCompletions(stage: BackupDeleteJobData.Stage) {
@@ -249,6 +273,11 @@ class BackupDeleteJob private constructor(
 
   private fun <T> handleNetworkError(networkResult: NetworkResult<T>): Result {
     Log.d(TAG, "An error occurred.", networkResult.getCause())
+
+    if (networkResult.getCause() is org.signal.libsignal.zkgroup.VerificationFailedException) {
+      Log.i(TAG, "ZK Verification failed. Retrying.")
+      return Result.retry(defaultBackoff())
+    }
 
     return when (networkResult) {
       is NetworkResult.ApplicationError<*> -> (networkResult.getCause() as? RuntimeException)?.let { Result.fatalFailure(it) } ?: Result.failure()
