@@ -5,20 +5,35 @@
 
 package org.thoughtcrime.securesms.components.settings.app.backups
 
+import androidx.annotation.WorkerThread
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.rx3.asFlow
 import kotlinx.coroutines.withContext
 import org.signal.core.util.billing.BillingPurchaseResult
+import org.signal.core.util.concurrent.SignalDispatchers
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
+import org.signal.core.util.throttleLatest
+import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
+import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.InternetConnectionObserver
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.math.BigDecimal
@@ -30,12 +45,211 @@ import kotlin.time.Duration.Companion.seconds
 
 /**
  * Manages BackupState information gathering for the UI.
+ *
+ * This class utilizes a stream of requests which are throttled to one per 100ms, such that we don't flood
+ * ourselves with network and database activity.
+ *
+ * @param scope A coroutine scope, generally expected to be a viewModelScope
+ * @param useDatabaseFallbackOnNetworkError Whether we will display network errors or fall back to database information. Defaults to false.
  */
-object BackupStateRepository {
+class BackupStateObserver(
+  scope: CoroutineScope,
+  private val useDatabaseFallbackOnNetworkError: Boolean = false
+) {
+  companion object {
+    private val TAG = Log.tag(BackupStateObserver::class)
 
-  private val TAG = Log.tag(BackupStateRepository::class)
+    private val staticScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
+    private val backupTierChangedNotifier = MutableSharedFlow<Unit>()
 
-  suspend fun resolveBackupState(lastPurchase: InAppPaymentTable.InAppPayment?): BackupState {
+    /**
+     * Called when the value returned by [SignalStore.backup.backupTier] changes.
+     */
+    fun notifyBackupTierChanged(scope: CoroutineScope = staticScope) {
+      Log.d(TAG, "Notifier got a change")
+      scope.launch {
+        backupTierChangedNotifier.emit(Unit)
+      }
+    }
+
+    /**
+     * Builds a BackupState without touching the database or network. At most what this
+     * can tell you is whether the tier is set or if backups are available at all.
+     *
+     * This method is meant to be lightweight and instantaneous, and is a good candidate for
+     * setting initial ViewModel state values.
+     */
+    fun getNonIOBackupState(): BackupState {
+      return if (RemoteConfig.messageBackups) {
+        val tier = SignalStore.backup.backupTier
+
+        if (tier != null) {
+          BackupState.LocalStore(tier)
+        } else {
+          BackupState.None
+        }
+      } else {
+        BackupState.NotAvailable
+      }
+    }
+  }
+
+  private val internalBackupState = MutableStateFlow(getNonIOBackupState())
+  private val backupStateRefreshRequest = MutableSharedFlow<Unit>()
+
+  val backupState: StateFlow<BackupState> = internalBackupState
+
+  init {
+    scope.launch(SignalDispatchers.IO) {
+      performDatabaseBackupStateRefresh()
+    }
+
+    scope.launch(SignalDispatchers.IO) {
+      backupStateRefreshRequest
+        .throttleLatest(100.milliseconds)
+        .collect {
+          performFullBackupStateRefresh()
+        }
+    }
+
+    scope.launch(SignalDispatchers.IO) {
+      backupTierChangedNotifier.collect {
+        requestBackupStateRefresh()
+      }
+    }
+
+    scope.launch(SignalDispatchers.IO) {
+      InternetConnectionObserver.observe().asFlow()
+        .collect {
+          if (backupState.value == BackupState.Error) {
+            requestBackupStateRefresh()
+          }
+        }
+    }
+
+    scope.launch(SignalDispatchers.IO) {
+      InAppPaymentsRepository.observeLatestBackupPayment().collect {
+        requestBackupStateRefresh()
+      }
+    }
+
+    scope.launch(SignalDispatchers.IO) {
+      SignalStore.backup.subscriptionStateMismatchDetectedFlow.collect {
+        requestBackupStateRefresh()
+      }
+    }
+
+    scope.launch(SignalDispatchers.IO) {
+      SignalStore.backup.deletionStateFlow.collect {
+        requestBackupStateRefresh()
+      }
+    }
+  }
+
+  /**
+   * Requests a refresh behind a throttler.
+   */
+  private suspend fun requestBackupStateRefresh() {
+    Log.d(TAG, "Requesting refresh.")
+    backupStateRefreshRequest.emit(Unit)
+  }
+
+  /**
+   * Produces state based off what we have locally in the database. Does not hit the network.
+   */
+  @WorkerThread
+  private fun getDatabaseBackupState(): BackupState {
+    if (SignalStore.backup.backupTier != MessageBackupTier.PAID) {
+      Log.d(TAG, "No additional information available without accessing the network.")
+      return getNonIOBackupState()
+    }
+
+    val latestPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
+    if (latestPayment == null) {
+      Log.d(TAG, "No additional information is available in the local database.")
+      return getNonIOBackupState()
+    }
+
+    val price = latestPayment.data.amount!!.toFiatMoney()
+    val isPending = SignalDatabase.inAppPayments.hasPendingBackupRedemption()
+    if (isPending) {
+      return BackupState.Pending(price = price)
+    }
+
+    val paidBackupType = MessageBackupsType.Paid(
+      pricePerMonth = price,
+      storageAllowanceBytes = -1L,
+      mediaTtl = 0.days
+    )
+
+    val isCanceled = latestPayment.data.cancellation != null
+    if (isCanceled) {
+      return BackupState.Canceled(
+        messageBackupsType = paidBackupType,
+        renewalTime = latestPayment.endOfPeriod
+      )
+    }
+
+    if (SignalStore.backup.subscriptionStateMismatchDetected) {
+      return BackupState.SubscriptionMismatchMissingGooglePlay(
+        messageBackupsType = paidBackupType,
+        renewalTime = latestPayment.endOfPeriod
+      )
+    }
+
+    if (latestPayment.endOfPeriod < System.currentTimeMillis().milliseconds) {
+      return BackupState.Inactive(
+        messageBackupsType = paidBackupType,
+        renewalTime = latestPayment.endOfPeriod
+      )
+    }
+
+    return BackupState.ActivePaid(
+      messageBackupsType = paidBackupType,
+      price = price,
+      renewalTime = latestPayment.endOfPeriod
+    )
+  }
+
+  private suspend fun performDatabaseBackupStateRefresh() {
+    if (!RemoteConfig.messageBackups) {
+      return
+    }
+
+    if (!SignalStore.account.isRegistered) {
+      Log.d(TAG, "Dropping refresh for unregistered user.")
+      return
+    }
+
+    if (backupState.value !is BackupState.LocalStore) {
+      Log.d(TAG, "Dropping database refresh for non-local store state.")
+      return
+    }
+
+    internalBackupState.emit(getDatabaseBackupState())
+  }
+
+  private suspend fun performFullBackupStateRefresh() {
+    if (!RemoteConfig.messageBackups) {
+      return
+    }
+
+    if (!SignalStore.account.isRegistered) {
+      Log.d(TAG, "Dropping refresh for unregistered user.")
+      return
+    }
+
+    Log.d(TAG, "Performing refresh.")
+    withContext(SignalDispatchers.IO) {
+      val latestInAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
+      internalBackupState.emit(getNetworkBackupState(latestInAppPayment))
+    }
+  }
+
+  /**
+   * Utilizes everything we can to resolve the most accurate backup state available, including database and network.
+   */
+  private suspend fun getNetworkBackupState(lastPurchase: InAppPaymentTable.InAppPayment?): BackupState {
     if (lastPurchase?.state == InAppPaymentTable.State.PENDING) {
       Log.d(TAG, "We have a pending subscription.")
       return BackupState.Pending(
@@ -74,7 +288,7 @@ object BackupStateRepository {
 
           if (type == null) {
             Log.d(TAG, "[subscriptionMismatchDetected] failed to load backup configuration. Likely a network error.")
-            return BackupState.Error
+            return getStateOnError()
           }
 
           return BackupState.SubscriptionMismatchMissingGooglePlay(
@@ -116,6 +330,17 @@ object BackupStateRepository {
     }
   }
 
+  /**
+   * Helper function to fall back to database state if [useDatabaseFallbackOnNetworkError] is set to true.
+   */
+  private fun getStateOnError(): BackupState {
+    return if (useDatabaseFallbackOnNetworkError) {
+      getDatabaseBackupState()
+    } else {
+      BackupState.Error
+    }
+  }
+
   private suspend fun getPaidBackupState(lastPurchase: InAppPaymentTable.InAppPayment?): BackupState {
     Log.d(TAG, "Attempting to retrieve subscription details for active PAID backup.")
 
@@ -141,7 +366,7 @@ object BackupStateRepository {
         if (subscriberType == null) {
           Log.d(TAG, "Failed to create backup type. Possible network error.")
 
-          BackupState.Error
+          getStateOnError()
         } else {
           when {
             subscription.isCanceled && subscription.isActive -> BackupState.Canceled(
@@ -169,7 +394,7 @@ object BackupStateRepository {
           val canceledType = type ?: buildPaidTypeFromInAppPayment(lastPurchase)
           if (canceledType == null) {
             Log.w(TAG, "Failed to load canceled type information. Possible network error.")
-            BackupState.Error
+            getStateOnError()
           } else {
             BackupState.Canceled(
               messageBackupsType = canceledType,
@@ -180,7 +405,7 @@ object BackupStateRepository {
           val inactiveType = type ?: buildPaidTypeWithoutPricing()
           if (inactiveType == null) {
             Log.w(TAG, "Failed to load inactive type information. Possible network error.")
-            BackupState.Error
+            getStateOnError()
           } else {
             BackupState.Inactive(
               messageBackupsType = inactiveType,
@@ -191,7 +416,7 @@ object BackupStateRepository {
       }
     } else {
       Log.d(TAG, "Failed to load ActiveSubscription data. Updating UI state with error.")
-      BackupState.Error
+      getStateOnError()
     }
   }
 
@@ -202,7 +427,7 @@ object BackupStateRepository {
 
     if (type !is NetworkResult.Success) {
       Log.w(TAG, "Failed to load FREE type.", type.getCause())
-      return BackupState.Error
+      return getStateOnError()
     }
 
     val backupState = if (SignalStore.backup.areBackupsEnabled) {

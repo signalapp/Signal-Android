@@ -35,7 +35,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
 import org.thoughtcrime.securesms.banner.banners.MediaRestoreProgressBanner
-import org.thoughtcrime.securesms.components.settings.app.backups.BackupStateRepository
+import org.thoughtcrime.securesms.components.settings.app.backups.BackupStateObserver
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -65,6 +65,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   private val _state = MutableStateFlow(
     RemoteBackupsSettingsState(
       tier = SignalStore.backup.backupTier,
+      backupState = BackupStateObserver.getNonIOBackupState(),
       backupsEnabled = SignalStore.backup.areBackupsEnabled,
       canBackupMessagesJobRun = BackupMessagesConstraint.isMet(AppDependencies.application),
       canViewBackupKey = !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
@@ -154,6 +155,14 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
           }
           previous = current.state
         }
+    }
+
+    viewModelScope.launch {
+      BackupStateObserver(viewModelScope).backupState.collect { state ->
+        _state.update {
+          it.copy(backupState = state)
+        }
+      }
     }
   }
 
@@ -295,11 +304,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         isOutOfStorageSpace = BackupRepository.shouldDisplayOutOfStorageSpaceUx(),
         hasRedemptionError = lastPurchase?.data?.error?.data_ == "409"
       )
-    }
-
-    val state = BackupStateRepository.resolveBackupState(lastPurchase)
-    _state.update {
-      it.copy(backupState = state)
     }
   }
 

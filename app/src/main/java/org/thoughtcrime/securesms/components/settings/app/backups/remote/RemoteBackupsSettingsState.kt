@@ -22,7 +22,7 @@ data class RemoteBackupsSettingsState(
   val hasRedemptionError: Boolean = false,
   val isOutOfStorageSpace: Boolean = false,
   val totalAllowedStorageSpace: String = "",
-  val backupState: BackupState = BackupState.Loading,
+  val backupState: BackupState,
   val backupMediaSize: Long = 0,
   val backupsFrequency: BackupFrequency = BackupFrequency.DAILY,
   val lastBackupTimestamp: Long = 0,

@@ -468,7 +468,7 @@ private fun RemoteBackupsSettingsContent(
 
       item {
         when (state.backupState) {
-          is BackupState.Loading -> {
+          is BackupState.LocalStore -> {
             LoadingCard()
           }
 

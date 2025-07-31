@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -80,11 +79,6 @@ class BackupsSettingsFragment : ComposeFragment() {
     }
   }
 
-  override fun onResume() {
-    super.onResume()
-    viewModel.refreshState()
-  }
-
   @Composable
   override fun FragmentContent() {
     val state by viewModel.stateFlow.collectAsStateWithLifecycle()
@@ -94,7 +88,7 @@ class BackupsSettingsFragment : ComposeFragment() {
       onNavigationClick = { requireActivity().onNavigateUp() },
       onBackupsRowClick = {
         when (state.backupState) {
-          BackupState.Loading, BackupState.Error, BackupState.NotAvailable -> Unit
+          BackupState.Error, BackupState.NotAvailable -> Unit
 
           BackupState.None -> {
             checkoutLauncher.launch(null)
@@ -155,8 +149,12 @@ private fun BackupsSettingsContent(
 
       item {
         when (backupsSettingsState.backupState) {
-          BackupState.Loading -> {
-            LoadingBackupsRow()
+          is BackupState.LocalStore -> {
+            LocalStoreBackupRow(
+              backupState = backupsSettingsState.backupState,
+              lastBackupAt = backupsSettingsState.lastBackupAt,
+              onBackupsRowClick = onBackupsRowClick
+            )
 
             OtherWaysToBackUpHeading()
           }
@@ -420,6 +418,52 @@ private fun ViewSettingsButton(onClick: () -> Unit) {
 }
 
 @Composable
+private fun LocalStoreBackupRow(
+  backupState: BackupState.LocalStore,
+  lastBackupAt: Duration,
+  onBackupsRowClick: () -> Unit
+) {
+  Rows.TextRow(
+    modifier = Modifier.height(IntrinsicSize.Min),
+    icon = {
+      Box(
+        contentAlignment = Alignment.TopCenter,
+        modifier = Modifier
+          .fillMaxHeight()
+          .padding(top = 12.dp)
+      ) {
+        Icon(
+          painter = painterResource(R.drawable.symbol_backup_24),
+          contentDescription = null
+        )
+      }
+    },
+    text = {
+      Column {
+        TextWithBetaLabel(
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
+          textStyle = MaterialTheme.typography.bodyLarge
+        )
+
+        val tierText = when (backupState.tier) {
+          MessageBackupTier.FREE -> stringResource(R.string.RemoteBackupsSettingsFragment__your_backup_plan_is_free)
+          MessageBackupTier.PAID -> stringResource(R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media)
+        }
+
+        Text(
+          text = tierText,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+          style = MaterialTheme.typography.bodyMedium
+        )
+
+        LastBackedUpText(lastBackupAt)
+        ViewSettingsButton(onBackupsRowClick)
+      }
+    }
+  )
+}
+
+@Composable
 private fun ActiveBackupsRow(
   backupState: BackupState.WithTypeAndRenewalTime,
   lastBackupAt: Duration,
@@ -483,24 +527,7 @@ private fun ActiveBackupsRow(
           }
         }
 
-        val lastBackupString = if (lastBackupAt.inWholeMilliseconds > 0) {
-          DateUtils.getDatelessRelativeTimeSpanFormattedDate(
-            LocalContext.current,
-            Locale.getDefault(),
-            lastBackupAt.inWholeMilliseconds
-          ).value
-        } else {
-          stringResource(R.string.RemoteBackupsSettingsFragment__never)
-        }
-
-        Text(
-          text = stringResource(
-            R.string.BackupsSettingsFragment_last_backup_s,
-            lastBackupString
-          ),
-          color = MaterialTheme.colorScheme.onSurfaceVariant,
-          style = MaterialTheme.typography.bodyMedium
-        )
+        LastBackedUpText(lastBackupAt)
 
         ViewSettingsButton(onBackupsRowClick)
       }
@@ -509,16 +536,25 @@ private fun ActiveBackupsRow(
 }
 
 @Composable
-private fun LoadingBackupsRow() {
-  Box(
-    contentAlignment = Alignment.CenterStart,
-    modifier = Modifier
-      .fillMaxWidth()
-      .height(56.dp)
-      .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
-  ) {
-    CircularProgressIndicator()
+private fun LastBackedUpText(lastBackupAt: Duration) {
+  val lastBackupString = if (lastBackupAt.inWholeMilliseconds > 0) {
+    DateUtils.getDatelessRelativeTimeSpanFormattedDate(
+      LocalContext.current,
+      Locale.getDefault(),
+      lastBackupAt.inWholeMilliseconds
+    ).value
+  } else {
+    stringResource(R.string.RemoteBackupsSettingsFragment__never)
   }
+
+  Text(
+    text = stringResource(
+      R.string.BackupsSettingsFragment_last_backup_s,
+      lastBackupString
+    ),
+    color = MaterialTheme.colorScheme.onSurfaceVariant,
+    style = MaterialTheme.typography.bodyMedium
+  )
 }
 
 @Composable
@@ -661,14 +697,6 @@ private fun ActiveFreeBackupsRowPreview() {
       ),
       lastBackupAt = 0.seconds
     )
-  }
-}
-
-@SignalPreview
-@Composable
-private fun LoadingBackupsRowPreview() {
-  Previews.Preview {
-    LoadingBackupsRow()
   }
 }
 

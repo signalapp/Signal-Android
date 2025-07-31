@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.settings.app.backups.BackupStateObserver
 import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraintObserver
 import org.thoughtcrime.securesms.jobmanager.impl.DeletionNotAwaitingMediaDownloadConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollectionPendingConstraint
@@ -213,12 +214,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     }
 
   /**
-   * Denotes if there was a mismatch detected between the user's Signal subscription, on-device Google Play subscription,
-   * and what zk authorization we think we have.
-   */
-  var subscriptionStateMismatchDetected: Boolean by booleanValue(KEY_SUBSCRIPTION_STATE_MISMATCH, false).withPrecondition { backupTierInternalOverride == null }
-
-  /**
    * When setting the backup tier, we also want to write to the latestBackupTier, as long as
    * the value is non-null. This gives us a 1-deep history of the selected backup tier for
    * use in the UI
@@ -247,10 +242,20 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
       } else {
         putLong(KEY_BACKUP_TIER, serializedValue)
       }
+
+      BackupStateObserver.notifyBackupTierChanged()
     }
 
   /** An internal setting that can override the backup tier for a user. */
   var backupTierInternalOverride: MessageBackupTier? by enumValue(KEY_BACKUP_TIER_INTERNAL_OVERRIDE, null, MessageBackupTier.Serializer).withPrecondition { RemoteConfig.internalUser }
+
+  /**
+   * Denotes if there was a mismatch detected between the user's Signal subscription, on-device Google Play subscription,
+   * and what zk authorization we think we have.
+   */
+  val subscriptionStateMismatchDetectedValue = booleanValue(KEY_SUBSCRIPTION_STATE_MISMATCH, false).withPrecondition { backupTierInternalOverride == null }
+  var subscriptionStateMismatchDetected: Boolean by subscriptionStateMismatchDetectedValue
+  val subscriptionStateMismatchDetectedFlow: Flow<Boolean> by lazy { subscriptionStateMismatchDetectedValue.toFlow() }
 
   /** Set to true if we successfully restored a backup file timestamp or didn't find a file at all so a "no timestamp" value is restored. */
   var isBackupTimestampRestored: Boolean by booleanValue(KEY_BACKUP_TIMESTAMP_RESTORED, false)
