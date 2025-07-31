@@ -4745,7 +4745,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ស្តារឡើងវិញសាររបស់អ្នកចេញពីការបម្រុងទុកខាងក្នុង។ បើអ្នកមិនស្តារឡើងវិញឥឡូវទេ អ្នកនឹងមិនអាចស្តារឡើងវិញបានទេនៅពេលក្រោយ។</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">ស្តារការបម្រុងទុកក្នុងឧបករណ៍</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">ស្តារការបម្រុងទុក Signal</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">ស្តារមកវិញនូវសារជាអក្សរទាំងអស់របស់អ្នក + មេឌៀក្នុងរយៈពេល 30 ថ្ងៃចុងក្រោយរបស់អ្នក</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">ជម្រើសច្រើនទៀត</string>
 
@@ -7564,17 +7563,17 @@
     <string name="TurnOnSignalBackups__not_now">ឥឡូវកុំទាន់</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">Verify your backup key</string>
+    <string name="VerifyBackupKey__title">ផ្ទៀងផ្ទាត់សោបម្រុងទុករបស់អ្នក</string>
     <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">To help you remember your key, we\'ll periodically ask you for it.</string>
+    <string name="VerifyBackupKey__body">ដើម្បីជួយអ្នកចងចាំកូនសោរបស់អ្នក យើងនឹងសាកសួរអ្នកម្តងម្កាល។</string>
     <!-- Button of a megaphone that will take users to the verify backup key screen -->
     <string name="VerifyBackupKey__verify">ផ្ទៀងផ្ទាត់</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
     <string name="VerifyBackupKey__not_now">ឥឡូវកុំទាន់</string>
     <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Backup key correct. Keep your key safe.</string>
+    <string name="VerifyBackupKey__backup_key_correct">សោបម្រុងទុកត្រឹមត្រូវ។ រក្សាទុកសោរបស់អ្នកឱ្យមានសុវត្ថិភាព។</string>
     <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
-    <string name="VerifyBackupKey__we_will_ask_again">We will ask you again in a week.</string>
+    <string name="VerifyBackupKey__we_will_ask_again">យើងនឹងសួរអ្នកម្តងទៀតក្នុងមួយសប្តាហ៍។</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">បើកការជូនដំណឹងពេញអេក្រង់ឬ?</string>
@@ -7964,7 +7963,7 @@
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">ដោះសោដើម្បីមើលសោបម្រុងទុក</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
-    <string name="RemoteBackupsSettingsFragment__to_view_your_key">To view your key, confirm it\'s you</string>
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">ដើម្បីមើលសោរបស់អ្នក សូមបញ្ជាក់ថាពិតជាអ្នកមែន</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">បិទ និងលុបការបម្រុងទុក</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7978,7 +7977,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ការបម្រុងទុកនឹងត្រូវបានបង្កើតឡើងក្នុងពេលមួយយប់។</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New backup key created</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">សោបម្រុងទុកថ្មីត្រូវបានបង្កើត</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">ការជាវអសកម្ម</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8226,27 +8225,27 @@
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">មើលសោម្តងទៀត</string>
     <!-- Action label to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_new_key">Create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">បង្កើតសោថ្មី</string>
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__download_media">Download media</string>
+    <string name="MessageBackupsKeyRecordScreen__download_media">ទាញយកមេឌៀ</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new backup key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">ដើម្បីបង្កើតសោបម្រុងទុកថ្មី អ្នកត្រូវតែបិទ \"បង្កើនប្រសិទ្ធភាពការផ្ទុក\" ហើយរង់ចាំរហូតដល់មេឌៀរបស់អ្នកត្រូវបានទាញយក។ នៅពេលការទាញយកបានបញ្ចប់ អ្នកអាចបង្កើតសោថ្មីមួយ។</string>
     <!-- Action label to turn off optimized storage and download media -->
-    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Turn off and download</string>
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">បិទ និងទាញយក</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new backup key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">បង្កើតសោបម្រុងទុកថ្មី</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Creating a new key is only necessary if someone else knows your key. You will have to re-upload your backup, including media. If you are using \"Optimize storage\" you will have to download offloaded media first.</string>
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">ការបង្កើតសោថ្មីគឺចាំបាច់លុះត្រាតែមានអ្នកផ្សេងស្គាល់សោរបស់អ្នក។ អ្នកនឹងត្រូវផ្ទុកឡើងវិញនូវការបម្រុងទុករបស់អ្នក រួមទាំងមេឌៀផងដែរ។ ប្រសិនបើអ្នកកំពុងប្រើ \"បង្កើនប្រសិទ្ធភាពការផ្ទុក\" អ្នកនឹងត្រូវទាញយកមេឌៀដែលមិនបានផ្ទុកជាមុនសិន។</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Cancel key creation?</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">បោះបង់ការបង្កើតសោ?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new backup key won\'t be created unless you confirm it.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">សោបម្រុងទុកថ្មីរបស់អ្នកនឹងមិនត្រូវបានបង្កើតទេ លុះត្រាតែអ្នកបញ្ជាក់វា។</string>
     <!-- Dialog button to continue confirming new backup key-->
-    <string name="BackupKeyDisplayFragment__confirm_key">Confirm key</string>
+    <string name="BackupKeyDisplayFragment__confirm_key">បញ្ជាក់សោ</string>
     <!-- Dialog button to cancel new key creation -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation">Cancel key creation</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">បោះបង់ការបង្កើតសោ</string>
 
     <!-- Confirm key title -->
     <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">បញ្ជាក់សោបម្រុងទុករបស់អ្នក</string>
@@ -8264,9 +8263,9 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">បញ្ចូលសោបម្រុងទុករបស់អ្នក</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-digit code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">បញ្ចូលលេខកូដ 64 ខ្ទង់ដែលអ្នកបានកត់ត្រានៅពេលអ្នកបើកការបម្រុងទុក។</string>
     <!-- Button text when you forget your backup key -->
-    <string name="VerifyBackupPinScreen__forgot_key">Forgot key?</string>
+    <string name="VerifyBackupPinScreen__forgot_key">ភ្លេចសោ?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8275,8 +8274,10 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">ការបម្រុងទុកទាំងអស់ត្រូវបានអ៊ីនគ្រីបទាំងសងខាង។ Signal គឺជាអង្គការមិនរកប្រាក់ចំណេញ—ការបង់ប្រាក់សម្រាប់ការបម្រុងទុកជួយគាំទ្រដល់បេសកកម្មរបស់យើង។</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">ស្វែងយល់បន្ថែម</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">ជាវ</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">ជាវក្នុងតម្លៃ %1$s/ខែ</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

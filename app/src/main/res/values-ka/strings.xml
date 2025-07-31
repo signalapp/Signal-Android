@@ -4868,7 +4868,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">აღადგინე შენი შეტყობინებები ადგილობრივი სარეზერვო კოპიიდან. თუ ახლა არ აღადგენ, მოგვიანებით აღდგენას ვეღარ შეძლებ.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">ადგილობრივი სარეზერვო კოპიების აღდგენა</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal-ის სარეზერვო კოპიების აღდგენა</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">აღადგინე შენი ყველა შეტყობინება + ბოლო 30 დღის მედია ფაილები</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">მეტი ოფცია</string>
 
@@ -8455,8 +8454,10 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">ყველა სარეზერვო კოპია ბოლომდე დაშიფრულია. Signal-ი არაკომერციულია—სარეზერვო კოპირებაში თანხის გადახდა ჩვენი მისიის მხარდაჭერაში გვეხმარება.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">გაიგე მეტი</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">გამოწერა</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">გამოიწერე თვეში %1$s-ად</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

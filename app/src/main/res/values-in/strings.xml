@@ -4745,7 +4745,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Pulihkan pesan-pesan Anda dari cadangan internal. Jika Anda tidak memulihkannya sekarang, Anda tidak akan dapat melakukannya nanti.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Pulihkan pencadangan lokal</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Pulihkan pencadangan Signal</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Pulihkan semua pesan teks+media Anda 30 hari terakhir</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Opsi lainnya</string>
 
@@ -7564,17 +7563,17 @@
     <string name="TurnOnSignalBackups__not_now">Nanti</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">Verifikasi Kunci Cadangan</string>
+    <string name="VerifyBackupKey__title">Verifikasi kunci cadangan</string>
     <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">To help you remember your key, we\'ll periodically ask you for it.</string>
+    <string name="VerifyBackupKey__body">Supaya Anda terus ingat kunci, kami akan tanya dari waktu ke waktu.</string>
     <!-- Button of a megaphone that will take users to the verify backup key screen -->
     <string name="VerifyBackupKey__verify">Verifikasi</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
     <string name="VerifyBackupKey__not_now">Nanti</string>
     <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Kunci cadangan benar. Pastikan kunci Anda aman.</string>
+    <string name="VerifyBackupKey__backup_key_correct">Kunci cadangan sudah benar. Pastikan kunci Anda aman.</string>
     <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
-    <string name="VerifyBackupKey__we_will_ask_again">We will ask you again in a week.</string>
+    <string name="VerifyBackupKey__we_will_ask_again">Akan kami tanya lagi dalam seminggu.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Aktifkan notifikasi layar penuh?</string>
@@ -7964,7 +7963,7 @@
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Buka untuk melihat kunci pencadangan</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
-    <string name="RemoteBackupsSettingsFragment__to_view_your_key">To view your key, confirm it\'s you</string>
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">Untuk melihat kunci, harap konfirmasi bahwa ini memang Anda</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Nonaktifkan dan hapus pencadangan</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7978,7 +7977,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Pencadangan akan diproses dalam semalam.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New backup key created</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Kunci cadangan baru telah dibuat</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Langganan tidak aktif</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8072,7 +8071,7 @@
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Menyiapkan pencadangan …</string>
     <!-- Linear progress dialog text shown when backup is paused because unmetered connectivity, such as WiFi, is unavailable. -->
-    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">Menunggu WiFi …</string>
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">Menunggu Wi-Fi …</string>
     <!-- Linear progress dialog text shown when backup is paused because internet is unavailable. -->
     <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">Menunggu koneksi internet …</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
@@ -8226,27 +8225,27 @@
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Lihat kunci lagi</string>
     <!-- Action label to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_new_key">Create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">Buat kunci baru</string>
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__download_media">Download media</string>
+    <string name="MessageBackupsKeyRecordScreen__download_media">Unduh media</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new backup key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Untuk membuat kunci cadangan baru, Anda harus menonaktifkan \"Optimalkan penyimpanan\" dan tunggu hingga media Anda selesai diunduh. Ketika pengunduhan selesai, Anda dapat membuat kunci baru.</string>
     <!-- Action label to turn off optimized storage and download media -->
-    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Turn off and download</string>
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Nonaktifkan dan unduh</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new backup key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Buat kunci cadangan baru</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Creating a new key is only necessary if someone else knows your key. You will have to re-upload your backup, including media. If you are using \"Optimize storage\" you will have to download offloaded media first.</string>
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Pembuatan kunci baru hanya diperlukan jika ada orang lain yang mengetahui kunci Anda. Anda harus mengunggah kembali data cadangan, termasuk media. Jika opsi \"Optimalkan penyimpanan\" di ponsel aktif, Anda harus mengunduh media yang di-offload terlebih dahulu.</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Cancel key creation?</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Batalkan pembuatan kunci?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new backup key won\'t be created unless you confirm it.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Kunci cadangan baru tidak akan dibuat kecuali Anda mengonfirmasinya.</string>
     <!-- Dialog button to continue confirming new backup key-->
-    <string name="BackupKeyDisplayFragment__confirm_key">Confirm key</string>
+    <string name="BackupKeyDisplayFragment__confirm_key">Konfirmasi kunci</string>
     <!-- Dialog button to cancel new key creation -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation">Cancel key creation</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">Batalkan pembuatan kunci</string>
 
     <!-- Confirm key title -->
     <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Konfirmasi kunci cadangan Anda</string>
@@ -8264,7 +8263,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Masukkan kunci cadangan Anda</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-digit code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Masukkan kode 64 digit yang Anda catat saat mengaktifkan pencadangan.</string>
     <!-- Button text when you forget your backup key -->
     <string name="VerifyBackupPinScreen__forgot_key">Lupa kunci?</string>
 
@@ -8275,8 +8274,10 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Semua cadangan dienkripsi ujung ke ujung. Signal adalah organisasi nirlaba — dengan membayar cadangan, Anda turut membantu mendukung misi kami.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Selengkapnya</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Berlangganan</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Kontribusi langganan: %1$s/bulan</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

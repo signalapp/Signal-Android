@@ -4868,7 +4868,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Хаттарды жергілікті резервтік көшірмеден қалпына келтіріңіз. Оны қазір қалпына келтірмесеңіз, оны кейінірек қалпына келтіре алмайсыз.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Жергілікті резервтік көшірмені қалпына келтіру</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal резервтік көшірмесін қалпына келтіру</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Балық мәтіндік хатыңызды және соңғы 30 күндегі мультимедианы қалпына келтіріңіз</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Қосымша опциялар</string>
 
@@ -7735,17 +7734,17 @@
     <string name="TurnOnSignalBackups__not_now">Кейін</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">Verify your backup key</string>
+    <string name="VerifyBackupKey__title">Сақтық кілтті тексеру</string>
     <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">To help you remember your key, we\'ll periodically ask you for it.</string>
+    <string name="VerifyBackupKey__body">Кілтіңіз есіңізде қалуы үшін біз оны анда-санда сұрап тұрамыз.</string>
     <!-- Button of a megaphone that will take users to the verify backup key screen -->
     <string name="VerifyBackupKey__verify">Тексеру</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
     <string name="VerifyBackupKey__not_now">Кейін</string>
     <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Backup key correct. Keep your key safe.</string>
+    <string name="VerifyBackupKey__backup_key_correct">Сақтық кілт дұрыс. Кілтіңізді қауіпсіз сақтаңыз.</string>
     <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
-    <string name="VerifyBackupKey__we_will_ask_again">We will ask you again in a week.</string>
+    <string name="VerifyBackupKey__we_will_ask_again">Бір аптадан кейін тағы сұраймыз.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Толық экран хабарландыруларын қосу керек пе?</string>
@@ -8141,7 +8140,7 @@
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Сақтық кілтті көру үшін құрылғының құлпын ашыңыз</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
-    <string name="RemoteBackupsSettingsFragment__to_view_your_key">To view your key, confirm it\'s you</string>
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">Кілтіңізді көру үшін сіз екеніңізді растаңыз</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Резервтік көшірмелерді өшіру және жою</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8155,7 +8154,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Резервтік көшірме түнде жасалады.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New backup key created</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Жаңа сақтық кілт жасалды</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Жазылым белсенді емес</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8406,27 +8405,27 @@
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Кілтті қайта көру</string>
     <!-- Action label to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_new_key">Create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">Жаңа кілт жасау</string>
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__download_media">Download media</string>
+    <string name="MessageBackupsKeyRecordScreen__download_media">Мультимедианы жүктеп алу</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new backup key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Жаңа сақтық кілт жасау үшін \"Сақтау орнын оңтайландыру\" функциясын өшіріңіз және мультимедиа жүктеп алынғанша күтіңіз. Жүктеп алу процесі аяқталған соң, жаңа кілт жасай аласыз.</string>
     <!-- Action label to turn off optimized storage and download media -->
-    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Turn off and download</string>
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Өшіру және жүктеп алу</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new backup key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Жаңа сақтық кілт жасау</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Creating a new key is only necessary if someone else knows your key. You will have to re-upload your backup, including media. If you are using \"Optimize storage\" you will have to download offloaded media first.</string>
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Кілтіңіз біреуге мәлім болған жағдайда ғана жаңасын жасау керек. Сақтық көшірмені, соның ішінде мультимедианы қайта жүктеп салуыңыз керек. \"Сақтау орнын оңтайландыру\" функциясын қолданып жатсаңыз, алдымен мультимедианы жүктеп алуыңыз керек.</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Cancel key creation?</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Кілт жасаудан бас тарту керек пе?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new backup key won\'t be created unless you confirm it.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Жаңа сақтық кілтті жасау үшін растау керек.</string>
     <!-- Dialog button to continue confirming new backup key-->
-    <string name="BackupKeyDisplayFragment__confirm_key">Confirm key</string>
+    <string name="BackupKeyDisplayFragment__confirm_key">Кілтті растау</string>
     <!-- Dialog button to cancel new key creation -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation">Cancel key creation</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">Кілт жасаудан бас тарту</string>
 
     <!-- Confirm key title -->
     <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Сақтық кілтіңізді растау</string>
@@ -8444,9 +8443,9 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Сақтық кілтті енгізіңіз</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-digit code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Сақтық көшірмелерді іске қосқан соң, сіз жазған 64 цифрлық кодты енгізіңіз.</string>
     <!-- Button text when you forget your backup key -->
-    <string name="VerifyBackupPinScreen__forgot_key">Forgot key?</string>
+    <string name="VerifyBackupPinScreen__forgot_key">Кілтті ұмытып қалдыңыз ба?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8455,8 +8454,10 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Барлық резервтік көшірмелер өтпелі шифрлаумен қорғалған. Signal – коммерциялық емес ұйым. Резервтік көшірмелер үшін төлеу міндетімізді орындауға көмектеседі.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Толық ақпарат</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Жазылу</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Айына %1$s тұратын жоспарға жазылу</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

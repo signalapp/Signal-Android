@@ -4868,7 +4868,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Επανάφερε τα μηνύματά σου από ένα τοπικό αντίγραφο ασφαλείας. Αν δεν τα επαναφέρεις τώρα, δε θα μπορείς να τα επαναφέρεις αργότερα.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Επαναφορά τοπικού αντιγράφου ασφαλείας</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Επαναφορά αντίγραφου ασφαλείας Signal</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Επαναφορά όλων των μηνυμάτων κειμένου + των πολυμέσων των τελευταίων 30 ημερών</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Περισσότερες επιλογές</string>
 
@@ -7737,7 +7736,7 @@
     <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
     <string name="VerifyBackupKey__title">Επιβεβαίωσε το εφεδρικό σου κλειδί</string>
     <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">To help you remember your key, we\'ll periodically ask you for it.</string>
+    <string name="VerifyBackupKey__body">Για να σε βοηθήσουμε να θυμάσαι το κλειδί σου, θα σου το ζητάμε περιοδικά.</string>
     <!-- Button of a megaphone that will take users to the verify backup key screen -->
     <string name="VerifyBackupKey__verify">Επιβεβαίωση</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
@@ -7745,7 +7744,7 @@
     <!-- Snackbar text shown when the backup key entered is correct. -->
     <string name="VerifyBackupKey__backup_key_correct">Το εφεδρικό κλειδί είναι σωστό. Κράτησε το κλειδί σου ασφαλές.</string>
     <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
-    <string name="VerifyBackupKey__we_will_ask_again">We will ask you again in a week.</string>
+    <string name="VerifyBackupKey__we_will_ask_again">Θα σε ρωτήσουμε ξανά σε μια εβδομάδα.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Ενεργοποίηση ειδοποιήσεων σε πλήρη οθόνη;</string>
@@ -8141,7 +8140,7 @@
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Ξεκλείδωσε για να δεις το εφεδρικό κλειδί</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
-    <string name="RemoteBackupsSettingsFragment__to_view_your_key">To view your key, confirm it\'s you</string>
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">Για να δεις το κλειδί σου, επιβεβαίωσε ότι είσαι εσύ</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Απενεργοποίηση και διαγραφή αντιγράφων ασφαλείας</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8155,7 +8154,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Το αντίγραφο ασφαλείας θα δημιουργηθεί κατά τη διάρκεια της νύχτας.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New backup key created</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Δημιουργήθηκε νέο κλειδί αντιγράφου ασφαλείας</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Η συνδρομή είναι ανενεργή</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8406,27 +8405,27 @@
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Επαναπροβολή κλειδιού</string>
     <!-- Action label to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_new_key">Create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">Δημιουργία νέο κλειδιού</string>
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__download_media">Download media</string>
+    <string name="MessageBackupsKeyRecordScreen__download_media">Λήψη πολυμέσων</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new backup key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Για να δημιουργήσεις ένα νέο εφεδρικό κλειδί πρέπει να απενεργοποιήσεις τη «Βελτιστοποίηση αποθηκευτικού χώρου» και να περιμένεις μέχρι να ολοκληρωθεί η λήψη των πολυμέσων σου. Όταν η λήψη ολοκληρωθεί, μπορείς να δημιουργήσεις ένα νέο κλειδί.</string>
     <!-- Action label to turn off optimized storage and download media -->
-    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Turn off and download</string>
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Απενεργοποίηση και λήψη</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new backup key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Δημιουργία νέου εφεδρικού κλειδιού</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Creating a new key is only necessary if someone else knows your key. You will have to re-upload your backup, including media. If you are using \"Optimize storage\" you will have to download offloaded media first.</string>
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Η δημιουργία ενός νέου κλειδιού είναι απαραίτητη μόνο εάν κάποιος άλλος γνωρίζει το κλειδί σου. Θα πρέπει να ανεβάσεις ξανά το αντίγραφο ασφαλείας σου, συμπεριλαμβανομένων των πολυμέσων. Αν χρησιμοποιείς τη «Βελτιστοποίηση αποθηκευτικού χώρου» θα πρέπει να πραγματοποιήσεις πρώτα λήψη των πολυμέσων που αφαιρέθηκαν.</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Cancel key creation?</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Ακύρωση δημιουργίας κλειδιού;</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new backup key won\'t be created unless you confirm it.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Το νέο σου εφεδρικό κλειδί δεν θα δημιουργηθεί εκτός εάν το επιβεβαιώσεις.</string>
     <!-- Dialog button to continue confirming new backup key-->
-    <string name="BackupKeyDisplayFragment__confirm_key">Confirm key</string>
+    <string name="BackupKeyDisplayFragment__confirm_key">Επιβεβαίωση κλειδιού</string>
     <!-- Dialog button to cancel new key creation -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation">Cancel key creation</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">Ακύρωση δημιουργίας κλειδιού</string>
 
     <!-- Confirm key title -->
     <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Επιβεβαίωσε το εφεδρικό σου κλειδί</string>
@@ -8444,7 +8443,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">Γράψε το εφεδρικό κλειδί σου</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-digit code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Συμπλήρωσε τον 64ψήφιο κωδικό που κατέγραψες όταν ενεργοποίησες τα αντίγραφα ασφαλείας.</string>
     <!-- Button text when you forget your backup key -->
     <string name="VerifyBackupPinScreen__forgot_key">Ξέχασες το κλειδί;</string>
 
@@ -8455,8 +8454,10 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Όλα τα αντίγραφα ασφαλείας είναι κρυπτογραφημένα από άκρο σε άκρο. Το Signal είναι μη κερδοσκοπικό—η πληρωμή για αντίγραφα ασφαλείας βοηθά στην υποστήριξη της αποστολής μας.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Μάθε περισσότερα</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Εγγραφή</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Εγγράψου για %1$s/μήνα</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

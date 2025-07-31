@@ -4868,7 +4868,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">একটি স্থানীয় ব্যাকআপ থেকে আপনার মেসেজগুলো পুনরুদ্ধার করুন। আপনি এখনই পুনরুদ্ধার না করলে, পরে আর করতে পারবেন না।</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">স্থানীয় ব্যাকআপ পুনর্বহাল করুন</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal ব্যাকআপ পুনর্বহাল করুন</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">আপনার সকল টেক্সট মেসেজ + আপনার বিগত 30 দিনের মিডিয়া পুনর্বহাল করুন</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">আরো অপশন</string>
 
@@ -7737,7 +7736,7 @@
     <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
     <string name="VerifyBackupKey__title">আপনার ব্যাকআপ \'কি\' যাচাই করুন</string>
     <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">To help you remember your key, we\'ll periodically ask you for it.</string>
+    <string name="VerifyBackupKey__body">আপনার \'কি\' মনে রাখতে সাহায্য করার জন্য, আমরা মাঝে মাঝে আপনার কাছে এটি জানতে চাইবো।</string>
     <!-- Button of a megaphone that will take users to the verify backup key screen -->
     <string name="VerifyBackupKey__verify">যাচাই করুন</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
@@ -7745,7 +7744,7 @@
     <!-- Snackbar text shown when the backup key entered is correct. -->
     <string name="VerifyBackupKey__backup_key_correct">ব্যাকআপ \'কি\' সঠিক। আপনার \'কি\' নিরাপদ রাখুন।</string>
     <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
-    <string name="VerifyBackupKey__we_will_ask_again">We will ask you again in a week.</string>
+    <string name="VerifyBackupKey__we_will_ask_again">আমরা এক সপ্তাহের মধ্যে আপনাকে আবার জিজ্ঞাসা করবো।</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">পূর্ণ স্ক্রীন নোটিফিকেশন চালু করবেন?</string>
@@ -8141,7 +8140,7 @@
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">ব্যাকআপ কি দেখতে আনলক করুন</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
-    <string name="RemoteBackupsSettingsFragment__to_view_your_key">To view your key, confirm it\'s you</string>
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">আপনার \'কি\' দেখতে, আপনার পরিচয় নিশ্চিত করুন</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">বন্ধ করুন এবং ব্যাকআপ মুছুন</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8155,7 +8154,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">রাতের বেলা ব্যাকআপ তৈরি করা হবে।</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New backup key created</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">নতুন ব্যাকআপ \'কি\' তৈরি করা হয়েছে</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">সাবস্ক্রিপশন নিষ্ক্রিয় অবস্থায় আছে</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8406,27 +8405,27 @@
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">\'কি\'-টি আবার দেখুন</string>
     <!-- Action label to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_new_key">Create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">নতুন \'কি\' তৈরি করুন</string>
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__download_media">Download media</string>
+    <string name="MessageBackupsKeyRecordScreen__download_media">মিডিয়া ডাউনলোড করুন</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new backup key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">একটি নতুন ব্যাকআপ \'কি\' তৈরি করতে, আপনাকে অবশ্যই \"স্টোরেজ অপ্টিমাইজ করুন\" বন্ধ করতে হবে এবং আপনার মিডিয়া ডাউনলোড শেষ না হওয়া পর্যন্ত অপেক্ষা করতে হবে। ডাউনলোড সম্পন্ন হলে, আপনি একটি নতুন \'কি\' তৈরি করতে পারবেন।</string>
     <!-- Action label to turn off optimized storage and download media -->
-    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Turn off and download</string>
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">বন্ধ করে ডাউনলোড করুন</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new backup key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">একটি নতুন ব্যাকআপ \'কি\' তৈরি করুন</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Creating a new key is only necessary if someone else knows your key. You will have to re-upload your backup, including media. If you are using \"Optimize storage\" you will have to download offloaded media first.</string>
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">অন্য কেউ যদি আপনার \'কি\' জেনে থাকেন তবেই কেবল একটি নতুন \'কি\' তৈরি করা প্রয়োজন হয়। আপনাকে মিডিয়া সহ আপনার ব্যাকআপ পুনরায় আপলোড করতে হবে। আপনি যদি \"অপ্টিমাইজ স্টোরেজ\" ব্যবহার করেন তবে আপনাকে প্রথমে অফলোড করা মিডিয়া ডাউনলোড করতে হবে।</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Cancel key creation?</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">\'কি\' তৈরি বাতিল করবেন?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new backup key won\'t be created unless you confirm it.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">আপনি নিশ্চিত না করলে আপনার নতুন ব্যাকআপ \'কি\' তৈরি হবে না।</string>
     <!-- Dialog button to continue confirming new backup key-->
-    <string name="BackupKeyDisplayFragment__confirm_key">Confirm key</string>
+    <string name="BackupKeyDisplayFragment__confirm_key">\'কি\' নিশ্চিত করুন</string>
     <!-- Dialog button to cancel new key creation -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation">Cancel key creation</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">\'কি\' তৈরি বাতিল করুন</string>
 
     <!-- Confirm key title -->
     <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">আপনার ব্যাকআপ \'কি\' নিশ্চিত করুন</string>
@@ -8444,7 +8443,7 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">আপনার ব্যাকআপ \'কি\' লিখুন</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-digit code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ব্যাকআপ চালু করার সময় আপনি যে 64-সংখ্যার কোডটি রেকর্ড করেছিলেন তা লিখুন।</string>
     <!-- Button text when you forget your backup key -->
     <string name="VerifyBackupPinScreen__forgot_key">\'কি\' ভুলে গেছেন?</string>
 
@@ -8455,8 +8454,10 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">সকল ব্যাকআপ এন্ড-টু-এন্ড এনক্রিপ্ট করা। Signal একটি অলাভজনক সার্ভিস—ব্যাকআপের জন্য পেমেন্ট করা হলে তা আমাদের মিশনে সহায়তা করবে।</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">আরো জানুন</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">সাবস্ক্রাইব করুন</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/মাসের জন্য সাবস্ক্রাইব করুন</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

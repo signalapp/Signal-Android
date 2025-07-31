@@ -4868,7 +4868,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">ਸਥਾਨਕ ਬੈਕਅੱਪ ਤੋਂ ਆਪਣੇ ਸੁਨੇਹਿਆਂ ਨੂੰ ਬਹਾਲ ਕਰੋ | ਜੇਕਰ ਤੁਸੀਂ ਹੁਣੇ ਬਹਾਲ ਨਹੀਂ ਕਰਦੇ ਹੋ, ਤਾਂ ਤੁਸੀਂ ਬਾਅਦ ਵਿੱਚ ਬਹਾਲ ਨਹੀਂ ਕਰ ਸਕੋਗੇ।</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">ਸਥਾਨਕ ਬੈਕਅੱਪ ਰੀਸਟੋਰ ਕਰੋ</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal ਬੈਕਅੱਪ ਨੂੰ ਰੀਸਟੋਰ ਕਰੋ</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">ਆਪਣੇ ਸਾਰੇ ਟੈਕਸਟ ਸੁਨੇਹੇ + ਆਪਣਾ ਪਿਛਲੇ 30 ਦਿਨਾਂ ਦਾ ਮੀਡੀਆ ਰੀਸਟੋਰ ਕਰੋ</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">ਹੋਰ ਵਿਕਲਪ</string>
 
@@ -7735,17 +7734,17 @@
     <string name="TurnOnSignalBackups__not_now">ਹਾਲੇ ਨਹੀਂ</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">Verify your backup key</string>
+    <string name="VerifyBackupKey__title">ਆਪਣੀ ਬੈਕਅੱਪ ਕੁੰਜੀ ਦੀ ਤਸਦੀਕ ਕਰੋ</string>
     <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">To help you remember your key, we\'ll periodically ask you for it.</string>
+    <string name="VerifyBackupKey__body">ਆਪਣੀ ਕੁੰਜੀ ਯਾਦ ਰੱਖਣ ਵਿੱਚ ਤੁਹਾਡੀ ਮਦਦ ਕਰਨ ਲਈ, ਅਸੀਂ ਸਮੇਂ-ਸਮੇਂ \'ਤੇ ਤੁਹਾਡੇ ਕੋਲੋਂ ਕੁੰਜੀ ਪੁੱਛਦੇ ਰਹਾਂਗੇ।</string>
     <!-- Button of a megaphone that will take users to the verify backup key screen -->
     <string name="VerifyBackupKey__verify">ਤਸਦੀਕ ਕਰੋ</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
     <string name="VerifyBackupKey__not_now">ਹਾਲੇ ਨਹੀਂ</string>
     <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Backup key correct. Keep your key safe.</string>
+    <string name="VerifyBackupKey__backup_key_correct">ਬੈਕਅੱਪ ਕੁੰਜੀ ਸਹੀ ਹੈ। ਆਪਣੀ ਕੁੰਜੀ ਸੁਰੱਖਿਅਤ ਰੱਖੋ।</string>
     <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
-    <string name="VerifyBackupKey__we_will_ask_again">We will ask you again in a week.</string>
+    <string name="VerifyBackupKey__we_will_ask_again">ਅਸੀਂ ਤੁਹਾਨੂੰ ਇੱਕ ਹਫ਼ਤੇ ਬਾਅਦ ਦੁਬਾਰਾ ਪੁੱਛਾਂਗੇ।</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">ਕੀ ਪੂਰੀ ਸਕ੍ਰੀਨ ਉੱਤੇ ਦਿਖਣ ਵਾਲੀਆਂ ਸੂਚਨਾਵਾਂ ਨੂੰ ਚਾਲੂ ਕਰਨਾ ਹੈ?</string>
@@ -8141,7 +8140,7 @@
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">ਬੈਕਅੱਪ ਕੁੰਜੀ ਦੇਖਣ ਲਈ ਅਨਲੌਕ ਕਰੋ</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
-    <string name="RemoteBackupsSettingsFragment__to_view_your_key">To view your key, confirm it\'s you</string>
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">ਆਪਣੀ ਕੁੰਜੀ ਦੇਖਣ ਲਈ, ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ ਇਹ ਤੁਸੀਂ ਹੀ ਹੋ</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ਬੈਕਅੱਪ ਬੰਦ ਕਰੋ ਅਤੇ ਮਿਟਾਓ</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8155,7 +8154,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ਬੈਕਅੱਪ ਰਾਤੋ-ਰਾਤ ਬਣਾਇਆ ਜਾਵੇਗਾ।</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New backup key created</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">ਨਵੀਂ ਬੈਕਅੱਪ ਕੁੰਜੀ ਬਣਾਈ ਗਈ</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">ਸਬਸਕ੍ਰਿਪਸ਼ਨ ਅਕਿਰਿਆਸ਼ੀਲ ਹੈ</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8406,27 +8405,27 @@
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">ਕੁੰਜੀ ਨੂੰ ਦੁਬਾਰਾ ਦੇਖੋ</string>
     <!-- Action label to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_new_key">Create new key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">ਨਵੀਂ ਕੁੰਜੀ ਬਣਾਓ</string>
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__download_media">Download media</string>
+    <string name="MessageBackupsKeyRecordScreen__download_media">ਮੀਡੀਆ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new backup key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">ਨਵੀਂ ਬੈਕਅੱਪ ਕੁੰਜੀ ਬਣਾਉਣ ਲਈ, ਤੁਹਾਨੂੰ \"ਸਟੋਰੇਜ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਓ\" ਨੂੰ ਬੰਦ ਕਰਨਾ ਪਵੇਗਾ ਅਤੇ ਆਪਣੇ ਮੀਡੀਆ ਦੇ ਡਾਊਨਲੋਡ ਹੋਣ ਤੱਕ ਉਡੀਕ ਕਰਨੀ ਪਵੇਗੀ। ਡਾਊਨਲੋਡ ਪੂਰਾ ਹੋਣ \'ਤੇ, ਤੁਸੀਂ ਇੱਕ ਨਵੀਂ ਕੁੰਜੀ ਬਣਾ ਸਕਦੇ ਹੋ।</string>
     <!-- Action label to turn off optimized storage and download media -->
-    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Turn off and download</string>
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">ਬੰਦ ਕਰੋ ਅਤੇ ਡਾਊਨਲੋਡ ਕਰੋ</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new backup key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">ਇੱਕ ਨਵੀਂ ਬੈਕਅੱਪ ਕੁੰਜੀ ਬਣਾਓ</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Creating a new key is only necessary if someone else knows your key. You will have to re-upload your backup, including media. If you are using \"Optimize storage\" you will have to download offloaded media first.</string>
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">ਨਵੀਂ ਕੁੰਜੀ ਬਣਾਉਣਾ ਸਿਰਫ਼ ਤਾਂ ਹੀ ਜ਼ਰੂਰੀ ਹੈ ਜੇਕਰ ਕਿਸੇ ਹੋਰ ਨੂੰ ਤੁਹਾਡੀ ਕੁੰਜੀ ਬਾਰੇ ਪਤਾ ਹੈ। ਤੁਹਾਨੂੰ ਮੀਡੀਆ ਸਮੇਤ ਆਪਣਾ ਬੈਕਅੱਪ ਦੁਬਾਰਾ ਅੱਪਲੋਡ ਕਰਨਾ ਪਵੇਗਾ। ਜੇਕਰ ਤੁਸੀਂ \"ਸਟੋਰੇਜ ਨੂੰ ਅਨੁਕੂਲ ਬਣਾਓ\" ਦੀ ਵਰਤੋਂ ਕਰ ਰਹੇ ਹੋ ਤਾਂ ਤੁਹਾਨੂੰ ਪਹਿਲਾਂ ਔਫਲੋਡ ਕੀਤਾ ਮੀਡੀਆ ਡਾਊਨਲੋਡ ਕਰਨਾ ਪਵੇਗਾ।</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Cancel key creation?</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">ਕੀ ਕੁੰਜੀ ਬਣਾਉਣਾ ਰੱਦ ਕਰਨਾ ਹੈ?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new backup key won\'t be created unless you confirm it.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">ਤੁਹਾਡੀ ਨਵੀਂ ਬੈਕਅੱਪ ਕੁੰਜੀ ਉਦੋਂ ਤੱਕ ਨਹੀਂ ਬਣਾਈ ਜਾਵੇਗੀ ਜਦੋਂ ਤੱਕ ਤੁਸੀਂ ਇਸਦੀ ਪੁਸ਼ਟੀ ਨਹੀਂ ਕਰਦੇ।</string>
     <!-- Dialog button to continue confirming new backup key-->
-    <string name="BackupKeyDisplayFragment__confirm_key">Confirm key</string>
+    <string name="BackupKeyDisplayFragment__confirm_key">ਕੁੰਜੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
     <!-- Dialog button to cancel new key creation -->
-    <string name="BackupKeyDisplayFragment__cancel_key_creation">Cancel key creation</string>
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">ਕੁੰਜੀ ਬਣਾਉਣਾ ਰੱਦ ਕਰੋ</string>
 
     <!-- Confirm key title -->
     <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">ਆਪਣੀ ਬੈਕਅੱਪ ਕੁੰਜੀ ਦੀ ਪੁਸ਼ਟੀ ਕਰੋ</string>
@@ -8444,9 +8443,9 @@
     <!-- Verify your key title -->
     <string name="VerifyBackupPinScreen__enter_your_backup_key">ਆਪਣੀ ਬੈਕਅੱਪ ਕੁੰਜੀ ਦਰਜ ਕਰੋ</string>
     <!-- Verify your key subtitle -->
-    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Enter the 64-digit code you recorded when you enabled backups.</string>
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ਬੈਕਅੱਪ ਚਾਲੂ ਕਰਦੇ ਸਮੇਂ ਰਿਕਾਰਡ ਕੀਤਾ ਗਿਆ 64-ਅੰਕਾਂ ਵਾਲਾ ਕੋਡ ਦਰਜ ਕਰੋ।</string>
     <!-- Button text when you forget your backup key -->
-    <string name="VerifyBackupPinScreen__forgot_key">Forgot key?</string>
+    <string name="VerifyBackupPinScreen__forgot_key">ਕੁੰਜੀ ਭੁੱਲ ਗਏ ਹੋ?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8455,8 +8454,10 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">ਸਾਰੇ ਬੈਕਅੱਪ ਸਿਰੇ-ਤੋਂ-ਸਿਰੇ ਤੱਕ ਇਨਕ੍ਰਿਪਟਡ ਹੁੰਦੇ ਹਨ। Signal ਇੱਕ ਗੈਰ-ਲਾਭਕਾਰੀ ਕੰਪਨੀ ਹੈ—ਬੈਕਅੱਪ ਲਈ ਭੁਗਤਾਨ ਕਰਨ ਨਾਲ ਸਾਡੇ ਮਿਸ਼ਨ ਨੂੰ ਜਾਰੀ ਰੱਖਣ ਵਿੱਚ ਮਦਦ ਮਿਲਦੀ ਹੈ।</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">ਹੋਰ ਜਾਣੋ</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/ਮਹੀਨੇ ਵਿੱਚ ਸਬਸਕ੍ਰਾਈਬ ਕਰੋ</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
