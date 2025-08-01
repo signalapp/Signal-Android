@@ -38,6 +38,7 @@ class ProfileRepository(private val profileApi: ProfileApi) {
     val successes: MutableList<IdProfilePair<Id>> = mutableListOf()
     val unregistered: MutableList<Id> = mutableListOf()
     val retryableFailures: MutableSet<Id> = requests.map { it.id }.toMutableSet()
+    val verificationFailures: MutableSet<Id> = mutableSetOf()
     var retryAfter: Duration? = null
 
     val mutex = Mutex()
@@ -82,12 +83,15 @@ class ProfileRepository(private val profileApi: ProfileApi) {
           }
           is NetworkResult.NetworkError -> Unit
           is NetworkResult.ApplicationError -> {
-            mutex.withLock {
-              retryableFailures -= request.id
-            }
             if (response.throwable is VerificationFailedException) {
               Log.w(TAG, "Failed to verify ZK profile operation for ${request.id}. Continuing with other lookups.")
+              mutex.withLock {
+                verificationFailures += request.id
+              }
             } else {
+              mutex.withLock {
+                retryableFailures -= request.id
+              }
               throw response.throwable
             }
           }
@@ -105,6 +109,7 @@ class ProfileRepository(private val profileApi: ProfileApi) {
       successes = successes,
       unregistered = unregistered.toSet(),
       retryableFailures = retryableFailures,
+      verificationFailures = verificationFailures,
       retryAfter = retryAfter
     )
   }
@@ -113,6 +118,7 @@ class ProfileRepository(private val profileApi: ProfileApi) {
     val successes: List<IdProfilePair<Id>>,
     val unregistered: Set<Id>,
     val retryableFailures: Set<Id>,
+    val verificationFailures: Set<Id>,
     val retryAfter: Duration?
   )
 

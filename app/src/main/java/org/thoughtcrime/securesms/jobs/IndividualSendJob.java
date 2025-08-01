@@ -221,7 +221,7 @@ public class IndividualSendJob extends PushSendJob {
       }
       database.addMismatchedIdentity(messageId, recipient.getId(), uie.getIdentityKey());
       database.markAsSentFailed(messageId);
-      RetrieveProfileJob.enqueue(recipient.getId());
+      RetrieveProfileJob.enqueue(recipient.getId(), true);
     } catch (ProofRequiredException e) {
       ProofRequiredExceptionHandler.Result result = ProofRequiredExceptionHandler.handle(context, e, SignalDatabase.threads().getRecipientForThreadId(threadId), threadId, messageId);
       if (result.isRetry()) {

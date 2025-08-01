@@ -15,7 +15,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
-import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
+import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
@@ -69,7 +69,7 @@ class EditProfileViewModel extends ViewModel {
 
     SignalExecutors.BOUNDED.execute(() -> {
       onRecipientChanged(Recipient.self().fresh());
-      RetrieveProfileJob.enqueue(Recipient.self().getId());
+      AppDependencies.getJobManager().add(new RefreshOwnProfileJob());
     });
 
     Recipient.self().live().observeForever(observer);

@@ -238,7 +238,7 @@ public class SignalBaseIdentityKeyStore {
     }
 
     if (!identityKey.equals(identityRecord.getIdentityKey())) {
-      Log.w(TAG, "Identity keys don't match... service: " + identityKey.hashCode() + " database: " + identityRecord.getIdentityKey().hashCode());
+      Log.w(TAG, "Identity keys don't match... service: ***" + (identityKey.hashCode() % 100) + " database: ***" + (identityRecord.getIdentityKey().hashCode() % 100));
       return false;
     }
 

@@ -53,9 +53,9 @@ import kotlin.time.Duration.Companion.minutes
 /**
  * Retrieves a users profile and sets the appropriate local fields.
  */
-class RetrieveProfileJob private constructor(parameters: Parameters, private val recipientIds: MutableSet<RecipientId>) : BaseJob(parameters) {
-  constructor(recipientIds: Set<RecipientId>) : this(
-    Parameters.Builder()
+class RetrieveProfileJob private constructor(parameters: Parameters, private val recipientIds: MutableSet<RecipientId>, private val skipDebounce: Boolean) : BaseJob(parameters) {
+  private constructor(recipientIds: Set<RecipientId>, skipDebounce: Boolean) : this(
+    parameters = Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
       .apply {
         if (recipientIds.size < 5) {
@@ -65,12 +65,14 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       }
       .setMaxAttempts(3)
       .build(),
-    recipientIds.toMutableSet()
+    recipientIds = recipientIds.toMutableSet(),
+    skipDebounce = skipDebounce
   )
 
   override fun serialize(): ByteArray? {
     return JsonJobData.Builder()
       .putStringListAsArray(KEY_RECIPIENTS, recipientIds.map { it.serialize() })
+      .putBoolean(KEY_SKIP_DEBOUNCE, skipDebounce)
       .serialize()
   }
 
@@ -99,7 +101,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     val currentTime = System.currentTimeMillis()
     val debounceThreshold = currentTime - PROFILE_FETCH_DEBOUNCE_TIME_MS
     val recipientsToFetch = recipients.filter { recipient ->
-      recipient.hasServiceId && recipient.lastProfileFetchTime < debounceThreshold
+      recipient.hasServiceId && (skipDebounce || recipient.lastProfileFetchTime < debounceThreshold)
     }
 
     if (recipientsToFetch.isEmpty()) {
@@ -138,7 +140,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     Log.d(TAG, "Fetched ${localRecords.size} existing records.")
     stopwatch.split("disk-fetch")
 
-    val successIds: Set<RecipientId> = recipientIds - response.retryableFailures
+    val successIds: Set<RecipientId> = response.successes.map { it.id }.toSet()
     val newlyRegisteredIds: Set<RecipientId> = response.successes
       .mapNotNull { recipientsById[it.id] }
       .filterNot { it.isRegistered }
@@ -188,6 +190,14 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
       }
     }
     stopwatch.split("registered-update")
+
+    if (response.verificationFailures.isNotEmpty()) {
+      Log.i(TAG, "Removing profile keys for ${response.verificationFailures.size} users due to verification errors")
+      for (recipientId in response.verificationFailures) {
+        SignalDatabase.recipients.clearProfileKeyData(recipientId)
+      }
+    }
+    stopwatch.split("verification-update")
 
     for (idProfilePair in response.successes) {
       setIdentityKey(recipientsById[idProfilePair.id]!!, idProfilePair.profileWithCredential.profile.identityKey)
@@ -523,8 +533,9 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     override fun create(parameters: Parameters, serializedData: ByteArray?): RetrieveProfileJob {
       val data = JsonJobData.deserialize(serializedData)
       val recipientIds: MutableSet<RecipientId> = data.getStringArray(KEY_RECIPIENTS).map { RecipientId.from(it) }.toMutableSet()
+      val skipDebounce: Boolean = data.getBooleanOrDefault(KEY_SKIP_DEBOUNCE, false)
 
-      return RetrieveProfileJob(parameters, recipientIds)
+      return RetrieveProfileJob(parameters, recipientIds, skipDebounce)
     }
   }
 
@@ -532,6 +543,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
     const val KEY = "RetrieveProfileJob"
     private val TAG = Log.tag(RetrieveProfileJob::class.java)
     private const val KEY_RECIPIENTS = "recipients"
+    private const val KEY_SKIP_DEBOUNCE = "skip_debounce"
     private const val DEDUPE_KEY_RETRIEVE_AVATAR = KEY + "_RETRIEVE_PROFILE_AVATAR"
     private const val QUEUE_PREFIX = "RetrieveProfileJob_"
 
@@ -546,8 +558,8 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
      */
     @JvmStatic
     @WorkerThread
-    fun enqueue(recipientId: RecipientId) {
-      forRecipients(setOf(recipientId)).firstOrNull()?.let { job ->
+    fun enqueue(recipientId: RecipientId, skipDebounce: Boolean) {
+      forRecipients(setOf(recipientId), skipDebounce).firstOrNull()?.let { job ->
         AppDependencies.jobManager.add(job)
       }
     }
@@ -558,9 +570,9 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
      */
     @JvmStatic
     @WorkerThread
-    fun enqueue(recipientIds: Set<RecipientId>) {
+    fun enqueue(recipientIds: Set<RecipientId>, skipDebounce: Boolean) {
       val jobManager = AppDependencies.jobManager
-      for (job in forRecipients(recipientIds)) {
+      for (job in forRecipients(recipientIds, skipDebounce)) {
         jobManager.add(job)
       }
     }
@@ -572,7 +584,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
      */
     @JvmStatic
     @WorkerThread
-    fun forRecipients(recipientIds: Set<RecipientId>): List<Job> {
+    fun forRecipients(recipientIds: Set<RecipientId>, skipDebounce: Boolean = false): List<Job> {
       val combined: MutableSet<RecipientId> = HashSet(recipientIds.size)
       var includeSelf = false
 
@@ -589,8 +601,8 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
         if (includeSelf) {
           add(RefreshOwnProfileJob())
         }
-        if (combined.size > 0) {
-          add(RetrieveProfileJob(combined))
+        if (combined.isNotEmpty()) {
+          add(RetrieveProfileJob(combined, skipDebounce))
         }
       }
     }
@@ -622,7 +634,7 @@ class RetrieveProfileJob private constructor(parameters: Parameters, private val
 
         if (ids.isNotEmpty()) {
           Log.i(TAG, "Optimistically refreshing ${ids.size} eligible recipient(s).")
-          enqueue(ids.toSet())
+          enqueue(ids.toSet(), false)
         } else {
           Log.i(TAG, "No recipients to refresh.")
         }

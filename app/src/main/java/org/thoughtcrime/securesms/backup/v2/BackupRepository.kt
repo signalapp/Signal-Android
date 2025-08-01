@@ -1241,7 +1241,7 @@ object BackupRepository {
       recipientSet
     }
 
-    RetrieveProfileJob.enqueue(recipientIds)
+    RetrieveProfileJob.enqueue(recipientIds, skipDebounce = false)
 
     AppDependencies.jobManager.add(CreateReleaseChannelJob.create())
 

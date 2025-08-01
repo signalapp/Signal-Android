@@ -150,7 +150,7 @@ class StoryGroupReplyFragment :
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     SignalExecutors.BOUNDED.execute {
-      RetrieveProfileJob.enqueue(groupRecipientId)
+      RetrieveProfileJob.enqueue(groupRecipientId, skipDebounce = false)
     }
 
     recyclerView = view.findViewById(R.id.recycler)

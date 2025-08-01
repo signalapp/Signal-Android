@@ -174,7 +174,7 @@ class ContactRecordProcessor(
 
     if (localAci != null && mergedIdentityKey != null && remote.proto.identityKey.isNotEmpty() && !mergedIdentityKey.contentEquals(remote.proto.identityKey.toByteArray())) {
       Log.w(TAG, "The local and remote identity keys do not match for " + localAci + ". Enqueueing a profile fetch.")
-      enqueue(trustedPush(localAci, localPni, local.proto.e164).id)
+      enqueue(trustedPush(localAci, localPni, local.proto.e164).id, true)
     }
 
     val mergedPni: PNI?

@@ -509,7 +509,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                                     .map(mismatch -> mismatch.getRecipientId())
                                                     .collect(Collectors.toSet());
 
-      RetrieveProfileJob.enqueue(mismatchRecipientIds);
+      RetrieveProfileJob.enqueue(mismatchRecipientIds, true);
     } else if (!networkFailures.isEmpty()) {
       long retryAfter = results.stream()
                                .filter(r -> r.getRateLimitFailure() != null)
