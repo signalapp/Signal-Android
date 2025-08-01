@@ -229,7 +229,7 @@ object BackupRepository {
     BackupMessagesJob.enqueue()
   }
 
-  private fun resetInitializedStateAndAuthCredentials() {
+  fun resetInitializedStateAndAuthCredentials() {
     SignalStore.backup.backupsInitialized = false
     SignalStore.backup.messageCredentials.clearAll()
     SignalStore.backup.mediaCredentials.clearAll()

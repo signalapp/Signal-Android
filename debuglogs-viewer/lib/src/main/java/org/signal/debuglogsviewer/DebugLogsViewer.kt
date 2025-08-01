@@ -83,7 +83,7 @@ object DebugLogsViewer {
 
   @JvmStatic
   fun onCopy(webview: WebView, context: Context, appName: String) {
-    webview.evaluateJavascript ("editor.getValue();") { value ->
+    webview.evaluateJavascript("editor.getValue();") { value ->
       val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
       val clip = ClipData.newPlainText(appName, value)
       clipboard.setPrimaryClip(clip)

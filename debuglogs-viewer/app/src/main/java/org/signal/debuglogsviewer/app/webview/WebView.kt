@@ -16,16 +16,16 @@ import android.widget.Button
 import org.signal.debuglogsviewer.app.R
 
 fun setupWebView(
-  context:           Context,
-  webview:           WebView,
-  findButton:        Button,
+  context: Context,
+  webview: WebView,
+  findButton: Button,
   filterLevelButton: Button,
-  editButton:        Button,
-  cancelEditButton:  Button,
-  copyButton:        Button
+  editButton: Button,
+  cancelEditButton: Button,
+  copyButton: Button
 ) {
   val originalContent = org.json.JSONObject.quote(getLogText(context))
-  var readOnly        = true
+  var readOnly = true
 
   webview.settings.apply {
     javaScriptEnabled = true
@@ -73,7 +73,7 @@ fun setupWebView(
   }
 
   copyButton.setOnClickListener { // In Signal app, use Util.writeTextToClipboard(context, value) instead
-    webview.evaluateJavascript ("editor.getValue();") { value ->
+    webview.evaluateJavascript("editor.getValue();") { value ->
       val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
       val clip = ClipData.newPlainText(context.getString(R.string.app_name), value)
       clipboard.setPrimaryClip(clip)

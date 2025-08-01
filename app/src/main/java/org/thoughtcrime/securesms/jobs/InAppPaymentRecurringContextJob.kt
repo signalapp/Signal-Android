@@ -237,7 +237,8 @@ class InAppPaymentRecurringContextJob private constructor(
         }
 
         if (tier != MessageBackupTier.PAID) {
-          warning("ZK credential does not align with entitlement. Forcing a redemption.")
+          warning("ZK credential does not align with entitlement. Clearing backup credentials and forcing a redemption.")
+          BackupRepository.resetInitializedStateAndAuthCredentials()
           return false
         }
 

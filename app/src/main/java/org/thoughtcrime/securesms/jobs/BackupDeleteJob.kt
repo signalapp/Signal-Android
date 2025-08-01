@@ -56,6 +56,7 @@ class BackupDeleteJob private constructor(
 
     if (result.isFailure) {
       clearLocalBackupStateOnFailure()
+      BackupRepository.resetInitializedStateAndAuthCredentials()
     }
 
     return result
@@ -110,6 +111,7 @@ class BackupDeleteJob private constructor(
     val result = checkResults(results)
     if (result.isSuccess) {
       Log.i(TAG, "Backup deletion was successful.")
+      BackupRepository.resetInitializedStateAndAuthCredentials()
       SignalStore.backup.deletionState = DeletionState.COMPLETE
     }
 
