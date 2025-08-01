@@ -88,6 +88,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_HAS_SNOOZED_VERIFY = "backup.has_snoozed_verify"
     private const val KEY_HAS_VERIFIED_BEFORE = "backup.has_verified_before"
 
+    private const val KEY_NEXT_BACKUP_SECRET_DATA = "backup.next_backup_secret_data"
+
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
 
     private val lock = ReentrantLock()
@@ -366,6 +368,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   /** Checks if they have ever verified their backup key before **/
   var hasVerifiedBefore by booleanValue(KEY_HAS_VERIFIED_BEFORE, false)
+
+  /** The value from the last successful SVRB operation that must be passed to the next SVRB operation. */
+  var nextBackupSecretData by nullableBlobValue(KEY_NEXT_BACKUP_SECRET_DATA, null)
 
   /**
    * If true, it means we have been told that remote storage is full, but we have not yet run any of our "garbage collection" tasks, like committing deletes

@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.backup.v2
 
 import org.signal.core.util.isNotNullOrBlank
+import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.signal.libsignal.messagebackup.MessageBackup
 import org.signal.libsignal.messagebackup.ValidationError
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -22,17 +23,25 @@ import org.signal.libsignal.messagebackup.MessageBackupKey as LibSignalMessageBa
 
 object ArchiveValidator {
 
+  fun validateSignalBackup(backupFile: File, backupKey: MessageBackupKey, backupForwardSecrecyToken: BackupForwardSecrecyToken): ValidationResult {
+    return validate(backupFile, backupKey, backupForwardSecrecyToken, forTransfer = false)
+  }
+
+  fun validateLocalOrLinking(backupFile: File, backupKey: MessageBackupKey, forTransfer: Boolean): ValidationResult {
+    return validate(backupFile, backupKey, forwardSecrecyToken = null, forTransfer)
+  }
+
   /**
    * Validates the provided [backupFile] that is encrypted with the provided [backupKey].
    */
-  fun validate(backupFile: File, backupKey: MessageBackupKey, forTransfer: Boolean): ValidationResult {
+  fun validate(backupFile: File, backupKey: MessageBackupKey, forwardSecrecyToken: BackupForwardSecrecyToken?, forTransfer: Boolean): ValidationResult {
     return try {
       val backupId = backupKey.deriveBackupId(SignalStore.account.requireAci())
       val libSignalBackupKey = LibSignalBackupKey(backupKey.value)
-      val backupKey = LibSignalMessageBackupKey(libSignalBackupKey, backupId.value)
+      val libSignalMessageBackupKey = LibSignalMessageBackupKey(libSignalBackupKey, backupId.value, forwardSecrecyToken)
 
       MessageBackup.validate(
-        backupKey,
+        libSignalMessageBackupKey,
         if (forTransfer) MessageBackup.Purpose.DEVICE_TRANSFER else MessageBackup.Purpose.REMOTE_BACKUP,
         { backupFile.inputStream() },
         backupFile.length()

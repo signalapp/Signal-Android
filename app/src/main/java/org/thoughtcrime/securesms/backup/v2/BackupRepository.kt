@@ -39,12 +39,14 @@ import org.signal.core.util.getAllTableDefinitions
 import org.signal.core.util.getAllTriggerDefinitions
 import org.signal.core.util.getForeignKeyViolations
 import org.signal.core.util.logging.Log
+import org.signal.core.util.logging.logW
 import org.signal.core.util.money.FiatMoney
 import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireNonNullString
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.urlEncode
 import org.signal.core.util.withinTransaction
+import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.backups.BackupLevel
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
@@ -144,8 +146,10 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.Pro
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
+import org.whispersystems.signalservice.api.svr.SvrBApi
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
+import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.io.ByteArrayOutputStream
 import java.io.File
@@ -722,20 +726,27 @@ object BackupRepository {
   }
 
   @WorkerThread
-  fun localExport(
+  fun exportForLocalBackup(
     main: OutputStream,
     localBackupProgressEmitter: ExportProgressListener,
     cancellationSignal: () -> Boolean = { false },
     archiveAttachment: (AttachmentTable.LocalArchivableAttachment, () -> InputStream?) -> Unit
   ) {
-    val writer = EncryptedBackupWriter(
+    val writer = EncryptedBackupWriter.createForLocalOrLinking(
       key = SignalStore.backup.messageBackupKey,
       aci = SignalStore.account.aci!!,
       outputStream = NonClosingOutputStream(main),
       append = { main.write(it) }
     )
 
-    export(currentTime = System.currentTimeMillis(), isLocal = true, writer = writer, progressEmitter = localBackupProgressEmitter, cancellationSignal = cancellationSignal, mediaBackupEnabled = false) { dbSnapshot ->
+    export(
+      currentTime = System.currentTimeMillis(),
+      isLocal = true,
+      writer = writer,
+      progressEmitter = localBackupProgressEmitter,
+      cancellationSignal = cancellationSignal,
+      forTransfer = false
+    ) { dbSnapshot ->
       val localArchivableAttachments = dbSnapshot
         .attachmentTable
         .getLocalArchivableAttachments()
@@ -758,24 +769,86 @@ object BackupRepository {
     }
   }
 
+  /**
+   * Export a backup that will be uploaded to the archive CDN.
+   */
+  fun exportForSignalBackup(
+    outputStream: OutputStream,
+    append: (ByteArray) -> Unit,
+    messageBackupKey: MessageBackupKey,
+    forwardSecrecyToken: BackupForwardSecrecyToken,
+    forwardSecrecyMetadata: ByteArray,
+    currentTime: Long,
+    progressEmitter: ExportProgressListener? = null,
+    cancellationSignal: () -> Boolean = { false },
+    extraExportOperations: ((SignalDatabase) -> Unit)?
+  ) {
+    val writer = EncryptedBackupWriter.createForSignalBackup(
+      key = messageBackupKey,
+      aci = SignalStore.account.aci!!,
+      outputStream = outputStream,
+      forwardSecrecyToken = forwardSecrecyToken,
+      forwardSecrecyMetadata = forwardSecrecyMetadata,
+      append = append
+    )
+
+    return export(
+      currentTime = currentTime,
+      isLocal = false,
+      writer = writer,
+      forTransfer = false,
+      progressEmitter = progressEmitter,
+      cancellationSignal = cancellationSignal,
+      extraExportOperations = extraExportOperations
+    )
+  }
+
+  /**
+   * Export a backup that will be uploaded to the archive CDN.
+   */
+  fun exportForLinkAndSync(
+    outputStream: OutputStream,
+    append: (ByteArray) -> Unit,
+    messageBackupKey: MessageBackupKey,
+    currentTime: Long,
+    progressEmitter: ExportProgressListener? = null,
+    cancellationSignal: () -> Boolean = { false }
+  ) {
+    val writer = EncryptedBackupWriter.createForLocalOrLinking(
+      key = messageBackupKey,
+      aci = SignalStore.account.aci!!,
+      outputStream = outputStream,
+      append = append
+    )
+
+    return export(
+      currentTime = currentTime,
+      isLocal = false,
+      writer = writer,
+      forTransfer = true,
+      progressEmitter = progressEmitter,
+      cancellationSignal = cancellationSignal,
+      extraExportOperations = null
+    )
+  }
+
   @WorkerThread
   @JvmOverloads
-  fun export(
+  fun exportForDebugging(
     outputStream: OutputStream,
     append: (ByteArray) -> Unit,
     messageBackupKey: MessageBackupKey = SignalStore.backup.messageBackupKey,
     plaintext: Boolean = false,
     currentTime: Long = System.currentTimeMillis(),
-    skipMediaBackup: Boolean = false,
     forTransfer: Boolean = false,
     progressEmitter: ExportProgressListener? = null,
     cancellationSignal: () -> Boolean = { false },
-    exportExtras: ((SignalDatabase) -> Unit)? = null
+    extraExportOperations: ((SignalDatabase) -> Unit)? = null
   ) {
     val writer: BackupExportWriter = if (plaintext) {
       PlainTextBackupWriter(outputStream)
     } else {
-      EncryptedBackupWriter(
+      EncryptedBackupWriter.createForLocalOrLinking(
         key = messageBackupKey,
         aci = SignalStore.account.aci!!,
         outputStream = outputStream,
@@ -783,21 +856,14 @@ object BackupRepository {
       )
     }
 
-    val mediaBackupEnabled = if (skipMediaBackup || !SignalStore.backup.areBackupsEnabled) {
-      false
-    } else {
-      getBackupTier().successOrThrow() == MessageBackupTier.PAID
-    }
-
     export(
       currentTime = currentTime,
       isLocal = false,
       writer = writer,
-      progressEmitter = progressEmitter,
-      mediaBackupEnabled = mediaBackupEnabled,
       forTransfer = forTransfer,
+      progressEmitter = progressEmitter,
       cancellationSignal = cancellationSignal,
-      exportExtras = exportExtras
+      extraExportOperations = extraExportOperations
     )
   }
 
@@ -805,9 +871,9 @@ object BackupRepository {
    * Exports to a blob in memory. Should only be used for testing.
    */
   @WorkerThread
-  fun debugExport(plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis()): ByteArray {
+  fun exportInMemoryForTests(plaintext: Boolean = false, currentTime: Long = System.currentTimeMillis()): ByteArray {
     val outputStream = ByteArrayOutputStream()
-    export(outputStream = outputStream, append = { mac -> outputStream.write(mac) }, plaintext = plaintext, currentTime = currentTime, skipMediaBackup = true)
+    exportForDebugging(outputStream = outputStream, append = { mac -> outputStream.write(mac) }, plaintext = plaintext, currentTime = currentTime)
     return outputStream.toByteArray()
   }
 
@@ -816,11 +882,10 @@ object BackupRepository {
     currentTime: Long,
     isLocal: Boolean,
     writer: BackupExportWriter,
-    mediaBackupEnabled: Boolean,
-    forTransfer: Boolean = false,
-    progressEmitter: ExportProgressListener? = null,
-    cancellationSignal: () -> Boolean = { false },
-    exportExtras: ((SignalDatabase) -> Unit)? = null
+    forTransfer: Boolean,
+    progressEmitter: ExportProgressListener?,
+    cancellationSignal: () -> Boolean,
+    extraExportOperations: ((SignalDatabase) -> Unit)?
   ) {
     val eventTimer = EventTimer()
     val mainDbName = if (isLocal) LOCAL_MAIN_DB_SNAPSHOT_NAME else REMOTE_MAIN_DB_SNAPSHOT_NAME
@@ -833,7 +898,7 @@ object BackupRepository {
       val signalStoreSnapshot: SignalStore = createSignalStoreSnapshot(keyValueDbName)
       eventTimer.emit("store-db-snapshot")
 
-      val exportState = ExportState(backupTime = currentTime, mediaBackupEnabled = mediaBackupEnabled, forTransfer = forTransfer)
+      val exportState = ExportState(backupTime = currentTime, forTransfer = forTransfer)
       val selfAci = signalStoreSnapshot.accountValues.aci!!
       val selfRecipientId = dbSnapshot.recipientTable.getByAci(selfAci).get().toLong().let { RecipientId.from(it) }
 
@@ -953,7 +1018,7 @@ object BackupRepository {
         }
       }
 
-      exportExtras?.invoke(dbSnapshot)
+      extraExportOperations?.invoke(dbSnapshot)
 
       Log.d(TAG, "[export] totalFrames: $frameCount | ${eventTimer.stop().summary}")
     } finally {
@@ -962,11 +1027,14 @@ object BackupRepository {
     }
   }
 
-  fun localImport(mainStreamFactory: () -> InputStream, mainStreamLength: Long, selfData: SelfData): ImportResult {
+  /**
+   * Imports a local backup file that was exported to disk.
+   */
+  fun importLocal(mainStreamFactory: () -> InputStream, mainStreamLength: Long, selfData: SelfData): ImportResult {
     val backupKey = SignalStore.backup.messageBackupKey
 
     val frameReader = try {
-      EncryptedBackupReader(
+      EncryptedBackupReader.createForLocalOrLinking(
         key = backupKey,
         aci = selfData.aci,
         length = mainStreamLength,
@@ -983,9 +1051,39 @@ object BackupRepository {
   }
 
   /**
+   * Imports a backup stored on the archive CDN.
+   *
    * @param backupKey  The key used to encrypt the backup. If `null`, we assume that the file is plaintext.
    */
-  fun import(
+  fun importSignalBackup(
+    length: Long,
+    inputStreamFactory: () -> InputStream,
+    selfData: SelfData,
+    backupKey: MessageBackupKey?,
+    forwardSecrecyToken: BackupForwardSecrecyToken,
+    cancellationSignal: () -> Boolean = { false }
+  ): ImportResult {
+    val frameReader = if (backupKey == null) {
+      PlainTextBackupReader(inputStreamFactory(), length)
+    } else {
+      EncryptedBackupReader.createForSignalBackup(
+        key = backupKey,
+        aci = selfData.aci,
+        forwardSecrecyToken = forwardSecrecyToken,
+        length = length,
+        dataStream = inputStreamFactory
+      )
+    }
+
+    return frameReader.use { reader ->
+      import(reader, selfData, cancellationSignal)
+    }
+  }
+
+  /**
+   * Imports a backup that was exported via [exportForDebugging].
+   */
+  fun importForDebugging(
     length: Long,
     inputStreamFactory: () -> InputStream,
     selfData: SelfData,
@@ -995,13 +1093,29 @@ object BackupRepository {
     val frameReader = if (backupKey == null) {
       PlainTextBackupReader(inputStreamFactory(), length)
     } else {
-      EncryptedBackupReader(
+      EncryptedBackupReader.createForLocalOrLinking(
         key = backupKey,
         aci = selfData.aci,
         length = length,
         dataStream = inputStreamFactory
       )
     }
+
+    return frameReader.use { reader ->
+      import(reader, selfData, cancellationSignal)
+    }
+  }
+
+  /**
+   * Imports a plaintext backup only used for testing.
+   */
+  fun importPlaintextTest(
+    length: Long,
+    inputStreamFactory: () -> InputStream,
+    selfData: SelfData,
+    cancellationSignal: () -> Boolean = { false }
+  ): ImportResult {
+    val frameReader = PlainTextBackupReader(inputStreamFactory(), length)
 
     return frameReader.use { reader ->
       import(reader, selfData, cancellationSignal)
@@ -1733,6 +1847,14 @@ object BackupRepository {
   }
 
   /**
+   * See [org.whispersystems.signalservice.api.archive.ArchiveApi.getSvrBAuthorization].
+   */
+  fun getSvrBAuth(): NetworkResult<AuthCredentials> {
+    return initBackupAndFetchAuth()
+      .then { SignalNetwork.archive.getSvrBAuthorization(SignalStore.account.requireAci(), it.messageBackupAccess) }
+  }
+
+  /**
    * During normal operation, ensures that the backupId has been reserved and that your public key has been set,
    * while also returning an archive access data. Should be the basis of all backup operations.
    *
@@ -1887,10 +2009,50 @@ object BackupRepository {
       indeterminate = true
     )
 
+    val forwardSecrecyMetadata = EncryptedBackupReader.readForwardSecrecyMetadata(tempBackupFile.inputStream())
+    if (forwardSecrecyMetadata == null) {
+      Log.w(TAG, "Failed to read forward secrecy metadata!")
+      return RemoteRestoreResult.Failure
+    }
+
+    val messageBackupKey = SignalStore.backup.messageBackupKey
+
+    Log.i(TAG, "[remoteRestore] Fetching SVRB data")
+    val svrBAuth = when (val result = BackupRepository.getSvrBAuth()) {
+      is NetworkResult.Success -> result.result
+      is NetworkResult.NetworkError -> return RemoteRestoreResult.NetworkError.logW(TAG, "[remoteRestore] Network error when getting SVRB auth.", result.getCause())
+      is NetworkResult.StatusCodeError -> return RemoteRestoreResult.NetworkError.logW(TAG, "[remoteRestore] Status code error when getting SVRB auth.", result.getCause())
+      is NetworkResult.ApplicationError -> throw result.throwable
+    }
+
+    val forwardSecrecyToken = when (val result = SignalNetwork.svrB.restore(svrBAuth, messageBackupKey, forwardSecrecyMetadata)) {
+      is SvrBApi.RestoreResult.Success -> {
+        SignalStore.backup.nextBackupSecretData = result.data.nextBackupSecretData
+        result.data.forwardSecrecyToken
+      }
+      is SvrBApi.RestoreResult.NetworkError -> {
+        return RemoteRestoreResult.NetworkError.logW(TAG, "[remoteRestore] Network error during SVRB.", result.exception)
+      }
+      SvrBApi.RestoreResult.DataMissingError,
+      is SvrBApi.RestoreResult.RestoreFailedError,
+      is SvrBApi.RestoreResult.SvrError,
+      is SvrBApi.RestoreResult.UnknownError -> {
+        Log.w(TAG, "[remoteRestore] Failed to fetch SVRB data: $result")
+        return RemoteRestoreResult.Failure
+      }
+    }
+
     val self = Recipient.self()
     val selfData = SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
     Log.i(TAG, "[remoteRestore] Importing backup")
-    val result = import(length = tempBackupFile.length(), inputStreamFactory = tempBackupFile::inputStream, selfData = selfData, backupKey = SignalStore.backup.messageBackupKey, cancellationSignal = cancellationSignal)
+    val result = importSignalBackup(
+      length = tempBackupFile.length(),
+      inputStreamFactory = tempBackupFile::inputStream,
+      selfData = selfData,
+      backupKey = SignalStore.backup.messageBackupKey,
+      forwardSecrecyToken = forwardSecrecyToken,
+      cancellationSignal = cancellationSignal
+    )
     if (result == ImportResult.Failure) {
       Log.w(TAG, "[remoteRestore] Failed to import backup")
       return RemoteRestoreResult.Failure
@@ -1962,7 +2124,6 @@ data class ArchivedMediaObject(val mediaId: String, val cdn: Int)
 
 class ExportState(
   val backupTime: Long,
-  val mediaBackupEnabled: Boolean,
   val forTransfer: Boolean
 ) {
   val recipientIds: MutableSet<Long> = hashSetOf()

@@ -21,6 +21,7 @@ import org.whispersystems.signalservice.api.provisioning.ProvisioningApi
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigApi
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
+import org.whispersystems.signalservice.api.svr.SvrBApi
 import org.whispersystems.signalservice.api.username.UsernameApi
 
 /**
@@ -94,4 +95,7 @@ object SignalNetwork {
   @get:JvmName("username")
   val username: UsernameApi
     get() = AppDependencies.usernameApi
+
+  val svrB: SvrBApi
+    get() = AppDependencies.svrBApi
 }

@@ -58,9 +58,9 @@ object LocalArchiver {
       val mediaNames: MutableSet<MediaName> = Collections.synchronizedSet(HashSet())
 
       Log.i(TAG, "Starting frame export")
-      BackupRepository.localExport(mainStream, LocalExportProgressListener(), cancellationSignal) { attachment, source ->
+      BackupRepository.exportForLocalBackup(mainStream, LocalExportProgressListener(), cancellationSignal) { attachment, source ->
         if (cancellationSignal()) {
-          return@localExport
+          return@exportForLocalBackup
         }
 
         val mediaName = MediaName.fromPlaintextHashAndRemoteKey(attachment.plaintextHash, attachment.remoteKey)
@@ -126,7 +126,7 @@ object LocalArchiver {
 
       val mainStreamLength = snapshotFileSystem.mainLength() ?: return ArchiveResult.failure(FailureCause.MAIN_STREAM)
 
-      BackupRepository.localImport(
+      BackupRepository.importLocal(
         mainStreamFactory = { snapshotFileSystem.mainInputStream()!! },
         mainStreamLength = mainStreamLength,
         selfData = selfData

@@ -262,12 +262,11 @@ object LinkDeviceRepository {
 
     try {
       Log.d(TAG, "[createAndUploadArchive] Starting the export.")
-      BackupRepository.export(
+      BackupRepository.exportForLinkAndSync(
+        currentTime = System.currentTimeMillis(),
         outputStream = outputStream,
         append = { tempBackupFile.appendBytes(it) },
         messageBackupKey = ephemeralMessageBackupKey,
-        skipMediaBackup = true,
-        forTransfer = true,
         cancellationSignal = cancellationSignal
       )
     } catch (e: Exception) {
@@ -288,7 +287,7 @@ object LinkDeviceRepository {
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
-    when (val result = ArchiveValidator.validate(tempBackupFile, ephemeralMessageBackupKey, forTransfer = true)) {
+    when (val result = ArchiveValidator.validateLocalOrLinking(tempBackupFile, ephemeralMessageBackupKey, forTransfer = true)) {
       ArchiveValidator.ValidationResult.Success -> {
         Log.d(TAG, "[createAndUploadArchive] Successfully passed validation.")
       }
