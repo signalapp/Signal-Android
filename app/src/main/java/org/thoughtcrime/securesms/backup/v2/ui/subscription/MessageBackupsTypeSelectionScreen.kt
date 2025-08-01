@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,8 +15,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,10 +38,11 @@ import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withAnnotation
+import androidx.compose.ui.text.withLink
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.persistentListOf
@@ -119,28 +119,26 @@ fun MessageBackupsTypeSelectionScreen(
           val primaryColor = MaterialTheme.colorScheme.primary
           val readMoreString = buildAnnotatedString {
             append(stringResource(id = R.string.MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted))
-
-            val readMore = stringResource(id = R.string.MessageBackupsTypeSelectionScreen__learn_more)
             append(" ")
-            withAnnotation(tag = "URL", annotation = "learn-more") {
+
+            withLink(
+              LinkAnnotation.Clickable(tag = "learn-more") {
+                onReadMoreClicked()
+              }
+            ) {
               withStyle(
                 style = SpanStyle(
                   color = primaryColor
                 )
               ) {
-                append(readMore)
+                append(stringResource(id = R.string.MessageBackupsTypeSelectionScreen__learn_more))
               }
             }
           }
 
-          ClickableText(
+          Text(
             text = readMoreString,
             style = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSurfaceVariant),
-            onClick = { offset ->
-              readMoreString
-                .getStringAnnotations(tag = "URL", start = offset, end = offset)
-                .firstOrNull()?.let { onReadMoreClicked() }
-            },
             modifier = Modifier.padding(top = 8.dp)
           )
         }
@@ -179,6 +177,8 @@ fun MessageBackupsTypeSelectionScreen(
             }
 
             stringResource(R.string.MessageBackupsTypeSelectionScreen__subscribe_for_x_month, price)
+          } else if (selectedBackupTier == MessageBackupTier.FREE) {
+            stringResource(R.string.MessageBackupsTypeSelectionScreen__choose_free_plan)
           } else {
             stringResource(R.string.MessageBackupsTypeSelectionScreen__subscribe)
           }
@@ -207,7 +207,7 @@ private fun MessageBackupsTypeSelectionScreenPreview() {
   Previews.Preview {
     MessageBackupsTypeSelectionScreen(
       stage = MessageBackupsStage.TYPE_SELECTION,
-      selectedBackupTier = MessageBackupTier.FREE,
+      selectedBackupTier = selectedBackupsType,
       availableBackupTypes = testBackupTypes(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },
       onNavigationClick = {},
@@ -227,7 +227,7 @@ private fun MessageBackupsTypeSelectionScreenWithCurrentTierPreview() {
   Previews.Preview {
     MessageBackupsTypeSelectionScreen(
       stage = MessageBackupsStage.TYPE_SELECTION,
-      selectedBackupTier = MessageBackupTier.FREE,
+      selectedBackupTier = selectedBackupsType,
       availableBackupTypes = testBackupTypes(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },
       onNavigationClick = {},
@@ -257,11 +257,16 @@ fun MessageBackupsTypeBlock(
 
   Column(
     modifier = modifier
+      .selectable(
+        selected = isSelected,
+        enabled = enabled,
+        onClick = onSelected
+      )
+      .testTag("message-backups-type-block-${messageBackupsType.tier.name.lowercase()}")
       .fillMaxWidth()
       .background(color = SignalTheme.colors.colorSurface2, shape = RoundedCornerShape(18.dp))
       .border(width = 3.5.dp, color = borderColor, shape = RoundedCornerShape(18.dp))
       .clip(shape = RoundedCornerShape(18.dp))
-      .clickable(onClick = onSelected, enabled = enabled)
       .padding(vertical = 16.dp, horizontal = 20.dp)
   ) {
     if (isCurrent) {

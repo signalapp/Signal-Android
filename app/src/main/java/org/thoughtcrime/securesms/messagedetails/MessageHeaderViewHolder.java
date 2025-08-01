@@ -182,6 +182,10 @@ final class MessageHeaderViewHolder extends RecyclerView.ViewHolder implements G
 
     if (messageRecord.isPending() || messageRecord.isFailed()) {
       sentDate.setText(formatBoldString(R.string.message_details_header_sent, "-"));
+      sentDate.setOnLongClickListener(v -> {
+        copyToClipboard(String.valueOf(messageRecord.getDateSent()));
+        return true;
+      });
       receivedDate.setVisibility(View.GONE);
     } else {
       Locale           dateLocale    = Locale.getDefault();

@@ -16,6 +16,8 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.signal.core.util.Hex;
 import org.whispersystems.signalservice.api.SignalServiceMessageReceiver;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream;
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
@@ -84,9 +86,16 @@ public final class AvatarGroupsV1DownloadJob extends BaseJob {
         attachment = File.createTempFile("avatar", "tmp", context.getCacheDir());
         attachment.deleteOnExit();
 
-        SignalServiceMessageReceiver   receiver    = AppDependencies.getSignalServiceMessageReceiver();
-        SignalServiceAttachmentPointer pointer     = new SignalServiceAttachmentPointer(0, new SignalServiceAttachmentRemoteId.V2(avatarId), contentType, key, Optional.of(0), Optional.empty(), 0, 0, digest, Optional.empty(), 0, fileName, false, false, false, Optional.empty(), Optional.empty(), System.currentTimeMillis(), null);
-        InputStream                    inputStream = receiver.retrieveAttachment(pointer, attachment, AvatarHelper.AVATAR_DOWNLOAD_FAILSAFE_MAX_SIZE);
+
+        SignalServiceMessageReceiver   receiver = AppDependencies.getSignalServiceMessageReceiver();
+        SignalServiceAttachmentPointer pointer  = new SignalServiceAttachmentPointer(0, new SignalServiceAttachmentRemoteId.V2(avatarId), contentType, key, Optional.of(0), Optional.empty(), 0, 0, digest, Optional.empty(), 0, fileName, false, false, false, Optional.empty(), Optional.empty(), System.currentTimeMillis(), null);
+
+        if (pointer.getDigest().isEmpty()) {
+          throw new InvalidMessageException("Missing digest!");
+        }
+
+        IntegrityCheck integrityCheck = IntegrityCheck.forEncryptedDigest(pointer.getDigest().get());
+        InputStream    inputStream    = receiver.retrieveAttachment(pointer, attachment, AvatarHelper.AVATAR_DOWNLOAD_FAILSAFE_MAX_SIZE, integrityCheck);
 
         AvatarHelper.setAvatar(context, record.get().getRecipientId(), inputStream);
         SignalDatabase.groups().onAvatarUpdated(groupId, true);

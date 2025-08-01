@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.backup.v2.util
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.core.util.Hex
 import org.signal.core.util.emptyIfNull
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.nullIfBlank
@@ -24,7 +25,6 @@ import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.stickers.StickerLocator
-import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -48,81 +48,84 @@ fun FilePointer?.toLocalAttachment(
 ): Attachment? {
   if (this == null || this.locatorInfo == null) return null
 
-  val hasMediaName = this.locatorInfo.mediaName.isNotEmpty()
-  val hasTransitInfo = this.locatorInfo.transitCdnKey != null
+  val attachmentType = when {
+    this.locatorInfo.plaintextHash != null -> AttachmentType.ARCHIVE
+    this.locatorInfo.encryptedDigest != null && this.locatorInfo.transitCdnKey != null -> AttachmentType.TRANSIT
+    else -> AttachmentType.INVALID
+  }
 
-  if (hasTransitInfo && !hasMediaName) {
-    val signalAttachmentPointer = SignalServiceAttachmentPointer(
-      cdnNumber = this.locatorInfo.transitCdnNumber ?: Cdn.CDN_0.cdnNumber,
-      remoteId = SignalServiceAttachmentRemoteId.from(locatorInfo.transitCdnKey),
-      contentType = contentType,
-      key = this.locatorInfo.key.toByteArray(),
-      size = Optional.ofNullable(locatorInfo.size),
-      preview = Optional.empty(),
-      width = this.width ?: 0,
-      height = this.height ?: 0,
-      digest = Optional.ofNullable(this.locatorInfo.digest.toByteArray()),
-      incrementalDigest = Optional.ofNullable(this.incrementalMac?.toByteArray()),
-      incrementalMacChunkSize = this.incrementalMacChunkSize ?: 0,
-      fileName = Optional.ofNullable(fileName),
-      voiceNote = voiceNote,
-      isBorderless = borderless,
-      isGif = gif,
-      caption = Optional.ofNullable(this.caption),
-      blurHash = Optional.ofNullable(this.blurHash),
-      uploadTimestamp = this.locatorInfo.transitTierUploadTimestamp?.clampToValidBackupRange() ?: 0,
-      uuid = UuidUtil.fromByteStringOrNull(uuid)
-    )
-    return PointerAttachment.forPointer(
-      pointer = Optional.of(signalAttachmentPointer),
-      stickerLocator = stickerLocator,
-      transferState = if (wasDownloaded) AttachmentTable.TRANSFER_NEEDS_RESTORE else AttachmentTable.TRANSFER_PROGRESS_PENDING
-    ).orNull()
-  } else if (!hasMediaName) {
-    return TombstoneAttachment(
-      contentType = contentType,
-      incrementalMac = this.incrementalMac?.toByteArray(),
-      incrementalMacChunkSize = this.incrementalMacChunkSize,
-      width = this.width,
-      height = this.height,
-      caption = this.caption,
-      fileName = this.fileName,
-      blurHash = this.blurHash,
-      voiceNote = voiceNote,
-      borderless = borderless,
-      gif = gif,
-      quote = quote,
-      stickerLocator = stickerLocator,
-      uuid = UuidUtil.fromByteStringOrNull(uuid)
-    )
-  } else {
-    return ArchivedAttachment(
-      contentType = contentType,
-      size = this.locatorInfo.size.toLong(),
-      cdn = this.locatorInfo.transitCdnNumber ?: Cdn.CDN_0.cdnNumber,
-      uploadTimestamp = this.locatorInfo.transitTierUploadTimestamp ?: 0,
-      key = this.locatorInfo.key.toByteArray(),
-      iv = null,
-      cdnKey = this.locatorInfo.transitCdnKey?.nullIfBlank(),
-      archiveCdn = this.locatorInfo.mediaTierCdnNumber,
-      archiveMediaName = this.locatorInfo.mediaName,
-      archiveMediaId = importState.mediaRootBackupKey.deriveMediaId(MediaName(this.locatorInfo.mediaName)).encode(),
-      archiveThumbnailMediaId = importState.mediaRootBackupKey.deriveMediaId(MediaName.forThumbnailFromMediaName(this.locatorInfo.mediaName)).encode(),
-      digest = this.locatorInfo.digest.toByteArray(),
-      incrementalMac = this.incrementalMac?.toByteArray(),
-      incrementalMacChunkSize = this.incrementalMacChunkSize,
-      width = this.width,
-      height = this.height,
-      caption = this.caption,
-      blurHash = this.blurHash,
-      voiceNote = voiceNote,
-      borderless = borderless,
-      gif = gif,
-      quote = quote,
-      stickerLocator = stickerLocator,
-      uuid = UuidUtil.fromByteStringOrNull(uuid),
-      fileName = fileName
-    )
+  return when (attachmentType) {
+    AttachmentType.ARCHIVE -> {
+      ArchivedAttachment(
+        contentType = contentType,
+        size = this.locatorInfo.size.toLong(),
+        cdn = this.locatorInfo.transitCdnNumber ?: Cdn.CDN_0.cdnNumber,
+        uploadTimestamp = this.locatorInfo.transitTierUploadTimestamp ?: 0,
+        key = this.locatorInfo.key.toByteArray(),
+        cdnKey = this.locatorInfo.transitCdnKey?.nullIfBlank(),
+        archiveCdn = this.locatorInfo.mediaTierCdnNumber,
+        plaintextHash = this.locatorInfo.plaintextHash!!.toByteArray(),
+        incrementalMac = this.incrementalMac?.toByteArray(),
+        incrementalMacChunkSize = this.incrementalMacChunkSize,
+        width = this.width,
+        height = this.height,
+        caption = this.caption,
+        blurHash = this.blurHash,
+        voiceNote = voiceNote,
+        borderless = borderless,
+        stickerLocator = stickerLocator,
+        gif = gif,
+        quote = quote,
+        uuid = UuidUtil.fromByteStringOrNull(uuid),
+        fileName = fileName
+      )
+    }
+    AttachmentType.TRANSIT -> {
+      val signalAttachmentPointer = SignalServiceAttachmentPointer(
+        cdnNumber = this.locatorInfo.transitCdnNumber ?: Cdn.CDN_0.cdnNumber,
+        remoteId = SignalServiceAttachmentRemoteId.from(locatorInfo.transitCdnKey!!),
+        contentType = contentType,
+        key = this.locatorInfo.key.toByteArray(),
+        size = Optional.ofNullable(locatorInfo.size),
+        preview = Optional.empty(),
+        width = this.width ?: 0,
+        height = this.height ?: 0,
+        digest = Optional.ofNullable(this.locatorInfo.encryptedDigest!!.toByteArray()),
+        incrementalDigest = Optional.ofNullable(this.incrementalMac?.toByteArray()),
+        incrementalMacChunkSize = this.incrementalMacChunkSize ?: 0,
+        fileName = Optional.ofNullable(fileName),
+        voiceNote = voiceNote,
+        isBorderless = borderless,
+        isGif = gif,
+        caption = Optional.ofNullable(this.caption),
+        blurHash = Optional.ofNullable(this.blurHash),
+        uploadTimestamp = this.locatorInfo.transitTierUploadTimestamp?.clampToValidBackupRange() ?: 0,
+        uuid = UuidUtil.fromByteStringOrNull(uuid)
+      )
+      PointerAttachment.forPointer(
+        pointer = Optional.of(signalAttachmentPointer),
+        stickerLocator = stickerLocator,
+        transferState = if (wasDownloaded) AttachmentTable.TRANSFER_NEEDS_RESTORE else AttachmentTable.TRANSFER_PROGRESS_PENDING
+      ).orNull()
+    }
+    AttachmentType.INVALID -> {
+      TombstoneAttachment(
+        contentType = contentType,
+        incrementalMac = this.incrementalMac?.toByteArray(),
+        incrementalMacChunkSize = this.incrementalMacChunkSize,
+        width = this.width,
+        height = this.height,
+        caption = this.caption,
+        fileName = this.fileName,
+        blurHash = this.blurHash,
+        voiceNote = voiceNote,
+        borderless = borderless,
+        gif = gif,
+        quote = quote,
+        stickerLocator = stickerLocator,
+        uuid = UuidUtil.fromByteStringOrNull(uuid)
+      )
+    }
   }
 }
 
@@ -192,21 +195,17 @@ fun FilePointer.Builder.setLegacyLocators(attachment: DatabaseAttachment, mediaA
 }
 
 fun DatabaseAttachment.toLocatorInfo(): FilePointer.LocatorInfo {
-  if (this.remoteKey.isNullOrBlank() || this.remoteDigest == null || this.size == 0L) {
-    return FilePointer.LocatorInfo()
-  }
+  val attachmentType = this.toRemoteAttachmentType()
 
-  if (this.transferState == AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE && this.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED) {
+  if (attachmentType == AttachmentType.INVALID) {
     return FilePointer.LocatorInfo()
   }
 
   val locatorBuilder = FilePointer.LocatorInfo.Builder()
 
-  val remoteKey = Base64.decode(this.remoteKey).toByteString()
-  val archiveMediaName = this.getMediaName()?.toString()
+  val remoteKey = Base64.decode(this.remoteKey!!).toByteString()
 
   locatorBuilder.key = remoteKey
-  locatorBuilder.digest = this.remoteDigest.toByteString()
   locatorBuilder.size = this.size.toInt()
 
   if (this.remoteLocation.isNotNullOrBlank()) {
@@ -215,8 +214,20 @@ fun DatabaseAttachment.toLocatorInfo(): FilePointer.LocatorInfo {
     locatorBuilder.transitTierUploadTimestamp = this.uploadTimestamp.takeIf { it > 0 }?.clampToValidBackupRange()
   }
 
-  locatorBuilder.mediaTierCdnNumber = this.archiveCdn?.takeIf { archiveMediaName != null }
-  locatorBuilder.mediaName = archiveMediaName.emptyIfNull()
+  @Suppress("KotlinConstantConditions")
+  when (attachmentType) {
+    AttachmentType.ARCHIVE -> {
+      locatorBuilder.plaintextHash = Base64.decode(this.dataHash!!).toByteString()
+      locatorBuilder.mediaTierCdnNumber = this.archiveCdn
+    }
+    AttachmentType.TRANSIT -> {
+      locatorBuilder.encryptedDigest = this.remoteDigest!!.toByteString()
+    }
+    AttachmentType.INVALID -> Unit
+  }
+
+  locatorBuilder.legacyDigest = this.remoteDigest?.toByteString() ?: ByteString.EMPTY
+  locatorBuilder.legacyMediaName = Hex.toStringCondensed(this.remoteDigest ?: byteArrayOf())
 
   return locatorBuilder.build()
 }
@@ -259,4 +270,31 @@ fun RemoteAvatarColor.toLocal(): AvatarColor {
     RemoteAvatarColor.A200 -> AvatarColor.A200
     RemoteAvatarColor.A210 -> AvatarColor.A210
   }
+}
+
+private fun DatabaseAttachment.toRemoteAttachmentType(): AttachmentType {
+  if (this.remoteKey.isNullOrBlank()) {
+    return AttachmentType.INVALID
+  }
+
+  if (this.transferState == AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE && this.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED) {
+    return AttachmentType.INVALID
+  }
+
+  val activelyOnArchiveCdn = this.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED
+  val couldBeOnArchiveCdn = this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE && this.archiveTransferState != AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE
+
+  if (this.dataHash != null && (activelyOnArchiveCdn || couldBeOnArchiveCdn)) {
+    return AttachmentType.ARCHIVE
+  }
+
+  if (this.remoteDigest != null && this.remoteLocation.isNotNullOrBlank()) {
+    return AttachmentType.TRANSIT
+  }
+
+  return AttachmentType.INVALID
+}
+
+private enum class AttachmentType {
+  TRANSIT, ARCHIVE, INVALID
 }

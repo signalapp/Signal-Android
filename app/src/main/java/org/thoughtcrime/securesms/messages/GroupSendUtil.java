@@ -14,8 +14,8 @@ import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendEndorsement;
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken;
-import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil;
+import org.thoughtcrime.securesms.crypto.SenderKeyUtil;
 import org.thoughtcrime.securesms.database.MessageSendLogTables;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.DistributionListId;
@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
-import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.CancelationException;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -161,11 +160,11 @@ public final class GroupSendUtil {
    * Handles all of the logic of sending to a group. Will do sender key sends and legacy 1:1 sends as-needed, and give you back a list of
    * {@link SendMessageResult}s just like we're used to.
    *
-   * @param groupId The groupId of the group you're sending to, or null if you're sending to a collection of recipients not joined by a group.
+   * @param groupId The groupId of the group you're sending to
    */
   @WorkerThread
   public static List<SendMessageResult> sendCallMessage(@NonNull Context context,
-                                                        @Nullable GroupId.V2 groupId,
+                                                        @NonNull GroupId.V2 groupId,
                                                         @NonNull List<Recipient> allTargets,
                                                         @NonNull SignalServiceCallMessage message)
       throws IOException, UntrustedIdentityException
@@ -292,9 +291,11 @@ public final class GroupSendUtil {
           groupSendEndorsementRecords    = SignalDatabase.groups().getGroupSendEndorsements(groupId);
         } catch (GroupChangeException | IOException e) {
           if (groupSendEndorsementExpiration == 0) {
-            Log.w(TAG, "Unable to update group send endorsements, falling back to access key", e);
+            Log.w(TAG, "Unable to update group send endorsements, falling back to legacy", e);
             useGroupSendEndorsements = false;
             groupSendEndorsementRecords = new GroupSendEndorsementRecords(Collections.emptyMap());
+
+            GroupSendEndorsementInternalNotifier.maybePostGroupSendFallbackError(context);
           } else {
             Log.w(TAG, "Unable to update group send endorsements, using what we have", e);
           }
@@ -308,49 +309,38 @@ public final class GroupSendUtil {
     List<Recipient> senderKeyTargets = new LinkedList<>();
     List<Recipient> legacyTargets    = new LinkedList<>();
 
-    for (Recipient recipient : registeredTargets) {
-      Optional<UnidentifiedAccess> access          = recipients.getAccessPair(recipient.getId());
-      boolean                      validMembership = groupId == null || (groupRecord.isPresent() && groupRecord.get().getMembers().contains(recipient.getId()));
-
-      if (useGroupSendEndorsements) {
+    // Determine recipients that can be sent to via sender key vs must use legacy fan-out
+    if (distributionId == null) {
+      Log.i(TAG, "No DistributionId. Using legacy.");
+      legacyTargets.addAll(registeredTargets);
+    } else if (isStorySend) {
+      Log.i(TAG, "Sending a story. Using sender key for all " + allTargets.size() + " recipients.");
+      senderKeyTargets.addAll(registeredTargets);
+    } else if (!useGroupSendEndorsements) {
+      Log.i(TAG, "No group send endorsements, using legacy for all " + allTargets.size() + " recipients.");
+      legacyTargets.addAll(registeredTargets);
+    } else {
+      for (Recipient recipient : registeredTargets) {
+        boolean              validMembership      = groupRecord.get().getMembers().contains(recipient.getId());
         GroupSendEndorsement groupSendEndorsement = groupSendEndorsementRecords.getEndorsement(recipient.getId());
+
         if (groupSendEndorsement != null && recipient.getHasAci() && validMembership) {
           senderKeyTargets.add(recipient);
         } else {
           legacyTargets.add(recipient);
           if (validMembership) {
             Log.w(TAG, "Should be using group send endorsement but not found for " + recipient.getId());
-            if (RemoteConfig.internalUser()) {
-              GroupSendEndorsementInternalNotifier.postMissingGroupSendEndorsement(context);
-            }
+            GroupSendEndorsementInternalNotifier.maybePostMissingGroupSendEndorsement(context);
           }
-        }
-      } else {
-        // Use sender key
-        if (recipient.getHasServiceId() &&
-            access.isPresent() &&
-            validMembership)
-        {
-          senderKeyTargets.add(recipient);
-        } else {
-          legacyTargets.add(recipient);
         }
       }
     }
 
-    if (distributionId == null) {
-      Log.i(TAG, "No DistributionId. Using legacy.");
-      legacyTargets.addAll(senderKeyTargets);
-      senderKeyTargets.clear();
-    } else if (isStorySend) {
-      Log.i(TAG, "Sending a story. Using sender key for all " + allTargets.size() + " recipients.");
-      senderKeyTargets.clear();
-      senderKeyTargets.addAll(registeredTargets);
-      legacyTargets.clear();
-    } else if (SignalStore.internal().getRemoveSenderKeyMinimum()) {
+    // Enforce minimum number of sender key destinations
+    if (SignalStore.internal().getRemoveSenderKeyMinimum()) {
       Log.i(TAG, "Sender key minimum removed. Using for " + senderKeyTargets.size() + " recipients.");
-    } else if (senderKeyTargets.size() < 2) {
-      Log.i(TAG, "Too few sender-key-capable users (" + senderKeyTargets.size() + "). Doing all legacy sends.");
+    } else if (senderKeyTargets.size() < 2 && !isStorySend) {
+      Log.i(TAG, "Too few sender-key-capable users (" + senderKeyTargets.size() + ") for non-story send. Doing all legacy sends.");
       legacyTargets.addAll(senderKeyTargets);
       senderKeyTargets.clear();
     } else {
@@ -431,8 +421,8 @@ public final class GroupSendUtil {
         Log.w(TAG, "Someone had a bad UD header. Falling back to legacy sends.", e);
         legacyTargets.addAll(senderKeyTargets);
 
-        if (useGroupSendEndorsements && RemoteConfig.internalUser()) {
-          GroupSendEndorsementInternalNotifier.postGroupSendFallbackError(context);
+        if (useGroupSendEndorsements) {
+          GroupSendEndorsementInternalNotifier.maybePostGroupSendFallbackError(context);
         }
       } catch (NoSessionException e) {
         Log.w(TAG, "No session. Falling back to legacy sends.", e);
@@ -459,7 +449,7 @@ public final class GroupSendUtil {
       throw new CancelationException();
     }
 
-    boolean onlyTargetIsSelfWithLinkedDevice = legacyTargets.isEmpty() && senderKeyTargets.isEmpty() && SignalStore.account().hasLinkedDevices();
+    boolean onlyTargetIsSelfWithLinkedDevice = legacyTargets.isEmpty() && senderKeyTargets.isEmpty() && SignalStore.account().isMultiDevice();
 
     if (legacyTargets.size() > 0 || onlyTargetIsSelfWithLinkedDevice) {
       if (legacyTargets.size() > 0) {
@@ -712,6 +702,8 @@ public final class GroupSendUtil {
                                                               @Nullable PartialSendBatchCompleteListener partialListener)
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
+      Preconditions.checkNotNull(groupSendEndorsements, "GSEs must be non-null for non-story sender key send.");
+
       messageSender.sendGroupTyping(distributionId, targets, access, groupSendEndorsements, message);
       List<SendMessageResult> results = targets.stream().map(a -> SendMessageResult.success(a, Collections.emptyList(), true, false, -1, Optional.empty())).collect(Collectors.toList());
 
@@ -780,6 +772,8 @@ public final class GroupSendUtil {
                                                               @Nullable PartialSendBatchCompleteListener partialSendListener)
         throws NoSessionException, UntrustedIdentityException, InvalidKeyException, IOException, InvalidRegistrationIdException
     {
+      Preconditions.checkNotNull(groupSendEndorsements, "GSEs must be non-null for non-story sender key send.");
+
       return messageSender.sendCallMessage(distributionId, targets, access, groupSendEndorsements, message, partialSendListener);
     }
 

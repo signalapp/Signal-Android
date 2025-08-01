@@ -14,13 +14,17 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -29,8 +33,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.text.AnnotatedString
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -65,6 +73,7 @@ import org.thoughtcrime.securesms.components.contactsupport.SendSupportEmailEffe
 import org.thoughtcrime.securesms.conversation.v2.registerForLifecycle
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registrationv3.ui.shared.RegistrationScreen
+import org.thoughtcrime.securesms.registrationv3.ui.shared.RegistrationScreenTitleSubtitle
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.viewModel
@@ -109,7 +118,7 @@ class RemoteRestoreActivity : BaseActivity() {
 
         if (restored != null) {
           startActivity(MainActivity.clearTop(this@RemoteRestoreActivity))
-          finish()
+          finishAffinity()
         }
       }
     }
@@ -264,8 +273,34 @@ private fun BackupAvailableContent(
   }
 
   RegistrationScreen(
-    title = stringResource(id = R.string.RemoteRestoreActivity__restore_from_backup),
-    subtitle = subtitle,
+    topContent = {
+      if (state.backupTier != null) {
+        RegistrationScreenTitleSubtitle(
+          title = stringResource(id = R.string.RemoteRestoreActivity__restore_from_backup),
+          subtitle = AnnotatedString(subtitle)
+        )
+      } else {
+        Icon(
+          imageVector = ImageVector.vectorResource(id = R.drawable.symbol_backup_24),
+          contentDescription = null,
+          tint = MaterialTheme.colorScheme.primary,
+          modifier = Modifier
+            .size(64.dp)
+            .background(color = SignalTheme.colors.colorSurface2, shape = CircleShape)
+            .padding(12.dp)
+            .align(Alignment.CenterHorizontally)
+        )
+
+        Spacer(modifier = Modifier.size(16.dp))
+
+        Text(
+          text = stringResource(id = R.string.RemoteRestoreActivity__restore_from_backup),
+          style = MaterialTheme.typography.headlineMedium.copy(textAlign = TextAlign.Center),
+          modifier = Modifier.fillMaxWidth()
+        )
+      }
+    },
+
     bottomContent = {
       Column {
         if (state.isLoaded()) {
@@ -286,32 +321,55 @@ private fun BackupAvailableContent(
       }
     }
   ) {
-    Column(
-      modifier = Modifier
-        .fillMaxWidth()
-        .background(color = SignalTheme.colors.colorSurface2, shape = RoundedCornerShape(18.dp))
-        .padding(horizontal = 20.dp)
-        .padding(top = 20.dp, bottom = 18.dp)
-    ) {
+    if (state.backupTier != null) {
+      Column(
+        modifier = Modifier
+          .fillMaxWidth()
+          .background(color = SignalTheme.colors.colorSurface2, shape = RoundedCornerShape(18.dp))
+          .padding(horizontal = 20.dp)
+          .padding(top = 20.dp, bottom = 18.dp)
+      ) {
+        Text(
+          text = stringResource(id = R.string.RemoteRestoreActivity__your_backup_includes),
+          style = MaterialTheme.typography.titleMedium,
+          modifier = Modifier.padding(bottom = 6.dp)
+        )
+
+        getFeatures(state.backupTier, state.backupMediaTTL).forEach {
+          MessageBackupsTypeFeatureRow(
+            messageBackupsTypeFeature = it,
+            iconTint = MaterialTheme.colorScheme.primary,
+            modifier = Modifier.padding(start = 16.dp, top = 6.dp)
+          )
+        }
+      }
+
       Text(
-        text = stringResource(id = R.string.RemoteRestoreActivity__your_backup_includes),
-        style = MaterialTheme.typography.titleMedium,
-        modifier = Modifier.padding(bottom = 6.dp)
+        text = stringResource(R.string.RemoteRestoreActivity__if_you_choose_not_to_restore),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.secondary,
+        modifier = Modifier.padding(top = 16.dp)
+      )
+    } else {
+      Text(
+        text = subtitle,
+        style = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center),
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        modifier = Modifier.padding(vertical = 20.dp)
       )
 
-      getFeatures(state.backupTier, state.backupMediaTTL).forEach {
-        MessageBackupsTypeFeatureRow(
-          messageBackupsTypeFeature = it,
-          iconTint = MaterialTheme.colorScheme.primary,
-          modifier = Modifier.padding(start = 16.dp, top = 6.dp)
-        )
-      }
+      Text(
+        text = stringResource(R.string.RemoteRestoreActivity__if_you_choose_not_to_restore),
+        style = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center),
+        color = MaterialTheme.colorScheme.onSurfaceVariant
+      )
     }
 
     when (state.importState) {
       RemoteRestoreViewModel.ImportState.None -> Unit
       RemoteRestoreViewModel.ImportState.InProgress -> RestoreProgressDialog(state.restoreProgress)
-      is RemoteRestoreViewModel.ImportState.Restored -> Unit
+      RemoteRestoreViewModel.ImportState.Restored -> Unit
+      RemoteRestoreViewModel.ImportState.NetworkFailure -> RestoreNetworkFailedDialog(onDismiss = onImportErrorDialogDismiss)
       RemoteRestoreViewModel.ImportState.Failed -> {
         if (SignalStore.backup.hasInvalidBackupVersion) {
           InvalidBackupVersionDialog(onUpdateSignal = onUpdateSignal, onDismiss = onImportErrorDialogDismiss)
@@ -333,6 +391,23 @@ private fun RestoreFromBackupContentPreview() {
         backupTime = System.currentTimeMillis(),
         backupSize = 1234567.bytes,
         importState = RemoteRestoreViewModel.ImportState.None,
+        restoreProgress = null
+      )
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun RestoreFromBackupUnknownTierPreview() {
+  Previews.Preview {
+    RestoreFromBackupContent(
+      state = RemoteRestoreViewModel.ScreenState(
+        loadState = RemoteRestoreViewModel.ScreenState.LoadState.LOADED,
+        backupTier = null,
+        backupTime = System.currentTimeMillis(),
+        backupSize = 0.bytes,
+        importState = RemoteRestoreViewModel.ImportState.Restored,
         restoreProgress = null
       )
     )
@@ -484,6 +559,19 @@ fun RestoreFailedDialog(
   Dialogs.SimpleAlertDialog(
     title = stringResource(R.string.RemoteRestoreActivity__couldnt_transfer),
     body = stringResource(R.string.RemoteRestoreActivity__error_occurred),
+    confirm = stringResource(android.R.string.ok),
+    onConfirm = onDismiss,
+    onDismiss = onDismiss
+  )
+}
+
+@Composable
+fun RestoreNetworkFailedDialog(
+  onDismiss: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.RemoteRestoreActivity__couldnt_transfer),
+    body = stringResource(R.string.RegistrationActivity_error_connecting_to_service),
     confirm = stringResource(android.R.string.ok),
     onConfirm = onDismiss,
     onDismiss = onDismiss

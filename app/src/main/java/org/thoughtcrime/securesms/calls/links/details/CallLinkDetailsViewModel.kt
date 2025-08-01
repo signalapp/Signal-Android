@@ -40,6 +40,9 @@ class CallLinkDetailsViewModel(
   val rootKeySnapshot: ByteArray
     get() = state.value.callLink?.credentials?.linkKeyBytes ?: error("Call link not loaded yet.")
 
+  val epochSnapshot: ByteArray?
+    get() = state.value.callLink?.credentials?.epochBytes
+
   private val recipientSubject = BehaviorSubject.create<Recipient>()
   val recipientSnapshot: Recipient?
     get() = recipientSubject.value

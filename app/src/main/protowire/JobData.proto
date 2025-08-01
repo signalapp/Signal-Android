@@ -239,3 +239,7 @@ message BackupDeleteJobData {
   repeated Stage completed = 1;
   Tier tier = 2;
 }
+
+message SecondRoundFixupSendJobData {
+  uint64 messageId = 1;
+}

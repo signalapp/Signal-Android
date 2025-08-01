@@ -26,6 +26,8 @@ import org.thoughtcrime.securesms.jobs.protos.UploadAttachmentToArchiveJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.service.AttachmentProgressService
+import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
@@ -124,8 +126,26 @@ class UploadAttachmentToArchiveJob private constructor(
       return Result.success()
     }
 
-    if (attachment.remoteKey == null || attachment.remoteIv == null) {
-      Log.w(TAG, "[$attachmentId] Attachment is missing remote key or IV! Cannot upload.")
+    if (SignalDatabase.messages.isStory(attachment.mmsId)) {
+      Log.i(TAG, "[$attachmentId] Attachment is a story. Resetting transfer state to none and skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
+    if (SignalDatabase.messages.willMessageExpireBeforeCutoff(attachment.mmsId)) {
+      Log.i(TAG, "[$attachmentId] Message will expire within 24 hours. Resetting transfer state to none and skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
+    if (attachment.contentType == MediaUtil.LONG_TEXT) {
+      Log.i(TAG, "[$attachmentId] Attachment is long text. Resetting transfer state to none and skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
+    if (attachment.remoteKey == null) {
+      Log.w(TAG, "[$attachmentId] Attachment is missing remote key! Cannot upload.")
       return Result.failure()
     }
 
@@ -144,7 +164,7 @@ class UploadAttachmentToArchiveJob private constructor(
     if (uploadSpec == null) {
       Log.d(TAG, "[$attachmentId] Need an upload spec. Fetching...")
 
-      val (spec, result) = fetchResumableUploadSpec(key = Base64.decode(attachment.remoteKey), iv = attachment.remoteIv)
+      val (spec, result) = fetchResumableUploadSpec(key = Base64.decode(attachment.remoteKey), iv = Util.getSecretBytes(16))
       if (result != null) {
         return result
       }
@@ -211,6 +231,12 @@ class UploadAttachmentToArchiveJob private constructor(
 
           is NetworkResult.StatusCodeError -> {
             Log.w(TAG, "[$attachmentId] Failed to upload due to status code error. Code: ${result.code}", result.exception)
+            when (result.code) {
+              400 -> {
+                Log.w(TAG, "[$attachmentId] 400 likely means bad resumable state. Clearing upload spec before retrying.")
+                uploadSpec = null
+              }
+            }
             return Result.retry(defaultBackoff())
           }
         }

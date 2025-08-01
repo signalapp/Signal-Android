@@ -8,7 +8,7 @@ package org.whispersystems.signalservice.internal.crypto
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
-import org.signal.libsignal.protocol.ecc.Curve
+import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.kdf.HKDF
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
@@ -58,7 +58,7 @@ class SecondaryProvisioningCipher(private val secondaryIdentityKeyPair: Identity
     return ProvisionDecryptResult.Success(
       uuid = UuidUtil.parseOrThrow(provisioningMessage.aci),
       e164 = provisioningMessage.number!!,
-      identityKeyPair = IdentityKeyPair(IdentityKey(provisioningMessage.aciIdentityKeyPublic!!.toByteArray()), Curve.decodePrivatePoint(provisioningMessage.aciIdentityKeyPrivate!!.toByteArray())),
+      identityKeyPair = IdentityKeyPair(IdentityKey(provisioningMessage.aciIdentityKeyPublic!!.toByteArray()), ECPrivateKey(provisioningMessage.aciIdentityKeyPrivate!!.toByteArray())),
       profileKey = ProfileKey(provisioningMessage.profileKey!!.toByteArray()),
       areReadReceiptsEnabled = provisioningMessage.readReceipts == true,
       primaryUserAgent = provisioningMessage.userAgent,
@@ -99,7 +99,7 @@ class SecondaryProvisioningCipher(private val secondaryIdentityKeyPair: Identity
     val message = body.sliceArray(0 until body.size - MAC_LENGTH)
     val cipherText = body.sliceArray((1 + IV_LENGTH) until body.size - MAC_LENGTH)
 
-    val sharedSecret = Curve.calculateAgreement(ECPublicKey(primaryEphemeralPublicKey), secondaryIdentityKeyPair.privateKey)
+    val sharedSecret = secondaryIdentityKeyPair.privateKey.calculateAgreement(ECPublicKey(primaryEphemeralPublicKey))
     val derivedSecret: ByteArray = HKDF.deriveSecrets(sharedSecret, PrimaryProvisioningCipher.PROVISIONING_MESSAGE.toByteArray(), 64)
 
     val cipherKey = derivedSecret.sliceArray(0 until 32)

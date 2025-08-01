@@ -6,8 +6,8 @@
 package org.whispersystems.signalservice.api.backup
 
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
-import org.signal.libsignal.protocol.kdf.HKDF
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
+import org.whispersystems.signalservice.internal.util.Util
 import org.signal.libsignal.messagebackup.BackupKey as LibSignalBackupKey
 
 /**
@@ -15,6 +15,12 @@ import org.signal.libsignal.messagebackup.BackupKey as LibSignalBackupKey
  * This key is a purely random value.
  */
 class MediaRootBackupKey(override val value: ByteArray) : BackupKey {
+
+  companion object {
+    fun generate(): MediaRootBackupKey {
+      return MediaRootBackupKey(Util.getSecretBytes(32))
+    }
+  }
 
   /**
    * The private key used to generate anonymous credentials when interacting with the backup service.
@@ -37,7 +43,7 @@ class MediaRootBackupKey(override val value: ByteArray) : BackupKey {
   }
 
   fun deriveThumbnailTransitKey(thumbnailMediaName: MediaName): ByteArray {
-    return HKDF.deriveSecrets(value, deriveMediaId(thumbnailMediaName).value, "20240513_Signal_Backups_EncryptThumbnail".toByteArray(), 64)
+    return LibSignalBackupKey(value).deriveThumbnailTransitEncryptionKey(deriveMediaId(thumbnailMediaName).value)
   }
 
   private fun deriveMediaSecrets(mediaId: MediaId): MediaKeyMaterial {

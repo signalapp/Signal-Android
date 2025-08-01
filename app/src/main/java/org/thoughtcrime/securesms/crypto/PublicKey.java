@@ -21,12 +21,9 @@ import org.signal.core.util.Conversions;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.Hex;
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class PublicKey {
 
@@ -49,7 +46,7 @@ public class PublicKey {
       throw new InvalidKeyException("Provided bytes are too short.");
 
     this.id        = Conversions.byteArrayToMedium(bytes, offset);
-    this.publicKey = Curve.decodePoint(bytes, offset + 3);
+    this.publicKey = new ECPublicKey(bytes, offset + 3);
   }
 
   public int getType() {

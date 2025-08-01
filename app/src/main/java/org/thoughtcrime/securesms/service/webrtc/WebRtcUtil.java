@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
@@ -29,7 +28,7 @@ public final class WebRtcUtil {
   private WebRtcUtil() {}
 
   public static @NonNull byte[] getPublicKeyBytes(@NonNull byte[] identityKey) throws InvalidKeyException {
-    ECPublicKey key = Curve.decodePoint(identityKey, 0);
+    ECPublicKey key = new ECPublicKey(identityKey);
     return key.getPublicKeyBytes();
   }
 

@@ -207,6 +207,14 @@ class ScrubberTest(private val input: String, private val expected: String) {
           "Not a Call Link Root Key (Missing Quartet) BCAF-FGHK-MNPQ-RSTX-ZRQH-BCDF-STXZ"
         ),
         arrayOf(
+          "A Call Link Room ID 905db82618b907f9ceaf8f12cb65f061ffc187f7df747cb3f38d5281f7c686be",
+          "A Call Link Room ID *************************************************************6be"
+        ),
+        arrayOf(
+          "Not a Call Link Room ID 905db82618b907f9ceaf8f12cb65f061ffc187f7df747cb3f38d5281f7c686b",
+          "Not a Call Link Room ID 905db82618b907f9ceaf8f12cb65f061ffc187f7df747cb3f38d5281f7c686b"
+        ),
+        arrayOf(
           "2345:0425:2CA1:0000:0000:0567:5673:23b5",
           "...ipv6..."
         ),
@@ -241,6 +249,22 @@ class ScrubberTest(private val input: String, private val expected: String) {
         arrayOf(
           "Recipient::123",
           "Recipient::123"
+        ),
+        arrayOf(
+          "url with text before https://example.com/v1/endpoint;asdf123%20$[]?asdf&asdf#asdf and stuff afterwards",
+          "url with text before https://***.com/*** and stuff afterwards"
+        ),
+        arrayOf(
+          "https://signal.org/v1/endpoint",
+          "https://signal.org/v1/endpoint"
+        ),
+        arrayOf(
+          "https://cdn3.signal.org/v1/endpoint",
+          "https://***.org/***"
+        ),
+        arrayOf(
+          "https://debuglogs.org/android/7.47.2/2b5ccf4e3e58e44f12b3c92cfd5b526a2432f1dd0f81c8f89dededb176f1122d",
+          "https://debuglogs.org/android/7.47.2/2b5ccf4e3e58e44f12b3c92cfd5b526a2432f1dd0f81c8f89dededb176f1122d"
         )
       )
     }

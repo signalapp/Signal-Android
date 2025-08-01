@@ -41,7 +41,7 @@ class ContactRecordProcessor(
   companion object {
     private val TAG = Log.tag(ContactRecordProcessor::class.java)
 
-    private val E164_PATTERN: Pattern = Pattern.compile("^\\+[1-9]\\d{0,18}$")
+    private val E164_PATTERN: Pattern = Pattern.compile("^\\+[1-9]\\d{6,18}$")
 
     private fun isValidE164(value: String): Boolean {
       return E164_PATTERN.matcher(value).matches()

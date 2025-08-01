@@ -41,6 +41,7 @@ class ContactRecordProcessorTest {
   fun setup() {
     mockkObject(SignalStore)
     every { SignalStore.account.isPrimaryDevice } returns true
+    every { SignalStore.account.e164 } returns "+11234567890"
 
     recipientTable = mockk(relaxed = true)
   }

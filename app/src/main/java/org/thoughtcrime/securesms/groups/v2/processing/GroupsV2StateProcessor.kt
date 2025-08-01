@@ -71,12 +71,6 @@ class GroupsV2StateProcessor private constructor(
     const val LATEST = GroupStatePatcher.LATEST
 
     /**
-     * Used to mark a group state as a placeholder when there is partial knowledge (title and avater)
-     * gathered from a group join link.
-     */
-    const val PLACEHOLDER_REVISION = GroupStatePatcher.PLACEHOLDER_REVISION
-
-    /**
      * Used to mark a group state as a placeholder when you have no knowledge at all of the group
      * e.g. from a group master key from a storage service restore.
      */

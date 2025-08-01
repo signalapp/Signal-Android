@@ -67,9 +67,9 @@ class EnterBackupKeyFragment : ComposeFragment() {
       viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
         sharedViewModel
           .state
-          .filter { it.registrationCheckpoint == RegistrationCheckpoint.BACKUP_TIER_NOT_RESTORED }
+          .filter { it.registrationCheckpoint == RegistrationCheckpoint.BACKUP_TIMESTAMP_NOT_RESTORED }
           .collect {
-            viewModel.handleBackupTierNotRestored()
+            viewModel.handleBackupTimestampNotRestored()
           }
       }
     }
@@ -90,6 +90,7 @@ class EnterBackupKeyFragment : ComposeFragment() {
     }
 
     EnterBackupKeyScreen(
+      isDisplayedDuringManualRestore = true,
       backupKey = viewModel.backupKey,
       inProgress = sharedState.inProgress,
       isBackupKeyValid = state.backupKeyValid,
@@ -123,7 +124,7 @@ class EnterBackupKeyFragment : ComposeFragment() {
             state = state,
             onBackupTierRetry = {
               viewModel.incrementBackupTierRetry()
-              sharedViewModel.restoreBackupTier()
+              sharedViewModel.checkForBackupFile()
             },
             onAbandonRemoteRestoreAfterRegistration = {
               viewLifecycleOwner.lifecycleScope.launch {

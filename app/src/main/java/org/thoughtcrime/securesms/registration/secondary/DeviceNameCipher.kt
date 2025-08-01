@@ -4,9 +4,9 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.InvalidKeyException
-import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
+import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.util.ByteUtil
 import org.thoughtcrime.securesms.devicelist.protos.DeviceName
 import java.nio.charset.Charset
@@ -28,8 +28,8 @@ object DeviceNameCipher {
 
   @JvmStatic
   fun encryptDeviceName(plaintext: ByteArray, identityKeyPair: IdentityKeyPair): ByteArray {
-    val ephemeralKeyPair: ECKeyPair = Curve.generateKeyPair()
-    val masterSecret: ByteArray = Curve.calculateAgreement(identityKeyPair.publicKey.publicKey, ephemeralKeyPair.privateKey)
+    val ephemeralKeyPair: ECKeyPair = ECKeyPair.generate()
+    val masterSecret: ByteArray = ephemeralKeyPair.privateKey.calculateAgreement(identityKeyPair.publicKey.publicKey)
 
     val syntheticIv: ByteArray = computeSyntheticIv(masterSecret, plaintext)
     val cipherKey: ByteArray = computeCipherKey(masterSecret, syntheticIv)
@@ -58,8 +58,8 @@ object DeviceNameCipher {
       val syntheticIv = deviceName.syntheticIv.toByteArray()
       val cipherText = deviceName.ciphertext.toByteArray()
       val identityKey: ECPrivateKey = identityKeyPair.privateKey
-      val ephemeralPublic = Curve.decodePoint(deviceName.ephemeralPublic.toByteArray(), 0)
-      val masterSecret = Curve.calculateAgreement(ephemeralPublic, identityKey)
+      val ephemeralPublic = ECPublicKey(deviceName.ephemeralPublic.toByteArray())
+      val masterSecret = identityKey.calculateAgreement(ephemeralPublic)
 
       val mac = Mac.getInstance("HmacSHA256")
       mac.init(SecretKeySpec(masterSecret, "HmacSHA256"))

@@ -35,6 +35,8 @@ public final class NotificationIds {
   public static final int UNREGISTERED_NOTIFICATION_ID      = 20230102;
   public static final int NEW_LINKED_DEVICE                 = 120400;
   public static final int OUT_OF_REMOTE_STORAGE             = 120500;
+  public static final int INITIAL_BACKUP_FAILED             = 120501;
+  public static final int MANUAL_BACKUP_NOT_CREATED         = 120502;
 
   private NotificationIds() { }
 

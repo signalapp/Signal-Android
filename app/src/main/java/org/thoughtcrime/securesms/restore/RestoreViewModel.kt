@@ -75,7 +75,7 @@ class RestoreViewModel : ViewModel() {
   }
 
   fun getAvailableRestoreMethods(): List<RestoreMethod> {
-    if (SignalStore.registration.isOtherDeviceAndroid || SignalStore.registration.restoreDecisionState.skippedRestoreChoice || !SignalStore.backup.isBackupTierRestored) {
+    if (SignalStore.registration.isOtherDeviceAndroid || SignalStore.registration.restoreDecisionState.skippedRestoreChoice || !SignalStore.backup.isBackupTimestampRestored) {
       val methods = mutableListOf(RestoreMethod.FROM_LOCAL_BACKUP_V1)
 
       if (SignalStore.registration.restoreDecisionState.includeDeviceToDeviceTransfer) {
@@ -85,7 +85,7 @@ class RestoreViewModel : ViewModel() {
       when (SignalStore.backup.backupTier) {
         MessageBackupTier.FREE -> methods.add(1, RestoreMethod.FROM_SIGNAL_BACKUPS)
         MessageBackupTier.PAID -> methods.add(0, RestoreMethod.FROM_SIGNAL_BACKUPS)
-        null -> if (!SignalStore.backup.isBackupTierRestored) {
+        null -> if (!SignalStore.backup.isBackupTimestampRestored) {
           methods.add(1, RestoreMethod.FROM_SIGNAL_BACKUPS)
         }
       }
@@ -93,7 +93,7 @@ class RestoreViewModel : ViewModel() {
       return methods
     }
 
-    if (SignalStore.backup.backupTier != null || !SignalStore.backup.isBackupTierRestored) {
+    if (SignalStore.backup.backupTier != null || !SignalStore.backup.isBackupTimestampRestored) {
       return listOf(RestoreMethod.FROM_SIGNAL_BACKUPS)
     }
 

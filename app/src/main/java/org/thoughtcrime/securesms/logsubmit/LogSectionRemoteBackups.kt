@@ -24,6 +24,7 @@ class LogSectionRemoteBackups : LogSection {
     output.append("Enabled:                              ${SignalStore.backup.areBackupsEnabled}\n")
     output.append("Current tier:                         ${SignalStore.backup.backupTier}\n")
     output.append("Latest tier:                          ${SignalStore.backup.latestBackupTier}\n")
+    output.append("Backup override tier:                 ${SignalStore.backup.backupTierInternalOverride}\n")
     output.append("Last backup time:                     ${SignalStore.backup.lastBackupTime}\n")
     output.append("Last check-in:                        ${SignalStore.backup.lastCheckInMillis}\n")
     output.append("Last media sync:                      ${SignalStore.backup.lastAttachmentReconciliationTime}\n")
@@ -35,6 +36,7 @@ class LogSectionRemoteBackups : LogSection {
     output.append("Backup frequency:                     ${SignalStore.backup.backupFrequency.name}\n")
     output.append("Optimize storage:                     ${SignalStore.backup.optimizeStorage}\n")
     output.append("Detected subscription state mismatch: ${SignalStore.backup.subscriptionStateMismatchDetected}\n")
+    output.append("Last verified key time:               ${SignalStore.backup.lastVerifyKeyTime}\n")
     output.append("\n -- Subscription State\n")
 
     val backupSubscriptionId = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
@@ -55,7 +57,23 @@ class LogSectionRemoteBackups : LogSection {
       output.append("IAP error type (or null):          ${inAppPayment.data.error?.type}\n")
       output.append("IAP cancellation reason (or null): ${inAppPayment.data.cancellation?.reason}\n")
     } else {
-      output.append("No in-app payment data available.")
+      output.append("No in-app payment data available.\n")
+    }
+
+    output.append("\n -- Imported DebugInfo\n")
+    if (SignalStore.internal.importedBackupDebugInfo != null) {
+      val info = SignalStore.internal.importedBackupDebugInfo!!
+      output.append("Debuglog          : ${info.debuglogUrl}\n")
+      output.append("Using Paid Tier   : ${info.usingPaidTier}\n")
+      output.append("Attachment Details:\n")
+      output.append("  NONE              : ${info.attachmentDetails?.notStartedCount ?: "N/A"}\n")
+      output.append("  UPLOAD_IN_PROGRESS: ${info.attachmentDetails?.uploadInProgressCount ?: "N/A"}\n")
+      output.append("  COPY_PENDING      : ${info.attachmentDetails?.copyPendingCount ?: "N/A"}\n")
+      output.append("  FINISHED          : ${info.attachmentDetails?.finishedCount ?: "N/A"}\n")
+      output.append("  PERMANENT_FAILURE : ${info.attachmentDetails?.permanentFailureCount ?: "N/A"}\n")
+      output.append("  TEMPORARY_FAILURE : ${info.attachmentDetails?.temporaryFailureCount ?: "N/A"}\n")
+    } else {
+      output.append("None\n")
     }
 
     return output

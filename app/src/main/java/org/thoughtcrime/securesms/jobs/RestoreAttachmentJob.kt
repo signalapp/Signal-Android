@@ -10,7 +10,9 @@ import android.content.Intent
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import org.greenrobot.eventbus.EventBus
+import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidMacException
 import org.signal.libsignal.protocol.InvalidMessageException
@@ -39,6 +41,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException
@@ -48,6 +51,7 @@ import org.whispersystems.signalservice.api.push.exceptions.RangeException
 import java.io.File
 import java.io.IOException
 import java.util.concurrent.TimeUnit
+import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
 import kotlin.math.pow
 import kotlin.time.Duration.Companion.days
@@ -171,20 +175,21 @@ class RestoreAttachmentJob private constructor(
     val attachment = SignalDatabase.attachments.getAttachment(attachmentId)
 
     if (attachment == null) {
-      Log.w(TAG, "attachment no longer exists.")
+      Log.w(TAG, "[$attachmentId] Attachment no longer exists.")
       return
     }
 
     if (attachment.isPermanentlyFailed) {
-      Log.w(TAG, "Attachment was marked as a permanent failure. Refusing to download.")
+      Log.w(TAG, "[$attachmentId] Attachment was marked as a permanent failure. Refusing to download.")
       return
     }
 
     if (attachment.transferState != AttachmentTable.TRANSFER_NEEDS_RESTORE &&
       attachment.transferState != AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS &&
-      (attachment.transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED)
+      attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_FAILED &&
+      attachment.transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED
     ) {
-      Log.w(TAG, "Attachment does not need to be restored.")
+      Log.w(TAG, "[$attachmentId] Attachment does not need to be restored. Current state: ${attachment.transferState}")
       return
     }
 
@@ -198,6 +203,15 @@ class RestoreAttachmentJob private constructor(
       Log.w(TAG, format(this, "onFailure() messageId: $messageId  attachmentId: $attachmentId"))
 
       markFailed(attachmentId)
+
+      Log.w(TAG, "onFailure(): Attempting to fall back on attachment thumbnail.")
+      val restoreThumbnailAttachmentJob = RestoreAttachmentThumbnailJob(
+        messageId = messageId,
+        attachmentId = attachmentId,
+        highPriority = manual
+      )
+
+      AppDependencies.jobManager.add(restoreThumbnailAttachmentJob)
     }
   }
 
@@ -226,17 +240,22 @@ class RestoreAttachmentJob private constructor(
   ) {
     val maxReceiveSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val attachmentFile: File = SignalDatabase.attachments.getOrCreateTransferFile(attachmentId)
-    var archiveFile: File? = null
     var useArchiveCdn = false
+
+    if (attachment.remoteDigest == null && attachment.dataHash == null) {
+      Log.w(TAG, "[$attachmentId] Attachment has no integrity check! Cannot proceed.")
+      markPermanentlyFailed(attachmentId)
+      return
+    }
 
     try {
       if (attachment.size > maxReceiveSize) {
-        throw MmsException("Attachment too large, failing download")
+        throw MmsException("[$attachmentId] Attachment too large, failing download")
       }
 
       useArchiveCdn = if (SignalStore.backup.backsUpMedia && !forceTransitTier) {
         if (attachment.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED) {
-          throw InvalidAttachmentException("Invalid attachment configuration! backsUpMedia: ${SignalStore.backup.backsUpMedia}, forceTransitTier: $forceTransitTier, archiveTransferState: ${attachment.archiveTransferState}")
+          throw InvalidAttachmentException("[$attachmentId] Invalid attachment configuration! backsUpMedia: ${SignalStore.backup.backsUpMedia}, forceTransitTier: $forceTransitTier, archiveTransferState: ${attachment.archiveTransferState}")
         }
         true
       } else {
@@ -256,17 +275,16 @@ class RestoreAttachmentJob private constructor(
         }
       }
 
-      val downloadResult = if (useArchiveCdn) {
-        archiveFile = SignalDatabase.attachments.getOrCreateArchiveTransferFile(attachmentId)
+      val decryptingStream = if (useArchiveCdn) {
         val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MEDIA, attachment.archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn).successOrThrow().headers
 
         messageReceiver
           .retrieveArchivedAttachment(
             SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.requireMediaName()),
+            attachment.dataHash!!.decodeBase64OrThrow(),
             cdnCredentials,
-            archiveFile,
-            pointer,
             attachmentFile,
+            pointer,
             maxReceiveSize,
             progressListener
           )
@@ -276,15 +294,15 @@ class RestoreAttachmentJob private constructor(
             pointer,
             attachmentFile,
             maxReceiveSize,
+            IntegrityCheck.forEncryptedDigestAndPlaintextHash(pointer.digest.getOrNull(), attachment.dataHash),
             progressListener
           )
       }
 
-      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, downloadResult.dataStream, downloadResult.iv, if (manual) System.currentTimeMillis().milliseconds else null)
+      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, decryptingStream, if (manual) System.currentTimeMillis().milliseconds else null)
     } catch (e: RangeException) {
-      val transferFile = archiveFile ?: attachmentFile
-      Log.w(TAG, "Range exception, file size " + transferFile.length(), e)
-      if (transferFile.delete()) {
+      Log.w(TAG, "[$attachmentId] Range exception, file size " + attachmentFile.length(), e)
+      if (attachmentFile.delete()) {
         Log.i(TAG, "Deleted temp download file to recover")
         throw RetryLaterException(e)
       } else {
@@ -294,37 +312,47 @@ class RestoreAttachmentJob private constructor(
       Log.w(TAG, e.message)
       markFailed(attachmentId)
     } catch (e: NonSuccessfulResponseCodeException) {
-      if (SignalStore.backup.backsUpMedia) {
-        if (e.code == 404 && !forceTransitTier && attachment.remoteLocation?.isNotBlank() == true) {
-          Log.i(TAG, "Failed to download attachment from archive! Should only happen for recent attachments in a narrow window. Retrying download from transit CDN.")
-          if (RemoteConfig.internalUser) {
-            postFailedToDownloadFromArchiveNotification()
-          }
+      when (e.code) {
+        404 -> {
+          if (forceTransitTier) {
+            Log.w(TAG, "[$attachmentId] Completely failed to restore an attachment! Failed downloading from both the archive and transit CDN.")
+            maybePostFailedToDownloadFromArchiveAndTransitNotification()
+          } else if (SignalStore.backup.backsUpMedia && attachment.remoteLocation.isNotNullOrBlank()) {
+            Log.w(TAG, "[$attachmentId] Failed to download attachment from the archive CDN! Retrying download from transit CDN.")
+            maybePostFailedToDownloadFromArchiveNotification()
 
-          retrieveAttachment(messageId, attachmentId, attachment, true)
-          return
-        } else if (e.code == 401 && useArchiveCdn) {
-          SignalStore.backup.mediaCredentials.cdnReadCredentials = null
-          SignalStore.backup.cachedMediaCdnPath = null
-          throw RetryLaterException(e)
-        } else if (e.code == 404 && attachment.remoteLocation?.isNotBlank() == true) {
-          Log.i(TAG, "Failed to download attachment from transit tier. Scheduling retry.")
-          throw e
+            return retrieveAttachment(messageId, attachmentId, attachment, forceTransitTier = true)
+          } else if (SignalStore.backup.backsUpMedia) {
+            Log.w(TAG, "[$attachmentId] Completely failed to restore an attachment! Failed to download from archive CDN, and there's not transit CDN info.")
+            maybePostFailedToDownloadFromArchiveAndTransitNotification()
+          } else if (attachment.remoteLocation.isNotNullOrBlank()) {
+            Log.w(TAG, "[$attachmentId] Failed to restore an attachment for a free tier user. Likely just older than 45 days.")
+          }
+        }
+        401 -> {
+          if (useArchiveCdn) {
+            Log.w(TAG, "[$attachmentId] Had a credential issue when downloading an attachment. Clearing credentials and retrying.")
+            SignalStore.backup.mediaCredentials.cdnReadCredentials = null
+            SignalStore.backup.cachedMediaCdnPath = null
+            throw RetryLaterException(e)
+          } else {
+            Log.w(TAG, "[$attachmentId] Unexpected 401 response for transit CDN restore.")
+          }
         }
       }
 
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced exception while trying to download an attachment.", e)
       markFailed(attachmentId)
     } catch (e: MmsException) {
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced exception while trying to download an attachment.", e)
       markFailed(attachmentId)
     } catch (e: MissingConfigurationException) {
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced exception while trying to download an attachment.", e)
       markFailed(attachmentId)
     } catch (e: InvalidMessageException) {
-      Log.w(TAG, "Experienced an InvalidMessageException while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced an InvalidMessageException while trying to download an attachment.", e)
       if (e.cause is InvalidMacException) {
-        Log.w(TAG, "Detected an invalid mac. Treating as a permanent failure.")
+        Log.w(TAG, "[$attachmentId] Detected an invalid mac. Treating as a permanent failure.")
         markPermanentlyFailed(attachmentId)
       } else {
         markFailed(attachmentId)
@@ -340,10 +368,29 @@ class RestoreAttachmentJob private constructor(
     SignalDatabase.attachments.setRestoreTransferState(attachmentId, AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE)
   }
 
-  private fun postFailedToDownloadFromArchiveNotification() {
+  private fun maybePostFailedToDownloadFromArchiveNotification() {
+    if (!RemoteConfig.internalUser || !SignalStore.backup.backsUpMedia) {
+      return
+    }
+
     val notification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
       .setSmallIcon(R.drawable.ic_notification)
-      .setContentTitle("[Internal-only] Failed to download attachment from archive!")
+      .setContentTitle("[Internal-only] Failed to restore attachment from Archive CDN!")
+      .setContentText("Tap to send a debug log")
+      .setContentIntent(PendingIntent.getActivity(context, 0, Intent(context, SubmitDebugLogActivity::class.java), PendingIntentFlags.mutable()))
+      .build()
+
+    NotificationManagerCompat.from(context).notify(NotificationIds.INTERNAL_ERROR, notification)
+  }
+
+  private fun maybePostFailedToDownloadFromArchiveAndTransitNotification() {
+    if (!RemoteConfig.internalUser || !SignalStore.backup.backsUpMedia) {
+      return
+    }
+
+    val notification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
+      .setSmallIcon(R.drawable.ic_notification)
+      .setContentTitle("[Internal-only] Completely failed to restore attachment!")
       .setContentText("Tap to send a debug log")
       .setContentIntent(PendingIntent.getActivity(context, 0, Intent(context, SubmitDebugLogActivity::class.java), PendingIntentFlags.mutable()))
       .build()

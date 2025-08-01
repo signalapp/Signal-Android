@@ -34,6 +34,7 @@ abstract class SafeForegroundService : Service() {
     private const val ACTION_START = "start"
     private const val ACTION_UPDATE = "update"
     private const val ACTION_STOP = "stop"
+    private const val ACTION_TIMEOUT = "timeout"
 
     private var states: MutableMap<Class<out SafeForegroundService>, State> = mutableMapOf()
     private val stateLock = ReentrantLock()
@@ -86,9 +87,11 @@ abstract class SafeForegroundService : Service() {
      * Safely stops the service by starting it with an action to stop itself.
      * This is done to prevent scenarios where you stop the service while
      * a start is pending, preventing the posting of a foreground notification.
+     *
+     * @param fromTimeout - Whether we are stopping due to system timeout (limit is 6hr in 24hr)
      * @return true if service was running previously
      */
-    fun stop(context: Context, serviceClass: Class<out SafeForegroundService>): Boolean {
+    fun stop(context: Context, serviceClass: Class<out SafeForegroundService>, fromTimeout: Boolean = false): Boolean {
       stateLock.withLock {
         val state = currentState(serviceClass)
 
@@ -98,10 +101,11 @@ abstract class SafeForegroundService : Service() {
           State.STARTING -> {
             Log.d(TAG, "[stop] Stopping service.")
             states[serviceClass] = State.STOPPING
+            val stopAction = if (fromTimeout) ACTION_TIMEOUT else ACTION_STOP
             try {
               ForegroundServiceUtil.startWhenCapable(
                 context = context,
-                intent = Intent(context, serviceClass).apply { action = ACTION_STOP }
+                intent = Intent(context, serviceClass).apply { action = stopAction }
               )
             } catch (e: UnableToStartException) {
               Log.w(TAG, "Failed to start service class $serviceClass", e)
@@ -182,7 +186,9 @@ abstract class SafeForegroundService : Service() {
 
     Log.d(tag, "[onStartCommand] action: ${intent.action}")
 
-    if (Build.VERSION.SDK_INT >= 30 && serviceType != 0) {
+    if (intent.action == ACTION_TIMEOUT) {
+      Log.i(TAG, "Time limit for foreground services has been met. Skipping starting a foreground.")
+    } else if (Build.VERSION.SDK_INT >= 30 && serviceType != 0) {
       startForeground(notificationId, getForegroundNotification(intent), serviceType)
     } else {
       startForeground(notificationId, getForegroundNotification(intent))
@@ -192,6 +198,7 @@ abstract class SafeForegroundService : Service() {
       ACTION_START -> {
         onServiceStartCommandReceived(intent)
       }
+      ACTION_TIMEOUT,
       ACTION_STOP -> {
         onServiceStopCommandReceived(intent)
         ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)

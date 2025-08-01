@@ -50,11 +50,15 @@ public class StorageCapabilityMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() {
+    if (SignalStore.account().isLinkedDevice()) {
+      return;
+    }
+
     JobManager jobManager = AppDependencies.getJobManager();
 
     jobManager.startChain(new RefreshAttributesJob()).then(new RefreshOwnProfileJob()).enqueue();
 
-    if (SignalStore.account().hasLinkedDevices()) {
+    if (SignalStore.account().isMultiDevice()) {
       Log.i(TAG, "Multi-device.");
       jobManager.startChain(new StorageForcePushJob())
                 .then(new MultiDeviceKeysUpdateJob())

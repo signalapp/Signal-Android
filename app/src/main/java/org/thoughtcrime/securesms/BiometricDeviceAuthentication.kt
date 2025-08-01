@@ -45,8 +45,25 @@ class BiometricDeviceAuthentication(
     }
   }
 
+  /**
+   * From the docs on [BiometricManager.canAuthenticate]
+   *
+   * > Note that not all combinations of authenticator types are supported prior to Android 11 (API 30).
+   * > Developers that wish to check for the presence of a PIN, pattern, or password on these versions should instead use KeyguardManager.isDeviceSecure().
+   */
   fun canAuthenticate(context: Context): Boolean {
-    return isDeviceSecure(context) && biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS
+    return if (Build.VERSION.SDK_INT >= 30) {
+      biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS) == BiometricManager.BIOMETRIC_SUCCESS
+    } else {
+      biometricManager.canAuthenticate() == BiometricManager.BIOMETRIC_SUCCESS || isDeviceSecure(context)
+    }
+  }
+
+  /**
+   * Returns whether the device credentials education sheet should be shown (only when biometrics is not enabled)
+   */
+  fun shouldShowEducationSheet(context: Context): Boolean {
+    return canAuthenticate(context) && biometricManager.canAuthenticate(BIOMETRIC_AUTHENTICATORS) != BiometricManager.BIOMETRIC_SUCCESS
   }
 
   private fun isDontKeepActivitiesOn(context: Context): Boolean {
@@ -54,10 +71,8 @@ class BiometricDeviceAuthentication(
   }
 
   fun authenticate(context: Context, force: Boolean, showConfirmDeviceCredentialIntent: () -> Unit): Boolean {
-    val isDeviceSecure = isDeviceSecure(context)
-
-    if (!isDeviceSecure) {
-      Log.w(TAG, "Device not secure...")
+    if (!canAuthenticate(context)) {
+      Log.w(TAG, "Cannot authenticate, skipping. isDeviceSecure: ${isDeviceSecure(context)}, Auth status: ${biometricManager.canAuthenticate(ALLOWED_AUTHENTICATORS)}")
       return false
     }
 

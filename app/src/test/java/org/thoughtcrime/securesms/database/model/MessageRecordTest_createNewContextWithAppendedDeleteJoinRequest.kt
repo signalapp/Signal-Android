@@ -6,7 +6,6 @@ import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.junit.Assert.assertEquals
 import org.junit.Test
-import org.signal.core.util.Base64
 import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
 import org.thoughtcrime.securesms.groups.v2.ChangeBuilder
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -65,9 +64,7 @@ class MessageRecordTest_createNewContextWithAppendedDeleteJoinRequest {
       every { decryptedGroupV2Context } returns context
     }
 
-    val newEncodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(messageRecord, 10, aliceByteString)
-
-    val newContext = DecryptedGroupV2Context.ADAPTER.decode(Base64.decode(newEncodedBody))
+    val newContext = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(messageRecord, 10, aliceByteString)
 
     assertEquals("revision updated to 10", newContext.change?.revision, 10)
     assertEquals("change should retain join request", newContext.change?.newRequestingMembers?.single()?.aciBytes, aliceByteString)

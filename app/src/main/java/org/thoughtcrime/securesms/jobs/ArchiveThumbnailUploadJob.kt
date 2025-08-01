@@ -17,13 +17,15 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.protos.ArchiveThumbnailUploadJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
@@ -57,6 +59,10 @@ class ArchiveThumbnailUploadJob private constructor(
         AppDependencies.jobManager.add(ArchiveThumbnailUploadJob(attachmentId))
       }
     }
+
+    fun JobSpec.isForArchiveThumbnailUploadJob(attachmentId: AttachmentId): Boolean {
+      return this.factoryKey == KEY && this.serializedData?.let { ArchiveThumbnailUploadJobData.ADAPTER.decode(it).attachmentId } == attachmentId.id
+    }
   }
 
   private constructor(attachmentId: AttachmentId) : this(
@@ -84,8 +90,8 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.success()
     }
 
-    if (attachment.remoteDigest == null) {
-      Log.w(TAG, "$attachmentId was never uploaded! Cannot proceed.")
+    if (attachment.remoteDigest == null && attachment.dataHash == null) {
+      Log.w(TAG, "$attachmentId has no integrity check! Cannot proceed.")
       return Result.success()
     }
 
@@ -105,7 +111,7 @@ class ArchiveThumbnailUploadJob private constructor(
       .then { form ->
         SignalNetwork.attachments.getResumableUploadSpec(
           key = mediaRootBackupKey.deriveThumbnailTransitKey(attachment.requireThumbnailMediaName()),
-          iv = attachment.remoteIv!!,
+          iv = Util.getSecretBytes(16),
           uploadForm = form
         )
       }
@@ -147,11 +153,12 @@ class ArchiveThumbnailUploadJob private constructor(
         // save attachment thumbnail
         SignalDatabase.attachments.finalizeAttachmentThumbnailAfterUpload(
           attachmentId = attachmentId,
-          attachmentDigest = attachment.remoteDigest,
+          attachmentPlaintextHash = attachment.dataHash,
+          attachmentRemoteKey = attachment.remoteKey,
           data = thumbnailResult.data
         )
 
-        Log.d(TAG, "Successfully archived thumbnail for $attachmentId mediaName=${attachment.requireThumbnailMediaName()}")
+        Log.d(TAG, "Successfully archived thumbnail for $attachmentId")
         Result.success()
       }
 

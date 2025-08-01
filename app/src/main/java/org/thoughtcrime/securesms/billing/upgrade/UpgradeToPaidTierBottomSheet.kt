@@ -25,7 +25,6 @@ import kotlinx.coroutines.rx3.asFlowable
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.util.concurrent.SignalDispatchers
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsFlowViewModel
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsStage
@@ -80,7 +79,7 @@ abstract class UpgradeToPaidTierBottomSheet : ComposeBottomSheetDialogFragment()
     viewLifecycleOwner.lifecycleScope.launch(SignalDispatchers.Main) {
       repeatOnLifecycle(Lifecycle.State.RESUMED) {
         viewModel.deletionState.collectLatest {
-          if (it == DeletionState.DELETE_BACKUPS) {
+          if (it.isInProgress()) {
             Toast.makeText(
               requireContext(),
               R.string.MessageBackupsFlowFragment__a_backup_deletion_is_in_progress,

@@ -25,6 +25,7 @@ import org.signal.libsignal.zkgroup.calllinks.CallLinkSecretParams;
 import org.signal.libsignal.zkgroup.groups.GroupIdentifier;
 import org.signal.ringrtc.CallException;
 import org.signal.ringrtc.CallId;
+import org.signal.ringrtc.CallLinkEpoch;
 import org.signal.ringrtc.CallLinkRootKey;
 import org.signal.ringrtc.CallManager;
 import org.signal.ringrtc.GroupCall;
@@ -68,6 +69,7 @@ import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState;
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcServiceState;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
 import org.thoughtcrime.securesms.util.RecipientAccessList;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.rx.RxStore;
@@ -406,6 +408,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         }
 
         CallLinkRootKey           callLinkRootKey           = new CallLinkRootKey(callLink.getCredentials().getLinkKeyBytes());
+        CallLinkEpoch             callLinkEpoch             = callLink.getCredentials().getEpoch();
         GenericServerPublicParams genericServerPublicParams = new GenericServerPublicParams(AppDependencies.getSignalServiceNetworkAccess()
                                                                                                            .getConfiguration()
                                                                                                            .getGenericServerPublicParams());
@@ -417,7 +420,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                                                                                    CallLinkSecretParams.deriveFromRootKey(callLinkRootKey.getKeyBytes())
                                                                                                );
 
-        callManager.peekCallLinkCall(SignalStore.internal().getGroupCallingServer(), callLinkAuthCredentialPresentation.serialize(), callLinkRootKey, null, peekInfo -> {
+        callManager.peekCallLinkCall(SignalStore.internal().getGroupCallingServer(), callLinkAuthCredentialPresentation.serialize(), callLinkRootKey, callLinkEpoch, peekInfo -> {
           PeekInfo info = peekInfo.getValue();
           if (info == null) {
             Log.w(TAG, "Failed to get peek info: " + peekInfo.getStatus());
@@ -987,21 +990,13 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   @Override
-  public void onFullyInitialized(@NonNull final CameraState newCameraState) {
-    process((s, p) -> {
-      WebRtcServiceState s1 = p.handleSetCameraDirection(s, newCameraState);
-      return p.handleOrientationChanged(s1, s.getLocalDeviceState().isLandscapeEnabled(), s.getLocalDeviceState().getDeviceOrientation().getDegrees());
-    });
+  public void onFullyInitialized() {
+    process((s, p) -> p.handleOrientationChanged(s, s.getLocalDeviceState().isLandscapeEnabled(), s.getLocalDeviceState().getDeviceOrientation().getDegrees()));
   }
 
   @Override
   public void onCameraSwitchCompleted(@NonNull final CameraState newCameraState) {
     process((s, p) -> p.handleCameraSwitchCompleted(s, newCameraState));
-  }
-
-  @Override
-  public void onCameraSwitchFailure(@NonNull final CameraState newCameraState) {
-    process((s, p) -> p.handleCameraSwitchFailure(s, newCameraState));
   }
 
   @Override
@@ -1238,7 +1233,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         .calls()
         .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.ACCEPTED);
 
-    if (SignalStore.account().hasLinkedDevices()) {
+    if (SignalStore.account().isMultiDevice()) {
       networkExecutor.execute(() -> {
         try {
           SyncMessage.CallEvent callEvent = CallEventSyncMessageUtil.createAcceptedSyncMessage(remotePeer, System.currentTimeMillis(), isOutgoing, isVideoCall);
@@ -1255,7 +1250,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         .calls()
         .updateOneToOneCall(remotePeer.getCallId().longValue(), CallTable.Event.NOT_ACCEPTED);
 
-    if (SignalStore.account().hasLinkedDevices()) {
+    if (SignalStore.account().isMultiDevice()) {
       networkExecutor.execute(() -> {
         try {
           SyncMessage.CallEvent callEvent = CallEventSyncMessageUtil.createNotAcceptedSyncMessage(remotePeer, System.currentTimeMillis(), isOutgoing, isVideoCall);
@@ -1268,7 +1263,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
   }
 
   public void sendGroupCallNotAcceptedCallEventSyncMessage(@NonNull RemotePeer remotePeer, boolean isOutgoing) {
-    if (SignalStore.account().hasLinkedDevices()) {
+    if (SignalStore.account().isMultiDevice()) {
       networkExecutor.execute(() -> {
         try {
           SyncMessage.CallEvent callEvent = CallEventSyncMessageUtil.createNotAcceptedSyncMessage(remotePeer, System.currentTimeMillis(), isOutgoing, true);

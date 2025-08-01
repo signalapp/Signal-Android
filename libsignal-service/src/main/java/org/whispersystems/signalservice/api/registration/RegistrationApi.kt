@@ -106,7 +106,7 @@ class RegistrationApi(
   /**
    * Validates the provided SVR2 auth credentials, returning information on their usability.
    *
-   * `POST /v2/backup/auth/check`
+   * `POST /v2/svr/auth/check`
    */
   fun validateSvr2AuthCredential(e164: String, usernamePasswords: List<String>): NetworkResult<BackupV2AuthCheckResponse> {
     return NetworkResult.fromFetch {

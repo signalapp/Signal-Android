@@ -1,0 +1,42 @@
+<!--
+  ~ Copyright 2025 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    #container { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%; width: 100%; }
+
+    /* Scrollbar Setup */
+    .ace_scrollbar::-webkit-scrollbar { width: 0; height: 0; }
+    .show-scrollbar .ace_scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
+    .ace_scrollbar::-webkit-scrollbar-thumb { background-color: #999999; }
+
+    /* Light Mode: Line color based on log level */
+    .ace_editor  { background-color: #FBFCFF; }
+    .ace_none    { color: #000000; }
+    .ace_verbose { color: #515151; }
+    .ace_debug   { color: #089314; }
+    .ace_info    { color: #0a7087; }
+    .ace_warning { color: #b58c12; }
+    .ace_error   { color: #af0d0a; }
+
+    /* Dark Mode: Line color based on log level */
+    body.dark .ace_editor  { background-color: #1B1C1F; }
+    body.dark .ace_none    { color: #ffffff; }
+    body.dark .ace_verbose { color: #8a8a8a; }
+    body.dark .ace_debug   { color: #5ca72b; }
+    body.dark .ace_info    { color: #46bbb9; }
+    body.dark .ace_warning { color: #cdd637; }
+    body.dark .ace_error   { color: #ff6b68; }
+  </style>
+</head>
+<body>
+<div id="container"></div>
+<script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ace.js"></script>
+<script src="debuglogs-viewer.js"></script>
+</body>
+</html>

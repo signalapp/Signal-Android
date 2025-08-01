@@ -63,7 +63,7 @@ object LocalArchiver {
           return@localExport
         }
 
-        val mediaName = MediaName.fromDigest(attachment.remoteDigest)
+        val mediaName = MediaName.fromPlaintextHashAndRemoteKey(attachment.plaintextHash, attachment.remoteKey)
 
         mediaNames.add(mediaName)
 
@@ -73,7 +73,6 @@ object LocalArchiver {
           }
 
           source()?.use { sourceStream ->
-            val iv = attachment.remoteIv
             val combinedKey = Base64.decode(attachment.remoteKey)
             val destination: OutputStream? = filesFileSystem.fileOutputStream(mediaName)
 
@@ -84,7 +83,7 @@ object LocalArchiver {
               // todo [local-backup] but deal with attachment disappearing/deleted by normal app use
               try {
                 PaddingInputStream(sourceStream, attachment.size).use { input ->
-                  AttachmentCipherOutputStream(combinedKey, iv, destination).use { output ->
+                  AttachmentCipherOutputStream(combinedKey, null, destination).use { output ->
                     StreamUtil.copy(input, output)
                   }
                 }

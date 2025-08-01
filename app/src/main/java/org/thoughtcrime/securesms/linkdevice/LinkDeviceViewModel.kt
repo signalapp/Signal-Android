@@ -261,16 +261,6 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  fun markBioAuthEducationSheetSeen(seen: Boolean) {
-    SignalStore.uiHints.lastSeenLinkDeviceAuthSheetTime = System.currentTimeMillis()
-    _state.update {
-      it.copy(
-        seenBioAuthEducationSheet = seen,
-        needsBioAuthEducationSheet = false
-      )
-    }
-  }
-
   private fun addDeviceWithSync(linkUri: Uri) {
     Log.d(TAG, "[addDeviceWithSync] Beginning device adding process.")
 
@@ -436,9 +426,11 @@ class LinkDeviceViewModel : ViewModel() {
     return if (RemoteConfig.internalUser) {
       this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true ||
         this.getQueryParameter("capabilities")?.split(",")?.contains("backup2") == true ||
-        this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true ||
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup4") == true
     } else {
-      this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true
+      this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true ||
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup4") == true
     }
   }
 

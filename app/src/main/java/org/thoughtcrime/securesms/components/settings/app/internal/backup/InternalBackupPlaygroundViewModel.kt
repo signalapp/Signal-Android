@@ -39,6 +39,7 @@ import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.DebugBackupMetadata
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.backup.v2.RemoteRestoreResult
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveFileSystem
 import org.thoughtcrime.securesms.backup.v2.local.ArchiveResult
 import org.thoughtcrime.securesms.backup.v2.local.LocalArchiver
@@ -50,8 +51,6 @@ import org.thoughtcrime.securesms.database.AttachmentTable.DebugAttachmentStats
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
-import org.thoughtcrime.securesms.jobs.BackupRestoreJob
-import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.RestoreLocalAttachmentJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.providers.BlobProvider
@@ -69,7 +68,6 @@ import javax.crypto.Cipher
 import javax.crypto.CipherInputStream
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
-import kotlin.time.Duration.Companion.seconds
 
 class InternalBackupPlaygroundViewModel : ViewModel() {
 
@@ -263,7 +261,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   fun checkRemoteBackupState() {
     disposables += Single
       .fromCallable {
-        BackupRepository.restoreBackupTier(SignalStore.account.requireAci())
+        BackupRepository.restoreBackupFileTimestamp()
         BackupRepository.debugGetRemoteBackupState()
       }
       .subscribeOn(Schedulers.io())
@@ -292,11 +290,6 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       SignalStore.backup.restoreWithCellular = false
       restoreFromRemote()
     }
-  }
-
-  fun onBackupTierSelected(backupTier: MessageBackupTier?) {
-    SignalStore.backup.backupTier = backupTier
-    _state.value = _state.value.copy(backupTier = backupTier)
   }
 
   fun onImportSelected() {
@@ -342,18 +335,16 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
   private fun restoreFromRemote() {
     _state.value = _state.value.copy(statusMessage = "Importing from remote...")
 
-    disposables += Single.fromCallable {
-      AppDependencies
-        .jobManager
-        .startChain(BackupRestoreJob())
-        .then(BackupRestoreMediaJob())
-        .enqueueAndBlockUntilCompletion(120.seconds.inWholeMilliseconds)
-    }
-      .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribeBy {
-        _state.value = _state.value.copy(statusMessage = "Import complete!")
+    viewModelScope.launch {
+      when (val result = BackupRepository.restoreRemoteBackup()) {
+        RemoteRestoreResult.Success -> _state.value = _state.value.copy(statusMessage = "Import complete!")
+        RemoteRestoreResult.Canceled,
+        RemoteRestoreResult.Failure,
+        RemoteRestoreResult.NetworkError -> {
+          _state.value = _state.value.copy(statusMessage = "Import failed! $result")
+        }
       }
+    }
   }
 
   fun loadStats() {
@@ -400,6 +391,10 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     }
 
     return@withContext false
+  }
+
+  suspend fun clearLocalMediaBackupState() = withContext(Dispatchers.IO) {
+    SignalDatabase.attachments.clearAllArchiveData()
   }
 
   override fun onCleared() {

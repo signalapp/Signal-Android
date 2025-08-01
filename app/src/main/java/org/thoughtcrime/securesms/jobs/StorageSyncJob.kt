@@ -212,7 +212,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
         AppDependencies.jobManager.add(StorageRotateManifestJob())
       }
 
-      if (SignalStore.account.hasLinkedDevices && needsMultiDeviceSync) {
+      if (SignalStore.account.isMultiDevice && needsMultiDeviceSync) {
         AppDependencies.jobManager.add(MultiDeviceStorageSyncRequestJob())
       }
 

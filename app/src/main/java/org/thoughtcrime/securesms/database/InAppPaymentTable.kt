@@ -327,6 +327,12 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .run()
   }
 
+  fun hasPendingBackupRedemption(): Boolean {
+    return readableDatabase.exists(TABLE_NAME)
+      .where("$STATE = ? AND $TYPE = ?", State.serialize(State.PENDING), InAppPaymentType.serialize(InAppPaymentType.RECURRING_BACKUP))
+      .run()
+  }
+
   /**
    * Retrieves from the database the latest payment of the given type that is either in the PENDING or WAITING_FOR_AUTHORIZATION state.
    */

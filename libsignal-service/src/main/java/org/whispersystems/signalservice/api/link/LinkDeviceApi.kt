@@ -116,13 +116,16 @@ class LinkDeviceApi(
       aci = aci.toString(),
       pni = pni.toStringWithoutPrefix(),
       number = e164,
-      profileKey = profileKey.serialize().toByteString(),
       provisioningCode = code,
+      userAgent = null,
+      profileKey = profileKey.serialize().toByteString(),
       provisioningVersion = ProvisioningVersion.CURRENT.value,
-      accountEntropyPool = accountEntropyPool.value,
       masterKey = masterKey.serialize().toByteString(),
+      ephemeralBackupKey = ephemeralMessageBackupKey?.value?.toByteString(),
+      accountEntropyPool = accountEntropyPool.value,
       mediaRootBackupKey = mediaRootBackupKey.value.toByteString(),
-      ephemeralBackupKey = ephemeralMessageBackupKey?.value?.toByteString()
+      aciBinary = aci.toByteString(),
+      pniBinary = pni.toByteStringWithoutPrefix()
     )
     val ciphertext: ByteArray = cipher.encrypt(message)
     val body = ProvisioningMessage(encodeWithPadding(ciphertext))

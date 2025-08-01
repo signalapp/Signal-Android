@@ -113,14 +113,13 @@ class RestoreAttachmentThumbnailJob private constructor(
       return
     }
 
-    if (attachment.remoteDigest == null) {
-      Log.w(TAG, "$attachmentId has no digest! Cannot proceed.")
+    if (attachment.dataHash == null) {
+      Log.w(TAG, "$attachmentId has no plaintext hash! Cannot proceed.")
       return
     }
 
     val maxThumbnailSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val thumbnailTransferFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
-    val thumbnailFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
 
     val progressListener = object : SignalServiceAttachment.ProgressListener {
       override fun onAttachmentProgress(progress: AttachmentTransferProgress) = Unit
@@ -131,18 +130,17 @@ class RestoreAttachmentThumbnailJob private constructor(
     val pointer = attachment.createArchiveThumbnailPointer()
 
     Log.i(TAG, "Downloading thumbnail for $attachmentId")
-    val downloadResult = AppDependencies.signalServiceMessageReceiver
+    val decryptingStream = AppDependencies.signalServiceMessageReceiver
       .retrieveArchivedThumbnail(
         SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.requireThumbnailMediaName()),
         cdnCredentials,
         thumbnailTransferFile,
         pointer,
-        thumbnailFile,
         maxThumbnailSize,
         progressListener
       )
 
-    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.remoteDigest, downloadResult.dataStream, thumbnailTransferFile)
+    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.dataHash, attachment.remoteKey, decryptingStream, thumbnailTransferFile)
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context)

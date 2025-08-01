@@ -403,47 +403,47 @@ class Recipient(
 
   /** Convenience method to get a non-null [serviceId] hen you know it is there. */
   fun requireServiceId(): ServiceId {
-    return resolved.aciValue ?: resolved.pniValue ?: throw MissingAddressError(id)
+    return resolved.aciValue ?: resolved.pniValue ?: throw MissingServiceIdError(id)
   }
 
   /** Convenience method to get a non-null [aci] hen you know it is there. */
   fun requireAci(): ACI {
-    return resolved.aciValue ?: throw MissingAddressError(id)
+    return resolved.aciValue ?: throw MissingAciError(id)
   }
 
   /** Convenience method to get a non-null [pni] when you know it is there. */
   fun requirePni(): PNI {
-    return resolved.pniValue ?: throw MissingAddressError(id)
+    return resolved.pniValue ?: throw MissingPniError(id)
   }
 
   /** Convenience method to get a non-null [e164] when you know it is there. */
   fun requireE164(): String {
-    return resolved.e164Value ?: throw MissingAddressError(id)
+    return resolved.e164Value ?: throw MissingE164Error(id)
   }
 
   /** Convenience method to get a non-null [email] when you know it is there. */
   fun requireEmail(): String {
-    return resolved.emailValue ?: throw MissingAddressError(id)
+    return resolved.emailValue ?: throw MissingEmailError(id)
   }
 
   /** Convenience method to get a non-null sms address (either e164 or email) when you know it is there. */
   fun requireSmsAddress(): String {
-    return resolved.e164Value ?: resolved.emailValue ?: throw MissingAddressError(id)
+    return resolved.e164Value ?: resolved.emailValue ?: throw MissingSmsAddressError(id)
   }
 
   /** Convenience method to get a non-null [groupId] when you know it is there. */
   fun requireGroupId(): GroupId {
-    return resolved.groupIdValue ?: throw MissingAddressError(id)
+    return resolved.groupIdValue ?: throw MissingGroupIdError(id)
   }
 
   /** Convenience method to get a non-null distributionListId when you know it is there. */
   fun requireDistributionListId(): DistributionListId {
-    return resolved.distributionListIdValue ?: throw MissingAddressError(id)
+    return resolved.distributionListIdValue ?: throw MissingDistributionIdError(id)
   }
 
   /** Convenience method to get a non-null callLinkRoomId when you know it is there. */
   fun requireCallLinkRoomId(): CallLinkRoomId {
-    return resolved.callLinkRoomId ?: throw MissingAddressError(id)
+    return resolved.callLinkRoomId ?: throw MissingCallLinkRoomIdError(id)
   }
 
   /** Convenience method to get a non-null call conversation ID when you know it is there. */
@@ -834,7 +834,15 @@ class Recipient(
     return id.hashCode()
   }
 
-  private class MissingAddressError(recipientId: RecipientId) : AssertionError("Missing address for " + recipientId.serialize())
+  private class MissingServiceIdError(recipientId: RecipientId) : AssertionError("Missing ServiceId for " + recipientId.serialize())
+  private class MissingAciError(recipientId: RecipientId) : AssertionError("Missing ACI for " + recipientId.serialize())
+  private class MissingPniError(recipientId: RecipientId) : AssertionError("Missing PNI for " + recipientId.serialize())
+  private class MissingE164Error(recipientId: RecipientId) : AssertionError("Missing E164 for " + recipientId.serialize())
+  private class MissingEmailError(recipientId: RecipientId) : AssertionError("Missing email for " + recipientId.serialize())
+  private class MissingSmsAddressError(recipientId: RecipientId) : AssertionError("Missing sms address for " + recipientId.serialize())
+  private class MissingGroupIdError(recipientId: RecipientId) : AssertionError("Missing groupId for " + recipientId.serialize())
+  private class MissingDistributionIdError(recipientId: RecipientId) : AssertionError("Missing distributionId for " + recipientId.serialize())
+  private class MissingCallLinkRoomIdError(recipientId: RecipientId) : AssertionError("Missing call link for " + recipientId.serialize())
 
   companion object {
     private val TAG = Log.tag(Recipient::class.java)

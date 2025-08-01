@@ -396,7 +396,7 @@ public abstract class WebRtcActionProcessor {
     Log.i(tag, "handleReceivedHangup(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
 
     try {
-      webRtcInteractor.getCallManager().receivedHangup(callMetadata.getCallId(), callMetadata.getRemoteDevice(), hangupMetadata.getCallHangupType(), hangupMetadata.getDeviceId());
+      webRtcInteractor.getCallManager().receivedHangup(callMetadata.getCallId(), callMetadata.getRemotePeer(), callMetadata.getRemoteDevice(), hangupMetadata.getCallHangupType(), hangupMetadata.getDeviceId());
     } catch (CallException e) {
       return callFailure(currentState, "receivedHangup() failed: ", e);
     }
@@ -516,7 +516,7 @@ public abstract class WebRtcActionProcessor {
     Log.i(tag, "handleReceivedIceCandidates(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()) + ", count: " + iceCandidates.size());
 
     try {
-      webRtcInteractor.getCallManager().receivedIceCandidates(callMetadata.getCallId(), callMetadata.getRemoteDevice(), iceCandidates);
+      webRtcInteractor.getCallManager().receivedIceCandidates(callMetadata.getCallId(), callMetadata.getRemotePeer(), callMetadata.getRemoteDevice(), iceCandidates);
     } catch (CallException e) {
       return callFailure(currentState, "receivedIceCandidates() failed: ", e);
     }
@@ -566,11 +566,6 @@ public abstract class WebRtcActionProcessor {
 
   public @NonNull WebRtcServiceState handleCameraSwitchCompleted(@NonNull WebRtcServiceState currentState, @NonNull CameraState newCameraState) {
     Log.i(tag, "handleCameraSwitchCompleted not processed");
-    return currentState;
-  }
-
-  public @NonNull WebRtcServiceState handleCameraSwitchFailure(@NonNull WebRtcServiceState currentState, @NonNull CameraState newCameraState) {
-    Log.i(tag, "handleCameraSwitchFailure not processed");
     return currentState;
   }
 
@@ -632,18 +627,6 @@ public abstract class WebRtcActionProcessor {
                        .setOrientation(Orientation.fromDegrees(stateRotationDegrees))
                        .setLandscapeEnabled(isLandscapeEnabled)
                        .setDeviceOrientation(Orientation.fromDegrees(orientationDegrees))
-                       .build();
-  }
-
-  protected @NonNull WebRtcServiceState handleSetCameraDirection(@NonNull WebRtcServiceState currentState, CameraState state) {
-    BroadcastVideoSink sink = currentState.getVideoState().getLocalSink();
-    if (sink != null) {
-      sink.setRotateToRightSide(state.getActiveDirection() == CameraState.Direction.BACK);
-    }
-
-    return currentState.builder()
-                       .changeLocalDeviceState()
-                       .cameraState(state)
                        .build();
   }
 

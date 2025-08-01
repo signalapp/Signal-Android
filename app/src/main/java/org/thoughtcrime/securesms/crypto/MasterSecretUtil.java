@@ -26,7 +26,6 @@ import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECKeyPair;
 import org.signal.libsignal.protocol.ecc.ECPrivateKey;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
@@ -139,7 +138,7 @@ public class MasterSecretUtil {
       ECPrivateKey djbPrivateKey = null;
 
       if (djbPublicBytes != null) {
-        djbPublicKey = Curve.decodePoint(djbPublicBytes, 0);
+        djbPublicKey = new ECPublicKey(djbPublicBytes);
       }
 
       if (masterSecret != null) {
@@ -160,7 +159,7 @@ public class MasterSecretUtil {
                                                                       MasterSecret masterSecret)
   {
     MasterCipher masterCipher = new MasterCipher(masterSecret);
-    ECKeyPair    keyPair      = Curve.generateKeyPair();
+    ECKeyPair    keyPair      = ECKeyPair.generate();
 
     save(context, ASYMMETRIC_LOCAL_PUBLIC_DJB, keyPair.getPublicKey().serialize());
     save(context, ASYMMETRIC_LOCAL_PRIVATE_DJB, masterCipher.encryptKey(keyPair.getPrivateKey()));

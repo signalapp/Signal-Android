@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.backup.v2.importer
 
 import org.signal.core.util.isEmpty
 import org.signal.core.util.logging.Log
+import org.signal.core.util.nullIfEmpty
 import org.signal.ringrtc.CallLinkRootKey
 import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.backup.v2.ArchiveCallLink
@@ -42,7 +43,11 @@ object CallLinkArchiveImporter {
       CallLinkTable.CallLink(
         recipientId = RecipientId.UNKNOWN,
         roomId = CallLinkRoomId.fromCallLinkRootKey(rootKey),
-        credentials = CallLinkCredentials(callLink.rootKey.toByteArray(), callLink.adminKey?.toByteArray()),
+        credentials = CallLinkCredentials(
+          callLink.rootKey.toByteArray(),
+          callLink.epoch.nullIfEmpty()?.toByteArray(),
+          callLink.adminKey?.toByteArray()
+        ),
         state = SignalCallLinkState(
           name = callLink.name,
           restrictions = callLink.restrictions.toLocal(),

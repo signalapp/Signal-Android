@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 private enum class Dialog {
   NONE,
   DISABLE_PROFILE_SHARING,
+  CLEAR_SENDER_KEY,
   DELETE_SESSIONS,
   ARCHIVE_SESSIONS,
   DELETE_AVATAR,
@@ -193,11 +194,21 @@ fun InternalConversationSettingsScreen(
         )
       }
 
-      if (!state.isGroup) {
-        item {
-          Texts.SectionHeader(text = "Actions")
-        }
+      item {
+        Texts.SectionHeader(text = "Actions")
+      }
 
+      if (state.isGroup) {
+        item {
+          Rows.TextRow(
+            text = "Clear sender key",
+            label = "Resets any sender key state, meaning the next message will require re-distributing sender key material.",
+            onClick = {
+              dialog = Dialog.CLEAR_SENDER_KEY
+            }
+          )
+        }
+      } else {
         item {
           Rows.TextRow(
             text = "Disable Profile Sharing",
@@ -362,6 +373,9 @@ private fun rememberOnConfirm(
       Dialog.SPLIT_WITHOUT_CREATING_THREADS -> {
         { callbacks.splitWithoutCreatingThreads(state.recipientId) }
       }
+      Dialog.CLEAR_SENDER_KEY -> {
+        { callbacks.clearSenderKey(state.recipientId) }
+      }
     }
   }
 }
@@ -459,6 +473,7 @@ interface InternalConversationSettingsScreenCallbacks {
   fun add10Messages(recipientId: RecipientId) = Unit
   fun splitAndCreateThreads(recipientId: RecipientId) = Unit
   fun splitWithoutCreatingThreads(recipientId: RecipientId) = Unit
+  fun clearSenderKey(recipientId: RecipientId) = Unit
 
   object Empty : InternalConversationSettingsScreenCallbacks
 }

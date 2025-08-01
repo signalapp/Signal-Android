@@ -68,6 +68,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment.DisplayOrderComparator
+import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
 import org.thoughtcrime.securesms.contactshare.Contact
 import org.thoughtcrime.securesms.conversation.MessageStyler
 import org.thoughtcrime.securesms.database.EarlyDeliveryReceiptCache.Receipt
@@ -103,6 +104,8 @@ import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.StoryType.Companion.fromCode
 import org.thoughtcrime.securesms.database.model.StoryViewState
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
+import org.thoughtcrime.securesms.database.model.databaseprotos.DecryptedGroupV2Context
+import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescription
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState
@@ -146,6 +149,8 @@ import java.util.UUID
 import java.util.function.Function
 import kotlin.math.max
 import kotlin.math.min
+import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.milliseconds
 
 open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : DatabaseTable(context, databaseHelper), MessageTypes, RecipientIdDatabaseReference, ThreadIdDatabaseReference {
 
@@ -626,6 +631,23 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun getExpirationStartedMessages(): Cursor {
     val where = "$EXPIRE_STARTED > 0"
     return rawQueryWithAttachments(where, null)
+  }
+
+  /**
+   * Returns true iff
+   * - the message will expire within [ChatItemArchiveExporter.EXPIRATION_CUTOFF] once viewed
+   */
+  fun willMessageExpireBeforeCutoff(messageId: Long): Boolean {
+    val expiresIn = readableDatabase
+      .select(EXPIRES_IN)
+      .from(TABLE_NAME)
+      .where(ID_WHERE, messageId)
+      .run()
+      .readToSingleObject {
+        it.requireLong(EXPIRES_IN)
+      } ?: 0L
+
+    return expiresIn > 0L && expiresIn < ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds
   }
 
   fun getMessagesBySentTimestamp(sentTimestamp: Long): List<MessageRecord> {
@@ -1652,8 +1674,23 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           )
         """
 
+      val storyRepliesQuery = """
+        SELECT $ID FROM $TABLE_NAME
+        WHERE 
+          $PARENT_STORY_ID < 0 AND 
+          ABS($PARENT_STORY_ID) IN (
+            SELECT $ID 
+            FROM $TABLE_NAME 
+            WHERE $storiesBeforeTimestampWhere
+          )
+        """
+
       db.execSQL(deleteStoryRepliesQuery, sharedArgs)
       db.execSQL(disassociateQuoteQuery, sharedArgs)
+      db.rawQuery(storyRepliesQuery, sharedArgs).forEach { cursor: Cursor ->
+        val mmsId = cursor.requireLong(ID)
+        attachments.deleteAttachmentsForMessage(mmsId)
+      }
 
       db.select(FROM_RECIPIENT_ID)
         .from(TABLE_NAME)
@@ -1716,8 +1753,23 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           )
         """
 
+      val storyRepliesQuery = """
+        SELECT $ID FROM $TABLE_NAME
+        WHERE 
+          $PARENT_STORY_ID < 0 AND 
+          ABS($PARENT_STORY_ID) IN (
+            SELECT $ID 
+            FROM $TABLE_NAME 
+            WHERE $storesInRecipientThread
+          )
+        """
+
       db.execSQL(deleteStoryRepliesQuery, sharedArgs)
       db.execSQL(disassociateQuoteQuery, sharedArgs)
+      db.rawQuery(storyRepliesQuery, sharedArgs).forEach { cursor: Cursor ->
+        val mmsId = cursor.requireLong(ID)
+        attachments.deleteAttachmentsForMessage(mmsId)
+      }
 
       AppDependencies.databaseObserver.notifyStoryObservers(recipientId)
 
@@ -1997,6 +2049,19 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
   }
 
+  fun getRecentPendingMessages(): MmsReader {
+    val now = System.currentTimeMillis()
+    val oneDayAgo = now.milliseconds - 1.days
+    val messageIds = readableDatabase
+      .select(ID)
+      .from(TABLE_NAME)
+      .where("$DATE_SENT > ${oneDayAgo.inWholeMilliseconds} AND $DATE_SENT < $now AND ($TYPE & ${MessageTypes.BASE_TYPE_MASK}) = ${MessageTypes.BASE_SENDING_TYPE} AND $SCHEDULED_DATE = -1")
+      .run()
+      .readToList { it.requireLong(ID) }
+
+    return getMessages(messageIds)
+  }
+
   private fun getOriginalEditedMessageRecord(messageId: Long): Long {
     return readableDatabase.select(ID)
       .from(TABLE_NAME)
@@ -2232,7 +2297,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         NOTIFIED to 1,
         REACTIONS_LAST_SEEN to System.currentTimeMillis()
       )
-      .where("$ID = ?", id)
+      .where("$ID = ? OR $ORIGINAL_MESSAGE_ID = ? OR $LATEST_REVISION_ID = ?", id, id, id)
       .run()
   }
 
@@ -2708,6 +2773,17 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     } else {
       contentValues.put(QUOTE_ID, 0)
       contentValues.put(QUOTE_AUTHOR, 0)
+    }
+
+    if (editedMessage != null) {
+      val notified = readableDatabase
+        .select(NOTIFIED)
+        .from(TABLE_NAME)
+        .where(ID_WHERE, editedMessage.id)
+        .run()
+        .readToSingleInt(0)
+
+      contentValues.put(NOTIFIED, notified.toInt())
     }
 
     val (messageId, insertedAttachments) = insertMediaMessage(
@@ -3791,20 +3867,25 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
             val secondLatestMessage = reader.getNext()
 
             val id: Long
-            val encodedBody: String
+            val updatedContext: DecryptedGroupV2Context
+            val messageExtras: MessageExtras?
             val changeRevision: Int = message.groupContext?.let { GroupV2UpdateMessageUtil.getChangeRevision(it) } ?: -1
 
             if (secondLatestMessage != null && secondLatestMessage.isGroupV2JoinRequest(changeEditor.get())) {
               id = secondLatestMessage.id
-              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(secondLatestMessage, changeRevision, changeEditor.get().toByteString())
+              messageExtras = secondLatestMessage.messageExtras
+              updatedContext = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(secondLatestMessage, changeRevision, changeEditor.get().toByteString())
               deleteMessage(latestMessage.id)
             } else {
               id = latestMessage.id
-              encodedBody = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(latestMessage, changeRevision, changeEditor.get().toByteString())
+              messageExtras = latestMessage.messageExtras
+              updatedContext = MessageRecord.createNewContextWithAppendedDeleteJoinRequest(latestMessage, changeRevision, changeEditor.get().toByteString())
             }
 
+            val updatedMessageExtras = (messageExtras?.newBuilder() ?: MessageExtras.Builder()).gv2UpdateDescription(GV2UpdateDescription(gv2ChangeDescription = updatedContext)).build()
+
             db.update(TABLE_NAME)
-              .values(BODY to encodedBody)
+              .values(MESSAGE_EXTRAS to updatedMessageExtras.encode())
               .where("$ID = ?", id)
               .run()
 
@@ -4876,7 +4957,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         AND $STORY_TYPE = 0 
         AND $LATEST_REVISION_ID IS NULL 
         AND (
-          $READ = 0 
+          ($READ = 0 AND ($ORIGINAL_MESSAGE_ID IS NULL OR EXISTS (SELECT 1 FROM $TABLE_NAME AS m WHERE m.$ID = $TABLE_NAME.$ORIGINAL_MESSAGE_ID AND m.$READ = 0)))
           OR $REACTIONS_UNREAD = 1 
           ${if (stickyQuery.isNotEmpty()) "OR ($stickyQuery)" else ""}
           OR ($IS_MISSED_CALL_TYPE_CLAUSE AND EXISTS (SELECT 1 FROM ${CallTable.TABLE_NAME} WHERE ${CallTable.MESSAGE_ID} = $TABLE_NAME.$ID AND ${CallTable.EVENT} = ${CallTable.Event.serialize(CallTable.Event.MISSED)} AND ${CallTable.READ} = 0)) 
@@ -5292,15 +5373,6 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     val hasDeliveryReceipt: Boolean,
     val type: Long
   )
-
-  enum class MessageStatus {
-    PENDING,
-    SENT,
-    DELIVERED,
-    READ,
-    VIEWED,
-    FAILED
-  }
 
   data class SyncMessageId(
     val recipientId: RecipientId,

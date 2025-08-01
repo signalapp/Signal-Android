@@ -11,6 +11,7 @@ message BackupInfo {
   bytes mediaRootBackupKey = 3; // 32-byte random value generated when the backup is uploaded for the first time.
   string currentAppVersion = 4;
   string firstAppVersion = 5;
+  bytes debugInfo = 6; // Client-specific data field for debug info during testing
 }
 
 // Frames must follow in the following ordering rules:
@@ -88,6 +89,8 @@ message AccountData {
     ChatStyle defaultChatStyle = 18;
     repeated ChatStyle.CustomChatColor customChatColors = 19;
     bool optimizeOnDeviceStorage = 20;
+    // See zkgroup for integer particular values. Unset if backups are not enabled.
+    optional uint64 backupTier = 21;
   }
 
   message SubscriberData {
@@ -341,6 +344,7 @@ message CallLink {
   string name = 3;
   Restrictions restrictions = 4;
   uint64 expirationMs = 5;
+  bytes epoch = 6; // May be absent/empty for older links
 }
 
 message AdHocCall {
@@ -749,15 +753,25 @@ message FilePointer {
   }
 
   message LocatorInfo {
-    // Must be non-empty if transitCdnKey or mediaName are set/nonempty.
+    // Must be non-empty if transitCdnKey or plaintextHash are set/nonempty.
     // Otherwise must be empty.
     bytes key = 1;
+
     // From the sender of the attachment (incl. ourselves)
-    // Must be non-empty if transitCdnKey or mediaName are set/nonempty.
-    // Otherwise must be empty.
-    bytes digest = 2;
-    // Must be non-zero if transitCdnKey or mediaName are set/nonempty.
-    // Otherwise must be zero.
+    // Will be reserved once all clients start reading integrityCheck
+    bytes legacyDigest = 2;
+
+    oneof integrityCheck {
+      // Set if file was at one point downloaded and its plaintextHash was calculated
+      bytes plaintextHash = 10;
+
+      // Set if file has not been downloaded so its integrity has not been verified
+      // From the sender of the attachment
+      bytes encryptedDigest = 11;
+    }
+
+    // NB: This is the plaintext size, and empty content attachments are legal, so this
+    // may be zero even if transitCdnKey or mediaName are set/nonempty.
     uint32 size = 3;
 
     // Either both transit cdn key and number are set or neither should be set.
@@ -775,7 +789,9 @@ message FilePointer {
 
     // Nonempty any time the attachment was downloaded and its
     // digest validated, whether free tier or paid subscription.
-    string mediaName = 8;
+    // Will be reserved once all clients start reading integrityCheck,
+    // when mediaName will be derived from the plaintextHash and encryption key
+    string legacyMediaName = 8;
 
     // Separate key used to encrypt this file for the local backup.
     // Generally required for local backups.

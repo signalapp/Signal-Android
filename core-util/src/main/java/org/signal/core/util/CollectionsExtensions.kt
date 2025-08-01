@@ -22,3 +22,10 @@ fun <E> List<E>.swap(i: Int, j: Int): List<E> {
   Collections.swap(mutableCopy, i, j)
   return mutableCopy.toList()
 }
+
+/**
+ * Returns the item wrapped in a list, or an empty list of the item is null.
+ */
+fun <E> E?.asList(): List<E> {
+  return if (this == null) emptyList() else listOf(this)
+}

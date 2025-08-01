@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.components.settings.app.backups
 
 import org.signal.core.util.money.FiatMoney
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
@@ -25,9 +26,9 @@ sealed interface BackupState {
   data object None : BackupState
 
   /**
-   * The exact backup state is being loaded from the network.
+   * Temporary state object that just denotes what the local store thinks we are.
    */
-  data object Loading : BackupState
+  data class LocalStore(val tier: MessageBackupTier) : BackupState
 
   /**
    * User has a paid backup subscription pending redemption

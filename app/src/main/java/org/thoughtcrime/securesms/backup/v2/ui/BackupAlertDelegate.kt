@@ -33,6 +33,9 @@ object BackupAlertDelegate {
           BackupAlertBottomSheet.create(BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = SignalStore.backup.daysSinceLastBackup)).show(fragmentManager, FRAGMENT_TAG)
         } else if (BackupRepository.shouldDisplayBackupExpiredAndDowngradedSheet()) {
           BackupAlertBottomSheet.create(BackupAlert.ExpiredAndDowngraded).show(fragmentManager, FRAGMENT_TAG)
+        } else if (BackupRepository.shouldDisplayNoManualBackupForTimeoutSheet()) {
+          NoManualBackupBottomSheet().show(fragmentManager, FRAGMENT_TAG)
+          BackupRepository.displayManualBackupNotCreatedInThresholdNotification()
         }
 
         displayBackupDownloadNotifier(fragmentManager)

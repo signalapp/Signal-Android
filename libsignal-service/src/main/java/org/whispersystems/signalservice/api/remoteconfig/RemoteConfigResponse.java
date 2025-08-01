@@ -15,8 +15,15 @@ public class RemoteConfigResponse {
   @JsonProperty
   private List<Config> config;
 
+  @JsonProperty
+  private long serverEpochTime;
+
   public List<Config> getConfig() {
     return config;
+  }
+
+  public long getServerEpochTime() {
+    return serverEpochTime;
   }
 
   public static class Config {

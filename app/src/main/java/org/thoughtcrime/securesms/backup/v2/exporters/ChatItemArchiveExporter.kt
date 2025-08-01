@@ -13,13 +13,17 @@ import org.signal.core.util.Base64
 import org.signal.core.util.EventTimer
 import org.signal.core.util.Hex
 import org.signal.core.util.ParallelEventTimer
+import org.signal.core.util.StringUtil
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.emptyIfNull
 import org.signal.core.util.isNotNullOrBlank
+import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.nullIfEmpty
 import org.signal.core.util.orNull
+import org.signal.core.util.readFully
 import org.signal.core.util.requireBlob
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
@@ -82,8 +86,10 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
@@ -105,6 +111,8 @@ import org.thoughtcrime.securesms.backup.v2.proto.BodyRange as BackupBodyRange
 import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
 
 private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
+private val MAX_INLINED_BODY_SIZE = 128.kibiBytes.bytes.toInt()
+private val MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER = 2.kibiBytes.bytes.toInt()
 
 /**
  * An iterator for chat items with a clever performance twist: rather than do the extra queries one at a time (for reactions,
@@ -123,6 +131,10 @@ class ChatItemArchiveExporter(
   private val exportState: ExportState,
   private val cursorGenerator: (Long, Int) -> Cursor
 ) : Iterator<ChatItem?>, Closeable {
+
+  companion object {
+    val EXPIRATION_CUTOFF = 1.days
+  }
 
   /** Timer for more macro-level events, like fetching extra data vs transforming the data. */
   private val eventTimer = EventTimer()
@@ -346,7 +358,7 @@ class ChatItemArchiveExporter(
         }
 
         record.viewOnce -> {
-          builder.viewOnceMessage = record.toRemoteViewOnceMessage(mediaArchiveEnabled = mediaArchiveEnabled, reactionRecords = extraData.reactionsById[id], attachments = extraData.attachmentsById[id])
+          builder.viewOnceMessage = record.toRemoteViewOnceMessage(exportState = exportState, reactionRecords = extraData.reactionsById[id], attachments = extraData.attachmentsById[id])
           transformTimer.emit("voice")
         }
 
@@ -361,11 +373,6 @@ class ChatItemArchiveExporter(
 
         else -> {
           val attachments = extraData.attachmentsById[record.id]
-          if (attachments?.isNotEmpty() == true && attachments.any { it.contentType == MediaUtil.LONG_TEXT } && record.body.isNullOrBlank()) {
-            Log.w(TAG, ExportSkips.invalidLongTextChatItem(record.dateSent))
-            continue
-          }
-
           val sticker = attachments?.firstOrNull { dbAttachment -> dbAttachment.isSticker }
 
           if (sticker?.stickerLocator != null) {
@@ -564,11 +571,11 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
   }
 
   if (!MessageTypes.isExpirationTimerUpdate(record.type) && builder.expiresInMs != null && builder.expireStartDate != null) {
-    val cutoffDuration = 1.days.inWholeMilliseconds
+    val cutoffDuration = ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds
     val expiresAt = builder.expireStartDate!! + builder.expiresInMs!!
     val threshold = if (exportState.forTransfer) backupStartTime else backupStartTime + cutoffDuration
 
-    if (expiresAt < threshold || builder.expiresInMs!! <= cutoffDuration) {
+    if (expiresAt < threshold || (builder.expiresInMs!! <= cutoffDuration && !exportState.forTransfer)) {
       Log.w(TAG, ExportSkips.messageExpiresTooSoon(record.dateSent))
       return null
     }
@@ -859,11 +866,18 @@ private fun LinkPreview.toRemoteLinkPreview(mediaArchiveEnabled: Boolean): org.t
   )
 }
 
-private fun BackupMessageRecord.toRemoteViewOnceMessage(mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): ViewOnceMessage {
-  val attachment: DatabaseAttachment? = attachments?.firstOrNull()?.takeUnless { !it.hasData && it.size == 0L && it.remoteDigest == null && it.width == 0 && it.height == 0 && it.blurHash == null }
+private fun BackupMessageRecord.toRemoteViewOnceMessage(exportState: ExportState, reactionRecords: List<ReactionRecord>?, attachments: List<DatabaseAttachment>?): ViewOnceMessage {
+  val attachment: MessageAttachment? = if (exportState.forTransfer) {
+    attachments
+      ?.firstOrNull()
+      ?.takeUnless { !it.hasData && it.size == 0L && it.remoteDigest == null && it.width == 0 && it.height == 0 && it.blurHash == null }
+      ?.toRemoteMessageAttachment(mediaArchiveEnabled = false)
+  } else {
+    null
+  }
 
   return ViewOnceMessage(
-    attachment = attachment?.toRemoteMessageAttachment(mediaArchiveEnabled),
+    attachment = attachment,
     reactions = reactionRecords?.toRemote() ?: emptyList()
   )
 }
@@ -963,6 +977,8 @@ private fun BackupMessageRecord.toRemoteDirectStoryReplyMessage(mediaArchiveEnab
 
   val isReaction = MessageTypes.isStoryReaction(this.type)
 
+  val (bodyText, longTextAttachment) = this.getBodyText(attachments)
+
   return DirectStoryReplyMessage(
     emoji = if (isReaction) {
       this.body
@@ -972,10 +988,10 @@ private fun BackupMessageRecord.toRemoteDirectStoryReplyMessage(mediaArchiveEnab
     textReply = if (!isReaction) {
       DirectStoryReplyMessage.TextReply(
         text = Text(
-          body = this.body,
+          body = bodyText,
           bodyRanges = this.bodyRanges?.toRemoteBodyRanges(this.dateSent) ?: emptyList()
         ),
-        longText = attachments?.firstOrNull { it.contentType == MediaUtil.LONG_TEXT }?.toRemoteFilePointer(mediaArchiveEnabled)
+        longText = longTextAttachment?.toRemoteFilePointer(mediaArchiveEnabled)
       )
     } else {
       null
@@ -985,23 +1001,25 @@ private fun BackupMessageRecord.toRemoteDirectStoryReplyMessage(mediaArchiveEnab
 }
 
 private fun BackupMessageRecord.toRemoteStandardMessage(exportState: ExportState, mediaArchiveEnabled: Boolean, reactionRecords: List<ReactionRecord>?, mentions: List<Mention>?, attachments: List<DatabaseAttachment>?): StandardMessage {
-  val text = body.nullIfBlank()?.let {
+  val linkPreviews = this.toRemoteLinkPreviews(attachments)
+  val linkPreviewAttachments = linkPreviews.mapNotNull { it.thumbnail.orElse(null) }.toSet()
+  val quotedAttachments = attachments?.filter { it.quote } ?: emptyList()
+  val messageAttachments = attachments
+    ?.filterNot { it.quote }
+    ?.filterNot { linkPreviewAttachments.contains(it) }
+    ?.filterNot { MediaUtil.isLongTextType(it.contentType) }
+    ?: emptyList()
+  val hasVoiceNote = messageAttachments.any { it.voiceNote }
+
+  val (bodyText, longTextAttachment) = this.getBodyText(attachments)
+
+  val text = bodyText.nullIfBlank()?.let {
     Text(
       body = it,
       bodyRanges = (this.bodyRanges?.toRemoteBodyRanges(this.dateSent) ?: emptyList()) + (mentions?.toRemoteBodyRanges(exportState) ?: emptyList())
     )
   }
 
-  val linkPreviews = this.toRemoteLinkPreviews(attachments)
-  val linkPreviewAttachments = linkPreviews.mapNotNull { it.thumbnail.orElse(null) }.toSet()
-  val quotedAttachments = attachments?.filter { it.quote } ?: emptyList()
-  val longTextAttachment = attachments?.firstOrNull { it.contentType == "text/x-signal-plain" }
-  val messageAttachments = attachments
-    ?.filterNot { it.quote }
-    ?.filterNot { linkPreviewAttachments.contains(it) }
-    ?.filterNot { it == longTextAttachment }
-    ?: emptyList()
-  val hasVoiceNote = messageAttachments.any { it.voiceNote }
   return StandardMessage(
     quote = this.toRemoteQuote(exportState, mediaArchiveEnabled, quotedAttachments),
     text = text.takeUnless { hasVoiceNote },
@@ -1010,6 +1028,40 @@ private fun BackupMessageRecord.toRemoteStandardMessage(exportState: ExportState
     longText = longTextAttachment?.toRemoteFilePointer(mediaArchiveEnabled),
     reactions = reactionRecords.toRemote()
   )
+}
+
+/**
+ * Retrieves the body text, reading from a long text attachment if necessary. Will return an optional [DatabaseAttachment] that, if present, indicates that
+ * you should set it as the value for [StandardMessage.longText].
+ */
+private fun BackupMessageRecord.getBodyText(attachments: List<DatabaseAttachment>?): Pair<String, DatabaseAttachment?> {
+  val longTextAttachment = attachments?.firstOrNull { it.contentType == "text/x-signal-plain" }
+  if (longTextAttachment == null) {
+    return this.body.emptyIfNull() to null
+  }
+
+  if (longTextAttachment.uri == null || longTextAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
+    return StringUtil.trimToFit(this.body.emptyIfNull(), MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER) to longTextAttachment
+  }
+
+  val longText = try {
+    PartAuthority.getAttachmentStream(AppDependencies.application, longTextAttachment.uri!!)?.readFully()?.toString(Charsets.UTF_8)
+  } catch (e: IOException) {
+    Log.w(TAG, ExportOddities.unreadableLongTextAttachment(this.dateSent))
+    return this.body.emptyIfNull() to longTextAttachment
+  }
+
+  if (longText == null) {
+    Log.w(TAG, ExportOddities.unopenableLongTextAttachment(this.dateSent))
+    return StringUtil.trimToFit(this.body.emptyIfNull(), MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER) to longTextAttachment
+  }
+
+  val trimmed = StringUtil.trimToFit(longText, MAX_INLINED_BODY_SIZE)
+  if (trimmed.length != longText.length) {
+    Log.w(TAG, ExportOddities.bodyGreaterThanMaxLength(this.dateSent, longText.length))
+  }
+
+  return trimmed to null
 }
 
 private fun BackupMessageRecord.toRemoteQuote(exportState: ExportState, mediaArchiveEnabled: Boolean, attachments: List<DatabaseAttachment>? = null): Quote? {

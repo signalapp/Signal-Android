@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -183,9 +184,11 @@ object Dialogs {
    * let the user know that some action is completing.
    */
   @Composable
-  fun IndeterminateProgressDialog() {
+  fun IndeterminateProgressDialog(
+    onDismissRequest: () -> Unit = {}
+  ) {
     BaseAlertDialog(
-      onDismissRequest = {},
+      onDismissRequest = onDismissRequest,
       confirmButton = {},
       dismissButton = {},
       text = {
@@ -248,7 +251,7 @@ object Dialogs {
         Column(
           verticalArrangement = Arrangement.Center,
           horizontalAlignment = Alignment.CenterHorizontally,
-          modifier = Modifier.fillMaxWidth().fillMaxHeight()
+          modifier = Modifier.fillMaxWidth()
         ) {
           Spacer(modifier = Modifier.size(32.dp))
           CircularProgressIndicator()
@@ -270,7 +273,7 @@ object Dialogs {
           }
         }
       },
-      modifier = Modifier.size(200.dp, 270.dp)
+      modifier = Modifier.width(200.dp)
     )
   }
 

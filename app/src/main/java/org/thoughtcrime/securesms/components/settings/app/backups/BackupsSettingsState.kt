@@ -14,7 +14,7 @@ import kotlin.time.Duration.Companion.milliseconds
  * Screen state for top-level backups settings screen.
  */
 data class BackupsSettingsState(
-  val backupState: BackupState = BackupState.Loading,
+  val backupState: BackupState,
   val lastBackupAt: Duration = SignalStore.backup.lastBackupTime.milliseconds,
   val showBackupTierInternalOverride: Boolean = false,
   val backupTierInternalOverride: MessageBackupTier? = null

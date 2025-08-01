@@ -12,7 +12,7 @@ import org.junit.Test
 class StringExtensionsTest {
 
   @Test
-  fun `splitByByteLength fuzzing`() {
+  fun `splitByByteLength - fuzzing`() {
     val characterSet = "日月木山川田水火金土空海花風雨雪星森犬猫鳥魚虫人子女男友学校車電話本書時分先生愛夢楽音話語映画新古長短高低東西南北春夏秋冬雨雲星夜朝昼電気手足目耳口心頭体家国町村道橋山川本店仕事時間会話思考知識感情自動車飛行機船馬牛羊豚鶏鳥猫犬虎龍"
 
     for (stringSize in 2100..2500) {
@@ -28,7 +28,7 @@ class StringExtensionsTest {
   }
 
   @Test
-  fun idk() {
+  fun `splitByByteLength - long string`() {
     val myString = """
       すべての人間は生まれながらにして自由であり、尊厳と権利において平等である。彼らは理性と良心を授けられており、互いに兄弟愛の精神をもって行動しなければならない。
 

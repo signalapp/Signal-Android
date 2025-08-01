@@ -5,7 +5,7 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.mediasend.Media
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
@@ -38,7 +38,7 @@ object MediaReviewSelectedItem {
 
     override fun bind(model: Model) {
       Glide.with(imageView)
-        .load(DecryptableStreamUriLoader.DecryptableUri(model.media.uri))
+        .load(DecryptableUri(model.media.uri))
         .centerCrop()
         .into(imageView)
 

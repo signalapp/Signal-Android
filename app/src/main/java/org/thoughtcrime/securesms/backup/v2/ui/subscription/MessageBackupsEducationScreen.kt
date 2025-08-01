@@ -121,7 +121,7 @@ fun MessageBackupsEducationScreen(
         }
       }
 
-      Buttons.LargePrimary(
+      Buttons.LargeTonal(
         onClick = onEnableBackups,
         modifier = Modifier.fillMaxWidth()
       ) {

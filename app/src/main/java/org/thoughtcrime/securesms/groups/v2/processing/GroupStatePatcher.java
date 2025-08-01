@@ -23,7 +23,6 @@ final class GroupStatePatcher {
   private static final String TAG = Log.tag(GroupStatePatcher.class);
 
   static final int LATEST                       = Integer.MAX_VALUE;
-  static final int PLACEHOLDER_REVISION         = -1;
   static final int RESTORE_PLACEHOLDER_REVISION = -2;
 
   private static final Comparator<DecryptedGroupChangeLog> BY_REVISION = (o1, o2) -> Integer.compare(o1.getRevision(), o2.getRevision());
@@ -71,7 +70,7 @@ final class GroupStatePatcher {
     final int from = Math.max(0, inputState.getEarliestRevisionNumber());
     final int to   = Math.min(inputState.getLatestRevisionNumber(), maximumRevisionToApply);
 
-    if (current != null && current.revision == PLACEHOLDER_REVISION) {
+    if (current != null && current.isPlaceholderGroup) {
       Log.i(TAG, "Ignoring place holder group state");
     } else {
       stateChain.push(current, null);
@@ -84,10 +83,11 @@ final class GroupStatePatcher {
         continue;
       }
 
-      if (stateChain.getLatestState() == null && entry.getGroup() != null && current != null && current.revision == PLACEHOLDER_REVISION) {
+      if (stateChain.getLatestState() == null && entry.getGroup() != null && current != null && current.isPlaceholderGroup) {
         DecryptedGroup previousState = entry.getGroup().newBuilder()
                                                        .title(current.title)
                                                        .avatar(current.avatar)
+                                                       .description(current.description)
                                                        .build();
 
         stateChain.push(previousState, null);

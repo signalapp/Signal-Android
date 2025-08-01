@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.linkdevice
 import android.net.Uri
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.LinkDeviceResult
-import kotlin.time.Duration.Companion.days
 
 /**
  * Information about linked devices. Used in [LinkDeviceViewModel].
@@ -18,9 +17,7 @@ data class LinkDeviceSettingsState(
   val qrCodeState: QrCodeState = QrCodeState.NONE,
   val linkUri: Uri? = null,
   val linkDeviceResult: LinkDeviceResult = LinkDeviceResult.None,
-  val seenQrEducationSheet: Boolean = SignalStore.uiHints.hasSeenLinkDeviceQrEducationSheet() || SignalStore.account.hasLinkedDevices,
-  val seenBioAuthEducationSheet: Boolean = false,
-  val needsBioAuthEducationSheet: Boolean = !seenBioAuthEducationSheet && SignalStore.uiHints.lastSeenLinkDeviceAuthSheetTime < System.currentTimeMillis() - 30.days.inWholeMilliseconds,
+  val seenQrEducationSheet: Boolean = SignalStore.uiHints.hasSeenLinkDeviceQrEducationSheet() || SignalStore.account.isMultiDevice,
   val bottomSheetVisible: Boolean = false,
   val deviceToEdit: Device? = null,
   val shouldCancelArchiveUpload: Boolean = false,

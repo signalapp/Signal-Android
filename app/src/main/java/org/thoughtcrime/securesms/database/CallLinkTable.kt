@@ -21,6 +21,7 @@ import org.signal.core.util.requireNonNullString
 import org.signal.core.util.select
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
+import org.signal.ringrtc.CallLinkEpoch
 import org.signal.ringrtc.CallLinkRootKey
 import org.signal.ringrtc.CallLinkState.Restrictions
 import org.thoughtcrime.securesms.calls.log.CallLogRow
@@ -47,6 +48,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
     const val TABLE_NAME = "call_link"
     const val ID = "_id"
     const val ROOT_KEY = "root_key"
+    const val EPOCH = "epoch"
     const val ROOM_ID = "room_id"
     const val ADMIN_KEY = "admin_key"
     const val NAME = "name"
@@ -68,7 +70,8 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         $REVOKED INTEGER NOT NULL,
         $EXPIRATION INTEGER NOT NULL,
         $RECIPIENT_ID INTEGER UNIQUE REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
-        $DELETION_TIMESTAMP INTEGER DEFAULT 0 NOT NULL
+        $DELETION_TIMESTAMP INTEGER DEFAULT 0 NOT NULL,
+        $EPOCH BLOB DEFAULT NULL
       )
     """
 
@@ -128,6 +131,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       .values(
         contentValuesOf(
           ROOT_KEY to credentials.linkKeyBytes,
+          EPOCH to credentials.epochBytes,
           ADMIN_KEY to credentials.adminPassBytes
         )
       )
@@ -188,7 +192,8 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
   }
 
   fun getOrCreateCallLinkByRootKey(
-    callLinkRootKey: CallLinkRootKey
+    callLinkRootKey: CallLinkRootKey,
+    callLinkEpoch: CallLinkEpoch?
   ): CallLink {
     val roomId = CallLinkRoomId.fromBytes(callLinkRootKey.deriveRoomId())
     val callLink = getCallLinkByRoomId(roomId)
@@ -198,6 +203,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         roomId = roomId,
         credentials = CallLinkCredentials(
           linkKeyBytes = callLinkRootKey.keyBytes,
+          epochBytes = callLinkEpoch?.bytes,
           adminPassBytes = null
         ),
         state = SignalCallLinkState(),
@@ -207,12 +213,26 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       insertCallLink(link)
       return getCallLinkByRoomId(roomId)!!
     } else {
-      callLink
+      if (callLink.credentials?.epoch != callLinkEpoch) {
+        overwriteEpoch(callLink, callLinkEpoch)
+      } else {
+        callLink
+      }
     }
+  }
+
+  private fun overwriteEpoch(callLink: CallLink, callLinkEpoch: CallLinkEpoch?): CallLink {
+    val modifiedCallLink = callLink.copy(
+      deletionTimestamp = 0,
+      credentials = callLink.credentials!!.copy(epochBytes = callLinkEpoch?.bytes)
+    )
+    updateCallLinkCredentials(modifiedCallLink.roomId, modifiedCallLink.credentials!!)
+    return modifiedCallLink
   }
 
   fun insertOrUpdateCallLinkByRootKey(
     callLinkRootKey: CallLinkRootKey,
+    callLinkEpoch: CallLinkEpoch?,
     adminPassKey: ByteArray?,
     deletionTimestamp: Long = 0L,
     storageId: StorageId? = null
@@ -227,6 +247,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
           roomId = roomId,
           credentials = CallLinkCredentials(
             linkKeyBytes = callLinkRootKey.keyBytes,
+            epochBytes = callLinkEpoch?.bytes,
             adminPassBytes = adminPassKey
           ),
           state = SignalCallLinkState(),
@@ -253,7 +274,8 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
           writableDatabase.update(TABLE_NAME)
             .values(
               ADMIN_KEY to adminPassKey,
-              ROOT_KEY to callLinkRootKey.keyBytes
+              ROOT_KEY to callLinkRootKey.keyBytes,
+              EPOCH to callLinkEpoch?.bytes
             )
             .where("$ROOM_ID = ?", callLink.roomId.serialize())
             .run()
@@ -464,6 +486,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         RECIPIENT_ID to data.recipientId.takeIf { it != RecipientId.UNKNOWN }?.toLong(),
         ROOM_ID to data.roomId.serialize(),
         ROOT_KEY to data.credentials?.linkKeyBytes,
+        EPOCH to data.credentials?.epochBytes,
         ADMIN_KEY to data.credentials?.adminPassBytes
       ).apply {
         putAll(data.state.serialize())
@@ -487,6 +510,7 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
         credentials = data.requireBlob(ROOT_KEY)?.let { linkKey ->
           CallLinkCredentials(
             linkKeyBytes = linkKey,
+            epochBytes = data.requireBlob(EPOCH),
             adminPassBytes = data.requireBlob(ADMIN_KEY)
           )
         },

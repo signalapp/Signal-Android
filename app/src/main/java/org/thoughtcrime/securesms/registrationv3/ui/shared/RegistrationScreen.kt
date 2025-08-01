@@ -38,6 +38,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.dependencies.GooglePlayBillingDependencies.context
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 
 private const val TAP_TARGET = 8
@@ -62,7 +63,46 @@ fun RegistrationScreen(
 fun RegistrationScreen(
   title: String,
   subtitle: AnnotatedString?,
-  bottomContent: @Composable (BoxScope.() -> Unit),
+  bottomContent: @Composable BoxScope.() -> Unit,
+  mainContent: @Composable ColumnScope.() -> Unit
+) {
+  RegistrationScreen(
+    topContent = { RegistrationScreenTitleSubtitle(title, subtitle) },
+    bottomContent = bottomContent,
+    mainContent = mainContent
+  )
+}
+
+@Composable
+fun RegistrationScreenTitleSubtitle(
+  title: String,
+  subtitle: AnnotatedString?
+) {
+  Text(
+    text = title,
+    style = MaterialTheme.typography.headlineMedium,
+    modifier = Modifier.fillMaxWidth()
+  )
+
+  if (subtitle != null) {
+    Text(
+      text = subtitle,
+      style = MaterialTheme.typography.bodyLarge,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+      modifier = Modifier.padding(top = 16.dp)
+    )
+  }
+
+  Spacer(modifier = Modifier.height(40.dp))
+}
+
+/**
+ * A base framework for rendering the various v3 registration screens.
+ */
+@Composable
+fun RegistrationScreen(
+  topContent: @Composable ColumnScope.() -> Unit,
+  bottomContent: @Composable BoxScope.() -> Unit,
   mainContent: @Composable ColumnScope.() -> Unit
 ) {
   Surface {
@@ -84,9 +124,7 @@ fun RegistrationScreen(
           .padding(top = 40.dp, bottom = 16.dp)
           .horizontalGutters()
       ) {
-        Text(
-          text = title,
-          style = MaterialTheme.typography.headlineMedium,
+        Column(
           modifier = Modifier
             .fillMaxWidth()
             .clickable {
@@ -102,18 +140,9 @@ fun RegistrationScreen(
                 previousToast = Toast.makeText(context, context.resources.getQuantityString(R.plurals.RegistrationActivity_debug_log_hint, remaining, remaining), Toast.LENGTH_SHORT).apply { show() }
               }
             }
-        )
-
-        if (subtitle != null) {
-          Text(
-            text = subtitle,
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-            modifier = Modifier.padding(top = 16.dp)
-          )
+        ) {
+          topContent()
         }
-
-        Spacer(modifier = Modifier.height(40.dp))
 
         mainContent()
       }
@@ -141,6 +170,23 @@ private fun RegistrationScreenPreview() {
     RegistrationScreen(
       title = "Title",
       subtitle = "Subtitle",
+      bottomContent = {
+        TextButton(onClick = {}) {
+          Text("Bottom Button")
+        }
+      }
+    ) {
+      Text("Main content")
+    }
+  }
+}
+
+@SignalPreview
+@Composable
+private fun RegistrationScreenNoTitlePreview() {
+  Previews.Preview {
+    RegistrationScreen(
+      topContent = { Text("Top content") },
       bottomContent = {
         TextButton(onClick = {}) {
           Text("Bottom Button")

@@ -55,10 +55,10 @@ fun InternalBackupStatsTab(stats: InternalBackupPlaygroundViewModel.StatsState, 
       Spacer(modifier = Modifier.size(16.dp))
 
       Text(text = "Unique/archived data files: ${stats.attachmentStats.attachmentFileCount}/${stats.attachmentStats.finishedAttachmentFileCount}")
-      Text(text = "Unique/archived verified digest count: ${stats.attachmentStats.attachmentDigestCount}/${stats.attachmentStats.finishedAttachmentDigestCount}")
+      Text(text = "Unique/archived verified plaintextHash count: ${stats.attachmentStats.attachmentPlaintextHashAndKeyCount}/${stats.attachmentStats.finishedAttachmentPlaintextHashAndKeyCount}")
       Text(text = "Unique/expected thumbnail files: ${stats.attachmentStats.thumbnailFileCount}/${stats.attachmentStats.estimatedThumbnailCount}")
       Text(text = "Local Total: ${stats.attachmentStats.attachmentFileCount + stats.attachmentStats.thumbnailFileCount}")
-      Text(text = "Expected remote total: ${stats.attachmentStats.estimatedThumbnailCount + stats.attachmentStats.finishedAttachmentDigestCount}")
+      Text(text = "Expected remote total: ${stats.attachmentStats.estimatedThumbnailCount + stats.attachmentStats.finishedAttachmentPlaintextHashAndKeyCount}")
 
       Spacer(modifier = Modifier.size(16.dp))
 

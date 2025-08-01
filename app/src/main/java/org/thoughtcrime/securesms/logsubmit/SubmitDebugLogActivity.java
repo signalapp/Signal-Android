@@ -11,21 +11,20 @@ import android.text.util.Linkify;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ShareCompat;
 import androidx.core.text.util.LinkifyCompat;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.debuglogsviewer.DebugLogsViewer;
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.ProgressCard;
@@ -36,14 +35,14 @@ import org.thoughtcrime.securesms.util.ThemeUtil;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugLogAdapter.Listener {
+public class SubmitDebugLogActivity extends BaseActivity {
 
   private static final int CODE_SAVE = 24601;
 
-  private RecyclerView            lineList;
-  private SubmitDebugLogAdapter   adapter;
+  private WebView                 logWebView;
   private SubmitDebugLogViewModel viewModel;
 
   private View                           warningBanner;
@@ -57,6 +56,9 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
   private MenuItem doneMenuItem;
   private MenuItem searchMenuItem;
   private MenuItem saveMenuItem;
+
+  private boolean isWebViewLoaded;
+  private boolean hasPresentedLines;
 
   private final DynamicTheme dynamicTheme = new DynamicTheme();
 
@@ -89,35 +91,33 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     this.searchMenuItem = menu.findItem(R.id.menu_search);
     this.saveMenuItem   = menu.findItem(R.id.menu_save);
 
-    SearchView searchView                        = (SearchView) searchMenuItem.getActionView();
-    SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
-      @Override
-      public boolean onQueryTextSubmit(String query) {
-        viewModel.onQueryUpdated(query);
-        return true;
-      }
-
-      @Override
-      public boolean onQueryTextChange(String query) {
-        viewModel.onQueryUpdated(query);
-        return true;
-      }
-    };
-
-    searchMenuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-      @Override
-      public boolean onMenuItemActionExpand(MenuItem item) {
-        searchView.setOnQueryTextListener(queryListener);
-        return true;
-      }
-
-      @Override
-      public boolean onMenuItemActionCollapse(MenuItem item) {
-        searchView.setOnQueryTextListener(null);
-        viewModel.onSearchClosed();
-        return true;
-      }
-    });
+    // TODO [lisa][debug-log-search]
+//    SearchView searchView                        = (SearchView) searchMenuItem.getActionView();
+//    SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
+//      @Override
+//      public boolean onQueryTextSubmit(String query) {
+//        return true;
+//      }
+//
+//      @Override
+//      public boolean onQueryTextChange(String query) {
+//        return true;
+//      }
+//    };
+//
+//    searchMenuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+//      @Override
+//      public boolean onMenuItemActionExpand(MenuItem item) {
+//        searchView.setOnQueryTextListener(queryListener);
+//        return true;
+//      }
+//
+//      @Override
+//      public boolean onMenuItemActionCollapse(MenuItem item) {
+//        searchView.setOnQueryTextListener(null);
+//        return true;
+//      }
+//    });
 
     return true;
   }
@@ -165,13 +165,8 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     }
   }
 
-  @Override
-  public void onLogDeleted(@NonNull LogLine logLine) {
-    viewModel.onLogDeleted(logLine);
-  }
-
   private void initView() {
-    this.lineList             = findViewById(R.id.debug_log_lines);
+    this.logWebView           = findViewById(R.id.debug_log_lines);
     this.warningBanner        = findViewById(R.id.debug_log_warning_banner);
     this.editBanner           = findViewById(R.id.debug_log_edit_banner);
     this.submitButton         = findViewById(R.id.debug_log_submit_button);
@@ -179,35 +174,16 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
     this.scrollToTopButton    = findViewById(R.id.debug_log_scroll_to_top);
     this.progressCard         = findViewById(R.id.debug_log_progress_card);
 
-    this.adapter = new SubmitDebugLogAdapter(this, viewModel.getPagingController());
-
-    this.lineList.setLayoutManager(new LinearLayoutManager(this));
-    this.lineList.setAdapter(adapter);
-    this.lineList.setItemAnimator(null);
+    DebugLogsViewer.initWebView(logWebView, this, () -> {
+      isWebViewLoaded = true;
+      presentLines((viewModel.getLines().getValue() != null) ? viewModel.getLines().getValue() : new ArrayList<>());
+    });
 
     submitButton.setOnClickListener(v -> onSubmitClicked());
+    scrollToTopButton.setOnClickListener(v -> DebugLogsViewer.scrollToTop(logWebView));
+    scrollToBottomButton.setOnClickListener(v -> DebugLogsViewer.scrollToBottom(logWebView));
 
-    scrollToBottomButton.setOnClickListener(v -> lineList.scrollToPosition(adapter.getItemCount() - 1));
-    scrollToTopButton.setOnClickListener(v -> lineList.scrollToPosition(0));
-
-    lineList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-      @Override
-      public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-        if (((LinearLayoutManager) recyclerView.getLayoutManager()).findLastVisibleItemPosition() < adapter.getItemCount() - 10) {
-          scrollToBottomButton.setVisibility(View.VISIBLE);
-        } else {
-          scrollToBottomButton.setVisibility(View.GONE);
-        }
-
-        if (((LinearLayoutManager) recyclerView.getLayoutManager()).findFirstVisibleItemPosition() > 10) {
-          scrollToTopButton.setVisibility(View.VISIBLE);
-        } else {
-          scrollToTopButton.setVisibility(View.GONE);
-        }
-      }
-    });
     this.progressCard.setVisibility(View.VISIBLE);
-
   }
 
   private void initViewModel() {
@@ -217,21 +193,35 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
   }
 
   private void presentLines(@NonNull List<LogLine> lines) {
-    if (progressCard != null && lines.size() > 0) {
-      progressCard.setVisibility(View.GONE);
-
-      warningBanner.setVisibility(View.VISIBLE);
-      submitButton.setVisibility(View.VISIBLE);
+    if (!isWebViewLoaded || hasPresentedLines) {
+      return;
     }
 
-    adapter.submitList(lines);
+    if (progressCard != null && lines.size() > 0) {
+      progressCard.setVisibility(View.GONE);
+      warningBanner.setVisibility(View.VISIBLE);
+      submitButton.setVisibility(View.VISIBLE);
+
+      hasPresentedLines = true;
+    }
+
+    StringBuilder lineBuilder = new StringBuilder();
+
+    for (LogLine line : lines) {
+      if (line == null) continue;
+
+      lineBuilder.append(String.format("%s\n", line.getText()));
+    }
+
+    DebugLogsViewer.presentLines(logWebView, lineBuilder.toString());
   }
 
   private void presentMode(@NonNull SubmitDebugLogViewModel.Mode mode) {
     switch (mode) {
       case NORMAL:
         editBanner.setVisibility(View.GONE);
-        adapter.setEditing(false);
+        // TODO [lisa][debug-log-editing]
+//        setEditing(false);
         saveMenuItem.setVisible(true);
         // TODO [greyson][log] Not yet implemented
 //        editMenuItem.setVisible(true);
@@ -240,7 +230,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
         break;
       case SUBMITTING:
         editBanner.setVisibility(View.GONE);
-        adapter.setEditing(false);
+//        setEditing(false);
         editMenuItem.setVisible(false);
         doneMenuItem.setVisible(false);
         searchMenuItem.setVisible(false);
@@ -248,7 +238,7 @@ public class SubmitDebugLogActivity extends BaseActivity implements SubmitDebugL
         break;
       case EDIT:
         editBanner.setVisibility(View.VISIBLE);
-        adapter.setEditing(true);
+//        setEditing(true);
         editMenuItem.setVisible(false);
         doneMenuItem.setVisible(true);
         searchMenuItem.setVisible(true);

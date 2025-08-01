@@ -96,7 +96,7 @@ object TestUsers {
         SignalDatabase.recipients.setProfileSharing(recipientId, true)
         SignalDatabase.recipients.markRegistered(recipientId, aci)
         val otherIdentity = IdentityKeyUtil.generateIdentityKeyPair()
-        AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(aci.toString(), 0), otherIdentity.publicKey)
+        AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(aci.toString(), 1), otherIdentity.publicKey)
 
         others += recipientId
       }

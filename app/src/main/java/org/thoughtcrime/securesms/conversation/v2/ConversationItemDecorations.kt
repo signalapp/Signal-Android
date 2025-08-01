@@ -34,7 +34,7 @@ private typealias ConversationElement = MappingModel<*>
  * This is a converted and trimmed down version of [org.thoughtcrime.securesms.util.StickyHeaderDecoration].
  */
 class ConversationItemDecorations(hasWallpaper: Boolean = false, private val scheduleMessageMode: Boolean = false) : RecyclerView.ItemDecoration() {
-
+  private val hasHeaderByPosition: MutableMap<Int, Boolean> = mutableMapOf()
   private val headerCache: MutableMap<Long, DateHeaderViewHolder> = hashMapOf()
   private var unreadViewHolder: UnreadViewHolder? = null
 
@@ -48,6 +48,7 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
     set(value) {
       field = value
       updateUnreadState(value)
+      hasHeaderByPosition.clear()
     }
 
   var hasWallpaper: Boolean = hasWallpaper
@@ -212,7 +213,21 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
       (currentItems[bindingAdapterPosition] as? ConversationMessageElement)?.timestamp() == state.firstUnreadTimestamp
   }
 
+  /**
+   * Determines whether the item at [bindingAdapterPosition] should have a header.
+   */
   private fun hasHeader(bindingAdapterPosition: Int): Boolean {
+    return hasHeaderByPosition.getOrPut(
+      key = bindingAdapterPosition,
+      defaultValue = { calculateHasHeader(bindingAdapterPosition) }
+    )
+  }
+
+  /**
+   * Determines whether the item at [bindingAdapterPosition] should have a header. Avoid using this method in performance critical areas, because it
+   * bypasses the caching mechanism used in [hasHeader].
+   */
+  private fun calculateHasHeader(bindingAdapterPosition: Int): Boolean {
     val model = if (bindingAdapterPosition in currentItems.indices) {
       currentItems[bindingAdapterPosition]
     } else {
@@ -236,9 +251,13 @@ class ConversationItemDecorations(hasWallpaper: Boolean = false, private val sch
       return false
     }
 
-    return model.toEpochDay() != previousDay
+    val result = model.toEpochDay() != previousDay
+    return result
   }
 
+  /**
+   * Creates a header view for the provided [ConversationMessageElement] and caches it for future use.
+   */
   private fun getHeader(parent: RecyclerView, model: ConversationMessageElement): DateHeaderViewHolder {
     val headerHolder: DateHeaderViewHolder = headerCache.getOrPut(model.toEpochDay()) {
       val view = LayoutInflater.from(parent.context).inflate(R.layout.conversation_item_header, parent, false)

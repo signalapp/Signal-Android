@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.NetworkResult
 import java.lang.RuntimeException
 import kotlin.time.Duration.Companion.days
@@ -96,6 +97,11 @@ class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Paramete
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
+    if (!SignalStore.backup.backsUpMedia) {
+      Log.w(TAG, "This user doesn't back up media! Skipping.")
+      return Result.success()
+    }
+
     var mediaObjects = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaObjects(REMOTE_DELETE_BATCH_SIZE)
 
     while (mediaObjects.isNotEmpty()) {

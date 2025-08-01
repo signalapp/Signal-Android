@@ -23,6 +23,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.MmsException
 import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.StreamSupplier
 import java.io.IOException
 
@@ -52,8 +53,8 @@ class RestoreLocalAttachmentJob private constructor(
 
         possibleRestorableAttachments
           .forEachIndexed { index, attachment ->
-            val fileInfo = if (attachment.remoteKey != null && attachment.remoteDigest != null) {
-              val mediaName = MediaName.fromDigest(attachment.remoteDigest).name
+            val fileInfo = if (attachment.plaintextHash != null && attachment.remoteKey != null) {
+              val mediaName = MediaName.fromPlaintextHashAndRemoteKey(attachment.plaintextHash, attachment.remoteKey).name
               mediaNameToFileInfo[mediaName]
             } else {
               null
@@ -154,11 +155,14 @@ class RestoreLocalAttachmentJob private constructor(
         streamLength = size,
         plaintextLength = attachment.size,
         combinedKeyMaterial = combinedKey,
-        digest = attachment.remoteDigest,
+        integrityCheck = IntegrityCheck.forEncryptedDigestAndPlaintextHash(
+          encryptedDigest = attachment.remoteDigest,
+          plaintextHash = attachment.dataHash
+        ),
         incrementalDigest = null,
         incrementalMacChunkSize = 0
       ).use { input ->
-        SignalDatabase.attachments.finalizeAttachmentAfterDownload(attachment.mmsId, attachment.attachmentId, input, iv)
+        SignalDatabase.attachments.finalizeAttachmentAfterDownload(attachment.mmsId, attachment.attachmentId, input)
       }
     } catch (e: InvalidMessageException) {
       Log.w(TAG, "Experienced an InvalidMessageException while trying to read attachment.", e)

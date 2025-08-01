@@ -56,7 +56,6 @@
         android:hint="@string/MediaReviewFragment__add_a_message"
         android:imeOptions="flagNoEnterAction"
         android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
-        android:maxLength="65536"
         android:maxLines="3"
         android:minHeight="@dimen/conversation_compose_height"
         android:paddingEnd="10dp"

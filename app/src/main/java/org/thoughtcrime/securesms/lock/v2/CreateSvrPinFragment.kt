@@ -1,10 +1,10 @@
 package org.thoughtcrime.securesms.lock.v2
 
+import android.view.View
 import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import android.widget.EditText
 import androidx.annotation.PluralsRes
-import androidx.autofill.HintConstants
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
@@ -19,16 +19,17 @@ class CreateSvrPinFragment : BaseSvrPinFragment<CreateSvrPinViewModel?>() {
   override fun initializeViewStates() {
     val args = CreateSvrPinFragmentArgs.fromBundle(requireArguments())
     if (args.isPinChange) {
-      initializeViewStatesForPinChange(args.isForgotPin)
+      initializeViewStatesForPinChange()
     } else {
       initializeViewStatesForPinCreate()
     }
+
     label.text = getPinLengthRestrictionText(R.plurals.CreateKbsPinFragment__pin_must_be_at_least_digits)
     confirm.isEnabled = false
-    ViewCompat.setAutofillHints(input, HintConstants.AUTOFILL_HINT_NEW_PASSWORD)
+    ViewCompat.setImportantForAutofill(input, View.IMPORTANT_FOR_AUTOFILL_NO)
   }
 
-  private fun initializeViewStatesForPinChange(isForgotPin: Boolean) {
+  private fun initializeViewStatesForPinChange() {
     title.setText(R.string.CreateKbsPinFragment__create_a_new_pin)
     description.setText(R.string.CreateKbsPinFragment__you_can_choose_a_new_pin_as_long_as_this_device_is_registered)
     description.setLearnMoreVisible(true)

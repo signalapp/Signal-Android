@@ -59,21 +59,6 @@ class BetterCipherInputStream(
   override fun markSupported(): Boolean = false
 
   @Throws(IOException::class)
-  override fun skip(byteCount: Long): Long {
-    val buffer = ByteArray(4096)
-    var skipped = 0L
-
-    while (skipped < byteCount) {
-      val remaining = byteCount - skipped
-      val read = read(buffer, 0, remaining.toInt())
-
-      skipped += read.toLong()
-    }
-
-    return skipped
-  }
-
-  @Throws(IOException::class)
   private fun readIncremental(outputBuffer: ByteArray, originalOffset: Int, originalLength: Int): Int {
     var offset = originalOffset
     var length = originalLength

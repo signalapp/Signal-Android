@@ -13,7 +13,7 @@ import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireLongOrNull
 import org.signal.core.util.select
 import org.signal.core.util.update
-import org.signal.libsignal.protocol.ecc.Curve
+import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.kem.KEMKeyPair
 import org.signal.libsignal.protocol.kem.KEMKeyType
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
@@ -151,7 +151,7 @@ class KyberPreKeyTableTest {
         id,
         System.currentTimeMillis(),
         kemKeyPair,
-        Curve.generateKeyPair().privateKey.calculateSignature(kemKeyPair.publicKey.serialize())
+        ECKeyPair.generate().privateKey.calculateSignature(kemKeyPair.publicKey.serialize())
       ),
       lastResort = lastResort
     )

@@ -13,6 +13,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
 import org.signal.core.util.throttleLatest
@@ -22,7 +23,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ArchiveCommitAttachmentDeletesJob
 import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob
-import org.thoughtcrime.securesms.jobs.BackfillDigestJob
+import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
@@ -89,6 +90,7 @@ object ArchiveUploadProgress {
     .onEach { updated ->
       updateState(notify = false) { updated }
     }
+    .onStart { emit(uploadProgress) }
     .flowOn(Dispatchers.IO)
 
   val inProgress
@@ -109,7 +111,8 @@ object ArchiveUploadProgress {
       )
     }
 
-    AppDependencies.jobManager.cancelAllInQueue(BackfillDigestJob.QUEUE)
+    BackupMessagesJob.cancel()
+
     AppDependencies.jobManager.cancelAllInQueue(ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE)
     UploadAttachmentToArchiveJob.getAllQueueKeys().forEach {
       AppDependencies.jobManager.cancelAllInQueue(it)
@@ -126,7 +129,7 @@ object ArchiveUploadProgress {
       Log.d(TAG, "Flushing job manager queue...")
       AppDependencies.jobManager.flush()
 
-      val queues = setOf(BackfillDigestJob.QUEUE, ArchiveThumbnailUploadJob.KEY, ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE) + UploadAttachmentToArchiveJob.getAllQueueKeys()
+      val queues = setOf(ArchiveThumbnailUploadJob.KEY, ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE) + UploadAttachmentToArchiveJob.getAllQueueKeys()
       Log.d(TAG, "Waiting for cancelations to occur...")
       while (!AppDependencies.jobManager.areQueuesEmpty(queues)) {
         delay(1.seconds)

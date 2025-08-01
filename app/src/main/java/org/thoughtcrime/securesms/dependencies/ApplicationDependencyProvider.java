@@ -170,7 +170,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                             Optional.of(new SecurityEventListener(context)),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 16, 30),
                                             ByteUnit.KILOBYTES.toBytes(256),
-                                            RemoteConfig::useMessageSendRestFallback);
+                                            RemoteConfig::useMessageSendRestFallback,
+                                            RemoteConfig.usePqRatchet());
   }
 
   @Override
@@ -325,7 +326,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
         throw new WebSocketUnavailableException("Invalid auth credentials");
       }
 
-      if (false && RemoteConfig.libSignalWebSocketEnabled()) {
+      if (RemoteConfig.libSignalWebSocketEnabled()) {
         Network network = libSignalNetworkSupplier.get();
         return new LibSignalChatConnection("libsignal-auth",
                                            network,
@@ -361,7 +362,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     SignalWebSocketHealthMonitor healthMonitor = new SignalWebSocketHealthMonitor(sleepTimer);
 
     WebSocketFactory unauthFactory = () -> {
-      if (false && RemoteConfig.libSignalWebSocketEnabled()) {
+      if (RemoteConfig.libSignalWebSocketEnabled()) {
         Network network = libSignalNetworkSupplier.get();
         return new LibSignalChatConnection("libsignal-unauth",
                                            network,
@@ -563,8 +564,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull RemoteConfigApi provideRemoteConfigApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket) {
-    return new RemoteConfigApi(authWebSocket);
+  public @NonNull RemoteConfigApi provideRemoteConfigApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
+    return new RemoteConfigApi(authWebSocket, pushServiceSocket);
   }
 
   @Override

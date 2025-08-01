@@ -37,6 +37,9 @@ public final class LanguageResourcesTest {
   public void language_options_matches_available_resources() {
     Set<String> languageEntries = languageEntries();
     Set<String> foundResources  = buildConfigResources();
+    Set<String> manuallyAddedResources = Set.of("id", "he"); // With API 35, we had to manually add certain supported languages
+    foundResources.removeAll(manuallyAddedResources);
+
     if (!languageEntries.equals(foundResources)) {
       assertSubset(foundResources, languageEntries, "Missing language_entries for resources");
       assertSubset(languageEntries, foundResources, "Missing resources for language_entries");
