@@ -45,7 +45,7 @@ object CallLinkArchiveImporter {
         roomId = CallLinkRoomId.fromCallLinkRootKey(rootKey),
         credentials = CallLinkCredentials(
           callLink.rootKey.toByteArray(),
-          callLink.epoch.nullIfEmpty()?.toByteArray(),
+          callLink.epoch?.nullIfEmpty()?.toByteArray(),
           callLink.adminKey?.toByteArray()
         ),
         state = SignalCallLinkState(

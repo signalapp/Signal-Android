@@ -344,7 +344,7 @@ message CallLink {
   string name = 3;
   Restrictions restrictions = 4;
   uint64 expirationMs = 5;
-  bytes epoch = 6; // May be absent/empty for older links
+  optional bytes epoch = 6; // May be absent/empty for older links
 }
 
 message AdHocCall {
@@ -693,73 +693,12 @@ message MessageAttachment {
 }
 
 message FilePointer {
-  // References attachments in the backup (media) storage tier.
-  // DEPRECATED; use LocatorInfo instead if available.
-  message BackupLocator {
-    string mediaName = 1;
-    // If present, the cdn number of the succesful upload.
-    // If empty/0, may still have been uploaded, and clients
-    // can discover the cdn number via the list endpoint.
-    optional uint32 cdnNumber = 2;
-    bytes key = 3;
-    bytes digest = 4;
-    uint32 size = 5;
-
-    // Fallback in case backup tier upload failed.
-    optional string transitCdnKey = 6;
-    optional uint32 transitCdnNumber = 7;
-  }
-
-  // References attachments in the transit storage tier.
-  // May be downloaded or not when the backup is generated;
-  // primarily for free-tier users who cannot copy the
-  // attachments to the backup (media) storage tier.
-  // DEPRECATED; use LocatorInfo instead if available.
-  message AttachmentLocator {
-    string cdnKey = 1;
-    uint32 cdnNumber = 2;
-    optional uint64 uploadTimestamp = 3;
-    bytes key = 4;
-    bytes digest = 5;
-    uint32 size = 6;
-  }
-
-  // References attachments that are invalid in such a way where download
-  // cannot be attempted. Could range from missing digests to missing
-  // CDN keys or anything else that makes download attempts impossible.
-  // This serves as a 'tombstone' so that the UX can show that an attachment
-  // did exist, but for whatever reason it's not retrievable.
-  // DEPRECATED; use LocatorInfo instead if available.
-  message InvalidAttachmentLocator {
-  }
-
-  // References attachments in a local encrypted backup.
-  // Importers should first attempt to read the file from the local backup,
-  // and on failure fallback to backup and transit cdn if possible.
-  // DEPRECATED; use LocatorInfo instead if available.
-  message LocalLocator {
-    string mediaName = 1;
-    // Separate key used to encrypt this file for the local backup.
-    // Generally required. Missing field indicates attachment was not
-    // available locally when the backup was generated, but remote
-    // backup or transit info was available.
-    optional bytes localKey = 2;
-    bytes remoteKey = 3;
-    bytes remoteDigest = 4;
-    uint32 size = 5;
-    optional uint32 backupCdnNumber = 6;
-    optional string transitCdnKey = 7;
-    optional uint32 transitCdnNumber = 8;
-  }
-
   message LocatorInfo {
     // Must be non-empty if transitCdnKey or plaintextHash are set/nonempty.
     // Otherwise must be empty.
     bytes key = 1;
 
-    // From the sender of the attachment (incl. ourselves)
-    // Will be reserved once all clients start reading integrityCheck
-    bytes legacyDigest = 2;
+    reserved /*legacyDigest*/ 2;
 
     oneof integrityCheck {
       // Set if file was at one point downloaded and its plaintextHash was calculated
@@ -787,11 +726,7 @@ message FilePointer {
     // has not rotated since last upload; even if currently free tier.
     optional uint32 mediaTierCdnNumber = 7;
 
-    // Nonempty any time the attachment was downloaded and its
-    // digest validated, whether free tier or paid subscription.
-    // Will be reserved once all clients start reading integrityCheck,
-    // when mediaName will be derived from the plaintextHash and encryption key
-    string legacyMediaName = 8;
+    reserved /*legacyMediaName*/ 8;
 
     // Separate key used to encrypt this file for the local backup.
     // Generally required for local backups.
@@ -801,14 +736,10 @@ message FilePointer {
     optional bytes localKey = 9;
   }
 
-  // If unset, importers should consider it to be an InvalidAttachmentLocator without throwing an error.
-  // DEPRECATED; use locatorInfo instead.
-  oneof locator {
-    BackupLocator backupLocator = 1;
-    AttachmentLocator attachmentLocator = 2;
-    InvalidAttachmentLocator invalidAttachmentLocator = 3;
-    LocalLocator localLocator = 12;
-  }
+  reserved /*backupLocator*/ 1;
+  reserved /*attachmentLocator*/ 2;
+  reserved /*invalidAttachmentLocator*/ 3;
+  reserved /*localLocator*/ 12;
 
   optional string contentType = 4;
   optional bytes incrementalMac = 5;

@@ -8,7 +8,6 @@ package org.thoughtcrime.securesms.backup.v2.util
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
-import org.signal.core.util.Hex
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
@@ -138,37 +137,9 @@ fun DatabaseAttachment.toRemoteFilePointer(contentTypeOverride: String? = null):
   builder.height = this.height.takeIf { it > 0 }
   builder.caption = this.caption
   builder.blurHash = this.blurHash?.hash
-
-  builder.setLegacyLocators(this)
   builder.locatorInfo = this.toLocatorInfo()
 
   return builder.build()
-}
-
-fun FilePointer.Builder.setLegacyLocators(attachment: DatabaseAttachment) {
-  if (attachment.remoteKey.isNullOrBlank() || attachment.remoteDigest == null || attachment.size == 0L) {
-    this.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
-    return
-  }
-
-  if (attachment.transferState == AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE && attachment.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED) {
-    this.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
-    return
-  }
-
-  if (attachment.remoteLocation.isNullOrBlank()) {
-    this.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
-    return
-  }
-
-  this.attachmentLocator = FilePointer.AttachmentLocator(
-    cdnKey = attachment.remoteLocation,
-    cdnNumber = attachment.cdn.cdnNumber,
-    uploadTimestamp = attachment.uploadTimestamp.takeIf { it > 0 }?.clampToValidBackupRange(),
-    key = Base64.decode(attachment.remoteKey).toByteString(),
-    size = attachment.size.toInt(),
-    digest = attachment.remoteDigest.toByteString()
-  )
 }
 
 fun DatabaseAttachment.toLocatorInfo(): FilePointer.LocatorInfo {
@@ -202,9 +173,6 @@ fun DatabaseAttachment.toLocatorInfo(): FilePointer.LocatorInfo {
     }
     AttachmentType.INVALID -> Unit
   }
-
-  locatorBuilder.legacyDigest = this.remoteDigest?.toByteString() ?: ByteString.EMPTY
-  locatorBuilder.legacyMediaName = Hex.toStringCondensed(this.remoteDigest ?: byteArrayOf())
 
   return locatorBuilder.build()
 }
