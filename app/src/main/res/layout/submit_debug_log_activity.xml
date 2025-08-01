@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:viewBindingIgnore="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -48,10 +47,9 @@
       android:id="@+id/debug_log_lines"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_marginBottom="8dp"
       android:scrollbars="vertical"
       app:layout_constraintTop_toBottomOf="@id/debug_log_header_barrier"
-      app:layout_constraintBottom_toTopOf="@id/debug_log_submit_button"/>
+      app:layout_constraintBottom_toTopOf="@id/debug_log_footer_barrier"/>
 
   <ImageButton
       android:id="@+id/debug_log_scroll_to_top"
@@ -80,7 +78,83 @@
       app:tint="@color/grey_600"
       app:srcCompat="@drawable/ic_chevron_down_20"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintBottom_toTopOf="@id/debug_log_submit_button"/>
+      app:layout_constraintBottom_toTopOf="@id/debug_log_footer_barrier"/>
+
+  <androidx.constraintlayout.widget.Barrier
+      android:id="@+id/debug_log_footer_barrier"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:barrierDirection="top"
+      app:constraint_referenced_ids="debug_log_submit_button,debug_log_search_nav" />
+
+  <org.thoughtcrime.securesms.components.ConversationSearchBottomBar
+      android:id="@+id/debug_log_search_nav"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:background="@color/signal_background_secondary"
+      android:visibility="gone"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      tools:visibility="visible">
+
+    <ImageButton
+        android:id="@+id/case_sensitive_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/circle_touch_highlight_background"
+        android:layout_marginStart="16dp"
+        android:padding="8dp"
+        android:src="@drawable/symbol_match_case_24"
+        app:tint="@color/signal_colorOnSurface"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/debug_log_search_position"
+        style="@style/Signal.Text.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/debug_log_search_up"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="37 of 73" />
+
+    <ImageButton
+        android:id="@+id/debug_log_search_up"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:src="@drawable/symbol_chevron_up_24"
+        app:tint="@color/core_ultramarine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/debug_log_search_down"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/debug_log_search_down"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:src="@drawable/symbol_chevron_down_24"
+        app:tint="@color/core_ultramarine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+  </org.thoughtcrime.securesms.components.ConversationSearchBottomBar>
 
   <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
       android:id="@+id/debug_log_submit_button"

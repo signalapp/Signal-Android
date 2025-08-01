@@ -8,6 +8,7 @@
       android:icon="@drawable/symbol_search_24"
       android:title="@string/CameraContacts__menu_search"
       android:visible="false"
+      app:iconTint="@color/signal_colorOnSurface"
       app:actionViewClass="org.thoughtcrime.securesms.components.SearchView"
       app:showAsAction="collapseActionView|always" />
 

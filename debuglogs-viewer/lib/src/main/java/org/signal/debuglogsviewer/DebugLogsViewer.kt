@@ -9,10 +9,12 @@ import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
 import android.content.res.Configuration
+import android.webkit.ValueCallback
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import kotlinx.coroutines.Runnable
 import org.json.JSONObject
+import java.util.function.Consumer
 
 var readOnly = true
 
@@ -59,13 +61,37 @@ object DebugLogsViewer {
   }
 
   @JvmStatic
-  fun onFind(webview: WebView) {
-    webview.evaluateJavascript("document.getElementById('searchBar').style.display = 'block';", null)
+  fun onSearch(webview: WebView, query: String) {
+    webview.evaluateJavascript("onSearchInput('$query')", null)
+  }
+
+  @JvmStatic
+  fun onSearchUp(webview: WebView) {
+    webview.evaluateJavascript("onSearchUp();", null)
+  }
+
+  @JvmStatic
+  fun onSearchDown(webview: WebView) {
+    webview.evaluateJavascript("onSearchDown();", null)
+  }
+
+  @JvmStatic
+  fun getSearchPosition(webView: WebView, callback: Consumer<String?>) {
+    webView.evaluateJavascript("getSearchPosition();", ValueCallback { value: String? -> callback.accept(value?.trim('"') ?: "") })
+  }
+
+  @JvmStatic
+  fun onToggleCaseSensitive(webview: WebView) {
+    webview.evaluateJavascript("onToggleCaseSensitive();", null)
+  }
+
+  @JvmStatic
+  fun onSearchClose(webview: WebView) {
+    webview.evaluateJavascript("onSearchClose();", null)
   }
 
   @JvmStatic
   fun onFilter(webview: WebView) {
-    webview.evaluateJavascript("document.getElementById('filterLevel').style.display = 'block';", null)
   }
 
   @JvmStatic

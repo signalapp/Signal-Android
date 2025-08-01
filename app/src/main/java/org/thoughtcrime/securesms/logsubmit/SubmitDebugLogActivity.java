@@ -12,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +28,9 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import org.signal.debuglogsviewer.DebugLogsViewer;
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.ConversationSearchBottomBar;
 import org.thoughtcrime.securesms.components.ProgressCard;
+import org.thoughtcrime.securesms.components.SearchView;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.LongClickCopySpan;
 import org.thoughtcrime.securesms.util.LongClickMovementMethod;
@@ -48,6 +51,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
   private View                           warningBanner;
   private View                           editBanner;
   private CircularProgressMaterialButton submitButton;
+  private ConversationSearchBottomBar    searchNav;
   private View                           scrollToBottomButton;
   private View                           scrollToTopButton;
   private ProgressCard                   progressCard;
@@ -56,6 +60,11 @@ public class SubmitDebugLogActivity extends BaseActivity {
   private MenuItem doneMenuItem;
   private MenuItem searchMenuItem;
   private MenuItem saveMenuItem;
+
+  private ImageButton        caseSensitiveButton;
+  private TextView           searchPosition;
+  private ImageButton        searchUpButton;
+  private ImageButton        searchDownButton;
 
   private boolean isWebViewLoaded;
   private boolean hasPresentedLines;
@@ -91,33 +100,71 @@ public class SubmitDebugLogActivity extends BaseActivity {
     this.searchMenuItem = menu.findItem(R.id.menu_search);
     this.saveMenuItem   = menu.findItem(R.id.menu_save);
 
-    // TODO [lisa][debug-log-search]
-//    SearchView searchView                        = (SearchView) searchMenuItem.getActionView();
-//    SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
-//      @Override
-//      public boolean onQueryTextSubmit(String query) {
-//        return true;
-//      }
-//
-//      @Override
-//      public boolean onQueryTextChange(String query) {
-//        return true;
-//      }
-//    };
-//
-//    searchMenuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
-//      @Override
-//      public boolean onMenuItemActionExpand(MenuItem item) {
-//        searchView.setOnQueryTextListener(queryListener);
-//        return true;
-//      }
-//
-//      @Override
-//      public boolean onMenuItemActionCollapse(MenuItem item) {
-//        searchView.setOnQueryTextListener(null);
-//        return true;
-//      }
-//    });
+    this.searchNav            = findViewById(R.id.debug_log_search_nav);
+    this.caseSensitiveButton  = findViewById(R.id.case_sensitive_button);
+    this.searchPosition       = findViewById(R.id.debug_log_search_position);
+    this.searchUpButton       = findViewById(R.id.debug_log_search_up);
+    this.searchDownButton     = findViewById(R.id.debug_log_search_down);
+
+    searchUpButton.setOnClickListener(v -> {
+      DebugLogsViewer.onSearchUp(logWebView);
+      DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
+    });
+
+    searchDownButton.setOnClickListener(v -> {
+      DebugLogsViewer.onSearchDown(logWebView);
+      DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
+    });
+
+    boolean[] isCaseSensitive = {false};
+
+    caseSensitiveButton.setOnClickListener(v -> {
+      DebugLogsViewer.onToggleCaseSensitive(logWebView);
+      DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
+      isCaseSensitive[0] = !isCaseSensitive[0];
+
+      int backgroundColor = isCaseSensitive[0] ? R.drawable.circle_tint_darker : R.drawable.circle_touch_highlight_background;
+      caseSensitiveButton.setBackground(getResources().getDrawable(backgroundColor));
+    });
+
+    SearchView searchView = (SearchView) searchMenuItem.getActionView();
+    SearchView.OnQueryTextListener queryListener = new SearchView.OnQueryTextListener() {
+      @Override
+      public boolean onQueryTextSubmit(String query) {
+        return true;
+      }
+
+      @Override
+      public boolean onQueryTextChange(String query) {
+        DebugLogsViewer.onSearch(logWebView, query);
+        DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
+        return true;
+      }
+    };
+
+    searchMenuItem.setOnActionExpandListener(new MenuItem.OnActionExpandListener() {
+      @Override
+      public boolean onMenuItemActionExpand(MenuItem item) {
+        searchNav.setVisibility(View.VISIBLE);
+        submitButton.setVisibility(View.GONE);
+        searchView.setOnQueryTextListener(queryListener);
+        return true;
+      }
+
+      @Override
+      public boolean onMenuItemActionCollapse(MenuItem item) {
+        searchNav.setVisibility(View.GONE);
+        submitButton.setVisibility(View.VISIBLE);
+        DebugLogsViewer.onSearchClose(logWebView);
+        DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
+        searchView.setOnQueryTextListener(null);
+        return true;
+      }
+    });
+
+    if (viewModel.getMode().getValue() != null) {
+      presentMode(viewModel.getMode().getValue());
+    }
 
     return true;
   }
@@ -217,16 +264,21 @@ public class SubmitDebugLogActivity extends BaseActivity {
   }
 
   private void presentMode(@NonNull SubmitDebugLogViewModel.Mode mode) {
+    if (editMenuItem == null || doneMenuItem == null || searchMenuItem == null || saveMenuItem == null) {
+      return;
+    }
+
     switch (mode) {
       case NORMAL:
         editBanner.setVisibility(View.GONE);
+        searchNav.setVisibility(View.GONE);
         // TODO [lisa][debug-log-editing]
 //        setEditing(false);
         saveMenuItem.setVisible(true);
         // TODO [greyson][log] Not yet implemented
 //        editMenuItem.setVisible(true);
 //        doneMenuItem.setVisible(false);
-//        searchMenuItem.setVisible(true);
+        searchMenuItem.setVisible(true);
         break;
       case SUBMITTING:
         editBanner.setVisibility(View.GONE);
