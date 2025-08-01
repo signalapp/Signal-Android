@@ -1049,7 +1049,7 @@ object RemoteConfig {
     hotSwappable = false,
     active = false
   ) { value ->
-    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
+    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || BuildConfig.LINK_DEVICE_UX_ENABLED || value.asBoolean(false)
   }
 
   @JvmStatic
