@@ -13,7 +13,9 @@ import org.junit.Test
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.ecc.ECKeyPair
+import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
+import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.ProvisionEnvelope
 import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import org.whispersystems.signalservice.internal.push.ProvisioningVersion
@@ -43,18 +45,18 @@ class SecondaryProvisioningCipherTest {
     val provisionMessage = ProvisionEnvelope.ADAPTER.decode(primaryProvisioningCipher.encrypt(message))
 
     val result = provisioningCipher.decrypt(provisionMessage)
-    assertThat(result).isInstanceOf<SecondaryProvisioningCipher.ProvisionDecryptResult.Success>()
+    assertThat(result).isInstanceOf<SecondaryProvisioningCipher.ProvisioningDecryptResult.Success<ProvisionMessage>>()
 
-    val success = result as SecondaryProvisioningCipher.ProvisionDecryptResult.Success
+    val success = result as SecondaryProvisioningCipher.ProvisioningDecryptResult.Success<ProvisionMessage>
 
-    assertThat(message.aci).isEqualTo(success.uuid.toString())
-    assertThat(message.number).isEqualTo(success.e164)
-    assertThat(primaryIdentityKeyPair.serialize()).isEqualTo(success.identityKeyPair.serialize())
-    assertThat(primaryProfileKey.serialize()).isEqualTo(success.profileKey.serialize())
-    assertThat(message.readReceipts).isEqualTo(success.areReadReceiptsEnabled)
-    assertThat(message.userAgent).isEqualTo(success.primaryUserAgent)
-    assertThat(message.provisioningCode).isEqualTo(success.provisioningCode)
-    assertThat(message.provisioningVersion).isEqualTo(success.provisioningVersion)
+    assertThat(message.aci).isEqualTo(UuidUtil.parseOrThrow(success.message.aci).toString())
+    assertThat(message.number).isEqualTo(success.message.number)
+    assertThat(primaryIdentityKeyPair.serialize()).isEqualTo(IdentityKeyPair(IdentityKey(success.message.aciIdentityKeyPublic!!.toByteArray()), ECPrivateKey(success.message.aciIdentityKeyPrivate!!.toByteArray())).serialize())
+    assertThat(primaryProfileKey.serialize()).isEqualTo(ProfileKey(success.message.profileKey!!.toByteArray()).serialize())
+    assertThat(message.readReceipts).isEqualTo(success.message.readReceipts == true)
+    assertThat(message.userAgent).isEqualTo(success.message.userAgent)
+    assertThat(message.provisioningCode).isEqualTo(success.message.provisioningCode!!)
+    assertThat(message.provisioningVersion).isEqualTo(success.message.provisioningVersion!!)
   }
 
   companion object {

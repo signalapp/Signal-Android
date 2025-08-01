@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.UUID;
 
-public class VerifyDeviceResponse {
+public class RegisterAsSecondaryDeviceResponse {
   @JsonProperty
   private UUID uuid;
 
@@ -12,11 +12,11 @@ public class VerifyDeviceResponse {
   private UUID pni;
 
   @JsonProperty
-  private int deviceId;
+  private String deviceId;
 
-  public VerifyDeviceResponse() {}
+  public RegisterAsSecondaryDeviceResponse() {}
 
-  public VerifyDeviceResponse(UUID uuid, UUID pni, int deviceId) {
+  public RegisterAsSecondaryDeviceResponse(UUID uuid, UUID pni, String deviceId) {
     this.uuid     = uuid;
     this.pni      = pni;
     this.deviceId = deviceId;
@@ -30,7 +30,7 @@ public class VerifyDeviceResponse {
     return pni;
   }
 
-  public int getDeviceId() {
+  public String getDeviceId() {
     return deviceId;
   }
 }

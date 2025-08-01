@@ -4204,7 +4204,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         Log.w(TAG, "Contact is marked as registered, but has no serviceId! Can't locally mark registered. (Phone: ${contact.proto.e164.nullIfBlank()}, Username: ${username?.isNotEmpty()})")
       }
 
-      if (isInsert) {
+      if (SignalStore.account.isLinkedDevice) {
+        val avatarColor = StorageSyncModels.remoteToLocalAvatarColor(contact.proto.avatarColor) ?: AvatarColorHash.forAddress(contact.proto.signalAci ?: contact.proto.signalPni, contact.proto.e164)
+        put(AVATAR_COLOR, avatarColor.serialize())
+      } else if (isInsert) {
         put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.proto.signalAci ?: contact.proto.signalPni, contact.proto.e164).serialize())
       }
     }
@@ -4251,7 +4254,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         putNull(STORAGE_SERVICE_PROTO)
       }
 
-      if (isInsert) {
+      if (SignalStore.account.isLinkedDevice) {
+        val avatarColor = StorageSyncModels.remoteToLocalAvatarColor(groupV2.proto.avatarColor) ?: AvatarColorHash.forGroupId(groupId)
+        put(AVATAR_COLOR, avatarColor.serialize())
+      } else if (isInsert) {
         put(AVATAR_COLOR, AvatarColorHash.forGroupId(groupId).serialize())
       }
     }

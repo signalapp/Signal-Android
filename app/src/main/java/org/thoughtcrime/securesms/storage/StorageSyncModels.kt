@@ -390,6 +390,24 @@ object StorageSyncModels {
     }
   }
 
+  fun remoteToLocalAvatarColor(avatarColor: RemoteAvatarColor?): AvatarColor? {
+    return when (avatarColor) {
+      RemoteAvatarColor.A100 -> AvatarColor.A100
+      RemoteAvatarColor.A110 -> AvatarColor.A110
+      RemoteAvatarColor.A120 -> AvatarColor.A120
+      RemoteAvatarColor.A130 -> AvatarColor.A130
+      RemoteAvatarColor.A140 -> AvatarColor.A140
+      RemoteAvatarColor.A150 -> AvatarColor.A150
+      RemoteAvatarColor.A160 -> AvatarColor.A160
+      RemoteAvatarColor.A170 -> AvatarColor.A170
+      RemoteAvatarColor.A180 -> AvatarColor.A180
+      RemoteAvatarColor.A190 -> AvatarColor.A190
+      RemoteAvatarColor.A200 -> AvatarColor.A200
+      RemoteAvatarColor.A210 -> AvatarColor.A210
+      null -> null
+    }
+  }
+
   fun localToRemoteChatFolder(folder: ChatFolderRecord, rawStorageId: ByteArray?): SignalChatFolderRecord {
     if (folder.chatFolderId == null) {
       throw AssertionError("Chat folder must have a chat folder id.")

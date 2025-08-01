@@ -177,7 +177,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
 
   @Throws(IOException::class, RetryLaterException::class, UntrustedIdentityException::class)
   override fun onRun() {
-    if (!(SignalStore.svr.hasPin() || SignalStore.account.restoredAccountEntropyPool) && !SignalStore.svr.hasOptedOut()) {
+    if (!(SignalStore.svr.hasPin() || SignalStore.account.restoredAccountEntropyPool || SignalStore.account.restoredAccountEntropyPoolFromPrimary) && !SignalStore.svr.hasOptedOut()) {
       Log.i(TAG, "Doesn't have access to storage service. Skipping.")
       return
     }
@@ -194,6 +194,11 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
 
     if (SignalStore.internal.storageServiceDisabled) {
       Log.w(TAG, "Storage service has been manually disabled. Skipping.")
+      return
+    }
+
+    if (SignalStore.account.isLinkedDevice && !SignalStore.account.restoredAccountEntropyPoolFromPrimary) {
+      Log.w(TAG, "Have not restored AEP from primary, skipping.")
       return
     }
 
@@ -228,7 +233,6 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
           .enqueue()
       } else {
         Log.w(TAG, "Failed to decrypt remote storage! Requesting new keys from primary.", e)
-        SignalStore.storageService.clearStorageKeyFromPrimary()
         AppDependencies.signalServiceMessageSender.sendSyncMessage(SignalServiceSyncMessage.forRequest(RequestMessage.forType(SyncMessage.Request.Type.KEYS)))
       }
     }

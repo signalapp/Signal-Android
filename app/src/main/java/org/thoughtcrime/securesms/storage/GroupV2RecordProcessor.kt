@@ -7,6 +7,7 @@ import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RecipientRecord
 import org.thoughtcrime.securesms.groups.GroupId
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.storage.SignalGroupV2Record
 import org.whispersystems.signalservice.api.storage.SignalStorageRecord
 import org.whispersystems.signalservice.api.storage.StorageId
@@ -58,7 +59,7 @@ class GroupV2RecordProcessor(private val recipientTable: RecipientTable, private
       dontNotifyForMentionsIfMuted = remote.proto.dontNotifyForMentionsIfMuted
       hideStory = remote.proto.hideStory
       storySendMode = remote.proto.storySendMode
-      avatarColor = local.proto.avatarColor
+      avatarColor = if (SignalStore.account.isPrimaryDevice) local.proto.avatarColor else remote.proto.avatarColor
     }.build().toSignalGroupV2Record(StorageId.forGroupV2(keyGenerator.generate()))
 
     val matchesRemote = doParamsMatch(remote, merged)
