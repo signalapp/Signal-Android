@@ -225,7 +225,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     }
     set(value) {
       // TODO [backup] Remove for launch
-      if (!RemoteConfig.internalUser) {
+      if (!RemoteConfig.internalUser && value != null) {
         throw IllegalStateException("Setting backup tier is only allowed for internal users!")
       }
 
