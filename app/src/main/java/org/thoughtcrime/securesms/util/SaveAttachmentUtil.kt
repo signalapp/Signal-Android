@@ -157,6 +157,16 @@ object SaveAttachmentUtil {
     )
 
     if (Build.VERSION.SDK_INT > 28) {
+      val relativePath = when {
+        contentType.startsWith("image/") -> Environment.DIRECTORY_PICTURES + "/Signal"
+        contentType.startsWith("video/") -> Environment.DIRECTORY_MOVIES + "/Signal"
+        contentType.startsWith("audio/") -> Environment.DIRECTORY_MUSIC + "/Signal"
+        else -> Environment.DIRECTORY_DOWNLOADS + "/Signal"
+      }
+      contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, relativePath)
+    }
+
+    if (Build.VERSION.SDK_INT > 28) {
       var i = 0
       var displayName = fileName
 
@@ -213,10 +223,10 @@ object SaveAttachmentUtil {
 
   private fun getExternalPathForType(contentType: String): String? {
     val storage: File? = when {
-      contentType.startsWith("video/") -> Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
-      contentType.startsWith("audio/") -> Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)
-      contentType.startsWith("image/") -> Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
-      else -> Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
+      contentType.startsWith("video/") -> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), "Signal")
+      contentType.startsWith("audio/") -> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC), "Signal")
+      contentType.startsWith("image/") -> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Signal")
+      else -> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "Signal")
     }
 
     return storage?.let { ensureExternalPath(storage) }?.absolutePath
