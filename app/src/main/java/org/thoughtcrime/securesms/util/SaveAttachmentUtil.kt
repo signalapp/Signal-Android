@@ -156,6 +156,10 @@ object SaveAttachmentUtil {
       MediaStore.MediaColumns.DATE_MODIFIED to TimeUnit.MILLISECONDS.toSeconds(System.currentTimeMillis())
     )
 
+    if (Build.VERSION.SDK_INT > 28 && contentType.startsWith("image/")) {
+      contentValues.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + "/Signal")
+    }
+
     if (Build.VERSION.SDK_INT > 28) {
       var i = 0
       var displayName = fileName
@@ -215,7 +219,7 @@ object SaveAttachmentUtil {
     val storage: File? = when {
       contentType.startsWith("video/") -> Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES)
       contentType.startsWith("audio/") -> Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC)
-      contentType.startsWith("image/") -> Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES)
+      contentType.startsWith("image/") -> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Signal")
       else -> Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS)
     }
 
