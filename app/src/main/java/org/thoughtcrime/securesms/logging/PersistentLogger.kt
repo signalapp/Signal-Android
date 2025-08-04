@@ -126,7 +126,7 @@ class PersistentLogger private constructor(application: Application) : Log.Logge
     override fun run() {
       while (true) {
         requests.blockForRequests(buffer)
-        db.logs.insert(buffer.flatMap { requestToEntries(it) }, System.currentTimeMillis())
+        db.logs.insert(buffer.asSequence().flatMap { requestToEntries(it) }, System.currentTimeMillis())
         buffer.clear()
         requests.notifyFlushed()
       }

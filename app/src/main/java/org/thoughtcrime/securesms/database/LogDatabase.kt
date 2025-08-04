@@ -160,7 +160,7 @@ class LogDatabase private constructor(
     private val readableDatabase: SQLiteDatabase get() = openHelper.readableDatabase
     private val writableDatabase: SQLiteDatabase get() = openHelper.writableDatabase
 
-    fun insert(logs: List<LogEntry>, currentTime: Long) {
+    fun insert(logs: Sequence<LogEntry>, currentTime: Long) {
       writableDatabase.withinTransaction { db ->
         logs.forEach { log ->
           db.insertInto(TABLE_NAME)
