@@ -6,7 +6,7 @@ import java.util.concurrent.Executor
 import java.util.concurrent.Executors
 
 @SuppressLint("LogNotSignal")
-class AndroidLogger : Log.Logger() {
+object AndroidLogger : Log.Logger() {
 
   private val serialExecutor: Executor = Executors.newSingleThreadExecutor { Thread(it, "signal-logcat") }
 

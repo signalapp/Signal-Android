@@ -9,7 +9,7 @@ import android.os.Looper
 import android.util.Log
 import org.signal.core.util.logging.Log.Logger
 
-class SpinnerLogger : Logger() {
+object SpinnerLogger : Logger() {
 
   private val cachedThreadString: ThreadLocal<String> = ThreadLocal()
 

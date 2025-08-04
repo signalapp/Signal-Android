@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    Log.initialize(AndroidLogger())
+    Log.initialize(AndroidLogger)
 
     val startPlaybackScreen = { saveChoice: Boolean -> proceed(Screen.TEST_PLAYBACK, saveChoice) }
     val startTranscodeScreen = { saveChoice: Boolean -> proceed(Screen.TEST_TRANSCODE, saveChoice) }

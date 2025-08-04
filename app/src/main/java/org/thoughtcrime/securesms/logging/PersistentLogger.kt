@@ -25,9 +25,7 @@ import java.util.Locale
  * - Main thread creates a [LogRequest] object and puts it in a queue
  * - The [WriteThread] constantly pulls from that queue, formats the logs, and writes them to the database.
  */
-class PersistentLogger(
-  application: Application
-) : Log.Logger() {
+class PersistentLogger private constructor(application: Application) : Log.Logger() {
 
   companion object {
     private const val LOG_V = "V"
@@ -35,6 +33,22 @@ class PersistentLogger(
     private const val LOG_I = "I"
     private const val LOG_W = "W"
     private const val LOG_E = "E"
+
+    @Volatile
+    private var instance: PersistentLogger? = null
+
+    @JvmStatic
+    fun getInstance(application: Application): PersistentLogger {
+      if (instance == null) {
+        synchronized(PersistentLogger::class.java) {
+          if (instance == null) {
+            instance = PersistentLogger(application)
+          }
+        }
+      }
+
+      return requireNotNull(instance)
+    }
   }
 
   private val logEntries = LogRequests()

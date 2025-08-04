@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
       emptyMap()
     )
 
-    Log.initialize(AndroidLogger(), SpinnerLogger())
+    Log.initialize(AndroidLogger, SpinnerLogger)
 
     object : Thread() {
       override fun run() {

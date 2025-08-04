@@ -334,7 +334,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
 
   @VisibleForTesting
   protected void initializeLogging() {
-    Log.initialize(RemoteConfig::internalUser, new AndroidLogger(), new PersistentLogger(this));
+    Log.initialize(RemoteConfig::internalUser, AndroidLogger.INSTANCE, PersistentLogger.getInstance(this));
 
     SignalProtocolLoggerProvider.setProvider(new CustomSignalProtocolLogger());
     SignalProtocolLoggerProvider.initializeLogging(BuildConfig.LIBSIGNAL_LOG_LEVEL);

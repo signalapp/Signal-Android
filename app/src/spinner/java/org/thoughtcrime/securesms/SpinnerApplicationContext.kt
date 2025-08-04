@@ -87,7 +87,7 @@ class SpinnerApplicationContext : ApplicationContext() {
       )
     )
 
-    Log.initialize({ RemoteConfig.internalUser }, AndroidLogger(), PersistentLogger(this), SpinnerLogger())
+    Log.initialize({ RemoteConfig.internalUser }, AndroidLogger, PersistentLogger.getInstance(this), SpinnerLogger)
 
     DatabaseMonitor.initialize(object : QueryMonitor {
       override fun onSql(sql: String, args: Array<Any>?) {

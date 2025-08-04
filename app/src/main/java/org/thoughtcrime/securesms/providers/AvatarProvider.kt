@@ -78,7 +78,7 @@ class AvatarProvider : BaseContentProvider() {
 
     SignalStore.init(application)
 
-    Log.initialize(RemoteConfig::internalUser, AndroidLogger(), PersistentLogger(application))
+    Log.initialize(RemoteConfig::internalUser, AndroidLogger, PersistentLogger.getInstance(application))
 
     if (!AppDependencies.isInitialized) {
       Log.i(TAG, "Initializing AppDependencies.")
