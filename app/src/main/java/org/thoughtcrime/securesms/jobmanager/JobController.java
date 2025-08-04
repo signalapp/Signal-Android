@@ -354,6 +354,7 @@ class JobController {
     List<JobSpec>        jobs         = jobStorage.debugGetJobSpecs(1000);
     List<ConstraintSpec> constraints  = jobStorage.debugGetConstraintSpecs(1000);
     List<DependencySpec> dependencies = jobStorage.debugGetAllDependencySpecs();
+    String               additional   = jobStorage.debugAdditionalDetails();
 
     StringBuilder info = new StringBuilder();
 
@@ -374,6 +375,13 @@ class JobController {
     info.append("\n-- Dependencies\n");
     if (!dependencies.isEmpty()) {
       Stream.of(dependencies).forEach(d -> info.append(d.toString()).append('\n'));
+    } else {
+      info.append("None\n");
+    }
+
+    info.append("\n-- Additional Details\n");
+    if (additional != null) {
+      info.append(additional).append('\n');
     } else {
       info.append("None\n");
     }

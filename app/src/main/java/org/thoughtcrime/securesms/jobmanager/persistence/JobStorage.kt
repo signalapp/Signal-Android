@@ -67,4 +67,7 @@ interface JobStorage {
 
   @WorkerThread
   fun debugGetAllDependencySpecs(): List<DependencySpec>
+
+  @WorkerThread
+  fun debugAdditionalDetails(): String?
 }
