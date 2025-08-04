@@ -50,6 +50,7 @@ public class FcmJobService extends JobService {
 
       if (success) {
         Log.i(TAG, "Successfully retrieved messages.");
+        FcmFetchManager.cancelMayHaveMessagesNotification(this);
         jobFinished(params, false);
       } else {
         Log.w(TAG, "Failed to retrieve messages. Scheduling a retry.");

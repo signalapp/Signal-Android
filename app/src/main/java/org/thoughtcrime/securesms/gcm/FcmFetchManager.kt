@@ -98,7 +98,8 @@ object FcmFetchManager {
       .notify(NotificationIds.MAY_HAVE_MESSAGES_NOTIFICATION_ID, mayHaveMessagesNotification)
   }
 
-  private fun cancelMayHaveMessagesNotification(context: Context) {
+  @JvmStatic
+  fun cancelMayHaveMessagesNotification(context: Context) {
     NotificationManagerCompat.from(context).cancel(NotificationIds.MAY_HAVE_MESSAGES_NOTIFICATION_ID)
   }
 
