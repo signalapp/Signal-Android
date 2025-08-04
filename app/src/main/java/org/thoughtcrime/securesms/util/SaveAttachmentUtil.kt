@@ -226,7 +226,7 @@ object SaveAttachmentUtil {
       contentType.startsWith("video/") -> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), "Signal")
       contentType.startsWith("audio/") -> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MUSIC), "Signal")
       contentType.startsWith("image/") -> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES), "Signal")
-      else -> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "Signal")
+      else -> File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS), "Signal")
     }
 
     return storage?.let { ensureExternalPath(storage) }?.absolutePath
