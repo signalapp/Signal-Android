@@ -8,6 +8,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logD
 import org.signal.core.util.logging.logI
 import org.signal.core.util.logging.logW
+import org.signal.core.util.toByteArray
 import org.signal.libsignal.protocol.InvalidKeyException
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.thoughtcrime.securesms.backup.BackupFileIOError
@@ -34,6 +35,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
 import java.io.IOException
+import java.nio.ByteBuffer
 import java.nio.charset.StandardCharsets
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
@@ -44,6 +46,7 @@ import kotlin.time.Duration.Companion.milliseconds
 object LinkDeviceRepository {
 
   private val TAG = Log.tag(LinkDeviceRepository::class)
+  private const val DECRYPTION_INFO = "deviceCreatedAt"
 
   fun removeDevice(deviceId: Int): Boolean {
     return when (val result = AppDependencies.linkDeviceApi.removeDevice(deviceId)) {
@@ -75,18 +78,20 @@ object LinkDeviceRepository {
     }
   }
 
-  fun WaitForLinkedDeviceResponse.getPlaintextDeviceName(): String {
+  fun WaitForLinkedDeviceResponse.getPlaintextDevice(): Device {
     val response = this
     return DeviceInfo().apply {
       id = response.id
       name = response.name
-      created = response.created
       lastSeen = response.lastSeen
-    }.toDevice().name ?: ""
+      registrationId = response.registrationId
+      createdAtCiphertext = response.createdAtCiphertext
+    }.toDevice()
   }
 
   private fun DeviceInfo.toDevice(): Device {
-    val defaultDevice = Device(getId(), getName(), getCreated(), getLastSeen())
+    val createdAt = this.getPlaintextCreatedAt()
+    val defaultDevice = Device(getId(), getName(), createdAt, getLastSeen(), getRegistrationId())
     try {
       if (getName().isNullOrEmpty() || getName().length < 4) {
         Log.w(TAG, "Invalid DeviceInfo name.")
@@ -105,11 +110,26 @@ object LinkDeviceRepository {
         return defaultDevice
       }
 
-      return Device(getId(), String(plaintext), getCreated(), getLastSeen())
+      return Device(getId(), String(plaintext), createdAt, getLastSeen(), getRegistrationId())
     } catch (e: Exception) {
       Log.w(TAG, "Failed while reading the protobuf.", e)
     }
     return defaultDevice
+  }
+
+  private fun DeviceInfo.getPlaintextCreatedAt(): Long? {
+    return try {
+      val associatedData = byteArrayOf(getId().toByte()) + getRegistrationId().toByteArray()
+      val createdAtPlaintext = SignalStore.account.aciIdentityKey.privateKey.open(
+        ciphertext = Base64.decode(getCreatedAtCiphertext().toByteArray()),
+        info = DECRYPTION_INFO,
+        associatedData = associatedData
+      )
+      ByteBuffer.wrap(createdAtPlaintext).getLong()
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed while reading the protobuf.", e)
+      null
+    }
   }
 
   fun isValidQr(uri: Uri): Boolean {
@@ -254,7 +274,7 @@ object LinkDeviceRepository {
   /**
    * Performs the entire process of creating and uploading an archive for a newly-linked device.
    */
-  fun createAndUploadArchive(ephemeralMessageBackupKey: MessageBackupKey, deviceId: Int, deviceCreatedAt: Long, cancellationSignal: () -> Boolean): LinkUploadArchiveResult {
+  fun createAndUploadArchive(ephemeralMessageBackupKey: MessageBackupKey, deviceId: Int, deviceRegistrationId: Int, cancellationSignal: () -> Boolean): LinkUploadArchiveResult {
     Log.d(TAG, "[createAndUploadArchive] Beginning process.")
     val stopwatch = Stopwatch("link-archive")
     val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
@@ -283,7 +303,7 @@ object LinkDeviceRepository {
 
     if (cancellationSignal()) {
       Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
-      sendTransferArchiveError(deviceId, deviceCreatedAt, TransferArchiveError.RELINK_REQUESTED)
+      sendTransferArchiveError(deviceId, deviceRegistrationId, TransferArchiveError.RELINK_REQUESTED)
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
@@ -308,7 +328,7 @@ object LinkDeviceRepository {
 
     if (cancellationSignal()) {
       Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
-      sendTransferArchiveError(deviceId, deviceCreatedAt, TransferArchiveError.RELINK_REQUESTED)
+      sendTransferArchiveError(deviceId, deviceRegistrationId, TransferArchiveError.RELINK_REQUESTED)
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
@@ -322,7 +342,7 @@ object LinkDeviceRepository {
 
     if (cancellationSignal()) {
       Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
-      sendTransferArchiveError(deviceId, deviceCreatedAt, TransferArchiveError.RELINK_REQUESTED)
+      sendTransferArchiveError(deviceId, deviceRegistrationId, TransferArchiveError.RELINK_REQUESTED)
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
@@ -336,7 +356,7 @@ object LinkDeviceRepository {
 
     if (cancellationSignal()) {
       Log.i(TAG, "[createAndUploadArchive] Backup was cancelled.")
-      sendTransferArchiveError(deviceId, deviceCreatedAt, TransferArchiveError.RELINK_REQUESTED)
+      sendTransferArchiveError(deviceId, deviceRegistrationId, TransferArchiveError.RELINK_REQUESTED)
       return LinkUploadArchiveResult.BackupCreationCancelled
     }
 
@@ -344,7 +364,7 @@ object LinkDeviceRepository {
     val transferSetResult = NetworkResult.withRetry {
       SignalNetwork.linkDevice.setTransferArchive(
         destinationDeviceId = deviceId,
-        destinationDeviceCreated = deviceCreatedAt,
+        destinationDeviceRegistrationId = deviceRegistrationId,
         cdn = uploadForm.cdn,
         cdnKey = uploadForm.key
       )
@@ -402,10 +422,10 @@ object LinkDeviceRepository {
   /**
    * If [createAndUploadArchive] is cancelled or fails to upload an archive, alert the linked device of the failure and if the user will try again
    */
-  fun sendTransferArchiveError(deviceId: Int, deviceCreatedAt: Long, error: TransferArchiveError) {
+  fun sendTransferArchiveError(deviceId: Int, deviceRegistrationId: Int, error: TransferArchiveError) {
     val archiveErrorResult = SignalNetwork.linkDevice.setTransferArchiveError(
       destinationDeviceId = deviceId,
-      destinationDeviceCreated = deviceCreatedAt,
+      destinationDeviceRegistrationId = deviceRegistrationId,
       error = error
     )
 

@@ -149,7 +149,7 @@ private fun DeviceListScreenLinkingPreview() {
   Previews.Preview {
     EditNameScreen(
       state = LinkDeviceSettingsState(
-        deviceToEdit = Device(1, "Laptop", 0, 0)
+        deviceToEdit = Device(1, "Laptop", 0, 0, 0)
       )
     )
   }

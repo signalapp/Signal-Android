@@ -166,10 +166,10 @@ class LinkDeviceApi(
    * - 422: Bad inputs.
    * - 429: Rate-limited.
    */
-  fun setTransferArchive(destinationDeviceId: Int, destinationDeviceCreated: Long, cdn: Int, cdnKey: String): NetworkResult<Unit> {
+  fun setTransferArchive(destinationDeviceId: Int, destinationDeviceRegistrationId: Int, cdn: Int, cdnKey: String): NetworkResult<Unit> {
     val body = SetLinkedDeviceTransferArchiveRequest(
       destinationDeviceId = destinationDeviceId,
-      destinationDeviceCreated = destinationDeviceCreated,
+      destinationDeviceRegistrationId = destinationDeviceRegistrationId,
       transferArchive = SetLinkedDeviceTransferArchiveRequest.TransferArchive.CdnInfo(
         cdn = cdn,
         key = cdnKey
@@ -189,10 +189,10 @@ class LinkDeviceApi(
    * - 422: Bad inputs.
    * - 429: Rate-limited.
    */
-  fun setTransferArchiveError(destinationDeviceId: Int, destinationDeviceCreated: Long, error: TransferArchiveError): NetworkResult<Unit> {
+  fun setTransferArchiveError(destinationDeviceId: Int, destinationDeviceRegistrationId: Int, error: TransferArchiveError): NetworkResult<Unit> {
     val body = SetLinkedDeviceTransferArchiveRequest(
       destinationDeviceId = destinationDeviceId,
-      destinationDeviceCreated = destinationDeviceCreated,
+      destinationDeviceRegistrationId = destinationDeviceRegistrationId,
       transferArchive = SetLinkedDeviceTransferArchiveRequest.TransferArchive.Error(error)
     )
     val request = WebSocketRequestMessage.put("/v1/devices/transfer_archive", body)
