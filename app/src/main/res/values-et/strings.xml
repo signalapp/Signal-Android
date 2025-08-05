@@ -7736,7 +7736,7 @@
     <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
     <string name="VerifyBackupKey__title">Kinnita oma varukoopia võti</string>
     <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">Võtme meeldejätmise aitamiseks palume sul seda aeg-ajalt sisestada.</string>
+    <string name="VerifyBackupKey__body">Selleks, et sul võti lihtsamini meelde jääks, palume sul seda aeg-ajalt sisestada.</string>
     <!-- Button of a megaphone that will take users to the verify backup key screen -->
     <string name="VerifyBackupKey__verify">Kinnita</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
@@ -8421,7 +8421,7 @@
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Tühista võtme loomine?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Uut varukoopia võtit ei looda enne, kui sa seda kinnitad.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Uut varukoopia võtit ei looda enne, kui sa selle kinnitad.</string>
     <!-- Dialog button to continue confirming new backup key-->
     <string name="BackupKeyDisplayFragment__confirm_key">Kinnita võti</string>
     <!-- Dialog button to cancel new key creation -->
@@ -8457,7 +8457,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Telli</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Vali tasuta pakett</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Telli hinnaga %1$s kuus</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->

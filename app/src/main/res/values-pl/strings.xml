@@ -3966,7 +3966,7 @@
     <string name="webrtc_answer_decline_button__swipe_down_to_reject">Przesuń w dół, aby odrzucić</string>
 
     <!-- message_details_header -->
-    <string name="message_details_header__issues_need_your_attention">Niektóre kwestie wymagają Twojej uwagi.</string>
+    <string name="message_details_header__issues_need_your_attention">Są rzeczy, które wymagają Twojej uwagi.</string>
     <string name="message_details_header_sent">Wysłano</string>
     <string name="message_details_header_received">Odebrano</string>
     <string name="message_details_header_disappears">Zniknie</string>
@@ -4125,7 +4125,7 @@
     <string name="preferences__screen_security">Ochrona ekranu</string>
     <string name="preferences__auto_lock_signal_after_a_specified_time_interval_of_inactivity">Automatycznie blokuj Signal po określonym czasie bezczynności</string>
     <!-- Legacy preference menu item to enable locking of app after inactivity -->
-    <string name="preferences__inactivity_timeout_passphrase">Blokowanie hasłem w razie bezczynności</string>
+    <string name="preferences__inactivity_timeout_passphrase">Blokuj hasłem w razie bezczynności</string>
     <!-- Legacy preference menu item to choose the interval of inactivity before lockout -->
     <string name="preferences__inactivity_timeout_interval">Czas bezczynności, po którym włącza się blokada</string>
     <string name="preferences__notifications">Powiadomienia</string>
@@ -4169,11 +4169,11 @@
     <string name="preferences__mms_user_agent">MMS User Agent</string>
     <string name="preferences__advanced_mms_access_point_names">Ręczne ustawienia MMS</string>
     <string name="preferences__mmsc_url">Adres URL MMSC</string>
-    <string name="preferences__mms_proxy_host">Host Proxy MMSa</string>
+    <string name="preferences__mms_proxy_host">Host proxy MMS</string>
     <string name="preferences__mms_proxy_port">Port proxy MMS</string>
     <string name="preferences__mmsc_username">Nazwa użytkownika MMSC</string>
     <string name="preferences__mmsc_password">Hasło MMSC</string>
-    <string name="preferences__sms_delivery_reports">Raporty o dostarczaniu SMS-ów</string>
+    <string name="preferences__sms_delivery_reports">Raporty o dostarczeniu SMS-ów</string>
     <string name="preferences__request_a_delivery_report_for_each_sms_message_you_send">Otrzymuj raporty o dostarczeniu każdego wysłanego SMS-a</string>
     <string name="preferences__data_and_storage">Dane i pamięć</string>
     <string name="preferences__storage">Pamięć</string>
@@ -4289,7 +4289,7 @@
     <string name="preferences_data_and_storage__never">Nigdy</string>
     <string name="preferences_data_and_storage__wifi_and_mobile_data">Wi-Fi i dane mobilne</string>
     <string name="preferences_data_and_storage__mobile_data_only">Tylko dane mobilne</string>
-    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Użycie mniejszej ilości danych może poprawić jakość połączeń w sieciach ze słabym sygnałem</string>
+    <string name="preference_data_and_storage__using_less_data_may_improve_calls_on_bad_networks">Mniejsze zużycie danych może poprawić jakość połączeń w sieciach ze słabym sygnałem</string>
     <string name="preferences_notifications__in_chat_sounds">Dźwięki podczas czatu</string>
     <string name="preferences_notifications__show">Pokaż</string>
     <string name="preferences_notifications__ringtone">Dzwonek</string>
@@ -4304,7 +4304,7 @@
     <string name="preferences_communication__censorship_circumvention">Obchodzenie cenzury</string>
     <string name="preferences_communication__censorship_circumvention_if_enabled_signal_will_attempt_to_circumvent_censorship">Gdy ta opcja jest włączona, Signal w miarę możliwości korzysta z mechanizmów obchodzenia cenzury. Nie włączaj tej opcji, jeśli znajdujesz się w miejscu, w którym aplikacja Signal nie jest blokowana.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that we automatically enabled it because we believe you\'re in a censored country -->
-    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Obchodzenie cenzury zostało włączone na podstawie numeru telefonu na Twoim koncie.</string>
+    <string name="preferences_communication__censorship_circumvention_has_been_activated_based_on_your_accounts_phone_number">Na podstawie numeru telefonu na Twoim koncie zostało włączone obchodzenie cenzury.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you disabled it even though we believe you\'re in a censored country -->
     <string name="preferences_communication__censorship_circumvention_you_have_manually_disabled">Obchodzenie cenzury zostało przez Ciebie wyłączone.</string>
     <!-- Summary text for \'censorship circumvention\' toggle. Indicates that you cannot use it because you\'re already connected to the Signal service -->
@@ -4319,7 +4319,7 @@
     <string name="preferences_off">Wyłączone</string>
     <string name="preferences_on">Włączone</string>
     <string name="preferences_proxy_address">Adres proxy</string>
-    <string name="preferences_only_use_a_proxy_if">Używaj proxy tylko wtedy, gdy nie możesz połączyć się z usługą Signal przez sieć komórkową ani Wi-Fi.</string>
+    <string name="preferences_only_use_a_proxy_if">Używaj proxy tylko wtedy, gdy nie możesz się połączyć z usługą Signal przez sieć komórkową ani Wi-Fi.</string>
     <string name="preferences_share">Udostępnij</string>
     <string name="preferences_save">Zapisz</string>
     <string name="preferences_connecting_to_proxy">Łączenie z serwerem proxy…</string>
@@ -4372,8 +4372,8 @@
     <string name="PaymentsHomeFragment__recovery_phrase">Fraza odzyskiwania</string>
     <string name="PaymentsHomeFragment__help">Pomoc</string>
     <string name="PaymentsHomeFragment__coin_cleanup_fee">Opłata coin cleanup</string>
-    <string name="PaymentsHomeFragment__sent_payment">Wysłana płatność</string>
-    <string name="PaymentsHomeFragment__received_payment">Otrzymana płatność</string>
+    <string name="PaymentsHomeFragment__sent_payment">Płatność wysłana</string>
+    <string name="PaymentsHomeFragment__received_payment">Płatność otrzymana</string>
     <string name="PaymentsHomeFragment__processing_payment">Przetwarzanie płatności</string>
     <string name="PaymentsHomeFragment__unknown_amount">---</string>
     <string name="PaymentsHomeFragment__currency_conversion_not_available">Wymiana waluty niedostępna</string>
@@ -4381,7 +4381,7 @@
     <string name="PaymentsHomeFragment__payments_is_not_available_in_your_region">Płatności nie są dostępne w Twoim regionie.</string>
     <string name="PaymentsHomeFragment__could_not_enable_payments">Nie udało się włączyć płatności. Spróbuj ponownie później.</string>
     <string name="PaymentsHomeFragment__deactivate_payments_question">Zdezaktywować płatności?</string>
-    <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Jeśli zdezaktywujesz płatności, nie będziesz już mieć możliwości wysyłania ani otrzymywania MobileCoin w aplikacji Signal.</string>
+    <string name="PaymentsHomeFragment__you_will_not_be_able_to_send">Jeśli zdezaktywujesz płatności, nie będziesz już mieć możliwości wysyłania ani otrzymywania waluty MobileCoin w aplikacji Signal.</string>
     <string name="PaymentsHomeFragment__deactivate">Zdezaktywuj</string>
     <string name="PaymentsHomeFragment__continue">Kontynuuj</string>
     <string name="PaymentsHomeFragment__balance_is_not_currently_available">Informacja o środkach jest obecnie niedostępna.</string>
@@ -4496,12 +4496,12 @@
     <string name="PaymentsDetailsFragment__from">Nadawca:</string>
     <string name="PaymentsDetailsFragment__information">Szczegóły transakcji, uwzględniające kwotę i czas transakcji, są częścią rejestru waluty MobileCoin.</string>
     <string name="PaymentsDetailsFragment__coin_cleanup_fee">Opłata coin cleanup</string>
-    <string name="PaymentsDetailsFragment__coin_cleanup_information">Opłata za tzw. uporządkowanie coinów (ang. coin cleanup) jest naliczana, gdy Twoich coinów nie można ze sobą połączyć, aby dokończyć transakcję. Po ich uporządkowaniu możesz znów wysyłać płatności.</string>
+    <string name="PaymentsDetailsFragment__coin_cleanup_information">Opłata za tzw. uporządkowanie coinów (ang. coin cleanup) jest naliczana, gdy Twoich coinów nie można ze sobą połączyć, aby przeprowadzić transakcję. Po ich uporządkowaniu możesz znów wysyłać płatności.</string>
     <string name="PaymentsDetailsFragment__no_details_available">Dodatkowe szczegóły transakcji niedostępne</string>
   <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__information" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details</string> -->
   <!-- Removed by excludeNonTranslatables <string name="PaymentsDetailsFragment__learn_more__cleanup_fee" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_details_fees</string> -->
-    <string name="PaymentsDetailsFragment__sent_payment">Wysłana płatność</string>
-    <string name="PaymentsDetailsFragment__received_payment">Otrzymana płatność</string>
+    <string name="PaymentsDetailsFragment__sent_payment">Płatność wysłana</string>
+    <string name="PaymentsDetailsFragment__received_payment">Płatność otrzymana</string>
     <string name="PaymentsDeatilsFragment__payment_completed_s">Płatność zrealizowana %1$s</string>
     <string name="PaymentsDetailsFragment__block_number">Zablokuj numer</string>
 
@@ -4571,8 +4571,8 @@
     <string name="ConfirmPaymentFragment__you_enabled_payment_lock_in_the_settings">W ustawieniach włączono blokadę płatności, ale nie udało się jej wyświetlić.</string>
     <!-- Button in a dialog that will take the user to the privacy settings -->
     <string name="ConfirmPaymentFragment__go_to_settings">Przejdź do ustawień</string>
-    <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ta osoba nie aktywowała płatności</string>
-    <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Nie można naliczyć opłaty sieciowej. Aby ponownie spróbować wysłać płatność, naciśnij „OK”.</string>
+    <string name="ConfirmPaymentFragment__this_person_has_not_activated_payments">Ta osoba nie ma aktywnych płatności</string>
+    <string name="ConfirmPaymentFragment__unable_to_request_a_network_fee">Nie można naliczyć opłaty sieciowej. Aby spróbować ponownie wysłać płatność, naciśnij „OK”.</string>
 
     <!-- BiometricDeviceAuthentication -->
     <!-- Biometric/Device authentication prompt title -->
@@ -4836,7 +4836,7 @@
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Podaj swój PIN</string>
-    <string name="RegistrationLockFragment__enter_the_pin_you_created">Podaj PIN utworzony na Twoim koncie. PIN to nie to samo, co kod weryfikacyjny otrzymany SMS-em.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created">Podaj PIN utworzony na swoim koncie. PIN to nie to samo, co kod weryfikacyjny otrzymany SMS-em.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Wprowadź kod PIN utworzony dla tego konta.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
@@ -4845,7 +4845,7 @@
     <string name="RegistrationLockFragment__forgot_pin">Nie pamiętasz PIN-u?</string>
     <string name="RegistrationLockFragment__incorrect_pin">Niepoprawny PIN</string>
     <string name="RegistrationLockFragment__forgot_your_pin">Nie pamiętasz PIN-u?</string>
-    <string name="RegistrationLockFragment__not_many_tries_left">Zostało Ci niewiele prób!</string>
+    <string name="RegistrationLockFragment__not_many_tries_left">Zostało Ci niewiele prób</string>
     <string name="RegistrationLockFragment__signal_registration_need_help_with_pin_for_android_v2_pin">Rejestracja w aplikacji Signal – potrzebna pomoc z PIN-em w systemie Android (PIN v2)</string>
 
     <plurals name="RegistrationLockFragment__for_your_privacy_and_security_there_is_no_way_to_recover">
@@ -4941,7 +4941,7 @@
     <string name="RegistrationActivity_backup_failure_downgrade">Import kopii zapasowej z nowszej wersji nie udał się</string>
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
     <string name="RegistrationActivity_backup_failure_foreign_key">Kopia zapasowa zawiera zniekształcone dane</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Hasło kopii zapasowej niepoprawne</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Hasło do kopii zapasowej niepoprawne</string>
     <string name="RegistrationActivity_checking">Sprawdzanie…</string>
     <string name="RegistrationActivity_d_messages_so_far">Już %1$d wiadomości…</string>
     <string name="RegistrationActivity_restore_from_backup">Przywrócić kopię zapasową?</string>
@@ -4962,8 +4962,8 @@
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Podaj hasło do kopii zapasowej, aby je zweryfikować</string>
     <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Zweryfikuj</string>
-    <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Hasło do kopii zapasowej jest poprawne</string>
-    <string name="BackupDialog_passphrase_was_not_correct">Hasło jest niepoprawne</string>
+    <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Hasło do kopii zapasowej poprawne</string>
+    <string name="BackupDialog_passphrase_was_not_correct">Hasło niepoprawne</string>
     <string name="LocalBackupJob_creating_signal_backup">Tworzenie kopii zapasowej Signal…</string>
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
     <string name="LocalBackupJob_verifying_signal_backup">Sprawdzanie kopii zapasowej Signal…</string>
@@ -5037,7 +5037,7 @@
     <string name="RegistrationActivity_your_pin_has_at_least_d_digits_or_characters">PIN składa się z co najmniej %1$d cyfr lub liter</string>
     <string name="RegistrationActivity_too_many_attempts">Zbyt wiele prób</string>
     <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Zbyt wiele nieudanych prób podania PIN-u do blokady rejestracji. Spróbuj ponownie jutro.</string>
-    <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Zbyt dużo prób. Spróbuj ponownie później.</string>
+    <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Zbyt wiele prób. Spróbuj ponownie później.</string>
     <string name="RegistrationActivity_error_connecting_to_service">Błąd podczas łączenia się z usługą</string>
     <string name="preferences_chats__backups">Kopie zapasowe</string>
 
@@ -8817,7 +8817,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Wybierz ten tryb</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Wybierz darmowy tryb</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Subskrybuj za %1$s/mies.</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
