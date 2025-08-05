@@ -6,6 +6,7 @@ import io.mockk.mockk
 import io.mockk.mockkStatic
 import io.mockk.runs
 import io.mockk.slot
+import io.mockk.unmockkAll
 import io.mockk.verify
 import io.reactivex.rxjava3.plugins.RxJavaPlugins
 import io.reactivex.rxjava3.schedulers.TestScheduler
@@ -44,6 +45,7 @@ class StoriesTest {
   @After
   fun tearDown() {
     RxJavaPlugins.reset()
+    unmockkAll()
   }
 
   @Test

@@ -10,7 +10,9 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.mockkStatic
+import io.mockk.unmockkAll
 import io.mockk.verify
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -93,6 +95,11 @@ class InAppPaymentRecurringContextJobTest {
       every { receiptLevel } returns 2000
       every { receiptExpirationTime } returns actualMinimumTime
     }
+  }
+
+  @After
+  fun tearDown() {
+    unmockkAll()
   }
 
   @Test

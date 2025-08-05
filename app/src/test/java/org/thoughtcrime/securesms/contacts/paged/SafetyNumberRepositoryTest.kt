@@ -5,8 +5,10 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.mockkStatic
+import io.mockk.unmockkAll
 import io.mockk.verify
 import io.reactivex.rxjava3.core.Single
+import org.junit.After
 import org.junit.Before
 import org.junit.BeforeClass
 import org.junit.Rule
@@ -88,6 +90,11 @@ class SafetyNumberRepositoryTest {
     }
 
     every { Recipient.self() } returns recipientPool[0]
+  }
+
+  @After
+  fun tearDown() {
+    unmockkAll()
   }
 
   /**
