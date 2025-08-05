@@ -360,6 +360,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
         RemoteRestoreResult.Success -> _state.value = _state.value.copy(statusMessage = "Import complete!")
         RemoteRestoreResult.Canceled,
         RemoteRestoreResult.Failure,
+        RemoteRestoreResult.PermanentSvrBFailure,
         RemoteRestoreResult.NetworkError -> {
           _state.value = _state.value.copy(statusMessage = "Import failed! $result")
         }

@@ -27,6 +27,11 @@ interface ContactSupportCallbacks {
     override fun submitWithoutDebuglog() = Unit
     override fun cancel() = Unit
   }
+
+  fun interface StringForReason<Reason> {
+    @StringRes
+    operator fun invoke(reason: Reason?): Int
+  }
 }
 
 /**
@@ -58,23 +63,23 @@ fun ContactSupportDialog(
  * sending an email when ready.
  */
 @Composable
-fun SendSupportEmailEffect(
-  contactSupportState: ContactSupportViewModel.ContactSupportState,
-  @StringRes subjectRes: Int,
-  @StringRes filterRes: Int,
+fun <Reason> SendSupportEmailEffect(
+  contactSupportState: ContactSupportViewModel.ContactSupportState<Reason>,
+  subjectRes: ContactSupportCallbacks.StringForReason<Reason>,
+  filterRes: ContactSupportCallbacks.StringForReason<Reason>,
   hide: () -> Unit
 ) {
   val context = LocalContext.current
   LaunchedEffect(contactSupportState.sendEmail) {
     if (contactSupportState.sendEmail) {
-      val subject = context.getString(subjectRes)
+      val subject = context.getString(subjectRes(contactSupportState.reason))
       val prefix = if (contactSupportState.debugLogUrl != null) {
         "\n${context.getString(R.string.HelpFragment__debug_log)} ${contactSupportState.debugLogUrl}\n\n"
       } else {
         ""
       }
 
-      val body = SupportEmailUtil.generateSupportEmailBody(context, filterRes, prefix, null)
+      val body = SupportEmailUtil.generateSupportEmailBody(context, filterRes(contactSupportState.reason), prefix, null)
       CommunicationActions.openEmail(context, SupportEmailUtil.getSupportEmailAddress(context), subject, body)
       hide()
     }

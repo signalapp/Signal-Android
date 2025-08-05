@@ -17,18 +17,21 @@ import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 
 /**
  * Intended to be used to drive [ContactSupportDialog].
+ *
+ * @param Reason A type that can be supplied as the reason for showing the dialog when you invoke [showContactSupport]. Useful for when you may want to show
+ *   the option for different reasons. Will be given back to you, if set, via [state] in [ContactSupportState.reason].
  */
-class ContactSupportViewModel(
+class ContactSupportViewModel<Reason>(
   val showInitially: Boolean = false
 ) : ViewModel(), ContactSupportCallbacks {
   private val submitDebugLogRepository: SubmitDebugLogRepository = SubmitDebugLogRepository()
 
-  private val store: MutableStateFlow<ContactSupportState> = MutableStateFlow(ContactSupportState(show = showInitially))
+  private val store: MutableStateFlow<ContactSupportState<Reason>> = MutableStateFlow(ContactSupportState(show = showInitially))
 
-  val state: StateFlow<ContactSupportState> = store.asStateFlow()
+  val state: StateFlow<ContactSupportState<Reason>> = store.asStateFlow()
 
-  fun showContactSupport() {
-    store.update { it.copy(show = true) }
+  fun showContactSupport(reason: Reason? = null) {
+    store.update { it.copy(show = true, reason = reason) }
   }
 
   fun hideContactSupport() {
@@ -60,10 +63,11 @@ class ContactSupportViewModel(
     hideContactSupport()
   }
 
-  data class ContactSupportState(
+  data class ContactSupportState<Reason>(
     val show: Boolean = false,
     val showAsProgress: Boolean = false,
     val sendEmail: Boolean = false,
-    val debugLogUrl: String? = null
+    val debugLogUrl: String? = null,
+    val reason: Reason? = null
   )
 }

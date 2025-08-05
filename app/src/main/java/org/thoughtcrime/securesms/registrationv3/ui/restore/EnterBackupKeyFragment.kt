@@ -45,7 +45,7 @@ class EnterBackupKeyFragment : ComposeFragment() {
 
   private val sharedViewModel by activityViewModels<RegistrationViewModel>()
   private val viewModel by viewModels<EnterBackupKeyViewModel>()
-  private val contactSupportViewModel: ContactSupportViewModel by viewModels()
+  private val contactSupportViewModel: ContactSupportViewModel<Unit> by viewModels()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -79,12 +79,12 @@ class EnterBackupKeyFragment : ComposeFragment() {
   override fun FragmentContent() {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val sharedState by sharedViewModel.state.collectAsStateWithLifecycle()
-    val contactSupportState: ContactSupportViewModel.ContactSupportState by contactSupportViewModel.state.collectAsStateWithLifecycle()
+    val contactSupportState: ContactSupportViewModel.ContactSupportState<Unit> by contactSupportViewModel.state.collectAsStateWithLifecycle()
 
     SendSupportEmailEffect(
       contactSupportState = contactSupportState,
-      subjectRes = R.string.EnterBackupKey_network_failure_support_email,
-      filterRes = R.string.EnterBackupKey_network_failure_support_email_filter
+      subjectRes = { R.string.EnterBackupKey_network_failure_support_email },
+      filterRes = { R.string.EnterBackupKey_network_failure_support_email_filter }
     ) {
       contactSupportViewModel.hideContactSupport()
     }

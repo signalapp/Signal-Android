@@ -2178,6 +2178,9 @@ sealed interface RemoteRestoreResult {
   data object NetworkError : RemoteRestoreResult
   data object Canceled : RemoteRestoreResult
   data object Failure : RemoteRestoreResult
+
+  /** SVRB has failed in such a way that recovering a backup is impossible. */
+  data object PermanentSvrBFailure : RemoteRestoreResult
 }
 
 sealed interface RestoreTimestampResult {

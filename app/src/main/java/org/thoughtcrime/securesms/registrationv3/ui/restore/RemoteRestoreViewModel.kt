@@ -120,6 +120,11 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
             Log.w(TAG, "Restore failed with $result")
             store.update { it.copy(importState = ImportState.Failed) }
           }
+
+          RemoteRestoreResult.PermanentSvrBFailure -> {
+            Log.w(TAG, "Hit a permanent SVRB error.")
+            store.update { it.copy(importState = ImportState.FailureWithLogPrompt) }
+          }
         }
       }
     }
@@ -181,5 +186,6 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
     data object Restored : ImportState
     data object NetworkFailure : ImportState
     data object Failed : ImportState
+    data object FailureWithLogPrompt : ImportState
   }
 }
