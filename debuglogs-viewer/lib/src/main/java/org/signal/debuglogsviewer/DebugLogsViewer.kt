@@ -47,7 +47,7 @@ object DebugLogsViewer {
   fun presentLines(webview: WebView, lines: String) {
     // Set the debug log lines
     val escaped = JSONObject.quote(lines)
-    webview.evaluateJavascript("editor.insert($escaped);", null)
+    webview.evaluateJavascript("editor.insert($escaped); logLines=$escaped;", null)
   }
 
   @JvmStatic
@@ -61,8 +61,23 @@ object DebugLogsViewer {
   }
 
   @JvmStatic
-  fun onSearch(webview: WebView, query: String) {
+  fun onSearchInput(webview: WebView, query: String) {
     webview.evaluateJavascript("onSearchInput('$query')", null)
+  }
+
+  @JvmStatic
+  fun onSearch(webview: WebView) {
+    webview.evaluateJavascript("onSearch()", null)
+  }
+
+  @JvmStatic
+  fun onFilter(webview: WebView) {
+    webview.evaluateJavascript("onFilter()", null)
+  }
+
+  @JvmStatic
+  fun onFilterClose(webview: WebView) {
+    webview.evaluateJavascript("onFilterClose()", null)
   }
 
   @JvmStatic
@@ -88,10 +103,6 @@ object DebugLogsViewer {
   @JvmStatic
   fun onSearchClose(webview: WebView) {
     webview.evaluateJavascript("onSearchClose();", null)
-  }
-
-  @JvmStatic
-  fun onFilter(webview: WebView) {
   }
 
   @JvmStatic

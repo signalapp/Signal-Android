@@ -61,11 +61,14 @@ public class SubmitDebugLogActivity extends BaseActivity {
   private MenuItem searchMenuItem;
   private MenuItem saveMenuItem;
 
-  private ImageButton        caseSensitiveButton;
-  private TextView           searchPosition;
-  private ImageButton        searchUpButton;
-  private ImageButton        searchDownButton;
+  private ImageButton filterButton;
+  private ImageButton caseSensitiveButton;
+  private TextView    searchPosition;
+  private ImageButton searchUpButton;
+  private ImageButton searchDownButton;
 
+  private boolean isCaseSensitive;
+  private boolean isFiltered;
   private boolean isWebViewLoaded;
   private boolean hasPresentedLines;
 
@@ -101,6 +104,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
     this.saveMenuItem   = menu.findItem(R.id.menu_save);
 
     this.searchNav            = findViewById(R.id.debug_log_search_nav);
+    this.filterButton         = findViewById(R.id.debug_log_filter);
     this.caseSensitiveButton  = findViewById(R.id.case_sensitive_button);
     this.searchPosition       = findViewById(R.id.debug_log_search_position);
     this.searchUpButton       = findViewById(R.id.debug_log_search_up);
@@ -116,15 +120,32 @@ public class SubmitDebugLogActivity extends BaseActivity {
       DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
     });
 
-    boolean[] isCaseSensitive = {false};
-
     caseSensitiveButton.setOnClickListener(v -> {
       DebugLogsViewer.onToggleCaseSensitive(logWebView);
       DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
-      isCaseSensitive[0] = !isCaseSensitive[0];
+      isCaseSensitive = !isCaseSensitive;
 
-      int backgroundColor = isCaseSensitive[0] ? R.drawable.circle_tint_darker : R.drawable.circle_touch_highlight_background;
+      int backgroundColor = isCaseSensitive ? R.drawable.circle_tint_darker : R.drawable.circle_touch_highlight_background;
       caseSensitiveButton.setBackground(getResources().getDrawable(backgroundColor));
+    });
+
+    filterButton.setOnClickListener(v -> {
+      isFiltered = !isFiltered;
+      if (isFiltered) {
+        DebugLogsViewer.onFilter(logWebView);
+        searchPosition.setVisibility(View.GONE);
+        searchUpButton.setVisibility(View.GONE);
+        searchDownButton.setVisibility(View.GONE);
+        filterButton.setBackground(getResources().getDrawable(R.drawable.circle_tint_darker));
+      } else {
+        DebugLogsViewer.onFilterClose(logWebView);
+        searchPosition.setVisibility(View.VISIBLE);
+        searchUpButton.setVisibility(View.VISIBLE);
+        searchDownButton.setVisibility(View.VISIBLE);
+        DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
+        DebugLogsViewer.scrollToTop(logWebView);
+        filterButton.setBackground(getResources().getDrawable(R.drawable.circle_touch_highlight_background));
+      }
     });
 
     SearchView searchView = (SearchView) searchMenuItem.getActionView();
@@ -136,8 +157,13 @@ public class SubmitDebugLogActivity extends BaseActivity {
 
       @Override
       public boolean onQueryTextChange(String query) {
-        DebugLogsViewer.onSearch(logWebView, query);
-        DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
+        DebugLogsViewer.onSearchInput(logWebView, query);
+        if (isFiltered) {
+          DebugLogsViewer.onFilter(logWebView);
+        } else {
+          DebugLogsViewer.onSearch(logWebView);
+          DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
+        }
         return true;
       }
     };
@@ -156,6 +182,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
         searchNav.setVisibility(View.GONE);
         submitButton.setVisibility(View.VISIBLE);
         DebugLogsViewer.onSearchClose(logWebView);
+        DebugLogsViewer.onFilterClose(logWebView);
         DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
         searchView.setOnQueryTextListener(null);
         return true;

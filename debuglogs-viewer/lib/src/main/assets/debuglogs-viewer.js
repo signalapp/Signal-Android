@@ -52,11 +52,13 @@ editor.session.on("changeScrollLeft", showScrollBar);
 const Range = ace.require("ace/range").Range;
 const session = editor.getSession();
 
+let logLines = ""; // Original logLines
 let input = ""; // Search query input
 let markers = []; // IDs of highlighted search markers
 let matchRanges = []; // Ranges of all search matches
 let matchCount = 0; // Total number of matches
 let isCaseSensitive = false;
+let isFiltered = false;
 
 // Clear all search markers and match info
 function clearMarkers() {
@@ -139,10 +141,34 @@ function onSearchClose() {
 
 function onToggleCaseSensitive() {
   isCaseSensitive = !isCaseSensitive;
-  highlightAllMatches(input);
+  (isFiltered) ? onFilter() : highlightAllMatches(input);
 }
 
 function onSearchInput(value) {
   input = value;
+}
+
+function onSearch() {
+  highlightAllMatches(input);
+}
+
+function onFilter() {
+  isFiltered = true;
+  editor.getSelection().clearSelection();
+  clearMarkers();
+  const filtered = logLines
+    .split("\n")
+    .filter((line) => {
+      const newLine = isCaseSensitive ? line : line.toLowerCase();
+      return newLine.includes(isCaseSensitive ? input : input.toLowerCase());
+    })
+    .join("\n");
+
+  editor.setValue(filtered, -1);
+}
+
+function onFilterClose() {
+  isFiltered = false;
+  editor.setValue(logLines, -1);
   highlightAllMatches(input);
 }

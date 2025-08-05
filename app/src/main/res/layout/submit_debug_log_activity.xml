@@ -99,15 +99,32 @@
       tools:visibility="visible">
 
     <ImageButton
+        android:id="@+id/debug_log_filter"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/circle_touch_highlight_background"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="8dp"
+        android:src="@drawable/symbol_filter_24"
+        app:tint="@color/signal_colorOnSurface"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <ImageButton
         android:id="@+id/case_sensitive_button"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/circle_touch_highlight_background"
-        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
         android:padding="8dp"
         android:src="@drawable/symbol_match_case_24"
         app:tint="@color/signal_colorOnSurface"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/debug_log_filter"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent" />
 
