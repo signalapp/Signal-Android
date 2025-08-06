@@ -316,6 +316,23 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     return new PendingRetryReceiptCache();
   }
 
+  private boolean shouldUseLibsignalForWebsocket(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
+    if (RemoteConfig.libSignalWebSocketEnabled()) {
+      if (RemoteConfig.libSignalWebSocketEnabledForProxies()) {
+        return true;
+      } else {
+        // libsignalWebSocketEnabled = true but libsignalWebSocketEnabledForProxies = false
+        if (signalServiceConfiguration.getCensored() ||
+            signalServiceConfiguration.getSignalProxy().isPresent()) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    } else {
+      return false;
+    }
+  }
   @Override
   public @NonNull SignalWebSocket.AuthenticatedWebSocket provideAuthWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier) {
     SleepTimer                   sleepTimer    = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer();
@@ -328,7 +345,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
         throw new WebSocketUnavailableException("Invalid auth credentials");
       }
 
-      if (RemoteConfig.libSignalWebSocketEnabled()) {
+      if (shouldUseLibsignalForWebsocket(signalServiceConfigurationSupplier.get())) {
         Network network = libSignalNetworkSupplier.get();
         return new LibSignalChatConnection("libsignal-auth",
                                            network,
@@ -364,7 +381,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     SignalWebSocketHealthMonitor healthMonitor = new SignalWebSocketHealthMonitor(sleepTimer);
 
     WebSocketFactory unauthFactory = () -> {
-      if (RemoteConfig.libSignalWebSocketEnabled()) {
+      if (shouldUseLibsignalForWebsocket(signalServiceConfigurationSupplier.get())) {
         Network network = libSignalNetworkSupplier.get();
         return new LibSignalChatConnection("libsignal-unauth",
                                            network,
