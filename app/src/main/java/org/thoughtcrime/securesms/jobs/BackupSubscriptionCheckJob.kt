@@ -76,6 +76,12 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
+    if (SignalStore.account.isLinkedDevice) {
+      Log.i(TAG, "Linked device. Clearing mismatch value and exiting.", true)
+      SignalStore.backup.subscriptionStateMismatchDetected = false
+      return Result.success()
+    }
+
     if (!RemoteConfig.messageBackups) {
       Log.i(TAG, "Message backups feature is not available. Clearing mismatch value and exiting.", true)
       SignalStore.backup.subscriptionStateMismatchDetected = false

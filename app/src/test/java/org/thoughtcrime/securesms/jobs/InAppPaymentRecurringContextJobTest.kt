@@ -67,6 +67,7 @@ class InAppPaymentRecurringContextJobTest {
     Log.initialize(SystemOutLogger())
 
     every { mockSignalStore.account.isRegistered } returns true
+    every { mockSignalStore.account.isLinkedDevice } returns false
     every { mockSignalStore.inAppPayments.setLastEndOfPeriod(any()) } returns Unit
 
     recipientTable = mockk(relaxed = true)

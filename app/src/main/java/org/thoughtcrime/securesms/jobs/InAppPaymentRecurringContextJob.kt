@@ -154,6 +154,11 @@ class InAppPaymentRecurringContextJob private constructor(
       throw Exception("Unregistered users cannot perform this job.")
     }
 
+    if (SignalStore.account.isLinkedDevice) {
+      warning("Linked device. Failing.")
+      throw Exception("Linked devices cannot not perform this job")
+    }
+
     val (inAppPayment, requestContext) = getAndValidateInAppPayment()
     val activeSubscription = getActiveSubscription(inAppPayment)
     val subscription = activeSubscription.activeSubscription
