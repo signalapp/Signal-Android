@@ -36,6 +36,7 @@ object BackupAlertDelegate {
         } else if (BackupRepository.shouldDisplayNoManualBackupForTimeoutSheet()) {
           NoManualBackupBottomSheet().show(fragmentManager, FRAGMENT_TAG)
           BackupRepository.displayManualBackupNotCreatedInThresholdNotification()
+        } else if (BackupRepository.shouldDisplayOutOfRemoteStorageSpaceSheet()) {
         }
 
         displayBackupDownloadNotifier(fragmentManager)

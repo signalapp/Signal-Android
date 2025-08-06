@@ -420,7 +420,7 @@ object BackupRepository {
     ServiceUtil.getNotificationManager(AppDependencies.application).cancel(NotificationIds.INITIAL_BACKUP_FAILED)
   }
 
-  fun markOutOfRemoteStorageError() {
+  fun markOutOfRemoteStorageSpaceError() {
     val context = AppDependencies.application
 
     val pendingIntent = PendingIntent.getActivity(context, 0, AppSettingsActivity.remoteBackups(context), cancelCurrent())
@@ -434,20 +434,32 @@ object BackupRepository {
 
     ServiceUtil.getNotificationManager(context).notify(NotificationIds.OUT_OF_REMOTE_STORAGE, notification)
 
-    SignalStore.backup.isNotEnoughRemoteStorageSpace = true
+    SignalStore.backup.markNotEnoughRemoteStorageSpace()
   }
 
-  fun clearOutOfRemoteStorageError() {
-    SignalStore.backup.isNotEnoughRemoteStorageSpace = false
+  fun clearOutOfRemoteStorageSpaceError() {
+    SignalStore.backup.clearNotEnoughRemoteStorageSpace()
     ServiceUtil.getNotificationManager(AppDependencies.application).cancel(NotificationIds.OUT_OF_REMOTE_STORAGE)
   }
 
-  fun shouldDisplayOutOfStorageSpaceUx(): Boolean {
+  fun shouldDisplayOutOfRemoteStorageSpaceUx(): Boolean {
     if (shouldNotDisplayBackupFailedMessaging()) {
       return false
     }
 
     return SignalStore.backup.isNotEnoughRemoteStorageSpace
+  }
+
+  fun shouldDisplayOutOfRemoteStorageSpaceSheet(): Boolean {
+    if (shouldNotDisplayBackupFailedMessaging()) {
+      return false
+    }
+
+    return SignalStore.backup.shouldDisplayNotEnoughRemoteStorageSpaceSheet
+  }
+
+  fun dismissOutOfRemoteStorageSpaceSheet() {
+    SignalStore.backup.dismissNotEnoughRemoteStorageSpaceSheet()
   }
 
   /**

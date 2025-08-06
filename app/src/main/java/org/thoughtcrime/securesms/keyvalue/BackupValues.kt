@@ -75,6 +75,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_BACKUP_ALREADY_REDEEMED = "backup.already.redeemed"
     private const val KEY_INVALID_BACKUP_VERSION = "backup.invalid.version"
     private const val KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE = "backup.not.enough.remote.storage.space"
+    private const val KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE_DISPLAY_SHEET = "backup.not.enough.remote.storage.space.display.sheet"
     private const val KEY_MANUAL_NO_BACKUP_NOTIFIED = "backup.manual.no.backup.notified"
 
     private const val KEY_USER_MANUALLY_SKIPPED_MEDIA_RESTORE = "backup.user.manually.skipped.media.restore"
@@ -233,12 +234,20 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
       Log.i(TAG, "Setting backup tier to $value", Throwable(), true)
       val serializedValue = MessageBackupTier.serialize(value)
+      val storedValue = MessageBackupTier.deserialize(getLong(KEY_BACKUP_TIER, -1))
+
       if (value != null) {
         store.beginWrite()
           .putLong(KEY_BACKUP_TIER, serializedValue)
           .putLong(KEY_LATEST_BACKUP_TIER, serializedValue)
           .putBoolean(KEY_BACKUP_TIMESTAMP_RESTORED, true)
           .apply()
+
+        if (storedValue != value) {
+          clearNotEnoughRemoteStorageSpace()
+          clearMessageBackupFailure()
+          clearMessageBackupFailureSheetWatermark()
+        }
 
         deletionState = DeletionState.NONE
       } else {
@@ -356,7 +365,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   /** Store that lets you interact with media ZK credentials. */
   val mediaCredentials = CredentialStore(KEY_MEDIA_CREDENTIALS, KEY_MEDIA_CDN_READ_CREDENTIALS, KEY_MEDIA_CDN_READ_CREDENTIALS_TIMESTAMP)
 
-  var isNotEnoughRemoteStorageSpace by booleanValue(KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE, false)
+  val isNotEnoughRemoteStorageSpace by booleanValue(KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE, false)
+  val shouldDisplayNotEnoughRemoteStorageSpaceSheet by booleanValue(KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE_DISPLAY_SHEET, false)
 
   var isNoBackupForManualUploadNotified by booleanValue(KEY_MANUAL_NO_BACKUP_NOTIFIED, false)
 
@@ -382,6 +392,36 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
       store.beginWrite().putBoolean(KEY_REMOTE_STORAGE_GARBAGE_COLLECTION_PENDING, value)
       NoRemoteArchiveGarbageCollectionPendingConstraint.Observer.notifyListeners()
     }
+
+  /**
+   * When we are told by the server that we are out of storage space, we should show
+   * UX treatment to make the user aware of this.
+   */
+  fun markNotEnoughRemoteStorageSpace() {
+    store.beginWrite()
+      .putBoolean(KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE, true)
+      .putBoolean(KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE_DISPLAY_SHEET, false)
+      .apply()
+  }
+
+  /**
+   * When we've regained enough space, we can remove the error.
+   */
+  fun clearNotEnoughRemoteStorageSpace() {
+    store.beginWrite()
+      .putBoolean(KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE, false)
+      .putBoolean(KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE_DISPLAY_SHEET, false)
+      .apply()
+  }
+
+  /**
+   * Dismisses the sheet so as not to irritate the user.
+   */
+  fun dismissNotEnoughRemoteStorageSpaceSheet() {
+    store.beginWrite()
+      .putBoolean(KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE_DISPLAY_SHEET, false)
+      .apply()
+  }
 
   fun markMessageBackupFailure() {
     store.beginWrite()

@@ -554,7 +554,7 @@ fun Screen(
       Rows.TextRow(
         text = "Mark out of remote storage space",
         onClick = {
-          BackupRepository.markOutOfRemoteStorageError()
+          BackupRepository.markOutOfRemoteStorageSpaceError()
         }
       )
 
