@@ -80,6 +80,11 @@ class BackupMessagesJob private constructor(
           false
         }
 
+        SignalStore.account.isLinkedDevice -> {
+          Log.i(TAG, "Backup not allowed: linked device.")
+          false
+        }
+
         else -> true
       }
     }

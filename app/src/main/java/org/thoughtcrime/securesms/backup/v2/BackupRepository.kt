@@ -59,6 +59,7 @@ import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.copyAttachmentToArchive
+import org.thoughtcrime.securesms.backup.v2.BackupRepository.exportForDebugging
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.processor.AccountDataArchiveProcessor
 import org.thoughtcrime.securesms.backup.v2.processor.AdHocCallArchiveProcessor
@@ -141,6 +142,7 @@ import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
+import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -1086,6 +1088,30 @@ object BackupRepository {
         dataStream = inputStreamFactory
       )
     }
+
+    return frameReader.use { reader ->
+      import(reader, selfData, cancellationSignal)
+    }
+  }
+
+  /**
+   * Imports a link and sync backup stored on the transit CDN.
+   *
+   * @param backupKey  The key used to encrypt the backup. If `null`, we assume that the file is plaintext.
+   */
+  fun importLinkAndSyncSignalBackup(
+    length: Long,
+    inputStreamFactory: () -> InputStream,
+    selfData: SelfData,
+    backupKey: MessageBackupKey,
+    cancellationSignal: () -> Boolean = { false }
+  ): ImportResult {
+    val frameReader = EncryptedBackupReader.createForLocalOrLinking(
+      key = backupKey,
+      aci = selfData.aci,
+      length = length,
+      dataStream = inputStreamFactory
+    )
 
     return frameReader.use { reader ->
       import(reader, selfData, cancellationSignal)
@@ -2075,6 +2101,82 @@ object BackupRepository {
     AppDependencies.jobManager.add(BackupRestoreMediaJob())
 
     Log.i(TAG, "[remoteRestore] Restore successful")
+    return RemoteRestoreResult.Success
+  }
+
+  suspend fun restoreLinkAndSyncBackup(response: TransferArchiveResponse, ephemeralBackupKey: MessageBackupKey) {
+    val context = AppDependencies.application
+    SignalStore.backup.restoreState = RestoreState.PENDING
+
+    try {
+      DataRestoreConstraint.isRestoringData = true
+      return withContext(Dispatchers.IO) {
+        return@withContext BackupProgressService.start(context, context.getString(R.string.BackupProgressService_title)).use {
+          restoreLinkAndSyncBackup(response, ephemeralBackupKey, controller = it, cancellationSignal = { !isActive })
+        }
+      }
+    } finally {
+      DataRestoreConstraint.isRestoringData = false
+    }
+  }
+
+  private fun restoreLinkAndSyncBackup(response: TransferArchiveResponse, ephemeralBackupKey: MessageBackupKey, controller: BackupProgressService.Controller, cancellationSignal: () -> Boolean): RemoteRestoreResult {
+    SignalStore.backup.restoreState = RestoreState.RESTORING_DB
+
+    val progressListener = object : ProgressListener {
+      override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
+        controller.update(
+          title = AppDependencies.application.getString(R.string.BackupProgressService_title_downloading),
+          progress = progress.value,
+          indeterminate = false
+        )
+        EventBus.getDefault().post(RestoreV2Event(RestoreV2Event.Type.PROGRESS_DOWNLOAD, progress.transmitted, progress.total))
+      }
+
+      override fun shouldCancel() = cancellationSignal()
+    }
+
+    Log.i(TAG, "[restoreLinkAndSyncBackup] Downloading backup")
+    val tempBackupFile = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(AppDependencies.application)
+    when (val result = AppDependencies.signalServiceMessageReceiver.retrieveLinkAndSyncBackup(response.cdn, response.key, tempBackupFile, progressListener)) {
+      is NetworkResult.Success -> Log.i(TAG, "[restoreLinkAndSyncBackup] Download successful")
+      else -> {
+        Log.w(TAG, "[restoreLinkAndSyncBackup] Failed to download backup file", result.getCause())
+        return RemoteRestoreResult.NetworkError
+      }
+    }
+
+    if (cancellationSignal()) {
+      return RemoteRestoreResult.Canceled
+    }
+
+    controller.update(
+      title = AppDependencies.application.getString(R.string.BackupProgressService_title),
+      progress = 0f,
+      indeterminate = true
+    )
+
+    val self = Recipient.self()
+    val selfData = SelfData(self.aci.get(), self.pni.get(), self.e164.get(), ProfileKey(self.profileKey))
+    Log.i(TAG, "[restoreLinkAndSyncBackup] Importing backup")
+    val result = importLinkAndSyncSignalBackup(
+      length = tempBackupFile.length(),
+      inputStreamFactory = tempBackupFile::inputStream,
+      selfData = selfData,
+      backupKey = ephemeralBackupKey,
+      cancellationSignal = cancellationSignal
+    )
+
+    if (result == ImportResult.Failure) {
+      Log.w(TAG, "[restoreLinkAndSyncBackup] Failed to import backup")
+      return RemoteRestoreResult.Failure
+    }
+
+    SignalStore.backup.restoreState = RestoreState.RESTORING_MEDIA
+
+    AppDependencies.jobManager.add(BackupRestoreMediaJob())
+
+    Log.i(TAG, "[restoreLinkAndSyncBackup] Restore successful")
     return RemoteRestoreResult.Success
   }
 

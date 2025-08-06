@@ -66,6 +66,11 @@ class PostRegistrationBackupRedemptionJob : CoroutineJob {
       return Result.success()
     }
 
+    if (SignalStore.account.isLinkedDevice) {
+      info("Linked device. Exiting.")
+      return Result.success()
+    }
+
     if (SignalStore.backup.deletionState != DeletionState.NONE) {
       info("User is in the process of or has delete their backup. Exiting.")
       return Result.success()

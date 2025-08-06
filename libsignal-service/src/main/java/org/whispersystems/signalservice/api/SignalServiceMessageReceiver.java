@@ -7,7 +7,6 @@
 package org.whispersystems.signalservice.api;
 
 import org.signal.core.util.StreamUtil;
-import org.signal.core.util.logging.Log;
 import org.signal.libsignal.protocol.InvalidMessageException;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey;
@@ -17,6 +16,7 @@ import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil;
 import org.whispersystems.signalservice.api.crypto.ProfileCipherInputStream;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
+import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.SignalServiceDataMessage;
 import org.whispersystems.signalservice.api.messages.SignalServiceStickerManifest;
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException;
@@ -37,6 +37,8 @@ import java.util.Map;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
+
+import kotlin.Unit;
 
 /**
  * The primary interface for receiving Signal Service messages.
@@ -198,6 +200,16 @@ public class SignalServiceMessageReceiver {
 
   public void retrieveBackup(int cdnNumber, Map<String, String> headers, String cdnPath, File destination, ProgressListener listener) throws MissingConfigurationException, IOException {
     socket.retrieveBackup(cdnNumber, headers, cdnPath, destination, 1_000_000_000L, listener);
+  }
+
+  /**
+   * Retrieves a link+sync backup file. The data is written to @{code destination}.
+   */
+  public @Nonnull NetworkResult<Unit> retrieveLinkAndSyncBackup(int cdn, @Nonnull String key, @Nonnull File destination, @Nullable ProgressListener listener) {
+    return NetworkResult.fromFetch(() -> {
+      socket.retrieveAttachment(cdn, Collections.emptyMap(), new SignalServiceAttachmentRemoteId.V4(key), destination, 1_000_000_000L, listener);
+      return Unit.INSTANCE;
+    });
   }
 
   public @Nonnull ZonedDateTime getCdnLastModifiedTime(int cdnNumber, Map<String, String> headers, String cdnPath) throws MissingConfigurationException, IOException {

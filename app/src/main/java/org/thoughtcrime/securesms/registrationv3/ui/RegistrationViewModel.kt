@@ -85,6 +85,7 @@ import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
 import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
+import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
 import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
@@ -1133,6 +1134,19 @@ class RegistrationViewModel : ViewModel() {
     RegistrationUtil.maybeMarkRegistrationComplete()
 
     refreshRemoteConfig()
+
+    if (message.ephemeralBackupKey != null) {
+      Log.i(TAG, "Primary has given Linked device an ephemeral backup key, waiting for backup...")
+      val result = RegistrationRepository.waitForLinkAndSyncBackupDetails()
+      if (result != null) {
+        BackupRepository.restoreLinkAndSyncBackup(result, MessageBackupKey(message.ephemeralBackupKey!!.toByteArray()))
+      } else {
+        Log.w(TAG, "Unable to get transfer archive data, continuing with linking process")
+      }
+
+      // TODO [linked-device] Reapply opt-out, backup restore sets pin, may want to have a different opt out mechanism for linked devices
+      SvrRepository.optOutOfPin()
+    }
 
     for (type in SyncMessage.Request.Type.entries) {
       if (type == SyncMessage.Request.Type.UNKNOWN) {

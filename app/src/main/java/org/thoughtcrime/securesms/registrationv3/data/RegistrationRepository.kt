@@ -12,6 +12,8 @@ import androidx.annotation.WorkerThread
 import androidx.core.app.NotificationManagerCompat
 import com.google.android.gms.auth.api.phone.SmsRetriever
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import kotlinx.coroutines.withTimeoutOrNull
@@ -40,6 +42,7 @@ import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RotateCertificateJob
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.pin.Svr3Migration
 import org.thoughtcrime.securesms.pin.SvrRepository
@@ -76,6 +79,7 @@ import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.kbs.PinHashUtil
+import org.whispersystems.signalservice.api.link.TransferArchiveResponse
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
@@ -93,6 +97,8 @@ import java.util.Locale
 import java.util.Optional
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
+import kotlin.coroutines.coroutineContext
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -253,6 +259,7 @@ object RegistrationRepository {
         // TODO [linked-device] May want to have a different opt out mechanism for linked devices
         SvrRepository.optOutOfPin()
 
+        SignalStore.account.isMultiDevice = true
         SignalStore.registration.hasUploadedProfile = true
         jobManager.runJobBlocking(RefreshOwnProfileJob(), 30.seconds)
 
@@ -674,6 +681,51 @@ object RegistrationRepository {
 
   fun isMissingProfileData(): Boolean {
     return Recipient.self().profileName.isEmpty || !AvatarHelper.hasAvatar(AppDependencies.application, Recipient.self().id)
+  }
+
+  suspend fun waitForLinkAndSyncBackupDetails(maxWaitTime: Duration = 60.seconds): TransferArchiveResponse? {
+    val startTime = System.currentTimeMillis()
+    var timeRemaining = maxWaitTime.inWholeMilliseconds
+
+    while (timeRemaining > 0 && coroutineContext.isActive) {
+      Log.d(TAG, "[waitForLinkAndSyncBackupDetails] Willing to wait for $timeRemaining ms...")
+
+      when (val result = SignalNetwork.linkDevice.waitForPrimaryDevice(timeout = 60.seconds)) {
+        is NetworkResult.Success -> {
+          Log.i(TAG, "[waitForLinkAndSyncBackupDetails] Transfer archive data provided by primary")
+          return result.result
+        }
+        is NetworkResult.ApplicationError -> {
+          Log.e(TAG, "[waitForLinkAndSyncBackupDetails] Application error!", result.throwable)
+          throw result.throwable
+        }
+        is NetworkResult.NetworkError -> {
+          Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Hit a network error while waiting for linking. Will try to wait again.", result.exception)
+        }
+        is NetworkResult.StatusCodeError -> {
+          when (result.code) {
+            400 -> {
+              Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Invalid timeout!")
+              return null
+            }
+            429 -> {
+              Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Hit a rate-limit. Will try to wait again after delay: ${result.retryAfter()}.")
+              result.retryAfter()?.let { retryAfter ->
+                delay(retryAfter)
+              }
+            }
+            else -> {
+              Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Hit an unknown status code of ${result.code}. Will try to wait again.")
+            }
+          }
+        }
+      }
+
+      timeRemaining = maxWaitTime.inWholeMilliseconds - (System.currentTimeMillis() - startTime)
+    }
+
+    Log.w(TAG, "[waitForLinkAndSyncBackupDetails] Failed to get transfer archive data from primary")
+    return null
   }
 
   fun interface MasterKeyProducer {
