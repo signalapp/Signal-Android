@@ -460,7 +460,7 @@ private fun RemoteBackupsSettingsContent(
         }
       }
 
-      if (state.isOutOfStorageSpace) {
+      if (state.hasRedemptionError) {
         item {
           RedemptionErrorAlert(onDetailsClick = contentCallbacks::onRedemptionErrorDetailsClick)
         }
