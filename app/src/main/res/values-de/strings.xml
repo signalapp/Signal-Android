@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">Wiederherstellen überspringen</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Übertragung konnte nicht abgeschlossen werden</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Can\'t restore backup</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contact support</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Es ist ein Fehler aufgetreten und dein Konto konnte nicht übertragen werden. Versuche es erneut, indem du deine Übertragungsmethode auswählst.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -7941,6 +7947,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Dein Backup-Abo konnte nicht eingelöst werden</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Aufgrund eines Fehlers konnte dein letztes Backup nicht abgeschlossen werden. Vergewissere dich, dass du die neueste Version von Signal verwendest, und versuche es erneut. Falls das Problem weiterhin besteht, kontaktiere bitte den Support.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">An error occurred and your backup could not be completed. If this problem persists, contact support.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Nach Updates suchen</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8457,7 +8465,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Abonnieren</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Kostenloses Backup-Abo wählen</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Abonniere für %1$s/Monat</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8586,6 +8594,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup-Wiederherstellung: Netzwerk-Problem</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup-Export: Netzwerk-Problem</string>

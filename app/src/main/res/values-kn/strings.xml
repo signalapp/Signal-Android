@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">ರಿಸ್ಟೋರ್ ಸ್ಕಿಪ್ ಮಾಡಿ</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">ವರ್ಗಾವಣೆಯನ್ನು ಪೂರ್ಣಗೊಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Can\'t restore backup</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contact support</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">ದೋಷವೊಂದು ಸಂಭವಿಸಿದೆ ಮತ್ತು ನಿಮ್ಮ ಖಾತೆಯನ್ನು ವರ್ಗಾಯಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ನಿಮ್ಮ ವರ್ಗಾವಣೆ ವಿಧಾನವನ್ನು ಆಯ್ಕೆಮಾಡುವ ಮೂಲಕ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -7941,6 +7947,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ಗಳ ಚಂದಾದಾರಿಕೆಯನ್ನು ರಿಡೀಮ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">ದೋಷ ಸಂಭವಿಸಿದೆ ಮತ್ತು ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಲಾಗಲಿಲ್ಲ. ನೀವು Signal ನ ಇತ್ತೀಚಿನ ಆವೃತ್ತಿಯನ್ನು ಬಳಸುತ್ತಿದ್ದೀರಿ ಎಂಬುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ ಹಾಗೂ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ. ಈ ಸಮಸ್ಯೆ ಮುಂದುವರಿದರೆ, ಬೆಂಬಲವನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">An error occurred and your backup could not be completed. If this problem persists, contact support.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">ಅಪ್‌ಡೇಟ್‌ಗಾಗಿ ಪರಿಶೀಲಿಸಿ</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8586,6 +8594,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android ಬ್ಯಾಕಪ್ ರೀಸ್ಟೋರ್ ನೆಟ್‌ವರ್ಕ್ ದೋಷ</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android ಬ್ಯಾಕಪ್ ಎಕ್ಸ್‌ಪೋರ್ಟ್ ನೆಟ್‌ವರ್ಕ್ ದೋಷ</string>
