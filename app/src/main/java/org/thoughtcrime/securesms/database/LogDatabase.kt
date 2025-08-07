@@ -174,7 +174,7 @@ class LogDatabase private constructor(
         }
 
         db.delete(TABLE_NAME)
-          .where("($CREATED_AT < ? AND $KEEP_LONGER = 0) OR ($CREATED_AT < ? AND $KEEP_LONGER = 1)", currentTime - DEFAULT_LIFESPAN, currentTime - LONGER_LIFESPAN)
+          .where("($CREATED_AT < ? AND $KEEP_LONGER <= 0) OR ($CREATED_AT < ? AND $KEEP_LONGER => 1)", currentTime - DEFAULT_LIFESPAN, currentTime - LONGER_LIFESPAN)
           .run()
       }
     }
