@@ -1986,6 +1986,24 @@ class AttachmentTable(
       .run()
   }
 
+  fun debugMakeValidForArchive(attachmentId: AttachmentId) {
+    writableDatabase
+      .execSQL(
+        """
+        UPDATE $TABLE_NAME
+        SET $DATA_HASH_END = $DATA_HASH_START
+        WHERE $ID = ${attachmentId.id}
+      """
+      )
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        REMOTE_KEY to Base64.encodeWithPadding(Util.getSecretBytes(64)),
+        REMOTE_DIGEST to Util.getSecretBytes(64)
+      )
+  }
+
   /**
    * Deletes the data file if there's no strong references to other attachments.
    * If deleted, it will also clear all weak references (i.e. quotes) of the attachment.

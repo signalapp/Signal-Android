@@ -202,10 +202,10 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
     }
   }
 
-  override fun add10Messages(recipientId: RecipientId) {
+  override fun add100MessagesWithAttachments(recipientId: RecipientId) {
     viewLifecycleOwner.lifecycleScope.launch(Dispatchers.IO) {
       val recipient = Recipient.live(recipientId).get()
-      val messageCount = 10
+      val messageCount = 100
       val startTime = System.currentTimeMillis() - messageCount
       SignalDatabase.rawDatabase.withinTransaction {
         val targetThread = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
@@ -217,6 +217,10 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
             threadId = targetThread
           )
           SignalDatabase.messages.markAsSent(id, true)
+          SignalDatabase.attachments.getAttachmentsForMessage(id).forEach {
+            SignalDatabase.attachments.debugMakeValidForArchive(it.attachmentId)
+            SignalDatabase.attachments.createRemoteKeyIfNecessary(it.attachmentId)
+          }
         }
       }
 

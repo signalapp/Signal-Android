@@ -39,7 +39,7 @@ private enum class Dialog {
   DELETE_AVATAR,
   CLEAR_RECIPIENT_DATA,
   ADD_1000_MESSAGES,
-  ADD_10_MESSAGES,
+  ADD_100_MESSAGES_WITH_ATTACHMENTS,
   SPLIT_AND_CREATE_THREADS,
   SPLIT_WITHOUT_CREATING_THREADS
 }
@@ -273,10 +273,10 @@ fun InternalConversationSettingsScreen(
 
         item {
           Rows.TextRow(
-            text = "Add 10 dummy messages with attachments",
-            label = "Adds 10 random messages to the chat with attachments of a random image. Attachments are not uploaded.",
+            text = "Add 100 dummy messages with attachments",
+            label = "Adds 100 random messages to the chat with attachments of a random image. Attachments are not uploaded.",
             onClick = {
-              dialog = Dialog.ADD_10_MESSAGES
+              dialog = Dialog.ADD_100_MESSAGES_WITH_ATTACHMENTS
             }
           )
         }
@@ -364,8 +364,8 @@ private fun rememberOnConfirm(
       Dialog.ADD_1000_MESSAGES -> {
         { callbacks.add1000Messages(state.recipientId) }
       }
-      Dialog.ADD_10_MESSAGES -> {
-        { callbacks.add10Messages(state.recipientId) }
+      Dialog.ADD_100_MESSAGES_WITH_ATTACHMENTS -> {
+        { callbacks.add100MessagesWithAttachments(state.recipientId) }
       }
       Dialog.SPLIT_AND_CREATE_THREADS -> {
         { callbacks.splitAndCreateThreads(state.recipientId) }
@@ -470,7 +470,7 @@ interface InternalConversationSettingsScreenCallbacks {
   fun deleteAvatar(recipientId: RecipientId) = Unit
   fun clearRecipientData(recipientId: RecipientId) = Unit
   fun add1000Messages(recipientId: RecipientId) = Unit
-  fun add10Messages(recipientId: RecipientId) = Unit
+  fun add100MessagesWithAttachments(recipientId: RecipientId) = Unit
   fun splitAndCreateThreads(recipientId: RecipientId) = Unit
   fun splitWithoutCreatingThreads(recipientId: RecipientId) = Unit
   fun clearSenderKey(recipientId: RecipientId) = Unit
