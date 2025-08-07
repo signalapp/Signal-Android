@@ -30,6 +30,7 @@ class CheckRestoreMediaLeftJob private constructor(parameters: Parameters) : Job
     Parameters.Builder()
       .setQueue(queue)
       .setLifespan(Parameters.IMMORTAL)
+      .setGlobalPriority(Parameters.PRIORITY_LOW)
       .setMaxAttempts(2)
       .build()
   )

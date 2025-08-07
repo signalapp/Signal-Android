@@ -116,7 +116,9 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
 
     SignalStore.backup.totalRestorableAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
 
-    jobManager.add(CheckRestoreMediaLeftJob(RestoreAttachmentJob.constructQueueString(RestoreAttachmentJob.RestoreOperation.INITIAL_RESTORE)))
+    RestoreAttachmentJob.Queues.INITIAL_RESTORE.forEach { queue ->
+      jobManager.add(CheckRestoreMediaLeftJob(queue))
+    }
   }
 
   private fun shouldRestoreFullSize(message: MmsMessageRecord, restoreTime: Long, optimizeStorage: Boolean): Boolean {

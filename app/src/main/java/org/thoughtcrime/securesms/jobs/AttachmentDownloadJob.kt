@@ -91,14 +91,14 @@ class AttachmentDownloadJob private constructor(
 
         AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS,
         AttachmentTable.TRANSFER_RESTORE_OFFLOADED,
-        AttachmentTable.TRANSFER_NEEDS_RESTORE -> RestoreAttachmentJob.restoreAttachment(databaseAttachment)
+        AttachmentTable.TRANSFER_NEEDS_RESTORE -> RestoreAttachmentJob.forManualRestore(databaseAttachment)
 
         AttachmentTable.TRANSFER_PROGRESS_PENDING,
         AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
           if (SignalStore.backup.backsUpMedia && (databaseAttachment.remoteLocation == null || databaseAttachment.remoteDigest == null)) {
             if (databaseAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
               Log.i(TAG, "Trying to restore attachment from archive cdn")
-              RestoreAttachmentJob.restoreAttachment(databaseAttachment)
+              RestoreAttachmentJob.forManualRestore(databaseAttachment)
             } else {
               Log.w(TAG, "No remote location, and the archive transfer state is unfinished. Can't download.")
               null
@@ -206,7 +206,7 @@ class AttachmentDownloadJob private constructor(
       }
 
       Log.i(TAG, "Trying to restore attachment from archive cdn instead")
-      RestoreAttachmentJob.restoreAttachment(attachment)
+      RestoreAttachmentJob.forManualRestore(attachment)
 
       return
     }
@@ -317,7 +317,7 @@ class AttachmentDownloadJob private constructor(
     } catch (e: NonSuccessfulResponseCodeException) {
       if (SignalStore.backup.backsUpMedia && e.code == 404 && attachment.archiveTransferState === AttachmentTable.ArchiveTransferState.FINISHED) {
         Log.i(TAG, "Retrying download from archive CDN")
-        RestoreAttachmentJob.restoreAttachment(attachment)
+        RestoreAttachmentJob.forManualRestore(attachment)
         return
       }
 
