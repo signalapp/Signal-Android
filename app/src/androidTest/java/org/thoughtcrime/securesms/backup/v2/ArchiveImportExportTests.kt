@@ -9,9 +9,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.github.difflib.DiffUtils
 import com.github.difflib.UnifiedDiffUtils
-import io.mockk.every
-import io.mockk.mockk
-import io.mockk.mockkObject
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -26,7 +23,6 @@ import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.PlainTextBackupReader
 import org.thoughtcrime.securesms.database.KeyValueDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.keyvalue.InternalValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.ByteArrayInputStream
@@ -48,10 +44,6 @@ class ArchiveImportExportTests {
   @Before
   fun setup() {
     AppDependencies.jobManager.shutdown()
-    mockkObject(SignalStore)
-    every { SignalStore.internal } returns mockk<InternalValues>(relaxed = true) {
-      every { includeDebuglogInBackup } returns false
-    }
   }
 
   @Test

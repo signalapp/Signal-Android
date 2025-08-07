@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue
 import org.signal.ringrtc.CallManager.DataMode
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.backup.v2.proto.BackupDebugInfo
+import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.Environment.Calling.defaultSfuUrl
 import org.thoughtcrime.securesms.util.RemoteConfig
 
@@ -185,7 +186,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   var showArchiveStateHint by booleanValue(SHOW_ARCHIVE_STATE_HINT, false).defaultForExternalUsers()
 
   /** Whether or not we should include a debuglog in the backup debug info when generating a backup. */
-  var includeDebuglogInBackup by booleanValue(INCLUDE_DEBUGLOG_IN_BACKUP, true).falseForExternalUsers()
+  var includeDebuglogInBackup by booleanValue(INCLUDE_DEBUGLOG_IN_BACKUP, !Environment.IS_INSTRUMENTATION).falseForExternalUsers()
 
   /** Any [BackupDebugInfo] that was imported during the last backup restore, if any. */
   var importedBackupDebugInfo: BackupDebugInfo? by protoValue(IMPORTED_BACKUP_DEBUG_INFO, BackupDebugInfo.ADAPTER).defaultForExternalUsers()
