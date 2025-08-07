@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.keyvalue
 import org.signal.ringrtc.CallManager.DataMode
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.backup.v2.proto.BackupDebugInfo
-import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.Environment.Calling.defaultSfuUrl
 import org.thoughtcrime.securesms.util.RemoteConfig
 

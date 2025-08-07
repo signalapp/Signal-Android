@@ -48,7 +48,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       .addConstraint(NoRemoteArchiveGarbageCollectionPendingConstraint.KEY)
       .setLifespan(TimeUnit.DAYS.toMillis(1))
       .setMaxAttempts(Parameters.UNLIMITED)
-      .setQueue(UploadAttachmentToArchiveJob.buildQueueKey())
+      .setQueue(UploadAttachmentToArchiveJob.QUEUES.random())
       .setQueuePriority(Parameters.PRIORITY_HIGH)
       .build()
   )
