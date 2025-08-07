@@ -186,7 +186,7 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   var showArchiveStateHint by booleanValue(SHOW_ARCHIVE_STATE_HINT, false).defaultForExternalUsers()
 
   /** Whether or not we should include a debuglog in the backup debug info when generating a backup. */
-  var includeDebuglogInBackup by booleanValue(INCLUDE_DEBUGLOG_IN_BACKUP, !Environment.IS_INSTRUMENTATION).falseForExternalUsers()
+  var includeDebuglogInBackup by booleanValue(INCLUDE_DEBUGLOG_IN_BACKUP, true).falseForExternalUsers()
 
   /** Any [BackupDebugInfo] that was imported during the last backup restore, if any. */
   var importedBackupDebugInfo: BackupDebugInfo? by protoValue(IMPORTED_BACKUP_DEBUG_INFO, BackupDebugInfo.ADAPTER).defaultForExternalUsers()
