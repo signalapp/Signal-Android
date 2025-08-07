@@ -87,6 +87,7 @@ class InternalStorageServicePlaygroundViewModel : ViewModel() {
           totalCallLinkSize = records.filter { it.proto.callLink != null }.sumOf { it.sizeInBytes() }.bytes,
           totalDistributionListSize = records.filter { it.proto.storyDistributionList != null }.sumOf { it.sizeInBytes() }.bytes,
           totalChatFolderSize = records.filter { it.proto.chatFolder != null }.sumOf { it.sizeInBytes() }.bytes,
+          totalNotificationProfileSize = records.filter { it.proto.notificationProfile != null }.sumOf { it.sizeInBytes() }.bytes,
           totalUnknownSize = records.filter { it.isUnknown }.sumOf { it.sizeInBytes() }.bytes
         )
 
@@ -113,6 +114,7 @@ class InternalStorageServicePlaygroundViewModel : ViewModel() {
     val totalCallLinkSize: ByteSize = 0.bytes,
     val totalDistributionListSize: ByteSize = 0.bytes,
     val totalChatFolderSize: ByteSize = 0.bytes,
+    val totalNotificationProfileSize: ByteSize = 0.bytes,
     val totalUnknownSize: ByteSize = 0.bytes
   )
 }

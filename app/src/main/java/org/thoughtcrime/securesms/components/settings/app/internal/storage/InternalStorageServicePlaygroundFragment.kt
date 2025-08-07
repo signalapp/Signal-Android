@@ -262,6 +262,7 @@ private fun InsightsRow(insights: StorageInsights) {
     ManifestItemRow("Total Call Link Record Size", insights.totalCallLinkSize.toUnitString())
     ManifestItemRow("Total Distribution List Record Size", insights.totalDistributionListSize.toUnitString())
     ManifestItemRow("Total Chat Folder Record Size", insights.totalChatFolderSize.toUnitString())
+    ManifestItemRow("Total Notification Profile Record Size", insights.totalNotificationProfileSize.toUnitString())
     ManifestItemRow("Total Unknown Record Size", insights.totalUnknownSize.toUnitString())
 
     Spacer(Modifier.height(16.dp))
@@ -273,7 +274,8 @@ private fun InsightsRow(insights: StorageInsights) {
         insights.totalAccountRecordSize,
         insights.totalCallLinkSize,
         insights.totalDistributionListSize,
-        insights.totalChatFolderSize
+        insights.totalChatFolderSize,
+        insights.totalNotificationProfileSize
       ).sumOf { it.bytes } != insights.totalRecordSize.bytes
     ) {
       Text("Mismatch! Sum of record sizes does not match our total record size!")
