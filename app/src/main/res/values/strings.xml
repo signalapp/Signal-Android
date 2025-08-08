@@ -2928,6 +2928,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">This log will be posted publicly online for contributors to view. You may examine it before uploading.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <!-- Debug log level names to filter by levels. -->
+    <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string>
+    <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string>
+    <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string>
+    <string name="SubmitDebugLogActivity_info" translatable="false">Info</string>
+    <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string>
+    <string name="SubmitDebugLogActivity_error" translatable="false">Error</string>
 
     <!-- SupportEmailUtil -->
     <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>

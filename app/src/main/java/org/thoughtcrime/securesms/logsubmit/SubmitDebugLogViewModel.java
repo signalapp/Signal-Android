@@ -110,37 +110,12 @@ public class SubmitDebugLogViewModel extends ViewModel {
     });
   }
 
-  void onQueryUpdated(@NonNull String query) {
-    throw new UnsupportedOperationException("Not yet implemented.");
-  }
-
-  void onSearchClosed() {
-    throw new UnsupportedOperationException("Not yet implemented.");
-  }
-
-  void onEditButtonPressed() {
-    throw new UnsupportedOperationException("Not yet implemented.");
-  }
-
-  void onDoneEditingButtonPressed() {
-    throw new UnsupportedOperationException("Not yet implemented.");
-  }
-
-  void onLogDeleted(@NonNull LogLine line) {
-    throw new UnsupportedOperationException("Not yet implemented.");
-  }
-
   boolean onBackPressed() {
-    if (mode.getValue() == Mode.EDIT) {
-      mode.setValue(Mode.NORMAL);
-      return true;
-    } else {
-      return false;
-    }
+    return false;
   }
 
   enum Mode {
-    NORMAL, EDIT, SUBMITTING
+    NORMAL, SUBMITTING
   }
 
   enum Event {

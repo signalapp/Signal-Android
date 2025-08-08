@@ -54,6 +54,7 @@ const session = editor.getSession();
 
 let logLines = ""; // Original logLines
 let input = ""; // Search query input
+let selectedLevels = []; // Log levels that are selected in checkboxes
 let markers = []; // IDs of highlighted search markers
 let matchRanges = []; // Ranges of all search matches
 let matchCount = 0; // Total number of matches
@@ -134,6 +135,7 @@ function onSearchDown() {
 }
 
 function onSearchClose() {
+  editor.setValue(logLines, -1);
   editor.getSelection().clearSelection();
   input = "";
   clearMarkers();
@@ -156,19 +158,64 @@ function onFilter() {
   isFiltered = true;
   editor.getSelection().clearSelection();
   clearMarkers();
-  const filtered = logLines
-    .split("\n")
-    .filter((line) => {
-      const newLine = isCaseSensitive ? line : line.toLowerCase();
-      return newLine.includes(isCaseSensitive ? input : input.toLowerCase());
-    })
-    .join("\n");
-
-  editor.setValue(filtered, -1);
+  applyFilter();
 }
 
 function onFilterClose() {
   isFiltered = false;
-  editor.setValue(logLines, -1);
+  clearMarkers();
+  editor.getSelection().clearSelection();
+
+  if (selectedLevels.length === 0) {
+    editor.setValue(logLines, -1);
+  } else {
+    const filtered = logLines
+      .split("\n")
+      .filter((line) => {
+        return selectedLevels.some((level) => line.includes(level));
+      })
+      .join("\n");
+
+    editor.setValue(filtered, -1);
+  }
+
   highlightAllMatches(input);
+}
+
+
+function onFilterLevel(sLevels) {
+  selectedLevels = sLevels;
+
+  if (isFiltered) {
+    applyFilter();
+  } else {
+    if (selectedLevels.length === 0) {
+      editor.setValue(logLines, -1);
+      editor.scrollToRow(0);
+    } else {
+      const filtered = logLines
+        .split("\n")
+        .filter((line) => {
+          return selectedLevels.some((level) => line.includes(level));
+        })
+        .join("\n");
+
+      editor.setValue(filtered, -1);
+    }
+    onSearch();
+  }
+}
+
+function applyFilter() {
+  const filtered = logLines
+    .split("\n")
+    .filter((line) => {
+      const newLine = isCaseSensitive ? line : line.toLowerCase();
+      const lineMatch = newLine.includes(isCaseSensitive ? input : input.toLowerCase());
+      const levelMatch = selectedLevels.length === 0 || selectedLevels.some((level) => line.includes(level));
+      return lineMatch && levelMatch;
+    })
+    .join("\n");
+
+  editor.setValue(filtered, -1);
 }

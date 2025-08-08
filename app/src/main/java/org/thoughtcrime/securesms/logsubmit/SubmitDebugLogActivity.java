@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.logsubmit;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.ColorStateList;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.SpannableString;
@@ -20,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.core.app.ShareCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.text.util.LinkifyCompat;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -49,15 +51,12 @@ public class SubmitDebugLogActivity extends BaseActivity {
   private SubmitDebugLogViewModel viewModel;
 
   private View                           warningBanner;
-  private View                           editBanner;
   private CircularProgressMaterialButton submitButton;
   private ConversationSearchBottomBar    searchNav;
   private View                           scrollToBottomButton;
   private View                           scrollToTopButton;
   private ProgressCard                   progressCard;
 
-  private MenuItem editMenuItem;
-  private MenuItem doneMenuItem;
   private MenuItem searchMenuItem;
   private MenuItem saveMenuItem;
 
@@ -66,9 +65,22 @@ public class SubmitDebugLogActivity extends BaseActivity {
   private TextView    searchPosition;
   private ImageButton searchUpButton;
   private ImageButton searchDownButton;
+  
+  private TextView uncaughtButton;
+  private TextView verboseButton;
+  private TextView debugButton;
+  private TextView infoButton;
+  private TextView warningButton;
+  private TextView errorButton;
 
   private boolean isCaseSensitive;
   private boolean isFiltered;
+  private boolean isUncaught;
+  private boolean isVerbose;
+  private boolean isDebug;
+  private boolean isInfo;
+  private boolean isWarning;
+  private boolean isError;
   private boolean isWebViewLoaded;
   private boolean hasPresentedLines;
 
@@ -98,17 +110,22 @@ public class SubmitDebugLogActivity extends BaseActivity {
   public boolean onCreateOptionsMenu(Menu menu) {
     getMenuInflater().inflate(R.menu.submit_debug_log_normal, menu);
 
-    this.editMenuItem   = menu.findItem(R.id.menu_edit_log);
-    this.doneMenuItem   = menu.findItem(R.id.menu_done_editing_log);
     this.searchMenuItem = menu.findItem(R.id.menu_search);
     this.saveMenuItem   = menu.findItem(R.id.menu_save);
 
-    this.searchNav            = findViewById(R.id.debug_log_search_nav);
-    this.filterButton         = findViewById(R.id.debug_log_filter);
-    this.caseSensitiveButton  = findViewById(R.id.case_sensitive_button);
-    this.searchPosition       = findViewById(R.id.debug_log_search_position);
-    this.searchUpButton       = findViewById(R.id.debug_log_search_up);
-    this.searchDownButton     = findViewById(R.id.debug_log_search_down);
+    this.searchNav           = findViewById(R.id.debug_log_search_nav);
+    this.filterButton        = findViewById(R.id.debug_log_filter);
+    this.caseSensitiveButton = findViewById(R.id.case_sensitive_button);
+    this.searchPosition      = findViewById(R.id.debug_log_search_position);
+    this.searchUpButton      = findViewById(R.id.debug_log_search_up);
+    this.searchDownButton    = findViewById(R.id.debug_log_search_down);
+
+    this.uncaughtButton = findViewById(R.id.debug_log_signalUncaughtException);
+    this.verboseButton  = findViewById(R.id.debug_log_verbose);
+    this.debugButton    = findViewById(R.id.debug_log_debug);
+    this.infoButton     = findViewById(R.id.debug_log_info);
+    this.warningButton  = findViewById(R.id.debug_log_warning);
+    this.errorButton    = findViewById(R.id.debug_log_error);
 
     searchUpButton.setOnClickListener(v -> {
       DebugLogsViewer.onSearchUp(logWebView);
@@ -179,6 +196,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
 
       @Override
       public boolean onMenuItemActionCollapse(MenuItem item) {
+        onFilterLevelClose();
         searchNav.setVisibility(View.GONE);
         submitButton.setVisibility(View.VISIBLE);
         DebugLogsViewer.onSearchClose(logWebView);
@@ -189,11 +207,74 @@ public class SubmitDebugLogActivity extends BaseActivity {
       }
     });
 
+    verboseButton.setOnClickListener(v -> {
+      isVerbose = !isVerbose;
+      onFilterLevel(v, isVerbose);
+    });
+
+    debugButton.setOnClickListener(v -> {
+      isDebug = !isDebug;
+      onFilterLevel(v, isDebug);
+    });
+
+    infoButton.setOnClickListener(v -> {
+      isInfo = !isInfo;
+      onFilterLevel(v, isInfo);
+    });
+
+    warningButton.setOnClickListener(v -> {
+      isWarning = !isWarning;
+      onFilterLevel(v, isWarning);
+    });
+
+    errorButton.setOnClickListener(v -> {
+      isError = !isError;
+      onFilterLevel(v, isError);
+    });
+
+    uncaughtButton.setOnClickListener(v -> {
+      isUncaught = !isUncaught;
+      onFilterLevel(v, isUncaught);
+    });
+    
+
     if (viewModel.getMode().getValue() != null) {
       presentMode(viewModel.getMode().getValue());
     }
 
     return true;
+  }
+
+  private void onFilterLevel(View view, boolean isChecked) {
+    view.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, (isChecked) ? R.color.transparent_black_25 : R.color.signal_background_secondary)));
+
+    List<String> selectedLevels = new ArrayList<>();
+
+    if (isVerbose)  selectedLevels.add("\" V \"");
+    if (isDebug)    selectedLevels.add("\" D \"");
+    if (isInfo)     selectedLevels.add("\" I \"");
+    if (isWarning)  selectedLevels.add("\" W \"");
+    if (isError)    selectedLevels.add("\" E \"");
+    if (isUncaught) selectedLevels.add("\" SignalUncaughtException:\"");
+
+    DebugLogsViewer.onFilterLevel(logWebView, "[" + String.join(",", selectedLevels) + "]");
+    DebugLogsViewer.getSearchPosition(logWebView, position -> searchPosition.setText(position));
+  }
+
+  private void onFilterLevelClose() {
+    isVerbose  = false;
+    isDebug    = false;
+    isInfo     = false;
+    isWarning  = false;
+    isError    = false;
+    isUncaught = false;
+
+    verboseButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.signal_background_secondary)));
+    debugButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.signal_background_secondary)));
+    infoButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.signal_background_secondary)));
+    warningButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.signal_background_secondary)));
+    errorButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.signal_background_secondary)));
+    uncaughtButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.signal_background_secondary)));
   }
 
   @Override
@@ -203,10 +284,6 @@ public class SubmitDebugLogActivity extends BaseActivity {
     if (item.getItemId() == android.R.id.home) {
       finish();
       return true;
-    } else if (item.getItemId() == R.id.menu_edit_log) {
-      viewModel.onEditButtonPressed();
-    } else if (item.getItemId() == R.id.menu_done_editing_log) {
-      viewModel.onDoneEditingButtonPressed();
     } else if (item.getItemId() == R.id.menu_save) {
       Intent intent = new Intent(Intent.ACTION_CREATE_DOCUMENT);
       intent.addCategory(Intent.CATEGORY_OPENABLE);
@@ -242,7 +319,6 @@ public class SubmitDebugLogActivity extends BaseActivity {
   private void initView() {
     this.logWebView           = findViewById(R.id.debug_log_lines);
     this.warningBanner        = findViewById(R.id.debug_log_warning_banner);
-    this.editBanner           = findViewById(R.id.debug_log_edit_banner);
     this.submitButton         = findViewById(R.id.debug_log_submit_button);
     this.scrollToBottomButton = findViewById(R.id.debug_log_scroll_to_bottom);
     this.scrollToTopButton    = findViewById(R.id.debug_log_scroll_to_top);
@@ -279,48 +355,42 @@ public class SubmitDebugLogActivity extends BaseActivity {
       hasPresentedLines = true;
     }
 
+    int chunkSize = 1000;
+    int count     = 0;
+
     StringBuilder lineBuilder = new StringBuilder();
 
     for (LogLine line : lines) {
       if (line == null) continue;
 
       lineBuilder.append(String.format("%s\n", line.getText()));
+      count++;
+
+      if (count >= chunkSize) {
+        DebugLogsViewer.presentLines(logWebView, lineBuilder.toString());
+        lineBuilder.setLength(0);
+        count = 0;
+      }
     }
 
-    DebugLogsViewer.presentLines(logWebView, lineBuilder.toString());
+    if (lineBuilder.length() > 0) {
+      DebugLogsViewer.presentLines(logWebView, lineBuilder.toString());
+    }
   }
 
   private void presentMode(@NonNull SubmitDebugLogViewModel.Mode mode) {
-    if (editMenuItem == null || doneMenuItem == null || searchMenuItem == null || saveMenuItem == null) {
+    if (searchMenuItem == null || saveMenuItem == null) {
       return;
     }
 
     switch (mode) {
       case NORMAL:
-        editBanner.setVisibility(View.GONE);
         searchNav.setVisibility(View.GONE);
-        // TODO [lisa][debug-log-editing]
-//        setEditing(false);
         saveMenuItem.setVisible(true);
-        // TODO [greyson][log] Not yet implemented
-//        editMenuItem.setVisible(true);
-//        doneMenuItem.setVisible(false);
         searchMenuItem.setVisible(true);
         break;
       case SUBMITTING:
-        editBanner.setVisibility(View.GONE);
-//        setEditing(false);
-        editMenuItem.setVisible(false);
-        doneMenuItem.setVisible(false);
         searchMenuItem.setVisible(false);
-        saveMenuItem.setVisible(false);
-        break;
-      case EDIT:
-        editBanner.setVisibility(View.VISIBLE);
-//        setEditing(true);
-        editMenuItem.setVisible(false);
-        doneMenuItem.setVisible(true);
-        searchMenuItem.setVisible(true);
         saveMenuItem.setVisible(false);
         break;
     }

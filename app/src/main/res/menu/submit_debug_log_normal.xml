@@ -13,18 +13,6 @@
       app:showAsAction="collapseActionView|always" />
 
   <item
-      android:id="@+id/menu_edit_log"
-      android:title="@string/SubmitDebugLogActivity_edit"
-      android:visible="false"
-      app:showAsAction="always" />
-
-  <item
-      android:id="@+id/menu_done_editing_log"
-      android:title="@string/SubmitDebugLogActivity_done"
-      android:visible="false"
-      app:showAsAction="always" />
-
-  <item
       android:id="@+id/menu_save"
       android:icon="@drawable/symbol_save_android_24"
       android:title="@string/SubmitDebugLogActivity_save"
