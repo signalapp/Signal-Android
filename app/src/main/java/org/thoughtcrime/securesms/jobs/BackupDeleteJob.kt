@@ -147,6 +147,11 @@ class BackupDeleteJob private constructor(
   }
 
   private fun isMediaRestoreRequired(): Boolean {
+    if (backupDeleteJobData.tier != BackupDeleteJobData.Tier.PAID) {
+      Log.i(TAG, "User is not on the PAID tier so there's nothing we can download.")
+      return false
+    }
+
     val requiresMediaRestore = SignalDatabase.attachments.getRemainingRestorableAttachmentSize() > 0L
     val hasOffloadedMedia = SignalDatabase.attachments.getOptimizedMediaAttachmentSize() > 0L
 
