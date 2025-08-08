@@ -27,6 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
+import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.debuglogsviewer.DebugLogsViewer;
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
@@ -357,27 +358,29 @@ public class SubmitDebugLogActivity extends BaseActivity {
       hasPresentedLines = true;
     }
 
-    int chunkSize = 1000;
-    int count     = 0;
+    SignalExecutors.BOUNDED.execute(() -> {
+      int chunkSize = 1000;
+      int count     = 0;
 
-    StringBuilder lineBuilder = new StringBuilder();
+      StringBuilder lineBuilder = new StringBuilder();
 
-    for (LogLine line : lines) {
-      if (line == null) continue;
+      for (LogLine line : lines) {
+        if (line == null) continue;
 
-      lineBuilder.append(String.format("%s\n", line.getText()));
-      count++;
+        lineBuilder.append(String.format("%s\n", line.getText()));
+        count++;
 
-      if (count >= chunkSize) {
-        DebugLogsViewer.presentLines(logWebView, lineBuilder.toString());
-        lineBuilder.setLength(0);
-        count = 0;
+        if (count >= chunkSize) {
+          DebugLogsViewer.presentLines(logWebView, lineBuilder.toString());
+          lineBuilder.setLength(0);
+          count = 0;
+        }
       }
-    }
 
-    if (lineBuilder.length() > 0) {
-      DebugLogsViewer.presentLines(logWebView, lineBuilder.toString());
-    }
+      if (lineBuilder.length() > 0) {
+        DebugLogsViewer.presentLines(logWebView, lineBuilder.toString());
+      }
+    });
   }
 
   private void presentMode(@NonNull SubmitDebugLogViewModel.Mode mode) {

@@ -5,8 +5,6 @@
 
 package org.signal.debuglogsviewer
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
 import android.content.res.Configuration
 import android.webkit.ValueCallback
@@ -14,9 +12,8 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import kotlinx.coroutines.Runnable
 import org.json.JSONObject
+import org.signal.core.util.ThreadUtil
 import java.util.function.Consumer
-
-var readOnly = true
 
 object DebugLogsViewer {
   @JvmStatic
@@ -47,7 +44,7 @@ object DebugLogsViewer {
   fun presentLines(webview: WebView, lines: String) {
     // Set the debug log lines
     val escaped = JSONObject.quote(lines)
-    webview.evaluateJavascript("editor.insert($escaped); logLines+=$escaped;", null)
+    ThreadUtil.runOnMain { webview.evaluateJavascript("editor.insert($escaped); logLines+=$escaped;", null) }
   }
 
   @JvmStatic
@@ -109,27 +106,5 @@ object DebugLogsViewer {
   @JvmStatic
   fun onSearchClose(webview: WebView) {
     webview.evaluateJavascript("onSearchClose();", null)
-  }
-
-  @JvmStatic
-  fun onEdit(webview: WebView) {
-    readOnly = !readOnly
-    webview.evaluateJavascript("editor.setReadOnly($readOnly);", null)
-  }
-
-  @JvmStatic
-  fun onCancelEdit(webview: WebView, lines: String) {
-    readOnly = !readOnly
-    webview.evaluateJavascript("editor.setReadOnly($readOnly);", null)
-    webview.evaluateJavascript("editor.setValue($lines, -1);", null)
-  }
-
-  @JvmStatic
-  fun onCopy(webview: WebView, context: Context, appName: String) {
-    webview.evaluateJavascript("editor.getValue();") { value ->
-      val clipboard = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-      val clip = ClipData.newPlainText(appName, value)
-      clipboard.setPrimaryClip(clip)
-    }
   }
 }
