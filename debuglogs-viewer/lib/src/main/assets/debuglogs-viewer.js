@@ -58,8 +58,8 @@ let selectedLevels = []; // Log levels that are selected in checkboxes
 let markers = []; // IDs of highlighted search markers
 let matchRanges = []; // Ranges of all search matches
 let matchCount = 0; // Total number of matches
-let isCaseSensitive = false;
 let isFiltered = false;
+let isCaseSensitive = false;
 
 // Clear all search markers and match info
 function clearMarkers() {
@@ -162,24 +162,22 @@ function onFilter() {
 }
 
 function onFilterClose() {
-  isFiltered = false;
-  clearMarkers();
-  editor.getSelection().clearSelection();
+  if (isFiltered) {
+    isFiltered = false;
+    if (selectedLevels.length === 0) {
+      editor.setValue(logLines, -1);
+    } else {
+      const filtered = logLines
+        .split("\n")
+        .filter((line) => {
+          return selectedLevels.some((level) => line.includes(level));
+        })
+        .join("\n");
 
-  if (selectedLevels.length === 0) {
-    editor.setValue(logLines, -1);
-  } else {
-    const filtered = logLines
-      .split("\n")
-      .filter((line) => {
-        return selectedLevels.some((level) => line.includes(level));
-      })
-      .join("\n");
-
-    editor.setValue(filtered, -1);
+      editor.setValue(filtered, -1);
+    }
+    highlightAllMatches(input);
   }
-
-  highlightAllMatches(input);
 }
 
 

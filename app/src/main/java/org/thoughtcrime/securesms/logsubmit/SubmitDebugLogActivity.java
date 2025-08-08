@@ -275,6 +275,8 @@ public class SubmitDebugLogActivity extends BaseActivity {
     warningButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.signal_background_secondary)));
     errorButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.signal_background_secondary)));
     uncaughtButton.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(this, R.color.signal_background_secondary)));
+
+    DebugLogsViewer.onFilterLevel(logWebView, "[]");
   }
 
   @Override
