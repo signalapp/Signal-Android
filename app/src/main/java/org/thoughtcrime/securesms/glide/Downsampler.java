@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.ParcelFileDescriptor;
 import android.util.DisplayMetrics;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.annotation.VisibleForTesting;
@@ -39,6 +40,7 @@ import com.bumptech.glide.util.Preconditions;
 import com.bumptech.glide.util.Util;
 
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.mms.InputStreamFactory;
 
 import java.io.File;
 import java.io.IOException;
@@ -184,22 +186,17 @@ public final class Downsampler {
    * data present in the stream and that is downsampled according to the given dimensions and any
    * provided {@link com.bumptech.glide.load.resource.bitmap.DownsampleStrategy} option.
    *
-   * @see #decode(InputStream, int, int, Options, DecodeCallbacks)
+   * @see #decode(InputStreamFactory, int, int, Options, DecodeCallbacks)
    */
-  public Resource<Bitmap> decode(InputStream is, int outWidth, int outHeight, Options options)
-      throws IOException
-  {
-    return decode(is, outWidth, outHeight, options, EMPTY_CALLBACKS);
+  public Resource<Bitmap> decode(@NonNull InputStreamFactory inputStreamFactory, int outWidth, int outHeight, Options options) throws IOException {
+    return decode(inputStreamFactory, outWidth, outHeight, options, EMPTY_CALLBACKS);
   }
 
   /**
-   * Identical to {@link #decode(InputStream, int, int, Options)}, except that it accepts a {@link
-   * ByteBuffer} in place of an {@link InputStream}.
+   * Identical to {@link #decode(InputStreamFactory, int, int, Options)}, except that it accepts a {@link
+   * ByteBuffer} in place of an {@link InputStreamFactory}.
    */
-  public Resource<Bitmap> decode(
-      ByteBuffer buffer, int requestedWidth, int requestedHeight, Options options)
-      throws IOException
-  {
+  public Resource<Bitmap> decode(ByteBuffer buffer, int requestedWidth, int requestedHeight, Options options) throws IOException {
     return decode(
         new ImageReader.ByteBufferReader(buffer, parsers, byteArrayPool),
         requestedWidth,
@@ -218,7 +215,7 @@ public final class Downsampler {
    * of the image for the given InputStream is available, the operation is much less expensive in
    * terms of memory.
    *
-   * @param is              An {@link InputStream} to the data for the image.
+   * @param inputStreamFactory              An {@link InputStreamFactory} to the data for the image.
    * @param requestedWidth  The width the final image should be close to.
    * @param requestedHeight The height the final image should be close to.
    * @param options         A set of options that may contain one or more supported options that influence
@@ -229,7 +226,7 @@ public final class Downsampler {
    * not null.
    */
   public Resource<Bitmap> decode(
-      InputStream is,
+      @NonNull InputStreamFactory inputStreamFactory,
       int requestedWidth,
       int requestedHeight,
       Options options,
@@ -237,7 +234,7 @@ public final class Downsampler {
       throws IOException
   {
     return decode(
-        new ImageReader.InputStreamImageReader(is, parsers, byteArrayPool),
+        new ImageReader.InputStreamImageReader(inputStreamFactory, parsers, byteArrayPool),
         requestedWidth,
         requestedHeight,
         options,

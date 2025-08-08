@@ -11,12 +11,12 @@ import android.graphics.BitmapFactory.Options;
 import android.os.Build;
 import android.os.ParcelFileDescriptor;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 
 import com.bumptech.glide.load.ImageHeaderParser;
 import com.bumptech.glide.load.ImageHeaderParser.ImageType;
-import com.bumptech.glide.load.ImageHeaderParserUtils;
 import com.bumptech.glide.load.data.DataRewinder;
 import com.bumptech.glide.load.data.InputStreamRewinder;
 import com.bumptech.glide.load.data.ParcelFileDescriptorRewinder;
@@ -24,6 +24,8 @@ import com.bumptech.glide.load.engine.bitmap_recycle.ArrayPool;
 import com.bumptech.glide.load.resource.bitmap.RecyclableBufferedInputStream;
 import com.bumptech.glide.util.ByteBufferUtil;
 import com.bumptech.glide.util.Preconditions;
+
+import org.thoughtcrime.securesms.mms.InputStreamFactory;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -72,7 +74,7 @@ interface ImageReader {
 
     @Override
     public int getImageOrientation() throws IOException {
-      return ImageHeaderParserUtils.getOrientation(parsers, ByteBuffer.wrap(bytes), byteArrayPool);
+      return ImageHeaderParserUtils.getOrientationWithFallbacks(parsers, ByteBuffer.wrap(bytes), byteArrayPool);
     }
 
     @Override
@@ -128,19 +130,7 @@ interface ImageReader {
 
     @Override
     public int getImageOrientation() throws IOException {
-      InputStream is = null;
-      try {
-        is = new RecyclableBufferedInputStream(new FileInputStream(file), byteArrayPool);
-        return ImageHeaderParserUtils.getOrientation(parsers, is, byteArrayPool);
-      } finally {
-        if (is != null) {
-          try {
-            is.close();
-          } catch (IOException e) {
-            // Ignored.
-          }
-        }
-      }
+      return ImageHeaderParserUtils.getOrientationWithFallbacks(parsers, InputStreamFactory.build(file), byteArrayPool);
     }
 
     @Override
@@ -172,8 +162,7 @@ interface ImageReader {
 
     @Override
     public int getImageOrientation() throws IOException {
-      return ImageHeaderParserUtils.getOrientation(
-          parsers, ByteBufferUtil.rewind(buffer), byteArrayPool);
+      return ImageHeaderParserUtils.getOrientationWithFallbacks(parsers, ByteBufferUtil.rewind(buffer), byteArrayPool);
     }
 
     @Override
@@ -188,31 +177,42 @@ interface ImageReader {
     private final InputStreamRewinder     dataRewinder;
     private final ArrayPool               byteArrayPool;
     private final List<ImageHeaderParser> parsers;
+    private final InputStreamFactory      inputStreamFactory;
 
-    InputStreamImageReader(
-        InputStream is, List<ImageHeaderParser> parsers, ArrayPool byteArrayPool)
-    {
+    InputStreamImageReader(@NonNull InputStreamFactory inputStreamFactory, List<ImageHeaderParser> parsers, ArrayPool byteArrayPool) {
       this.byteArrayPool = Preconditions.checkNotNull(byteArrayPool);
       this.parsers       = Preconditions.checkNotNull(parsers);
 
-      dataRewinder = new InputStreamRewinder(is, byteArrayPool);
+      this.inputStreamFactory = inputStreamFactory;
+      this.dataRewinder       = new InputStreamRewinder(inputStreamFactory.create(), byteArrayPool);
     }
 
     @Nullable
     @Override
-    public Bitmap decodeBitmap(BitmapFactory.Options options) throws IOException {
-      return BitmapFactory.decodeStream(dataRewinder.rewindAndGet(), null, options);
+    public Bitmap decodeBitmap(@NonNull BitmapFactory.Options options) {
+      try {
+        return BitmapFactory.decodeStream(dataRewinder.rewindAndGet(), null, options);
+      } catch (IOException e) {
+        return BitmapFactory.decodeStream(inputStreamFactory.createRecyclable(byteArrayPool), null, options);
+      }
     }
 
     @Override
     public ImageHeaderParser.ImageType getImageType() throws IOException {
-      return ImageHeaderParserUtils.getType(parsers, dataRewinder.rewindAndGet(), byteArrayPool);
+      try {
+        return ImageHeaderParserUtils.getType(parsers, dataRewinder.rewindAndGet(), byteArrayPool);
+      } catch (IOException e) {
+        return ImageHeaderParserUtils.getType(parsers, inputStreamFactory.createRecyclable(byteArrayPool), byteArrayPool);
+      }
     }
 
     @Override
     public int getImageOrientation() throws IOException {
-      return ImageHeaderParserUtils.getOrientation(
-          parsers, dataRewinder.rewindAndGet(), byteArrayPool);
+      try {
+        return ImageHeaderParserUtils.getOrientation(parsers, dataRewinder.rewindAndGet(), byteArrayPool);
+      } catch (IOException e) {
+        return ImageHeaderParserUtils.getOrientationWithFallbacks(parsers, inputStreamFactory, byteArrayPool);
+      }
     }
 
     @Override
