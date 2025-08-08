@@ -1603,11 +1603,11 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Níorbh fhéidir an t-aistriú a chur i gcrích</string>
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Can\'t restore backup</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Ní féidir an cúltaca a aischur</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contact support</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Déan teagmháil leis an bhfoireann tacaíochta</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Tharla earráid agus níorbh fhéidir do chuntas a aistriú. Triail arís trí do mhodh aistrithe a roghnú.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -8470,7 +8470,7 @@
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Tharla earráid agus níorbh fhéidir do chúltacú a chur i gcrích. Cinntigh go bhfuil an leagan Signal is déanaí agat agus triail arís. Má leanann an fhadhb sin, déan teagmháil leis an bhfoireann tacaíochta.</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
-    <string name="BackupAlertBottomSheet__an_error_occurred_and">An error occurred and your backup could not be completed. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Tharla earráid agus níorbh fhéidir do cúltaca a chur i gcrích. Má leanann an fhadhb sin, déan teagmháil leis an bhfoireann tacaíochta.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Seiceáil le haghaidh nuashonraithe</string>
     <!-- Backup redemption error sheet text line 1 -->

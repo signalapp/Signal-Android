@@ -1483,11 +1483,11 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Ezin izan da osatu transferentzia</string>
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Can\'t restore backup</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Ezin da babeskopia leheneratu</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contact support</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Jarri harremanetan laguntza-zerbitzuarekin</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Errore bat gertatu da eta ezin izan da transferitu zure kontua. Saiatu berriro transferentzia-metodo bat aukeratuta.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -7948,7 +7948,7 @@
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Errore bat gertatu da eta ezin izan da osatu babeskopia. Ziurtatu Signal-en bertsio berriena duzula eta saiatu berriro. Arazoak bere horretan jarraitzen badu, jarri harremanetan laguntza-zerbitzuarekin.</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
-    <string name="BackupAlertBottomSheet__an_error_occurred_and">An error occurred and your backup could not be completed. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Errore bat gertatu da eta ezin izan da osatu babeskopia. Arazoak bere horretan jarraitzen badu, jarri harremanetan laguntza-zerbitzuarekin.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Egiaztatu eguneratzerik dagoen</string>
     <!-- Backup redemption error sheet text line 1 -->

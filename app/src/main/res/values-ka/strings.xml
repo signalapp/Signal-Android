@@ -1483,11 +1483,11 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">გადატანის დასრულება ვერ მოხერხდა</string>
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Can\'t restore backup</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">სათადარიგო ასლის აღდგენა შეუძლებელია</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contact support</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">მხარდაჭერის გუნდთან დაკავშირება</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">შეცდომა დაფიქსირდა და შენი მონაცემების გადატანა ვერ მოხერხდა. აირჩიე გადატანის მეთოდი, რომ თავიდან სცადო.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -7948,7 +7948,7 @@
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">შეცდომა მოხდა და შენი სათადარიგო ასლის შექმნა ვერ მოხერხდა. დარწმუნდი, რომ Signal-ის უახლეს ვერსიაზე ხარ და თავიდან სცადე. თუ პრობლემა არ მოგვარდა, მხარდაჭერის გუნდს დაუკავშირდი.</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
-    <string name="BackupAlertBottomSheet__an_error_occurred_and">An error occurred and your backup could not be completed. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">შეცდომა მოხდა და შენი სათადარიგო ასლის შექმნა ვერ მოხერხდა. თუ პრობლემა არ მოგვარდა, მხარდაჭერის გუნდს დაუკავშირდი.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">შეამოწმე ახალი ვერსია</string>
     <!-- Backup redemption error sheet text line 1 -->

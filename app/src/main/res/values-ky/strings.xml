@@ -1443,11 +1443,11 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Аягына чейин өтпөй калды</string>
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Can\'t restore backup</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Камдык көчүрмөнү калыбына келтирүү мүмкүн эмес</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contact support</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Кардарларды колдоо кызматына кайрылуу</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Ката кетип, аккаунтуңуз өткөн жок. Башка өткөрүү ыкмасын тандап, кайталап көрүңүз.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -7774,7 +7774,7 @@
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Ката кетти. Signal\'дын акыркы версиясын орнотуп, кайталап көрүңүз. Ката кайталана берсе, кардарларды тейлеген кызматка кайрылыңыз.</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
-    <string name="BackupAlertBottomSheet__an_error_occurred_and">An error occurred and your backup could not be completed. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Ката кетти. Ката кайталана берсе, кардарларды тейлеген кызматка кайрылыңыз.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Жаңы версияны текшерүү</string>
     <!-- Backup redemption error sheet text line 1 -->

@@ -1483,11 +1483,11 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Пренос није завршен</string>
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Can\'t restore backup</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Враћање резервне копије није успело</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Дошло је до грешке приликом враћања резервне копије. Ваша резервна копија се не може вратити. Обратите се подршци ако вам је потребна помоћ.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contact support</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Обратите се подршци</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Дошло је до грешке и ваш налог није пренесен. Пробајте поново тако што ћете изабрати начин преноса.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -7948,7 +7948,7 @@
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Дошло је до грешке и ваша резервна копија није направљена. Проверите да ли користите најновију верзију Signal-а и пробајте поново. Ако се проблем и даље буде појављивао, обратите се подршци.</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
-    <string name="BackupAlertBottomSheet__an_error_occurred_and">An error occurred and your backup could not be completed. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Дошло је до грешке и ваша резервна копија није креирана. Ако се проблем и даље буде појављивао, обратите се подршци.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Ажурирај на нову верзију</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8595,7 +8595,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Грешка у мрежи приликом враћања резервне копије за Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Трајна немогућност враћања резервне копије Signal-а на Android-у</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->

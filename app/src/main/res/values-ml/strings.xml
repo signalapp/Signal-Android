@@ -1483,11 +1483,11 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">കൈമാറ്റം പൂർത്തിയാക്കാനായില്ല</string>
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Can\'t restore backup</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">ബാക്കപ്പ് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contact support</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">പിന്തുണയുമായി ബന്ധപ്പെടുക</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">ഒരു പിശക് സംഭവിച്ചു, നിങ്ങളുടെ അക്കൗണ്ട് കൈമാറാൻ കഴിഞ്ഞില്ല. നിങ്ങളുടെ കൈമാറ്റ രീതി തിരഞ്ഞെടുത്ത് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -7948,7 +7948,7 @@
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">ഒരു പിശക് സംഭവിച്ചു, നിങ്ങളുടെ ബാക്കപ്പ് പൂർത്തിയാക്കാൻ കഴിഞ്ഞില്ല. Signal-ന്റെ ഏറ്റവും പുതിയ പതിപ്പാണ് നിങ്ങൾ ഉപയോഗിക്കുന്നതെന്ന് ഉറപ്പാക്കിയതിന് ശേഷം വീണ്ടും ശ്രമിക്കുക. ഈ പ്രശ്നം തുടരുകയാണെങ്കിൽ, പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
-    <string name="BackupAlertBottomSheet__an_error_occurred_and">An error occurred and your backup could not be completed. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">ഒരു പിശക് സംഭവിച്ചു, നിങ്ങളുടെ ബാക്കപ്പ് പൂർത്തിയാക്കാൻ കഴിഞ്ഞില്ല. ഈ പ്രശ്നം തുടരുകയാണെങ്കിൽ, പിന്തുണയുമായി ബന്ധപ്പെടുക.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">അപ്ഡേറ്റിനായി പരിശോധിക്കുക</string>
     <!-- Backup redemption error sheet text line 1 -->

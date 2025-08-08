@@ -1483,11 +1483,11 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">ટ્રાન્સફર પૂર્ણ ન કરી શક્યા</string>
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Can\'t restore backup</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">બેકઅપ રિસ્ટોર કરી શકતા નથી</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contact support</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">સપોર્ટનો સંપર્ક કરો</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">એક એરર આવી અને તમારું એકાઉન્ટ ટ્રાન્સફર કરી શકાયું નથી. તમારી ટ્રાન્સફર પદ્ધતિ પસંદ કરીને ફરી પ્રયાસ કરો.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -7948,7 +7948,7 @@
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">એક એરર આવી અને તમારું બેકઅપ પૂર્ણ કરી શકાયું નથી. ખાતરી કરો કે તમે Signalનું લેટેસ્ટ વર્ઝન વાપરો છો અને ફરી પ્રયાસ કરો. જો સમસ્યા ચાલુ રહે તો સપોર્ટનો સંપર્ક કરો.</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
-    <string name="BackupAlertBottomSheet__an_error_occurred_and">An error occurred and your backup could not be completed. If this problem persists, contact support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">એક એરર આવી અને તમારું બેકઅપ પૂર્ણ કરી શકાયું નથી. જો સમસ્યા ચાલુ રહે તો સપોર્ટનો સંપર્ક કરો.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">અપડેટ માટે તપાસો</string>
     <!-- Backup redemption error sheet text line 1 -->
