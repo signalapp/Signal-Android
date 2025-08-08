@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.jobs.protos.BackupDeleteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import kotlin.time.Duration.Companion.seconds
 
@@ -52,6 +53,26 @@ class BackupDeleteJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
+    if (!RemoteConfig.messageBackups) {
+      Log.w(TAG, "Message backups are not available on this device. Exiting without local cleanup.")
+      return Result.failure()
+    }
+
+    if (!SignalStore.account.isRegistered) {
+      Log.w(TAG, "User not registered. Exiting without local cleanup.")
+      return Result.failure()
+    }
+
+    if (SignalStore.account.isLinkedDevice) {
+      Log.w(TAG, "User is on a linked device. Exiting without local cleanup.")
+      return Result.failure()
+    }
+
+    if (SignalStore.backup.deletionState.isIdle()) {
+      Log.w(TAG, "Invalid state ${SignalStore.backup.deletionState}. Exiting without local cleanup.")
+      return Result.failure()
+    }
+
     val result = doRun()
 
     if (result.isFailure) {
@@ -63,11 +84,6 @@ class BackupDeleteJob private constructor(
   }
 
   private fun doRun(): Result {
-    if (SignalStore.backup.deletionState.isIdle()) {
-      Log.w(TAG, "Invalid state ${SignalStore.backup.deletionState}. Exiting.")
-      return Result.failure()
-    }
-
     if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
       Log.i(TAG, "Awaiting media download. Scheduling retry.")
       return Result.retry(5.seconds.inWholeMilliseconds)
