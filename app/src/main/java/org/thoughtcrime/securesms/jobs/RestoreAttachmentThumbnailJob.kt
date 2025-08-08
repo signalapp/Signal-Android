@@ -156,7 +156,15 @@ class RestoreAttachmentThumbnailJob private constructor(
   override fun onShouldRetry(exception: Exception): Boolean {
     if (exception is NonSuccessfulResponseCodeException) {
       if (exception.code == 404) {
-        Log.w(TAG, "[$attachmentId-thumbnail] Unable to find file")
+        Log.w(TAG, "[$attachmentId-thumbnail] Unable to find file!")
+        return false
+      }
+      if (exception.code == 403) {
+        Log.w(TAG, "[$attachmentId-thumbnail] No permission!")
+        return false
+      }
+      if (exception.code == 555) {
+        Log.w(TAG, "[$attachmentId-thumbnail] Syntetic failure!")
         return false
       }
     }
