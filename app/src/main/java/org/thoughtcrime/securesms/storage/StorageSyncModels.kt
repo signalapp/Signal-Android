@@ -269,6 +269,7 @@ object StorageSyncModels {
 
     return SignalCallLinkRecord.newBuilder(null).apply {
       rootKey = callLink.credentials.linkKeyBytes.toByteString()
+      epoch = callLink.credentials.epochBytes?.toByteString()
       adminPasskey = adminPassword.toByteString()
       deletedAtTimestampMs = deletedTimestamp
     }.build().toSignalCallLinkRecord(StorageId.forCallLink(rawStorageId))

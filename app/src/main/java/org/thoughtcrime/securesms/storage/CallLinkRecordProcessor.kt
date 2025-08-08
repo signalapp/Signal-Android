@@ -5,7 +5,6 @@
 
 package org.thoughtcrime.securesms.storage
 
-import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
@@ -48,10 +47,9 @@ class CallLinkRecordProcessor : DefaultStorageRecordProcessor<SignalCallLinkReco
     val callLink = SignalDatabase.callLinks.getCallLinkByRoomId(roomId)
 
     if (callLink != null && callLink.credentials?.adminPassBytes != null) {
-      val epochBytes = callLink.credentials.epochBytes
       return SignalCallLinkRecord.newBuilder(null).apply {
         rootKey = callRootKey.keyBytes.toByteString()
-        epoch = epochBytes?.toByteString() ?: ByteString.EMPTY
+        epoch = callLink.credentials.epochBytes?.toByteString()
         adminPasskey = callLink.credentials.adminPassBytes.toByteString()
         deletedAtTimestampMs = callLink.deletionTimestamp
       }.build().toSignalCallLinkRecord(StorageId.forCallLink(keyGenerator.generate())).toOptional()
@@ -92,11 +90,7 @@ class CallLinkRecordProcessor : DefaultStorageRecordProcessor<SignalCallLinkReco
   private fun insertOrUpdateRecord(record: SignalCallLinkRecord) {
     val rootKey = CallLinkRootKey(record.proto.rootKey.toByteArray())
 
-    val epoch = if (record.proto.epoch.isNotEmpty()) {
-      CallLinkEpoch.fromBytes(record.proto.epoch.toByteArray())
-    } else {
-      null
-    }
+    val epoch = record.proto.epoch?.let { CallLinkEpoch.fromBytes(it.toByteArray()) }
 
     SignalDatabase.callLinks.insertOrUpdateCallLinkByRootKey(
       callLinkRootKey = rootKey,
