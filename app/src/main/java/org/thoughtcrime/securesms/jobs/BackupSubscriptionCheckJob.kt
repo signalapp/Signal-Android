@@ -29,6 +29,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
@@ -139,10 +140,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
       val isSignalSubscriptionFailedOrCanceled = activeSubscription?.isFailedPayment == true || activeSubscription?.isCanceled == true
       if (hasActiveSignalSubscription && !isSignalSubscriptionFailedOrCanceled) {
-        Log.i(TAG, "Detected an active, non-failed, non-canceled signal subscription. Synchronizing backup tier with value from server.", true)
-        BackupRepository.getBackupTier().runIfSuccessful {
-          SignalStore.backup.backupTier = it
-        }
+        checkAndSynchronizeZkCredentialTierWithStoredLocalTier()
       }
 
       val hasActivePaidBackupTier = SignalStore.backup.backupTier == MessageBackupTier.PAID
@@ -184,6 +182,31 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
             return Result.success()
           }
         }
+      }
+    }
+  }
+
+  /**
+   * If we detect that we have an active subscription, we want to check to make sure our ZK credentials are good. If they aren't, we should clear them.
+   * This will also synchronize our backup tier value with whatever the refreshed Zk tier thinks we are on, if necessary.
+   */
+  private fun checkAndSynchronizeZkCredentialTierWithStoredLocalTier() {
+    Log.i(TAG, "Detected an active, non-failed, non-canceled signal subscription. Synchronizing backup tier with value from server.", true)
+
+    val zkTier: MessageBackupTier? = when (val result = BackupRepository.getBackupTierWithoutDowngrade()) {
+      is NetworkResult.Success -> result.result
+      else -> null
+    }
+
+    if (zkTier == SignalStore.backup.backupTier) {
+      Log.i(TAG, "ZK credential tier is in sync with our stored backup tier.", true)
+    } else {
+      Log.w(TAG, "ZK credential tier is not in sync with our stored backup tier, flushing credentials and retrying.", true)
+      BackupRepository.resetInitializedStateAndAuthCredentials()
+
+      BackupRepository.getBackupTier().runIfSuccessful {
+        Log.i(TAG, "Refreshed credentials. Synchronizing stored backup tier with ZK result.")
+        SignalStore.backup.backupTier = it
       }
     }
   }

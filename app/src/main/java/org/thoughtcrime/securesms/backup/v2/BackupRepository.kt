@@ -1426,8 +1426,32 @@ object BackupRepository {
   }
 
   /**
+   * Grabs the backup tier we think the user is on without performing any kind of authentication clearing
+   * on a 403 error. Ensures we can check without rolling the user back during the BackupSubscriptionCheckJob.
+   */
+  fun getBackupTierWithoutDowngrade(): NetworkResult<MessageBackupTier> {
+    return if (SignalStore.backup.areBackupsEnabled) {
+      getArchiveServiceAccessPair()
+        .then { credential ->
+          val zkCredential = SignalNetwork.archive.getZkCredential(Recipient.self().requireAci(), credential.messageBackupAccess)
+          val tier = if (zkCredential.backupLevel == BackupLevel.PAID) {
+            MessageBackupTier.PAID
+          } else {
+            MessageBackupTier.FREE
+          }
+
+          NetworkResult.Success(tier)
+        }
+    } else {
+      NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(404))
+    }
+  }
+
+  /**
    * If backups are enabled, sync with the network. Otherwise, return a 404.
    * Used in instrumentation tests.
+   *
+   * Note that this will set the user's backup tier to FREE if they are not on PAID, so avoid this method if you don't intend that to be the case.
    */
   fun getBackupTier(): NetworkResult<MessageBackupTier> {
     return if (SignalStore.backup.areBackupsEnabled) {
