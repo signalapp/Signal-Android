@@ -18,7 +18,6 @@ import androidx.annotation.RequiresApi;
 import com.bumptech.glide.load.ImageHeaderParser;
 import com.bumptech.glide.load.ImageHeaderParser.ImageType;
 import com.bumptech.glide.load.data.DataRewinder;
-import com.bumptech.glide.load.data.InputStreamRewinder;
 import com.bumptech.glide.load.data.ParcelFileDescriptorRewinder;
 import com.bumptech.glide.load.engine.bitmap_recycle.ArrayPool;
 import com.bumptech.glide.load.resource.bitmap.RecyclableBufferedInputStream;
@@ -209,7 +208,7 @@ interface ImageReader {
     @Override
     public int getImageOrientation() throws IOException {
       try {
-        return ImageHeaderParserUtils.getOrientation(parsers, dataRewinder.rewindAndGet(), byteArrayPool);
+        return ImageHeaderParserUtils.getOrientation(parsers, dataRewinder.rewindAndGet(), byteArrayPool, true);
       } catch (IOException e) {
         return ImageHeaderParserUtils.getOrientationWithFallbacks(parsers, inputStreamFactory, byteArrayPool);
       }

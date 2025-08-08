@@ -9,6 +9,7 @@ import androidx.exifinterface.media.ExifInterface
 import com.bumptech.glide.load.ImageHeaderParser
 import com.bumptech.glide.load.data.ParcelFileDescriptorRewinder
 import com.bumptech.glide.load.engine.bitmap_recycle.ArrayPool
+import com.bumptech.glide.load.resource.bitmap.RecyclableBufferedInputStream
 import org.thoughtcrime.securesms.mms.InputStreamFactory
 import org.thoughtcrime.securesms.util.BitmapUtil
 import java.io.IOException
@@ -25,10 +26,31 @@ object ImageHeaderParserUtils {
   @Throws(IOException::class)
   fun getType(
     parsers: List<ImageHeaderParser>,
-    inputStream: InputStream,
+    inputStream: InputStream?,
     byteArrayPool: ArrayPool
   ): ImageHeaderParser.ImageType {
-    return GlideImageHeaderParserUtils.getType(parsers, inputStream, byteArrayPool)
+    if (inputStream == null) {
+      return ImageHeaderParser.ImageType.UNKNOWN
+    }
+
+    val markableStream = if (!inputStream.markSupported()) {
+      RecyclableBufferedInputStream(inputStream, byteArrayPool)
+    } else {
+      inputStream
+    }
+
+    markableStream.mark(GlideStreamConfig.markReadLimitBytes)
+
+    return getType(
+      parsers = parsers,
+      getTypeAndRewind = { parser ->
+        try {
+          parser.getType(markableStream)
+        } finally {
+          markableStream.reset()
+        }
+      }
+    )
   }
 
   /**
@@ -54,6 +76,16 @@ object ImageHeaderParserUtils {
     byteArrayPool: ArrayPool
   ): ImageHeaderParser.ImageType {
     return GlideImageHeaderParserUtils.getType(parsers, parcelFileDescriptorRewinder, byteArrayPool)
+  }
+
+  private fun getType(
+    parsers: List<ImageHeaderParser>,
+    getTypeAndRewind: (ImageHeaderParser) -> ImageHeaderParser.ImageType
+  ): ImageHeaderParser.ImageType {
+    return parsers.firstNotNullOfOrNull { parser ->
+      getTypeAndRewind(parser)
+        .takeIf { type -> type != ImageHeaderParser.ImageType.UNKNOWN }
+    } ?: ImageHeaderParser.ImageType.UNKNOWN
   }
 
   /**
@@ -82,14 +114,43 @@ object ImageHeaderParserUtils {
     return GlideImageHeaderParserUtils.getOrientation(parsers, parcelFileDescriptorRewinder, byteArrayPool)
   }
 
+  /**
+   * @see com.bumptech.glide.load.ImageHeaderParserUtils.getOrientation
+   */
   @JvmStatic
   @Throws(IOException::class)
   fun getOrientation(
     parsers: List<ImageHeaderParser>,
-    inputStream: InputStream,
-    byteArrayPool: ArrayPool
+    inputStream: InputStream?,
+    byteArrayPool: ArrayPool,
+    allowStreamRewind: Boolean
   ): Int {
-    return GlideImageHeaderParserUtils.getOrientation(parsers, inputStream, byteArrayPool)
+    if (inputStream == null) {
+      return ImageHeaderParser.UNKNOWN_ORIENTATION
+    }
+
+    val markableStream = if (allowStreamRewind && !inputStream.markSupported()) {
+      RecyclableBufferedInputStream(inputStream, byteArrayPool)
+    } else {
+      inputStream
+    }
+
+    if (allowStreamRewind) {
+      markableStream.mark(GlideStreamConfig.markReadLimitBytes)
+    }
+
+    return getOrientation(
+      parsers = parsers,
+      getOrientationAndRewind = { parser ->
+        try {
+          parser.getOrientation(markableStream, byteArrayPool)
+        } finally {
+          if (allowStreamRewind) {
+            markableStream.reset()
+          }
+        }
+      }
+    )
   }
 
   /**
@@ -102,49 +163,27 @@ object ImageHeaderParserUtils {
     inputStreamFactory: InputStreamFactory,
     byteArrayPool: ArrayPool
   ): Int {
-    val orientationFromParsers = getOrientationFromParsers(
+    val orientationFromParsers = getOrientation(
       parsers = parsers,
       inputStream = inputStreamFactory.createRecyclable(byteArrayPool),
-      byteArrayPool = byteArrayPool
+      byteArrayPool = byteArrayPool,
+      allowStreamRewind = false
     )
     if (orientationFromParsers != ImageHeaderParser.UNKNOWN_ORIENTATION) return orientationFromParsers
 
-    val orientationFromExif = getOrientationFromExif(inputStream = inputStreamFactory.createRecyclable(byteArrayPool))
+    val orientationFromExif = BitmapUtil.getExifOrientation(ExifInterface(inputStreamFactory.createRecyclable(byteArrayPool)))
     if (orientationFromExif != ImageHeaderParser.UNKNOWN_ORIENTATION) return orientationFromExif
 
     return ImageHeaderParser.UNKNOWN_ORIENTATION
   }
 
-  private fun getOrientationFromParsers(
-    parsers: List<ImageHeaderParser>,
-    inputStream: InputStream?,
-    byteArrayPool: ArrayPool
-  ): Int {
-    if (inputStream == null) {
-      return ImageHeaderParser.UNKNOWN_ORIENTATION
-    }
-
-    return getOrientation(
-      parsers = parsers,
-      readOrientation = { parser -> parser.getOrientation(inputStream, byteArrayPool) }
-    )
-  }
-
-  private fun getOrientationFromExif(inputStream: InputStream): Int {
-    return BitmapUtil.getExifOrientation(ExifInterface(inputStream))
-  }
-
   private fun getOrientation(
     parsers: List<ImageHeaderParser>,
-    readOrientation: (ImageHeaderParser) -> Int
+    getOrientationAndRewind: (ImageHeaderParser) -> Int
   ): Int {
-    parsers.forEach { parser ->
-      val orientation = readOrientation(parser)
-      if (orientation != ImageHeaderParser.UNKNOWN_ORIENTATION) {
-        return orientation
-      }
-    }
-
-    return ImageHeaderParser.UNKNOWN_ORIENTATION
+    return parsers.firstNotNullOfOrNull { parser ->
+      getOrientationAndRewind(parser)
+        .takeIf { type -> type != ImageHeaderParser.UNKNOWN_ORIENTATION }
+    } ?: ImageHeaderParser.UNKNOWN_ORIENTATION
   }
 }
