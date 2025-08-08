@@ -847,6 +847,7 @@ class AttachmentTable(
               $DATA_HASH_END NOT NULL AND 
               $REMOTE_KEY NOT NULL AND
               $ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value}) AND
+              $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}' AND
               (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND
               (${MessageTable.EXPIRES_IN} = 0 OR ${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds})
           )
