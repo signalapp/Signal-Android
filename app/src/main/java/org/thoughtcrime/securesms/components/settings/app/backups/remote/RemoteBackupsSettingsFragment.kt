@@ -906,6 +906,12 @@ private fun LazyListScope.appendBackupDetailsItems(
 
   if (backupState !is BackupState.ActiveFree) {
     item {
+      val sizeText = if (backupMediaSize < 0L) {
+        stringResource(R.string.RemoteBackupsSettingsFragment__loading)
+      } else {
+        backupMediaSize.bytes.toUnitString()
+      }
+
       Rows.TextRow(text = {
         Column {
           Text(

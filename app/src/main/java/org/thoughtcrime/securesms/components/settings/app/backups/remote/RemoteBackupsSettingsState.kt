@@ -23,7 +23,7 @@ data class RemoteBackupsSettingsState(
   val isOutOfStorageSpace: Boolean = false,
   val totalAllowedStorageSpace: String = "",
   val backupState: BackupState,
-  val backupMediaSize: Long = 0,
+  val backupMediaSize: Long = -1L,
   val backupsFrequency: BackupFrequency = BackupFrequency.DAILY,
   val lastBackupTimestamp: Long = 0,
   val dialog: Dialog = Dialog.NONE,
