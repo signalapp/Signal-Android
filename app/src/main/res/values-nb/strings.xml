@@ -1485,7 +1485,7 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Gjenoppretting er ikke mulig</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">En feil oppstod da du forsøkte å gjenopprette sikkerhetskopien din. Sikkerhetskopien kan ikke gjenopprettes. Ta kontakt med brukerstøtten vår for å få hjelp.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Kontakt brukerstøtten</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -8595,7 +8595,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Sikkerhetskopi fra Signal kunne ikke gjenopprettes pga. nettverksfeil</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Sikkerhetskopi av Signal for Android kunne ikke gjenopprettes pga. en feil</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->

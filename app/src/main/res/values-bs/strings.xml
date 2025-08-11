@@ -1565,7 +1565,7 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Nije moguće vratiti sigurnosnu kopiju</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Došlo je do greške prilikom vraćanja vaše sigurnosne kopije. Vaša sigurnosna kopija se ne može oporaviti. Kontaktirajte podršku za pomoć.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Kontaktirajte podršku</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -8959,7 +8959,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Greška mreže vraćanja sigurnosne kopije za Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Trajna greška u vraćanju sigurnosne kopije za Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->

@@ -1445,7 +1445,7 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">无法恢复备份</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">恢复您的备份时发生了错误。您的备份无法恢复。请联系支持人员寻求帮助。</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">联系支持人员</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -8413,7 +8413,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Signal Android 备份恢复出现网络错误</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Android 版 Signal 备份恢复永久失败</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->

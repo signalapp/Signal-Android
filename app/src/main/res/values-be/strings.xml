@@ -1565,7 +1565,7 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Не атрымалася аднавіць рэзервовую копію</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Адбылася памылка падчас аднаўлення рэзервовай копіі. Немагчыма аднавіць вашу рэзервовую копію. Калі ласка, звярніцеся да службы падтрымкі.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Звярнуцца да службы падтрымкі</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -8959,7 +8959,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Памылка сеткі падчас аднаўлення рэзервовай копіі Android Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Пастаянны збой падчас аднаўлення рэзервовай копіі Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->

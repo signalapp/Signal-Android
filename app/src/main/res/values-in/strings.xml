@@ -1447,7 +1447,7 @@
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Hubungi Tim Dukungan</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Hubungi tim dukungan</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Terjadi kesalahan dan akun Anda tidak dapat ditransfer. Coba lagi dengan memilih metode transfer lain.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->

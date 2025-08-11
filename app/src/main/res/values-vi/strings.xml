@@ -1445,7 +1445,7 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Không thể khôi phục bản sao lưu</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Có lỗi xảy ra trong quá trình khôi phục bản sao lưu của bạn. Bản sao lưu của bạn không thể khôi phục được. Vui lòng liên hệ bộ phận hỗ trợ để được trợ giúp.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Liên hệ hỗ trợ</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -8413,7 +8413,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Lỗi mạng khôi phục bản sao lưu của Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Lỗi không thể khôi phục bản sao lưu của Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->

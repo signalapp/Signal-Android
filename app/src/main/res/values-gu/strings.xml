@@ -1485,7 +1485,7 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">બેકઅપ રિસ્ટોર કરી શકતા નથી</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">તમારા બેકઅપને રિસ્ટોર કરતી વખતે એક એરર આવી. તમારું બેકઅપ પાછું મેળવી શકાતું નથી. મદદ માટે કૃપા કરીને સપોર્ટનો સંપર્ક કરો.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">સપોર્ટનો સંપર્ક કરો</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -8595,7 +8595,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Signal Android બેકઅપ રિસ્ટોર નેટવર્ક એરર</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android બેકઅપ રિસ્ટોર કાયમી નિષ્ફળતા</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->

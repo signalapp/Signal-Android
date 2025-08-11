@@ -5520,7 +5520,7 @@
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
     <string name="ChatFoldersFragment__unread">Non lus</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Messages non lus dans l\'ensemble des conversations</string>
+    <string name="ChatFoldersFragment__unread_messages">Messages non lus dans toutes les conversations</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
     <string name="ChatFoldersFragment__one_on_one_chats">Conversations individuelles</string>
     <!-- Description of the suggested 1:1 chat folder -->

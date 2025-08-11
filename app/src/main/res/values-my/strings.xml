@@ -1445,9 +1445,9 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">သင်၏ ဘက်ခ်အပ်ကို ပြန်လည်ရယူစဉ် အမှားအယွင်းတစ်ခု ဖြစ်ပွားခဲ့သည်။ သင်၏ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ။ အကူအညီအတွက် ပံ့ပိုရေးသို့ ဆက်သွယ်ပါ။</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">ပံ့ပိုးမှုစင်တာသို့ ဆက်သွယ်ရန်</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">ပံ့ပိုးရေးသို့ ဆက်သွယ်ရန်</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">ချွတ်ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့သောကြောင့် သင့်အကောင့်ကို လွှဲပြောင်း၍မရပါ။ လွှဲပြောင်းရန်နည်းလမ်းကို ရွေးချယ်၍ ထပ်စမ်းကြည့်ပါ။</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -7774,7 +7774,7 @@
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပြီး သင်၏ဘက်ခ်အပ်ကို မပြီးမြောက်နိုင်ခဲ့ပါ။ Signal ၏ နောက်ဆုံးဗားရှင်းကို သင်အသုံးပြုနေကြောင်း သေချာစေပြီး ထပ်ကြိုးစားကြည့်ပါ။ ဤပြဿနာဆက်လက်ရှိနေပါက Signal ပံ့ပိုးမှုသို့ ဆက်သွယ်ပါ။</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
-    <string name="BackupAlertBottomSheet__an_error_occurred_and">ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပြီး သင်၏ဘက်ခ်အပ်ကို မပြီးမြောက်နိုင်ခဲ့ပါ။ ဤပြဿနာဆက်လက်ရှိနေပါက Signal ပံ့ပိုးမှုသို့ ဆက်သွယ်ပါ။</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပြီး သင်၏ဘက်ခ်အပ်ကို မပြီးမြောက်နိုင်ခဲ့ပါ။ ဤပြဿနာဆက်လက်ရှိနေပါက Signal ပံ့ပိုးရေးသို့ ဆက်သွယ်ပါ။</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">အပ်ဒိတ်အတွက် စစ်ဆေးရန်</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8413,7 +8413,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Signal Android ဘက်ခ်အပ် ပြန်လည်ရယူခြင်းဆိုင်ရာ ကွန်ရက်ချို့ယွင်းချက်</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android ဘက်ခ်အပ် ပြန်လည်ရယူခြင်းဆိုင်ရာ အမြဲတမ်း ချို့ယွင်းချက်</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->

@@ -1565,7 +1565,7 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Nepavyko atkurti atsarginės kopijos</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Atkuriant atsarginę kopiją įvyko klaida. Jūsų atsarginės kopijos atkurti negalima. Dėl pagalbos kreipkitės į aptarnavimo komandą.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Susisiekti su aptarnavimo komanda</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -8959,7 +8959,7 @@
     <string name="EnterBackupKey_network_failure_support_email">„Signal“ „Android“ atsarginės kopijos atkūrimo tinklo klaida</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">„Signal“ „Android“ atsarginės kopijos atkūrimo pasikartojanti klaida</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
