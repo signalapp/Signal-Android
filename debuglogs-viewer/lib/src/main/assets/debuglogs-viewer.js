@@ -1,6 +1,40 @@
+let editor;
+let timeout;
+let session;
+
+let logLines = ""; // Original logLines
+let input = ""; // Search query input
+let selectedLevels = []; // Log levels that are selected in checkboxes
+let markers = []; // IDs of highlighted search markers
+let matchRanges = []; // Ranges of all search matches
+let matchCount = 0; // Total number of matches
+let isFiltered = false;
+let isCaseSensitive = false;
+
 // Create custom text mode to color different levels of debug log lines
 const TextMode = ace.require("ace/mode/text").Mode;
 const TextHighlightRules = ace.require("ace/mode/text_highlight_rules").TextHighlightRules;
+const Range = ace.require("ace/range").Range;
+
+function main() {
+  // Create Ace Editor using the custom mode
+  editor = ace.edit("container", {
+    mode: new CustomMode(),
+    theme: "ace/theme/textmate",
+    wrap: false, // Allow for horizontal scrolling
+    readOnly: true,
+    showGutter: false,
+    highlightActiveLine: false,
+    highlightSelectedWord: false, // Prevent Ace Editor from automatically highlighting all instances of a selected word (really laggy!)
+    showPrintMargin: false,
+  });
+
+  editor.session.on("changeScrollTop", showScrollBar);
+  editor.session.on("changeScrollLeft", showScrollBar);
+
+  // Generate highlight markers for all search matches
+  session = editor.getSession();
+}
 
 function CustomHighlightRules() {
   this.$rules = {
@@ -14,52 +48,21 @@ function CustomHighlightRules() {
     ],
   };
 }
-
 CustomHighlightRules.prototype = new TextHighlightRules();
 
 function CustomMode() {
   TextMode.call(this);
   this.HighlightRules = CustomHighlightRules;
 }
-
 CustomMode.prototype = Object.create(TextMode.prototype);
 CustomMode.prototype.constructor = CustomMode;
 
-// Create Ace Editor using the custom mode
-let editor = ace.edit("container", {
-  mode: new CustomMode(),
-  theme: "ace/theme/textmate",
-  wrap: false, // Allow for horizontal scrolling
-  readOnly: true,
-  showGutter: false,
-  highlightActiveLine: false,
-  highlightSelectedWord: false, // Prevent Ace Editor from automatically highlighting all instances of a selected word (really laggy!)
-  showPrintMargin: false,
-});
-
 // Show scrollbar that fades after a second since last scroll
-let timeout;
 function showScrollBar() {
   editor.container.classList.add("show-scrollbar");
   clearTimeout(timeout);
   timeout = setTimeout(() => editor.container.classList.remove("show-scrollbar"), 1000);
 }
-
-editor.session.on("changeScrollTop", showScrollBar);
-editor.session.on("changeScrollLeft", showScrollBar);
-
-// Generate highlight markers for all search matches
-const Range = ace.require("ace/range").Range;
-const session = editor.getSession();
-
-let logLines = ""; // Original logLines
-let input = ""; // Search query input
-let selectedLevels = []; // Log levels that are selected in checkboxes
-let markers = []; // IDs of highlighted search markers
-let matchRanges = []; // Ranges of all search matches
-let matchCount = 0; // Total number of matches
-let isFiltered = false;
-let isCaseSensitive = false;
 
 // Clear all search markers and match info
 function clearMarkers() {
@@ -180,7 +183,6 @@ function onFilterClose() {
   }
 }
 
-
 function onFilterLevel(sLevels) {
   selectedLevels = sLevels;
 
@@ -217,3 +219,5 @@ function applyFilter() {
 
   editor.setValue(filtered, -1);
 }
+
+main();
