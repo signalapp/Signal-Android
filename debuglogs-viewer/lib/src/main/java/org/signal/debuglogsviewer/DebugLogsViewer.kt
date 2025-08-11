@@ -41,7 +41,7 @@ object DebugLogsViewer {
   }
 
   @JvmStatic
-  fun presentLines(webview: WebView, lines: String) {
+  fun appendLines(webview: WebView, lines: String) {
     // Set the debug log lines
     val escaped = JSONObject.quote(lines)
     ThreadUtil.runOnMain { webview.evaluateJavascript("editor.insert($escaped); logLines+=$escaped;", null) }

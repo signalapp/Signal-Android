@@ -5,11 +5,11 @@ import android.net.Uri;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import org.signal.core.util.Stopwatch;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
@@ -22,55 +22,98 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import io.reactivex.rxjava3.core.Observable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
+
 public class SubmitDebugLogViewModel extends ViewModel {
 
   private static final String TAG = Log.tag(SubmitDebugLogViewModel.class);
 
-  private final SubmitDebugLogRepository        repo;
-  private final MutableLiveData<Mode>           mode;
-  private final List<LogLine>                   staticLines;
-  private final MediatorLiveData<List<LogLine>> lines;
-  private final SingleLiveEvent<Event>          event;
-  private final long                            firstViewTime;
-  private final byte[]                          trace;
-  private final List<LogLine>                   allLines;
+  private static final int CHUNK_SIZE = 10_000;
+
+  private final SubmitDebugLogRepository    repo;
+  private final MutableLiveData<Mode>       mode;
+  private final SingleLiveEvent<Event>      event;
+  private final long                        firstViewTime;
+  private final byte[]                      trace;
 
   private SubmitDebugLogViewModel() {
-    this.repo             = new SubmitDebugLogRepository();
-    this.mode             = new MutableLiveData<>();
-    this.trace            = Tracer.getInstance().serialize();
-    this.firstViewTime    = System.currentTimeMillis();
-    this.staticLines      = new ArrayList<>();
-    this.lines            = new MediatorLiveData<>();
-    this.event            = new SingleLiveEvent<>();
-    this.allLines         = new ArrayList<>();
-
-    repo.getPrefixLogLines(staticLines -> {
-      this.staticLines.addAll(staticLines);
-
-      Log.blockUntilAllWritesFinished();
-      LogDatabase.getInstance(AppDependencies.getApplication()).logs().trimToSize();
-      SignalExecutors.UNBOUNDED.execute(() -> {
-        allLines.clear();
-        allLines.addAll(staticLines);
-
-        try (LogDatabase.LogTable.CursorReader logReader = (LogDatabase.LogTable.CursorReader) LogDatabase.getInstance(AppDependencies.getApplication()).logs().getAllBeforeTime(firstViewTime)) {
-          while (logReader.hasNext()) {
-            String next = logReader.next();
-            allLines.add(new SimpleLogLine(next, LogStyleParser.parseStyle(next), LogLine.Placeholder.NONE));
-          }
-        }
-
-        ThreadUtil.runOnMain(() -> {
-          lines.setValue(allLines);
-          mode.setValue(Mode.NORMAL);
-        });
-      });
-    });
+    this.repo          = new SubmitDebugLogRepository();
+    this.mode          = new MutableLiveData<>();
+    this.trace         = Tracer.getInstance().serialize();
+    this.firstViewTime = System.currentTimeMillis();
+    this.event         = new SingleLiveEvent<>();
   }
 
-  @NonNull LiveData<List<LogLine>> getLines() {
-    return lines;
+  @NonNull Observable<List<String>> getLogLinesObservable() {
+    return Observable.<List<String>>create(emitter -> {
+      Stopwatch stopwatch = new Stopwatch("log-loading");
+      try {
+        mode.postValue(Mode.LOADING);
+
+        repo.getPrefixLogLines(prefixLines -> {
+          try {
+            List<String> prefixStrings = new ArrayList<>();
+            for (LogLine line : prefixLines) {
+              prefixStrings.add(line.getText());
+            }
+            stopwatch.split("prefix");
+
+            Log.blockUntilAllWritesFinished();
+            stopwatch.split("flush");
+
+            LogDatabase.getInstance(AppDependencies.getApplication()).logs().trimToSize();
+            stopwatch.split("trim-old");
+
+            if (!emitter.isDisposed()) {
+              emitter.onNext(new ArrayList<>(prefixStrings));
+            }
+
+            List<String> currentChunk = new ArrayList<>();
+
+            try (LogDatabase.LogTable.CursorReader logReader = (LogDatabase.LogTable.CursorReader) LogDatabase.getInstance(AppDependencies.getApplication()).logs().getAllBeforeTime(firstViewTime)) {
+              stopwatch.split("initial-query");
+
+              int count = 0;
+              while (logReader.hasNext() && !emitter.isDisposed()) {
+                String next = logReader.next();
+                currentChunk.add(next);
+                count++;
+
+                if (count >= CHUNK_SIZE) {
+                  emitter.onNext(currentChunk);
+                  count = 0;
+                  currentChunk = new ArrayList<>();
+                }
+              }
+
+              // Send final chunk if any remaining
+              if (!emitter.isDisposed() && count > 0) {
+                emitter.onNext(currentChunk);
+              }
+
+              if (!emitter.isDisposed()) {
+                mode.postValue(Mode.NORMAL);
+                emitter.onComplete();
+              }
+
+              stopwatch.split("lines");
+              stopwatch.stop(TAG);
+            }
+          } catch (Exception e) {
+            if (!emitter.isDisposed()) {
+              Log.e(TAG, "Error loading log lines", e);
+              emitter.onError(e);
+            }
+          }
+        });
+      } catch (Exception e) {
+        if (!emitter.isDisposed()) {
+          Log.e(TAG, "Error creating log lines observable", e);
+          emitter.onError(e);
+        }
+      }
+    }).subscribeOn(Schedulers.io());
   }
 
   @NonNull LiveData<Mode> getMode() {
@@ -82,9 +125,12 @@ public class SubmitDebugLogViewModel extends ViewModel {
 
     MutableLiveData<Optional<String>> result = new MutableLiveData<>();
 
-    repo.submitLogWithPrefixLines(firstViewTime, staticLines, trace, value -> {
-      mode.postValue(Mode.NORMAL);
-      result.postValue(value);
+    // Get prefix lines for submission - this is a quick operation so it's ok to do it here
+    repo.getPrefixLogLines(prefixLines -> {
+      repo.submitLogWithPrefixLines(firstViewTime, prefixLines, trace, value -> {
+        mode.postValue(Mode.NORMAL);
+        result.postValue(value);
+      });
     });
 
     return result;
@@ -115,7 +161,7 @@ public class SubmitDebugLogViewModel extends ViewModel {
   }
 
   enum Mode {
-    NORMAL, SUBMITTING
+    NORMAL, LOADING, SUBMITTING
   }
 
   enum Event {

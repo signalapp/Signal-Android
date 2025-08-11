@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 
 class LogSectionRemoteBackups : LogSection {
   override fun getTitle(): String = "REMOTE BACKUPS"
@@ -79,19 +80,22 @@ class LogSectionRemoteBackups : LogSection {
     output.append("\n -- ArchiveUploadProgress\n")
     if (SignalStore.backup.archiveUploadState != null) {
       output.append("State: ${SignalStore.backup.archiveUploadState}\n")
-      output.append("Pending bytes: ${SignalDatabase.attachments.getPendingArchiveUploadBytes()}\n")
 
-      val pendingAttachments = SignalDatabase.attachments.debugGetPendingArchiveUploadAttachments()
-      if (pendingAttachments.isNotEmpty()) {
-        output.append("Pending attachments:\n")
-        output.append("  Count: ${pendingAttachments.size}\n")
-        output.append("  Sum of Size: ${pendingAttachments.sumOf { it.size }}\n")
-        output.append("  Content types:\n")
-        pendingAttachments.groupBy { it.contentType }.forEach { (contentType, attachments) ->
-          output.append("    $contentType: ${attachments.size}\n")
+      if (SignalStore.backup.archiveUploadState!!.state !in setOf(ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled)) {
+        output.append("Pending bytes: ${SignalDatabase.attachments.getPendingArchiveUploadBytes()}\n")
+
+        val pendingAttachments = SignalDatabase.attachments.debugGetPendingArchiveUploadAttachments()
+        if (pendingAttachments.isNotEmpty()) {
+          output.append("Pending attachments:\n")
+          output.append("  Count: ${pendingAttachments.size}\n")
+          output.append("  Sum of Size: ${pendingAttachments.sumOf { it.size }}\n")
+          output.append("  Content types:\n")
+          pendingAttachments.groupBy { it.contentType }.forEach { (contentType, attachments) ->
+            output.append("    $contentType: ${attachments.size}\n")
+          }
+        } else {
+          output.append("Pending attachments: None!\n")
         }
-      } else {
-        output.append("Pending attachments: None!\n")
       }
     } else {
       output.append("None\n")

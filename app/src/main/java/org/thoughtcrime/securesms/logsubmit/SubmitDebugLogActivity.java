@@ -44,6 +44,10 @@ import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.disposables.CompositeDisposable;
+import io.reactivex.rxjava3.disposables.Disposable;
+
 public class SubmitDebugLogActivity extends BaseActivity {
 
   private static final int CODE_SAVE = 24601;
@@ -82,10 +86,9 @@ public class SubmitDebugLogActivity extends BaseActivity {
   private boolean isInfo;
   private boolean isWarning;
   private boolean isError;
-  private boolean isWebViewLoaded;
-  private boolean hasPresentedLines;
 
   private final DynamicTheme dynamicTheme = new DynamicTheme();
+  private final CompositeDisposable disposables = new CompositeDisposable();
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -327,10 +330,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
     this.scrollToTopButton    = findViewById(R.id.debug_log_scroll_to_top);
     this.progressCard         = findViewById(R.id.debug_log_progress_card);
 
-    DebugLogsViewer.initWebView(logWebView, this, () -> {
-      isWebViewLoaded = true;
-      presentLines((viewModel.getLines().getValue() != null) ? viewModel.getLines().getValue() : new ArrayList<>());
-    });
+    DebugLogsViewer.initWebView(logWebView, this, this::subscribeToLogLines);
 
     submitButton.setOnClickListener(v -> onSubmitClicked());
     scrollToTopButton.setOnClickListener(v -> DebugLogsViewer.scrollToTop(logWebView));
@@ -340,46 +340,32 @@ public class SubmitDebugLogActivity extends BaseActivity {
   }
 
   private void initViewModel() {
-    viewModel.getLines().observe(this, this::presentLines);
     viewModel.getMode().observe(this, this::presentMode);
     viewModel.getEvents().observe(this, this::presentEvents);
   }
 
-  private void presentLines(@NonNull List<LogLine> lines) {
-    if (!isWebViewLoaded || hasPresentedLines) {
-      return;
-    }
+  private void subscribeToLogLines() {
+    Disposable disposable = viewModel.getLogLinesObservable()
+        .observeOn(AndroidSchedulers.mainThread())
+        .subscribe(this::presentLines, throwable -> {
+          // Handle error
+          this.progressCard.setVisibility(View.GONE);
+        });
+    disposables.add(disposable);
+  }
 
-    if (progressCard != null && lines.size() > 0) {
-      progressCard.setVisibility(View.GONE);
-      warningBanner.setVisibility(View.VISIBLE);
-      submitButton.setVisibility(View.VISIBLE);
-
-      hasPresentedLines = true;
-    }
+  private void presentLines(@NonNull List<String> lines) {
+    warningBanner.setVisibility(View.VISIBLE);
+    submitButton.setVisibility(View.VISIBLE);
 
     SignalExecutors.BOUNDED.execute(() -> {
-      int chunkSize = 1000;
-      int count     = 0;
-
       StringBuilder lineBuilder = new StringBuilder();
 
-      for (LogLine line : lines) {
-        if (line == null) continue;
-
-        lineBuilder.append(String.format("%s\n", line.getText()));
-        count++;
-
-        if (count >= chunkSize) {
-          DebugLogsViewer.presentLines(logWebView, lineBuilder.toString());
-          lineBuilder.setLength(0);
-          count = 0;
-        }
+      for (String line : lines) {
+        lineBuilder.append(line).append("\n");
       }
 
-      if (lineBuilder.length() > 0) {
-        DebugLogsViewer.presentLines(logWebView, lineBuilder.toString());
-      }
+      DebugLogsViewer.appendLines(logWebView, lineBuilder.toString());
     });
   }
 
@@ -389,14 +375,19 @@ public class SubmitDebugLogActivity extends BaseActivity {
     }
 
     switch (mode) {
+      case LOADING:
+        progressCard.setVisibility(View.VISIBLE);
+        break;
       case NORMAL:
         searchNav.setVisibility(View.GONE);
         saveMenuItem.setVisible(true);
         searchMenuItem.setVisible(true);
+        progressCard.setVisibility(View.GONE);
         break;
       case SUBMITTING:
         searchMenuItem.setVisible(false);
         saveMenuItem.setVisible(false);
+        progressCard.setVisibility(View.VISIBLE);
         break;
     }
   }
@@ -465,5 +456,11 @@ public class SubmitDebugLogActivity extends BaseActivity {
 
       submitButton.cancelSpinning();
     });
+  }
+
+  @Override
+  protected void onDestroy() {
+    super.onDestroy();
+    disposables.dispose();
   }
 }
