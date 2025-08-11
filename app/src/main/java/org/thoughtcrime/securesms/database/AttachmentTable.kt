@@ -856,6 +856,35 @@ class AttachmentTable(
       .readToSingleLong()
   }
 
+  /**
+   * Returns sum of the file sizes of attachments that are not fully uploaded to the archive CDN.
+   */
+  fun debugGetPendingArchiveUploadAttachments(): List<DatabaseAttachment> {
+    return readableDatabase
+      .rawQuery(
+        """
+          SELECT *
+          FROM $TABLE_NAME as t
+          JOIN (
+            SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY, $DATA_SIZE
+            FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
+            WHERE
+              $DATA_FILE NOT NULL AND
+              $DATA_HASH_END NOT NULL AND
+              $REMOTE_KEY NOT NULL AND
+              $ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value}) AND
+              $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}' AND
+              (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND
+              (${MessageTable.EXPIRES_IN} = 0 OR ${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds})
+          ) as filtered
+          ON t.$DATA_HASH_END = filtered.$DATA_HASH_END
+        """.trimIndent()
+      )
+      .readToList {
+        it.readAttachment()
+      }
+  }
+
   fun deleteAttachmentsForMessage(mmsId: Long): Boolean {
     Log.d(TAG, "[deleteAttachmentsForMessage] mmsId: $mmsId")
 
