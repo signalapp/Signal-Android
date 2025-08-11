@@ -1,9 +1,13 @@
 package org.thoughtcrime.securesms.notifications.profiles
 
 import android.content.Context
+import org.signal.core.util.concurrent.SignalExecutors
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.NotificationProfileValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.formatHours
 import org.thoughtcrime.securesms.util.toLocalDateTime
 import org.thoughtcrime.securesms.util.toLocalTime
@@ -34,6 +38,13 @@ object NotificationProfiles {
       profile.schedule.startDateTime(localNow).toMillis(zoneId.toOffset()) > storeValues.manuallyDisabledAt
     }
 
+    if (shouldClearManualOverride(manualProfile, scheduledProfile)) {
+      SignalExecutors.UNBOUNDED.execute {
+        SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+        StorageSyncHelper.scheduleSyncForDataChange()
+      }
+    }
+
     if (manualProfile == null || scheduledProfile == null) {
       return manualProfile ?: scheduledProfile
     }
@@ -43,6 +54,24 @@ object NotificationProfiles {
     } else {
       scheduledProfile
     }
+  }
+
+  private fun shouldClearManualOverride(manualProfile: NotificationProfile?, scheduledProfile: NotificationProfile?): Boolean {
+    val storeValues: NotificationProfileValues = SignalStore.notificationProfile
+    var shouldScheduleSync = false
+
+    if (manualProfile == null && storeValues.manuallyEnabledProfile != 0L) {
+      storeValues.manuallyEnabledProfile = 0
+      storeValues.manuallyEnabledUntil = 0
+      shouldScheduleSync = true
+    }
+
+    if (scheduledProfile != null && storeValues.manuallyDisabledAt != 0L) {
+      storeValues.manuallyDisabledAt = 0
+      shouldScheduleSync = true
+    }
+
+    return shouldScheduleSync
   }
 
   fun getActiveProfileDescription(context: Context, profile: NotificationProfile, now: Long = System.currentTimeMillis()): String {

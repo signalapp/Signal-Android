@@ -218,10 +218,12 @@ object StorageSyncHelper {
           endAtTimestampMs = endTimestamp
         )
       )
-    } else {
+    } else if (SignalStore.notificationProfile.manuallyDisabledAt != 0L) {
       AccountRecord.NotificationProfileManualOverride(
         disabledAtTimestampMs = SignalStore.notificationProfile.manuallyDisabledAt
       )
+    } else {
+      AccountRecord.NotificationProfileManualOverride()
     }
   }
 
