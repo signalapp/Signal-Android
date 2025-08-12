@@ -35,6 +35,7 @@ import org.thoughtcrime.securesms.glide.OkHttpUrlLoader;
 import org.thoughtcrime.securesms.glide.cache.ApngBufferCacheDecoder;
 import org.thoughtcrime.securesms.glide.cache.ApngFrameDrawableTranscoder;
 import org.thoughtcrime.securesms.glide.cache.ApngStreamCacheDecoder;
+import org.thoughtcrime.securesms.glide.cache.ApngStreamFactoryDecoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedApngCacheEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedBitmapResourceEncoder;
 import org.thoughtcrime.securesms.glide.cache.EncryptedCacheDecoder;
@@ -78,10 +79,12 @@ public class SignalGlideComponents implements RegisterGlideComponents {
     registry.prepend(Bitmap.class, new EncryptedBitmapResourceEncoder(secret));
     registry.prepend(BitmapDrawable.class, new BitmapDrawableEncoder(glide.getBitmapPool(), encryptedBitmapResourceEncoder));
 
-    ApngBufferCacheDecoder apngBufferCacheDecoder = new ApngBufferCacheDecoder();
-    ApngStreamCacheDecoder apngStreamCacheDecoder = new ApngStreamCacheDecoder(apngBufferCacheDecoder);
+    ApngBufferCacheDecoder   apngBufferCacheDecoder   = new ApngBufferCacheDecoder();
+    ApngStreamCacheDecoder   apngStreamCacheDecoder   = new ApngStreamCacheDecoder(apngBufferCacheDecoder);
+    ApngStreamFactoryDecoder apngStreamFactoryDecoder = new ApngStreamFactoryDecoder(apngBufferCacheDecoder);
 
     registry.prepend(InputStream.class, APNGDecoder.class, apngStreamCacheDecoder);
+    registry.prepend(InputStreamFactory.class, APNGDecoder.class, apngStreamFactoryDecoder);
     registry.prepend(ByteBuffer.class, APNGDecoder.class, apngBufferCacheDecoder);
     registry.prepend(APNGDecoder.class, new EncryptedApngCacheEncoder(secret));
     registry.prepend(File.class, APNGDecoder.class, new EncryptedCacheDecoder<>(secret, apngStreamCacheDecoder));
