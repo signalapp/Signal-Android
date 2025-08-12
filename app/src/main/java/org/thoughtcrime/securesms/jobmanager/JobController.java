@@ -103,6 +103,10 @@ class JobController {
         return;
       }
 
+      if (chainContainsUnsatisfiableConditions(chain)) {
+        throw new AssertionError("Unsatisfiable conditions found in job chain!");
+      }
+
       insertJobChain(chain);
       scheduleJobs(chain.get(0));
     }
@@ -400,6 +404,20 @@ class JobController {
     } else {
       return false;
     }
+  }
+
+  @WorkerThread
+  private boolean chainContainsUnsatisfiableConditions(@NonNull List<List<Job>> chain) {
+    int firstGlobalPriority = chain.get(0).get(0).getParameters().getGlobalPriority();
+    for (List<Job> segment : chain) {
+      for (Job job : segment) {
+        if (job.getParameters().getGlobalPriority() > firstGlobalPriority) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   @WorkerThread
