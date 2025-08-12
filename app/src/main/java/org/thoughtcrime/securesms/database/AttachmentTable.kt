@@ -521,7 +521,7 @@ class AttachmentTable(
           file = File(it.requireNonNullString(DATA_FILE)),
           random = it.requireNonNullBlob(DATA_RANDOM),
           size = it.requireLong(DATA_SIZE),
-          remoteKey = it.requireBlob(REMOTE_KEY)!!,
+          remoteKey = Base64.decode(it.requireNonNullString(REMOTE_KEY)),
           plaintextHash = Base64.decode(it.requireNonNullString(DATA_HASH_END))
         )
       }
@@ -545,8 +545,8 @@ class AttachmentTable(
           attachmentId = AttachmentId(it.requireLong(ID)),
           mmsId = it.requireLong(MESSAGE_ID),
           size = it.requireLong(DATA_SIZE),
-          plaintextHash = it.requireBlob(DATA_HASH_END),
-          remoteKey = it.requireBlob(REMOTE_KEY)
+          plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
+          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) }
         )
       }
   }
@@ -569,8 +569,8 @@ class AttachmentTable(
           attachmentId = AttachmentId(it.requireLong(ID)),
           mmsId = it.requireLong(MESSAGE_ID),
           size = it.requireLong(DATA_SIZE),
-          plaintextHash = it.requireBlob(DATA_HASH_END),
-          remoteKey = it.requireBlob(REMOTE_KEY)
+          plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
+          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) }
         )
       }
   }
@@ -588,8 +588,8 @@ class AttachmentTable(
           attachmentId = AttachmentId(it.requireLong(ID)),
           mmsId = it.requireLong(MESSAGE_ID),
           size = it.requireLong(DATA_SIZE),
-          plaintextHash = it.requireBlob(DATA_HASH_END),
-          remoteKey = it.requireBlob(REMOTE_KEY)
+          plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
+          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) }
         )
       }
   }
@@ -606,8 +606,8 @@ class AttachmentTable(
           attachmentId = AttachmentId(it.requireLong(ID)),
           mmsId = it.requireLong(MESSAGE_ID),
           size = it.requireLong(DATA_SIZE),
-          plaintextHash = it.requireNonNullBlob(DATA_HASH_END),
-          remoteKey = it.requireNonNullBlob(REMOTE_KEY)
+          plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
+          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) }
         )
       }
   }
