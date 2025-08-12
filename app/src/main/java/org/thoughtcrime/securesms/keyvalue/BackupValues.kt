@@ -199,6 +199,15 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     }
     set(value) {
       lock.withLock {
+        val currentValue: ByteArray? = getBlob(KEY_MEDIA_ROOT_BACKUP_KEY, null)
+        if (currentValue != null) {
+          val current = MediaRootBackupKey(currentValue)
+          if (current == value) {
+            Log.i(TAG, "MediaRootBackupKey the same, skipping.")
+            return
+          }
+        }
+
         Log.i(TAG, "Setting MediaRootBackupKey...", Throwable(), true)
         store.beginWrite().putBlob(KEY_MEDIA_ROOT_BACKUP_KEY, value.value).commit()
         mediaCredentials.clearAll()

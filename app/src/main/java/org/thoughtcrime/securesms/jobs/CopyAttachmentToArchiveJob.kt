@@ -69,6 +69,12 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
   }
 
   override fun run(): Result {
+    if (SignalStore.account.isLinkedDevice) {
+      Log.w(TAG, "[$attachmentId] Linked devices don't backup media. Skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
     if (!SignalStore.backup.backsUpMedia) {
       Log.w(TAG, "[$attachmentId] This user does not back up media. Skipping.")
       return Result.success()

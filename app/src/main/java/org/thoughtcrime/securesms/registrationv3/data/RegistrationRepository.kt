@@ -256,9 +256,6 @@ object RegistrationRepository {
         DirectoryRefreshListener.schedule(context)
         RotateSignedPreKeyListener.schedule(context)
       } else {
-        // TODO [linked-device] May want to have a different opt out mechanism for linked devices
-        SvrRepository.optOutOfPin()
-
         SignalStore.account.isMultiDevice = true
         SignalStore.registration.hasUploadedProfile = true
         jobManager.runJobBlocking(RefreshOwnProfileJob(), 30.seconds)

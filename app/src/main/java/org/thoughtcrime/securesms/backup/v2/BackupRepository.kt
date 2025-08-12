@@ -1919,7 +1919,7 @@ object BackupRepository {
   private fun initBackupAndFetchAuth(): NetworkResult<ArchiveServiceAccessPair> {
     return if (!RemoteConfig.messageBackups) {
       NetworkResult.StatusCodeError(555, null, null, emptyMap(), NonSuccessfulResponseCodeException(555, "Backups disabled!"))
-    } else if (SignalStore.backup.backupsInitialized) {
+    } else if (SignalStore.backup.backupsInitialized || SignalStore.account.isLinkedDevice) {
       getArchiveServiceAccessPair()
         .runOnStatusCodeError(resetInitializedStateErrorAction)
         .runOnApplicationError(clearAuthCredentials)

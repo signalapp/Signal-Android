@@ -140,7 +140,9 @@ class RestoreAttachmentThumbnailJob private constructor(
         progressListener
       )
 
-    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.dataHash, attachment.remoteKey, decryptingStream, thumbnailTransferFile)
+    decryptingStream.use { input ->
+      SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.dataHash, attachment.remoteKey, input, thumbnailTransferFile)
+    }
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context)

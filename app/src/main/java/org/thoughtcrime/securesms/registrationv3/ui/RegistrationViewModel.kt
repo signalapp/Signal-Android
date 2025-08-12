@@ -1145,7 +1145,6 @@ class RegistrationViewModel : ViewModel() {
       }
 
       // TODO [linked-device] Reapply opt-out, backup restore sets pin, may want to have a different opt out mechanism for linked devices
-      SvrRepository.optOutOfPin()
     }
 
     for (type in SyncMessage.Request.Type.entries) {

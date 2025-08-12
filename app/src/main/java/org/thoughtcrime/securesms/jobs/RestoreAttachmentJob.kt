@@ -123,7 +123,7 @@ class RestoreAttachmentJob private constructor(
         attachmentId = attachmentId,
         messageId = messageId,
         manual = false,
-        queue = Queues.INITIAL_RESTORE.random(),
+        queue = Queues.OFFLOAD_RESTORE.random(),
         priority = Parameters.PRIORITY_LOW
       )
     }
@@ -323,7 +323,9 @@ class RestoreAttachmentJob private constructor(
           )
       }
 
-      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, decryptingStream, if (manual) System.currentTimeMillis().milliseconds else null)
+      decryptingStream.use { input ->
+        SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, input, if (manual) System.currentTimeMillis().milliseconds else null)
+      }
     } catch (e: RangeException) {
       Log.w(TAG, "[$attachmentId] Range exception, file size " + attachmentFile.length(), e)
       if (attachmentFile.delete()) {

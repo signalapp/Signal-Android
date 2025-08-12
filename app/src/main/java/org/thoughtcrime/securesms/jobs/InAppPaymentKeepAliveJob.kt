@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.VisibleForTesting
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
@@ -51,6 +52,7 @@ class InAppPaymentKeepAliveJob private constructor(
     const val KEEP_ALIVE = "keep-alive"
     private const val DATA_TYPE = "type"
 
+    @VisibleForTesting
     fun create(type: InAppPaymentSubscriberRecord.Type): Job {
       return InAppPaymentKeepAliveJob(
         parameters = Parameters.Builder()
@@ -66,6 +68,11 @@ class InAppPaymentKeepAliveJob private constructor(
 
     @JvmStatic
     fun enqueueAndTrackTimeIfNecessary() {
+      if (SignalStore.account.isLinkedDevice) {
+        Log.i(TAG, "Linked device. Skipping.")
+        return
+      }
+
       // TODO -- This should only be enqueued if we are completely drained of old subscription jobs. (No pending, no runnning)
       val lastKeepAliveTime = SignalStore.inAppPayments.getLastKeepAliveLaunchTime().milliseconds
       val now = System.currentTimeMillis().milliseconds
@@ -83,6 +90,11 @@ class InAppPaymentKeepAliveJob private constructor(
 
     @JvmStatic
     fun enqueueAndTrackTime(now: Duration) {
+      if (SignalStore.account.isLinkedDevice) {
+        Log.i(TAG, "Linked device. Skipping.")
+        return
+      }
+
       AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.DONATION))
       AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.BACKUP))
       SignalStore.inAppPayments.setLastKeepAliveLaunchTime(now.inWholeMilliseconds)
