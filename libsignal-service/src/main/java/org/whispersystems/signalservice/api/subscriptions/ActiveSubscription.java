@@ -181,6 +181,13 @@ public final class ActiveSubscription {
     return activeSubscription != null && activeSubscription.isCanceled();
   }
 
+  /**
+   * Backups-specific call that gives us a value that should align with autoRenew from the GPB payment.
+   */
+  public boolean willCancelAtPeriodEnd() {
+    return activeSubscription == null || activeSubscription.willCancelAtPeriodEnd;
+  }
+
   public static final class Subscription {
     private final int           level;
     private final String        currency;

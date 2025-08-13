@@ -138,7 +138,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
       checkForFailedOrCanceledSubscriptionState(activeSubscription)
 
-      val isSignalSubscriptionFailedOrCanceled = activeSubscription?.isFailedPayment == true || activeSubscription?.isCanceled == true
+      val isSignalSubscriptionFailedOrCanceled = activeSubscription?.willCancelAtPeriodEnd() == true
       if (hasActiveSignalSubscription && !isSignalSubscriptionFailedOrCanceled) {
         checkAndSynchronizeZkCredentialTierWithStoredLocalTier()
       }
@@ -216,8 +216,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
    * the "download your data" notifier sheet.
    */
   private fun checkForFailedOrCanceledSubscriptionState(activeSubscription: ActiveSubscription?) {
-    val containsFailedPaymentOrCancellation = activeSubscription?.isFailedPayment == true || activeSubscription?.isCanceled == true
-    if (containsFailedPaymentOrCancellation && activeSubscription?.activeSubscription != null) {
+    if (activeSubscription?.willCancelAtPeriodEnd() == true && activeSubscription?.activeSubscription != null) {
       Log.i(TAG, "Subscription either has a payment failure or has been canceled.")
 
       val response = SignalNetwork.account.whoAmI()
