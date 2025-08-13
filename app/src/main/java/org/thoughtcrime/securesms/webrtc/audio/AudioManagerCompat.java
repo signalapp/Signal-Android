@@ -103,7 +103,7 @@ public abstract class AudioManagerCompat {
         Log.w(TAG, "isSpeakerphoneOn: Failed to find communication device.");
         return false;
       } else {
-        return audioDeviceInfo.getType() == AudioDeviceInfo.TYPE_BUILTIN_SPEAKER;
+        return AudioDeviceMapping.fromPlatformType(audioDeviceInfo.getType())  == SignalAudioManager.AudioDevice.SPEAKER_PHONE;
       }
     } else {
       return audioManager.isSpeakerphoneOn();
@@ -112,16 +112,16 @@ public abstract class AudioManagerCompat {
 
   public void setSpeakerphoneOn(boolean on) {
     if (Build.VERSION.SDK_INT >= 31) {
-      int             desiredType = on ? AudioDeviceInfo.TYPE_BUILTIN_SPEAKER : AudioDeviceInfo.TYPE_BUILTIN_EARPIECE;
-      AudioDeviceInfo candidate   = getAvailableCommunicationDevices().stream()
-                                                                      .filter(audioDeviceInfo -> audioDeviceInfo.getType() == desiredType)
+      SignalAudioManager.AudioDevice audioDevice = on ? SignalAudioManager.AudioDevice.SPEAKER_PHONE : SignalAudioManager.AudioDevice.EARPIECE;
+      AudioDeviceInfo                candidate   = getAvailableCommunicationDevices().stream()
+                                                                      .filter(it -> AudioDeviceMapping.fromPlatformType(it.getType()) == audioDevice)
                                                                       .findFirst()
                                                                       .orElse(null);
 
       if (candidate != null) {
         setCommunicationDevice(candidate);
       } else {
-        Log.w(TAG, "setSpeakerphoneOn: Failed to find candidate for device type {" + desiredType + "}. Falling back on deprecated method.");
+        Log.w(TAG, "setSpeakerphoneOn: Failed to find candidate for SignalAudioDevice {" + audioDevice + "}. Falling back on deprecated method.");
         audioManager.setSpeakerphoneOn(on);
       }
     } else {

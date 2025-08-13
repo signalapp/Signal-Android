@@ -88,7 +88,7 @@ data class MainNavigationState(
   val storiesCount: Int = 0,
   val storyFailure: Boolean = false,
   val isStoriesFeatureEnabled: Boolean = true,
-  val selectedDestination: MainNavigationListLocation = MainNavigationListLocation.CHATS,
+  val currentListLocation: MainNavigationListLocation = MainNavigationListLocation.CHATS,
   val compact: Boolean = false
 )
 
@@ -123,7 +123,7 @@ fun MainNavigationBar(
         MainNavigationListLocation.STORIES -> state.storiesCount
       }
 
-      val selected = state.selectedDestination == destination
+      val selected = state.currentListLocation == destination
       NavigationBarItem(
         selected = selected,
         icon = {
@@ -216,7 +216,7 @@ fun MainNavigationRail(
     containerColor = SignalTheme.colors.colorSurface1,
     header = {
       MainFloatingActionButtons(
-        destination = state.selectedDestination,
+        destination = state.currentListLocation,
         callback = mainFloatingActionButtonsCallback,
         modifier = Modifier.padding(vertical = 40.dp)
       )
@@ -231,7 +231,7 @@ fun MainNavigationRail(
     }
 
     entries.forEachIndexed { idx, destination ->
-      val selected = state.selectedDestination == destination
+      val selected = state.currentListLocation == destination
 
       Box {
         NavigationRailItem(
@@ -346,7 +346,7 @@ private fun MainNavigationRailPreview() {
         chatsCount = 500,
         callsCount = 10,
         storiesCount = 5,
-        selectedDestination = selected
+        currentListLocation = selected
       ),
       mainFloatingActionButtonsCallback = MainFloatingActionButtonsCallback.Empty,
       onDestinationSelected = { selected = it }
@@ -365,7 +365,7 @@ private fun MainNavigationBarPreview() {
         chatsCount = 500,
         callsCount = 10,
         storiesCount = 5,
-        selectedDestination = selected,
+        currentListLocation = selected,
         compact = false
       ),
       onDestinationSelected = { selected = it }
