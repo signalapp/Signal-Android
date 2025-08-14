@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.rememberIsInPipMode
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantListUpdate
@@ -122,6 +123,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           callRecipient = recipient,
           webRtcCallState = webRtcCallState,
           isRemoteVideoOffer = viewModel.isAnswerWithVideoAvailable(),
+          isInPipMode = rememberIsInPipMode(),
           callScreenState = callScreenState,
           callControlsState = callControlsState,
           callScreenController = callScreenController,

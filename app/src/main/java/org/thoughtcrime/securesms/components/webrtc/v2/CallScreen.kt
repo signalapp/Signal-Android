@@ -80,6 +80,7 @@ fun CallScreen(
   callRecipient: Recipient,
   webRtcCallState: WebRtcViewModel.State,
   isRemoteVideoOffer: Boolean,
+  isInPipMode: Boolean,
   callScreenState: CallScreenState,
   callControlsState: CallControlsState,
   callScreenController: CallScreenController = CallScreenController.rememberCallScreenController(
@@ -110,6 +111,16 @@ fun CallScreen(
       callStatus = callScreenState.callStatus,
       callScreenControlsListener = callScreenControlsListener
     )
+
+    return
+  }
+
+  if (isInPipMode) {
+    PictureInPictureCallScreen(
+      callParticipantsPagerState = callParticipantsPagerState,
+      callScreenController = callScreenController
+    )
+
     return
   }
 
@@ -532,6 +543,7 @@ private fun CallScreenPreview() {
       callRecipient = Recipient(systemContactName = "Test User"),
       webRtcCallState = WebRtcViewModel.State.CALL_CONNECTED,
       isRemoteVideoOffer = false,
+      isInPipMode = false,
       callScreenState = CallScreenState(),
       callControlsState = CallControlsState(
         displayMicToggle = true,
