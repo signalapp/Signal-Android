@@ -221,6 +221,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
             SignalDatabase.attachments.debugMakeValidForArchive(it.attachmentId)
             SignalDatabase.attachments.createRemoteKeyIfNecessary(it.attachmentId)
           }
+          Log.d(TAG, "Created $i/$messageCount")
         }
       }
 
