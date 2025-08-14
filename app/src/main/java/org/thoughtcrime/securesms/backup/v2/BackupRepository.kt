@@ -103,6 +103,7 @@ import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
+import org.thoughtcrime.securesms.jobs.CheckRestoreMediaLeftJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
@@ -359,6 +360,8 @@ object BackupRepository {
     SignalStore.backup.userManuallySkippedMediaRestore = true
 
     RestoreAttachmentJob.Queues.ALL.forEach { AppDependencies.jobManager.cancelAllInQueue(it) }
+
+    RestoreAttachmentJob.Queues.ALL.forEach { AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(it)) }
   }
 
   fun markBackupFailure() {
