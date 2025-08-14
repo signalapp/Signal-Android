@@ -486,11 +486,12 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   /**
    * Note that this is currently only checking a specific kind of circular dependency -- ones that are
-   * created between dependencies and queues.
+   * created between dependencies, queues, and priorities.
    *
    * More specifically, dependencies where one job depends on another job in the same queue that was
-   * scheduled *after* it. These dependencies will never resolve. Under normal circumstances these
-   * won't occur, but *could* occur if the user changed their clock (either purposefully or automatically).
+   * scheduled *after* it, or if it depends on a job with a lower priority. These dependencies will
+   * never resolve. Under normal circumstances these won't occur, but *could* occur if the user changed
+   * their clock (either purposefully or automatically).
    *
    * Rather than go through and delete them from the database, removing them from memory at load time
    * serves the same effect and doesn't require new write methods. This should also be very rare.
@@ -511,7 +512,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       return false
     }
 
-    return dependsOnJob.createTime > job.createTime
+    return dependsOnJob.createTime > job.createTime || dependsOnJob.globalPriority < job.globalPriority || dependsOnJob.queuePriority < job.queuePriority
   }
 
   /**
