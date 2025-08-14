@@ -2831,6 +2831,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">កំណត់ត្រានេះ នឹងបិទផ្សាយជាសាធារណៈតាមអនឡាញ បង្ហាញដល់អ្នករួមចំណែក។ អ្នកអាចពិនិត្យមុនពេលផ្ទុក។</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">នៅពេលអ្នកចុច \"ដាក់បញ្ជូន\" នោះកំណត់ហេតុរបស់អ្នកនឹងត្រូវបានបង្ហោះលើអនឡាញរយៈពេល 30 ថ្ងៃនៅ URL មួយដែលខុសប្លែកពីគេ និងមិនទាន់បានផ្សព្វផ្សាយ។ អ្នកអាចរក្សាទុកវានៅក្នុងឧបករណ៍សិន។</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7962,6 +7969,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">បន្តការទាញយក</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">ទំហំបម្រុងទុក</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">ភាពញឹកញាប់នៃការបម្រុងទុក</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->

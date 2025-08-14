@@ -1565,7 +1565,7 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Nie można przywrócić kopii zapasowej</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Podczas przywracania kopii zapasowej wystąpił błąd. Nie można jej odzyskać. Skontaktuj się z naszą pomocą techniczną.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Skontaktuj się z pomocą techniczną</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -3110,6 +3110,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dziennik zostanie udostępniony publicznie, aby twórcy aplikacji mogli go sprawdzić. Przed przesłaniem możesz go przejrzeć.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Gdy dotkniesz opcji „Prześlij”, dziennik zostanie opublikowany online na 30 dni pod unikalnym, niepublicznym adresem URL. Możesz też najpierw zapisać dziennik na swoim urządzeniu.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -5112,10 +5119,10 @@
 
     <!-- TransferOrRestoreFragment -->
     <string name="TransferOrRestoreFragment__transfer_or_restore_account">Przenieś lub przywróć konto</string>
-    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Jeśli korzystasz już z aplikacji Signal, możesz przenieść lub przywrócić swoje konto oraz wiadomości</string>
+    <string name="TransferOrRestoreFragment__if_you_have_previously_registered_a_signal_account">Jeśli korzystasz już z aplikacji Signal, możesz przenieść lub przywrócić swoje konto oraz historię wiadomości</string>
     <string name="TransferOrRestoreFragment__transfer_from_android_device">Przenieś z urządzenia z Androidem</string>
-    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Przenieś konto i historię wiadomości ze swojego starego urządzenia z Androidem. Musisz mieć dostęp do starego urządzenia.</string>
-    <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Musisz mieć dostęp do swojego starego urządzenia.</string>
+    <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Przenieś konto i historię wiadomości ze swojego poprzedniego urządzenia z Androidem. Musisz mieć dostęp do poprzedniego urządzenia.</string>
+    <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Musisz mieć dostęp do swojego poprzedniego urządzenia.</string>
     <string name="TransferOrRestoreFragment__restore_from_backup">Przywróć z kopii zapasowej</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Przywróć historię wiadomości z lokalnej kopii zapasowej. Jeśli nie zrobisz tego teraz, nie będzie można tego zrobić później.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Przywróć lokalną kopię zapasową</string>
@@ -5128,7 +5135,7 @@
     <string name="TransferOrRestoreFragment__skip_transfer_description">Kontynuuj bez przenoszenia wiadomości i multimediów</string>
 
     <!-- NewDeviceTransferInstructionsFragment -->
-    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Otwórz Signal na swoim starym telefonie z Androidem</string>
+    <string name="NewDeviceTransferInstructions__open_signal_on_your_old_android_phone">Otwórz Signal na swoim poprzednim telefonie z Androidem</string>
     <string name="NewDeviceTransferInstructions__continue">Kontynuuj</string>
     <string name="NewDeviceTransferInstructions__first_bullet">1.</string>
     <string name="NewDeviceTransferInstructions__tap_on_your_profile_photo_in_the_top_left_to_open_settings">Dotknij swojego zdjęcia profilowego w lewym górnym rogu, aby otworzyć ustawienia</string>
@@ -5138,41 +5145,41 @@
     <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Wybierz opcję „Przenieś konto”, a następnie „Kontynuuj” na obu urządzeniach"</string>
 
     <!-- NewDeviceTransferSetupFragment -->
-    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Przygotowywanie do połączenia ze starym urządzeniem z Androidem…</string>
+    <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Przygotowywanie do połączenia ze poprzednim urządzeniem z Androidem…</string>
     <string name="NewDeviceTransferSetup__take_a_moment_should_be_ready_soon">To powinno potrwać tylko chwilę</string>
-    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Oczekiwanie na połączenie ze starym urządzeniem z Androidem…</string>
-    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Aby znaleźć stare urządzenie z Androidem oraz nawiązać z nim połączenie, Signal musi mieć dostęp do lokalizacji.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Aby znaleźć stare urządzenie z Androidem oraz nawiązać z nim połączenie, Signal potrzebuje włączonych usług lokalizacji.</string>
-    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Aby znaleźć stare urządzenie z Androidem, Signal potrzebuje włączonej opcji Wi-Fi. Musi ona być włączona, ale nie trzeba mieć połączenia z siecią Wi-Fi.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">To urządzenie najwyraźniej nie obsługuje technologii Wi-Fi Direct. Signal musi jej użyć, aby znaleźć Twoje stare urządzenie z Androidem oraz nawiązać z nim połączenie. W takim pzypadku możesz przywrócić kopię zapasową utworzoną na starym urządzeniu.</string>
+    <string name="NewDeviceTransferSetup__waiting_for_old_device_to_connect">Oczekiwanie na połączenie z poprzednim urządzeniem z Androidem…</string>
+    <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Aby znaleźć poprzednie urządzenie z Androidem oraz nawiązać z nim połączenie, Signal musi mieć dostęp do lokalizacji.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Aby znaleźć poprzednie urządzenie z Androidem oraz nawiązać z nim połączenie, Signal potrzebuje włączonych usług lokalizacji.</string>
+    <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Aby znaleźć poprzednie urządzenie z Androidem, Signal potrzebuje włączonej opcji Wi-Fi. Musi ona być włączona, ale nie trzeba mieć połączenia z siecią Wi-Fi.</string>
+    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">To urządzenie najwyraźniej nie obsługuje technologii Wi-Fi Direct. Signal musi jej użyć, aby znaleźć Twoje poprzednie urządzenie z Androidem oraz nawiązać z nim połączenie. W takim przypadku możesz przywrócić kopię zapasową utworzoną na poprzednim urządzeniu.</string>
     <string name="NewDeviceTransferSetup__restore_a_backup">Przywróć kopię zapasową</string>
-    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Podczas łączenia z Twoim starym urządzeniem z Androidem wystąpił nieoczekiwany błąd.</string>
+    <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Podczas łączenia z Twoim poprzednim urządzeniem z Androidem wystąpił nieoczekiwany błąd.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
     <string name="OldDeviceTransferSetup__searching_for_new_android_device">Wyszukiwanie nowego urządzenia z Androidem…</string>
     <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Aby znaleźć nowe urządzenie z Androidem oraz nawiązać z nim połączenie, Signal musi mieć dostęp do lokalizacji.</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Aby znaleźć nowe urządzenie z Androidem oraz nawiązać z nim połączenie, Signal potrzebuje włączonych usług lokalizacji.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Aby znaleźć nowe urządzenie z Androidem, Signal potrzebuje włączonej opcji Wi-Fi. Musi ona być włączona, ale nie trzeba mieć połączenia z siecią Wi-Fi.</string>
-    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">To urządzenie najwyraźniej nie obsługuje technologii Wi-Fi Direct. Signal musi jej użyć, aby znaleźć Twoje nowe urządzenie z Androidem oraz nawiązać z nim połączenie. W takim pzypadku możesz utworzyć kopię zapasową i przywrócić ją na nowym urządzeniu.</string>
+    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">To urządzenie najwyraźniej nie obsługuje technologii Wi-Fi Direct. Signal musi jej użyć, aby znaleźć Twoje nowe urządzenie z Androidem oraz nawiązać z nim połączenie. W takim przypadku możesz utworzyć kopię zapasową i przywrócić ją na nowym urządzeniu.</string>
     <string name="OldDeviceTransferSetup__create_a_backup">Utwórz kopię zapasową</string>
     <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Podczas łączenia z Twoim nowym urządzeniem z Androidem wystąpił nieoczekiwany błąd.</string>
 
     <!-- DeviceTransferSetupFragment -->
     <string name="DeviceTransferSetup__unable_to_open_wifi_settings">Nie można otworzyć ustawień Wi-Fi. Włącz Wi-Fi ręcznie.</string>
     <!-- Message on button that will prompt for location permissions in order to complete a device transfer -->
-    <string name="DeviceTransferSetup__grant_location_permission">Udziel dostępu do lokalizacji</string>
+    <string name="DeviceTransferSetup__grant_location_permission">Zezwól na dostęp do lokalizacji</string>
     <string name="DeviceTransferSetup__turn_on_location_services">Włącz usługi lokalizacji</string>
     <string name="DeviceTransferSetup__turn_on_wifi">Włącz Wi-Fi</string>
     <string name="DeviceTransferSetup__error_connecting">Błąd połączenia</string>
     <string name="DeviceTransferSetup__retry">Spróbuj ponownie</string>
-    <string name="DeviceTransferSetup__submit_debug_logs">Wyślij dzienniki debugowania</string>
+    <string name="DeviceTransferSetup__submit_debug_logs">Prześlij dzienniki debugowania</string>
     <string name="DeviceTransferSetup__verify_code">Zweryfikuj kod</string>
     <string name="DeviceTransferSetup__verify_that_the_code_below_matches_on_both_of_your_devices">Sprawdź czy kody wyświetlane na obu urządzeniach są identyczne, a następnie kontynuuj.</string>
     <string name="DeviceTransferSetup__the_numbers_do_not_match">Kody są różne</string>
     <string name="DeviceTransferSetup__continue">Kontynuuj</string>
-    <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Jeśli kody na Twoich urządzeniach się różnią, możliwe, że łączysz się się z nie tym urządzeniem. Aby to naprawić, przerwij przenoszenie i spróbuj ponownie. Upewnij się, że urządzenia są blisko siebie.</string>
+    <string name="DeviceTransferSetup__if_the_numbers_on_your_devices_do_not_match_its_possible_you_connected_to_the_wrong_device">Jeśli kody na Twoich urządzeniach są różne, być może łączysz się z nie tym urządzeniem. Aby to naprawić, przerwij przenoszenie i spróbuj ponownie. Upewnij się, że urządzenia są blisko siebie.</string>
     <string name="DeviceTransferSetup__stop_transfer">Przerwij przenoszenie</string>
-    <string name="DeviceTransferSetup__unable_to_discover_old_device">Nie można znaleźć starego urządzenia</string>
+    <string name="DeviceTransferSetup__unable_to_discover_old_device">Nie można znaleźć poprzedniego urządzenia</string>
     <string name="DeviceTransferSetup__unable_to_discover_new_device">Nie można znaleźć nowego urządzenia</string>
     <string name="DeviceTransferSetup__make_sure_the_following_permissions_are_enabled">Upewnij się, że te uprawnienia i usługi są włączone:</string>
     <string name="DeviceTransferSetup__location_permission">Uprawnienie do lokalizacji</string>
@@ -5214,7 +5221,7 @@
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
     <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Wybierz opcję „Przenieś lub przywróć konto”"</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Wybierz opcję „Przenieś z urządzenia z Androidem”, a następnie „Kontynuuj” na obu urządzeniach. Powinny one znajdować się blisko siebie"</string>
+    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Wybierz opcję „Przenieś z urządzenia z Androidem”, a następnie „Kontynuuj”. Urządzenia powinny znajdować się blisko siebie"</string>
     <string name="OldDeviceTransferInstructions__continue">Kontynuuj</string>
 
     <!-- OldDeviceTransferComplete -->
@@ -5239,7 +5246,7 @@
 
     <!-- OldDeviceTransferLockedDialog -->
     <string name="OldDeviceTransferLockedDialog__complete_registration_on_your_new_device">Dokończ rejestrację na nowym urządzeniu</string>
-    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Twoje konto Signal zostało przeniesione na nowe urządzenie. Teraz dokończ na nim rejestrację. Na tym urządzeniu aplikacja Signal będzie już nieaktywna.</string>
+    <string name="OldDeviceTransferLockedDialog__your_signal_account_has_been_transferred_to_your_new_device">Twoje konto Signal zostało przeniesione na nowe urządzenie. Teraz dokończ na nim rejestrację. Na tym urządzeniu aplikacja Signal nie będzie już aktywna.</string>
     <string name="OldDeviceTransferLockedDialog__done">Gotowe</string>
     <string name="OldDeviceTransferLockedDialog__cancel_and_activate_this_device">Anuluj i aktywuj na tym urządzeniu</string>
 
@@ -5383,7 +5390,7 @@
 
     <!-- WifiToCellularPopupWindow -->
     <!-- Message shown during a call when the WiFi network is unusable, and cellular data starts to be used for the call instead. -->
-    <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Słaby zasięg sieci Wi-Fi. Używasz teraz danych danych komórkowych.</string>
+    <string name="WifiToCellularPopupWindow__weak_wifi_switched_to_cellular">Słaby zasięg Wi-Fi. Używasz teraz danych komórkowych.</string>
 
     <!-- DeleteAccountFragment -->
     <string name="DeleteAccountFragment__deleting_your_account_will">Usunięcie Twojego konta spowoduje:</string>
@@ -5470,15 +5477,15 @@
     <string name="ChatWallpaperPreviewActivity__set_wallpaper">Ustaw tapetę</string>
     <string name="ChatWallpaperPreviewActivity__swipe_to_preview_more_wallpapers">Przesuń, aby wyświetlić podgląd większej liczby tapet</string>
     <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_all_chats">Ustaw tapetę dla wszystkich czatów</string>
-    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Ustaw tapetę dla %1$s</string>
+    <string name="ChatWallpaperPreviewActivity__set_wallpaper_for_s">Ustaw tapetę w czacie %1$s</string>
     <string name="ChatWallpaperPreviewActivity__viewing_your_gallery_requires_the_storage_permission">Aby przeglądać galerię, zezwól aplikacji na dostęp do pamięci.</string>
 
     <!-- WallpaperImageSelectionActivity -->
 
     <!-- WallpaperCropActivity -->
-    <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Ściągnij, aby oddalić, lub rozciągnij, aby przybliżyć. Przeciągnij, aby dostosować.</string>
+    <string name="WallpaperCropActivity__pinch_to_zoom_drag_to_adjust">Rozciągnij palce, aby przybliżyć, lub ściągnij, aby oddalić. Przeciągnij, aby dostosować.</string>
     <string name="WallpaperCropActivity__set_wallpaper_for_all_chats">Ustaw tapetę dla wszystkich czatów.</string>
-    <string name="WallpaperCropActivity__set_wallpaper_for_s">Ustaw tapetę dla %1$s.</string>
+    <string name="WallpaperCropActivity__set_wallpaper_for_s">Ustaw tapetę w czacie %1$s.</string>
     <string name="WallpaperCropActivity__error_setting_wallpaper">Podczas ustawiania tapety wystąpił błąd.</string>
     <string name="WallpaperCropActivity__blur_photo">Rozmyj zdjęcie</string>
 
@@ -5488,7 +5495,7 @@
     <string name="payment_info_card_adding_funds">Dodawanie środków</string>
     <string name="payment_info_card_you_can_add_funds_for_use_in">Aby dodać środki do wykorzystania w aplikacji Signal, wyślij walutę MobileCoin na adres swojego portfela.</string>
     <string name="payment_info_card_cashing_out">Wypłacanie</string>
-    <string name="payment_info_card_you_can_cash_out_mobilecoin">Możesz w każdej chwili spieniężyć MobileCoin w kantorze, który obsługuje tę walutę. Aby to zrobić, przelej środki na swoje konto w takim kantorze.</string>
+    <string name="payment_info_card_you_can_cash_out_mobilecoin">W każdej chwili możesz spieniężyć MobileCoin w kantorze, który obsługuje tę walutę. Aby to zrobić, przelej środki na swoje konto w takim kantorze.</string>
     <string name="payment_info_card_hide_this_card">Ukryć tę kartę?</string>
     <string name="payment_info_card_hide">Ukryj</string>
     <!-- Title of save recovery phrase card -->
@@ -5497,7 +5504,7 @@
     <!-- Button in save recovery phrase card -->
     <string name="payment_info_card_save_your_phrase">Zapisz swoją frazę</string>
     <string name="payment_info_card_update_your_pin">Zmień swój PIN</string>
-    <string name="payment_info_card_with_a_high_balance">Przy dużej ilości dostępnych środków radzimy zmienić PIN tak, aby składał się z cyfr i liter. Zwiększy to ochronę konta.</string>
+    <string name="payment_info_card_with_a_high_balance">Przy wysokim saldzie środków radzimy zmienić PIN tak, aby składał się z cyfr i liter. Zwiększy to ochronę konta.</string>
     <string name="payment_info_card_update_pin">Zmień PIN</string>
 
   <!-- Removed by excludeNonTranslatables <string name="payment_info_card__learn_more__about_mobilecoin" translatable="false">https://support.signal.org/hc/articles/360057625692#payments_which_ones</string> -->
@@ -5563,10 +5570,10 @@
     <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered">Sprawdź, czy podana fraza jest poprawna.</string>
     <string name="PaymentsRecoveryPhraseFragment__do_not_screenshot_or_send_by_email">Nie wykonuj zrzutu ekranu ani nie przesyłaj frazy e-mailem.</string>
     <string name="PaymentsRecoveryPhraseFragment__payments_account_restored">Konto płatności przywrócone.</string>
-    <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Nieprawidłowe fraza odzyskiwania</string>
-    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Upewnij się, że podajesz poprawne hasło, i spróbuj ponownie.</string>
+    <string name="PaymentsRecoveryPhraseFragment__invalid_recovery_phrase">Nieprawidłowa fraza odzyskiwania</string>
+    <string name="PaymentsRecoveryPhraseFragment__make_sure_youve_entered_your_phrase_correctly_and_try_again">Upewnij się, że podajesz poprawną frazę, i spróbuj ponownie.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy_to_clipboard">Skopiować do schowka?</string>
-    <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Jeśli zapiszesz swoją frazę odzyskiwania w formacie cyfrowym, upewnij się, że przechowujesz ją w bezpiecznym miejscu.</string>
+    <string name="PaymentsRecoveryPhraseFragment__if_you_choose_to_store">Jeśli zapiszesz swoją frazę odzyskiwania w formacie cyfrowym, upewnij się, że będziesz ją przechowywać w bezpiecznym miejscu.</string>
     <string name="PaymentsRecoveryPhraseFragment__copy">Skopiuj</string>
 
     <!-- PaymentsRecoveryPhraseConfirmFragment -->
@@ -5585,16 +5592,16 @@
     <string name="PaymentsRecoveryEntryFragment__invalid_word">Nieprawidłowy wyraz</string>
 
     <!-- UnreadPayments -->
-    <string name="UnreadPayments__s_sent_you_s">%1$s wysłał(a) Ci %2$s</string>
-    <string name="UnreadPayments__d_new_payment_notifications">Powiadomienia o %1$d nowych płatnościach</string>
+    <string name="UnreadPayments__s_sent_you_s">%1$s wysyła Ci %2$s</string>
+    <string name="UnreadPayments__d_new_payment_notifications">Powiadomienia o nowych płatnościach (%1$d)</string>
 
     <!-- CanNotSendPaymentDialog -->
     <string name="CanNotSendPaymentDialog__cant_send_payment">Nie można wysłać płatności</string>
-    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Ten użytkownik musi zaakceptować Twoją prośbę o kontakt, aby można było przesłać mu płatność. Wyślij mu wiadomość, aby zobaczył prośbę o kontakt.</string>
+    <string name="CanNotSendPaymentDialog__to_send_a_payment_to_this_user">Aby można było wysłać tej osobie płatność, musi ona zaakceptować Twoją prośbę o kontakt. Aby utworzyć prośbę, wyślij tej osobie wiadomość.</string>
     <string name="CanNotSendPaymentDialog__send_a_message">Wyślij wiadomość</string>
 
     <!-- GroupsInCommonMessageRequest -->
-    <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Nie masz wspólnych grup z tą osobą. Uważnie sprawdzaj wszystkie prośby o kontakt, przed ich akceptacją, aby uniknąć niechcianych wiadomości</string>
+    <string name="GroupsInCommonMessageRequest__you_have_no_groups_in_common_with_this_person">Nie masz z tą osobą wspólnych grup. Aby uniknąć niechcianych wiadomości, uważnie sprawdzaj wszystkie prośby o kontakt, zanim je zaakceptujesz.</string>
     <string name="GroupsInCommonMessageRequest__none_of_your_contacts_or_people_you_chat_with_are_in_this_group">Żaden z Twoich kontaktów lub osób, z którymi prowadzisz czat, nie znajduje się w tej grupie. Uważnie sprawdzaj wszystkie prośby o kontakt przed ich akceptacją, aby uniknąć niechcianych wiadomości.</string>
     <string name="GroupsInCommonMessageRequest__about_message_requests">O prośbach o kontakt</string>
     <string name="GroupsInCommonMessageRequest__okay">OK</string>
@@ -5609,11 +5616,11 @@
     <!-- Label for our standard quality media conversion. -->
     <string name="QualitySelectorBottomSheetDialog__standard">Standardowa</string>
     <!-- Description for our standard quality media conversion. -->
-    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Szybciej, mniejszy plik</string>
+    <string name="QualitySelectorBottomSheetDialog__faster_less_data">Szybciej, mniejsze zużycie danych</string>
     <!-- Label for our high quality media conversion. This has better quality than standard. -->
     <string name="QualitySelectorBottomSheetDialog__high">Wysoka</string>
     <!-- Label for our high quality media conversion. This has better quality than standard. -->
-    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Wolniej, większy plik</string>
+    <string name="QualitySelectorBottomSheetDialog__slower_more_data">Wolniej, większe zużycie danych</string>
     <!-- Title heading for our media conversion quality selector. -->
     <string name="QualitySelectorBottomSheetDialog__media_quality">Jakość multimediów</string>
 
@@ -5637,8 +5644,8 @@
 
     <!-- AccountSettingsFragment -->
     <string name="AccountSettingsFragment__account">Konto</string>
-    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Z czasem pytanie będzie pojawiać się coraz rzadziej</string>
-    <string name="AccountSettingsFragment__require_your_signal_pin">Wymagaj Twojego PIN-u Signal, aby ponownie zarejestrować Twór numer telefonu w Signal</string>
+    <string name="AccountSettingsFragment__youll_be_asked_less_frequently">Z czasem będziemy pytać coraz rzadziej</string>
+    <string name="AccountSettingsFragment__require_your_signal_pin">Aby ponownie zarejestrować swój numer telefonu w aplikacji Signal, wymagaj PIN-u</string>
     <string name="AccountSettingsFragment__change_phone_number">Zmień numer telefonu</string>
     <!-- Account setting that allows user to request and export their signal account data -->
     <string name="AccountSettingsFragment__request_account_data">Dane Twojego konta</string>
@@ -5685,10 +5692,10 @@
     <string name="ExportAccountDataFragment__report_not_stored_disclaimer">Twój raport jest generowany wyłącznie w trakcie eksportowania i nie jest przechowywany przez Signal na Twoim urządzeniu.</string>
 
     <!-- ChangeNumberFragment -->
-    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Użyj tej opcji do zmiany Twojego, aktualnego numeru telefonu na nowy. Tej zmiany nie można cofnąć.\n\nZanim zaczniesz, upewnij się, że Twój nowy numer może otrzymywać SMS-y lub połączenia.</string>
+    <string name="ChangeNumberFragment__use_this_to_change_your_current_phone_number_to_a_new_phone_number">Użyj tej opcji, aby zmienić swój obecny numer telefonu na nowy. Tej zmiany nie będzie można cofnąć.\n\nZanim zaczniesz, upewnij się, że możesz odbierać SMS-y lub połączenia kierowane na nowy numer.</string>
     <string name="ChangeNumberFragment__continue">Kontynuuj</string>
     <!-- Message shown on dialog after your number has been changed successfully. -->
-    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Twój numer telefonu został zmieniony na %1$s</string>
+    <string name="ChangeNumber__your_phone_number_has_changed_to_s">Twój nowy numer telefonu to %1$s</string>
     <!-- Confirmation button to dismiss number changed dialog -->
     <string name="ChangeNumber__okay">OK</string>
 
@@ -5698,18 +5705,18 @@
     <string name="ChangeNumberEnterPhoneNumberFragment__old_phone_number">Stary numer telefonu</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_number">Twój nowy numer</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__new_phone_number">Nowy numer telefonu</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Podany numer telefonu nie należy do Twojego konta.</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Musisz podać kod telefoniczny kraju dla Twojego, starego numeru</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Musisz podać swój stary numer</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Musisz podać kod telefoniczny kraju dla Twojego, nowego numeru</string>
-    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Musisz podać swój nowy numer</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__the_phone_number_you_entered_doesnt_match_your_accounts">Podany numer telefonu nie zgadza się z tym na Twoim koncie.</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_number_country_code">Musisz podać kod kraju swojego starego numeru</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_old_phone_number">Musisz podać swój stary numer telefonu</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_number_country_code">Musisz podać kod kraju swojego nowego numeru</string>
+    <string name="ChangeNumberEnterPhoneNumberFragment__you_must_specify_your_new_phone_number">Musisz podać swój nowy numer telefonu</string>
     <string name="ChangeNumberEnterPhoneNumberFragment__your_new_phone_number_can_not_be_same_as_your_old_phone_number">Twój nowy numer telefonu nie może być taki sam jak stary</string>
 
     <!-- ChangeNumberVerifyFragment -->
     <string name="ChangeNumberVerifyFragment__change_number">Zmień numer</string>
     <!-- Text shown when verifying a new phone number where %1$s is the number being changed -->
-    <string name="ChangeNumberVerifyFragment__verifying_s">Weryfikowanie %1$s</string>
-    <string name="ChangeNumberVerifyFragment__captcha_required">Wymagane wypełnienie captcha</string>
+    <string name="ChangeNumberVerifyFragment__verifying_s">Weryfikowanie numeru %1$s</string>
+    <string name="ChangeNumberVerifyFragment__captcha_required">Wymagana weryfikacja CAPTCHA</string>
 
     <!-- ChangeNumberConfirmFragment -->
     <string name="ChangeNumberConfirmFragment__change_number">Zmień numer</string>
@@ -5717,31 +5724,31 @@
     <string name="ChangeNumberConfirmFragment__edit_number">Edytuj numer</string>
 
     <!-- ChangeNumberRegistrationLockFragment -->
-    <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Zmiana numeru Signal - Potrzebna pomoc z kodem PIN Signal dla systemu Android (PIN v2)</string>
+    <string name="ChangeNumberRegistrationLockFragment__signal_change_number_need_help_with_pin_for_android_v2_pin">Zmiana numeru w aplikacji Signal – potrzebna pomoc z PIN-em w systemie Android (PIN v2)</string>
 
     <!-- ChangeNumberPinDiffersFragment -->
-    <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">PIN nie jest zgodny</string>
-    <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">Kod PIN, powiązany z Twoim, nowym numerem różni się od PIN-u, powiązanego ze starym numerem. Czy chcesz zachować stary PIN, czy go uaktualnić?</string>
+    <string name="ChangeNumberPinDiffersFragment__pins_do_not_match">Kody PIN nie są takie same</string>
+    <string name="ChangeNumberPinDiffersFragment__the_pin_associated_with_your_new_number_is_different_from_the_pin_associated_with_your_old_one">PIN powiązany z Twoim nowym numerem różni się od PIN-u powiązanego ze starym numerem. Czy chcesz zachować stary PIN, czy zmienić go na nowy?</string>
     <string name="ChangeNumberPinDiffersFragment__keep_old_pin">Zachowaj stary PIN</string>
-    <string name="ChangeNumberPinDiffersFragment__update_pin">Uaktualnij PIN</string>
+    <string name="ChangeNumberPinDiffersFragment__update_pin">Zmień PIN</string>
     <string name="ChangeNumberPinDiffersFragment__keep_old_pin_question">Zachować stary PIN?</string>
 
     <!-- ChangeNumberLockActivity -->
     <!-- Info message shown to user if something crashed the app during the change number attempt and we were unable to confirm the change so we force them into this screen to check before letting them use the app -->
-    <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Wygląda na to, że próbowałeś(aś) zmienić swój numer, ale nie udało nam się potwierdzić, że operacja została prawidłowo ukończona.\n\nTrwa pnowne sprawdzanie…</string>
+    <string name="ChangeNumberLockActivity__it_looks_like_you_tried_to_change_your_number_but_we_were_unable_to_determine_if_it_was_successful_rechecking_now">Wygląda na to, że próbujesz zmienić numer telefonu. Nie udało się jednak potwierdzić, czy zmiana ta doszła do skutku.\n\nSprawdzanie jeszcze raz…</string>
     <!-- Dialog title shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__change_status_confirmed">Zmiana statusu potwierdzona</string>
+    <string name="ChangeNumberLockActivity__change_status_confirmed">Zmiana potwierdzona</string>
     <!-- Dialog message shown if we were able to confirm your change number status (meaning we now know what the server thinks our number is) after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Twój numer, %1$s, został potwierdzony. Jeśli to nie Twój nowy numer, powtórz proces zmiany numeru.</string>
+    <string name="ChangeNumberLockActivity__your_number_has_been_confirmed_as_s">Numer %1$s został potwierdzony. Jeśli to nie jest Twój nowy numer, spróbuj go zmienić jeszcze raz.</string>
     <!-- Dialog title shown if we were not able to confirm your phone number with the server and thus cannot let leave the change flow yet after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__change_status_unconfirmed">Zmiana statusu niepotwierdzona</string>
+    <string name="ChangeNumberLockActivity__change_status_unconfirmed">Zmiana niepotwierdzona</string>
     <!-- Dialog message shown when we can\'t verify the phone number on the server, only shown if there was a network error communicating with the server after a crash during the regular flow -->
-    <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nie udało nam się określić statusu zmiany Twojego numeru.\n\n(Błąd: %1$s)</string>
+    <string name="ChangeNumberLockActivity__we_could_not_determine_the_status_of_your_change_number_request">Nie udało się potwierdzić, czy numer został zmieniony.\n\n(Błąd: %1$s)</string>
     <!-- Dialog button to retry confirming the number on the server -->
-    <string name="ChangeNumberLockActivity__retry">Ponów</string>
+    <string name="ChangeNumberLockActivity__retry">Spróbuj ponownie</string>
     <!-- Dialog button shown to leave the app when in the unconfirmed change status after a crash in the regular flow -->
-    <string name="ChangeNumberLockActivity__leave">Opuść</string>
-    <string name="ChangeNumberLockActivity__submit_debug_log">Wyślij logi debugowania</string>
+    <string name="ChangeNumberLockActivity__leave">Zamknij</string>
+    <string name="ChangeNumberLockActivity__submit_debug_log">Prześlij dziennik debugowania</string>
 
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Klawiatura</string>
@@ -5883,7 +5890,7 @@
     <string name="NotificationsSettingsFragment__messages">Wiadomości</string>
     <string name="NotificationsSettingsFragment__calls">Połączenia</string>
     <string name="NotificationsSettingsFragment__notify_when">Powiadamiaj, gdy…</string>
-    <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt dołączył do Signal</string>
+    <string name="NotificationsSettingsFragment__contact_joins_signal">Kontakt zaczyna korzystać z aplikacji Signal</string>
     <!-- Notification preference header -->
     <string name="NotificationsSettingsFragment__notification_profiles">Profile powiadomień</string>
     <!-- Notification preference option header -->
@@ -5911,24 +5918,24 @@
     <string name="PrivacySettingsFragment__app_security">Bezpieczeństwo aplikacji</string>
     <!-- This refers to the multi-tasking overview (recent apps) from the Android operating system.-->
     <string name="PrivacySettingsFragment__block_screenshots_in_the_recents_list_and_inside_the_app">Blokuj zrzuty ekranu na liście aktywnych oraz w aplikacji</string>
-    <string name="PrivacySettingsFragment__signal_message_and_calls">Wiadomości i połączenia Signal, zawsze przekazuj połączenia i ukryty nadawca</string>
+    <string name="PrivacySettingsFragment__signal_message_and_calls">Wiadomości i połączenia Signal, pośredniczenie w połączeniach i zaszyfrowany nadawca</string>
     <string name="PrivacySettingsFragment__default_timer_for_new_changes">Domyślny czas dla nowych czatów</string>
     <string name="PrivacySettingsFragment__set_a_default_disappearing_message_timer_for_all_new_chats_started_by_you">Ustaw domyślny czas znikania wiadomości dla wszystkich nowych, rozpoczętych przez Ciebie czatów.</string>
     <!-- Summary for stories preference to launch into story privacy settings -->
-    <string name="PrivacySettingsFragment__payment_lock_require_lock">Wymagaj blokady ekranu Androida lub odcisku palca do przelania środków.</string>
+    <string name="PrivacySettingsFragment__payment_lock_require_lock">Aby wykonać płatność, wymagaj odblokowania ekranu odciskiem palca lub inną metodą dostępną na Androidzie</string>
     <!-- Alert dialog title when payment lock cannot be enabled -->
     <string name="PrivacySettingsFragment__cant_enable_title">Nie można włączyć zabezpieczenia płatności</string>
     <!-- Alert dialog description to setup screen lock or fingerprint in phone settings -->
-    <string name="PrivacySettingsFragment__cant_enable_description">Aby włączyć zabezpieczenie płatności, musisz wejść w ustawienia i włączyć funkcję blokady ekranu lub identyfikacji za pomocą odcisku palca</string>
+    <string name="PrivacySettingsFragment__cant_enable_description">Aby włączyć blokadę płatności, musisz najpierw włączyć blokadę ekranu lub zabezpieczenie za pomocą odcisku palca w ustawieniach telefonu.</string>
     <!-- Shown in a toast when we can\'t navigate to the user\'s system fingerprint settings -->
-    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Nie udało się przekierować do ustawień systemowych</string>
+    <string name="PrivacySettingsFragment__failed_to_navigate_to_system_settings">Nie udało się przejść do ustawień systemowych</string>
     <!-- Alert dialog button to go to phone settings -->
     <!-- Alert dialog button to cancel the dialog -->
 
     <!-- AdvancedPrivacySettingsFragment -->
   <!-- Removed by excludeNonTranslatables <string name="AdvancedPrivacySettingsFragment__sealed_sender_link" translatable="false">https://signal.org/blog/sealed-sender</string> -->
     <string name="AdvancedPrivacySettingsFragment__show_status_icon">Pokaż ikonę</string>
-    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Pokaż ikonę w szczegółach wiadomości, dostarczonej z użyciem funkcji ukrytego nadawcy.</string>
+    <string name="AdvancedPrivacySettingsFragment__show_an_icon">Pokaż ikonę w szczegółach wiadomości, jeśli została dostarczona przy użyciu funkcji zaszyfrowanego nadawcy.</string>
 
     <!-- ExpireTimerSettingsFragment -->
     <string name="ExpireTimerSettingsFragment__when_enabled_new_messages_sent_and_received_in_new_chats_started_by_you_will_disappear_after_they_have_been_seen">Włączenie funkcji spowoduje, że nowe wiadomości, wysyłane i otrzymywane w nowych, rozpoczętych przez Ciebie czatach, znikną, gdy zostaną odczytane.</string>
@@ -5941,7 +5948,7 @@
     <string name="ExpireTimerSettingsFragment__1_hour">1 godzina</string>
     <string name="ExpireTimerSettingsFragment__5_minutes">5 minut</string>
     <string name="ExpireTimerSettingsFragment__30_seconds">30 sekund</string>
-    <string name="ExpireTimerSettingsFragment__custom_time">Własny</string>
+    <string name="ExpireTimerSettingsFragment__custom_time">Własny czas</string>
     <string name="ExpireTimerSettingsFragment__set">Ustaw</string>
     <string name="ExpireTimerSettingsFragment__save">Zapisz</string>
 
@@ -5958,7 +5965,7 @@
     <string name="HelpSettingsFragment__debug_log">Dziennik debugowania</string>
     <!--    Header for the screen that displays the licenses of the open-source software dependencies of the Signal app-->
     <string name="HelpSettingsFragment__licenses">Licencje</string>
-    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Regulamin i Polityka prywatności</string>
+    <string name="HelpSettingsFragment__terms_amp_privacy_policy">Regulamin i polityka prywatności</string>
     <string name="HelpFragment__copyright_signal_messenger">Copyright Signal Messenger</string>
     <string name="HelpFragment__licenced_under_the_agplv3">Oprogramowanie udostępniane na licencji GNU AGPLv3</string>
 
@@ -5966,7 +5973,7 @@
     <string name="DataAndStorageSettingsFragment__media_quality">Jakość multimediów</string>
     <!-- Category title for the quality of the media to be sent -->
     <string name="DataAndStorageSettingsFragment__sent_media_quality">Jakość wysyłanych multimediów</string>
-    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Wysyłanie multimediów wysokiej jakości zużywa więcej danych.</string>
+    <string name="DataAndStorageSettingsFragment__sending_high_quality_media_will_use_more_data">Wysyłanie multimediów w wysokiej jakości zużywa więcej danych.</string>
     <!-- Setting option that can be selected to default media to be sent as high quality by default -->
     <string name="DataAndStorageSettingsFragment__high">Wysoka</string>
     <!-- Setting option that can be selected to default media to be sent as standard quality by default -->
@@ -5979,7 +5986,7 @@
     <string name="ChatColorSelectionFragment__use_custom_colors">Użyj własnych kolorów</string>
     <string name="ChatColorSelectionFragment__chat_color">Kolor czatu</string>
     <string name="ChatColorSelectionFragment__edit">Edytuj</string>
-    <string name="ChatColorSelectionFragment__duplicate">Skopiuj</string>
+    <string name="ChatColorSelectionFragment__duplicate">Powiel</string>
     <string name="ChatColorSelectionFragment__delete">Usuń</string>
     <string name="ChatColorSelectionFragment__delete_color">Usuń kolor</string>
     <plurals name="ChatColorSelectionFragment__this_custom_color_is_used">
@@ -5991,9 +5998,9 @@
     <string name="ChatColorSelectionFragment__delete_chat_color">Usunąć kolor czatu?</string>
 
     <!-- CustomChatColorCreatorFragment -->
-    <string name="CustomChatColorCreatorFragment__solid">Kolor</string>
+    <string name="CustomChatColorCreatorFragment__solid">Jednolity kolor</string>
     <string name="CustomChatColorCreatorFragment__gradient">Gradient</string>
-    <string name="CustomChatColorCreatorFragment__hue">Barwa</string>
+    <string name="CustomChatColorCreatorFragment__hue">Odcień</string>
     <string name="CustomChatColorCreatorFragment__saturation">Nasycenie</string>
 
     <!-- CustomChatColorCreatorFragmentPage -->
@@ -6019,42 +6026,42 @@
 
     <!-- EditReactionsFragment -->
     <string name="EditReactionsFragment__customize_reactions">Dostosuj reakcje</string>
-    <string name="EditReactionsFragment__tap_to_replace_an_emoji">Stuknij, aby zastąpić emotikonę</string>
+    <string name="EditReactionsFragment__tap_to_replace_an_emoji">Dotknij, aby zastąpić emoji</string>
     <string name="EditReactionsFragment__reset">Zresetuj</string>
     <string name="EditReactionsFragment_save">Zapisz</string>
-    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">\"Automatyczny\" dopasowuje kolor do tapety</string>
+    <string name="ChatColorSelectionFragment__auto_matches_the_color_to_the_wallpaper">„Auto” dopasowuje kolor do wybranej tapety</string>
     <string name="CustomChatColorCreatorFragment__drag_to_change_the_direction_of_the_gradient">Przeciągnij, aby zmienić kierunek gradientu</string>
 
     <!-- AddAProfilePhotoMegaphone -->
     <string name="AddAProfilePhotoMegaphone__add_a_profile_photo">Dodaj zdjęcie profilowe</string>
-    <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Wybierz wygląd i kolor lub dopasuj inicjały.</string>
+    <string name="AddAProfilePhotoMegaphone__choose_a_look_and_color">Wybierz wygląd i kolor lub dostosuj inicjały.</string>
     <string name="AddAProfilePhotoMegaphone__not_now">Nie teraz</string>
     <string name="AddAProfilePhotoMegaphone__add_photo">Dodaj zdjęcie</string>
 
     <!-- BecomeASustainerMegaphone -->
-    <string name="BecomeASustainerMegaphone__become_a_sustainer">Zostań wspierającym</string>
+    <string name="BecomeASustainerMegaphone__become_a_sustainer">Wesprzyj nas</string>
     <!-- Displayed in the Become a Sustainer megaphone -->
     <string name="BecomeASustainerMegaphone__signal_is_powered_by">Signal funkcjonuje dzięki ludziom takim, jak Ty. Wesprzyj nas i otrzymaj odznakę.</string>
     <string name="BecomeASustainerMegaphone__not_now">Nie teraz</string>
     <string name="BecomeASustainerMegaphone__donate">Wpłać darowiznę</string>
 
     <!-- KeyboardPagerFragment -->
-    <string name="KeyboardPagerFragment_emoji">Emotikony</string>
-    <string name="KeyboardPagerFragment_open_emoji_search">Otwórz wyszukiwarkę emotikon</string>
+    <string name="KeyboardPagerFragment_emoji">Emoji</string>
+    <string name="KeyboardPagerFragment_open_emoji_search">Otwórz wyszukiwarkę emoji</string>
     <string name="KeyboardPagerFragment_open_sticker_search">Otwórz wyszukiwarkę naklejek</string>
     <string name="KeyboardPagerFragment_open_gif_search">Otwórz wyszukiwarkę GIF-ów</string>
     <string name="KeyboardPagerFragment_stickers">Naklejki</string>
     <string name="KeyboardPagerFragment_backspace">Backspace</string>
     <string name="KeyboardPagerFragment_gifs">GIF-y</string>
-    <string name="KeyboardPagerFragment_search_emoji">Szukaj emotikon</string>
-    <string name="KeyboardPagerfragment_back_to_emoji">Wróć do emotikon</string>
+    <string name="KeyboardPagerFragment_search_emoji">Wyszukaj emoji</string>
+    <string name="KeyboardPagerfragment_back_to_emoji">Wróć do emoji</string>
     <string name="KeyboardPagerfragment_clear_search_entry">Wyczyść wyszukiwanie</string>
-    <string name="KeyboardPagerFragment_search_giphy">Szukaj w GIPHY</string>
+    <string name="KeyboardPagerFragment_search_giphy">Wyszukaj w GIPHY</string>
 
     <!-- StickerSearchDialogFragment -->
-    <string name="StickerSearchDialogFragment_search_stickers">Szukaj naklejek</string>
-    <string name="StickerSearchDialogFragment_no_results_found">Brak wyników</string>
-    <string name="EmojiSearchFragment__no_results_found">Brak wyników</string>
+    <string name="StickerSearchDialogFragment_search_stickers">Wyszukaj naklejki</string>
+    <string name="StickerSearchDialogFragment_no_results_found">Nie udało się niczego znaleźć</string>
+    <string name="EmojiSearchFragment__no_results_found">Nie udało się niczego znaleźć</string>
     <string name="NotificationsSettingsFragment__unknown_ringtone">Nieznany dzwonek</string>
 
     <!-- ConversationSettingsFragment -->
@@ -6063,7 +6070,7 @@
     <!-- Dialog message displayed when non-admin tries to add a story to an audience group -->
     <string name="ConversationSettingsFragment__only_admins_of_this_group_can_add_to_its_story">Tylko administratorzy tej grupy mogą dodawać treści do tej relacji</string>
     <!-- Error toasted when no activity can handle the add contact intent -->
-    <string name="ConversationSettingsFragment__contacts_app_not_found">Nie znaleziono aplikacji z kontaktami</string>
+    <string name="ConversationSettingsFragment__contacts_app_not_found">Nie udało się znaleźć aplikacji z kontaktami</string>
     <string name="ConversationSettingsFragment__start_video_call">Rozpocznij połączenie wideo</string>
     <string name="ConversationSettingsFragment__start_audio_call">Rozpocznij połączenie głosowe</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
@@ -6086,47 +6093,47 @@
     <string name="ConversationSettingsFragment__sounds_and_notifications">Dźwięki i powiadomienia</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
     <string name="ConversationSettingsFragment__contact_details">Dane kontaktowe z telefonu</string>
-    <string name="ConversationSettingsFragment__view_safety_number">Zobacz numer bezpieczeństwa</string>
+    <string name="ConversationSettingsFragment__view_safety_number">Wyświetl numer bezpieczeństwa</string>
     <string name="ConversationSettingsFragment__block">Zablokuj</string>
     <string name="ConversationSettingsFragment__block_group">Zablokuj grupę</string>
     <string name="ConversationSettingsFragment__unblock">Odblokuj</string>
     <string name="ConversationSettingsFragment__unblock_group">Odblokuj grupę</string>
     <string name="ConversationSettingsFragment__add_to_a_group">Dodaj do grupy</string>
-    <string name="ConversationSettingsFragment__see_all">Zobacz wszystko</string>
-    <string name="ConversationSettingsFragment__add_members">Dodaj członków</string>
+    <string name="ConversationSettingsFragment__see_all">Wyświetl wszystko</string>
+    <string name="ConversationSettingsFragment__add_members">Dodaj osoby</string>
     <string name="ConversationSettingsFragment__permissions">Uprawnienia</string>
     <string name="ConversationSettingsFragment__requests_and_invites">Prośby o przyjęcie i zaproszenia</string>
     <string name="ConversationSettingsFragment__group_link">Link do grupy</string>
     <!-- Option in conversation settings to add a user as a contact -->
-    <string name="ConversationSettingsFragment__add_as_a_contact">Dodaj, jako kontakt</string>
+    <string name="ConversationSettingsFragment__add_as_a_contact">Dodaj jako kontakt</string>
     <string name="ConversationSettingsFragment__unmute">Cofnij wyciszenie</string>
     <!-- The subtitle for a settings item that describes how long the user\'s chat is muted. If a chat is muted, you will not receive notifications unless @mentioned. The placeholder represents a time (e.g. 10pm, March 4, etc). -->
     <string name="ConversationSettingsFragment__conversation_muted_until_s">Czat wyciszony do %1$s</string>
     <string name="ConversationSettingsFragment__conversation_muted_forever">Czat wyciszony na zawsze</string>
-    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Skopiowano numer telefonu do schowka.</string>
+    <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">Numer telefonu skopiowany do schowka.</string>
     <string name="ConversationSettingsFragment__phone_number">Numer telefonu</string>
     <string name="ConversationSettingsFragment__get_badges">Zdobywaj odznaki dla swojego profilu, wspierając Signal. Stuknij odznakę, aby dowiedzieć się więcej.</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">Te multimedia nie zostały jeszcze wysłane.</string>
 
     <!-- PermissionsSettingsFragment -->
-    <string name="PermissionsSettingsFragment__add_members">Dodaj członków</string>
-    <string name="PermissionsSettingsFragment__edit_group_info">Edytuj informacje o grupie</string>
+    <string name="PermissionsSettingsFragment__add_members">Dodawanie osób</string>
+    <string name="PermissionsSettingsFragment__edit_group_info">Edycja informacji o grupie</string>
     <string name="PermissionsSettingsFragment__send_messages">Wysyłanie wiadomości</string>
     <string name="PermissionsSettingsFragment__all_members">Wszyscy członkowie</string>
     <string name="PermissionsSettingsFragment__only_admins">Tylko administratorzy</string>
-    <string name="PermissionsSettingsFragment__who_can_add_new_members">Kto może dodawać nowych członków?</string>
-    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kto może edytować informacje o tej grupie?</string>
+    <string name="PermissionsSettingsFragment__who_can_add_new_members">Kto może dodawać nowe osoby?</string>
+    <string name="PermissionsSettingsFragment__who_can_edit_this_groups_info">Kto może edytować informacje o grupie?</string>
     <string name="PermissionsSettingsFragment__who_can_send_messages">Kto może wysyłać wiadomości i wykonywać połączenia?</string>
 
     <!-- SoundsAndNotificationsSettingsFragment -->
     <string name="SoundsAndNotificationsSettingsFragment__mute_notifications">Wycisz powiadomienia</string>
-    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Niewyciszony</string>
+    <string name="SoundsAndNotificationsSettingsFragment__not_muted">Niewyciszone</string>
     <string name="SoundsAndNotificationsSettingsFragment__mentions">Wzmianki</string>
     <string name="SoundsAndNotificationsSettingsFragment__always_notify">Zawsze powiadamiaj</string>
     <!-- Dialog option to not send notifications if mentioned when the conversation is muted -->
     <string name="SoundsAndNotificationsSettingsFragment__do_not_notify">Nie powiadamiaj</string>
-    <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Niestandardowe powiadomienia</string>
+    <string name="SoundsAndNotificationsSettingsFragment__custom_notifications">Powiadomienia niestandardowe</string>
 
     <!-- StickerKeyboard -->
     <string name="StickerKeyboard__recently_used">Ostatnio używane</string>
@@ -8493,6 +8500,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Wznów pobieranie</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Rozmiar kopii zapasowej</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Częstotliwość tworzenia kopii zapasowych</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8699,7 +8708,7 @@
     <!-- Third item in a bulleted list of reasons -->
     <string name="SubscriptionNotFoundBottomSheet__your_subscription_recently_expired">Twoja subskrypcja niedawno wygasła.</string>
     <!-- Note underneath bullet points -->
-    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">Jeśli masz aktywną subskrypcję na starym telefonie, rozważ jej anulowanie, zanim się odnowi.</string>
+    <string name="SubscriptionNotFoundBottomSheet__if_you_have_an_active_subscription_on">Jeśli masz aktywną subskrypcję na poprzednim telefonie, rozważ jej anulowanie, zanim się odnowi.</string>
     <!-- Action button label to acknowledge and dismiss sheet -->
     <string name="SubscriptionNotFoundBottomSheet__got_it">Rozumiem</string>
     <!-- Action button label to contact support -->
@@ -8879,7 +8888,7 @@
     <string name="ReminderView_icon_content_description">Ikona przypomnienia</string>
 
     <!-- Row title for restore/transfer using a previous registered phone/device -->
-    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Mam swój stary telefon</string>
+    <string name="WelcomeFragment_restore_action_i_have_my_old_phone">Mam swój poprzedni telefon</string>
     <!-- Row subtitle for restore/transfer using a previous registered phone/device -->
     <string name="WelcomeFragment_restore_action_scan_qr">Zeskanuj kod QR ze swojego obecnego konta, aby szybko zacząć korzystać z aplikacji Signal</string>
 
@@ -8945,7 +8954,7 @@
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Nie udało się znaleźć kopii zapasowej</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Wprowadzony kod jest poprawny, ale nie została z nim powiązana żadna kopia zapasowa. Jeśli nadal masz swój stary telefon, upewnij się, że włączona jest na nim funkcja tworzenia kopii zapasowych, a kopia zapasowa została utworzona. Następnie spróbuj ponownie.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Wprowadzony kod jest poprawny, ale nie została z nim powiązana żadna kopia zapasowa. Jeśli nadal masz swój poprzedni telefon, upewnij się, że włączona jest na nim funkcja tworzenia kopii zapasowych, a kopia zapasowa została utworzona. Następnie spróbuj ponownie.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Pomiń przywracanie</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8959,7 +8968,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Błąd sieci podczas przywracania kopii zapasowej aplikacji Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Błąd podczas przywracania kopii zapasowej Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
@@ -8977,9 +8986,9 @@
     <string name="ContactSupportDialog_submit_without_debug">Prześlij bez dziennika debugowania</string>
 
     <!-- Title for restore via qr screen -->
-    <string name="RestoreViaQr_title">Zeskanuj ten kod swoim starym telefonem</string>
+    <string name="RestoreViaQr_title">Zeskanuj ten kod swoim poprzednim telefonem</string>
     <!-- First instruction on what to do with restore via qr code -->
-    <string name="RestoreViaQr_instruction_1">Otwórz Signal na swoim starym urządzeniu</string>
+    <string name="RestoreViaQr_instruction_1">Otwórz Signal na swoim poprzednim urządzeniu</string>
     <!-- Second instruction on what to do with restore via qr code -->
     <string name="RestoreViaQr_instruction_2">Wybierz ikonę aparatu </string>
     <!-- Third instruction on what to do with restore via qr code -->
@@ -8987,7 +8996,7 @@
     <!-- Error message shown when qr code could not be loaded -->
     <string name="RestoreViaQr_qr_code_error">Nie udało się wygenerować kodu QR</string>
     <!-- Status message shown when qr code already scanned by other device -->
-    <string name="RestoreViaQr_qr_code_scanned">Zeskanowano na starym urządzeniu</string>
+    <string name="RestoreViaQr_qr_code_scanned">Zeskanowano na poprzednim urządzeniu</string>
     <!-- Error button text to retry getting a qr code -->
     <string name="RestoreViaQr_retry">Ponów</string>
     <!-- Error message shown when register after receiving the provisioning message failed -->
@@ -9024,9 +9033,9 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">Brak kopii zapasowej do przywrócenia</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Ponieważ przechodzisz z iPhone\'a na urządzenie z Androidem, jedynym sposobem na przeniesienie wiadomości i multimediów jest włączenie usługi kopii zapasowych Signal na starym urządzeniu.</string>
+    <string name="NoBackupToRestore_subtitle">Ponieważ przechodzisz z iPhone\'a na urządzenie z Androidem, jedynym sposobem na przeniesienie wiadomości i multimediów jest włączenie usługi kopii zapasowych Signal na poprzednim urządzeniu.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
-    <string name="NoBackupToRestore_step1">Otwórz Signal na swoim starym urządzeniu</string>
+    <string name="NoBackupToRestore_step1">Otwórz Signal na swoim poprzednim urządzeniu</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
     <string name="NoBackupToRestore_step2">Dotknij opcji Ustawienia &gt; Kopie zapasowe</string>
     <!-- No Backup to Restore step 3 to enable backups on old device -->

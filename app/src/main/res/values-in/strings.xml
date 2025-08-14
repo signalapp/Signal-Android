@@ -1445,7 +1445,7 @@
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Tidak bisa memulihkan cadangan</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Terjadi kesalahan saat memulihkan data cadangan. Data cadangan Anda tidak dapat dipulihkan. Hubungi tim dukungan untuk mendapatkan bantuan.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Hubungi tim dukungan</string>
     <!-- Dialog message displayed when remote restore failed -->
@@ -2831,6 +2831,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Catatan ini akan dipasang secara daring kepada publik untuk dilihat oleh kontributor. Anda dapat memeriksanya sebelum mengunggah.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Saat mengklik Kirim, log Anda akan diposting online selama 30 hari pada URL unik yang tidak dipublikasikan. Silakan simpan dulu di penyimpanan lokal perangkat Anda.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3701,7 +3708,7 @@
         <item>Pertanyaan</item>
         <item>Masukan</item>
         <item>Pembayaran (MobileCoin)</item>
-        <item>Donasi &amp; Badge</item>
+        <item>Donasi dan Lencana</item>
         <item>Pencadangan Signal Android</item>
         <item>Lainnya</item>
     </string-array>
@@ -6121,7 +6128,7 @@
     <string name="DonationsErrors__your_payment_is_still">Donasi Anda sedang diproses. Ini dapat memakan waktu beberapa menit tergantung koneksi Anda.</string>
     <string name="DonationsErrors__failed_to_cancel_subscription">Gagal membatalkan langganan</string>
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Pembatalan langganan memerlukan koneksi internet.</string>
-    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Perangkat Anda tidak mendukung donasi dalam aplikasi, jadi Anda tidak bisa berlangganan untuk dapat badge. Anda tetap bisa mendukung Signal dengan berdonasi lewat situs web kami.</string>
+    <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Perangkat Anda tidak mendukung donasi dalam aplikasi, jadi Anda tidak bisa berlangganan untuk dapat lencana. Anda tetap bisa mendukung Signal dengan berdonasi lewat situs web kami.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Galat jaringan. Periksa koneksi Anda dan coba lagi.</string>
     <string name="NetworkFailure__retry">Coba lagi</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
@@ -7962,6 +7969,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Lanjut mengunduh</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Ukuran pencadangan</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Frekuensi pencadangan</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8413,7 +8422,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Terjadi kesalahan jaringan saat memulihkan Cadangan Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Kegagalan permanen pemulihan data cadangan di Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->

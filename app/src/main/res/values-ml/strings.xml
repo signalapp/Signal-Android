@@ -2924,6 +2924,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">സംഭാവന നൽകുന്നവർക്ക് കാണുന്നതിന് ഈ ലോഗ് പരസ്യമായി ഓൺലൈനിൽ പോസ്റ്റുചെയ്യും. അപ്‌ലോഡ് ചെയ്യുന്നതിന് മുമ്പ് നിങ്ങൾക്ക് ഇത് പരിശോധിക്കാവുന്നതാണ്.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">സമർപ്പിക്കുക എന്നതിൽ നിങ്ങൾ ക്ലിക്ക് ചെയ്യുമ്പോൾ, നിങ്ങളുടെ ലോഗ് 30 ദിവസത്തേക്ക് തനതും പ്രസിദ്ധീകരിക്കാത്തതുമായ ഒരു URL-ൽ ഓൺലൈനിൽ പോസ്റ്റ് ചെയ്യും. നിങ്ങൾ അത് ആദ്യം പ്രാദേശികമായി സംരക്ഷിക്കേണ്ടതാണ്.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -8139,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">ഡൗൺലോഡ് പുനരാരംഭിക്കുക</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">ബാക്കപ്പ് വലുപ്പം</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">ബാക്കപ്പ് ആവൃത്തി</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
