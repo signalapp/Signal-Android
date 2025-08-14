@@ -860,7 +860,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
   }
 
-  fun applyStorageSyncContactInsert(insert: SignalContactRecord) {
+  fun applyStorageSyncContactInsert(insert: SignalContactRecord, rotateProfileKeyOnBlock: Boolean): Boolean {
     val db = writableDatabase
     val threadDatabase = threads
     val values = getValuesForStorageContact(insert, true)
@@ -875,6 +875,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       db.update(TABLE_NAME, values, ID_WHERE, SqlUtil.buildArgs(recipientId))
     } else {
       recipientId = RecipientId.from(id)
+    }
+
+    val profileKeyRotated = if (insert.proto.blocked) {
+      RecipientUtil.updateProfileSharingAfterBlock(Recipient.resolved(recipientId), rotateProfileKeyOnBlock)
+    } else {
+      false
     }
 
     if (insert.proto.identityKey.isNotEmpty() && (insert.proto.signalAci != null || insert.proto.signalPni != null)) {
@@ -892,9 +898,11 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
     }
 
     threadDatabase.applyStorageSyncUpdate(recipientId, insert)
+
+    return profileKeyRotated
   }
 
-  fun applyStorageSyncContactUpdate(update: StorageRecordUpdate<SignalContactRecord>) {
+  fun applyStorageSyncContactUpdate(update: StorageRecordUpdate<SignalContactRecord>, rotateProfileKeyOnBlock: Boolean): Boolean {
     val db = writableDatabase
     val identityStore = AppDependencies.protocolStore.aci().identities()
     val values = getValuesForStorageContact(update.new, false)
@@ -925,6 +933,12 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       db.update(TABLE_NAME, clearValues, ID_WHERE, SqlUtil.buildArgs(recipientId))
     }
 
+    val profileKeyRotated = if (update.new.proto.blocked && !update.old.proto.blocked) {
+      RecipientUtil.updateProfileSharingAfterBlock(Recipient.resolved(recipientId), rotateProfileKeyOnBlock)
+    } else {
+      false
+    }
+
     try {
       val oldIdentityRecord = identityStore.getIdentityRecord(recipientId)
       if (update.new.proto.identityKey.isNotEmpty() && update.new.proto.signalAci != null) {
@@ -948,6 +962,8 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
 
     threads.applyStorageSyncUpdate(recipientId, update.new)
     AppDependencies.databaseObserver.notifyRecipientChanged(recipientId)
+
+    return profileKeyRotated
   }
 
   private fun resolvePotentialUsernameConflicts(username: String?, recipientId: RecipientId) {

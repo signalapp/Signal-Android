@@ -48,6 +48,8 @@ class ContactRecordProcessor(
     }
   }
 
+  private var rotateProfileKeyOnBlock = true
+
   constructor() : this(
     selfAci = SignalStore.account.aci,
     selfPni = SignalStore.account.pni,
@@ -247,11 +249,17 @@ class ContactRecordProcessor(
   }
 
   override fun insertLocal(record: SignalContactRecord) {
-    recipientTable.applyStorageSyncContactInsert(record)
+    val profileKeyRotated = recipientTable.applyStorageSyncContactInsert(record, rotateProfileKeyOnBlock)
+    if (profileKeyRotated) {
+      rotateProfileKeyOnBlock = false
+    }
   }
 
   override fun updateLocal(update: StorageRecordUpdate<SignalContactRecord>) {
-    recipientTable.applyStorageSyncContactUpdate(update)
+    val profileKeyRotated = recipientTable.applyStorageSyncContactUpdate(update, rotateProfileKeyOnBlock)
+    if (profileKeyRotated) {
+      rotateProfileKeyOnBlock = false
+    }
   }
 
   override fun compare(lhs: SignalContactRecord, rhs: SignalContactRecord): Int {

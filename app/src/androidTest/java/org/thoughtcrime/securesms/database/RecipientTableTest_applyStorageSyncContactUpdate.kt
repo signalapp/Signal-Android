@@ -50,7 +50,7 @@ class RecipientTableTest_applyStorageSyncContactUpdate {
 
     // WHEN
     val oldVerifiedStatus: IdentityTable.VerifiedStatus = identities.getIdentityRecord(other.id).get().verifiedStatus
-    SignalDatabase.recipients.applyStorageSyncContactUpdate(update)
+    SignalDatabase.recipients.applyStorageSyncContactUpdate(update, true)
     val newVerifiedStatus: IdentityTable.VerifiedStatus = identities.getIdentityRecord(other.id).get().verifiedStatus
 
     // THEN
