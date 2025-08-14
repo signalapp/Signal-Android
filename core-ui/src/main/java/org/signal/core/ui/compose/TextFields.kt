@@ -118,7 +118,7 @@ object TextFields {
     var hasFocus by remember { mutableStateOf(false) }
 
     // BasicTextField has a bug where it won't scroll down to keep the cursor in view.
-    val bringIntoViewRequester = BringIntoViewRequester()
+    val bringIntoViewRequester = remember { BringIntoViewRequester() }
     val coroutineScope = rememberCoroutineScope()
 
     CompositionLocalProvider(LocalTextSelectionColors provides TextSelectionColors(handleColor = LocalContentColor.current, LocalContentColor.current.copy(alpha = 0.4f))) {
