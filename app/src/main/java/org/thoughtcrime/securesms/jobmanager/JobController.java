@@ -206,33 +206,47 @@ class JobController {
   }
 
   @WorkerThread
-  synchronized void cancelJob(@NonNull String id) {
-    Job runningJob = runningJobs.get(id);
+  void cancelJob(@NonNull String id) {
+    Job       inactiveJob           = null;
+    List<Job> inactiveJobDependents = Collections.emptyList();
 
-    if (runningJob != null) {
-      Log.w(TAG, JobLogger.format(runningJob, "Canceling while running."));
-      runningJob.cancel();
-    } else {
-      JobSpec jobSpec = jobStorage.getJobSpec(id);
+    synchronized (this) {
+      Job runningJob = runningJobs.get(id);
 
-      if (jobSpec != null) {
-        Job job = createJob(jobSpec, jobStorage.getConstraintSpecs(id));
-        Log.w(TAG, JobLogger.format(job, "Canceling while inactive."));
-        Log.w(TAG, JobLogger.format(job, "Job failed."));
-
-        job.cancel();
-        List<Job> dependents = onFailure(job);
-        job.onFailure();
-        Stream.of(dependents).forEach(Job::onFailure);
+      if (runningJob != null) {
+        Log.w(TAG, JobLogger.format(runningJob, "Canceling while running."));
+        runningJob.cancel();
       } else {
-        Log.w(TAG, "Tried to cancel JOB::" + id + ", but it could not be found.");
+        JobSpec jobSpec = jobStorage.getJobSpec(id);
+
+        if (jobSpec != null) {
+          inactiveJob = createJob(jobSpec, jobStorage.getConstraintSpecs(id));
+          Log.w(TAG, JobLogger.format(inactiveJob, "Canceling while inactive."));
+          Log.w(TAG, JobLogger.format(inactiveJob, "Job failed."));
+
+          inactiveJob.cancel();
+          inactiveJobDependents = onFailure(inactiveJob);
+        } else {
+          Log.w(TAG, "Tried to cancel JOB::" + id + ", but it could not be found.");
+        }
       }
+    }
+
+    // We have no control over what happens in jobs' onFailure method, so we drop our lock to reduce the possibility of a deadlock
+    if (inactiveJob != null) {
+      inactiveJob.onFailure();
+      Stream.of(inactiveJobDependents).forEach(Job::onFailure);
     }
   }
 
   @WorkerThread
-  synchronized void cancelAllInQueue(@NonNull String queue) {
-    Stream.of(jobStorage.getJobsInQueue(queue))
+  void cancelAllInQueue(@NonNull String queue) {
+    List<JobSpec> jobsInQueue;
+    synchronized (this) {
+      jobsInQueue = jobStorage.getJobsInQueue(queue);
+    }
+
+    Stream.of(jobsInQueue)
           .map(JobSpec::getId)
           .forEach(this::cancelJob);
   }
