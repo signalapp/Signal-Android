@@ -220,6 +220,11 @@ function applyFilter() {
   editor.setValue(filtered, -1);
 }
 
+function appendLines(lines) {
+  editor.session.insert({ row: editor.session.getLength(), column: 0}, lines);
+  logLines += lines;
+}
+
 function readLines(offset, limit) {
   const lines = logLines.split("\n")
   if (offset >= lines.length) {

@@ -27,7 +27,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import org.signal.core.util.concurrent.SignalExecutors;
+import org.signal.core.util.ThreadUtil;
 import org.signal.debuglogsviewer.DebugLogsViewer;
 import org.thoughtcrime.securesms.BaseActivity;
 import org.thoughtcrime.securesms.R;
@@ -44,9 +44,9 @@ import org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton;
 import java.util.ArrayList;
 import java.util.List;
 
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.CompositeDisposable;
 import io.reactivex.rxjava3.disposables.Disposable;
+import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class SubmitDebugLogActivity extends BaseActivity {
 
@@ -346,27 +346,29 @@ public class SubmitDebugLogActivity extends BaseActivity {
 
   private void subscribeToLogLines() {
     Disposable disposable = viewModel.getLogLinesObservable()
-        .observeOn(AndroidSchedulers.mainThread())
-        .subscribe(this::presentLines, throwable -> {
+        .observeOn(Schedulers.io())
+        .subscribe(this::appendLines, throwable -> {
           // Handle error
-          this.progressCard.setVisibility(View.GONE);
+          ThreadUtil.runOnMain(() -> {
+            this.progressCard.setVisibility(View.GONE);
+          });
         });
     disposables.add(disposable);
   }
 
-  private void presentLines(@NonNull List<String> lines) {
-    warningBanner.setVisibility(View.VISIBLE);
-    submitButton.setVisibility(View.VISIBLE);
-
-    SignalExecutors.BOUNDED.execute(() -> {
-      StringBuilder lineBuilder = new StringBuilder();
-
-      for (String line : lines) {
-        lineBuilder.append(line).append("\n");
-      }
-
-      DebugLogsViewer.appendLines(logWebView, lineBuilder.toString());
+  private void appendLines(@NonNull List<String> lines) {
+    ThreadUtil.runOnMain(() -> {
+      warningBanner.setVisibility(View.VISIBLE);
+      submitButton.setVisibility(View.VISIBLE);
     });
+
+    StringBuilder lineBuilder = new StringBuilder();
+
+    for (String line : lines) {
+      lineBuilder.append(line).append("\n");
+    }
+
+    DebugLogsViewer.appendLines(logWebView, lineBuilder.toString());
   }
 
   private void presentMode(@NonNull SubmitDebugLogViewModel.Mode mode) {
