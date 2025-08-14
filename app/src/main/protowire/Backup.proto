@@ -396,6 +396,7 @@ message ChatItem {
 
   message OutgoingMessageDetails {
     repeated SendStatus sendStatus = 1;
+    uint64 dateReceived = 2; // may be different from dateSent for sync messages
   }
 
   message DirectionlessMessageDetails {

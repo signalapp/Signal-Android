@@ -530,7 +530,7 @@ class ChatItemArchiveImporter(
     contentValues.put(MessageTable.FROM_RECIPIENT_ID, fromRecipientId.serialize())
     contentValues.put(MessageTable.TO_RECIPIENT_ID, toRecipientId.serialize())
     contentValues.put(MessageTable.THREAD_ID, threadId)
-    contentValues.put(MessageTable.DATE_RECEIVED, this.incoming?.dateReceived ?: this.dateSent)
+    contentValues.put(MessageTable.DATE_RECEIVED, this.incoming?.dateReceived ?: this.outgoing?.dateReceived?.takeUnless { it == 0L } ?: this.dateSent)
     contentValues.put(MessageTable.RECEIPT_TIMESTAMP, this.outgoing?.sendStatus?.maxOfOrNull { it.timestamp } ?: 0)
     contentValues.putNull(MessageTable.LATEST_REVISION_ID)
     contentValues.putNull(MessageTable.ORIGINAL_MESSAGE_ID)

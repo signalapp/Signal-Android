@@ -544,7 +544,8 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
       }
       Direction.OUTGOING -> {
         outgoing = ChatItem.OutgoingMessageDetails(
-          sendStatus = record.toRemoteSendStatus(isGroupThread = exportState.threadIdToRecipientId[this.chatId] in exportState.groupRecipientIds, groupReceipts = groupReceipts, exportState = exportState)
+          sendStatus = record.toRemoteSendStatus(isGroupThread = exportState.threadIdToRecipientId[this.chatId] in exportState.groupRecipientIds, groupReceipts = groupReceipts, exportState = exportState),
+          dateReceived = dateReceived
         )
 
         if (expiresInMs != null && outgoing?.sendStatus?.all { it.pending == null && it.failed == null } == true) {
