@@ -61,7 +61,6 @@ import org.signal.core.util.requireString
 import org.signal.core.util.select
 import org.signal.core.util.toInt
 import org.signal.core.util.update
-import org.signal.core.util.updateAll
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.attachments.ArchivedAttachment
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -2011,11 +2010,13 @@ class AttachmentTable(
 
   fun clearAllArchiveData() {
     writableDatabase
-      .updateAll(TABLE_NAME)
+      .update(TABLE_NAME)
       .values(
         ARCHIVE_CDN to null,
-        ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value
+        ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
+        UPLOAD_TIMESTAMP to 0
       )
+      .where("$ARCHIVE_CDN NOT NULL")
       .run()
   }
 

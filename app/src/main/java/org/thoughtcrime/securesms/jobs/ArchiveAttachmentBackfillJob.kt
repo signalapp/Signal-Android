@@ -47,7 +47,7 @@ class ArchiveAttachmentBackfillJob private constructor(parameters: Parameters) :
 
     SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload()
 
-    ArchiveUploadProgress.onAttachmentsStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
+    ArchiveUploadProgress.onAttachmentSectionStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
 
     if (!isCanceled) {
       Log.i(TAG, "Adding ${jobs.size} jobs to backfill attachments.")

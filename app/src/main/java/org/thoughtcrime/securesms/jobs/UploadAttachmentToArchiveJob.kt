@@ -188,6 +188,8 @@ class UploadAttachmentToArchiveJob private constructor(
       null
     }
 
+    ArchiveUploadProgress.onAttachmentStarted(attachmentId, attachment.size)
+
     val attachmentStream = try {
       AttachmentUploadUtil.buildSignalServiceAttachmentStream(
         context = context,
