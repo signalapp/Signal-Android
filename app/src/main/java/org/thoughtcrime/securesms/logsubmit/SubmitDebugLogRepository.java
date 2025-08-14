@@ -19,6 +19,7 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.logging.Scrubber;
 import org.signal.core.util.tracing.Tracer;
+import org.signal.debuglogsviewer.DebugLogsViewer;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
@@ -125,15 +126,8 @@ public class SubmitDebugLogRepository {
     });
   }
 
-  /**
-   * Submits a log with the provided prefix lines.
-   *
-   * @param untilTime Only submit logs from {@link LogDatabase} if they were created before this time. This is our way of making sure that the logs we submit
-   *                  only include the logs that we've already shown the user. It's possible some old logs may have been trimmed off in the meantime, but no
-   *                  new ones could pop up.
-   */
-  public void submitLogWithPrefixLines(long untilTime, @NonNull List<LogLine> prefixLines, @Nullable byte[] trace, Callback<Optional<String>> callback) {
-    SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogInternal(untilTime, prefixLines, trace)));
+  public void submitLogFromReader(DebugLogsViewer.LogReader logReader, @Nullable byte[] trace, Callback<Optional<String>> callback) {
+    SignalExecutors.UNBOUNDED.execute(() -> callback.onResult(submitLogFromReaderInternal(logReader, trace)));
   }
 
   public void writeLogToDisk(@NonNull Uri uri, long untilTime, Callback<Boolean> callback) {
@@ -166,6 +160,79 @@ public class SubmitDebugLogRepository {
         callback.onResult(false);
       }
     });
+  }
+
+  @WorkerThread
+  private @NonNull Optional<String> submitLogFromReaderInternal(DebugLogsViewer.LogReader logReader, @Nullable byte[] trace) {
+    Stopwatch stopwatch = new Stopwatch("log-upload");
+    String traceUrl = null;
+    if (trace != null) {
+      try {
+        traceUrl = uploadContent("application/octet-stream", RequestBody.create(MediaType.get("application/octet-stream"), trace));
+      } catch (IOException e) {
+        Log.w(TAG, "Error during trace upload.", e);
+        return Optional.empty();
+      }
+    }
+    stopwatch.split("trace");
+
+    try {
+
+      ParcelFileDescriptor[] fds        = ParcelFileDescriptor.createPipe();
+      Future<Uri>            futureUri  = BlobProvider.getInstance()
+                                                      .forData(new ParcelFileDescriptor.AutoCloseInputStream(fds[0]), 0)
+                                                      .withMimeType("application/gzip")
+                                                      .createForSingleSessionOnDiskAsync(context);
+
+      OutputStream gzipOutput = new GZIPOutputStream(new ParcelFileDescriptor.AutoCloseOutputStream(fds[1]));
+
+      boolean traceFound = trace == null;
+      String next;
+      while ((next = logReader.nextChunk(10_000)) != null) {
+        if (!traceFound) {
+          int traceIndex = next.indexOf("<binary trace data>");
+          if (traceIndex != -1) {
+            next = next.replace("<binary trace data>", traceUrl);
+            traceFound = true;
+          }
+        }
+
+        gzipOutput.write(next.getBytes());
+        gzipOutput.write("\n".getBytes());
+      }
+
+      StreamUtil.close(gzipOutput);
+      Uri gzipUri = futureUri.get();
+
+      stopwatch.split("body");
+
+      String logUrl = uploadContent("application/gzip", new RequestBody() {
+        @Override
+        public @NonNull MediaType contentType() {
+          return MediaType.get("application/gzip");
+        }
+
+        @Override public long contentLength() {
+          return BlobProvider.getInstance().calculateFileSize(context, gzipUri);
+        }
+
+        @Override
+        public void writeTo(@NonNull BufferedSink sink) throws IOException {
+          Source source = Okio.source(BlobProvider.getInstance().getStream(context, gzipUri));
+          sink.writeAll(source);
+        }
+      });
+
+      stopwatch.split("upload");
+      stopwatch.stop(TAG);
+
+      BlobProvider.getInstance().delete(context, gzipUri);
+
+      return Optional.of(logUrl);
+    } catch (IOException | RuntimeException | ExecutionException | InterruptedException e) {
+      Log.w(TAG, "Error during log upload.", e);
+      return Optional.empty();
+    }
   }
 
   @WorkerThread

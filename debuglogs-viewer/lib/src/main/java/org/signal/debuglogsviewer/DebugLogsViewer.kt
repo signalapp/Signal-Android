@@ -11,8 +11,10 @@ import android.webkit.ValueCallback
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import kotlinx.coroutines.Runnable
+import org.json.JSONArray
 import org.json.JSONObject
 import org.signal.core.util.ThreadUtil
+import java.util.concurrent.CountDownLatch
 import java.util.function.Consumer
 
 object DebugLogsViewer {
@@ -45,6 +47,27 @@ object DebugLogsViewer {
     // Set the debug log lines
     val escaped = JSONObject.quote(lines)
     ThreadUtil.runOnMain { webview.evaluateJavascript("editor.insert($escaped); logLines+=$escaped;", null) }
+  }
+
+  @JvmStatic
+  fun readLogs(webview: WebView): LogReader {
+    var position = 0
+    return LogReader { size ->
+      val latch = CountDownLatch(1)
+      var result: String? = null
+      ThreadUtil.runOnMain {
+        webview.evaluateJavascript("readLines($position, $size)") { value ->
+          // Annoying, string returns from javascript land are always encoded as JSON strings (wrapped in quotes, various strings escaped, etc)
+          val parsed = JSONArray("[$value]").getString(0)
+          result = parsed.takeUnless { it == "<<END OF INPUT>>" }
+          position += size
+          latch.countDown()
+        }
+      }
+
+      latch.await()
+      result
+    }
   }
 
   @JvmStatic
@@ -106,5 +129,10 @@ object DebugLogsViewer {
   @JvmStatic
   fun onSearchClose(webview: WebView) {
     webview.evaluateJavascript("onSearchClose();", null)
+  }
+
+  fun interface LogReader {
+    /** Returns the next bit of log, containing at most [size] lines (but may be less), or null if there are no logs remaining. */
+    fun nextChunk(size: Int): String?
   }
 }

@@ -376,18 +376,28 @@ public class SubmitDebugLogActivity extends BaseActivity {
 
     switch (mode) {
       case LOADING:
+        searchNav.setVisibility(View.GONE);
+        saveMenuItem.setVisible(false);
+        searchMenuItem.setVisible(false);
         progressCard.setVisibility(View.VISIBLE);
+        submitButton.setEnabled(false);
+        logWebView.setAlpha(0.25f);
         break;
       case NORMAL:
         searchNav.setVisibility(View.GONE);
         saveMenuItem.setVisible(true);
         searchMenuItem.setVisible(true);
         progressCard.setVisibility(View.GONE);
+        submitButton.setEnabled(true);
+        logWebView.setAlpha(1f);
         break;
       case SUBMITTING:
-        searchMenuItem.setVisible(false);
+        searchNav.setVisibility(View.GONE);
         saveMenuItem.setVisible(false);
-        progressCard.setVisibility(View.VISIBLE);
+        searchMenuItem.setVisible(false);
+        progressCard.setVisibility(View.GONE);
+        submitButton.setSpinning();
+        logWebView.setAlpha(1f);
         break;
     }
   }
@@ -447,7 +457,7 @@ public class SubmitDebugLogActivity extends BaseActivity {
   private void onSubmitClicked() {
     submitButton.setSpinning();
 
-    viewModel.onSubmitClicked().observe(this, result -> {
+    viewModel.onSubmitClicked(DebugLogsViewer.readLogs(logWebView)).observe(this, result -> {
       if (result.isPresent()) {
         presentResultDialog(result.get());
       } else {

@@ -220,4 +220,13 @@ function applyFilter() {
   editor.setValue(filtered, -1);
 }
 
+function readLines(offset, limit) {
+  const lines = logLines.split("\n")
+  if (offset >= lines.length) {
+    return "<<END OF INPUT>>";
+  }
+
+  return lines.slice(offset, offset + limit).join("\n")
+}
+
 main();

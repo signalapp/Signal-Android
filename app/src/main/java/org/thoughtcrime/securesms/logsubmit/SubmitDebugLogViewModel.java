@@ -10,10 +10,9 @@ import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import org.signal.core.util.Stopwatch;
-import org.signal.core.util.ThreadUtil;
-import org.signal.core.util.concurrent.SignalExecutors;
 import org.signal.core.util.logging.Log;
 import org.signal.core.util.tracing.Tracer;
+import org.signal.debuglogsviewer.DebugLogsViewer;
 import org.thoughtcrime.securesms.database.LogDatabase;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.util.SingleLiveEvent;
@@ -120,17 +119,14 @@ public class SubmitDebugLogViewModel extends ViewModel {
     return mode;
   }
 
-  @NonNull LiveData<Optional<String>> onSubmitClicked() {
+  @NonNull LiveData<Optional<String>> onSubmitClicked(DebugLogsViewer.LogReader logReader) {
     mode.postValue(Mode.SUBMITTING);
 
     MutableLiveData<Optional<String>> result = new MutableLiveData<>();
 
-    // Get prefix lines for submission - this is a quick operation so it's ok to do it here
-    repo.getPrefixLogLines(prefixLines -> {
-      repo.submitLogWithPrefixLines(firstViewTime, prefixLines, trace, value -> {
-        mode.postValue(Mode.NORMAL);
-        result.postValue(value);
-      });
+    repo.submitLogFromReader(logReader, trace, value -> {
+      mode.postValue(Mode.NORMAL);
+      result.postValue(value);
     });
 
     return result;
