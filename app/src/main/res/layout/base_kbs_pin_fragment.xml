@@ -47,6 +47,23 @@
             app:layout_constraintTop_toBottomOf="@id/edit_kbs_pin_title"
             tools:text="@string/CreateKbsPinFragment__pins_can_help_you_restore_your_account" />
 
+        <!-- Hidden field to provide context for android autofill services. This helps the password manager associate the PIN field with the username
+            "Signal PIN" and avoid potentially overwriting the "Signal Backups" password with the PIN. -->
+        <EditText
+            android:id="@+id/autofill_username_context"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autofillHints="username"
+            android:enabled="false"
+            android:focusable="false"
+            android:focusableInTouchMode="false"
+            android:importantForAutofill="yes"
+            android:inputType="none"
+            android:text="@string/ConfirmKbsPinFragment__pin_password_manager_id"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/edit_kbs_textinputlayout"
             style="@style/Widget.Signal.TextInputLayout"

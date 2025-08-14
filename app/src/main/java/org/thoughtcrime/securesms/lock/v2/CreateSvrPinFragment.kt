@@ -5,6 +5,7 @@ import android.view.animation.Animation
 import android.view.animation.TranslateAnimation
 import android.widget.EditText
 import androidx.annotation.PluralsRes
+import androidx.autofill.HintConstants
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
@@ -26,7 +27,9 @@ class CreateSvrPinFragment : BaseSvrPinFragment<CreateSvrPinViewModel?>() {
 
     label.text = getPinLengthRestrictionText(R.plurals.CreateKbsPinFragment__pin_must_be_at_least_digits)
     confirm.isEnabled = false
-    ViewCompat.setImportantForAutofill(input, View.IMPORTANT_FOR_AUTOFILL_NO)
+
+    ViewCompat.setImportantForAutofill(input, View.IMPORTANT_FOR_AUTOFILL_YES)
+    ViewCompat.setAutofillHints(input, HintConstants.AUTOFILL_HINT_PASSWORD)
   }
 
   private fun initializeViewStatesForPinChange() {
