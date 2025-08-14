@@ -1590,6 +1590,7 @@ object BackupRepository {
       !DatabaseAttachmentArchiveUtil.hadIntegrityCheckPerformed(attachment) -> false
       messageId == AttachmentTable.PREUPLOAD_MESSAGE_ID -> false
       SignalDatabase.messages.isStory(messageId) -> false
+      SignalDatabase.messages.isViewOnce(messageId) -> false
       SignalDatabase.messages.willMessageExpireBeforeCutoff(messageId) -> false
       else -> true
     }

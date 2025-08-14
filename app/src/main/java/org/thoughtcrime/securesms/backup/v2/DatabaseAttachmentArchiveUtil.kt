@@ -90,6 +90,10 @@ fun DatabaseAttachment.requireThumbnailMediaName(): MediaName {
   return DatabaseAttachmentArchiveUtil.requireThumbnailMediaName(this)
 }
 
+fun DatabaseAttachment.hadIntegrityCheckPerformed(): Boolean {
+  return DatabaseAttachmentArchiveUtil.hadIntegrityCheckPerformed(this)
+}
+
 /**
  * Creates a [SignalServiceAttachmentPointer] for the archived attachment of the given [DatabaseAttachment].
  */

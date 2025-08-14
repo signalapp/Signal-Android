@@ -687,7 +687,7 @@ class AttachmentTable(
   /**
    * Similar to [getAttachmentsThatNeedArchiveUpload], but returns if the list would be non-null in a more efficient way.
    */
-  fun doAnyAttachmentsNeedArchiveUpload(currentTime: Long): Boolean {
+  fun doAnyAttachmentsNeedArchiveUpload(): Boolean {
     return readableDatabase
       .exists("$TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
       .where(buildAttachmentsThatNeedUploadQuery())
@@ -833,6 +833,8 @@ class AttachmentTable(
 
   /**
    * Returns sum of the file sizes of attachments that are not fully uploaded to the archive CDN.
+   *
+   * Should be the same or subset of that returned by [getAttachmentsThatNeedArchiveUpload].
    */
   fun getPendingArchiveUploadBytes(): Long {
     return readableDatabase
@@ -849,7 +851,8 @@ class AttachmentTable(
               $ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value}) AND
               $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}' AND
               (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND
-              (${MessageTable.EXPIRES_IN} = 0 OR ${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds})
+              (${MessageTable.EXPIRES_IN} = 0 OR ${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds}) AND
+              ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0
           )
         """.trimIndent()
       )
@@ -2592,7 +2595,8 @@ class AttachmentTable(
       $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND 
       (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND 
       (${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} <= 0 OR ${MessageTable.TABLE_NAME}.${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds}) AND
-      $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}'
+      $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}' AND
+      ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0
     """
   }
   private fun getAttachment(cursor: Cursor): DatabaseAttachment {

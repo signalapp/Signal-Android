@@ -235,6 +235,10 @@ class AttachmentDownloadJob private constructor(
           Log.i(TAG, "[$attachmentId] Attachment is a story. Skipping.")
         }
 
+        SignalDatabase.messages.isViewOnce(messageId) -> {
+          Log.i(TAG, "[$attachmentId] View-once. Skipping.")
+        }
+
         SignalDatabase.messages.willMessageExpireBeforeCutoff(messageId) -> {
           Log.i(TAG, "[$attachmentId] Message will expire within 24hrs. Skipping.")
         }

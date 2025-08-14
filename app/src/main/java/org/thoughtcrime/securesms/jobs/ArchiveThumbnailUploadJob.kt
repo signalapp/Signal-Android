@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.hadIntegrityCheckPerformed
 import org.thoughtcrime.securesms.backup.v2.requireThumbnailMediaName
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -97,12 +98,11 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.success()
     }
 
-    if (attachment.remoteDigest == null && attachment.dataHash == null) {
+    if (attachment.remoteDigest == null && attachment.dataHash == null && attachment.hadIntegrityCheckPerformed()) {
       Log.w(TAG, "$attachmentId has no integrity check! Cannot proceed.")
       return Result.success()
     }
 
-    // TODO [backups] Decide if we fail a job when associated attachment not already backed up
     // TODO [backups] Determine if we actually need to upload or are reusing a thumbnail from another attachment
 
     val thumbnailResult = generateThumbnailIfPossible(attachment)

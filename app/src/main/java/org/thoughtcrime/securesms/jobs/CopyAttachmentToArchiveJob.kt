@@ -103,6 +103,12 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
       return Result.success()
     }
 
+    if (SignalDatabase.messages.isViewOnce(attachment.mmsId)) {
+      Log.i(TAG, "[$attachmentId] Attachment is view-once. Resetting transfer state to none and skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
     if (SignalDatabase.messages.willMessageExpireBeforeCutoff(attachment.mmsId)) {
       Log.i(TAG, "[$attachmentId] Message will expire in less than 24 hours. Resetting transfer state to none and skipping.")
       SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
