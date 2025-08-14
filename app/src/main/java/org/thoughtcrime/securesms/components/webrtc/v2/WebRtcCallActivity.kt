@@ -103,7 +103,6 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     private const val VIBRATE_DURATION = 50
   }
 
-  private lateinit var fullscreenHelper: FullscreenHelper
   private lateinit var callScreen: CallScreenMediator
   private var videoTooltip: Dismissible? = null
   private var switchCameraTooltip: Dismissible? = null
@@ -144,22 +143,17 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     requestWindowFeature(Window.FEATURE_NO_TITLE)
 
-    fullscreenHelper = FullscreenHelper(this)
-
     volumeControlStream = AudioManager.STREAM_VOICE_CALL
 
     initializeResources()
     initializeViewModel()
     initializePictureInPictureParams()
 
-    callScreen.setControlsAndInfoVisibilityListener(FadeCallback())
-
-    fullscreenHelper.showAndHideWithSystemUI(
-      window,
-      findViewById(R.id.call_screen_header_gradient),
-      findViewById(R.id.webrtc_call_view_toolbar_text),
-      findViewById(R.id.webrtc_call_view_toolbar_no_text)
-    )
+    if (SignalStore.internal.newCallingUi) {
+      callScreen.setControlsAndInfoVisibilityListener(ComposeCallScreenControlsVisibilityListener())
+    } else {
+      callScreen.setControlsAndInfoVisibilityListener(ViewCallScreenControlsVisibilityListener())
+    }
 
     if (savedInstanceState == null) {
       logIntent(callIntent)
@@ -189,7 +183,9 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
 
     initializePendingParticipantFragmentListener()
 
-    WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_dark_colorSurface))
+    if (!SignalStore.internal.newCallingUi) {
+      WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_dark_colorSurface))
+    }
 
     if (!hasCameraPermission() && !hasAudioPermission()) {
       askCameraAudioPermissions {
@@ -461,13 +457,11 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
   private fun initializeResources() {
     callScreen = CallScreenMediator.create(this, viewModel)
     callScreen.setControlsListener(ControlsListener())
-
-    val viewRoot = rootView()
   }
 
   private fun initializeViewModel() {
     val orientation: Orientation = resolveOrientationFromContext()
-    if (orientation == Orientation.PORTRAIT_BOTTOM_EDGE) {
+    if (orientation == Orientation.PORTRAIT_BOTTOM_EDGE && !SignalStore.internal.newCallingUi) {
       WindowUtil.setNavigationBarColor(this, ContextCompat.getColor(this, R.color.signal_dark_colorSurface2))
       WindowUtil.clearTranslucentNavigationBar(window)
     }
@@ -1106,15 +1100,38 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
   }
 
-  private inner class FadeCallback : CallControlsVisibilityListener {
+  private inner class ComposeCallScreenControlsVisibilityListener : CallControlsVisibilityListener {
+    override fun onShown() = Unit
+
+    override fun onHidden() {
+      val controlState = viewModel.getWebRtcControls().value
+      if (!controlState.displayErrorControls()) {
+        videoTooltip?.dismiss()
+      }
+    }
+  }
+
+  private inner class ViewCallScreenControlsVisibilityListener : CallControlsVisibilityListener {
+
+    private val fullScreenHelper: FullscreenHelper = FullscreenHelper(this@WebRtcCallActivity)
+
+    init {
+      fullScreenHelper.showAndHideWithSystemUI(
+        window,
+        findViewById(R.id.call_screen_header_gradient),
+        findViewById(R.id.webrtc_call_view_toolbar_text),
+        findViewById(R.id.webrtc_call_view_toolbar_no_text)
+      )
+    }
+
     override fun onShown() {
-      fullscreenHelper.showSystemUI()
+      fullScreenHelper.showSystemUI()
     }
 
     override fun onHidden() {
       val controlState = viewModel.getWebRtcControls().value
       if (!controlState.displayErrorControls()) {
-        fullscreenHelper.hideSystemUI()
+        fullScreenHelper.hideSystemUI()
         videoTooltip?.dismiss()
       }
     }
