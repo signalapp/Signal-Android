@@ -151,6 +151,13 @@ function onToggleCaseSensitive() {
 
 function onSearchInput(value) {
   input = value;
+  highlightAllMatches(input);
+  editor.find(input, {
+    backwards: false,
+    wrap: true,
+    skipCurrent: false,
+    caseSensitive: isCaseSensitive,
+  });
 }
 
 function onSearch() {
