@@ -2090,14 +2090,22 @@ object BackupRepository {
         result.data.forwardSecrecyToken
       }
       is SvrBApi.RestoreResult.NetworkError -> {
-        return RemoteRestoreResult.NetworkError.logW(TAG, "[remoteRestore] Network error during SVRB.", result.exception)
+        Log.w(TAG, "[remoteRestore] Network error during SVRB.", result.exception)
+        return RemoteRestoreResult.NetworkError
+      }
+      is SvrBApi.RestoreResult.RestoreFailedError,
+      SvrBApi.RestoreResult.InvalidDataError -> {
+        Log.w(TAG, "[remoteRestore] Permanent SVRB error! $result")
+        return RemoteRestoreResult.PermanentSvrBFailure
       }
       SvrBApi.RestoreResult.DataMissingError,
-      is SvrBApi.RestoreResult.RestoreFailedError,
-      is SvrBApi.RestoreResult.SvrError,
-      is SvrBApi.RestoreResult.UnknownError -> {
+      is SvrBApi.RestoreResult.SvrError -> {
         Log.w(TAG, "[remoteRestore] Failed to fetch SVRB data: $result")
         return RemoteRestoreResult.Failure
+      }
+      is SvrBApi.RestoreResult.UnknownError -> {
+        Log.e(TAG, "[remoteRestore] Unknown SVRB result! Crashing.", result.throwable)
+        throw result.throwable
       }
     }
 

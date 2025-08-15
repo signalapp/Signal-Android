@@ -249,7 +249,7 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
 
       val forwardSecrecyToken = when (val result = SignalNetwork.svrB.restore(svrBAuth, SignalStore.backup.messageBackupKey, forwardSecrecyMetadata)) {
         is SvrBApi.RestoreResult.Success -> result.data.forwardSecrecyToken
-        else -> throw IOException("Failed to read forward secrecy metadata!")
+        else -> throw IOException("Failed to read forward secrecy metadata! $result")
       }
 
       val encryptedStream = tempBackupFile.inputStream().apply {

@@ -5,24 +5,28 @@
 
 package org.whispersystems.signalservice.api.svr
 
+import org.signal.libsignal.attest.AttestationDataException
 import org.signal.libsignal.attest.AttestationFailedException
-import org.signal.libsignal.internal.CompletableFuture
 import org.signal.libsignal.messagebackup.BackupKey
 import org.signal.libsignal.net.Network
 import org.signal.libsignal.net.NetworkException
 import org.signal.libsignal.net.NetworkProtocolException
+import org.signal.libsignal.net.RetryLaterException
 import org.signal.libsignal.net.SvrB
 import org.signal.libsignal.net.SvrBRestoreResponse
 import org.signal.libsignal.net.SvrBStoreResponse
+import org.signal.libsignal.sgxsession.SgxCommunicationFailureException
 import org.signal.libsignal.svr.DataMissingException
+import org.signal.libsignal.svr.InvalidSvrBDataException
 import org.signal.libsignal.svr.RestoreFailedException
-import org.signal.libsignal.svr.SvrException
 import org.whispersystems.signalservice.api.CancelationException
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import java.io.IOException
 import java.util.concurrent.ExecutionException
+import kotlin.time.Duration
+import kotlin.time.toKotlinDuration
 
 /**
  * A collection of operations for interacting with SVRB, the SVR enclave that provides forward secrecy for backups.
@@ -58,9 +62,13 @@ class SvrBApi(private val network: Network) {
 
       when (val exception = result.exceptionOrNull()) {
         null -> StoreResult.Success(result.getOrThrow())
+        is InvalidSvrBDataException -> StoreResult.InvalidDataError
+        is RetryLaterException -> StoreResult.NetworkError(IOException(exception), exception.duration.toKotlinDuration())
         is NetworkException -> StoreResult.NetworkError(exception)
         is NetworkProtocolException -> StoreResult.NetworkError(exception)
-        is SvrException -> StoreResult.SvrError(exception)
+        is AttestationFailedException,
+        is AttestationDataException,
+        is SgxCommunicationFailureException -> StoreResult.SvrError(exception)
         else -> StoreResult.UnknownError(exception)
       }
     } catch (e: CancelationException) {
@@ -88,12 +96,15 @@ class SvrBApi(private val network: Network) {
 
       when (val exception = result.exceptionOrNull()) {
         null -> RestoreResult.Success(result.getOrThrow())
+        is InvalidSvrBDataException -> RestoreResult.InvalidDataError
+        is RestoreFailedException -> RestoreResult.RestoreFailedError(exception.triesRemaining)
+        is DataMissingException -> RestoreResult.DataMissingError
+        is RetryLaterException -> RestoreResult.NetworkError(okio.IOException(exception), exception.duration.toKotlinDuration())
         is NetworkException -> RestoreResult.NetworkError(exception)
         is NetworkProtocolException -> RestoreResult.NetworkError(exception)
-        is DataMissingException -> RestoreResult.DataMissingError
-        is RestoreFailedException -> RestoreResult.RestoreFailedError(exception.triesRemaining)
-        is SvrException -> RestoreResult.SvrError(exception)
-        is AttestationFailedException -> RestoreResult.SvrError(exception)
+        is AttestationFailedException,
+        is AttestationDataException,
+        is SgxCommunicationFailureException -> RestoreResult.SvrError(exception)
         else -> RestoreResult.UnknownError(exception)
       }
     } catch (e: CancelationException) {
@@ -105,36 +116,47 @@ class SvrBApi(private val network: Network) {
     }
   }
 
-  private fun <ResultType, FinalType> CompletableFuture<Result<ResultType>>.toNetworkResult(resultMapper: (Result<ResultType>) -> FinalType): NetworkResult<FinalType> {
-    return try {
-      val result = this.get()
-      return when (val exception = result.exceptionOrNull()) {
-        is NetworkException -> NetworkResult.NetworkError(exception)
-        is NetworkProtocolException -> NetworkResult.NetworkError(exception)
-        else -> NetworkResult.Success(resultMapper(result))
-      }
-    } catch (e: CancelationException) {
-      NetworkResult.Success(resultMapper(Result.failure(e)))
-    } catch (e: ExecutionException) {
-      NetworkResult.Success(resultMapper(Result.failure(e)))
-    } catch (e: InterruptedException) {
-      NetworkResult.Success(resultMapper(Result.failure(e)))
-    }
-  }
-
   sealed class StoreResult {
+    /** Operation succeeded. */
     data class Success(val data: SvrBStoreResponse) : StoreResult()
-    data class NetworkError(val exception: IOException) : StoreResult()
+
+    /** Indicates the the existing data is unreadable, and you need to start a new chain from the beginning. */
+    data object InvalidDataError : StoreResult()
+
+    /** A retryable network error. */
+    data class NetworkError(val exception: IOException, val retryAfter: Duration? = null) : StoreResult()
+
+    /** Indicates an issue with the enclave that is outside of our control. We should fail the operation or use a long backoff. */
     data class SvrError(val throwable: Throwable) : StoreResult()
+
+    /** Undocumented error. Crashing recommended. */
     data class UnknownError(val throwable: Throwable) : StoreResult()
   }
 
   sealed class RestoreResult {
+    /** Operation succeeded. */
     data class Success(val data: SvrBRestoreResponse) : RestoreResult()
-    data class NetworkError(val exception: IOException) : RestoreResult()
+
+    /** A retryable network error. */
+    data class NetworkError(val exception: IOException, val retryAfter: Duration? = null) : RestoreResult()
+
+    /** No data could be found. This could indicate the user entered their AEP incorrectly. */
     data object DataMissingError : RestoreResult()
+
+    /** Indicate thee existing data is malformed and therefore unrecoverable. */
+    data object InvalidDataError : RestoreResult()
+
+    /**
+     * Indicates the data was found, but we had the wrong passphrase. While there is a "tries remaining", in practice, this means the data is
+     * unrecoverable. We wouldn't get here unless the AEP mapped to a real backup (since that's required to get the backupId), so if we're discovering
+     * the passphrase is wrong at this point, it means that an unrecoverable error was made in the past when creating the backup.
+     */
     data class RestoreFailedError(val triesRemaining: Int) : RestoreResult()
+
+    /** Indicates an issue with the enclave that is outside of our control. We should fail the operation or use a long backoff. */
     data class SvrError(val throwable: Throwable) : RestoreResult()
+
+    /** Undocumented error. Crashing recommended. */
     data class UnknownError(val throwable: Throwable) : RestoreResult()
   }
 }
