@@ -211,47 +211,27 @@ fun CallScreen(
         label = "animate-as-state"
       )
 
-      if (!isPortrait) {
-        Viewport(
-          localParticipant = localParticipant,
-          localRenderState = localRenderState,
-          webRtcCallState = webRtcCallState,
-          callParticipantsPagerState = callParticipantsPagerState,
-          overflowParticipants = overflowParticipants,
-          scaffoldState = scaffoldState,
-          callControlsState = callControlsState,
-          callScreenState = callScreenState,
-          onPipClick = onLocalPictureInPictureClicked,
-          onControlsToggled = onControlsToggled,
-          callScreenController = callScreenController
-        )
-      }
+      Viewport(
+        localParticipant = localParticipant,
+        localRenderState = localRenderState,
+        webRtcCallState = webRtcCallState,
+        callParticipantsPagerState = callParticipantsPagerState,
+        overflowParticipants = overflowParticipants,
+        scaffoldState = scaffoldState,
+        callControlsState = callControlsState,
+        callScreenState = callScreenState,
+        onPipClick = onLocalPictureInPictureClicked,
+        onControlsToggled = onControlsToggled,
+        callScreenController = callScreenController,
+        modifier = if (isPortrait) {
+          Modifier.padding(bottom = padding)
+        } else Modifier
+      )
 
-      Box(
-        modifier = Modifier
-          .padding(bottom = padding)
-          .fillMaxSize()
-      ) {
-        if (isPortrait) {
-          Viewport(
-            localParticipant = localParticipant,
-            localRenderState = localRenderState,
-            webRtcCallState = webRtcCallState,
-            callParticipantsPagerState = callParticipantsPagerState,
-            overflowParticipants = overflowParticipants,
-            scaffoldState = scaffoldState,
-            callControlsState = callControlsState,
-            callScreenState = callScreenState,
-            onPipClick = onLocalPictureInPictureClicked,
-            onControlsToggled = onControlsToggled,
-            callScreenController = callScreenController
-          )
-        }
-
-        CallScreenReactionsContainer(
-          reactions = reactions
-        )
-      }
+      CallScreenReactionsContainer(
+        reactions = reactions,
+        modifier = Modifier.padding(bottom = padding)
+      )
 
       val onCallInfoClick: () -> Unit = {
         scope.launch {
@@ -331,11 +311,13 @@ private fun BoxScope.Viewport(
   callScreenState: CallScreenState,
   callScreenController: CallScreenController,
   onPipClick: () -> Unit,
-  onControlsToggled: (Boolean) -> Unit
+  onControlsToggled: (Boolean) -> Unit,
+  modifier: Modifier = Modifier
 ) {
   if (webRtcCallState.isPreJoinOrNetworkUnavailable) {
     LargeLocalVideoRenderer(
-      localParticipant = localParticipant
+      localParticipant = localParticipant,
+      modifier = modifier
     )
   }
 
@@ -353,7 +335,7 @@ private fun BoxScope.Viewport(
       }
     }
 
-    Row {
+    Row(modifier = modifier) {
       Column(
         modifier = Modifier.weight(1f)
       ) {
@@ -408,7 +390,8 @@ private fun BoxScope.Viewport(
     SmallMoveableLocalVideoRenderer(
       localParticipant = localParticipant,
       localRenderState = localRenderState,
-      onClick = onPipClick
+      onClick = onPipClick,
+      modifier = modifier
     )
   }
 }
@@ -418,11 +401,12 @@ private fun BoxScope.Viewport(
  */
 @Composable
 private fun LargeLocalVideoRenderer(
-  localParticipant: CallParticipant
+  localParticipant: CallParticipant,
+  modifier: Modifier = Modifier
 ) {
   LocalParticipantRenderer(
     localParticipant = localParticipant,
-    modifier = Modifier
+    modifier = modifier
       .fillMaxSize()
   )
 }
@@ -469,7 +453,8 @@ private fun TinyLocalVideoRenderer(
 private fun SmallMoveableLocalVideoRenderer(
   localParticipant: CallParticipant,
   localRenderState: WebRtcLocalRenderState,
-  onClick: () -> Unit
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier
 ) {
   val isPortrait = LocalConfiguration.current.orientation == Configuration.ORIENTATION_PORTRAIT
 
@@ -489,6 +474,7 @@ private fun SmallMoveableLocalVideoRenderer(
     contentSize = DpSize(targetWidth, targetHeight),
     modifier = Modifier
       .fillMaxSize()
+      .then(modifier)
       .padding(16.dp)
       .statusBarsPadding()
   ) {
