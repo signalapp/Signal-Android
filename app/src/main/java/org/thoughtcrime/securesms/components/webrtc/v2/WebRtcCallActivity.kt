@@ -149,11 +149,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     initializeViewModel()
     initializePictureInPictureParams()
 
-    if (SignalStore.internal.newCallingUi) {
-      callScreen.setControlsAndInfoVisibilityListener(ComposeCallScreenControlsVisibilityListener())
-    } else {
-      callScreen.setControlsAndInfoVisibilityListener(ViewCallScreenControlsVisibilityListener())
-    }
+    callScreen.setControlsAndInfoVisibilityListener(ControlsVisibilityListener())
 
     if (savedInstanceState == null) {
       logIntent(callIntent)
@@ -1100,18 +1096,7 @@ class WebRtcCallActivity : BaseActivity(), SafetyNumberChangeDialog.Callback, Re
     }
   }
 
-  private inner class ComposeCallScreenControlsVisibilityListener : CallControlsVisibilityListener {
-    override fun onShown() = Unit
-
-    override fun onHidden() {
-      val controlState = viewModel.getWebRtcControls().value
-      if (!controlState.displayErrorControls()) {
-        videoTooltip?.dismiss()
-      }
-    }
-  }
-
-  private inner class ViewCallScreenControlsVisibilityListener : CallControlsVisibilityListener {
+  private inner class ControlsVisibilityListener : CallControlsVisibilityListener {
 
     private val fullScreenHelper: FullscreenHelper = FullscreenHelper(this@WebRtcCallActivity)
 
