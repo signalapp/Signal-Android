@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.createArchiveAttachmentPointer
 import org.thoughtcrime.securesms.backup.v2.requireMediaName
@@ -41,6 +42,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
@@ -218,7 +220,9 @@ class RestoreAttachmentJob private constructor(
       return
     }
 
+    SignalLocalMetrics.ArchiveAttachmentRestore.start(attachmentId)
     retrieveAttachment(messageId, attachmentId, attachment)
+    SignalLocalMetrics.ArchiveAttachmentRestore.end(attachmentId)
   }
 
   override fun onFailure() {
@@ -300,6 +304,7 @@ class RestoreAttachmentJob private constructor(
         }
       }
 
+      ArchiveRestoreProgress.onDownloadStart(attachmentId)
       val decryptingStream = if (useArchiveCdn) {
         val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MEDIA, attachment.archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn).successOrThrow().headers
 
@@ -323,10 +328,12 @@ class RestoreAttachmentJob private constructor(
             progressListener
           )
       }
+      ArchiveRestoreProgress.onDownloadEnd(attachmentId, attachmentFile.length())
 
       decryptingStream.use { input ->
         SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, input, if (manual) System.currentTimeMillis().milliseconds else null)
       }
+      ArchiveRestoreProgress.onWriteToDiskEnd(attachmentId)
     } catch (e: RangeException) {
       Log.w(TAG, "[$attachmentId] Range exception, file size " + attachmentFile.length(), e)
       if (attachmentFile.delete()) {

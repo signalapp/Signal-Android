@@ -516,4 +516,21 @@ public final class SignalLocalMetrics {
       LocalMetrics.getInstance().end(NAME + id);
     }
   }
+
+  /**
+   * Tracks how long it took to restore an attachment.
+   */
+  public static final class ArchiveAttachmentRestore {
+    private static final String NAME = "archive-attachment-restore";
+
+    /** When the attachment begins uploading. */
+    public static void start(AttachmentId id) {
+      LocalMetrics.getInstance().start(NAME, NAME + id);
+    }
+
+    /** When the attachment finishes uploading. */
+    public static void end(AttachmentId id) {
+      LocalMetrics.getInstance().end(NAME + id);
+    }
+  }
 }

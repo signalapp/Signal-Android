@@ -32,6 +32,8 @@ import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import java.util.concurrent.ConcurrentHashMap
+import java.util.concurrent.atomic.AtomicInteger
+import java.util.concurrent.atomic.AtomicLong
 import kotlin.math.max
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -55,8 +57,8 @@ object ArchiveUploadProgress {
   private val attachmentProgress: MutableMap<AttachmentId, AttachmentProgressDetails> = ConcurrentHashMap()
 
   private var debugAttachmentStartTime: Long = 0
-  private var debugTotalAttachments: Int = 0
-  private var debugTotalBytes: Long = 0
+  private val debugTotalAttachments: AtomicInteger = AtomicInteger(0)
+  private val debugTotalBytes: AtomicLong = AtomicLong(0)
 
   /**
    * Observe this to get updates on the current upload progress.
@@ -80,7 +82,7 @@ object ArchiveUploadProgress {
       val pendingMediaUploadBytes = SignalDatabase.attachments.getPendingArchiveUploadBytes() - attachmentProgress.values.sumOf { it.bytesUploaded }
       if (pendingMediaUploadBytes <= 0) {
         Log.i(TAG, "No more pending bytes. Done!")
-        Log.d(TAG, buildDebugStats(debugAttachmentStartTime, debugTotalAttachments, debugTotalBytes))
+        Log.d(TAG, "Upload finished! " + buildDebugStats(debugAttachmentStartTime, debugTotalAttachments.get(), debugTotalBytes.get()))
         return@map PROGRESS_NONE
       }
 
@@ -188,13 +190,13 @@ object ArchiveUploadProgress {
 
   fun onAttachmentFinished(attachmentId: AttachmentId) {
     SignalLocalMetrics.ArchiveAttachmentUpload.end(attachmentId)
-    debugTotalAttachments++
+    debugTotalAttachments.incrementAndGet()
 
     attachmentProgress[attachmentId]?.let {
       if (BuildConfig.DEBUG) {
-        Log.d(TAG, "Attachment finished: $it")
+        Log.d(TAG, "Attachment uploaded: $it")
       }
-      debugTotalBytes += it.totalBytes
+      debugTotalBytes.addAndGet(it.totalBytes)
     }
     attachmentProgress.remove(attachmentId)
     _progress.tryEmit(Unit)
@@ -292,7 +294,7 @@ object ArchiveUploadProgress {
   }
 
   private fun buildDebugStats(startTimeMs: Long, totalAttachments: Int, totalBytes: Long): String {
-    if (debugAttachmentStartTime <= 0 || debugTotalAttachments <= 0 || debugTotalBytes <= 0) {
+    if (startTimeMs <= 0 || totalAttachments <= 0 || totalBytes <= 0) {
       return "Insufficient data to print debug stats."
     }
 
@@ -313,7 +315,7 @@ object ArchiveUploadProgress {
       }
 
       val seconds: Double = (System.currentTimeMillis() - startTimeMs).milliseconds.toDouble(DurationUnit.SECONDS)
-      val bytesPerSecond: Long = (bytesUploaded / seconds).toLong()
+      val bytesPerSecond: Long = (totalBytes / seconds).toLong()
 
       return "Duration=${System.currentTimeMillis() - startTimeMs}ms, TotalBytes=$totalBytes (${totalBytes.bytes.toUnitString()}), Rate=$bytesPerSecond bytes/sec (${bytesPerSecond.bytes.toUnitString()}/sec)"
     }
