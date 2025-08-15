@@ -7,6 +7,7 @@ package org.signal.debuglogsviewer
 
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Color
 import android.webkit.ValueCallback
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -28,13 +29,14 @@ object DebugLogsViewer {
     webview.isVerticalScrollBarEnabled = false
     webview.isHorizontalScrollBarEnabled = false
 
+    webview.setBackgroundColor(Color.TRANSPARENT)
+    webview.background = null
+
     webview.loadUrl("file:///android_asset/debuglogs-viewer.html")
 
     webview.webViewClient = object : WebViewClient() {
       override fun onPageFinished(view: WebView?, url: String?) {
-        // Set dark mode colors if in dark mode
-        val isDarkMode = (context.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
-        if (isDarkMode) {
+        if (context.isDarkTheme) {
           webview.evaluateJavascript("document.body.classList.add('dark');", null)
         }
         onFinished.run()
@@ -134,6 +136,9 @@ object DebugLogsViewer {
   fun onSearchClose(webview: WebView) {
     webview.evaluateJavascript("onSearchClose();", null)
   }
+
+  private val Context.isDarkTheme
+    get() = (this.resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) == Configuration.UI_MODE_NIGHT_YES
 
   fun interface LogReader {
     /** Returns the next bit of log, containing at most [size] lines (but may be less), or null if there are no logs remaining. */

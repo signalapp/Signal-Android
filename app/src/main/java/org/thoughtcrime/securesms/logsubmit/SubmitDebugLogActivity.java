@@ -330,7 +330,10 @@ public class SubmitDebugLogActivity extends BaseActivity {
     this.scrollToTopButton    = findViewById(R.id.debug_log_scroll_to_top);
     this.progressCard         = findViewById(R.id.debug_log_progress_card);
 
-    DebugLogsViewer.initWebView(logWebView, this, this::subscribeToLogLines);
+    DebugLogsViewer.initWebView(logWebView, this, () -> {
+      logWebView.animate().alpha(1f).setDuration(250).start();
+      subscribeToLogLines();
+    });
 
     submitButton.setOnClickListener(v -> onSubmitClicked());
     scrollToTopButton.setOnClickListener(v -> DebugLogsViewer.scrollToTop(logWebView));
