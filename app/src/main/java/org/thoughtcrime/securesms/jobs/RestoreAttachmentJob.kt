@@ -160,6 +160,7 @@ class RestoreAttachmentJob private constructor(
         }
       }
       .setLifespan(TimeUnit.DAYS.toMillis(30))
+      .setMaxAttempts(Parameters.UNLIMITED)
       .setGlobalPriority(priority)
       .build(),
     messageId,
