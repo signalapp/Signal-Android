@@ -41,11 +41,12 @@ class KeyboardStickerListAdapter(
 
   private inner class StickerViewHolder(itemView: View) : MappingViewHolder<Sticker>(itemView) {
 
-    private val image: ImageView = findViewById(R.id.sticker_keyboard_page_image)
+    val image: ImageView = findViewById(R.id.sticker_keyboard_page_image)
 
     override fun bind(model: Sticker) {
       requestManager.load(model.uri)
         .set(ApngOptions.ANIMATE, allowApngAnimation)
+        .skipMemoryCache(true)
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(image)
 
@@ -59,6 +60,12 @@ class KeyboardStickerListAdapter(
         itemView.setOnClickListener(null)
         itemView.setOnLongClickListener(null)
       }
+    }
+  }
+
+  override fun onViewRecycled(holder: MappingViewHolder<*>) {
+    if (holder is StickerViewHolder) {
+      requestManager.clear(holder.image)
     }
   }
 
