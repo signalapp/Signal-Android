@@ -24,7 +24,6 @@ import org.thoughtcrime.securesms.components.webrtc.EglBaseWrapper;
 import org.thoughtcrime.securesms.components.webrtc.GroupCallSafetyNumberChangeNotificationUtil;
 import org.thoughtcrime.securesms.database.CallTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
-import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.events.CallParticipant;
 import org.thoughtcrime.securesms.events.WebRtcViewModel;
 import org.thoughtcrime.securesms.groups.GroupId;
@@ -617,10 +616,6 @@ public abstract class WebRtcActionProcessor {
     for (CallParticipant callParticipant : currentState.getCallInfoState().getRemoteCallParticipants()) {
       callParticipant.getVideoSink().setDeviceOrientationDegrees(sinkRotationDegrees);
     }
-
-    AppDependencies.getSignalCallManager()
-                   .getLockManager()
-                   .updateOrientation(Orientation.fromDegrees(orientationDegrees));
 
     return currentState.builder()
                        .changeLocalDeviceState()
