@@ -267,6 +267,14 @@ public class IndividualSendJob extends PushSendJob {
         throw new UndeliverableMessageException(messageRecipient.getId() + " not registered!");
       }
 
+      if (!messageRecipient.getHasServiceId()) {
+        messageRecipient = messageRecipient.fresh();
+
+        if (!messageRecipient.getHasServiceId()) {
+          throw new UndeliverableMessageException(messageRecipient.getId() + " has no serviceId!");
+        }
+      }
+
       SignalServiceMessageSender                 messageSender      = AppDependencies.getSignalServiceMessageSender();
       SignalServiceAddress                       address            = RecipientUtil.toSignalServiceAddress(context, messageRecipient);
       List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
