@@ -7,12 +7,7 @@ package org.thoughtcrime.securesms.components.settings.conversation
 
 import androidx.annotation.WorkerThread
 import androidx.compose.runtime.Immutable
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.text.font.FontStyle
-import androidx.compose.ui.text.withStyle
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
@@ -102,17 +97,19 @@ data class InternalConversationSettingsState(
       } else {
         val capabilities: RecipientRecord.Capabilities? = SignalDatabase.recipients.getCapabilities(recipient.id)
         if (capabilities != null) {
-          val style: SpanStyle = when (capabilities.storageServiceEncryptionV2) {
-            Recipient.Capability.SUPPORTED -> SpanStyle(color = Color(0, 150, 0))
-            Recipient.Capability.NOT_SUPPORTED -> SpanStyle(color = Color.Red)
-            Recipient.Capability.UNKNOWN -> SpanStyle(fontStyle = FontStyle.Italic)
-          }
-
-          buildAnnotatedString {
-            withStyle(style = style) {
-              append("SSREv2")
-            }
-          }
+          AnnotatedString("No capabilities right now.")
+          // Left as an example in case we add one in the future
+//          val style: SpanStyle = when (capabilities.storageServiceEncryptionV2) {
+//            Recipient.Capability.SUPPORTED -> SpanStyle(color = Color(0, 150, 0))
+//            Recipient.Capability.NOT_SUPPORTED -> SpanStyle(color = Color.Red)
+//            Recipient.Capability.UNKNOWN -> SpanStyle(fontStyle = FontStyle.Italic)
+//          }
+//
+//          buildAnnotatedString {
+//            withStyle(style = style) {
+//              append("SSREv2")
+//            }
+//          }
         } else {
           AnnotatedString("Recipient not found!")
         }

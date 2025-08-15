@@ -359,7 +359,7 @@ class StorageSyncJob private constructor(parameters: Parameters, private var loc
 
     Log.i(TAG, "We are up-to-date with the remote storage state.")
 
-    if (remoteManifest.recordIkm == null && Recipient.self().storageServiceEncryptionV2Capability.isSupported) {
+    if (remoteManifest.recordIkm == null) {
       Log.w(TAG, "The SSRE2 capability is supported, but no recordIkm is set! Force pushing.")
       AppDependencies.jobManager.add(StorageForcePushJob())
       return false

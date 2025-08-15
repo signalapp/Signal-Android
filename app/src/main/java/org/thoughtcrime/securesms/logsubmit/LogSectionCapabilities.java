@@ -35,18 +35,18 @@ public final class LogSectionCapabilities implements LogSection {
     RecipientRecord.Capabilities   globalCapabilities = SignalDatabase.recipients().getCapabilities(self.getId());
 
     StringBuilder builder = new StringBuilder().append("-- Local").append("\n")
-                                               .append("DeleteSync: ").append(localCapabilities.getDeleteSync()).append("\n")
                                                .append("VersionedExpirationTimer: ").append(localCapabilities.getVersionedExpirationTimer()).append("\n")
-                                               .append("StorageServiceEncryptionV2: ").append(localCapabilities.getStorageServiceEncryptionV2()).append("\n")
                                                .append("\n")
-                                               .append("-- Global").append("\n");
+                                               .append("-- Global").append("\n")
+                                               .append("None").append("\n");
 
-    if (globalCapabilities != null) {
-      builder.append("StorageServiceEncryptionV2: ").append(globalCapabilities.getStorageServiceEncryptionV2()).append("\n");
-      builder.append("\n");
-    } else {
-      builder.append("Self not found!");
-    }
+    // Left as an example for when we want to add new ones
+//    if (globalCapabilities != null) {
+//      builder.append("StorageServiceEncryptionV2: ").append(globalCapabilities.getStorageServiceEncryptionV2()).append("\n");
+//      builder.append("\n");
+//    } else {
+//      builder.append("Self not found!");
+//    }
 
     return builder;
   }
