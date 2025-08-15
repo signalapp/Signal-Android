@@ -9,6 +9,7 @@ import android.content.Context
 import com.bumptech.glide.Priority
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.data.DataFetcher
+import org.signal.glide.common.io.InputStreamFactory
 
 /**
  * A Glide [DataFetcher] that retrieves an [InputStreamFactory] for a [DecryptableUri].

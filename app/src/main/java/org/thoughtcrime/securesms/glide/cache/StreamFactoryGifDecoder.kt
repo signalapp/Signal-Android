@@ -10,7 +10,7 @@ import com.bumptech.glide.load.ResourceDecoder
 import com.bumptech.glide.load.engine.Resource
 import com.bumptech.glide.load.resource.gif.GifDrawable
 import com.bumptech.glide.load.resource.gif.StreamGifDecoder
-import org.thoughtcrime.securesms.mms.InputStreamFactory
+import org.signal.glide.common.io.InputStreamFactory
 
 /**
  * A variant of [StreamGifDecoder] that decodes animated PNGs from [InputStreamFactory] sources.

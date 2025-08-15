@@ -8,9 +8,9 @@ import com.bumptech.glide.load.ResourceDecoder;
 import com.bumptech.glide.load.engine.Resource;
 
 import org.signal.core.util.StreamUtil;
-import org.signal.glide.apng.decode.APNGDecoder;
-import org.signal.glide.apng.decode.APNGParser;
 import org.signal.glide.common.io.StreamReader;
+import org.signal.glide.load.resource.apng.decode.APNGDecoder;
+import org.signal.glide.load.resource.apng.decode.APNGParser;
 
 import java.io.IOException;
 import java.io.InputStream;

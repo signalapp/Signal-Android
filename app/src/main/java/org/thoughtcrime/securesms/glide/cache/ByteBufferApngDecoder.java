@@ -7,11 +7,11 @@ import com.bumptech.glide.load.Options;
 import com.bumptech.glide.load.ResourceDecoder;
 import com.bumptech.glide.load.engine.Resource;
 
-import org.signal.glide.apng.decode.APNGDecoder;
-import org.signal.glide.apng.decode.APNGParser;
 import org.signal.glide.common.io.ByteBufferReader;
 import org.signal.glide.common.loader.ByteBufferLoader;
 import org.signal.glide.common.loader.Loader;
+import org.signal.glide.load.resource.apng.decode.APNGDecoder;
+import org.signal.glide.load.resource.apng.decode.APNGParser;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

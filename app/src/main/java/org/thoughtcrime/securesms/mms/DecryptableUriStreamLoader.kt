@@ -11,6 +11,7 @@ import com.bumptech.glide.load.model.ModelLoader
 import com.bumptech.glide.load.model.ModelLoaderFactory
 import com.bumptech.glide.load.model.MultiModelLoaderFactory
 import com.bumptech.glide.signature.ObjectKey
+import org.signal.glide.common.io.InputStreamFactory
 
 /**
  * A Glide [ModelLoader] that handles conversion from [DecryptableUri] to [InputStreamFactory].

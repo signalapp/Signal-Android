@@ -12,9 +12,9 @@ import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.ResourceDecoder
 import com.bumptech.glide.load.engine.Resource
 import org.signal.core.util.StreamUtil
-import org.signal.glide.apng.decode.APNGDecoder
-import org.thoughtcrime.securesms.glide.ImageHeaderParserUtils
-import org.thoughtcrime.securesms.mms.InputStreamFactory
+import org.signal.glide.common.io.InputStreamFactory
+import org.signal.glide.load.ImageHeaderParserUtils
+import org.signal.glide.load.resource.apng.decode.APNGDecoder
 import java.nio.ByteBuffer
 
 /**

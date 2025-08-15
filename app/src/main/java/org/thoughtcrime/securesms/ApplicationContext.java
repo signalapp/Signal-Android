@@ -54,6 +54,7 @@ import org.thoughtcrime.securesms.dependencies.ApplicationDependencyProvider;
 import org.thoughtcrime.securesms.emoji.EmojiSource;
 import org.thoughtcrime.securesms.emoji.JumboEmoji;
 import org.thoughtcrime.securesms.gcm.FcmFetchManager;
+import org.thoughtcrime.securesms.glide.SignalGlideComponents;
 import org.thoughtcrime.securesms.jobs.AccountConsistencyWorkerJob;
 import org.thoughtcrime.securesms.jobs.BackupRefreshJob;
 import org.thoughtcrime.securesms.jobs.BackupSubscriptionCheckJob;
@@ -83,7 +84,6 @@ import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
-import org.thoughtcrime.securesms.mms.SignalGlideComponents;
 import org.thoughtcrime.securesms.mms.SignalGlideModule;
 import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.ratelimit.RateLimitUtil;
@@ -128,7 +128,7 @@ import rxdogtag2.RxDogTag;
 
 /**
  * Will be called once when the TextSecure process is created.
- *
+ * <p>
  * We're using this as an insertion point to patch up the Android PRNG disaster,
  * to initialize the job manager, and to check for GCM registration freshness.
  *
@@ -139,7 +139,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
   private static final String TAG = Log.tag(ApplicationContext.class);
 
   public static ApplicationContext getInstance(Context context) {
-    return (ApplicationContext)context.getApplicationContext();
+    return (ApplicationContext) context.getApplicationContext();
   }
 
   @Override
@@ -153,82 +153,82 @@ public class ApplicationContext extends Application implements AppForegroundObse
     super.onCreate();
 
     AppStartup.getInstance().addBlocking("sqlcipher-init", () -> {
-                              SqlCipherLibraryLoader.load();
-                              SignalDatabase.init(this,
-                                                  DatabaseSecretProvider.getOrCreateDatabaseSecret(this),
-                                                  AttachmentSecretProvider.getInstance(this).getOrCreateAttachmentSecret());
-                            })
-                            .addBlocking("signal-store", () -> SignalStore.init(this))
-                            .addBlocking("logging", () -> {
-                              initializeLogging();
-                              Log.i(TAG, "onCreate()");
-                            })
-                            .addBlocking("app-dependencies", this::initializeAppDependencies)
-                            .addBlocking("anr-detector", this::startAnrDetector)
-                            .addBlocking("security-provider", this::initializeSecurityProvider)
-                            .addBlocking("crash-handling", this::initializeCrashHandling)
-                            .addBlocking("rx-init", this::initializeRx)
-                            .addBlocking("event-bus", () -> EventBus.builder().logNoSubscriberMessages(false).installDefaultEventBus())
-                            .addBlocking("scrubber", () -> Scrubber.setIdentifierHmacKeyProvider(() -> SignalStore.svr().getMasterKey().deriveLoggingKey()))
-                            .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
-                            .addBlocking("app-migrations", this::initializeApplicationMigrations)
-                            .addBlocking("lifecycle-observer", () -> AppForegroundObserver.addListener(this))
-                            .addBlocking("message-retriever", this::initializeMessageRetrieval)
-                            .addBlocking("dynamic-theme", () -> DynamicTheme.setDefaultDayNightMode(this))
-                            .addBlocking("proxy-init", () -> {
-                              if (SignalStore.proxy().isProxyEnabled()) {
-                                Log.w(TAG, "Proxy detected. Enabling Conscrypt.setUseEngineSocketByDefault()");
-                                ConscryptSignal.setUseEngineSocketByDefault(true);
-                              }
-                            })
-                            .addBlocking("blob-provider", this::initializeBlobProvider)
-                            .addBlocking("remote-config", RemoteConfig::init)
-                            .addBlocking("ring-rtc", this::initializeRingRtc)
-                            .addBlocking("glide", () -> SignalGlideModule.setRegisterGlideComponents(new SignalGlideComponents()))
-                            .addBlocking("tracer", this::initializeTracer)
-                            .addNonBlocking(() -> RegistrationUtil.maybeMarkRegistrationComplete())
-                            .addNonBlocking(() -> Glide.get(this))
-                            .addNonBlocking(this::cleanAvatarStorage)
-                            .addNonBlocking(this::initializeRevealableMessageManager)
-                            .addNonBlocking(this::initializePendingRetryReceiptManager)
-                            .addNonBlocking(this::initializeScheduledMessageManager)
-                            .addNonBlocking(this::initializeFcmCheck)
-                            .addNonBlocking(PreKeysSyncJob::enqueueIfNeeded)
-                            .addNonBlocking(this::initializePeriodicTasks)
-                            .addNonBlocking(this::initializeCircumvention)
-                            .addNonBlocking(this::initializeCleanup)
-                            .addNonBlocking(this::initializeGlideCodecs)
-                            .addNonBlocking(StorageSyncHelper::scheduleRoutineSync)
-                            .addNonBlocking(this::beginJobLoop)
-                            .addNonBlocking(EmojiSource::refresh)
-                            .addNonBlocking(() -> AppDependencies.getGiphyMp4Cache().onAppStart(this))
-                            .addNonBlocking(AppDependencies::getBillingApi)
-                            .addNonBlocking(this::ensureProfileUploaded)
-                            .addNonBlocking(() -> AppDependencies.getExpireStoriesManager().scheduleIfNecessary())
-                            .addPostRender(() -> AppDependencies.getDeletedCallEventManager().scheduleIfNecessary())
-                            .addPostRender(() -> RateLimitUtil.retryAllRateLimitedMessages(this))
-                            .addPostRender(this::initializeExpiringMessageManager)
-                            .addPostRender(this::initializeTrimThreadsByDateManager)
-                            .addPostRender(RefreshSvrCredentialsJob::enqueueIfNecessary)
-                            .addPostRender(() -> DownloadLatestEmojiDataJob.scheduleIfNecessary(this))
-                            .addPostRender(EmojiSearchIndexDownloadJob::scheduleIfNecessary)
-                            .addPostRender(() -> SignalDatabase.messageLog().trimOldMessages(System.currentTimeMillis(), RemoteConfig.retryRespondMaxAge()))
-                            .addPostRender(() -> JumboEmoji.updateCurrentVersion(this))
-                            .addPostRender(RetrieveRemoteAnnouncementsJob::enqueue)
-                            .addPostRender(() -> AndroidTelecomUtil.registerPhoneAccount())
-                            .addPostRender(() -> AppDependencies.getJobManager().add(new FontDownloaderJob()))
-                            .addPostRender(CheckServiceReachabilityJob::enqueueIfNecessary)
-                            .addPostRender(GroupV2UpdateSelfProfileKeyJob::enqueueForGroupsIfNecessary)
-                            .addPostRender(StoryOnboardingDownloadJob.Companion::enqueueIfNeeded)
-                            .addPostRender(() -> AppDependencies.getExoPlayerPool().getPoolStats().getMaxUnreserved())
-                            .addPostRender(() -> AppDependencies.getRecipientCache().warmUp())
-                            .addPostRender(AccountConsistencyWorkerJob::enqueueIfNecessary)
-                            .addPostRender(GroupRingCleanupJob::enqueue)
-                            .addPostRender(LinkedDeviceInactiveCheckJob::enqueueIfNecessary)
-                            .addPostRender(() -> ActiveCallManager.clearNotifications(this))
-                            .addPostRender(RestoreOptimizedMediaJob::enqueueIfNecessary)
-                            .addPostRender(RetryPendingSendsJob::enqueueForAll)
-                            .execute();
+                SqlCipherLibraryLoader.load();
+                SignalDatabase.init(this,
+                                    DatabaseSecretProvider.getOrCreateDatabaseSecret(this),
+                                    AttachmentSecretProvider.getInstance(this).getOrCreateAttachmentSecret());
+              })
+              .addBlocking("signal-store", () -> SignalStore.init(this))
+              .addBlocking("logging", () -> {
+                initializeLogging();
+                Log.i(TAG, "onCreate()");
+              })
+              .addBlocking("app-dependencies", this::initializeAppDependencies)
+              .addBlocking("anr-detector", this::startAnrDetector)
+              .addBlocking("security-provider", this::initializeSecurityProvider)
+              .addBlocking("crash-handling", this::initializeCrashHandling)
+              .addBlocking("rx-init", this::initializeRx)
+              .addBlocking("event-bus", () -> EventBus.builder().logNoSubscriberMessages(false).installDefaultEventBus())
+              .addBlocking("scrubber", () -> Scrubber.setIdentifierHmacKeyProvider(() -> SignalStore.svr().getMasterKey().deriveLoggingKey()))
+              .addBlocking("first-launch", this::initializeFirstEverAppLaunch)
+              .addBlocking("app-migrations", this::initializeApplicationMigrations)
+              .addBlocking("lifecycle-observer", () -> AppForegroundObserver.addListener(this))
+              .addBlocking("message-retriever", this::initializeMessageRetrieval)
+              .addBlocking("dynamic-theme", () -> DynamicTheme.setDefaultDayNightMode(this))
+              .addBlocking("proxy-init", () -> {
+                if (SignalStore.proxy().isProxyEnabled()) {
+                  Log.w(TAG, "Proxy detected. Enabling Conscrypt.setUseEngineSocketByDefault()");
+                  ConscryptSignal.setUseEngineSocketByDefault(true);
+                }
+              })
+              .addBlocking("blob-provider", this::initializeBlobProvider)
+              .addBlocking("remote-config", RemoteConfig::init)
+              .addBlocking("ring-rtc", this::initializeRingRtc)
+              .addBlocking("glide", () -> SignalGlideModule.setRegisterGlideComponents(new SignalGlideComponents()))
+              .addBlocking("tracer", this::initializeTracer)
+              .addNonBlocking(() -> RegistrationUtil.maybeMarkRegistrationComplete())
+              .addNonBlocking(() -> Glide.get(this))
+              .addNonBlocking(this::cleanAvatarStorage)
+              .addNonBlocking(this::initializeRevealableMessageManager)
+              .addNonBlocking(this::initializePendingRetryReceiptManager)
+              .addNonBlocking(this::initializeScheduledMessageManager)
+              .addNonBlocking(this::initializeFcmCheck)
+              .addNonBlocking(PreKeysSyncJob::enqueueIfNeeded)
+              .addNonBlocking(this::initializePeriodicTasks)
+              .addNonBlocking(this::initializeCircumvention)
+              .addNonBlocking(this::initializeCleanup)
+              .addNonBlocking(this::initializeGlideCodecs)
+              .addNonBlocking(StorageSyncHelper::scheduleRoutineSync)
+              .addNonBlocking(this::beginJobLoop)
+              .addNonBlocking(EmojiSource::refresh)
+              .addNonBlocking(() -> AppDependencies.getGiphyMp4Cache().onAppStart(this))
+              .addNonBlocking(AppDependencies::getBillingApi)
+              .addNonBlocking(this::ensureProfileUploaded)
+              .addNonBlocking(() -> AppDependencies.getExpireStoriesManager().scheduleIfNecessary())
+              .addPostRender(() -> AppDependencies.getDeletedCallEventManager().scheduleIfNecessary())
+              .addPostRender(() -> RateLimitUtil.retryAllRateLimitedMessages(this))
+              .addPostRender(this::initializeExpiringMessageManager)
+              .addPostRender(this::initializeTrimThreadsByDateManager)
+              .addPostRender(RefreshSvrCredentialsJob::enqueueIfNecessary)
+              .addPostRender(() -> DownloadLatestEmojiDataJob.scheduleIfNecessary(this))
+              .addPostRender(EmojiSearchIndexDownloadJob::scheduleIfNecessary)
+              .addPostRender(() -> SignalDatabase.messageLog().trimOldMessages(System.currentTimeMillis(), RemoteConfig.retryRespondMaxAge()))
+              .addPostRender(() -> JumboEmoji.updateCurrentVersion(this))
+              .addPostRender(RetrieveRemoteAnnouncementsJob::enqueue)
+              .addPostRender(() -> AndroidTelecomUtil.registerPhoneAccount())
+              .addPostRender(() -> AppDependencies.getJobManager().add(new FontDownloaderJob()))
+              .addPostRender(CheckServiceReachabilityJob::enqueueIfNecessary)
+              .addPostRender(GroupV2UpdateSelfProfileKeyJob::enqueueForGroupsIfNecessary)
+              .addPostRender(StoryOnboardingDownloadJob.Companion::enqueueIfNeeded)
+              .addPostRender(() -> AppDependencies.getExoPlayerPool().getPoolStats().getMaxUnreserved())
+              .addPostRender(() -> AppDependencies.getRecipientCache().warmUp())
+              .addPostRender(AccountConsistencyWorkerJob::enqueueIfNecessary)
+              .addPostRender(GroupRingCleanupJob::enqueue)
+              .addPostRender(LinkedDeviceInactiveCheckJob::enqueueIfNecessary)
+              .addPostRender(() -> ActiveCallManager.clearNotifications(this))
+              .addPostRender(RestoreOptimizedMediaJob::enqueueIfNecessary)
+              .addPostRender(RetryPendingSendsJob::enqueueForAll)
+              .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
     SignalLocalMetrics.ColdStart.onApplicationCreateFinished();
