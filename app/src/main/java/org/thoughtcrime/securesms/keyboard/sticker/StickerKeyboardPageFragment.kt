@@ -105,7 +105,6 @@ open class StickerKeyboardPageFragment :
   }
 
   override fun onDestroyView() {
-    Glide.get(requireContext()).clearMemory()
     AppDependencies.databaseObserver.unregisterObserver(this)
     requireView().removeOnLayoutChangeListener(this)
     super.onDestroyView()

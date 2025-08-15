@@ -39,13 +39,14 @@ class KeyboardStickerListAdapter(
     }
   }
 
-  internal inner class StickerViewHolder(itemView: View) : MappingViewHolder<Sticker>(itemView) {
+  private inner class StickerViewHolder(itemView: View) : MappingViewHolder<Sticker>(itemView) {
 
-    internal val image: ImageView = findViewById(R.id.sticker_keyboard_page_image)
+    val image: ImageView = findViewById(R.id.sticker_keyboard_page_image)
 
     override fun bind(model: Sticker) {
       requestManager.load(model.uri)
         .set(ApngOptions.ANIMATE, allowApngAnimation)
+        .skipMemoryCache(true)
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(image)
 
