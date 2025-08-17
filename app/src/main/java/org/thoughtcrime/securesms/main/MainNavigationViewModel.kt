@@ -7,9 +7,7 @@ package org.thoughtcrime.securesms.main
 
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
-import androidx.compose.material3.adaptive.navigation.BackNavigationBehavior
 import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
-import androidx.compose.runtime.Stable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.core.Observable
@@ -38,7 +36,9 @@ class MainNavigationViewModel(
 ) : ViewModel() {
   private val megaphoneRepository = AppDependencies.megaphoneRepository
 
-  private var navigator: LegacyNavigator? = null
+  private var navigator: ThreePaneScaffoldNavigator<Any>? = null
+  private var navigatorScope: CoroutineScope? = null
+  private var goToLegacyDetailLocation: ((MainNavigationDetailLocation) -> Unit)? = null
 
   /**
    * The latest detail location that has been requested, for consumption by other components.
@@ -46,6 +46,7 @@ class MainNavigationViewModel(
   private val internalDetailLocation = MutableStateFlow(initialDetailLocation)
   val detailLocation: StateFlow<MainNavigationDetailLocation> = internalDetailLocation
   val detailLocationObservable: Observable<MainNavigationDetailLocation> = internalDetailLocation.asObservable()
+  var latestConversationLocation: MainNavigationDetailLocation.Conversation? = null
 
   private val internalMegaphone = MutableStateFlow(Megaphone.NONE)
   val megaphone: StateFlow<Megaphone> = internalMegaphone
@@ -58,7 +59,7 @@ class MainNavigationViewModel(
 
   private val notificationProfilesRepository: NotificationProfilesRepository = NotificationProfilesRepository()
 
-  private val internalMainNavigationState = MutableStateFlow(MainNavigationState(selectedDestination = initialListLocation))
+  private val internalMainNavigationState = MutableStateFlow(MainNavigationState(currentListLocation = initialListLocation))
   val mainNavigationState: StateFlow<MainNavigationState> = internalMainNavigationState
 
   /**
@@ -90,29 +91,10 @@ class MainNavigationViewModel(
    * such that we can react to navigateTo/Back signals and maintain proper state for internalDetailLocation.
    */
   fun wrapNavigator(composeScope: CoroutineScope, threePaneScaffoldNavigator: ThreePaneScaffoldNavigator<Any>, goToLegacyDetailLocation: (MainNavigationDetailLocation) -> Unit): ThreePaneScaffoldNavigator<Any> {
-    val previous = this.navigator
-    val wrapped = LegacyNavigator(composeScope, threePaneScaffoldNavigator, goToLegacyDetailLocation)
-    this.navigator = wrapped
-
-    if (previous != null) {
-      val destination = previous.currentDestination?.contentKey ?: return wrapped
-      if (destination is MainNavigationListLocation) {
-        goTo(destination)
-      }
-    } else {
-      goTo(mainNavigationState.value.selectedDestination)
-    }
-
-    if (previous != null) {
-      val destination = previous.currentDestination?.contentKey ?: return wrapped
-      if (destination is MainNavigationDetailLocation) {
-        goTo(destination)
-      }
-    } else {
-      goTo(internalDetailLocation.value)
-    }
-
-    return wrapped
+    this.goToLegacyDetailLocation = goToLegacyDetailLocation
+    this.navigatorScope = composeScope
+    this.navigator = threePaneScaffoldNavigator
+    return threePaneScaffoldNavigator
   }
 
   /**
@@ -120,20 +102,48 @@ class MainNavigationViewModel(
    * "default" location to that specified, and we will route the user there when the navigator is set.
    */
   fun goTo(location: MainNavigationDetailLocation) {
-    if (navigator == null) {
-      internalDetailLocation.update {
-        location
+    if (!SignalStore.internal.largeScreenUi) {
+      goToLegacyDetailLocation?.invoke(location)
+      return
+    }
+
+    internalDetailLocation.update {
+      location
+    }
+
+    val focusedPane = when (location) {
+      is MainNavigationDetailLocation.Empty -> {
+        ThreePaneScaffoldRole.Secondary
+      }
+
+      is MainNavigationDetailLocation.Conversation -> {
+        latestConversationLocation = location
+        ThreePaneScaffoldRole.Primary
       }
     }
 
-    navigator?.composeScope?.launch {
-      navigator?.navigateTo(ThreePaneScaffoldRole.Primary, location)
+    navigatorScope?.launch {
+      navigator?.navigateTo(focusedPane)
     }
   }
 
   fun goTo(location: MainNavigationListLocation) {
+    if (location != MainNavigationListLocation.CHATS) {
+      internalDetailLocation.update {
+        MainNavigationDetailLocation.Empty
+      }
+    } else {
+      internalDetailLocation.update {
+        latestConversationLocation ?: MainNavigationDetailLocation.Empty
+      }
+    }
+
     internalMainNavigationState.update {
-      it.copy(selectedDestination = location)
+      it.copy(currentListLocation = location)
+    }
+
+    navigatorScope?.launch {
+      navigator?.navigateTo(ThreePaneScaffoldRole.Secondary)
     }
   }
 
@@ -193,13 +203,11 @@ class MainNavigationViewModel(
 
   private fun onTabSelected(destination: MainNavigationListLocation) {
     viewModelScope.launch {
-      val currentTab = internalMainNavigationState.value.selectedDestination
+      val currentTab = internalMainNavigationState.value.currentListLocation
       if (currentTab == destination) {
         internalTabClickEvents.emit(destination)
       } else {
-        internalMainNavigationState.update {
-          it.copy(selectedDestination = destination)
-        }
+        goTo(destination)
       }
     }
   }
@@ -214,66 +222,5 @@ class MainNavigationViewModel(
 
   enum class NavigationEvent {
     STORY_CAMERA_FIRST
-  }
-
-  /**
-   * ScaffoldNavigator wrapper that delegates to a default implementation
-   * Ensures we properly update `internalDetailLocation` as the user moves between
-   * screens.
-   *
-   * Delegates to a legacy method if the user is not a large-screen-ui enabled user.
-   */
-  @Stable
-  private inner class LegacyNavigator(
-    val composeScope: CoroutineScope,
-    private val delegate: ThreePaneScaffoldNavigator<Any>,
-    private val goToLegacyDetailLocation: (MainNavigationDetailLocation) -> Unit
-  ) : ThreePaneScaffoldNavigator<Any> by delegate {
-
-    /**
-     * Due to some weirdness with `navigateBack`, we don't seem to be able to execute
-     * code after running the delegate method. So instead, we mark that we saw the call
-     * and then handle updates in `seekBack`.
-     */
-    private var didNavigateBack: Boolean = false
-
-    /**
-     * If we're not a large screen user, this delegates to the legacy method.
-     * Otherwise, we will delegate to the delegate, and update our detail location.
-     */
-    override suspend fun navigateTo(pane: ThreePaneScaffoldRole, contentKey: Any?) {
-      if (!SignalStore.internal.largeScreenUi && contentKey is MainNavigationDetailLocation) {
-        goToLegacyDetailLocation(contentKey)
-      } else if (contentKey is MainNavigationDetailLocation.Conversation) {
-        delegate.navigateTo(pane, contentKey)
-      }
-
-      if (SignalStore.internal.largeScreenUi && contentKey is MainNavigationDetailLocation) {
-        internalDetailLocation.emit(contentKey)
-      }
-    }
-
-    /**
-     * Marks the back, and delegates to the delegate.
-     */
-    override suspend fun navigateBack(backNavigationBehavior: BackNavigationBehavior): Boolean {
-      didNavigateBack = true
-      return delegate.navigateBack(backNavigationBehavior)
-    }
-
-    /**
-     * Delegates to the delegate, and then consumes the back. If back is consumed, we will update
-     * the internal detail location.
-     */
-    override suspend fun seekBack(backNavigationBehavior: BackNavigationBehavior, fraction: Float) {
-      delegate.seekBack(backNavigationBehavior, fraction)
-
-      if (didNavigateBack) {
-        didNavigateBack = false
-
-        val destination = currentDestination?.contentKey as? MainNavigationDetailLocation ?: MainNavigationDetailLocation.Empty
-        internalDetailLocation.emit(destination)
-      }
-    }
   }
 }

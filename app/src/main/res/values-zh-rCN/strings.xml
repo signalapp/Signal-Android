@@ -1442,6 +1442,12 @@
     <string name="RemoteRestoreActivity__skip_restore">跳过恢复</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">无法完成转移</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">无法恢复备份</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">恢复您的备份时发生了错误。您的备份无法恢复。请联系支持人员寻求帮助。</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">联系支持人员</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">出错了，您的账户无法转移。请选择您的转移方式再试一次。</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2825,6 +2831,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">此日志将会在线上公开发布，供赞助人查看。您可以先仔细检查再上传。</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">当您点击提交后，您的日志将会在一个唯一的未发布 URL 中在线发布 30 天。您可以先将其保存在本地。</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7767,6 +7780,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">无法兑换您的备份套餐</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">发生了错误，您的备份无法完成。请确保您使用的是最新版本的 Signal，然后重试。如果问题仍然存在，请联系支持人员。</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">发生了错误，您的备份无法完成。如果问题仍然存在，请联系支持人员。</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">查看更新</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -7954,6 +7969,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">继续下载</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">备份大小</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">备份频率</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8277,7 +8294,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">订阅</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">选择免费套餐</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">按 %1$s/月订阅</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8404,6 +8421,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android 备份恢复出现网络错误</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Android 版 Signal 备份恢复永久失败</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Android 版 Signal 备份导出发生网络错误</string>

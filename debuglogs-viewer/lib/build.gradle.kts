@@ -13,6 +13,7 @@ android {
 
 dependencies {
   implementation(project(":core-util"))
+  implementation(project(":core-util-jvm"))
 
   implementation(libs.kotlin.reflect)
   implementation(libs.jackson.module.kotlin)

@@ -36,7 +36,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.net.ProtocolException
-import kotlin.random.Random
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -54,17 +53,14 @@ class UploadAttachmentToArchiveJob private constructor(
   companion object {
     private val TAG = Log.tag(UploadAttachmentToArchiveJob::class)
     const val KEY = "UploadAttachmentToArchiveJob"
-    private const val MAX_JOB_QUEUES = 2
 
-    /**
-     * This randomly selects between one of [MAX_JOB_QUEUES] queues. It's a fun way of limiting the concurrency of the upload jobs to
-     * take up at most two job runners.
-     */
-    fun buildQueueKey(
-      queue: Int = Random.nextInt(0, MAX_JOB_QUEUES)
-    ) = "ArchiveAttachmentJobs_$queue"
-
-    fun getAllQueueKeys() = (0 until MAX_JOB_QUEUES).map { buildQueueKey(queue = it) }
+    /** A set of possible queues this job may use. The number of queues determines the parallelism. */
+    val QUEUES = setOf(
+      "ArchiveAttachmentJobs_1",
+      "ArchiveAttachmentJobs_2",
+      "ArchiveAttachmentJobs_3",
+      "ArchiveAttachmentJobs_4"
+    )
   }
 
   constructor(attachmentId: AttachmentId, canReuseUpload: Boolean = true) : this(
@@ -75,7 +71,7 @@ class UploadAttachmentToArchiveJob private constructor(
       .addConstraint(NetworkConstraint.KEY)
       .setLifespan(30.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
-      .setQueue(buildQueueKey())
+      .setQueue(QUEUES.random())
       .build()
   )
 
@@ -97,6 +93,12 @@ class UploadAttachmentToArchiveJob private constructor(
   }
 
   override fun run(): Result {
+    if (SignalStore.account.isLinkedDevice) {
+      Log.w(TAG, "[$attachmentId] Linked devices don't backup media. Skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
     if (!SignalStore.backup.backsUpMedia) {
       Log.w(TAG, "[$attachmentId] This user does not back up media. Skipping.")
       SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)

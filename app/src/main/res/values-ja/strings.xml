@@ -1442,6 +1442,12 @@
     <string name="RemoteRestoreActivity__skip_restore">復元をスキップする</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">移行を完了できませんでした</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">バックアップを復元できません</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">バックアップを復元する際にエラーが発生しました。バックアップの復元ができません。サポートにお問い合わせください。</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">サポートに問い合わせる</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">エラーが発生したため、アカウントを移行できませんでした。移行方法を選択して、もう一度お試しください。</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2825,6 +2831,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">このログはコントリビュータにオンラインで公開されます。アップロードする前に内容を確認できます。</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">「送信する」をクリックすると、このログがユニークな未公開のURLで30日間見られるようになります。\n「保存」をクリックすると、送信する前にあなたの端末にログを保存しておくこともできます。</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7767,6 +7780,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">バックアップのサブスクリプションを有効化することができませんでした</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">エラーが発生し、バックアップを完了できませんでした。Signalが最新のバージョンであることをご確認の上もう一度お試しください。この問題が解決しない場合は、サポートにお問い合わせください。</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">エラーが発生し、バックアップを完了できませんでした。この問題が解決しない場合は、サポートにお問い合わせください。</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">アップデートを確認する</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -7954,6 +7969,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">ダウンロードを再開する</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">バックアップの容量</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">バックアップの頻度</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8277,7 +8294,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">このプランを申し込む</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">無料プランを選択する</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s ／月で申し込む</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8404,6 +8421,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Androidのバックアップ復元時のネットワークエラーについて</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Androidのバックアップ復元永久エラー</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Androidの、バックアップエクスポート時のネットワークエラーについて</string>

@@ -21,8 +21,8 @@ plugins {
 
 apply(from = "static-ips.gradle.kts")
 
-val canonicalVersionCode = 1566
-val canonicalVersionName = "7.51.0"
+val canonicalVersionCode = 1573
+val canonicalVersionName = "7.53.1"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
@@ -238,6 +238,7 @@ android {
     buildConfigField("String", "STRIPE_PUBLISHABLE_KEY", "\"pk_live_6cmGZopuTsV8novGgJJW9JpC00vLIgtQ1D\"")
     buildConfigField("boolean", "TRACING_ENABLED", "false")
     buildConfigField("boolean", "MESSAGE_BACKUP_RESTORE_ENABLED", "false")
+    buildConfigField("boolean", "LINK_DEVICE_UX_ENABLED", "false")
 
     ndk {
       abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")
@@ -317,6 +318,7 @@ android {
       isMinifyEnabled = false
       matchingFallbacks += "debug"
       buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Spinner\"")
+      buildConfigField("boolean", "LINK_DEVICE_UX_ENABLED", "true")
     }
 
     create("perf") {

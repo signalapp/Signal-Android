@@ -803,7 +803,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                         callMessage);
       } catch (UntrustedIdentityException e) {
         Log.i(TAG, "onSendCallMessage onFailure: ", e);
-        RetrieveProfileJob.enqueue(recipient.getId());
+        RetrieveProfileJob.enqueue(recipient.getId(), true);
         process((s, p) -> p.handleGroupMessageSentError(s, Collections.singletonList(recipient.getId()), UNTRUSTED_IDENTITY));
       } catch (ProofRequiredException e) {
         Log.i(TAG, "onSendCallMessage onFailure: ", e);
@@ -856,7 +856,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
         if (Util.hasItems(identifyFailureRecipientIds)) {
           process((s, p) -> p.handleGroupMessageSentError(s, identifyFailureRecipientIds, UNTRUSTED_IDENTITY));
 
-          RetrieveProfileJob.enqueue(identifyFailureRecipientIds);
+          RetrieveProfileJob.enqueue(identifyFailureRecipientIds, true);
         }
       } catch (UntrustedIdentityException | IOException | InvalidInputException e) {
         Log.w(TAG, "onSendCallMessageToGroup failed", e);
@@ -1207,7 +1207,7 @@ public final class SignalCallManager implements CallManager.Observer, GroupCall.
                                         callMessage);
         process((s, p) -> p.handleMessageSentSuccess(s, remotePeer.getCallId()));
       } catch (UntrustedIdentityException e) {
-        RetrieveProfileJob.enqueue(remotePeer.getId());
+        RetrieveProfileJob.enqueue(remotePeer.getId(), true);
         processSendMessageFailureWithChangeDetection(remotePeer,
                                                      (s, p) -> p.handleMessageSentError(s,
                                                                                         remotePeer.getCallId(),

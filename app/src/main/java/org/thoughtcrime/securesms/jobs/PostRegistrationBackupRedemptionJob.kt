@@ -28,6 +28,7 @@ import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.math.BigDecimal
 import java.util.Currency
 import java.util.Locale
+import kotlin.concurrent.withLock
 
 /**
  * Runs after registration to make sure we are on the backup level we expect on this device.
@@ -62,6 +63,11 @@ class PostRegistrationBackupRedemptionJob : CoroutineJob {
 
     if (!RemoteConfig.messageBackups) {
       info("Message backups feature is not available. Exiting.")
+      return Result.success()
+    }
+
+    if (SignalStore.account.isLinkedDevice) {
+      info("Linked device. Exiting.")
       return Result.success()
     }
 
@@ -107,28 +113,35 @@ class PostRegistrationBackupRedemptionJob : CoroutineJob {
       warning("Could not resolve price, using empty price.")
     }
 
-    info("Creating a pending payment...")
-    val id = SignalDatabase.inAppPayments.insert(
-      type = InAppPaymentType.RECURRING_BACKUP,
-      state = InAppPaymentTable.State.PENDING,
-      subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId,
-      endOfPeriod = null,
-      inAppPaymentData = InAppPaymentData(
-        badge = null,
-        amount = price.toFiatValue(),
-        level = SubscriptionsConfiguration.BACKUPS_LEVEL.toLong(),
-        recipientId = Recipient.self().id.serialize(),
-        paymentMethodType = InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING,
-        redemption = InAppPaymentData.RedemptionState(
-          stage = InAppPaymentData.RedemptionState.Stage.INIT
+    InAppPaymentSubscriberRecord.Type.BACKUP.lock.withLock {
+      if (SignalDatabase.inAppPayments.hasPendingBackupRedemption()) {
+        warning("Backup is already pending redemption. Exiting.")
+        return Result.success()
+      }
+
+      info("Creating a pending payment...")
+      val id = SignalDatabase.inAppPayments.insert(
+        type = InAppPaymentType.RECURRING_BACKUP,
+        state = InAppPaymentTable.State.PENDING,
+        subscriberId = InAppPaymentsRepository.requireSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP).subscriberId,
+        endOfPeriod = null,
+        inAppPaymentData = InAppPaymentData(
+          badge = null,
+          amount = price.toFiatValue(),
+          level = SubscriptionsConfiguration.BACKUPS_LEVEL.toLong(),
+          recipientId = Recipient.self().id.serialize(),
+          paymentMethodType = InAppPaymentData.PaymentMethodType.GOOGLE_PLAY_BILLING,
+          redemption = InAppPaymentData.RedemptionState(
+            stage = InAppPaymentData.RedemptionState.Stage.INIT
+          )
         )
       )
-    )
 
-    info("Submitting job chain.")
-    InAppPaymentPurchaseTokenJob.createJobChain(
-      inAppPayment = SignalDatabase.inAppPayments.getById(id)!!
-    ).enqueue()
+      info("Submitting job chain.")
+      InAppPaymentPurchaseTokenJob.createJobChain(
+        inAppPayment = SignalDatabase.inAppPayments.getById(id)!!
+      ).enqueue()
+    }
 
     return Result.success()
   }

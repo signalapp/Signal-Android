@@ -74,7 +74,9 @@ class RestoreOptimizedMediaJob private constructor(parameters: Parameters) : Job
 
     SignalStore.backup.totalRestorableAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
 
-    AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(RestoreAttachmentJob.constructQueueString(RestoreAttachmentJob.RestoreOperation.RESTORE_OFFLOADED)))
+    RestoreAttachmentJob.Queues.OFFLOAD_RESTORE.forEach { queue ->
+      AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(queue))
+    }
 
     return Result.success()
   }

@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">Omitir restauración</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Transferencia no finalizada</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">No se puede restaurar la copia de seguridad</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">No se ha podido restaurar tu copia de seguridad. Tu copia de seguridad no se puede recuperar. Contacta con el equipo de asistencia para obtener ayuda.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contactar con asistencia</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Se ha producido un error y no se ha podido transferir tu cuenta. Elige tu método de transferencia e inténtalo de nuevo.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -1493,7 +1499,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Ahora no</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Si decides no restaurar ahora, no podrás hacerlo más tarde. Los archivos multimedia se restaurarán en segundo plano.</string>
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Si decides no restaurarlos ahora, no podrás hacerlo más tarde. Los archivos multimedia se restaurarán en segundo plano.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificarme cuando alguien me mencione</string>
@@ -2918,6 +2924,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este registro se publicará online y las personas que colaboran con nosotros tendrán acceso. Lo puedes examinar antes de enviarlo.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Si seleccionas Enviar, tu registro se publicará durante 30 días en una URL única y privada. Lo podrás guardar en tu dispositivo como primera opción.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -6143,7 +6156,7 @@
     <!-- Dialog message shown when a one-time donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet, placeholder is money amount -->
     <string name="ManageDonationsFragment__your_one_time_s_donation_couldnt_be_confirmed">No se ha podido procesar tu donación puntual de %1$s. Consulta la aplicación de tu banco para aprobar el pago a través de iDEAL.</string>
 
-    <string name="Boost__enter_custom_amount">Introduce una cantidad personalizada</string>
+    <string name="Boost__enter_custom_amount">Introduce un importe personalizado</string>
     <!-- Error label when the amount is smaller than what we can accept -->
     <string name="Boost__the_minimum_amount_you_can_donate_is_s">El importe mínimo que puedes donar es de %1$s</string>
 
@@ -7736,7 +7749,7 @@
     <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
     <string name="VerifyBackupKey__title">Verifica la clave de tu copia de seguridad</string>
     <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">No hace falta memorizar tu clave, pero sí tenerla a mano: te la pediremos de vez en cuando para mantener segura tu copia de seguridad.</string>
+    <string name="VerifyBackupKey__body">No es necesario memorizar tu clave, pero sí tenerla a mano: te la pediremos de vez en cuando para mantener segura tu copia de seguridad.</string>
     <!-- Button of a megaphone that will take users to the verify backup key screen -->
     <string name="VerifyBackupKey__verify">Verificar</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
@@ -7941,6 +7954,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">No se ha podido recuperar tu suscripción a las copias de seguridad</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Se ha producido un error y no se ha podido completar tu copia de seguridad. Asegúrate de estar usando la última versión de Signal y vuelve a intentarlo. Si el problema persiste, ponte en contacto con el equipo de asistencia.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Se ha producido un error y no se ha podido completar tu copia de seguridad. Si el problema persiste, ponte en contacto con el equipo de asistencia.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Buscar actualizaciones</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8048,7 +8063,7 @@
     <!-- Setting row title for storage optimization -->
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimizar almacenamiento en el dispositivo</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Los archivos multimedia no utilizados se eliminarán del dispositivo, pero podrás descargarlos desde tu copia de seguridad en cualquier momento.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Los archivos multimedia que no uses se eliminarán del dispositivo, pero podrás descargarlos desde tu copia de seguridad en cualquier momento.</string>
     <!-- Dialog message for paid tier pending dialog -->
     <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de las copias de seguridad de Signal. Tu suscripción a las copias de seguridad se está procesando y todavía no está activa. Inténtalo de nuevo más tarde.</string>
 
@@ -8131,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Reanudar descarga</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Tamaño de la copia de seguridad</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Frecuencia de la copia de seguridad</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8415,7 +8432,7 @@
     <!-- Bottom Sheet title for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Crea una nueva clave</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Solo necesitas crear una clave nueva si otra persona conoce tu clave actual. Tendrás que volver a cargar tu copia de seguridad, incluidos los archivos multimedia. Si estás utilizando \"Optimizar almacenamiento\", primero deberás descargar los archivos que se han eliminado del dispositivo.</string>
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Solo necesitas crear una clave nueva si otra persona sabe tu clave actual. Tendrás que volver a cargar tu copia de seguridad, incluidos los archivos multimedia. Si estás utilizando la función \"Optimizar almacenamiento\", primero deberás descargar los archivos que se han eliminado del dispositivo.</string>
 
     <!-- BackupKeyDisplayFragment -->
     <!-- Dialog title when exiting before confirming new key -->
@@ -8457,7 +8474,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Subscribirme</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Elegir plan gratuito</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Suscribirme por %1$s/mes</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8586,6 +8603,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Error de red al intentar restaurar la copia de seguridad de Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Fallo permanente al intentar restaurar la copia de seguridad de Signal Android</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Error de red al intentar exportar la copia de seguridad de Signal Android</string>

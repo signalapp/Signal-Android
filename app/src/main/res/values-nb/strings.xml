@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">Hopp over gjenoppretting</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Overføringen ble stoppet</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Gjenoppretting er ikke mulig</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">En feil oppstod da du forsøkte å gjenopprette sikkerhetskopien din. Sikkerhetskopien kan ikke gjenopprettes. Ta kontakt med brukerstøtten vår for å få hjelp.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Kontakt brukerstøtten</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Det oppsto en feil som førte til at kontoen ikke kunne overføres. Prøv igjen ved å velge overføringsmåte på nytt.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2918,6 +2924,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Denne loggen publiseres på nettet, slik at bidragsytere kan se den. Du kan se over og redigere den før du sender den inn.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Når du klikker på Send inn, legges loggen din ut i 30 dager på en unik og upublisert nettadresse. Du kan også lagre den lokalt først.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7941,6 +7954,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Vi kunne ikke løse inn abonnementet ditt på sikkerhetskopiering</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Det oppsto en feil som førte til at sikkerhetskopien ikke kunne fullføres. Sjekk om du bruker den nyeste versjonen av Signal, og prøv igjen. Ta kontakt med brukerstøtten vår dersom problemet vedvarer.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Det oppsto en feil som førte til at sikkerhetskopien ikke kunne fullføres. Ta kontakt med brukerstøtten vår dersom problemet vedvarer.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Se etter oppdateringer</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8131,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Gjenoppta nedlasting</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Størrelse på sikkerhetskopi</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Hyppighet for sikkerhetskopiering</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8457,7 +8474,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Bli abonnent</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Velg gratisabonnement</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Bli abonnent for %1$s/måned</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8586,6 +8603,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Sikkerhetskopi fra Signal kunne ikke gjenopprettes pga. nettverksfeil</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Sikkerhetskopi av Signal for Android kunne ikke gjenopprettes pga. en feil</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Sikkerhetskopien av Signal for Android kunne ikke eksporteres pga. nettverksfeil</string>

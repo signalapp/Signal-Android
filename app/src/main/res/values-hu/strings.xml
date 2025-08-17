@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">Visszaállítás kihagyása</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Nem sikerült befejezni az átvitelt</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Nem lehet visszaállítani a biztonsági másolatot</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Hiba történt a biztonsági mentés visszaállítása során. A biztonsági mentés nem állítható vissza. Kérjük, fordulj az ügyfélszolgálathoz segítségért!</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Segítségkérés</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Hiba történt, és a fiókodat nem sikerült áthelyezni. Próbáld újra az átviteli mód kiválasztásával.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2918,6 +2924,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ez a naplófájl nyilvánosan elérhető lesz az interneten annak érdekében, hogy a fejlesztők megtekinthessék. A tartalmát feltöltés előtt ellenőrizheted, és szabadon szerkesztheted.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">A Küldés gombra nyomva a hibanaplód egy egyedi, nem publikus online tárhelyre kerül feltöltésre, ahonnan 30 nap után törlődik. Ha gondolod, mentsd el előbb a készülékedre is.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7941,6 +7954,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Nem sikerült aktiválni a biztonsági mentésre vonatkozó előfizetésedet</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Hiba történt, és a biztonsági mentést nem lehetett befejezni. Frissíts a legújabb Signal verzióra és próbáld újra! Ha a probléma továbbra is fennáll, fordulj az ügyfélszolgálathoz.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Hiba történt, és a biztonsági mentést nem lehetett befejezni. Ha a probléma továbbra is fennáll, fordulj az ügyfélszolgálathoz.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Frissítés keresése</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8131,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Letöltés folytatása</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Biztonsági mentés mérete</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Biztonsági mentés gyakorisága</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8457,7 +8474,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Feliratkozás</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Válassz ingyenes csomagot</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Fizess elő %1$s/hó áron</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8586,6 +8603,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android biztonsági mentés visszaállítási hálózati hiba</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">A Signal Android biztonsági mentés visszaállításának tartós hibája</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android biztonsági mentés visszaállítási hálózati hiba</string>

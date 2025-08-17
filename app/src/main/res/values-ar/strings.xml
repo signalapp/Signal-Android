@@ -1642,6 +1642,12 @@
     <string name="RemoteRestoreActivity__skip_restore">تخطِّي الاستعادة</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">تعذَّر إنهاء عملية النقل</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">تعذَّرت استعادة النسخة الاحتياطية</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">حدث خطأ أثناء استعادة نسختك الاحتياطية. نسختك الاحتياطية غير قابلة للاستعادة. يُرجى التواصل مع الدعم للحصول على المساعدة.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">الاتصال بالدعم</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">حدث خطأ وتعذَّر نقل حسابك بسبب ذلك. حاوِل مرّة أخرى من خلال اختيار طريقة النقل.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -3290,6 +3296,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">سيتمُّ نشر هذا السّجل علنًا على الانترنت حتى يتمكن المساهمون من الاطِّلاع عليه. يمكنك فحصه أو تعديله قبل تحميله.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">‫عند النقرعلى زر \"إرسال\"، سوف يُنشَر السجلّ على الإنترنت لمدة 30 يومًا في عنوان URL فريد غير منشور. يمكنك حفظه محليًا أولًا.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -8637,6 +8650,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">تعذّر استرداد اشتراك النسخ الاحتياطية الخاص بحسابك</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">حدث خطأ منع إكمال عملية النسخ الاحتياطي. تأكَّد من أنك تستخدم آخر إصدار لسيجنال وحاوِل من جديد. إذا استمرت المشكلة، يُرجى الاتصال بقسم الدعم.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">حدث خطأ منعَ إكمال عملية النسخ الاحتياطي التي بدأتَ بها. إذا استمرت المشكلة، قُم بالتواصل بقسم الدعم.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">ابحث عن تحديث</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8839,6 +8854,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">استئناف التنزيل</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">حجم النسخة الاحتياطية</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">وتيرة النسخ الاحتياطي</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -9177,7 +9194,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">اشترِك</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">اختر الخطة المجانية</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">اشترِك مقابل %1$s/شهريًا</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -9314,6 +9331,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">خطأ في الشبكة عند استعادة النسخة الاحتياطية لسيجنال أندرويد</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">حدث فشل دائم في استعادة النسخة الاحتياطية لسيجنال أندرويد</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">خطأ في الشبكة عند استعادة النسخة الاحتياطية لسيجنال أندرويد</string>

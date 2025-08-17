@@ -24,6 +24,7 @@ import org.whispersystems.signalservice.internal.delete
 import org.whispersystems.signalservice.internal.get
 import org.whispersystems.signalservice.internal.post
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
+import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.put
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
@@ -359,6 +360,24 @@ class ArchiveApi(
       .then { headers ->
         val request = WebSocketRequestMessage.post("/v1/archives/media/delete", DeleteArchivedMediaRequest(mediaToDelete = mediaToDelete), headers)
         NetworkResult.fromWebSocketRequest(unauthWebSocket, request, timeout = 30.seconds)
+      }
+  }
+
+  /**
+   * Retrieves auth credentials that can be used to perform SVRB operations.
+   *
+   * GET /v1/archives/auth/svrb
+   * - 200: Success
+   * - 400: Bad arguments, or made on an authenticated channel
+   * - 401: Bad presentation, invalid public key signature, no matching backupId on the server, or the credential was of the wrong type (messages/media)
+   * - 403: Forbidden
+   */
+  fun getSvrBAuthorization(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<AuthCredentials> {
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.get("/v1/archives/auth/svrb", headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, AuthCredentials::class)
       }
   }
 

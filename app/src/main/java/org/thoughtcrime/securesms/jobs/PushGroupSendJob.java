@@ -268,7 +268,7 @@ public final class PushGroupSendJob extends PushSendJob {
   private List<SendMessageResult> deliver(OutgoingMessage message, @Nullable MessageRecord originalEditedMessage, @NonNull Recipient groupRecipient, @NonNull List<Recipient> destinations)
       throws IOException, UntrustedIdentityException, UndeliverableMessageException
   {
-    if (Utf8.size(message.getBody()) >= MessageUtil.MAX_INLINE_BODY_SIZE_BYTES) {
+    if (Utf8.size(message.getBody()) > MessageUtil.MAX_INLINE_BODY_SIZE_BYTES) {
       throw new UndeliverableMessageException("The total body size was greater than our limit of " + MessageUtil.MAX_INLINE_BODY_SIZE_BYTES + " bytes.");
     }
 
@@ -509,7 +509,7 @@ public final class PushGroupSendJob extends PushSendJob {
                                                     .map(mismatch -> mismatch.getRecipientId())
                                                     .collect(Collectors.toSet());
 
-      RetrieveProfileJob.enqueue(mismatchRecipientIds);
+      RetrieveProfileJob.enqueue(mismatchRecipientIds, true);
     } else if (!networkFailures.isEmpty()) {
       long retryAfter = results.stream()
                                .filter(r -> r.getRateLimitFailure() != null)

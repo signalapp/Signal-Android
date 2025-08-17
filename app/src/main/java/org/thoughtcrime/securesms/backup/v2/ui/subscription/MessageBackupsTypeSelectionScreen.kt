@@ -148,6 +148,7 @@ fun MessageBackupsTypeSelectionScreen(
           { _, item -> item.tier }
         ) { index, item ->
           MessageBackupsTypeBlock(
+            enabled = selectedBackupTier != item.tier,
             messageBackupsType = item,
             isCurrent = item.tier == currentBackupTier,
             isSelected = item.tier == selectedBackupTier,

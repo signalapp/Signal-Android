@@ -25,9 +25,13 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.Base64
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
+import org.signal.libsignal.protocol.ecc.ECPrivateKey
+import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.RestoreTimestampResult
+import org.thoughtcrime.securesms.database.model.databaseprotos.LinkedDeviceInfo
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
@@ -69,18 +73,27 @@ import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequ
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult.TokenNotAccepted
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult.UnknownError
 import org.thoughtcrime.securesms.registration.ui.toE164
+import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.registration.viewmodel.SvrAuthCredentialSet
 import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
+import org.thoughtcrime.securesms.registrationv3.ui.link.RegisterLinkDeviceResult
 import org.thoughtcrime.securesms.registrationv3.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.dualsim.MccMncProducer
 import org.whispersystems.signalservice.api.AccountEntropyPool
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.SvrNoDataException
+import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.kbs.MasterKey
+import org.whispersystems.signalservice.api.messages.multidevice.RequestMessage
+import org.whispersystems.signalservice.api.messages.multidevice.SignalServiceSyncMessage
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.api.websocket.WebSocketUnavailableException
 import org.whispersystems.signalservice.internal.push.AuthCredentials
+import org.whispersystems.signalservice.internal.push.ProvisionMessage
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.io.IOException
 import java.nio.charset.StandardCharsets
 import kotlin.jvm.optionals.getOrNull
@@ -896,8 +909,8 @@ class RegistrationViewModel : ViewModel() {
       Log.w(TAG, "Unable to start auth websocket", e)
     }
 
-    if (!remoteResult.storageCapable && !SignalStore.account.restoredAccountEntropyPool && SignalStore.registration.restoreDecisionState.isDecisionPending) {
-      Log.v(TAG, "Not storage capable or restored with AEP, and still pending restore decision, likely an account with no data to restore, skipping post register restore")
+    if (!remoteResult.reRegistration && SignalStore.registration.restoreDecisionState.isDecisionPending) {
+      Log.v(TAG, "Not re-registration, and still pending restore decision, likely an account with no data to restore, skipping post register restore")
       SignalStore.registration.restoreDecisionState = RestoreDecisionState.NewAccount
     }
 
@@ -1049,6 +1062,116 @@ class RegistrationViewModel : ViewModel() {
 
       setInProgress(false)
     }
+  }
+
+  suspend fun registerAsLinkedDevice(context: Context, message: ProvisionMessage): RegisterLinkDeviceResult {
+    val deviceName = "Android"
+
+    val aciIdentityKeyPair = IdentityKeyPair(IdentityKey(message.aciIdentityKeyPublic!!.toByteArray()), ECPrivateKey(message.aciIdentityKeyPrivate!!.toByteArray()))
+    val pniIdentityKeyPair = IdentityKeyPair(IdentityKey(message.pniIdentityKeyPublic!!.toByteArray()), ECPrivateKey(message.pniIdentityKeyPrivate!!.toByteArray()))
+
+    val profileKey = ProfileKey(message.profileKey!!.toByteArray())
+    val serverAuthToken = Util.getSecret(18)
+    val fcmToken = RegistrationRepository.getFcmToken(context)
+
+    val registrationData = RegistrationData(
+      code = "",
+      e164 = message.number!!,
+      password = serverAuthToken,
+      registrationId = RegistrationRepository.getRegistrationId(),
+      profileKey = profileKey,
+      fcmToken = fcmToken,
+      pniRegistrationId = RegistrationRepository.getPniRegistrationId(),
+      recoveryPassword = null
+    )
+
+    val result = RegistrationRepository.registerAsLinkedDevice(
+      context = context,
+      deviceName = deviceName,
+      message = message,
+      registrationData = registrationData,
+      aciIdentityKeyPair = aciIdentityKeyPair,
+      pniIdentityKeyPair = pniIdentityKeyPair
+    )
+
+    when (result) {
+      is NetworkResult.Success -> {
+        val data = LocalRegistrationMetadataUtil.createLocalRegistrationMetadata(
+          localAciIdentityKeyPair = aciIdentityKeyPair,
+          localPniIdentityKeyPair = pniIdentityKeyPair,
+          registrationData = registrationData,
+          remoteResult = result.result.accountRegistrationResult,
+          reglockEnabled = false,
+          linkedDeviceInfo = LinkedDeviceInfo(
+            deviceId = result.result.deviceId,
+            deviceName = deviceName,
+            ephemeralBackupKey = message.ephemeralBackupKey,
+            accountEntropyPool = message.accountEntropyPool,
+            mediaRootBackupKey = message.mediaRootBackupKey
+          )
+        )
+
+        if (message.readReceipts != null) {
+          TextSecurePreferences.setReadReceiptsEnabled(context, message.readReceipts!!)
+        }
+
+        RegistrationRepository.registerAccountLocally(context, data)
+      }
+      is NetworkResult.ApplicationError -> return RegisterLinkDeviceResult.UnexpectedException(result.throwable)
+      is NetworkResult.NetworkError<*> -> return RegisterLinkDeviceResult.NetworkException(result.exception)
+      is NetworkResult.StatusCodeError -> {
+        return when (result.code) {
+          403 -> RegisterLinkDeviceResult.IncorrectVerification
+          409 -> RegisterLinkDeviceResult.MissingCapability
+          411 -> RegisterLinkDeviceResult.MaxLinkedDevices
+          422 -> RegisterLinkDeviceResult.InvalidRequest
+          429 -> RegisterLinkDeviceResult.RateLimited(result.retryAfter())
+          else -> RegisterLinkDeviceResult.UnexpectedException(result.exception)
+        }
+      }
+    }
+
+    RegistrationUtil.maybeMarkRegistrationComplete()
+
+    refreshRemoteConfig()
+
+    if (message.ephemeralBackupKey != null) {
+      Log.i(TAG, "Primary has given Linked device an ephemeral backup key, waiting for backup...")
+      val result = RegistrationRepository.waitForLinkAndSyncBackupDetails()
+      if (result != null) {
+        BackupRepository.restoreLinkAndSyncBackup(result, MessageBackupKey(message.ephemeralBackupKey!!.toByteArray()))
+      } else {
+        Log.w(TAG, "Unable to get transfer archive data, continuing with linking process")
+      }
+
+      // TODO [linked-device] Reapply opt-out, backup restore sets pin, may want to have a different opt out mechanism for linked devices
+    }
+
+    for (type in SyncMessage.Request.Type.entries) {
+      if (type == SyncMessage.Request.Type.UNKNOWN) {
+        continue
+      }
+
+      Log.i(TAG, "Sending sync request for $type")
+      AppDependencies.signalServiceMessageSender.sendSyncMessage(
+        SignalServiceSyncMessage.forRequest(RequestMessage(SyncMessage.Request(type = type)))
+      )
+    }
+
+    SignalStore.registration.restoreDecisionState = RestoreDecisionState.NewAccount
+    SignalStore.onboarding.clearAll()
+
+    if (SignalStore.account.restoredAccountEntropyPoolFromPrimary) {
+      StorageServiceRestore.restore()
+    }
+
+    store.update {
+      it.copy(
+        registrationCheckpoint = RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE
+      )
+    }
+
+    return RegisterLinkDeviceResult.Success
   }
 
   /** Converts the basic-auth creds we have locally into username:password pairs that are suitable for handing off to the service. */

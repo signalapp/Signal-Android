@@ -55,7 +55,7 @@ class ArchivedAttachment : Attachment {
     fileName = fileName,
     cdn = Cdn.fromCdnNumber(cdn),
     remoteLocation = cdnKey,
-    remoteKey = Base64.encodeWithoutPadding(key),
+    remoteKey = Base64.encodeWithPadding(key),
     remoteDigest = null,
     incrementalDigest = incrementalMac,
     fastPreflightId = null,

@@ -5,22 +5,19 @@
 
 package org.whispersystems.signalservice.internal.crypto
 
+import org.signal.core.util.isEmpty
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
-import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.kdf.HKDF
-import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.signal.registration.proto.RegistrationProvisionEnvelope
 import org.signal.registration.proto.RegistrationProvisionMessage
-import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.ProvisionEnvelope
 import org.whispersystems.signalservice.internal.push.ProvisionMessage
 import java.security.InvalidKeyException
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
-import java.util.UUID
 import javax.crypto.Cipher
 import javax.crypto.Mac
 import javax.crypto.spec.IvParameterSpec
@@ -45,39 +42,40 @@ class SecondaryProvisioningCipher(private val secondaryIdentityKeyPair: Identity
 
   val secondaryDevicePublicKey: IdentityKey = secondaryIdentityKeyPair.publicKey
 
-  fun decrypt(envelope: ProvisionEnvelope): ProvisionDecryptResult {
-    val plaintext = decrypt(expectedVersion = 1, primaryEphemeralPublicKey = envelope.publicKey!!.toByteArray(), body = envelope.body!!.toByteArray())
+  fun decrypt(envelope: ProvisionEnvelope): ProvisioningDecryptResult<ProvisionMessage> {
+    if (envelope.publicKey == null || envelope.body == null || envelope.publicKey.isEmpty() || envelope.body.isEmpty()) {
+      Log.w(TAG, "Public key or body is null or empty")
+      return ProvisioningDecryptResult.Error()
+    }
+
+    val plaintext = decrypt(expectedVersion = 1, primaryEphemeralPublicKey = envelope.publicKey.toByteArray(), body = envelope.body.toByteArray())
 
     if (plaintext == null) {
       Log.w(TAG, "Plaintext is null")
-      return ProvisionDecryptResult.Error
+      return ProvisioningDecryptResult.Error()
     }
 
     val provisioningMessage = ProvisionMessage.ADAPTER.decode(plaintext)
 
-    return ProvisionDecryptResult.Success(
-      uuid = UuidUtil.parseOrThrow(provisioningMessage.aci),
-      e164 = provisioningMessage.number!!,
-      identityKeyPair = IdentityKeyPair(IdentityKey(provisioningMessage.aciIdentityKeyPublic!!.toByteArray()), ECPrivateKey(provisioningMessage.aciIdentityKeyPrivate!!.toByteArray())),
-      profileKey = ProfileKey(provisioningMessage.profileKey!!.toByteArray()),
-      areReadReceiptsEnabled = provisioningMessage.readReceipts == true,
-      primaryUserAgent = provisioningMessage.userAgent,
-      provisioningCode = provisioningMessage.provisioningCode!!,
-      provisioningVersion = provisioningMessage.provisioningVersion!!
-    )
+    return ProvisioningDecryptResult.Success(provisioningMessage)
   }
 
-  fun decrypt(envelope: RegistrationProvisionEnvelope): RegistrationProvisionResult {
+  fun decrypt(envelope: RegistrationProvisionEnvelope): ProvisioningDecryptResult<RegistrationProvisionMessage> {
+    if (envelope.publicKey.isEmpty() || envelope.body.isEmpty()) {
+      Log.w(TAG, "Public key or body is empty")
+      return ProvisioningDecryptResult.Error()
+    }
+
     val plaintext = decrypt(expectedVersion = 0, primaryEphemeralPublicKey = envelope.publicKey.toByteArray(), body = envelope.body.toByteArray())
 
     if (plaintext == null) {
       Log.w(TAG, "Plaintext is null")
-      return RegistrationProvisionResult.Error
+      return ProvisioningDecryptResult.Error()
     }
 
     val provisioningMessage = RegistrationProvisionMessage.ADAPTER.decode(plaintext)
 
-    return RegistrationProvisionResult.Success(provisioningMessage)
+    return ProvisioningDecryptResult.Success(provisioningMessage)
   }
 
   private fun decrypt(expectedVersion: Int, primaryEphemeralPublicKey: ByteArray, body: ByteArray): ByteArray? {
@@ -138,23 +136,8 @@ class SecondaryProvisioningCipher(private val secondaryIdentityKeyPair: Identity
     return cipher.doFinal(message)
   }
 
-  sealed interface ProvisionDecryptResult {
-    data object Error : ProvisionDecryptResult
-
-    data class Success(
-      val uuid: UUID,
-      val e164: String,
-      val identityKeyPair: IdentityKeyPair,
-      val profileKey: ProfileKey,
-      val areReadReceiptsEnabled: Boolean,
-      val primaryUserAgent: String?,
-      val provisioningCode: String,
-      val provisioningVersion: Int
-    ) : ProvisionDecryptResult
-  }
-
-  sealed interface RegistrationProvisionResult {
-    data object Error : RegistrationProvisionResult
-    data class Success(val message: RegistrationProvisionMessage) : RegistrationProvisionResult
+  sealed interface ProvisioningDecryptResult<T> {
+    data class Success<T>(val message: T) : ProvisioningDecryptResult<T>
+    class Error<T>() : ProvisioningDecryptResult<T>
   }
 }

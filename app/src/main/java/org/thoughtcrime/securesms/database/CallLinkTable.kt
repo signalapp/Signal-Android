@@ -28,12 +28,14 @@ import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorHash
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.CallLinkUpdateSendJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
 import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.internal.push.SyncMessage
 import java.time.Instant
 import java.time.temporal.ChronoUnit
 
@@ -214,7 +216,14 @@ class CallLinkTable(context: Context, databaseHelper: SignalDatabase) : Database
       return getCallLinkByRoomId(roomId)!!
     } else {
       if (callLink.credentials?.epoch != callLinkEpoch) {
-        overwriteEpoch(callLink, callLinkEpoch)
+        val modifiedCallLink = overwriteEpoch(callLink, callLinkEpoch)
+        AppDependencies.jobManager.add(
+          CallLinkUpdateSendJob(
+            callLink.credentials!!.roomId,
+            SyncMessage.CallLinkUpdate.Type.UPDATE
+          )
+        )
+        modifiedCallLink
       } else {
         callLink
       }

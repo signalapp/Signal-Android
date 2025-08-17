@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">Pular restauração</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Não foi possível concluir a transferência</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Não é possível restaurar o backup</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Ocorreu um erro ao restaurar seu backup. Seu backup não é recuperável. Entre em contato com o suporte para obter ajuda.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Entrar em contato com o suporte</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Ocorreu um erro e sua conta não pôde ser transferida. Escolha o método de transferência e tente novamente.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2918,6 +2924,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Este registro será postado publicamente on-line para que os contribuidores possam vê-lo. Você pode analisá-lo antes de enviar.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Ao clicar em Enviar, seu registro será publicado online por 30 dias em um link único e exclusivo. Se preferir, você pode salvá-lo localmente antes. </string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7941,6 +7954,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Não foi possível resgatar sua assinatura de backups</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Ocorreu um erro e seu backup não pôde ser concluído. Confira se você está usando a versão mais recente do Signal e tente novamente. Se o problema continuar, entre em contato com o suporte.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Ocorreu um erro e seu backup não pôde ser concluído. Se o problema continuar, entre em contato com o suporte.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Verificar atualizações</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8131,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Retomar download</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Tamanho do backup</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Frequência de backup</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8457,7 +8474,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Assinar</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Escolher plano gratuito</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Assine por %1$s/mês</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8586,6 +8603,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Erro de rede de restauração do backup do Signal Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Falha permanente na restauração do backup do Signal Android</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Erro de rede de exportação do backup do Signal Android</string>

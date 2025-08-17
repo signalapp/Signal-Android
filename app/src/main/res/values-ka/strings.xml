@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">აღდგენის გამოტოვება</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">გადატანის დასრულება ვერ მოხერხდა</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">სათადარიგო ასლის აღდგენა შეუძლებელია</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">სარეზერვო ასლის აღდგენისას შეცდომა დაფიქსირდა. შენი სარეზერვო ასლის აღდგენა შეუძლებელია. გთხოვთ, დახმარებისთვის მხარდაჭერის გუნდს მიმართე.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">მხარდაჭერის გუნდთან დაკავშირება</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">შეცდომა დაფიქსირდა და შენი მონაცემების გადატანა ვერ მოხერხდა. აირჩიე გადატანის მეთოდი, რომ თავიდან სცადო.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2918,6 +2924,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">ეს რეესტრი საჯაროდ გამოქვეყნდება ინტერნეტში, რომ კონტრიბუტორებმა ნახონ. მისი შემოწმება ატვირთვამდე შეგიძლია.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">როცა \"გაგზავნა\"-ზე დააწკაპუნებ, შენი რეესტრი ინტერნეტში გამოქვეყნდება 30 დღით უნიკალურ, გამოუქვეყნებელ URL-ზე. შეგიძლია ის ჯერ ადგილობრივად შეინახო.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7941,6 +7954,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">შენი სათადარიგო ასლების გამოწერის გააქტიურება ვერ მოხერხდა</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">შეცდომა მოხდა და შენი სათადარიგო ასლის შექმნა ვერ მოხერხდა. დარწმუნდი, რომ Signal-ის უახლეს ვერსიაზე ხარ და თავიდან სცადე. თუ პრობლემა არ მოგვარდა, მხარდაჭერის გუნდს დაუკავშირდი.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">შეცდომა მოხდა და შენი სათადარიგო ასლის შექმნა ვერ მოხერხდა. თუ პრობლემა არ მოგვარდა, მხარდაჭერის გუნდს დაუკავშირდი.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">შეამოწმე ახალი ვერსია</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8131,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">ჩამოტვირთვის განახლება</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">სარეზერვო კოპიების ზომა</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">სარეზერვო კოპიების შექმნის სიხშირე</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8457,7 +8474,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">გამოწერა</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">აირჩიე უფასო გეგმა</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">გამოიწერე თვეში %1$s-ად</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8586,6 +8603,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android-ის სათადარიგო ასლის აღდგენის ხარვეზი</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android-ის სარეზერვო ასლის აღდგენის ხარვეზი</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android-ის სათადარიგო ასლის აღდგენის ხარვეზი</string>

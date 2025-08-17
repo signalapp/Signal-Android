@@ -154,6 +154,11 @@ class InAppPaymentRecurringContextJob private constructor(
       throw Exception("Unregistered users cannot perform this job.")
     }
 
+    if (SignalStore.account.isLinkedDevice) {
+      warning("Linked device. Failing.")
+      throw Exception("Linked devices cannot not perform this job")
+    }
+
     val (inAppPayment, requestContext) = getAndValidateInAppPayment()
     val activeSubscription = getActiveSubscription(inAppPayment)
     val subscription = activeSubscription.activeSubscription
@@ -237,7 +242,8 @@ class InAppPaymentRecurringContextJob private constructor(
         }
 
         if (tier != MessageBackupTier.PAID) {
-          warning("ZK credential does not align with entitlement. Forcing a redemption.")
+          warning("ZK credential does not align with entitlement. Clearing backup credentials and forcing a redemption.")
+          BackupRepository.resetInitializedStateAndAuthCredentials()
           return false
         }
 

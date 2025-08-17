@@ -508,7 +508,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       db.runPostSuccessfulTransaction {
         if (result.affectedIds.isNotEmpty()) {
           result.affectedIds.forEach { AppDependencies.databaseObserver.notifyRecipientChanged(it) }
-          RetrieveProfileJob.enqueue(result.affectedIds)
+          RetrieveProfileJob.enqueue(result.affectedIds, skipDebounce = true)
         }
 
         if (result.oldIds.isNotEmpty()) {
@@ -1651,6 +1651,35 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       return true
     }
     return false
+  }
+
+  /**
+   * Clears the profile key.
+   *
+   * It clears out the profile key credential and resets the unidentified access mode.
+   */
+  fun clearProfileKeyData(id: RecipientId) {
+    val selection = "$ID = ?"
+    val args = arrayOf(id.serialize())
+
+    val valuesToCompare = contentValuesOf(
+      PROFILE_KEY to null
+    )
+
+    val valuesToSet = contentValuesOf(
+      PROFILE_KEY to null,
+      EXPIRING_PROFILE_KEY_CREDENTIAL to null,
+      SEALED_SENDER_MODE to SealedSenderAccessMode.UNKNOWN.mode,
+      LAST_PROFILE_FETCH to 0
+    )
+
+    val updateQuery = SqlUtil.buildTrueUpdateQuery(selection, args, valuesToCompare)
+
+    if (update(updateQuery, valuesToSet)) {
+      rotateStorageId(id)
+      AppDependencies.databaseObserver.notifyRecipientChanged(id)
+      StorageSyncHelper.scheduleSyncForDataChange()
+    }
   }
 
   /**
@@ -4175,7 +4204,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         Log.w(TAG, "Contact is marked as registered, but has no serviceId! Can't locally mark registered. (Phone: ${contact.proto.e164.nullIfBlank()}, Username: ${username?.isNotEmpty()})")
       }
 
-      if (isInsert) {
+      if (SignalStore.account.isLinkedDevice) {
+        val avatarColor = StorageSyncModels.remoteToLocalAvatarColor(contact.proto.avatarColor) ?: AvatarColorHash.forAddress(contact.proto.signalAci ?: contact.proto.signalPni, contact.proto.e164)
+        put(AVATAR_COLOR, avatarColor.serialize())
+      } else if (isInsert) {
         put(AVATAR_COLOR, AvatarColorHash.forAddress(contact.proto.signalAci ?: contact.proto.signalPni, contact.proto.e164).serialize())
       }
     }
@@ -4222,7 +4254,10 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
         putNull(STORAGE_SERVICE_PROTO)
       }
 
-      if (isInsert) {
+      if (SignalStore.account.isLinkedDevice) {
+        val avatarColor = StorageSyncModels.remoteToLocalAvatarColor(groupV2.proto.avatarColor) ?: AvatarColorHash.forGroupId(groupId)
+        put(AVATAR_COLOR, avatarColor.serialize())
+      } else if (isInsert) {
         put(AVATAR_COLOR, AvatarColorHash.forGroupId(groupId).serialize())
       }
     }

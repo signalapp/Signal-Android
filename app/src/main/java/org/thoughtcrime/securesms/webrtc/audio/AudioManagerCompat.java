@@ -97,11 +97,36 @@ public abstract class AudioManagerCompat {
   }
 
   public boolean isSpeakerphoneOn() {
-    return audioManager.isSpeakerphoneOn();
+    if (Build.VERSION.SDK_INT >= 31) {
+      AudioDeviceInfo audioDeviceInfo = getCommunicationDevice();
+      if (audioDeviceInfo == null) {
+        Log.w(TAG, "isSpeakerphoneOn: Failed to find communication device.");
+        return false;
+      } else {
+        return AudioDeviceMapping.fromPlatformType(audioDeviceInfo.getType())  == SignalAudioManager.AudioDevice.SPEAKER_PHONE;
+      }
+    } else {
+      return audioManager.isSpeakerphoneOn();
+    }
   }
 
   public void setSpeakerphoneOn(boolean on) {
-    audioManager.setSpeakerphoneOn(on);
+    if (Build.VERSION.SDK_INT >= 31) {
+      SignalAudioManager.AudioDevice audioDevice = on ? SignalAudioManager.AudioDevice.SPEAKER_PHONE : SignalAudioManager.AudioDevice.EARPIECE;
+      AudioDeviceInfo                candidate   = getAvailableCommunicationDevices().stream()
+                                                                      .filter(it -> AudioDeviceMapping.fromPlatformType(it.getType()) == audioDevice)
+                                                                      .findFirst()
+                                                                      .orElse(null);
+
+      if (candidate != null) {
+        setCommunicationDevice(candidate);
+      } else {
+        Log.w(TAG, "setSpeakerphoneOn: Failed to find candidate for SignalAudioDevice {" + audioDevice + "}. Falling back on deprecated method.");
+        audioManager.setSpeakerphoneOn(on);
+      }
+    } else {
+      audioManager.setSpeakerphoneOn(on);
+    }
   }
 
   public boolean isMicrophoneMute() {

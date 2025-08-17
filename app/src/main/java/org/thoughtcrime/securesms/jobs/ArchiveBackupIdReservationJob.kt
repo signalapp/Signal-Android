@@ -52,6 +52,11 @@ class ArchiveBackupIdReservationJob private constructor(parameters: Parameters) 
       return Result.success()
     }
 
+    if (SignalStore.account.isLinkedDevice) {
+      Log.i(TAG, "Linked device. Skipping.")
+      return Result.success()
+    }
+
     return when (val result = BackupRepository.triggerBackupIdReservation()) {
       is NetworkResult.Success -> Result.success()
       is NetworkResult.NetworkError -> Result.retry(defaultBackoff())

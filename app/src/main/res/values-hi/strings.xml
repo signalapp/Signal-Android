@@ -26,40 +26,40 @@
     <!-- First placeholder is productId, second placeholder is app package -->
     <string name="backup_subscription_management_url">https://play.google.com/store/account/subscriptions?sku=%1$s&amp;package=%2$s</string>
 
-    <string name="yes">हाँ</string>
+    <string name="yes">हां</string>
     <string name="no">नहीं</string>
     <string name="delete">डिलीट करें</string>
-    <string name="please_wait">कृपया इंतज़ार कीजिए</string>
-    <string name="save">संरक्षित करें</string>
-    <string name="note_to_self">स्वयं को लिखें</string>
+    <string name="please_wait">कृपया इंतज़ार करें…</string>
+    <string name="save">सेव करें</string>
+    <string name="note_to_self">खुद के लिए नोट</string>
 
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a weather/climate application. -->
     <string name="app_icon_label_weather">मौसम</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a note-taking application.-->
     <string name="app_icon_label_notes">नोट</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in a news/journalism application. -->
-    <string name="app_icon_label_news">समाचार</string>
+    <string name="app_icon_label_news">खबर</string>
     <!-- Alternate label for the Signal Application in the device\'s home screen launcher, as in waves of the ocean. -->
-    <string name="app_icon_label_waves">वेव्स</string>
+    <string name="app_icon_label_waves">वेव</string>
 
     <!-- AlbumThumbnailView -->
   <!-- Removed by excludeNonTranslatables <string name="AlbumThumbnailView_plus" translatable="false">\+%d</string> -->
 
     <!-- ApplicationMigrationActivity -->
-    <string name="ApplicationMigrationActivity__signal_is_updating">Signal का अद्यतन हो रहा है…</string>
+    <string name="ApplicationMigrationActivity__signal_is_updating">Signal अपडेट हो रहा है…</string>
 
     <!-- ApplicationPreferencesActivity -->
-    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">आपने अभी तक पासफ़्रेज सेट नहीं किया है!</string>
-    <string name="ApplicationPreferencesActivity_disable_passphrase">पासफ़्रेज़ अक्षम करें?</string>
-    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">यह Signal और मेसेज नोटिफिकेशन को स्थायी रूप से अनलॉक करेगा</string>
-    <string name="ApplicationPreferencesActivity_disable">अक्षम</string>
-    <string name="ApplicationPreferencesActivity_error_connecting_to_server">सर्वर से कनेक्ट करने में त्रुटि!</string>
-    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">पंजीकरण लॉक के लिए पिन की आवश्यकता होती है। पिन को अक्षम करने के लिए, कृपया पहले पंजीकरण लॉक को अक्षम करें।</string>
+    <string name="ApplicationPreferenceActivity_you_havent_set_a_passphrase_yet">आपने अब तक पासफ़्रेज सेट नहीं किया है!</string>
+    <string name="ApplicationPreferencesActivity_disable_passphrase">पासफ़्रेज़ हटाना है?</string>
+    <string name="ApplicationPreferencesActivity_this_will_permanently_unlock_signal_and_message_notifications">इससे Signal और मैसेज के नोटिफ़िकेशन अनलॉक हो जाएंगे।</string>
+    <string name="ApplicationPreferencesActivity_disable">हटाएं</string>
+    <string name="ApplicationPreferencesActivity_error_connecting_to_server">सर्वर से कनेक्ट करने में कोई गड़बड़ी हुई!</string>
+    <string name="ApplicationPreferencesActivity_pins_are_required_for_registration_lock">रजिस्ट्रेशन लॉक के लिए पिन ज़रूरी है। पिन हटाने के लिए, आपको पहले रजिस्ट्रेशन लॉक हटाना होगा।</string>
     <string name="ApplicationPreferencesActivity_pin_created">पिन बनाया गया।</string>
-    <string name="ApplicationPreferencesActivity_pin_disabled">पिन को डिसेबल किया गया।</string>
-    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">भुगतान रिकवरी फ़्रेज़ रिकॉर्ड करें</string>
-    <string name="ApplicationPreferencesActivity_record_phrase">वाक्यांश रिकॉर्ड करें</string>
-    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">इससे पहले कि आप अपना PIN अक्षम करें, अपने भुगतान खाते को रिकवर करना सुनिश्चित करने के लिए आपको अपना भुगतान रिकवरी फ़्रेज़ रिकॉर्ड करना होगा।</string>
+    <string name="ApplicationPreferencesActivity_pin_disabled">पिन हटाया गया।</string>
+    <string name="ApplicationPreferencesActivity_record_payments_recovery_phrase">पेमेंट रिकवरी फ़्रेज़ रिकॉर्ड करें</string>
+    <string name="ApplicationPreferencesActivity_record_phrase">फ़्रेज़ रिकॉर्ड करें</string>
+    <string name="ApplicationPreferencesActivity_before_you_can_disable_your_pin">पिन हटाने से पहले, आपको अपना पेमेंट रिकवरी फ़्रेज़ रिकॉर्ड करना होगा। यह पेमेंट खाते को रिकवर करने के लिए ज़रूरी है।</string>
 
     <!-- NumericKeyboardView -->
   <!-- Removed by excludeNonTranslatables <string name="NumericKeyboardView__1" translatable="false">1</string> -->
@@ -76,119 +76,119 @@
     <string name="NumericKeyboardView__backspace">बैकस्पेस</string>
 
     <!-- DraftDatabase -->
-    <string name="DraftDatabase_Draft_image_snippet">(तस्वीर)</string>
-    <string name="DraftDatabase_Draft_audio_snippet">(ओडियो)</string>
+    <string name="DraftDatabase_Draft_image_snippet">(इमेज)</string>
+    <string name="DraftDatabase_Draft_audio_snippet">(ऑडियो)</string>
     <string name="DraftDatabase_Draft_video_snippet">(वीडियो)</string>
-    <string name="DraftDatabase_Draft_location_snippet">( स्थान )</string>
-    <string name="DraftDatabase_Draft_quote_snippet">( उत्तर )</string>
-    <string name="DraftDatabase_Draft_voice_note">(ऑडियो मेसेज)</string>
+    <string name="DraftDatabase_Draft_location_snippet">(लोकेशन)</string>
+    <string name="DraftDatabase_Draft_quote_snippet">(जवाब)</string>
+    <string name="DraftDatabase_Draft_voice_note">(वॉइस मैसेज)</string>
 
     <!-- AttachmentKeyboard -->
     <string name="AttachmentKeyboard_gallery">गैलरी</string>
     <string name="AttachmentKeyboard_file">फ़ाइल</string>
-    <string name="AttachmentKeyboard_contact">संपर्क</string>
-    <string name="AttachmentKeyboard_location">स्थान</string>
-    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal को आपके फ़ोटो और वीडियो दिखाने के लिय अनुमति चाहिए।</string>
+    <string name="AttachmentKeyboard_contact">कॉन्टैक्ट</string>
+    <string name="AttachmentKeyboard_location">लोकेशन</string>
+    <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal को आपकी फ़ोटो और वीडियो दिखाने के लिए आपकी अनुमति चाहिए</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">अनुमति दें</string>
-    <string name="AttachmentKeyboard_payment">भुगतान</string>
+    <string name="AttachmentKeyboard_payment">पेमेंट</string>
     <!-- Text in a button that allows users to manage which media Signal has access to -->
-    <string name="AttachmentKeyboard_manage">प्रबंधित करें</string>
+    <string name="AttachmentKeyboard_manage">मैनेज करें</string>
     <!-- Option in menu to select more photos that Signal will have access to -->
-    <string name="AttachmentKeyboard_select_more_photos">ज़्यादा फ़ोटो चुनें</string>
+    <string name="AttachmentKeyboard_select_more_photos">और फ़ोटो चुनें</string>
     <!-- Option in menu to go to settings -->
-    <string name="AttachmentKeyboard_go_to_settings">सेटिंग्स में जाएँ</string>
+    <string name="AttachmentKeyboard_go_to_settings">सेटिंग में जाएं</string>
     <!-- Text explaining that Signal has limited access to photos -->
     <string name="AttachmentKeyboard_signal_has_limited_access">Signal के पास फ़ोटो या वीडियो का सीमित ऐक्सेस है</string>
     <!-- Text shown when user has given no photos for Signal to access and an explanation on how to change those permissions -->
-    <string name="AttachmentKeyboard_no_photos_found">कोई फ़ोटो नहीं मिली, यहाँ दिखाने के लिए फ़ोटो और वीडियो चुनें या अनुमतियाँ बदलें</string>
+    <string name="AttachmentKeyboard_no_photos_found">कोई फ़ोटो नहीं मिली, यहां दिखाने के लिए फ़ोटो और वीडियो चुनें या अनुमतियां बदलें</string>
 
     <!-- MediaGalleryFragment -->
     <!-- Text describing that no photos or videos are currently found in the gallery and that Signal can only access media that the user allows -->
-    <string name="MediaGalleryFragment__no_photos_found">कोई फ़ोटो या वीडियो नहीं मिला। Signal के पास सिर्फ़ आपकी चुनी गई फ़ोटो और वीडियो का ही ऐक्सेस है।</string>
+    <string name="MediaGalleryFragment__no_photos_found">कोई भी फ़ोटो या वीडियो नहीं मिला। Signal के पास सिर्फ़ उन्हीं फ़ोटो और वीडियो का ऐक्सेस है जिन्हें आपने चुना है।</string>
 
     <!-- AttachmentManager -->
-    <string name="AttachmentManager_cant_open_media_selection">मीडिया का चयन करने के लिए कोई ऐप नहीं मिल सकता है</string>
-    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">फ़ोटो, वीडियो या ऑडियो संलग्न करने के लिए Signal को संग्रहण अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"संग्रहण\" सक्षम करें।</string>
-    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">संपर्क जानकारी संलग्न करने के लिए Signal को संपर्क अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"संपर्क\" सक्षम करें।</string>
-    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">किसी स्थान को संलग्न करने के लिए Signal को स्थान अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"स्थान\" सक्षम करें।</string>
+    <string name="AttachmentManager_cant_open_media_selection">मीडिया चुनने के लिए कोई ऐप नहीं मिला।</string>
+    <string name="AttachmentManager_signal_requires_the_external_storage_permission_in_order_to_attach_photos_videos_or_audio">फ़ोटो, वीडियो या ऑडियो अटैच करने के लिए, Signal को स्टोरेज का ऐक्सेस चाहिए। हालांकि, आपने इससे जुड़ी अनुमति को स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए, ऐप सेटिंग मेन्यू में जाकर \"अनुमतियां\" चुनें और इसके बाद \"स्टोरेज\" चालू करें।</string>
+    <string name="AttachmentManager_signal_requires_contacts_permission_in_order_to_attach_contact_information">कॉन्टैक्ट की जानकारी अटैच करने के लिए Signal को कॉन्टैक्ट का ऐक्सेस चाहिए। हालांकि, आपने इससे जुड़ी अनुमति को स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए, ऐप सेटिंग मेन्यू में जाकर \"अनुमतियां\" चुनें और इसके बाद \"कॉन्टैक्ट\" चालू करें।</string>
+    <string name="AttachmentManager_signal_requires_location_information_in_order_to_attach_a_location">लोकेशन अटैच करने के लिए Signal को लोकेशन का ऐक्सेस चाहिए। हालांकि, आपने इससे जुड़ी अनुमति को स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए, ऐप सेटिंग मेन्यू में जाकर \"अनुमतियां\" चुनें और इसके बाद \"लोकेशन\" चालू करें।</string>
 
     <!-- Dialog title asking users for location permission -->
-    <string name="AttachmentManager_signal_allow_access_location">अपने स्थान तक पहुंच की अनुमति दें</string>
+    <string name="AttachmentManager_signal_allow_access_location">अपनी लोकेशन का ऐक्सेस दें</string>
     <!-- Dialog description that will explain the steps needed to give location permission -->
-    <string name="AttachmentManager_signal_to_send_location">अपना स्थान भेजने के लिए:</string>
+    <string name="AttachmentManager_signal_to_send_location">अपनी लोकेशन भेजने के लिए:</string>
     <!-- Alert dialog description asking for location permission -->
-    <string name="AttachmentManager_signal_allow_signal_access_location">अपना स्थान भेजने के लिए Signal एक्सेस की अनुमति दें।</string>
+    <string name="AttachmentManager_signal_allow_signal_access_location">अपनी लोकेशन भेजने के लिए Signal को ऐक्सेस दें।</string>
     <!-- Toast text explaining Signal\'s need for location access -->
-    <string name="AttachmentManager_signal_needs_location_access">Signal को अपना स्थान भेजने के लिए लोकेशन एक्सेस की आवश्यकता होती है।</string>
+    <string name="AttachmentManager_signal_needs_location_access">आपकी लोकेशन भेजने के लिए Signal को आपकी लोकेशन का ऐक्सेस चाहिए।</string>
     <!-- Dialog title asking users for gallery storage permission -->
-    <string name="AttachmentManager_signal_allow_storage">स्टोरेज को एक्सेस करने की अनुमति दें</string>
+    <string name="AttachmentManager_signal_allow_storage">स्टोरेज का ऐक्सेस दें</string>
     <!-- Dialog description that will explain the steps needed to give gallery storage permission -->
-    <string name="AttachmentManager_signal_to_show_photos">फोटोज और वीडियोस देखने के लिए:</string>
+    <string name="AttachmentManager_signal_to_show_photos">फ़ोटो और वीडियो दिखाने के लिए:</string>
     <!-- Toast text explaining Signal\'s need for storage access -->
     <string name="AttachmentManager_signal_needs_storage_access">आपकी फ़ोटो और वीडियो दिखाने के लिए, Signal को ऐक्सेस की ज़रूरत है।</string>
 
     <!-- Alert dialog title to show the recipient has not activated payments -->
-    <string name="AttachmentManager__not_activated_payments">%1$s ने भुगतान सक्रीय नहीं किए हैं </string>
+    <string name="AttachmentManager__not_activated_payments">%1$s ने पेमेंट की सुविधा चालू नहीं की है </string>
     <!-- Alert dialog description to send the recipient a request to activate payments -->
-    <string name="AttachmentManager__request_to_activate_payments">क्या आप उन्हें भुगतान सक्रीय करने हेतु एक अनुरोध भेजना चाहते हैं?</string>
+    <string name="AttachmentManager__request_to_activate_payments">क्या आपको पेमेंट की सुविधा चालू करने के लिए उनके पास अनुरोध भेजना है?</string>
     <!-- Alert dialog button to send request -->
     <string name="AttachmentManager__send_request">अनुरोध भेजें</string>
     <!-- Alert dialog button to cancel dialog -->
     <string name="AttachmentManager__cancel">रद्द करें</string>
 
     <!-- AttachmentUploadJob -->
-    <string name="AttachmentUploadJob_uploading_media">मीडिया अपलोड कर रहा है…</string>
-    <string name="AttachmentUploadJob_compressing_video_start">वीडियो को कंप्रेस कर रहा है…</string>
+    <string name="AttachmentUploadJob_uploading_media">मीडिया अपलोड हो रहा है…</string>
+    <string name="AttachmentUploadJob_compressing_video_start">वीडियो कंप्रेस किया जा रहा है…</string>
 
     <!-- UploadAttachmentToArchiveJob -->
     <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
     <string name="UploadAttachmentToArchiveJob_uploading_media">मीडिया का बैकअप लिया जा रहा है…</string>
 
     <!-- BackgroundMessageRetriever -->
-    <string name="BackgroundMessageRetriever_checking_for_messages">संदेशों का पता लगा रहे हैं…</string>
+    <string name="BackgroundMessageRetriever_checking_for_messages">मैसेज की जांच की जा रही है…</string>
 
     <!-- Fcm notifications -->
     <!-- Notification we show when there may be messages for you, but we cannot connect to the server to check -->
-    <string name="FcmFetchManager__you_may_have_messages">आपके पास नए मेसेज हो सकते हैं</string>
+    <string name="FcmFetchManager__you_may_have_messages">लगता है कि आपके पास नए मैसेज आए हैं</string>
 
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">ब्लॉक किए गए यूज़र</string>
     <string name="BlockedUsersActivity__add_blocked_user">ब्लॉक किए गए यूज़र से जुड़े</string>
-    <string name="BlockedUsersActivity__cannot_block_yourself">खुद को ब्लॉक नहीं कर सकते</string>
-    <string name="BlockedUsersActivity__blocked_users_will">ब्लॉक संपर्क अब आपको मेसेज भेजने या आपको कॉल करने में सक्षम नहीं होंगे।</string>
-    <string name="BlockedUsersActivity__no_blocked_users">कोई ब्लॉक किए गए यूज़र नहीं हैं</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">खुद को ब्लॉक नहीं किया जा सकता</string>
+    <string name="BlockedUsersActivity__blocked_users_will">ब्लॉक किए गए यूज़र आपको कॉल नहीं कर पाएंगे और न ही मैसेज भेज पाएंगे।</string>
+    <string name="BlockedUsersActivity__no_blocked_users">आपने किसी यूज़र को ब्लॉक नहीं किया है</string>
     <string name="BlockedUsersActivity__block_user">इस यूज़र को ब्लॉक करें?</string>
-    <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" आपको कॉल नहीं कर पाएंगे या आपको संदेश नहीं भेज पाएंगे ।</string>
+    <string name="BlockedUserActivity__s_will_not_be_able_to">\"%1$s\" की ओर से आपको कॉल नहीं आ पाएगी या आपको मैसेज नहीं मिल पाएगा।</string>
     <string name="BlockedUsersActivity__block">ब्लॉक करें</string>
 
     <!-- CreditCardFragment -->
     <!-- Title of fragment -->
-    <string name="CreditCardFragment__credit_or_debit_card">डेबिट कार्ड के लिए क्रेडिट</string>
+    <string name="CreditCardFragment__credit_or_debit_card">डेबिट या क्रेडिट कार्ड</string>
     <!-- Explanation of how to fill in the form and a note about pii, displayed above the credit card text fields -->
-    <string name="CreditCardFragment__enter_your_card_details">अपने कार्ड की जानकारी एंटर करें। Signal आपकी व्यक्तिगत जानकारी एकत्र या स्टोर नहीं करता है।</string>
+    <string name="CreditCardFragment__enter_your_card_details">अपने कार्ड की जानकारी डालें। Signal आपकी निजी जानकारी इकट्ठा या स्टोर नहीं करता।</string>
     <!-- Displayed as a hint in the card number text field -->
     <string name="CreditCardFragment__card_number">कार्ड नंबर</string>
     <!-- Displayed as a hint in the card expiry text field -->
-    <string name="CreditCardFragment__mm_yy">माह/वर्ष</string>
+    <string name="CreditCardFragment__mm_yy">माह/साल</string>
     <!-- Displayed as a hint in the card cvv text field -->
     <string name="CreditCardFragment__cvv">CVV</string>
     <!-- Error displayed under the card number text field when there is an invalid card number entered -->
-    <string name="CreditCardFragment__invalid_card_number">अमान्य कार्ड संख्या</string>
+    <string name="CreditCardFragment__invalid_card_number">कार्ड संख्या सही नहीं है</string>
     <!-- Error displayed under the card expiry text field when the card is expired -->
-    <string name="CreditCardFragment__card_has_expired">कार्ड की वैधता समाप्त हो गई है</string>
+    <string name="CreditCardFragment__card_has_expired">कार्ड की समयसीमा खत्म हो गई है</string>
     <!-- Error displayed under the card cvv text field when the cvv is too short -->
     <string name="CreditCardFragment__code_is_too_short">कोड बहुत छोटा है</string>
     <!-- Error displayed under the card cvv text field when the cvv is too long -->
     <string name="CreditCardFragment__code_is_too_long">कोड बहुत लंबा है</string>
     <!-- Error displayed under the card cvv text field when the cvv is invalid -->
-    <string name="CreditCardFragment__invalid_code">अमान्य कोड</string>
+    <string name="CreditCardFragment__invalid_code">कोड सही नहीं है</string>
     <!-- Error displayed under the card expiry text field when the expiry month is invalid -->
-    <string name="CreditCardFragment__invalid_month">अमान्य माह</string>
+    <string name="CreditCardFragment__invalid_month">महीने की जानकारी सही नहीं है</string>
     <!-- Error displayed under the card expiry text field when the expiry is missing the year -->
-    <string name="CreditCardFragment__year_required">वर्ष आवश्यक</string>
+    <string name="CreditCardFragment__year_required">साल की जानकारी डालना ज़रूरी है</string>
     <!-- Error displayed under the card expiry text field when the expiry year is invalid -->
-    <string name="CreditCardFragment__invalid_year">अमान्य वर्ष</string>
+    <string name="CreditCardFragment__invalid_year">साल की जानकारी सही नहीं है</string>
     <!-- Button label to confirm credit card input and proceed with one-time payment -->
     <string name="CreditCardFragment__donate_s">%1$s का दान दें</string>
     <!-- Button label to confirm credit card input and proceed with subscription payment -->
@@ -205,42 +205,42 @@
     <string name="OneTimeDonationPreference__donation_processing">दान की प्रक्रिया आगे बढ़ाई जा रही है</string>
 
     <!-- BlockUnblockDialog -->
-    <string name="BlockUnblockDialog_block_and_leave_s">%1$s को ब्लॉक करें और छोड़ दें?</string>
-    <string name="BlockUnblockDialog_block_s">%1$s को ब्लॉक करें?</string>
-    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">अब आपको इस समूह से संदेश या अपडेट प्राप्त नहीं होंगे, और अन्य सदस्य आपको इस समूह में फिर से नहीं जोड़ पाएंगे ।</string>
-    <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">समूह के सदस्य फिर से आपको इस समूह में नहीं जोड़ पाएंगे।</string>
-    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ग्रूप के सदस्य आपको इस ग्रूप में फ़िर शामिल कर पाएँगे।</string>
+    <string name="BlockUnblockDialog_block_and_leave_s">क्या %1$s ग्रुप को ब्लॉक करना और छोड़ना है?</string>
+    <string name="BlockUnblockDialog_block_s">%1$s को ब्लॉक करना है?</string>
+    <string name="BlockUnblockDialog_you_will_no_longer_receive_messages_or_updates">अब आपको इस ग्रुप से मैसेज या अपडेट नहीं मिलेंगे। साथ ही, इस ग्रुप का कोई भी सदस्य आपको इसमें दोबारा नहीं जोड़ पाएगा।</string>
+    <string name="BlockUnblockDialog_group_members_wont_be_able_to_add_you">ग्रुप के सदस्य आपको इस ग्रुप में दोबारा नहीं जोड़ पाएंगे।</string>
+    <string name="BlockUnblockDialog_group_members_will_be_able_to_add_you">ग्रुप के सदस्य आपको इस ग्रुप में दोबारा जोड़ पाएंगे।</string>
     <!-- Text that is shown when unblocking a Signal contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">आप एक दूसरे को मैसेज और कॉल कर सकेंगे और आपका नाम और फोटो उनके साथ साझा किया जाएगा।</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_call_and_message_each_other">आप एक-दूसरे को मैसेज और कॉल कर सकेंगे और आपका नाम और फ़ोटो उनके साथ शेयर किया जाएगा।</string>
     <!-- Text that is shown when unblocking an SMS contact -->
-    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">आप एकदूसरे को संदेश भेज सकेंगे।</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ब्लॉक किये गए लोग आपको कॉल नहीं कर पाएंगे या आपको संदेश नहीं भेज पाएंगे।</string>
-    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">ब्लॉक किए गए लोग आपको संदेश नहीं भेज पाएंगे।</string>
+    <string name="BlockUnblockDialog_you_will_be_able_to_message_each_other">आप एक-दूसरे को मैसेज भेज पाएंगे।</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_call_you_or_send_you_messages">ब्लॉक किए गए लोग आपको कॉल नहीं कर पाएंगे और न ही आपको मैसेज भेज पाएंगे।</string>
+    <string name="BlockUnblockDialog_blocked_people_wont_be_able_to_send_you_messages">ब्लॉक किए गए लोग आपको मैसेज नहीं भेज पाएंगे।</string>
     <!-- Message shown on block dialog when blocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal से मिलनेवाले अपडेट और खबरों को ब्लॉक करें।</string>
+    <string name="BlockUnblockDialog_block_getting_signal_updates_and_news">Signal से मिलने वाले अपडेट और खबरों को ब्लॉक करें।</string>
     <!-- Message shown on unblock dialog when unblocking the Signal release notes recipient -->
-    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal से अपडेट और खबरों को पाना जारी रखें।</string>
-    <string name="BlockUnblockDialog_unblock_s">%1$s को अनब्लॉक करें?</string>
+    <string name="BlockUnblockDialog_resume_getting_signal_updates_and_news">Signal से अपडेट और खबरें पाने की सुविधा फिर से शुरू करें।</string>
+    <string name="BlockUnblockDialog_unblock_s">%1$s को अनब्लॉक करना है?</string>
     <string name="BlockUnblockDialog_block">ब्लॉक करें</string>
     <string name="BlockUnblockDialog_block_and_leave">ब्लॉक करें और छोड़ें</string>
     <!-- Dialog button label to report as spam and block the person -->
     <string name="BlockUnblockDialog_report_spam_and_block">रिपोर्ट करें और ब्लॉक करें</string>
     <!-- Dialog title for reporting spam -->
-    <string name="BlockUnblockDialog_report_spam_title">स्पैम की रिपोर्ट करें?</string>
+    <string name="BlockUnblockDialog_report_spam_title">स्पैम की रिपोर्ट करना है?</string>
     <!-- Dialog button to report as spam only -->
     <string name="BlockUnblockDialog_report_spam">स्पैम की रिपोर्ट करें</string>
     <!-- Dialog message when reporting spam of an individual (1:1 conversation) -->
-    <string name="BlockUnblockDialog_report_spam_description">Signal को सूचित किया जाएगा कि यह व्यक्ति स्पैम भेज सकता है। Signal किसी भी चैट की सामग्री नहीं देख सकता।</string>
+    <string name="BlockUnblockDialog_report_spam_description">Signal को सूचना मिल जाएगी कि यह व्यक्ति स्पैम भेज सकता है। Signal किसी भी चैट का कॉन्टेंट नहीं देख सकता।</string>
     <!-- Dialog message when reporting spam of a group and we can determine the group member that invited you, placeholder is a name -->
-    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal को सूचित किया जाएगा कि %1$s, जिसने आपको इस समूह में आमंत्रित किया है, स्पैम भेज सकता है। Signal किसी भी चैट की सामग्री नहीं देख सकता।</string>
+    <string name="BlockUnblockDialog_report_spam_group_named_adder">Signal को सूचना मिल जाएगी कि आपको ग्रुप में शामिल होने के लिए न्योता भेजने वाला व्यक्ति %1$s, स्पैम भेज सकता है। Signal किसी भी चैट का कॉन्टेंट नहीं देख सकता।</string>
     <!-- Dialog message when reporting spam of a group and we cannot determine the group member that invited you -->
-    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal को सूचित किया जाएगा कि जिस व्यक्ति ने आपको इस समूह में आमंत्रित किया है वह स्पैम भेज सकता है। Signal किसी भी चैट की सामग्री नहीं देख सकता।</string>
+    <string name="BlockUnblockDialog_report_spam_group_unknown_adder">Signal को सूचना मिल जाएगी कि जिस व्यक्ति ने आपको इस ग्रुप में शामिल होने के लिए न्योता भेजा है वह स्पैम भेज सकता है। Signal किसी भी चैट का कॉन्टेंट नहीं देख सकता।</string>
 
     <!-- BucketedThreadMedia -->
     <string name="BucketedThreadMedia_Today">आज</string>
     <string name="BucketedThreadMedia_Yesterday">कल</string>
-    <string name="BucketedThreadMedia_This_week">इस सप्ताह</string>
-    <string name="BucketedThreadMedia_This_month">इस महीना</string>
+    <string name="BucketedThreadMedia_This_week">इस हफ़्ते</string>
+    <string name="BucketedThreadMedia_This_month">इस महीने</string>
     <string name="BucketedThreadMedia_Large">बड़ा</string>
     <string name="BucketedThreadMedia_Medium">मध्यम</string>
     <string name="BucketedThreadMedia_Small">छोटा</string>
@@ -259,28 +259,28 @@
     <!-- Unknown people row icon content description -->
     <string name="CallInfoView__more_information">और जानकारी</string>
     <!-- Unknown people row info dialog message -->
-    <string name="CallInfoView__before_joining_a_call">किसी कॉल में शामिल होने से पहले आप केवल फ़ोन संपर्कों के नाम देख सकते हैं, उन लोगों के नाम देख सकते हैं जिनके साथ आप किसी समूह में हैं, या उन लोगों के नाम देख सकते हैं जिनके साथ आपने 1:1 चैट की है। कॉल में शामिल होने के बाद आपको सभी नाम और फ़ोटो दिखाई देंगे।</string>
+    <string name="CallInfoView__before_joining_a_call">कॉल में शामिल होने से पहले, सिर्फ़ अपने फ़ोन कॉन्टैक्ट के नाम, जिनके साथ आप किसी ग्रुप में हैं उनके नाम या फिर जिनके साथ आपने पहले 1:1 चैट की है उनके नाम ही देखे जा सकते हैं। कॉल में शामिल होने के बाद आपको सभी नाम और फ़ोटो दिखाई देंगे।</string>
     <!-- Unknown people row info dialog action to close the dialog -->
-    <string name="CallInfoView__got_it">समझ गया</string>
+    <string name="CallInfoView__got_it">ठीक है</string>
 
     <!-- CameraFragment -->
     <!-- Toasted when user device does not support video recording -->
     <string name="CameraFragment__video_recording_is_not_supported_on_your_device">आपकी डिवाइस पर वीडियो रिकॉर्डिंग समर्थित नहीं है</string>
 
     <!-- CameraXFragment -->
-    <string name="CameraXFragment_tap_for_photo_hold_for_video">फोटो के लिए टैप, वीडियो के लिए दबाए रखें</string>
+    <string name="CameraXFragment_tap_for_photo_hold_for_video">फ़ोटो के लिए टैप करें, वीडियो के लिए दबाकर रखें</string>
     <!-- Accessibility content description to describe the capture button when taking an image/video -->
-    <string name="CameraXFragment_capture_description">कैप्चर</string>
+    <string name="CameraXFragment_capture_description">कैप्चर करें</string>
     <string name="CameraXFragment_change_camera_description">कैमरा बदलें</string>
     <string name="CameraXFragment_open_gallery_description">गैलरी खोलें</string>
     <!-- Button text asking for access to camera permissions -->
-    <string name="CameraXFragment_allow_access">अनुमति दें</string>
+    <string name="CameraXFragment_allow_access">ऐक्सेस दें</string>
     <!-- Dialog title asking users for camera and microphone permission -->
-    <string name="CameraXFragment_allow_access_camera_microphone">कैमरा और माइक्रोफोन इस्तेमाल करने की अनुमति दें</string>
+    <string name="CameraXFragment_allow_access_camera_microphone">अपने कैमरे और माइक्रोफ़ोन का ऐक्सेस दें</string>
     <!-- Dialog title asking users for camera permission -->
-    <string name="CameraXFragment_allow_access_camera">कैमरा के एक्सेस की अनुमति दें</string>
+    <string name="CameraXFragment_allow_access_camera">कैमरे का ऐक्सेस दें</string>
     <!-- Dialog title asking users for microphone permission -->
-    <string name="CameraXFragment_allow_access_microphone">माइक्रोफोन इस्तेमाल करने की अनुमति दें</string>
+    <string name="CameraXFragment_allow_access_microphone">अपने माइक्रोफ़ोन का ऐक्सेस दें</string>
     <!-- Text explaining why Signal needs camera access in order to take photos -->
     <string name="CameraXFragment_to_capture_photos_allow_camera">फ़ोटो कैप्चर करने के लिए, Signal को कैमरे एक्सेस की अनुमति दें।</string>
     <!-- Text explaining why Signal needs camera access in order to take photos and videos -->
@@ -307,46 +307,46 @@
     <string name="CameraXFragment_to_scan_qr_codes">QR कोड्स स्कैन करने के लिए:</string>
 
     <!-- CameraContacts -->
-    <string name="CameraContacts_recent_contacts">हाल ही के संपर्क</string>
-    <string name="CameraContacts_signal_contacts">Signal संपर्क</string>
-    <string name="CameraContacts_signal_groups">Signal समूह</string>
+    <string name="CameraContacts_recent_contacts">हाल ही के कॉन्टैक्ट</string>
+    <string name="CameraContacts_signal_contacts">Signal कॉन्टैक्ट</string>
+    <string name="CameraContacts_signal_groups">Signal ग्रुप</string>
     <!-- A warning shown in a toast when  -->
     <plurals name="CameraContacts_you_can_share_with_a_maximum_of_n_conversations">
-        <item quantity="one">आप अधिकतम %1$d चैट के साथ साझा कर सकते हैं।</item>
-        <item quantity="other">आप अधिकतम %1$d चैट के साथ साझा कर सकते हैं।</item>
+        <item quantity="one">ज़्यादा से ज़्यादा %1$d चैट में शेयर किए जा सकते हैं।</item>
+        <item quantity="other">ज़्यादा से ज़्यादा %1$d चैट में शेयर किए जा सकते हैं।</item>
     </plurals>
-    <string name="CameraContacts_select_signal_recipients">Signal प्राप्तकर्ताओं को चुनें</string>
-    <string name="CameraContacts_no_signal_contacts">कोई Signal प्राप्तकर्ता नहीं</string>
-    <string name="CameraContacts_you_can_only_use_the_camera_button">कैमरा बटन का प्रयोग कर आप केवल Signal के सम्पर्कों को ही छवियाँ भेज सकते हैं। </string>
-    <string name="CameraContacts_cant_find_who_youre_looking_for">जिसे ढूँढ रहे वो नहीं मिला?</string>
-    <string name="CameraContacts_invite_a_contact_to_join_signal">संपर्क को Signal में जुड़ने के लिए आमंत्रित करें</string>
-    <string name="CameraContacts__menu_search">सर्च</string>
+    <string name="CameraContacts_select_signal_recipients">Signal पर जिन्हें भेजना है उनके नाम चुनें</string>
+    <string name="CameraContacts_no_signal_contacts">कोई Signal कॉन्टैक्ट मौजूद नहीं है</string>
+    <string name="CameraContacts_you_can_only_use_the_camera_button">कैमरा बटन का इस्तेमाल करके सिर्फ़ Signal कॉन्टैक्ट को फ़ोटो भेजी जा सकती हैं। </string>
+    <string name="CameraContacts_cant_find_who_youre_looking_for">जिन्हें भेजना है, वह कॉन्टैक्ट नहीं मिला?</string>
+    <string name="CameraContacts_invite_a_contact_to_join_signal">कॉन्टैक्ट को Signal में जुड़ने का न्योता भेजें</string>
+    <string name="CameraContacts__menu_search">खोजें</string>
 
     <!-- Censorship Circumvention Megaphone -->
     <!-- Title for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
-    <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">सेंसरशिप सर्कमवेंशन को बंद करना है?</string>
+    <string name="CensorshipCircumventionMegaphone_turn_off_censorship_circumvention">इंटरनेट सेंसरशिप को बाईपास करने वाली फ़ीचर को बंद करना है?</string>
     <!-- Body for an alert that shows at the bottom of the chat list letting people know that circumvention is no longer needed -->
-    <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">अब आप एक बेहतर अनुभव पाने के लिए Signal की सेवा से सीधे कनेक्ट कर सकते हैं।</string>
+    <string name="CensorshipCircumventionMegaphone_you_can_now_connect_to_the_signal_service">बेहतर अनुभव पाने के लिए अब Signal सेवा से सीधे कनेक्ट किया जा सकता है।</string>
     <!-- Action to prompt the user to disable circumvention since it is no longer needed -->
     <string name="CensorshipCircumventionMegaphone_turn_off">बंद करें</string>
     <!-- Action to prompt the user to dismiss the alert at the bottom of the chat list -->
-    <string name="CensorshipCircumventionMegaphone_no_thanks">नहीं धन्यवाद</string>
+    <string name="CensorshipCircumventionMegaphone_no_thanks">नहीं, रहने दें</string>
 
     <!-- ClientDeprecatedActivity -->
     <string name="ClientDeprecatedActivity_update_signal">Signal अपडेट करें</string>
-    <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">ऍप का यह संस्करण अब समर्थित नहीं है। संदेश भेजना और प्राप्त करना जारी रखने के लिए, नवीनतम संस्करण में अपडेट करें।</string>
-    <string name="ClientDeprecatedActivity_update">अपडेट</string>
+    <string name="ClientDeprecatedActivity_this_version_of_the_app_is_no_longer_supported">ऐप का यह वर्शन अब काम का नहीं है। मैसेज भेजने या पाने के लिए, नया वर्शन अपडेट करें।</string>
+    <string name="ClientDeprecatedActivity_update">अपडेट करें</string>
     <string name="ClientDeprecatedActivity_dont_update">अपडेट न करें</string>
     <string name="ClientDeprecatedActivity_warning">चेतावनी</string>
     <string name="ClientDeprecatedActivity_your_version_of_signal_has_expired_you_can_view_your_message_history">Signal के आपके वर्ज़न की समय सीमा समाप्त हो गई है। आप अपना मेसेज इतिहास देख सकते हैं लेकिन जब तक आप अपडेट नहीं करते तब तक आप मेसेज भेज या प्राप्त नहीं कर पाएंगे।</string>
 
     <!-- CommunicationActions -->
-    <string name="CommunicationActions_no_browser_found">कोई वेब ब्राउजर नहीं मिला।</string>
+    <string name="CommunicationActions_no_browser_found">कोई वेब ब्राउज़र नहीं मिला।</string>
     <string name="CommunicationActions_send_email">ईमेल भेजें</string>
-    <string name="CommunicationActions_a_cellular_call_is_already_in_progress">एक सेलुलर कॉल प्रगति में है।</string>
-    <string name="CommunicationActions_start_voice_call">वॉयस कॉल शुरू करें?</string>
+    <string name="CommunicationActions_a_cellular_call_is_already_in_progress">एक मोबाइल कॉल पहले से चल रही है।</string>
+    <string name="CommunicationActions_start_voice_call">वॉइस कॉल शुरू करना है?</string>
     <string name="CommunicationActions_cancel">रद्द करें</string>
-    <string name="CommunicationActions_call">कॉल</string>
+    <string name="CommunicationActions_call">कॉल करें</string>
     <string name="CommunicationActions_insecure_call">असुरक्षित कॉल</string>
     <string name="CommunicationActions_carrier_charges_may_apply">कैरियर दरें लागू हो सकती हैं। आपके द्वारा कॉल किया जा रहा नंबर Signal से रजिस्टर्ड नहीं है। इस कॉल को आपके मोबाइल कैरियर के माध्यम से रखा जाएगा, इंटरनेट पर नहीं।</string>
     <string name="CommunicationActions_cant_join_call">कॉल से नहीं जुड़ सकते</string>
@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">रीस्टोर करना छोड़ें</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">ट्रांसफ़र पूरा नहीं किया जा सका</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">बैकअप रीस्टोर नहीं किया जा सकता</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">आपके बैकअप को रीस्टोर करने में गड़बड़ी हुई। आपके बैकअप को रिकवर नहीं किया जा सकता। मदद के लिए, कृपया सपोर्ट टीम से संपर्क करें।</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">सपोर्ट टीम से संपर्क करें</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">कोई गड़बड़ी हुई और आपके अकाउंट को ट्रांसफ़र नहीं किया जा सका। अपना ट्रांसफ़र करने का तरीका चुनकर फिर से कोशिश करें।</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2918,6 +2924,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">योगदानकर्ताओं को देखने के लिए यह लॉग सार्वजनिक रूप से ऑनलाइन पोस्ट किया जाएगा। अपलोड करने से पहले आप इसकी जांच कर सकते हैं।</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">जब आप सबमिट करें पर क्लिक करते हैं तब एक विशेष, अप्रकाशित URL पर 30 दिनों के लिए आपका लॉग ऑनलाइन पोस्ट किया जाएगा। आप इसे अपने पास सबसे पहले सहेज कर रख सकते हैं।</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7941,6 +7954,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">आपका बैकअप सब्सक्रिप्शन रिडीम नहीं किया जा सका</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">कोई गड़बड़ी हुई और आपका बैकअप पूरा नहीं किया जा सका। पक्का करें कि आपके पास Signal का सबसे नया वर्ज़न हो और फिर से कोशिश करें। अगर समस्या बनी रहती है, तो सपोर्ट से संपर्क करें।</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">किसी गड़बड़ी की वजह से आपका बैकअप पूरा नहीं हो सका। अगर समस्या बनी रहती है, तो सपोर्ट टीम से संपर्क करें।</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">अपडेट के लिए देखें</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8131,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">डाउनलोड फिर से शुरू करें</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">बैकअप आकार</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">बैकअप फ़्रीक्वेंसी</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8457,7 +8474,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">सब्सक्राइब करें</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">मुफ़्त वाला प्लान चुनें</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/महीने में सब्सक्राइब करें</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8586,6 +8603,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android के बैकअप को रीस्टोर करने में नेटवर्क से जुड़ी गड़बड़ी</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android के बैकअप को रीस्टोर करने में स्थायी गड़बड़ी</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android के बैकअप को एक्सपोर्ट करने में नेटवर्क से जुड़ी गड़बड़ी</string>

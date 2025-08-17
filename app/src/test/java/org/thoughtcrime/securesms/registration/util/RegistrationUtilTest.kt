@@ -13,6 +13,7 @@ import assertk.assertions.hasSize
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import io.mockk.every
+import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.mockkStatic
 import io.mockk.unmockkAll
@@ -57,6 +58,14 @@ class RegistrationUtilTest {
     initialize(logRecorder)
 
     every { SignalStore.backup.backupTier } returns null
+    every { SignalStore.backup.backupsInitialized = any() } answers { }
+    every { SignalStore.backup.cachedMediaCdnPath = any() } answers { }
+    every { SignalStore.backup.mediaCredentials } returns mockk {
+      every { clearAll() } answers {}
+    }
+    every { SignalStore.backup.messageCredentials } returns mockk {
+      every { clearAll() } answers {}
+    }
   }
 
   @After

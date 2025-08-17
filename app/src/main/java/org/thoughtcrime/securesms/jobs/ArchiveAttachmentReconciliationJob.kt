@@ -73,6 +73,11 @@ class ArchiveAttachmentReconciliationJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
+    if (!SignalStore.backup.hasBackupBeenUploaded) {
+      Log.w(TAG, "No backup has been uploaded yet! Skipping.")
+      return Result.success()
+    }
+
     if (!SignalStore.backup.backsUpMedia) {
       Log.w(TAG, "This user doesn't back up media! Skipping.")
       return Result.success()

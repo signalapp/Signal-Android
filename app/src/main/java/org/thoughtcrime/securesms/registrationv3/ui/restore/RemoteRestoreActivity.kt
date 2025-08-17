@@ -99,7 +99,7 @@ class RemoteRestoreActivity : BaseActivity() {
     RemoteRestoreViewModel(intent.getBooleanExtra(KEY_ONLY_OPTION, false))
   }
 
-  private val contactSupportViewModel: ContactSupportViewModel by viewModels()
+  private val contactSupportViewModel: ContactSupportViewModel<ContactSupportReason> by viewModels()
 
   private lateinit var wakeLock: RemoteRestoreWakeLock
 
@@ -146,12 +146,22 @@ class RemoteRestoreActivity : BaseActivity() {
 
     setContent {
       val state: RemoteRestoreViewModel.ScreenState by viewModel.state.collectAsStateWithLifecycle()
-      val contactSupportState: ContactSupportViewModel.ContactSupportState by contactSupportViewModel.state.collectAsStateWithLifecycle()
+      val contactSupportState: ContactSupportViewModel.ContactSupportState<ContactSupportReason> by contactSupportViewModel.state.collectAsStateWithLifecycle()
 
       SendSupportEmailEffect(
         contactSupportState = contactSupportState,
-        subjectRes = R.string.EnterBackupKey_network_failure_support_email,
-        filterRes = R.string.EnterBackupKey_network_failure_support_email_filter
+        subjectRes = { reason ->
+          when (reason) {
+            ContactSupportReason.SvrBFailure -> R.string.EnterBackupKey_permanent_failure_support_email
+            else -> R.string.EnterBackupKey_network_failure_support_email
+          }
+        },
+        filterRes = { reason ->
+          when (reason) {
+            ContactSupportReason.SvrBFailure -> R.string.EnterBackupKey_permanent_failure_support_email_filter
+            else -> R.string.EnterBackupKey_network_failure_support_email_filter
+          }
+        }
       ) {
         contactSupportViewModel.hideContactSupport()
       }
@@ -192,12 +202,16 @@ class RemoteRestoreActivity : BaseActivity() {
   fun onEvent(restoreEvent: RestoreV2Event) {
     viewModel.updateRestoreProgress(restoreEvent)
   }
+
+  enum class ContactSupportReason {
+    NetworkError, SvrBFailure
+  }
 }
 
 @Composable
 private fun RestoreFromBackupContent(
   state: RemoteRestoreViewModel.ScreenState,
-  contactSupportState: ContactSupportViewModel.ContactSupportState = ContactSupportViewModel.ContactSupportState(),
+  contactSupportState: ContactSupportViewModel.ContactSupportState<RemoteRestoreActivity.ContactSupportReason> = ContactSupportViewModel.ContactSupportState(),
   onRestoreBackupClick: () -> Unit = {},
   onRetryRestoreTier: () -> Unit = {},
   onContactSupport: () -> Unit = {},
@@ -219,7 +233,8 @@ private fun RestoreFromBackupContent(
         onRestoreBackupClick = onRestoreBackupClick,
         onCancelClick = onCancelClick,
         onImportErrorDialogDismiss = onImportErrorDialogDismiss,
-        onUpdateSignal = onUpdateSignal
+        onUpdateSignal = onUpdateSignal,
+        onContactSupport = onContactSupport
       )
     }
 
@@ -255,7 +270,8 @@ private fun BackupAvailableContent(
   onRestoreBackupClick: () -> Unit,
   onCancelClick: () -> Unit,
   onImportErrorDialogDismiss: () -> Unit,
-  onUpdateSignal: () -> Unit
+  onUpdateSignal: () -> Unit,
+  onContactSupport: () -> Unit
 ) {
   val subtitle = if (state.backupSize.bytes > 0) {
     stringResource(
@@ -376,6 +392,9 @@ private fun BackupAvailableContent(
         } else {
           RestoreFailedDialog(onDismiss = onImportErrorDialogDismiss)
         }
+      }
+      RemoteRestoreViewModel.ImportState.FailureWithLogPrompt -> {
+        RestoreFailedWithLogPromptDialog(onDismiss = onImportErrorDialogDismiss, onContactSupport = onContactSupport)
       }
     }
   }
@@ -566,6 +585,21 @@ fun RestoreFailedDialog(
 }
 
 @Composable
+fun RestoreFailedWithLogPromptDialog(
+  onDismiss: () -> Unit = {},
+  onContactSupport: () -> Unit = {}
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.RemoteRestoreActivity__failure_with_log_prompt_title),
+    body = stringResource(R.string.RemoteRestoreActivity__failure_with_log_prompt_body),
+    confirm = stringResource(R.string.RemoteRestoreActivity__failure_with_log_prompt_contact_button),
+    dismiss = stringResource(android.R.string.ok),
+    onConfirm = onContactSupport,
+    onDismiss = onDismiss
+  )
+}
+
+@Composable
 fun RestoreNetworkFailedDialog(
   onDismiss: () -> Unit = {}
 ) {
@@ -614,6 +648,14 @@ fun TierRestoreFailedDialog(
 private fun RestoreFailedDialogPreview() {
   Previews.Preview {
     RestoreFailedDialog()
+  }
+}
+
+@SignalPreview
+@Composable
+private fun RestoreFailedWithLogPromptDialogPreview() {
+  Previews.Preview {
+    RestoreFailedWithLogPromptDialog()
   }
 }
 

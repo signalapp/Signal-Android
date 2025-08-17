@@ -1442,6 +1442,12 @@
     <string name="RemoteRestoreActivity__skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">လွှဲပြောင်းခြင်းကို အပြီးသတ်၍ မရပါ</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">သင်၏ ဘက်ခ်အပ်ကို ပြန်လည်ရယူစဉ် အမှားအယွင်းတစ်ခု ဖြစ်ပွားခဲ့သည်။ သင်၏ဘက်ခ်အပ်ကို ပြန်လည်ရယူ၍မရပါ။ အကူအညီအတွက် ပံ့ပိုရေးသို့ ဆက်သွယ်ပါ။</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">ပံ့ပိုးရေးသို့ ဆက်သွယ်ရန်</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">ချွတ်ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့သောကြောင့် သင့်အကောင့်ကို လွှဲပြောင်း၍မရပါ။ လွှဲပြောင်းရန်နည်းလမ်းကို ရွေးချယ်၍ ထပ်စမ်းကြည့်ပါ။</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2825,6 +2831,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">ကူညီပံ့ပိုးသူများ ကြည့်ရှုနိုင်ရန်အတွက် ဤမှတ်တမ်းကို အွန်လိုင်းတွင် လူသူမရွေးကြည့်နိုင်ရန် တင်သွားပါမည်။ အပ်လုဒ်မလုပ်မီ ဆန်းစစ်နိုင်ပါသည်။</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">ပေးပို့ရန်ကို နှိပ်သည့်အခါ သင့်မှတ်တမ်းကို သီးခြား အများနှင့်မဆိုင်သော URL တွင် ရက် ၃၀ ကြာ ပို့စ်တင်ထားပါမည်။ ဦးစွာ ၎င်းကို စက်ထဲတွင် သိမ်းထားနိုင်ပါသည်။</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7767,6 +7780,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">သင့် ဘက်ခ်အပ် ပုံမှန်လှူဒါန်းငွေကို ထုတ်ယူ၍မရပါ</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပြီး သင်၏ဘက်ခ်အပ်ကို မပြီးမြောက်နိုင်ခဲ့ပါ။ Signal ၏ နောက်ဆုံးဗားရှင်းကို သင်အသုံးပြုနေကြောင်း သေချာစေပြီး ထပ်ကြိုးစားကြည့်ပါ။ ဤပြဿနာဆက်လက်ရှိနေပါက Signal ပံ့ပိုးမှုသို့ ဆက်သွယ်ပါ။</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">ချို့ယွင်းချက်တစ်ခု ဖြစ်ပွားခဲ့ပြီး သင်၏ဘက်ခ်အပ်ကို မပြီးမြောက်နိုင်ခဲ့ပါ။ ဤပြဿနာဆက်လက်ရှိနေပါက Signal ပံ့ပိုးရေးသို့ ဆက်သွယ်ပါ။</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">အပ်ဒိတ်အတွက် စစ်ဆေးရန်</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -7954,6 +7969,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">ဒေါင်းလုဒ်ပြန်ဆက်လုပ်မည်</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">ဘက်ခ်အပ် အရွယ်အစား</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">ဘက်ခ်အပ် အကြိမ်ရေ</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8277,7 +8294,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">စာရင်းသွင်းပါ</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">အခမဲ့အစီအစဉ်ကို ရွေးချယ်ရန်</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">၁ လ %1$s ပုံမှန်လှူဒါန်းရန်</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8404,6 +8421,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android ဘက်ခ်အပ် ပြန်လည်ရယူခြင်းဆိုင်ရာ ကွန်ရက်ချို့ယွင်းချက်</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android ဘက်ခ်အပ် ပြန်လည်ရယူခြင်းဆိုင်ရာ အမြဲတမ်း ချို့ယွင်းချက်</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android ဘက်ခ်အပ် ထုတ်ယူခြင်းဆိုင်ရာ ကွန်ရက်ချို့ယွင်းချက်</string>

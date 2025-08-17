@@ -848,9 +848,9 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Personne ne saura que vous utilisez Signal, hormis les utilisateurs à qui vous envoyez un message ou avec qui vous avez déjà démarré une conversation.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Restaurer à partir d\'une sauvegarde ?</string>
+    <string name="ChooseBackupFragment__restore_from_backup">Restaurer depuis une sauvegarde ?</string>
     <string name="ChooseBackupFragment__restore_your_messages_and_media">Restaurez vos messages et médias depuis une sauvegarde locale. Si vous ne les restaurez pas maintenant, vous ne pourrez pas le faire plus tard.</string>
-    <string name="ChooseBackupFragment__icon_content_description">Icône \"Restaurer à partir d\'une sauvegarde\"</string>
+    <string name="ChooseBackupFragment__icon_content_description">Icône \"Restaurer depuis une sauvegarde\"</string>
     <string name="ChooseBackupFragment__choose_backup">Choisir une sauvegarde</string>
     <string name="ChooseBackupFragment__learn_more">En savoir plus</string>
     <string name="ChooseBackupFragment__no_file_browser_available">Aucun explorateur de fichiers disponible</string>
@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">Ignorer la restauration</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Impossible de terminer le transfert</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Impossible de restaurer la sauvegarde</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Une erreur s\'est produite lors de la restauration de votre sauvegarde, ce qui nous empêche de la récupérer. Veuillez contacter l\'assistance.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contacter l\'assistance</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Une erreur nous empêche de transférer votre compte. Veuillez choisir une autre méthode de transfert et réessayer.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2918,6 +2924,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Ce journal sera publiquement disponible sur le web, où les contributeurs pourront le consulter. Vous pouvez l’examiner avant de l’importer.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Après avoir cliqué sur \"Envoyer\", votre journal sera publié en ligne pendant 30 jours sur une URL non publique unique. Vous pouvez d\'abord l\'enregistrer localement.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -4698,7 +4711,7 @@
     <string name="RegistrationActivity_incorrect_backup_passphrase">Phrase secrète de sauvegarde incorrecte</string>
     <string name="RegistrationActivity_checking">Vérification…</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d messages jusqu\'ici…</string>
-    <string name="RegistrationActivity_restore_from_backup">Restaurer à partir d\'une sauvegarde ?</string>
+    <string name="RegistrationActivity_restore_from_backup">Restaurer depuis une sauvegarde ?</string>
     <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Restaurez vos messages et médias depuis une sauvegarde locale. Si vous ne les restaurez pas maintenant, vous ne pourrez pas le faire plus tard.</string>
     <string name="RegistrationActivity_backup_size_s">Taille de la sauvegarde : %1$s</string>
     <string name="RegistrationActivity_backup_timestamp_s">Date et heure de la sauvegarde : %1$s</string>
@@ -4710,7 +4723,7 @@
     <string name="BackupDialog_delete_backups_statement">Supprimer les sauvegardes</string>
     <string name="BackupDialog_to_enable_backups_choose_a_folder">Pour activer les sauvegardes, choisissez le dossier dans lequel elles seront enregistrées.</string>
     <!-- Button shown in dialog to choose a folder for backups -->
-    <string name="BackupDialog_choose_folder">Sélectionner un dossier</string>
+    <string name="BackupDialog_choose_folder">Choisir un dossier</string>
     <string name="BackupDialog_copied_to_clipboard">Copié dans le presse-papiers</string>
     <string name="BackupDialog_no_file_picker_available">Aucun sélecteur de fichiers n\'est disponible.</string>
     <string name="BackupDialog_enter_backup_passphrase_to_verify">Saisir la phrase secrète de sauvegarde pour la vérifier</string>
@@ -5514,7 +5527,7 @@
     <!-- Name of a chat folder that contains all chats that currently have unread messages -->
     <string name="ChatFoldersFragment__unread">Non lus</string>
     <!-- Description of the suggested unread chat folder -->
-    <string name="ChatFoldersFragment__unread_messages">Messages non lus dans l\'ensemble des conversations</string>
+    <string name="ChatFoldersFragment__unread_messages">Messages non lus dans toutes les conversations</string>
     <!-- Name of a chat folder that contains all 1:1 (individual) chats -->
     <string name="ChatFoldersFragment__one_on_one_chats">Conversations individuelles</string>
     <!-- Description of the suggested 1:1 chat folder -->
@@ -7941,6 +7954,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Impossible de récupérer votre abonnement de sauvegarde</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Une erreur nous empêche de terminer la sauvegarde. Avant de réessayer, vérifiez que vous avez bien installé la dernière version de Signal. Si le problème persiste, contactez l\'assistance.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Une erreur nous empêche de terminer la sauvegarde. Si le problème persiste, contactez l\'assistance.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Rechercher des mises à jour</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8131,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Reprendre le téléchargement</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Taille de la sauvegarde :</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Fréquence de sauvegarde :</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8457,7 +8474,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">S\'abonner</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choisir le forfait gratuit</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">S\'abonner pour %1$s/mois</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8586,6 +8603,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Erreur réseau – Restauration de sauvegarde Signal pour Android</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Sauvegarde sous Android : échec permanent de la restauration</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Erreur réseau – Exportation de sauvegarde Signal pour Android</string>

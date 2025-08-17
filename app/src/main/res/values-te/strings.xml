@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">బదిలీని పూర్తి చేయడం సాధ్యపడలేదు</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">బ్యాకప్‌ను పునరుద్ధరించలేరు</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">మీ బ్యాకప్‌ను పునరుద్ధరించేటప్పుడు ఒక పొరపాటు ఏర్పడింది. మీ బ్యాకప్‌ను తిరిగి పొందడం సాధ్యం కాదు. సహాయం కోసం దయచేసి మద్దతును సంప్రదించండి.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">మద్దతును సంప్రదించండి</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">లోపం సంభవించింది మరియు మీ ఖాతాను బదిలీ చేయడం సాధ్యపడలేదు. మీ బదిలీ పద్ధతిని ఎంచుకోవడం ద్వారా మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2918,6 +2924,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">కంట్రిబ్యూటర్‌లు వీక్షించడానికి ఈ లాగ్ పబ్లిక్‌గా ఆన్‌లైన్‌లో పోస్ట్ చేయబడుతుంది. అప్‌లోడ్ చేయడానికి ముందు మీరు దానిని పరీక్షించవచ్చు.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">మీరు సబ్మిట్ మీద క్లిక్ చేసినప్పుడు, మీ లాగ్ ప్రత్యేకమైన, పబ్లిష్ చేయని  URL వద్ద 30 రోజులపాటు ఆన్‌లైన్‌లో పోస్ట్ చేయబడుతుంది. మీరు ముందుగా దానిని స్థానికంగా సేవ్ చేయవచ్చు.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7941,6 +7954,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">మీ బ్యాకప్ల సబ్స్క్రిప్షన్‌ను రీడీమ్ చేయడం సాధ్యపడలేదు</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">ఒక లోపం సంభవించింది మరియు మీ బ్యాకప్ పూర్తి చేయబడలేదు. మీరు Signal యొక్క తాజా వెర్షన్‌లో ఉన్నారని నిర్ధారించుకోండి మరియు మళ్ళీ ప్రయత్నించండి. ఒకవేళ ఈ సమస్య కొనసాగితే, మద్దతును సంప్రదించండి.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">ఒక పొరపాటు సంభవించింది మరియు మీ బ్యాకప్ పూర్తి చేయబడలేదు. ఒకవేళ ఈ సమస్య కొనసాగితే, మద్దతును సంప్రదించండి.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">అప్‌డేట్ కోసం తనిఖీ చేయండి</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8131,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">డౌన్‌లోడ్‌ను కొనసాగించండి</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">బ్యాకప్ పరిమాణం</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">బ్యాకప్ తరచుదనం</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8457,7 +8474,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">సబ్‌స్క్రైబ్ చేయండి</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">ఉచిత ప్లాన్‌ను ఎంచుకోండి</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/నెలకు సబ్‌స్క్రైబ్ చేయండి</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8586,6 +8603,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android బ్యాకప్ పునరుద్ధరణ నెట్‌వర్క్ లోపం</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android బ్యాకప్ పునరుద్ధరణ శాశ్వత వైఫల్యం</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android బ్యాకప్ ఎగుమతి నెట్‌వర్క్ పొరపాటు</string>

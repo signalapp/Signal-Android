@@ -35,14 +35,11 @@ class ContactSupportDialogFragment : ComposeDialogFragment() {
     }
   }
 
-  private val contactSupportViewModel: ContactSupportViewModel by viewModel {
+  private val contactSupportViewModel: ContactSupportViewModel<Unit> by viewModel {
     ContactSupportViewModel(
       showInitially = true
     )
   }
-
-  private val subject: Int by lazy { requireArguments().getInt(SUBJECT) }
-  private val filter: Int by lazy { requireArguments().getInt(FILTER) }
 
   @Composable
   override fun DialogContent() {
@@ -50,8 +47,8 @@ class ContactSupportDialogFragment : ComposeDialogFragment() {
 
     SendSupportEmailEffect(
       contactSupportState = contactSupportState,
-      subjectRes = subject,
-      filterRes = filter
+      subjectRes = { requireArguments().getInt(SUBJECT) },
+      filterRes = { requireArguments().getInt(FILTER) }
     ) {
       contactSupportViewModel.hideContactSupport()
       dismissAllowingStateLoss()

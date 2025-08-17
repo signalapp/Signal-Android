@@ -535,7 +535,7 @@ object RemoteConfig {
     key = "android.internalUser",
     hotSwappable = true
   ) { value ->
-    value.asBoolean(false) || Environment.IS_NIGHTLY || Environment.IS_STAGING || Environment.IS_INSTRUMENTATION
+    value.asBoolean(false) || Environment.IS_NIGHTLY || Environment.IS_STAGING
   }
 
   /** The raw client expiration JSON string.  */
@@ -1023,11 +1023,23 @@ object RemoteConfig {
     value.asLong(8.kibiBytes.inWholeBytes).bytes
   }
 
-  /** Whether unauthenticated chat web socket is backed by libsignal-net  */
+  /** Whether the chat web socket is backed by libsignal for direct connections  */
   @JvmStatic
   @get:JvmName("libSignalWebSocketEnabled")
   val libSignalWebSocketEnabled: Boolean by remoteValue(
-    key = "android.libsignalWebSocketEnabled.7",
+    key = "android.libsignalWebSocketEnabled.8",
+    hotSwappable = false
+  ) { value ->
+    value.asBoolean(false) || Environment.IS_NIGHTLY
+  }
+
+  /** Whether the chat web socket is backed by libsignal for all connections, including proxied connections.
+   *  Note, this does *not* gate HTTP proxies, which are treated as direct connections.
+   *  This only has an effect if libSignalWebSocketEnabled is also enabled. */
+  @JvmStatic
+  @get:JvmName("libSignalWebSocketEnabledForProxies")
+  val libSignalWebSocketEnabledForProxies: Boolean by remoteValue(
+    key = "android.libSignalWebSocketEnabledForProxies.8",
     hotSwappable = false
   ) { value ->
     value.asBoolean(false) || Environment.IS_NIGHTLY
@@ -1049,7 +1061,7 @@ object RemoteConfig {
     hotSwappable = false,
     active = false
   ) { value ->
-    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
+    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || BuildConfig.LINK_DEVICE_UX_ENABLED || value.asBoolean(false)
   }
 
   @JvmStatic

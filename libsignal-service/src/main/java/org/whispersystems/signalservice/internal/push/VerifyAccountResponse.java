@@ -16,6 +16,9 @@ public class VerifyAccountResponse {
   @JsonProperty
   public String number;
 
+  @JsonProperty
+  public boolean reregistration;
+
   @JsonCreator
   public VerifyAccountResponse() {}
 

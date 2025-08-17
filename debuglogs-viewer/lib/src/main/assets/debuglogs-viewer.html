@@ -8,12 +8,25 @@
 <head>
   <meta charset="UTF-8">
   <style>
+    /* We keep the background transparent to avoid white flashes in dark theme */
+    html, body {
+      background: transparent;
+      margin: 0;
+      padding: 0;
+    }
+
     #container { position: absolute; top: 0; bottom: 0; left: 0; right: 0; height: 100%; width: 100%; }
+    .searchMatches              { position: absolute; background-color: rgba(182, 190, 250, 0.4); }
 
     /* Scrollbar Setup */
     .ace_scrollbar::-webkit-scrollbar { width: 0; height: 0; }
     .show-scrollbar .ace_scrollbar::-webkit-scrollbar { width: 5px; height: 5px; }
     .ace_scrollbar::-webkit-scrollbar-thumb { background-color: #999999; }
+
+    /* Hide mobile context menu */
+    .ace_mobile-menu {
+      display: none !important;
+    }
 
     /* Light Mode: Line color based on log level */
     .ace_editor  { background-color: #FBFCFF; }
@@ -36,7 +49,7 @@
 </head>
 <body>
 <div id="container"></div>
-<script src="https://www.unpkg.com/ace-builds@latest/src-noconflict/ace.js"></script>
+<script src="ace.min.js"></script>
 <script src="debuglogs-viewer.js"></script>
 </body>
 </html>

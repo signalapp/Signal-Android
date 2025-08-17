@@ -32,6 +32,7 @@ import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
+import org.whispersystems.signalservice.api.messages.multidevice.RegisterAsSecondaryDeviceResponse;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.AlreadyVerifiedException;
@@ -342,6 +343,11 @@ public class PushServiceSocket {
 
   public void requestPushChallenge(String sessionId, String gcmRegistrationId) throws IOException {
     patchVerificationSession(sessionId, gcmRegistrationId, null, null, null, null);
+  }
+
+  public RegisterAsSecondaryDeviceResponse registerAsSecondaryDevice(RegisterAsSecondaryDeviceRequest request) throws IOException {
+    String responseText = makeServiceRequest("/v1/devices/link", "PUT", JsonUtil.toJson(request));
+    return JsonUtil.fromJson(responseText, RegisterAsSecondaryDeviceResponse.class);
   }
 
   public SendGroupMessageResponse sendGroupMessage(byte[] body, @Nonnull SealedSenderAccess sealedSenderAccess, long timestamp, boolean online, boolean urgent, boolean story)

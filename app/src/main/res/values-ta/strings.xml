@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">மீட்டமைப்பதைத் தவிர்</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">இடமாற்றத்தை முடிக்க முடியவில்லை</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">காப்புப்பிரதியை மீட்டெடுக்க முடியவில்லை</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">உங்கள் காப்புப்பிரதியை மீட்டெடுக்கும்போது பிழை ஏற்பட்டது. உங்கள் காப்புப்பிரதி மீட்டெடுக்கப்படவில்லை. உதவிக்கு ஆதரவைத் தொடர்பு கொள்ளுங்கள்.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">ஆதரவைத் தொடர்பு கொள்க</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">பிழை ஏற்பட்டதால் உங்கள் கணக்கை இடமாற்ற முடியவில்லை. உங்கள் இடமாற்ற முறையைத் தேர்ந்தெடுத்து மீண்டும் முயலுங்கள்.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2918,6 +2924,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">இது பதிவு பொதுவில் வெளியிடப்படும் நிகழ்நிலைபங்களிப்பாளர்கள் பார்க்க. பதிவேற்றுவதற்கு முன் அதை நீங்கள் ஆராயலாம்.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">நீங்கள் சமர்ப்பி என்பதைக் கிளிக் செய்யும் போது, ​​உங்கள் பதிவு 30 நாட்களுக்கு ஒரு தனித்துவமான, வெளியிடப்படாத இணைப்பு மூலம் ஆன்லைனில் வெளியிடப்படும். நீங்கள் முதலில் அதை உள்நிலையில் சேமிக்கலாம்.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7941,6 +7954,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">உங்களின் காப்புப்பிரதிகளின் சந்தாவை மீட்டெடுக்க முடியவில்லை</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">பிழை ஏற்பட்டது மற்றும் உங்கள் காப்புப்பிரதியை முடிக்க முடியவில்லை. சிக்னலின் அண்மைய பதிப்பில் இருப்பதை உறுதிசெய்து, மீண்டும் முயலுங்கள். இந்தச் சிக்கல் தொடர்ந்தால், ஆதரவைத் தொடர்புகொள்ளுங்கள்.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">பிழை ஏற்பட்டது மற்றும் உங்கள் காப்புப்பிரதியை நிறைவு செய்ய முடியவில்லை. இந்தச் சிக்கல் தொடர்ந்தால், ஆதரவைத் தொடர்புகொள்ளுங்கள்.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">புதுப்பிப்பைச் சரிபார்த்திடுங்கள்</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8131,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">பதிவிறக்கத்தைத் தொடர்க</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">காப்புப்பிரதி அளவு</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">காப்புப்பிரதி கால இடைவெளி</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8457,7 +8474,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">சப்ஸ்கிரைப் செய்க</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">இலவசத் திட்டத்தைத் தேர்வுசெய்க</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">மாதத்திற்கு %1$s க்கு சப்ஸ்கிரைப் செய்க</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8586,6 +8603,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">சிக்னல் ஆண்ட்ராய்டு காப்புப்பிரதியை மீட்டெடுப்பதில் நெட்வொர்க் பிழை</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">சிக்னல் ஆண்ட்ராய்டு காப்புப்பிரதி மீட்டமைப்பில் நிரந்திரத் தோல்வி</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">சிக்னல் ஆண்ட்ராய்டு காப்புப்பிரதி ஏற்றுமதி செய்யும் நெட்வொர்க்கில் பிழை</string>

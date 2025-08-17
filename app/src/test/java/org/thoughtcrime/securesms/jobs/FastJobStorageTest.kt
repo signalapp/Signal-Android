@@ -814,6 +814,22 @@ class FastJobStorageTest {
   }
 
   @Test
+  fun `getNextEligibleJob - same queue, with dependency, with later job having a higher global priority`() {
+    val fullSpec1 = FullSpec(jobSpec(id = "1", factoryKey = "f1", queueKey = "q1", createTime = 1, globalPriority = 0), emptyList(), emptyList())
+    val fullSpec2 = FullSpec(jobSpec(id = "2", factoryKey = "f2", queueKey = "q1", createTime = 1, globalPriority = 1), emptyList(), listOf(DependencySpec(jobId = "2", dependsOnJobId = "1", isMemoryOnly = false)))
+
+    val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2)))
+    subject.init()
+
+    // The init should find the "circular dependency" and remove it altogether, causing the higher priority job to run first, even though it had an (unsatisfiable) dependency on the other job
+    // Note that we prevent these types of jobs from being inserted now -- this is just for bad jobs that snuck in beforehand.
+    assertThat(subject.getNextEligibleJob(10, NO_PREDICATE)).isEqualTo(fullSpec2.jobSpec)
+    subject.deleteJob(fullSpec2.jobSpec.id)
+
+    assertThat(subject.getNextEligibleJob(20, NO_PREDICATE)).isEqualTo(fullSpec1.jobSpec)
+  }
+
+  @Test
   fun `deleteJobs - writes to database`() {
     val database = mockDatabase(DataSet1.FULL_SPECS)
     val ids: List<String> = listOf("id1", "id2")

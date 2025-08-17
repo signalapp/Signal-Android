@@ -27,7 +27,7 @@ class QrMainActivity : AppCompatActivity() {
   @SuppressLint("NewApi", "SetTextI18n")
   override fun onCreate(savedInstanceState: Bundle?) {
     Log.initialize(
-      AndroidLogger(),
+      AndroidLogger,
       object : Log.Logger() {
         override fun v(tag: String, message: String?, t: Throwable?, keepLonger: Boolean) {
           printlnFormatted('v', tag, message, t)

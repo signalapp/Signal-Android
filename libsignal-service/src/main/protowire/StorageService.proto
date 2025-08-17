@@ -306,7 +306,7 @@ message CallLinkRecord {
   bytes rootKey               = 1;
   bytes adminPasskey          = 2;
   uint64 deletedAtTimestampMs = 3;
-  bytes epoch                 = 4;
+  optional bytes epoch        = 4;
 }
 
 message Recipient {

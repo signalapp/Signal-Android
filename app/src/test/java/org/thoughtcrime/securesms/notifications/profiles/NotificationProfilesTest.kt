@@ -58,7 +58,7 @@ class NotificationProfilesTest {
 
   @Before
   fun setUp() {
-    notificationProfileValues = mockk()
+    notificationProfileValues = mockk(relaxed = true)
     every { notificationProfileValues.manuallyEnabledUntil } returns 0
     every { notificationProfileValues.manuallyDisabledAt } returns 0
 

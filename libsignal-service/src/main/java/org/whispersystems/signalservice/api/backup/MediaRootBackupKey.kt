@@ -66,6 +66,19 @@ class MediaRootBackupKey(override val value: ByteArray) : BackupKey {
     )
   }
 
+  override fun equals(other: Any?): Boolean {
+    if (this === other) return true
+    if (javaClass != other?.javaClass) return false
+
+    other as MediaRootBackupKey
+
+    return value.contentEquals(other.value)
+  }
+
+  override fun hashCode(): Int {
+    return value.contentHashCode()
+  }
+
   class MediaKeyMaterial(
     val id: MediaId,
     val macKey: ByteArray,

@@ -68,19 +68,48 @@ class RestoreAttachmentJob private constructor(
   private val manual: Boolean
 ) : BaseJob(parameters) {
 
+  object Queues {
+    /** Job queues used for the initial attachment restore post-registration. The number of queues in this set determine the level of parallelization. */
+    val INITIAL_RESTORE = setOf(
+      "RestoreAttachmentJob::InitialRestore_01",
+      "RestoreAttachmentJob::InitialRestore_02",
+      "RestoreAttachmentJob::InitialRestore_03",
+      "RestoreAttachmentJob::InitialRestore_04"
+    )
+
+    /** Job queues used when restoring an offloaded attachment. The number of queues in this set determine the level of parallelization. */
+    val OFFLOAD_RESTORE = setOf(
+      "RestoreAttachmentJob::OffloadRestore_01",
+      "RestoreAttachmentJob::OffloadRestore_02",
+      "RestoreAttachmentJob::OffloadRestore_03",
+      "RestoreAttachmentJob::OffloadRestore_04"
+    )
+
+    /** Job queues used for manual restoration. The number of queues in this set determine the level of parallelization. */
+    val MANUAL_RESTORE = setOf(
+      "RestoreAttachmentJob::ManualRestore_01",
+      "RestoreAttachmentJob::ManualRestore_02"
+    )
+
+    /** All possible queues used by this job. */
+    val ALL = INITIAL_RESTORE + OFFLOAD_RESTORE + MANUAL_RESTORE
+  }
+
   companion object {
     const val KEY = "RestoreAttachmentJob"
     private val TAG = Log.tag(RestoreAttachmentJob::class.java)
 
     /**
-     * Create a restore job for the initial large batch of media on a fresh restore
+     * Create a restore job for the initial large batch of media on a fresh restore.
+     * Will enqueue with some amount of parallization with low job priority.
      */
     fun forInitialRestore(attachmentId: AttachmentId, messageId: Long): RestoreAttachmentJob {
       return RestoreAttachmentJob(
         attachmentId = attachmentId,
         messageId = messageId,
         manual = false,
-        queue = constructQueueString(RestoreOperation.INITIAL_RESTORE)
+        queue = Queues.INITIAL_RESTORE.random(),
+        priority = Parameters.PRIORITY_LOW
       )
     }
 
@@ -94,7 +123,8 @@ class RestoreAttachmentJob private constructor(
         attachmentId = attachmentId,
         messageId = messageId,
         manual = false,
-        queue = constructQueueString(RestoreOperation.RESTORE_OFFLOADED)
+        queue = Queues.OFFLOAD_RESTORE.random(),
+        priority = Parameters.PRIORITY_LOW
       )
     }
 
@@ -104,28 +134,21 @@ class RestoreAttachmentJob private constructor(
      * @return job id of the restore
      */
     @JvmStatic
-    fun restoreAttachment(attachment: DatabaseAttachment): String {
+    fun forManualRestore(attachment: DatabaseAttachment): String {
       val restoreJob = RestoreAttachmentJob(
         messageId = attachment.mmsId,
         attachmentId = attachment.attachmentId,
         manual = true,
-        queue = constructQueueString(RestoreOperation.MANUAL)
+        queue = Queues.MANUAL_RESTORE.random(),
+        priority = Parameters.PRIORITY_DEFAULT
       )
 
       AppDependencies.jobManager.add(restoreJob)
       return restoreJob.id
     }
-
-    /**
-     * There are three modes of restore and we use separate queues for each to facilitate canceling if necessary.
-     */
-    @JvmStatic
-    fun constructQueueString(restoreOperation: RestoreOperation): String {
-      return "RestoreAttachmentJob::${restoreOperation.name}"
-    }
   }
 
-  private constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, queue: String) : this(
+  private constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, queue: String, priority: Int) : this(
     Parameters.Builder()
       .setQueue(queue)
       .apply {
@@ -137,6 +160,7 @@ class RestoreAttachmentJob private constructor(
         }
       }
       .setLifespan(TimeUnit.DAYS.toMillis(30))
+      .setGlobalPriority(priority)
       .build(),
     messageId,
     attachmentId,
@@ -299,7 +323,9 @@ class RestoreAttachmentJob private constructor(
           )
       }
 
-      SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, decryptingStream, if (manual) System.currentTimeMillis().milliseconds else null)
+      decryptingStream.use { input ->
+        SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, input, if (manual) System.currentTimeMillis().milliseconds else null)
+      }
     } catch (e: RangeException) {
       Log.w(TAG, "[$attachmentId] Range exception, file size " + attachmentFile.length(), e)
       if (attachmentFile.delete()) {
@@ -408,9 +434,5 @@ class RestoreAttachmentJob private constructor(
         manual = data.manual
       )
     }
-  }
-
-  enum class RestoreOperation {
-    MANUAL, RESTORE_OFFLOADED, INITIAL_RESTORE
   }
 }

@@ -1522,6 +1522,12 @@
     <string name="RemoteRestoreActivity__skip_restore">Izlaist atjaunošanu</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Neizdevās pabeigt pārsūtīšanu</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Nevar atjaunot rezerves kopiju</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Atjaunojot rezerves kopiju, radās kļūda. Jūsu rezerves kopiju nevar atgūt. Lai saņemtu palīdzību, sazinieties ar atbalsta dienestu.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Sazināties ar atbalstu</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Radās kļūda, un jūsu kontu nevarēja pārsūtīt. Mēģiniet vēlreiz, izvēloties pārsūtīšanas veidu.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -3011,6 +3017,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Šis žurnāls tiks publiski izlikts tiešsaistē apskatei līdzstrādniekiem. Pirms augšupielādes varat to pārbaudīt.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Kad noklikšķināsiet uz \"Iesniegt\", jūsu žurnāls tiks publicēts un 30 dienas būs pieejams tiešsaistē ar unikālu, nepublisku URL. Varat to vispirms saglabāt lokāli.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -8115,6 +8128,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Neizdevās izmantot jūsu rezerves kopiju abonementu</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Radās kļūda, un rezerves kopijas izveidi neizdevās pabeigt. Pārliecinieties, ka izmantojat jaunāko Signal versiju un mēģiniet vēlreiz. Ja problēma joprojām pastāv, sazinieties ar atbalsta dienestu.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Radās kļūda, un rezerves kopijas izveidi neizdevās pabeigt. Ja problēma joprojām pastāv, sazinieties ar atbalsta dienestu.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Pārbaudīt, vai ir pieejams atjauninājums</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8308,6 +8323,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Atsākt lejupielādi</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Rezerves kopijas izmērs</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Rezerves kopijas izveides biežums</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8637,7 +8654,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Abonēt</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Izvēlēties bezmaksas plānu</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Abonēt par %1$s mēnesī</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8768,6 +8785,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android rezerves kopijas atjaunošanas tīkla kļūda</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android rezerves kopijas atjaunošanas neatgriezeniska kļūme</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android rezerves kopijas eksportēšanas tīkla kļūda</string>

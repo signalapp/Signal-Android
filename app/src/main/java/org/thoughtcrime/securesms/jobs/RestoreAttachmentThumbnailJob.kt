@@ -140,7 +140,9 @@ class RestoreAttachmentThumbnailJob private constructor(
         progressListener
       )
 
-    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.dataHash, attachment.remoteKey, decryptingStream, thumbnailTransferFile)
+    decryptingStream.use { input ->
+      SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.dataHash, attachment.remoteKey, input, thumbnailTransferFile)
+    }
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context)
@@ -156,7 +158,15 @@ class RestoreAttachmentThumbnailJob private constructor(
   override fun onShouldRetry(exception: Exception): Boolean {
     if (exception is NonSuccessfulResponseCodeException) {
       if (exception.code == 404) {
-        Log.w(TAG, "[$attachmentId-thumbnail] Unable to find file")
+        Log.w(TAG, "[$attachmentId-thumbnail] Unable to find file!")
+        return false
+      }
+      if (exception.code == 403) {
+        Log.w(TAG, "[$attachmentId-thumbnail] No permission!")
+        return false
+      }
+      if (exception.code == 555) {
+        Log.w(TAG, "[$attachmentId-thumbnail] Syntetic failure!")
         return false
       }
     }

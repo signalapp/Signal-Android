@@ -218,10 +218,12 @@ object StorageSyncHelper {
           endAtTimestampMs = endTimestamp
         )
       )
-    } else {
+    } else if (SignalStore.notificationProfile.manuallyDisabledAt != 0L) {
       AccountRecord.NotificationProfileManualOverride(
         disabledAtTimestampMs = SignalStore.notificationProfile.manuallyDisabledAt
       )
+    } else {
+      AccountRecord.NotificationProfileManualOverride()
     }
   }
 
@@ -312,7 +314,7 @@ object StorageSyncHelper {
             SignalStore.notificationProfile.manuallyDisabledAt = System.currentTimeMillis()
           }
         }
-      } else {
+      } else if (update.new.proto.notificationProfileManualOverride!!.disabledAtTimestampMs != null) {
         SignalStore.notificationProfile.manuallyEnabledProfile = 0
         SignalStore.notificationProfile.manuallyEnabledUntil = 0
         SignalStore.notificationProfile.manuallyDisabledAt = update.new.proto.notificationProfileManualOverride!!.disabledAtTimestampMs!!

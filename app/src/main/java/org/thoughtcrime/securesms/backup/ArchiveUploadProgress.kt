@@ -114,9 +114,7 @@ object ArchiveUploadProgress {
     BackupMessagesJob.cancel()
 
     AppDependencies.jobManager.cancelAllInQueue(ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE)
-    UploadAttachmentToArchiveJob.getAllQueueKeys().forEach {
-      AppDependencies.jobManager.cancelAllInQueue(it)
-    }
+    AppDependencies.jobManager.cancelAllInQueues(UploadAttachmentToArchiveJob.QUEUES)
     AppDependencies.jobManager.cancelAllInQueue(ArchiveThumbnailUploadJob.KEY)
   }
 
@@ -129,7 +127,7 @@ object ArchiveUploadProgress {
       Log.d(TAG, "Flushing job manager queue...")
       AppDependencies.jobManager.flush()
 
-      val queues = setOf(ArchiveThumbnailUploadJob.KEY, ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE) + UploadAttachmentToArchiveJob.getAllQueueKeys()
+      val queues = UploadAttachmentToArchiveJob.QUEUES + ArchiveThumbnailUploadJob.QUEUES + ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE
       Log.d(TAG, "Waiting for cancelations to occur...")
       while (!AppDependencies.jobManager.areQueuesEmpty(queues)) {
         delay(1.seconds)

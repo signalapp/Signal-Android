@@ -11,8 +11,10 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -52,6 +54,17 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
     binding.welcomeTransferOrRestore.setOnClickListener { onRestoreOrTransferClicked() }
     binding.welcomeTransferOrRestore.visible = !sharedViewModel.isReregister
 
+    if (BuildConfig.LINK_DEVICE_UX_ENABLED) {
+      binding.image.setOnLongClickListener {
+        MaterialAlertDialogBuilder(requireContext())
+          .setMessage("Link device?")
+          .setPositiveButton("Link", { _, _ -> onLinkDeviceClicked() })
+          .setNegativeButton(android.R.string.cancel, null)
+          .show()
+        true
+      }
+    }
+
     childFragmentManager.setFragmentResultListener(RestoreWelcomeBottomSheet.REQUEST_KEY, viewLifecycleOwner) { requestKey, bundle ->
       if (requestKey == RestoreWelcomeBottomSheet.REQUEST_KEY) {
         when (val userSelection = bundle.getSerializableCompat(RestoreWelcomeBottomSheet.REQUEST_KEY, WelcomeUserSelection::class.java)) {
@@ -69,11 +82,24 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
             WelcomeUserSelection.RESTORE_WITH_OLD_PHONE,
             WelcomeUserSelection.RESTORE_WITH_NO_PHONE -> navigateToNextScreenViaRestore(userSelection)
             WelcomeUserSelection.CONTINUE -> navigateToNextScreenViaContinue()
+            WelcomeUserSelection.LINK -> navigateToLinkDevice()
             null -> Unit
           }
         }
       }
     }
+  }
+
+  private fun onLinkDeviceClicked() {
+    if (Permissions.isRuntimePermissionsRequired() && !hasAllPermissions()) {
+      findNavController().safeNavigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(WelcomeUserSelection.LINK))
+    } else {
+      navigateToLinkDevice()
+    }
+  }
+
+  private fun navigateToLinkDevice() {
+    findNavController().safeNavigate(WelcomeFragmentDirections.goToLinkViaQr())
   }
 
   override fun onResume() {
@@ -115,6 +141,7 @@ class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v
     sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PERMISSIONS_GRANTED)
 
     when (userSelection) {
+      WelcomeUserSelection.LINK,
       WelcomeUserSelection.CONTINUE -> throw IllegalArgumentException()
       WelcomeUserSelection.RESTORE_WITH_OLD_PHONE -> {
         sharedViewModel.intendToRestore(hasOldDevice = true, fromRemote = true)

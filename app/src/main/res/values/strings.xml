@@ -1496,6 +1496,12 @@
     <string name="RemoteRestoreActivity__skip_restore">Skip restore</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Couldn\'t finish transfer</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Can\'t restore backup</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">An error occurred while restoring your backup. Your backup is not recoverable. Please contact support for help.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Contact support</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">An error occurred and your account couldn’t be transferred. Try again by choosing your transfer method.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2935,6 +2941,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">This log will be posted publicly online for contributors to view. You may examine it before uploading.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">When you click Submit, your log will be posted online for 30 days at a unique, unpublished URL. You may Save it locally first.</string>
+    <!-- Debug log level names to filter by levels. -->
+    <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string>
+    <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string>
+    <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string>
+    <string name="SubmitDebugLogActivity_info" translatable="false">Info</string>
+    <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string>
+    <string name="SubmitDebugLogActivity_error" translatable="false">Error</string>
 
     <!-- SupportEmailUtil -->
     <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string>
@@ -7958,6 +7971,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Couldn\'t redeem your backups subscription</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">An error occurred and your backup could not be completed. Make sure you\'re on the latest version of Signal and try again. If this problem persists, contact support.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">An error occurred and your backup could not be completed. If this problem persists, contact support.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Check for update</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8148,6 +8163,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Resume download</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Backup size</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Backup frequency</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8603,6 +8620,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup restore network error</string>
     <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string>
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup restore permanent failure</string>
+    <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string>
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup export network error</string>

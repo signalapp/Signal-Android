@@ -132,6 +132,7 @@ class ChatItemArchiveImporter(
       MessageTable.MESSAGE_EXTRAS,
       MessageTable.ORIGINAL_MESSAGE_ID,
       MessageTable.LATEST_REVISION_ID,
+      MessageTable.REVISION_NUMBER,
       MessageTable.PARENT_STORY_ID,
       MessageTable.NOTIFIED
     )
@@ -193,14 +194,18 @@ class ChatItemArchiveImporter(
       val latestRevisionId = originalId + chatItem.revisions.size
       val sortedRevisions = chatItem.revisions.sortedBy { it.dateSent }.map { it.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId) }
       for (revision in sortedRevisions) {
-        revision.contentValues.put(MessageTable.ORIGINAL_MESSAGE_ID, originalId)
+        val revisionNumber = messageId - originalId
+        if (revisionNumber > 0) {
+          revision.contentValues.put(MessageTable.ORIGINAL_MESSAGE_ID, originalId)
+        }
         revision.contentValues.put(MessageTable.LATEST_REVISION_ID, latestRevisionId)
-        revision.contentValues.put(MessageTable.REVISION_NUMBER, (messageId - originalId))
+        revision.contentValues.put(MessageTable.REVISION_NUMBER, revisionNumber)
         buffer.messages += revision
         messageId++
       }
 
       messageInsert.contentValues.put(MessageTable.ORIGINAL_MESSAGE_ID, originalId)
+      messageInsert.contentValues.put(MessageTable.REVISION_NUMBER, (messageId - originalId))
     }
     buffer.messages += messageInsert
     buffer.reactions += chatItem.toReactionContentValues(messageId)
@@ -350,7 +355,7 @@ class ChatItemArchiveImporter(
               address.country
             )
           },
-          Contact.Avatar(null, backupContact.avatar.toLocalAttachment(importState = importState, voiceNote = false, borderless = false, gif = false, wasDownloaded = true), true)
+          Contact.Avatar(null, backupContact.avatar.toLocalAttachment(voiceNote = false, borderless = false, gif = false, wasDownloaded = true), true)
         )
       }
 
@@ -475,7 +480,7 @@ class ChatItemArchiveImporter(
    */
   private fun StandardMessage.parseBodyText(importState: ImportState): Pair<String?, Attachment?> {
     if (this.longText != null) {
-      return null to this.longText.toLocalAttachment(importState, contentType = "text/x-signal-plain")
+      return null to this.longText.toLocalAttachment(contentType = "text/x-signal-plain")
     }
 
     if (this.text?.body == null) {
@@ -499,7 +504,7 @@ class ChatItemArchiveImporter(
    */
   private fun DirectStoryReplyMessage.parseBodyText(importState: ImportState): Pair<String?, Attachment?> {
     if (this.textReply?.longText != null) {
-      return null to this.textReply.longText.toLocalAttachment(importState, contentType = "text/x-signal-plain")
+      return null to this.textReply.longText.toLocalAttachment(contentType = "text/x-signal-plain")
     }
 
     if (this.textReply?.text == null) {
@@ -1113,10 +1118,9 @@ class ChatItemArchiveImporter(
     if (this == null) return null
 
     return data_.toLocalAttachment(
-      importState = importState,
       voiceNote = false,
-      gif = false,
       borderless = false,
+      gif = false,
       wasDownloaded = true,
       stickerLocator = StickerLocator(
         packId = Hex.toStringCondensed(packId.toByteArray()),
@@ -1133,16 +1137,15 @@ class ChatItemArchiveImporter(
       this.title ?: "",
       this.description ?: "",
       this.date ?: 0,
-      Optional.ofNullable(this.image?.toLocalAttachment(importState = importState, voiceNote = false, borderless = false, gif = false, wasDownloaded = true))
+      Optional.ofNullable(this.image?.toLocalAttachment(voiceNote = false, borderless = false, gif = false, wasDownloaded = true))
     )
   }
 
   private fun MessageAttachment.toLocalAttachment(quote: Boolean = false, contentType: String? = pointer?.contentType): Attachment? {
     return pointer?.toLocalAttachment(
-      importState = importState,
       voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
-      gif = flag == MessageAttachment.Flag.GIF,
       borderless = flag == MessageAttachment.Flag.BORDERLESS,
+      gif = flag == MessageAttachment.Flag.GIF,
       wasDownloaded = wasDownloaded,
       contentType = contentType,
       fileName = pointer.fileName,

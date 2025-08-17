@@ -8,8 +8,6 @@ package org.thoughtcrime.securesms.backup.v2.util
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
-import org.signal.core.util.Hex
-import org.signal.core.util.emptyIfNull
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.orNull
@@ -19,8 +17,6 @@ import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
-import org.thoughtcrime.securesms.backup.v2.ImportState
-import org.thoughtcrime.securesms.backup.v2.getMediaName
 import org.thoughtcrime.securesms.backup.v2.proto.FilePointer
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -35,7 +31,6 @@ import org.thoughtcrime.securesms.backup.v2.proto.AvatarColor as RemoteAvatarCol
  * Converts a [FilePointer] to a local [Attachment] object for inserting into the database.
  */
 fun FilePointer?.toLocalAttachment(
-  importState: ImportState,
   voiceNote: Boolean = false,
   borderless: Boolean = false,
   gif: Boolean = false,
@@ -132,7 +127,7 @@ fun FilePointer?.toLocalAttachment(
 /**
  * @param mediaArchiveEnabled True if this user has enable media backup, otherwise false.
  */
-fun DatabaseAttachment.toRemoteFilePointer(mediaArchiveEnabled: Boolean, contentTypeOverride: String? = null): FilePointer {
+fun DatabaseAttachment.toRemoteFilePointer(contentTypeOverride: String? = null): FilePointer {
   val builder = FilePointer.Builder()
   builder.contentType = contentTypeOverride ?: this.contentType?.takeUnless { it.isBlank() }
   builder.incrementalMac = this.incrementalDigest?.takeIf { it.isNotEmpty() && this.incrementalMacChunkSize > 0 }?.toByteString()
@@ -142,56 +137,9 @@ fun DatabaseAttachment.toRemoteFilePointer(mediaArchiveEnabled: Boolean, content
   builder.height = this.height.takeIf { it > 0 }
   builder.caption = this.caption
   builder.blurHash = this.blurHash?.hash
-
-  builder.setLegacyLocators(this, mediaArchiveEnabled)
   builder.locatorInfo = this.toLocatorInfo()
 
   return builder.build()
-}
-
-fun FilePointer.Builder.setLegacyLocators(attachment: DatabaseAttachment, mediaArchiveEnabled: Boolean) {
-  if (attachment.remoteKey.isNullOrBlank() || attachment.remoteDigest == null || attachment.size == 0L) {
-    this.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
-    return
-  }
-
-  if (attachment.transferState == AttachmentTable.TRANSFER_PROGRESS_PERMANENT_FAILURE && attachment.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED) {
-    this.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
-    return
-  }
-
-  val pending = attachment.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED && (attachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE && attachment.transferState != AttachmentTable.TRANSFER_RESTORE_OFFLOADED)
-
-  if (mediaArchiveEnabled && !pending) {
-    val transitCdnKey = attachment.remoteLocation?.nullIfBlank()
-    val transitCdnNumber = attachment.cdn.cdnNumber.takeIf { transitCdnKey != null }
-    val archiveMediaName = attachment.getMediaName()?.toString()
-
-    this.backupLocator = FilePointer.BackupLocator(
-      mediaName = archiveMediaName.emptyIfNull(),
-      cdnNumber = attachment.archiveCdn.takeIf { archiveMediaName != null },
-      key = Base64.decode(attachment.remoteKey).toByteString(),
-      size = attachment.size.toInt(),
-      digest = attachment.remoteDigest.toByteString(),
-      transitCdnNumber = transitCdnNumber,
-      transitCdnKey = transitCdnKey
-    )
-    return
-  }
-
-  if (attachment.remoteLocation.isNullOrBlank()) {
-    this.invalidAttachmentLocator = FilePointer.InvalidAttachmentLocator()
-    return
-  }
-
-  this.attachmentLocator = FilePointer.AttachmentLocator(
-    cdnKey = attachment.remoteLocation,
-    cdnNumber = attachment.cdn.cdnNumber,
-    uploadTimestamp = attachment.uploadTimestamp.takeIf { it > 0 }?.clampToValidBackupRange(),
-    key = Base64.decode(attachment.remoteKey).toByteString(),
-    size = attachment.size.toInt(),
-    digest = attachment.remoteDigest.toByteString()
-  )
 }
 
 fun DatabaseAttachment.toLocatorInfo(): FilePointer.LocatorInfo {
@@ -225,9 +173,6 @@ fun DatabaseAttachment.toLocatorInfo(): FilePointer.LocatorInfo {
     }
     AttachmentType.INVALID -> Unit
   }
-
-  locatorBuilder.legacyDigest = this.remoteDigest?.toByteString() ?: ByteString.EMPTY
-  locatorBuilder.legacyMediaName = Hex.toStringCondensed(this.remoteDigest ?: byteArrayOf())
 
   return locatorBuilder.build()
 }

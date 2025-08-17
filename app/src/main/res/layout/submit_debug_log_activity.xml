@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    tools:viewBindingIgnore="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -21,37 +20,22 @@
       app:layout_constraintEnd_toEndOf="parent"
       tools:visibility="visible"/>
 
-  <TextView
-      android:id="@+id/debug_log_edit_banner"
-      android:layout_width="0dp"
-      android:layout_height="0dp"
-      android:padding="8dp"
-      android:gravity="center"
-      android:text="@string/SubmitDebugLogActivity_tap_a_line_to_delete_it"
-      android:textColor="@color/core_white"
-      android:fontFamily="sans-serif-medium"
-      android:background="@color/core_ultramarine"
-      android:visibility="gone"
-      app:layout_constraintTop_toTopOf="@id/debug_log_warning_banner"
-      app:layout_constraintBottom_toBottomOf="@id/debug_log_warning_banner"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintEnd_toEndOf="parent" />
-
   <androidx.constraintlayout.widget.Barrier
       android:id="@+id/debug_log_header_barrier"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       app:barrierDirection="bottom"
-      app:constraint_referenced_ids="debug_log_warning_banner,debug_log_edit_banner" />
+      app:constraint_referenced_ids="debug_log_warning_banner" />
 
   <WebView
       android:id="@+id/debug_log_lines"
       android:layout_width="match_parent"
       android:layout_height="0dp"
-      android:layout_marginBottom="8dp"
       android:scrollbars="vertical"
+      android:background="@color/transparent_black"
+      android:alpha="0"
       app:layout_constraintTop_toBottomOf="@id/debug_log_header_barrier"
-      app:layout_constraintBottom_toTopOf="@id/debug_log_submit_button"/>
+      app:layout_constraintBottom_toTopOf="@id/debug_log_footer_barrier"/>
 
   <ImageButton
       android:id="@+id/debug_log_scroll_to_top"
@@ -80,7 +64,192 @@
       app:tint="@color/grey_600"
       app:srcCompat="@drawable/ic_chevron_down_20"
       app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintBottom_toTopOf="@id/debug_log_submit_button"/>
+      app:layout_constraintBottom_toTopOf="@id/debug_log_footer_barrier"/>
+
+  <androidx.constraintlayout.widget.Barrier
+      android:id="@+id/debug_log_footer_barrier"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      app:barrierDirection="top"
+      app:constraint_referenced_ids="debug_log_submit_button,debug_log_search_nav" />
+
+  <org.thoughtcrime.securesms.components.ConversationSearchBottomBar
+      android:id="@+id/debug_log_search_nav"
+      android:layout_width="0dp"
+      android:layout_height="wrap_content"
+      android:background="@color/signal_background_secondary"
+      android:visibility="gone"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintBottom_toBottomOf="parent"
+      tools:visibility="visible">
+
+    <LinearLayout
+        android:id="@+id/debug_log_levels"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/debug_log_filter"
+        android:layout_marginVertical="5dp"
+        android:paddingVertical="4dp"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+      <TextView
+          android:id="@+id/debug_log_verbose"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          style="@style/Signal.Text.Caption"
+          android:textAllCaps="true"
+          android:padding="8dp"
+          android:background="@drawable/tintable_pill_bg"
+          android:backgroundTint="@color/signal_background_secondary"
+          android:text="@string/SubmitDebugLogActivity_verbose"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="parent"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/debug_log_debug"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          style="@style/Signal.Text.Caption"
+          android:textAllCaps="true"
+          android:padding="8dp"
+          android:background="@drawable/tintable_pill_bg"
+          android:backgroundTint="@color/signal_background_secondary"
+          android:text="@string/SubmitDebugLogActivity_debug"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@id/debug_log_verbose"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/debug_log_info"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/SubmitDebugLogActivity_info"
+          style="@style/Signal.Text.Caption"
+          android:textAllCaps="true"
+          android:padding="8dp"
+          android:background="@drawable/tintable_pill_bg"
+          android:backgroundTint="@color/signal_background_secondary"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@id/debug_log_debug"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/debug_log_warning"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/SubmitDebugLogActivity_warning"
+          style="@style/Signal.Text.Caption"
+          android:textAllCaps="true"
+          android:padding="8dp"
+          android:background="@drawable/tintable_pill_bg"
+          android:backgroundTint="@color/signal_background_secondary"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@id/info"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/debug_log_error"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/SubmitDebugLogActivity_error"
+          style="@style/Signal.Text.Caption"
+          android:textAllCaps="true"
+          android:padding="8dp"
+          android:background="@drawable/tintable_pill_bg"
+          android:backgroundTint="@color/signal_background_secondary"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@id/debug_log_warning"
+          app:layout_constraintTop_toTopOf="parent" />
+
+      <TextView
+          android:id="@+id/debug_log_signalUncaughtException"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@string/SubmitDebugLogActivity_signal_uncaught_exception"
+          style="@style/Signal.Text.Caption"
+          android:textAllCaps="true"
+          android:padding="8dp"
+          android:background="@drawable/tintable_pill_bg"
+          android:backgroundTint="@color/signal_background_secondary"
+          android:textAlignment="center"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintEnd_toStartOf="@id/debug_log_error"
+          app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
+
+    <ImageButton
+        android:id="@+id/debug_log_filter"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/circle_touch_highlight_background"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="8dp"
+        android:src="@drawable/symbol_filter_24"
+        app:tint="@color/signal_colorOnSurface"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/debug_log_levels" />
+
+    <ImageButton
+        android:id="@+id/case_sensitive_button"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/circle_touch_highlight_background"
+        android:layout_marginStart="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="8dp"
+        android:src="@drawable/symbol_match_case_24"
+        app:tint="@color/signal_colorOnSurface"
+        app:layout_constraintStart_toEndOf="@id/debug_log_filter"
+        app:layout_constraintTop_toBottomOf="@id/debug_log_levels"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+    <TextView
+        android:id="@+id/debug_log_search_position"
+        style="@style/Signal.Text.Body"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/debug_log_search_up"
+        app:layout_constraintTop_toBottomOf="@id/debug_log_levels"
+        tools:text="37 of 73" />
+
+    <ImageButton
+        android:id="@+id/debug_log_search_up"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:src="@drawable/symbol_chevron_up_24"
+        app:tint="@color/core_ultramarine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/debug_log_search_down"
+        app:layout_constraintTop_toBottomOf="@id/debug_log_levels" />
+
+    <ImageButton
+        android:id="@+id/debug_log_search_down"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="?selectableItemBackgroundBorderless"
+        android:padding="8dp"
+        android:src="@drawable/symbol_chevron_down_24"
+        app:tint="@color/core_ultramarine"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/debug_log_levels" />
+  </org.thoughtcrime.securesms.components.ConversationSearchBottomBar>
 
   <org.thoughtcrime.securesms.util.views.CircularProgressMaterialButton
       android:id="@+id/debug_log_submit_button"
@@ -88,6 +257,7 @@
       android:layout_height="wrap_content"
       android:layout_gravity="center_horizontal"
       android:layout_margin="8dp"
+      android:paddingTop="8dp"
       android:visibility="gone"
       app:circularProgressMaterialButton__label="@string/SubmitDebugLogActivity_submit"
       app:layout_constraintStart_toStartOf="parent"

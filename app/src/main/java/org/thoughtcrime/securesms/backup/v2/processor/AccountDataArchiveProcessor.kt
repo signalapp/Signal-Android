@@ -248,7 +248,7 @@ object AccountDataArchiveProcessor {
       SignalStore.chatColors.chatColors = chatColors
 
       val wallpaperAttachmentId: AttachmentId? = settings.defaultChatStyle.wallpaperPhoto?.let { filePointer ->
-        filePointer.toLocalAttachment(importState)?.let {
+        filePointer.toLocalAttachment()?.let {
           SignalDatabase.attachments.restoreWallpaperAttachment(it)
         }
       }

@@ -270,7 +270,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   private suspend fun performStateRefresh(lastPurchase: InAppPaymentTable.InAppPayment?) {
-    if (BackupRepository.shouldDisplayOutOfStorageSpaceUx()) {
+    if (BackupRepository.shouldDisplayOutOfRemoteStorageSpaceUx()) {
       val paidType = BackupRepository.getPaidType()
 
       if (paidType is NetworkResult.Success) {
@@ -278,7 +278,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         val estimatedSize = SignalDatabase.attachments.getEstimatedArchiveMediaSize().bytes
 
         if (estimatedSize + 300.mebiBytes <= remoteStorageAllowance) {
-          BackupRepository.clearOutOfRemoteStorageError()
+          BackupRepository.clearOutOfRemoteStorageSpaceError()
         }
 
         _state.update {
@@ -301,7 +301,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         backupsFrequency = SignalStore.backup.backupFrequency,
         canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
         canRestoreUsingCellular = SignalStore.backup.restoreWithCellular,
-        isOutOfStorageSpace = BackupRepository.shouldDisplayOutOfStorageSpaceUx(),
+        isOutOfStorageSpace = BackupRepository.shouldDisplayOutOfRemoteStorageSpaceUx(),
         hasRedemptionError = lastPurchase?.data?.error?.data_ == "409"
       )
     }

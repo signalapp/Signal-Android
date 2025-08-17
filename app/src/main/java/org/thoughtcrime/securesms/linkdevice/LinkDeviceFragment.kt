@@ -495,7 +495,7 @@ fun DeviceListScreen(
 @Composable
 fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit, onEditDevice: (Device) -> Unit) {
   val titleString = if (device.name.isNullOrEmpty()) stringResource(R.string.DeviceListItem_unnamed_device) else device.name
-  val linkedDate = DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.createdMillis)
+  val linkedDate = device.createdMillis?.let { DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.createdMillis) }
   val lastActive = DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.lastSeenMillis)
   val menuController = remember { DropdownMenus.MenuController() }
   Row(
@@ -524,7 +524,9 @@ fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit, onEditDevice:
         .weight(1f)
     ) {
       Text(text = titleString, style = MaterialTheme.typography.bodyLarge)
-      Text(stringResource(R.string.DeviceListItem_linked_s, linkedDate), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+      if (linkedDate != null) {
+        Text(stringResource(R.string.DeviceListItem_linked_s, linkedDate), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+      }
       Text(stringResource(R.string.DeviceListItem_last_active_s, lastActive), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
 
@@ -599,8 +601,8 @@ private fun DeviceListScreenPreview() {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
         devices = listOf(
-          Device(1, "Sam's Macbook Pro", 1715793982000, 1716053182000),
-          Device(1, "Sam's iPad", 1715793182000, 1716053122000)
+          Device(1, "Sam's Macbook Pro", 1715793982000, 1716053182000, 0),
+          Device(1, "Sam's iPad", 1715793182000, 1716053122000, 0)
         ),
         seenQrEducationSheet = true
       )
@@ -653,7 +655,7 @@ private fun DeviceListScreenSyncingMessagesPreview() {
   Previews.Preview {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
-        dialogState = DialogState.SyncingMessages(1, 1),
+        dialogState = DialogState.SyncingMessages(1),
         seenQrEducationSheet = true
       )
     )
@@ -681,7 +683,7 @@ private fun DeviceListScreenSyncingFailedPreview() {
       state = LinkDeviceSettingsState(
         dialogState = DialogState.SyncingFailed(
           deviceId = 1,
-          deviceCreatedAt = 1,
+          deviceRegistrationId = 1,
           syncFailType = LinkDeviceSettingsState.SyncFailType.NOT_RETRYABLE
         ),
         seenQrEducationSheet = true
@@ -724,7 +726,7 @@ private fun DeviceListScreenNotEnoughStoragePreview() {
       state = LinkDeviceSettingsState(
         dialogState = DialogState.SyncingFailed(
           deviceId = 1,
-          deviceCreatedAt = 1,
+          deviceRegistrationId = 1,
           syncFailType = LinkDeviceSettingsState.SyncFailType.NOT_ENOUGH_SPACE
         ),
         seenQrEducationSheet = true

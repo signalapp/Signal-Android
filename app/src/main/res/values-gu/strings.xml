@@ -1482,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">ટ્રાન્સફર પૂર્ણ ન કરી શક્યા</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">બેકઅપ રિસ્ટોર કરી શકતા નથી</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">તમારા બેકઅપને રિસ્ટોર કરતી વખતે એક એરર આવી. તમારું બેકઅપ પાછું મેળવી શકાતું નથી. મદદ માટે કૃપા કરીને સપોર્ટનો સંપર્ક કરો.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">સપોર્ટનો સંપર્ક કરો</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">એક એરર આવી અને તમારું એકાઉન્ટ ટ્રાન્સફર કરી શકાયું નથી. તમારી ટ્રાન્સફર પદ્ધતિ પસંદ કરીને ફરી પ્રયાસ કરો.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -2918,6 +2924,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">યોગદાનકર્તાઓને જોવા માટે આ લૉગ જાહેરમાં ઓનલાઇન પોસ્ટ કરવામાં આવશે. તમે અપલોડ કરતા પહેલા તેની તપાસ કરી શકો છો.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">તમે સબમિટ પર ક્લિક કરશો ત્યારે લૉગ 30 દિવસ માટે ઓનલાઇન એક અનન્ય, અપ્રકાશિત URL પર પોસ્ટ થશે. તમે પહેલાં તેને સ્થાનિક રીતે સેવ કરી શકો છો.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -7941,6 +7954,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">તમારું બેકઅપ સબ્સ્ક્રિપ્શન રિડીમ કરી શકાયું નથી</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">એક એરર આવી અને તમારું બેકઅપ પૂર્ણ કરી શકાયું નથી. ખાતરી કરો કે તમે Signalનું લેટેસ્ટ વર્ઝન વાપરો છો અને ફરી પ્રયાસ કરો. જો સમસ્યા ચાલુ રહે તો સપોર્ટનો સંપર્ક કરો.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">એક એરર આવી અને તમારું બેકઅપ પૂર્ણ કરી શકાયું નથી. જો સમસ્યા ચાલુ રહે તો સપોર્ટનો સંપર્ક કરો.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">અપડેટ માટે તપાસો</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8131,6 +8146,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">ડાઉનલોડ ફરી શરૂ કરો</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">બેકઅપની સાઇઝ</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">બેકઅપનું આવર્તન</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8457,7 +8474,7 @@
     <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">સબ્સ્ક્રાઇબ કરો</string>
     <!-- Primary action button label when selecting the free backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Choose free plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">મફત પ્લાન પસંદ કરો</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/મહિને સબ્સ્ક્રાઇબ કરો</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8586,6 +8603,9 @@
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android બેકઅપ રિસ્ટોર નેટવર્ક એરર</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android બેકઅપ રિસ્ટોર કાયમી નિષ્ફળતા</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
     <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android બેકઅપ એક્સપોર્ટ કરવામાં નેટવર્ક એરર</string>

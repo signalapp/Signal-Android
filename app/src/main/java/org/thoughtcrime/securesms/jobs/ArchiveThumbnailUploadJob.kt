@@ -54,6 +54,12 @@ class ArchiveThumbnailUploadJob private constructor(
     private const val MAX_PIXEL_DIMENSION = 256
     private const val ADDITIONAL_QUALITY_DECREASE = 10f
 
+    /** A set of possible queues this job may use. The number of queues determines the parallelism. */
+    val QUEUES = setOf(
+      "ArchiveThumbnailUploadJob_1",
+      "ArchiveThumbnailUploadJob_2"
+    )
+
     fun enqueueIfNecessary(attachmentId: AttachmentId) {
       if (SignalStore.backup.backsUpMedia) {
         AppDependencies.jobManager.add(ArchiveThumbnailUploadJob(attachmentId))
@@ -67,10 +73,11 @@ class ArchiveThumbnailUploadJob private constructor(
 
   private constructor(attachmentId: AttachmentId) : this(
     Parameters.Builder()
-      .setQueue("ArchiveThumbnailUploadJob")
+      .setQueue(QUEUES.random())
       .addConstraint(NetworkConstraint.KEY)
       .setLifespan(1.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
+      .setGlobalPriority(Parameters.PRIORITY_LOW)
       .build(),
     attachmentId
   )
@@ -104,6 +111,10 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.success()
     }
 
+    if (isCanceled) {
+      return Result.failure()
+    }
+
     val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
 
     val specResult = BackupRepository
@@ -115,6 +126,10 @@ class ArchiveThumbnailUploadJob private constructor(
           uploadForm = form
         )
       }
+
+    if (isCanceled) {
+      return Result.failure()
+    }
 
     val resumableUpload = when (specResult) {
       is NetworkResult.Success -> {
@@ -138,6 +153,10 @@ class ArchiveThumbnailUploadJob private constructor(
       }
     }
 
+    if (isCanceled) {
+      return Result.failure()
+    }
+
     val attachmentPointer = try {
       buildSignalServiceAttachmentStream(thumbnailResult, resumableUpload).use { stream ->
         val pointer = AppDependencies.signalServiceMessageSender.uploadAttachment(stream)
@@ -146,6 +165,10 @@ class ArchiveThumbnailUploadJob private constructor(
     } catch (e: IOException) {
       Log.w(TAG, "Failed to upload attachment", e)
       return Result.retry(defaultBackoff())
+    }
+
+    if (isCanceled) {
+      return Result.failure()
     }
 
     return when (val result = BackupRepository.copyThumbnailToArchive(attachmentPointer, attachment)) {
