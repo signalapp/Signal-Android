@@ -17,15 +17,15 @@ import org.thoughtcrime.securesms.mms.InputStreamFactory
 import java.nio.ByteBuffer
 
 /**
- * A variant of [ApngStreamCacheDecoder] that decodes animated PNGs from [org.thoughtcrime.securesms.mms.InputStreamFactory] sources.
+ * A variant of [StreamApngDecoder] that decodes animated PNGs from [InputStreamFactory] sources.
  */
-class ApngStreamFactoryDecoder(
+class StreamFactoryApngDecoder(
   private val byteBufferDecoder: ResourceDecoder<ByteBuffer, APNGDecoder>
 ) : ResourceDecoder<InputStreamFactory, APNGDecoder> {
 
   override fun handles(source: InputStreamFactory, options: Options): Boolean {
     return if (options.get(ApngOptions.ANIMATE) == true) {
-      return APNGParser.isAPNG(LimitedReader(StreamReader(source.create()), GlideStreamConfig.markReadLimitBytes))
+      APNGParser.isAPNG(LimitedReader(StreamReader(source.create()), GlideStreamConfig.markReadLimitBytes))
     } else {
       false
     }

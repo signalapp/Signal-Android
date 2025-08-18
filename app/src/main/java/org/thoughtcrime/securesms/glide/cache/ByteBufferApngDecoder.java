@@ -16,7 +16,7 @@ import org.signal.glide.common.loader.Loader;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
-public class ApngBufferCacheDecoder implements ResourceDecoder<ByteBuffer, APNGDecoder> {
+public class ByteBufferApngDecoder implements ResourceDecoder<ByteBuffer, APNGDecoder> {
 
   @Override
   public boolean handles(@NonNull ByteBuffer source, @NonNull Options options) {
