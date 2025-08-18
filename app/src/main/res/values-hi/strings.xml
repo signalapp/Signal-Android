@@ -347,8 +347,8 @@
     <string name="CommunicationActions_start_voice_call">वॉइस कॉल शुरू करना है?</string>
     <string name="CommunicationActions_cancel">रद्द करें</string>
     <string name="CommunicationActions_call">कॉल करें</string>
-    <string name="CommunicationActions_insecure_call">असुरक्षित कॉल</string>
-    <string name="CommunicationActions_carrier_charges_may_apply">कैरियर दरें लागू हो सकती हैं। आपके द्वारा कॉल किया जा रहा नंबर Signal से रजिस्टर्ड नहीं है। इस कॉल को आपके मोबाइल कैरियर के माध्यम से रखा जाएगा, इंटरनेट पर नहीं।</string>
+    <string name="CommunicationActions_insecure_call">इनसिक्योर कॉल</string>
+    <string name="CommunicationActions_carrier_charges_may_apply">मोबाइल नेटवर्क के शुल्क लग सकते हैं। जिस नंबर पर आपने कॉल किया है वह Signal पर रजिस्टर नहीं है। कॉल इंटरनेट की बजाय आपके मोबाइल नेटवर्क से की जाएगी।</string>
     <string name="CommunicationActions_cant_join_call">कॉल से नहीं जुड़ सकते</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">इस कॉल का लिंक अब मान्य नहीं है।</string>
     <!-- Title on dialog when call link url cannot be parsed -->
@@ -362,8 +362,8 @@
 
     <!-- ContactsCursorLoader -->
     <string name="ContactsCursorLoader_recent_chats">नवीनतम बातचीत</string>
-    <string name="ContactsCursorLoader_contacts">संपर्क</string>
-    <string name="ContactsCursorLoader_groups">समूह</string>
+    <string name="ContactsCursorLoader_contacts">कॉन्टैक्ट</string>
+    <string name="ContactsCursorLoader_groups">ग्रुप</string>
     <!-- Contact search header for individuals who the user has not started a conversation with but is in a group with -->
     <string name="ContactsCursorLoader_group_members">सदस्य</string>
     <!-- Label for my stories when selecting who to send media to -->
@@ -378,49 +378,49 @@
     <string name="ContactsCursorLoader__chat_types">चैट के प्रकार</string>
 
     <!-- ContactsDatabase -->
-    <string name="ContactsDatabase_message_s">%1$s को मेसेज</string>
+    <string name="ContactsDatabase_message_s">%1$s को मैसेज भेजें</string>
     <string name="ContactsDatabase_signal_call_s">Signal वॉयस कॉल %1$s</string>
     <string name="ContactsDatabase_signal_video_call_s">Signal वीडियो कॉल %1$s</string>
 
     <!-- ContactNameEditActivity -->
     <!-- Toolbar title for contact name edit activity -->
     <string name="ContactNameEditActivity_given_name">नाम</string>
-    <string name="ContactNameEditActivity_family_name">कुलनाम</string>
-    <string name="ContactNameEditActivity_prefix">प्रिफिक्स</string>
-    <string name="ContactNameEditActivity_suffix">सफिक्स</string>
-    <string name="ContactNameEditActivity_middle_name">मध्य नाम</string>
+    <string name="ContactNameEditActivity_family_name">सरनेम</string>
+    <string name="ContactNameEditActivity_prefix">प्रिफ़िक्स</string>
+    <string name="ContactNameEditActivity_suffix">सफ़िक्स</string>
+    <string name="ContactNameEditActivity_middle_name">मिडिल नेम</string>
 
     <!-- ContactShareEditActivity -->
     <!-- ContactShareEditActivity toolbar title -->
-    <string name="ContactShareEditActivity__send_contact">संपर्क भेजें</string>
-    <string name="ContactShareEditActivity_type_home">मुख्य</string>
+    <string name="ContactShareEditActivity__send_contact">कॉन्टैक्ट भेजें</string>
+    <string name="ContactShareEditActivity_type_home">होम</string>
     <string name="ContactShareEditActivity_type_mobile">मोबाइल</string>
-    <string name="ContactShareEditActivity_type_work">कार्यालय</string>
+    <string name="ContactShareEditActivity_type_work">ऑफ़िस</string>
     <string name="ContactShareEditActivity_type_missing">अन्य</string>
-    <string name="ContactShareEditActivity_invalid_contact">चयनित संपर्क अमान्य था।</string>
+    <string name="ContactShareEditActivity_invalid_contact">चुना गया संपर्क सही नहीं है</string>
     <!-- Content descrption for name edit button on contact share edit activity -->
-    <string name="ContactShareEditActivity__edit_name">नाम संपादित करें</string>
+    <string name="ContactShareEditActivity__edit_name">नाम एडिट करें</string>
     <!-- Content description for user avatar in edit activity -->
     <string name="ContactShareEditActivity__avatar">अवतार</string>
 
     <!-- ConversationItem -->
-    <string name="ConversationItem_error_not_sent_tap_for_details">नहीं भेजा गया, विवरण के लिए टैप करें</string>
-    <string name="ConversationItem_error_partially_not_delivered">आंशिक रूप से भेजा गया, विवरण के लिए दबाएँ</string>
-    <string name="ConversationItem_error_network_not_delivered">भेजना असफल रहा</string>
-    <string name="ConversationItem_group_action_left">%1$s ने समूह को छोड़ दिया है</string>
-    <string name="ConversationItem_send_paused">भेजें रोका गया</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">अनएन्क्रिप्टेड SMS पर फॉलबैक?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">अनएन्क्रिप्टेड MMS पर फॉलबैक?</string>
-    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">यह मेसेज एन्क्रिप्ट <b>नहीं</b> किया जाएगा क्योंकि प्राप्तकर्ता अब Signal उपयोगकर्ता नहीं है। \n\n असुरक्षित मेसेज भेजें?</string>
-    <string name="ConversationItem_unable_to_open_media">इस मीडिया को खोलने में सक्षम कोई ऐप नहीं मिल सकता है।</string>
-    <string name="ConversationItem_copied_text">%1$s की नकल की</string>
+    <string name="ConversationItem_error_not_sent_tap_for_details">नहीं भेजा गया, जानकारी के लिए टैप करें</string>
+    <string name="ConversationItem_error_partially_not_delivered">आंशिक रूप से भेजा गया, जानकारी के लिए टैप करें</string>
+    <string name="ConversationItem_error_network_not_delivered">नहीं भेजा जा सका</string>
+    <string name="ConversationItem_group_action_left">%1$s ने ग्रुप छोड़ दिया है।</string>
+    <string name="ConversationItem_send_paused">भेजने की प्रक्रिया रुक गई है</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_sms_dialog_title">क्या इसके बजाय अनएनक्रिप्टेड SMS भेजना है?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_mms_dialog_title">क्या इसके बजाय अनएनक्रिप्टेड MMS भेजना है?</string>
+    <string name="ConversationItem_click_to_approve_unencrypted_dialog_message">यह मैसेज एन्क्रिप्टेड <b>नहीं</b> होगा। ऐसा इसलिए, क्योंकि प्राप्तकर्ता ने अब Signal का इस्तेमाल करना बंद कर दिया है। \n\n क्या इनसिक्योर्ड मैसेज भेजना है?</string>
+    <string name="ConversationItem_unable_to_open_media">इस मीडिया को खोलने वाला कोई ऐप नहीं मिला।</string>
+    <string name="ConversationItem_copied_text">%1$s कॉपी की गई</string>
     <string name="ConversationItem_from_s">%1$s से</string>
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
     <string name="ConversationItem_to_s">%1$s को</string>
-    <string name="ConversationItem_read_more">और पढो</string>
+    <string name="ConversationItem_read_more">  और पढ़ें</string>
     <!-- Footer shown at the end of long body messages to download more of it -->
-    <string name="ConversationItem_download_more">और डाउनलोड करें</string>
-    <string name="ConversationItem_pending">बचा हुआ</string>
+    <string name="ConversationItem_download_more">  और डाउनलोड करें</string>
+    <string name="ConversationItem_pending">  बचा हुआ</string>
     <string name="ConversationItem_this_message_was_deleted">यह मेसेज डिलीट कर दिया गया है।</string>
     <string name="ConversationItem_you_deleted_this_message">आपने यह मेसेज डिलीट किया है।</string>
     <!-- Dialog error message shown when user can\'t download a message from someone else due to a permanent failure (e.g., unable to decrypt), placeholder is other\'s name -->
@@ -448,12 +448,12 @@
     <string name="ConversationActivity_add_attachment">अटैचमेंट जोड़ें</string>
     <!-- Accessibility text associated with image button to send an edited message. -->
     <string name="ConversationActivity_send_edit">संपादित भेजें</string>
-    <string name="ConversationActivity_compose_message">मेसेज लिखें</string>
-    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">खेद है, आपका अनुलगनक लगाने में त्रुटि हुई।</string>
+    <string name="ConversationActivity_compose_message">मैसेज लिखें</string>
+    <string name="ConversationActivity_sorry_there_was_an_error_setting_your_attachment">माफ़ कीजिए, आपका अटैचमेंट सेट करते समय कोई गड़बड़ी हुई।</string>
     <!-- Toast shown when user is unable to find the recipient when sending a message -->
-    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">प्राप्त करने वाला वैध SMS या ईमेल पता नहीं है!</string>
-    <string name="ConversationActivity_message_is_empty_exclamation">मेसेज खाली है!</string>
-    <string name="ConversationActivity_group_members">सदस्य</string>
+    <string name="ConversationActivity_recipient_is_not_a_valid_sms_or_email_address_exclamation">आपने जहां भेजा है वह SMS या ईमेल के लिए सही पता नहीं है!</string>
+    <string name="ConversationActivity_message_is_empty_exclamation">मैसेज खाली है!</string>
+    <string name="ConversationActivity_group_members">ग्रुप के सदस्य</string>
     <!-- Warning dialog text shown to user if they try to send a message edit that is too old where %1$d is replaced with the amount of hours, e.g. 3 -->
     <plurals name="ConversationActivity_edit_message_too_old">
         <item quantity="one">आपके द्वारा इस संदेश को भेजे जाने के %1$d घंटे के भीतर ही संपादन लागू किए जा सकते हैं।</item>
@@ -465,31 +465,31 @@
         <item quantity="other">इस संदेश को केवल %1$d बार संपादित किया जा सकता है।</item>
     </plurals>
 
-    <string name="ConversationActivity_invalid_recipient">अवैध प्राप्तकर्ता</string>
-    <string name="ConversationActivity_added_to_home_screen">मुख्य स्क्रीन में जोड़ा गया</string>
-    <string name="ConversationActivity_calls_not_supported">कॉल समर्थित नहीं है</string>
-    <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">यह डिवाइस डायल क्रियाओं का समर्थन करने के लिए प्रकट नहीं होता है।</string>
-    <string name="ConversationActivity_transport_insecure_sms">असुरक्षित SMS</string>
+    <string name="ConversationActivity_invalid_recipient">प्राप्तकर्ता की जानकारी सही नहीं है!</string>
+    <string name="ConversationActivity_added_to_home_screen">होम स्क्रीन में जोड़ा गया</string>
+    <string name="ConversationActivity_calls_not_supported">कॉल की सुविधा उपलब्ध नहीं है</string>
+    <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">इस डिवाइस पर कॉल डायल नहीं हो सकती।</string>
+    <string name="ConversationActivity_transport_insecure_sms">इनसिक्योर SMS</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_insecure_sms_with_sim">असुरक्षित SMS (%1$s)</string>
-    <string name="ConversationActivity_transport_insecure_mms">असुरक्षित MMS</string>
+    <string name="ConversationActivity_transport_insecure_sms_with_sim">इनसिक्योर SMS (%1$s)</string>
+    <string name="ConversationActivity_transport_insecure_mms">इनसिक्योर MMS</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
-    <string name="ConversationActivity_transport_signal">Signal मेसेज</string>
+    <string name="ConversationActivity_transport_signal">Signal मैसेज</string>
     <!-- The content description for button to send a message in a conversation -->
     <string name="ConversationActivity_send_message_content_description">संदेश भेजें</string>
-    <string name="ConversationActivity_lets_switch_to_signal">%1$s चलो Signal पर स्विच करें</string>
-    <string name="ConversationActivity_specify_recipient">कृपया एक संपर्क चुनें</string>
-    <string name="ConversationActivity_attachment_exceeds_size_limits">आपके द्वारा भेजे जा रहे मेसेज के प्रकार के लिए अनुलग्नक आकार सीमा से अधिक है।</string>
-    <string name="ConversationActivity_unable_to_record_audio">ऑडियो रिकॉर्ड करने में असमर्थ</string>
-    <string name="ConversationActivity_you_cant_send_messages_to_this_group">आप इस समूह को संदेश नहीं भेज सकते क्योंकि आप अब सदस्य नहीं हैं।</string>
-    <string name="ConversationActivity_only_s_can_send_messages">केवल %1$s संदेश भेज सकते हैं।</string>
-    <string name="ConversationActivity_admins">व्यवस्थापक</string>
-    <string name="ConversationActivity_message_an_admin">व्यवस्थापक को संदेश भेजें</string>
-    <string name="ConversationActivity_cant_start_group_call">ग्रुप कॉल प्रारंभ नहीं हो सकता</string>
-    <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">केवल इस ग्रुप के व्यवस्थापक ही कॉल शुरू कर सकते हैं।</string>
-    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">आपके डिवाइस पर इस लिंक को संभालने के लिए कोई ऐप उपलब्ध नहीं है।</string>
-    <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">समूह से जुड़ने का आपका अनुरोध समूह संचालक को भेज दिया गया है। जब वे जवाब देंगे तो आपको सूचित किया जाएगा।</string>
-    <string name="ConversationActivity_cancel_request">निवेदन रद्द करें</string>
+    <string name="ConversationActivity_lets_switch_to_signal">आइए Signal %1$s पर स्विच करते हैं</string>
+    <string name="ConversationActivity_specify_recipient">कृपया कोई कॉन्टैक्ट चुनें</string>
+    <string name="ConversationActivity_attachment_exceeds_size_limits">अटैचमेंट का साइज़ इस मैसेज के लिए ज़्यादा बड़ा है।</string>
+    <string name="ConversationActivity_unable_to_record_audio">ऑडियो रिकॉर्ड नहीं हो सका!</string>
+    <string name="ConversationActivity_you_cant_send_messages_to_this_group">इस ग्रुप में मैसेज नहीं भेजा जा सकता, क्योंकि अब आप इसके सदस्य नहीं हैं।</string>
+    <string name="ConversationActivity_only_s_can_send_messages">सिर्फ़ %1$s ही मैसेज भेज सकते हैं।</string>
+    <string name="ConversationActivity_admins">ऐडमिन</string>
+    <string name="ConversationActivity_message_an_admin">ऐडमिन को मैसेज भेजें</string>
+    <string name="ConversationActivity_cant_start_group_call">ग्रुप कॉल शुरू नहीं की जा सकती</string>
+    <string name="ConversationActivity_only_admins_of_this_group_can_start_a_call">ग्रुप कॉल शुरू करने की सुविधा सिर्फ़ ऐडमिन के पास मौजूद है।</string>
+    <string name="ConversationActivity_there_is_no_app_available_to_handle_this_link_on_your_device">इस लिंक को खोलने के लिए आपके डिवाइस में कोई ऐप उपलब्ध नहीं है।</string>
+    <string name="ConversationActivity_your_request_to_join_has_been_sent_to_the_group_admin">ग्रुप में जुड़ने का आपका अनुरोध ऐडमिन को भेज दिया गया है। उनकी ओर से कार्रवाई होते ही आपको सूचना मिल जाएगी।</string>
+    <string name="ConversationActivity_cancel_request">अनुरोध रद्द करें</string>
 
     <!-- Dialog title asking users for microphone permission -->
     <string name="ConversationActivity_allow_access_microphone">माइक्रोफोन इस्तेमाल करने की अनुमति दें</string>
@@ -499,23 +499,23 @@
     <string name="ConversationActivity_to_send_voice_messages_allow_signal_access_to_your_microphone">वॉयस संदेश भेजने के लिए, अपने माइक्रोफ़ोन पर Signal पहुंच की अनुमति दें।</string>
     <!-- Toast text explaining Signal\'s need for microphone access -->
     <string name="ConversationActivity_signal_needs_microphone_access_voice_message">वॉयस संदेश रिकॉर्ड करने के लिए Signal को माइक्रोफ़ोन एक्सेस की आवश्यकता होती है।</string>
-    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ऑडियो मेसेज को भेजने के लिए Signal को माइक्रोफ़ोन अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"माइक्रोफ़ोन\" सक्षम करें।</string>
+    <string name="ConversationActivity_signal_requires_the_microphone_permission_in_order_to_send_audio_messages">ऑडियो मैसेज भेजने के लिए Signal को माइक्रोफ़ोन का ऐक्सेस चाहिए। हालांकि, आपने इससे जुड़ी अनुमति को स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए, ऐप सेटिंग में जाकर \"अनुमतियां\" चुनें और इसके बाद \"माइक्रोफ़ोन\" चालू करें।</string>
 
-    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%1$s को कॉल करने के लिए Signal को माइक्रोफ़ोन और कैमरा अनुमतियों की आवश्यकता होती है, लेकिन उन्हें स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"माइक्रोफ़ोन\" और \"कैमरा\" सक्षम करें।</string>
-    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">फोटो और वीडियो कैप्चर करने के लिए, कैमरे को Signal पहुंच की अनुमति दें।</string>
-    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">Signal को फ़ोटो या वीडियो लेने के लिए कैमरा अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"कैमरा\" सक्षम करें।</string>
-    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">Signal को फ़ोटो या वीडियो लेने के लिए कैमरा अनुमतियां चाहिए</string>
-    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">ध्वनि के साथ वीडियो कैप्चर करने के लिए माइक्रोफोन अनुमति सक्षम करें।</string>
-    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">Signal को वीडियो रिकॉर्ड करने के लिए माइक्रोफोन की अनुमति की आवश्यकता होती है, लेकिन उसे अस्वीकार कर दिया गया है। कृपया एप्प विन्यास जारी रखें, \"अनुमतियां\" चुनें, और \"माइक्रोफोन\" और \"कैमरा\" सक्षम करें।</string>
-    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">Signal को वीडियो रिकॉर्ड करने के लिए माइक्रोफोन की अनुमति की आवश्यकता होती है।</string>
+    <string name="ConversationActivity_signal_needs_the_microphone_and_camera_permissions_in_order_to_call_s">%1$s को कॉल करने के लिए Signal को माइक्रोफ़ोन और कैमरे का ऐक्सेस चाहिए। हालांकि, आपने इससे जुड़ी अनुमति को स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए, ऐप सेटिंग में जाकर \"अनुमतियां\" चुनें और इसके बाद \"माइक्रोफ़ोन\" और \"कैमरा\" चालू करें।</string>
+    <string name="ConversationActivity_to_capture_photos_and_video_allow_signal_access_to_the_camera">फ़ोटो खींचने और वीडियो रिकॉर्ड करने के लिए Signal को कैमरे का ऐक्सेस दें।</string>
+    <string name="ConversationActivity_signal_needs_the_camera_permission_to_take_photos_or_video">फ़ोटो खींचने या वीडियो रिकॉर्ड करने के लिए Signal को कैमरे का ऐक्सेस चाहिए। हालांकि, आपने इससे जुड़ी अनुमति को स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए, ऐप सेटिंग में जाकर \"अनुमतियां\" चुनें और इसके बाद \"कैमरा\" चालू करें।</string>
+    <string name="ConversationActivity_signal_needs_camera_permissions_to_take_photos_or_video">फ़ोटो खींचने या वीडियो रिकॉर्ड करने के लिए Signal को कैमरे का ऐक्सेस चाहिए।</string>
+    <string name="ConversationActivity_enable_the_microphone_permission_to_capture_videos_with_sound">आवाज़ के साथ वीडियो रिकॉर्ड करने के लिए माइक्रोफ़ोन का ऐक्सेस दें।</string>
+    <string name="ConversationActivity_signal_needs_the_recording_permissions_to_capture_video">वीडियो रिकॉर्ड करने के लिए Signal को माइक्रोफ़ोन का ऐक्सेस चाहिए। हालांकि, आपने इससे जुड़ी अनुमति को स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए, ऐप सेटिंग में जाकर \"अनुमतियां\" चुनें और इसके बाद इसके बाद \"माइक्रोफ़ोन\" और \"कैमरा\" चालू करें।</string>
+    <string name="ConversationActivity_signal_needs_recording_permissions_to_capture_video">वीडियो रिकॉर्ड करने के लिए Signal को माइक्रोफ़ोन का ऐक्सेस चाहिए।</string>
 
     <string name="ConversationActivity_quoted_contact_message">%1$s%2$s</string>
     <string name="ConversationActivity_no">नहीं</string>
-    <string name="ConversationActivity_search_position">%1$d का %2$d</string>
-    <string name="ConversationActivity_no_results">कोई परिणाम नहीं</string>
+    <string name="ConversationActivity_search_position">%2$d का %1$d</string>
+    <string name="ConversationActivity_no_results">कोई नतीजा नहीं मिला</string>
 
-    <string name="ConversationActivity_sticker_pack_installed">स्टीकर पैक इंस्टॉल</string>
-    <string name="ConversationActivity_new_say_it_with_stickers">नया! स्टीकर के साथ कहें</string>
+    <string name="ConversationActivity_sticker_pack_installed">स्टिकर पैक इंस्टॉल किया गया</string>
+    <string name="ConversationActivity_new_say_it_with_stickers">नई सुविधा! चैट में स्टिकर का इस्तेमाल करें</string>
 
     <string name="ConversationActivity_cancel">रद्द करें</string>
     <string name="ConversationActivity_delete_conversation">चैट को डिलीट करें?</string>
@@ -535,9 +535,9 @@
 
     <string name="ConversationActivity_join">जुड़ें</string>
     <!-- Button text for an active group call but the call is currently full and unjoinable -->
-    <string name="ConversationActivity_full">पूर्ण</string>
+    <string name="ConversationActivity_full">जगह नहीं बची है</string>
 
-    <string name="ConversationActivity_error_sending_media">मीडिया भेजने में त्रुटि</string>
+    <string name="ConversationActivity_error_sending_media">मीडिया भेजने में कोई गड़बड़ी हुई</string>
 
     <!-- Message shown when opening an MMS group conversation with SMS disabled and there are no exported messages -->
     <string name="ConversationActivity__sms_messaging_is_no_longer_supported">SMS संदेश सेवा अब Signal में समर्थित नहीं है।</string>

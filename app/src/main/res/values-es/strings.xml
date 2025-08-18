@@ -1499,7 +1499,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Ahora no</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Si decides no restaurarlos ahora, no podrás hacerlo más tarde. Los archivos multimedia se restaurarán en segundo plano.</string>
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Si decides no restaurar ahora, no podrás hacerlo más tarde. Los archivos multimedia se restaurarán en segundo plano.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificarme cuando alguien me mencione</string>

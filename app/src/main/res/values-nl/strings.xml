@@ -1985,8 +1985,8 @@
     <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s heeft via de groepslink verzocht om lid te worden.</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s heeft verzocht om lid te worden van de groep en dat verzoek weer ingetrokken.</item>
-        <item quantity="other">%1$s heeft verzocht om lid te worden van de groep en %2$d verzoeken weer ingetrokken.</item>
+        <item quantity="one">%1$s heeft via de groepslink verzocht om lid te worden van de groep en dat verzoek weer ingetrokken.</item>
+        <item quantity="other">%1$s heeft %2$d keer via de groepslink verzocht om lid te worden van de groep en die verzoeken weer ingetrokken.</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
@@ -3546,7 +3546,7 @@
 
     <!-- BubbleOptOutTooltip -->
     <!-- Message to inform the user of what Android chat bubbles are -->
-    <string name="BubbleOptOutTooltip__description">Ballonnen zijn een Android functionaliteit die je voor elke Signal-chat afzonderlijk kunt in- of uitschakelen.</string>
+    <string name="BubbleOptOutTooltip__description">Bubbels zijn een Android-functionaliteit die je voor elke Signal-chat afzonderlijk kunt in- of uitschakelen.</string>
     <!-- Button to dismiss the tooltip for opting out of using Android bubbles -->
     <string name="BubbleOptOutTooltip__not_now">Niet nu</string>
     <!-- Button to move to the system settings to control the use of Android bubbles -->
@@ -4472,7 +4472,7 @@
     <string name="conversation__menu_view_all_media">Alle media</string>
     <string name="conversation__menu_conversation_settings">Chatinstellingen</string>
     <string name="conversation__menu_add_shortcut">Toevoegen aan startscherm</string>
-    <string name="conversation__menu_create_bubble">Ballon aanmaken</string>
+    <string name="conversation__menu_create_bubble">Chatbubbel aanmaken</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Tekstopmaak</string>
 
@@ -8604,7 +8604,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Netwerkfout bij herstel Signal Android back-up</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Herhaalde fout bij herstel Signal Android back-up</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Permanente fout bij herstel Signal Android back-up</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->
