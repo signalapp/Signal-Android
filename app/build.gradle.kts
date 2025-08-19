@@ -640,6 +640,9 @@ dependencies {
   testImplementation(testFixtures(project(":libsignal-service")))
   testImplementation(testLibs.espresso.core)
   testImplementation(testLibs.kotlinx.coroutines.test)
+  testImplementation(libs.androidx.compose.ui.test.junit4)
+
+  "perfImplementation"(libs.androidx.compose.ui.test.manifest)
 
   androidTestImplementation(platform(libs.androidx.compose.bom))
   androidTestImplementation(libs.androidx.compose.ui.test.junit4)

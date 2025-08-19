@@ -85,7 +85,7 @@ tasks.register("qa") {
     "clean",
     "checkStopship",
     "buildQa",
-    ":Signal-Android:testPlayProdReleaseUnitTest",
+    ":Signal-Android:testPlayProdPerfUnitTest",
     ":Signal-Android:lintPlayProdRelease",
     "Signal-Android:ktlintCheck",
     ":libsignal-service:test",

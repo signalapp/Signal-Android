@@ -158,9 +158,10 @@ object Rows {
     label: String? = null,
     icon: ImageVector? = null,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
+    enabled: Boolean = true,
     isLoading: Boolean = false
   ) {
-    val enabled = !isLoading
+    val enabled = enabled && !isLoading
 
     Row(
       modifier = modifier
