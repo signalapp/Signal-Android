@@ -151,6 +151,8 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     val pin: PinValues
       get() = instance!!.pinValues
 
+    @JvmStatic
+    @get:JvmName("remoteConfig")
     val remoteConfig: RemoteConfigValues
       get() = instance!!.remoteConfigValues
 

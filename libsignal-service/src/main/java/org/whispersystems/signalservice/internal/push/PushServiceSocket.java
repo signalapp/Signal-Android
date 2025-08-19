@@ -138,6 +138,7 @@ import okhttp3.Call;
 import okhttp3.ConnectionPool;
 import okhttp3.ConnectionSpec;
 import okhttp3.Dns;
+import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -177,6 +178,8 @@ public class PushServiceSocket {
 
   private static final String VERIFICATION_SESSION_PATH = "/v1/verification/session";
   private static final String VERIFICATION_CODE_PATH    = "/v1/verification/session/%s/code";
+
+  private static final String REMOTE_CONFIG = "/v2/config";
 
   private static final String REGISTRATION_PATH    = "/v1/registration";
 
@@ -541,8 +544,11 @@ public class PushServiceSocket {
   }
 
   public RemoteConfigResponse getRemoteConfig() throws IOException {
-    String response = makeServiceRequest("/v1/config", "GET", null);
-    return JsonUtil.fromJson(response, RemoteConfigResponse.class);
+    try (Response response = makeServiceRequest(REMOTE_CONFIG, "GET", jsonRequestBody(null), NO_HEADERS, NO_HANDLER, SealedSenderAccess.NONE, false)) {
+      RemoteConfigResponse remoteConfigResponse = JsonUtil.fromJson(readBodyString(response), RemoteConfigResponse.class);
+      remoteConfigResponse.setServerEpochTime(response.headers().get("X-Signal-Timestamp") != null ? Long.parseLong(response.headers().get("X-Signal-Timestamp")) : System.currentTimeMillis());
+      return remoteConfigResponse;
+    }
   }
 
   public void cancelInFlightRequests() {

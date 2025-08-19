@@ -14,6 +14,7 @@ public final class RemoteConfigValues extends SignalStoreValues {
   private static final String CURRENT_CONFIG  = "remote_config";
   private static final String PENDING_CONFIG  = "pending_remote_config";
   private static final String LAST_FETCH_TIME = "remote_config_last_fetch_time";
+  private static final String ETAG            = "etag";
 
   RemoteConfigValues(@NonNull KeyValueStore store) {
     super(store);
@@ -50,5 +51,13 @@ public final class RemoteConfigValues extends SignalStoreValues {
 
   public void setLastFetchTime(long time) {
     putLong(LAST_FETCH_TIME, time);
+  }
+
+  public String getETag() {
+    return getString(ETAG, "");
+  }
+
+  public void setETag(String etag) {
+    putString(ETAG, etag);
   }
 }
