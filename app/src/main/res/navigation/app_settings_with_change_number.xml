@@ -973,8 +973,7 @@
 
     <fragment
         android:id="@+id/addAllowedMembersFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.profiles.AddAllowedMembersFragment"
-        tools:layout="@layout/fragment_add_allowed_members">
+        android:name="org.thoughtcrime.securesms.components.settings.app.notifications.profiles.AddAllowedMembersFragment">
 
         <argument
             android:name="profileId"

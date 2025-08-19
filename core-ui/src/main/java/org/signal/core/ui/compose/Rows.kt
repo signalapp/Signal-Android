@@ -156,6 +156,7 @@ object Rows {
     onCheckChanged: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
     label: String? = null,
+    icon: ImageVector? = null,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
     isLoading: Boolean = false
   ) {
@@ -168,6 +169,15 @@ object Rows {
         .padding(defaultPadding()),
       verticalAlignment = CenterVertically
     ) {
+      if (icon != null) {
+        Icon(
+          imageVector = icon,
+          contentDescription = null
+        )
+
+        Spacer(modifier = Modifier.width(24.dp))
+      }
+
       TextAndLabel(
         text = text,
         label = label,
