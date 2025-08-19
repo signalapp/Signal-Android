@@ -361,7 +361,7 @@ private fun BackupAvailableContent(
       }
 
       Text(
-        text = stringResource(R.string.RemoteRestoreActivity__if_you_choose_not_to_restore),
+        text = stringResource(R.string.RemoteRestoreActivity__your_media_will_restore_in_the_background),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.secondary,
         modifier = Modifier.padding(top = 16.dp)
@@ -375,7 +375,7 @@ private fun BackupAvailableContent(
       )
 
       Text(
-        text = stringResource(R.string.RemoteRestoreActivity__if_you_choose_not_to_restore),
+        text = stringResource(R.string.RemoteRestoreActivity__your_media_will_restore_in_the_background),
         style = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center),
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )
