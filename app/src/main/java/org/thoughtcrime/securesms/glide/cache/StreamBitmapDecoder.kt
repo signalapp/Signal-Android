@@ -45,9 +45,11 @@ class StreamBitmapDecoder(
     }
 
     return when (imageType) {
-      ImageHeaderParser.ImageType.GIF, ImageHeaderParser.ImageType.PNG_A -> false
-      ImageHeaderParser.ImageType.WEBP_A -> true
-      ImageHeaderParser.ImageType.ANIMATED_WEBP -> true
+      ImageHeaderParser.ImageType.GIF,
+      ImageHeaderParser.ImageType.PNG_A,
+      ImageHeaderParser.ImageType.WEBP_A,
+      ImageHeaderParser.ImageType.ANIMATED_WEBP -> false
+
       else -> true
     }
   }

@@ -5,14 +5,15 @@
 
 package org.thoughtcrime.securesms.glide.cache
 
+import com.bumptech.glide.Glide
+import com.bumptech.glide.Registry
+import com.bumptech.glide.load.ImageHeaderParser
 import com.bumptech.glide.load.Options
 import com.bumptech.glide.load.ResourceDecoder
 import com.bumptech.glide.load.engine.Resource
 import org.signal.core.util.StreamUtil
 import org.signal.glide.apng.decode.APNGDecoder
-import org.signal.glide.apng.decode.APNGParser
-import org.signal.glide.common.io.StreamReader
-import org.thoughtcrime.securesms.glide.GlideStreamConfig
+import org.thoughtcrime.securesms.glide.ImageHeaderParserUtils
 import org.thoughtcrime.securesms.mms.InputStreamFactory
 import java.nio.ByteBuffer
 
@@ -20,12 +21,15 @@ import java.nio.ByteBuffer
  * A variant of [StreamApngDecoder] that decodes animated PNGs from [InputStreamFactory] sources.
  */
 class StreamFactoryApngDecoder(
-  private val byteBufferDecoder: ResourceDecoder<ByteBuffer, APNGDecoder>
+  private val byteBufferDecoder: ResourceDecoder<ByteBuffer, APNGDecoder>,
+  private val glide: Glide,
+  private val registry: Registry
 ) : ResourceDecoder<InputStreamFactory, APNGDecoder> {
 
   override fun handles(source: InputStreamFactory, options: Options): Boolean {
     return if (options.get(ApngOptions.ANIMATE) == true) {
-      APNGParser.isAPNG(LimitedReader(StreamReader(source.create()), GlideStreamConfig.markReadLimitBytes))
+      val imageType = ImageHeaderParserUtils.getType(registry.imageHeaderParsers, source.create(), glide.arrayPool)
+      imageType == ImageHeaderParser.ImageType.PNG_A
     } else {
       false
     }

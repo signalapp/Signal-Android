@@ -88,7 +88,7 @@ public class SignalGlideComponents implements RegisterGlideComponents {
 
     ByteBufferApngDecoder    byteBufferApngDecoder    = new ByteBufferApngDecoder();
     StreamApngDecoder        streamApngDecoder        = new StreamApngDecoder(byteBufferApngDecoder);
-    StreamFactoryApngDecoder streamFactoryApngDecoder = new StreamFactoryApngDecoder(byteBufferApngDecoder);
+    StreamFactoryApngDecoder streamFactoryApngDecoder = new StreamFactoryApngDecoder(byteBufferApngDecoder, glide, registry);
 
     registry.prepend(InputStream.class, APNGDecoder.class, streamApngDecoder);
     registry.prepend(InputStreamFactory.class, APNGDecoder.class, streamFactoryApngDecoder);
