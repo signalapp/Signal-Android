@@ -49,6 +49,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
@@ -58,7 +60,9 @@ import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.TriggerAlignedPopupState
 import org.signal.core.util.DimensionUnit
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
+import org.thoughtcrime.securesms.conversation.colors.ChatColorsPalette
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.events.WebRtcViewModel
@@ -335,7 +339,9 @@ private fun BoxScope.Viewport(
       }
     }
 
-    Row(modifier = modifier) {
+    Row(modifier = modifier.fillMaxWidth()) {
+      val overflowSize = dimensionResource(R.dimen.call_screen_overflow_item_size)
+
       Column(
         modifier = Modifier.weight(1f)
       ) {
@@ -359,7 +365,7 @@ private fun BoxScope.Viewport(
             overflowParticipants = overflowParticipants,
             modifier = Modifier
               .padding(16.dp)
-              .height(72.dp)
+              .height(overflowSize)
               .fillMaxWidth()
           )
         }
@@ -369,8 +375,7 @@ private fun BoxScope.Viewport(
         CallParticipantsOverflow(
           overflowParticipants = overflowParticipants,
           modifier = Modifier
-            .padding(16.dp)
-            .width(72.dp)
+            .width(overflowSize + 32.dp)
             .fillMaxHeight()
         )
       }
@@ -522,15 +527,30 @@ private fun AnimatedCallStateUpdate(
 }
 
 @Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, device = Devices.FOLDABLE)
+@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES, device = Devices.TABLET)
 @Composable
 private fun CallScreenPreview() {
+  val participants = remember {
+    (1..10).map {
+      CallParticipant(
+        recipient = Recipient(
+          isResolving = false,
+          chatColorsValue = ChatColorsPalette.UNKNOWN_CONTACT
+        )
+      )
+    }
+  }
+
   Previews.Preview {
     CallScreen(
       callRecipient = Recipient(systemContactName = "Test User"),
       webRtcCallState = WebRtcViewModel.State.CALL_CONNECTED,
       isRemoteVideoOffer = false,
       isInPipMode = false,
-      callScreenState = CallScreenState(),
+      callScreenState = CallScreenState(
+        callStatus = "Connecting..."
+      ),
       callControlsState = CallControlsState(
         displayMicToggle = true,
         isMicEnabled = true,
@@ -538,9 +558,17 @@ private fun CallScreenPreview() {
         displayGroupRingingToggle = true,
         displayStartCallButton = true
       ),
-      callParticipantsPagerState = CallParticipantsPagerState(),
-      localParticipant = CallParticipant(),
-      localRenderState = WebRtcLocalRenderState.LARGE,
+      callParticipantsPagerState = CallParticipantsPagerState(
+        callParticipants = participants,
+        focusedParticipant = participants.first()
+      ),
+      localParticipant = CallParticipant(
+        recipient = Recipient(
+          isResolving = false,
+          isSelf = true
+        )
+      ),
+      localRenderState = WebRtcLocalRenderState.SMALL_RECTANGLE,
       callScreenDialogType = CallScreenDialogType.NONE,
       callInfoView = {
         Text(text = "Call Info View Preview", modifier = Modifier.alpha(it))
@@ -548,7 +576,7 @@ private fun CallScreenPreview() {
       raiseHandSnackbar = {},
       onNavigationClick = {},
       onLocalPictureInPictureClicked = {},
-      overflowParticipants = emptyList(),
+      overflowParticipants = participants,
       onControlsToggled = {},
       reactions = emptyList()
     )
