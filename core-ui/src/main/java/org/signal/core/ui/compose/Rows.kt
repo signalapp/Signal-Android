@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -161,12 +162,44 @@ object Rows {
     enabled: Boolean = true,
     isLoading: Boolean = false
   ) {
-    val enabled = enabled && !isLoading
+    ToggleRow(
+      checked = checked,
+      text = AnnotatedString(text),
+      onCheckChanged = onCheckChanged,
+      modifier = modifier,
+      label = label?.let { AnnotatedString(it) },
+      icon = icon,
+      textColor = textColor,
+      enabled = enabled,
+      isLoading = isLoading
+    )
+  }
+
+  /**
+   * Row that positions [text] and optional [label] in a [TextAndLabel] to the side of a [Switch].
+   *
+   * Can display a circular loading indicator by setting isLoaded to true. Setting isLoading to true
+   * will disable the control by default.
+   */
+  @Composable
+  fun ToggleRow(
+    checked: Boolean,
+    text: AnnotatedString,
+    onCheckChanged: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
+    label: AnnotatedString? = null,
+    icon: ImageVector? = null,
+    textColor: Color = MaterialTheme.colorScheme.onSurface,
+    enabled: Boolean = true,
+    isLoading: Boolean = false,
+    inlineContent: Map<String, InlineTextContent> = mapOf()
+  ) {
+    val isEnabled = enabled && !isLoading
 
     Row(
       modifier = modifier
         .fillMaxWidth()
-        .clickable(enabled = enabled) { onCheckChanged(!checked) }
+        .clickable(enabled = isEnabled) { onCheckChanged(!checked) }
         .padding(defaultPadding()),
       verticalAlignment = CenterVertically
     ) {
@@ -183,13 +216,14 @@ object Rows {
         text = text,
         label = label,
         textColor = textColor,
-        enabled = enabled,
-        modifier = Modifier.padding(end = 16.dp)
+        enabled = isEnabled,
+        modifier = Modifier.padding(end = 16.dp),
+        inlineContent = inlineContent
       )
 
       val loadingContent by rememberDelayedState(isLoading)
-      val toggleState = remember(checked, loadingContent, enabled, onCheckChanged) {
-        ToggleState(checked, loadingContent, enabled, onCheckChanged)
+      val toggleState = remember(checked, loadingContent, isEnabled, onCheckChanged) {
+        ToggleState(checked, loadingContent, isEnabled, onCheckChanged)
       }
 
       AnimatedContent(
@@ -415,7 +449,8 @@ object Rows {
     label: AnnotatedString? = null,
     enabled: Boolean = true,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
-    textStyle: TextStyle = MaterialTheme.typography.bodyLarge
+    textStyle: TextStyle = MaterialTheme.typography.bodyLarge,
+    inlineContent: Map<String, InlineTextContent> = mapOf()
   ) {
     Column(
       modifier = modifier
@@ -426,7 +461,8 @@ object Rows {
         Text(
           text = text,
           style = textStyle,
-          color = textColor
+          color = textColor,
+          inlineContent = inlineContent
         )
       }
 
