@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.ServiceUtil
+import java.util.Locale
 import kotlin.random.Random
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
@@ -74,7 +75,7 @@ class NewLinkedDeviceNotificationJob private constructor(
       val builder = NotificationCompat.Builder(context, NotificationChannels.getInstance().NEW_LINKED_DEVICE)
         .setSmallIcon(R.drawable.ic_notification)
         .setContentTitle(context.getString(R.string.NewLinkedDeviceNotification__you_linked_new_device))
-        .setContentText(context.getString(R.string.NewLinkedDeviceNotification__a_new_device_was_linked, DateUtils.getOnlyTimeAtString(context, data.deviceCreatedAt)))
+        .setContentText(context.getString(R.string.NewLinkedDeviceNotification__a_new_device_was_linked, DateUtils.getDateTimeString(context, Locale.getDefault(), data.deviceCreatedAt)))
         .setContentIntent(pendingIntent)
 
       ServiceUtil.getNotificationManager(context).notify(NotificationIds.NEW_LINKED_DEVICE, builder.build())

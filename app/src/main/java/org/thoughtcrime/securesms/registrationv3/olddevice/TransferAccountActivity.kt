@@ -45,14 +45,14 @@ import androidx.lifecycle.lifecycleScope
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
-import org.signal.core.ui.BottomSheets
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Dialogs
-import org.signal.core.ui.Previews
-import org.signal.core.ui.SignalPreview
-import org.signal.core.ui.Texts
-import org.signal.core.ui.horizontalGutters
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.Texts
+import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.BiometricDeviceLockContract
@@ -69,7 +69,7 @@ import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.viewModel
-import org.whispersystems.signalservice.api.registration.RestoreMethod
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 
 /**
  * Launched after scanning QR code from new device to start the transfer/reregistration process from

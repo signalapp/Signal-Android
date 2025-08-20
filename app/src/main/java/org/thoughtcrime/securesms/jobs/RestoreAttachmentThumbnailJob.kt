@@ -9,8 +9,8 @@ import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.InvalidAttachmentException
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.BackupRepository.getThumbnailMediaName
-import org.thoughtcrime.securesms.backup.v2.database.createArchiveThumbnailPointer
+import org.thoughtcrime.securesms.backup.v2.createArchiveThumbnailPointer
+import org.thoughtcrime.securesms.backup.v2.requireThumbnailMediaName
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.jobmanager.JsonJobData
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.push.exceptions.MissingConfigurationException
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
@@ -112,37 +113,36 @@ class RestoreAttachmentThumbnailJob private constructor(
       return
     }
 
-    if (attachment.archiveMediaName == null) {
-      Log.w(TAG, "$attachmentId was never archived! Cannot proceed.")
+    if (attachment.dataHash == null) {
+      Log.w(TAG, "$attachmentId has no plaintext hash! Cannot proceed.")
       return
     }
 
     val maxThumbnailSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val thumbnailTransferFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
-    val thumbnailFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
 
     val progressListener = object : SignalServiceAttachment.ProgressListener {
-      override fun onAttachmentProgress(total: Long, progress: Long) = Unit
+      override fun onAttachmentProgress(progress: AttachmentTransferProgress) = Unit
       override fun shouldCancel(): Boolean = this@RestoreAttachmentThumbnailJob.isCanceled
     }
 
-    val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MEDIA, attachment.archiveCdn).successOrThrow().headers
+    val cdnCredentials = BackupRepository.getCdnReadCredentials(BackupRepository.CredentialType.MEDIA, attachment.archiveCdn ?: RemoteConfig.backupFallbackArchiveCdn).successOrThrow().headers
     val pointer = attachment.createArchiveThumbnailPointer()
 
     Log.i(TAG, "Downloading thumbnail for $attachmentId")
-    val downloadResult = AppDependencies.signalServiceMessageReceiver
-      .retrieveArchivedAttachment(
-        SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.getThumbnailMediaName()),
+    val decryptingStream = AppDependencies.signalServiceMessageReceiver
+      .retrieveArchivedThumbnail(
+        SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.requireThumbnailMediaName()),
         cdnCredentials,
         thumbnailTransferFile,
         pointer,
-        thumbnailFile,
         maxThumbnailSize,
-        true,
         progressListener
       )
 
-    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.archiveMediaId!!, downloadResult.dataStream, thumbnailTransferFile)
+    decryptingStream.use { input ->
+      SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.dataHash, attachment.remoteKey, input, thumbnailTransferFile)
+    }
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context)
@@ -158,7 +158,15 @@ class RestoreAttachmentThumbnailJob private constructor(
   override fun onShouldRetry(exception: Exception): Boolean {
     if (exception is NonSuccessfulResponseCodeException) {
       if (exception.code == 404) {
-        Log.w(TAG, "[$attachmentId-thumbnail] Unable to find file")
+        Log.w(TAG, "[$attachmentId-thumbnail] Unable to find file!")
+        return false
+      }
+      if (exception.code == 403) {
+        Log.w(TAG, "[$attachmentId-thumbnail] No permission!")
+        return false
+      }
+      if (exception.code == 555) {
+        Log.w(TAG, "[$attachmentId-thumbnail] Syntetic failure!")
         return false
       }
     }

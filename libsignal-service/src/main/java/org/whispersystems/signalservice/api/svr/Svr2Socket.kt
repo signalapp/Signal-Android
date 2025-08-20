@@ -193,11 +193,6 @@ internal class Svr2Socket(
     FAILED
   }
 
-  data class Response(
-    val response: Svr2Response,
-    val pinHasher: Svr2PinHasher
-  )
-
   companion object {
     private val TAG = Svr2Socket::class.java.simpleName
   }

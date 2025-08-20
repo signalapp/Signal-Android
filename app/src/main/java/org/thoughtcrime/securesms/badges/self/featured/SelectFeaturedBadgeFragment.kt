@@ -47,7 +47,11 @@ class SelectFeaturedBadgeFragment : DSLSettingsFragment(
   }
 
   override fun getMaterial3OnScrollHelper(toolbar: Toolbar?): Material3OnScrollHelper? {
-    return Material3OnScrollHelper(requireActivity(), scrollShadow, viewLifecycleOwner)
+    return Material3OnScrollHelper(
+      activity = requireActivity(),
+      views = listOf(scrollShadow),
+      lifecycleOwner = viewLifecycleOwner
+    )
   }
 
   override fun bindAdapter(adapter: MappingAdapter) {

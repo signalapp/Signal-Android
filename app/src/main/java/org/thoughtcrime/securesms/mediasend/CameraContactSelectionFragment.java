@@ -24,9 +24,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-import org.thoughtcrime.securesms.InviteActivity;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.DynamicTheme;
 import org.thoughtcrime.securesms.util.ThemeUtil;
@@ -152,7 +152,7 @@ public class CameraContactSelectionFragment extends LoggingFragment implements C
 
   @Override
   public void onInviteContactsClicked() {
-    startActivity(new Intent(requireContext(), InviteActivity.class));
+    startActivity(AppSettingsActivity.invite(requireContext()));
   }
 
   private void initViewModel() {

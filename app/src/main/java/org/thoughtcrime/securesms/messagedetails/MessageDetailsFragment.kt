@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import org.signal.core.util.logging.Log
+import org.signal.ringrtc.CallLinkEpoch
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment
@@ -84,7 +85,7 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
 
     list.adapter = adapter
     list.itemAnimator = null
-    Material3OnScrollHelper(requireActivity(), toolbarShadow, viewLifecycleOwner).attach(list)
+    Material3OnScrollHelper(activity = requireActivity(), views = listOf(toolbarShadow), lifecycleOwner = viewLifecycleOwner).attach(list)
   }
 
   private fun initializeViewModel() {
@@ -358,7 +359,7 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
-  override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) {
+  override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey, callLinkEpoch: CallLinkEpoch?) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 

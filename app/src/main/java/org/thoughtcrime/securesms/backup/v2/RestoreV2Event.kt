@@ -11,7 +11,7 @@ class RestoreV2Event(val type: Type, val count: ByteSize, val estimatedTotalCoun
   enum class Type {
     PROGRESS_DOWNLOAD,
     PROGRESS_RESTORE,
-    FINISHED
+    PROGRESS_FINALIZING
   }
 
   fun getProgress(): Float {

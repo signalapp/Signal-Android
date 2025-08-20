@@ -35,9 +35,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Previews
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorPair
 import org.thoughtcrime.securesms.database.CallLinkTable
@@ -53,7 +53,7 @@ import org.signal.core.ui.R as CoreUiR
 @Composable
 private fun SignalCallRowPreview() {
   val callLink = remember {
-    val credentials = CallLinkCredentials(byteArrayOf(1, 2, 3, 4), byteArrayOf(5, 6, 7, 8))
+    val credentials = CallLinkCredentials(byteArrayOf(1, 2, 3, 4), byteArrayOf(0, 1, 2, 3), byteArrayOf(5, 6, 7, 8))
     CallLinkTable.CallLink(
       recipientId = RecipientId.UNKNOWN,
       roomId = CallLinkRoomId.fromBytes(byteArrayOf(1, 3, 5, 7)),
@@ -97,7 +97,7 @@ fun SignalCallRow(
     "https://signal.call.example.com"
   } else {
     remember(callLink.credentials) {
-      callLink.credentials?.let { CallLinks.url(it.linkKeyBytes) } ?: ""
+      callLink.credentials?.let { CallLinks.url(it.linkKeyBytes, it.epochBytes) } ?: ""
     }
   }
 

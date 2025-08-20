@@ -66,49 +66,6 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        app:layout_behavior="org.thoughtcrime.securesms.util.views.SlideUpWithSnackbarBehavior">
-
-        <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
-            android:id="@+id/fab_shared_element_target"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:focusable="true"
-            android:theme="@style/Widget.Material3.FloatingActionButton.Secondary"
-            android:transitionName="camera_fab"
-            app:backgroundTint="@color/signal_colorSurfaceVariant"
-            app:elevation="0dp"
-            app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
-            app:srcCompat="@drawable/ic_camera_outline_24"
-            app:tint="@color/signal_colorOnSurface" />
-
-        <org.thoughtcrime.securesms.components.registration.PulsingFloatingActionButton
-            android:id="@+id/fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="16dp"
-            android:contentDescription="@string/CallLogFragment__start_a_new_call"
-            android:focusable="true"
-            android:theme="@style/Widget.Material3.FloatingActionButton.Secondary"
-            android:transitionName="new_convo_fab"
-            app:backgroundTint="@color/signal_colorPrimaryContainer"
-            app:shapeAppearanceOverlay="@style/Signal.ShapeOverlay.Rounded.Fab"
-            app:srcCompat="@drawable/symbol_phone_plus_24"
-            app:tint="@color/signal_colorOnSurface" />
-
-    </FrameLayout>
-
     <org.thoughtcrime.securesms.components.menu.SignalBottomActionBar
         android:id="@+id/bottom_action_bar"
         android:layout_width="match_parent"

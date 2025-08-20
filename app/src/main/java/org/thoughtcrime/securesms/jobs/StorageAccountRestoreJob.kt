@@ -33,6 +33,7 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
 
   constructor() : this(
     Parameters.Builder()
+      .setGlobalPriority(Parameters.PRIORITY_HIGH)
       .setQueue(StorageSyncJob.QUEUE_KEY)
       .addConstraint(NetworkConstraint.KEY)
       .setMaxInstancesForFactory(1)
@@ -129,7 +130,7 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
 
     if (accountRecord.proto.avatarUrlPath.isNotEmpty()) {
       Log.i(TAG, "Fetching avatar...")
-      val state = AppDependencies.jobManager.runSynchronously(RetrieveProfileAvatarJob(self(), accountRecord.proto.avatarUrlPath, true), LIFESPAN / 2)
+      val state = AppDependencies.jobManager.runSynchronously(RetrieveProfileAvatarJob.forAccountRestore(self(), accountRecord.proto.avatarUrlPath, true), LIFESPAN / 2)
 
       if (state.isPresent) {
         Log.i(TAG, "Avatar retrieved successfully. ${state.get()}")
@@ -141,7 +142,7 @@ class StorageAccountRestoreJob private constructor(parameters: Parameters) : Bas
     }
 
     Log.i(TAG, "Refreshing attributes...")
-    val state = AppDependencies.jobManager.runSynchronously(RefreshAttributesJob(), LIFESPAN / 2)
+    val state = AppDependencies.jobManager.runSynchronously(RefreshAttributesJob.forAccountRestore(), LIFESPAN / 2)
 
     if (state.isPresent) {
       Log.i(TAG, "Attributes refreshed successfully. ${state.get()}")

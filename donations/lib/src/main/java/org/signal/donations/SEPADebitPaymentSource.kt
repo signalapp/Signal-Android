@@ -4,15 +4,10 @@
  */
 package org.signal.donations
 
-import org.json.JSONObject
-
 class SEPADebitPaymentSource(
   val sepaDebitData: StripeApi.SEPADebitData
-) : StripeApi.PaymentSource {
+) : PaymentSource {
   override val type: PaymentSourceType = PaymentSourceType.Stripe.SEPADebit
 
-  override fun parameterize(): JSONObject = error("SEPA Debit does not support tokenization")
-
-  override fun getTokenId(): String = error("SEPA Debit does not support tokenization")
   override fun email(): String? = null
 }

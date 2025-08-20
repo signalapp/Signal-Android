@@ -195,7 +195,7 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private boolean userMustCreateSignalPin() {
     return !SignalStore.registration().isRegistrationComplete() &&
-           !SignalStore.svr().hasOptedInWithAccess() &&
+           !SignalStore.svr().hasPin() &&
            !SignalStore.svr().lastPinCreateFailed() &&
            !SignalStore.svr().hasOptedOut();
   }

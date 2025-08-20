@@ -97,7 +97,7 @@ object SignalServiceProtoUtil {
   val DataMessage.isInvalid: Boolean
     get() {
       if (isViewOnce == true) {
-        val contentType = attachments[0].contentType?.lowercase()
+        val contentType = attachments.getOrNull(0)?.contentType?.lowercase()
         return attachments.size != 1 || !MediaUtil.isImageOrVideoType(contentType)
       }
       return false

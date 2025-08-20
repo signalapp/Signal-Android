@@ -31,7 +31,6 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CDN_NUMBER},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_LOCATION},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_KEY},
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_IV},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_DIGEST}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.FAST_PREFLIGHT_ID},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.VOICE_NOTE}, 
@@ -53,8 +52,6 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.DATA_HASH_END},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_CDN},
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_MEDIA_NAME},
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_MEDIA_ID},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.THUMBNAIL_RESTORE_STATE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ARCHIVE_TRANSFER_STATE},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.ATTACHMENT_UUID},
@@ -113,7 +110,8 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         (${AttachmentTable.DATA_FILE} IS NOT NULL OR (${AttachmentTable.CONTENT_TYPE} LIKE 'video/%' AND ${AttachmentTable.REMOTE_INCREMENTAL_DIGEST} IS NOT NULL) OR (${AttachmentTable.THUMBNAIL_FILE} IS NOT NULL)) AND
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/svg%' AND 
         (${AttachmentTable.CONTENT_TYPE} LIKE 'image/%' OR ${AttachmentTable.CONTENT_TYPE} LIKE 'video/%') AND
-        ${MessageTable.LINK_PREVIEWS} IS NULL
+        ${MessageTable.LINK_PREVIEWS} IS NULL AND
+        ${MessageTable.SCHEDULED_DATE} < 0
       """
     )
 
@@ -121,7 +119,8 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
       BASE_MEDIA_QUERY,
       """
         ${AttachmentTable.DATA_FILE} IS NOT NULL AND
-        ${AttachmentTable.CONTENT_TYPE} LIKE 'audio/%'
+        ${AttachmentTable.CONTENT_TYPE} LIKE 'audio/%' AND
+        ${MessageTable.SCHEDULED_DATE} < 0
       """
     )
 
@@ -130,7 +129,8 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
       """
         ${AttachmentTable.DATA_FILE} IS NOT NULL AND
         ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain' AND
-        ${MessageTable.LINK_PREVIEWS} IS NULL
+        ${MessageTable.LINK_PREVIEWS} IS NULL AND
+        ${MessageTable.SCHEDULED_DATE} < 0
       """
     )
 
@@ -144,7 +144,8 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
             ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'image/%' AND 
             ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'video/%' AND 
             ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'audio/%' AND 
-            ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain'
+            ${AttachmentTable.CONTENT_TYPE} NOT LIKE 'text/x-signal-plain' AND
+            ${MessageTable.SCHEDULED_DATE} < 0
           )
         )"""
     )

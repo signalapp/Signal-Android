@@ -19,7 +19,6 @@ import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord
 import org.thoughtcrime.securesms.database.model.RemoteMegaphoneRecord.ActionId
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.megaphone.RemoteMegaphoneRepository.Action
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.LocaleRemoteConfig
@@ -47,12 +46,12 @@ object RemoteMegaphoneRepository {
   }
 
   private val finish: Action = Action { context, controller, remote ->
-    if (remote.imageUri != null) {
-      BlobProvider.getInstance().delete(context, remote.imageUri)
-    }
     controller.onMegaphoneSnooze(Megaphones.Event.REMOTE_MEGAPHONE)
     SignalExecutors.BOUNDED_IO.execute {
       db.markFinished(remote.uuid)
+      if (remote.imageUri != null) {
+        BlobProvider.getInstance().delete(context, remote.imageUri)
+      }
     }
   }
 

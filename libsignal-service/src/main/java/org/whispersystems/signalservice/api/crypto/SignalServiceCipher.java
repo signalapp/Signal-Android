@@ -34,6 +34,7 @@ import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SessionCipher;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
 import org.signal.libsignal.protocol.UntrustedIdentityException;
+import org.signal.libsignal.protocol.UsePqRatchet;
 import org.signal.libsignal.protocol.groups.GroupCipher;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.message.CiphertextMessage;
@@ -127,11 +128,11 @@ public class SignalServiceCipher {
         return content.processUnsealedSender(sessionCipher, destination);
       }
     } catch (NoSessionException e) {
-      throw new InvalidSessionException("Session not found.");
+      throw new InvalidSessionException("Session not found: " + destination);
     }
   }
 
-  public SignalServiceCipherResult decrypt(Envelope envelope, long serverDeliveredTimestamp)
+  public SignalServiceCipherResult decrypt(Envelope envelope, long serverDeliveredTimestamp, UsePqRatchet usePqRatchet)
       throws InvalidMetadataMessageException, InvalidMetadataVersionException,
              ProtocolInvalidKeyIdException, ProtocolLegacyMessageException,
              ProtocolUntrustedIdentityException, ProtocolNoSessionException,
@@ -141,7 +142,7 @@ public class SignalServiceCipher {
   {
     try {
       if (envelope.content != null) {
-        Plaintext plaintext = decryptInternal(envelope, serverDeliveredTimestamp);
+        Plaintext plaintext = decryptInternal(envelope, serverDeliveredTimestamp, usePqRatchet);
         Content   content   = Content.ADAPTER.decode(plaintext.getData());
 
         return new SignalServiceCipherResult(
@@ -163,7 +164,7 @@ public class SignalServiceCipher {
     }
   }
 
-  private Plaintext decryptInternal(Envelope envelope, long serverDeliveredTimestamp)
+  private Plaintext decryptInternal(Envelope envelope, long serverDeliveredTimestamp, UsePqRatchet usePqRatchet)
       throws InvalidMetadataMessageException, InvalidMetadataVersionException,
       ProtocolDuplicateMessageException, ProtocolUntrustedIdentityException,
       ProtocolLegacyMessageException, ProtocolInvalidKeyException,
@@ -184,7 +185,7 @@ public class SignalServiceCipher {
         SignalProtocolAddress sourceAddress = new SignalProtocolAddress(envelope.sourceServiceId, envelope.sourceDevice);
         SignalSessionCipher   sessionCipher = new SignalSessionCipher(sessionLock, new SessionCipher(signalProtocolStore, sourceAddress));
 
-        paddedMessage = sessionCipher.decrypt(new PreKeySignalMessage(envelope.content.toByteArray()));
+        paddedMessage = sessionCipher.decrypt(new PreKeySignalMessage(envelope.content.toByteArray()), usePqRatchet);
         metadata      = new SignalServiceMetadata(getSourceAddress(envelope), envelope.sourceDevice, envelope.timestamp, envelope.serverTimestamp, serverDeliveredTimestamp, false, envelope.serverGuid, Optional.empty(), envelope.destinationServiceId);
 
         signalProtocolStore.clearSenderKeySharedWith(Collections.singleton(sourceAddress));

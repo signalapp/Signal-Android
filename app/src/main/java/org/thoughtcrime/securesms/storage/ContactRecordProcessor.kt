@@ -41,7 +41,7 @@ class ContactRecordProcessor(
   companion object {
     private val TAG = Log.tag(ContactRecordProcessor::class.java)
 
-    private val E164_PATTERN: Pattern = Pattern.compile("^\\+[1-9]\\d{0,18}$")
+    private val E164_PATTERN: Pattern = Pattern.compile("^\\+[1-9]\\d{6,18}$")
 
     private fun isValidE164(value: String): Boolean {
       return E164_PATTERN.matcher(value).matches()
@@ -174,7 +174,7 @@ class ContactRecordProcessor(
 
     if (localAci != null && mergedIdentityKey != null && remote.proto.identityKey.isNotEmpty() && !mergedIdentityKey.contentEquals(remote.proto.identityKey.toByteArray())) {
       Log.w(TAG, "The local and remote identity keys do not match for " + localAci + ". Enqueueing a profile fetch.")
-      enqueue(trustedPush(localAci, localPni, local.proto.e164).id)
+      enqueue(trustedPush(localAci, localPni, local.proto.e164).id, true)
     }
 
     val mergedPni: PNI?
@@ -231,7 +231,7 @@ class ContactRecordProcessor(
       nickname = remote.proto.nickname
       pniSignatureVerified = remote.proto.pniSignatureVerified || local.proto.pniSignatureVerified
       note = remote.proto.note.nullIfBlank() ?: ""
-      avatarColor = local.proto.avatarColor
+      avatarColor = if (SignalStore.account.isPrimaryDevice) local.proto.avatarColor else remote.proto.avatarColor
     }.build().toSignalContactRecord(StorageId.forContact(keyGenerator.generate()))
 
     val matchesRemote = doParamsMatch(remote, merged)

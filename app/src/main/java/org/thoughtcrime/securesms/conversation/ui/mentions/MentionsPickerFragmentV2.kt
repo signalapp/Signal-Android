@@ -6,7 +6,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -28,7 +28,9 @@ import org.thoughtcrime.securesms.util.viewholders.RecipientViewHolder
 class MentionsPickerFragmentV2 : LoggingFragment() {
 
   private val lifecycleDisposable: LifecycleDisposable = LifecycleDisposable()
-  private val viewModel: InlineQueryViewModelV2 by activityViewModels()
+  private val viewModel: InlineQueryViewModelV2 by viewModels(
+    ownerProducer = { requireParentFragment() }
+  )
 
   private lateinit var adapter: MentionsPickerAdapter
   private lateinit var list: RecyclerView

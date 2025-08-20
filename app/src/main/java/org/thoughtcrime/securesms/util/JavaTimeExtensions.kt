@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.util
 
 import android.content.Context
-import android.os.Build
 import android.text.format.DateFormat
 import java.time.DayOfWeek
 import java.time.Instant
@@ -13,7 +12,6 @@ import java.time.ZoneId
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
 import java.time.temporal.WeekFields
 import java.util.Locale
 import java.util.concurrent.TimeUnit
@@ -91,14 +89,13 @@ fun Long.toLocalTime(zoneId: ZoneId = ZoneId.systemDefault()): LocalTime {
 }
 
 /**
- * Formats [LocalTime] as localized time. For example, "8:00 AM"
+ * Formats [LocalTime] as localized time. For example, "1:45 PM" or "13:45"
  */
 fun LocalTime.formatHours(context: Context): String {
-  return if (Build.VERSION.SDK_INT >= 26 || !DateFormat.is24HourFormat(context)) {
-    DateTimeFormatter.ofLocalizedTime(FormatStyle.SHORT).format(this)
-  } else {
-    DateTimeFormatter.ofPattern("HH:mm", Locale.getDefault()).format(this)
-  }
+  // We have to create our own pattern here, since the formatter instance returned by DateTimeFormatter.ofLocalizedTime() is looked up lazily, is immutable,
+  // and is not updated when the system's 24-hour time setting changes.
+  val pattern = if (DateFormat.is24HourFormat(context)) "HH:mm" else "h:mm a"
+  return DateTimeFormatter.ofPattern(pattern, Locale.getDefault()).format(this)
 }
 
 /**

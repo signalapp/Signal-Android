@@ -80,7 +80,7 @@ public class LogSectionSystemInfo implements LogSection {
     builder.append("Play Services     : ").append(getPlayServicesString(context)).append("\n");
     builder.append("FCM               : ").append(SignalStore.account().isFcmEnabled()).append("\n");
     builder.append("Locale            : ").append(Locale.getDefault()).append("\n");
-    builder.append("Linked Devices    : ").append(SignalStore.account().hasLinkedDevices()).append("\n");
+    builder.append("Linked Devices    : ").append(SignalStore.account().isMultiDevice()).append("\n");
     builder.append("First Version     : ").append(TextSecurePreferences.getFirstInstallVersion(context)).append("\n");
     builder.append("Days Installed    : ").append(VersionTracker.getDaysSinceFirstInstalled(context)).append("\n");
     builder.append("Build Variant     : ").append(BuildConfig.BUILD_DISTRIBUTION_TYPE).append(BuildConfig.BUILD_ENVIRONMENT_TYPE).append(BuildConfig.BUILD_VARIANT_TYPE).append("\n");

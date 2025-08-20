@@ -58,6 +58,37 @@ final class PictureInPictureExpansionHelper {
     return defaultDimensions.x < ViewUtil.dpToPx(NORMAL_PIP_WIDTH_DP);
   }
 
+  public void startExpandedSizeTransition(@NonNull Point dimensions, @NonNull Callback callback) {
+    if (defaultDimensions.equals(dimensions)) {
+      return;
+    }
+
+    defaultDimensions = dimensions;
+
+    int x = (dimensions.x > dimensions.y) ? EXPANDED_PIP_HEIGHT_DP : EXPANDED_PIP_WIDTH_DP;
+    int y = (dimensions.x > dimensions.y) ? EXPANDED_PIP_WIDTH_DP  : EXPANDED_PIP_HEIGHT_DP;
+
+    expandedDimensions = new Point(ViewUtil.dpToPx(x), ViewUtil.dpToPx(y));
+
+    if (isExpandedOrExpanding()) {
+      return;
+    }
+
+    beginResizeSelfPipTransition(expandedDimensions, new Callback() {
+      @Override
+      public void onAnimationWillStart() {
+        setState(State.IS_EXPANDING);
+        callback.onAnimationWillStart();
+      }
+
+      @Override
+      public void onAnimationHasFinished() {
+        setState(State.IS_EXPANDED);
+        callback.onAnimationHasFinished();
+      }
+    });
+  }
+
   public void startDefaultSizeTransition(@NonNull Point dimensions, @NonNull Callback callback) {
     if (defaultDimensions.equals(dimensions)) {
       return;

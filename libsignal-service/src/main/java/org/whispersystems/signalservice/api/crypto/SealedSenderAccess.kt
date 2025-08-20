@@ -9,7 +9,6 @@ import org.signal.core.util.Base64
 import org.signal.libsignal.metadata.certificate.SenderCertificate
 import org.signal.libsignal.zkgroup.groupsend.GroupSendFullToken
 import org.whispersystems.signalservice.api.groupsv2.GroupSendEndorsements
-import org.whispersystems.util.ByteArrayUtil
 
 /**
  * Provides single interface for the various ways to send via sealed sender.
@@ -25,6 +24,8 @@ sealed class SealedSenderAccess {
 
   abstract fun switchToFallback(): SealedSenderAccess?
 
+  open fun applyHeader(): Boolean = true
+
   /**
    * For sending to an single recipient using group send endorsement/token first and then fallback to
    * access key if available.
@@ -39,7 +40,6 @@ sealed class SealedSenderAccess {
     override val headerValue: String by lazy { Base64.encodeWithPadding(groupSendToken.serialize()) }
 
     override fun switchToFallback(): SealedSenderAccess? {
-      fallbackListener?.onTokenToAccessFallback(unidentifiedAccess != null)
       return if (unidentifiedAccess != null) {
         IndividualUnidentifiedAccessFirst(unidentifiedAccess)
       } else {
@@ -66,7 +66,6 @@ sealed class SealedSenderAccess {
     override fun switchToFallback(): SealedSenderAccess? {
       val groupSendToken = createGroupSendToken?.create()
       return if (groupSendToken != null) {
-        fallbackListener?.onAccessToTokenFallback()
         IndividualGroupSendTokenFirst(groupSendToken, senderCertificate)
       } else {
         null
@@ -92,27 +91,15 @@ sealed class SealedSenderAccess {
     }
   }
 
-  /**
-   * For sending to a "group" of recipients using access keys.
-   */
-  class GroupUnidentifiedAccess(
-    private val unidentifiedAccess: List<UnidentifiedAccess>,
-    override val senderCertificate: SenderCertificate = unidentifiedAccess.first().unidentifiedCertificate
-  ) : SealedSenderAccess() {
-
-    override val headerName: String = "Unidentified-Access-Key"
-    override val headerValue: String by lazy {
-      var joinedUnidentifiedAccess = ByteArray(16)
-      for (access in unidentifiedAccess) {
-        joinedUnidentifiedAccess = ByteArrayUtil.xor(joinedUnidentifiedAccess, access.unidentifiedAccessKey)
-      }
-
-      Base64.encodeWithPadding(joinedUnidentifiedAccess)
-    }
+  class StorySendNoop(override val senderCertificate: SenderCertificate) : SealedSenderAccess() {
+    override val headerName: String = ""
+    override val headerValue: String = ""
 
     override fun switchToFallback(): SealedSenderAccess? {
       return null
     }
+
+    override fun applyHeader(): Boolean = false
   }
 
   /**
@@ -122,14 +109,7 @@ sealed class SealedSenderAccess {
     fun create(): GroupSendFullToken?
   }
 
-  interface FallbackListener {
-    fun onAccessToTokenFallback()
-    fun onTokenToAccessFallback(hasAccessKeyFallback: Boolean)
-  }
-
   companion object {
-    var fallbackListener: FallbackListener? = null
-
     @JvmField
     val NONE: SealedSenderAccess? = null
 
@@ -178,12 +158,12 @@ sealed class SealedSenderAccess {
     }
 
     @JvmStatic
-    fun forGroupSend(groupSendEndorsements: GroupSendEndorsements?, unidentifiedAccess: List<UnidentifiedAccess>, forStory: Boolean): SealedSenderAccess {
-      return if (groupSendEndorsements != null && !forStory) {
-        GroupGroupSendToken(groupSendEndorsements)
-      } else {
-        GroupUnidentifiedAccess(unidentifiedAccess)
+    fun forGroupSend(senderCertificate: SenderCertificate?, groupSendEndorsements: GroupSendEndorsements?, forStory: Boolean): SealedSenderAccess {
+      if (forStory) {
+        return StorySendNoop(senderCertificate!!)
       }
+
+      return GroupGroupSendToken(groupSendEndorsements!!)
     }
 
     @JvmStatic

@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge
 import org.thoughtcrime.securesms.conversation.ConversationAdapterBridge.PulseRequest
 import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationElement
+import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
@@ -566,7 +567,7 @@ class MultiselectItemDecoration(
   }
 
   private fun RecyclerView.getMultiselectableChildren(): Sequence<Multiselectable> {
-    return children.map { getChildViewHolder(it) }.filterIsInstance<Multiselectable>()
+    return children.map { getChildViewHolder(it) }.filterIsInstance<Multiselectable>().filter { child -> child.conversationMessage.messageRecord !is InMemoryMessageRecord }
   }
 
   private fun RecyclerView.getInteractableChildren(): Sequence<InteractiveConversationElement> {
@@ -575,6 +576,8 @@ class MultiselectItemDecoration(
 
   private fun resolveMultiselectable(parent: RecyclerView, child: View): Multiselectable? {
     val multiselectable = parent.getChildViewHolder(child) as? Multiselectable
+
+    if (multiselectable?.conversationMessage?.messageRecord?.isInMemoryMessageRecord == true) { return null }
 
     return multiselectable ?: child as? Multiselectable
   }

@@ -17,16 +17,14 @@ import kotlin.math.max
  * This is meant as a helper stream to go along with [org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream].
  * That class does not validate the overall digest, nor the overall MAC. This class does that for us.
  *
- * To use, wrap the IncremtalMacInputStream around this class, and then this class should wrap the lowest-level data stream.
+ * To use, wrap the IncrementalMacInputStream around this class, and then this class should wrap the lowest-level data stream.
  */
 class IncrementalMacAdditionalValidationsInputStream(
   wrapped: InputStream,
   fileLength: Long,
-  private val mac: Mac,
-  private val theirDigest: ByteArray
+  private val mac: Mac
 ) : FilterInputStream(wrapped) {
 
-  private val digest: MessageDigest = MessageDigest.getInstance("SHA256")
   private val macLength: Int = mac.macLength
   private val macBuffer: ByteArray = ByteArray(macLength)
 
@@ -77,8 +75,6 @@ class IncrementalMacAdditionalValidationsInputStream(
       mac.update(buffer, offset, bytesRead)
     }
 
-    digest.update(buffer, offset, bytesRead)
-
     if (bytesRemaining == 0) {
       validate()
     }
@@ -112,11 +108,6 @@ class IncrementalMacAdditionalValidationsInputStream(
 
     if (!MessageDigest.isEqual(ourMac, theirMac)) {
       throw InvalidMessageException("MAC doesn't match!")
-    }
-
-    val ourDigest = digest.digest()
-    if (!MessageDigest.isEqual(ourDigest, theirDigest)) {
-      throw InvalidMessageException("Digest doesn't match!")
     }
   }
 }

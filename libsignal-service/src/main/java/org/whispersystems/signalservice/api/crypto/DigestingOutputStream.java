@@ -43,12 +43,8 @@ public abstract class DigestingOutputStream extends FilterOutputStream {
     totalBytesWritten++;
   }
 
-  public void flush() throws IOException {
-    digest = runningDigest.digest();
-    out.flush();
-  }
-
   public void close() throws IOException {
+    digest = runningDigest.digest();
     out.close();
   }
 

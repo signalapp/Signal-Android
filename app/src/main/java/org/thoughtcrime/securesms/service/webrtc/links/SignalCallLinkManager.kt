@@ -120,9 +120,10 @@ class SignalCallLinkManager(
       ) { result ->
         if (result.isSuccess) {
           Log.d(TAG, "Successfully created call link.")
+          val epoch = result.value!!.epoch
           emitter.onSuccess(
             CreateCallLinkResult.Success(
-              credentials = CallLinkCredentials(rootKey.keyBytes, adminPassKey),
+              credentials = CallLinkCredentials(rootKey.keyBytes, epoch?.bytes, adminPassKey),
               state = result.value!!.toAppState()
             )
           )
@@ -141,7 +142,8 @@ class SignalCallLinkManager(
       callManager.readCallLink(
         SignalStore.internal.groupCallingServer,
         requestCallLinkAuthCredentialPresentation(credentials.linkKeyBytes).serialize(),
-        CallLinkRootKey(credentials.linkKeyBytes)
+        CallLinkRootKey(credentials.linkKeyBytes),
+        credentials.epoch
       ) {
         if (it.isSuccess) {
           emitter.onSuccess(ReadCallLinkResult.Success(it.value!!.toAppState()))
@@ -168,6 +170,7 @@ class SignalCallLinkManager(
         SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
+        credentials.epoch,
         credentials.adminPassBytes,
         name
       ) { result ->
@@ -195,6 +198,7 @@ class SignalCallLinkManager(
         SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
+        credentials.epoch,
         credentials.adminPassBytes,
         restrictions
       ) { result ->
@@ -221,6 +225,7 @@ class SignalCallLinkManager(
         SignalStore.internal.groupCallingServer,
         credentialPresentation.serialize(),
         CallLinkRootKey(credentials.linkKeyBytes),
+        credentials.epoch,
         credentials.adminPassBytes
       ) { result ->
         if (result.isSuccess && result.value == true) {

@@ -5,7 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
+import android.widget.TextView;
 
+import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
 
 import org.thoughtcrime.securesms.R;
@@ -27,6 +29,15 @@ public class CallToastPopupWindow extends PopupWindow {
 
   public static void show(@NonNull ViewGroup viewGroup) {
     CallToastPopupWindow toast = new CallToastPopupWindow(viewGroup);
+    toast.show();
+  }
+
+  public static void show(@NonNull ViewGroup viewGroup, @DrawableRes int iconId, @NonNull String description) {
+    CallToastPopupWindow toast = new CallToastPopupWindow(viewGroup);
+
+    TextView text = toast.getContentView().findViewById(R.id.description);
+    text.setText(description);
+    text.setCompoundDrawablesRelativeWithIntrinsicBounds(iconId, 0, 0, 0);
     toast.show();
   }
 

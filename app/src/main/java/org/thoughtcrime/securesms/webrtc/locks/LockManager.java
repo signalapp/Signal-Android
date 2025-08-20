@@ -23,7 +23,6 @@ public class LockManager {
   private final PowerManager.WakeLock        partialLock;
   private final WifiManager.WifiLock         wifiLock;
   private final ProximityLock                proximityLock;
-  private final boolean                      wifiLockEnforced;
 
 
   private PhoneState  phoneState        = PhoneState.IDLE;
@@ -58,23 +57,10 @@ public class LockManager {
     fullLock.setReferenceCounted(false);
     partialLock.setReferenceCounted(false);
     wifiLock.setReferenceCounted(false);
-
-    wifiLockEnforced = isWifiPowerActiveModeEnabled(context);
-  }
-
-  private boolean isWifiPowerActiveModeEnabled(Context context) {
-    int wifi_pwr_active_mode = Settings.Secure.getInt(context.getContentResolver(), "wifi_pwr_active_mode", -1);
-    Log.d(TAG, "Wifi Activity Policy: " + wifi_pwr_active_mode);
-
-    if (wifi_pwr_active_mode == 0) {
-      return false;
-    }
-
-    return true;
   }
 
   private void updateInCallLockState() {
-    if (orientation == Orientation.PORTRAIT_BOTTOM_EDGE && wifiLockEnforced && !proximityDisabled) {
+    if (orientation == Orientation.PORTRAIT_BOTTOM_EDGE && !proximityDisabled) {
       setLockState(LockState.PROXIMITY);
     } else {
       setLockState(LockState.FULL);

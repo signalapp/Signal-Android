@@ -7,6 +7,7 @@ package org.whispersystems.signalservice.api.registration
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 
 /**
  * Request and response body used to communicate a quick restore method selection during registration.

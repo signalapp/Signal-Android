@@ -32,17 +32,23 @@ import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.calling.CallingApi
 import org.whispersystems.signalservice.api.cds.CdsApi
+import org.whispersystems.signalservice.api.certificate.CertificateApi
+import org.whispersystems.signalservice.api.donations.DonationsApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
 import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.payments.PaymentsApi
+import org.whispersystems.signalservice.api.profiles.ProfileApi
+import org.whispersystems.signalservice.api.provisioning.ProvisioningApi
 import org.whispersystems.signalservice.api.push.TrustStore
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
+import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigApi
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
+import org.whispersystems.signalservice.api.svr.SvrBApi
 import org.whispersystems.signalservice.api.username.UsernameApi
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
@@ -82,12 +88,12 @@ class NetworkDependenciesModule(
   val protocolStore: SignalServiceDataStoreImpl by _protocolStore
 
   private val _signalServiceMessageSender = resettableLazy {
-    provider.provideSignalServiceMessageSender(authWebSocket, unauthWebSocket, protocolStore, pushServiceSocket)
+    provider.provideSignalServiceMessageSender(protocolStore, pushServiceSocket, attachmentApi, messageApi, keysApi)
   }
   val signalServiceMessageSender: SignalServiceMessageSender by _signalServiceMessageSender
 
   val incomingMessageObserver: IncomingMessageObserver by lazy {
-    provider.provideIncomingMessageObserver(authWebSocket)
+    provider.provideIncomingMessageObserver(authWebSocket, unauthWebSocket)
   }
 
   val pushServiceSocket: PushServiceSocket by lazy {
@@ -95,7 +101,7 @@ class NetworkDependenciesModule(
   }
 
   val signalServiceAccountManager: SignalServiceAccountManager by lazy {
-    provider.provideSignalServiceAccountManager(accountApi, pushServiceSocket, groupsV2Operations)
+    provider.provideSignalServiceAccountManager(authWebSocket, accountApi, pushServiceSocket, groupsV2Operations)
   }
 
   val libsignalNetwork: Network by lazy {
@@ -134,11 +140,11 @@ class NetworkDependenciesModule(
   }
 
   val profileService: ProfileService by lazy {
-    provider.provideProfileService(groupsV2Operations.profileOperations, signalServiceMessageReceiver, authWebSocket, unauthWebSocket)
+    provider.provideProfileService(groupsV2Operations.profileOperations, authWebSocket, unauthWebSocket)
   }
 
   val donationsService: DonationsService by lazy {
-    provider.provideDonationsService(pushServiceSocket)
+    provider.provideDonationsService(donationsApi)
   }
 
   val archiveApi: ArchiveApi by lazy {
@@ -146,7 +152,7 @@ class NetworkDependenciesModule(
   }
 
   val keysApi: KeysApi by lazy {
-    provider.provideKeysApi(pushServiceSocket)
+    provider.provideKeysApi(authWebSocket, unauthWebSocket)
   }
 
   val attachmentApi: AttachmentApi by lazy {
@@ -191,6 +197,30 @@ class NetworkDependenciesModule(
 
   val messageApi: MessageApi by lazy {
     provider.provideMessageApi(authWebSocket, unauthWebSocket)
+  }
+
+  val provisioningApi: ProvisioningApi by lazy {
+    provider.provideProvisioningApi(authWebSocket, unauthWebSocket)
+  }
+
+  val certificateApi: CertificateApi by lazy {
+    provider.provideCertificateApi(authWebSocket)
+  }
+
+  val profileApi: ProfileApi by lazy {
+    provider.provideProfileApi(authWebSocket, unauthWebSocket, pushServiceSocket, groupsV2Operations.profileOperations)
+  }
+
+  val remoteConfigApi: RemoteConfigApi by lazy {
+    provider.provideRemoteConfigApi(authWebSocket, pushServiceSocket)
+  }
+
+  val donationsApi: DonationsApi by lazy {
+    provider.provideDonationsApi(authWebSocket, unauthWebSocket)
+  }
+
+  val svrBApi: SvrBApi by lazy {
+    provider.provideSvrBApi(libsignalNetwork)
   }
 
   val okHttpClient: OkHttpClient by lazy {

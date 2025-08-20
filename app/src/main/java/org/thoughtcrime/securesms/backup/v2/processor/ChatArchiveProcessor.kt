@@ -8,14 +8,12 @@ package org.thoughtcrime.securesms.backup.v2.processor
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.ExportState
 import org.thoughtcrime.securesms.backup.v2.ImportState
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.database.getThreadsForBackup
 import org.thoughtcrime.securesms.backup.v2.importer.ChatArchiveImporter
 import org.thoughtcrime.securesms.backup.v2.proto.Chat
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
 import org.thoughtcrime.securesms.backup.v2.stream.BackupFrameEmitter
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
@@ -25,10 +23,7 @@ object ChatArchiveProcessor {
   val TAG = Log.tag(ChatArchiveProcessor::class.java)
 
   fun export(db: SignalDatabase, exportState: ExportState, emitter: BackupFrameEmitter) {
-    val includeImageWallpapers = SignalStore.backup.backupTier == MessageBackupTier.PAID
-    Log.i(TAG, "Including wallpapers: $includeImageWallpapers")
-
-    db.threadTable.getThreadsForBackup(db, includeImageWallpapers).use { reader ->
+    db.threadTable.getThreadsForBackup(db, includeImageWallpapers = true).use { reader ->
       for (chat in reader) {
         if (exportState.recipientIds.contains(chat.recipientId)) {
           exportState.threadIds.add(chat.id)

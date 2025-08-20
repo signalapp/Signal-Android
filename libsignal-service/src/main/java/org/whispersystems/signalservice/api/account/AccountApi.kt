@@ -97,6 +97,7 @@ class AccountApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSock
   /**
    * DELETE /v1/accounts/me
    * - 204: Success
+   * - 4401: Success
    */
   fun deleteAccount(): NetworkResult<Unit> {
     val request = WebSocketRequestMessage.delete("/v1/accounts/me")
@@ -128,22 +129,6 @@ class AccountApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSock
    */
   fun changeNumber(changePhoneNumberRequest: ChangePhoneNumberRequest): NetworkResult<VerifyAccountResponse> {
     val request = WebSocketRequestMessage.put("/v2/accounts/number", changePhoneNumberRequest)
-    return NetworkResult.fromWebSocketRequest(authWebSocket, request, VerifyAccountResponse::class)
-  }
-
-  /**
-   * Distributes key material to linked devices after an account becomes fully PNP capable.
-   *
-   * PUT /v2/accounts/phone_number_identity_key_distribution
-   * - 200: Success
-   * - 401: Unauthorized
-   * - 403: Called from non-primary device
-   * - 409: Mismatched devices
-   * - 410: Registration ids do not match
-   * - 422: Request is malformed
-   */
-  fun distributePniKeys(distributionRequest: PniKeyDistributionRequest): NetworkResult<VerifyAccountResponse> {
-    val request = WebSocketRequestMessage.put("/v2/accounts/phone_number_identity_key_distribution", distributionRequest)
     return NetworkResult.fromWebSocketRequest(authWebSocket, request, VerifyAccountResponse::class)
   }
 

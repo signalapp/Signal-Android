@@ -102,7 +102,7 @@ public final class WallpaperCropActivity extends BaseActivity {
     Toolbar toolbar = findViewById(R.id.toolbar);
     setSupportActionBar(toolbar);
     ActionBar supportActionBar = Objects.requireNonNull(getSupportActionBar());
-    supportActionBar.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.ic_arrow_left_24));
+    supportActionBar.setHomeAsUpIndicator(ContextCompat.getDrawable(this, R.drawable.symbol_arrow_start_24));
     supportActionBar.setDisplayHomeAsUpEnabled(true);
 
     blur.setOnCheckedChangeListener((v, checked) -> viewModel.setBlur(checked));

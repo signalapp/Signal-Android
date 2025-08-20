@@ -76,6 +76,7 @@ class EditNotificationProfileScheduleViewModel(
       repository.updateSchedule(schedule)
         .toSingleDefault(SaveScheduleResult.Success)
         .flatMap { r ->
+          repository.scheduleNotificationProfileSync(profileId)
           if (schedule.enabled && schedule.coversTime(System.currentTimeMillis())) {
             repository.manuallyEnableProfileForSchedule(profileId, schedule)
               .toSingleDefault(r)

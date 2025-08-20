@@ -1,6 +1,5 @@
 package org.whispersystems.signalservice.api.messages.calls;
 
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -22,6 +21,9 @@ public class TurnServerInfo {
   @JsonProperty
   private List<String> urlsWithIps;
 
+  @JsonProperty
+  private Long ttl;
+
   public String getUsername() {
     return username;
   }
@@ -42,4 +44,8 @@ public class TurnServerInfo {
   public List<String> getUrlsWithIps() {
     return urlsWithIps;
   }
+
+  public Long getTtl() {
+    return ttl;
+  };
 }

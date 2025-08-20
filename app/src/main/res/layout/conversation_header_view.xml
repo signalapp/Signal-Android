@@ -89,18 +89,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
+        android:textAlignment="center"
         android:paddingStart="16dp"
         android:paddingEnd="16dp"
         android:textAppearance="@style/Signal.Text.MessageRequest.Subtitle"
         app:layout_constraintTop_toBottomOf="@id/message_request_title"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         tools:text="Hangin' on the web" />
 
     <View
         android:id="@+id/message_request_divider"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="1dp"
         android:layout_marginTop="16dp"
+        android:foregroundGravity="center"
+        android:layout_marginHorizontal="32dp"
         android:background="@color/signal_dark_colorTransparentInverse2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/message_request_about" />
 
     <LinearLayout

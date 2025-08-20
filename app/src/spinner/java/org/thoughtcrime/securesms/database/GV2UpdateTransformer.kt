@@ -50,7 +50,9 @@ object GV2UpdateTransformer : ColumnTransformer {
   private fun messageExtrasGroupUpdate(messageExtras: MessageExtras): String {
     val gv2ChangeDescription: UpdateDescription = MessageRecord.getGv2ChangeDescription(AppDependencies.application, messageExtras, null)
 
-    return "${gv2ChangeDescription.spannable}<br><br>${messageExtras.gv2UpdateDescription!!.gv2ChangeDescription!!.change}"
+    val gv2ChangeProto: Any? = messageExtras.gv2UpdateDescription?.gv2ChangeDescription?.change ?: messageExtras.gv2UpdateDescription?.groupChangeUpdate
+
+    return "${gv2ChangeDescription.spannable}<br><br>$gv2ChangeProto"
   }
 }
 

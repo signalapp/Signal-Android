@@ -21,8 +21,11 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import org.signal.core.ui.Dialogs
+import org.signal.core.ui.compose.Dialogs
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.components.contactsupport.ContactSupportDialog
+import org.thoughtcrime.securesms.components.contactsupport.ContactSupportViewModel
+import org.thoughtcrime.securesms.components.contactsupport.SendSupportEmailEffect
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registrationv3.ui.RegistrationCheckpoint
@@ -42,6 +45,7 @@ class EnterBackupKeyFragment : ComposeFragment() {
 
   private val sharedViewModel by activityViewModels<RegistrationViewModel>()
   private val viewModel by viewModels<EnterBackupKeyViewModel>()
+  private val contactSupportViewModel: ContactSupportViewModel<Unit> by viewModels()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -63,9 +67,9 @@ class EnterBackupKeyFragment : ComposeFragment() {
       viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
         sharedViewModel
           .state
-          .filter { it.registrationCheckpoint == RegistrationCheckpoint.BACKUP_TIER_NOT_RESTORED }
+          .filter { it.registrationCheckpoint == RegistrationCheckpoint.BACKUP_TIMESTAMP_NOT_RESTORED }
           .collect {
-            viewModel.handleBackupTierNotRestored()
+            viewModel.handleBackupTimestampNotRestored()
           }
       }
     }
@@ -75,8 +79,18 @@ class EnterBackupKeyFragment : ComposeFragment() {
   override fun FragmentContent() {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val sharedState by sharedViewModel.state.collectAsStateWithLifecycle()
+    val contactSupportState: ContactSupportViewModel.ContactSupportState<Unit> by contactSupportViewModel.state.collectAsStateWithLifecycle()
+
+    SendSupportEmailEffect(
+      contactSupportState = contactSupportState,
+      subjectRes = { R.string.EnterBackupKey_network_failure_support_email },
+      filterRes = { R.string.EnterBackupKey_network_failure_support_email_filter }
+    ) {
+      contactSupportViewModel.hideContactSupport()
+    }
 
     EnterBackupKeyScreen(
+      isDisplayedDuringManualRestore = true,
       backupKey = viewModel.backupKey,
       inProgress = sharedState.inProgress,
       isBackupKeyValid = state.backupKeyValid,
@@ -89,30 +103,36 @@ class EnterBackupKeyFragment : ComposeFragment() {
           context = requireContext(),
           backupKey = viewModel.backupKey,
           e164 = null,
-          pin = null
+          pin = null,
+          aciIdentityKeyPair = null,
+          pniIdentityKeyPair = null
         )
       },
-
       onLearnMore = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) },
       onSkip = {
         sharedViewModel.skipRestore()
         findNavController().safeNavigate(EnterBackupKeyFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.RESTART_AFTER_COLLECTION))
       },
       dialogContent = {
-        if (state.showStorageAccountRestoreProgress) {
-          Dialogs.IndeterminateProgressDialog()
+        if (contactSupportState.show) {
+          ContactSupportDialog(
+            showInProgress = contactSupportState.showAsProgress,
+            callbacks = contactSupportViewModel
+          )
         } else {
           ErrorContent(
             state = state,
-            onBackupTierRetry = { sharedViewModel.restoreBackupTier() },
-            onSkipRestoreAfterRegistration = {
+            onBackupTierRetry = {
+              viewModel.incrementBackupTierRetry()
+              sharedViewModel.checkForBackupFile()
+            },
+            onAbandonRemoteRestoreAfterRegistration = {
               viewLifecycleOwner.lifecycleScope.launch {
-                sharedViewModel.skipRestore()
-                viewModel.performStorageServiceAccountRestoreIfNeeded()
                 sharedViewModel.resumeNormalRegistration()
               }
             },
             onBackupTierNotRestoredDismiss = viewModel::hideRestoreBackupKeyFailed,
+            onContactSupport = { contactSupportViewModel.showContactSupport() },
             onRegistrationErrorDismiss = viewModel::clearRegistrationError,
             onBackupKeyHelp = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) }
           )
@@ -126,19 +146,53 @@ class EnterBackupKeyFragment : ComposeFragment() {
 private fun ErrorContent(
   state: EnterBackupKeyViewModel.EnterBackupKeyState,
   onBackupTierRetry: () -> Unit = {},
-  onSkipRestoreAfterRegistration: () -> Unit = {},
+  onAbandonRemoteRestoreAfterRegistration: () -> Unit = {},
   onBackupTierNotRestoredDismiss: () -> Unit = {},
+  onContactSupport: () -> Unit = {},
   onRegistrationErrorDismiss: () -> Unit = {},
   onBackupKeyHelp: () -> Unit = {}
 ) {
-  if (state.showBackupTierNotRestoreError) {
+  if (state.showBackupTierNotRestoreError == EnterBackupKeyViewModel.TierRestoreError.NETWORK_ERROR) {
+    if (state.tierRetryAttempts > 1) {
+      Dialogs.AdvancedAlertDialog(
+        title = stringResource(R.string.EnterBackupKey_cant_restore_backup),
+        body = stringResource(R.string.EnterBackupKey_your_backup_cant_be_restored_right_now),
+        positive = stringResource(R.string.EnterBackupKey_try_again),
+        neutral = stringResource(R.string.EnterBackupKey_contact_support),
+        negative = stringResource(android.R.string.cancel),
+        onPositive = {
+          onBackupTierNotRestoredDismiss()
+          onBackupTierRetry()
+        },
+        onNeutral = {
+          onBackupTierNotRestoredDismiss()
+          onContactSupport()
+        },
+        onNegative = {
+          onBackupTierNotRestoredDismiss()
+          onAbandonRemoteRestoreAfterRegistration()
+        }
+      )
+    } else {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.EnterBackupKey_cant_restore_backup),
+        body = stringResource(R.string.EnterBackupKey_your_backup_cant_be_restored_right_now),
+        confirm = stringResource(R.string.EnterBackupKey_try_again),
+        dismiss = stringResource(android.R.string.cancel),
+        onConfirm = onBackupTierRetry,
+        onDeny = onAbandonRemoteRestoreAfterRegistration,
+        onDismiss = onBackupTierNotRestoredDismiss,
+        onDismissRequest = {}
+      )
+    }
+  } else if (state.showBackupTierNotRestoreError == EnterBackupKeyViewModel.TierRestoreError.NOT_FOUND) {
     Dialogs.SimpleAlertDialog(
       title = stringResource(R.string.EnterBackupKey_backup_not_found),
       body = stringResource(R.string.EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup),
       confirm = stringResource(R.string.EnterBackupKey_try_again),
       dismiss = stringResource(R.string.EnterBackupKey_skip_restore),
       onConfirm = onBackupTierRetry,
-      onDeny = onSkipRestoreAfterRegistration,
+      onDeny = onAbandonRemoteRestoreAfterRegistration,
       onDismiss = onBackupTierNotRestoredDismiss
     )
   } else if (state.showRegistrationError) {

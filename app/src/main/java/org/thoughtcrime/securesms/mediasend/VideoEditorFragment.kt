@@ -257,8 +257,9 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
       videoScanThrottle.clear()
     } else if (!isInEdit) {
       isInEdit = true
-      wasPlayingBeforeEdit = player.isPlaying
     }
+
+    wasPlayingBeforeEdit = player.isPlaying
 
     if (wasPlayingBeforeEdit) {
       hud.hidePlayButton()
@@ -269,7 +270,9 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
       if (!editingComplete) {
         player.removeClip(false)
       }
-      player.playbackPosition = if (editingComplete) data.startTimeUs / 1000 else data.endTimeUs / 1000
+      if (!wasPlayingBeforeEdit) {
+        player.playbackPosition = if (editingComplete) data.startTimeUs / 1000 else data.endTimeUs / 1000
+      }
       if (editingComplete) {
         if (data.isDurationEdited) {
           player.clip(data.startTimeUs, data.endTimeUs, wasPlayingBeforeEdit)

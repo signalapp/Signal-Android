@@ -228,7 +228,7 @@ public final class ConversationUtil {
                                  .setIntent(ConversationIntents.createBuilderSync(context, resolved.getId(), threadId).build())
                                  .setShortLabel(shortName)
                                  .setLongLabel(longName)
-                                 .setIcon(AvatarUtil.getIconCompat(context, resolved))
+                                 .setIcon(AvatarUtil.getIconCompatForShortcut(context, resolved))
                                  .setPersons(persons)
                                  .setCategories(Sets.newHashSet(CATEGORY_SHARE_TARGET))
                                  .setActivity(activity)

@@ -15,7 +15,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.subjects.PublishSubject
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getParcelableCompat
-import org.signal.core.util.logging.Log
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.MainActivity
@@ -57,10 +56,6 @@ class GiftFlowConfirmationFragment :
   EmojiEventListener,
   EmojiSearchFragment.Callback,
   InAppPaymentCheckoutDelegate.Callback {
-
-  companion object {
-    private val TAG = Log.tag(GiftFlowConfirmationFragment::class.java)
-  }
 
   private val viewModel: GiftFlowViewModel by viewModels(
     ownerProducer = { requireActivity() }
@@ -118,7 +113,7 @@ class GiftFlowConfirmationFragment :
       lifecycleDisposable += viewModel.insertInAppPayment().subscribe { inAppPayment ->
         findNavController().safeNavigate(
           GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToGatewaySelectorBottomSheet(
-            inAppPayment
+            inAppPayment.id
           )
         )
       }
@@ -266,8 +261,7 @@ class GiftFlowConfirmationFragment :
     findNavController().safeNavigate(
       GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToStripePaymentInProgressFragment(
         InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
-        inAppPayment,
-        inAppPayment.type
+        inAppPayment.id
       )
     )
   }
@@ -276,15 +270,14 @@ class GiftFlowConfirmationFragment :
     findNavController().safeNavigate(
       GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToPaypalPaymentInProgressFragment(
         InAppPaymentProcessorAction.PROCESS_NEW_IN_APP_PAYMENT,
-        inAppPayment,
-        inAppPayment.type
+        inAppPayment.id
       )
     )
   }
 
   override fun navigateToCreditCardForm(inAppPayment: InAppPaymentTable.InAppPayment) {
     findNavController().safeNavigate(
-      GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToCreditCardFragment(inAppPayment)
+      GiftFlowConfirmationFragmentDirections.actionGiftFlowConfirmationFragmentToCreditCardFragment(inAppPayment.id)
     )
   }
 

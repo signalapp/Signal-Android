@@ -16,6 +16,7 @@
       <option name="ALIGN_MULTILINE_TEXT_BLOCKS" value="true" />
       <option name="IMPORT_LAYOUT_TABLE">
         <value>
+          <package name="" withSubpackages="true" static="false" module="true" />
           <package name="android" withSubpackages="true" static="false" />
           <emptyLine />
           <package name="androidx" withSubpackages="true" static="false" />

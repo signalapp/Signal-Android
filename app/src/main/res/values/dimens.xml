@@ -46,6 +46,7 @@
     <dimen name="message_bubble_collapsed_footer_padding">6dp</dimen>
     <dimen name="message_bubble_edge_margin">32dp</dimen>
     <dimen name="message_bubble_bottom_padding">7dp</dimen>
+    <dimen name="message_bubble_footer_bottom_padding">5dp</dimen>
     <dimen name="message_bubble_collapsed_bottom_padding">7dp</dimen>
     <dimen name="message_bubble_revealable_padding">12dp</dimen>
     <dimen name="media_bubble_remove_button_size">24dp</dimen>
@@ -105,8 +106,6 @@
 
     <dimen name="sticker_page_item_padding">16dp</dimen>
     <dimen name="sticker_page_item_width">72dp</dimen>
-
-    <dimen name="sticker_management_horizontal_margin">16dp</dimen>
 
     <dimen name="sticker_preview_sticker_size">96dp</dimen>
     <dimen name="sticker_preview_gutter_size">16dp</dimen>
@@ -249,5 +248,8 @@
     <dimen name="conversation_header_padding">24dp</dimen>
     <dimen name="conversation_header_padding_expanded">32dp</dimen>
     <dimen name="conversation_header_max_size">308dp</dimen>
+    <dimen name="conversation_header_margin">40dp</dimen>
+
+    <dimen name="donation_pill_max_width">150dp</dimen>
 
 </resources>

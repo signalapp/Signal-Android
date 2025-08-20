@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue
 import androidx.annotation.CheckResult
 import androidx.annotation.VisibleForTesting
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistrationMetadata
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -19,11 +20,12 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
     private const val SESSION_ID = "registration.session_id"
     private const val LOCAL_REGISTRATION_DATA = "registration.local_registration_data"
     private const val RESTORE_METHOD_TOKEN = "registration.restore_method_token"
+    private const val RESTORE_BACKUP_MEDIA_SIZE = "registration.restore_backup_media_size"
     private const val IS_OTHER_DEVICE_ANDROID = "registration.is_other_device_android"
     private const val RESTORING_ON_NEW_DEVICE = "registration.restoring_on_new_device"
 
     @VisibleForTesting
-    const val RESTORE_DECISION_STATE = "registration.restore_decision_state"
+    const val RESTORE_DECISION_STATE = "registration.restore_decision_state.2"
   }
 
   @Synchronized
@@ -33,7 +35,7 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
       .putBoolean(HAS_UPLOADED_PROFILE, false)
       .putBoolean(REGISTRATION_COMPLETE, false)
       .putBoolean(PIN_REQUIRED, true)
-      .putBlob(RESTORE_DECISION_STATE, RestoreDecisionState.Start.encode())
+      .apply { if (BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED) putBlob(RESTORE_DECISION_STATE, RestoreDecisionState.Start.encode()) }
       .commit()
   }
 
@@ -71,6 +73,7 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
 
   var isOtherDeviceAndroid: Boolean by booleanValue(IS_OTHER_DEVICE_ANDROID, false)
   var restoreMethodToken: String? by stringValue(RESTORE_METHOD_TOKEN, null)
+  var restoreBackupMediaSize: Long by longValue(RESTORE_BACKUP_MEDIA_SIZE, 0L)
 
   @get:JvmName("isRestoringOnNewDevice")
   var restoringOnNewDevice: Boolean by booleanValue(RESTORING_ON_NEW_DEVICE, false)
@@ -85,7 +88,10 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
         store.beginWrite()
           .putBlob(RESTORE_DECISION_STATE, newValue.encode())
           .apply()
-        AppDependencies.incomingMessageObserver.notifyRegistrationStateChanged()
+
+        if (newValue.isTerminal) {
+          AppDependencies.incomingMessageObserver.notifyRestoreDecisionMade()
+        }
       }
     }
 }

@@ -4,13 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import org.signal.core.util.logging.Log;
-import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
-import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
+import org.thoughtcrime.securesms.net.SignalNetwork;
+import org.thoughtcrime.securesms.util.ExceptionHelper;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
 
 import java.io.IOException;
 import java.util.Collection;
@@ -56,7 +56,6 @@ public final class RotateCertificateJob extends BaseJob {
     }
 
     synchronized (RotateCertificateJob.class) {
-      SignalServiceAccountManager accountManager   = AppDependencies.getSignalServiceAccountManager();
       Collection<CertificateType> certificateTypes = SignalStore.phoneNumberPrivacy()
                                                                 .getAllCertificateTypes();
 
@@ -66,8 +65,8 @@ public final class RotateCertificateJob extends BaseJob {
         byte[] certificate;
 
         switch (certificateType) {
-          case ACI_AND_E164: certificate = accountManager.getSenderCertificate(); break;
-          case ACI_ONLY    : certificate = accountManager.getSenderCertificateForPhoneNumberPrivacy(); break;
+          case ACI_AND_E164: certificate = NetworkResultUtil.toBasicLegacy(SignalNetwork.certificate().getSenderCertificate()); break;
+          case ACI_ONLY    : certificate = NetworkResultUtil.toBasicLegacy(SignalNetwork.certificate().getSenderCertificateForPhoneNumberPrivacy()); break;
           default          : throw new AssertionError();
         }
 
@@ -80,7 +79,7 @@ public final class RotateCertificateJob extends BaseJob {
 
   @Override
   public boolean onShouldRetry(@NonNull Exception e) {
-    return e instanceof PushNetworkException;
+    return ExceptionHelper.isRetryableIOException(e);
   }
 
   @Override

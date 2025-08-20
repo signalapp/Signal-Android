@@ -43,6 +43,14 @@
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
             app:popExitAnim="@anim/nav_default_pop_exit_anim" />
 
+        <action
+            android:id="@+id/go_to_linkViaQr"
+            app:destination="@id/linkViaQr"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+
     </fragment>
 
     <fragment
@@ -79,6 +87,11 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim"
             app:popUpTo="@+id/welcomeFragment"
             app:popUpToInclusive="true" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/linkViaQr"
+        android:name="org.thoughtcrime.securesms.registrationv3.ui.link.RegisterLinkDeviceQrFragment">
     </fragment>
 
     <fragment
@@ -159,7 +172,7 @@
 
         <action
             android:id="@+id/action_editProxy"
-            app:destination="@+id/registrationProxyFragment"
+            app:destination="@+id/edit_proxy"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -309,13 +322,6 @@
         android:label="fragment_captcha"
         tools:layout="@layout/fragment_registration_captcha" />
 
-
-    <fragment
-        android:id="@+id/registrationProxyFragment"
-        android:name="org.thoughtcrime.securesms.preferences.EditProxyFragment"
-        android:label="fragment_registration_edit_proxy"
-        tools:layout="@layout/edit_proxy_fragment" />
-
     <action
         android:id="@+id/action_restart_to_welcomeFragment"
         app:destination="@id/welcomeFragment"
@@ -325,5 +331,7 @@
         app:popExitAnim="@anim/nav_default_pop_exit_anim"
         app:popUpTo="@id/welcomeFragment"
         app:popUpToInclusive="true" />
+
+    <include app:graph="@navigation/edit_proxy" />
 
 </navigation>

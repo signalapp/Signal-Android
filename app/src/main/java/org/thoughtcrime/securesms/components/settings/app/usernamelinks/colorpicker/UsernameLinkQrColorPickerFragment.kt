@@ -43,8 +43,8 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeBadge
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
@@ -121,7 +121,7 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
       navigationIcon = {
         IconButton(onClick = onBackClicked) {
           Icon(
-            painter = painterResource(R.drawable.symbol_arrow_left_24),
+            painter = painterResource(R.drawable.symbol_arrow_start_24),
             tint = MaterialTheme.colorScheme.onSurface,
             contentDescription = null
           )

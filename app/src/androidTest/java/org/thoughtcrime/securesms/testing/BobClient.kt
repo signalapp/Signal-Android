@@ -6,9 +6,11 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SessionBuilder
 import org.signal.libsignal.protocol.SignalProtocolAddress
+import org.signal.libsignal.protocol.UsePqRatchet
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.groups.state.SenderKeyRecord
 import org.signal.libsignal.protocol.state.IdentityKeyStore
+import org.signal.libsignal.protocol.state.IdentityKeyStore.IdentityChange
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.PreKeyBundle
 import org.signal.libsignal.protocol.state.PreKeyRecord
@@ -18,6 +20,7 @@ import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
+import org.thoughtcrime.securesms.database.KyberPreKeyTable
 import org.thoughtcrime.securesms.database.OneTimePreKeyTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignedPreKeyTable
@@ -66,7 +69,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
 
     if (!aciStore.containsSession(getAliceProtocolAddress())) {
       val sessionBuilder = SignalSessionBuilder(sessionLock, SessionBuilder(aciStore, getAliceProtocolAddress()))
-      sessionBuilder.process(getAlicePreKeyBundle())
+      sessionBuilder.process(getAlicePreKeyBundle(), UsePqRatchet.NO)
     }
 
     return cipher.encrypt(getAliceProtocolAddress(), getAliceUnidentifiedAccess(), envelopeContent)
@@ -75,7 +78,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
 
   fun decrypt(envelope: Envelope, serverDeliveredTimestamp: Long) {
     val cipher = SignalServiceCipher(serviceAddress, 1, aciStore, sessionLock, SealedSenderAccessUtil.getCertificateValidator())
-    cipher.decrypt(envelope, serverDeliveredTimestamp)
+    cipher.decrypt(envelope, serverDeliveredTimestamp, UsePqRatchet.NO)
   }
 
   private fun getAliceServiceId(): ServiceId {
@@ -101,6 +104,15 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
 
     val selfSignedPreKeyRecord = SignalDatabase.signedPreKeys.get(getAliceServiceId(), selfSignedPreKeyId)!!
 
+    val selfSignedKyberPreKeyId = SignalDatabase.rawDatabase
+      .select(KyberPreKeyTable.KEY_ID)
+      .from(KyberPreKeyTable.TABLE_NAME)
+      .where("${KyberPreKeyTable.ACCOUNT_ID} = ?", getAliceServiceId().toString())
+      .run()
+      .readToSingleInt(-1)
+
+    val selfSignedKyberPreKeyRecord = SignalDatabase.kyberPreKeys.get(getAliceServiceId(), selfSignedKyberPreKeyId)!!.record
+
     return PreKeyBundle(
       SignalStore.account.registrationId,
       1,
@@ -109,7 +121,10 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
       selfSignedPreKeyId,
       selfSignedPreKeyRecord.keyPair.publicKey,
       selfSignedPreKeyRecord.signature,
-      getAlicePublicKey()
+      getAlicePublicKey(),
+      selfSignedKyberPreKeyId,
+      selfSignedKyberPreKeyRecord.keyPair.publicKey,
+      selfSignedKyberPreKeyRecord.signature
     )
   }
 
@@ -137,7 +152,7 @@ class BobClient(val serviceId: ServiceId, val e164: String, val identityKeyPair:
     override fun getLocalRegistrationId(): Int = registrationId
     override fun isTrustedIdentity(address: SignalProtocolAddress?, identityKey: IdentityKey?, direction: IdentityKeyStore.Direction?): Boolean = true
     override fun loadSession(address: SignalProtocolAddress?): SessionRecord = aliceSessionRecord ?: SessionRecord()
-    override fun saveIdentity(address: SignalProtocolAddress?, identityKey: IdentityKey?): Boolean = false
+    override fun saveIdentity(address: SignalProtocolAddress?, identityKey: IdentityKey?): IdentityKeyStore.IdentityChange = IdentityChange.NEW_OR_UNCHANGED
     override fun storeSession(address: SignalProtocolAddress?, record: SessionRecord?) {
       aliceSessionRecord = record
     }

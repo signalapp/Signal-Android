@@ -10,6 +10,7 @@ import com.bumptech.glide.load.data.StreamLocalUriFetcher;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
+import org.thoughtcrime.securesms.providers.BlobProvider;
 import org.thoughtcrime.securesms.util.BitmapDecodingException;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
@@ -24,9 +25,9 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
 
   private static final String TAG = Log.tag(DecryptableStreamLocalUriFetcher.class);
 
-  private static final int DIMENSION_LIMIT = 12_000;
+  private static final long TOTAL_PIXEL_SIZE_LIMIT = 200_000_000L; // 200 megapixels
 
-  private Context context;
+  private final Context context;
 
   DecryptableStreamLocalUriFetcher(Context context, Uri uri) {
     super(context.getContentResolver(), uri);
@@ -60,7 +61,9 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
     }
 
     try {
-      if (isSafeSize(PartAuthority.getAttachmentThumbnailStream(context, uri))) {
+      if (PartAuthority.isBlobUri(uri) && BlobProvider.isSingleUseMemoryBlob(uri)) {
+        return PartAuthority.getAttachmentThumbnailStream(context, uri);
+      } else if (isSafeSize(PartAuthority.getAttachmentThumbnailStream(context, uri))) {
         return PartAuthority.getAttachmentThumbnailStream(context, uri);
       } else {
         throw new IOException("File dimensions are too large!");
@@ -73,8 +76,9 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
 
   private boolean isSafeSize(InputStream stream) {
     try {
-      Pair<Integer, Integer> size = BitmapUtil.getDimensions(stream);
-      return size.first < DIMENSION_LIMIT && size.second < DIMENSION_LIMIT;
+      Pair<Integer, Integer> dimensions  = BitmapUtil.getDimensions(stream);
+      long                   totalPixels = (long) dimensions.first * dimensions.second;
+      return totalPixels < TOTAL_PIXEL_SIZE_LIMIT;
     } catch (BitmapDecodingException e) {
       return false;
     }

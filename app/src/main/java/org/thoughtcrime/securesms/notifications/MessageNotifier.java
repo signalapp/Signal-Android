@@ -18,6 +18,8 @@ public interface MessageNotifier {
   void setVisibleThread(@Nullable ConversationId conversationId);
   @NonNull Optional<ConversationId> getVisibleThread();
   void clearVisibleThread();
+  void setVisibleBubbleThread(@Nullable ConversationId conversationId);
+  void clearVisibleBubbleThread();
   void setLastDesktopActivityTimestamp(long timestamp);
   void notifyMessageDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);
   void notifyStoryDeliveryFailed(@NonNull Context context, @NonNull Recipient recipient, @NonNull ConversationId conversationId);

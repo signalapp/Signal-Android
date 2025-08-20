@@ -2,7 +2,6 @@ package org.whispersystems.signalservice.internal.push;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import java.util.Collections;
 import java.util.List;
 
 public class ReserveUsernameRequest {
@@ -10,7 +9,7 @@ public class ReserveUsernameRequest {
   private List<String> usernameHashes;
 
   public ReserveUsernameRequest(List<String> usernameHashes) {
-    this.usernameHashes = Collections.unmodifiableList(usernameHashes);
+    this.usernameHashes = usernameHashes;
   }
 
   List<String> getUsernameHashes() {

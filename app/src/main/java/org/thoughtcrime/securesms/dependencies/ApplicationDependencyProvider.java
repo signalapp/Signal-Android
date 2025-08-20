@@ -8,6 +8,7 @@ import android.os.HandlerThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.VisibleForTesting;
 
+import org.jetbrains.annotations.NotNull;
 import org.signal.billing.BillingFactory;
 import org.signal.core.util.ThreadUtil;
 import org.signal.core.util.billing.BillingApi;
@@ -47,6 +48,7 @@ import org.thoughtcrime.securesms.jobs.TypingSendJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.megaphone.MegaphoneRepository;
 import org.thoughtcrime.securesms.messages.IncomingMessageObserver;
+import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
 import org.thoughtcrime.securesms.net.SignalWebSocketHealthMonitor;
 import org.thoughtcrime.securesms.net.StandardUserAgentInterceptor;
 import org.thoughtcrime.securesms.notifications.MessageNotifier;
@@ -86,19 +88,25 @@ import org.whispersystems.signalservice.api.archive.ArchiveApi;
 import org.whispersystems.signalservice.api.attachment.AttachmentApi;
 import org.whispersystems.signalservice.api.calling.CallingApi;
 import org.whispersystems.signalservice.api.cds.CdsApi;
+import org.whispersystems.signalservice.api.certificate.CertificateApi;
+import org.whispersystems.signalservice.api.donations.DonationsApi;
 import org.whispersystems.signalservice.api.groupsv2.ClientZkOperations;
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations;
 import org.whispersystems.signalservice.api.keys.KeysApi;
 import org.whispersystems.signalservice.api.link.LinkDeviceApi;
 import org.whispersystems.signalservice.api.message.MessageApi;
 import org.whispersystems.signalservice.api.payments.PaymentsApi;
+import org.whispersystems.signalservice.api.profiles.ProfileApi;
+import org.whispersystems.signalservice.api.provisioning.ProvisioningApi;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi;
 import org.whispersystems.signalservice.api.registration.RegistrationApi;
+import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigApi;
 import org.whispersystems.signalservice.api.services.DonationsService;
 import org.whispersystems.signalservice.api.services.ProfileService;
 import org.whispersystems.signalservice.api.storage.StorageServiceApi;
+import org.whispersystems.signalservice.api.svr.SvrBApi;
 import org.whispersystems.signalservice.api.username.UsernameApi;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.SleepTimer;
@@ -136,7 +144,6 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     return new PushServiceSocket(signalServiceConfiguration,
                                  new DynamicCredentialsProvider(),
                                  BuildConfig.SIGNAL_AGENT,
-                                 groupsV2Operations.getProfileOperations(),
                                  RemoteConfig.okHttpAutomaticRetry());
   }
 
@@ -146,20 +153,27 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull SignalServiceAccountManager provideSignalServiceAccountManager(@NonNull AccountApi accountApi, @NonNull PushServiceSocket pushServiceSocket, @NonNull GroupsV2Operations groupsV2Operations) {
-    return new SignalServiceAccountManager(accountApi, pushServiceSocket, groupsV2Operations);
+  public @NonNull SignalServiceAccountManager provideSignalServiceAccountManager(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull AccountApi accountApi, @NonNull PushServiceSocket pushServiceSocket, @NonNull GroupsV2Operations groupsV2Operations) {
+    return new SignalServiceAccountManager(authWebSocket, accountApi, pushServiceSocket, groupsV2Operations);
   }
 
   @Override
-  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket, @NonNull SignalServiceDataStore protocolStore, @NonNull PushServiceSocket pushServiceSocket) {
+  public @NonNull SignalServiceMessageSender provideSignalServiceMessageSender(@NonNull SignalServiceDataStore protocolStore,
+                                                                               @NonNull PushServiceSocket pushServiceSocket,
+                                                                               @NonNull AttachmentApi attachmentApi,
+                                                                               @NonNull MessageApi messageApi,
+                                                                               @NonNull KeysApi keysApi) {
       return new SignalServiceMessageSender(pushServiceSocket,
                                             protocolStore,
                                             ReentrantSessionLock.INSTANCE,
-                                            authWebSocket,
-                                            unauthWebSocket,
+                                            attachmentApi,
+                                            messageApi,
+                                            keysApi,
                                             Optional.of(new SecurityEventListener(context)),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 16, 30),
-                                            ByteUnit.KILOBYTES.toBytes(256));
+                                            ByteUnit.KILOBYTES.toBytes(256),
+                                            RemoteConfig::useMessageSendRestFallback,
+                                            RemoteConfig.usePqRatchet());
   }
 
   @Override
@@ -212,8 +226,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull IncomingMessageObserver provideIncomingMessageObserver(@NonNull SignalWebSocket.AuthenticatedWebSocket webSocket) {
-    return new IncomingMessageObserver(context, webSocket);
+  public @NonNull IncomingMessageObserver provideIncomingMessageObserver(@NonNull SignalWebSocket.AuthenticatedWebSocket webSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
+    return new IncomingMessageObserver(context, webSocket, unauthWebSocket);
   }
 
   @Override
@@ -250,6 +264,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   public @NonNull Network provideLibsignalNetwork(@NonNull SignalServiceConfiguration config) {
     Network network = new Network(BuildConfig.LIBSIGNAL_NET_ENV, StandardUserAgentInterceptor.USER_AGENT);
     LibSignalNetworkExtensions.applyConfiguration(network, config);
+    LibSignalNetworkExtensions.buildAndSetRemoteConfig(network, RemoteConfig.libsignalEnforceMinTlsVersion());
 
     return network;
   }
@@ -301,6 +316,23 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     return new PendingRetryReceiptCache();
   }
 
+  private boolean shouldUseLibsignalForWebsocket(@NonNull SignalServiceConfiguration signalServiceConfiguration) {
+    if (RemoteConfig.libSignalWebSocketEnabled()) {
+      if (RemoteConfig.libSignalWebSocketEnabledForProxies()) {
+        return true;
+      } else {
+        // libsignalWebSocketEnabled = true but libsignalWebSocketEnabledForProxies = false
+        if (signalServiceConfiguration.getCensored() ||
+            signalServiceConfiguration.getSignalProxy().isPresent()) {
+          return false;
+        } else {
+          return true;
+        }
+      }
+    } else {
+      return false;
+    }
+  }
   @Override
   public @NonNull SignalWebSocket.AuthenticatedWebSocket provideAuthWebSocket(@NonNull Supplier<SignalServiceConfiguration> signalServiceConfigurationSupplier, @NonNull Supplier<Network> libSignalNetworkSupplier) {
     SleepTimer                   sleepTimer    = !SignalStore.account().isFcmEnabled() || SignalStore.internal().isWebsocketModeForced() ? new AlarmSleepTimer(context) : new UptimeSleepTimer();
@@ -313,7 +345,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
         throw new WebSocketUnavailableException("Invalid auth credentials");
       }
 
-      if (RemoteConfig.libSignalWebSocketEnabled()) {
+      if (shouldUseLibsignalForWebsocket(signalServiceConfigurationSupplier.get())) {
         Network network = libSignalNetworkSupplier.get();
         return new LibSignalChatConnection("libsignal-auth",
                                            network,
@@ -330,7 +362,10 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
       }
     };
 
-    SignalWebSocket.AuthenticatedWebSocket webSocket = new SignalWebSocket.AuthenticatedWebSocket(authFactory, sleepTimer, TimeUnit.SECONDS.toMillis(10));
+    SignalWebSocket.AuthenticatedWebSocket webSocket = new SignalWebSocket.AuthenticatedWebSocket(authFactory,
+                                                                                                  () -> !SignalStore.misc().isClientDeprecated() && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork(),
+                                                                                                  sleepTimer,
+                                                                                                  TimeUnit.SECONDS.toMillis(30));
     if (AppForegroundObserver.isForegrounded()) {
       webSocket.registerKeepAliveToken(SignalWebSocket.FOREGROUND_KEEPALIVE);
     }
@@ -346,7 +381,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
     SignalWebSocketHealthMonitor healthMonitor = new SignalWebSocketHealthMonitor(sleepTimer);
 
     WebSocketFactory unauthFactory = () -> {
-      if (RemoteConfig.libSignalWebSocketEnabled()) {
+      if (shouldUseLibsignalForWebsocket(signalServiceConfigurationSupplier.get())) {
         Network network = libSignalNetworkSupplier.get();
         return new LibSignalChatConnection("libsignal-unauth",
                                            network,
@@ -363,7 +398,10 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
       }
     };
 
-    SignalWebSocket.UnauthenticatedWebSocket webSocket = new SignalWebSocket.UnauthenticatedWebSocket(unauthFactory, sleepTimer, TimeUnit.SECONDS.toMillis(10));
+    SignalWebSocket.UnauthenticatedWebSocket webSocket = new SignalWebSocket.UnauthenticatedWebSocket(unauthFactory,
+                                                                                                      () -> !SignalStore.misc().isClientDeprecated() && !DeviceTransferBlockingInterceptor.getInstance().isBlockingNetwork(),
+                                                                                                      sleepTimer,
+                                                                                                      TimeUnit.SECONDS.toMillis(30));
     if (AppForegroundObserver.isForegrounded()) {
       webSocket.registerKeepAliveToken(SignalWebSocket.FOREGROUND_KEEPALIVE);
     }
@@ -435,17 +473,16 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull DonationsService provideDonationsService(@NonNull PushServiceSocket pushServiceSocket) {
-    return new DonationsService(pushServiceSocket);
+  public @NonNull DonationsService provideDonationsService(@NonNull DonationsApi donationsApi) {
+    return new DonationsService(donationsApi);
   }
 
   @Override
   public @NonNull ProfileService provideProfileService(@NonNull ClientZkProfileOperations clientZkProfileOperations,
-                                                       @NonNull SignalServiceMessageReceiver receiver,
                                                        @NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket,
                                                        @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket)
   {
-    return new ProfileService(clientZkProfileOperations, receiver, authWebSocket, unauthWebSocket);
+    return new ProfileService(clientZkProfileOperations, authWebSocket, unauthWebSocket);
   }
 
   @Override
@@ -471,8 +508,8 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   }
 
   @Override
-  public @NonNull KeysApi provideKeysApi(@NonNull PushServiceSocket pushServiceSocket) {
-    return new KeysApi(pushServiceSocket);
+  public @NonNull KeysApi provideKeysApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
+    return new KeysApi(authWebSocket, unauthWebSocket);
   }
 
   @Override
@@ -528,6 +565,36 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
   @Override
   public @NonNull MessageApi provideMessageApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
     return new MessageApi(authWebSocket, unauthWebSocket);
+  }
+
+  @Override
+  public @NonNull ProvisioningApi provideProvisioningApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
+    return new ProvisioningApi(authWebSocket, unauthWebSocket);
+  }
+
+  @Override
+  public @NonNull CertificateApi provideCertificateApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket) {
+    return new CertificateApi(authWebSocket);
+  }
+
+  @Override
+  public @NonNull ProfileApi provideProfileApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket, @NonNull PushServiceSocket pushServiceSocket, @NonNull ClientZkProfileOperations clientZkProfileOperations) {
+    return new ProfileApi(authWebSocket, unauthWebSocket, pushServiceSocket, clientZkProfileOperations);
+  }
+
+  @Override
+  public @NonNull RemoteConfigApi provideRemoteConfigApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull PushServiceSocket pushServiceSocket) {
+    return new RemoteConfigApi(authWebSocket, pushServiceSocket);
+  }
+
+  @Override
+  public @NonNull DonationsApi provideDonationsApi(@NonNull SignalWebSocket.AuthenticatedWebSocket authWebSocket, @NonNull SignalWebSocket.UnauthenticatedWebSocket unauthWebSocket) {
+    return new DonationsApi(authWebSocket, unauthWebSocket);
+  }
+
+  @Override
+  public @NonNull SvrBApi provideSvrBApi(@NotNull Network libSignalNetwork) {
+    return new SvrBApi(libSignalNetwork);
   }
 
   @VisibleForTesting

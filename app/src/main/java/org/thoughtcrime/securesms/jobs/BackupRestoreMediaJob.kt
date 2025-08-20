@@ -61,7 +61,16 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
       val restoreThumbnailOnlyAttachmentsIds: MutableList<AttachmentId> = mutableListOf()
       val notRestorable: MutableList<AttachmentId> = mutableListOf()
 
-      val attachmentBatch = SignalDatabase.attachments.getRestorableAttachments(batchSize)
+      val last30DaysAttachments = SignalDatabase.attachments.getLast30DaysOfRestorableAttachments(batchSize)
+      val remainingSize = batchSize - last30DaysAttachments.size
+
+      val remaining = if (remainingSize > 0) {
+        SignalDatabase.attachments.getOlderRestorableAttachments(batchSize = remainingSize)
+      } else {
+        listOf()
+      }
+
+      val attachmentBatch = last30DaysAttachments + remaining
       val messageIds = attachmentBatch.map { it.mmsId }.toSet()
       val messageMap = SignalDatabase.messages.getMessages(messageIds).associate { it.id to (it as MmsMessageRecord) }
 
@@ -75,18 +84,18 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
           continue
         }
 
-        restoreThumbnailJobs += RestoreAttachmentThumbnailJob(
-          messageId = attachment.mmsId,
-          attachmentId = attachment.attachmentId,
-          highPriority = false
-        )
-
         if (isWallpaper || shouldRestoreFullSize(message!!, restoreTime, SignalStore.backup.optimizeStorage)) {
           restoreFullAttachmentJobs += RestoreAttachmentJob.forInitialRestore(
             messageId = attachment.mmsId,
             attachmentId = attachment.attachmentId
           )
         } else {
+          restoreThumbnailJobs += RestoreAttachmentThumbnailJob(
+            messageId = attachment.mmsId,
+            attachmentId = attachment.attachmentId,
+            highPriority = false
+          )
+
           restoreThumbnailOnlyAttachmentsIds += attachment.attachmentId
         }
       }
@@ -103,11 +112,13 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
       // Intentionally enqueues one at a time for safer attachment transfer state management
       restoreThumbnailJobs.forEach { jobManager.add(it) }
       restoreFullAttachmentJobs.forEach { jobManager.add(it) }
-    } while (restoreThumbnailJobs.isNotEmpty() && restoreFullAttachmentJobs.isNotEmpty() && notRestorable.isNotEmpty())
+    } while (restoreThumbnailJobs.isNotEmpty() || restoreFullAttachmentJobs.isNotEmpty() || notRestorable.isNotEmpty())
 
     SignalStore.backup.totalRestorableAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
 
-    jobManager.add(CheckRestoreMediaLeftJob(RestoreAttachmentJob.constructQueueString(RestoreAttachmentJob.RestoreOperation.INITIAL_RESTORE)))
+    RestoreAttachmentJob.Queues.INITIAL_RESTORE.forEach { queue ->
+      jobManager.add(CheckRestoreMediaLeftJob(queue))
+    }
   }
 
   private fun shouldRestoreFullSize(message: MmsMessageRecord, restoreTime: Long, optimizeStorage: Boolean): Boolean {

@@ -15,12 +15,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
-import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.content.res.AppCompatResources;
 import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
 
 import com.airbnb.lottie.LottieAnimationView;
 import com.airbnb.lottie.LottieProperty;
@@ -283,9 +281,9 @@ public class ConversationItemFooter extends ConstraintLayout {
 
   private void presentDate(@NonNull MessageRecord messageRecord, @NonNull Locale locale, @NonNull ConversationItemDisplayMode displayMode) {
     dateView.forceLayout();
-     if (MessageRecordUtil.isScheduled(messageRecord)) {
+    if (MessageRecordUtil.isScheduled(messageRecord)) {
       dateView.setText(DateUtils.getOnlyTimeString(getContext(), ((MmsMessageRecord) messageRecord).getScheduledDate()));
-    } else if (messageRecord.isMediaPending()) {
+    } else if (messageRecord.isMediaPending() && messageRecord.isOutgoing() && !messageRecord.isSent()) {
       dateView.setText(null);
     } else if (messageRecord.isFailed()) {
       int errorMsg;
@@ -301,7 +299,7 @@ public class ConversationItemFooter extends ConstraintLayout {
     } else if (messageRecord.isRateLimited()) {
       dateView.setText(R.string.ConversationItem_send_paused);
     } else {
-      long timestamp = messageRecord.getTimestamp();
+      long timestamp = (displayMode == ConversationItemDisplayMode.EditHistory.INSTANCE) ? messageRecord.getDateSent() : messageRecord.getTimestamp();
       FormattedDate date = DateUtils.getDatelessRelativeTimeSpanFormattedDate(getContext(), locale, timestamp);
       String dateLabel = date.getValue();
       if (displayMode != ConversationItemDisplayMode.Detailed.INSTANCE && messageRecord.isEditMessage() && messageRecord.isLatestRevision()) {

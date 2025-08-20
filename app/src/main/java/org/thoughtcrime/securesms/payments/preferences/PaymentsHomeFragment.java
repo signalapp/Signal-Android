@@ -12,7 +12,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.compose.ui.platform.ComposeView;
 import androidx.core.content.ContextCompat;
-import androidx.lifecycle.FlowLiveDataConversions;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -27,7 +26,6 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.PaymentPreferencesDirections;
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.banner.Banner;
 import org.thoughtcrime.securesms.banner.BannerManager;
 import org.thoughtcrime.securesms.banner.banners.EnclaveFailureBanner;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
@@ -47,11 +45,8 @@ import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.navigation.SafeNavigation;
 import org.thoughtcrime.securesms.util.views.Stub;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import kotlinx.coroutines.flow.Flow;
 
 public class PaymentsHomeFragment extends LoggingFragment {
   private static final int DAYS_UNTIL_REPROMPT_PAYMENT_LOCK = 30;

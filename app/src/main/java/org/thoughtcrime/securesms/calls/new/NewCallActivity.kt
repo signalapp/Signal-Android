@@ -13,9 +13,9 @@ import org.signal.core.util.concurrent.SimpleTask
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.ContactSelectionActivity
 import org.thoughtcrime.securesms.ContactSelectionListFragment
-import org.thoughtcrime.securesms.InviteActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -111,7 +111,7 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
   }
 
   override fun onInvite() {
-    startActivity(Intent(this, InviteActivity::class.java))
+    startActivity(AppSettingsActivity.invite(this))
   }
 
   private fun handleManualRefresh() {
@@ -130,7 +130,7 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
       when (menuItem.itemId) {
         android.R.id.home -> ActivityCompat.finishAfterTransition(this@NewCallActivity)
         R.id.menu_refresh -> handleManualRefresh()
-        R.id.menu_invite -> startActivity(Intent(this@NewCallActivity, InviteActivity::class.java))
+        R.id.menu_invite -> startActivity(AppSettingsActivity.invite(this@NewCallActivity))
       }
 
       return true

@@ -2,7 +2,7 @@
 # ./gradlew --write-verification-metadata sha256 qa --rerun-tasks
 
 [versions]
-androidx-test-ext-junit = "1.1.3"
+androidx-test-ext-junit = "1.1.5"
 
 [libraries]
 # Macrobench/Baseline profiles

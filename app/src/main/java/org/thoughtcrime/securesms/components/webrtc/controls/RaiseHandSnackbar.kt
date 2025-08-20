@@ -43,15 +43,21 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.map
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.ringrtc.GroupCall
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.webrtc.v2.WebRtcCallViewModel
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.events.CallParticipant
 import org.thoughtcrime.securesms.events.GroupCallRaiseHandEvent
+import org.thoughtcrime.securesms.events.GroupCallSpeechEvent
 import java.util.concurrent.TimeUnit
+import kotlin.math.max
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
 /**
  * This is a UI element to display the status of one or more people with raised hands in a group call.
@@ -63,7 +69,7 @@ object RaiseHandSnackbar {
 
   @Composable
   fun View(webRtcCallViewModel: WebRtcCallViewModel, showCallInfoListener: () -> Unit, modifier: Modifier = Modifier) {
-    var expansionState by remember { mutableStateOf(ExpansionState(shouldExpand = false, forced = false)) }
+    var expansionState by remember { mutableStateOf(ExpansionState(shouldExpand = false, forced = false, collapseTimestamp = Duration.ZERO)) }
 
     val raisedHandsState by remember {
       webRtcCallViewModel.callParticipantsState
@@ -76,29 +82,36 @@ object RaiseHandSnackbar {
                 1
               }
             } else {
-              it.timestamp
+              it.timestamp.inWholeMilliseconds
             }
           }
-          val shouldExpand = RaiseHandState.shouldExpand(raisedHands)
-          if (!expansionState.forced) {
-            expansionState = ExpansionState(shouldExpand, false)
-          }
+
           raisedHands
         }
     }.collectAsState(initial = emptyList())
 
+    val speechEvent by webRtcCallViewModel.groupCallSpeechEvents.collectAsStateWithLifecycle()
+
     val state by remember {
       derivedStateOf {
-        RaiseHandState(raisedHands = raisedHandsState, expansionState = expansionState)
+        RaiseHandState(raisedHands = raisedHandsState, expansionState = expansionState, speechEvent = speechEvent)
+      }
+    }
+
+    LaunchedEffect(raisedHandsState, speechEvent) {
+      val maxCollapseTimestamp = RaiseHandState.getMaxCollapseTimestamp(raisedHandsState, speechEvent)
+      if (!expansionState.forced) {
+        val shouldExpand = System.currentTimeMillis().milliseconds < maxCollapseTimestamp
+        expansionState = ExpansionState(shouldExpand, false, maxCollapseTimestamp)
       }
     }
 
     LaunchedEffect(expansionState) {
       delay(COLLAPSE_DELAY_MS)
-      expansionState = ExpansionState(shouldExpand = false, forced = false)
+      expansionState = ExpansionState(shouldExpand = false, forced = false, collapseTimestamp = expansionState.collapseTimestamp)
     }
 
-    RaiseHand(state, modifier, { expansionState = ExpansionState(shouldExpand = true, forced = true) }, showCallInfoListener = showCallInfoListener)
+    RaiseHand(state, modifier, { expansionState = ExpansionState(shouldExpand = true, forced = true, collapseTimestamp = expansionState.collapseTimestamp) }, showCallInfoListener = showCallInfoListener)
   }
 }
 
@@ -198,6 +211,19 @@ private fun getSnackbarText(state: RaiseHandState): String {
     return ""
   }
 
+  val shouldDisplayLowerYourHand = remember(state) {
+    val now = System.currentTimeMillis().milliseconds
+    val hasUnexpiredSelf = state.raisedHands.any { it.sender.isSelf && it.sender.isPrimary && it.getCollapseTimestamp() >= now }
+    val expiration = state.speechEvent?.getCollapseTimestamp() ?: Duration.ZERO
+    val isUnexpired = expiration >= now
+
+    state.speechEvent?.speechEvent == GroupCall.SpeechEvent.LOWER_HAND_SUGGESTION && isUnexpired && hasUnexpiredSelf
+  }
+
+  if (shouldDisplayLowerYourHand && state.isExpanded) {
+    return stringResource(id = R.string.CallRaiseHandSnackbar__lower_your_hand)
+  }
+
   val displayedName = getShortDisplayName(raisedHands = state.raisedHands)
   val additionalHandsCount = state.raisedHands.size - 1
   return if (!state.isExpanded) {
@@ -238,7 +264,8 @@ private fun getShortDisplayName(raisedHands: List<GroupCallRaiseHandEvent>): Str
 
 private data class RaiseHandState(
   val raisedHands: List<GroupCallRaiseHandEvent> = emptyList(),
-  val expansionState: ExpansionState = ExpansionState(shouldExpand = false, forced = false)
+  val expansionState: ExpansionState = ExpansionState(shouldExpand = false, forced = false, collapseTimestamp = Duration.ZERO),
+  val speechEvent: GroupCallSpeechEvent? = null
 ) {
   val isExpanded = expansionState.shouldExpand && raisedHands.isNotEmpty()
 
@@ -246,14 +273,15 @@ private data class RaiseHandState(
 
   companion object {
     @JvmStatic
-    fun shouldExpand(raisedHands: List<GroupCallRaiseHandEvent>): Boolean {
-      val now = System.currentTimeMillis()
-      return raisedHands.any { it.getCollapseTimestamp() > now }
+    fun getMaxCollapseTimestamp(raisedHands: List<GroupCallRaiseHandEvent>, speechEvent: GroupCallSpeechEvent?): Duration {
+      val maxRaisedHandTimestamp = raisedHands.maxByOrNull { it.getCollapseTimestamp() }?.getCollapseTimestamp() ?: Duration.ZERO
+      return max(maxRaisedHandTimestamp.inWholeMilliseconds, (speechEvent?.getCollapseTimestamp() ?: Duration.ZERO).inWholeMilliseconds).milliseconds
     }
   }
 }
 
 private data class ExpansionState(
   val shouldExpand: Boolean,
-  val forced: Boolean
+  val forced: Boolean,
+  val collapseTimestamp: Duration
 )

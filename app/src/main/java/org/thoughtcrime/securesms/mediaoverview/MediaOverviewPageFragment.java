@@ -33,28 +33,32 @@ import org.signal.core.util.ByteSize;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.signal.core.util.logging.Log;
+import org.thoughtcrime.securesms.LoggingFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
-import org.thoughtcrime.securesms.components.DeleteSyncEducationDialog;
+import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
+import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MediaTable;
 import org.thoughtcrime.securesms.database.loaders.GroupedThreadMediaLoader;
 import org.thoughtcrime.securesms.database.loaders.MediaLoader;
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewV2Activity;
 import org.thoughtcrime.securesms.mms.PartAuthority;
+import org.thoughtcrime.securesms.permissions.Permissions;
 import org.thoughtcrime.securesms.util.BottomOffsetDecoration;
 import org.thoughtcrime.securesms.util.MediaUtil;
-import org.thoughtcrime.securesms.util.Util;
 import org.thoughtcrime.securesms.util.ViewUtil;
 
 import java.util.Arrays;
 import java.util.Objects;
 
-public final class MediaOverviewPageFragment extends Fragment
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+
+public final class MediaOverviewPageFragment extends LoggingFragment
   implements MediaGalleryAllAdapter.ItemClickListener,
              MediaGalleryAllAdapter.AudioItemListener,
              LoaderManager.LoaderCallbacks<GroupedThreadMediaLoader.GroupedThreadMedia>
@@ -249,6 +253,10 @@ public final class MediaOverviewPageFragment extends Fragment
     DatabaseAttachment attachment = mediaRecord.getAttachment();
 
     if (MediaUtil.isVideo(attachment) || MediaUtil.isImage(attachment)) {
+      if (mediaRecord.getAttachment().transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
+        Toast.makeText(context, R.string.MediaOverviewActivity_this_media_is_not_sent_yet, Toast.LENGTH_LONG).show();
+        return;
+      }
       MediaIntentFactory.MediaPreviewArgs args = new MediaIntentFactory.MediaPreviewArgs(
           threadId,
           mediaRecord.getDate(),
@@ -359,9 +367,12 @@ public final class MediaOverviewPageFragment extends Fragment
 
       bottomActionBar.setItems(Arrays.asList(
           new ActionItem(R.drawable.symbol_save_android_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_save_plural, selectionCount), () -> {
-            MediaActions.handleSaveMedia(MediaOverviewPageFragment.this,
-                                         getListAdapter().getSelectedMedia(),
-                                         this::exitMultiSelect);
+            lifecycleDisposable.add(
+                MediaActions
+                    .handleSaveMedia(MediaOverviewPageFragment.this, getListAdapter().getSelectedMedia())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(this::exitMultiSelect)
+            );
           }),
           new ActionItem(R.drawable.symbol_check_circle_24, getString(R.string.MediaOverviewActivity_select_all), this::handleSelectAllMedia),
           new ActionItem(R.drawable.symbol_trash_24, getResources().getQuantityString(R.plurals.MediaOverviewActivity_delete_plural, selectionCount), this::handleDeleteSelectedMedia)
@@ -398,6 +409,12 @@ public final class MediaOverviewPageFragment extends Fragment
   @Override
   public void unregisterPlaybackStateObserver(@NonNull Observer<VoiceNotePlaybackState> observer) {
     voiceNoteMediaController.getVoiceNotePlaybackState().removeObserver(observer);
+  }
+
+  @SuppressWarnings("deprecation")
+  @Override
+  public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults);
   }
 
   private class ActionModeCallback implements ActionMode.Callback {

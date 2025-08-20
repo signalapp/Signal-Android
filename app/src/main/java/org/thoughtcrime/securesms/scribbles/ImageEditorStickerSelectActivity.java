@@ -66,7 +66,7 @@ public final class ImageEditorStickerSelectActivity extends AppCompatActivity im
 
   @Override
   public void onStickerManagementClicked() {
-    startActivity(StickerManagementActivity.getIntent(ImageEditorStickerSelectActivity.this));
+    startActivity(StickerManagementActivity.createIntent(ImageEditorStickerSelectActivity.this));
   }
 
 

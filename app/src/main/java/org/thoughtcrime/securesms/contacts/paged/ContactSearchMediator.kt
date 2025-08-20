@@ -126,6 +126,8 @@ class ContactSearchMediator(
     }
   }
 
+  fun getFilter(): String? = viewModel.getQuery()
+
   fun onConversationFilterRequestChanged(conversationFilterRequest: ConversationFilterRequest) {
     viewModel.setConversationFilterRequest(conversationFilterRequest)
   }

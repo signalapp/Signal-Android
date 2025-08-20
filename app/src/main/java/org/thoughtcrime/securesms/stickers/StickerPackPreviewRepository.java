@@ -32,7 +32,7 @@ public final class StickerPackPreviewRepository {
   private final StickerTable                 stickerDatabase;
   private final SignalServiceMessageReceiver receiver;
 
-  public StickerPackPreviewRepository(@NonNull Context context) {
+  public StickerPackPreviewRepository() {
     this.receiver        = AppDependencies.getSignalServiceMessageReceiver();
     this.stickerDatabase = SignalDatabase.stickers();
   }

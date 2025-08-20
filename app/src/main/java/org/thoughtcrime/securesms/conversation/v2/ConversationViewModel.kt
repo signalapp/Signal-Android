@@ -32,11 +32,14 @@ import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.util.orNull
@@ -64,7 +67,6 @@ import org.thoughtcrime.securesms.database.model.Mention
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.ReactionRecord
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.database.model.StoryViewState
@@ -191,6 +193,9 @@ class ConversationViewModel(
   val jumpToDateValidator: JumpToDateValidator
     get() = _jumpToDateValidator
 
+  private val internalBackPressedState = MutableStateFlow(BackPressedState())
+  val backPressedState: StateFlow<BackPressedState> = internalBackPressedState
+
   init {
     disposables += recipient
       .subscribeBy {
@@ -250,7 +255,7 @@ class ConversationViewModel(
       .conversationRecipient
       .filter { it.isRegistered }
       .take(1)
-      .subscribeBy { RetrieveProfileJob.enqueue(it.id) }
+      .subscribeBy { RetrieveProfileJob.enqueue(it.id, skipDebounce = false) }
       .addTo(disposables)
 
     disposables += recipientRepository
@@ -398,8 +403,8 @@ class ConversationViewModel(
     }
   }
 
-  fun getQuotedMessagePosition(quote: Quote): Single<Int> {
-    return repository.getQuotedMessagePosition(threadId, quote)
+  fun getQuotedMessagePosition(quoteId: Long, authorId: RecipientId): Single<Int> {
+    return repository.getQuotedMessagePosition(threadId, quoteId, authorId)
   }
 
   fun moveToDate(receivedTimestamp: Long): Single<Int> {
@@ -603,5 +608,24 @@ class ConversationViewModel(
     return repository
       .getEarliestMessageSentDate(threadId)
       .observeOn(AndroidSchedulers.mainThread())
+  }
+
+  fun setIsReactionDelegateShowing(isReactionDelegateShowing: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isReactionDelegateShowing = isReactionDelegateShowing)
+    }
+  }
+
+  fun setIsSearchRequested(isSearchRequested: Boolean) {
+    internalBackPressedState.update {
+      it.copy(isSearchRequested = isSearchRequested)
+    }
+  }
+
+  data class BackPressedState(
+    val isReactionDelegateShowing: Boolean = false,
+    val isSearchRequested: Boolean = false
+  ) {
+    fun shouldHandleBackPressed() = isSearchRequested || isReactionDelegateShowing
   }
 }

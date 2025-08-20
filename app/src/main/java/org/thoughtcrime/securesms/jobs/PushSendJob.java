@@ -16,8 +16,6 @@ import androidx.annotation.Nullable;
 import com.annimon.stream.Stream;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.Hex;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
@@ -50,7 +48,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
 import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.QuoteModel;
@@ -67,6 +65,7 @@ import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ImageCompressionUtil;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Util;
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
@@ -76,6 +75,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
+import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.internal.push.BodyRange;
 
@@ -90,7 +90,6 @@ import java.util.Locale;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
@@ -175,6 +174,11 @@ public abstract class PushSendJob extends SendJob {
       if (backoff >= 0) {
         return TimeUnit.SECONDS.toMillis(backoff);
       }
+    } else if (exception instanceof RateLimitException) {
+      long backoff = ((RateLimitException) exception).getRetryAfterMilliseconds().orElse(-1L);
+      if (backoff >= 0) {
+        return backoff;
+      }
     } else if (exception instanceof NonSuccessfulResponseCodeException) {
       if (((NonSuccessfulResponseCodeException) exception).is5xx()) {
         return BackoffUtil.exponentialBackoff(pastAttemptCount, RemoteConfig.getServerErrorMaxBackoff());
@@ -219,8 +223,8 @@ public abstract class PushSendJob extends SendJob {
                                     .withResumableUploadSpec(AppDependencies.getSignalServiceMessageSender().getResumableUploadSpec())
                                     .withListener(new SignalServiceAttachment.ProgressListener() {
                                       @Override
-                                      public void onAttachmentProgress(long total, long progress) {
-                                        EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress));
+                                      public void onAttachmentProgress(@NonNull AttachmentTransferProgress progress) {
+                                        EventBus.getDefault().postSticky(new PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, progress));
                                       }
 
                                       @Override
@@ -373,12 +377,12 @@ public abstract class PushSendJob extends SendJob {
 
       try {
         if (MediaUtil.isImageType(attachment.contentType) && attachment.getUri() != null) {
-          thumbnailData = ImageCompressionUtil.compress(context, attachment.contentType, new DecryptableUri(attachment.getUri()), 100, 50);
+          thumbnailData = ImageCompressionUtil.compress(context, attachment.contentType, attachment.contentType, new DecryptableUri(attachment.getUri()), 100, 50);
         } else if (Build.VERSION.SDK_INT >= 23 && MediaUtil.isVideoType(attachment.contentType) && attachment.getUri() != null) {
           Bitmap bitmap = MediaUtil.getVideoThumbnail(context, attachment.getUri(), 1000);
 
           if (bitmap != null) {
-            thumbnailData = ImageCompressionUtil.compress(context, attachment.contentType, new DecryptableUri(attachment.getUri()), 100, 50);
+            thumbnailData = ImageCompressionUtil.compress(context, attachment.contentType, attachment.contentType, new DecryptableUri(attachment.getUri()), 100, 50);
           }
         }
 

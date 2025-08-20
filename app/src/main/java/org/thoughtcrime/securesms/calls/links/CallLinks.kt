@@ -8,12 +8,14 @@ package org.thoughtcrime.securesms.calls.links
 import io.reactivex.rxjava3.core.Observable
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallException
+import org.signal.ringrtc.CallLinkEpoch
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.database.DatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
+import java.io.UnsupportedEncodingException
 import java.net.URLDecoder
 
 /**
@@ -21,12 +23,19 @@ import java.net.URLDecoder
  */
 object CallLinks {
   private const val ROOT_KEY = "key"
+  private const val EPOCH = "epoch"
   private const val HTTPS_LINK_PREFIX = "https://signal.link/call/#key="
   private const val SNGL_LINK_PREFIX = "sgnl://signal.link/call/#key="
 
   private val TAG = Log.tag(CallLinks::class.java)
 
-  fun url(linkKeyBytes: ByteArray) = "$HTTPS_LINK_PREFIX${CallLinkRootKey(linkKeyBytes)}"
+  fun url(rootKeyBytes: ByteArray, epochBytes: ByteArray?): String {
+    return if (epochBytes == null) {
+      "$HTTPS_LINK_PREFIX${CallLinkRootKey(rootKeyBytes)}"
+    } else {
+      "$HTTPS_LINK_PREFIX${CallLinkRootKey(rootKeyBytes)}&epoch=${CallLinkEpoch.fromBytes(epochBytes)}"
+    }
+  }
 
   fun watchCallLink(roomId: CallLinkRoomId): Observable<CallLinkTable.CallLink> {
     return Observable.create { emitter ->
@@ -60,8 +69,13 @@ object CallLinks {
     return url.split("#").last().startsWith("key=")
   }
 
+  data class CallLinkParseResult(
+    val rootKey: CallLinkRootKey,
+    val epoch: CallLinkEpoch?
+  )
+
   @JvmStatic
-  fun parseUrl(url: String): CallLinkRootKey? {
+  fun parseUrl(url: String): CallLinkParseResult? {
     if (!url.startsWith(HTTPS_LINK_PREFIX) && !url.startsWith(SNGL_LINK_PREFIX)) {
       Log.w(TAG, "Invalid url prefix.")
       return null
@@ -73,18 +87,33 @@ object CallLinks {
       return null
     }
 
-    val fragment = parts[1]
-    val fragmentParts = fragment.split("&")
-    val fragmentQuery = fragmentParts.associate {
-      val kv = it.split("=")
-      if (kv.size != 2) {
-        Log.w(TAG, "Invalid fragment keypair. Skipping.")
+    val fragmentQuery = mutableMapOf<String, String?>()
+
+    try {
+      for (part in parts[1].split("&")) {
+        val kv = part.split("=")
+        // Make sure we don't have an empty key (i.e. handle the case
+        // of "a=0&&b=0", for example)
+        if (kv[0].isEmpty()) {
+          Log.w(TAG, "Invalid url: $url (empty key)")
+          return null
+        }
+        val key = URLDecoder.decode(kv[0], "utf8")
+        val value = when (kv.size) {
+          1 -> null
+          2 -> URLDecoder.decode(kv[1], "utf8")
+          else -> {
+            // Cannot have more than one value per key (i.e. handle the case
+            // of "a=0&b=0=1=2", for example.
+            Log.w(TAG, "Invalid url: $url (multiple values)")
+            return null
+          }
+        }
+        fragmentQuery += key to value
       }
-
-      val key = URLDecoder.decode(kv[0], "utf8")
-      val value = URLDecoder.decode(kv[1], "utf8")
-
-      key to value
+    } catch (_: UnsupportedEncodingException) {
+      Log.w(TAG, "Invalid url: $url")
+      return null
     }
 
     val key = fragmentQuery[ROOT_KEY]
@@ -94,9 +123,13 @@ object CallLinks {
     }
 
     return try {
-      CallLinkRootKey(key)
+      val epoch = fragmentQuery[EPOCH]?.let { s -> CallLinkEpoch(s) }
+      CallLinkParseResult(
+        rootKey = CallLinkRootKey(key),
+        epoch = epoch
+      )
     } catch (e: CallException) {
-      Log.w(TAG, "Invalid root key found in fragment query string.")
+      Log.w(TAG, "Invalid root key or epoch found in fragment query string.")
       null
     }
   }

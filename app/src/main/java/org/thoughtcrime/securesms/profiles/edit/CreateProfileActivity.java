@@ -21,11 +21,12 @@ import org.thoughtcrime.securesms.util.DynamicTheme;
  */
 public class CreateProfileActivity extends BaseActivity implements CreateProfileFragment.Controller {
 
-  public static final String NEXT_INTENT       = "next_intent";
-  public static final String EXCLUDE_SYSTEM    = "exclude_system";
-  public static final String NEXT_BUTTON_TEXT  = "next_button_text";
-  public static final String SHOW_TOOLBAR      = "show_back_arrow";
-  public static final String GROUP_ID          = "group_id";
+  public static final String NEXT_INTENT            = "next_intent";
+  public static final String EXCLUDE_SYSTEM         = "exclude_system";
+  public static final String NEXT_BUTTON_TEXT       = "next_button_text";
+  public static final String SHOW_TOOLBAR           = "show_back_arrow";
+  public static final String GROUP_ID               = "group_id";
+  public static final String IS_DESCRIPTION_FOCUSED = "is_description_focused";
 
   private final DynamicTheme dynamicTheme = new DynamicRegistrationTheme();
 
@@ -40,6 +41,15 @@ public class CreateProfileActivity extends BaseActivity implements CreateProfile
     intent.putExtra(CreateProfileActivity.SHOW_TOOLBAR, true);
     intent.putExtra(CreateProfileActivity.GROUP_ID, groupId.toString());
     intent.putExtra(CreateProfileActivity.NEXT_BUTTON_TEXT, R.string.save);
+    return intent;
+  }
+
+  public static @NonNull Intent getIntentForGroupProfileWithFocusedDescription(@NonNull Context context, @NonNull GroupId groupId) {
+    Intent intent = new Intent(context, CreateProfileActivity.class);
+    intent.putExtra(CreateProfileActivity.SHOW_TOOLBAR, true);
+    intent.putExtra(CreateProfileActivity.GROUP_ID, groupId.toString());
+    intent.putExtra(CreateProfileActivity.NEXT_BUTTON_TEXT, R.string.save);
+    intent.putExtra(CreateProfileActivity.IS_DESCRIPTION_FOCUSED, true);
     return intent;
   }
 

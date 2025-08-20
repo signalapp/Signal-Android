@@ -152,7 +152,7 @@ public class RemoteDeleteSendJob extends BaseJob {
     }
 
     List<Recipient>   possible = Stream.of(recipients).map(Recipient::resolved).toList();
-    List<Recipient>   eligible = RecipientUtil.getEligibleForSending(Stream.of(recipients).map(Recipient::resolved).toList());
+    List<Recipient>   eligible = RecipientUtil.getEligibleForSending(Stream.of(recipients).map(Recipient::resolved).filter(Recipient::getHasServiceId).toList());
     List<RecipientId> skipped  = Stream.of(SetUtil.difference(possible, eligible)).map(Recipient::getId).toList();
 
     boolean            isForStory         = message.isMms() && (((MmsMessageRecord) message).getStoryType().isStory() || ((MmsMessageRecord) message).getParentStoryId() != null);

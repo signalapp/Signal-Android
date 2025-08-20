@@ -35,10 +35,12 @@ import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.whispersystems.signalservice.internal.push.exceptions.GroupPatchNotAcceptedException;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 import io.reactivex.rxjava3.core.Completable;
 import io.reactivex.rxjava3.core.Single;
@@ -49,6 +51,7 @@ public final class MessageRequestRepository {
 
   private static final String TAG                  = Log.tag(MessageRequestRepository.class);
   private static final int    MIN_GROUPS_THRESHOLD = 2;
+  private static final int    MAX_MEMBER_NAMES     = 4;
 
   private final Context  context;
   private final Executor executor;
@@ -65,20 +68,17 @@ public final class MessageRequestRepository {
     GroupInfo             groupInfo    = GroupInfo.ZERO;
 
     if (groupRecord.isPresent()) {
-      boolean groupHasExistingContacts = false;
+      List<Recipient> recipients = Recipient.resolvedList(groupRecord.get().getMembers());
       if (groupRecord.get().isV2Group()) {
-        List<Recipient> recipients = Recipient.resolvedList(groupRecord.get().getMembers());
-        for (Recipient recipient : recipients) {
-          if ((recipient.isProfileSharing() || recipient.isSystemContact()) && !recipient.isSelf()) {
-            groupHasExistingContacts = true;
-            break;
-          }
-        }
+        boolean         groupHasExistingContacts = recipients.stream().filter(r -> !r.isSelf()).anyMatch(r -> r.isProfileSharing() || r.isSystemContact());
+        List<Recipient> membersPreview           = recipients.stream().filter(r -> !r.isSelf()).limit(MAX_MEMBER_NAMES).collect(Collectors.toList());
+        DecryptedGroup  decryptedGroup           = groupRecord.get().requireV2GroupProperties().getDecryptedGroup();
 
-        DecryptedGroup decryptedGroup = groupRecord.get().requireV2GroupProperties().getDecryptedGroup();
-        groupInfo = new GroupInfo(decryptedGroup.members.size(), decryptedGroup.pendingMembers.size(), decryptedGroup.description, groupHasExistingContacts);
+        groupInfo = new GroupInfo(decryptedGroup.members.size(), decryptedGroup.pendingMembers.size(), decryptedGroup.description, groupHasExistingContacts, membersPreview);
       } else {
-        groupInfo = new GroupInfo(groupRecord.get().getMembers().size(), 0, "", false);
+        List<Recipient> membersPreview = recipients.stream().filter(r -> !r.isSelf()).limit(MAX_MEMBER_NAMES).collect(Collectors.toList());
+
+        groupInfo = new GroupInfo(groupRecord.get().getMembers().size(), 0, "", false, membersPreview);
       }
     }
 
@@ -216,7 +216,7 @@ public final class MessageRequestRepository {
 
         SendViewedReceiptJob.enqueue(threadId, recipientId, viewedInfos);
 
-        if (SignalStore.account().hasLinkedDevices()) {
+        if (SignalStore.account().isMultiDevice()) {
           AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipientId));
         }
 
@@ -278,7 +278,7 @@ public final class MessageRequestRepository {
         }
       }
 
-      if (SignalStore.account().hasLinkedDevices()) {
+      if (SignalStore.account().isMultiDevice()) {
         AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forDelete(recipientId));
       }
 
@@ -316,7 +316,7 @@ public final class MessageRequestRepository {
       }
       Recipient.live(recipientId).refresh();
 
-      if (SignalStore.account().hasLinkedDevices()) {
+      if (SignalStore.account().isMultiDevice()) {
         AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forBlock(recipientId));
       }
 
@@ -376,7 +376,7 @@ public final class MessageRequestRepository {
 
       AppDependencies.getJobManager().add(new ReportSpamJob(threadId, System.currentTimeMillis()));
 
-      if (SignalStore.account().hasLinkedDevices()) {
+      if (SignalStore.account().isMultiDevice()) {
         AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forBlockAndReportSpam(recipientId));
       }
 
@@ -403,7 +403,7 @@ public final class MessageRequestRepository {
 
       AppDependencies.getJobManager().add(new ReportSpamJob(threadId, System.currentTimeMillis()));
 
-      if (SignalStore.account().hasLinkedDevices()) {
+      if (SignalStore.account().isMultiDevice()) {
         AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forReportSpam(recipientId));
       }
 
@@ -428,7 +428,7 @@ public final class MessageRequestRepository {
 
       RecipientUtil.unblock(recipient);
 
-      if (SignalStore.account().hasLinkedDevices()) {
+      if (SignalStore.account().isMultiDevice()) {
         AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipientId));
       }
 

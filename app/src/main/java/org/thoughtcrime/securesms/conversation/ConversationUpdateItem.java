@@ -91,6 +91,8 @@ public final class ConversationUpdateItem extends FrameLayout
   private final RecipientObserverManager groupObserver   = new RecipientObserverManager(presentOnChange);
   private final GroupDataManager         groupData       = new GroupDataManager();
 
+  private final PassthroughClickListener passthroughClickListener = new PassthroughClickListener();
+
   public ConversationUpdateItem(Context context) {
     super(context);
   }
@@ -427,6 +429,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onGroupMigrationLearnMoreClicked(conversationMessage.getMessageRecord().getGroupV1MigrationMembershipChanges());
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isChatSessionRefresh() &&
@@ -437,6 +441,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onChatSessionRefreshLearnMoreClicked();
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isIdentityUpdate()) {
@@ -445,6 +451,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onSafetyNumberLearnMoreClicked(conversationMessage.getMessageRecord().getFromRecipient());
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isGroupCall()) {
@@ -473,6 +481,8 @@ public final class ConversationUpdateItem extends FrameLayout
         actionButton.setOnClickListener(v -> {
           if (batchSelected.isEmpty() && eventListener != null) {
             eventListener.onJoinGroupCallClicked();
+          } else {
+            passthroughClickListener.onClick(v);
           }
         });
       } else {
@@ -485,6 +495,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onInviteFriendsToGroupClicked(conversationRecipient.requireGroupId().requireV2());
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if ((conversationMessage.getMessageRecord().isMissedAudioCall() || conversationMessage.getMessageRecord().isMissedVideoCall()) && EnableCallNotificationSettingsDialog.shouldShow(getContext())) {
@@ -493,6 +505,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (eventListener != null) {
           eventListener.onEnableCallNotificationsClicked();
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isInMemoryMessageRecord() && ((InMemoryMessageRecord) conversationMessage.getMessageRecord()).showActionButton()) {
@@ -502,6 +516,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (eventListener != null) {
           eventListener.onInMemoryMessageClicked(inMemoryMessageRecord);
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isGroupV2DescriptionUpdate()) {
@@ -510,6 +526,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (eventListener != null) {
           eventListener.onViewGroupDescriptionChange(conversationRecipient.getGroupId().orElse(null), conversationMessage.getMessageRecord().getGroupV2DescriptionUpdate(), isMessageRequestAccepted);
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isBadDecryptType() &&
@@ -520,6 +538,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onBadDecryptLearnMoreClicked(conversationMessage.getMessageRecord().getFromRecipient().getId());
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isChangeNumber() && conversationMessage.getMessageRecord().getFromRecipient().isSystemContact()) {
@@ -528,6 +548,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onChangeNumberUpdateContact(conversationMessage.getMessageRecord().getFromRecipient());
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (shouldShowBlockRequestAction(conversationMessage.getMessageRecord())) {
@@ -536,6 +558,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onBlockJoinRequest(conversationMessage.getMessageRecord().getFromRecipient());
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isReleaseChannelDonationRequest()) {
@@ -543,6 +567,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onDonateClicked();
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
 
@@ -552,6 +578,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onInviteToSignalClicked();
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
 
@@ -562,6 +590,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onActivatePaymentsClicked();
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isPaymentsActivated() && !conversationMessage.getMessageRecord().isOutgoing()) {
@@ -570,6 +600,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onSendPaymentClicked(conversationMessage.getMessageRecord().getFromRecipient().getId());
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isReportedSpam()) {
@@ -578,6 +610,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onReportSpamLearnMoreClicked();
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isProfileChange() && !conversationMessage.getMessageRecord().getFromRecipient().isSelf()) {
@@ -586,6 +620,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onChangeProfileNameUpdateContact(conversationMessage.getMessageRecord().getFromRecipient());
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else if (conversationMessage.getMessageRecord().isMessageRequestAccepted()) {
@@ -594,6 +630,8 @@ public final class ConversationUpdateItem extends FrameLayout
       actionButton.setOnClickListener(v -> {
         if (batchSelected.isEmpty() && eventListener != null) {
           eventListener.onMessageRequestAcceptOptionsClicked();
+        } else {
+          passthroughClickListener.onClick(v);
         }
       });
     } else {
@@ -722,6 +760,21 @@ public final class ConversationUpdateItem extends FrameLayout
       setBodyText(update);
     }
   }
+
+  private class PassthroughClickListener implements View.OnLongClickListener, View.OnClickListener {
+
+    @Override
+    public boolean onLongClick(View v) {
+      performLongClick();
+      return true;
+    }
+
+    @Override
+    public void onClick(View v) {
+      performClick();
+    }
+  }
+
 
   private class InternalClickListener implements View.OnClickListener {
 

@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.mediasend.v2.gallery
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -15,7 +14,6 @@ import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator.Companion.requestPermissionsForCamera
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
-import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
 import org.thoughtcrime.securesms.mediasend.v2.review.MediaSelectionItemTouchHelper
 import org.thoughtcrime.securesms.permissions.Permissions
 
@@ -25,8 +23,6 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
 
   private lateinit var mediaGalleryFragment: MediaGalleryFragment
 
-  private val lifecycleDisposable = LifecycleDisposable()
-
   private val navigator = MediaSelectionNavigator(
     toCamera = R.id.action_mediaGalleryFragment_to_mediaCaptureFragment
   )
@@ -34,6 +30,8 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
   private val sharedViewModel: MediaSelectionViewModel by viewModels(
     ownerProducer = { requireActivity() }
   )
+
+  private val lifecycleDisposable = LifecycleDisposable()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     val args = arguments
@@ -44,6 +42,7 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
       else -> false
     }
 
+    lifecycleDisposable.bindTo(this)
     sharedViewModel.setSuppressEmptyError(isFirst)
     mediaGalleryFragment = ensureMediaGalleryFragment()
 
@@ -53,37 +52,20 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
       mediaGalleryFragment.onViewStateUpdated(MediaGalleryFragment.ViewState(state.selectedMedia))
     }
 
-    if (arguments?.containsKey("first") == true) {
-      requireActivity().onBackPressedDispatcher.addCallback(
-        viewLifecycleOwner,
-        object : OnBackPressedCallback(true) {
-          override fun handleOnBackPressed() {
-            requireActivity().finish()
-          }
-        }
-      )
-    }
-
-    lifecycleDisposable.bindTo(viewLifecycleOwner)
     lifecycleDisposable += sharedViewModel.mediaErrors
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe(this::handleError)
-  }
+      .subscribe {
+        mediaGalleryFragment.onMediaErrorOccurred()
+      }
 
-  private fun handleError(error: MediaValidator.FilterError) {
-    when (error) {
-      MediaValidator.FilterError.None -> return
-      MediaValidator.FilterError.ItemTooLarge -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()
-      MediaValidator.FilterError.ItemInvalidType -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
-      MediaValidator.FilterError.TooManyItems -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__too_many_items_selected, Toast.LENGTH_SHORT).show()
-      is MediaValidator.FilterError.NoItems -> {
-        if (error.cause != null) {
-          handleError(error.cause)
+    requireActivity().onBackPressedDispatcher.addCallback(
+      viewLifecycleOwner,
+      object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+          onBackPressed()
         }
       }
-    }
-
-    sharedViewModel.clearMediaErrors()
+    )
   }
 
   private fun ensureMediaGalleryFragment(): MediaGalleryFragment {
@@ -122,6 +104,14 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
     sharedViewModel.removeMedia(media)
   }
 
+  override fun onMediaSelected(media: Set<Media>) {
+    sharedViewModel.addMedia(media)
+  }
+
+  override fun onMediaUnselected(media: Set<Media>) {
+    sharedViewModel.removeMedia(media)
+  }
+
   override fun onSelectedMediaClicked(media: Media) {
     sharedViewModel.onPageChanged(media)
     navigator.goToReview(findNavController())
@@ -139,6 +129,19 @@ class MediaSelectionGalleryFragment : Fragment(R.layout.fragment_container), Med
   }
 
   override fun onToolbarNavigationClicked() {
-    requireActivity().onBackPressed()
+    onBackPressed()
+  }
+
+  fun onBackPressed() {
+    if (arguments?.containsKey("first") == true) {
+      requireActivity().finish()
+      return
+    }
+
+    if (navigator.isPreviousScreenMediaReview(findNavController()) && sharedViewModel.isSelectedMediaEmpty()) {
+      requireActivity().finish()
+    } else {
+      findNavController().popBackStack()
+    }
   }
 }

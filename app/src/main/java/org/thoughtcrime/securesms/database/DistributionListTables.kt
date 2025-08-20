@@ -7,6 +7,7 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.Base64
 import org.signal.core.util.CursorUtil
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.SqlUtil.buildArgs
 import org.signal.core.util.delete
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
@@ -526,13 +527,32 @@ class DistributionListTables constructor(context: Context?, databaseHelper: Sign
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
-    val count = writableDatabase
-      .update(MembershipTable.TABLE_NAME)
-      .values(MembershipTable.RECIPIENT_ID to toId.serialize())
-      .where("${MembershipTable.RECIPIENT_ID} = ?", fromId)
-      .run(SQLiteDatabase.CONFLICT_REPLACE)
+    // Remap all recipients that would not result in conflicts
+    writableDatabase.execSQL(
+      """
+        UPDATE ${MembershipTable.TABLE_NAME} AS parent
+        SET ${MembershipTable.RECIPIENT_ID} = ?
+        WHERE
+          ${MembershipTable.RECIPIENT_ID} = ?
+          AND NOT EXISTS (
+            SELECT 1
+            FROM ${MembershipTable.TABLE_NAME} child
+            WHERE
+              child.${MembershipTable.RECIPIENT_ID} = ?
+              AND parent.${MembershipTable.LIST_ID} = child.${MembershipTable.LIST_ID}
+              AND parent.${MembershipTable.PRIVACY_MODE} = child.${MembershipTable.PRIVACY_MODE}
+          )
+      """,
+      buildArgs(toId, fromId, toId)
+    )
 
-    Log.d(TAG, "Remapped $fromId to $toId. count: $count")
+    // Delete the remaining fromId's (the only remaining ones should be those in lists where the toId is already present)
+    writableDatabase
+      .delete(MembershipTable.TABLE_NAME)
+      .where("${MembershipTable.RECIPIENT_ID} = ?", fromId)
+      .run()
+
+    Log.d(TAG, "Remapped $fromId to $toId.")
   }
 
   fun deleteList(distributionListId: DistributionListId, deletionTimestamp: Long = System.currentTimeMillis()) {

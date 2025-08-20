@@ -1,7 +1,7 @@
 package org.thoughtcrime.securesms.database.helpers.migration
 
 import android.app.Application
-import org.thoughtcrime.securesms.database.ChatFolderTables
+import androidx.core.content.contentValuesOf
 import org.thoughtcrime.securesms.database.SQLiteDatabase
 
 /**
@@ -42,6 +42,16 @@ object V253_CreateChatFolderTables : SignalDatabaseMigration {
     db.execSQL("CREATE INDEX chat_folder_membership_thread_id_index ON chat_folder_membership (thread_id)")
     db.execSQL("CREATE INDEX chat_folder_membership_membership_type_index ON chat_folder_membership (membership_type)")
 
-    ChatFolderTables.insertInitialChatFoldersAtCreationTime(db)
+    db.insert(
+      "chat_folder",
+      null,
+      contentValuesOf(
+        "position" to 0,
+        "folder_type" to 0,
+        "show_individual" to 1,
+        "show_groups" to 1,
+        "show_muted" to 1
+      )
+    )
   }
 }

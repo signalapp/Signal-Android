@@ -14,7 +14,6 @@ class AttachmentUploadResult(
   val remoteId: SignalServiceAttachmentRemoteId,
   val cdnNumber: Int,
   val key: ByteArray,
-  val iv: ByteArray,
   val digest: ByteArray,
   val incrementalDigest: ByteArray?,
   val incrementalDigestChunkSize: Int,

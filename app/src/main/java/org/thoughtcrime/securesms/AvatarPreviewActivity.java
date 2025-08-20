@@ -9,7 +9,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.transition.TransitionInflater;
 import android.view.View;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +25,7 @@ import com.bumptech.glide.request.RequestListener;
 import com.bumptech.glide.request.target.CustomTarget;
 import com.bumptech.glide.request.target.Target;
 import com.bumptech.glide.request.transition.Transition;
+import com.github.chrisbanes.photoview.PhotoView;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatar;
@@ -45,6 +45,12 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
   private static final String TAG = Log.tag(AvatarPreviewActivity.class);
 
   private static final String RECIPIENT_ID_EXTRA = "recipient_id";
+
+  private static final int ZOOM_TRANSITION_DURATION = 300;
+
+  private static final float ZOOM_LEVEL_MIN = 1.0f;
+  private static final float SMALL_IMAGES_ZOOM_LEVEL_MID = 3.0f;
+  private static final float SMALL_IMAGES_ZOOM_LEVEL_MAX = 8.0f;
 
   public static @NonNull Intent intentFromRecipientId(@NonNull Context context,
                                                       @NonNull RecipientId recipientId)
@@ -78,7 +84,10 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
 
     Toolbar       toolbar = findViewById(R.id.toolbar);
     EmojiTextView title   = findViewById(R.id.title);
-    ImageView     avatar  = findViewById(R.id.avatar);
+    PhotoView     avatar  = findViewById(R.id.avatar);
+    avatar.setZoomTransitionDuration(ZOOM_TRANSITION_DURATION);
+    avatar.setScaleLevels(ZOOM_LEVEL_MIN, SMALL_IMAGES_ZOOM_LEVEL_MID, SMALL_IMAGES_ZOOM_LEVEL_MAX);
+
 
     setSupportActionBar(toolbar);
 
@@ -134,7 +143,7 @@ public final class AvatarPreviewActivity extends PassphraseRequiredActivity {
 
     FullscreenHelper fullscreenHelper = new FullscreenHelper(this);
 
-    findViewById(android.R.id.content).setOnClickListener(v -> fullscreenHelper.toggleUiVisibility());
+    avatar.setOnClickListener(v -> fullscreenHelper.toggleUiVisibility());
 
     fullscreenHelper.configureToolbarLayout(findViewById(R.id.toolbar_cutout_spacer), toolbar);
 

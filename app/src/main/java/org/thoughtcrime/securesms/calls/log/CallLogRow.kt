@@ -52,6 +52,10 @@ sealed class CallLogRow {
     override val id: Id = Id.ClearFilter
   }
 
+  data object ClearFilterEmpty : CallLogRow() {
+    override val id: Id = Id.ClearFilterEmpty
+  }
+
   data object CreateCallLink : CallLogRow() {
     override val id: Id = Id.CreateCallLink
   }
@@ -60,6 +64,7 @@ sealed class CallLogRow {
     data class Call(val children: Set<Long>) : Id()
     data class CallLink(val roomId: CallLinkRoomId) : Id()
     data object ClearFilter : Id()
+    data object ClearFilterEmpty : Id()
     data object CreateCallLink : Id()
   }
 

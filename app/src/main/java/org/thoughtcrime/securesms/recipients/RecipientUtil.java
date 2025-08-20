@@ -37,6 +37,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 public class RecipientUtil {
 
@@ -82,21 +83,21 @@ public class RecipientUtil {
     }
   }
 
-  public static @NonNull List<SignalServiceAddress> toSignalServiceAddresses(@NonNull Context context, @NonNull List<RecipientId> recipients)
-      throws IOException
-  {
-    return toSignalServiceAddressesFromResolved(context, Recipient.resolvedList(recipients));
-  }
-
   public static @NonNull List<SignalServiceAddress> toSignalServiceAddressesFromResolved(@NonNull Context context, @NonNull List<Recipient> recipients)
       throws IOException
   {
     ensureUuidsAreAvailable(context, recipients);
 
-    return Stream.of(recipients)
-                 .map(Recipient::resolve)
-                 .map(r -> new SignalServiceAddress(r.requireServiceId(), r.getE164().orElse(null)))
-                 .toList();
+    List<Recipient> latestRecipients = recipients.stream().map(it -> it.live().resolve()).collect(Collectors.toList());
+
+    if (latestRecipients.stream().anyMatch(it -> !it.getHasServiceId())) {
+      throw new NotFoundException("1 or more recipients are not registered!");
+    }
+
+    return latestRecipients
+        .stream()
+        .map(r -> new SignalServiceAddress(r.requireServiceId(), r.getE164().orElse(null)))
+        .collect(Collectors.toList());
   }
 
   /**
@@ -113,7 +114,7 @@ public class RecipientUtil {
     if (recipientsWithoutUuids.size() > 0) {
       ContactDiscovery.refresh(context, recipientsWithoutUuids, false);
 
-      if (recipients.stream().map(Recipient::resolve).anyMatch(Recipient::isUnregistered)) {
+      if (recipients.stream().map(Recipient::resolve).anyMatch(it -> it.isUnregistered() || !it.getHasServiceId())) {
         throw new NotFoundException("1 or more recipients are not registered!");
       }
 

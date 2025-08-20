@@ -556,9 +556,11 @@ public final class ContactSelectionListFragment extends LoggingFragment {
 
   public void resetQueryFilter() {
     setQueryFilter(null);
+    onDataRefreshed();
+  }
 
+  public void onDataRefreshed() {
     this.resetPositionOnCommit = true;
-
     swipeRefresh.setRefreshing(false);
   }
 
@@ -910,7 +912,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     return ContactSearchConfiguration.build(builder -> {
       builder.setQuery(contactSearchState.getQuery());
 
-      if (newConversationCallback != null                               &&
+      if ((newConversationCallback != null || findByCallback != null) &&
           !hasContactsPermissions(requireContext())                     &&
           !SignalStore.uiHints().getDismissedContactsPermissionBanner() &&
           !hasQuery) {

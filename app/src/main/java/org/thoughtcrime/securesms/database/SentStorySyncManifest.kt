@@ -42,16 +42,19 @@ data class SentStorySyncManifest(
 
   fun toRecipientsSet(): Set<SignalServiceStoryMessageRecipient> {
     val recipients = Recipient.resolvedList(entries.map { it.recipientId })
-    return recipients.map { recipient ->
-      val serviceId = recipient.requireServiceId()
-      val entry = entries.first { it.recipientId == recipient.id }
+    return recipients
+      .filter { it.hasServiceId }
+      .map { recipient ->
+        val serviceId = recipient.requireServiceId()
+        val entry = entries.first { it.recipientId == recipient.id }
 
-      SignalServiceStoryMessageRecipient(
-        SignalServiceAddress(serviceId),
-        entry.distributionLists.map { it.toString() },
-        entry.allowedToReply
-      )
-    }.toSet()
+        SignalServiceStoryMessageRecipient(
+          SignalServiceAddress(serviceId),
+          entry.distributionLists.map { it.toString() },
+          entry.allowedToReply
+        )
+      }
+      .toSet()
   }
 
   fun flattenToRows(distributionIdToMessageIdMap: Map<DistributionId, Long>): Set<Row> {

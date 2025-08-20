@@ -35,7 +35,7 @@ public final class WallpaperStorage {
     AttachmentId attachmentId = SignalDatabase.attachments().insertWallpaper(wallpaperStream);
 
     if (SignalStore.backup().backsUpMedia()) {
-      AppDependencies.getJobManager().add(new UploadAttachmentToArchiveJob(attachmentId));
+      AppDependencies.getJobManager().add(new UploadAttachmentToArchiveJob(attachmentId, true));
     }
 
     return ChatWallpaperFactory.create(PartAuthority.getAttachmentDataUri(attachmentId));

@@ -71,6 +71,7 @@ class CallLinkUpdateSendJob private constructor(
     val callLinkUpdate = CallLinkUpdate(
       rootKey = callLink.credentials.linkKeyBytes.toByteString(),
       adminPasskey = callLink.credentials.adminPassBytes?.toByteString(),
+      epoch = callLink.credentials.epochBytes?.toByteString(),
       type = callLinkUpdateType
     )
 

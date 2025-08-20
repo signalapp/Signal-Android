@@ -148,7 +148,7 @@ class FixedSizePagingController<Key, Data> implements PagingController<Key> {
       Integer position = keyToPosition.get(key);
 
       if (position == null) {
-        Log.w(TAG, "Notified of key " + key + " but it wasn't in the cache!");
+        Log.i(TAG, "Notified of key " + key + " but it wasn't in the cache!");
         return;
       }
 

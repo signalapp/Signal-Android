@@ -16,7 +16,7 @@ import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob
 import org.thoughtcrime.securesms.jobs.NewLinkedDeviceNotificationJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.LinkDeviceResult
-import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.getPlaintextDeviceName
+import org.thoughtcrime.securesms.linkdevice.LinkDeviceRepository.getPlaintextDevice
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.DialogState
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.OneTimeEvent
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.QrCodeState
@@ -261,16 +261,6 @@ class LinkDeviceViewModel : ViewModel() {
     }
   }
 
-  fun markBioAuthEducationSheetSeen(seen: Boolean) {
-    SignalStore.uiHints.lastSeenLinkDeviceAuthSheetTime = System.currentTimeMillis()
-    _state.update {
-      it.copy(
-        seenBioAuthEducationSheet = seen,
-        needsBioAuthEducationSheet = false
-      )
-    }
-  }
-
   private fun addDeviceWithSync(linkUri: Uri) {
     Log.d(TAG, "[addDeviceWithSync] Beginning device adding process.")
 
@@ -310,12 +300,12 @@ class LinkDeviceViewModel : ViewModel() {
     }
 
     Log.d(TAG, "[addDeviceWithSync] Found a linked device! Creating notification job.")
-    NewLinkedDeviceNotificationJob.enqueue(waitResult.id, waitResult.created)
+    NewLinkedDeviceNotificationJob.enqueue(waitResult.id, waitResult.getPlaintextDevice().createdMillis ?: System.currentTimeMillis())
 
     _state.update {
       it.copy(
         linkDeviceResult = result,
-        dialogState = DialogState.SyncingMessages(waitResult.id, waitResult.created)
+        dialogState = DialogState.SyncingMessages(waitResult.id)
       )
     }
 
@@ -323,7 +313,7 @@ class LinkDeviceViewModel : ViewModel() {
     val uploadResult = LinkDeviceRepository.createAndUploadArchive(
       ephemeralMessageBackupKey = ephemeralMessageBackupKey,
       deviceId = waitResult.id,
-      deviceCreatedAt = waitResult.created,
+      deviceRegistrationId = waitResult.registrationId,
       cancellationSignal = { _state.value.shouldCancelArchiveUpload }
     )
 
@@ -333,23 +323,45 @@ class LinkDeviceViewModel : ViewModel() {
         Log.i(TAG, "[addDeviceWithSync] Successfully uploaded archive.")
         _state.update {
           it.copy(
-            oneTimeEvent = OneTimeEvent.ToastLinked(waitResult.getPlaintextDeviceName()),
+            oneTimeEvent = OneTimeEvent.ToastLinked(waitResult.getPlaintextDevice().name ?: ""),
             dialogState = DialogState.None
           )
         }
         loadDevices()
       }
-      is LinkDeviceRepository.LinkUploadArchiveResult.BackupCreationFailure,
-      is LinkDeviceRepository.LinkUploadArchiveResult.BadRequest,
-      is LinkDeviceRepository.LinkUploadArchiveResult.NetworkError -> {
-        Log.w(TAG, "[addDeviceWithSync] Failed to upload the archive! Result: $uploadResult")
-        val canRetry = uploadResult !is LinkDeviceRepository.LinkUploadArchiveResult.BackupCreationFailure
+      is LinkDeviceRepository.LinkUploadArchiveResult.NotEnoughSpace -> {
+        Log.w(TAG, "[addDeviceWithSync] Failed to upload the archive because there is not enough space")
         _state.update {
           it.copy(
             dialogState = DialogState.SyncingFailed(
               deviceId = waitResult.id,
-              deviceCreatedAt = waitResult.created,
-              canRetry = canRetry
+              deviceRegistrationId = waitResult.registrationId,
+              syncFailType = LinkDeviceSettingsState.SyncFailType.NOT_ENOUGH_SPACE
+            )
+          )
+        }
+      }
+      is LinkDeviceRepository.LinkUploadArchiveResult.BackupCreationFailure -> {
+        Log.w(TAG, "[addDeviceWithSync] Failed to upload the archive because of backup creation failure")
+        _state.update {
+          it.copy(
+            dialogState = DialogState.SyncingFailed(
+              deviceId = waitResult.id,
+              deviceRegistrationId = waitResult.registrationId,
+              syncFailType = LinkDeviceSettingsState.SyncFailType.NOT_RETRYABLE
+            )
+          )
+        }
+      }
+      is LinkDeviceRepository.LinkUploadArchiveResult.BadRequest,
+      is LinkDeviceRepository.LinkUploadArchiveResult.NetworkError -> {
+        Log.w(TAG, "[addDeviceWithSync] Failed to upload the archive! Result: $uploadResult")
+        _state.update {
+          it.copy(
+            dialogState = DialogState.SyncingFailed(
+              deviceId = waitResult.id,
+              deviceRegistrationId = waitResult.registrationId,
+              syncFailType = LinkDeviceSettingsState.SyncFailType.RETRYABLE
             )
           )
         }
@@ -392,9 +404,10 @@ class LinkDeviceViewModel : ViewModel() {
       Log.i(TAG, "No linked device found!")
     } else {
       Log.i(TAG, "Found a linked device! Creating notification job.")
-      NewLinkedDeviceNotificationJob.enqueue(waitResult.id, waitResult.created)
+      val device = waitResult.getPlaintextDevice()
+      NewLinkedDeviceNotificationJob.enqueue(waitResult.id, device.createdMillis ?: System.currentTimeMillis())
       _state.update {
-        it.copy(oneTimeEvent = OneTimeEvent.ToastLinked(waitResult.getPlaintextDeviceName()))
+        it.copy(oneTimeEvent = OneTimeEvent.ToastLinked(device.name ?: ""))
       }
     }
 
@@ -414,9 +427,11 @@ class LinkDeviceViewModel : ViewModel() {
     return if (RemoteConfig.internalUser) {
       this.getQueryParameter("capabilities")?.split(",")?.contains("backup") == true ||
         this.getQueryParameter("capabilities")?.split(",")?.contains("backup2") == true ||
-        this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true ||
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup4") == true
     } else {
-      this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true
+      this.getQueryParameter("capabilities")?.split(",")?.contains("backup3") == true ||
+        this.getQueryParameter("capabilities")?.split(",")?.contains("backup4") == true
     }
   }
 
@@ -424,7 +439,7 @@ class LinkDeviceViewModel : ViewModel() {
     val dialogState = _state.value.dialogState
     if (dialogState is DialogState.SyncingFailed) {
       Log.i(TAG, "Alerting linked device of sync failure - will not retry")
-      LinkDeviceRepository.sendTransferArchiveError(dialogState.deviceId, dialogState.deviceCreatedAt, TransferArchiveError.CONTINUE_WITHOUT_UPLOAD)
+      LinkDeviceRepository.sendTransferArchiveError(dialogState.deviceId, dialogState.deviceRegistrationId, TransferArchiveError.CONTINUE_WITHOUT_UPLOAD)
     }
     loadDevices()
 
@@ -448,7 +463,7 @@ class LinkDeviceViewModel : ViewModel() {
     val dialogState = _state.value.dialogState
     if (dialogState is DialogState.SyncingFailed) {
       Log.i(TAG, "Alerting linked device of sync failure - will retry")
-      LinkDeviceRepository.sendTransferArchiveError(dialogState.deviceId, dialogState.deviceCreatedAt, TransferArchiveError.RELINK_REQUESTED)
+      LinkDeviceRepository.sendTransferArchiveError(dialogState.deviceId, dialogState.deviceRegistrationId, TransferArchiveError.RELINK_REQUESTED)
 
       Log.i(TAG, "Need to unlink device first...")
       val success = LinkDeviceRepository.removeDevice(dialogState.deviceId)
@@ -457,11 +472,13 @@ class LinkDeviceViewModel : ViewModel() {
       }
     }
 
+    val shouldLaunchQrScanner = !(dialogState is DialogState.SyncingFailed && dialogState.syncFailType != LinkDeviceSettingsState.SyncFailType.NOT_ENOUGH_SPACE)
+
     _state.update {
       it.copy(
         linkDeviceResult = LinkDeviceResult.None,
         dialogState = DialogState.None,
-        oneTimeEvent = OneTimeEvent.LaunchQrCodeScanner
+        oneTimeEvent = if (shouldLaunchQrScanner) OneTimeEvent.LaunchQrCodeScanner else OneTimeEvent.None
       )
     }
   }

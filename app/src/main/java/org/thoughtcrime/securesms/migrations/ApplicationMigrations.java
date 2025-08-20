@@ -176,9 +176,20 @@ public class ApplicationMigrations {
     static final int AVATAR_COLOR_MIGRATION_JOB    = 132;
     static final int DUPLICATE_E164_FIX_2          = 133;
     static final int E164_FORMATTING               = 134;
+    // Need to skip 135 because of hotfix ordering issues
+    static final int FIX_CHANGE_NUMBER_ERROR       = 136;
+    static final int CHAT_FOLDER_STORAGE_SYNC      = 137;
+    static final int SVR2_ENCLAVE_UPDATE_3         = 138;
+    static final int DUPLICATE_E164_FIX_3          = 139;
+    static final int E164_FORMATTING_2             = 140;
+    static final int E164_FORMATTING_3             = 141;
+    static final int STORAGE_LOCAL_UNKNOWNS_FIX_2  = 142;
+    static final int SVR2_ENCLAVE_UPDATE_4         = 143;
+    static final int RESET_ARCHIVE_TIER            = 144;
+    static final int ARCHIVE_BACKUP_ID             = 145;
   }
 
-  public static final int CURRENT_VERSION = 134;
+  public static final int CURRENT_VERSION = 145;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -726,7 +737,7 @@ public class ApplicationMigrations {
     }
 
     if (lastSeenVersion < Version.BACKFILL_DIGESTS_V2) {
-      jobs.put(Version.BACKFILL_DIGESTS_V2, new BackfillDigestsMigrationJob());
+//      jobs.put(Version.BACKFILL_DIGESTS_V2, new BackfillDigestsMigrationJob());
     }
 
     if (lastSeenVersion < Version.CALL_LINK_STORAGE_SYNC) {
@@ -811,6 +822,46 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.E164_FORMATTING) {
       jobs.put(Version.E164_FORMATTING, new E164FormattingMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.FIX_CHANGE_NUMBER_ERROR) {
+      jobs.put(Version.FIX_CHANGE_NUMBER_ERROR, new FixChangeNumberErrorMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.CHAT_FOLDER_STORAGE_SYNC) {
+      jobs.put(Version.CHAT_FOLDER_STORAGE_SYNC, new SyncChatFoldersMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SVR2_ENCLAVE_UPDATE_3) {
+      jobs.put(Version.SVR2_ENCLAVE_UPDATE_3, new Svr2MirrorMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.DUPLICATE_E164_FIX_3) {
+      jobs.put(Version.DUPLICATE_E164_FIX_3, new DuplicateE164MigrationJob());
+    }
+
+    if (lastSeenVersion < Version.E164_FORMATTING_2) {
+      jobs.put(Version.E164_FORMATTING_2, new E164FormattingMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.E164_FORMATTING_3) {
+      jobs.put(Version.E164_FORMATTING_3, new E164FormattingMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.STORAGE_LOCAL_UNKNOWNS_FIX_2) {
+      jobs.put(Version.STORAGE_LOCAL_UNKNOWNS_FIX_2, new StorageFixLocalUnknownMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.SVR2_ENCLAVE_UPDATE_4) {
+      jobs.put(Version.SVR2_ENCLAVE_UPDATE_4, new Svr2MirrorMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.RESET_ARCHIVE_TIER) {
+      jobs.put(Version.RESET_ARCHIVE_TIER, new ResetArchiveTierMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.ARCHIVE_BACKUP_ID) {
+      jobs.put(Version.ARCHIVE_BACKUP_ID, new ArchiveBackupIdReservationMigrationJob());
     }
 
     return jobs;

@@ -69,6 +69,7 @@ message DecryptedGroup {
            string                    description               = 11;
            EnabledState              isAnnouncementGroup       = 12;
   repeated DecryptedBannedMember     bannedMembers             = 13;
+           bool                      isPlaceholderGroup        = 64;
 }
 
 // Decrypted version of message GroupChange.Actions

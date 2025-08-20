@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.conversation.clicklisteners
 
 import android.view.View
+import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.mms.Slide
@@ -19,7 +20,9 @@ class ResendClickListener(private val messageRecord: MessageRecord) : SlidesClic
       return
     }
 
-    MessageSender.resend(v.context, messageRecord)
+    SignalExecutors.BOUNDED.execute {
+      MessageSender.resend(v.context, messageRecord)
+    }
   }
 
   companion object {

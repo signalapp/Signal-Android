@@ -4,6 +4,7 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.state.IdentityKeyStore
+import org.signal.libsignal.protocol.state.IdentityKeyStore.IdentityChange
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -30,16 +31,16 @@ class BufferedIdentityKeyStore(
     return selfRegistrationId
   }
 
-  override fun saveIdentity(address: SignalProtocolAddress, identityKey: IdentityKey): Boolean {
+  override fun saveIdentity(address: SignalProtocolAddress, identityKey: IdentityKey): IdentityChange {
     val existing: IdentityKey? = getIdentity(address)
 
     store[address] = identityKey
 
     return if (identityKey != existing) {
       updatedKeys[address] = identityKey
-      true
+      IdentityChange.REPLACED_EXISTING
     } else {
-      false
+      IdentityChange.NEW_OR_UNCHANGED
     }
   }
 

@@ -11,13 +11,13 @@ import org.signal.core.util.Base64
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.inRoundedDays
 import org.signal.core.util.logging.Log
-import org.signal.core.util.mebiBytes
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.AttachmentUploadUtil
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -31,9 +31,14 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.AttachmentProgressService
+import org.thoughtcrime.securesms.transport.UndeliverableMessageException
+import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentStream
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResumableUploadResponseCodeException
@@ -64,11 +69,6 @@ class AttachmentUploadJob private constructor(
     private val NETWORK_RESET_THRESHOLD = 1.minutes.inWholeMilliseconds
 
     val UPLOAD_REUSE_THRESHOLD = 3.days.inWholeMilliseconds
-
-    /**
-     * Foreground notification shows while uploading attachments above this.
-     */
-    private val FOREGROUND_LIMIT = 10.mebiBytes.inWholeBytes
 
     @JvmStatic
     val maxPlaintextSize: Long
@@ -136,13 +136,22 @@ class AttachmentUploadJob private constructor(
       throw NotPushRegisteredException()
     }
 
-    SignalDatabase.attachments.createKeyIvIfNecessary(attachmentId)
+    SignalDatabase.attachments.createRemoteKeyIfNecessary(attachmentId)
 
     val databaseAttachment = SignalDatabase.attachments.getAttachment(attachmentId) ?: throw InvalidAttachmentException("Cannot find the specified attachment.")
+
+    if (MediaUtil.isLongTextType(databaseAttachment.contentType) && databaseAttachment.size > MessageUtil.MAX_TOTAL_BODY_SIZE_BYTES) {
+      throw UndeliverableMessageException("Long text attachment is too long! Max size: ${MessageUtil.MAX_TOTAL_BODY_SIZE_BYTES} bytes, Actual size: ${databaseAttachment.size} bytes.")
+    }
 
     val timeSinceUpload = System.currentTimeMillis() - databaseAttachment.uploadTimestamp
     if (timeSinceUpload < UPLOAD_REUSE_THRESHOLD && !TextUtils.isEmpty(databaseAttachment.remoteLocation)) {
       Log.i(TAG, "We can re-use an already-uploaded file. It was uploaded $timeSinceUpload ms (${timeSinceUpload.milliseconds.inRoundedDays()} days) ago. Skipping.")
+      SignalDatabase.attachments.setTransferState(databaseAttachment.mmsId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE)
+      if (SignalStore.account.isPrimaryDevice && BackupRepository.shouldCopyAttachmentToArchive(databaseAttachment.attachmentId, databaseAttachment.mmsId)) {
+        Log.i(TAG, "[$attachmentId] The re-used file was not copied to the archive. Copying now.")
+        AppDependencies.jobManager.add(CopyAttachmentToArchiveJob(attachmentId))
+      }
       return
     } else if (databaseAttachment.uploadTimestamp > 0) {
       Log.i(TAG, "This file was previously-uploaded, but too long ago to be re-used. Age: $timeSinceUpload ms (${timeSinceUpload.milliseconds.inRoundedDays()} days)")
@@ -160,7 +169,7 @@ class AttachmentUploadJob private constructor(
         .then { form ->
           SignalNetwork.attachments.getResumableUploadSpec(
             key = Base64.decode(databaseAttachment.remoteKey!!),
-            iv = databaseAttachment.remoteIv!!,
+            iv = Util.getSecretBytes(16),
             uploadForm = form
           )
         }
@@ -177,9 +186,26 @@ class AttachmentUploadJob private constructor(
           val uploadResult: AttachmentUploadResult = SignalNetwork.attachments.uploadAttachmentV4(localAttachment).successOrThrow()
           SignalDatabase.attachments.finalizeAttachmentAfterUpload(databaseAttachment.attachmentId, uploadResult)
           if (SignalStore.backup.backsUpMedia) {
+            val messageId = SignalDatabase.attachments.getMessageId(databaseAttachment.attachmentId)
+            val isStory = SignalDatabase.messages.isStory(messageId)
             when {
               databaseAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED -> {
                 Log.i(TAG, "[$attachmentId] Already archived. Skipping.")
+              }
+              isStory -> {
+                Log.i(TAG, "[$attachmentId] Attachment is a story. Skipping.")
+              }
+              messageId == AttachmentTable.PREUPLOAD_MESSAGE_ID -> {
+                Log.i(TAG, "[$attachmentId] Avoid uploading preuploaded attachments to archive. Skipping.")
+              }
+              SignalDatabase.messages.willMessageExpireBeforeCutoff(messageId) -> {
+                Log.i(TAG, "[$attachmentId] Message will expire within 24hrs. Skipping.")
+              }
+              databaseAttachment.contentType == MediaUtil.LONG_TEXT -> {
+                Log.i(TAG, "[$attachmentId] Long text attachment. Skipping.")
+              }
+              SignalStore.account.isLinkedDevice -> {
+                Log.i(TAG, "[$attachmentId] Linked device. Skipping archive.")
               }
               else -> {
                 Log.i(TAG, "[$attachmentId] Enqueuing job to copy to archive.")
@@ -225,7 +251,7 @@ class AttachmentUploadJob private constructor(
   }
 
   private fun getAttachmentNotificationIfNeeded(attachment: Attachment): AttachmentProgressService.Controller? {
-    return if (attachment.size >= FOREGROUND_LIMIT) {
+    return if (attachment.size >= AttachmentUploadUtil.FOREGROUND_LIMIT_BYTES) {
       AttachmentProgressService.start(context, context.getString(R.string.AttachmentUploadJob_uploading_media))
     } else {
       null
@@ -264,17 +290,10 @@ class AttachmentUploadJob private constructor(
         uploadSpec = resumableUploadSpec,
         cancellationSignal = { isCanceled },
         progressListener = object : SignalServiceAttachment.ProgressListener {
-          private var lastUpdate = 0L
-          private val updateRate = 500.milliseconds.inWholeMilliseconds
-
-          override fun onAttachmentProgress(total: Long, progress: Long) {
-            val now = System.currentTimeMillis()
-            if (now < lastUpdate || lastUpdate + updateRate < now || progress >= total) {
-              SignalExecutors.BOUNDED_IO.execute {
-                EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, total, progress))
-                notification?.progress = (progress.toFloat() / total)
-              }
-              lastUpdate = now
+          override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
+            SignalExecutors.BOUNDED_IO.execute {
+              EventBus.getDefault().postSticky(PartProgressEvent(attachment, PartProgressEvent.Type.NETWORK, progress))
+              notification?.updateProgress(progress.value)
             }
           }
 

@@ -104,6 +104,7 @@ public final class VideoMediaPreviewFragment extends MediaPreviewFragment {
 
     if (isVideoGif) {
       videoView.loopForever();
+      videoView.disableAudioFocus();
     }
 
     videoView.setOnClickListener(v -> events.singleTapOnMedia());

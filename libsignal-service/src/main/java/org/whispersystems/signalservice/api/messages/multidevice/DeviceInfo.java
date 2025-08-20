@@ -17,10 +17,13 @@ public class DeviceInfo {
   public String name;
 
   @JsonProperty
-  public long created;
+  public long lastSeen;
 
   @JsonProperty
-  public long lastSeen;
+  public int registrationId;
+
+  @JsonProperty
+  public String createdAtCiphertext;
 
   public DeviceInfo() {}
 
@@ -32,11 +35,15 @@ public class DeviceInfo {
     return name;
   }
 
-  public long getCreated() {
-    return created;
-  }
-
   public long getLastSeen() {
     return lastSeen;
+  }
+
+  public int getRegistrationId() {
+    return registrationId;
+  }
+
+  public String getCreatedAtCiphertext() {
+    return createdAtCiphertext;
   }
 }

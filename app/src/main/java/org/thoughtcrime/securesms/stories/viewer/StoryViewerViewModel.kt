@@ -91,6 +91,10 @@ class StoryViewerViewModel(
     refresh()
   }
 
+  fun getInitialRecipientId(): RecipientId {
+    return storyViewerArgs.recipientId
+  }
+
   fun setIsDisplayingFirstTimeNavigation(isDisplayingFirstTimeNavigation: Boolean) {
     firstTimeNavigationPublisher.onNext(isDisplayingFirstTimeNavigation)
   }

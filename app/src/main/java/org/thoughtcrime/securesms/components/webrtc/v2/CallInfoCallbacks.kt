@@ -9,12 +9,12 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.widget.Toast
 import androidx.core.app.ShareCompat
+import androidx.core.os.bundleOf
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragment
-import org.thoughtcrime.securesms.calls.links.EditCallLinkNameDialogFragmentArgs
 import org.thoughtcrime.securesms.components.webrtc.controls.CallInfoView
 import org.thoughtcrime.securesms.components.webrtc.controls.ControlsAndInfoViewModel
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -31,7 +31,7 @@ class CallInfoCallbacks(
   override fun onShareLinkClicked() {
     val mimeType = Intent.normalizeMimeType("text/plain")
     val shareIntent = ShareCompat.IntentBuilder(activity)
-      .setText(CallLinks.url(controlsAndInfoViewModel.rootKeySnapshot))
+      .setText(CallLinks.url(controlsAndInfoViewModel.rootKeySnapshot, controlsAndInfoViewModel.epochSnapshot))
       .setType(mimeType)
       .createChooserIntent()
 
@@ -44,7 +44,7 @@ class CallInfoCallbacks(
 
   override fun onEditNameClicked(name: String) {
     EditCallLinkNameDialogFragment().apply {
-      arguments = EditCallLinkNameDialogFragmentArgs.Builder(name).build().toBundle()
+      arguments = bundleOf(EditCallLinkNameDialogFragment.ARG_NAME to name)
     }.show(activity.supportFragmentManager, null)
   }
 

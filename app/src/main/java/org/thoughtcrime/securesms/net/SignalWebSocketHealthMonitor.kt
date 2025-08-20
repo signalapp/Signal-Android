@@ -7,8 +7,16 @@ package org.thoughtcrime.securesms.net
 
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalWebSocketHealthMonitor.Companion.KEEP_ALIVE_SEND_CADENCE
+import org.thoughtcrime.securesms.net.SignalWebSocketHealthMonitor.Companion.KEEP_ALIVE_TIMEOUT
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.whispersystems.signalservice.api.util.SleepTimer
 import org.whispersystems.signalservice.api.websocket.HealthMonitor
@@ -17,7 +25,6 @@ import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import org.whispersystems.signalservice.internal.websocket.OkHttpWebSocketConnection
 import java.util.concurrent.Executor
 import java.util.concurrent.Executors
-import kotlin.concurrent.Volatile
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -49,6 +56,10 @@ class SignalWebSocketHealthMonitor(
   private var needsKeepAlive = false
   private var lastKeepAliveReceived: Duration = 0.seconds
 
+  private val scope = CoroutineScope(Dispatchers.IO)
+  private var connectingTimeoutJob: Job? = null
+  private var failedInConnecting: Boolean = false
+
   @Suppress("CheckResult")
   fun monitor(webSocket: SignalWebSocket) {
     executor.execute {
@@ -63,27 +74,51 @@ class SignalWebSocketHealthMonitor(
         .distinctUntilChanged()
         .subscribeBy { onStateChanged(it) }
 
-      webSocket.keepAliveChangedListener = this::updateKeepAliveSenderStatus
+      webSocket.addKeepAliveChangeListener { executor.execute(this::updateKeepAliveSenderStatus) }
     }
   }
 
   private fun onStateChanged(connectionState: WebSocketConnectionState) {
     executor.execute {
+      Log.v(TAG, "${webSocket?.connectionName} onStateChange($connectionState)")
+
       when (connectionState) {
+        WebSocketConnectionState.CONNECTING -> {
+          connectingTimeoutJob?.cancel()
+          connectingTimeoutJob = scope.launch {
+            delay(if (failedInConnecting) 60.seconds else 30.seconds)
+            Log.w(TAG, "${webSocket?.connectionName} Did not leave CONNECTING state, starting over")
+            onConnectingTimeout()
+          }
+        }
         WebSocketConnectionState.CONNECTED -> {
           if (webSocket is SignalWebSocket.AuthenticatedWebSocket) {
             TextSecurePreferences.setUnauthorizedReceived(AppDependencies.application, false)
           }
+          failedInConnecting = false
         }
         WebSocketConnectionState.AUTHENTICATION_FAILED -> {
           if (webSocket is SignalWebSocket.AuthenticatedWebSocket) {
             TextSecurePreferences.setUnauthorizedReceived(AppDependencies.application, true)
           }
         }
+        WebSocketConnectionState.REMOTE_DEPRECATED -> {
+          if (!SignalStore.misc.isClientDeprecated) {
+            Log.w(TAG, "Received remote deprecation. Client version is deprecated.", true)
+            SignalStore.misc.isClientDeprecated = true
+          }
+        }
         else -> Unit
       }
 
       needsKeepAlive = connectionState == WebSocketConnectionState.CONNECTED
+
+      if (connectionState != WebSocketConnectionState.CONNECTING) {
+        connectingTimeoutJob?.let {
+          it.cancel()
+          connectingTimeoutJob = null
+        }
+      }
 
       updateKeepAliveSenderStatus()
     }
@@ -96,14 +131,28 @@ class SignalWebSocketHealthMonitor(
     }
   }
 
-  override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) = Unit
+  override fun onMessageError(status: Int, isIdentifiedWebSocket: Boolean) {
+    executor.execute {
+      if (status == 499 && !SignalStore.misc.isClientDeprecated) {
+        Log.w(TAG, "Received 499. Client version is deprecated.", true)
+        SignalStore.misc.isClientDeprecated = true
+        webSocket?.forceNewWebSocket()
+      }
+    }
+  }
+
+  private fun onConnectingTimeout() {
+    executor.execute {
+      webSocket?.forceNewWebSocket()
+      failedInConnecting = true
+    }
+  }
 
   private fun updateKeepAliveSenderStatus() {
     if (keepAliveSender == null && sendKeepAlives()) {
-      keepAliveSender = KeepAliveSender()
-      keepAliveSender!!.start()
+      keepAliveSender = KeepAliveSender().also { it.start() }
     } else if (keepAliveSender != null && !sendKeepAlives()) {
-      keepAliveSender!!.shutdown()
+      keepAliveSender?.shutdown()
       keepAliveSender = null
     }
   }

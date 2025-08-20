@@ -276,6 +276,17 @@ public class JobManager implements ConstraintObserver.Notifier {
   }
 
   /**
+   * Cancels all jobs in the specified queues. See {@link #cancel(String)} for details.
+   */
+  public void cancelAllInQueues(@NonNull Collection<String> queues) {
+    runOnExecutor(() -> {
+      for (String queue : queues) {
+        jobController.cancelAllInQueue(queue);
+      }
+    });
+  }
+
+  /**
    * Perform an arbitrary update on enqueued jobs. Will not apply to jobs that are already running.
    * You shouldn't use this if you can help it. You give yourself an opportunity to really screw
    * things up.
@@ -288,6 +299,7 @@ public class JobManager implements ConstraintObserver.Notifier {
    * Search through the list of pending jobs and find all that match a given predicate. Note that there will always be races here, and the result you get back
    * may not be valid anymore by the time you get it. Use with caution.
    */
+  @WorkerThread
   public @NonNull List<JobSpec> find(@NonNull Predicate<JobSpec> predicate) {
     waitUntilInitialized();
     return jobController.findJobs(predicate);
@@ -654,7 +666,7 @@ public class JobManager implements ConstraintObserver.Notifier {
     public static class Builder {
 
       private ExecutorFactory                 executorFactory     = new DefaultExecutorFactory();
-      private int                             jobThreadCount      = Math.max(2, Math.min(Runtime.getRuntime().availableProcessors() - 1, 4));
+      private int                             jobThreadCount      = 8;
       private Map<String, Job.Factory>        jobFactories        = new HashMap<>();
       private Map<String, Constraint.Factory> constraintFactories = new HashMap<>();
       private List<ConstraintObserver>        constraintObservers = new ArrayList<>();

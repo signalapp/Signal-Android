@@ -9,7 +9,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
-import org.signal.libsignal.protocol.ecc.Curve
+import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.protocol.util.Medium
 import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MasterCipher
@@ -17,6 +17,7 @@ import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.crypto.storage.PreKeyMetadataStore
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.impl.RegisteredConstraint
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.KeyCachingService
@@ -87,6 +88,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
     private const val KEY_ACCOUNT_ENTROPY_POOL = "account.account_entropy_pool"
     private const val KEY_RESTORED_ACCOUNT_ENTROPY_KEY = "account.restored_account_entropy_pool"
+    private const val KEY_RESTORED_ACCOUNT_ENTROPY_KEY_FROM_PRIMARY = "account.restore_account_entropy_pool_primary"
 
     private val AEP_LOCK = ReentrantLock()
   }
@@ -133,12 +135,33 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
           return AccountEntropyPool(it)
         }
 
-        Log.i(TAG, "Generating Account Entropy Pool (AEP)...")
+        Log.i(TAG, "Generating Account Entropy Pool (AEP)...", Throwable(), true)
         val newAep = LibSignalAccountEntropyPool.generate()
         putString(KEY_ACCOUNT_ENTROPY_POOL, newAep)
         return AccountEntropyPool(newAep)
       }
     }
+
+  fun rotateAccountEntropyPool(aep: AccountEntropyPool) {
+    AEP_LOCK.withLock {
+      Log.i(TAG, "Rotating Account Entropy Pool (AEP)...", Throwable(), true)
+      store
+        .beginWrite()
+        .putString(KEY_ACCOUNT_ENTROPY_POOL, aep.value)
+        .commit()
+    }
+  }
+
+  fun setAccountEntropyPoolFromPrimaryDevice(aep: AccountEntropyPool) {
+    AEP_LOCK.withLock {
+      Log.i(TAG, "Setting new AEP from primary device")
+      store
+        .beginWrite()
+        .putString(KEY_ACCOUNT_ENTROPY_POOL, aep.value)
+        .putBoolean(KEY_RESTORED_ACCOUNT_ENTROPY_KEY_FROM_PRIMARY, true)
+        .commit()
+    }
+  }
 
   fun restoreAccountEntropyPool(aep: AccountEntropyPool) {
     AEP_LOCK.withLock {
@@ -161,8 +184,10 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     }
   }
 
-  @get:Synchronized
+  @get:JvmName("restoredAccountEntropyPool")
   val restoredAccountEntropyPool by booleanValue(KEY_RESTORED_ACCOUNT_ENTROPY_KEY, false)
+
+  val restoredAccountEntropyPoolFromPrimary by booleanValue(KEY_RESTORED_ACCOUNT_ENTROPY_KEY_FROM_PRIMARY, false)
 
   /** The local user's [ACI]. */
   val aci: ACI?
@@ -175,6 +200,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
   fun setAci(aci: ACI) {
     putString(KEY_ACI, aci.toString())
+    RegisteredConstraint.Observer.notifyListeners()
   }
 
   /** The local user's [PNI]. */
@@ -227,7 +253,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
       require(store.containsKey(KEY_ACI_IDENTITY_PUBLIC_KEY)) { "Not yet set!" }
       return IdentityKeyPair(
         IdentityKey(getBlob(KEY_ACI_IDENTITY_PUBLIC_KEY, null)),
-        Curve.decodePrivatePoint(getBlob(KEY_ACI_IDENTITY_PRIVATE_KEY, null))
+        ECPrivateKey(getBlob(KEY_ACI_IDENTITY_PRIVATE_KEY, null))
       )
     }
 
@@ -237,7 +263,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
       require(store.containsKey(KEY_PNI_IDENTITY_PUBLIC_KEY)) { "Not yet set!" }
       return IdentityKeyPair(
         IdentityKey(getBlob(KEY_PNI_IDENTITY_PUBLIC_KEY, null)),
-        Curve.decodePrivatePoint(getBlob(KEY_PNI_IDENTITY_PRIVATE_KEY, null))
+        ECPrivateKey(getBlob(KEY_PNI_IDENTITY_PRIVATE_KEY, null))
       )
     }
 
@@ -287,18 +313,6 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     }
   }
 
-  /** When acting as a linked device, this method lets you store the identity keys sent from the primary device */
-  fun setAciIdentityKeysFromPrimaryDevice(aciKeys: IdentityKeyPair) {
-    synchronized(this) {
-      require(isLinkedDevice) { "Must be a linked device!" }
-      store
-        .beginWrite()
-        .putBlob(KEY_ACI_IDENTITY_PUBLIC_KEY, aciKeys.publicKey.serialize())
-        .putBlob(KEY_ACI_IDENTITY_PRIVATE_KEY, aciKeys.privateKey.serialize())
-        .commit()
-    }
-  }
-
   /** Set an identity key pair for the PNI identity via change number. */
   fun setPniIdentityKeyAfterChangeNumber(key: IdentityKeyPair) {
     synchronized(this) {
@@ -332,6 +346,22 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
         .beginWrite()
         .putBlob(KEY_ACI_IDENTITY_PUBLIC_KEY, publicKey)
         .putBlob(KEY_ACI_IDENTITY_PRIVATE_KEY, privateKey)
+        .commit()
+    }
+  }
+
+  /**
+   * Only to be used as part of Quick Restore, DO NOT USE OTHERWISE.
+   */
+  fun resetAciAndPniIdentityKeysAfterFailedRestore() {
+    synchronized(this) {
+      Log.i(TAG, "Resetting ACI and PNI identity keys after failed quick registration and restore")
+
+      store.beginWrite()
+        .remove(KEY_ACI_IDENTITY_PUBLIC_KEY)
+        .remove(KEY_ACI_IDENTITY_PRIVATE_KEY)
+        .remove(KEY_PNI_IDENTITY_PUBLIC_KEY)
+        .remove(KEY_PNI_IDENTITY_PRIVATE_KEY)
         .commit()
     }
   }
@@ -424,6 +454,8 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     } else if (!registered) {
       registeredAtTimestamp = -1
     }
+
+    RegisteredConstraint.Observer.notifyListeners()
   }
 
   /**
@@ -444,12 +476,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
     Recipient.self().live().refresh()
   }
 
-  val deviceName: String?
-    get() = getString(KEY_DEVICE_NAME, null)
-
-  fun setDeviceName(deviceName: String) {
-    putString(KEY_DEVICE_NAME, deviceName)
-  }
+  var deviceName: String? by stringValue(KEY_DEVICE_NAME, null)
 
   var deviceId: Int by integerValue(KEY_DEVICE_ID, SignalServiceAddress.DEFAULT_DEVICE_ID)
 
@@ -514,10 +541,10 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
   }
 
   /**
-   * Whether or not the user has linked devices.
+   * Whether or not the user is a multi-device account (has linked devices or is a linked device).
    */
-  @get:JvmName("hasLinkedDevices")
-  var hasLinkedDevices by booleanValue(KEY_HAS_LINKED_DEVICES, false)
+  @get:JvmName("isMultiDevice")
+  var isMultiDevice by booleanValue(KEY_HAS_LINKED_DEVICES, false)
 
   /** Do not alter. If you need to migrate more stuff, create a new method. */
   private fun migrateFromSharedPrefsV1(context: Context) {

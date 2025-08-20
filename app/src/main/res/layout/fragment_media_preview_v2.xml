@@ -70,7 +70,7 @@
             android:background="@android:color/transparent"
             android:minHeight="@dimen/signal_m3_toolbar_height"
             android:theme="?actionBarStyle"
-            app:navigationIcon="@drawable/ic_arrow_left_white_24" />
+            app:navigationIcon="@drawable/symbol_arrow_start_24" />
 
     </com.google.android.material.appbar.AppBarLayout>
 

@@ -5,9 +5,13 @@ import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import org.json.JSONException
 import org.json.JSONObject
+import org.signal.core.util.ByteSize
+import org.signal.core.util.bytes
 import org.signal.core.util.gibiBytes
+import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
+import org.signal.libsignal.protocol.UsePqRatchet
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
@@ -15,9 +19,11 @@ import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
 import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig.Config
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteBoolean
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteValue
+import org.whispersystems.signalservice.api.NetworkResultUtil
 import java.io.IOException
 import java.util.TreeMap
 import java.util.concurrent.locks.ReentrantLock
@@ -25,10 +31,13 @@ import kotlin.concurrent.withLock
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.reflect.KProperty
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
+import kotlin.time.DurationUnit
+import kotlin.time.toDuration
 
 /**
  * A location for accessing remotely-configured values.
@@ -90,7 +99,7 @@ object RemoteConfig {
   @WorkerThread
   @Throws(IOException::class)
   fun refreshSync() {
-    val result = AppDependencies.signalServiceAccountManager.getRemoteConfig()
+    val result = NetworkResultUtil.toBasicLegacy(SignalNetwork.remoteConfig.getRemoteConfig())
     update(result.config)
   }
 
@@ -119,10 +128,9 @@ object RemoteConfig {
     Log.i(TAG, "[Disk]   After : ${result.disk}")
   }
 
-  /** Only for rendering debug info.  */
   @JvmStatic
   @get:Synchronized
-  val debugMemoryValues: Map<String, Any>
+  val memoryValues: Map<String, Any>
     get() = TreeMap(REMOTE_VALUES)
 
   /** Only for rendering debug info.  */
@@ -424,6 +432,24 @@ object RemoteConfig {
     )
   }
 
+  private fun remoteDuration(
+    key: String,
+    defaultValue: Duration,
+    hotSwappable: Boolean,
+    durationUnit: DurationUnit,
+    active: Boolean = true,
+    onChangeListener: OnFlagChange? = null
+  ): Config<Duration> {
+    return remoteValue(
+      key = key,
+      hotSwappable = hotSwappable,
+      sticky = false,
+      active = active,
+      onChangeListener = onChangeListener,
+      transformer = { it?.toString()?.toLongOrNull()?.toDuration(durationUnit) ?: defaultValue }
+    )
+  }
+
   private fun <T : String?> remoteString(
     key: String,
     defaultValue: T,
@@ -693,37 +719,9 @@ object RemoteConfig {
     hotSwappable = false
   )
 
-  /** A comma-separated list of models that should *not* use hardware AEC for calling.  */
-  val hardwareAecBlocklistModels: String by remoteString(
-    key = "android.calling.hardwareAecBlockList",
-    defaultValue = "",
-    hotSwappable = true
-  )
-
-  /** A comma-separated list of models that should *not* use software AEC for calling.  */
-  val softwareAecBlocklistModels: String by remoteString(
-    key = "android.calling.softwareAecBlockList",
-    defaultValue = "",
-    hotSwappable = true
-  )
-
-  /** Whether the Oboe ADM should be used or not.  */
-  val oboeDeployment: Boolean by remoteBoolean(
-    key = "android.calling.oboeDeployment",
-    defaultValue = false,
-    hotSwappable = false
-  )
-
-  /** A comma-separated list of models that should use the Java ADM instead of the Oboe ADM.  */
-  val useJavaAdmModels: String by remoteString(
-    key = "android.calling.useJavaAdmList",
-    defaultValue = "",
-    hotSwappable = true
-  )
-
-  /** A comma-separated list of models that should use software AEC for calling with the Oboe ADM.  */
-  val useSoftwareAecForOboeModels: String by remoteString(
-    key = "android.calling.useSoftwareAecForOboe",
+  /** A json string representing rules necessary to build an audio configuration for a device. */
+  val callingAudioDeviceConfig: String by remoteString(
+    key = "android.calling.audioDeviceConfig",
     defaultValue = "",
     hotSwappable = true
   )
@@ -754,13 +752,6 @@ object RemoteConfig {
     key = "android.cameraXMixedModelBlockList",
     defaultValue = "",
     hotSwappable = false
-  )
-
-  /** Whether or not hardware AEC should be used for calling on devices older than API 29.  */
-  val useHardwareAecIfOlderThanApi29: Boolean by remoteBoolean(
-    key = "android.calling.useHardwareAecIfOlderThanApi29",
-    defaultValue = false,
-    hotSwappable = true
   )
 
   /** Prefetch count for stories from a given user. */
@@ -1011,16 +1002,53 @@ object RemoteConfig {
   val messageBackups: Boolean by remoteValue(
     key = "android.messageBackups",
     hotSwappable = false,
-    active = false
+    active = true
   ) { value ->
     BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
   }
 
-  /** Whether unauthenticated chat web socket is backed by libsignal-net  */
+  val backupFallbackArchiveCdn: Int by remoteInt(
+    key = "global.backups.mediaTierFallbackCdnNumber",
+    hotSwappable = true,
+    active = true,
+    defaultValue = 3
+  )
+
+  /** Max plaintext unpadded file size for backup thumbnails. */
+  val backupMaxThumbnailFileSize: ByteSize by remoteValue(
+    key = "global.backups.maxThumbnailFileSizeBytes",
+    hotSwappable = true,
+    active = true
+  ) { value ->
+    value.asLong(8.kibiBytes.inWholeBytes).bytes
+  }
+
+  /** Whether the chat web socket is backed by libsignal for direct connections  */
   @JvmStatic
   @get:JvmName("libSignalWebSocketEnabled")
-  val libSignalWebSocketEnabled: Boolean by remoteBoolean(
-    key = "android.libsignalWebSocketEnabled",
+  val libSignalWebSocketEnabled: Boolean by remoteValue(
+    key = "android.libsignalWebSocketEnabled.8",
+    hotSwappable = false
+  ) { value ->
+    value.asBoolean(false) || Environment.IS_NIGHTLY
+  }
+
+  /** Whether the chat web socket is backed by libsignal for all connections, including proxied connections.
+   *  Note, this does *not* gate HTTP proxies, which are treated as direct connections.
+   *  This only has an effect if libSignalWebSocketEnabled is also enabled. */
+  @JvmStatic
+  @get:JvmName("libSignalWebSocketEnabledForProxies")
+  val libSignalWebSocketEnabledForProxies: Boolean by remoteValue(
+    key = "android.libSignalWebSocketEnabledForProxies.8",
+    hotSwappable = false
+  ) { value ->
+    value.asBoolean(false) || Environment.IS_NIGHTLY
+  }
+
+  @JvmStatic
+  @get:JvmName("libsignalEnforceMinTlsVersion")
+  val libsignalEnforceMinTlsVersion by remoteBoolean(
+    key = "android.libsignalEnforceMinTlsVersion",
     defaultValue = false,
     hotSwappable = false
   )
@@ -1033,7 +1061,7 @@ object RemoteConfig {
     hotSwappable = false,
     active = false
   ) { value ->
-    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
+    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || BuildConfig.LINK_DEVICE_UX_ENABLED || value.asBoolean(false)
   }
 
   @JvmStatic
@@ -1105,19 +1133,49 @@ object RemoteConfig {
     hotSwappable = false
   )
 
-  /** Whether or not this device respect attachment backfill requests.  */
-  val attachmentBackfillSync: Boolean by remoteBoolean(
-    key = "android.attachmentBackfillSync",
+  /** Whether to allow different WindowSizeClasses to be used to determine screen layout */
+  val largeScreenUi: Boolean by remoteBoolean(
+    key = "android.largeScreenUI",
+    defaultValue = false,
+    hotSwappable = false
+  )
+
+  @JvmStatic
+  @get:JvmName("useMessageSendRestFallback")
+  val useMessageSendRestFallback: Boolean by remoteBoolean(
+    key = "android.useMessageSendRestFallback",
     defaultValue = false,
     hotSwappable = true
   )
 
-  /** Whether or not libsignal-net's CDSI lookups use the new route-based internals or the old ones */
-  val libsignalRouteBasedCDSILookup: Boolean by remoteBoolean(
-    key = "android.libsignal.libsignalRouteBasedCDSILookup",
-    defaultValue = true,
+  /**
+   * Also determines how long an unregistered/deleted record should remain in storage service
+   */
+  val messageQueueTime: Long by remoteValue(
+    key = "global.messageQueueTimeInSeconds",
     hotSwappable = true
+  ) { value ->
+    val inSeconds = value.asLong(45.days.inWholeSeconds)
+    inSeconds.seconds.inWholeMilliseconds
+  }
+
+  @JvmStatic
+  val archiveReconciliationSyncInterval: Duration by remoteDuration(
+    key = "global.archive.attachmentReconciliationSyncIntervalDays",
+    defaultValue = 7.days,
+    hotSwappable = true,
+    durationUnit = DurationUnit.DAYS
   )
+
+  /** Whether or not to use the new post-quantum ratcheting. */
+  @JvmStatic
+  @get:JvmName("usePqRatchet")
+  val usePqRatchet: UsePqRatchet by remoteValue(
+    key = "android.usePqRatchet",
+    hotSwappable = false
+  ) { value ->
+    if (value.asBoolean(false)) UsePqRatchet.YES else UsePqRatchet.NO
+  }
 
   // endregion
 }

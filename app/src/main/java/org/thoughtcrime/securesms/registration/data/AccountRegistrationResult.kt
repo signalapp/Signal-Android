@@ -16,5 +16,6 @@ data class AccountRegistrationResult(
   val masterKey: MasterKey?,
   val pin: String?,
   val aciPreKeyCollection: PreKeyCollection,
-  val pniPreKeyCollection: PreKeyCollection
+  val pniPreKeyCollection: PreKeyCollection,
+  val reRegistration: Boolean
 )

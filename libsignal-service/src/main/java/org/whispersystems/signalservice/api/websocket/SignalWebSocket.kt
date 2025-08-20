@@ -23,9 +23,12 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessa
 import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
 import java.io.IOException
+import java.util.concurrent.CopyOnWriteArraySet
 import java.util.concurrent.TimeoutException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+
+private typealias Listener = () -> Unit
 
 /**
  * Base wrapper around a [WebSocketConnection] to provide a more developer friend interface to websocket
@@ -33,6 +36,7 @@ import kotlin.time.Duration.Companion.milliseconds
  */
 sealed class SignalWebSocket(
   private val connectionFactory: WebSocketFactory,
+  private val canConnect: CanConnect,
   val sleepTimer: SleepTimer,
   private val disconnectTimeout: Duration
 ) {
@@ -43,25 +47,17 @@ sealed class SignalWebSocket(
     const val SERVER_DELIVERED_TIMESTAMP_HEADER = "X-Signal-Timestamp"
 
     const val FOREGROUND_KEEPALIVE = "Foregrounded"
-
-    /**
-     * Set to false to prevent web sockets from connecting. After setting back to true the caller
-     * must manually start the sockets again by calling [connect].
-     */
-    @Volatile
-    @JvmStatic
-    var canConnect: Boolean = true
   }
 
   private var connection: WebSocketConnection? = null
-  private val connectionName
+  val connectionName
     get() = connection?.name ?: "[null]"
 
   private val _state: BehaviorSubject<WebSocketConnectionState> = BehaviorSubject.createDefault(WebSocketConnectionState.DISCONNECTED)
   protected var disposable: CompositeDisposable = CompositeDisposable()
 
-  private val keepAliveTokens: MutableSet<String> = mutableSetOf()
-  var keepAliveChangedListener: (() -> Unit)? = null
+  private val keepAliveTokens: MutableSet<String> = CopyOnWriteArraySet()
+  private val keepAliveChangeListeners: MutableSet<Listener> = CopyOnWriteArraySet()
 
   private var delayedDisconnectThread: DelayedDisconnectThread? = null
 
@@ -98,49 +94,55 @@ sealed class SignalWebSocket(
   @Synchronized
   @Throws(IOException::class)
   fun sendKeepAlive() {
-    if (canConnect) {
+    if (canConnect.canConnect()) {
       Log.v(TAG, "$connectionName keepAliveTokens: $keepAliveTokens")
       getWebSocket().sendKeepAlive()
     }
   }
 
-  @Synchronized
   fun shouldSendKeepAlives(): Boolean {
     return keepAliveTokens.isNotEmpty()
   }
 
-  @Synchronized
   fun registerKeepAliveToken(token: String) {
-    delayedDisconnectThread?.abort()
-    delayedDisconnectThread = null
-
     val changed = keepAliveTokens.add(token)
     if (changed) {
       Log.v(TAG, "$connectionName Adding keepAliveToken: $token, current: $keepAliveTokens")
     }
 
-    if (canConnect) {
-      try {
-        connect()
-      } catch (e: WebSocketUnavailableException) {
-        Log.w(TAG, "$connectionName Keep alive requested, but connection not available", e)
+    synchronized(this) {
+      delayedDisconnectThread?.abort()
+      delayedDisconnectThread = null
+
+      if (canConnect.canConnect()) {
+        try {
+          connect()
+        } catch (e: WebSocketUnavailableException) {
+          Log.w(TAG, "$connectionName Keep alive requested, but connection not available", e)
+        }
+      } else {
+        Log.w(TAG, "$connectionName Keep alive requested, but connection not available")
       }
-    } else {
-      Log.w(TAG, "$connectionName Keep alive requested, but connection not available")
     }
 
     if (changed) {
-      keepAliveChangedListener?.invoke()
+      keepAliveChangeListeners.forEach { it() }
     }
   }
 
-  @Synchronized
   fun removeKeepAliveToken(token: String) {
     if (keepAliveTokens.remove(token)) {
       Log.v(TAG, "$connectionName Removing keepAliveToken: $token, remaining: $keepAliveTokens")
-      startDelayedDisconnectIfNecessary()
-      keepAliveChangedListener?.invoke()
+      synchronized(this) {
+        startDelayedDisconnectIfNecessary()
+      }
     }
+
+    keepAliveChangeListeners.forEach { it() }
+  }
+
+  fun addKeepAliveChangeListener(listener: Listener) {
+    keepAliveChangeListeners.add(listener)
   }
 
   fun request(request: WebSocketRequestMessage): Single<WebsocketResponse> {
@@ -169,7 +171,7 @@ sealed class SignalWebSocket(
   @Synchronized
   @Throws(WebSocketUnavailableException::class)
   protected fun getWebSocket(): WebSocketConnection {
-    if (!canConnect) {
+    if (!canConnect.canConnect()) {
       throw WebSocketUnavailableException()
     }
 
@@ -203,7 +205,7 @@ sealed class SignalWebSocket(
 
   @Synchronized
   fun forceNewWebSocket() {
-    Log.i(TAG, "$connectionName Forcing new WebSocket, canConnect: $canConnect")
+    Log.i(TAG, "$connectionName Forcing new WebSocket, canConnect: ${canConnect.canConnect()}")
     disconnect()
   }
 
@@ -238,8 +240,10 @@ sealed class SignalWebSocket(
             lastInteractionTime = now
           }
           val sleepDuration = (lastInteractionTime + disconnectTimeout) - now
-          Log.v(TAG, "$connectionName Disconnect scheduled in $sleepDuration")
-          sleepTimer.sleep(sleepDuration.inWholeMilliseconds)
+          if (sleepDuration.isPositive()) {
+            Log.v(TAG, "$connectionName Disconnect scheduled in $sleepDuration")
+            sleepTimer.sleep(sleepDuration.inWholeMilliseconds)
+          }
         }
       } catch (_: InterruptedException) { }
 
@@ -280,10 +284,12 @@ sealed class SignalWebSocket(
   /**
    * WebSocket type for communicating with the server without authenticating. Also known as "unidentified".
    */
-  class UnauthenticatedWebSocket(connectionFactory: WebSocketFactory, sleepTimer: SleepTimer, disconnectTimeoutMs: Long) : SignalWebSocket(connectionFactory, sleepTimer, disconnectTimeoutMs.milliseconds) {
+  class UnauthenticatedWebSocket(connectionFactory: WebSocketFactory, canConnect: CanConnect, sleepTimer: SleepTimer, disconnectTimeoutMs: Long) : SignalWebSocket(connectionFactory, canConnect, sleepTimer, disconnectTimeoutMs.milliseconds) {
     fun request(requestMessage: WebSocketRequestMessage, sealedSenderAccess: SealedSenderAccess): Single<WebsocketResponse> {
       val headers: MutableList<String> = requestMessage.headers.toMutableList()
-      headers.add(sealedSenderAccess.header)
+      if (sealedSenderAccess.applyHeader()) {
+        headers.add(sealedSenderAccess.header)
+      }
 
       val message = requestMessage
         .newBuilder()
@@ -310,7 +316,7 @@ sealed class SignalWebSocket(
   /**
    * WebSocket type for communicating with the server with authentication. Also known as "identified".
    */
-  class AuthenticatedWebSocket(connectionFactory: WebSocketFactory, sleepTimer: SleepTimer, disconnectTimeoutMs: Long) : SignalWebSocket(connectionFactory, sleepTimer, disconnectTimeoutMs.milliseconds) {
+  class AuthenticatedWebSocket(connectionFactory: WebSocketFactory, canConnect: CanConnect, sleepTimer: SleepTimer, disconnectTimeoutMs: Long) : SignalWebSocket(connectionFactory, canConnect, sleepTimer, disconnectTimeoutMs.milliseconds) {
 
     /**
      * The reads a batch of messages off of the websocket.
@@ -418,5 +424,9 @@ sealed class SignalWebSocket(
       /** Called with the batch of envelopes. You are responsible for sending acks.  */
       fun onMessageBatch(envelopeResponses: List<EnvelopeResponse>)
     }
+  }
+
+  fun interface CanConnect {
+    fun canConnect(): Boolean
   }
 }

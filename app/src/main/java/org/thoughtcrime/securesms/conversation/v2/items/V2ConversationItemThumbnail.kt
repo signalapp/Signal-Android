@@ -25,7 +25,7 @@ import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.v2.items.V2ConversationItemUtils.isThumbnailAtBottomOfBubble
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.mms.Slide
 
 /**
@@ -160,7 +160,7 @@ class V2ConversationItemThumbnail @JvmOverloads constructor(
     if (thumbnailUri != null) {
       conversationContext
         .requestManager
-        .load(DecryptableStreamUriLoader.DecryptableUri(thumbnailUri))
+        .load(DecryptableUri(thumbnailUri))
         .centerInside()
         .dontAnimate()
         .override(thumbnailSize.width, thumbnailSize.height)

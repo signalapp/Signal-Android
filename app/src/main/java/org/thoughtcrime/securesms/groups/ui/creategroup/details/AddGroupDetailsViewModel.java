@@ -48,7 +48,7 @@ public final class AddGroupDetailsViewModel extends ViewModel {
     this.repository = repository;
 
     MutableLiveData<List<GroupMemberEntry.NewGroupCandidate>> initialMembers = new MutableLiveData<>();
-    LiveData<Boolean>                                         isValidName    = Transformations.map(name, name -> !TextUtils.isEmpty(name));
+    LiveData<Boolean>                                         isValidName    = Transformations.map(name, name -> !name.isBlank());
 
     members       = LiveDataUtil.combineLatest(initialMembers, deleted, AddGroupDetailsViewModel::filterDeletedMembers);
     isMms         = Transformations.map(members, AddGroupDetailsViewModel::isAnyForcedSms);

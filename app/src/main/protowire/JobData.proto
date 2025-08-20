@@ -138,10 +138,13 @@ message CopyAttachmentToArchiveJobData {
 message UploadAttachmentToArchiveJobData {
   uint64 attachmentId = 1;
   ResumableUpload uploadSpec = 2;
+  optional bool canReuseUpload = 3;
 }
 
-message BackupMediaSnapshotSyncJobData {
-  uint64 syncTime = 1;
+message ArchiveAttachmentReconciliationJobData {
+  optional uint64 snapshot = 1;
+  string serverCursor = 2;
+  bool forced = 3;
 }
 
 message DeviceNameChangeJobData {
@@ -169,4 +172,74 @@ message MultiDeviceAttachmentBackfillUpdateJobData {
   signalservice.AddressableMessage targetMessage = 1;
   signalservice.ConversationIdentifier targetConversation = 2;
   uint64 messageId = 3;
+}
+
+message InAppPaymentSourceData {
+  enum Code {
+    UNKNOWN = 0;
+    PAY_PAL = 1;
+    CREDIT_CARD = 2;
+    GOOGLE_PAY = 3;
+    SEPA_DEBIT = 4;
+    IDEAL = 5;
+    GOOGLE_PLAY_BILLING = 6;
+  }
+
+  message TokenData {
+    string parameters = 1;
+    string tokenId = 2;
+    optional string email = 3;
+  }
+
+  message IDEALData {
+    reserved 1; // bank, no longer utilized.
+    string name = 2;
+    string email = 3;
+  }
+
+  message SEPAData {
+    string iban = 1;
+    string name = 2;
+    string email = 3;
+  }
+
+  Code code = 1;
+
+  oneof data {
+    TokenData tokenData = 2;
+    IDEALData idealData = 3;
+    SEPAData sepaData = 4;
+  }
+}
+
+message InAppPaymentSetupJobData {
+  uint64 inAppPaymentId = 1;
+  InAppPaymentSourceData inAppPaymentSource = 2;
+}
+
+message StorageSyncJobData {
+  bool localManifestOutOfDate = 1;
+}
+
+message BackupDeleteJobData {
+  enum Stage {
+    UNKNOWN = 0;
+    CANCEL_SUBSCRIBER = 1;
+    DELETE_MESSAGES = 2;
+    DELETE_MEDIA = 3;
+    CLEAR_LOCAL_STATE = 4;
+  }
+
+  enum Tier {
+    UNKNOWN_TIER = 0;
+    FREE = 1;
+    PAID = 2;
+  }
+
+  repeated Stage completed = 1;
+  Tier tier = 2;
+}
+
+message SecondRoundFixupSendJobData {
+  uint64 messageId = 1;
 }

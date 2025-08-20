@@ -6,6 +6,7 @@ import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.database.model.DistributionListPrivacyMode
 import org.thoughtcrime.securesms.database.model.GroupRecord
 import org.thoughtcrime.securesms.database.model.ThreadRecord
+import org.thoughtcrime.securesms.groups.GroupsInCommonSummary
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.search.MessageResult
 
@@ -32,7 +33,7 @@ sealed class ContactSearchData(val contactSearchKey: ContactSearchKey) {
     val recipient: Recipient,
     val shortSummary: Boolean = false,
     val headerLetter: String? = null,
-    val groupsInCommon: GroupsInCommon = GroupsInCommon(0, listOf())
+    val groupsInCommon: GroupsInCommonSummary = GroupsInCommonSummary(listOf())
   ) : ContactSearchData(ContactSearchKey.RecipientSearchKey(recipient.id, false))
 
   /**

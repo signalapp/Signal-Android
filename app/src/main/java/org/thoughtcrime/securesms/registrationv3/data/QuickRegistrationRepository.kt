@@ -10,17 +10,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.withContext
+import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64.decode
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.protocol.InvalidKeyException
-import org.signal.libsignal.protocol.ecc.Curve
+import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.registration.proto.RegistrationProvisionMessage
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.whispersystems.signalservice.api.NetworkResult
-import org.whispersystems.signalservice.api.registration.RestoreMethod
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod
 import java.io.IOException
 import kotlin.coroutines.coroutineContext
 import kotlin.time.Duration.Companion.seconds
@@ -59,21 +62,16 @@ object QuickRegistrationRepository {
     try {
       val ephemeralId: String? = uri.getQueryParameter("uuid")
       val publicKeyEncoded: String? = uri.getQueryParameter("pub_key")
-      val publicKey = Curve.decodePoint(publicKeyEncoded?.let { decode(it) }, 0)
 
       if (ephemeralId == null || publicKeyEncoded == null) {
         Log.w(TAG, "Invalid link data hasId: ${ephemeralId != null} hasKey: ${publicKeyEncoded != null}")
         return TransferAccountResult.FAILED
       }
 
-      val pin = SignalStore.svr.pin ?: run {
-        Log.w(TAG, "No pin")
-        return TransferAccountResult.FAILED
-      }
+      val publicKey = ECPublicKey(decode(publicKeyEncoded))
 
-      AppDependencies
-        .signalServiceAccountManager
-        .registrationApi
+      SignalNetwork
+        .provisioning
         .sendReRegisterDeviceProvisioningMessage(
           ephemeralId,
           publicKey,
@@ -81,16 +79,20 @@ object QuickRegistrationRepository {
             e164 = SignalStore.account.requireE164(),
             aci = SignalStore.account.requireAci().toByteString(),
             accountEntropyPool = SignalStore.account.accountEntropyPool.value,
-            pin = pin,
+            pin = SignalStore.svr.pin,
             platform = RegistrationProvisionMessage.Platform.ANDROID,
-            backupTimestampMs = SignalStore.backup.lastBackupTime.coerceAtLeast(0L),
+            backupTimestampMs = SignalStore.backup.lastBackupTime.coerceAtLeast(0L).takeIf { it > 0 },
             tier = when (SignalStore.backup.backupTier) {
               MessageBackupTier.PAID -> RegistrationProvisionMessage.Tier.PAID
               MessageBackupTier.FREE -> RegistrationProvisionMessage.Tier.FREE
               null -> null
             },
-            backupSizeBytes = SignalStore.backup.totalBackupSize,
-            restoreMethodToken = restoreMethodToken
+            backupSizeBytes = SignalDatabase.attachments.getEstimatedArchiveMediaSize().takeIf { it > 0 },
+            restoreMethodToken = restoreMethodToken,
+            aciIdentityKeyPublic = SignalStore.account.aciIdentityKey.publicKey.serialize().toByteString(),
+            aciIdentityKeyPrivate = SignalStore.account.aciIdentityKey.privateKey.serialize().toByteString(),
+            pniIdentityKeyPublic = SignalStore.account.pniIdentityKey.publicKey.serialize().toByteString(),
+            pniIdentityKeyPrivate = SignalStore.account.pniIdentityKey.privateKey.serialize().toByteString()
           )
         )
         .successOrThrow()
@@ -147,8 +149,7 @@ object QuickRegistrationRepository {
     Log.d(TAG, "Waiting for restore method with token: ***${restoreMethodToken.takeLast(4)}")
     while (retries-- > 0 && result !is NetworkResult.Success && coroutineContext.isActive) {
       Log.d(TAG, "Waiting, remaining tries: $retries")
-      val api = AppDependencies.registrationApi
-      result = api.waitForRestoreMethod(restoreMethodToken)
+      result = SignalNetwork.provisioning.waitForRestoreMethod(restoreMethodToken)
       Log.d(TAG, "Result: $result")
     }
 

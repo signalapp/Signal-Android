@@ -1,17 +1,25 @@
 package org.thoughtcrime.securesms.conversationlist
 
+import android.os.Parcelable
+import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.createSavedStateHandle
 import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.viewmodel.CreationExtras
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.addTo
+import io.reactivex.rxjava3.kotlin.combineLatest
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.rx3.asFlowable
+import kotlinx.parcelize.Parcelize
 import org.signal.paging.PagedData
 import org.signal.paging.PagingConfig
 import org.signal.paging.ProxyPagingController
@@ -26,26 +34,32 @@ import org.thoughtcrime.securesms.database.RxDatabaseObserver
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.megaphone.Megaphone
-import org.thoughtcrime.securesms.megaphone.MegaphoneRepository
-import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.rx.RxStore
 import org.whispersystems.signalservice.api.websocket.WebSocketConnectionState
 import java.util.concurrent.TimeUnit
 
-class ConversationListViewModel(
+sealed class ConversationListViewModel(
   private val isArchived: Boolean,
-  private val megaphoneRepository: MegaphoneRepository = AppDependencies.megaphoneRepository
+  private val savedStateHandle: SavedStateHandle
 ) : ViewModel() {
 
   companion object {
+    private const val STATE = "state"
+
     private var coldStart = true
   }
 
   private val disposables: CompositeDisposable = CompositeDisposable()
+
+  private var saveableState: SaveableState
+    get() = savedStateHandle[STATE] ?: SaveableState()
+    set(value) {
+      savedStateHandle[STATE] = value
+    }
 
   private val store = RxStore(ConversationListState()).addTo(disposables)
   private val conversationListDataSource: Flowable<ConversationListDataSource>
@@ -55,22 +69,19 @@ class ConversationListViewModel(
     .build()
 
   val conversationsState: Flowable<List<Conversation>> = store.mapDistinctForUi { it.conversations }
-  val megaphoneState: Flowable<Megaphone> = store.mapDistinctForUi { it.megaphone }
   val selectedState: Flowable<ConversationSet> = store.mapDistinctForUi { it.selectedConversations }
-  val filterRequestState: Flowable<ConversationFilterRequest> = store.mapDistinctForUi { it.filterRequest }
-  val chatFolderState: Flowable<List<ChatFolderMappingModel>> = store.mapDistinctForUi { it.chatFolders }
+  val filterRequestState: Flowable<ConversationFilterRequest> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.filterRequest }.asFlowable().observeOn(AndroidSchedulers.mainThread())
+  val chatFolderState: Flowable<List<ChatFolderMappingModel>> = savedStateHandle.getStateFlow(STATE, SaveableState()).map { it.chatFolders }.asFlowable().observeOn(AndroidSchedulers.mainThread())
   val hasNoConversations: Flowable<Boolean>
 
   val controller = ProxyPagingController<Long>()
 
   val folders: List<ChatFolderMappingModel>
-    get() = store.state.chatFolders
+    get() = saveableState.chatFolders
   val currentFolder: ChatFolderRecord
-    get() = store.state.currentFolder
+    get() = saveableState.currentFolder
   val conversationFilterRequest: ConversationFilterRequest
-    get() = store.state.filterRequest
-  val megaphone: Megaphone
-    get() = store.state.megaphone
+    get() = saveableState.filterRequest
   val pinnedCount: Int
     get() = store.state.pinnedCount
   val webSocketState: Observable<WebSocketConnectionState>
@@ -81,8 +92,9 @@ class ConversationListViewModel(
     get() = store.state.internalSelection
 
   init {
-    conversationListDataSource = store
-      .stateFlowable
+    val saveableStateFlowable = savedStateHandle.getStateFlow(STATE, SaveableState()).asFlowable()
+
+    conversationListDataSource = saveableStateFlowable
       .subscribeOn(Schedulers.io())
       .filter { it.currentFolder.id != -1L }
       .map { it.filterRequest to it.currentFolder }
@@ -134,7 +146,8 @@ class ConversationListViewModel(
     hasNoConversations = store
       .stateFlowable
       .subscribeOn(Schedulers.io())
-      .map { it.filterRequest to it.conversations }
+      .combineLatest(saveableStateFlowable.map { it.filterRequest })
+      .map { (state, filterRequest) -> filterRequest to state.conversations }
       .distinctUntilChanged()
       .map { (filterRequest, conversations) ->
         if (conversations.isNotEmpty()) {
@@ -154,10 +167,6 @@ class ConversationListViewModel(
   }
 
   fun onVisible() {
-    megaphoneRepository.getNextMegaphone { next ->
-      store.update { it.copy(megaphone = next ?: Megaphone.NONE) }
-    }
-
     if (!coldStart) {
       AppDependencies.databaseObserver.notifyConversationListListeners()
     }
@@ -197,28 +206,18 @@ class ConversationListViewModel(
   }
 
   fun setFiltered(isFiltered: Boolean, conversationFilterSource: ConversationFilterSource) {
-    store.update {
-      it.copy(filterRequest = ConversationFilterRequest(if (isFiltered) ConversationFilter.UNREAD else ConversationFilter.OFF, conversationFilterSource))
-    }
-  }
-
-  fun onMegaphoneCompleted(event: Megaphones.Event) {
-    store.update { it.copy(megaphone = Megaphone.NONE) }
-    megaphoneRepository.markFinished(event)
-  }
-
-  fun onMegaphoneSnoozed(event: Megaphones.Event) {
-    megaphoneRepository.markSeen(event)
-    store.update { it.copy(megaphone = Megaphone.NONE) }
-  }
-
-  fun onMegaphoneVisible(visible: Megaphone) {
-    megaphoneRepository.markVisible(visible.event)
+    saveableState = saveableState.copy(
+      filterRequest = ConversationFilterRequest(
+        filter = if (isFiltered) ConversationFilter.UNREAD else ConversationFilter.OFF,
+        source = conversationFilterSource
+      )
+    )
   }
 
   private fun loadCurrentFolders() {
     viewModelScope.launch(Dispatchers.IO) {
-      val folders = ChatFoldersRepository.getCurrentFolders(includeUnreadAndMutedCounts = true)
+      val folders = ChatFoldersRepository.getCurrentFolders()
+      val unreadCountAndEmptyAndMutedStatus = ChatFoldersRepository.getUnreadCountAndEmptyAndMutedStatusForFolders(folders)
 
       val selectedFolderId = if (currentFolder.id == -1L) {
         folders.firstOrNull()?.id
@@ -226,34 +225,36 @@ class ConversationListViewModel(
         currentFolder.id
       }
       val chatFolders = folders.map { folder ->
-        ChatFolderMappingModel(folder, selectedFolderId == folder.id)
-      }
-
-      store.update {
-        it.copy(
-          currentFolder = folders.find { folder -> folder.id == selectedFolderId } ?: ChatFolderRecord(),
-          chatFolders = chatFolders
+        ChatFolderMappingModel(
+          chatFolder = folder,
+          unreadCount = unreadCountAndEmptyAndMutedStatus[folder.id]?.first ?: 0,
+          isEmpty = unreadCountAndEmptyAndMutedStatus[folder.id]?.second ?: false,
+          isMuted = unreadCountAndEmptyAndMutedStatus[folder.id]?.third ?: false,
+          isSelected = selectedFolderId == folder.id
         )
       }
+
+      saveableState = saveableState.copy(
+        currentFolder = folders.find { folder -> folder.id == selectedFolderId } ?: ChatFolderRecord(),
+        chatFolders = chatFolders
+      )
     }
   }
 
   private fun setSelection(newSelection: Collection<Conversation>) {
     store.update {
-      val selection = newSelection.toSet()
+      val selection = newSelection.filter { select -> select.type == Conversation.Type.THREAD }.toSet()
       it.copy(internalSelection = selection, selectedConversations = ConversationSet(selection))
     }
   }
 
   fun select(chatFolder: ChatFolderRecord) {
-    store.update {
-      it.copy(
-        currentFolder = chatFolder,
-        chatFolders = folders.map { model ->
-          model.copy(isSelected = chatFolder.id == model.chatFolder.id)
-        }
-      )
-    }
+    saveableState = saveableState.copy(
+      currentFolder = chatFolder,
+      chatFolders = folders.map { model ->
+        model.copy(isSelected = chatFolder.id == model.chatFolder.id)
+      }
+    )
   }
 
   fun onUpdateMute(chatFolder: ChatFolderRecord, until: Long) {
@@ -280,6 +281,7 @@ class ConversationListViewModel(
   fun removeChatFromFolder(threadId: Long) {
     viewModelScope.launch(Dispatchers.IO) {
       SignalDatabase.chatFolders.removeFromFolder(currentFolder.id, threadId)
+      scheduleChatFolderSync(currentFolder.id)
     }
   }
 
@@ -290,23 +292,46 @@ class ConversationListViewModel(
         includedChats?.contains(threadId) ?: false
       }
       SignalDatabase.chatFolders.addToFolder(folderId, threadIdsNotIncluded)
+      scheduleChatFolderSync(folderId)
     }
   }
 
-  private data class ConversationListState(
+  private fun scheduleChatFolderSync(id: Long) {
+    SignalDatabase.chatFolders.markNeedsSync(id)
+    StorageSyncHelper.scheduleSyncForDataChange()
+  }
+
+  /**
+   * Easily persistable state to ensure proper restoration upon VM recreation.
+   */
+  @Parcelize
+  private data class SaveableState(
     val chatFolders: List<ChatFolderMappingModel> = emptyList(),
     val currentFolder: ChatFolderRecord = ChatFolderRecord(),
+    val filterRequest: ConversationFilterRequest = ConversationFilterRequest(ConversationFilter.OFF, ConversationFilterSource.DRAG)
+  ) : Parcelable
+
+  private data class ConversationListState(
     val conversations: List<Conversation> = emptyList(),
-    val megaphone: Megaphone = Megaphone.NONE,
     val selectedConversations: ConversationSet = ConversationSet(),
     val internalSelection: Set<Conversation> = emptySet(),
-    val filterRequest: ConversationFilterRequest = ConversationFilterRequest(ConversationFilter.OFF, ConversationFilterSource.DRAG),
     val pinnedCount: Int = 0
   )
 
-  class Factory(private val isArchived: Boolean) : ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(ConversationListViewModel(isArchived))!!
+  class UnarchivedConversationListViewModel(savedStateHandle: SavedStateHandle) : ConversationListViewModel(isArchived = false, savedStateHandle = savedStateHandle)
+  class ArchivedConversationListViewModel(savedStateHandle: SavedStateHandle) : ConversationListViewModel(isArchived = true, savedStateHandle = savedStateHandle)
+
+  class Factory(
+    private val isArchived: Boolean
+  ) : ViewModelProvider.Factory {
+    override fun <T : ViewModel> create(modelClass: Class<T>, extras: CreationExtras): T {
+      val savedStateHandle = extras.createSavedStateHandle()
+
+      return if (isArchived) {
+        ArchivedConversationListViewModel(savedStateHandle) as T
+      } else {
+        UnarchivedConversationListViewModel(savedStateHandle) as T
+      }
     }
   }
 }

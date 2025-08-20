@@ -85,6 +85,7 @@ class DonationErrorParams<V> private constructor(
         InAppPaymentData.Error.Type.PAYMENT_PROCESSING -> getGenericRedemptionError(context, inAppPayment.type, callback)
         InAppPaymentData.Error.Type.CREDENTIAL_VALIDATION -> getBadgeCredentialValidationErrorParams(context, callback)
         InAppPaymentData.Error.Type.REDEMPTION -> getGenericRedemptionError(context, inAppPayment.type, callback)
+        InAppPaymentData.Error.Type.SETUP_CANCELLED -> error("Shouldn't show a dialog.")
         null -> error("No error in data!")
       }
     }

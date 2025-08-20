@@ -34,6 +34,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
       switchPref(
         title = DSLSettingsText.from(R.string.preferences__generate_link_previews),
         summary = DSLSettingsText.from(R.string.preferences__retrieve_link_previews_from_websites_for_messages),
+        isEnabled = state.isRegisteredAndUpToDate(),
         isChecked = state.generateLinkPreviews,
         onClick = {
           viewModel.setGenerateLinkPreviewsEnabled(!state.generateLinkPreviews)
@@ -43,6 +44,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
       switchPref(
         title = DSLSettingsText.from(R.string.preferences__pref_use_address_book_photos),
         summary = DSLSettingsText.from(R.string.preferences__display_contact_photos_from_your_address_book_if_available),
+        isEnabled = state.isRegisteredAndUpToDate(),
         isChecked = state.useAddressBook,
         onClick = {
           viewModel.setUseAddressBook(!state.useAddressBook)
@@ -52,6 +54,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
       switchPref(
         title = DSLSettingsText.from(R.string.preferences__pref_keep_muted_chats_archived),
         summary = DSLSettingsText.from(R.string.preferences__muted_chats_that_are_archived_will_remain_archived),
+        isEnabled = state.isRegisteredAndUpToDate(),
         isChecked = state.keepMutedChatsArchived,
         onClick = {
           viewModel.setKeepMutedChatsArchived(!state.keepMutedChatsArchived)
@@ -65,6 +68,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
       if (state.folderCount == 1) {
         clickPref(
           title = DSLSettingsText.from(R.string.ChatsSettingsFragment__add_chat_folder),
+          isEnabled = state.isRegisteredAndUpToDate(),
           onClick = {
             Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_chatFoldersFragment)
           }
@@ -73,6 +77,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
         clickPref(
           title = DSLSettingsText.from(R.string.ChatsSettingsFragment__add_edit_chat_folder),
           summary = DSLSettingsText.from(resources.getQuantityString(R.plurals.ChatsSettingsFragment__d_folder, state.folderCount, state.folderCount)),
+          isEnabled = state.isRegisteredAndUpToDate(),
           onClick = {
             Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_chatFoldersFragment)
           }
@@ -85,6 +90,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       switchPref(
         title = DSLSettingsText.from(R.string.preferences_advanced__use_system_emoji),
+        isEnabled = state.isRegisteredAndUpToDate(),
         isChecked = state.useSystemEmoji,
         onClick = {
           viewModel.setUseSystemEmoji(!state.useSystemEmoji)
@@ -93,6 +99,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
 
       switchPref(
         title = DSLSettingsText.from(R.string.ChatsSettingsFragment__send_with_enter),
+        isEnabled = state.isRegisteredAndUpToDate(),
         isChecked = state.enterKeySends,
         onClick = {
           viewModel.setEnterKeySends(!state.enterKeySends)
@@ -107,6 +114,7 @@ class ChatsSettingsFragment : DSLSettingsFragment(R.string.preferences_chats__ch
         clickPref(
           title = DSLSettingsText.from(R.string.preferences_chats__chat_backups),
           summary = DSLSettingsText.from(if (state.localBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),
+          isEnabled = state.localBackupsEnabled || state.isRegisteredAndUpToDate(),
           onClick = {
             Navigation.findNavController(requireView()).safeNavigate(R.id.action_chatsSettingsFragment_to_backupsPreferenceFragment)
           }

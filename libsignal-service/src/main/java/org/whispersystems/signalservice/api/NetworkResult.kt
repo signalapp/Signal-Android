@@ -5,9 +5,10 @@
 
 package org.whispersystems.signalservice.api
 
+import io.reactivex.rxjava3.core.Single
 import org.signal.core.util.concurrent.safeBlockingGet
+import org.whispersystems.signalservice.api.NetworkResult.ApplicationError
 import org.whispersystems.signalservice.api.NetworkResult.StatusCodeError
-import org.whispersystems.signalservice.api.NetworkResult.Success
 import org.whispersystems.signalservice.api.push.exceptions.MalformedRequestException
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException
@@ -21,8 +22,10 @@ import java.util.concurrent.TimeoutException
 import kotlin.reflect.KClass
 import kotlin.reflect.cast
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 
 typealias StatusCodeErrorAction = (StatusCodeError<*>) -> Unit
+typealias ApplicationErrorAction = (ApplicationError<*>) -> Unit
 
 /**
  * A helper class that wraps the result of a network request, turning common exceptions
@@ -39,7 +42,8 @@ typealias StatusCodeErrorAction = (StatusCodeError<*>) -> Unit
  * the success case and the status code of the error, this can be quite convenient.
  */
 sealed class NetworkResult<T>(
-  private val statusCodeErrorActions: MutableSet<StatusCodeErrorAction> = mutableSetOf()
+  private val statusCodeErrorActions: MutableSet<StatusCodeErrorAction> = mutableSetOf(),
+  private val applicationErrorActions: MutableSet<ApplicationErrorAction> = mutableSetOf()
 ) {
   companion object {
     /**
@@ -59,16 +63,57 @@ sealed class NetworkResult<T>(
     }
 
     /**
+     * A convenience method to convert a websocket request into a network result, parsing the body into type [T].
+     *
+     * Common HTTP errors will be translated to [StatusCodeError]s.
+     */
+    inline fun <reified T : Any> fromWebSocket(fetcher: Fetcher<Single<WebsocketResponse>>): NetworkResult<T> {
+      return fromWebSocket(DefaultWebSocketConverter(T::class), fetcher)
+    }
+
+    /**
+     * A convenience method to convert a websocket request into a network result, using the provided
+     * [webSocketResponseConverter] to parse the response into type [T].
+     *
+     * Common HTTP errors will be translated to [StatusCodeError]s.
+     */
+    fun <T> fromWebSocket(
+      webSocketResponseConverter: WebSocketResponseConverter<T>,
+      fetcher: Fetcher<Single<WebsocketResponse>>
+    ): NetworkResult<T> {
+      return try {
+        val result: Result<NetworkResult<T>> = fetcher.fetch()
+          .map { response: WebsocketResponse -> Result.success(webSocketResponseConverter.convert(response)) }
+          .onErrorReturn { Result.failure(it) }
+          .safeBlockingGet()
+
+        result.getOrThrow()
+      } catch (e: NonSuccessfulResponseCodeException) {
+        StatusCodeError(e)
+      } catch (e: IOException) {
+        NetworkError(e)
+      } catch (e: TimeoutException) {
+        NetworkError(PushNetworkException(e))
+      } catch (e: InterruptedException) {
+        NetworkError(PushNetworkException(e))
+      } catch (e: Throwable) {
+        ApplicationError(e)
+      }
+    }
+
+    /**
      * A convenience method to convert a websocket request into a network result.
      * Common HTTP errors will be translated to [StatusCodeError]s.
      */
     @JvmStatic
     fun fromWebSocketRequest(
       signalWebSocket: SignalWebSocket,
-      request: WebSocketRequestMessage
+      request: WebSocketRequestMessage,
+      timeout: Duration = WebSocketConnection.DEFAULT_SEND_TIMEOUT
     ): NetworkResult<Unit> = fromWebSocketRequest(
       signalWebSocket = signalWebSocket,
       request = request,
+      timeout = timeout,
       clazz = Unit::class
     )
 
@@ -101,23 +146,8 @@ sealed class NetworkResult<T>(
       request: WebSocketRequestMessage,
       timeout: Duration = WebSocketConnection.DEFAULT_SEND_TIMEOUT,
       webSocketResponseConverter: WebSocketResponseConverter<T>
-    ): NetworkResult<T> = try {
-      val result: Result<NetworkResult<T>> = signalWebSocket.request(request, timeout)
-        .map { response: WebsocketResponse -> Result.success(webSocketResponseConverter.convert(response)) }
-        .onErrorReturn { Result.failure(it) }
-        .safeBlockingGet()
-
-      result.getOrThrow()
-    } catch (e: NonSuccessfulResponseCodeException) {
-      StatusCodeError(e)
-    } catch (e: IOException) {
-      NetworkError(e)
-    } catch (e: TimeoutException) {
-      NetworkError(PushNetworkException(e))
-    } catch (e: InterruptedException) {
-      NetworkError(PushNetworkException(e))
-    } catch (e: Throwable) {
-      ApplicationError(e)
+    ): NetworkResult<T> {
+      return fromWebSocket(webSocketResponseConverter) { signalWebSocket.request(request, timeout) }
     }
 
     /**
@@ -183,9 +213,17 @@ sealed class NetworkResult<T>(
         } else {
           null
         }
-      } catch (e: MalformedRequestException) {
+      } catch (_: MalformedRequestException) {
         null
       }
+    }
+
+    fun header(key: String): String? {
+      return headers[key.lowercase()]
+    }
+
+    fun retryAfter(): Duration? {
+      return header("retry-after")?.toLongOrNull()?.seconds
     }
   }
 
@@ -233,18 +271,48 @@ sealed class NetworkResult<T>(
    * ```
    */
   fun <R> map(transform: (T) -> R): NetworkResult<R> {
-    return when (this) {
+    val map = when (this) {
       is Success -> {
         try {
-          Success(transform(this.result)).runOnStatusCodeError(statusCodeErrorActions)
+          Success(transform(this.result))
         } catch (e: Throwable) {
-          ApplicationError<R>(e).runOnStatusCodeError(statusCodeErrorActions)
+          ApplicationError<R>(e)
         }
       }
 
-      is NetworkError -> NetworkError<R>(exception).runOnStatusCodeError(statusCodeErrorActions)
-      is ApplicationError -> ApplicationError<R>(throwable).runOnStatusCodeError(statusCodeErrorActions)
-      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception).runOnStatusCodeError(statusCodeErrorActions)
+      is NetworkError -> NetworkError<R>(exception)
+      is ApplicationError -> ApplicationError<R>(throwable)
+      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception)
+    }
+
+    return map.runOnStatusCodeError(statusCodeErrorActions).runOnApplicationError(applicationErrorActions)
+  }
+
+  /**
+   * Provides the ability to fallback to [fallback] if the current [NetworkResult] is non-successful.
+   *
+   * The [fallback] will only be triggered on non-[Success] results. You can provide a [predicate] to limit what kinds of errors you fallback on
+   * (the default is to fallback on every error).
+   *
+   * This primary usecase of this is to make an unauth websocket request and fallback to auth websocket upon failure.
+   *
+   * ```kotlin
+   * val user: NetworkResult<LocalUserModel> = NetworkResult
+   *   .fromWebSocket { unauthWebSocket.request(request, sealedSenderAccess) }
+   *   .fallback { NetworkResult.fromWebSocket { authWebSocket.request(request) } }
+   * ```
+   *
+   * @param predicate If this lambda returns true, the fallback will be triggered.
+   */
+  fun fallback(predicate: (NetworkResult<T>) -> Boolean = { true }, fallback: () -> NetworkResult<T>): NetworkResult<T> {
+    if (this is Success) {
+      return this
+    }
+
+    return if (predicate(this)) {
+      fallback()
+    } else {
+      this
     }
   }
 
@@ -262,12 +330,14 @@ sealed class NetworkResult<T>(
    * ```
    */
   fun <R> then(result: (T) -> NetworkResult<R>): NetworkResult<R> {
-    return when (this) {
-      is Success -> result(this.result).runOnStatusCodeError(statusCodeErrorActions)
-      is NetworkError -> NetworkError<R>(exception).runOnStatusCodeError(statusCodeErrorActions)
-      is ApplicationError -> ApplicationError<R>(throwable).runOnStatusCodeError(statusCodeErrorActions)
-      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception).runOnStatusCodeError(statusCodeErrorActions)
+    val then = when (this) {
+      is Success -> result(this.result)
+      is NetworkError -> NetworkError<R>(exception)
+      is ApplicationError -> ApplicationError<R>(throwable)
+      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception)
     }
+
+    return then.runOnStatusCodeError(statusCodeErrorActions).runOnApplicationError(applicationErrorActions)
   }
 
   /**
@@ -307,7 +377,7 @@ sealed class NetworkResult<T>(
     return runOnStatusCodeError(setOf(action))
   }
 
-  internal fun runOnStatusCodeError(actions: Collection<StatusCodeErrorAction>): NetworkResult<T> {
+  private fun runOnStatusCodeError(actions: Collection<StatusCodeErrorAction>): NetworkResult<T> {
     if (actions.isEmpty()) {
       return this
     }
@@ -322,6 +392,41 @@ sealed class NetworkResult<T>(
     return this
   }
 
+  /**
+   * Specify an action to be run when a application error occurs. When a result is a [ApplicationErrorAction] or is transformed into one further down the chain via
+   * a future [map] or [then], this code will be run. There can only ever be a single application error in a chain, and therefore this lambda will only ever
+   * be run a single time.
+   *
+   * This is a low-visibility way of doing things, so use sparingly.
+   *
+   * ```kotlin
+   * val result = NetworkResult
+   *   .fromFetch { getAuth() }
+   *   .runOnApplicationError { error -> logError(error) }
+   *   .then { credential ->
+   *     NetworkResult.fromFetch { fetchUserDetails(credential) }
+   *   }
+   * ```
+   */
+  fun runOnApplicationError(action: ApplicationErrorAction): NetworkResult<T> {
+    return runOnApplicationError(setOf(action))
+  }
+
+  private fun runOnApplicationError(actions: Collection<ApplicationErrorAction>): NetworkResult<T> {
+    if (actions.isEmpty()) {
+      return this
+    }
+
+    applicationErrorActions += actions
+
+    if (this is ApplicationError) {
+      applicationErrorActions.forEach { it.invoke(this) }
+      applicationErrorActions.clear()
+    }
+
+    return this
+  }
+
   fun interface Fetcher<T> {
     @Throws(Exception::class)
     fun fetch(): T
@@ -330,6 +435,18 @@ sealed class NetworkResult<T>(
   fun interface WebSocketResponseConverter<T> {
     @Throws(Exception::class)
     fun convert(response: WebsocketResponse): NetworkResult<T>
+
+    fun <T : Any> WebsocketResponse.toStatusCodeError(): NetworkResult<T> {
+      return StatusCodeError(NonSuccessfulResponseCodeException(this.status, "", this.body, this.headers))
+    }
+
+    fun <T : Any> WebsocketResponse.toSuccess(responseJsonClass: KClass<T>): NetworkResult<T> {
+      return when (responseJsonClass) {
+        Unit::class -> Success(responseJsonClass.cast(Unit))
+        String::class -> Success(responseJsonClass.cast(this.body))
+        else -> Success(JsonUtil.fromJson(this.body, responseJsonClass.java))
+      }
+    }
   }
 
   class DefaultWebSocketConverter<T : Any>(private val responseJsonClass: KClass<T>) : WebSocketResponseConverter<T> {
@@ -350,17 +467,5 @@ sealed class NetworkResult<T>(
         response.toSuccess(responseJsonClass)
       }
     }
-  }
-}
-
-private fun <T : Any> WebsocketResponse.toStatusCodeError(): NetworkResult<T> {
-  return StatusCodeError(NonSuccessfulResponseCodeException(this.status, "", this.body, this.headers))
-}
-
-private fun <T : Any> WebsocketResponse.toSuccess(responseJsonClass: KClass<T>): NetworkResult<T> {
-  return when (responseJsonClass) {
-    Unit::class -> Success(responseJsonClass.cast(Unit))
-    String::class -> Success(responseJsonClass.cast(this.body))
-    else -> Success(JsonUtil.fromJson(this.body, responseJsonClass.java))
   }
 }

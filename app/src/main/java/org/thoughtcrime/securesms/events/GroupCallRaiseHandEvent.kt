@@ -5,15 +5,19 @@
 
 package org.thoughtcrime.securesms.events
 
-import java.util.concurrent.TimeUnit
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
-data class GroupCallRaiseHandEvent(val sender: CallParticipant, val timestamp: Long) {
+data class GroupCallRaiseHandEvent(val sender: CallParticipant, private val timestampMillis: Long) {
 
-  fun getCollapseTimestamp(): Long {
-    return timestamp + TimeUnit.SECONDS.toMillis(LIFESPAN_SECONDS)
+  val timestamp = timestampMillis.milliseconds
+
+  fun getCollapseTimestamp(): Duration {
+    return timestamp + LIFESPAN
   }
 
   companion object {
-    const val LIFESPAN_SECONDS = 4L
+    private val LIFESPAN = 4L.seconds
   }
 }

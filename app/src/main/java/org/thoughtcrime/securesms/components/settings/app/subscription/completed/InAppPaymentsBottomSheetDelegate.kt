@@ -89,7 +89,7 @@ class InAppPaymentsBottomSheetDelegate(
   private fun handleLegacyVerifiedMonthlyDonationSheets() {
     SignalStore.inAppPayments.consumeVerifiedSubscription3DSData()?.also {
       DonationPendingBottomSheet().apply {
-        arguments = DonationPendingBottomSheetArgs.Builder(it.inAppPayment).build().toBundle()
+        arguments = DonationPendingBottomSheetArgs.Builder(it.inAppPayment.id).build().toBundle()
       }.show(fragmentManager, null)
     }
   }
@@ -108,7 +108,7 @@ class InAppPaymentsBottomSheetDelegate(
             .show(fragmentManager, null)
         } else if (payment.data.error != null && payment.state == InAppPaymentTable.State.PENDING) {
           DonationPendingBottomSheet().apply {
-            arguments = DonationPendingBottomSheetArgs.Builder(payment).build().toBundle()
+            arguments = DonationPendingBottomSheetArgs.Builder(payment.id).build().toBundle()
           }.show(fragmentManager, null)
         } else if (isUnexpectedCancellation(payment.state, payment.data) && SignalStore.inAppPayments.showMonthlyDonationCanceledDialog) {
           MonthlyDonationCanceledBottomSheetDialogFragment.show(fragmentManager)

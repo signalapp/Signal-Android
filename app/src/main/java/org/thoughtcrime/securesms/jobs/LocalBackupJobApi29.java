@@ -65,6 +65,7 @@ public final class LocalBackupJobApi29 extends BaseJob {
     return KEY;
   }
 
+  @SuppressLint("NewApi")
   @Override
   public void onRun() throws IOException {
     Log.i(TAG, "Executing backup job...");

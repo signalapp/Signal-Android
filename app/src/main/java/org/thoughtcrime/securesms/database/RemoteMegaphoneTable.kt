@@ -29,7 +29,7 @@ class RemoteMegaphoneTable(context: Context, databaseHelper: SignalDatabase) : D
   companion object {
     private val TAG = Log.tag(RemoteMegaphoneTable::class.java)
 
-    private const val TABLE_NAME = "remote_megaphone"
+    const val TABLE_NAME = "remote_megaphone"
     private const val ID = "_id"
     private const val UUID = "uuid"
     private const val COUNTRIES = "countries"

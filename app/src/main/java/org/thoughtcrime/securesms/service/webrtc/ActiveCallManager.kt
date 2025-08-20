@@ -19,6 +19,7 @@ import android.telephony.PhoneStateListener
 import android.telephony.TelephonyManager
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.IntentCompat
 import androidx.core.os.bundleOf
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
@@ -154,7 +155,7 @@ class ActiveCallManager(
     AppDependencies.unauthWebSocket.registerKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
   }
 
-  fun shutdown() {
+  fun shutdown(fromTimeout: Boolean = false) {
     Log.v(TAG, "shutdown")
 
     previousNotificationDisposable.dispose()
@@ -171,7 +172,7 @@ class ActiveCallManager(
     AppDependencies.authWebSocket.removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
     AppDependencies.unauthWebSocket.removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
 
-    if (!ActiveCallForegroundService.stop(application) && previousNotificationId != -1) {
+    if (!ActiveCallForegroundService.stop(application, fromTimeout) && previousNotificationId != -1) {
       NotificationManagerCompat.from(application).cancel(previousNotificationId)
     }
   }
@@ -232,6 +233,7 @@ class ActiveCallManager(
   private fun registerNetworkReceiver() {
     if (networkReceiver == null) {
       networkReceiver = NetworkReceiver()
+      @Suppress("DEPRECATION")
       application.registerReceiver(networkReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
   }
@@ -288,8 +290,8 @@ class ActiveCallManager(
         }
       }
 
-      fun stop(context: Context): Boolean {
-        return SafeForegroundService.stop(context, ActiveCallForegroundService::class.java)
+      fun stop(context: Context, fromTimeout: Boolean = false): Boolean {
+        return SafeForegroundService.stop(context, ActiveCallForegroundService::class.java, fromTimeout)
       }
     }
 
@@ -315,6 +317,7 @@ class ActiveCallManager(
         return type
       }
 
+    @Suppress("DEPRECATION")
     private var hangUpRtcOnDeviceCallAnswered: PhoneStateListener? = null
     private var notificationDisposable: Disposable = Disposable.disposed()
 
@@ -333,6 +336,7 @@ class ActiveCallManager(
 
       if (!AndroidTelecomUtil.telecomSupported) {
         try {
+          @Suppress("DEPRECATION")
           TelephonyUtil.getManager(application).listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_CALL_STATE)
         } catch (e: SecurityException) {
           Log.w(TAG, "Failed to listen to PSTN call answers!", e)
@@ -344,10 +348,20 @@ class ActiveCallManager(
       notificationDisposable.dispose()
     }
 
+    override fun onTimeout(startId: Int, fgsType: Int) {
+      Log.w(TAG, "ActiveCallForegroundService has timed out. Hanging up. startId: $startId, foregroundServiceType: $fgsType")
+      AppDependencies.signalCallManager.localHangup()
+      activeCallManagerLock.withLock {
+        activeCallManager?.shutdown(fromTimeout = true)
+        activeCallManager = null
+      }
+    }
+
     override fun onDestroy() {
       super.onDestroy()
 
       if (!AndroidTelecomUtil.telecomSupported) {
+        @Suppress("DEPRECATION")
         TelephonyUtil.getManager(application).listen(hangUpRtcOnDeviceCallAnswered, PhoneStateListener.LISTEN_NONE)
       }
     }
@@ -366,7 +380,7 @@ class ActiveCallManager(
       }
 
       val type = intent.getIntExtra(EXTRA_TYPE, 0)
-      val recipient: Recipient = Recipient.resolved(intent.getParcelableExtra(EXTRA_RECIPIENT_ID)!!)
+      val recipient: Recipient = Recipient.resolved(IntentCompat.getParcelableExtra(intent, EXTRA_RECIPIENT_ID, RecipientId::class.java)!!)
       val isVideoCall = intent.getBooleanExtra(EXTRA_IS_VIDEO_CALL, false)
 
       if (requiresAsyncNotificationLoad) {
@@ -402,6 +416,7 @@ class ActiveCallManager(
 
     @Suppress("deprecation")
     private class HangUpRtcOnPstnCallAnsweredListener : PhoneStateListener() {
+      @Deprecated("Deprecated in Java")
       override fun onCallStateChanged(state: Int, phoneNumber: String) {
         super.onCallStateChanged(state, phoneNumber)
         if (state == TelephonyManager.CALL_STATE_OFFHOOK) {
@@ -432,6 +447,7 @@ class ActiveCallManager(
     }
   }
 
+  @Suppress("DEPRECATION")
   private class NetworkReceiver : BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
       val connectivityManager = context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

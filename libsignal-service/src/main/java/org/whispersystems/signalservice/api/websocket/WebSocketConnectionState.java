@@ -7,12 +7,12 @@ public enum WebSocketConnectionState {
   DISCONNECTED,
   CONNECTING,
   CONNECTED,
-  RECONNECTING,
   DISCONNECTING,
   AUTHENTICATION_FAILED,
+  REMOTE_DEPRECATED,
   FAILED;
 
   public boolean isFailure() {
-    return this == AUTHENTICATION_FAILED || this == FAILED;
+    return this == AUTHENTICATION_FAILED || this == REMOTE_DEPRECATED || this == FAILED;
   }
 }

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
+import io.reactivex.rxjava3.core.Maybe;
 import io.reactivex.rxjava3.core.Observable;
 
 public class ReactionsViewModel extends ViewModel {
@@ -20,9 +21,9 @@ public class ReactionsViewModel extends ViewModel {
   private final MessageId           messageId;
   private final ReactionsRepository repository;
 
-  public ReactionsViewModel(@NonNull MessageId messageId) {
+  public ReactionsViewModel(@NonNull ReactionsRepository reactionRepository, @NonNull MessageId messageId) {
     this.messageId  = messageId;
-    this.repository = new ReactionsRepository();
+    this.repository = reactionRepository;
   }
 
   public @NonNull Observable<List<EmojiCount>> getEmojiCounts() {
@@ -70,17 +71,23 @@ public class ReactionsViewModel extends ViewModel {
     return reactions.get(reactions.size() - 1).getDisplayEmoji();
   }
 
+  void removeReactionEmoji() {
+    repository.sendReactionRemoval(messageId);
+  }
+
   static final class Factory implements ViewModelProvider.Factory {
 
-    private final MessageId messageId;
+    private final ReactionsRepository reactionsRepository;
+    private final MessageId           messageId;
 
-    Factory(@NonNull MessageId messageId) {
-      this.messageId = messageId;
+    Factory(@NonNull ReactionsRepository reactionsRepository, @NonNull MessageId messageId) {
+      this.reactionsRepository = reactionsRepository;
+      this.messageId           = messageId;
     }
 
     @Override
     public @NonNull <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-      return modelClass.cast(new ReactionsViewModel(messageId));
+      return modelClass.cast(new ReactionsViewModel(reactionsRepository, messageId));
     }
   }
 }

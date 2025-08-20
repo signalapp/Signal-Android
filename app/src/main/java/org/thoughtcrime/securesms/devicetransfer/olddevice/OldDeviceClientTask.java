@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.net.DeviceTransferBlockingInterceptor;
+import org.thoughtcrime.securesms.util.RemoteConfig;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -39,11 +40,18 @@ final class OldDeviceClientTask implements ClientTask {
 
     EventBus.getDefault().register(this);
     try {
+      String passphrase;
+      if (RemoteConfig.restoreAfterRegistration()) {
+        passphrase = SignalStore.account().getAccountEntropyPool().getValue();
+      } else {
+        passphrase = "deadbeef";
+      }
+
       FullBackupExporter.transfer(context,
                                   AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),
                                   SignalDatabase.getBackupDatabase(),
                                   outputStream,
-                                  "deadbeef");
+                                  passphrase);
     } catch (Exception e) {
       DeviceTransferBlockingInterceptor.getInstance().unblockNetwork();
       throw e;

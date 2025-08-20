@@ -128,24 +128,13 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
 
   @get:Synchronized
   val recoveryPassword: String?
-    get() {
-      return if (hasOptedInWithAccess()) {
-        masterKeyForInitialDataRestore?.deriveRegistrationRecoveryPassword() ?: masterKey.deriveRegistrationRecoveryPassword()
-      } else {
-        null
-      }
-    }
+    get() = masterKeyForInitialDataRestore?.deriveRegistrationRecoveryPassword() ?: masterKey.deriveRegistrationRecoveryPassword()
 
   @get:Synchronized
   val pin: String? by stringValue(PIN, null)
 
   @get:Synchronized
   val localPinHash: String? by stringValue(LOCK_LOCAL_PIN_HASH, null)
-
-  @Synchronized
-  fun hasOptedInWithAccess(): Boolean {
-    return hasPin() || SignalStore.account.restoredAccountEntropyPool
-  }
 
   @Synchronized
   fun hasPin(): Boolean {

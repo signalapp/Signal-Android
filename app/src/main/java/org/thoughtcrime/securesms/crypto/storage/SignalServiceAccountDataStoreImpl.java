@@ -54,7 +54,7 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
 
   @Override
   public boolean isMultiDevice() {
-    return SignalStore.account().hasLinkedDevices();
+    return SignalStore.account().isMultiDevice();
   }
 
   @Override
@@ -68,7 +68,7 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
   }
 
   @Override
-  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
+  public IdentityChange saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
     return identityKeyStore.saveIdentity(address, identityKey);
   }
 

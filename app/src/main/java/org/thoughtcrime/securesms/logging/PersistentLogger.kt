@@ -25,9 +25,7 @@ import java.util.Locale
  * - Main thread creates a [LogRequest] object and puts it in a queue
  * - The [WriteThread] constantly pulls from that queue, formats the logs, and writes them to the database.
  */
-class PersistentLogger(
-  application: Application
-) : Log.Logger() {
+class PersistentLogger private constructor(application: Application) : Log.Logger() {
 
   companion object {
     private const val LOG_V = "V"
@@ -35,6 +33,22 @@ class PersistentLogger(
     private const val LOG_I = "I"
     private const val LOG_W = "W"
     private const val LOG_E = "E"
+
+    @Volatile
+    private var instance: PersistentLogger? = null
+
+    @JvmStatic
+    fun getInstance(application: Application): PersistentLogger {
+      if (instance == null) {
+        synchronized(PersistentLogger::class.java) {
+          if (instance == null) {
+            instance = PersistentLogger(application)
+          }
+        }
+      }
+
+      return requireNotNull(instance)
+    }
   }
 
   private val logEntries = LogRequests()
@@ -107,12 +121,12 @@ class PersistentLogger(
   ) : Thread("signal-logger") {
 
     private val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS zzz", Locale.US)
-    private val buffer = mutableListOf<LogRequest>()
 
     override fun run() {
+      var buffer = mutableListOf<LogRequest>()
       while (true) {
-        requests.blockForRequests(buffer)
-        db.logs.insert(buffer.flatMap { requestToEntries(it) }, System.currentTimeMillis())
+        buffer = requests.blockForRequests(buffer)
+        db.logs.insert(buffer.asSequence().flatMap { requestToEntries(it) }, System.currentTimeMillis())
         buffer.clear()
         requests.notifyFlushed()
       }
@@ -158,7 +172,8 @@ class PersistentLogger(
   }
 
   private class LogRequests {
-    val logs = mutableListOf<LogRequest>()
+    // Mutable because it gets replaced in blockForRequests, to save a copy operation.
+    var logs = mutableListOf<LogRequest>()
     val logLock = Object()
 
     var flushed = false
@@ -172,18 +187,21 @@ class PersistentLogger(
     }
 
     /**
-     * Blocks until requests are available. When they are, the [buffer] will be populated with all pending requests.
-     * Note: This method gets hit a *lot*, which is why we're using a buffer instead of spamming out new lists every time.
+     * Blocks until requests are available. When they are, returns all pending requests and swaps `swapBuffer` with the internal storage for future requests.
+     *
+     * Note: This method gets hit a *lot*, which is why we're using a pair of buffers instead of spamming out new lists every time.
+     * `swapBuffer` should already be empty upon entry to this method.
      */
-    fun blockForRequests(buffer: MutableList<LogRequest>) {
+    fun blockForRequests(swapBuffer: MutableList<LogRequest>): MutableList<LogRequest> {
       synchronized(logLock) {
         while (logs.isEmpty()) {
           logLock.wait()
         }
 
-        buffer.addAll(logs)
-        logs.clear()
+        val result = logs
+        logs = swapBuffer
         flushed = false
+        return result
       }
     }
 

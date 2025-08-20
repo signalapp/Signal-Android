@@ -12,9 +12,10 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.SignalNetwork;
 import org.thoughtcrime.securesms.recipients.Recipient;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.SignalServiceAccountDataStore;
-import org.whispersystems.signalservice.api.SignalServiceAccountManager;
 import org.whispersystems.signalservice.api.account.PreKeyUpload;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
 import org.whispersystems.signalservice.api.push.ServiceIdType;
@@ -56,6 +57,11 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() throws IOException {
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Linked device, skipping");
+      return;
+    }
+
     PNI pni = SignalStore.account().getPni();
 
     if (pni == null || SignalStore.account().getAci() == null || !Recipient.self().isRegistered()) {
@@ -70,7 +76,6 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
       Log.w(TAG, "Already generated the PNI identity. Skipping this step.");
     }
 
-    SignalServiceAccountManager   accountManager = AppDependencies.getSignalServiceAccountManager();
     SignalServiceAccountDataStore protocolStore  = AppDependencies.getProtocolStore().pni();
     PreKeyMetadataStore           metadataStore  = SignalStore.account().pniPreKeys();
 
@@ -79,7 +84,7 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
       SignedPreKeyRecord signedPreKey   = PreKeyUtil.generateAndStoreSignedPreKey(protocolStore, metadataStore);
       List<PreKeyRecord> oneTimePreKeys = PreKeyUtil.generateAndStoreOneTimeEcPreKeys(protocolStore, metadataStore);
 
-      accountManager.setPreKeys(new PreKeyUpload(ServiceIdType.PNI, signedPreKey, oneTimePreKeys, null, null));
+      NetworkResultUtil.toPreKeysLegacy(SignalNetwork.keys().setPreKeys(new PreKeyUpload(ServiceIdType.PNI, signedPreKey, oneTimePreKeys, null, null)));
       metadataStore.setActiveSignedPreKeyId(signedPreKey.getId());
       metadataStore.setSignedPreKeyRegistered(true);
     } else {

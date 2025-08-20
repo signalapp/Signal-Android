@@ -5,15 +5,18 @@
 
 package org.whispersystems.signalservice.api.registration
 
-import org.signal.libsignal.protocol.ecc.ECPublicKey
-import org.signal.registration.proto.RegistrationProvisionMessage
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.account.AccountAttributes
 import org.whispersystems.signalservice.api.account.PreKeyCollection
-import org.whispersystems.signalservice.internal.crypto.PrimaryProvisioningCipher
+import org.whispersystems.signalservice.api.messages.multidevice.RegisterAsSecondaryDeviceResponse
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod
+import org.whispersystems.signalservice.api.push.SignedPreKeyEntity
 import org.whispersystems.signalservice.internal.push.BackupV2AuthCheckResponse
 import org.whispersystems.signalservice.internal.push.BackupV3AuthCheckResponse
+import org.whispersystems.signalservice.internal.push.GcmRegistrationId
+import org.whispersystems.signalservice.internal.push.KyberPreKeyEntity
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
+import org.whispersystems.signalservice.internal.push.RegisterAsSecondaryDeviceRequest
 import org.whispersystems.signalservice.internal.push.RegistrationSessionMetadataResponse
 import org.whispersystems.signalservice.internal.push.VerifyAccountResponse
 import java.util.Locale
@@ -108,7 +111,7 @@ class RegistrationApi(
   /**
    * Validates the provided SVR2 auth credentials, returning information on their usability.
    *
-   * `POST /v2/backup/auth/check`
+   * `POST /v2/svr/auth/check`
    */
   fun validateSvr2AuthCredential(e164: String, usernamePasswords: List<String>): NetworkResult<BackupV2AuthCheckResponse> {
     return NetworkResult.fromFetch {
@@ -128,22 +131,6 @@ class RegistrationApi(
   }
 
   /**
-   * Encrypts and sends the [RegistrationProvisionMessage] from the current primary (old device) to the new device over
-   * the provisioning web socket identified by [deviceIdentifier].
-   */
-  fun sendReRegisterDeviceProvisioningMessage(
-    deviceIdentifier: String,
-    deviceKey: ECPublicKey,
-    registrationProvisionMessage: RegistrationProvisionMessage
-  ): NetworkResult<Unit> {
-    val cipherText = PrimaryProvisioningCipher(deviceKey).encrypt(registrationProvisionMessage)
-
-    return NetworkResult.fromFetch {
-      pushServiceSocket.sendProvisioningMessage(deviceIdentifier, cipherText)
-    }
-  }
-
-  /**
    * Set [RestoreMethod] enum on the server for use by the old device to update UX.
    */
   fun setRestoreMethod(token: String, method: RestoreMethod): NetworkResult<Unit> {
@@ -153,11 +140,29 @@ class RegistrationApi(
   }
 
   /**
-   * Wait for the [RestoreMethod] to be set on the server by the new device. This is a long polling operation.
+   * Registers a device as a linked device on a pre-existing account.
+   *
+   * `PUT /v1/devices/link`
+   *
+   * - 403: Incorrect account verification
+   * - 409: Device missing required account capability
+   * - 411: Account reached max number of linked devices
+   * - 422: Request is invalid
+   * - 429: Rate limited
    */
-  fun waitForRestoreMethod(token: String, timeout: Int = 30): NetworkResult<RestoreMethod> {
+  fun registerAsSecondaryDevice(verificationCode: String, attributes: AccountAttributes, aciPreKeys: PreKeyCollection, pniPreKeys: PreKeyCollection, fcmToken: String?): NetworkResult<RegisterAsSecondaryDeviceResponse> {
+    val request = RegisterAsSecondaryDeviceRequest(
+      verificationCode = verificationCode,
+      accountAttributes = attributes,
+      aciSignedPreKey = SignedPreKeyEntity(aciPreKeys.signedPreKey.id, aciPreKeys.signedPreKey.keyPair.publicKey, aciPreKeys.signedPreKey.signature),
+      pniSignedPreKey = SignedPreKeyEntity(pniPreKeys.signedPreKey.id, pniPreKeys.signedPreKey.keyPair.publicKey, pniPreKeys.signedPreKey.signature),
+      aciPqLastResortPreKey = KyberPreKeyEntity(aciPreKeys.lastResortKyberPreKey.id, aciPreKeys.lastResortKyberPreKey.keyPair.publicKey, aciPreKeys.lastResortKyberPreKey.signature),
+      pniPqLastResortPreKey = KyberPreKeyEntity(pniPreKeys.lastResortKyberPreKey.id, pniPreKeys.lastResortKyberPreKey.keyPair.publicKey, pniPreKeys.lastResortKyberPreKey.signature),
+      gcmToken = fcmToken?.let { GcmRegistrationId(it, true) }
+    )
+
     return NetworkResult.fromFetch {
-      pushServiceSocket.waitForRestoreMethodChosen(token, timeout).method ?: RestoreMethod.DECLINE
+      pushServiceSocket.registerAsSecondaryDevice(request)
     }
   }
 }

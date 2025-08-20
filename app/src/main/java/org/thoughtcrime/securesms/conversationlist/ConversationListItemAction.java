@@ -46,13 +46,19 @@ public class ConversationListItemAction extends FrameLayout implements BindableC
                    @NonNull RequestManager requestManager,
                    @NonNull Locale locale,
                    @NonNull Set<Long> typingThreads,
-                   @NonNull ConversationSet selectedConversations)
+                   @NonNull ConversationSet selectedConversations,
+                   long activeThreadId)
   {
     this.description.setText(getContext().getString(R.string.ConversationListItemAction_archived_conversations_d, thread.getUnreadCount()));
   }
 
   @Override
   public void unbind() {
+
+  }
+
+  @Override
+  public void setActiveThreadId(long activeThreadId) {
 
   }
 

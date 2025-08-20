@@ -32,7 +32,7 @@ object ChatArchiveImporter {
     val chatColor = chat.style?.toLocal(importState)
 
     val wallpaperAttachmentId: AttachmentId? = chat.style?.wallpaperPhoto?.let { filePointer ->
-      filePointer.toLocalAttachment(importState)?.let {
+      filePointer.toLocalAttachment()?.let {
         SignalDatabase.attachments.restoreWallpaperAttachment(it)
       }
     }

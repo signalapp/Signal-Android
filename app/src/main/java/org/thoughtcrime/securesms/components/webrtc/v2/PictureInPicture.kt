@@ -37,8 +37,8 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.signal.core.ui.DarkPreview
-import org.signal.core.ui.Previews
+import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.Previews
 import kotlin.math.pow
 import kotlin.math.roundToInt
 import kotlin.math.sqrt

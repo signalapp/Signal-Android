@@ -1313,7 +1313,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
     val timestamp: Long,
     val ringerRecipient: RecipientId?,
     val isGroupCallActive: Boolean,
-    val didLocalUserJoin: Boolean
+    val didLocalUserJoin: Boolean,
+    val read: Boolean
   ) {
     val messageType: Long = getMessageType(type, direction, event)
 
@@ -1360,7 +1361,8 @@ class CallTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTabl
             }
           },
           isGroupCallActive = data.requireBoolean(GROUP_CALL_ACTIVE),
-          didLocalUserJoin = data.requireBoolean(LOCAL_JOINED)
+          didLocalUserJoin = data.requireBoolean(LOCAL_JOINED),
+          read = data.requireObject(READ, ReadState.Serializer) == ReadState.READ
         )
       }
     }

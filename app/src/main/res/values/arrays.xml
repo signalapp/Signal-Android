@@ -11,6 +11,7 @@
 <!-- af --><item>Afrikaans</item>
 <!-- ar --><item> العربية</item>
 <!-- az --><item>Azərbaycan</item>
+<!-- be --><item>Беларуская мова</item>
 <!-- bn --><item>বাংলা</item>
 <!-- bs --><item>Bosanski</item>
 <!-- bg --><item>български</item>
@@ -83,6 +84,7 @@
       <item>af</item>
       <item>ar</item>
       <item>az</item>
+      <item>be</item>
       <item>bn</item>
       <item>bs</item>
       <item>bg</item>

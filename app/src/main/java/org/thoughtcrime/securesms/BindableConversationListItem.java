@@ -17,9 +17,11 @@ public interface BindableConversationListItem extends Unbindable {
             @NonNull ThreadRecord thread,
             @NonNull RequestManager requestManager, @NonNull Locale locale,
             @NonNull Set<Long> typingThreads,
-            @NonNull ConversationSet selectedConversations);
+            @NonNull ConversationSet selectedConversations,
+            long activeThreadId);
 
   void setSelectedConversations(@NonNull ConversationSet conversations);
+  void setActiveThreadId(long activeThreadId);
   void updateTypingIndicator(@NonNull Set<Long> typingThreads);
   void updateTimestamp();
 }

@@ -67,8 +67,8 @@ public class ReviewBannerView extends FrameLayout {
   }
 
   public void setBannerRecipients(@NonNull Recipient target, @NonNull Recipient dupe) {
-    binding.bannerTopLeftAvatar.setAvatar(target);
-    binding.bannerBottomRightAvatar.setAvatar(dupe);
+    binding.bannerTopLeftAvatar.setAvatarUsingProfile(target);
+    binding.bannerBottomRightAvatar.setAvatarUsingProfile(dupe);
 
     binding.bannerIcon.setVisibility(GONE);
     binding.bannerTopLeftAvatar.setVisibility(VISIBLE);

@@ -171,6 +171,7 @@ open class SignalDatabase(private val context: Application, databaseSecret: Data
     executeStatements(db, KyberPreKeyTable.CREATE_INDEXES)
     executeStatements(db, ChatFolderTables.CREATE_INDEXES)
     executeStatements(db, NameCollisionTables.CREATE_INDEXES)
+    executeStatements(db, BackupMediaSnapshotTable.CREATE_INDEXES)
 
     executeStatements(db, MessageSendLogTables.CREATE_TRIGGERS)
 

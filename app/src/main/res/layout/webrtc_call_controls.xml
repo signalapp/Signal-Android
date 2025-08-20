@@ -148,8 +148,7 @@
             android:id="@+id/call_controls_constraint_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="38dp"
-            android:paddingBottom="48dp">
+            android:layout_marginTop="38dp">
 
             <org.thoughtcrime.securesms.components.webrtc.WebRtcAudioOutputToggleButton
                 android:id="@+id/call_screen_speaker_toggle"

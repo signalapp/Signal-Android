@@ -9,10 +9,12 @@ import org.signal.libsignal.metadata.certificate.SenderCertificate
 import org.signal.libsignal.metadata.certificate.ServerCertificate
 import org.signal.libsignal.protocol.SessionBuilder
 import org.signal.libsignal.protocol.SignalProtocolAddress
-import org.signal.libsignal.protocol.ecc.Curve
+import org.signal.libsignal.protocol.UsePqRatchet
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.groups.GroupSessionBuilder
+import org.signal.libsignal.protocol.kem.KEMKeyPair
+import org.signal.libsignal.protocol.kem.KEMKeyType
 import org.signal.libsignal.protocol.message.SenderKeyDistributionMessage
 import org.signal.libsignal.protocol.state.PreKeyBundle
 import org.signal.libsignal.protocol.state.PreKeyRecord
@@ -45,7 +47,7 @@ import kotlin.random.Random
  */
 class SignalClient {
   companion object {
-    private val trustRoot: ECKeyPair = Curve.generateKeyPair()
+    private val trustRoot: ECKeyPair = ECKeyPair.generate()
   }
 
   private val lock = TestSessionLock()
@@ -74,7 +76,7 @@ class SignalClient {
    */
   fun initializeSession(to: SignalClient) {
     val address = SignalProtocolAddress(to.aci.toString(), 1)
-    SessionBuilder(store, address).process(to.createPreKeyBundle())
+    SessionBuilder(store, address).process(to.createPreKeyBundle(), UsePqRatchet.NO)
   }
 
   fun initializedGroupSession(distributionId: DistributionId): SenderKeyDistributionMessage {
@@ -161,24 +163,28 @@ class SignalClient {
   }
 
   fun decryptMessage(envelope: Envelope) {
-    cipher.decrypt(envelope, System.currentTimeMillis())
+    cipher.decrypt(envelope, System.currentTimeMillis(), UsePqRatchet.NO)
   }
 
   private fun createPreKeyBundle(): PreKeyBundle {
     val prekeyId = prekeyIndex++
-    val preKeyRecord = PreKeyRecord(prekeyId, Curve.generateKeyPair())
-    val signedPreKeyPair = Curve.generateKeyPair()
-    val signedPreKeySignature = Curve.calculateSignature(store.identityKeyPair.privateKey, signedPreKeyPair.publicKey.serialize())
+    val preKeyRecord = PreKeyRecord(prekeyId, ECKeyPair.generate())
+    val signedPreKeyPair = ECKeyPair.generate()
+    val signedPreKeySignature = store.identityKeyPair.privateKey.calculateSignature(signedPreKeyPair.publicKey.serialize())
+    val kyerPair = KEMKeyPair.generate(KEMKeyType.KYBER_1024)
 
     store.storePreKey(prekeyId, preKeyRecord)
     store.storeSignedPreKey(prekeyId, SignedPreKeyRecord(prekeyId, System.currentTimeMillis(), signedPreKeyPair, signedPreKeySignature))
 
-    return PreKeyBundle(prekeyId, prekeyId, prekeyId, preKeyRecord.keyPair.publicKey, prekeyId, signedPreKeyPair.publicKey, signedPreKeySignature, store.identityKeyPair.publicKey)
+    return PreKeyBundle(
+      prekeyId, prekeyId, prekeyId, preKeyRecord.keyPair.publicKey, prekeyId, signedPreKeyPair.publicKey, signedPreKeySignature, store.identityKeyPair.publicKey,
+      PreKeyBundle.NULL_PRE_KEY_ID, kyerPair.publicKey, kyerPair.secretKey.serialize()
+    )
   }
 }
 
 private fun createCertificateFor(trustRoot: ECKeyPair, uuid: UUID, e164: String, deviceId: Int, identityKey: ECPublicKey, expires: Long): SenderCertificate {
-  val serverKey: ECKeyPair = Curve.generateKeyPair()
+  val serverKey: ECKeyPair = ECKeyPair.generate()
   NativeHandleGuard(serverKey.publicKey).use { serverPublicGuard ->
     NativeHandleGuard(trustRoot.privateKey).use { trustRootPrivateGuard ->
       val serverCertificate = ServerCertificate(Native.ServerCertificate_New(1, serverPublicGuard.nativeHandle(), trustRootPrivateGuard.nativeHandle()))

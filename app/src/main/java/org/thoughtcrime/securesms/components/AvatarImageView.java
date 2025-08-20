@@ -46,7 +46,7 @@ import org.thoughtcrime.securesms.jobs.RetrieveProfileAvatarJob;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.ui.bottomsheet.RecipientBottomSheetDialogFragment;
-import org.thoughtcrime.securesms.util.AvatarUtil;
+import org.thoughtcrime.securesms.util.NameUtil;
 
 import java.util.Collections;
 import java.util.List;
@@ -62,12 +62,13 @@ public final class AvatarImageView extends AppCompatImageView {
 
   private final RequestListener<Drawable> redownloadRequestListener = new RedownloadRequestListener();
 
-  private int                             size;
-  private boolean                         inverted;
-  private OnClickListener                 listener;
-  private boolean                         blurred;
-  private ChatColors                      chatColors;
-  private FixedSizeTarget                 fixedSizeTarget;
+  private int             size;
+  private boolean         inverted;
+  private OnClickListener listener;
+  private boolean         blurred;
+  private ChatColors      chatColors;
+  private String          initials;
+  private FixedSizeTarget fixedSizeTarget;
 
   private @Nullable RecipientContactPhoto  recipientContactPhoto;
   private @NonNull  Drawable               unknownRecipientDrawable;
@@ -100,6 +101,7 @@ public final class AvatarImageView extends AppCompatImageView {
     unknownRecipientDrawable = new FallbackAvatarDrawable(context, new FallbackAvatar.Resource.Person(AvatarColor.UNKNOWN)).circleCrop();
     blurred                  = false;
     chatColors               = null;
+    initials                 = null;
   }
 
   @Override
@@ -123,12 +125,7 @@ public final class AvatarImageView extends AppCompatImageView {
    * Shows self as the actual profile picture.
    */
   public void setRecipient(@NonNull Recipient recipient, boolean quickContactEnabled) {
-    if (recipient.isSelf()) {
-      setAvatar(Glide.with(this), null, quickContactEnabled);
-      AvatarUtil.loadIconIntoImageView(recipient, this);
-    } else {
-      setAvatar(Glide.with(this), recipient, quickContactEnabled);
-    }
+    setAvatar(Glide.with(this), recipient, quickContactEnabled, recipient.isSelf());
   }
 
   public AvatarOptions.Builder buildOptions() {
@@ -177,10 +174,12 @@ public final class AvatarImageView extends AppCompatImageView {
 
       boolean    shouldBlur = recipient.getShouldBlurAvatar();
       ChatColors chatColors = recipient.getChatColors();
+      String     initials   = NameUtil.getAbbreviation(recipient.getDisplayName(getContext()));
 
-      if (!photo.equals(recipientContactPhoto) || shouldBlur != blurred || !Objects.equals(chatColors, this.chatColors)) {
+      if (!photo.equals(recipientContactPhoto) || shouldBlur != blurred || !Objects.equals(chatColors, this.chatColors) || !Objects.equals(initials, this.initials)) {
         requestManager.clear(this);
-        this.chatColors       = chatColors;
+        this.chatColors = chatColors;
+        this.initials   = initials;
         recipientContactPhoto = photo;
 
         FallbackAvatarProvider activeFallbackPhotoProvider = this.fallbackAvatarProvider;
@@ -189,7 +188,7 @@ public final class AvatarImageView extends AppCompatImageView {
             @Override
             public @NonNull FallbackAvatar getFallbackAvatar(@NonNull Recipient recipient) {
               if (recipient.isSelf()) {
-                return new FallbackAvatar.Resource.Person(recipient.getAvatarColor());
+                return FallbackAvatar.forTextOrDefault(recipient.getDisplayName(getContext()), recipient.getAvatarColor());
               }
 
               return FallbackAvatarProvider.super.getFallbackAvatar(recipient);

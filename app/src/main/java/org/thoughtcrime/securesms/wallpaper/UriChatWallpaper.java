@@ -20,7 +20,7 @@ import com.bumptech.glide.request.target.Target;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.database.model.databaseprotos.Wallpaper;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
@@ -66,7 +66,7 @@ public final class UriChatWallpaper implements ChatWallpaper, Parcelable {
       Log.d(TAG, "Not in cache or recycled. Fetching using Glide.");
       Glide.with(imageView.getContext().getApplicationContext())
               .asBitmap()
-              .load(new DecryptableStreamUriLoader.DecryptableUri(uri))
+              .load(new DecryptableUri(uri))
               .skipMemoryCache(true)
               .diskCacheStrategy(DiskCacheStrategy.NONE)
               .addListener(new RequestListener<>() {
@@ -99,7 +99,7 @@ public final class UriChatWallpaper implements ChatWallpaper, Parcelable {
     try {
       Bitmap bitmap = Glide.with(context.getApplicationContext())
                               .asBitmap()
-                              .load(new DecryptableStreamUriLoader.DecryptableUri(uri))
+                              .load(new DecryptableUri(uri))
                               .skipMemoryCache(true)
                               .diskCacheStrategy(DiskCacheStrategy.NONE)
                               .submit()

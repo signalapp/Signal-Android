@@ -15,7 +15,6 @@ import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
@@ -47,6 +46,7 @@ import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.SpanUtil
 import org.thoughtcrime.securesms.util.ThemeUtil
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.util.visible
 
@@ -234,16 +234,21 @@ class RecipientBottomSheetDialogFragment : BottomSheetDialogFragment() {
       }
 
       if (!recipient.isSelf && recipient.isIndividual) {
+        val isLtr = ViewUtil.isLtr(view)
         val chevronGlyph = SignalSymbols.getSpannedString(
           requireContext(),
           SignalSymbols.Weight.BOLD,
-          SignalSymbols.Glyph.CHEVRON_RIGHT
+          if (isLtr) SignalSymbols.Glyph.CHEVRON_RIGHT else SignalSymbols.Glyph.CHEVRON_LEFT,
+          R.color.signal_colorOutline
         )
 
-        nameBuilder.append(" ")
-        nameBuilder.append(
-          SpanUtil.color(ContextCompat.getColor(requireContext(), R.color.signal_colorOutline), SpanUtil.ofSize(chevronGlyph, 24))
-        )
+        if (isLtr) {
+          nameBuilder.append(" ")
+          nameBuilder.append(SpanUtil.ofSize(chevronGlyph, 24))
+        } else {
+          nameBuilder.insert(0, " ")
+          nameBuilder.insert(0, SpanUtil.ofSize(chevronGlyph, 24))
+        }
 
         fullName.text = nameBuilder
         fullName.setOnClickListener {

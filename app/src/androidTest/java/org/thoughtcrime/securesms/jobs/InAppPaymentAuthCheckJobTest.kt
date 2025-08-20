@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.jobs
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import assertk.assertThat
-import assertk.assertions.hasSize
 import assertk.assertions.isEmpty
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Before
@@ -67,30 +66,6 @@ class InAppPaymentAuthCheckJobTest {
 
     val receipts = SignalDatabase.donationReceipts.getReceipts(InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION)
     assertThat(receipts).isEmpty()
-  }
-
-  @Test
-  fun givenSuccessfulOneTimeAuthRequiredPayment_whenICheck_thenIExpectAReceipt() {
-    initializeMockGetPaymentIntent(status = StripeIntentStatus.SUCCEEDED)
-
-    SignalDatabase.inAppPayments.insert(
-      type = InAppPaymentType.ONE_TIME_DONATION,
-      state = InAppPaymentTable.State.WAITING_FOR_AUTHORIZATION,
-      subscriberId = null,
-      endOfPeriod = null,
-      inAppPaymentData = InAppPaymentData(
-        amount = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")).toFiatValue(),
-        waitForAuth = InAppPaymentData.WaitingForAuthorizationState(
-          stripeIntentId = TEST_INTENT_ID,
-          stripeClientSecret = TEST_CLIENT_SECRET
-        )
-      )
-    )
-
-    InAppPaymentAuthCheckJob().run()
-
-    val receipts = SignalDatabase.donationReceipts.getReceipts(InAppPaymentReceiptRecord.Type.ONE_TIME_DONATION)
-    assertThat(receipts).hasSize(1)
   }
 
   private fun initializeMockGetPaymentIntent(status: StripeIntentStatus) {

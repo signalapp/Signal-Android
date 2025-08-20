@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.jobmanager.JobTracker
 import org.thoughtcrime.securesms.jobs.DownloadLatestEmojiDataJob
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob
-import org.thoughtcrime.securesms.jobs.PnpInitializeDevicesJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -163,6 +162,28 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
       dividerPref()
 
+      sectionHeaderPref(DSLSettingsText.from("App UI"))
+
+      switchPref(
+        title = DSLSettingsText.from("Enable new split pane UI."),
+        summary = DSLSettingsText.from("Warning: Some bugs and non functional buttons are expected. App will restart."),
+        isChecked = state.largeScreenUi,
+        onClick = {
+          viewModel.setUseLargeScreenUi(!state.largeScreenUi)
+          AppUtil.restart(requireContext())
+        }
+      )
+
+      switchPref(
+        isEnabled = state.largeScreenUi,
+        title = DSLSettingsText.from("Force split pane UI on landscape phones."),
+        summary = DSLSettingsText.from("This setting requires split pane UI to be enabled."),
+        isChecked = state.forceSplitPaneOnCompactLandscape,
+        onClick = {
+          viewModel.setForceSplitPaneOnCompactLandscape(!state.forceSplitPaneOnCompactLandscape)
+        }
+      )
+
       sectionHeaderPref(DSLSettingsText.from("Playgrounds"))
 
       clickPref(
@@ -224,6 +245,15 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         isChecked = state.shakeToReport,
         onClick = {
           viewModel.setShakeToReport(!state.shakeToReport)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("Show archive status hint"),
+        summary = DSLSettingsText.from("Shows a color square based on archive status, green good, red bad."),
+        isChecked = state.showArchiveStateHint,
+        onClick = {
+          viewModel.setShowMediaArchiveStateHint(!state.showArchiveStateHint)
         }
       )
 
@@ -546,15 +576,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       radioListPref(
-        title = DSLSettingsText.from("Audio processing method"),
-        listItems = CallManager.AudioProcessingMethod.entries.map { it.name }.toTypedArray(),
-        selected = CallManager.AudioProcessingMethod.entries.indexOf(state.callingAudioProcessingMethod),
-        onSelected = {
-          viewModel.setInternalCallingAudioProcessingMethod(CallManager.AudioProcessingMethod.entries[it])
-        }
-      )
-
-      radioListPref(
         title = DSLSettingsText.from("Bandwidth mode"),
         listItems = CallManager.DataMode.entries.map { it.name }.toTypedArray(),
         selected = CallManager.DataMode.entries.indexOf(state.callingDataMode),
@@ -572,10 +593,55 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       )
 
       switchPref(
-        title = DSLSettingsText.from("Enable Oboe ADM"),
-        isChecked = state.callingEnableOboeAdm,
+        title = DSLSettingsText.from("Set Audio Config:"),
+        isChecked = state.callingSetAudioConfig,
         onClick = {
-          viewModel.setInternalCallingEnableOboeAdm(!state.callingEnableOboeAdm)
+          viewModel.setInternalCallingSetAudioConfig(!state.callingSetAudioConfig)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Oboe ADM"),
+        isChecked = state.callingUseOboeAdm,
+        isEnabled = state.callingSetAudioConfig,
+        onClick = {
+          viewModel.setInternalCallingUseOboeAdm(!state.callingUseOboeAdm)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Software AEC"),
+        isChecked = state.callingUseSoftwareAec,
+        isEnabled = state.callingSetAudioConfig,
+        onClick = {
+          viewModel.setInternalCallingUseSoftwareAec(!state.callingUseSoftwareAec)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Software NS"),
+        isChecked = state.callingUseSoftwareNs,
+        isEnabled = state.callingSetAudioConfig,
+        onClick = {
+          viewModel.setInternalCallingUseSoftwareNs(!state.callingUseSoftwareNs)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Input Low Latency"),
+        isChecked = state.callingUseInputLowLatency,
+        isEnabled = state.callingSetAudioConfig,
+        onClick = {
+          viewModel.setInternalCallingUseInputLowLatency(!state.callingUseInputLowLatency)
+        }
+      )
+
+      switchPref(
+        title = DSLSettingsText.from("    Use Input Voice Comm"),
+        isChecked = state.callingUseInputVoiceComm,
+        isEnabled = state.callingSetAudioConfig,
+        onClick = {
+          viewModel.setInternalCallingUseInputVoiceComm(!state.callingUseInputVoiceComm)
         }
       )
 
@@ -609,8 +675,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         clickPref(
           title = DSLSettingsText.from("Clear keep-alive timestamps"),
           onClick = {
-            SignalStore.inAppPayments.subscriptionEndOfPeriodRedemptionStarted = 0L
-            SignalStore.inAppPayments.subscriptionEndOfPeriodConversionStarted = 0L
             SignalStore.inAppPayments.setLastEndOfPeriod(0L)
             Toast.makeText(context, "Cleared", Toast.LENGTH_SHORT).show()
           }
@@ -761,23 +825,6 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("PNP"))
-
-      clickPref(
-        title = DSLSettingsText.from("Trigger 'Hello World' event"),
-        isEnabled = true,
-        onClick = {
-          SimpleTask.run(viewLifecycleOwner.lifecycle, {
-            AppDependencies.jobManager.runSynchronously(PnpInitializeDevicesJob(), 10.seconds.inWholeMilliseconds)
-          }, { state ->
-            if (state.isPresent) {
-              Toast.makeText(context, "Job finished with result: ${state.get()}!", Toast.LENGTH_SHORT).show()
-              viewModel.refresh()
-            } else {
-              Toast.makeText(context, "Job timed out after 10 seconds!", Toast.LENGTH_SHORT).show()
-            }
-          })
-        }
-      )
 
       clickPref(
         title = DSLSettingsText.from("Reset 'PNP initialized' state"),

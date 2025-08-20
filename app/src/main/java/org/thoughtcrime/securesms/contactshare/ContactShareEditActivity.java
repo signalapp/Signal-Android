@@ -87,7 +87,7 @@ public class ContactShareEditActivity extends PassphraseRequiredActivity impleme
 
     Toolbar toolbar = findViewById(R.id.toolbar);
     toolbar.setNavigationOnClickListener(unused -> onBackPressed());
-    Material3OnScrollHelper onScrollHelper = new Material3OnScrollHelper(this, Collections.singletonList(toolbar), Collections.emptyList(), this);
+    Material3OnScrollHelper onScrollHelper = Material3OnScrollHelper.create(this, toolbar);
     onScrollHelper.attach(contactList);
 
     ContactShareEditAdapter contactAdapter = new ContactShareEditAdapter(Glide.with(this), dynamicLanguage.getCurrentLocale(), this);

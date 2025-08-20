@@ -29,7 +29,7 @@ final class StickerPackPreviewViewModel extends ViewModel {
 
   private StickerPackPreviewViewModel(@NonNull Application application,
                                       @NonNull StickerPackPreviewRepository previewRepository,
-                                      @NonNull StickerManagementRepository  managementRepository)
+                                      @NonNull StickerManagementRepository managementRepository)
   {
     this.application          = application;
     this.previewRepository    = previewRepository;
@@ -54,11 +54,11 @@ final class StickerPackPreviewViewModel extends ViewModel {
   }
 
   void onInstallClicked() {
-    managementRepository.installStickerPack(packId, packKey, true);
+    managementRepository.installStickerPackAsync(packId, packKey, true);
   }
 
   void onRemoveClicked() {
-    managementRepository.uninstallStickerPack(packId, packKey);
+    managementRepository.uninstallStickerPackAsync(packId, packKey);
   }
 
   @Override

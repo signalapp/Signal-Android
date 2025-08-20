@@ -11,32 +11,20 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
-import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Button
-import androidx.compose.material3.Checkbox
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -64,26 +52,32 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.DialogProperties
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.signal.core.ui.Dividers
-import org.signal.core.ui.Previews
-import org.signal.core.ui.Rows
-import org.signal.core.ui.SignalPreview
-import org.signal.core.ui.Snackbars
-import org.signal.core.ui.TextFields.TextField
+import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.Snackbars
+import org.signal.core.ui.compose.TextFields.TextField
+import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.attachments.AttachmentId
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
+import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.DialogState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.ArchiveAttachmentReconciliationJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Util
@@ -145,21 +139,20 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
   override fun FragmentContent() {
     val context = LocalContext.current
     val state by viewModel.state
-    val mediaState by viewModel.mediaState
+    val statsState by viewModel.statsState.collectAsStateWithLifecycle()
 
     LaunchedEffect(Unit) {
-      viewModel.loadMedia()
+      viewModel.loadStats()
     }
 
     Tabs(
       onBack = { findNavController().popBackStack() },
-      onDeleteAllArchivedMedia = { viewModel.deleteAllArchivedMedia() },
       mainContent = {
         Screen(
           state = state,
-          onBackupTierSelected = { tier -> viewModel.onBackupTierSelected(tier) },
           onCheckRemoteBackupStateClicked = { viewModel.checkRemoteBackupState() },
           onEnqueueRemoteBackupClicked = { viewModel.triggerBackupJob() },
+          onEnqueueReconciliationClicked = { AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob(forced = true)) },
           onHaltAllBackupJobsClicked = { viewModel.haltAllJobs() },
           onValidateBackupClicked = { viewModel.validateBackup() },
           onSaveEncryptedBackupToDiskClicked = {
@@ -230,7 +223,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
           onDeleteRemoteBackup = {
             MaterialAlertDialogBuilder(context)
               .setTitle("Are you sure?")
-              .setMessage("This will delete all of your remote backup data?")
+              .setMessage("This will delete all of your remote backup data!")
               .setPositiveButton("Delete remote data") { _, _ ->
                 lifecycleScope.launch {
                   val success = viewModel.deleteRemoteBackupData()
@@ -241,20 +234,36 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               }
               .setNegativeButton("Cancel", null)
               .show()
+          },
+          onClearLocalMediaBackupState = {
+            MaterialAlertDialogBuilder(context)
+              .setTitle("Are you sure?")
+              .setMessage("This will cause you to have to re-upload all of your media!")
+              .setPositiveButton("Clear local media state") { _, _ ->
+                lifecycleScope.launch {
+                  viewModel.clearLocalMediaBackupState()
+                  withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Done!", Toast.LENGTH_SHORT).show()
+                  }
+                }
+              }
+              .setNegativeButton("Cancel", null)
+              .show()
+          },
+          onDisplayInitialBackupFailureSheet = {
+            BackupRepository.displayInitialBackupFailureNotification()
+            BackupAlertBottomSheet
+              .create(BackupAlert.BackupFailed)
+              .show(parentFragmentManager, null)
           }
         )
       },
-      mediaContent = { snackbarHostState ->
-        MediaList(
-          enabled = SignalStore.backup.backsUpMedia,
-          state = mediaState,
-          snackbarHostState = snackbarHostState,
-          archiveAttachmentMedia = { viewModel.archiveAttachmentMedia(it) },
-          deleteArchivedMedia = { viewModel.deleteArchivedMedia(it) },
-          batchArchiveAttachmentMedia = { viewModel.archiveAttachmentMedia(it) },
-          batchDeleteBackupAttachmentMedia = { viewModel.deleteArchivedMedia(it) },
-          restoreArchivedMedia = { viewModel.restoreArchivedMedia(it, asThumbnail = false) },
-          restoreArchivedMediaThumbnail = { viewModel.restoreArchivedMedia(it, asThumbnail = true) }
+      statsContent = {
+        InternalBackupStatsTab(
+          statsState,
+          object : StatsCallbacks {
+            override fun loadRemoteState() = viewModel.loadRemoteStats()
+          }
         )
       }
     )
@@ -265,11 +274,10 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
 @Composable
 fun Tabs(
   onBack: () -> Unit,
-  onDeleteAllArchivedMedia: () -> Unit,
   mainContent: @Composable () -> Unit,
-  mediaContent: @Composable (snackbarHostState: SnackbarHostState) -> Unit
+  statsContent: @Composable () -> Unit
 ) {
-  val tabs = listOf("Main", "Media")
+  val tabs = listOf("Main", "Stats")
   var tabIndex by remember { mutableIntStateOf(0) }
 
   val snackbarHostState: SnackbarHostState = remember { SnackbarHostState() }
@@ -285,17 +293,10 @@ fun Tabs(
           navigationIcon = {
             IconButton(onClick = onBack) {
               Icon(
-                painter = painterResource(R.drawable.symbol_arrow_left_24),
+                painter = painterResource(R.drawable.symbol_arrow_start_24),
                 tint = MaterialTheme.colorScheme.onSurface,
                 contentDescription = null
               )
-            }
-          },
-          actions = {
-            if (tabIndex == 1 && SignalStore.backup.backsUpMedia) {
-              TextButton(onClick = onDeleteAllArchivedMedia) {
-                Text(text = "Delete All")
-              }
             }
           }
         )
@@ -314,7 +315,7 @@ fun Tabs(
     Surface(modifier = Modifier.padding(it)) {
       when (tabIndex) {
         0 -> mainContent()
-        1 -> mediaContent(snackbarHostState)
+        1 -> statsContent()
       }
     }
   }
@@ -327,8 +328,8 @@ fun Screen(
   onImportNewStyleLocalBackupClicked: () -> Unit = {},
   onCheckRemoteBackupStateClicked: () -> Unit = {},
   onEnqueueRemoteBackupClicked: () -> Unit = {},
+  onEnqueueReconciliationClicked: () -> Unit = {},
   onWipeDataAndRestoreFromRemoteClicked: () -> Unit = {},
-  onBackupTierSelected: (MessageBackupTier?) -> Unit = {},
   onHaltAllBackupJobsClicked: () -> Unit = {},
   onSavePlaintextCopyOfRemoteBackupClicked: () -> Unit = {},
   onValidateBackupClicked: () -> Unit = {},
@@ -337,7 +338,9 @@ fun Screen(
   onImportEncryptedBackupFromDiskClicked: () -> Unit = {},
   onImportEncryptedBackupFromDiskDismissed: () -> Unit = {},
   onImportEncryptedBackupFromDiskConfirmed: (aci: String, backupKey: String) -> Unit = { _, _ -> },
-  onDeleteRemoteBackup: () -> Unit = {}
+  onClearLocalMediaBackupState: () -> Unit = {},
+  onDeleteRemoteBackup: () -> Unit = {},
+  onDisplayInitialBackupFailureSheet: () -> Unit = {}
 ) {
   val context = LocalContext.current
   val scrollState = rememberScrollState()
@@ -367,21 +370,6 @@ fun Screen(
         .fillMaxSize()
         .verticalScroll(scrollState)
     ) {
-      Row(verticalAlignment = Alignment.CenterVertically) {
-        Text("Tier", fontWeight = FontWeight.Bold)
-        options.forEach { option ->
-          Row(verticalAlignment = Alignment.CenterVertically) {
-            RadioButton(
-              selected = option.value == state.backupTier,
-              onClick = { onBackupTierSelected(option.value) }
-            )
-            Text(option.key)
-          }
-        }
-      }
-
-      Dividers.Default()
-
       Rows.TextRow(
         text = {
           Text(
@@ -404,6 +392,12 @@ fun Screen(
         text = "Enqueue remote backup",
         label = "Schedules a job that will perform a routine remote backup.",
         onClick = onEnqueueRemoteBackupClicked
+      )
+
+      Rows.TextRow(
+        text = "Enqueue reconciliation job",
+        label = "Schedules a job that will ensure local and remote media state are in sync.",
+        onClick = onEnqueueReconciliationClicked
       )
 
       Rows.TextRow(
@@ -456,6 +450,15 @@ fun Screen(
         label = "Copies the cryptographic BackupKey to the clipboard as a hex string. Important: this is the key that is derived from the AEP, and therefore *not* the same as the key labeled \"Backup Key\" in the designs. That's actually the AEP, listed above.",
         onClick = {
           Util.copyToClipboard(context, Hex.toStringCondensed(SignalStore.account.accountEntropyPool.deriveMessageBackupKey().value))
+          Toast.makeText(context, "Copied!", Toast.LENGTH_SHORT).show()
+        }
+      )
+
+      Rows.TextRow(
+        text = "Copy Media Backup ID",
+        label = "Copies the Media Backup ID, Base64 encoded; it can be used to identify your media backup on the server.",
+        onClick = {
+          Util.copyToClipboard(context, Base64.encodeWithoutPadding(SignalStore.backup.mediaRootBackupKey.deriveBackupId(SignalStore.account.requireAci()).value))
           Toast.makeText(context, "Copied!", Toast.LENGTH_SHORT).show()
         }
       )
@@ -518,7 +521,42 @@ fun Screen(
         onClick = onDeleteRemoteBackup
       )
 
+      Rows.TextRow(
+        text = "Clear local media backup state",
+        label = "Resets local state tracking so you think you haven't uploaded any media. The media still exists on the server.",
+        onClick = onClearLocalMediaBackupState
+      )
+
       Dividers.Default()
+
+      Rows.TextRow(
+        text = "Display initial backup failure sheet",
+        label = "This will display the error sheet immediately and force the notification to display.",
+        onClick = onDisplayInitialBackupFailureSheet
+      )
+
+      Rows.TextRow(
+        text = "Mark backup failure",
+        label = "This will display the error sheet when returning to the chats list.",
+        onClick = {
+          BackupRepository.markBackupFailure()
+        }
+      )
+
+      Rows.TextRow(
+        text = "Mark backup expired and downgraded",
+        label = "This will not actually downgrade the user.",
+        onClick = {
+          SignalStore.backup.backupExpiredAndDowngraded = true
+        }
+      )
+
+      Rows.TextRow(
+        text = "Mark out of remote storage space",
+        onClick = {
+          BackupRepository.markOutOfRemoteStorageSpaceError()
+        }
+      )
 
       Spacer(modifier = Modifier.height(8.dp))
     }
@@ -575,179 +613,6 @@ private fun ImportCredentialsDialog(onSubmit: (aci: String, backupKey: String) -
     properties = DialogProperties()
   )
 }
-
-@OptIn(ExperimentalFoundationApi::class)
-@Composable
-fun MediaList(
-  enabled: Boolean,
-  state: InternalBackupPlaygroundViewModel.MediaState,
-  snackbarHostState: SnackbarHostState,
-  archiveAttachmentMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit,
-  deleteArchivedMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit,
-  batchArchiveAttachmentMedia: (Set<AttachmentId>) -> Unit,
-  batchDeleteBackupAttachmentMedia: (Set<AttachmentId>) -> Unit,
-  restoreArchivedMedia: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit,
-  restoreArchivedMediaThumbnail: (InternalBackupPlaygroundViewModel.BackupAttachment) -> Unit
-) {
-  if (!enabled) {
-    Text(
-      text = "You do not have read/write to archive cdn enabled via SignalStore.backup",
-      modifier = Modifier
-        .padding(16.dp)
-    )
-    return
-  }
-
-  LaunchedEffect(state.error?.id) {
-    state.error?.let {
-      snackbarHostState.showSnackbar(it.errorText)
-    }
-  }
-
-  var selectionState by remember { mutableStateOf(MediaMultiSelectState()) }
-
-  Box(modifier = Modifier.fillMaxSize()) {
-    LazyColumn(modifier = Modifier.fillMaxSize()) {
-      items(
-        count = state.attachments.size,
-        key = { index -> state.attachments[index].id }
-      ) { index ->
-        val attachment = state.attachments[index]
-        Row(
-          modifier = Modifier
-            .combinedClickable(onClick = {
-              if (selectionState.selecting) {
-                selectionState = selectionState.copy(selected = if (selectionState.selected.contains(attachment.id)) selectionState.selected - attachment.id else selectionState.selected + attachment.id)
-              }
-            }, onLongClick = {
-              selectionState = if (selectionState.selecting) MediaMultiSelectState() else MediaMultiSelectState(selecting = true, selected = setOf(attachment.id))
-            })
-            .padding(horizontal = 16.dp, vertical = 8.dp)
-        ) {
-          if (selectionState.selecting) {
-            Checkbox(
-              checked = selectionState.selected.contains(attachment.id),
-              onCheckedChange = { selected ->
-                selectionState = selectionState.copy(selected = if (selected) selectionState.selected + attachment.id else selectionState.selected - attachment.id)
-              }
-            )
-          }
-
-          Column(modifier = Modifier.weight(1f, true)) {
-            Text(text = attachment.title)
-            Text(text = "State: ${attachment.state}")
-          }
-
-          if (attachment.state == InternalBackupPlaygroundViewModel.BackupAttachment.State.IN_PROGRESS) {
-            CircularProgressIndicator()
-          } else {
-            Button(
-              enabled = !selectionState.selecting,
-              onClick = {
-                when (attachment.state) {
-                  InternalBackupPlaygroundViewModel.BackupAttachment.State.ATTACHMENT_CDN,
-                  InternalBackupPlaygroundViewModel.BackupAttachment.State.LOCAL_ONLY -> archiveAttachmentMedia(attachment)
-
-                  InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED_UNDOWNLOADED,
-                  InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED_FINAL -> selectionState = selectionState.copy(expandedOption = attachment.dbAttachment.attachmentId)
-
-                  else -> throw AssertionError("Unsupported state: ${attachment.state}")
-                }
-              }
-            ) {
-              Text(
-                text = when (attachment.state) {
-                  InternalBackupPlaygroundViewModel.BackupAttachment.State.ATTACHMENT_CDN,
-                  InternalBackupPlaygroundViewModel.BackupAttachment.State.LOCAL_ONLY -> "Backup"
-
-                  InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED_UNDOWNLOADED,
-                  InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED_FINAL -> "Options..."
-
-                  else -> throw AssertionError("Unsupported state: ${attachment.state}")
-                }
-              )
-
-              DropdownMenu(
-                expanded = attachment.dbAttachment.attachmentId == selectionState.expandedOption,
-                onDismissRequest = { selectionState = selectionState.copy(expandedOption = null) }
-              ) {
-                DropdownMenuItem(
-                  text = { Text("Remote Delete") },
-                  onClick = {
-                    selectionState = selectionState.copy(expandedOption = null)
-                    deleteArchivedMedia(attachment)
-                  }
-                )
-
-                DropdownMenuItem(
-                  text = { Text("Pseudo Restore") },
-                  onClick = {
-                    selectionState = selectionState.copy(expandedOption = null)
-                    restoreArchivedMedia(attachment)
-                  }
-                )
-
-                DropdownMenuItem(
-                  text = { Text("Pseudo Restore Thumbnail") },
-                  onClick = {
-                    selectionState = selectionState.copy(expandedOption = null)
-                    restoreArchivedMediaThumbnail(attachment)
-                  }
-                )
-
-                if (attachment.dbAttachment.dataHash != null && attachment.state == InternalBackupPlaygroundViewModel.BackupAttachment.State.UPLOADED_UNDOWNLOADED) {
-                  DropdownMenuItem(
-                    text = { Text("Re-copy with hash") },
-                    onClick = {
-                      selectionState = selectionState.copy(expandedOption = null)
-                      archiveAttachmentMedia(attachment)
-                    }
-                  )
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-
-    if (selectionState.selecting) {
-      Row(
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        modifier = Modifier
-          .align(Alignment.BottomCenter)
-          .padding(bottom = 24.dp)
-          .background(
-            color = MaterialTheme.colorScheme.secondaryContainer,
-            shape = RoundedCornerShape(8.dp)
-          )
-          .padding(8.dp)
-      ) {
-        Button(onClick = { selectionState = MediaMultiSelectState() }) {
-          Text("Cancel")
-        }
-        Button(onClick = {
-          batchArchiveAttachmentMedia(selectionState.selected)
-          selectionState = MediaMultiSelectState()
-        }) {
-          Text("Backup")
-        }
-        Button(onClick = {
-          batchDeleteBackupAttachmentMedia(selectionState.selected)
-          selectionState = MediaMultiSelectState()
-        }) {
-          Text("Delete")
-        }
-      }
-    }
-  }
-}
-
-private data class MediaMultiSelectState(
-  val selecting: Boolean = false,
-  val selected: Set<AttachmentId> = emptySet(),
-  val expandedOption: AttachmentId? = null
-)
 
 @SignalPreview
 @Composable

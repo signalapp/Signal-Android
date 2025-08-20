@@ -12,13 +12,14 @@ import android.view.View
 import android.widget.Toast
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -32,11 +33,11 @@ import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
-import org.signal.core.ui.Dialogs
-import org.signal.core.ui.Dividers
-import org.signal.core.ui.Rows
-import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallLinkState.Restrictions
@@ -117,7 +118,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
   override fun onShareClicked() {
     val mimeType = Intent.normalizeMimeType("text/plain")
     val shareIntent = ShareCompat.IntentBuilder(requireContext())
-      .setText(CallLinks.url(viewModel.rootKeySnapshot))
+      .setText(CallLinks.url(viewModel.rootKeySnapshot, viewModel.epochSnapshot))
       .setType(mimeType)
       .createChooserIntent()
 
@@ -129,7 +130,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
   }
 
   override fun onCopyClicked() {
-    Util.copyToClipboard(requireContext(), CallLinks.url(viewModel.rootKeySnapshot))
+    Util.copyToClipboard(requireContext(), CallLinks.url(viewModel.rootKeySnapshot, viewModel.epochSnapshot))
     Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard, Toast.LENGTH_LONG).show()
   }
 
@@ -137,7 +138,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
     startActivity(
       ShareActivity.sendSimpleText(
         requireContext(),
-        getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.rootKeySnapshot))
+        getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.rootKeySnapshot, viewModel.epochSnapshot))
       )
     )
   }
@@ -229,6 +230,7 @@ private fun CallLinkDetailsPreview() {
   val callLink = remember {
     val credentials = CallLinkCredentials(
       byteArrayOf(1, 2, 3, 4),
+      byteArrayOf(0, 1, 2, 3),
       byteArrayOf(3, 4, 5, 6)
     )
     CallLinkTable.CallLink(
@@ -281,13 +283,17 @@ private fun CallLinkDetails(
       YouAreAlreadyInACallSnackbar(showAlreadyInACall)
     },
     onNavigationClick = callback::onNavigationClicked,
-    navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24)
+    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
   ) { paddingValues ->
     if (state.callLink == null) {
       return@Settings
     }
 
-    Column(modifier = Modifier.padding(paddingValues)) {
+    Column(
+      modifier = Modifier
+        .padding(paddingValues)
+        .verticalScroll(rememberScrollState())
+    ) {
       SignalCallRow(
         callLink = state.callLink,
         callLinkPeekInfo = state.peekInfo,

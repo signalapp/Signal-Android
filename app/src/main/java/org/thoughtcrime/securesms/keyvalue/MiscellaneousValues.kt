@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.keyvalue
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.UsernameQrCodeColorScheme
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingChangeNumberMetadata
 import org.thoughtcrime.securesms.jobmanager.impl.ChangeNumberConstraintObserver
+import org.thoughtcrime.securesms.jobs.DeprecatedNotificationJob
 import org.thoughtcrime.securesms.keyvalue.protos.LeastActiveLinkedDevice
 
 class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalStoreValues(store) {
@@ -69,9 +70,16 @@ class MiscellaneousValues internal constructor(store: KeyValueStore) : SignalSto
   var lastProfileRefreshTime by longValue(LAST_PROFILE_REFRESH_TIME, 0)
 
   /**
-   * Whether or not the client is currently in a 'deprecated' state, disallowing network access.
+   * Whether or not the client is currently in a 'deprecated' state, disallowing network access. Send a notification if the client changes from not deprecated to deprecated state.
    */
-  var isClientDeprecated: Boolean by booleanValue(CLIENT_DEPRECATED, false)
+  var isClientDeprecated: Boolean
+    get() = getBoolean(CLIENT_DEPRECATED, false)
+    set(isDeprecated) {
+      if (isDeprecated && !isClientDeprecated) {
+        DeprecatedNotificationJob.enqueue()
+      }
+      putBoolean(CLIENT_DEPRECATED, isDeprecated)
+    }
 
   /**
    * Whether or not we've locked the device after they've transferred to a new one.

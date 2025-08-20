@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
+import org.signal.core.util.ByteLimitInputFilter
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ComposeText
@@ -34,6 +35,8 @@ import org.thoughtcrime.securesms.keyboard.emoji.toMappingModels
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.MessageUtil
+import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 
 class StoryReplyComposer @JvmOverloads constructor(
@@ -47,7 +50,6 @@ class StoryReplyComposer @JvmOverloads constructor(
   private val emojiDrawer: MediaKeyboard
   private val reactionEmojiView: EmojiPageView
   private val anyReactionView: View
-  private val emojiBar: View
   private val bubbleView: ViewGroup
 
   val input: ComposeText
@@ -70,7 +72,6 @@ class StoryReplyComposer @JvmOverloads constructor(
     emojiDrawer = findViewById(R.id.emoji_drawer)
     anyReactionView = findViewById(R.id.any_reaction)
     reactionEmojiView = findViewById(R.id.reaction_emoji_view)
-    emojiBar = findViewById(R.id.emoji_bar)
     bubbleView = findViewById(R.id.bubble)
 
     val reply: View = findViewById(R.id.reply)
@@ -87,21 +88,29 @@ class StoryReplyComposer @JvmOverloads constructor(
         else -> false
       }
     }
+    input.filters += ByteLimitInputFilter(MessageUtil.MAX_TOTAL_BODY_SIZE_BYTES)
 
     anyReactionView.setOnClickListener {
       callback?.onPickAnyReactionClicked()
     }
 
     input.doAfterTextChanged {
-      val notEmpty = !it.isNullOrEmpty()
-      reply.isEnabled = notEmpty
-      if (notEmpty && reply.visibility != View.VISIBLE) {
-        val transition = AutoTransition().setDuration(200L).setInterpolator(OvershootInterpolator(1f))
+      if (it == null) return@doAfterTextChanged
+      val isEmpty = it.isBlank()
+      reply.isEnabled = !isEmpty
+      val transition = AutoTransition().setDuration(200L).setInterpolator(OvershootInterpolator(1f))
+      if (!isEmpty && reply.visibility != View.VISIBLE) {
         TransitionManager.beginDelayedTransition(bubbleView, transition)
         reply.visibility = View.VISIBLE
         reply.scaleX = 0f
         reply.scaleY = 0f
         reply.animate().setDuration(150).scaleX(1f).scaleY(1f).setInterpolator(OvershootInterpolator(1f)).start()
+      } else if (isEmpty) {
+        TransitionManager.beginDelayedTransition(bubbleView, transition)
+        reply.visibility = View.GONE
+        reply.scaleX = 1f
+        reply.scaleY = 1f
+        reply.animate().setDuration(150).scaleX(0f).scaleY(0f).setInterpolator(OvershootInterpolator(1f)).start()
       }
     }
 
@@ -213,19 +222,13 @@ class StoryReplyComposer @JvmOverloads constructor(
     val numItems = reactionEmojiView.adapter?.itemCount ?: 0
 
     decoration.firstItemOffset = anyReactionView.marginEnd
-
-    if (numItems > maxNumItems) {
-      decoration.horizontalSpacing = 0
-      reactionEmojiView.invalidateItemDecorations()
+    decoration.horizontalSpacing = if (numItems > maxNumItems) {
+      0
     } else {
-      decoration.horizontalSpacing = (availableWidth - (numItems * emojiItemWidth)) / numItems
-      reactionEmojiView.invalidateItemDecorations()
+      (availableWidth - (numItems * emojiItemWidth)) / numItems
     }
-  }
 
-  override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
-    super.onLayout(changed, left, top, right, bottom)
-    updateEmojiSpacing()
+    reactionEmojiView.invalidateItemDecorations()
   }
 
   interface Callback {
@@ -243,11 +246,20 @@ class StoryReplyComposer @JvmOverloads constructor(
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
       super.getItemOffsets(outRect, view, parent, state)
-      outRect.right = horizontalSpacing
-      if (parent.getChildAdapterPosition(view) == 0) {
-        outRect.left = firstItemOffset
+      if (ViewUtil.isRtl(view)) {
+        outRect.left = horizontalSpacing
+        if (parent.getChildAdapterPosition(view) == 0) {
+          outRect.right = firstItemOffset
+        } else {
+          outRect.right = 0
+        }
       } else {
-        outRect.left = 0
+        outRect.right = horizontalSpacing
+        if (parent.getChildAdapterPosition(view) == 0) {
+          outRect.left = firstItemOffset
+        } else {
+          outRect.left = 0
+        }
       }
     }
   }

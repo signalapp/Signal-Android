@@ -23,10 +23,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.DarkPreview
-import org.signal.core.ui.IconButtons
-import org.signal.core.ui.Previews
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.IconButtons
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 
 private val defaultCallButtonIconSize: Dp = 24.dp

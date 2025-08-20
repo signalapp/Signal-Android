@@ -26,28 +26,28 @@ public final class UpdateDescriptionTest {
 
   @Test
   public void staticDescription_byGetStaticString() {
-    UpdateDescription description = UpdateDescription.staticDescription("update", 0);
+    UpdateDescription description = UpdateDescription.staticDescription("update", null);
 
     assertEquals("update", description.getStaticSpannable().toString());
   }
 
   @Test
   public void staticDescription_has_empty_mentions() {
-    UpdateDescription description = UpdateDescription.staticDescription("update", 0);
+    UpdateDescription description = UpdateDescription.staticDescription("update", null);
 
     assertTrue(description.getMentioned().isEmpty());
   }
 
   @Test
   public void staticDescription_byString() {
-    UpdateDescription description = UpdateDescription.staticDescription("update", 0);
+    UpdateDescription description = UpdateDescription.staticDescription("update", null);
 
     assertEquals("update", description.getSpannable().toString());
   }
 
   @Test(expected = UnsupportedOperationException.class)
   public void stringFactory_cannot_call_static_string() {
-    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), () -> new SpannableString("update"), 0);
+    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), () -> new SpannableString("update"), null);
 
     description.getStaticSpannable();
   }
@@ -61,7 +61,7 @@ public final class UpdateDescriptionTest {
       return new SpannableString("update");
     };
 
-    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory, 0);
+    UpdateDescription description = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory, null);
 
     assertEquals(0, factoryCalls.get());
 
@@ -75,7 +75,7 @@ public final class UpdateDescriptionTest {
   public void stringFactory_reevaluated_on_every_call() {
     AtomicInteger                      factoryCalls  = new AtomicInteger();
     UpdateDescription.SpannableFactory stringFactory = () -> new SpannableString( "call" + factoryCalls.incrementAndGet());
-    UpdateDescription                  description   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory, 0);
+    UpdateDescription                  description   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory, null);
 
     assertEquals("call1", description.getSpannable().toString());
     assertEquals("call2", description.getSpannable().toString());
@@ -84,8 +84,8 @@ public final class UpdateDescriptionTest {
 
   @Test
   public void concat_static_lines() {
-    UpdateDescription description1 = UpdateDescription.staticDescription("update1", 0);
-    UpdateDescription description2 = UpdateDescription.staticDescription("update2", 0);
+    UpdateDescription description1 = UpdateDescription.staticDescription("update1", null);
+    UpdateDescription description2 = UpdateDescription.staticDescription("update2", null);
 
     UpdateDescription description = UpdateDescription.concatWithNewLines(Arrays.asList(description1, description2));
 
@@ -96,7 +96,7 @@ public final class UpdateDescriptionTest {
 
   @Test
   public void concat_single_does_not_make_new_object() {
-    UpdateDescription description = UpdateDescription.staticDescription("update1", 0);
+    UpdateDescription description = UpdateDescription.staticDescription("update1", null);
 
     UpdateDescription concat = UpdateDescription.concatWithNewLines(Collections.singletonList(description));
 
@@ -109,8 +109,8 @@ public final class UpdateDescriptionTest {
     AtomicInteger                      factoryCalls2  = new AtomicInteger();
     UpdateDescription.SpannableFactory stringFactory1 = () -> new SpannableString("update." + factoryCalls1.incrementAndGet());
     UpdateDescription.SpannableFactory stringFactory2 = () -> new SpannableString("update." + factoryCalls2.incrementAndGet());
-    UpdateDescription                  description1   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory1, 0);
-    UpdateDescription                  description2   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory2, 0);
+    UpdateDescription                  description1   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory1, null);
+    UpdateDescription                  description2   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory2, null);
 
     factoryCalls1.set(10);
     factoryCalls2.set(20);
@@ -130,9 +130,9 @@ public final class UpdateDescriptionTest {
     AtomicInteger                      factoryCalls2  = new AtomicInteger();
     UpdateDescription.SpannableFactory stringFactory1 = () -> new SpannableString("update." + factoryCalls1.incrementAndGet());
     UpdateDescription.SpannableFactory stringFactory2 = () -> new SpannableString("update." + factoryCalls2.incrementAndGet());
-    UpdateDescription                  description1   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory1, 0);
-    UpdateDescription                  description2   = UpdateDescription.staticDescription("static", 0);
-    UpdateDescription                  description3   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory2, 0);
+    UpdateDescription                  description1   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory1, null);
+    UpdateDescription                  description2   = UpdateDescription.staticDescription("static", null);
+    UpdateDescription                  description3   = UpdateDescription.mentioning(Collections.singletonList(ACI.from(UUID.randomUUID())), stringFactory2, null);
 
     factoryCalls1.set(100);
     factoryCalls2.set(200);

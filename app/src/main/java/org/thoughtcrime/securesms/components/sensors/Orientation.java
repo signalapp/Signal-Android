@@ -26,4 +26,12 @@ public enum Orientation {
 
     return PORTRAIT_BOTTOM_EDGE;
   }
+
+  public static @NonNull Orientation fromSurfaceRotation(int surfaceRotation) {
+    return switch (surfaceRotation) {
+      case 1 -> LANDSCAPE_LEFT_EDGE;
+      case 3 -> LANDSCAPE_RIGHT_EDGE;
+      default -> PORTRAIT_BOTTOM_EDGE;
+    };
+  }
 }

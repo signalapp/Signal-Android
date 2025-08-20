@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.registration.viewmodel
 
 import android.os.Parcelable
+import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
 import org.whispersystems.signalservice.api.svr.Svr3Credentials
 import org.whispersystems.signalservice.internal.push.AuthCredentials
@@ -23,7 +24,10 @@ data class SvrAuthCredentialSet(
     ParcelableSvr3AuthCredentials.createOrNull(svr3Credentials)
   )
 
+  @IgnoredOnParcel
   val svr2: AuthCredentials? = svr2Credentials?.credentials()
+
+  @IgnoredOnParcel
   val svr3: Svr3Credentials? = svr3Credentials?.credentials()
 
   @Parcelize

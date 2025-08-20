@@ -84,7 +84,7 @@ class ChooseChatsFragment : LoggingFragment(), ContactSelectionListFragment.OnCo
       viewModel.savePendingChats()
       findNavController().popBackStack()
     }
-    updateEnabledButton()
+    doneButton.isEnabled = false
   }
 
   override fun onStart() {
@@ -120,7 +120,7 @@ class ChooseChatsFragment : LoggingFragment(), ContactSelectionListFragment.OnCo
     } else {
       callback.accept(false)
     }
-    updateEnabledButton()
+    doneButton.isEnabled = true
   }
 
   override fun onContactDeselected(recipientId: Optional<RecipientId>, number: String?, chatType: Optional<ChatType>) {
@@ -133,7 +133,7 @@ class ChooseChatsFragment : LoggingFragment(), ContactSelectionListFragment.OnCo
     } else if (chatType.isPresent) {
       viewModel.removeChatType(chatType.get())
     }
-    updateEnabledButton()
+    doneButton.isEnabled = true
   }
 
   override fun onSelectionChanged() = Unit
@@ -145,10 +145,6 @@ class ChooseChatsFragment : LoggingFragment(), ContactSelectionListFragment.OnCo
       ContactSelectionDisplayMode.FLAG_GROUPS_AFTER_CONTACTS or
       ContactSelectionDisplayMode.FLAG_HIDE_GROUPS_V1 or
       ContactSelectionDisplayMode.FLAG_SELF
-  }
-
-  private fun updateEnabledButton() {
-    doneButton.isEnabled = viewModel.enableButton()
   }
 
   companion object {

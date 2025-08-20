@@ -49,6 +49,7 @@ import org.thoughtcrime.securesms.service.KeyCachingService;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 /**
  * Android Service responsible for playback of voice notes.
@@ -171,8 +172,8 @@ public class VoiceNotePlaybackService extends MediaSessionService {
       if (reason == Player.DISCONTINUITY_REASON_AUTO_TRANSITION) {
         sendViewedReceiptForCurrentWindowIndex();
         MediaItem currentMediaItem = player.getCurrentMediaItem();
-        if (currentMediaItem != null && currentMediaItem.playbackProperties != null) {
-          Log.d(TAG, "onPositionDiscontinuity: current window uri: " + currentMediaItem.playbackProperties.uri);
+        if (currentMediaItem != null && currentMediaItem.localConfiguration != null) {
+          Log.d(TAG, "onPositionDiscontinuity: current window uri: " + currentMediaItem.localConfiguration.uri);
         }
 
         PlaybackParameters playbackParameters = getPlaybackParametersForWindowPosition(mediaItemIndex);
@@ -219,32 +220,54 @@ public class VoiceNotePlaybackService extends MediaSessionService {
   private void onAttachmentDeleted() {
     Log.d(TAG, "Database attachment observer invoked.");
     ContextCompat.getMainExecutor(getApplicationContext()).execute(() -> {
-      if (player != null) {
-        final MediaItem currentItem = player.getCurrentMediaItem();
-        if (currentItem == null || currentItem.playbackProperties == null) {
-          Log.d(TAG, "Current item is null or playback properties are null.");
-          return;
+      if (player == null) return;
+
+      for (int i = player.getMediaItemCount() - 1; i >= 0; i--) {
+        MediaItem                    item   = player.getMediaItemAt(i);
+        MediaItem.LocalConfiguration config = item.localConfiguration;
+
+        if (config == null) {
+          Log.d(TAG, "Media item at index " + i + " has null configuration. Skipping.");
+          continue;
         }
 
-        final Uri currentlyPlayingUri = currentItem.playbackProperties.uri;
+        Uri uri = config.uri;
 
-        if (currentlyPlayingUri == VoiceNoteMediaItemFactory.NEXT_URI || currentlyPlayingUri == VoiceNoteMediaItemFactory.END_URI) {
-          Log.v(TAG, "Attachment deleted while voice note service was playing a system tone.");
+        if (VoiceNoteMediaItemFactory.NEXT_URI.equals(uri) || VoiceNoteMediaItemFactory.END_URI.equals(uri)) {
+          Log.v(TAG, "Skipping system tone media item at index " + i);
+          continue;
         }
 
         try {
-          final AttachmentId       partId     = new PartUriParser(currentlyPlayingUri).getPartId();
-          final DatabaseAttachment attachment = SignalDatabase.attachments().getAttachment(partId);
+          AttachmentId       partId     = new PartUriParser(uri).getPartId();
+          DatabaseAttachment attachment = SignalDatabase.attachments().getAttachment(partId);
+
           if (attachment == null) {
-            player.stop();
-            int playingIndex = player.getCurrentMediaItemIndex();
-            player.removeMediaItem(playingIndex);
-            Log.d(TAG, "Currently playing item removed.");
+            Log.d(TAG, "Removing media item at index " + i + " due to missing attachment.");
+            boolean isCurrentlyPlaying = (i == player.getCurrentMediaItemIndex());
+
+            if (isCurrentlyPlaying) {
+              player.stop();
+            }
+
+            player.removeMediaItem(i);
+
+            // Check and remove previous item if it's a special tone
+            int prevIndex = i - 1;
+            if (prevIndex >= 0) {
+              MediaItem prevItem = player.getMediaItemAt(prevIndex);
+              Uri prevUri = prevItem.localConfiguration != null ? prevItem.localConfiguration.uri : null;
+
+              if (VoiceNoteMediaItemFactory.NEXT_URI.equals(prevUri) || VoiceNoteMediaItemFactory.END_URI.equals(prevUri)) {
+                Log.d(TAG, "Removing previous special tone media item at index " + prevIndex);
+                player.removeMediaItem(prevIndex);
+              }
+            }
           } else {
-            Log.d(TAG, "Attachment was not null, therefore not deleted, therefore no action taken.");
+            Log.d(TAG, "Attachment found for index " + i + ", not removing.");
           }
         } catch (NumberFormatException ex) {
-          Log.w(TAG, "Could not parse currently playing URI into an attachmentId.", ex);
+          Log.w(TAG, "Failed to parse attachment ID from URI at index " + i, ex);
         }
       }
     });
@@ -317,16 +340,16 @@ public class VoiceNotePlaybackService extends MediaSessionService {
   private void sendViewedReceiptForCurrentWindowIndex() {
     if (player.getPlaybackState() == Player.STATE_READY &&
         player.getPlayWhenReady() &&
-        player.getCurrentWindowIndex() != C.INDEX_UNSET)
+        player.getCurrentMediaItemIndex() != C.INDEX_UNSET)
     {
 
       MediaItem currentMediaItem = player.getCurrentMediaItem();
-      if (currentMediaItem == null || currentMediaItem.playbackProperties == null) {
+      if (currentMediaItem == null || currentMediaItem.localConfiguration == null) {
         return;
       }
 
-      Uri mediaUri = currentMediaItem.playbackProperties.uri;
-      if (!mediaUri.getScheme().equals("content")) {
+      Uri mediaUri = currentMediaItem.localConfiguration.uri;
+      if (!Objects.equals(mediaUri.getScheme(), "content")) {
         return;
       }
 
@@ -336,7 +359,7 @@ public class VoiceNotePlaybackService extends MediaSessionService {
           return;
         }
         long         messageId       = extras.getLong(VoiceNoteMediaItemFactory.EXTRA_MESSAGE_ID);
-        RecipientId  recipientId     = RecipientId.from(extras.getString(VoiceNoteMediaItemFactory.EXTRA_INDIVIDUAL_RECIPIENT_ID));
+        RecipientId  recipientId     = RecipientId.from(Objects.requireNonNull(extras.getString(VoiceNoteMediaItemFactory.EXTRA_INDIVIDUAL_RECIPIENT_ID)));
         MessageTable messageDatabase = SignalDatabase.messages();
 
         MessageTable.MarkedMessageInfo markedMessageInfo = messageDatabase.setIncomingMessageViewed(messageId);

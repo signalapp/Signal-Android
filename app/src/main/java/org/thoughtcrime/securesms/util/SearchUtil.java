@@ -85,17 +85,15 @@ public class SearchUtil {
 
   static List<Pair<Integer, Integer>> getStrictHighlightRanges(@NonNull Locale locale,
                                                                @NonNull String text,
-                                                               @NonNull String highlight)
-  {
-    if (text.length() == 0) {
-      return Collections.emptyList();
-    }
-
+                                                               @NonNull String highlight) {
     String       normalizedText      = text.toLowerCase(locale);
     String       normalizedHighlight = highlight.toLowerCase(locale);
-    List<String> highlightTokens     = Stream.of(normalizedHighlight.split("\\s")).filter(s -> s.trim().length() > 0).toList();
+    List<String> highlightTokens     = Stream.of(normalizedHighlight.split("\\s"))
+                                             .filter(s -> !s.trim().isEmpty())
+                                             .toList();
 
-    List<Pair<Integer, Integer>> ranges = new LinkedList<>();
+    int[]                        indexMap = buildIndexMap(text, normalizedText, locale);
+    List<Pair<Integer, Integer>> ranges   = new LinkedList<>();
 
     int lastHighlightEndIndex = 0;
 
@@ -103,12 +101,15 @@ public class SearchUtil {
       int index;
 
       do {
-        index = normalizedText.indexOf(highlightToken, lastHighlightEndIndex);
+        index                 = normalizedText.indexOf(highlightToken, lastHighlightEndIndex);
         lastHighlightEndIndex = index + highlightToken.length();
       } while (index > 0 && !Character.isWhitespace(normalizedText.charAt(index - 1)));
 
       if (index >= 0) {
-        ranges.add(new Pair<>(index, lastHighlightEndIndex));
+        // Map normalized range back to original text indices
+        int start = indexMap[index];
+        int end   = indexMap[Math.min(index + highlightToken.length() - 1, indexMap.length - 1)] + 1;
+        ranges.add(new Pair<>(start, end));
       }
 
       if (index < 0 || lastHighlightEndIndex >= normalizedText.length()) {
@@ -123,32 +124,53 @@ public class SearchUtil {
     return ranges;
   }
 
-  static List<Pair<Integer, Integer>> getHighlightRanges(@NonNull Locale locale,
-                                                         @NonNull String text,
-                                                         @NonNull String highlight)
-  {
-    if (text.length() == 0) {
-      return Collections.emptyList();
+
+  private static int[] buildIndexMap(@NonNull String original, @NonNull String normalized, @NonNull Locale locale) {
+    int[] indexMap = new int[normalized.length()];
+
+    int originalCharIndex   = 0;
+    int normalizedCharIndex = 0;
+
+    while (originalCharIndex < original.length() && normalizedCharIndex < normalized.length()) {
+      String originalCharacter   = String.valueOf(original.charAt(originalCharIndex));
+      String normalizedCharacter = originalCharacter.toLowerCase(locale);
+
+      for (int i = 0; i < normalizedCharacter.length() && normalizedCharIndex < indexMap.length; i++, normalizedCharIndex++) {
+        indexMap[normalizedCharIndex] = originalCharIndex;
+      }
+
+      originalCharIndex++;
     }
 
+    return indexMap;
+  }
+
+  static List<Pair<Integer, Integer>> getHighlightRanges(@NonNull Locale locale,
+                                                         @NonNull String text,
+                                                         @NonNull String highlight) {
     String       normalizedText      = text.toLowerCase(locale);
     String       normalizedHighlight = highlight.toLowerCase(locale);
-    List<String> highlightTokens     = Stream.of(normalizedHighlight.split("\\s")).filter(s -> s.trim().length() > 0).toList();
+    List<String> highlightTokens     = Stream.of(normalizedHighlight.split("\\s"))
+                                             .filter(s -> !s.trim().isEmpty())
+                                             .toList();
 
-    List<Pair<Integer, Integer>> ranges = new LinkedList<>();
+    int[] indexMap = buildIndexMap(text, normalizedText, locale);
 
-    int lastHighlightEndIndex = 0;
+    List<Pair<Integer, Integer>> ranges    = new LinkedList<>();
+    int                          lastIndex = 0;
 
     for (String highlightToken : highlightTokens) {
       int index = 0;
-      lastHighlightEndIndex = 0;
+      lastIndex = 0;
 
       while (index != -1) {
-        index = normalizedText.indexOf(highlightToken, lastHighlightEndIndex);
+        index = normalizedText.indexOf(highlightToken, lastIndex);
         if (index != -1) {
-          lastHighlightEndIndex = index + highlightToken.length();
-          ranges.add(new Pair<>(index, lastHighlightEndIndex));
-          index = lastHighlightEndIndex;
+          // Map normalized range back to original text indices
+          int start = indexMap[index];
+          int end   = indexMap[Math.min(index + highlightToken.length() - 1, indexMap.length - 1)] + 1;
+          ranges.add(new Pair<>(start, end));
+          lastIndex = index + highlightToken.length();
         }
       }
     }

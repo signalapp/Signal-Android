@@ -55,21 +55,21 @@ class ChatWallpaperRepository {
   }
 
   void saveWallpaper(@Nullable RecipientId recipientId, @Nullable ChatWallpaper chatWallpaper, @NonNull Runnable onWallpaperSaved) {
-    if (recipientId != null) {
-      //noinspection CodeBlock2Expr
-      EXECUTOR.execute(() -> {
+    EXECUTOR.execute(() -> {
+      if (recipientId != null) {
+        //noinspection CodeBlock2Expr
         SignalDatabase.recipients().setWallpaper(recipientId, chatWallpaper, true);
         onWallpaperSaved.run();
-      });
-    } else {
-      SignalStore.wallpaper().setWallpaper(chatWallpaper);
-      onWallpaperSaved.run();
-    }
+      } else {
+        SignalStore.wallpaper().setWallpaper(chatWallpaper);
+        onWallpaperSaved.run();
+      }
+    });
   }
 
   void resetAllWallpaper(@NonNull Runnable onWallpaperReset) {
-    SignalStore.wallpaper().setWallpaper(null);
     EXECUTOR.execute(() -> {
+      SignalStore.wallpaper().setWallpaper(null);
       SignalDatabase.recipients().resetAllWallpaper();
       onWallpaperReset.run();
     });

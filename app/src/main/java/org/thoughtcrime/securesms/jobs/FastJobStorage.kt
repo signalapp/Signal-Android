@@ -377,6 +377,23 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     return dependenciesByJobId.values.flatten()
   }
 
+  @Synchronized
+  override fun debugAdditionalDetails(): String {
+    return buildString {
+      appendLine("minimalJobs: Size(${minimalJobs.size}), Items(${minimalJobs.joinToString(", ") { it.toLogString() }})")
+      appendLine("jobSpecCache: Size(${jobSpecCache.size}), Items(${jobSpecCache.keys.joinToString(", ") { it.toLogString() }})")
+      appendLine("eligibleJobs: Size(${eligibleJobs.size}), Items(${eligibleJobs.joinToString(", ") { it.toLogString() }})")
+      appendLine("migrationJobs: Size(${migrationJobs.size}), Items(${migrationJobs.joinToString(", ") { it.toLogString() }})")
+      appendLine("mostEligibleForQueue: Size(${mostEligibleJobForQueue.size}), Items(${mostEligibleJobForQueue.entries.joinToString(", ") { "[${it.key} => ${it.value.toLogString()}]" }})")
+      appendLine("constraintsByJobId: Size(${constraintsByJobId.size}), Items(${constraintsByJobId.entries.joinToString(", ") { "[${it.key.toLogString()} => ${it.value.joinToString(", ") { c -> c.toLogString() }}]" }})")
+      appendLine("dependenciesByJobId: Size(${dependenciesByJobId.size}), Items(${dependenciesByJobId.entries.joinToString(", ") { "[${it.key.toLogString()} => ${it.value.map { d -> d.toLogString() }}]" }})")
+    }
+  }
+
+  private fun String.toLogString(): String {
+    return "JOB::$this"
+  }
+
   private fun updateCachedJobSpecs(filter: (MinimalJobSpec) -> Boolean, transformer: (MinimalJobSpec) -> MinimalJobSpec, singleUpdate: Boolean = false) {
     val iterator = minimalJobs.listIterator()
 
@@ -469,11 +486,12 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   /**
    * Note that this is currently only checking a specific kind of circular dependency -- ones that are
-   * created between dependencies and queues.
+   * created between dependencies, queues, and priorities.
    *
    * More specifically, dependencies where one job depends on another job in the same queue that was
-   * scheduled *after* it. These dependencies will never resolve. Under normal circumstances these
-   * won't occur, but *could* occur if the user changed their clock (either purposefully or automatically).
+   * scheduled *after* it, or if it depends on a job with a lower priority. These dependencies will
+   * never resolve. Under normal circumstances these won't occur, but *could* occur if the user changed
+   * their clock (either purposefully or automatically).
    *
    * Rather than go through and delete them from the database, removing them from memory at load time
    * serves the same effect and doesn't require new write methods. This should also be very rare.
@@ -494,7 +512,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       return false
     }
 
-    return dependsOnJob.createTime > job.createTime
+    return dependsOnJob.createTime > job.createTime || dependsOnJob.globalPriority < job.globalPriority || dependsOnJob.queuePriority < job.queuePriority
   }
 
   /**
@@ -548,23 +566,32 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     }
   }
 
-  /**
-   * Identical to [EligibleMinJobComparator], but for full jobs.
-   */
-  private object EligibleFullJobComparator : Comparator<JobSpec> {
-    override fun compare(o1: JobSpec, o2: JobSpec): Int {
-      return when {
-        o1.globalPriority > o2.globalPriority -> -1
-        o1.globalPriority < o2.globalPriority -> 1
-        o1.createTime < o2.createTime -> -1
-        o1.createTime > o2.createTime -> 1
-        else -> o1.id.compareTo(o2.id)
-      }
+  private fun debugStopwatch(label: String): Stopwatch? {
+    return if (DEBUG) Stopwatch(label, decimalPlaces = 2) else null
+  }
+
+  private fun MinimalJobSpec.toLogString(): String {
+    return if (this.isMemoryOnly) {
+      return "😶‍🌫️JOB::$this"
+    } else {
+      return "JOB::$this"
     }
   }
 
-  private fun debugStopwatch(label: String): Stopwatch? {
-    return if (DEBUG) Stopwatch(label, decimalPlaces = 2) else null
+  private fun ConstraintSpec.toLogString(): String {
+    return if (this.isMemoryOnly) {
+      return "😶‍🌫️JOB::$this"
+    } else {
+      return "JOB::$this"
+    }
+  }
+
+  private fun DependencySpec.toLogString(): String {
+    return if (this.isMemoryOnly) {
+      return "😶‍🌫️JOB::$this"
+    } else {
+      return "JOB::$this"
+    }
   }
 }
 

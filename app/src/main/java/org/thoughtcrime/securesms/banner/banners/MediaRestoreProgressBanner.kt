@@ -58,7 +58,7 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
           totalRestoredSize > 0 -> {
             flowOf(
               BackupStatusData.RestoringMedia(
-                bytesTotal = totalRestoredSize.bytes.also { totalRestoredSize = 0 },
+                bytesTotal = totalRestoredSize.bytes,
                 restoreStatus = BackupStatusData.RestoreStatus.FINISHED
               )
             )
@@ -75,7 +75,10 @@ class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerList
       data = model,
       onBannerClick = listener::onBannerClick,
       onActionClick = listener::onActionClick,
-      onDismissClick = listener::onDismissComplete
+      onDismissClick = {
+        totalRestoredSize = 0
+        listener.onDismissComplete()
+      }
     )
   }
 

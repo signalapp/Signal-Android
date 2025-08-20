@@ -4,7 +4,6 @@ import android.content.Context
 import android.net.Uri
 import android.text.Spannable
 import android.text.SpannableString
-import com.bumptech.glide.Glide
 import io.reactivex.rxjava3.core.Maybe
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.Base64
@@ -97,9 +96,9 @@ class DraftRepository(
     }
 
     if (shareMedia != null && shareContentType != null && borderless) {
-      val details = KeyboardUtil.getImageDetails(Glide.with(context), shareMedia)
+      val details = KeyboardUtil.getImageDetails(shareMedia)
 
-      if (details == null || !details.hasTransparency) {
+      if (details == null || !details.isSticker) {
         return ShareOrDraftData.SetMedia(shareMedia, shareMediaType!!, null) to null
       }
 

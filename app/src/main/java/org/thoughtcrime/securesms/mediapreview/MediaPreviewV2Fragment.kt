@@ -1,6 +1,5 @@
 package org.thoughtcrime.securesms.mediapreview
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -25,6 +24,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSmoothScroller
 import androidx.recyclerview.widget.RecyclerView
@@ -37,15 +37,18 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import org.signal.core.util.concurrent.LifecycleDisposable
-import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.attachments.AttachmentSaver
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
-import org.thoughtcrime.securesms.components.DeleteSyncEducationDialog
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
+import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog
 import org.thoughtcrime.securesms.components.mention.MentionAnnotation
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
@@ -61,7 +64,6 @@ import org.thoughtcrime.securesms.mediapreview.mediarail.MediaRailAdapter.ImageL
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
 import org.thoughtcrime.securesms.mms.PartAuthority
-import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.ContextUtil
 import org.thoughtcrime.securesms.util.DateUtils
@@ -69,9 +71,8 @@ import org.thoughtcrime.securesms.util.Debouncer
 import org.thoughtcrime.securesms.util.FullscreenHelper
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
-import org.thoughtcrime.securesms.util.SaveAttachmentTask
+import org.thoughtcrime.securesms.util.SaveAttachmentUtil
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.visible
 import java.util.Locale
@@ -144,7 +145,7 @@ class MediaPreviewV2Fragment :
       Log.w(TAG, "Unsupported media type sent to MediaPreviewV2Fragment, finishing.")
       Snackbar.make(binding.root, R.string.MediaPreviewActivity_unssuported_media_type, Snackbar.LENGTH_LONG)
         .setAction(R.string.MediaPreviewActivity_dismiss_due_to_error) {
-          requireActivity().finish()
+          activity?.finish()
         }.show()
     }
     viewModel.initialize(args.showThread, args.allMediaInRail, args.leftIsRecent)
@@ -260,7 +261,7 @@ class MediaPreviewV2Fragment :
 
     bindTextViews(currentItem, currentState.showThread, currentState.messageBodies)
     bindMenuItems(currentItem)
-    bindMediaPreviewPlaybackControls(currentItem, getMediaPreviewFragmentFromChildFragmentManager(currentPosition))
+    tryBindMediaPreviewPlaybackControls(currentItem, currentPosition)
 
     val albumThumbnailMedia: List<Media> = if (currentState.allMediaInAlbumRail) {
       currentState.mediaRecords.mapNotNull { it.toMedia() }
@@ -351,6 +352,24 @@ class MediaPreviewV2Fragment :
     }
     currentFragment?.setBottomButtonControls(binding.mediaPreviewPlaybackControls)
     currentFragment?.autoPlayIfNeeded()
+  }
+
+  private fun tryBindMediaPreviewPlaybackControls(
+    currentItem: MediaTable.MediaRecord,
+    currentPosition: Int,
+    maxRetries: Int = 5,
+    delayMillis: Long = 50L
+  ) {
+    viewLifecycleOwner.lifecycleScope.launch {
+      repeat(maxRetries) { attempt ->
+        if (!isActive) return@launch
+        val mediaFragment = getMediaPreviewFragmentFromChildFragmentManager(currentPosition)
+        bindMediaPreviewPlaybackControls(currentItem, mediaFragment)
+
+        if (mediaFragment != null) return@launch
+        delay(delayMillis)
+      }
+    }
   }
 
   private fun bindAlbumRail(albumThumbnailMedia: List<Media>, currentItem: MediaTable.MediaRecord) {
@@ -559,29 +578,22 @@ class MediaPreviewV2Fragment :
   }
 
   private fun saveToDisk(mediaItem: MediaTable.MediaRecord) {
-    SaveAttachmentTask.showWarningDialogIfNecessary(requireContext(), 1) {
-      if (StorageUtil.canWriteToMediaStore()) {
-        performSaveToDisk(mediaItem)
-        return@showWarningDialogIfNecessary
-      }
-      Permissions.with(this)
-        .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-        .ifNecessary()
-        .withPermanentDenialDialog(getString(R.string.MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied))
-        .onAnyDenied { Toast.makeText(requireContext(), R.string.MediaPreviewActivity_unable_to_write_to_external_storage_without_permission, Toast.LENGTH_LONG).show() }
-        .onAllGranted { performSaveToDisk(mediaItem) }
-        .execute()
+    val uri = mediaItem.attachment?.uri
+    val contentType = mediaItem.attachment?.contentType
+    if (uri == null || contentType == null) {
+      Log.w(TAG, "Unable to save attachment with null URI or contentType.")
+      return
     }
-  }
 
-  @Suppress("DEPRECATION")
-  fun performSaveToDisk(mediaItem: MediaTable.MediaRecord) {
-    val saveTask = SaveAttachmentTask(requireContext())
-    val saveDate = if (mediaItem.date > 0) mediaItem.date else System.currentTimeMillis()
-    val attachment = mediaItem.attachment
-    val uri = attachment?.uri
-    if (attachment != null && uri != null) {
-      saveTask.executeOnExecutor(SignalExecutors.BOUNDED_IO, SaveAttachmentTask.Attachment(uri, attachment.contentType, saveDate, null))
+    val attachment = SaveAttachmentUtil.SaveAttachment(
+      uri = uri,
+      contentType = contentType,
+      date = if (mediaItem.date > 0) mediaItem.date else System.currentTimeMillis(),
+      fileName = null
+    )
+
+    lifecycleScope.launch {
+      AttachmentSaver(this@MediaPreviewV2Fragment).saveAttachments(setOf(attachment))
     }
   }
 

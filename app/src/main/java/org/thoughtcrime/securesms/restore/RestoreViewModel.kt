@@ -20,12 +20,13 @@ import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
+import org.thoughtcrime.securesms.keyvalue.includeDeviceToDeviceTransfer
 import org.thoughtcrime.securesms.keyvalue.skippedRestoreChoice
 import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
 import org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreMethod
 import org.thoughtcrime.securesms.registrationv3.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.restore.transferorrestore.BackupRestorationType
-import org.whispersystems.signalservice.api.registration.RestoreMethod as ApiRestoreMethod
+import org.whispersystems.signalservice.api.provisioning.RestoreMethod as ApiRestoreMethod
 
 /**
  * Shared view model for the restore flow.
@@ -74,12 +75,17 @@ class RestoreViewModel : ViewModel() {
   }
 
   fun getAvailableRestoreMethods(): List<RestoreMethod> {
-    if (SignalStore.registration.isOtherDeviceAndroid || SignalStore.registration.restoreDecisionState.skippedRestoreChoice) {
-      val methods = mutableListOf(RestoreMethod.FROM_OLD_DEVICE, RestoreMethod.FROM_LOCAL_BACKUP_V1)
+    if (SignalStore.registration.isOtherDeviceAndroid || SignalStore.registration.restoreDecisionState.skippedRestoreChoice || !SignalStore.backup.isBackupTimestampRestored) {
+      val methods = mutableListOf(RestoreMethod.FROM_LOCAL_BACKUP_V1)
+
+      if (SignalStore.registration.restoreDecisionState.includeDeviceToDeviceTransfer) {
+        methods.add(0, RestoreMethod.FROM_OLD_DEVICE)
+      }
+
       when (SignalStore.backup.backupTier) {
         MessageBackupTier.FREE -> methods.add(1, RestoreMethod.FROM_SIGNAL_BACKUPS)
         MessageBackupTier.PAID -> methods.add(0, RestoreMethod.FROM_SIGNAL_BACKUPS)
-        null -> if (!SignalStore.backup.isBackupTierRestored) {
+        null -> if (!SignalStore.backup.isBackupTimestampRestored) {
           methods.add(1, RestoreMethod.FROM_SIGNAL_BACKUPS)
         }
       }
@@ -87,7 +93,7 @@ class RestoreViewModel : ViewModel() {
       return methods
     }
 
-    if (SignalStore.backup.backupTier != null || !SignalStore.backup.isBackupTierRestored) {
+    if (SignalStore.backup.backupTier != null || !SignalStore.backup.isBackupTimestampRestored) {
       return listOf(RestoreMethod.FROM_SIGNAL_BACKUPS)
     }
 

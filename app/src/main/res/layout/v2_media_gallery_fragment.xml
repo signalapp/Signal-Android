@@ -19,7 +19,7 @@
         android:minHeight="@dimen/signal_m3_toolbar_height"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/v2_media_gallery_fragment_toolbar_menu"
-        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:navigationIcon="@drawable/symbol_arrow_start_24"
         app:title="@string/AttachmentKeyboard_gallery"
         app:titleTextAppearance="@style/Signal.Text.TitleLarge" />
 

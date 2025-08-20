@@ -14,4 +14,6 @@
     <dimen name="CallScreenParticipantItem__margin_end">0dp</dimen>
     <dimen name="CallScreenParticipantItem__margin_bottom">4dp</dimen>
 
+    <dimen name="donation_pill_max_width">250dp</dimen>
+
 </resources>

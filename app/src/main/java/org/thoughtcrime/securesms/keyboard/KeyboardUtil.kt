@@ -5,30 +5,22 @@
 
 package org.thoughtcrime.securesms.keyboard
 
-import android.graphics.Bitmap
-import android.graphics.Color
 import android.net.Uri
 import androidx.annotation.WorkerThread
-import com.bumptech.glide.RequestManager
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import androidx.core.util.component1
+import androidx.core.util.component2
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.util.BitmapUtil
 import java.util.concurrent.ExecutionException
-import java.util.concurrent.TimeUnit
 import java.util.concurrent.TimeoutException
 
 object KeyboardUtil {
 
   @WorkerThread
-  fun getImageDetails(requestManager: RequestManager, uri: Uri): ImageDetails? {
+  fun getImageDetails(uri: Uri): ImageDetails? {
     return try {
-      val bitmap: Bitmap = requestManager.asBitmap()
-        .load(DecryptableStreamUriLoader.DecryptableUri(uri))
-        .skipMemoryCache(true)
-        .diskCacheStrategy(DiskCacheStrategy.NONE)
-        .submit()
-        .get(1000, TimeUnit.MILLISECONDS)
-      val topLeft = bitmap.getPixel(0, 0)
-      ImageDetails(bitmap.width, bitmap.height, Color.alpha(topLeft) < 255)
+      val (width, height) = BitmapUtil.getDimensions(AppDependencies.application.contentResolver.openInputStream(uri))
+      return ImageDetails(width = width, height = height, isSticker = uri.isForSticker())
     } catch (e: InterruptedException) {
       null
     } catch (e: ExecutionException) {
@@ -38,5 +30,10 @@ object KeyboardUtil {
     }
   }
 
-  data class ImageDetails(val width: Int, val height: Int, val hasTransparency: Boolean)
+  private fun Uri.isForSticker(): Boolean {
+    val string = this.toString()
+    return string.contains("sticker") || string.contains("com.touchtype.swiftkey.fileprovider/share_images")
+  }
+
+  data class ImageDetails(val width: Int, val height: Int, val isSticker: Boolean)
 }

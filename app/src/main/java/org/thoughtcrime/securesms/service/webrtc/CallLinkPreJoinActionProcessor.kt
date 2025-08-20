@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.service.webrtc
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.zkgroup.GenericServerPublicParams
 import org.signal.libsignal.zkgroup.InvalidInputException
+import org.signal.libsignal.zkgroup.ServerPublicParams
 import org.signal.libsignal.zkgroup.VerificationFailedException
 import org.signal.libsignal.zkgroup.calllinks.CallLinkSecretParams
 import org.signal.ringrtc.CallException
@@ -54,6 +55,11 @@ class CallLinkPreJoinActionProcessor(
           .getConfiguration()
           .genericServerPublicParams
       )
+      val serverPublicParams = ServerPublicParams(
+        AppDependencies.signalServiceNetworkAccess
+          .getConfiguration()
+          .zkGroupServerPublicParams
+      )
 
       val callLinkAuthCredentialPresentation = AppDependencies
         .groupsV2Authorization
@@ -61,13 +67,14 @@ class CallLinkPreJoinActionProcessor(
 
       webRtcInteractor.callManager.createCallLinkCall(
         SignalStore.internal.groupCallingServer,
+        serverPublicParams.endorsementPublicKey,
         callLinkAuthCredentialPresentation.serialize(),
         callLinkRootKey,
+        callLink.credentials.epoch,
         callLink.credentials.adminPassBytes,
         ByteArray(0),
         AUDIO_LEVELS_INTERVAL,
-        RingRtcDynamicConfiguration.getAudioProcessingMethod(),
-        RingRtcDynamicConfiguration.shouldUseOboeAdm(),
+        RingRtcDynamicConfiguration.getAudioConfig(),
         webRtcInteractor.groupCallObserver
       )
     } catch (e: InvalidInputException) {

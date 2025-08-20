@@ -25,6 +25,7 @@ import org.signal.storageservice.protos.groups.local.DecryptedGroupJoinInfo;
 import org.whispersystems.signalservice.api.NetworkResult;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.ServiceId.PNI;
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket;
 import org.whispersystems.signalservice.internal.push.PushServiceSocket;
 import org.whispersystems.signalservice.internal.push.exceptions.ForbiddenException;
 
@@ -43,10 +44,12 @@ import okio.ByteString;
 
 public class GroupsV2Api {
 
-  private final PushServiceSocket  socket;
-  private final GroupsV2Operations groupsOperations;
+  private final SignalWebSocket.AuthenticatedWebSocket authWebSocket;
+  private final PushServiceSocket                      socket;
+  private final GroupsV2Operations                     groupsOperations;
 
-  public GroupsV2Api(PushServiceSocket socket, GroupsV2Operations groupsOperations) {
+  public GroupsV2Api(SignalWebSocket.AuthenticatedWebSocket authWebSocket, PushServiceSocket socket, GroupsV2Operations groupsOperations) {
+    this.authWebSocket    = authWebSocket;
     this.socket           = socket;
     this.groupsOperations = groupsOperations;
   }
@@ -54,10 +57,8 @@ public class GroupsV2Api {
   /**
    * Provides 7 days of credentials, which you should cache.
    */
-  public CredentialResponseMaps getCredentials(long todaySeconds)
-      throws IOException
-  {
-    return parseCredentialResponse(socket.retrieveGroupsV2Credentials(todaySeconds));
+  public CredentialResponseMaps getCredentials(long todaySeconds) throws IOException {
+    return parseCredentialResponse(GroupsV2ApiHelper.getCredentials(authWebSocket, todaySeconds));
   }
 
   /**

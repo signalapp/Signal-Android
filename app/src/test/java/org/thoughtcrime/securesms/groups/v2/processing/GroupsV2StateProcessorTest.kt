@@ -662,9 +662,10 @@ class GroupsV2StateProcessorTest {
   fun `when request to join group is approved, with no group changes after approved, then update from server to revision we were added`() {
     given {
       localState(
-        revision = GroupsV2StateProcessor.PLACEHOLDER_REVISION,
+        revision = 0,
         title = "Beam me up",
-        requestingMembers = listOf(requestingMember(selfAci))
+        requestingMembers = listOf(requestingMember(selfAci)),
+        isPlaceholderGroup = true
       )
 
       changeSet {
@@ -703,9 +704,10 @@ class GroupsV2StateProcessorTest {
   fun `when request to join group is approved, with group changes occurring after approved, then update from server to revision we were added, and then schedule pulling additional changes later`() {
     given {
       localState(
-        revision = GroupsV2StateProcessor.PLACEHOLDER_REVISION,
+        revision = 0,
         title = "Beam me up",
-        requestingMembers = listOf(requestingMember(selfAci))
+        requestingMembers = listOf(requestingMember(selfAci)),
+        isPlaceholderGroup = true
       )
       changeSet {
         changeLog(3) {

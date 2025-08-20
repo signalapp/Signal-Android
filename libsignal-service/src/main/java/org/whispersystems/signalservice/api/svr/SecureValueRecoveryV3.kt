@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize
 import com.fasterxml.jackson.databind.annotation.JsonSerialize
 import org.signal.core.util.logging.Log
 import org.signal.libsignal.net.Network
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.kbs.MasterKey
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.BackupResponse
@@ -17,11 +18,13 @@ import org.whispersystems.signalservice.api.svr.SecureValueRecovery.DeleteRespon
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.PinChangeSession
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.RestoreResponse
 import org.whispersystems.signalservice.api.svr.SecureValueRecovery.SvrVersion
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket
+import org.whispersystems.signalservice.internal.get
 import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.ByteArrayDeserializerBase64
 import org.whispersystems.signalservice.internal.push.ByteArraySerializerBase64NoPadding
-import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.util.JsonUtil
+import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
 import java.io.IOException
 
 /**
@@ -29,7 +32,7 @@ import java.io.IOException
  */
 class SecureValueRecoveryV3(
   private val network: Network,
-  private val pushServiceSocket: PushServiceSocket
+  private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket
 ) : SecureValueRecovery {
 
   companion object {
@@ -61,7 +64,7 @@ class SecureValueRecoveryV3(
 
   override fun restoreDataPostRegistration(userPin: String): RestoreResponse {
     val authorization: Svr3Credentials = try {
-      pushServiceSocket.svr3Authorization
+      svr3Authorization().successOrThrow()
     } catch (e: NonSuccessfulResponseCodeException) {
       return RestoreResponse.ApplicationError(e)
     } catch (e: IOException) {
@@ -110,7 +113,12 @@ class SecureValueRecoveryV3(
 
   @Throws(IOException::class)
   override fun authorization(): AuthCredentials {
-    return pushServiceSocket.svr3Authorization.toAuthCredential()
+    return svr3Authorization().successOrThrow().toAuthCredential()
+  }
+
+  private fun svr3Authorization(): NetworkResult<Svr3Credentials> {
+    val request = WebSocketRequestMessage.get("/v3/backup/auth")
+    return NetworkResult.fromWebSocketRequest(authWebSocket, request, Svr3Credentials::class)
   }
 
   override fun toString(): String {

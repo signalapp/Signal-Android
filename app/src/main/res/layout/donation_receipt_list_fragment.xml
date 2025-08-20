@@ -16,7 +16,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            app:navigationIcon="@drawable/ic_arrow_left_24"
+            app:navigationIcon="@drawable/symbol_arrow_start_24"
             app:title="@string/DonationReceiptListFragment__all_activity" />
 
         <org.thoughtcrime.securesms.components.ControllableTabLayout

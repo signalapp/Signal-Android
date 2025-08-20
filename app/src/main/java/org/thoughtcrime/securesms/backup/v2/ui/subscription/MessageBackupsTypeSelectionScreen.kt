@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement.Absolute.spacedBy
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -16,8 +15,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -30,32 +29,35 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.LinkAnnotation
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.withAnnotation
+import androidx.compose.ui.text.withLink
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.persistentListOf
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Dialogs
-import org.signal.core.ui.Previews
-import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.SignalPreview
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.bytes
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.fonts.SignalSymbols
-import org.thoughtcrime.securesms.fonts.SignalSymbols.SignalSymbol
+import org.thoughtcrime.securesms.fonts.SignalSymbols.signalSymbolText
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.ByteUnit
 import java.math.BigDecimal
@@ -70,10 +72,10 @@ import org.signal.core.ui.R as CoreUiR
 @Composable
 fun MessageBackupsTypeSelectionScreen(
   stage: MessageBackupsStage,
-  paymentReadyState: MessageBackupsFlowState.PaymentReadyState,
   currentBackupTier: MessageBackupTier?,
   selectedBackupTier: MessageBackupTier?,
   availableBackupTypes: List<MessageBackupsType>,
+  isNextEnabled: Boolean,
   onMessageBackupsTierSelected: (MessageBackupTier) -> Unit,
   onNavigationClick: () -> Unit,
   onReadMoreClicked: () -> Unit,
@@ -82,7 +84,7 @@ fun MessageBackupsTypeSelectionScreen(
   Scaffolds.Settings(
     title = "",
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_left_24)
+    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
   ) { paddingValues ->
     Column(
       modifier = Modifier
@@ -117,28 +119,26 @@ fun MessageBackupsTypeSelectionScreen(
           val primaryColor = MaterialTheme.colorScheme.primary
           val readMoreString = buildAnnotatedString {
             append(stringResource(id = R.string.MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted))
-
-            val readMore = stringResource(id = R.string.MessageBackupsTypeSelectionScreen__read_more)
             append(" ")
-            withAnnotation(tag = "URL", annotation = "read-more") {
+
+            withLink(
+              LinkAnnotation.Clickable(tag = "learn-more") {
+                onReadMoreClicked()
+              }
+            ) {
               withStyle(
                 style = SpanStyle(
                   color = primaryColor
                 )
               ) {
-                append(readMore)
+                append(stringResource(id = R.string.MessageBackupsTypeSelectionScreen__learn_more))
               }
             }
           }
 
-          ClickableText(
+          Text(
             text = readMoreString,
-            style = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSurface),
-            onClick = { offset ->
-              readMoreString
-                .getStringAnnotations(tag = "URL", start = offset, end = offset)
-                .firstOrNull()?.let { onReadMoreClicked() }
-            },
+            style = MaterialTheme.typography.bodyLarge.copy(textAlign = TextAlign.Center, color = MaterialTheme.colorScheme.onSurfaceVariant),
             modifier = Modifier.padding(top = 8.dp)
           )
         }
@@ -148,6 +148,7 @@ fun MessageBackupsTypeSelectionScreen(
           { _, item -> item.tier }
         ) { index, item ->
           MessageBackupsTypeBlock(
+            enabled = selectedBackupTier != item.tier,
             messageBackupsType = item,
             isCurrent = item.tier == currentBackupTier,
             isSelected = item.tier == selectedBackupTier,
@@ -159,22 +160,34 @@ fun MessageBackupsTypeSelectionScreen(
 
       val hasCurrentBackupTier = currentBackupTier != null
 
-      Buttons.LargePrimary(
+      Buttons.LargeTonal(
         onClick = onNextClicked,
-        enabled = selectedBackupTier != currentBackupTier && selectedBackupTier != null && paymentReadyState == MessageBackupsFlowState.PaymentReadyState.READY,
+        enabled = isNextEnabled,
         modifier = Modifier
+          .testTag("subscribe-button")
           .fillMaxWidth()
           .padding(vertical = if (hasCurrentBackupTier) 10.dp else 16.dp)
       ) {
-        Text(
-          text = stringResource(
-            id = if (currentBackupTier == null) {
-              R.string.MessageBackupsTypeSelectionScreen__next
-            } else {
-              R.string.MessageBackupsTypeSelectionScreen__change_backup_type
+        val text: String = if (currentBackupTier == null) {
+          if (selectedBackupTier == MessageBackupTier.PAID && availableBackupTypes.map { it.tier }.contains(selectedBackupTier)) {
+            val paidTier = availableBackupTypes.first { it.tier == MessageBackupTier.PAID } as MessageBackupsType.Paid
+            val context = LocalContext.current
+
+            val price = remember(paidTier) {
+              FiatMoneyUtil.format(context.resources, paidTier.pricePerMonth, FiatMoneyUtil.formatOptions().trimZerosAfterDecimal())
             }
-          )
-        )
+
+            stringResource(R.string.MessageBackupsTypeSelectionScreen__subscribe_for_x_month, price)
+          } else if (selectedBackupTier == MessageBackupTier.FREE) {
+            stringResource(R.string.MessageBackupsTypeSelectionScreen__choose_free_plan)
+          } else {
+            stringResource(R.string.MessageBackupsTypeSelectionScreen__subscribe)
+          }
+        } else {
+          stringResource(R.string.MessageBackupsTypeSelectionScreen__change_backup_type)
+        }
+
+        Text(text = text)
       }
 
       when (stage) {
@@ -195,14 +208,14 @@ private fun MessageBackupsTypeSelectionScreenPreview() {
   Previews.Preview {
     MessageBackupsTypeSelectionScreen(
       stage = MessageBackupsStage.TYPE_SELECTION,
-      selectedBackupTier = MessageBackupTier.FREE,
+      selectedBackupTier = selectedBackupsType,
       availableBackupTypes = testBackupTypes(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },
       onNavigationClick = {},
       onReadMoreClicked = {},
       onNextClicked = {},
       currentBackupTier = null,
-      paymentReadyState = MessageBackupsFlowState.PaymentReadyState.READY
+      isNextEnabled = true
     )
   }
 }
@@ -215,14 +228,14 @@ private fun MessageBackupsTypeSelectionScreenWithCurrentTierPreview() {
   Previews.Preview {
     MessageBackupsTypeSelectionScreen(
       stage = MessageBackupsStage.TYPE_SELECTION,
-      selectedBackupTier = MessageBackupTier.FREE,
+      selectedBackupTier = selectedBackupsType,
       availableBackupTypes = testBackupTypes(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },
       onNavigationClick = {},
       onReadMoreClicked = {},
       onNextClicked = {},
       currentBackupTier = MessageBackupTier.PAID,
-      paymentReadyState = MessageBackupsFlowState.PaymentReadyState.READY
+      isNextEnabled = true
     )
   }
 }
@@ -243,33 +256,32 @@ fun MessageBackupsTypeBlock(
     Color.Transparent
   }
 
-  val background = if (isSelected) {
-    MaterialTheme.colorScheme.secondaryContainer
-  } else {
-    SignalTheme.colors.colorSurface2
-  }
-
   Column(
     modifier = modifier
+      .selectable(
+        selected = isSelected,
+        enabled = enabled,
+        onClick = onSelected
+      )
+      .testTag("message-backups-type-block-${messageBackupsType.tier.name.lowercase()}")
       .fillMaxWidth()
-      .background(color = background, shape = RoundedCornerShape(18.dp))
-      .border(width = 2.dp, color = borderColor, shape = RoundedCornerShape(18.dp))
+      .background(color = SignalTheme.colors.colorSurface2, shape = RoundedCornerShape(18.dp))
+      .border(width = 3.5.dp, color = borderColor, shape = RoundedCornerShape(18.dp))
       .clip(shape = RoundedCornerShape(18.dp))
-      .clickable(onClick = onSelected, enabled = enabled)
       .padding(vertical = 16.dp, horizontal = 20.dp)
   ) {
     if (isCurrent) {
       Text(
-        text = buildAnnotatedString {
-          SignalSymbol(weight = SignalSymbols.Weight.REGULAR, glyph = SignalSymbols.Glyph.CHECKMARK)
-          append(" ")
-          append(stringResource(R.string.MessageBackupsTypeSelectionScreen__current_plan))
-        },
+        text = signalSymbolText(
+          text = stringResource(R.string.MessageBackupsTypeSelectionScreen__current_plan),
+          glyphStart = SignalSymbols.Glyph.CHECK
+        ),
+        style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant,
         modifier = Modifier
           .padding(bottom = 12.dp)
           .background(
-            color = SignalTheme.colors.colorTransparent1,
+            color = SignalTheme.colors.colorTransparentInverse2,
             shape = RoundedCornerShape(14.dp)
           )
           .padding(vertical = 4.dp, horizontal = 12.dp)
@@ -286,7 +298,7 @@ fun MessageBackupsTypeBlock(
         is MessageBackupsType.Free -> pluralStringResource(id = R.plurals.MessageBackupsTypeSelectionScreen__text_plus_d_days_of_media, messageBackupsType.mediaRetentionDays, messageBackupsType.mediaRetentionDays)
         is MessageBackupsType.Paid -> stringResource(id = R.string.MessageBackupsTypeSelectionScreen__text_plus_all_your_media)
       },
-      style = MaterialTheme.typography.titleMedium
+      style = MaterialTheme.typography.bodyLarge
     )
 
     val featureIconTint = if (isSelected) {
@@ -296,7 +308,7 @@ fun MessageBackupsTypeBlock(
     }
 
     Column(
-      verticalArrangement = spacedBy(4.dp),
+      verticalArrangement = spacedBy(12.dp),
       modifier = Modifier
         .padding(top = 8.dp)
         .padding(horizontal = 16.dp)

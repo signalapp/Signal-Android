@@ -17,13 +17,13 @@ import org.signal.core.util.getParcelableExtraCompat
 import org.signal.core.util.getSerializableCompat
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.components.FragmentWrapperActivity
-import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentComponent
-import org.thoughtcrime.securesms.components.settings.app.subscription.StripeRepository
+import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayComponent
+import org.thoughtcrime.securesms.components.settings.app.subscription.GooglePayRepository
 
 /**
  * Home base for all checkout flows.
  */
-class CheckoutFlowActivity : FragmentWrapperActivity(), InAppPaymentComponent {
+class CheckoutFlowActivity : FragmentWrapperActivity(), GooglePayComponent {
 
   companion object {
     private const val ARG_IN_APP_PAYMENT_TYPE = "in_app_payment_type"
@@ -34,8 +34,8 @@ class CheckoutFlowActivity : FragmentWrapperActivity(), InAppPaymentComponent {
     }
   }
 
-  override val stripeRepository: StripeRepository by lazy { StripeRepository(this) }
-  override val googlePayResultPublisher: Subject<InAppPaymentComponent.GooglePayResult> = PublishSubject.create()
+  override val googlePayRepository: GooglePayRepository by lazy { GooglePayRepository(this) }
+  override val googlePayResultPublisher: Subject<GooglePayComponent.GooglePayResult> = PublishSubject.create()
 
   private val inAppPaymentType: InAppPaymentType by lazy {
     intent.extras!!.getSerializableCompat(ARG_IN_APP_PAYMENT_TYPE, InAppPaymentType::class.java)!!
@@ -48,7 +48,7 @@ class CheckoutFlowActivity : FragmentWrapperActivity(), InAppPaymentComponent {
   @Suppress("DEPRECATION")
   override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
     super.onActivityResult(requestCode, resultCode, data)
-    googlePayResultPublisher.onNext(InAppPaymentComponent.GooglePayResult(requestCode, resultCode, data))
+    googlePayResultPublisher.onNext(GooglePayComponent.GooglePayResult(requestCode, resultCode, data))
   }
 
   class Contract : ActivityResultContract<InAppPaymentType, Result?>() {

@@ -5,7 +5,7 @@ import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
+import org.thoughtcrime.securesms.jobs.MultiDeviceStorageSyncRequestJob
 import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 
@@ -43,14 +43,14 @@ internal class StorageFixLocalUnknownMigrationJob(
 
     val jobManager = AppDependencies.jobManager
 
-    if (SignalStore.account.hasLinkedDevices) {
+    if (SignalStore.account.isMultiDevice) {
       Log.i(TAG, "Multi-device.")
-      jobManager.startChain(StorageSyncJob())
-        .then(MultiDeviceKeysUpdateJob())
+      jobManager.startChain(StorageSyncJob.forLocalChange())
+        .then(MultiDeviceStorageSyncRequestJob())
         .enqueue()
     } else {
       Log.i(TAG, "Single-device.")
-      jobManager.add(StorageSyncJob())
+      jobManager.add(StorageSyncJob.forRemoteChange())
     }
   }
 

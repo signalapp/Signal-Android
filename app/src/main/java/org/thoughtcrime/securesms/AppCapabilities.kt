@@ -13,7 +13,8 @@ object AppCapabilities {
       storage = storageCapable,
       deleteSync = true,
       versionedExpirationTimer = true,
-      storageServiceEncryptionV2 = true
+      storageServiceEncryptionV2 = true,
+      attachmentBackfill = true
     )
   }
 }

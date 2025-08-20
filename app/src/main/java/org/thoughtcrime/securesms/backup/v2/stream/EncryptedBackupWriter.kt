@@ -7,8 +7,10 @@ package org.thoughtcrime.securesms.backup.v2.stream
 
 import org.signal.core.util.stream.MacOutputStream
 import org.signal.core.util.writeVarInt32
+import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.thoughtcrime.securesms.backup.v2.proto.BackupInfo
 import org.thoughtcrime.securesms.backup.v2.proto.Frame
+import org.thoughtcrime.securesms.backup.v2.stream.EncryptedBackupReader.Companion.createForSignalBackup
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.backup.MessageBackupKey
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
@@ -26,9 +28,11 @@ import javax.crypto.spec.SecretKeySpec
  * are gzipped, that gzipped data is encrypted, and then an HMAC of the encrypted data is appended
  * to the end of the [outputStream].
  */
-class EncryptedBackupWriter(
+class EncryptedBackupWriter private constructor(
   key: MessageBackupKey,
   aci: ACI,
+  forwardSecrecyToken: BackupForwardSecrecyToken?,
+  forwardSecrecyMetadata: ByteArray?,
   private val outputStream: OutputStream,
   private val append: (ByteArray) -> Unit
 ) : BackupExportWriter {
@@ -36,8 +40,66 @@ class EncryptedBackupWriter(
   private val mainStream: PaddedGzipOutputStream
   private val macStream: MacOutputStream
 
+  companion object {
+    val MAGIC_NUMBER = "SBACKUP".toByteArray(Charsets.UTF_8) + 0x01
+
+    /**
+     * Create a writer for a backup from the archive CDN.
+     * The key difference is that we require forward secrecy data.
+     */
+    fun createForSignalBackup(
+      key: MessageBackupKey,
+      aci: ACI,
+      forwardSecrecyToken: BackupForwardSecrecyToken,
+      forwardSecrecyMetadata: ByteArray,
+      outputStream: OutputStream,
+      append: (ByteArray) -> Unit
+    ): EncryptedBackupWriter {
+      return EncryptedBackupWriter(
+        key = key,
+        aci = aci,
+        forwardSecrecyToken = forwardSecrecyToken,
+        forwardSecrecyMetadata = forwardSecrecyMetadata,
+        outputStream = outputStream,
+        append = append
+      )
+    }
+
+    /**
+     * Create a writer for a local backup or for a transfer to a linked device. Basically everything that isn't [createForSignalBackup].
+     * The key difference is that we don't require forward secrecy data.
+     */
+    fun createForLocalOrLinking(
+      key: MessageBackupKey,
+      aci: ACI,
+      outputStream: OutputStream,
+      append: (ByteArray) -> Unit
+    ): EncryptedBackupWriter {
+      return EncryptedBackupWriter(
+        key = key,
+        aci = aci,
+        forwardSecrecyToken = null,
+        forwardSecrecyMetadata = null,
+        outputStream = outputStream,
+        append = append
+      )
+    }
+  }
+
   init {
-    val keyMaterial = key.deriveBackupSecrets(aci)
+    check(
+      (forwardSecrecyToken != null && forwardSecrecyMetadata != null) ||
+        (forwardSecrecyToken == null && forwardSecrecyMetadata == null)
+    )
+
+    if (forwardSecrecyMetadata != null) {
+      outputStream.write(MAGIC_NUMBER)
+      outputStream.writeVarInt32(forwardSecrecyMetadata.size)
+      outputStream.write(forwardSecrecyMetadata)
+      outputStream.flush()
+    }
+
+    val keyMaterial = key.deriveBackupSecrets(aci, forwardSecrecyToken)
 
     val iv: ByteArray = Util.getSecretBytes(16)
     outputStream.write(iv)

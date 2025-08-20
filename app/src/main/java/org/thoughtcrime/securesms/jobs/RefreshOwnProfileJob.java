@@ -107,8 +107,8 @@ public class RefreshOwnProfileJob extends BaseJob {
       return;
     }
 
-    if (SignalStore.svr().hasOptedInWithAccess() && !SignalStore.svr().hasOptedOut() && SignalStore.storageService().getLastSyncTime() == 0) {
-      Log.i(TAG, "Registered with PIN but haven't completed storage sync yet.");
+    if ((SignalStore.svr().hasPin() || SignalStore.account().restoredAccountEntropyPool()) && !SignalStore.svr().hasOptedOut() && SignalStore.storageService().getLastSyncTime() == 0) {
+      Log.i(TAG, "Registered with PIN or AEP but haven't completed storage sync yet.");
       return;
     }
 
@@ -293,7 +293,7 @@ public class RefreshOwnProfileJob extends BaseJob {
 
   private void syncWithStorageServiceThenUploadProfile() {
     AppDependencies.getJobManager()
-                   .startChain(new StorageSyncJob())
+                   .startChain(StorageSyncJob.forRemoteChange())
                    .then(new ProfileUploadJob())
                    .enqueue();
   }

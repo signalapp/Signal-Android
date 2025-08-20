@@ -29,12 +29,14 @@ import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
@@ -46,14 +48,14 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import org.signal.core.ui.Dividers
-import org.signal.core.ui.IconButtons
-import org.signal.core.ui.Previews
-import org.signal.core.ui.Rows
-import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.SignalPreview
-import org.signal.core.ui.horizontalGutters
-import org.signal.core.ui.theme.SignalTheme
+import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.IconButtons
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.horizontalGutters
+import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
@@ -64,6 +66,7 @@ import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner
 import org.thoughtcrime.securesms.banner.ui.compose.Action
 import org.thoughtcrime.securesms.banner.ui.compose.DefaultBanner
 import org.thoughtcrime.securesms.banner.ui.compose.Importance
+import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.thoughtcrime.securesms.components.emoji.Emojifier
 import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImageMedium
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
@@ -181,7 +184,7 @@ private fun AppSettingsContent(
   Scaffolds.Settings(
     title = stringResource(R.string.text_secure_normal__menu_settings),
     navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back),
-    navigationIconPainter = painterResource(R.drawable.symbol_arrow_left_24),
+    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
     onNavigationClick = callbacks::onNavigationClick
   ) { contentPadding ->
     Column(
@@ -239,6 +242,23 @@ private fun AppSettingsContent(
                 text = stringResource(R.string.AppSettingsFragment__couldnt_redeem_your_backups_subscription),
                 onClick = {
                   BackupRepository.markBackupAlreadyRedeemedIndicatorClicked()
+                  callbacks.navigate(R.id.action_appSettingsFragment_to_remoteBackupsSettingsFragment)
+                }
+              )
+
+              Dividers.Default()
+            }
+          }
+
+          BackupFailureState.OUT_OF_STORAGE_SPACE -> {
+            item {
+              Dividers.Default()
+
+              Rows.TextRow(
+                text = stringResource(R.string.AppSettingsFragment__backup_storage_limit_reached),
+                icon = ImageVector.vectorResource(R.drawable.symbol_error_circle_fill_24),
+                iconTint = MaterialTheme.colorScheme.error,
+                onClick = {
                   callbacks.navigate(R.id.action_appSettingsFragment_to_remoteBackupsSettingsFragment)
                 }
               )
@@ -331,7 +351,7 @@ private fun AppSettingsContent(
             onClick = {
               callbacks.navigate(R.id.action_appSettingsFragment_to_chatsSettingsFragment)
             },
-            enabled = isRegisteredAndUpToDate
+            enabled = state.legacyLocalBackupsEnabled || isRegisteredAndUpToDate
           )
         }
 
@@ -371,8 +391,19 @@ private fun AppSettingsContent(
         if (state.showBackups) {
           item {
             Rows.TextRow(
-              text = stringResource(R.string.preferences_chats__backups),
-              icon = painterResource(R.drawable.symbol_backup_24),
+              text = {
+                TextWithBetaLabel(
+                  text = stringResource(R.string.preferences_chats__backups),
+                  textStyle = MaterialTheme.typography.bodyLarge
+                )
+              },
+              icon = {
+                Icon(
+                  imageVector = ImageVector.vectorResource(R.drawable.symbol_backup_24),
+                  contentDescription = stringResource(R.string.preferences_chats__backups),
+                  tint = MaterialTheme.colorScheme.onSurface
+                )
+              },
               onClick = {
                 callbacks.navigate(R.id.action_appSettingsFragment_to_backupsSettingsFragment)
               },
@@ -468,7 +499,7 @@ private fun AppSettingsContent(
             text = stringResource(R.string.AppSettingsFragment__invite_your_friends),
             icon = painterResource(R.drawable.symbol_invite_24),
             onClick = {
-              callbacks.navigate(R.id.action_appSettingsFragment_to_inviteActivity)
+              callbacks.navigate(R.id.action_appSettingsFragment_to_inviteFragment)
             }
           )
         }
@@ -504,7 +535,7 @@ private fun BackupsWarningRow(
     icon = {
       Box {
         Icon(
-          painter = painterResource(R.drawable.symbol_backup_24),
+          imageVector = ImageVector.vectorResource(R.drawable.symbol_backup_24),
           tint = MaterialTheme.colorScheme.onSurface,
           contentDescription = null
         )
@@ -652,7 +683,8 @@ private fun AppSettingsContentPreview() {
         showPayments = true,
         showAppUpdates = true,
         showBackups = true,
-        backupFailureState = BackupFailureState.SUBSCRIPTION_STATE_MISMATCH
+        backupFailureState = BackupFailureState.OUT_OF_STORAGE_SPACE,
+        legacyLocalBackupsEnabled = false
       ),
       bannerManager = BannerManager(
         banners = listOf(TestBanner())

@@ -9,5 +9,5 @@ package org.thoughtcrime.securesms.registrationv3.ui.welcome
  * User options available to start registration flow.
  */
 enum class WelcomeUserSelection {
-  CONTINUE, RESTORE_WITH_OLD_PHONE, RESTORE_WITH_NO_PHONE
+  CONTINUE, RESTORE_WITH_OLD_PHONE, RESTORE_WITH_NO_PHONE, LINK
 }

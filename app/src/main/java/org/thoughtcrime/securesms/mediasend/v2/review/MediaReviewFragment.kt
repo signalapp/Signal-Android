@@ -9,13 +9,13 @@ import android.graphics.Rect
 import android.net.Uri
 import android.os.Bundle
 import android.provider.OpenableColumns
+import android.text.SpannableString
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
-import android.widget.Toast
 import android.widget.ViewSwitcher
 import androidx.activity.OnBackPressedCallback
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -31,7 +31,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.imageview.ShapeableImageView
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.SimpleTask
@@ -52,7 +51,6 @@ import org.thoughtcrime.securesms.mediasend.v2.MediaAnimations
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionNavigator
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionState
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionViewModel
-import org.thoughtcrime.securesms.mediasend.v2.MediaValidator
 import org.thoughtcrime.securesms.mediasend.v2.stories.StoriesMultiselectForwardActivity
 import org.thoughtcrime.securesms.mms.MediaConstraints
 import org.thoughtcrime.securesms.mms.SentMediaQuality
@@ -367,11 +365,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
       computeViewStateAndAnimate(state)
     }
 
-    disposables.bindTo(viewLifecycleOwner)
-    disposables += sharedViewModel.mediaErrors
-      .observeOn(AndroidSchedulers.mainThread())
-      .subscribe(this::handleMediaValidatorFilterError)
-
     requireActivity().onBackPressedDispatcher.addCallback(
       viewLifecycleOwner,
       object : OnBackPressedCallback(true) {
@@ -441,25 +434,6 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     Permissions.onRequestPermissionsResult(this, requestCode, permissions, grantResults)
   }
 
-  private fun handleMediaValidatorFilterError(error: MediaValidator.FilterError) {
-    when (error) {
-      MediaValidator.FilterError.None -> return
-      MediaValidator.FilterError.ItemTooLarge -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_too_large, Toast.LENGTH_SHORT).show()
-      MediaValidator.FilterError.ItemInvalidType -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
-      MediaValidator.FilterError.TooManyItems -> Toast.makeText(requireContext(), R.string.MediaReviewFragment__too_many_items_selected, Toast.LENGTH_SHORT).show()
-      is MediaValidator.FilterError.NoItems -> {
-        if (error.cause != null) {
-          handleMediaValidatorFilterError(error.cause)
-        } else {
-          Toast.makeText(requireContext(), R.string.MediaReviewFragment__one_or_more_items_were_invalid, Toast.LENGTH_SHORT).show()
-        }
-        callback.onNoMediaSelected()
-      }
-    }
-
-    sharedViewModel.clearMediaErrors()
-  }
-
   private fun launchGallery() {
     val controller = findNavController()
     navigator.goToGallery(controller)
@@ -496,10 +470,7 @@ class MediaReviewFragment : Fragment(R.layout.v2_media_review_fragment), Schedul
     when (viewOnceState) {
       MediaSelectionState.ViewOnceToggleState.INFINITE -> {
         addMessageButton.gravity = Gravity.CENTER_VERTICAL
-        addMessageButton.setText(
-          message.takeIf { it.isNotNullOrBlank() } ?: getString(R.string.MediaReviewFragment__add_a_message),
-          TextView.BufferType.SPANNABLE
-        )
+        addMessageButton.text = SpannableString(message.takeIf { it.isNotNullOrBlank() } ?: getString(R.string.MediaReviewFragment__add_a_message))
         addMessageButton.isClickable = true
       }
       MediaSelectionState.ViewOnceToggleState.ONCE -> {

@@ -1,11 +1,6 @@
 package org.thoughtcrime.securesms.database.model;
 
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.graphics.drawable.InsetDrawable;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
@@ -18,12 +13,13 @@ import androidx.lifecycle.Transformations;
 
 import com.annimon.stream.Stream;
 
+import org.thoughtcrime.securesms.fonts.SignalSymbols;
+import org.thoughtcrime.securesms.fonts.SignalSymbols.Glyph;
+import org.thoughtcrime.securesms.fonts.SignalSymbols.Weight;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
-import org.thoughtcrime.securesms.util.ContextUtil;
 import org.thoughtcrime.securesms.util.SpanUtil;
 import org.thoughtcrime.securesms.util.ThemeUtil;
-import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.livedata.LiveDataUtil;
 
 import java.util.List;
@@ -66,31 +62,25 @@ public final class LiveUpdateMessage {
   }
 
   private static @NonNull SpannableString toSpannable(@NonNull Context context, @NonNull UpdateDescription updateDescription, @NonNull Spannable string, @ColorInt int defaultTint, boolean adjustPosition) {
-    boolean  isDarkTheme      = ThemeUtil.isDarkTheme(context);
-    int      drawableResource = updateDescription.getIconResource();
-    int      tint             = isDarkTheme ? updateDescription.getDarkTint() : updateDescription.getLightTint();
+    boolean isDarkTheme = ThemeUtil.isDarkTheme(context);
+    Glyph   glyph       = updateDescription.getGlyph();
+    int     tint        = isDarkTheme ? updateDescription.getDarkTint() : updateDescription.getLightTint();
 
     if (tint == 0) {
       tint = defaultTint;
     }
 
-    if (drawableResource == 0) {
+    if (glyph == null) {
       return new SpannableString(string);
     } else {
-      Drawable drawable = ContextUtil.requireDrawable(context, drawableResource);
-      drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-      drawable.setColorFilter(tint, PorterDuff.Mode.SRC_ATOP);
+      SpannableStringBuilder builder   = new SpannableStringBuilder();
+      CharSequence           glyphChar = SignalSymbols.getSpannedString(context, Weight.REGULAR, glyph, -1);
 
-      int insetTop = adjustPosition ? ViewUtil.dpToPx(2) : 0;
-      InsetDrawable insetDrawable = new InsetDrawable(drawable, 0, insetTop, 0, 0);
-      insetDrawable.setBounds(0, 0, drawable.getIntrinsicWidth(), insetDrawable.getIntrinsicHeight());
+      builder.append(glyphChar);
+      builder.append(" ");
+      builder.append(string);
 
-      Drawable spaceDrawable = new ColorDrawable(Color.TRANSPARENT);
-      spaceDrawable.setBounds(0, 0, ViewUtil.dpToPx(8), drawable.getIntrinsicHeight());
-
-      Spannable stringWithImage = new SpannableStringBuilder().append(SpanUtil.buildImageSpan(drawable)).append(SpanUtil.buildImageSpan(spaceDrawable)).append(string);
-
-      return new SpannableString(SpanUtil.color(tint, stringWithImage));
+      return new SpannableString(SpanUtil.color(tint, builder));
     }
   }
 }

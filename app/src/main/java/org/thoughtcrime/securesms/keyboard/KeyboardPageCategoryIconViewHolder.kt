@@ -14,6 +14,7 @@ interface KeyboardPageCategoryIconMappingModel<T : KeyboardPageCategoryIconMappi
   val selected: Boolean
 
   fun getIcon(context: Context): Drawable
+  fun getContentDescription(context: Context): String
 }
 
 class KeyboardPageCategoryIconViewHolder<T : KeyboardPageCategoryIconMappingModel<T>>(itemView: View, private val onPageSelected: Consumer<String>) : MappingViewHolder<T>(itemView) {
@@ -27,7 +28,7 @@ class KeyboardPageCategoryIconViewHolder<T : KeyboardPageCategoryIconMappingMode
     }
 
     iconView.setImageDrawable(model.getIcon(context))
-    iconView.contentDescription = model.key
+    iconView.contentDescription = model.getContentDescription(context)
     iconView.isSelected = model.selected
     iconSelected.isSelected = model.selected
   }

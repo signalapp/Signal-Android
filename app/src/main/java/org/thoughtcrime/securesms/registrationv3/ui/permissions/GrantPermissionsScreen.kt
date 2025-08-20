@@ -22,9 +22,9 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Previews
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.registrationv3.ui.shared.RegistrationScreen
 
@@ -46,11 +46,16 @@ fun GrantPermissionsScreen(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxWidth()
       ) {
-        TextButton(onClick = onNotNowClicked) {
+        TextButton(
+          modifier = Modifier.weight(weight = 1f, fill = false),
+          onClick = onNotNowClicked
+        ) {
           Text(
             text = stringResource(id = R.string.GrantPermissionsFragment__not_now)
           )
         }
+
+        Spacer(modifier = Modifier.size(24.dp))
 
         Buttons.LargeTonal(
           onClick = onNextClicked

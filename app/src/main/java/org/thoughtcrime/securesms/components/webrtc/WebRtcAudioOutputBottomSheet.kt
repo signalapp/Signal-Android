@@ -30,7 +30,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
-import org.signal.core.ui.BottomSheets
+import org.signal.core.ui.compose.BottomSheets
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.util.BottomSheetUtil

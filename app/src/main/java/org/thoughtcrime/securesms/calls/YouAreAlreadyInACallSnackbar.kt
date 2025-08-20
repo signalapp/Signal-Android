@@ -13,7 +13,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import com.google.android.material.snackbar.Snackbar
-import org.signal.core.ui.Snackbars
+import org.signal.core.ui.compose.Snackbars
 import org.thoughtcrime.securesms.R
 
 /**

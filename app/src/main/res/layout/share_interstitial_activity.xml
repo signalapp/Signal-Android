@@ -9,7 +9,7 @@
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         app:layout_constraintTop_toTopOf="parent"
-        app:navigationIcon="@drawable/ic_arrow_left_24"
+        app:navigationIcon="@drawable/symbol_arrow_start_24"
         app:title="@string/ShareInterstitialActivity__share"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />

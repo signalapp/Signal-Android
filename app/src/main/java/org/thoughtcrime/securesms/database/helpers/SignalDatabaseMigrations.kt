@@ -122,6 +122,25 @@ import org.thoughtcrime.securesms.database.helpers.migration.V264_FixGroupAddMem
 import org.thoughtcrime.securesms.database.helpers.migration.V265_FixFtsTriggers
 import org.thoughtcrime.securesms.database.helpers.migration.V266_UniqueThreadPinOrder
 import org.thoughtcrime.securesms.database.helpers.migration.V267_FixGroupInvitationDeclinedUpdate
+import org.thoughtcrime.securesms.database.helpers.migration.V268_FixInAppPaymentsErrorStateConsistency
+import org.thoughtcrime.securesms.database.helpers.migration.V269_BackupMediaSnapshotChanges
+import org.thoughtcrime.securesms.database.helpers.migration.V270_FixChatFolderColumnsForStorageSync
+import org.thoughtcrime.securesms.database.helpers.migration.V271_AddNotificationProfileIdColumn
+import org.thoughtcrime.securesms.database.helpers.migration.V272_UpdateUnreadCountIndices
+import org.thoughtcrime.securesms.database.helpers.migration.V273_FixUnreadOriginalMessages
+import org.thoughtcrime.securesms.database.helpers.migration.V274_BackupMediaSnapshotLastSeenOnRemote
+import org.thoughtcrime.securesms.database.helpers.migration.V275_EnsureDefaultAllChatsFolder
+import org.thoughtcrime.securesms.database.helpers.migration.V276_AttachmentCdnDefaultValueMigration
+import org.thoughtcrime.securesms.database.helpers.migration.V277_AddNotificationProfileStorageSync
+import org.thoughtcrime.securesms.database.helpers.migration.V278_BackupSnapshotTableVersions
+import org.thoughtcrime.securesms.database.helpers.migration.V279_AddNotificationProfileForeignKey
+import org.thoughtcrime.securesms.database.helpers.migration.V280_RemoveAttachmentIv
+import org.thoughtcrime.securesms.database.helpers.migration.V281_RemoveArchiveTransferFile
+import org.thoughtcrime.securesms.database.helpers.migration.V282_AddSnippetMessageIdColumnToThreadTable
+import org.thoughtcrime.securesms.database.helpers.migration.V283_ViewOnceRemoteDataCleanup
+import org.thoughtcrime.securesms.database.helpers.migration.V284_SetPlaceholderGroupFlag
+import org.thoughtcrime.securesms.database.helpers.migration.V285_AddEpochToCallLinksTable
+import org.thoughtcrime.securesms.database.helpers.migration.V286_FixRemoteKeyEncoding
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -249,10 +268,29 @@ object SignalDatabaseMigrations {
     264 to V264_FixGroupAddMemberUpdate,
     265 to V265_FixFtsTriggers,
     266 to V266_UniqueThreadPinOrder,
-    267 to V267_FixGroupInvitationDeclinedUpdate
+    267 to V267_FixGroupInvitationDeclinedUpdate,
+    268 to V268_FixInAppPaymentsErrorStateConsistency,
+    269 to V269_BackupMediaSnapshotChanges,
+    270 to V270_FixChatFolderColumnsForStorageSync,
+    271 to V271_AddNotificationProfileIdColumn,
+    272 to V272_UpdateUnreadCountIndices,
+    273 to V273_FixUnreadOriginalMessages,
+    274 to V274_BackupMediaSnapshotLastSeenOnRemote,
+    275 to V275_EnsureDefaultAllChatsFolder,
+    276 to V276_AttachmentCdnDefaultValueMigration,
+    277 to V277_AddNotificationProfileStorageSync,
+    278 to V278_BackupSnapshotTableVersions,
+    279 to V279_AddNotificationProfileForeignKey,
+    280 to V280_RemoveAttachmentIv,
+    281 to V281_RemoveArchiveTransferFile,
+    282 to V282_AddSnippetMessageIdColumnToThreadTable,
+    283 to V283_ViewOnceRemoteDataCleanup,
+    284 to V284_SetPlaceholderGroupFlag,
+    285 to V285_AddEpochToCallLinksTable,
+    286 to V286_FixRemoteKeyEncoding
   )
 
-  const val DATABASE_VERSION = 268
+  const val DATABASE_VERSION = 286
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {

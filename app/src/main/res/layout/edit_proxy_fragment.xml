@@ -5,8 +5,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:padding="16dp">
+    android:layout_height="match_parent">
+
+  <androidx.appcompat.widget.Toolbar
+      android:id="@+id/toolbar"
+      android:layout_width="match_parent"
+      android:layout_height="?attr/actionBarSize"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent"
+      app:navigationIcon="@drawable/symbol_arrow_start_24"
+      app:title="@string/preferences_use_proxy" />
 
   <TextView
       android:id="@+id/edit_proxy_switch_title"
@@ -14,7 +23,8 @@
       android:layout_height="wrap_content"
       android:text="@string/preferences_use_proxy"
       style="@style/Signal.Text.Body"
-      app:layout_constraintTop_toTopOf="parent"
+      android:layout_marginHorizontal="16dp"
+      app:layout_constraintTop_toBottomOf="@id/toolbar"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toStartOf="@id/edit_proxy_switch"/>
 
@@ -25,6 +35,7 @@
       android:text="@string/preferences_only_use_a_proxy_if"
       style="@style/Signal.Text.Preview"
       android:textColor="@color/signal_text_secondary"
+      android:layout_marginStart="16dp"
       app:layout_constraintTop_toBottomOf="@id/edit_proxy_switch_title"
       app:layout_constraintStart_toStartOf="parent"
       app:layout_constraintEnd_toStartOf="@id/edit_proxy_switch"/>
@@ -34,6 +45,7 @@
       android:id="@+id/edit_proxy_switch"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginEnd="16dp"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintTop_toTopOf="@id/edit_proxy_switch_title"
       app:layout_constraintBottom_toBottomOf="@id/edit_proxy_switch_title_description"/>
@@ -43,6 +55,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="25dp"
+      android:layout_marginHorizontal="16dp"
       style="@style/Signal.Text.Preview"
       android:fontFamily="sans-serif-medium"
       android:textColor="@color/signal_accent_primary"
@@ -53,8 +66,8 @@
       android:id="@+id/edit_proxy_host"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:layout_marginStart="-2dp"
       android:hint="@string/preferences_enter_proxy_address"
+      android:layout_marginHorizontal="16dp"
       app:layout_constraintTop_toBottomOf="@id/edit_proxy_address_title"
       tools:hint="https://proxy.parker.org"/>
 
@@ -63,6 +76,7 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:layout_marginTop="4dp"
+      android:layout_marginHorizontal="16dp"
       style="@style/Signal.Text.Caption"
       app:layout_constraintTop_toBottomOf="@id/edit_proxy_host"
       tools:text="@string/preferences_connected_to_proxy"/>
@@ -72,6 +86,7 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_marginTop="19dp"
+      android:layout_marginHorizontal="16dp"
       style="@style/Signal.Text.Body"
       android:text="@string/preferences_share"
       app:drawableStartCompat="@drawable/symbol_share_android_24"
@@ -90,8 +105,8 @@
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_gravity="bottom|end"
-      android:layout_marginEnd="16dp"
-      android:layout_marginBottom="16dp"
+      android:layout_marginEnd="32dp"
+      android:layout_marginBottom="32dp"
       android:textColor="@color/white"
       android:text="@string/preferences_save"
       app:cornerRadius="80dp"

@@ -9,7 +9,10 @@ import assertk.assertions.isTrue
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
+import io.mockk.mockkStatic
+import io.mockk.unmockkAll
 import io.mockk.verify
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -19,17 +22,24 @@ import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toInAppPaymentDataChargeFailure
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsTestRule
 import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.BadgeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
+import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -42,14 +52,32 @@ import kotlin.time.Duration.Companion.milliseconds
 class InAppPaymentRecurringContextJobTest {
 
   @get:Rule
+  val mockSignalStore = MockSignalStoreRule()
+
+  @get:Rule
   val appDependencies = MockAppDependenciesRule()
 
   @get:Rule
   val inAppPaymentsTestRule = InAppPaymentsTestRule()
 
+  lateinit var recipientTable: RecipientTable
+
   @Before
   fun setUp() {
     Log.initialize(SystemOutLogger())
+
+    every { mockSignalStore.account.isRegistered } returns true
+    every { mockSignalStore.account.isLinkedDevice } returns false
+    every { mockSignalStore.inAppPayments.setLastEndOfPeriod(any()) } returns Unit
+
+    recipientTable = mockk(relaxed = true)
+    every { SignalDatabase.recipients } returns recipientTable
+
+    mockkObject(Recipient)
+    every { Recipient.self() } returns Recipient()
+
+    mockkStatic(StorageSyncHelper::class)
+    every { StorageSyncHelper.scheduleSyncForDataChange() } returns Unit
 
     mockkObject(InAppPaymentsRepository)
     every { InAppPaymentsRepository.generateRequestCredential() } returns mockk {
@@ -68,6 +96,23 @@ class InAppPaymentRecurringContextJobTest {
       every { receiptLevel } returns 2000
       every { receiptExpirationTime } returns actualMinimumTime
     }
+  }
+
+  @After
+  fun tearDown() {
+    unmockkAll()
+  }
+
+  @Test
+  fun `Given user is unregistered, when I run then I expect failure`() {
+    every { mockSignalStore.account.isRegistered } returns true
+
+    val iap = insertInAppPayment()
+    val job = InAppPaymentRecurringContextJob.create(iap)
+
+    val result = job.run()
+
+    assertThat(result.isFailure).isTrue()
   }
 
   @Test
@@ -405,6 +450,9 @@ class InAppPaymentRecurringContextJobTest {
       )
     }
 
+    mockkObject(BackupRepository)
+    every { BackupRepository.getBackupTier() } returns NetworkResult.Success(MessageBackupTier.PAID)
+
     val iap = insertInAppPayment(
       type = InAppPaymentType.RECURRING_BACKUP
     )
@@ -534,7 +582,7 @@ class InAppPaymentRecurringContextJobTest {
 
   private fun insertInAppPayment(
     type: InAppPaymentType = InAppPaymentType.RECURRING_DONATION,
-    state: InAppPaymentTable.State = InAppPaymentTable.State.CREATED,
+    state: InAppPaymentTable.State = InAppPaymentTable.State.TRANSACTING,
     subscriberId: SubscriberId? = SubscriberId.generate(),
     paymentSourceType: PaymentSourceType = PaymentSourceType.Stripe.CreditCard,
     badge: BadgeList.Badge? = null,
@@ -549,10 +597,10 @@ class InAppPaymentRecurringContextJobTest {
       state = state,
       subscriberId = subscriberId,
       endOfPeriod = null,
-      inAppPaymentData = iap.data.copy(
-        badge = badge,
-        redemption = redemptionState
-      )
+      inAppPaymentData = iap.data.newBuilder()
+        .badge(badge)
+        .redemption(redemptionState)
+        .build()
     )
 
     return iap

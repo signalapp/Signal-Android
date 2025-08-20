@@ -11,7 +11,7 @@
         android:layout_height="64dp"
         android:minHeight="64dp"
         app:title="@string/preferences__help"
-        app:navigationIcon="@drawable/ic_arrow_left_24" />
+        app:navigationIcon="@drawable/symbol_arrow_start_24" />
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/sms_export_help_fragment_fragment"

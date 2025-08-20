@@ -1,26 +1,49 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.donate.card
 
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.processors.BehaviorProcessor
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.filterNotNull
+import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.signal.donations.StripeApi
+import org.thoughtcrime.securesms.database.InAppPaymentTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.util.rx.RxStore
 import java.util.Calendar
 
-class CreditCardViewModel : ViewModel() {
+class CreditCardViewModel(
+  inAppPaymentId: InAppPaymentTable.InAppPaymentId
+) : ViewModel() {
 
   private val formStore = RxStore(CreditCardFormState())
   private val validationProcessor: BehaviorProcessor<CreditCardValidationState> = BehaviorProcessor.create()
   private val currentYear: Int
   private val currentMonth: Int
 
+  private val internalInAppPayment = MutableStateFlow<InAppPaymentTable.InAppPayment?>(null)
+  val inAppPayment: Flow<InAppPaymentTable.InAppPayment> = internalInAppPayment.filterNotNull()
+
   private val disposables = CompositeDisposable()
 
   init {
     val calendar = Calendar.getInstance()
+
+    viewModelScope.launch {
+      val inAppPayment = withContext(Dispatchers.IO) {
+        SignalDatabase.inAppPayments.getById(inAppPaymentId)!!
+      }
+
+      internalInAppPayment.update { inAppPayment }
+    }
 
     currentYear = calendar.get(Calendar.YEAR)
     currentMonth = calendar.get(Calendar.MONTH) + 1

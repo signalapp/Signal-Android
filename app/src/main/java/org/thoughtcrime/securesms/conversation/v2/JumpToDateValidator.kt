@@ -14,8 +14,9 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.util.LRUCache
 import java.time.Instant
+import java.time.LocalDate
 import java.time.LocalDateTime
-import java.time.ZoneOffset
+import java.time.ZoneId
 import java.time.temporal.TemporalAdjusters
 import java.util.concurrent.locks.Condition
 import java.util.concurrent.locks.ReentrantLock
@@ -45,21 +46,31 @@ class JumpToDateValidator(val threadId: Long) : DateValidator {
   private val cachedDates: MutableMap<Long, LookupState> = LRUCache(500)
 
   init {
-    val startOfDay = LocalDateTime.now(ZoneOffset.UTC).withHour(0).withMinute(0).withSecond(0).withNano(0).toInstant(ZoneOffset.UTC).toEpochMilli()
+    val startOfDay = LocalDate.now(ZoneId.systemDefault())
+      .atStartOfDay(ZoneId.systemDefault())
+      .toInstant()
+      .toEpochMilli()
     loadAround(startOfDay, allowPrefetch = true)
   }
 
   override fun isValid(dateStart: Long): Boolean {
     return lock.withLock {
-      var value = cachedDates[dateStart]
+      val localMidnightTimestamp = Instant.ofEpochMilli(dateStart)
+        .atZone(ZoneId.systemDefault())
+        .toLocalDate()
+        .atStartOfDay(ZoneId.systemDefault())
+        .toInstant()
+        .toEpochMilli()
+
+      var value = cachedDates[localMidnightTimestamp]
 
       while (value == null || value == LookupState.PENDING) {
-        loadAround(dateStart, allowPrefetch = true)
+        loadAround(localMidnightTimestamp, allowPrefetch = true)
         condition.await()
-        value = cachedDates[dateStart]
+        value = cachedDates[localMidnightTimestamp]
       }
 
-      cachedDates[dateStart] == LookupState.FOUND
+      cachedDates[localMidnightTimestamp] == LookupState.FOUND
     }
   }
 
@@ -68,18 +79,22 @@ class JumpToDateValidator(val threadId: Long) : DateValidator {
    */
   private fun loadAround(dateStart: Long, allowPrefetch: Boolean) {
     SignalExecutors.BOUNDED.execute {
-      val startOfDay = LocalDateTime.ofInstant(Instant.ofEpochMilli(dateStart), ZoneOffset.UTC)
+      val startOfDay = LocalDateTime.ofInstant(Instant.ofEpochMilli(dateStart), ZoneId.systemDefault())
 
       val startOfMonth = startOfDay
         .with(TemporalAdjusters.firstDayOfMonth())
-        .withHour(0).withMinute(0).withSecond(0).withNano(0)
-        .toInstant(ZoneOffset.UTC)
+        .atZone(ZoneId.systemDefault())
+        .toLocalDate()
+        .atStartOfDay(ZoneId.systemDefault())
+        .toInstant()
         .toEpochMilli()
 
       val endOfMonth = startOfDay
         .with(TemporalAdjusters.lastDayOfMonth())
-        .withHour(0).withMinute(0).withSecond(0).withNano(0)
-        .toInstant(ZoneOffset.UTC)
+        .atZone(ZoneId.systemDefault())
+        .toLocalDate()
+        .atStartOfDay(ZoneId.systemDefault())
+        .toInstant()
         .toEpochMilli()
 
       val daysOfMonth = (startOfMonth..endOfMonth step 1.days.inWholeMilliseconds).toSet() + dateStart

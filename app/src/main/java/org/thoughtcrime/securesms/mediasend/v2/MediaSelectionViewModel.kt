@@ -175,7 +175,7 @@ class MediaSelectionViewModel(
     return store.state.storySendRequirements
   }
 
-  private fun addMedia(media: Set<Media>) {
+  fun addMedia(media: Set<Media>) {
     val newSelectionList: List<Media> = linkedSetOf<Media>().apply {
       addAll(store.state.selectedMedia)
       addAll(media)
@@ -264,10 +264,18 @@ class MediaSelectionViewModel(
     lastMediaDrag = Pair(0, 0)
   }
 
+  fun isSelectedMediaEmpty(): Boolean {
+    return store.state.selectedMedia.isEmpty()
+  }
+
   fun removeMedia(media: Media) {
+    removeMedia(setOf(media))
+  }
+
+  fun removeMedia(media: Set<Media>) {
     val snapshot = store.state
     val newMediaList = snapshot.selectedMedia - media
-    val oldFocusIndex = snapshot.selectedMedia.indexOf(media)
+    val oldFocusIndex = snapshot.selectedMedia.indexOf(media.first())
     val newFocus = when {
       newMediaList.isEmpty() -> null
       media == snapshot.focusedMedia -> newMediaList[Util.clamp(oldFocusIndex, 0, newMediaList.size - 1)]
@@ -278,7 +286,7 @@ class MediaSelectionViewModel(
       it.copy(
         selectedMedia = newMediaList,
         focusedMedia = newFocus,
-        editorStateMap = it.editorStateMap - media.uri,
+        editorStateMap = it.editorStateMap - media.map { it.uri },
         cameraFirstCapture = if (media == it.cameraFirstCapture) null else it.cameraFirstCapture
       )
     }
@@ -288,9 +296,9 @@ class MediaSelectionViewModel(
     }
 
     selectedMediaSubject.onNext(newMediaList)
-    repository.deleteBlobs(listOf(media))
+    repository.deleteBlobs(media.toList())
 
-    Log.d(TAG, "User removed ${media.uri} from message.")
+    Log.d(TAG, "User removed ${media.forEach { it.uri }} from message.")
     cancelUpload(media)
   }
 
@@ -446,6 +454,10 @@ class MediaSelectionViewModel(
   }
 
   private fun cancelUpload(media: Media) {
+    cancelUpload(setOf(media))
+  }
+
+  private fun cancelUpload(media: Set<Media>) {
     repository.uploadRepository.cancelUpload(media)
   }
 

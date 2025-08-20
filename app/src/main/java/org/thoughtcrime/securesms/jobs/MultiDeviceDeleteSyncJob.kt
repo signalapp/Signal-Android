@@ -58,7 +58,7 @@ class MultiDeviceDeleteSyncJob private constructor(
     @WorkerThread
     @JvmStatic
     fun enqueueMessageDeletes(messageRecords: Set<MessageRecord>) {
-      if (!SignalStore.account.hasLinkedDevices) {
+      if (!SignalStore.account.isMultiDevice) {
         return
       }
 
@@ -75,7 +75,7 @@ class MultiDeviceDeleteSyncJob private constructor(
     @WorkerThread
     @JvmStatic
     fun enqueueAttachmentDelete(message: MessageRecord?, attachment: DatabaseAttachment) {
-      if (!SignalStore.account.hasLinkedDevices) {
+      if (!SignalStore.account.isMultiDevice) {
         return
       }
 
@@ -89,7 +89,7 @@ class MultiDeviceDeleteSyncJob private constructor(
 
     @WorkerThread
     fun enqueueThreadDeletes(threads: List<ThreadTable.ThreadDeleteSyncInfo>, isFullDelete: Boolean) {
-      if (!SignalStore.account.hasLinkedDevices) {
+      if (!SignalStore.account.isMultiDevice) {
         return
       }
 
@@ -231,7 +231,7 @@ class MultiDeviceDeleteSyncJob private constructor(
       return Result.failure()
     }
 
-    if (!SignalStore.account.hasLinkedDevices) {
+    if (!SignalStore.account.isMultiDevice) {
       Log.w(TAG, "Not multi-device")
       return Result.failure()
     }

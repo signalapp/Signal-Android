@@ -111,6 +111,14 @@ object ExportSkips {
     return log(sentTimestamp, "Learned profile update was empty.")
   }
 
+  fun invalidE164InThreadMerge(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Invalid e164 in thread merge event.")
+  }
+
+  fun failedToParseThreadMergeEvent(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Failed to parse thread merge event.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }
@@ -158,6 +166,26 @@ object ExportOddities {
     return log(sentTimestamp, "Quote had no text or attachments. Removing it.")
   }
 
+  fun invalidE164InSessionSwitchover(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Invalid e164 in sessions switchover event. Exporting an empty event.")
+  }
+
+  fun undownloadedLongTextAttachment(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Long text attachment was not yet downloaded. Falling back to the known body with an attachment pointer.")
+  }
+
+  fun unreadableLongTextAttachment(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Long text attachment was unreadable. Falling back to the known body with an attachment pointer.")
+  }
+
+  fun unopenableLongTextAttachment(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Long text attachment failed to open. Falling back to the known body with an attachment pointer.")
+  }
+
+  fun bodyGreaterThanMaxLength(sentTimestamp: Long, length: Int): String {
+    return log(sentTimestamp, "The body length was greater than the max allowed ($length bytes). Trimming to fit.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[ODDITY][$sentTimestamp] $message"
   }
@@ -181,6 +209,14 @@ object ImportSkips {
 
   fun chatIdThreadNotFound(sentTimestamp: Long, chatId: Long): String {
     return log(sentTimestamp, "Failed to find a threadId for the provided chatId. ChatId in backup: $chatId")
+  }
+
+  fun chatFolderIdNotFound(): String {
+    return log(0, "Failed to parse chatFolderId for the provided chat folder.")
+  }
+
+  fun notificationProfileIdNotFound(): String {
+    return log(0, "Failed to parse notificationProfileId for the provided notification profile.")
   }
 
   private fun log(sentTimestamp: Long, message: String): String {

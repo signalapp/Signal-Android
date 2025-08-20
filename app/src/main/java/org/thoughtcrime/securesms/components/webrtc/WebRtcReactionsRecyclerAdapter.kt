@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.emoji.EmojiImageView
 import org.thoughtcrime.securesms.components.emoji.EmojiTextView
 import org.thoughtcrime.securesms.events.GroupCallReactionEvent
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -45,10 +44,10 @@ class WebRtcReactionsRecyclerAdapter : ListAdapter<GroupCallReactionEvent, WebRt
   }
 
   class ViewHolder(val itemView: View) : RecyclerView.ViewHolder(itemView) {
-    private val emojiView: EmojiImageView = itemView.findViewById(R.id.webrtc_call_reaction_emoji_view)
+    private val emojiView: EmojiTextView = itemView.findViewById(R.id.webrtc_call_reaction_emoji_view)
     private val textView: EmojiTextView = itemView.findViewById(R.id.webrtc_call_reaction_name_textview)
     fun bind(item: GroupCallReactionEvent) {
-      emojiView.setImageEmoji(item.reaction)
+      emojiView.text = item.reaction
       textView.text = getName(item.sender)
       itemView.isClickable = false
       textView.isClickable = false

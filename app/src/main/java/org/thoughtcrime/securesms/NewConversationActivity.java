@@ -42,6 +42,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
+import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.contacts.management.ContactsManagementRepository;
 import org.thoughtcrime.securesms.contacts.management.ContactsManagementViewModel;
 import org.thoughtcrime.securesms.contacts.paged.ChatType;
@@ -215,7 +216,7 @@ public class NewConversationActivity extends ContactSelectionActivity
   }
 
   private void handleInvite() {
-    startActivity(new Intent(this, InviteActivity.class));
+    startActivity(AppSettingsActivity.invite(this));
   }
 
   @Override
@@ -361,6 +362,8 @@ public class NewConversationActivity extends ContactSelectionActivity
                                                   handleManualRefresh();
                                                   displaySnackbar(R.string.NewConversationActivity__s_has_been_blocked, recipient.getDisplayName(this));
                                                   contactsFragment.reset();
+                                                }, (throwable) -> {
+                                                  displaySnackbar(R.string.NewConversationActivity__block_failed);
                                                 }));
                                               })
     );

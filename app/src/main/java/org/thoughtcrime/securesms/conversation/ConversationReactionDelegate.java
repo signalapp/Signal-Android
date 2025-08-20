@@ -47,10 +47,6 @@ public final class ConversationReactionDelegate {
     overlayStub.get().hide();
   }
 
-  public void hideForReactWithAny() {
-    overlayStub.get().hideForReactWithAny();
-  }
-
   public void setOnReactionSelectedListener(@NonNull ConversationReactionOverlay.OnReactionSelectedListener onReactionSelectedListener) {
     this.onReactionSelectedListener = onReactionSelectedListener;
 

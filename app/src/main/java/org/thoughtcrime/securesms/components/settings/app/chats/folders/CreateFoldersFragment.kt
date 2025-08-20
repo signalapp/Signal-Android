@@ -40,22 +40,23 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import org.signal.core.ui.Buttons
-import org.signal.core.ui.Dialogs
-import org.signal.core.ui.Dividers
-import org.signal.core.ui.Previews
-import org.signal.core.ui.Scaffolds
-import org.signal.core.ui.SignalPreview
+import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.Dialogs
+import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -94,10 +95,10 @@ class CreateFoldersFragment : ComposeFragment() {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val navController: NavController by remember { mutableStateOf(findNavController()) }
     val focusRequester = remember { FocusRequester() }
-    val isNewFolder = state.originalFolder.id == -1L
+    val isNewFolder = state.originalFolder.folderRecord.id == -1L
 
     LaunchedEffect(Unit) {
-      if (state.originalFolder == state.currentFolder) {
+      if (viewModel.shouldSetInitialFolder()) {
         viewModel.setCurrentFolderId(arguments?.getLong(KEY_FOLDER_ID) ?: -1)
         viewModel.addThreadsToFolder(arguments?.getLongArray(KEY_THREAD_IDS))
       }
@@ -119,7 +120,7 @@ class CreateFoldersFragment : ComposeFragment() {
           requireActivity().onNavigateUp()
         }
       },
-      navigationIconPainter = painterResource(id = R.drawable.ic_arrow_left_24),
+      navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding: PaddingValues ->
       CreateFolderScreen(
@@ -221,7 +222,7 @@ fun CreateFolderScreen(
     LazyColumn {
       item {
         TextField(
-          value = state.currentFolder.name,
+          value = state.currentFolder.folderRecord.name,
           label = { Text(text = stringResource(id = R.string.CreateFoldersFragment__folder_name)) },
           onValueChange = onNameChange,
           keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
@@ -245,7 +246,7 @@ fun CreateFolderScreen(
           onClick = onAddChat
         )
 
-        if (state.currentFolder.showIndividualChats) {
+        if (state.currentFolder.folderRecord.showIndividualChats) {
           FolderRow(
             icon = R.drawable.symbol_person_light_24,
             title = stringResource(R.string.ChatFoldersFragment__one_on_one_chats),
@@ -253,7 +254,7 @@ fun CreateFolderScreen(
           )
         }
 
-        if (state.currentFolder.showGroupChats) {
+        if (state.currentFolder.folderRecord.showGroupChats) {
           FolderRow(
             icon = R.drawable.symbol_group_light_20,
             title = stringResource(R.string.ChatFoldersFragment__groups),
@@ -366,12 +367,12 @@ fun CreateFolderScreen(
 
     Buttons.MediumTonal(
       colors = ButtonDefaults.filledTonalButtonColors(
-        contentColor = if (state.currentFolder.name.isEmpty()) {
+        contentColor = if (state.currentFolder.folderRecord.name.isBlank()) {
           MaterialTheme.colorScheme.onSurface.copy(alpha = 0.38f)
         } else {
           MaterialTheme.colorScheme.onSurface
         },
-        containerColor = if (state.currentFolder.name.isEmpty()) {
+        containerColor = if (state.currentFolder.folderRecord.name.isBlank()) {
           MaterialTheme.colorScheme.surfaceVariant
         } else {
           MaterialTheme.colorScheme.primaryContainer
@@ -380,7 +381,7 @@ fun CreateFolderScreen(
       ),
       enabled = hasChanges,
       onClick = {
-        if (state.currentFolder.name.isEmpty()) {
+        if (state.currentFolder.folderRecord.name.isBlank()) {
           onShowToast()
         } else {
           onCreateConfirmed()
@@ -419,7 +420,7 @@ private fun ShowUnreadSection(state: ChatFoldersSettingsState, onToggleShowUnrea
       )
     }
     Switch(
-      checked = state.currentFolder.showUnread,
+      checked = state.currentFolder.folderRecord.showUnread,
       onCheckedChange = onToggleShowUnread
     )
   }
@@ -440,7 +441,7 @@ private fun ShowMutedSection(state: ChatFoldersSettingsState, onToggleShowMuted:
       )
     }
     Switch(
-      checked = state.currentFolder.showMutedChats,
+      checked = state.currentFolder.folderRecord.showMutedChats,
       onCheckedChange = onToggleShowMuted
     )
   }
@@ -449,7 +450,7 @@ private fun ShowMutedSection(state: ChatFoldersSettingsState, onToggleShowMuted:
 @SignalPreview
 @Composable
 private fun CreateFolderPreview() {
-  val previewFolder = ChatFolderRecord(id = 1, name = "WIP")
+  val previewFolder = ChatFolder(ChatFolderRecord(id = 1, name = "WIP"))
 
   Previews.Preview {
     CreateFolderScreen(
@@ -463,7 +464,7 @@ private fun CreateFolderPreview() {
 @SignalPreview
 @Composable
 private fun EditFolderPreview() {
-  val previewFolder = ChatFolderRecord(id = 1, name = "Work")
+  val previewFolder = ChatFolder(ChatFolderRecord(id = 1, name = "Work"))
 
   Previews.Preview {
     CreateFolderScreen(

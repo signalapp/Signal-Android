@@ -5,6 +5,7 @@ import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.groups.state.SenderKeyRecord
 import org.signal.libsignal.protocol.state.IdentityKeyStore
+import org.signal.libsignal.protocol.state.IdentityKeyStore.IdentityChange
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.PreKeyRecord
 import org.signal.libsignal.protocol.state.SessionRecord
@@ -41,7 +42,7 @@ class BufferedSignalServiceAccountDataStore(selfServiceId: ServiceId) : SignalSe
     return identityStore.localRegistrationId
   }
 
-  override fun saveIdentity(address: SignalProtocolAddress, identityKey: IdentityKey): Boolean {
+  override fun saveIdentity(address: SignalProtocolAddress, identityKey: IdentityKey): IdentityChange {
     return identityStore.saveIdentity(address, identityKey)
   }
 

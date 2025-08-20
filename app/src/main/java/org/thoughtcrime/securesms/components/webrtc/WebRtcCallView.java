@@ -557,8 +557,17 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     smallLocalRender.setMirror(localCallParticipant.getCameraDirection() == CameraState.Direction.FRONT);
 
     if (state == WebRtcLocalRenderState.EXPANDED) {
-      pictureInPictureExpansionHelper.beginExpandTransition();
-      smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.EXPANDED_SELF_PIP, localCallParticipant.isMoreThanOneCameraAvailable());
+      if (largeLocalRenderFrame.getVisibility() == View.VISIBLE) {
+        smallLocalRenderFrame.setVisibility(View.VISIBLE);
+        animatePipToExpandedRectangle(displaySmallSelfPipInLandscape, localCallParticipant.isMoreThanOneCameraAvailable());
+
+        largeLocalRender.attachBroadcastVideoSink(null);
+        largeLocalRenderFrame.setVisibility(View.GONE);
+      } else {
+        pictureInPictureExpansionHelper.beginExpandTransition();
+        smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.EXPANDED_SELF_PIP, localCallParticipant.isMoreThanOneCameraAvailable());
+      }
+
       return;
     } else if ((state.isAnySmall() || state == WebRtcLocalRenderState.GONE) && pictureInPictureExpansionHelper.isExpandedOrExpanding()) {
       pictureInPictureExpansionHelper.beginShrinkTransition();
@@ -782,6 +791,26 @@ public class WebRtcCallView extends InsetAwareConstraintLayout {
     if (groupCallSpeakerHint.resolved()) {
       groupCallSpeakerHint.get().setVisibility(View.GONE);
     }
+  }
+
+  private void animatePipToExpandedRectangle(boolean isLandscape, boolean moreThanOneCameraAvailable) {
+    final Point dimens;
+    if (isLandscape) {
+      dimens = new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.NORMAL_PIP_HEIGHT_DP),
+                         ViewUtil.dpToPx(PictureInPictureExpansionHelper.NORMAL_PIP_WIDTH_DP));
+    } else {
+      dimens = new Point(ViewUtil.dpToPx(PictureInPictureExpansionHelper.NORMAL_PIP_WIDTH_DP),
+                         ViewUtil.dpToPx(PictureInPictureExpansionHelper.NORMAL_PIP_HEIGHT_DP));
+    }
+
+    pictureInPictureExpansionHelper.startExpandedSizeTransition(dimens, new PictureInPictureExpansionHelper.Callback() {
+      @Override
+      public void onAnimationHasFinished() {
+        pictureInPictureGestureHelper.enableCorners();
+      }
+    });
+
+    smallLocalRender.setSelfPipMode(CallParticipantView.SelfPipMode.EXPANDED_SELF_PIP, moreThanOneCameraAvailable);
   }
 
   private void animatePipToLargeRectangle(boolean isLandscape, boolean moreThanOneCameraAvailable) {

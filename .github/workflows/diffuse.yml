@@ -8,7 +8,7 @@ permissions:
   pull-requests: write # to comment on PR
 
 env:
-  NDK_VERSION: '27.2.12479018'
+  NDK_VERSION: '28.0.13004108'
 
 jobs:
   assemble-base:

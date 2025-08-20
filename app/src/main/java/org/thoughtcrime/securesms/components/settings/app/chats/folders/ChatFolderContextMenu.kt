@@ -19,6 +19,7 @@ object ChatFolderContextMenu {
     rootView: ViewGroup = anchorView.rootView as ViewGroup,
     folderType: ChatFolderRecord.FolderType,
     unreadCount: Int,
+    isEmpty: Boolean,
     isMuted: Boolean,
     onEdit: () -> Unit = {},
     onMuteAll: () -> Unit = {},
@@ -32,6 +33,7 @@ object ChatFolderContextMenu {
       rootView = rootView,
       folderType = folderType,
       unreadCount = unreadCount,
+      isEmpty = isEmpty,
       isMuted = isMuted,
       callbacks = object : Callbacks {
         override fun onEdit() = onEdit()
@@ -48,6 +50,7 @@ object ChatFolderContextMenu {
     anchorView: View,
     rootView: ViewGroup,
     unreadCount: Int,
+    isEmpty: Boolean,
     isMuted: Boolean,
     folderType: ChatFolderRecord.FolderType,
     callbacks: Callbacks
@@ -61,13 +64,13 @@ object ChatFolderContextMenu {
         )
       }
 
-      if (isMuted) {
+      if (isMuted && !isEmpty) {
         add(
           ActionItem(R.drawable.symbol_bell_24, context.getString(R.string.ChatFoldersFragment__unmute_all)) {
             callbacks.onUnmuteAll()
           }
         )
-      } else {
+      } else if (!isEmpty) {
         add(
           ActionItem(R.drawable.symbol_bell_slash_24, context.getString(R.string.ChatFoldersFragment__mute_all)) {
             callbacks.onMuteAll()

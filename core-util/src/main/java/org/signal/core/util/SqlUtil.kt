@@ -14,7 +14,7 @@ object SqlUtil {
   private val TAG = Log.tag(SqlUtil::class.java)
 
   /** The maximum number of arguments (i.e. question marks) allowed in a SQL statement.  */
-  private const val MAX_QUERY_ARGS = 999
+  const val MAX_QUERY_ARGS = 999
 
   @JvmField
   val COUNT = arrayOf("COUNT(*)")
@@ -418,9 +418,11 @@ object SqlUtil {
       .toList()
   }
 
-  fun buildSingleBulkInsert(tableName: String, columns: Array<String>, contentValues: List<ContentValues>): Query {
+  fun buildSingleBulkInsert(tableName: String, columns: Array<String>, contentValues: List<ContentValues>, onConflict: String? = null): Query {
+    val conflictString = onConflict?.let { " OR $onConflict" } ?: ""
+
     val builder = StringBuilder()
-    builder.append("INSERT INTO ").append(tableName).append(" (")
+    builder.append("INSERT$conflictString INTO ").append(tableName).append(" (")
 
     val columnString = columns.joinToString(separator = ", ")
     builder.append(columnString)

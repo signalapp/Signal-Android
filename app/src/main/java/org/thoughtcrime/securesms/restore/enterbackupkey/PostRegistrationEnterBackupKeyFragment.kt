@@ -20,7 +20,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
-import org.signal.core.ui.Dialogs
+import org.signal.core.ui.compose.Dialogs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -64,6 +64,7 @@ class PostRegistrationEnterBackupKeyFragment : ComposeFragment() {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     EnterBackupKeyScreen(
+      isDisplayedDuringManualRestore = false,
       backupKey = viewModel.backupKey,
       isBackupKeyValid = state.backupKeyValid,
       inProgress = state.inProgress,

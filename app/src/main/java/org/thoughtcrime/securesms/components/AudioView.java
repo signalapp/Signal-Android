@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.components;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
@@ -33,10 +34,12 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.audio.AudioWaveForms;
 import org.thoughtcrime.securesms.components.voice.VoiceNotePlaybackState;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.events.PartProgressEvent;
+import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mms.AudioSlide;
 import org.thoughtcrime.securesms.mms.SlideClickListener;
 
@@ -246,6 +249,22 @@ public final class AudioView extends FrameLayout {
     }
 
     this.audioSlide = audio;
+
+    if (SignalStore.internal().getShowArchiveStateHint() && audioSlide.asAttachment() instanceof DatabaseAttachment) {
+      DatabaseAttachment dbAttachment = (DatabaseAttachment) audioSlide.asAttachment();
+      View mediaArchive = findViewById(R.id.thumbnail_media_archive);
+      if (mediaArchive != null) {
+        mediaArchive.setVisibility(View.VISIBLE);
+        switch (dbAttachment.archiveTransferState) {
+          case NONE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.BLACK));
+          case COPY_PENDING -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.BLUE));
+          case UPLOAD_IN_PROGRESS -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.CYAN));
+          case FINISHED -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.GREEN));
+          case TEMPORARY_FAILURE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.YELLOW));
+          case PERMANENT_FAILURE -> mediaArchive.setBackgroundTintList(ColorStateList.valueOf(Color.RED));
+        }
+      }
+    }
   }
 
   public void setDownloadClickListener(@Nullable SlideClickListener listener) {

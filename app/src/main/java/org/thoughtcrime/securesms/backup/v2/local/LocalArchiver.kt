@@ -58,12 +58,12 @@ object LocalArchiver {
       val mediaNames: MutableSet<MediaName> = Collections.synchronizedSet(HashSet())
 
       Log.i(TAG, "Starting frame export")
-      BackupRepository.localExport(mainStream, LocalExportProgressListener(), cancellationSignal) { attachment, source ->
+      BackupRepository.exportForLocalBackup(mainStream, LocalExportProgressListener(), cancellationSignal) { attachment, source ->
         if (cancellationSignal()) {
-          return@localExport
+          return@exportForLocalBackup
         }
 
-        val mediaName = MediaName.fromDigest(attachment.remoteDigest)
+        val mediaName = MediaName.fromPlaintextHashAndRemoteKey(attachment.plaintextHash, attachment.remoteKey)
 
         mediaNames.add(mediaName)
 
@@ -73,7 +73,6 @@ object LocalArchiver {
           }
 
           source()?.use { sourceStream ->
-            val iv = attachment.remoteIv
             val combinedKey = Base64.decode(attachment.remoteKey)
             val destination: OutputStream? = filesFileSystem.fileOutputStream(mediaName)
 
@@ -84,7 +83,7 @@ object LocalArchiver {
               // todo [local-backup] but deal with attachment disappearing/deleted by normal app use
               try {
                 PaddingInputStream(sourceStream, attachment.size).use { input ->
-                  AttachmentCipherOutputStream(combinedKey, iv, destination).use { output ->
+                  AttachmentCipherOutputStream(combinedKey, null, destination).use { output ->
                     StreamUtil.copy(input, output)
                   }
                 }
@@ -127,7 +126,7 @@ object LocalArchiver {
 
       val mainStreamLength = snapshotFileSystem.mainLength() ?: return ArchiveResult.failure(FailureCause.MAIN_STREAM)
 
-      BackupRepository.localImport(
+      BackupRepository.importLocal(
         mainStreamFactory = { snapshotFileSystem.mainInputStream()!! },
         mainStreamLength = mainStreamLength,
         selfData = selfData

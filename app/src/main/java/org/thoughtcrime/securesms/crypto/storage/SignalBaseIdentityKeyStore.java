@@ -63,8 +63,12 @@ public class SignalBaseIdentityKeyStore {
     return SignalStore.account().getRegistrationId();
   }
 
-  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
-    return saveIdentity(address, identityKey, false) == SaveResult.UPDATE;
+  public IdentityKeyStore.IdentityChange saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
+    switch (saveIdentity(address, identityKey, false)) {
+      case NEW, NO_CHANGE, NON_BLOCKING_APPROVAL_REQUIRED -> { return IdentityKeyStore.IdentityChange.NEW_OR_UNCHANGED; }
+      case UPDATE -> { return IdentityKeyStore.IdentityChange.REPLACED_EXISTING; }
+    }
+    throw new AssertionError("unhandled save result");
   }
 
   public @NonNull SaveResult saveIdentity(SignalProtocolAddress address, IdentityKey identityKey, boolean nonBlockingApproval) {
@@ -234,7 +238,7 @@ public class SignalBaseIdentityKeyStore {
     }
 
     if (!identityKey.equals(identityRecord.getIdentityKey())) {
-      Log.w(TAG, "Identity keys don't match... service: " + identityKey.hashCode() + " database: " + identityRecord.getIdentityKey().hashCode());
+      Log.w(TAG, "Identity keys don't match... service: ***" + (identityKey.hashCode() % 100) + " database: ***" + (identityRecord.getIdentityKey().hashCode() % 100));
       return false;
     }
 

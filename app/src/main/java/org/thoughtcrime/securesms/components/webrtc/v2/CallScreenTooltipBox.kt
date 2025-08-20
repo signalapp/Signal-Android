@@ -20,8 +20,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import kotlinx.coroutines.flow.drop
-import org.signal.core.ui.DarkPreview
-import org.signal.core.ui.Previews
+import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 
 /**

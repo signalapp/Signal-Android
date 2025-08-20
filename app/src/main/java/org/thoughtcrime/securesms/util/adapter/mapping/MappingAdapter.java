@@ -72,6 +72,12 @@ public class MappingAdapter extends ListAdapter<MappingModel<?>, MappingViewHold
   }
 
   @Override
+  public void onViewRecycled(@NonNull MappingViewHolder<?> holder) {
+    super.onViewRecycled(holder);
+    holder.onViewRecycled();
+  }
+
+  @Override
   public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
     super.onAttachedToRecyclerView(recyclerView);
     if (useNoCrossfadeAnimator && recyclerView.getItemAnimator() != null && recyclerView.getItemAnimator().getClass() == DefaultItemAnimator.class) {

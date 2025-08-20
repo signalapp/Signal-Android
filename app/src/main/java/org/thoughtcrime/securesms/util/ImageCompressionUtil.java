@@ -59,7 +59,7 @@ public final class ImageCompressionUtil {
                                                            @IntRange(from = 0, to = 100) int quality)
       throws BitmapDecodingException
   {
-    Result result = compress(context, mimeType, glideModel, maxDimension, quality);
+    Result result = compress(context, mimeType, mimeType, glideModel, maxDimension, quality);
 
     if (result.getData().length <= maxBytes) {
       return result;
@@ -74,6 +74,7 @@ public final class ImageCompressionUtil {
   @WorkerThread
   public static @NonNull Result compress(@NonNull Context context,
                                          @Nullable String contentType,
+                                         @Nullable String targetContentType,
                                          @NonNull Object glideModel,
                                          int maxDimension,
                                          @IntRange(from = 0, to = 100) int quality)
@@ -121,7 +122,7 @@ public final class ImageCompressionUtil {
     }
 
     ByteArrayOutputStream output = new ByteArrayOutputStream();
-    Bitmap.CompressFormat format = mimeTypeToCompressFormat(contentType);
+    Bitmap.CompressFormat format = mimeTypeToCompressFormat(targetContentType);
     scaledBitmap.compress(format, quality, output);
 
     byte[] data = output.toByteArray();
@@ -137,6 +138,8 @@ public final class ImageCompressionUtil {
         MediaUtil.isAvifType(mimeType) ||
         MediaUtil.isVideoType(mimeType)) {
       return Bitmap.CompressFormat.JPEG;
+    } else if (MediaUtil.isWebpType(mimeType)) {
+      return Bitmap.CompressFormat.WEBP;
     } else {
       return Bitmap.CompressFormat.PNG;
     }
@@ -148,6 +151,8 @@ public final class ImageCompressionUtil {
         return MediaUtil.IMAGE_JPEG;
       case PNG:
         return MediaUtil.IMAGE_PNG;
+      case WEBP:
+        return MediaUtil.IMAGE_WEBP;
       default:
         throw new AssertionError("Unsupported format!");
     }

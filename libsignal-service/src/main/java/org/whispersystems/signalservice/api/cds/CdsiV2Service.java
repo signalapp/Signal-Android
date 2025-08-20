@@ -41,10 +41,10 @@ public final class CdsiV2Service {
 
   private final CdsiRequestHandler cdsiRequestHandler;
 
-  public CdsiV2Service(@Nonnull Network network, boolean useLibsignalRouteBasedCDSIConnectionLogic) {
+  public CdsiV2Service(@Nonnull Network network) {
     this.cdsiRequestHandler = (username, password, request, tokenSaver) -> {
       try {
-        Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), tokenSaver, useLibsignalRouteBasedCDSIConnectionLogic);
+        Future<CdsiLookupResponse> cdsiRequest = network.cdsiLookup(username, password, buildLibsignalRequest(request), tokenSaver);
         return Single.fromFuture(cdsiRequest)
                      .onErrorResumeNext((Throwable err) -> {
                        if (err instanceof ExecutionException && err.getCause() != null) {
@@ -89,7 +89,7 @@ public final class CdsiV2Service {
   private static CdsiLookupRequest buildLibsignalRequest(Request request) {
     HashMap<org.signal.libsignal.protocol.ServiceId, ProfileKey> serviceIds = new HashMap<>(request.serviceIds.size());
     request.serviceIds.forEach((key, value) -> serviceIds.put(key.getLibSignalServiceId(), value));
-    return new CdsiLookupRequest(request.previousE164s, request.newE164s, serviceIds, false, Optional.ofNullable(request.token));
+    return new CdsiLookupRequest(request.previousE164s, request.newE164s, serviceIds, Optional.ofNullable(request.token));
   }
 
   private static Response parseLibsignalResponse(CdsiLookupResponse response) {
@@ -106,6 +106,8 @@ public final class CdsiV2Service {
       return new CdsiResourceExhaustedException((int) e.duration.getSeconds());
     } else if (lookupError instanceof IllegalArgumentException) {
       return new CdsiInvalidArgumentException();
+    } else if (lookupError instanceof org.signal.libsignal.net.CdsiProtocolException) {
+      return new IOException(lookupError);
     }
     return lookupError;
   }

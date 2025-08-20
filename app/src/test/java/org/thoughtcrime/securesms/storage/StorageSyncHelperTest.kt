@@ -1,24 +1,43 @@
 package org.thoughtcrime.securesms.storage
 
+import io.mockk.every
+import io.mockk.mockkObject
+import io.mockk.unmockkObject
 import okio.ByteString
+import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertTrue
+import org.junit.Before
 import org.junit.Test
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.findIdDifference
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.profileKeyChanged
 import org.thoughtcrime.securesms.testutil.TestHelpers
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.ACI.Companion.parseOrThrow
 import org.whispersystems.signalservice.api.storage.SignalContactRecord
 import org.whispersystems.signalservice.api.storage.SignalRecord
 import org.whispersystems.signalservice.api.storage.StorageId
 import org.whispersystems.signalservice.internal.storage.protos.ContactRecord
+import kotlin.time.Duration.Companion.days
 
 class StorageSyncHelperTest {
+  @Before
+  fun setup() {
+    mockkObject(RemoteConfig)
+  }
+
+  @After
+  fun tearDown() {
+    unmockkObject(RemoteConfig)
+  }
+
   @Test
   fun findIdDifference_allOverlap() {
+    every { RemoteConfig.messageQueueTime } returns 45.days.inWholeMilliseconds
+
     val result = findIdDifference(keyListOf(1, 2, 3), keyListOf(1, 2, 3))
     assertTrue(result.localOnlyIds.isEmpty())
     assertTrue(result.remoteOnlyIds.isEmpty())
@@ -27,6 +46,8 @@ class StorageSyncHelperTest {
 
   @Test
   fun findIdDifference_noOverlap() {
+    every { RemoteConfig.messageQueueTime } returns 45.days.inWholeMilliseconds
+
     val result = findIdDifference(keyListOf(1, 2, 3), keyListOf(4, 5, 6))
     TestHelpers.assertContentsEqual(keyListOf(1, 2, 3), result.remoteOnlyIds)
     TestHelpers.assertContentsEqual(keyListOf(4, 5, 6), result.localOnlyIds)
@@ -35,6 +56,8 @@ class StorageSyncHelperTest {
 
   @Test
   fun findIdDifference_someOverlap() {
+    every { RemoteConfig.messageQueueTime } returns 45.days.inWholeMilliseconds
+
     val result = findIdDifference(keyListOf(1, 2, 3), keyListOf(2, 3, 4))
     TestHelpers.assertContentsEqual(keyListOf(1), result.remoteOnlyIds)
     TestHelpers.assertContentsEqual(keyListOf(4), result.localOnlyIds)
@@ -43,6 +66,8 @@ class StorageSyncHelperTest {
 
   @Test
   fun findIdDifference_typeMismatch_allOverlap() {
+    every { RemoteConfig.messageQueueTime } returns 45.days.inWholeMilliseconds
+
     val result = findIdDifference(
       keyListOf(
         mapOf(
@@ -65,6 +90,8 @@ class StorageSyncHelperTest {
 
   @Test
   fun findIdDifference_typeMismatch_someOverlap() {
+    every { RemoteConfig.messageQueueTime } returns 45.days.inWholeMilliseconds
+
     val result = findIdDifference(
       keyListOf(
         mapOf(
@@ -89,6 +116,8 @@ class StorageSyncHelperTest {
 
   @Test
   fun test_ContactUpdate_equals_sameProfileKeys() {
+    every { RemoteConfig.messageQueueTime } returns 45.days.inWholeMilliseconds
+
     val profileKey = ByteArray(32)
     val profileKeyCopy = profileKey.clone()
 
@@ -106,6 +135,8 @@ class StorageSyncHelperTest {
 
   @Test
   fun test_ContactUpdate_equals_differentProfileKeys() {
+    every { RemoteConfig.messageQueueTime } returns 45.days.inWholeMilliseconds
+
     val profileKey = ByteArray(32)
     val profileKeyCopy = profileKey.clone()
     profileKeyCopy[0] = 1

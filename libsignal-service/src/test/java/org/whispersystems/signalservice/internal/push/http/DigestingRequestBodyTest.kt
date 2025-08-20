@@ -11,6 +11,7 @@ import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.internal.util.Util
 import java.io.ByteArrayInputStream
@@ -80,7 +81,7 @@ class DigestingRequestBodyTest {
       contentLength = CONTENT_LENGTH.toLong(),
       incremental = false,
       progressListener = object : SignalServiceAttachment.ProgressListener {
-        override fun onAttachmentProgress(total: Long, progress: Long) {
+        override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
           // no-op
         }
 

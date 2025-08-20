@@ -155,6 +155,16 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
             }
           }
         })
+        player.addListener(
+          object : Player.Listener {
+            override fun onPlaybackStateChanged(playbackState: Int) {
+              if (playbackState == Player.STATE_READY) {
+                player.seekTo(window, (player.duration * progress).toLong())
+                player.removeListener(this)
+              }
+            }
+          }
+        )
         player.prepare()
         canLoadMore = !singlePlayback
       } else if (latestUri == uri) {
@@ -217,7 +227,7 @@ class VoiceNotePlayerCallback(val context: Context, val player: VoiceNotePlayer)
 
   private fun indexOfPlayerMediaItemByUri(uri: Uri): Int {
     for (i in 0 until player.mediaItemCount) {
-      val playbackProperties: LocalConfiguration? = player.getMediaItemAt(i).playbackProperties
+      val playbackProperties: LocalConfiguration? = player.getMediaItemAt(i).localConfiguration
       if (playbackProperties?.uri == uri) {
         return i
       }

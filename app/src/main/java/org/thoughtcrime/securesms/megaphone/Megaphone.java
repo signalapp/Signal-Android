@@ -221,7 +221,7 @@ public class Megaphone {
     }
   }
 
-  enum Style {
+  public enum Style {
     /**
      * Specialized style for onboarding.
      */

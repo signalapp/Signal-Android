@@ -42,7 +42,7 @@ public class SignalIdentityKeyStore implements IdentityKeyStore {
   }
 
   @Override
-  public boolean saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
+  public IdentityChange saveIdentity(SignalProtocolAddress address, IdentityKey identityKey) {
     return baseStore.saveIdentity(address, identityKey);
   }
 

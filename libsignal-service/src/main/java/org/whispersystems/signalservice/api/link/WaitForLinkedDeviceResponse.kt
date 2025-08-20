@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 data class WaitForLinkedDeviceResponse(
   @JsonProperty val id: Int,
   @JsonProperty val name: String,
-  @JsonProperty val created: Long,
-  @JsonProperty val lastSeen: Long
+  @JsonProperty val lastSeen: Long,
+  @JsonProperty val registrationId: Int,
+  @JsonProperty val createdAtCiphertext: String?
 )

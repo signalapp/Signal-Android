@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:viewBindingIgnore="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="94dp">
+    android:layout_height="94dp"
+    tools:viewBindingIgnore="true">
 
     <FrameLayout
         android:layout_width="wrap_content"
@@ -26,8 +26,9 @@
             android:gravity="center"
             android:text="@string/CallToastPopupWindow__swipe_to_view_screen_share"
             android:textAppearance="@style/TextAppearance.Signal.Body2"
+            android:textColor="@color/signal_light_colorOnSecondaryContainer"
             app:drawableStartCompat="@drawable/symbol_arrow_down_24"
-            app:drawableTint="@color/signal_text_primary"
+            app:drawableTint="@color/signal_light_colorOnSecondaryContainer"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/avatar"

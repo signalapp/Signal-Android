@@ -98,7 +98,7 @@ class StorageRotateManifestJob private constructor(parameters: Parameters) : Job
       }
       StorageServiceRepository.WriteStorageRecordsResult.ConflictError -> {
         Log.w(TAG, "Hit a conflict! Enqueuing a sync followed by another rotation.")
-        AppDependencies.jobManager.add(StorageSyncJob())
+        AppDependencies.jobManager.add(StorageSyncJob.forRemoteChange())
         AppDependencies.jobManager.add(StorageRotateManifestJob())
         Result.failure()
       }

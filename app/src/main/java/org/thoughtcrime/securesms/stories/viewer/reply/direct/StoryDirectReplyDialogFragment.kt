@@ -92,7 +92,7 @@ class StoryDirectReplyDialogFragment :
       }
 
       override fun onReactionClicked(emoji: String) {
-        sendReaction(emoji)
+        sendReaction(emoji, composer.input.text.isNullOrBlank())
       }
 
       override fun onPickAnyReactionClicked() {
@@ -176,11 +176,11 @@ class StoryDirectReplyDialogFragment :
   }
 
   override fun onReactWithAnyEmojiSelected(emoji: String) {
-    sendReaction(emoji)
+    sendReaction(emoji, composer.input.text.isNullOrBlank())
     isReactClosingAfterSend = true
   }
 
-  private fun sendReaction(emoji: String) {
+  private fun sendReaction(emoji: String, shouldClose: Boolean) {
     lifecycleDisposable += viewModel.sendReaction(emoji)
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe {
@@ -190,7 +190,9 @@ class StoryDirectReplyDialogFragment :
             putString(REQUEST_EMOJI, emoji)
           }
         )
-        dismissAllowingStateLoss()
+        if (shouldClose) {
+          dismissAllowingStateLoss()
+        }
       }
   }
 }

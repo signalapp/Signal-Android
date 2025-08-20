@@ -17,4 +17,13 @@
         app:surface_type="texture_view"
         app:player_layout_id="@layout/media_preview_exoplayer_layout"/>
 
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:layout_gravity="center"
+        style="?android:attr/progressBarStyleLarge"
+        android:indeterminateTint="@color/signal_colorOnSurfaceVariant"
+        android:indeterminate="true" />
+
 </FrameLayout>

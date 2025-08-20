@@ -5,7 +5,6 @@ import okio.ByteString
 import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfEmpty
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper.applyAccountStorageSyncUpdates
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
@@ -125,7 +124,6 @@ class AccountRecordProcessor(
       preferContactAvatars = remote.proto.preferContactAvatars
       universalExpireTimer = remote.proto.universalExpireTimer
       primarySendsSms = false
-      e164 = if (SignalStore.account.isPrimaryDevice) local.proto.e164 else remote.proto.e164
       preferredReactionEmoji = remote.proto.preferredReactionEmoji.takeIf { it.isNotEmpty() } ?: local.proto.preferredReactionEmoji
       displayBadgesOnProfile = remote.proto.displayBadgesOnProfile
       subscriptionManuallyCancelled = remote.proto.subscriptionManuallyCancelled
@@ -138,6 +136,7 @@ class AccountRecordProcessor(
       hasCompletedUsernameOnboarding = remote.proto.hasCompletedUsernameOnboarding || local.proto.hasCompletedUsernameOnboarding
       username = remote.proto.username
       usernameLink = remote.proto.usernameLink
+      notificationProfileManualOverride = remote.proto.notificationProfileManualOverride
 
       safeSetPayments(payments?.enabled == true, payments?.entropy?.toByteArray())
       safeSetSubscriber(donationSubscriberId, donationSubscriberCurrencyCode)

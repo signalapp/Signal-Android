@@ -15,30 +15,25 @@ import java.util.UUID
 
 class ArchivedAttachment : Attachment {
 
-  @JvmField
-  val archiveCdn: Int
+  companion object {
+    private const val NO_ARCHIVE_CDN = -404
+  }
 
   @JvmField
-  val archiveMediaName: String
+  val archiveCdn: Int?
 
   @JvmField
-  val archiveMediaId: String
-
-  @JvmField
-  val archiveThumbnailMediaId: String
+  val plaintextHash: ByteArray
 
   constructor(
     contentType: String?,
     size: Long,
     cdn: Int,
+    uploadTimestamp: Long?,
     key: ByteArray,
-    iv: ByteArray?,
     cdnKey: String?,
     archiveCdn: Int?,
-    archiveMediaName: String,
-    archiveMediaId: String,
-    archiveThumbnailMediaId: String,
-    digest: ByteArray,
+    plaintextHash: ByteArray,
     incrementalMac: ByteArray?,
     incrementalMacChunkSize: Int?,
     width: Int?,
@@ -60,9 +55,8 @@ class ArchivedAttachment : Attachment {
     fileName = fileName,
     cdn = Cdn.fromCdnNumber(cdn),
     remoteLocation = cdnKey,
-    remoteKey = Base64.encodeWithoutPadding(key),
-    remoteIv = iv,
-    remoteDigest = digest,
+    remoteKey = Base64.encodeWithPadding(key),
+    remoteDigest = null,
     incrementalDigest = incrementalMac,
     fastPreflightId = null,
     voiceNote = voiceNote,
@@ -71,7 +65,7 @@ class ArchivedAttachment : Attachment {
     width = width ?: 0,
     height = height ?: 0,
     incrementalMacChunkSize = incrementalMacChunkSize ?: 0,
-    uploadTimestamp = 0,
+    uploadTimestamp = uploadTimestamp ?: 0,
     caption = caption,
     stickerLocator = stickerLocator,
     blurHash = BlurHash.parseOrNull(blurHash),
@@ -79,25 +73,19 @@ class ArchivedAttachment : Attachment {
     transformProperties = null,
     uuid = uuid
   ) {
-    this.archiveCdn = archiveCdn ?: Cdn.CDN_3.cdnNumber
-    this.archiveMediaName = archiveMediaName
-    this.archiveMediaId = archiveMediaId
-    this.archiveThumbnailMediaId = archiveThumbnailMediaId
+    this.archiveCdn = archiveCdn
+    this.plaintextHash = plaintextHash
   }
 
   constructor(parcel: Parcel) : super(parcel) {
-    archiveCdn = parcel.readInt()
-    archiveMediaName = parcel.readString()!!
-    archiveMediaId = parcel.readString()!!
-    archiveThumbnailMediaId = parcel.readString()!!
+    archiveCdn = parcel.readInt().takeIf { it != NO_ARCHIVE_CDN }
+    plaintextHash = parcel.createByteArray()!!
   }
 
   override fun writeToParcel(dest: Parcel, flags: Int) {
     super.writeToParcel(dest, flags)
-    dest.writeInt(archiveCdn)
-    dest.writeString(archiveMediaName)
-    dest.writeString(archiveMediaId)
-    dest.writeString(archiveThumbnailMediaId)
+    dest.writeInt(archiveCdn ?: NO_ARCHIVE_CDN)
+    dest.writeByteArray(plaintextHash)
   }
 
   override val uri: Uri? = null

@@ -323,10 +323,10 @@ class RetrieveRemoteAnnouncementsJob private constructor(private val force: Bool
     if (megaphonesToDelete.isNotEmpty()) {
       Log.i(TAG, "Clearing ${megaphonesToDelete.size} stale megaphones ${megaphonesToDelete.keys}")
       for ((uuid, megaphone) in megaphonesToDelete) {
+        SignalDatabase.remoteMegaphones.clear(uuid)
         if (megaphone.imageUri != null) {
           BlobProvider.getInstance().delete(context, megaphone.imageUri)
         }
-        SignalDatabase.remoteMegaphones.clear(uuid)
       }
     }
   }

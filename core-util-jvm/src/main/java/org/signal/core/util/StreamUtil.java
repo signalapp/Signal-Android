@@ -96,10 +96,10 @@ public final class StreamUtil {
   }
 
   public static long copy(InputStream in, OutputStream out) throws IOException {
-    return copy(in, out, true);
+    return copy(in, out, true, true);
   }
 
-  public static long copy(InputStream in, OutputStream out, boolean closeInputStream) throws IOException {
+  public static long copy(InputStream in, OutputStream out, boolean closeInputStream, boolean closeOutputStream) throws IOException {
     byte[] buffer = new byte[64 * 1024];
     int read;
     long total = 0;
@@ -114,7 +114,10 @@ public final class StreamUtil {
     }
 
     out.flush();
-    out.close();
+
+    if (closeOutputStream) {
+      out.close();
+    }
 
     return total;
   }

@@ -115,6 +115,8 @@ abstract class ConversationListDataSource implements PagedDataSource<Long, Conve
         return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.CONVERSATION_FILTER_EMPTY,
                                                                                                       0,
                                                                                                       showConversationFooterTip)));
+      } else if (this instanceof ArchivedConversationListDataSource) {
+        return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.ARCHIVED_EMPTY, 0, false)));
       } else if (chatFolder.getFolderType() != ChatFolderRecord.FolderType.ALL) {
         return Collections.singletonList(new Conversation(ConversationReader.buildThreadRecordForType(Conversation.Type.CHAT_FOLDER_EMPTY, 0, false)));
       } else {

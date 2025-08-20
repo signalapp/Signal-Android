@@ -4,10 +4,12 @@ import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okio.BufferedSink
+import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
 import org.signal.libsignal.protocol.logging.Log
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream
 import org.whispersystems.signalservice.api.crypto.SkippingOutputStream
+import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.internal.crypto.AttachmentDigest
 import java.io.ByteArrayOutputStream
@@ -41,7 +43,7 @@ class DigestingRequestBody(
   @Throws(IOException::class)
   override fun writeTo(sink: BufferedSink) {
     val digestStream = ByteArrayOutputStream()
-    val inner = SkippingOutputStream(contentStart, sink.outputStream())
+    val inner = SkippingOutputStream(contentStart, NonClosingOutputStream(sink.outputStream()))
     val isIncremental = incremental && outputStreamFactory is AttachmentCipherOutputStreamFactory
     val sizeChoice: ChunkSizeChoice = ChunkSizeChoice.inferChunkSize(contentLength.toInt())
     val outputStream: DigestingOutputStream = if (isIncremental) {
@@ -58,7 +60,7 @@ class DigestingRequestBody(
         throw IOException("Canceled!")
       }
       outputStream.write(buffer, 0, read)
-      progressListener?.onAttachmentProgress(contentLength, outputStream.totalBytesWritten)
+      progressListener?.onAttachmentProgress(AttachmentTransferProgress(total = contentLength, transmitted = outputStream.totalBytesWritten))
     }
 
     outputStream.flush()
@@ -73,6 +75,7 @@ class DigestingRequestBody(
       digestStream.close()
       digestStream.toByteArray()
     } else {
+      outputStream.close()
       null
     }
 

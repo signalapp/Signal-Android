@@ -54,9 +54,9 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import org.signal.core.ui.BottomSheets
-import org.signal.core.ui.Previews
-import org.signal.core.ui.TriggerAlignedPopupState
+import org.signal.core.ui.compose.BottomSheets
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.TriggerAlignedPopupState
 import org.signal.core.util.DimensionUnit
 import org.thoughtcrime.securesms.components.webrtc.WebRtcLocalRenderState
 import org.thoughtcrime.securesms.events.CallParticipant

@@ -64,6 +64,11 @@ public class ConversationShortcutUpdateJob extends BaseJob {
       return;
     }
 
+    if (SignalStore.account().getAci() == null) {
+      Log.i(TAG, "Need ACI for group shortcuts");
+      return;
+    }
+
     ThreadTable threadTable  = SignalDatabase.threads();
     int         maxShortcuts = ConversationUtil.getMaxShortcuts(context);
     List<Recipient> ranked         = new ArrayList<>(maxShortcuts);

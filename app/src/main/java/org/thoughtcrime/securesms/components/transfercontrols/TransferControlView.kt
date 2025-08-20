@@ -571,7 +571,9 @@ class TransferControlView @JvmOverloads constructor(context: Context, attrs: Att
         }
       }
       val playableWhileDownloading = allStreamableOrDone
-      val isUpload = slides.any { it.asAttachment().uploadTimestamp == 0L } && slides.all { (it.asAttachment() as? DatabaseAttachment)?.hasData == true }
+      val isUpload = slides.all {
+        (it.asAttachment() as? DatabaseAttachment)?.hasData == true
+      }
 
       val result = state.copy(
         slides = slides,

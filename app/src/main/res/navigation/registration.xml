@@ -101,7 +101,7 @@
 
         <action
             android:id="@+id/action_editProxy"
-            app:destination="@+id/registrationProxyFragment"
+            app:destination="@+id/edit_proxy"
             app:enterAnim="@anim/nav_default_enter_anim"
             app:exitAnim="@anim/nav_default_exit_anim"
             app:popEnterAnim="@anim/nav_default_pop_enter_anim"
@@ -225,12 +225,7 @@
         android:label="fragment_captcha"
         tools:layout="@layout/fragment_registration_captcha" />
 
-
-    <fragment
-        android:id="@+id/registrationProxyFragment"
-        android:name="org.thoughtcrime.securesms.preferences.EditProxyFragment"
-        android:label="fragment_registration_edit_proxy"
-        tools:layout="@layout/edit_proxy_fragment" />
+    <include app:graph="@navigation/edit_proxy" />
 
     <action
         android:id="@+id/action_restart_to_welcomeFragment"

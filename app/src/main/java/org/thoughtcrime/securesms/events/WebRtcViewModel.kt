@@ -106,6 +106,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
   val isCallLink: Boolean = state.callInfoState.callRecipient.isCallLink
   val callLinkDisconnectReason: CallLinkDisconnectReason? = state.callInfoState.callLinkDisconnectReason
   val groupCallEndReason: GroupCallEndReason? = state.callInfoState.groupCallEndReason
+  val groupCallSpeechEvent: GroupCallSpeechEvent? = state.callInfoState.groupCallSpeechEvent
 
   @get:JvmName("hasAtLeastOneRemote")
   val hasAtLeastOneRemote = if (state.callInfoState.callRecipient.isIndividual) {
@@ -127,6 +128,8 @@ class WebRtcViewModel(state: WebRtcServiceState) {
     state.localDeviceState.isMicrophoneEnabled,
     state.localDeviceState.handRaisedTimestamp
   )
+
+  val remoteMutedBy: CallParticipant? = state.localDeviceState.remoteMutedBy
 
   val isCellularConnection: Boolean = when (state.localDeviceState.networkConnectionType) {
     PeerConnection.AdapterType.UNKNOWN,
@@ -165,7 +168,8 @@ class WebRtcViewModel(state: WebRtcServiceState) {
        activeDevice=$activeDevice,
        availableDevices=$availableDevices,
        bluetoothPermissionDenied=$bluetoothPermissionDenied,
-       ringGroup=$ringGroup
+       ringGroup=$ringGroup,
+       remoteMutedBy=$remoteMutedBy
       }
     """.trimIndent()
   }
@@ -196,6 +200,7 @@ class WebRtcViewModel(state: WebRtcServiceState) {
       if (availableDevices != previousEvent.availableDevices) builder.append(" availableDevices=$availableDevices\n")
       if (bluetoothPermissionDenied != previousEvent.bluetoothPermissionDenied) builder.append(" bluetoothPermissionDenied=$bluetoothPermissionDenied\n")
       if (ringGroup != previousEvent.ringGroup) builder.append(" ringGroup=$ringGroup\n")
+      if (remoteMutedBy != previousEvent.remoteMutedBy) builder.append(" remoteMutedBy=$remoteMutedBy\n")
 
       if (builder.isEmpty()) {
         "<no change>"

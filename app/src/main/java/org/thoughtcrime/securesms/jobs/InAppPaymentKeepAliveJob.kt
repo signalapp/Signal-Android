@@ -5,16 +5,17 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.VisibleForTesting
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
+import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toDecimalValue
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.database.model.databaseprotos.FiatValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.internal.EmptyResponse
 import org.whispersystems.signalservice.internal.ServiceResponse
+import java.util.Currency
 import java.util.Locale
 import kotlin.concurrent.withLock
 import kotlin.jvm.optionals.getOrNull
@@ -50,6 +52,7 @@ class InAppPaymentKeepAliveJob private constructor(
     const val KEEP_ALIVE = "keep-alive"
     private const val DATA_TYPE = "type"
 
+    @VisibleForTesting
     fun create(type: InAppPaymentSubscriberRecord.Type): Job {
       return InAppPaymentKeepAliveJob(
         parameters = Parameters.Builder()
@@ -65,6 +68,11 @@ class InAppPaymentKeepAliveJob private constructor(
 
     @JvmStatic
     fun enqueueAndTrackTimeIfNecessary() {
+      if (SignalStore.account.isLinkedDevice) {
+        Log.i(TAG, "Linked device. Skipping.")
+        return
+      }
+
       // TODO -- This should only be enqueued if we are completely drained of old subscription jobs. (No pending, no runnning)
       val lastKeepAliveTime = SignalStore.inAppPayments.getLastKeepAliveLaunchTime().milliseconds
       val now = System.currentTimeMillis().milliseconds
@@ -82,6 +90,11 @@ class InAppPaymentKeepAliveJob private constructor(
 
     @JvmStatic
     fun enqueueAndTrackTime(now: Duration) {
+      if (SignalStore.account.isLinkedDevice) {
+        Log.i(TAG, "Linked device. Skipping.")
+        return
+      }
+
       AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.DONATION))
       AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.BACKUP))
       SignalStore.inAppPayments.setLastKeepAliveLaunchTime(now.inWholeMilliseconds)
@@ -97,6 +110,16 @@ class InAppPaymentKeepAliveJob private constructor(
   private fun doRun() {
     if (!SignalStore.account.isRegistered) {
       warn(type, "User is not registered. Skipping.")
+      return
+    }
+
+    if (SignalStore.account.isLinkedDevice) {
+      info(type, "Not primary, skipping")
+      return
+    }
+
+    if (SignalDatabase.inAppPayments.hasPrePendingRecurringTransaction(type.inAppPaymentType)) {
+      info(type, "We are currently processing a transaction for this type. Skipping.")
       return
     }
 
@@ -146,17 +169,18 @@ class InAppPaymentKeepAliveJob private constructor(
       InAppPaymentData.RedemptionState.Stage.INIT -> {
         info(type, "Transitioning payment from INIT to CONVERSION_STARTED and generating a request credential")
         val payment = activeInAppPayment.copy(
-          data = activeInAppPayment.data.copy(
+          data = activeInAppPayment.data.newBuilder().redemption(
             redemption = activeInAppPayment.data.redemption.copy(
               stage = InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED,
               receiptCredentialRequestContext = InAppPaymentsRepository.generateRequestCredential().serialize().toByteString()
             )
-          )
+          ).build()
         )
 
         SignalDatabase.inAppPayments.update(payment)
         InAppPaymentRecurringContextJob.createJobChain(payment).enqueue()
       }
+
       InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED -> {
         if (activeInAppPayment.data.redemption.receiptCredentialRequestContext == null) {
           warn(type, "We are in the CONVERSION_STARTED state without a request credential. Exiting.")
@@ -166,6 +190,7 @@ class InAppPaymentKeepAliveJob private constructor(
         info(type, "We have a request credential we have not turned into a token.")
         InAppPaymentRecurringContextJob.createJobChain(activeInAppPayment).enqueue()
       }
+
       InAppPaymentData.RedemptionState.Stage.REDEMPTION_STARTED -> {
         if (activeInAppPayment.data.redemption.receiptCredentialPresentation == null) {
           warn(type, "We are in the REDEMPTION_STARTED state without a request credential. Exiting.")
@@ -175,6 +200,7 @@ class InAppPaymentKeepAliveJob private constructor(
         info(type, "We have a receipt credential presentation but have not yet redeemed it.")
         InAppPaymentRedemptionJob.enqueueJobChainForRecurringKeepAlive(activeInAppPayment)
       }
+
       else -> info(type, "Nothing to do. Exiting.")
     }
   }
@@ -192,6 +218,7 @@ class InAppPaymentKeepAliveJob private constructor(
         403, 404 -> {
           warn(type, "Invalid or malformed subscriber id. Status: ${serviceResponse.status}", error)
         }
+
         else -> {
           warn(type, "An unknown server error occurred: ${serviceResponse.status}", error)
           throw InAppPaymentRetryException(error)
@@ -208,11 +235,11 @@ class InAppPaymentKeepAliveJob private constructor(
     val type = subscriber.type
     val current: InAppPaymentTable.InAppPayment? = SignalDatabase.inAppPayments.getByEndOfPeriod(type.inAppPaymentType, endOfCurrentPeriod)
 
-    return if (current == null) {
+    val inAppPayment = if (current == null) {
       val oldInAppPayment = SignalDatabase.inAppPayments.getByLatestEndOfPeriod(type.inAppPaymentType)
       val oldEndOfPeriod = oldInAppPayment?.endOfPeriod ?: InAppPaymentsRepository.getFallbackLastEndOfPeriod(type)
       if (oldEndOfPeriod > endOfCurrentPeriod) {
-        warn(type, "Active subscription returned an old end-of-period. Exiting. (old: $oldEndOfPeriod, new: $endOfCurrentPeriod)")
+        warn(type, "Active subscription returned an old end-of-period. Exiting. (old: ${oldEndOfPeriod.inWholeSeconds}, new: ${endOfCurrentPeriod.inWholeSeconds})")
         return null
       }
 
@@ -235,7 +262,7 @@ class InAppPaymentKeepAliveJob private constructor(
         oldInAppPayment.data.badge
       }
 
-      info(type, "End of period has changed. Requesting receipt refresh. (old: $oldEndOfPeriod, new: $endOfCurrentPeriod)")
+      info(type, "End of period has changed. Requesting receipt refresh. (old: ${oldEndOfPeriod.inWholeSeconds}, new: ${endOfCurrentPeriod.inWholeSeconds})")
       if (type == InAppPaymentSubscriberRecord.Type.DONATION) {
         SignalStore.inAppPayments.setLastEndOfPeriod(endOfCurrentPeriod.inWholeSeconds)
       }
@@ -251,9 +278,11 @@ class InAppPaymentKeepAliveJob private constructor(
             InAppPaymentData.PaymentMethodType.CARD
           }
         }
+
         InAppPaymentData.PaymentMethodType.UNKNOWN -> {
           subscriberPaymentMethodType
         }
+
         else -> subscriptionPaymentMethodType
       }
 
@@ -268,10 +297,7 @@ class InAppPaymentKeepAliveJob private constructor(
         inAppPaymentData = InAppPaymentData(
           paymentMethodType = newInAppPaymentMethodType,
           badge = badge,
-          amount = FiatValue(
-            currencyCode = subscription.currency,
-            amount = subscription.amount.toDecimalValue()
-          ),
+          amount = FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency)).toFiatValue(),
           error = null,
           level = subscription.level.toLong(),
           cancellation = null,
@@ -312,6 +338,31 @@ class InAppPaymentKeepAliveJob private constructor(
       SignalDatabase.inAppPayments.getById(current.id)
     } else {
       current
+    }
+
+    if (
+      inAppPayment != null &&
+      inAppPayment.state == InAppPaymentTable.State.END &&
+      ActiveSubscription.Status.getStatus(subscription.status) == ActiveSubscription.Status.ACTIVE &&
+      inAppPayment.endOfPeriodSeconds == subscription.endOfCurrentPeriod &&
+      inAppPayment.data.error != null &&
+      inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.CONVERSION_STARTED &&
+      inAppPayment.data.paymentMethodType == InAppPaymentData.PaymentMethodType.SEPA_DEBIT
+    ) {
+      warn(type, "Detected possible timeout failure due to SEPA bug. We will resubmit.")
+
+      SignalDatabase.inAppPayments.update(
+        inAppPayment.copy(
+          state = InAppPaymentTable.State.PENDING,
+          data = inAppPayment.data.newBuilder()
+            .error(null)
+            .build()
+        )
+      )
+
+      return SignalDatabase.inAppPayments.getById(inAppPayment.id)
+    } else {
+      return inAppPayment
     }
   }
 

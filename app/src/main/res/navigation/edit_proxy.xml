@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2025 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/edit_proxy"
+    app:startDestination="@id/edit_proxy_fragment">
+
+    <fragment
+        android:id="@+id/edit_proxy_fragment"
+        android:name="org.thoughtcrime.securesms.preferences.EditProxyFragment"
+        tools:layout="@layout/edit_proxy_fragment" />
+
+</navigation>

@@ -29,19 +29,17 @@ import org.signal.core.util.concurrent.SignalExecutors;
 import org.thoughtcrime.securesms.database.MessageTable.MarkedMessageInfo;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.ParentStoryId;
-import org.thoughtcrime.securesms.database.model.StoryType;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
-import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
+import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.notifications.v2.ConversationId;
+import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.sms.MessageSender;
+import org.thoughtcrime.securesms.util.MessageUtil;
 
-import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Get the response text from the Wearable Device and sends an message as a reply
@@ -75,40 +73,25 @@ public class RemoteReplyReceiver extends BroadcastReceiver {
       SignalExecutors.BOUNDED.execute(() -> {
         long threadId;
 
-        Recipient     recipient          = Recipient.resolved(recipientId);
-        long          expiresIn          = TimeUnit.SECONDS.toMillis(recipient.getExpiresInSeconds());
-        int           expireTimerVersion = recipient.getExpireTimerVersion();
-        ParentStoryId parentStoryId      = groupStoryId != Long.MIN_VALUE ? ParentStoryId.deserialize(groupStoryId) : null;
+        Recipient               recipient     = Recipient.resolved(recipientId);
+        String                  body          = responseText.toString();
+        ParentStoryId           parentStoryId = groupStoryId != Long.MIN_VALUE ? ParentStoryId.deserialize(groupStoryId) : null;
+        MessageUtil.SplitResult splitMessage  = MessageUtil.getSplitMessage(context, body);
+        SlideDeck               slideDeck     = null;
+
+        if (splitMessage.getTextSlide().isPresent()) {
+          slideDeck = new SlideDeck();
+          slideDeck.addSlide(splitMessage.getTextSlide().get());
+        }
 
         switch (replyMethod) {
+          case SecureMessage:
           case GroupMessage: {
-            OutgoingMessage reply = new OutgoingMessage(recipient,
-                                                        responseText.toString(),
-                                                        new LinkedList<>(),
-                                                        System.currentTimeMillis(),
-                                                        expiresIn,
-                                                        expireTimerVersion,
-                                                        false,
-                                                        0,
-                                                        StoryType.NONE,
-                                                        parentStoryId,
-                                                        false,
-                                                        null,
-                                                        Collections.emptyList(),
-                                                        Collections.emptyList(),
-                                                        Collections.emptyList(),
-                                                        Collections.emptySet(),
-                                                        Collections.emptySet(),
-                                                        null,
-                                                        recipient.isPushGroup(),
-                                                        null,
-                                                        -1,
-                                                        0);
-            threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SIGNAL, null, null);
-            break;
-          }
-          case SecureMessage: {
-            OutgoingMessage reply = OutgoingMessage.text(recipient, responseText.toString(), expiresIn, System.currentTimeMillis(), null);
+            OutgoingMessage reply = OutgoingMessage.quickReply(recipient,
+                                                               slideDeck,
+                                                               splitMessage.getBody(),
+                                                               parentStoryId);
+
             threadId = MessageSender.send(context, reply, -1, MessageSender.SendType.SIGNAL, null, null);
             break;
           }

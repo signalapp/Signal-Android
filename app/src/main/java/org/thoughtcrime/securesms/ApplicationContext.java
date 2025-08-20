@@ -38,6 +38,7 @@ import org.signal.core.util.logging.Log;
 import org.signal.core.util.logging.Scrubber;
 import org.signal.core.util.tracing.Tracer;
 import org.signal.glide.SignalGlideCodecs;
+import org.signal.libsignal.net.ChatServiceException;
 import org.signal.libsignal.protocol.logging.SignalProtocolLoggerProvider;
 import org.signal.ringrtc.CallManager;
 import org.thoughtcrime.securesms.apkupdate.ApkUpdateRefreshListener;
@@ -68,20 +69,19 @@ import org.thoughtcrime.securesms.jobs.InAppPaymentAuthCheckJob;
 import org.thoughtcrime.securesms.jobs.InAppPaymentKeepAliveJob;
 import org.thoughtcrime.securesms.jobs.LinkedDeviceInactiveCheckJob;
 import org.thoughtcrime.securesms.jobs.MultiDeviceContactUpdateJob;
-import org.thoughtcrime.securesms.jobs.PnpInitializeDevicesJob;
 import org.thoughtcrime.securesms.jobs.PreKeysSyncJob;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.jobs.RefreshSvrCredentialsJob;
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob;
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob;
 import org.thoughtcrime.securesms.jobs.RetrieveRemoteAnnouncementsJob;
+import org.thoughtcrime.securesms.jobs.RetryPendingSendsJob;
 import org.thoughtcrime.securesms.jobs.StoryOnboardingDownloadJob;
 import org.thoughtcrime.securesms.keyvalue.KeepMessagesDuration;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.logging.CustomSignalProtocolLogger;
 import org.thoughtcrime.securesms.logging.PersistentLogger;
 import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver;
-import org.thoughtcrime.securesms.messages.GroupSendEndorsementInternalNotifier;
 import org.thoughtcrime.securesms.migrations.ApplicationMigrations;
 import org.thoughtcrime.securesms.mms.SignalGlideComponents;
 import org.thoughtcrime.securesms.mms.SignalGlideModule;
@@ -220,15 +220,14 @@ public class ApplicationContext extends Application implements AppForegroundObse
                             .addPostRender(CheckServiceReachabilityJob::enqueueIfNecessary)
                             .addPostRender(GroupV2UpdateSelfProfileKeyJob::enqueueForGroupsIfNecessary)
                             .addPostRender(StoryOnboardingDownloadJob.Companion::enqueueIfNeeded)
-                            .addPostRender(PnpInitializeDevicesJob::enqueueIfNecessary)
                             .addPostRender(() -> AppDependencies.getExoPlayerPool().getPoolStats().getMaxUnreserved())
                             .addPostRender(() -> AppDependencies.getRecipientCache().warmUp())
                             .addPostRender(AccountConsistencyWorkerJob::enqueueIfNecessary)
                             .addPostRender(GroupRingCleanupJob::enqueue)
                             .addPostRender(LinkedDeviceInactiveCheckJob::enqueueIfNecessary)
                             .addPostRender(() -> ActiveCallManager.clearNotifications(this))
-                            .addPostRender(() -> GroupSendEndorsementInternalNotifier.init())
                             .addPostRender(RestoreOptimizedMediaJob::enqueueIfNecessary)
+                            .addPostRender(RetryPendingSendsJob::enqueueForAll)
                             .execute();
 
     Log.d(TAG, "onCreate() took " + (System.currentTimeMillis() - startTime) + " ms");
@@ -335,7 +334,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
 
   @VisibleForTesting
   protected void initializeLogging() {
-    Log.initialize(RemoteConfig::internalUser, new AndroidLogger(), new PersistentLogger(this));
+    Log.initialize(RemoteConfig::internalUser, AndroidLogger.INSTANCE, PersistentLogger.getInstance(this));
 
     SignalProtocolLoggerProvider.setProvider(new CustomSignalProtocolLogger());
     SignalProtocolLoggerProvider.initializeLogging(BuildConfig.LIBSIGNAL_LOG_LEVEL);
@@ -363,7 +362,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
         e = e.getCause();
       }
 
-      if (wasWrapped && (e instanceof SocketException || e instanceof InterruptedException || e instanceof InterruptedIOException)) {
+      if (wasWrapped && (e instanceof SocketException || e instanceof InterruptedException || e instanceof InterruptedIOException || e instanceof ChatServiceException)) {
         return;
       }
 
@@ -383,7 +382,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
   }
 
   public void initializeMessageRetrieval() {
-    AppDependencies.startNetwork();
+    SignalExecutors.UNBOUNDED.execute(AppDependencies::startNetwork);
   }
 
   @VisibleForTesting

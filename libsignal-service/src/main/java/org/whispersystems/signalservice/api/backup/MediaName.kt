@@ -14,13 +14,21 @@ import org.signal.core.util.Hex
 value class MediaName(val name: String) {
 
   companion object {
-    fun fromDigest(digest: ByteArray) = MediaName(Hex.toStringCondensed(digest))
-    fun fromDigestForThumbnail(digest: ByteArray) = MediaName("${Hex.toStringCondensed(digest)}_thumbnail")
+    fun fromPlaintextHashAndRemoteKey(plaintextHash: ByteArray, remoteKey: ByteArray) = MediaName(Hex.toStringCondensed(plaintextHash + remoteKey))
+    fun fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash: ByteArray, remoteKey: ByteArray) = MediaName(Hex.toStringCondensed(plaintextHash + remoteKey) + "_thumbnail")
     fun forThumbnailFromMediaName(mediaName: String) = MediaName("${mediaName}_thumbnail")
+
+    /**
+     * For java, since it struggles with value classes.
+     */
+    @JvmStatic
+    fun toMediaIdString(mediaName: String, mediaRootBackupKey: MediaRootBackupKey): String {
+      return MediaName(mediaName).toMediaId(mediaRootBackupKey).encode()
+    }
   }
 
-  fun toByteArray(): ByteArray {
-    return name.toByteArray()
+  fun toMediaId(mediaRootBackupKey: MediaRootBackupKey): MediaId {
+    return mediaRootBackupKey.deriveMediaId(this)
   }
 
   override fun toString(): String {

@@ -8,6 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.util.swap
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -24,15 +25,15 @@ class ChatFoldersViewModel : ViewModel() {
 
   fun loadCurrentFolders(context: Context) {
     viewModelScope.launch(Dispatchers.IO) {
-      val folders = ChatFoldersRepository.getCurrentFolders(includeUnreadAndMutedCounts = false)
+      val folders = ChatFoldersRepository.getCurrentFolders()
       val suggestedFolders = getSuggestedFolders(context, folders)
 
       internalState.update {
         it.copy(
           folders = folders,
           suggestedFolders = suggestedFolders,
-          currentFolder = ChatFolderRecord(),
-          originalFolder = ChatFolderRecord()
+          currentFolder = ChatFolder(),
+          originalFolder = ChatFolder()
         )
       }
     }
@@ -100,7 +101,8 @@ class ChatFoldersViewModel : ViewModel() {
         SignalDatabase.threads.getRecipientForThreadId(threadId)
       }
 
-      val updatedFolder = folder.copy(
+      val updatedFolder = ChatFolder(
+        folderRecord = folder,
         includedRecipients = includedRecipients.toSet(),
         excludedRecipients = excludedRecipients.toSet()
       )
@@ -112,32 +114,32 @@ class ChatFoldersViewModel : ViewModel() {
   }
 
   fun updateName(name: String) {
-    val updatedFolder = internalState.value.currentFolder.copy(
+    val updatedFolder = internalState.value.currentFolder.folderRecord.copy(
       name = name.substring(0, minOf(name.length, 32))
     )
 
     internalState.update {
-      it.copy(currentFolder = updatedFolder)
+      it.copy(currentFolder = it.currentFolder.copy(folderRecord = updatedFolder))
     }
   }
 
   fun toggleShowUnread(showUnread: Boolean) {
-    val updatedFolder = internalState.value.currentFolder.copy(
+    val updatedFolder = internalState.value.currentFolder.folderRecord.copy(
       showUnread = showUnread
     )
 
     internalState.update {
-      it.copy(currentFolder = updatedFolder)
+      it.copy(currentFolder = it.currentFolder.copy(folderRecord = updatedFolder))
     }
   }
 
   fun toggleShowMutedChats(showMuted: Boolean) {
-    val updatedFolder = internalState.value.currentFolder.copy(
+    val updatedFolder = internalState.value.currentFolder.folderRecord.copy(
       showMutedChats = showMuted
     )
 
     internalState.update {
-      it.copy(currentFolder = updatedFolder)
+      it.copy(currentFolder = it.currentFolder.copy(folderRecord = updatedFolder))
     }
   }
 
@@ -149,7 +151,7 @@ class ChatFoldersViewModel : ViewModel() {
 
   fun deleteFolder(context: Context) {
     viewModelScope.launch(Dispatchers.IO) {
-      ChatFoldersRepository.deleteFolder(internalState.value.originalFolder)
+      ChatFoldersRepository.deleteFolder(internalState.value.originalFolder.folderRecord)
 
       loadCurrentFolders(context)
       internalState.update {
@@ -166,8 +168,8 @@ class ChatFoldersViewModel : ViewModel() {
 
   fun createFolder(context: Context, folder: ChatFolderRecord? = null) {
     viewModelScope.launch(Dispatchers.IO) {
-      val currentFolder = folder ?: internalState.value.currentFolder
-      ChatFoldersRepository.createFolder(currentFolder)
+      val currentFolder = if (folder != null) ChatFolder(folder) else internalState.value.currentFolder
+      ChatFoldersRepository.createFolder(currentFolder.folderRecord, currentFolder.includedRecipients, currentFolder.excludedRecipients)
       loadCurrentFolders(context)
 
       internalState.update {
@@ -176,23 +178,29 @@ class ChatFoldersViewModel : ViewModel() {
     }
   }
 
-  fun updatePosition(fromIndex: Int, toIndex: Int) {
-    viewModelScope.launch(Dispatchers.IO) {
-      val folders = state.value.folders.toMutableList().apply { add(toIndex, removeAt(fromIndex)) }
-      val updatedFolders = folders.mapIndexed { index, chatFolderRecord ->
-        chatFolderRecord.copy(position = index)
-      }
-      ChatFoldersRepository.updatePositions(updatedFolders)
+  fun updateItemPosition(fromIndex: Int, toIndex: Int) {
+    val folders = state.value.folders.swap(fromIndex, toIndex)
+    val updatedFolders = folders.mapIndexed { index, chatFolderRecord ->
+      chatFolderRecord.copy(position = index)
+    }
+    internalState.update {
+      it.copy(folders = updatedFolders)
+    }
+  }
 
-      internalState.update {
-        it.copy(folders = updatedFolders)
-      }
+  fun saveItemPositions() {
+    val updatedFolders = state.value.folders.mapIndexed { index, chatFolderRecord ->
+      chatFolderRecord.copy(position = index)
+    }
+    viewModelScope.launch(Dispatchers.IO) {
+      ChatFoldersRepository.updatePositions(updatedFolders)
     }
   }
 
   fun updateFolder(context: Context) {
     viewModelScope.launch(Dispatchers.IO) {
-      ChatFoldersRepository.updateFolder(internalState.value.currentFolder)
+      val currentFolder = internalState.value.currentFolder
+      ChatFoldersRepository.updateFolder(currentFolder.folderRecord, currentFolder.includedRecipients, currentFolder.excludedRecipients)
       loadCurrentFolders(context)
 
       internalState.update {
@@ -208,10 +216,10 @@ class ChatFoldersViewModel : ViewModel() {
       val excludedChats = currentFolder.excludedRecipients.map { recipient -> recipient.id }.toMutableSet()
 
       val chatTypes: MutableSet<ChatType> = mutableSetOf()
-      if (currentFolder.showIndividualChats) {
+      if (currentFolder.folderRecord.showIndividualChats) {
         chatTypes.add(ChatType.INDIVIDUAL)
       }
-      if (currentFolder.showGroupChats) {
+      if (currentFolder.folderRecord.showGroupChats) {
         chatTypes.add(ChatType.GROUPS)
       }
 
@@ -309,10 +317,12 @@ class ChatFoldersViewModel : ViewModel() {
       internalState.update {
         it.copy(
           currentFolder = updatedFolder.copy(
+            folderRecord = updatedFolder.folderRecord.copy(
+              showIndividualChats = showIndividualChats,
+              showGroupChats = showGroupChats
+            ),
             includedRecipients = includedRecipients,
-            excludedRecipients = excludedRecipients,
-            showIndividualChats = showIndividualChats,
-            showGroupChats = showGroupChats
+            excludedRecipients = excludedRecipients
           ),
           pendingIncludedRecipients = emptySet(),
           pendingExcludedRecipients = emptySet()
@@ -321,18 +331,12 @@ class ChatFoldersViewModel : ViewModel() {
     }
   }
 
-  fun enableButton(): Boolean {
-    return internalState.value.pendingIncludedRecipients.isNotEmpty() ||
-      internalState.value.pendingChatTypes.isNotEmpty() ||
-      internalState.value.pendingExcludedRecipients.isNotEmpty()
-  }
-
   fun hasChanges(): Boolean {
     val currentFolder = state.value.currentFolder
     val originalFolder = state.value.originalFolder
 
-    return if (currentFolder.id == -1L) {
-      currentFolder.includedRecipients.isNotEmpty() || currentFolder.showIndividualChats || currentFolder.showGroupChats
+    return if (currentFolder.folderRecord.id == -1L) {
+      currentFolder.includedRecipients.isNotEmpty() || currentFolder.folderRecord.showIndividualChats || currentFolder.folderRecord.showGroupChats
     } else {
       originalFolder != currentFolder ||
         originalFolder.includedRecipients != currentFolder.includedRecipients ||
@@ -350,6 +354,16 @@ class ChatFoldersViewModel : ViewModel() {
   }
 
   fun hasEmptyName(): Boolean {
-    return state.value.currentFolder.name.isEmpty()
+    return state.value.currentFolder.folderRecord.name.isEmpty()
+  }
+
+  fun shouldSetInitialFolder(): Boolean {
+    val original = state.value.originalFolder
+    val current = state.value.currentFolder
+    return original.folderRecord.id == current.folderRecord.id &&
+      original.folderRecord.showIndividualChats == current.folderRecord.showIndividualChats &&
+      original.folderRecord.showGroupChats == current.folderRecord.showGroupChats &&
+      original.includedRecipients == current.includedRecipients &&
+      original.excludedRecipients == current.excludedRecipients
   }
 }

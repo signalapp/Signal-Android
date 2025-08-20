@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.jobs.PushProcessMessageJob
 import org.thoughtcrime.securesms.jobs.RefreshAttributesJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.SendDeliveryReceiptJob
+import org.thoughtcrime.securesms.jobs.StorageSyncJob
 import org.thoughtcrime.securesms.jobs.TrimThreadJob
 import org.thoughtcrime.securesms.jobs.protos.GroupCallPeekJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -88,7 +89,6 @@ import org.thoughtcrime.securesms.recipients.Recipient.HiddenState
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.stickers.StickerLocator
-import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.LinkUtil
 import org.thoughtcrime.securesms.util.MediaUtil
@@ -173,6 +173,9 @@ object DataMessageProcessor {
     }
 
     messageId = messageId ?: insertResult?.messageId?.let { MessageId(it) }
+    if (messageId != null) {
+      log(envelope.timestamp!!, "Inserted as messageId $messageId")
+    }
 
     if (groupId != null) {
       val unknownGroup = when (groupProcessResult) {
@@ -244,7 +247,7 @@ object DataMessageProcessor {
     if (senderRecipient.isSelf) {
       if (ProfileKeyUtil.getSelfProfileKey() != messageProfileKey) {
         warn(timestamp, "Saw a sync message whose profile key doesn't match our records. Scheduling a storage sync to check.")
-        StorageSyncHelper.scheduleSyncForDataChange()
+        AppDependencies.jobManager.add(StorageSyncJob.forRemoteChange())
       }
     } else if (messageProfileKey != null) {
       if (messageProfileKeyBytes.contentEquals(senderRecipient.profileKey)) {
@@ -253,7 +256,7 @@ object DataMessageProcessor {
       if (SignalDatabase.recipients.setProfileKey(senderRecipient.id, messageProfileKey)) {
         log(timestamp, "Profile key on message from " + senderRecipient.id + " didn't match our local store. It has been updated.")
         SignalDatabase.runPostSuccessfulTransaction {
-          RetrieveProfileJob.enqueue(senderRecipient.id)
+          RetrieveProfileJob.enqueue(senderRecipient.id, skipDebounce = true)
         }
       }
     } else {

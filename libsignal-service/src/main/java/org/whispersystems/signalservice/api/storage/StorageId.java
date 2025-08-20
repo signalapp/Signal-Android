@@ -38,6 +38,14 @@ public class StorageId {
     return new StorageId(ManifestRecord.Identifier.Type.CALL_LINK.getValue(), Preconditions.checkNotNull(raw));
   }
 
+  public static StorageId forChatFolder(byte[] raw) {
+    return new StorageId(ManifestRecord.Identifier.Type.CHAT_FOLDER.getValue(), Preconditions.checkNotNull(raw));
+  }
+
+  public static StorageId forNotificationProfile(byte[] raw) {
+    return new StorageId(ManifestRecord.Identifier.Type.NOTIFICATION_PROFILE.getValue(), Preconditions.checkNotNull(raw));
+  }
+
   public static StorageId forType(byte[] raw, int type) {
     return new StorageId(type, raw);
   }

@@ -5,20 +5,39 @@ package org.thoughtcrime.securesms.database
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
-import android.database.sqlite.SQLiteConstraintException
+import androidx.core.content.contentValuesOf
+import org.signal.core.util.Base64
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.exists
+import org.signal.core.util.hasUnknownFields
+import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
+import org.signal.core.util.readToList
+import org.signal.core.util.readToMap
+import org.signal.core.util.readToSingleLong
+import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireInt
 import org.signal.core.util.requireLong
+import org.signal.core.util.requireNonNullString
 import org.signal.core.util.requireString
+import org.signal.core.util.select
 import org.signal.core.util.toInt
 import org.signal.core.util.update
+import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
+import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileSchedule
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.storage.StorageSyncModels
+import org.thoughtcrime.securesms.storage.StorageSyncModels.toLocal
+import org.thoughtcrime.securesms.util.RemoteConfig
+import org.whispersystems.signalservice.api.storage.SignalNotificationProfileRecord
+import org.whispersystems.signalservice.api.storage.StorageId
+import org.whispersystems.signalservice.api.util.UuidUtil
 import java.time.DayOfWeek
 
 /**
@@ -33,7 +52,7 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
     val CREATE_TABLE: Array<String> = arrayOf(NotificationProfileTable.CREATE_TABLE, NotificationProfileScheduleTable.CREATE_TABLE, NotificationProfileAllowedMembersTable.CREATE_TABLE)
 
     @JvmField
-    val CREATE_INDEXES: Array<String> = arrayOf(NotificationProfileScheduleTable.CREATE_INDEX, NotificationProfileAllowedMembersTable.CREATE_INDEX)
+    val CREATE_INDEXES: Array<String> = arrayOf(NotificationProfileScheduleTable.CREATE_INDEX, NotificationProfileAllowedMembersTable.CREATE_NOTIFICATION_PROFILE_INDEX, NotificationProfileAllowedMembersTable.CREATE_RECIPIENT_ID_INDEX)
   }
 
   object NotificationProfileTable {
@@ -46,16 +65,24 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
     const val CREATED_AT = "created_at"
     const val ALLOW_ALL_CALLS = "allow_all_calls"
     const val ALLOW_ALL_MENTIONS = "allow_all_mentions"
+    const val NOTIFICATION_PROFILE_ID = "notification_profile_id"
+    const val DELETED_TIMESTAMP_MS = "deleted_timestamp_ms"
+    const val STORAGE_SERVICE_ID = "storage_service_id"
+    const val STORAGE_SERVICE_PROTO = "storage_service_proto"
 
     val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
-        $NAME TEXT NOT NULL UNIQUE,
+        $NAME TEXT NOT NULL,
         $EMOJI TEXT NOT NULL,
         $COLOR TEXT NOT NULL,
         $CREATED_AT INTEGER NOT NULL,
         $ALLOW_ALL_CALLS INTEGER NOT NULL DEFAULT 0,
-        $ALLOW_ALL_MENTIONS INTEGER NOT NULL DEFAULT 0
+        $ALLOW_ALL_MENTIONS INTEGER NOT NULL DEFAULT 0,
+        $NOTIFICATION_PROFILE_ID TEXT DEFAULT NULL,
+        $DELETED_TIMESTAMP_MS INTEGER DEFAULT 0,
+        $STORAGE_SERVICE_ID TEXT DEFAULT NULL,
+        $STORAGE_SERVICE_PROTO TEXT DEFAULT NULL
       )
     """
   }
@@ -97,12 +124,13 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY AUTOINCREMENT,
         $NOTIFICATION_PROFILE_ID INTEGER NOT NULL REFERENCES ${NotificationProfileTable.TABLE_NAME} (${NotificationProfileTable.ID}) ON DELETE CASCADE,
-        $RECIPIENT_ID INTEGER NOT NULL,
+        $RECIPIENT_ID INTEGER NOT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
         UNIQUE($NOTIFICATION_PROFILE_ID, $RECIPIENT_ID) ON CONFLICT REPLACE
       )
     """
 
-    const val CREATE_INDEX = "CREATE INDEX notification_profile_allowed_members_profile_index ON $TABLE_NAME ($NOTIFICATION_PROFILE_ID)"
+    const val CREATE_NOTIFICATION_PROFILE_INDEX = "CREATE INDEX notification_profile_allowed_members_profile_index ON $TABLE_NAME ($NOTIFICATION_PROFILE_ID)"
+    const val CREATE_RECIPIENT_ID_INDEX = "CREATE INDEX notification_profile_allowed_members_recipient_index ON $TABLE_NAME ($RECIPIENT_ID)"
   }
 
   fun createProfile(name: String, emoji: String, color: AvatarColor, createdAt: Long): NotificationProfileChangeResult {
@@ -110,18 +138,23 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
 
     db.beginTransaction()
     try {
+      if (isDuplicateName(name)) {
+        return NotificationProfileChangeResult.DuplicateName
+      }
+
+      val notificationProfileId = NotificationProfileId.generate()
+      val storageServiceId = StorageSyncHelper.generateKey()
       val profileValues = ContentValues().apply {
         put(NotificationProfileTable.NAME, name)
         put(NotificationProfileTable.EMOJI, emoji)
         put(NotificationProfileTable.COLOR, color.serialize())
         put(NotificationProfileTable.CREATED_AT, createdAt)
         put(NotificationProfileTable.ALLOW_ALL_CALLS, 1)
+        put(NotificationProfileTable.NOTIFICATION_PROFILE_ID, notificationProfileId.serialize())
+        put(NotificationProfileTable.STORAGE_SERVICE_ID, Base64.encodeWithPadding(storageServiceId))
       }
 
       val profileId = db.insert(NotificationProfileTable.TABLE_NAME, null, profileValues)
-      if (profileId < 0) {
-        return NotificationProfileChangeResult.DuplicateName
-      }
 
       val scheduleValues = ContentValues().apply {
         put(NotificationProfileScheduleTable.NOTIFICATION_PROFILE_ID, profileId)
@@ -140,7 +173,9 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
           emoji = emoji,
           createdAt = createdAt,
           schedule = getProfileSchedule(profileId),
-          allowAllCalls = true
+          allowAllCalls = true,
+          notificationProfileId = notificationProfileId,
+          storageServiceId = StorageId.forNotificationProfile(storageServiceId)
         )
       )
     } finally {
@@ -150,6 +185,10 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
   }
 
   fun updateProfile(profileId: Long, name: String, emoji: String): NotificationProfileChangeResult {
+    if (isDuplicateName(name, profileId)) {
+      return NotificationProfileChangeResult.DuplicateName
+    }
+
     val profileValues = ContentValues().apply {
       put(NotificationProfileTable.NAME, name)
       put(NotificationProfileTable.EMOJI, emoji)
@@ -157,37 +196,40 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
 
     val updateQuery = SqlUtil.buildTrueUpdateQuery(ID_WHERE, SqlUtil.buildArgs(profileId), profileValues)
 
-    return try {
-      val count = writableDatabase.update(NotificationProfileTable.TABLE_NAME, profileValues, updateQuery.where, updateQuery.whereArgs)
-      if (count > 0) {
-        AppDependencies.databaseObserver.notifyNotificationProfileObservers()
-      }
-
-      NotificationProfileChangeResult.Success(getProfile(profileId)!!)
-    } catch (e: SQLiteConstraintException) {
-      NotificationProfileChangeResult.DuplicateName
+    val count = writableDatabase.update(NotificationProfileTable.TABLE_NAME, profileValues, updateQuery.where, updateQuery.whereArgs)
+    if (count > 0) {
+      AppDependencies.databaseObserver.notifyNotificationProfileObservers()
     }
+
+    return NotificationProfileChangeResult.Success(getProfile(profileId)!!)
   }
 
   fun updateProfile(profile: NotificationProfile): NotificationProfileChangeResult {
+    if (isDuplicateName(profile.name, profile.id)) {
+      return NotificationProfileChangeResult.DuplicateName
+    }
+
     val db = writableDatabase
 
     db.beginTransaction()
     try {
+      val storageServiceId = profile.storageServiceId?.raw ?: StorageSyncHelper.generateKey()
+      val storageServiceProto = if (profile.storageServiceProto != null) Base64.encodeWithPadding(profile.storageServiceProto) else null
+
       val profileValues = ContentValues().apply {
         put(NotificationProfileTable.NAME, profile.name)
         put(NotificationProfileTable.EMOJI, profile.emoji)
         put(NotificationProfileTable.ALLOW_ALL_CALLS, profile.allowAllCalls.toInt())
         put(NotificationProfileTable.ALLOW_ALL_MENTIONS, profile.allowAllMentions.toInt())
+        put(NotificationProfileTable.STORAGE_SERVICE_ID, Base64.encodeWithPadding(storageServiceId))
+        put(NotificationProfileTable.STORAGE_SERVICE_PROTO, storageServiceProto)
+        put(NotificationProfileTable.DELETED_TIMESTAMP_MS, profile.deletedTimestampMs)
+        put(NotificationProfileTable.CREATED_AT, profile.createdAt)
       }
 
       val updateQuery = SqlUtil.buildTrueUpdateQuery(ID_WHERE, SqlUtil.buildArgs(profile.id), profileValues)
 
-      try {
-        db.update(NotificationProfileTable.TABLE_NAME, profileValues, updateQuery.where, updateQuery.whereArgs)
-      } catch (e: SQLiteConstraintException) {
-        return NotificationProfileChangeResult.DuplicateName
-      }
+      db.update(NotificationProfileTable.TABLE_NAME, profileValues, updateQuery.where, updateQuery.whereArgs)
 
       updateSchedule(profile.schedule, true)
 
@@ -273,16 +315,17 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
     return getProfile(profileId)!!
   }
 
+  /**
+   * Returns all undeleted notification profiles
+   */
   fun getProfiles(): List<NotificationProfile> {
-    val profiles: MutableList<NotificationProfile> = mutableListOf()
-
-    readableDatabase.query(NotificationProfileTable.TABLE_NAME, null, null, null, null, null, null).use { cursor ->
-      while (cursor.moveToNext()) {
-        profiles += getProfile(cursor)
-      }
-    }
-
-    return profiles
+    return readableDatabase
+      .select()
+      .from(NotificationProfileTable.TABLE_NAME)
+      .where("${NotificationProfileTable.DELETED_TIMESTAMP_MS} = 0")
+      .orderBy("${NotificationProfileTable.CREATED_AT} DESC")
+      .run()
+      .readToList { cursor -> getProfile(cursor) }
   }
 
   fun getProfile(profileId: Long): NotificationProfile? {
@@ -295,9 +338,194 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
     }
   }
 
+  fun getProfile(query: SqlUtil.Query): NotificationProfile? {
+    return readableDatabase
+      .select()
+      .from(NotificationProfileTable.TABLE_NAME)
+      .where(query.where, query.whereArgs)
+      .run()
+      .readToSingleObject { cursor -> getProfile(cursor) }
+  }
+
   fun deleteProfile(profileId: Long) {
-    writableDatabase.delete(NotificationProfileTable.TABLE_NAME, ID_WHERE, SqlUtil.buildArgs(profileId))
+    writableDatabase.withinTransaction { db ->
+      db.update(NotificationProfileTable.TABLE_NAME)
+        .values(NotificationProfileTable.DELETED_TIMESTAMP_MS to System.currentTimeMillis())
+        .where("${NotificationProfileTable.ID} = ?", profileId)
+        .run()
+    }
+
     AppDependencies.databaseObserver.notifyNotificationProfileObservers()
+  }
+
+  fun markNeedsSync(profileId: Long) {
+    writableDatabase.withinTransaction {
+      rotateStorageId(profileId)
+    }
+  }
+
+  fun applyStorageIdUpdate(id: NotificationProfileId, storageId: StorageId) {
+    applyStorageIdUpdates(hashMapOf(id to storageId))
+  }
+
+  fun applyStorageIdUpdates(storageIds: Map<NotificationProfileId, StorageId>) {
+    writableDatabase.withinTransaction { db ->
+      storageIds.forEach { (notificationProfileId, storageId) ->
+        db.update(NotificationProfileTable.TABLE_NAME)
+          .values(NotificationProfileTable.STORAGE_SERVICE_ID to Base64.encodeWithPadding(storageId.raw))
+          .where("${NotificationProfileTable.NOTIFICATION_PROFILE_ID} = ?", notificationProfileId.serialize())
+          .run()
+      }
+    }
+  }
+
+  fun insertNotificationProfileFromStorageSync(notificationProfileRecord: SignalNotificationProfileRecord) {
+    val profile = notificationProfileRecord.proto
+    writableDatabase.withinTransaction { db ->
+      val storageServiceProto = if (notificationProfileRecord.proto.hasUnknownFields()) Base64.encodeWithPadding(notificationProfileRecord.serializedUnknowns!!) else null
+
+      val id = db.insertInto(NotificationProfileTable.TABLE_NAME)
+        .values(
+          contentValuesOf(
+            NotificationProfileTable.NAME to profile.name,
+            NotificationProfileTable.EMOJI to profile.emoji.orEmpty(),
+            NotificationProfileTable.COLOR to (AvatarColor.fromColor(profile.color)?.serialize() ?: NotificationProfile.DEFAULT_NOTIFICATION_PROFILE_COLOR.serialize()),
+            NotificationProfileTable.CREATED_AT to profile.createdAtMs,
+            NotificationProfileTable.ALLOW_ALL_CALLS to profile.allowAllCalls,
+            NotificationProfileTable.ALLOW_ALL_MENTIONS to profile.allowAllMentions,
+            NotificationProfileTable.NOTIFICATION_PROFILE_ID to NotificationProfileId(UuidUtil.parseOrThrow(profile.id)).serialize(),
+            NotificationProfileTable.DELETED_TIMESTAMP_MS to profile.deletedAtTimestampMs,
+            NotificationProfileTable.STORAGE_SERVICE_ID to Base64.encodeWithPadding(notificationProfileRecord.id.raw),
+            NotificationProfileTable.STORAGE_SERVICE_PROTO to storageServiceProto
+          )
+        )
+        .run()
+
+      db.insertInto(NotificationProfileScheduleTable.TABLE_NAME)
+        .values(
+          contentValuesOf(
+            NotificationProfileScheduleTable.NOTIFICATION_PROFILE_ID to id,
+            NotificationProfileScheduleTable.ENABLED to profile.scheduleEnabled.toInt(),
+            NotificationProfileScheduleTable.START to profile.scheduleStartTime,
+            NotificationProfileScheduleTable.END to profile.scheduleEndTime,
+            NotificationProfileScheduleTable.DAYS_ENABLED to profile.scheduleDaysEnabled.map { it.toLocal() }.toSet().serialize()
+          )
+        )
+        .run()
+
+      profile.allowedMembers
+        .mapNotNull { remoteRecipient -> StorageSyncModels.remoteToLocalRecipient(remoteRecipient) }
+        .forEach {
+          db.insertInto(NotificationProfileAllowedMembersTable.TABLE_NAME)
+            .values(
+              NotificationProfileAllowedMembersTable.NOTIFICATION_PROFILE_ID to id,
+              NotificationProfileAllowedMembersTable.RECIPIENT_ID to it.id.serialize()
+            )
+            .run()
+        }
+    }
+
+    AppDependencies.databaseObserver.notifyNotificationProfileObservers()
+  }
+
+  fun updateNotificationProfileFromStorageSync(notificationProfileRecord: SignalNotificationProfileRecord) {
+    val profile = notificationProfileRecord.proto
+    val notificationProfileId = NotificationProfileId(UuidUtil.parseOrThrow(profile.id))
+
+    val profileId = readableDatabase
+      .select(NotificationProfileTable.ID)
+      .from(NotificationProfileTable.TABLE_NAME)
+      .where("${NotificationProfileTable.NOTIFICATION_PROFILE_ID} = ?", notificationProfileId.serialize())
+      .run()
+      .readToSingleLong()
+
+    val scheduleId = readableDatabase
+      .select(NotificationProfileScheduleTable.ID)
+      .from(NotificationProfileScheduleTable.TABLE_NAME)
+      .where("${NotificationProfileScheduleTable.NOTIFICATION_PROFILE_ID} = ?", profileId)
+      .run()
+      .readToSingleLong()
+
+    updateProfile(
+      NotificationProfile(
+        id = profileId,
+        name = profile.name,
+        emoji = profile.emoji.orEmpty(),
+        color = AvatarColor.fromColor(profile.color) ?: NotificationProfile.DEFAULT_NOTIFICATION_PROFILE_COLOR,
+        createdAt = profile.createdAtMs,
+        allowAllCalls = profile.allowAllCalls,
+        allowAllMentions = profile.allowAllMentions,
+        schedule = NotificationProfileSchedule(
+          scheduleId,
+          profile.scheduleEnabled,
+          profile.scheduleStartTime,
+          profile.scheduleEndTime,
+          profile.scheduleDaysEnabled.map { it.toLocal() }.toSet()
+        ),
+        allowedMembers = profile.allowedMembers.mapNotNull { remoteRecipient -> StorageSyncModels.remoteToLocalRecipient(remoteRecipient)?.id }.toSet(),
+        notificationProfileId = notificationProfileId,
+        deletedTimestampMs = profile.deletedAtTimestampMs,
+        storageServiceId = StorageId.forNotificationProfile(notificationProfileRecord.id.raw),
+        storageServiceProto = notificationProfileRecord.serializedUnknowns
+      )
+    )
+  }
+
+  fun getStorageSyncIdsMap(): Map<NotificationProfileId, StorageId> {
+    return readableDatabase
+      .select(NotificationProfileTable.NOTIFICATION_PROFILE_ID, NotificationProfileTable.STORAGE_SERVICE_ID)
+      .from(NotificationProfileTable.TABLE_NAME)
+      .where("${NotificationProfileTable.STORAGE_SERVICE_ID} IS NOT NULL")
+      .run()
+      .readToMap { cursor ->
+        val id = NotificationProfileId.from(cursor.requireNonNullString(NotificationProfileTable.NOTIFICATION_PROFILE_ID))
+        val encodedKey = cursor.requireNonNullString(NotificationProfileTable.STORAGE_SERVICE_ID)
+        val key = Base64.decodeOrThrow(encodedKey)
+        id to StorageId.forNotificationProfile(key)
+      }
+  }
+
+  fun getStorageSyncIds(): List<StorageId> {
+    return readableDatabase
+      .select(NotificationProfileTable.STORAGE_SERVICE_ID)
+      .from(NotificationProfileTable.TABLE_NAME)
+      .where("${NotificationProfileTable.STORAGE_SERVICE_ID} IS NOT NULL")
+      .run()
+      .readToList { cursor ->
+        val encodedKey = cursor.requireNonNullString(NotificationProfileTable.STORAGE_SERVICE_ID)
+        val key = Base64.decodeOrThrow(encodedKey)
+        StorageId.forNotificationProfile(key)
+      }.also { Log.i(TAG, "${it.size} profiles have storage ids.") }
+  }
+
+  /**
+   * Removes storageIds from notification profiles that have been deleted for [RemoteConfig.messageQueueTime].
+   */
+  fun removeStorageIdsFromOldDeletedProfiles(now: Long): Int {
+    return writableDatabase
+      .update(NotificationProfileTable.TABLE_NAME)
+      .values(NotificationProfileTable.STORAGE_SERVICE_ID to null)
+      .where("${NotificationProfileTable.STORAGE_SERVICE_ID} NOT NULL AND ${NotificationProfileTable.DELETED_TIMESTAMP_MS} > 0 AND ${NotificationProfileTable.DELETED_TIMESTAMP_MS} < ?", now - RemoteConfig.messageQueueTime)
+      .run()
+  }
+
+  /**
+   * Removes storageIds of profiles that are local only and deleted
+   */
+  fun removeStorageIdsFromLocalOnlyDeletedProfiles(storageIds: Collection<StorageId>): Int {
+    var updated = 0
+
+    SqlUtil.buildCollectionQuery(NotificationProfileTable.STORAGE_SERVICE_ID, storageIds.map { Base64.encodeWithPadding(it.raw) }, "${NotificationProfileTable.DELETED_TIMESTAMP_MS} > 0 AND")
+      .forEach {
+        updated += writableDatabase.update(
+          NotificationProfileTable.TABLE_NAME,
+          contentValuesOf(NotificationProfileTable.STORAGE_SERVICE_ID to null),
+          it.where,
+          it.whereArgs
+        )
+      }
+
+    return updated
   }
 
   override fun remapRecipient(fromId: RecipientId, toId: RecipientId) {
@@ -323,7 +551,11 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
       allowAllCalls = cursor.requireBoolean(NotificationProfileTable.ALLOW_ALL_CALLS),
       allowAllMentions = cursor.requireBoolean(NotificationProfileTable.ALLOW_ALL_MENTIONS),
       schedule = getProfileSchedule(profileId),
-      allowedMembers = getProfileAllowedMembers(profileId)
+      allowedMembers = getProfileAllowedMembers(profileId),
+      notificationProfileId = NotificationProfileId.from(cursor.requireNonNullString(NotificationProfileTable.NOTIFICATION_PROFILE_ID)),
+      deletedTimestampMs = cursor.requireLong(NotificationProfileTable.DELETED_TIMESTAMP_MS),
+      storageServiceId = cursor.requireString(NotificationProfileTable.STORAGE_SERVICE_ID)?.let { StorageId.forNotificationProfile(Base64.decodeNullableOrThrow(it)) },
+      storageServiceProto = Base64.decodeOrNull(cursor.requireString(NotificationProfileTable.STORAGE_SERVICE_PROTO))
     )
   }
 
@@ -362,6 +594,24 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
     }
 
     return allowed
+  }
+
+  private fun rotateStorageId(id: Long) {
+    writableDatabase
+      .update(NotificationProfileTable.TABLE_NAME)
+      .values(NotificationProfileTable.STORAGE_SERVICE_ID to Base64.encodeWithPadding(StorageSyncHelper.generateKey()))
+      .where("${NotificationProfileTable.ID} = ?", id)
+      .run()
+  }
+
+  /**
+   * Checks that there is no other notification profile with the same [name]
+   */
+  private fun isDuplicateName(name: String, id: Long = -1): Boolean {
+    return readableDatabase
+      .exists(NotificationProfileTable.TABLE_NAME)
+      .where("${NotificationProfileTable.NAME} = ? AND ${NotificationProfileTable.DELETED_TIMESTAMP_MS} = 0 AND ${NotificationProfileTable.ID} != ?", name, id)
+      .run()
   }
 
   sealed class NotificationProfileChangeResult {

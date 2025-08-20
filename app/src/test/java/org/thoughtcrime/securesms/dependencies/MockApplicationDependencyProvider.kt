@@ -41,16 +41,22 @@ import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.calling.CallingApi
 import org.whispersystems.signalservice.api.cds.CdsApi
+import org.whispersystems.signalservice.api.certificate.CertificateApi
+import org.whispersystems.signalservice.api.donations.DonationsApi
 import org.whispersystems.signalservice.api.groupsv2.GroupsV2Operations
 import org.whispersystems.signalservice.api.keys.KeysApi
 import org.whispersystems.signalservice.api.link.LinkDeviceApi
 import org.whispersystems.signalservice.api.message.MessageApi
 import org.whispersystems.signalservice.api.payments.PaymentsApi
+import org.whispersystems.signalservice.api.profiles.ProfileApi
+import org.whispersystems.signalservice.api.provisioning.ProvisioningApi
 import org.whispersystems.signalservice.api.ratelimit.RateLimitChallengeApi
 import org.whispersystems.signalservice.api.registration.RegistrationApi
+import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigApi
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
+import org.whispersystems.signalservice.api.svr.SvrBApi
 import org.whispersystems.signalservice.api.username.UsernameApi
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
@@ -66,15 +72,16 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideSignalServiceAccountManager(authWebSocket: AccountApi, pushServiceSocket: PushServiceSocket, groupsV2Operations: GroupsV2Operations): SignalServiceAccountManager {
+  override fun provideSignalServiceAccountManager(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, accountApi: AccountApi, pushServiceSocket: PushServiceSocket, groupsV2Operations: GroupsV2Operations): SignalServiceAccountManager {
     return mockk(relaxed = true)
   }
 
   override fun provideSignalServiceMessageSender(
-    authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
-    unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket,
     protocolStore: SignalServiceDataStore,
-    pushServiceSocket: PushServiceSocket
+    pushServiceSocket: PushServiceSocket,
+    attachmentApi: AttachmentApi,
+    messageApi: MessageApi,
+    keysApi: KeysApi
   ): SignalServiceMessageSender {
     return mockk(relaxed = true)
   }
@@ -111,7 +118,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideIncomingMessageObserver(webSocket: SignalWebSocket.AuthenticatedWebSocket): IncomingMessageObserver {
+  override fun provideIncomingMessageObserver(webSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): IncomingMessageObserver {
     return mockk(relaxed = true)
   }
 
@@ -183,13 +190,12 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideDonationsService(pushServiceSocket: PushServiceSocket): DonationsService {
+  override fun provideDonationsService(donationsApi: DonationsApi): DonationsService {
     return mockk(relaxed = true)
   }
 
   override fun provideProfileService(
     profileOperations: ClientZkProfileOperations,
-    signalServiceMessageReceiver: SignalServiceMessageReceiver,
     authWebSocket: SignalWebSocket.AuthenticatedWebSocket,
     unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket
   ): ProfileService {
@@ -220,7 +226,7 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
     return mockk(relaxed = true)
   }
 
-  override fun provideKeysApi(pushServiceSocket: PushServiceSocket): KeysApi {
+  override fun provideKeysApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): KeysApi {
     return mockk(relaxed = true)
   }
 
@@ -273,6 +279,30 @@ class MockApplicationDependencyProvider : AppDependencies.Provider {
   }
 
   override fun provideMessageApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): MessageApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideProvisioningApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): ProvisioningApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideCertificateApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): CertificateApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideProfileApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket, pushServiceSocket: PushServiceSocket, clientZkProfileOperations: ClientZkProfileOperations): ProfileApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideRemoteConfigApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, pushServiceSocket: PushServiceSocket): RemoteConfigApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideDonationsApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket, unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket): DonationsApi {
+    return mockk(relaxed = true)
+  }
+
+  override fun provideSvrBApi(libSignalNetwork: Network): SvrBApi {
     return mockk(relaxed = true)
   }
 }

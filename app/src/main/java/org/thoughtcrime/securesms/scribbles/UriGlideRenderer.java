@@ -32,7 +32,7 @@ import org.signal.imageeditor.core.RendererContext;
 import org.signal.imageeditor.core.SelectableRenderer;
 import org.signal.imageeditor.core.model.EditorElement;
 import org.signal.imageeditor.core.model.EditorModel;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.util.BitmapUtil;
 
 import java.util.concurrent.ExecutionException;
@@ -195,7 +195,7 @@ public final class UriGlideRenderer implements SelectableRenderer {
                    .override(width, height)
                    .centerInside()
                    .addListener(bitmapRequestListener)
-                   .load(decryptable ? new DecryptableStreamUriLoader.DecryptableUri(imageUri) : imageUri);
+                   .load(decryptable ? new DecryptableUri(imageUri) : imageUri);
   }
 
   @Override

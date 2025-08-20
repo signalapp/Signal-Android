@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">მიმდინარეობს მედია ფაილების ატვირთვა…</string>
     <string name="AttachmentUploadJob_compressing_video_start">მიმდინარეობს ვიდეოს შეკუმშვა…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">მიმდინარეობს მედია ფაილების სათადარიგო ასლების შექმნა…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">ვამოწმებთ შეტყობინებებს…</string>
 
@@ -151,6 +155,7 @@
     <!-- BlockedUsersActivity -->
     <string name="BlockedUsersActivity__blocked_users">დაბლოკილი მომხმარებლები</string>
     <string name="BlockedUsersActivity__add_blocked_user">დაბლოკილი მომხმარებლის დამატება</string>
+    <string name="BlockedUsersActivity__cannot_block_yourself">საკუთარ თავს ვერ დაბლოკავ</string>
     <string name="BlockedUsersActivity__blocked_users_will">დაბლოკილ მომხმარებლებს არ ექნებათ შესაძლებლობა დაგირეკონ ან მოგწერონ.</string>
     <string name="BlockedUsersActivity__no_blocked_users">დაბლოკილი მომხმარებლები ვერ მოიძებნა</string>
     <string name="BlockedUsersActivity__block_user">დავბლოკოთ მომხმარებელი?</string>
@@ -544,6 +549,8 @@
     <string name="ConversationActivity__invite_to_signal">მოიწვიე Signal-ში</string>
     <!-- Snackbar message shown after dismissing the full screen sms export megaphone indicating we\'ll do it again soon -->
     <string name="ConversationActivity__you_will_be_reminded_again_soon">მალე ისევ შეგახსენებთ.</string>
+    <!-- Toast message shown when trying to record a voice message during an ongoing call -->
+    <string name="ConversationFragment_cannot_record_voice_message_during_call">ზარის დროს ხმოვანი შეტყობინების ჩაწერა შეუძლებელია.</string>
 
     <!-- Title for dialog shown when first sending formatted text -->
     <string name="SendingFormattingTextDialog_title">ფორმატირებული ტექსტის გაგზავნა</string>
@@ -579,13 +586,6 @@
     <plurals name="ConversationFragment_saving_n_attachments_to_sd_card">
         <item quantity="one">დანართს მეხსიერებაში ვინახავთ…</item>
         <item quantity="other">%1$d დანართს მეხსიერებაში ვინახავთ…</item>
-    </plurals>
-    <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="ConversationFragment__save_to_phone">გსურს მობილურში შეინახო?</string>
-    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
-    <plurals name="ConversationFragment__this_media_will_be_saved">
-        <item quantity="one">ეს მედია ფაილი შენი მობილურის მეხსიერებაში შეინახება. შეიძლება, შენი მობილურის ნებართვებიდან გამომდინარე, სხვა აპებს მასზე წვდომა ჰქონდეთ.</item>
-        <item quantity="other">ეს მედია ფაილი შენი მობილურის მეხსიერებაში შეინახება. შეიძლება, შენი მობილურის ნებართვებიდან გამომდინარე, სხვა აპებს მასზე წვდომა ჰქონდეთ.</item>
     </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
     <string name="ConversationFragment_dont_show_again">აღარ მაჩვენო</string>
@@ -1094,6 +1094,10 @@
     <string name="LinkDeviceFragment__the_device_that_was">%1$s-ზე მიბმული მოწყობილობა მიბმული აღარაა.</string>
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
+    <!-- Dialog title shown when you don\'t have enough storage space -->
+    <string name="LinkDeviceFragment__not_enough_storage_space">არასაკმარისი მეხსიერება</string>
+    <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
+    <string name="LinkDeviceFragment__you_dont_have_enough">შენს მოწყობილობაზე არ გაქვს საკმარისი მეხსიერება შეტყობინებების გადასატანად. გაათავისუფლე სივრცე და სცადე ხელახლა, ან დააკავშირე შენი მოწყობილობა შეტყობინებების გადატანის გარეშე.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1162,6 +1166,7 @@
 
     <!-- DocumentView -->
     <string name="DocumentView_unnamed_file">უსახელო ფაილი</string>
+    <string name="DocumentView_document_file">დოკუმენტის ფაილი</string>
 
     <!-- DozeReminder -->
     <string name="DozeReminder_optimize_for_missing_play_services">ოპტიმიზაცია გამოტოვებული Play Service-ებისთვის</string>
@@ -1170,6 +1175,11 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal-ის ამ ვერსიას ვადა გაუვიდა. განაახლე ახლავე, რათა გააგზავნო და მიიღო შეტყობინებები.</string>
     <string name="ExpiredBuildReminder_update_now">განაახლე ახლავე</string>
+
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">Signal-ის განახლება</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">Signal-ის ამ ვერსიას ვადა გაუვიდა. დააჭირე და განაახლე, რომ წერილები გაგზავნო და მიიღო.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1444,6 +1454,8 @@
     <string name="RemoteRestoreActivity__downloading_backup">მიმდინარეობს სარეზერვო კოპიების გადმოწერა…</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">მიმდინარეობს შეტყობინებების აღდგენა…</string>
+    <!-- Progress dialog label when finishing a backup restore -->
+    <string name="RemoteRestoreActivity__finishing_restore">სრულდება…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">მიმდინარეობს აღდგენა…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1470,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">აღდგენის გამოტოვება</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">გადატანის დასრულება ვერ მოხერხდა</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">სათადარიგო ასლის აღდგენა შეუძლებელია</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">სარეზერვო ასლის აღდგენისას შეცდომა დაფიქსირდა. შენი სარეზერვო ასლის აღდგენა შეუძლებელია. გთხოვთ, დახმარებისთვის მხარდაჭერის გუნდს მიმართე.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">მხარდაჭერის გუნდთან დაკავშირება</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">შეცდომა დაფიქსირდა და შენი მონაცემების გადატანა ვერ მოხერხდა. აირჩიე გადატანის მეთოდი, რომ თავიდან სცადო.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -1480,6 +1498,8 @@
     <string name="RemoteRestoreActivity__update_signal">Signal-ის განახლება</string>
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">ახლა არა</string>
+    <!-- Text shown on restore screen as information on what will happen if you skip -->
+    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">თუ ახლა არ აღადგენ, მოგვიანებით აღდგენას ვეღარ შეძლებ. შენი მედია ფაილები უკანა ფონზე აღდგება.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">შემატყობინეთ, როცა მომნიშნავენ</string>
@@ -1584,7 +1604,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">ჯგუფს ვერ შეუერთდები</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">ამ ჯგუფს ვერ შეუერთდები არსებული ბმულით, რადგან ადმინმა წაგშალა.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">ამ ჯგუფის ბმულით ჯგუფს ვერ შეუერთდები, რადგან ადმინისტრატორმა წაგშალა. დაეკონტაქტე ადმინისტრატორს, რომ ისევ დაგამატოს ჯგუფში.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">ჯგუფის ეს ბმული აღარაა მოქმედი.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -1689,7 +1709,6 @@
     </plurals>
     <string name="MediaOverviewActivity_Media_delete_progress_title">იშლება</string>
     <string name="MediaOverviewActivity_Media_delete_progress_message">ვშლით შეტყობინებებს…</string>
-    <string name="MediaOverviewActivity_collecting_attachments">ვაგროვებთ დანართებს…</string>
     <string name="MediaOverviewActivity_Sort_by">დახარისხება</string>
     <string name="MediaOverviewActivity_Newest">ყველაზე ახალი</string>
     <string name="MediaOverviewActivity_Oldest">ყველაზე ძველი</string>
@@ -1724,6 +1743,8 @@
     <string name="MediaOverviewActivity_sent_by_you">შენი გაგზავნილი</string>
     <string name="MediaOverviewActivity_sent_by_s_to_s">%2$s-ისთვის %1$s-ის გაგზავნილი</string>
     <string name="MediaOverviewActivity_sent_by_you_to_s">%1$s-ისთვის შენი გაგზავნილი</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="MediaOverviewActivity_this_media_is_not_sent_yet">ეს მედია ფაილი ჯერ არაა გაგზავნილი.</string>
 
     <!-- Megaphones -->
     <string name="Megaphones_remind_me_later">მოგვიანებით შემახსენე</string>
@@ -1793,6 +1814,10 @@
     <string name="MessageRecord_missed_voice_call">გამოტოვებული ხმოვანი ზარი</string>
     <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
     <string name="MessageRecord_missed_video_call">გამოტოვებული ვიდეო ზარი</string>
+    <!-- Update message shown when receiving an incoming 1:1 voice/audio call and not answered -->
+    <string name="MessageRecord_declined_voice_call">უარყოფილი ხმოვანი ზარი</string>
+    <!-- Update message shown when receiving an incoming 1:1 video call and not answered -->
+    <string name="MessageRecord_declined_video_call">უარყოფილი ვიდეო ზარი</string>
     <!-- Update message shown when receiving an incoming voice call and declined due to notification profile -->
     <string name="MessageRecord_missed_voice_call_notification_profile">გამოტოვებული ხმოვანი ზარი ჩართული შეტყობინების პროფილის დროს</string>
     <!-- Update message shown when receiving an incoming video call and declined due to notification profile -->
@@ -2138,6 +2163,27 @@
         <item quantity="one">დამატებით %1$d ჯგუფი</item>
         <item quantity="other">დამატებით %1$d ჯგუფი</item>
     </plurals>
+    <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
+    <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
+    <!-- Text for an empty group or when you are the only member -->
+    <string name="MessageRequestProfileView_group_members_zero">ჯგუფის სხვა წევრები ჯერ არ არიან</string>
+    <!-- Text for a group with one member (not you). %1$s is their name -->
+    <string name="MessageRequestProfileView_group_members_one">%1$s</string>
+    <!-- Text for a 2 member group you are in. %1$s is the name of the other member -->
+    <string name="MessageRequestProfileView_group_members_one_and_you">%1$s და შენ</string>
+    <!-- Text for a 2 member group you are not in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two">%1$s და %2$s</string>
+    <!-- Text for a 3 member group you are in. %1$s and %2$s are the members\' names -->
+    <string name="MessageRequestProfileView_group_members_two_and_you">%1$s, %2$s და შენ</string>
+    <!-- Text for a 3 member group you are not in. %1$s, %2$s, %3$s are the names of the other members. -->
+    <string name="MessageRequestProfileView_group_members_three">%1$s, %2$s და %3$s</string>
+    <!-- Text for a 3+ member group. %1$s, %2$s, %3$s are member names. %4$s is the string key MessageRequestProfileView_other_members-->
+    <string name="MessageRequestProfileView_group_members_other">%1$s, %2$s, %3$s და %4$s</string>
+    <!-- Nested in MessageRequestProfileView_group_members_other that shows how many members (besides three) are in the group -->
+    <plurals name="MessageRequestProfileView_other_members">
+        <item quantity="one">%1$d სხვა</item>
+        <item quantity="other">%1$d სხვა</item>
+    </plurals>
     <!-- Button label to report spam for a conversation when in a message request state -->
     <string name="MessageRequestBottomView_report">დარეპორტება…</string>
     <!-- Alert dialog title to accept a message request -->
@@ -2253,6 +2299,7 @@
 
     <!-- ReactionsBottomSheetDialogFragment -->
     <string name="ReactionsBottomSheetDialogFragment_all">ყველა · %1$d</string>
+    <string name="ReactionsBottomSheetDialogFragment_tap_to_remove">წასაშლელად დააჭირე</string>
 
     <!-- ReactionsConversationView -->
     <string name="ReactionsConversationView_plus">+%1$d</string>
@@ -2458,6 +2505,15 @@
     <!-- Content description for toggling group ring state -->
     <string name="WebRtcCallView__toggle_group_ringing">ჯგუფის შეტყობინების გადართვა</string>
 
+    <!-- Alert message indicating that the local user was remotely muted by some other user. Placeholder is the muters display name. -->
+    <string name="WebRtcCallView__s_remotely_muted_you">%1$s-მ ხმა გაგითიშა.</string>
+    <!-- Alert message indicating that the local user remotely muted another user. Placeholder is the name of the person muted. -->
+    <string name="WebRtcCallView__you_remotely_muted_s">%1$s-ს ხმა გაუთიშე.</string>
+    <!-- Alert message indicating that a remote user remotely muted another remote user. First placeholder is the muters display name, second is the display name of the person muted. -->
+    <string name="WebRtcCallView__s_remotely_muted_s">%1$s-მა %2$s-ს ხმა გაუთიშა.</string>
+    <!-- Alert message indicating that the local user joined a call on a second device and muted this one from the other one. -->
+    <string name="WebRtcCallView__you_muted_yourself">შენს თავს ხმა სხვა მოწყობილობიდან გაუთიშე.</string>
+
     <!-- Error message when the developer added a button in the wrong place. -->
     <string name="WebRtcAudioOutputToggleButton_fragment_activity_error">მოხდა UI ხარვეზი. გთხოვთ, შეატყობინო ეს შეცდომა დეველოპერებს.</string>
     <!-- Error message when the user is trying to change audio outputs but none are present. -->
@@ -2485,6 +2541,8 @@
     <string name="CallOverflowPopupWindow__view">View</string>
 
 
+    <!-- A notification to the user that their hand is raised but they are currently speaking -->
+    <string name="CallRaiseHandSnackbar__lower_your_hand">გსურს, ხელი ჩამოწიო?</string>
     <!-- A notification to the user that they successfully raised their hand. The placeholder string is CallParticipant__you, or CallParticipant__you_on_another_device -->
     <string name="CallRaiseHandSnackbar__expanded_second_person_raised_a_hand_single">%1$s-მა ხელი ასწია</string>
     <!-- A notification to the user that they and at least one more participants in the call successfully raised their hand. The placeholder is a number quantifying how many other hands are also raised, besides the user. -->
@@ -2555,6 +2613,12 @@
     <string name="AboutSheet__you">შენ</string>
     <!-- Displays the name of a contact. The first placeholder is the name the user has assigned to that contact, the second name is the name the contact assigned to themselves -->
     <string name="AboutSheet__user_set_display_name_and_profile_name">%1$s (%2$s)</string>
+
+    <!-- Title of the screen showing which groups they have in common with another user. -->
+    <plurals name="GroupsInCommon__n_groups_in_common_title">
+        <item quantity="one">%1$s საერთო ჯგუფი</item>
+        <item quantity="other">%1$s საერთო ჯგუფი</item>
+    </plurals>
 
     <!-- CallParticipantsListDialog -->
     <plurals name="CallParticipantsListDialog_in_this_call">
@@ -2735,6 +2799,12 @@
     <string name="SignalPinReminders_well_remind_you_again_in_a_week">პინ-კოდი წარმატებით დადასტურდა. ერთ კვირაში კიდევ შეგახსენებთ.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">პინ-კოდი წარმატებით დადასტურდა. რამოდენიმე კვირაში კიდევ შეგახსენებთ.</string>
     <string name="SignalPinReminders_well_remind_you_again_in_a_month">პინ-კოდი წარმატებით დადასტურდა. ერთ თვეში კიდევ შეგახსენებთ.</string>
+    <string name="SignalPinReminders__well_remind_you_again_later">მოგვიანებით ისევ შეგახსენებთ.</string>
+    <string name="SignalPinReminders__well_remind_you_again_tomorrow">ხვალ ისევ შეგახსენებთ.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">რამდენიმე დღეში ისევ შეგახსენებთ.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_week">ერთ კვირაში ისევ შეგახსენებთ.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_couple_weeks">რამდენიმე კვირაში ისევ შეგახსენებთ.</string>
+    <string name="SignalPinReminders__well_remind_you_again_in_a_month">ერთ თვეში ისევ შეგახსენებთ.</string>
 
     <!-- Slide -->
     <string name="Slide_image">სურათი</string>
@@ -2747,18 +2817,85 @@
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s-მა გადატვირთა უსაფრთხო სესია.</string>
     <string name="SmsMessageRecord_duplicate_message">შეტყობინების დუბლირება.</string>
 
-    <!-- StickerManagementActivity -->
-    <string name="StickerManagementActivity_stickers">სტიკერები</string>
+    <!-- Sticker management screen default title. -->
+    <string name="StickerManagement_title_stickers">სტიკერები</string>
+    <!-- Sticker management screen title displayed when multiple sticker packs are selected in order to perform an action. The placeholder is the number of selected items. -->
+    <plurals name="StickerManagement_title_n_selected">
+        <item quantity="one">%1$s არჩეულია</item>
+        <item quantity="other">%1$s არჩეულია</item>
+    </plurals>
+    <!-- Label for the sticker management screen tab which shows the stickers that are available to install. -->
+    <string name="StickerManagement_available_tab_label">ხელმისაწვდომი</string>
+    <!-- Label for the sticker management screen tab which shows the stickers that are currently installed. -->
+    <string name="StickerManagement_installed_tab_label">დაყენებული</string>
+    <!-- Shown when there are no sticker packs available for installation. -->
+    <string name="StickerManagement_available_tab_empty_text">არც ერთი სტიკერების ნაკრები არაა ხელმისაწვდომი</string>
+    <!-- Shown when there are no sticker packs currently installed. -->
+    <string name="StickerManagement_installed_tab_empty_text">არც ერთი სტიკერების ნაკრები არაა დაყენებული</string>
+    <!-- Message shown when the author of the sticker pack is unknown. -->
+    <string name="StickerManagement_author_unknown">უცნობი</string>
+    <!-- Sticker pack list section header for packs that are already installed. -->
+    <string name="StickerManagement_installed_stickers_header">გადმოწერილი სტიკერები</string>
+    <!-- Sticker pack list section header for packs that have been received from incoming messages. -->
+    <string name="StickerManagement_stickers_you_received_header">მიღებული სტიკერები</string>
+    <!-- Sticker pack list section header for highlighted/"blessed" packs. -->
+    <string name="StickerManagement_signal_artist_series_header">Signal-ის მხატვრების სერიები</string>
+    <!-- Title shown when sharing a sticker pack with another user. -->
+    <string name="StickerManagement_share_sheet_title">გაეგზავნოთ ჩამოთვლილებს</string>
+    <!-- Bottom action bar option to select all sticker packs in the list. -->
+    <string name="StickerManagement_action_select_all">მონიშნე ყველა</string>
+    <!-- Bottom action bar option to deselect all sticker packs in the list. -->
+    <string name="StickerManagement_action_deselect_all">ყველა მონიშვნის გაუქმება</string>
+    <!-- Bottom action bar option to uninstall all selected sticker packs. -->
+    <string name="StickerManagement_action_delete_selected">წაშლა</string>
+    <!-- Confirmation message shown before uninstalling sticker packs. The placeholder is the number of items to delete. -->
+    <plurals name="StickerManagement_delete_n_packs_confirmation">
+        <item quantity="one">სტიკერების %1$s პაკეტის წაშლა</item>
+        <item quantity="other">სტიკერების %1$s პაკეტის წაშლა</item>
+    </plurals>
+    <!-- Message shown after installing a sticker pack. The placeholder is the name of the sticker pack that was installed. -->
+    <string name="StickerManagement_installed_pack_s">დაინსტალირებულია %1$s.</string>
+    <!-- Message shown after uninstalling a sticker pack. The placeholder is the name of the sticker pack that was deleted. -->
+    <string name="StickerManagement_deleted_pack_s">წაშლილია %1$s.</string>
+    <!-- Message shown after uninstalling sticker packs. The placeholder is the number of items that were deleted. -->
+    <plurals name="StickerManagement_deleted_n_packs">
+        <item quantity="one">წაშლილია სტიკერების %1$s პაკეტი.</item>
+        <item quantity="other">წაშლილია სტიკერების %1$s პაკეტი.</item>
+    </plurals>
+    <!-- Describes the number of stickers that are available in a specific sticker pack. The placeholder is the sticker count. -->
+    <plurals name="StickerManagement_sticker_pack_preview_sticker_count">
+        <item quantity="one">%1$sსტიკერი</item>
+        <item quantity="other">%1$sსტიკერი</item>
+    </plurals>
+
+    <!-- Sticker pack list dropdown menu label for the button to forward a sticker pack to another user. -->
+    <string name="StickerManagement_menu_forward_pack">გადაგზავნა</string>
+    <!-- Sticker pack list dropdown menu label for the button to mark a sticker pack as selected in order to perform additional actions. -->
+    <string name="StickerManagement_menu_select_pack">არჩევა</string>
+    <!-- Sticker pack list dropdown menu label for the button to install a sticker pack. -->
+    <string name="StickerManagement_menu_install_pack">გადმოწერა</string>
+    <!-- Sticker pack list dropdown menu label for the button to uninstall a sticker pack. -->
+    <string name="StickerManagement_menu_remove_pack">წაშლა</string>
+    <!-- Sticker management screen dropdown menu label for the button to enter multi-select mode. -->
+    <string name="StickerManagement_menu_select_packs">სტიკერების პაკეტების არჩევა</string>
+
+    <!-- Accessibility label for the button to download a sticker pack. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_download_pack">ჩამოტვირთე სტიკერების ნაკრები %1$s</string>
+    <!-- Accessibility label for the icon that is displayed after a sticker pack has been downloaded. The placeholder is the sticker pack name. -->
+    <string name="StickerManagement_accessibility_downloaded_checkmark">ჩამოტვირთულის მონიშვნა</string>
+    <!-- Accessibility label for the sticker pack drag and drop handle used to reorder the list. -->
+    <string name="StickerManagement_accessibility_drag_handle">დრეგ-ენდ-დროფ ჰენდლი</string>
+    <!-- Accessibility label for the button to download a sticker pack. -->
+    <string name="StickerManagement_accessibility_download">ჩამოტვირთვა</string>
+    <!-- Accessibility label for opening the screen specific dropdown menu. -->
+    <string name="StickerManagement_accessibility_open_top_bar_menu">მენიუს გახსნა</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_open_context_menu">გახსენი კონტექსტური მენიუ</string>
+    <!-- Accessibility label for opening the context menu for a sticker pack row item. -->
+    <string name="StickerManagement_accessibility_exit_multi_select_mode">შერჩევის რეჟიმიდან გასვლა და არჩეულების გაწმენდა</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_installed_stickers">გადმოწერილი სტიკერები</string>
-    <string name="StickerManagementAdapter_stickers_you_received">მიღებული სტიკერები</string>
-    <string name="StickerManagementAdapter_signal_artist_series">Signal-ის მხატვრების სერიები</string>
-    <string name="StickerManagementAdapter_no_stickers_installed">გადმოწერილი სტიკერები ვერ მოიძებნა</string>
-    <string name="StickerManagementAdapter_stickers_from_incoming_messages_will_appear_here">სტიკერები შემომავალი შეტყობინებებიდან აქ გამოჩნდება</string>
     <string name="StickerManagementAdapter_untitled">უსათაურო</string>
-    <!-- Message shown when the author of the sticker pack is unknown -->
-    <string name="StickerManagementAdapter_unknown">უცნობი</string>
 
     <!-- StickerPackPreviewActivity -->
     <string name="StickerPackPreviewActivity_untitled">უსათაურო</string>
@@ -2785,6 +2922,15 @@
     <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">დააკოპირე ეს URL-ი და დაამატე ის შენი პრობლემის ანგარიშში ან მხარდაჭერის წერილში:\n\n<b>%1$s</b></string>
     <string name="SubmitDebugLogActivity_share">გაზიარება</string>
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">ეს რეესტრი საჯაროდ გამოქვეყნდება ინტერნეტში, რომ კონტრიბუტორებმა ნახონ. მისი შემოწმება ატვირთვამდე შეგიძლია.</string>
+    <!-- Banner message shown while submitting debug log -->
+    <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">როცა \"გაგზავნა\"-ზე დააწკაპუნებ, შენი რეესტრი ინტერნეტში გამოქვეყნდება 30 დღით უნიკალურ, გამოუქვეყნებელ URL-ზე. შეგიძლია ის ჯერ ადგილობრივად შეინახო.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -2855,6 +3001,8 @@
     <string name="ThreadRecord_s_belongs_to_s">%1$s %2$s-ს ეკუთვნის</string>
     <!-- Displayed in the conversation list when a person has been blocked -->
     <string name="ThreadRecord_blocked">დაბლოკილია</string>
+    <!-- Displayed in the conversation list when a group has been blocked -->
+    <string name="ThreadRecord_blocked_group">დაბლოკილია</string>
 
     <!-- ApkUpdateNotifications -->
     <string name="ApkUpdateNotifications_prompt_install_title">Signal-ის განახლება</string>
@@ -2954,10 +3102,6 @@
     <!-- MessageDisplayHelper -->
     <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">შეტყობინება დაშიფრულია არარსებული სესიისთვის</string>
 
-    <!-- MmsMessageRecord -->
-    <string name="MmsMessageRecord_bad_encrypted_mms_message">ცუდად დაშიფრული MMS-შეტყობინება</string>
-    <string name="MmsMessageRecord_mms_message_encrypted_for_non_existing_session">MMS-შეტყობინება დაშიფრულია არარსებული სესიისთვის</string>
-
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">შეტყობინებების გათიშვა</string>
 
@@ -2970,8 +3114,6 @@
     <string name="MediaPreviewActivity_you">შენ</string>
     <string name="MediaPreviewActivity_unssuported_media_type">შეუთავსებელი მედია-ფაილის ტიპი</string>
     <string name="MediaPreviewActivity_draft">მონახაზი</string>
-    <string name="MediaPreviewActivity_signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">გარე მეხსიერებაში შესანახად Signal-ს შენახვის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „შენახვა“.</string>
-    <string name="MediaPreviewActivity_unable_to_write_to_external_storage_without_permission">ნებართვების გარეშე გარე მეხსიერებაში შენახვა შეუძლებელია</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">წავშალოთ შეტყობინება?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">ეს ამ შეტყობინებას სამუდამოდ წაშლის.</string>
     <string name="MediaPreviewActivity_s_to_s">%1$s %2$s-ს</string>
@@ -3078,8 +3220,6 @@
     <!-- Notification channel name for notifications sent when a device has been linked -->
     <string name="NotificationChannel_new_linked_device">ახალი დაკავშირებული მოწყობილობა</string>
 
-    <!-- ProfileEditNameFragment -->
-
     <!-- QuickResponseService -->
     <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">სწრაფი პასუხი შეუძლებელია, როცა Signal-ი გამორთულია!</string>
     <string name="QuickResponseService_problem_sending_message">პრობლემა შეტყობინების გაგზავნისას!</string>
@@ -3105,6 +3245,21 @@
         <item quantity="one">დაფიქსირდა შეცდომა მიმაგრების მეხსიერებაში შენახვის დროს!</item>
         <item quantity="other">მიმაგრებული ფაილების საცავში შენახვისას დაფიქსირდა შეცდომა!</item>
     </plurals>
+
+    <!-- Dialog title asking to save media to your phone\'s storage -->
+    <string name="AttachmentSaver__save_to_phone">გსურს მობილურში შეინახო?</string>
+
+    <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
+    <plurals name="AttachmentSaver__this_media_will_be_saved">
+        <item quantity="one">ეს მედია ფაილი შენი მობილურის მეხსიერებაში შეინახება. შეიძლება, შენი მობილურის ნებართვებიდან გამომდინარე, სხვა აპებს მასზე წვდომა ჰქონდეთ.</item>
+        <item quantity="other">ეს მედია ფაილი შენი მობილურის მეხსიერებაში შეინახება. შეიძლება, შენი მობილურის ნებართვებიდან გამომდინარე, სხვა აპებს მასზე წვდომა ჰქონდეთ.</item>
+    </plurals>
+
+    <!-- Message shown when the app requests permission to save media to the device storage, but that permission has been permanently denied by the user. -->
+    <string name="AttachmentSaver__signal_needs_the_storage_permission_in_order_to_write_to_external_storage_but_it_has_been_permanently_denied">გარე მეხსიერებაში შესანახად Signal-ს შენახვის ნებართვა სჭირდება, მაგრამ ის სამუდამოდ იქნა უარყოფილი. გთხოვთ, შეხვიდე აპის პარამეტრებში, აირჩიო „ნებართვები“ და ჩართო „შენახვა“.</string>
+
+    <!-- Message explaining that it is not possible to save media to the device storage after the user denied the system save to storage permission. -->
+    <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">ნებართვების გარეშე გარე მეხსიერებაში შენახვა შეუძლებელია</string>
 
     <!-- SearchToolbar -->
     <string name="SearchToolbar_search">ძიება</string>
@@ -3362,6 +3517,11 @@
     <!-- audio_view -->
     <string name="audio_view__play_pause_accessibility_description">ჩართვა … დაპაუზება</string>
     <string name="audio_view__download_accessibility_description">ჩამოტვირთვა</string>
+
+    <!-- document_view -->
+    <string name="document_view__download_accessibility_description">ჩამოტვირთვა</string>
+    <string name="document_view__upload_accessibility_description">ატვირთვა</string>
+    <string name="document_view__cancel_accessibility_description">გაუქმება</string>
 
     <!-- QuoteView -->
     <string name="QuoteView_audio">აუდიო</string>
@@ -3671,6 +3831,7 @@
     <string name="DebugLogsPromptDialogFragment__no_thanks">არა, მადლობა</string>
 
     <!-- ReactWithAnyEmojiBottomSheetDialogFragment -->
+    <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recents">ბოლოს გამოყენებული</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__this_message">ეს შეტყობინება</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__recently_used">ბოლოს გამოყენებული</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__smileys_and_people">სმაილები &amp; ადამიანები</string>
@@ -3683,6 +3844,17 @@
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__flags">დროშები</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__emoticons">ემოციები</string>
     <string name="ReactWithAnyEmojiBottomSheetDialogFragment__no_results_found">ვერაფერი მოიძებნა</string>
+
+    <!-- GifQuickSearchOption -->
+    <string name="GifQuickSearchOption__recents">ბოლოს გამოყენებული</string>
+    <string name="GifQuickSearchOption__trending">ტრენდული</string>
+    <string name="GifQuickSearchOption__celebrate">ზეიმი</string>
+    <string name="GifQuickSearchOption__love">სიყვარული</string>
+    <string name="GifQuickSearchOption__thumbs_up">მოწონება</string>
+    <string name="GifQuickSearchOption__surprised">გაოცებული</string>
+    <string name="GifQuickSearchOption__excited">გახარებული</string>
+    <string name="GifQuickSearchOption__sad">სევდიანი</string>
+    <string name="GifQuickSearchOption__angry">გაბრაზებული</string>
 
     <!-- arrays.xml -->
     <string name="arrays__use_default">ნაგულისხმევის გამოყენება</string>
@@ -4278,6 +4450,8 @@
     <string name="conversation_list_fragment__fab_content_description">ახალი ჩატი</string>
     <string name="conversation_list_fragment__open_camera_description">კამერის გახსნა</string>
     <string name="conversation_list_fragment__no_chats_yet_get_started_by_messaging_a_friend">ჩატები ჯერ ვერ მოიძებნა.\nდაიწყე მეგობართან შეტყობინების გაგზავნით.</string>
+    <!-- Message shown when there are no archived chats to display -->
+    <string name="conversation_list_fragment__archived_chats_will_appear_here">დაარქივებული ჩატბი აქ გამოჩნდება.</string>
     <!-- Message shown when there are no chats in the chat folder to display -->
     <string name="conversation_list_fragment__no_chats_to_display">ჩატები ვერ მოიძებნა</string>
     <!-- Button text that will open up chat folder settings -->
@@ -4407,6 +4581,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">პინ-კოდი შეიქმნა.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">თავიდან შეიყვანე შენი პინ-კოდი</string>
     <string name="ConfirmKbsPinFragment__creating_pin">ვქმნით პინ-კოდს…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal-ის პინ-კოდი</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">წარმოგიდგენთ პინ-კოდებს</string>
@@ -4631,6 +4807,14 @@
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">თქვენ განახორციელეთ ძალიან ბევრი მცდელობა. გთხოვთ ხელახლა სცადოთ მოგვიანებით.</string>
     <string name="RegistrationActivity_error_connecting_to_service">სერვისთან დაკავშირების შეცდომა</string>
     <string name="preferences_chats__backups">სარეზერვო კოპიები</string>
+
+    <!-- Button label to indicate that a feature is in beta mode -->
+    <string name="Beta__beta_title">ბეტა ვერსია</string>
+    <!-- Content description for info icon -->
+    <string name="Beta__info">ინფორმაცია</string>
+    <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
+    <string name="Beta__this_is_beta">ეს ბეტა ფუნქციაა, რომელსაც ფუნქციონალები მუდმივად დაემატება.</string>
+
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal-ის გახსნა</string>
     <!-- Description text explaining how to unlock Signal -->
@@ -4697,7 +4881,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">აღადგინე შენი შეტყობინებები ადგილობრივი სარეზერვო კოპიიდან. თუ ახლა არ აღადგენ, მოგვიანებით აღდგენას ვეღარ შეძლებ.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">ადგილობრივი სარეზერვო კოპიების აღდგენა</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal-ის სარეზერვო კოპიების აღდგენა</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">აღადგინე შენი ყველა შეტყობინება + ბოლო 30 დღის მედია ფაილები</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">მეტი ოფცია</string>
 
@@ -4901,8 +5084,8 @@
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">არცერთი სხვა საერთო ჯგუფი.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">არცერთი საერთო ჯგუფი.</string>
     <plurals name="ReviewCardDialogFragment__d_other_groups_in_common">
-        <item quantity="one">%1$d საერთო ჯგუფი</item>
-        <item quantity="other">%1$d საერთო ჯგუფი</item>
+        <item quantity="one">%1$d სხვა საერთო ჯგუფი</item>
+        <item quantity="other">%1$d სხვა საერთო ჯგუფი</item>
     </plurals>
     <plurals name="ReviewCardDialogFragment__d_groups_in_common">
         <item quantity="one">%1$d საერთო ჯგუფი</item>
@@ -5186,6 +5369,8 @@
     <string name="AppSettingsFragment__couldnt_complete_backup">სარეზერვო კოპირება ვერ მოხერხდა</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">შენი სათადარიგო ასლების გამოწერის გააქტიურება ვერ მოხერხდა</string>
+    <!-- String alerting user that backup storage limit has been reached -->
+    <string name="AppSettingsFragment__backup_storage_limit_reached">სარეზერვო საცავის ლიმიტი მიღწეულია</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">მოიწვიე მეგობრები</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -5652,6 +5837,8 @@
     <string name="ConversationSettingsFragment__copied_phone_number_to_clipboard">მობილურის ნომერი ბუფერში დაკოპირდა.</string>
     <string name="ConversationSettingsFragment__phone_number">ტელეფონის ნომერი</string>
     <string name="ConversationSettingsFragment__get_badges">მიიღე ემბლემები შენი პროფილისთვის Signal-ის მხარდაჭერით. მეტი ინფორმაციისთვის დააჭირე ემბლემას.</string>
+    <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
+    <string name="ConversationSettingsFragment__this_media_is_not_sent_yet">ეს მედია ფაილი ჯერ არაა გაგზავნილი.</string>
 
     <!-- PermissionsSettingsFragment -->
     <string name="PermissionsSettingsFragment__add_members">წევრების დამატება</string>
@@ -5704,6 +5891,8 @@
     <string name="NewConversationActivity__s_has_been_removed">%1$s წაიშალა</string>
     <!-- Snackbar message after blocking a contact -->
     <string name="NewConversationActivity__s_has_been_blocked">%1$s დაბლოკილია</string>
+    <!-- Snackbar message when blocking a contact has failed -->
+    <string name="NewConversationActivity__block_failed">დაბლოკვა ვერ მოხერხდა</string>
     <!-- Dialog title when remove target contact is in system contacts -->
     <string name="NewConversationActivity__unable_to_remove_s">%1$s-ის წაშლა ვერ მოხერხდა</string>
     <!-- Dialog message when remove target contact is in system contacts -->
@@ -6459,6 +6648,8 @@
     <string name="StoryViewerPageFragment__send_failed">გაგზავნა ვერ მოხერხდა. დააჭირე თავიდან საცდელად</string>
     <!-- Label for the reply button in story viewer, which will launch the group story replies bottom sheet. -->
     <string name="StoryViewerPageFragment__reply_to_group">ჯგუფისთვის პასუხის დაბრუნება</string>
+    <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
+    <string name="StoryViewerPageFragment_any_reaction_content_description">მეტი რეაქცია</string>
     <!-- Displayed when a story has no views -->
     <string name="StoryViewsFragment__no_views_yet">ნახვები ჯერ არაა</string>
     <!-- Displayed when user has disabled receipts -->
@@ -7008,34 +7199,6 @@
     <string name="ExternalNavigationHelper__leave_signal_to_confirm_payment">დონაციის დასადასტურებლად გსურს Signal-ი დატოვო?</string>
     <string name="ExternalNavigationHelper__once_this_payment_is_confirmed">როდესაც ის დადასტურდება, შენი დონაციის დამუშავების დასასრულებლად Signal-ში დაბრუნდი.</string>
 
-    <!-- IdealBank -->
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__abn_amro">ABN AMRO</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__asn_bank">ASN Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__bunq">bunq</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__ing">ING</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__knab">Knab</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__n26">N26</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__rabobank">Rabobank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__regiobank">RegioBank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__revolut">Revolut</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__sns_bank">SNS Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__triodos_bank">Triodos Bank</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__van_lanschot">Van Lanschot Kempen</string>
-    <!-- iDEAL bank name -->
-    <string name="IdealBank__yoursafe">Yoursafe</string>
-
     <!-- BankTransferMandateFragment -->
     <!-- Title of screen displaying the bank transfer mandate -->
     <string name="BankTransferMandateFragment__bank_transfer">საბანკო ტრანზაქცია</string>
@@ -7084,7 +7247,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">შეიყვანე შენი ბანკი, სახელი და ელ-ფოსტა. Stripe-ი ამას შენი დონაციის შესახებ განახლებების გამოსაგზავნად გამოიყენებს. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">შეიყვანე შენი სახელი და ელ-ფოსტა. Stripe-ი ამას შენი დონაციის შესახებ განახლებების გამოსაგზავნად გამოიყენებს. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">შეიყვანე შენი საბანკო დეტალები. Signal-ი არ აგროვებს და არ ინახავს შენს პერსონალურ მონაცემებს. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7096,7 +7259,7 @@
     <!-- Default label for bank selection -->
     <string name="IdealTransferDetailsFragment__choose_your_bank">აირჩიე შენი ბანკი</string>
     <!-- Dialog title shown when using iDEAL payment for setting up a monthly donation -->
-    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_s">დაადასტურე შენი დონაცია %1$s</string>
+    <string name="IdealTransferDetailsFragment__confirm_your_donation_with_ideal">დაადასტურე შენი დონაცია iDEAL-ით</string>
     <!-- Dialog warning shown when using iDEAL payment for setting up a monthly donation. Placeholder is donation amount.Z -->
     <string name="IdealTransferDetailsFragment__to_setup_your_recurring_donation">შენი განმეორებადი დონაციის ჩასართავად, დააჭირე გააგრძელებას, რათა დაადასტურო შენს ბანკთან €0,01 გადახდა. ეს თანხა ავტომატურად დაგიბრუნდება და შენი ანგარიშიდან %1$s/თვეში დონაციის დებეტირების საშუალებას მოგცემს.</string>
     <!-- Dialog button shown when using iDEAL payment for setting up a monthly donation to continue with the donation -->
@@ -7276,6 +7439,8 @@
     <string name="CallLogAdapter__start_a_video_call">ვიდეო ზარის დაწყება</string>
     <!-- Accessibility description for the voice call button -->
     <string name="CallLogAdapter__start_a_voice_call">ხმოვანი ზარის დაწყება</string>
+    <!-- Notice on call log when no missed calls are available, centered on display -->
+    <string name="CallLogAdapter__no_missed_calls">გამოტოვებული ზარები ვერ მოიძებნა</string>
 
     <!-- Call Log context menu -->
     <!-- Displayed as a context menu item to start a video call -->
@@ -7572,6 +7737,28 @@
     <!-- Button text to deny all participants from joining the call -->
     <string name="PendingParticipantsBottomSheet__deny_all">ყველას უარყოფა</string>
 
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__title">ჩართე Signal-ის სათადარიგო ასლები</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__body">არასდროს დაკარგო შეტყობინებები, როდესაც ახალ მობილურს იყიდი ან Signal-ს თავიდან დააყენებ.</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
+    <string name="TurnOnSignalBackups__turn_on">ჩართვა</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
+    <string name="TurnOnSignalBackups__not_now">ახლა არა</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
+    <string name="VerifyBackupKey__title">დაადასტურე შენი გასაღების სათადარიგო ასლი</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
+    <string name="VerifyBackupKey__body">შენი გასაღების დამახსოვრებაში რომ დაგეხმაროთ, მას პერიოდულად გკითხავთ.</string>
+    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <string name="VerifyBackupKey__verify">დადასტურება</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <string name="VerifyBackupKey__not_now">ახლა არა</string>
+    <!-- Snackbar text shown when the backup key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">გასაღების სათადარიგო ასლი სწორია. უსაფრთხოდ შეინახე შენი გასაღები.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <string name="VerifyBackupKey__we_will_ask_again">ერთ კვირაში ისევ შეგახსენებთ.</string>
+
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">გსურს შეტყობინებები სრულ ეკრანზე ჩართო?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -7695,9 +7882,11 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">ნებისმიერ დროს შეგიძლია სარეზერვო კოპირების საფასურის გადახდა ისევ დაიწყო, რათა შენი ყველა მედია ფაილის სარეზერვო კოპიების შექმნა გააგრძელო. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_media_will_be_deleted_today">შენი მედია ფაილები დღეს წაიშლება</string>
-    <!-- Sheet body part 1 when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__your_signal_media_backup_plan_has_been">შენი Signal-ის მედია ფაილების სარეზერვო კოპირების გამოწერა გაუქმდა, რადგან შენი ტრანზაქციის დამუშავება ვერ მოვახერხეთ. შენს სარეზერვო კოპიებში არსებული მედია ფაილების წაშლამდე მათი გადმოწერისთვის ბოლო შანსი გაქვს.</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">ჩამოტვირთე შენი სარეზერვო მონაცემები დღესვე</string>
+    <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
+    <string name="BackupAlertBottomSheet__download_your_backup_data">ჩამოტვირთე შენი სარეზერვო მონაცემები</string>
+    <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">%1$s მოცულობის მედია ფაილები გაქვს, რომელიც ამ მოწყობილობაზე არ არის. შენს სათადარიგო ასლებში შენახული მედია და დანართები სამუდამოდ წაიშლება ფასიანი გამოწერის გარეშე.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">გაათავისუფლე %1$s ამ მოწყობილობაზე</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7708,6 +7897,12 @@
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">შენი სათადარიგო ასლების გამოწერის განახლება ვერ მოხერხდა</string>
     <!-- Sheet body when user payment failed to process -->
     <string name="BackupAlertBottomSheet__check_to_make_sure_your_payment_method">დარწმუნდი, რომ შენი გადახდის მეთოდი განახლებულია. დააჭირე გამოწერის მართვას და გადახდის მეთოდების ქვეშ აირჩიე განახლება.</string>
+    <!-- Sheet title for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_backups_subscription_has_expired">შენი სათადარიგო ასლების გამოწერას ვადა გაუვიდა</string>
+    <!-- Sheet body part 1 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">შენი გამოწერა შენი გადახდის მეთოდით ვერ განახლდა. მედია ფაილების სათადარიგო ასლების შექმნის გასაგრძელებლად აქტიური გამოწერა გჭირდება.</string>
+    <!-- Sheet body part 2 for when user falls out of grace period -->
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Signal-ის სათადარიგო ასლების უფასო გეგმაზე წვდომა ისევ გექნება.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">სარეზერვო კოპირება ვერ მოხერხდა</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7717,8 +7912,12 @@
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">გაიგე მეტი</string>
+    <!-- Clickable text to enter contact support flow -->
+    <string name="BackupAlertBottomSheet__contact_support">მხარდაჭერის გუნდთან დაკავშირება</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">აღდგენის გამოტოვება</string>
+    <!-- Primary action button to open backups management screen -->
+    <string name="BackupAlertBottomSheet__manage_backups">სათადარიგო ასლების მართვა</string>
     <!-- Primary action button to start backup immediately -->
     <string name="BackupAlertBottomSheet__back_up_now">სარეზერვო კოპიის ახლავე შექმნა</string>
     <!-- Primary action button when user doesn\'t have enough space -->
@@ -7728,9 +7927,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">გამოიწერე თვეში %1$s-ად</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_media_now">ჩამოტვირთე მედია ფაილები ახლა</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">სარეზერვო ასლის ჩამოტვირთვა</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_media">არ გადმოწერო მედია ფაილები</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">არ ჩამოტვირთო სარეზერვო ასლი</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">ახლა არა</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -7755,6 +7954,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">შენი სათადარიგო ასლების გამოწერის გააქტიურება ვერ მოხერხდა</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">შეცდომა მოხდა და შენი სათადარიგო ასლის შექმნა ვერ მოხერხდა. დარწმუნდი, რომ Signal-ის უახლეს ვერსიაზე ხარ და თავიდან სცადე. თუ პრობლემა არ მოგვარდა, მხარდაჭერის გუნდს დაუკავშირდი.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">შეცდომა მოხდა და შენი სათადარიგო ასლის შექმნა ვერ მოხერხდა. თუ პრობლემა არ მოგვარდა, მხარდაჭერის გუნდს დაუკავშირდი.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">შეამოწმე ახალი ვერსია</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -7770,11 +7971,13 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">მედია ფაილების აღდგენა</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
-    <string name="BackupStatus__restore_paused">აღდგენა დროებით შეჩერდა</string>
+    <string name="BackupStatus__restore_paused">მედია ფაილების აღდგენა შეჩერებულია</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
     <string name="BackupStatus__restore_complete">აღდგენა დასრულებულია</string>
     <!-- Status action label for seeing more details about storage space -->
     <string name="BackupStatus__details">Details</string>
+    <!-- Status action label for resume restore from a paused state -->
+    <string name="BackupStatus__resume">გაგრძელება</string>
 
     <!-- Status subtitle for banner when restoring media pauses for Wi-Fi -->
     <string name="BackupStatus__status_waiting_for_wifi">ველოდებით Wi-Fi-ს…</string>
@@ -7796,6 +7999,14 @@
     <string name="BackupStatusRow__restore_no_internet">აღდგენა შეჩერებულია: ინტერნეტ კავშირი არ არის…</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">აღდგენა შეჩერებულია: მოწყობილობა ჯდება</string>
+    <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
+    <string name="BackupStatusRow__downloading_s_of_s_s">მიმდინარეობს ჩამოტვირთვა: %2$s-დან %1$s (%3$s%%)</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
+    <string name="BackupStatusRow__download_waiting_for_wifi">ჩამოტვირთვა შეჩერებულია: ველოდებით Wi-Fi-ს…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
+    <string name="BackupStatusRow__download_no_internet">ჩამოტვირთვა შეჩერებულია: ინტერნეტი არ არის…</string>
+    <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
+    <string name="BackupStatusRow__download_device_has_low_battery">ჩამოტვირთვა შეჩერებულია: მოწყობილობა ჯდება</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
     <string name="BackupStatusRow__not_enough_space">სათადარიგო ასლის გადმოსაწერად საკმარისი ადგილი არ გაქვს. გასაგრძელებლად გაათავისუფლე %1$s.</string>
     <!-- Text row label to skip download -->
@@ -7806,6 +8017,11 @@
     <string name="BackupStatusRow__your_last_backup_latest_version">შენი ბოლო სათადარიგო ასლის შექმნა ვერ მოხერხდა. დარწმუნდი, რომ Signal-ის უახლეს ვერსიაზე ხარ და თავიდან სცადე.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">გაიგე მეტი</string>
+
+    <!-- Dialog title to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_title">გსურს, მობილური ინტერნეტით სარგებლობა გააგრძელო?</string>
+    <!-- Dialog message to prompt resuming media restore over cellular -->
+    <string name="ResumeRestoreCellular_resume_using_cellular_message">მობილური ინტერნეტის გამოყენებით მედია ფაილების აღდგენამ შეიძლება შენი ინტერნეტი დახარჯოს. ავტომატური განახლებისთვის Wi-Fi-სთან დაკავშირება შეგიძლია.</string>
 
     <!-- BackupsTypeSettingsFragment -->
     <!-- Displayed as the user\'s payment method as a label in a preference row -->
@@ -7887,17 +8103,37 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
+    <!-- NoManualBackupBottomSheet -->
+    <!-- Title for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
+        <item quantity="one">%1$d დღე სათადარიგო ასლების გარეშე</item>
+        <item quantity="other">%1$d დღე სათადარიგო ასლების გარეშე</item>
+    </plurals>
+    <!-- Body for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
+        <item quantity="one">%1$d დღეა სათადარიგო ასლი არ შეგიქმნია. შექმენი სათადარიგო ასლი ახლა და დარწმუნდი, რომ შენი წერილები და მედია ფაილები საიმედოდ შეინახება.</item>
+        <item quantity="other">%1$d დღეა სათადარიგო ასლი არ შეგიქმნია. შექმენი სათადარიგო ასლი ახლა და დარწმუნდი, რომ შენი წერილები და მედია ფაილები საიმედოდ შეინახება.</item>
+    </plurals>
+
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/თვეში, განახლდების თარიღი %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">ბოლო სათადარიგო ასლის შექმნის თარიღი: %1$s</string>
+    <!-- Subtitle for row for canceled backup -->
+    <string name="BackupsSettingsFragment__subscription_canceled">გამოწერა გაუქმებულია</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">შექმენი სათადარიგო ასლები Signal-ის დაშიფრული შენახვის სერვისით.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"ამ მოწყობილობაზე გამოწერა ვერ მოიძებნა."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">დაყენება</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">პარამეტრების ნახვა</string>
 
     <!-- RemoteBackupsSettingsFragment -->
+    <!-- Content description for canceling backup upload -->
+    <string name="RemoteBackupsSettingsFragment__cancel_upload">ატვირთვის გაუქმება</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal-ის სარეზერვო კოპიები</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -7906,10 +8142,12 @@
     <string name="RemoteBackupsSettingsFragment__payment_history">ტრანზაქციის ისტორია</string>
     <!-- Section header for backup information -->
     <string name="RemoteBackupsSettingsFragment__backup_details">სარეზერვო კოპიების დეტალები</string>
-    <!-- Toggle row label to allow the restoration of a backup to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__restore_using_cellular">აღდგენა მობილური ინტერნეტით</string>
+    <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
+    <string name="RemoteBackupsSettingsFragment__resume_download">ჩამოტვირთვის განახლება</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">სარეზერვო კოპიების ზომა</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">იტვირთება…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">სარეზერვო კოპიების შექმნის სიხშირე</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -7918,6 +8156,8 @@
     <string name="RemoteBackupsSettingsFragment__view_backup_key">სათადარიგო ასლების გასაღების ნახვა</string>
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">სათადარიგო ასლების გასაღების სანახავად მოხსენი ბლოკი</string>
+    <!-- Title of bottom sheet explaining that authentication is required to view your key -->
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">შენი გასაღების სანახავად, დაადასტურე, რომ ეს შენ ხარ</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">გამორთვა და სარეზერვო კოპიების წაშლა</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7930,6 +8170,8 @@
     <string name="RemoteBackupsSettingsFragment__download_complete">ჩამოტვირთვა დასრულებულია</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">სარეზერვო კოპიები ღამით შეიქმნება.</string>
+    <!-- Snackbar text displayed when user rotates AEP -->
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">გასაღების ახალი სათადარიგო ასლი შეიქმნა</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">გამოწერა არ არის გააქტიურებული</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -7977,7 +8219,9 @@
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">გამოვრთოთ და წავშალოთ სარეზერვო კოპიები?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__you_will_not_be_charged_again">თანხა აღარ ჩამოგეჭრება. შენი სარეზერვო კოპიები წაიშლება და ახალი სარეზერვო კოპიები აღარ შეიქმნება.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">თქვენი სათადარიგო ასლები წაიშლება და ახალი სათადარიგო ასლები არ შეიქმნება. ნებისმიერი მედია ფაილები, რომელიც თქვენს სათადარიგო ასლებშია შენახული, ახლავე ჩამოიტვირთება თქვენს ტელეფონში.</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">შენი გამოწერა გაუქმდება და თანხა აღარ ჩამოგეჭრება. შენი სათადარიგო ასლები წაიშლება და ახალი სათადარიგო ასლები არ შეიქმნება. ნებისმიერი მედია ფაილი, რომელიც შენს სათადარიგო ასლებშია შენახული, ახლავე ჩამოიტვირთება შენს მობილურში.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">გამორთვა და წაშლა</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8004,11 +8248,15 @@
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">იწერება შენი სათადარიგო ასლები</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">შენი სათადარიგო ასლების ზომიდან გამომდინარე, ამას შეიძლება დიდი დრო დასჭირდეს. სანამ ჩაიტვირთება, შენი ტელეფონის გამოყენებას ჩვეულებრივად შეძლებ.</string>
+    <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">ამ მოწყობილობაზე შენი გამოწერა ვერ მოიძებნა. განაახლე Signal-ის სათადარიგო ასლების გამოყენების გასაგრძელებლად.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
         <item quantity="one">ამ მოწყობილობაზე შენი გამოწერა მოქმედებს მომდევნო %1$d დღე. Signal-ის სათადარიგო ასლების გამოყენება რომ განაგრძო, განააწლე გამოწერა</item>
         <item quantity="other">ამ მოწყობილობაზე შენი გამოწერა მოქმედებს მომდევნო %1$d დღე. Signal-ის სათადარიგო ასლების გამოყენება რომ განაგრძო, განააწლე გამოწერა</item>
     </plurals>
+    <!-- Button label to start subscription resubscribe after cancellation -->
+    <string name="RemoteBackupsSettingsFragment__resubscribe">ხელახლა გამოწერა</string>
     <!-- Button label to start subscription renewal -->
     <string name="RemoteBackupsSettingsFragment__renew">განახლება</string>
     <!-- Button label to learn more about why subscription disappeared -->
@@ -8017,27 +8265,38 @@
     <string name="RemoteBackupsSettingsFragment__processing_backup">მიმდინარეობს სათადარიგო ასლების დამუშავება…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">მზადდება სათადარიგო ასლები…</string>
+    <!-- Linear progress dialog text shown when backup is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">ველოდებით WiFi-ს…</string>
+    <!-- Linear progress dialog text shown when backup is paused because internet is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">ველოდებით ინტერნეტ კავშირს…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
-    <plurals name="RemoteBackupsSettingsFragment__processing_d_of_d_d_messages">
-        <item quantity="one">მიმდინარეობს %2$d-დან %1$d შეტყობინების დამუშავება (%3$d%%)</item>
-        <item quantity="other">მიმდინარეობს %2$d-დან %1$d შეტყობინების დამუშავება (%3$d%%)</item>
+    <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
+        <item quantity="one">მუშავდება %2$s შეტყობინებიდან %1$s (%3$d%%)</item>
+        <item quantity="other">მუშავდება ~%2$s შეტყობინებიდან %1$s (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <plurals name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">
-        <item quantity="one">სათადარიგო ასლის %1$s მონაცემი გაქვს, რომელიც ამ მოწყობილობაზე არაა. შენი სათადარიგო ასლი %2$d დღეში წაიშლება, როცა შენს გამოწერას ვადა გაუვა.</item>
-        <item quantity="other">სათადარიგო ასლის %1$s მონაცემი გაქვს, რომელიც ამ მოწყობილობაზე არაა. შენი სათადარიგო ასლი %2$d დღეში წაიშლება, როცა შენს გამოწერას ვადა გაუვა.</item>
-    </plurals>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">%1$s მოცულობის სათადარიგო ასლი გაქვს, რომელიც ამ მოწყობილობაზე არ არის. ფასიანი გამოწერის გარეშე მედია ფაილის გადმოტვირთვა შეუძლებელია.</string>
+    <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">%1$s მოცულობის სათადარიგო ასლი გაქვს, რომელიც ამ მოწყობილობაზე არ არის. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
     <string name="RemoteBackupsSettingsFragment__download">ჩამოტვირთვა</string>
     <!-- Dialog title for skipping download of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_download_question">გსურს, გადმოწერის გამოტოვება?</string>
-    <!-- Dialog body for skiping download of backed up media -->
+    <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
         <item quantity="one">თუ აირჩევ დარჩენილი მედია ფაილების სათადარიგო ასლების შექმნის \"გამოტოვება\"-ს, ისინი %1$d დღეში წაიშლება.</item>
         <item quantity="other">თუ აირჩევ დარჩენილი მედია ფაილების სათადარიგო ასლების შექმნის \"გამოტოვება\"-ს, ისინი %1$d დღეში წაიშლება.</item>
     </plurals>
+    <!-- Dialog body for skipping download of backed up media during deletion -->
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">თუ გამოტოვებთ თქვენს სათადარიგო ასლებში დარჩენილი მედიისა და დანართების ჩამოტვირთვას, ისინი სამუდამოდ წაიშლება. ეს მონაცემები აღარ აღდგება.</string>
+    <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_question">გსურს აღდგენის გამოტოვება?</string>
+    <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
+    <string name="RemoteBackupsSettingsFragment__skip_restore_message">თუ აღდგენას გამოტოვებ, შენს სათადარიგო ასლებში დარჩენილი მედია ფაილების და დანართების ჩამოტვირთვა მოგვიანებით შეგეძლება.</string>
     <!-- Positive dialog action to skip download -->
     <string name="RemoteBackupsSettingsFragment__skip">გამოტოვება</string>
+    <!-- Positive dialog action to skip download during deletion -->
+    <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">გამოტოვება და სამუდამოდ წაშლა</string>
     <!-- Dialog title for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">სათადარიგო ასლების გამორთვა და წაშლა ვერ მოხერხდა</string>
     <!-- Dialog body for network error while trying to disable backups -->
@@ -8046,6 +8305,34 @@
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">იტვირთება: %2$s-დან %1$s (%3$d%%)</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Details</string>
+    <!-- Text displayed when there was an error deleting backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">სათადარიგო ასლები გაითიშა, მაგრამ შეცდომა მოხდა თქვენი მონაცემების Signal-ის უსაფრთხო საცავის სერვისიდან წაშლისას.</string>
+    <!-- Text displayed as the title in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">სათადარიგო ასლების წაშლა ვერ მოხერხდა</string>
+    <!-- Text displayed as the body in a card when backup fails to delete -->
+    <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">დაფიქსირდა შეცდომა. გთხოვთ, მხარდაჭერის გუნდს მიმართოთ.</string>
+    <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">სათადარიგო ასლები გაითიშა, თქვენი მონაცემები ჩამოიტვირთება თქვენს მოწყობილობაზე და შემდეგ წაიშლება Signal-ის უსაფრთხო საცავის სერვისიდან.</string>
+    <!-- Text displayed while we are processing a backup delete -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">სათადარიგო ასლები გაითიშა და თქვენი მონაცემები წაიშლება Signal-ის უსაფრთხო საცავის სერვისიდან.</string>
+    <!-- Text displayed after we have deleted a user\'s backup -->
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">სათადარიგო ასლები გამოირთო და შენი მონაცემები Signal-ის უსაფრთხო შენახვის სერვისიდან წაიშალა.</string>
+    <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
+    <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">მიმდინარეობს ჩამოტვირთვა: %2$s-დან %1$s (%3$d%%)</string>
+    <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">შენ მიაღწიეთ %1$s საცავის ლიმიტს, რომელიც შედის შენს სარეზერვო გეგმაში. ახალი ჩატებისა და მედია ფაილების სარეზერვო ასლის შესაქმნელად გაათავისუფლე ადგილი.</string>
+    <!-- Button label to open storage management screen -->
+    <string name="RemoteBackupsSettingsFragment__manage_storage">მეხსიერების მართვა</string>
+
+    <!-- DownloadYourBackupTodayDialog -->
+    <!-- Dialog title -->
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">ჩამოტვირთე შენი სარეზერვო ასლები დღესვე</string>
+    <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">%1$s მოცულობის სათადარიგო ასლი გაქვს, რომელიც ამ მოწყობილობაზე არ არის. შენი მედია ფაილები და დანართები სამუდამოდ წაიშლება ფასიანი გამოწერის გარეშე.</string>
+    <!-- Dialog positive action label -->
+    <string name="DownloadYourBackupTodayDialog__download">ჩამოტვირთვა</string>
+    <!-- Dialog negative action label -->
+    <string name="DownloadYourBackupTodayDialog__dont_download">არ ჩამოტვირთო</string>
 
     <!-- SubscriptionNotFoundBottomSheet -->
     <!-- Displayed as a bottom sheet title -->
@@ -8070,6 +8357,8 @@
     <!-- MessageBackupsFlowFragment -->
     <!-- Body for network failure dialog in message backups checkout flow -->
     <string name="MessageBackupsFlowFragment__a_network_failure_occurred">დაფიქსირდა ქსელის ხარვეზი. გთხოვთ, მოგვიანებით სცადო.</string>
+    <!-- Toast message if this fragment encounters an in progress deletion -->
+    <string name="MessageBackupsFlowFragment__a_backup_deletion_is_in_progress">სათადარიგო ასლის წაშლა მიმდინარეობს.</string>
 
     <!-- MessageBackupsEducationScreen -->
     <!-- Screen subtitle underneath large headline title -->
@@ -8102,6 +8391,24 @@
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">ეს გასაღები საჭიროა შენი ანგარიშისა და მონაცემების აღსადგენად. შეინახე გასაღები უსაფრთხო ადგილას. თუ მას დაკარგავ, შენი ანგარიშის აღდგენას ვეღარ შეძლებ.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ბუფერში ჩაკოპირება</string>
+    <!-- Label for the button to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">პაროლების მენეჯერში შენახვა</string>
+    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">გსურს პაროლების მენეჯერში დამახსოვრება?</string>
+    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">სათადარიგო ასლების გასაღები შეინახეთ პაროლების მენეჯერში, რომლის უსაფრთხოებასაც ენდობით. Signal არ იძლევა რეკომენდაციას, თუ რომელი პაროლების მენეჯერია თქვენთვის შესაფერისი.</string>
+    <!-- ID used when saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal-ის სარეზერვო კოპიები</string>
+    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">დამახსოვრებულია შენს პაროლების მენეჯერში</string>
+    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">ვერ ხერხდება პაროლების მენეჯერში შენახვა</string>
+    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">თქვენ არ გაქვთ დაყენებული პაროლების მენეჯერი, ან პაროლების მენეჯერი, რომელსაც იყენებთ, არ არის მხარდაჭერილი.</string>
+    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">ადრე აირჩიე, რომ Signal-ის პაროლები Google Password Manager-ში არ შენახულიყო. წაშალე Signal შენი Google Password Manager-ის პარამეტრებში \"უარყოფილი საიტებისა და აპების\" სიიდან და თავიდან სცადე.</string>
+    <!-- Label for a button that navigates to the device settings -->
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">შედი პარამეტრებში</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">შემდეგი</string>
     <!-- Bottom sheet title -->
@@ -8114,6 +8421,48 @@
     <string name="MessageBackupsKeyRecordScreen__continue">გაგრძელება</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">გასაღების თავიდან ნახვა</string>
+    <!-- Action label to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">შექმენი ახალი გასაღები</string>
+    <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__download_media">მედია ფაილის გადმოწერა</string>
+    <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">გასაღების ახალი სათადარიგო ასლის შესაქმნელად \"მეხსიერების ოპტიმიზაცია\" უნდა გამორთო და დაელოდო, რომ შენი მედია ფაილი გადმოიწეროს. შეგიძლია, ჩამოტვირთვის დასრულების შემდეგ ახალი გასაღები შექმნა.</string>
+    <!-- Action label to turn off optimized storage and download media -->
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">გამორთვა და გადმოწერა</string>
+    <!-- Bottom Sheet title for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">შექმენი გასაღების ახალი სათადარიგო ასლი</string>
+    <!-- Bottom Sheet body for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">ახალი გასაღების შექმნა მხოლოდ იმ შემთხვევაშია საჭირო, თუ სხვამ იცის შენი გასაღების შესახებ. მოგიწევს შენი სათადარიგო ასლი თავიდან ატვირთო, მედია ფაილის ჩათვლით. თუ \"მეხსიერების ოპტიმიზაციას\" იყენებ, მოგიწევს, ჯერ გადატვირთული მედია ფაილი გადმოიწერო.</string>
+
+    <!-- BackupKeyDisplayFragment -->
+    <!-- Dialog title when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">გსურს, გასაღების შექმნა გააუქმო?</string>
+    <!-- Dialog body when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">შენი გასაღების ახალი სათადარიგო ასლი არ შეიქმნება მანამ, სანამ არ დაადასტურებ.</string>
+    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__confirm_key">გასაღების დადასტურება</string>
+    <!-- Dialog button to cancel new key creation -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">გასაღების შექმნის გაუქმება</string>
+
+    <!-- Confirm key title -->
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">დაადასტურე შენი სათადარიგო ასლების გასაღები</string>
+    <!-- Confirm your key subtitle -->
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">შეიყვანე სათადარიგო ასლების გასაღები, რომელიც ახლახანს ჩაიწერე</string>
+    <!-- Confirm your key text entry hint text -->
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">სათადარიგო ასლების გასაღები</string>
+    <!-- Confirm your key text entry error text -->
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">არასწორი სათადარიგო ასლების გასაღები</string>
+    <!-- Confirm your key button text to return to record key screen. -->
+    <string name="MessageBackupsKeyVerifyScreen__see_key_again">გასაღების თავიდან ნახვა</string>
+    <!-- Confirm your key button text to move onto next screen in flow -->
+    <string name="MessageBackupsKeyVerifyScreen__next">შემდეგი</string>
+
+    <!-- Verify your key title -->
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">შეიყვანე შენი სათადარიგო ასლების გასაღები</string>
+    <!-- Verify your key subtitle -->
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">შეიყვანე 64-ნიშნა კოდი, რომელიც სათადარიგო ასლების ჩართვისას ჩაწერე.</string>
+    <!-- Button text when you forget your backup key -->
+    <string name="VerifyBackupPinScreen__forgot_key">გასაღები დაგავიწყდა?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8121,9 +8470,13 @@
     <!-- Screen subhead -->
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">ყველა სარეზერვო კოპია ბოლომდე დაშიფრულია. Signal-ი არაკომერციულია—სარეზერვო კოპირებაში თანხის გადახდა ჩვენი მისიის მხარდაჭერაში გვეხმარება.</string>
     <!-- Screen subhead highlighted read-more button -->
-    <string name="MessageBackupsTypeSelectionScreen__read_more">წაიკითე მეტი</string>
-    <!-- Primary action button label when selecting a backup tier without a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__next">შემდეგი</string>
+    <string name="MessageBackupsTypeSelectionScreen__learn_more">გაიგე მეტი</string>
+    <!-- Primary action button label without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe">გამოწერა</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">აირჩიე უფასო გეგმა</string>
+    <!-- Primary action button label when selecting the paid backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">გამოიწერე თვეში %1$s-ად</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">სარეზერვო კოპირების ტიპის შეცვლა</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
@@ -8240,6 +8593,33 @@
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">შენ მიერ შეყვანილი სათადარიგო ასლების გასაღები სწორია, მაგრამ მასთან ასოცირებული სათადარიგო ასლები ვერ მოიძებნა. თუ შენი ძველი მობილური ისევ გაქვს, დარწმუნდი, რომ სათადარიგო ასლები ჩართულია, სათადარიგო ასლის შექმნა დასრულებულია და თავიდან სცადე.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">აღდგენის გამოტოვება</string>
+    <!-- Dialog title text when encountering backup restore network error -->
+    <string name="EnterBackupKey_cant_restore_backup">სათადარიგო ასლის აღდგენა შეუძლებელია</string>
+    <!-- Dialog body text when encountering backup restore network error -->
+    <string name="EnterBackupKey_your_backup_cant_be_restored_right_now">ამჟამად შენი სათადარიგო ასლის აღდგენა შეუძლებელია. შეამოწმე შენი ინტერნეტ კავშირი და თავიდან სცადე. </string>
+    <!-- Dialog button text to contact support on network error -->
+    <string name="EnterBackupKey_contact_support">მხარდაჭერის გუნდთან დაკავშირება</string>
+
+    <!-- Email subject when contacting support on a restore backup network issue -->
+    <string name="EnterBackupKey_network_failure_support_email">Signal Android-ის სათადარიგო ასლის აღდგენის ხარვეზი</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android-ის სარეზერვო ასლის აღდგენის ხარვეზი</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
+
+    <!-- Email subject when contacting support on a create backup failure -->
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android-ის სათადარიგო ასლის აღდგენის ხარვეზი</string>
+    <!-- Email filter when contacting support on a create backup failure -->
+  <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
+
+    <!-- Title of dialog asking to submit debuglogs -->
+    <string name="ContactSupportDialog_submit_debug_log">გსურს გაუმართაობის რეესტრის ატვირთვა?</string>
+    <!-- Body of dialog explaining what debug logs are and that they are optional to submit -->
+    <string name="ContactSupportDialog_your_debug_logs">გაუმართაობის რეესტრში ატვირთვა დაგვეხმარება, შენი პრობლემა უფრო სწრაფად მოვაგვაროთ. რეესტრში ატვირთვა არჩევითია.</string>
+    <!-- Button option to submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_with_debug">გაუმართაობის რეესტრით ატვირთვა</string>
+    <!-- Button option to not submit debug log when contacting support -->
+    <string name="ContactSupportDialog_submit_without_debug">გაუმართაობის რეესტრის გარეშე ატვირთვა</string>
 
     <!-- Title for restore via qr screen -->
     <string name="RestoreViaQr_title">დაასკანირე ეს კოდი შენი ძველი მობილურით</string>
@@ -8298,6 +8678,46 @@
     <string name="NoBackupToRestore_step3">ჩართე სათადარიგო ასლები და დაელოდე, სანამ შენი სათადარიგო ასლების შექმნა დასრულდება</string>
     <!-- No backup to Restore tonal cta to skip restore -->
     <string name="NoBackupToRestore_skip_restore">აღდგენის გამოტოვება</string>
+
+    <!-- Accessibility label for close search button in MainToolbar -->
+    <string name="MainToolbar__close_search_content_description">ძიების დახურვა</string>
+    <!-- Accessibility label for clear search query in MainToolbar -->
+    <string name="MainToolbar__clear_search_content_description">ძიების გასუფთავება</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__more_options_content_description">მეტი ოფცია</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__notification_profile_content_description">შეტყობინების პროფილი</string>
+    <!-- Accessibility label for more options button in MainToolbar -->
+    <string name="MainToolbar__proxy_content_description">პროქსი</string>
+
+    <!-- Accessibility label for a button displayed in the toolbar to return to the previous screen. -->
+    <string name="DefaultTopAppBar__navigate_up_content_description">ზემოთ ასვლა</string>
+
+    <!-- Accessibility label describing the action that occurs when clicking a checkbox. -->
+    <string name="SignalCheckbox_accessibility_on_click_label">გადართვა</string>
+    <!-- Accessibility label describing a checked checkbox. -->
+    <string name="SignalCheckbox_accessibility_checked_description">მონიშნულია</string>
+    <!-- Accessibility label describing an unchecked checkbox. -->
+    <string name="SignalCheckbox_accessibility_unchecked_description">აღარაა მონიშნული</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">სათადარიგო ასლების მეხსიერება სავსეა</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">შენი სათადარიგო ასლების მეხსიერების ლიმიტს მიაღწიე. გაათავისუფლე ადგილი Signal-ში, რათა ჩატებისა და მედია ფაილების სათადარიგო ასლების შექმნა გააგრძელო.</string>
+    <!-- Notification title for when initial backup failed -->
+    <string name="Notification_backup_failed">სარეზერვო კოპიების შენახვა ვერ მოხერხდა</string>
+    <!-- Notification body for when initial backup failed -->
+    <string name="Notification_an_error_occurred_and_your_backup">შეცდომა მოხდა და შენი სათადარიგო ასლის შექმნა ვერ მოხერხდა. დააჭირე დეტალების სანახავად.</string>
+    <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_no_backup_for_d_days">
+        <item quantity="one">%1$d დღე სათადარიგო ასლების გარეშე</item>
+        <item quantity="other">%1$d დღე სათადარიგო ასლების გარეშე</item>
+    </plurals>
+    <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_you_have_not_completed_a_backup">
+        <item quantity="one">%1$d დღეა სათადარიგო ასლი არ შეგიქმნია. შექმენი ახლა.</item>
+        <item quantity="other">%1$d დღეა სათადარიგო ასლი არ შეგიქმნია. შექმენი ახლა.</item>
+    </plurals>
 
     <!-- EOF -->
 </resources>

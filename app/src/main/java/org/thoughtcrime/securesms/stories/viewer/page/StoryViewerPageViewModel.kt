@@ -299,6 +299,10 @@ class StoryViewerPageViewModel(
     storyViewerPlaybackStore.update { it.copy(isDisplayingPartialSendDialog = isDisplayingPartialSendDialog) }
   }
 
+  fun setIsSavingMedia(isSavingMedia: Boolean) {
+    storyViewerPlaybackStore.update { it.copy(isSavingMedia = isSavingMedia) }
+  }
+
   private fun resolveSwipeToReplyState(state: StoryViewerPageState, index: Int): StoryViewerPageState.ReplyState {
     if (index !in state.posts.indices) {
       return StoryViewerPageState.ReplyState.NONE

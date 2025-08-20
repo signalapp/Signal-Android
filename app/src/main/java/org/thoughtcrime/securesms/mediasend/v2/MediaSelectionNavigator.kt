@@ -29,6 +29,10 @@ class MediaSelectionNavigator(
     navController.safeNavigate(toGallery)
   }
 
+  fun isPreviousScreenMediaReview(navController: NavController): Boolean {
+    return navController.previousBackStackEntry?.destination?.id == R.id.mediaReviewFragment
+  }
+
   companion object {
     fun Fragment.requestPermissionsForCamera(
       onGranted: () -> Unit

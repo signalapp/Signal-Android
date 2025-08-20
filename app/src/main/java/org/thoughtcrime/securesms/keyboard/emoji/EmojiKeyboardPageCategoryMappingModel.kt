@@ -15,6 +15,10 @@ class RecentsMappingModel(override val selected: Boolean) : KeyboardPageCategory
     return requireNotNull(ThemeUtil.getThemedDrawable(context, R.attr.emoji_category_recent))
   }
 
+  override fun getContentDescription(context: Context): String {
+    return context.getString(R.string.ReactWithAnyEmojiBottomSheetDialogFragment__recents)
+  }
+
   override fun areItemsTheSame(newItem: RecentsMappingModel): Boolean {
     return newItem.key == key
   }
@@ -29,6 +33,10 @@ class EmojiCategoryMappingModel(private val emojiCategory: EmojiCategory, overri
 
   override fun getIcon(context: Context): Drawable {
     return requireNotNull(ThemeUtil.getThemedDrawable(context, emojiCategory.icon))
+  }
+
+  override fun getContentDescription(context: Context): String {
+    return context.getString(emojiCategory.getCategoryLabel())
   }
 
   override fun areItemsTheSame(newItem: EmojiCategoryMappingModel): Boolean {

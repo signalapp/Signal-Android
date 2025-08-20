@@ -19,6 +19,7 @@ public final class PinValues extends SignalStoreValues {
   private static final String TAG = Log.tag(PinValues.class);
 
   private static final String LAST_SUCCESSFUL_ENTRY = "pin.last_successful_entry";
+  private static final String LAST_REMINDER_TIME    = "pin.last_reminder_time";
   private static final String NEXT_INTERVAL         = "pin.interval_index";
   private static final String KEYBOARD_TYPE         = "kbs.keyboard_type";
   public  static final String PIN_REMINDERS_ENABLED = "pin.pin_reminders_enabled";
@@ -40,9 +41,12 @@ public final class PinValues extends SignalStoreValues {
     long nextInterval = SignalPinReminders.getNextInterval(getCurrentInterval());
     Log.i(TAG, "onEntrySuccess() nextInterval: " + nextInterval);
 
+    long now = System.currentTimeMillis();
+
     getStore().beginWrite()
-              .putLong(LAST_SUCCESSFUL_ENTRY, System.currentTimeMillis())
+              .putLong(LAST_SUCCESSFUL_ENTRY, now)
               .putLong(NEXT_INTERVAL, nextInterval)
+              .putLong(LAST_REMINDER_TIME, now)
               .apply();
 
     SignalStore.svr().setPinIfNotPresent(pin);
@@ -52,28 +56,48 @@ public final class PinValues extends SignalStoreValues {
     long nextInterval = SignalPinReminders.getPreviousInterval(getCurrentInterval());
     Log.i(TAG, "onEntrySuccessWithWrongGuess() nextInterval: " + nextInterval);
 
+    long now = System.currentTimeMillis();
+
     getStore().beginWrite()
-              .putLong(LAST_SUCCESSFUL_ENTRY, System.currentTimeMillis())
+              .putLong(LAST_SUCCESSFUL_ENTRY, now)
               .putLong(NEXT_INTERVAL, nextInterval)
+              .putLong(LAST_REMINDER_TIME, now)
               .apply();
 
     SignalStore.svr().setPinIfNotPresent(pin);
   }
 
-  public void onEntrySkipWithWrongGuess() {
-    long nextInterval = SignalPinReminders.getPreviousInterval(getCurrentInterval());
-    Log.i(TAG, "onEntrySkipWithWrongGuess() nextInterval: " + nextInterval);
+  /**
+   * Updates LAST_REMINDER_TIME and in the case of a failed guess, ratches
+   * back the interval until next reminder.
+   */
+  public void onEntrySkip(boolean includedFailure) {
+    long nextInterval;
 
-    putLong(NEXT_INTERVAL, nextInterval);
+    if (includedFailure) {
+      nextInterval = SignalPinReminders.getPreviousInterval(getCurrentInterval());
+    } else {
+      nextInterval = getCurrentInterval();
+    }
+
+    Log.i(TAG, "onEntrySkip(includedFailure: " + includedFailure +") nextInterval: " + nextInterval);
+
+    getStore().beginWrite()
+              .putLong(NEXT_INTERVAL, nextInterval)
+              .putLong(LAST_REMINDER_TIME, System.currentTimeMillis())
+              .apply();
   }
 
   public void resetPinReminders() {
     long nextInterval = SignalPinReminders.INITIAL_INTERVAL;
     Log.i(TAG, "resetPinReminders() nextInterval: " + nextInterval, new Throwable());
 
+    long now = System.currentTimeMillis();
+
     getStore().beginWrite()
               .putLong(NEXT_INTERVAL, nextInterval)
-              .putLong(LAST_SUCCESSFUL_ENTRY, System.currentTimeMillis())
+              .putLong(LAST_SUCCESSFUL_ENTRY, now)
+              .putLong(LAST_REMINDER_TIME, now)
               .apply();
   }
 
@@ -83,6 +107,10 @@ public final class PinValues extends SignalStoreValues {
 
   public long getLastSuccessfulEntryTime() {
     return getLong(LAST_SUCCESSFUL_ENTRY, TextSecurePreferences.getRegistrationLockLastReminderTime(AppDependencies.getApplication()));
+  }
+
+  public long getLastReminderTime() {
+    return getLong(LAST_REMINDER_TIME, getLastSuccessfulEntryTime());
   }
 
   public void setKeyboardType(@NonNull PinKeyboardType keyboardType) {

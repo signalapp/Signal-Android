@@ -8,4 +8,5 @@ interface AudioRecordingHandler {
   fun onRecordSaved()
   fun onRecordMoved(offsetX: Float, absoluteX: Float)
   fun onRecordPermissionRequired()
+  fun onRecorderAlreadyInUse()
 }

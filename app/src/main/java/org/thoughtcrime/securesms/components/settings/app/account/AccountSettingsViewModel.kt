@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.livedata.Store
 
@@ -19,11 +20,12 @@ class AccountSettingsViewModel : ViewModel() {
   private fun getCurrentState(): AccountSettingsState {
     return AccountSettingsState(
       hasPin = SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut(),
-      hasOptedInWithAccess = SignalStore.svr.hasOptedInWithAccess(),
+      hasRestoredAep = SignalStore.account.restoredAccountEntropyPool,
       pinRemindersEnabled = SignalStore.pin.arePinRemindersEnabled() && SignalStore.svr.hasPin(),
       registrationLockEnabled = SignalStore.svr.isRegistrationLockEnabled,
       userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
-      clientDeprecated = SignalStore.misc.isClientDeprecated
+      clientDeprecated = SignalStore.misc.isClientDeprecated,
+      canTransferWhileUnregistered = RemoteConfig.restoreAfterRegistration
     )
   }
 }

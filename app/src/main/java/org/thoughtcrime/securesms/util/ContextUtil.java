@@ -18,7 +18,7 @@ public final class ContextUtil {
   }
 
   /**
-   * Implementation "borrowed" from com.airbnb.lottie.utils.Utils#getAnimationScale(android.content.Context)
+   * Implementation "borrowed" from com.airbnb.lottie.utils.DebugLogViewer#getAnimationScale(android.content.Context)
    */
   public static float getAnimationScale(Context context) {
     return Settings.Global.getFloat(context.getContentResolver(), Settings.Global.ANIMATOR_DURATION_SCALE, 1.0f);

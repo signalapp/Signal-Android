@@ -57,6 +57,7 @@ class AccountAttributes @JsonCreator constructor(
     @JsonProperty val storage: Boolean,
     @JsonProperty val deleteSync: Boolean,
     @JsonProperty val versionedExpirationTimer: Boolean,
-    @JsonProperty("ssre2") val storageServiceEncryptionV2: Boolean
+    @JsonProperty("ssre2") val storageServiceEncryptionV2: Boolean,
+    @JsonProperty val attachmentBackfill: Boolean
   )
 }

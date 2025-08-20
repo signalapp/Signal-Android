@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 
 class LogSectionRemoteBackups : LogSection {
   override fun getTitle(): String = "REMOTE BACKUPS"
@@ -20,13 +21,14 @@ class LogSectionRemoteBackups : LogSection {
   override fun getContent(context: Context): CharSequence {
     val output = StringBuilder()
 
-    output.append("-- Backup State")
+    output.append("-- Backup State\n")
     output.append("Enabled:                              ${SignalStore.backup.areBackupsEnabled}\n")
     output.append("Current tier:                         ${SignalStore.backup.backupTier}\n")
     output.append("Latest tier:                          ${SignalStore.backup.latestBackupTier}\n")
+    output.append("Backup override tier:                 ${SignalStore.backup.backupTierInternalOverride}\n")
     output.append("Last backup time:                     ${SignalStore.backup.lastBackupTime}\n")
     output.append("Last check-in:                        ${SignalStore.backup.lastCheckInMillis}\n")
-    output.append("Last media sync:                      ${SignalStore.backup.lastMediaSyncTime}\n")
+    output.append("Last media sync:                      ${SignalStore.backup.lastAttachmentReconciliationTime}\n")
     output.append("Days since last backup:               ${SignalStore.backup.daysSinceLastBackup}\n")
     output.append("User manually skipped media restore:  ${SignalStore.backup.userManuallySkippedMediaRestore}\n")
     output.append("Can backup with cellular:             ${SignalStore.backup.backupWithCellular}\n")
@@ -35,7 +37,8 @@ class LogSectionRemoteBackups : LogSection {
     output.append("Backup frequency:                     ${SignalStore.backup.backupFrequency.name}\n")
     output.append("Optimize storage:                     ${SignalStore.backup.optimizeStorage}\n")
     output.append("Detected subscription state mismatch: ${SignalStore.backup.subscriptionStateMismatchDetected}\n")
-    output.append("\n -- Subscription State")
+    output.append("Last verified key time:               ${SignalStore.backup.lastVerifyKeyTime}\n")
+    output.append("\n -- Subscription State\n")
 
     val backupSubscriptionId = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
     val hasGooglePlayBilling = runBlocking { AppDependencies.billingApi.isApiAvailable() }
@@ -55,7 +58,47 @@ class LogSectionRemoteBackups : LogSection {
       output.append("IAP error type (or null):          ${inAppPayment.data.error?.type}\n")
       output.append("IAP cancellation reason (or null): ${inAppPayment.data.cancellation?.reason}\n")
     } else {
-      output.append("No in-app payment data available.")
+      output.append("No in-app payment data available.\n")
+    }
+
+    output.append("\n -- Imported DebugInfo\n")
+    if (SignalStore.internal.importedBackupDebugInfo != null) {
+      val info = SignalStore.internal.importedBackupDebugInfo!!
+      output.append("Debuglog          : ${info.debuglogUrl}\n")
+      output.append("Using Paid Tier   : ${info.usingPaidTier}\n")
+      output.append("Attachment Details:\n")
+      output.append("  NONE              : ${info.attachmentDetails?.notStartedCount ?: "N/A"}\n")
+      output.append("  UPLOAD_IN_PROGRESS: ${info.attachmentDetails?.uploadInProgressCount ?: "N/A"}\n")
+      output.append("  COPY_PENDING      : ${info.attachmentDetails?.copyPendingCount ?: "N/A"}\n")
+      output.append("  FINISHED          : ${info.attachmentDetails?.finishedCount ?: "N/A"}\n")
+      output.append("  PERMANENT_FAILURE : ${info.attachmentDetails?.permanentFailureCount ?: "N/A"}\n")
+      output.append("  TEMPORARY_FAILURE : ${info.attachmentDetails?.temporaryFailureCount ?: "N/A"}\n")
+    } else {
+      output.append("None\n")
+    }
+
+    output.append("\n -- ArchiveUploadProgress\n")
+    if (SignalStore.backup.archiveUploadState != null) {
+      output.append("State: ${SignalStore.backup.archiveUploadState}\n")
+
+      if (SignalStore.backup.archiveUploadState!!.state !in setOf(ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled)) {
+        output.append("Pending bytes: ${SignalDatabase.attachments.getPendingArchiveUploadBytes()}\n")
+
+        val pendingAttachments = SignalDatabase.attachments.debugGetPendingArchiveUploadAttachments()
+        if (pendingAttachments.isNotEmpty()) {
+          output.append("Pending attachments:\n")
+          output.append("  Count: ${pendingAttachments.size}\n")
+          output.append("  Sum of Size: ${pendingAttachments.sumOf { it.size }}\n")
+          output.append("  Content types:\n")
+          pendingAttachments.groupBy { it.contentType }.forEach { (contentType, attachments) ->
+            output.append("    $contentType: ${attachments.size}\n")
+          }
+        } else {
+          output.append("Pending attachments: None!\n")
+        }
+      }
+    } else {
+      output.append("None\n")
     }
 
     return output

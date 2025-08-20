@@ -25,6 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
+import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.FixedRoundedCornerBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.components.emoji.EmojiEventListener;
@@ -34,8 +35,8 @@ import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.keyboard.KeyboardPageCategoryIconMappingModel;
 import org.thoughtcrime.securesms.keyboard.emoji.EmojiKeyboardPageCategoriesAdapter;
 import org.thoughtcrime.securesms.keyboard.emoji.KeyboardPageSearchView;
+import org.thoughtcrime.securesms.reactions.ReactionsRepository;
 import org.thoughtcrime.securesms.reactions.edit.EditReactionsActivity;
-import org.signal.core.util.concurrent.LifecycleDisposable;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel;
@@ -48,7 +49,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends FixedRound
                                                                                                                              EmojiPageViewGridAdapter.VariationSelectorListener
 {
 
-  public  static final String REACTION_STORAGE_KEY = "reactions_recent_emoji";
+  public static final  String REACTION_STORAGE_KEY = "reactions_recent_emoji";
   private static final String ABOUT_STORAGE_KEY    = TextSecurePreferences.RECENT_STORAGE_KEY;
 
   private static final String ARG_MESSAGE_ID = "arg_message_id";
@@ -126,7 +127,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends FixedRound
 
   public static ReactWithAnyEmojiBottomSheetDialogFragment createForCallingReactions() {
     ReactWithAnyEmojiBottomSheetDialogFragment fragment = new ReactWithAnyEmojiBottomSheetDialogFragment();
-    Bundle         args     = new Bundle();
+    Bundle                                     args     = new Bundle();
 
     args.putLong(ARG_MESSAGE_ID, -1);
     args.putBoolean(ARG_IS_MMS, false);
@@ -254,9 +255,10 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends FixedRound
   }
 
   private void initializeViewModel() {
-    Bundle                             args       = requireArguments();
-    ReactWithAnyEmojiRepository        repository = new ReactWithAnyEmojiRepository(requireContext(), args.getString(ARG_RECENT_KEY, REACTION_STORAGE_KEY));
-    ReactWithAnyEmojiViewModel.Factory factory    = new ReactWithAnyEmojiViewModel.Factory(repository, args.getLong(ARG_MESSAGE_ID), args.getBoolean(ARG_IS_MMS));
+    Bundle                             args                = requireArguments();
+    ReactionsRepository                reactionsRepository = new ReactionsRepository();
+    ReactWithAnyEmojiRepository        repository          = new ReactWithAnyEmojiRepository(requireContext(), args.getString(ARG_RECENT_KEY, REACTION_STORAGE_KEY));
+    ReactWithAnyEmojiViewModel.Factory factory             = new ReactWithAnyEmojiViewModel.Factory(reactionsRepository, repository, args.getLong(ARG_MESSAGE_ID), args.getBoolean(ARG_IS_MMS));
 
     viewModel = new ViewModelProvider(this, factory).get(ReactWithAnyEmojiViewModel.class);
   }
@@ -273,7 +275,7 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends FixedRound
   }
 
   @Override
-  public void onVariationSelectorStateChanged(boolean open) { }
+  public void onVariationSelectorStateChanged(boolean open) {}
 
   public interface Callback {
     void onReactWithAnyEmojiDialogDismissed();
@@ -336,9 +338,9 @@ public final class ReactWithAnyEmojiBottomSheetDialogFragment extends FixedRound
     }
 
     @Override
-    public void onClicked() { }
+    public void onClicked() {}
 
     @Override
-    public void onFocusLost() { }
+    public void onFocusLost() {}
   }
 }

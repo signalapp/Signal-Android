@@ -41,7 +41,8 @@ class NotificationProfilesTest {
     "first",
     "",
     createdAt = 1000L,
-    schedule = NotificationProfileSchedule(1)
+    schedule = NotificationProfileSchedule(1),
+    notificationProfileId = NotificationProfileId.generate()
   )
 
   private val second = NotificationProfile(
@@ -49,14 +50,15 @@ class NotificationProfilesTest {
     "second",
     "",
     createdAt = 2000L,
-    schedule = NotificationProfileSchedule(2)
+    schedule = NotificationProfileSchedule(2),
+    notificationProfileId = NotificationProfileId.generate()
   )
 
   private lateinit var notificationProfileValues: NotificationProfileValues
 
   @Before
   fun setUp() {
-    notificationProfileValues = mockk()
+    notificationProfileValues = mockk(relaxed = true)
     every { notificationProfileValues.manuallyEnabledUntil } returns 0
     every { notificationProfileValues.manuallyDisabledAt } returns 0
 

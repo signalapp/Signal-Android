@@ -51,6 +51,7 @@ import java.io.InputStream;
 
 import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.EXCLUDE_SYSTEM;
 import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.GROUP_ID;
+import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.IS_DESCRIPTION_FOCUSED;
 import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.NEXT_BUTTON_TEXT;
 import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.NEXT_INTENT;
 import static org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity.SHOW_TOOLBAR;
@@ -161,6 +162,7 @@ public class CreateProfileFragment extends LoggingFragment {
     boolean isEditingGroup = groupId != null;
 
     this.nextIntent = arguments.getParcelable(NEXT_INTENT);
+    boolean isDescriptionFocused = arguments.getBoolean(IS_DESCRIPTION_FOCUSED);
 
     binding.avatar.setOnClickListener(v -> startAvatarSelection());
     binding.mmsGroupHint.setVisibility(isEditingGroup && groupId.isMms() ? View.VISIBLE : View.GONE);
@@ -171,7 +173,9 @@ public class CreateProfileFragment extends LoggingFragment {
       binding.whoCanFindMeContainer.setVisibility(View.GONE);
       binding.givenName.addTextChangedListener(new AfterTextChanged(s -> viewModel.setGivenName(s.toString())));
       binding.givenNameWrapper.setHint(R.string.EditProfileFragment__group_name);
-      binding.givenName.requestFocus();
+      if (!isDescriptionFocused) {
+        binding.givenName.requestFocus();
+      }
       binding.toolbar.setTitle(R.string.EditProfileFragment__edit_group);
       binding.namePreview.setVisibility(View.GONE);
 
@@ -182,6 +186,9 @@ public class CreateProfileFragment extends LoggingFragment {
           viewModel.setFamilyName(s.toString());
         }));
         binding.familyNameWrapper.setHint(R.string.EditProfileFragment__group_description);
+        if (isDescriptionFocused) {
+          binding.familyName.requestFocus();
+        }
         binding.familyName.setSingleLine(false);
         binding.familyName.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_MULTI_LINE | InputType.TYPE_TEXT_FLAG_CAP_SENTENCES);
 

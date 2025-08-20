@@ -8,8 +8,11 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
+import org.thoughtcrime.securesms.net.SignalNetwork;
+import org.thoughtcrime.securesms.util.ExceptionHelper;
 import org.thoughtcrime.securesms.util.RemoteConfig;
-import org.whispersystems.signalservice.api.RemoteConfigResult;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
+import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigResult;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 
 import java.util.concurrent.TimeUnit;
@@ -51,14 +54,14 @@ public class RemoteConfigRefreshJob extends BaseJob {
       return;
     }
 
-    RemoteConfigResult result = AppDependencies.getSignalServiceAccountManager().getRemoteConfig();
+    RemoteConfigResult result = NetworkResultUtil.toBasicLegacy(SignalNetwork.remoteConfig().getRemoteConfig());
     RemoteConfig.update(result.getConfig());
-    SignalStore.misc().setLastKnownServerTime(TimeUnit.SECONDS.toMillis(result.getServerEpochTimeSeconds()), System.currentTimeMillis());
+    SignalStore.misc().setLastKnownServerTime(result.getServerEpochTimeMilliseconds(), System.currentTimeMillis());
   }
 
   @Override
   protected boolean onShouldRetry(@NonNull Exception e) {
-    return e instanceof PushNetworkException;
+    return ExceptionHelper.isRetryableIOException(e);
   }
 
   @Override

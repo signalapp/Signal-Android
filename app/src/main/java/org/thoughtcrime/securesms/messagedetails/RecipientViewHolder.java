@@ -10,9 +10,15 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.badges.BadgeImageView;
 import org.thoughtcrime.securesms.components.AvatarImageView;
 import org.thoughtcrime.securesms.components.FromTextView;
+import org.thoughtcrime.securesms.components.transfercontrols.TransferControlView;
+import org.thoughtcrime.securesms.database.AttachmentTable;
+import org.thoughtcrime.securesms.database.model.MessageRecord;
+import org.thoughtcrime.securesms.database.model.MmsMessageRecord;
+import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.TextSecurePreferences;
 
+import java.util.List;
 import java.util.Locale;
 
 final class RecipientViewHolder extends RecyclerView.ViewHolder {
@@ -51,7 +57,7 @@ final class RecipientViewHolder extends RecyclerView.ViewHolder {
       conflictButton.setVisibility(View.VISIBLE);
       error.setText(itemView.getContext().getString(R.string.message_details_recipient__new_safety_number));
       conflictButton.setOnClickListener(unused -> callbacks.onErrorClicked(data.getMessageRecord()));
-    } else if ((data.getNetworkFailure() != null && !data.getMessageRecord().isPending()) || (!data.getMessageRecord().getToRecipient().isPushGroup() && data.getMessageRecord().isFailed())) {
+    } else if (isFailed(data)) {
       timestamp.setVisibility(View.GONE);
       error.setVisibility(View.VISIBLE);
       conflictButton.setVisibility(View.GONE);
@@ -68,5 +74,18 @@ final class RecipientViewHolder extends RecyclerView.ViewHolder {
         timestamp.setText("");
       }
     }
+  }
+
+  private boolean isFailed(RecipientDeliveryStatus data) {
+    if (data.getDeliveryStatus() == RecipientDeliveryStatus.Status.PENDING) {
+      return false;
+    }
+
+    MessageRecord messageRecord = data.getMessageRecord();
+    if (messageRecord.isAttachmentInExpectedState(AttachmentTable.TRANSFER_PROGRESS_FAILED)) {
+      return true;
+    }
+
+    return (data.getNetworkFailure() != null && !data.getMessageRecord().isPending()) || (!data.getMessageRecord().getToRecipient().isPushGroup() && data.getMessageRecord().isFailed());
   }
 }
