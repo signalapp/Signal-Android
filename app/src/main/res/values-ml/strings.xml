@@ -8147,7 +8147,7 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">ബാക്കപ്പ് വലുപ്പം</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
+    <string name="RemoteBackupsSettingsFragment__loading">ലഭ്യമാക്കുന്നു</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">ബാക്കപ്പ് ആവൃത്തി</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->

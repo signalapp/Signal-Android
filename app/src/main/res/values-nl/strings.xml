@@ -1076,7 +1076,7 @@
     <!-- Body of a dialog letting the user know that syncing messages to their linked device failed but the device was still able to be linked -->
     <string name="LinkDeviceFragment__sync_failure_body_unretryable">Je apparaat is succesvol gekoppeld, maar je berichten konden niet worden overgezet.</string>
     <!-- Text button in a dialog that, when pressed, will redirect to the Signal support page -->
-    <string name="LinkDeviceFragment__learn_more">Meer lezen</string>
+    <string name="LinkDeviceFragment__learn_more">Meer informatie</string>
   <!-- Removed by excludeNonTranslatables <string name="LinkDeviceFragment__learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007320551</string> -->
     <!-- Text button of a button in a dialog that, when pressed, will restart the process of linking a device -->
     <string name="LinkDeviceFragment__sync_failure_retry_button">Opnieuw proberen</string>
@@ -4472,7 +4472,7 @@
     <string name="conversation__menu_view_all_media">Alle media</string>
     <string name="conversation__menu_conversation_settings">Chatinstellingen</string>
     <string name="conversation__menu_add_shortcut">Toevoegen aan startscherm</string>
-    <string name="conversation__menu_create_bubble">Chatbubbel aanmaken</string>
+    <string name="conversation__menu_create_bubble">Bubbel aanmaken</string>
     <!-- Overflow menu option that allows formatting of text -->
     <string name="conversation__menu_format_text">Tekstopmaak</string>
 
@@ -8147,7 +8147,7 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Back-upgrootte</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
+    <string name="RemoteBackupsSettingsFragment__loading">Aan het laden…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Back-upfrequentie</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->

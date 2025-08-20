@@ -563,21 +563,21 @@
 
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
-        <item quantity="one">%1$d अपठित मेसेज</item>
-        <item quantity="other">%1$dअपठित मेसेज</item>
+        <item quantity="one">%1$d अनरीड मैसेज</item>
+        <item quantity="other">%1$d अनरीड मैसेज</item>
     </plurals>
 
     <!-- ConversationFragment -->
     <!-- Toast text when contacts activity is not found -->
-    <string name="ConversationFragment__contacts_app_not_found">संपर्क ऐप नहीं मिला।</string>
+    <string name="ConversationFragment__contacts_app_not_found">कॉन्टैक्ट ऐप नहीं मिला।</string>
     <plurals name="ConversationFragment_delete_selected_messages">
         <item quantity="one">चयनित मेसेज डिलीट करें?</item>
         <item quantity="other">चयनित मेसेज डिलीट करें?</item>
     </plurals>
-    <string name="ConversationFragment_save_to_sd_card">इसे स्टॉरेज में सेव करे?</string>
+    <string name="ConversationFragment_save_to_sd_card">स्टोरेज में सेव करना है?</string>
     <plurals name="ConversationFragment_saving_n_media_to_storage_warning">
-        <item quantity="one">इस मीडिया को स्टोरेज में सेव करने से आपके डिवाइस पर किसी भी अन्य ऐप को इसे ऐक्सेस करने की अनुमति मिल जाएगी। \n\nजारी रखना चाहते हैं?</item>
-        <item quantity="other">सभी %1$d मीडिया को स्टोरेज में सेव करने से आपके डिवाइस पर किसी भी अन्य ऐप को इसे ऐक्सेस करने की अनुमति मिल जाएगी। \n\nजारी रखना चाहते हैं?</item>
+        <item quantity="one">इस मीडिया को स्टोरेज में सेव करने पर, आपके डिवाइस में मौजूद दूसरे ऐप को भी इसका ऐक्सेस मिल जाएगा। \n\nक्या आपको जारी रखना है?</item>
+        <item quantity="other">सभी %1$d मीडिया को स्टोरेज में सेव करने पर, आपके डिवाइस में मौजूद दूसरे ऐप को भी इसका ऐक्सेस मिल जाएगा। \n\nक्या आपको जारी रखना है?</item>
     </plurals>
     <plurals name="ConversationFragment_saving_n_attachments">
         <item quantity="one">अटैचमेंट सेव हो रहा है</item>
@@ -589,13 +589,13 @@
     </plurals>
     <!-- Checkbox shown in dialog to not show the dialog again in future cases -->
     <string name="ConversationFragment_dont_show_again">इसे फिर से न दिखाएँ</string>
-    <string name="ConversationFragment_pending">रूका हुआ</string>
+    <string name="ConversationFragment_pending">पेंडिंग है…</string>
     <!-- Describes how the message was sent when looking at a message detail. Previously, messages could be through other means like SMS -->
     <string name="ConversationFragment_push">डेटा (Signal)</string>
     <string name="ConversationFragment_mms">MMS</string>
     <string name="ConversationFragment_sms">SMS</string>
-    <string name="ConversationFragment_deleting">हटा दिया जा रहा है</string>
-    <string name="ConversationFragment_deleting_messages">मेसेज हटाए जा रहे हैं</string>
+    <string name="ConversationFragment_deleting">डिलीट किया जा रहा है</string>
+    <string name="ConversationFragment_deleting_messages">मैसेज डिलीट किए जा रहे हैं…</string>
     <string name="ConversationFragment_delete_for_me">मेरे लिये डिलीट करें</string>
     <string name="ConversationFragment_delete_for_everyone">सब के लिये डिलीट करें</string>
     <!-- Dialog button for deleting one or more note-to-self messages only on this device, leaving that same message intact on other devices. -->
@@ -605,22 +605,22 @@
     <!-- Dialog button for deleting one or more note-to-self messages on all linked devices. -->
     <string name="ConversationFragment_delete_everywhere">हर कहीं से डिलीट करें</string>
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">यह संदेश चैट में शामिल सभी के लिए डिलीट कर दिया जाएगा यदि वे Signal के नवीनमत वर्ज़न पर हैं। वे देख सकेंगे कि आपने एक संदेश को डिलीट कर दिया है।</string>
-    <string name="ConversationFragment_quoted_message_not_found">मूल मेसेज नहीं मिला</string>
-    <string name="ConversationFragment_quoted_message_no_longer_available">मूल मेसेज अब उपलब्ध नहीं है</string>
-    <string name="ConversationFragment_failed_to_open_message">मेसेज खोलने में असमर्थ</string>
-    <string name="ConversationFragment_you_can_swipe_to_the_right_reply">आप जल्दी से उत्तर देने के लिए किसी भी मेसेज पर दाईं ओर स्वाइप कर सकते हैं</string>
-    <string name="ConversationFragment_you_can_swipe_to_the_left_reply">आप जल्दी से उत्तर देने के लिए किसी भी मेसेज पर बाईं ओर स्वाइप कर सकते हैं</string>
+    <string name="ConversationFragment_quoted_message_not_found">मूल मैसेज नहीं मिला</string>
+    <string name="ConversationFragment_quoted_message_no_longer_available">मूल मैसेज अब उपलब्ध नहीं है</string>
+    <string name="ConversationFragment_failed_to_open_message">मैसेज नहीं खुल सका</string>
+    <string name="ConversationFragment_you_can_swipe_to_the_right_reply">जल्दी जवाब देने के लिए किसी भी मैसेज को दाईं ओर स्वाइप करें</string>
+    <string name="ConversationFragment_you_can_swipe_to_the_left_reply">जल्दी जवाब देने के लिए किसी भी मैसेज को बाईं ओर स्वाइप करें</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">व्यू-वन्स मीडिया भेजने के बाद डिलीट कर जाता है</string>
     <string name="ConversationFragment_you_already_viewed_this_message">आपने यह संदेश पहले ही देख लिया है</string>
     <string name="ConversationFragment__you_can_add_notes_for_yourself_in_this_conversation">आप इस चैट में खुद के लिए नोट्स शामिल कर सकते हैं। यदि आपके अकाउंट के कोई लिंक किए हुए डिवाइस हैं, तो नए नोट्स सिंक किए जाएँगे।</string>
-    <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ग्रुप मेंबर्स का एक ही नाम है।</string>
-    <string name="ConversationFragment__tap_to_review">समीक्षा के लिए टैप करें</string>
+    <string name="ConversationFragment__d_group_members_have_the_same_name">%1$d ग्रुप मेंबर के नाम एक जैसे हैं।</string>
+    <string name="ConversationFragment__tap_to_review">देखने के लिए टैप करें</string>
     <!-- The body of a banner that can show up at the top of a chat, letting the user know that you have two contacts with the same name -->
     <string name="ConversationFragment__review_banner_body">इस व्यक्ति का नाम अन्य संपर्क के समान ही है</string>
     <string name="ConversationFragment_contact_us">हमसे संपर्क करें</string>
-    <string name="ConversationFragment_verify">सत्यापित करें</string>
+    <string name="ConversationFragment_verify">वेरिफ़ाई करें</string>
     <string name="ConversationFragment_not_now">अभी नहीं</string>
-    <string name="ConversationFragment_your_safety_number_with_s_changed">%1$s के साथ आपका सुरक्षा नंबर बदल गया है</string>
+    <string name="ConversationFragment_your_safety_number_with_s_changed">%1$s के साथ आपका सेफ़्टी नंबर बदल गया है</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%1$s के साथ आपकी सुरक्षा संख्या बदल गई, संभावना है कि उन्होंने Signal को फिर से इंस्टॉल किया है या डिवाइस को बदल लिया है। नए सुरक्षा नंबर की पुष्टि करने के लिए वेरिफाई पर क्लिक करें। यह वैकल्पिक है।</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">अनुरोध ब्लॉक करना है?</string>
@@ -8147,7 +8147,7 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">बैकअप आकार</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">Loading…</string>
+    <string name="RemoteBackupsSettingsFragment__loading">लोड हो रहा है</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">बैकअप फ़्रीक्वेंसी</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
