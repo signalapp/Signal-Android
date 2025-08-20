@@ -2,21 +2,17 @@ package org.thoughtcrime.securesms.components.settings.app.appearance
 
 import android.app.Activity
 import androidx.lifecycle.ViewModel
-import io.reactivex.rxjava3.core.Flowable
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import org.thoughtcrime.securesms.jobs.EmojiSearchIndexDownloadJob
 import org.thoughtcrime.securesms.keyvalue.SettingsValues.Theme
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.SplashScreenUtil
-import org.thoughtcrime.securesms.util.rx.RxStore
 
 class AppearanceSettingsViewModel : ViewModel() {
-  private val store = RxStore(getState())
-  val state: Flowable<AppearanceSettingsState> = store.stateFlowable
-
-  override fun onCleared() {
-    super.onCleared()
-    store.dispose()
-  }
+  private val store = MutableStateFlow(getState())
+  val state: StateFlow<AppearanceSettingsState> = store
 
   fun refreshState() {
     store.update { getState() }

@@ -144,6 +144,45 @@ object Rows {
     }
   }
 
+  @Composable
+  fun RadioListRow(
+    text: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selectedValue: String,
+    onSelected: (String) -> Unit
+  ) {
+    val selectedIndex = values.indexOf(selectedValue)
+    val selectedLabel = if (selectedIndex in labels.indices) {
+      labels[selectedIndex]
+    } else {
+      null
+    }
+
+    var displayDialog by remember { mutableStateOf(false) }
+
+    TextRow(
+      text = text,
+      label = selectedLabel,
+      onClick = {
+        displayDialog = true
+      }
+    )
+
+    if (displayDialog) {
+      Dialogs.RadioListDialog(
+        onDismissRequest = { displayDialog = false },
+        labels = labels,
+        values = values,
+        selectedIndex = selectedIndex,
+        title = text,
+        onSelected = {
+          onSelected(values[it])
+        }
+      )
+    }
+  }
+
   /**
    * Row that positions [text] and optional [label] in a [TextAndLabel] to the side of a [Switch].
    *
@@ -563,5 +602,23 @@ private fun TextAndLabelPreview() {
         enabled = false
       )
     }
+  }
+}
+
+@SignalPreview
+@Composable
+private fun RadioListRowPreview() {
+  var selectedValue by remember { mutableStateOf("b") }
+
+  Previews.Preview {
+    Rows.RadioListRow(
+      text = "Radio List",
+      labels = arrayOf("A", "B", "C"),
+      values = arrayOf("a", "b", "c"),
+      selectedValue = selectedValue,
+      onSelected = {
+        selectedValue = it
+      }
+    )
   }
 }

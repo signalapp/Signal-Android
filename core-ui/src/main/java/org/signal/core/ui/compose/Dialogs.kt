@@ -7,22 +7,28 @@ package org.signal.core.ui.compose
 
 import android.R
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -218,7 +224,9 @@ object Dialogs {
         Column(
           verticalArrangement = Arrangement.Center,
           horizontalAlignment = Alignment.CenterHorizontally,
-          modifier = Modifier.fillMaxWidth().fillMaxHeight()
+          modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
         ) {
           Spacer(modifier = Modifier.size(24.dp))
           CircularProgressIndicator()
@@ -335,6 +343,76 @@ object Dialogs {
 
             TextButton(onClick = onConfirm) {
               Text(text = confirm)
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @Composable
+  fun RadioListDialog(
+    onDismissRequest: () -> Unit,
+    properties: DialogProperties = DialogProperties(),
+    title: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selectedIndex: Int,
+    onSelected: (Int) -> Unit
+  ) {
+    Dialog(
+      onDismissRequest = onDismissRequest,
+      properties = properties
+    ) {
+      Surface(
+        modifier = Modifier
+          .padding(vertical = 100.dp)
+          .background(
+            color = SignalTheme.colors.colorSurface2,
+            shape = AlertDialogDefaults.shape
+          )
+          .clip(AlertDialogDefaults.shape)
+      ) {
+        Column {
+          Text(
+            text = title,
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier.padding(top = 16.dp).horizontalGutters()
+          )
+
+          LazyColumn(
+            modifier = Modifier.padding(top = 24.dp, bottom = 16.dp),
+            state = rememberLazyListState(
+              initialFirstVisibleItemIndex = selectedIndex
+            )
+          ) {
+            items(
+              count = values.size,
+              key = { values[it] }
+            ) { index ->
+              Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                  .fillMaxWidth()
+                  .defaultMinSize(minHeight = 48.dp)
+                  .clickable(
+                    enabled = true,
+                    onClick = {
+                      onSelected(index)
+                      onDismissRequest()
+                    }
+                  )
+                  .horizontalGutters()
+              ) {
+                RadioButton(
+                  enabled = true,
+                  selected = index == selectedIndex,
+                  onClick = null,
+                  modifier = Modifier.padding(end = 24.dp)
+                )
+
+                Text(text = labels[index])
+              }
             }
           }
         }
@@ -483,5 +561,21 @@ private fun IndeterminateProgressDialogMessagePreview() {
 private fun IndeterminateProgressDialogCancellablePreview() {
   Previews.Preview {
     Dialogs.IndeterminateProgressDialog("Completing...", "Do not close app", "Cancel") {}
+  }
+}
+
+@SignalPreview
+@Composable
+private fun RadioListDialogPreview() {
+  Previews.Preview {
+    Dialogs.RadioListDialog(
+      onDismissRequest = {},
+      title = "TestDialog",
+      properties = DialogProperties(),
+      labels = arrayOf(),
+      values = arrayOf(),
+      selectedIndex = -1,
+      onSelected = {}
+    )
   }
 }
