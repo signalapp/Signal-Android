@@ -121,6 +121,7 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import org.thoughtcrime.securesms.service.BackupProgressService
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -2127,6 +2128,7 @@ object BackupRepository {
 
     SignalStore.backup.restoreState = RestoreState.RESTORING_MEDIA
 
+    BackupMediaRestoreService.resetTimeout()
     AppDependencies.jobManager.add(BackupRestoreMediaJob())
 
     Log.i(TAG, "[remoteRestore] Restore successful")
@@ -2203,6 +2205,7 @@ object BackupRepository {
 
     SignalStore.backup.restoreState = RestoreState.RESTORING_MEDIA
 
+    BackupMediaRestoreService.resetTimeout()
     AppDependencies.jobManager.add(BackupRestoreMediaJob())
 
     Log.i(TAG, "[restoreLinkAndSyncBackup] Restore successful")

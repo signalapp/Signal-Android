@@ -70,6 +70,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
+import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.ui.verify.VerifyBackupKeyActivity
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.show
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
@@ -127,6 +128,7 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfiles
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.profiles.manage.UsernameEditFragment
+import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import org.thoughtcrime.securesms.service.KeyCachingService
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.stories.landing.StoriesLandingFragment
@@ -267,6 +269,12 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           callback.isEnabled = state.mode == MainToolbarMode.ACTION_MODE
         }
       }
+    }
+
+    if (SignalStore.backup.restoreState == RestoreState.RESTORING_MEDIA) {
+      Log.i(TAG, "Still restoring media, launching a service.")
+      BackupMediaRestoreService.resetTimeout()
+      BackupMediaRestoreService.start(this, resources.getString(R.string.BackupStatus__restoring_media))
     }
 
     onBackPressedDispatcher.addCallback(this, callback)

@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import kotlin.time.Duration.Companion.seconds
 
 /**
@@ -49,6 +50,7 @@ class CheckRestoreMediaLeftJob private constructor(parameters: Parameters) : Job
         SignalStore.backup.totalRestorableAttachmentSize = 0
         SignalStore.backup.restoreState = RestoreState.NONE
         ArchiveRestoreProgress.onProcessEnd()
+        BackupMediaRestoreService.stop(context)
 
         if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
           SignalStore.backup.deletionState = DeletionState.MEDIA_DOWNLOAD_FINISHED

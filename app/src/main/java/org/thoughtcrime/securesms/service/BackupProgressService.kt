@@ -24,6 +24,9 @@ import kotlin.concurrent.withLock
 
 /**
  * Foreground service to provide "long" run support to backup jobs.
+ *
+ * For the restoration of backup media, see [BackupMediaRestoreService] instead
+ *
  */
 class BackupProgressService : SafeForegroundService() {
 

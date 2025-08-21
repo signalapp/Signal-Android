@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
+import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
@@ -225,7 +226,18 @@ class RestoreAttachmentJob private constructor(
     }
 
     SignalLocalMetrics.ArchiveAttachmentRestore.start(attachmentId)
-    retrieveAttachment(messageId, attachmentId, attachment)
+
+    val progressServiceController = BackupMediaRestoreService.start(context, context.getString(R.string.BackupStatus__restoring_media))
+
+    if (progressServiceController != null) {
+      progressServiceController.use {
+        retrieveAttachment(messageId, attachmentId, attachment)
+      }
+    } else {
+      Log.w(TAG, "Continuing without service.")
+      retrieveAttachment(messageId, attachmentId, attachment)
+    }
+
     SignalLocalMetrics.ArchiveAttachmentRestore.end(attachmentId)
   }
 

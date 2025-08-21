@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.signal.core.util.withinTransaction
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -17,6 +18,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.NotPushRegisteredException
+import org.thoughtcrime.securesms.service.BackupMediaRestoreService
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -117,6 +119,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
       restoreFullAttachmentJobs.forEach { jobManager.add(it) }
     } while (restoreThumbnailJobs.isNotEmpty() || restoreFullAttachmentJobs.isNotEmpty() || notRestorable.isNotEmpty())
 
+    BackupMediaRestoreService.start(context, context.getString(R.string.BackupStatus__restoring_media))
     SignalStore.backup.totalRestorableAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
 
     RestoreAttachmentJob.Queues.INITIAL_RESTORE.forEach { queue ->
