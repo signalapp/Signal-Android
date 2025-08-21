@@ -5,12 +5,17 @@
 
 package org.thoughtcrime.securesms.components.webrtc.v2
 
+import android.os.Build
+import androidx.compose.foundation.pager.PagerState
+import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.material3.BottomSheetScaffoldState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.SheetState
 import androidx.compose.material3.SheetValue
 import androidx.compose.material3.rememberBottomSheetScaffoldState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.remember
@@ -20,13 +25,18 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
+import org.thoughtcrime.securesms.components.webrtc.ToggleButtonOutputState
+import org.thoughtcrime.securesms.components.webrtc.WebRtcAudioDevice
 
 /**
  * Collects and manages state objects for manipulating the call screen UI programatically.
  */
+@Stable
 @OptIn(ExperimentalMaterial3Api::class)
 class CallScreenController private constructor(
   val scaffoldState: BottomSheetScaffoldState,
+  val audioOutputPickerController: AudioOutputPickerController,
+  val callParticipantsVerticalPagerState: PagerState,
   val onControlsToggled: (Boolean) -> Unit
 ) {
 
@@ -34,8 +44,14 @@ class CallScreenController private constructor(
 
   suspend fun handleEvent(event: Event) {
     when (event) {
-      Event.SWITCH_TO_SPEAKER_VIEW -> {} // TODO [calling-v2]
-      Event.DISMISS_AUDIO_PICKER -> {} // TODO [calling-v2]
+      Event.SWITCH_TO_SPEAKER_VIEW -> {
+        callParticipantsVerticalPagerState.animateScrollToPage(1)
+      }
+
+      Event.DISMISS_AUDIO_PICKER -> {
+        audioOutputPickerController.hide()
+      }
+
       Event.TOGGLE_CONTROLS -> {
         if (scaffoldState.bottomSheetState.isVisible) {
           scaffoldState.bottomSheetState.hide()
@@ -58,7 +74,12 @@ class CallScreenController private constructor(
 
   companion object {
     @Composable
-    fun rememberCallScreenController(skipHiddenState: Boolean, onControlsToggled: (Boolean) -> Unit): CallScreenController {
+    fun rememberCallScreenController(
+      skipHiddenState: Boolean,
+      onControlsToggled: (Boolean) -> Unit,
+      callControlsState: CallControlsState,
+      callControlsListener: CallScreenControlsListener
+    ): CallScreenController {
       val skip by rememberUpdatedState(skipHiddenState)
       val valueChangeOperation: (SheetValue) -> Boolean = remember {
         {
@@ -73,10 +94,48 @@ class CallScreenController private constructor(
         )
       )
 
-      return remember(scaffoldState) {
+      val onSelectedAudioDeviceChanged: (WebRtcAudioDevice) -> Unit = remember {
+        {
+          if (Build.VERSION.SDK_INT >= 31) {
+            callControlsListener.onAudioOutputChanged31(it)
+          } else {
+            callControlsListener.onAudioOutputChanged(it.webRtcAudioOutput)
+          }
+        }
+      }
+
+      val audioOutputPickerOutputState = remember {
+        ToggleButtonOutputState().apply {
+          isEarpieceAvailable = callControlsState.isEarpieceAvailable
+          isWiredHeadsetAvailable = callControlsState.isWiredHeadsetAvailable
+          isBluetoothHeadsetAvailable = callControlsState.isBluetoothHeadsetAvailable
+        }
+      }
+
+      LaunchedEffect(callControlsState.isEarpieceAvailable, callControlsState.isWiredHeadsetAvailable, callControlsState.isBluetoothHeadsetAvailable) {
+        audioOutputPickerOutputState.apply {
+          isEarpieceAvailable = callControlsState.isEarpieceAvailable
+          isWiredHeadsetAvailable = callControlsState.isWiredHeadsetAvailable
+          isBluetoothHeadsetAvailable = callControlsState.isBluetoothHeadsetAvailable
+        }
+      }
+
+      val audioOutputPickerController = rememberAudioOutputPickerController(
+        onSelectedDeviceChanged = onSelectedAudioDeviceChanged,
+        outputState = audioOutputPickerOutputState
+      )
+
+      val callParticipantsVerticalPagerState = rememberPagerState(
+        initialPage = 0,
+        pageCount = { 2 }
+      )
+
+      return remember(scaffoldState, callParticipantsVerticalPagerState, audioOutputPickerController) {
         CallScreenController(
           scaffoldState = scaffoldState,
-          onControlsToggled = onControlsToggled
+          onControlsToggled = onControlsToggled,
+          callParticipantsVerticalPagerState = callParticipantsVerticalPagerState,
+          audioOutputPickerController = audioOutputPickerController
         )
       }
     }

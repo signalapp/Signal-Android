@@ -116,7 +116,9 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
 
       val callScreenController = CallScreenController.rememberCallScreenController(
         skipHiddenState = callControlsState.skipHiddenState,
-        onControlsToggled = onControlsToggled
+        onControlsToggled = onControlsToggled,
+        callControlsState = callControlsState,
+        callControlsListener = callScreenControlsListener
       )
 
       LaunchedEffect(callScreenController) {

@@ -83,6 +83,7 @@ enum class WindowSizeClass(
   fun isExtended(): Boolean = this == EXTENDED_PORTRAIT || this == EXTENDED_LANDSCAPE
 
   fun isLandscape(): Boolean = this == COMPACT_LANDSCAPE || this == MEDIUM_LANDSCAPE || this == EXTENDED_LANDSCAPE
+  fun isPortrait(): Boolean = !isLandscape()
 
   fun isSplitPane(): Boolean {
     return if (SignalStore.internal.largeScreenUi && SignalStore.internal.forceSplitPaneOnCompactLandscape) {
@@ -159,10 +160,16 @@ enum class WindowSizeClass(
         }
 
         Configuration.ORIENTATION_LANDSCAPE -> {
-          when (windowSizeClass.windowHeightSizeClass) {
-            WindowHeightSizeClass.COMPACT -> COMPACT_LANDSCAPE
-            WindowHeightSizeClass.MEDIUM -> MEDIUM_LANDSCAPE
-            WindowHeightSizeClass.EXPANDED -> EXTENDED_LANDSCAPE
+          when (windowSizeClass.windowWidthSizeClass) {
+            WindowWidthSizeClass.COMPACT -> COMPACT_LANDSCAPE
+            WindowWidthSizeClass.MEDIUM -> {
+              if (windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT) {
+                COMPACT_LANDSCAPE
+              } else {
+                MEDIUM_LANDSCAPE
+              }
+            }
+            WindowWidthSizeClass.EXPANDED -> EXTENDED_LANDSCAPE
             else -> error("Unsupported.")
           }
         }
@@ -261,6 +268,8 @@ private fun ListAndNavigation(
 @Composable
 private fun AppScaffoldPreview() {
   Previews.Preview {
+    val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
+
     AppScaffold(
       navigator = rememberListDetailPaneScaffoldNavigator<Any>(
         scaffoldDirective = calculatePaneScaffoldDirective(
@@ -277,7 +286,7 @@ private fun AppScaffoldPreview() {
             .background(color = Color.Red)
         ) {
           Text(
-            text = "ListContent",
+            text = "ListContent\n$windowSizeClass",
             textAlign = TextAlign.Center
           )
         }

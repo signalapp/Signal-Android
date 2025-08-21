@@ -22,7 +22,7 @@ fun PictureInPictureCallScreen(
 ) {
   val scope = rememberCoroutineScope()
 
-  CallParticipantsPager(
+  CallParticipantsLayoutComponent(
     callParticipantsPagerState = callParticipantsPagerState,
     modifier = Modifier
       .fillMaxSize()

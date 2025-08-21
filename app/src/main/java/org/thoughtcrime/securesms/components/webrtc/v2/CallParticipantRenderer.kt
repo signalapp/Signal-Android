@@ -28,8 +28,8 @@ import org.webrtc.RendererCommon
  * Displays video for the local participant or an appropriate avatar.
  */
 @Composable
-fun LocalParticipantRenderer(
-  localParticipant: CallParticipant,
+fun CallParticipantRenderer(
+  callParticipant: CallParticipant,
   modifier: Modifier = Modifier,
   force: Boolean = false
 ) {
@@ -50,7 +50,7 @@ fun LocalParticipantRenderer(
     val localRecipient = if (LocalInspectionMode.current) {
       Recipient()
     } else {
-      localParticipant.recipient
+      callParticipant.recipient
     }
 
     val model = remember {
@@ -69,20 +69,20 @@ fun LocalParticipantRenderer(
       modifier = Modifier.fillMaxSize()
     )
 
-    if (force || localParticipant.isVideoEnabled) {
+    if (force || callParticipant.isVideoEnabled) {
       AndroidView(
         factory = ::TextureViewRenderer,
         modifier = Modifier.fillMaxSize(),
         onRelease = { it.release() }
       ) { renderer ->
-        renderer.setMirror(localParticipant.cameraDirection == CameraState.Direction.FRONT)
+        renderer.setMirror(callParticipant.cameraDirection == CameraState.Direction.FRONT)
         renderer.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL)
 
-        localParticipant.videoSink.lockableEglBase.performWithValidEglBase {
+        callParticipant.videoSink.lockableEglBase.performWithValidEglBase {
           renderer.init(it)
         }
 
-        renderer.attachBroadcastVideoSink(localParticipant.videoSink)
+        renderer.attachBroadcastVideoSink(callParticipant.videoSink)
       }
     }
   }
