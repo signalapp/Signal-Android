@@ -21,6 +21,9 @@ interface JobStorage {
   fun getNextEligibleJob(currentTime: Long, filter: (MinimalJobSpec) -> Boolean): JobSpec?
 
   @WorkerThread
+  fun getEligibleJobCount(currentTime: Long): Int
+
+  @WorkerThread
   fun getJobsInQueue(queue: String): List<JobSpec>
 
   @WorkerThread

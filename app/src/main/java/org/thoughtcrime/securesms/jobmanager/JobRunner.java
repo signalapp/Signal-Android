@@ -5,8 +5,6 @@ import android.os.PowerManager;
 
 import androidx.annotation.NonNull;
 
-import com.annimon.stream.Stream;
-
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.jobs.MinimalJobSpec;
 import org.thoughtcrime.securesms.util.WakeLockUtil;
@@ -33,21 +31,36 @@ class JobRunner extends Thread {
   private final int                       id;
   private final JobController             jobController;
   private final Predicate<MinimalJobSpec> jobPredicate;
+  private final long                      idleTimeoutMs;
 
-  JobRunner(@NonNull Application application, int id, @NonNull JobController jobController, @NonNull Predicate<MinimalJobSpec> predicate) {
-    super("signal-JobRunner-" + id);
+  /**
+   * @param idleTimeoutMs If the runner experiences no activity within this duration, it will terminate. If set to 0, it will never terminate.
+   */
+  JobRunner(@NonNull Application application, int id, @NonNull JobController jobController, @NonNull Predicate<MinimalJobSpec> predicate, long idleTimeoutMs) {
+    super("JobRunner-" + (idleTimeoutMs == 0 ? "core-" : "temp-") + id);
 
     this.application   = application;
     this.id            = id;
     this.jobController = jobController;
     this.jobPredicate  = predicate;
+    this.idleTimeoutMs = idleTimeoutMs;
   }
 
   @Override
   public synchronized void run() {
-    //noinspection InfiniteLoopStatement
+    Log.i(TAG, "JobRunner " + id + " started" + (idleTimeoutMs > 0 ? " with idle timeout " + idleTimeoutMs + "ms" : " with no idle timeout"));
+    
     while (true) {
-      Job        job    = jobController.pullNextEligibleJobForExecution(jobPredicate);
+      Job job = jobController.pullNextEligibleJobForExecution(jobPredicate, idleTimeoutMs);
+      if (job == null && idleTimeoutMs > 0) {
+        Log.i(TAG, "JobRunner " + id + " terminating due to inactivity");
+        jobController.onRunnerTerminated(this);
+        break;
+      } else if (job == null) {
+        Log.i(TAG, "JobRunner " + id + " unexpectedly given a null job. Going around the loop.");
+        continue;
+      }
+
       Job.Result result = run(job);
 
       jobController.onJobFinished(job);
@@ -60,7 +73,7 @@ class JobRunner extends Thread {
       } else if (result.isFailure()) {
         List<Job> dependents = jobController.onFailure(job);
         job.onFailure();
-        Stream.of(dependents).forEach(Job::onFailure);
+        dependents.stream().forEach(Job::onFailure);
 
         if (result.getException() != null) {
           throw result.getException();

@@ -56,10 +56,18 @@ class UploadAttachmentToArchiveJob private constructor(
 
     /** A set of possible queues this job may use. The number of queues determines the parallelism. */
     val QUEUES = setOf(
-      "ArchiveAttachmentJobs_1",
-      "ArchiveAttachmentJobs_2",
-      "ArchiveAttachmentJobs_3",
-      "ArchiveAttachmentJobs_4"
+      "ArchiveAttachmentJobs_01",
+      "ArchiveAttachmentJobs_02",
+      "ArchiveAttachmentJobs_03",
+      "ArchiveAttachmentJobs_04",
+      "ArchiveAttachmentJobs_05",
+      "ArchiveAttachmentJobs_06",
+      "ArchiveAttachmentJobs_07",
+      "ArchiveAttachmentJobs_08",
+      "ArchiveAttachmentJobs_09",
+      "ArchiveAttachmentJobs_10",
+      "ArchiveAttachmentJobs_11",
+      "ArchiveAttachmentJobs_12"
     )
   }
 

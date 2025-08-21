@@ -76,7 +76,11 @@ class RestoreAttachmentJob private constructor(
       "RestoreAttachmentJob::InitialRestore_01",
       "RestoreAttachmentJob::InitialRestore_02",
       "RestoreAttachmentJob::InitialRestore_03",
-      "RestoreAttachmentJob::InitialRestore_04"
+      "RestoreAttachmentJob::InitialRestore_04",
+      "RestoreAttachmentJob::InitialRestore_05",
+      "RestoreAttachmentJob::InitialRestore_06",
+      "RestoreAttachmentJob::InitialRestore_07",
+      "RestoreAttachmentJob::InitialRestore_08"
     )
 
     /** Job queues used when restoring an offloaded attachment. The number of queues in this set determine the level of parallelization. */

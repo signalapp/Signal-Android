@@ -4,6 +4,7 @@ import android.app.Application;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.annotation.WorkerThread;
 
 import com.annimon.stream.Collectors;
@@ -27,6 +28,9 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Predicate;
 
 /**
@@ -36,6 +40,8 @@ import java.util.function.Predicate;
 class JobController {
 
   private static final String TAG = Log.tag(JobController.class);
+
+  private static final Predicate<MinimalJobSpec> NO_PREDICATE = spec -> true;
 
   private final Application            application;
   private final JobStorage             jobStorage;
@@ -47,6 +53,18 @@ class JobController {
   private final Callback               callback;
   private final Map<String, Job>       runningJobs;
 
+  private final int                             minGeneralRunners;
+  private final int                             maxGeneralRunners;
+  private final long                            generalRunnerIdleTimeout;
+  private final AtomicInteger                   nextRunnerId;
+  private final List<Predicate<MinimalJobSpec>> reservedRunnerPredicates;
+
+  @VisibleForTesting
+  final AtomicBoolean runnersStarted = new AtomicBoolean(false);
+
+  @VisibleForTesting
+  final List<JobRunner> activeGeneralRunners;
+
   JobController(@NonNull Application application,
                 @NonNull JobStorage jobStorage,
                 @NonNull JobInstantiator jobInstantiator,
@@ -54,17 +72,27 @@ class JobController {
                 @NonNull JobTracker jobTracker,
                 @NonNull Scheduler scheduler,
                 @NonNull Debouncer debouncer,
-                @NonNull Callback callback)
+                @NonNull Callback callback,
+                int minGeneralRunners,
+                int maxGeneralRunners,
+                long generalRunnerIdleTimeout,
+                @NonNull List<Predicate<MinimalJobSpec>> reservedRunnerPredicates)
   {
-    this.application            = application;
-    this.jobStorage             = jobStorage;
-    this.jobInstantiator        = jobInstantiator;
-    this.constraintInstantiator = constraintInstantiator;
-    this.jobTracker             = jobTracker;
-    this.scheduler              = scheduler;
-    this.debouncer              = debouncer;
-    this.callback               = callback;
-    this.runningJobs            = new HashMap<>();
+    this.application              = application;
+    this.jobStorage               = jobStorage;
+    this.jobInstantiator          = jobInstantiator;
+    this.constraintInstantiator   = constraintInstantiator;
+    this.jobTracker               = jobTracker;
+    this.scheduler                = scheduler;
+    this.debouncer                = debouncer;
+    this.callback                 = callback;
+    this.runningJobs              = new HashMap<>();
+    this.minGeneralRunners        = minGeneralRunners;
+    this.maxGeneralRunners        = maxGeneralRunners;
+    this.generalRunnerIdleTimeout = generalRunnerIdleTimeout;
+    this.nextRunnerId             = new AtomicInteger(0);
+    this.activeGeneralRunners     = new CopyOnWriteArrayList<>();
+    this.reservedRunnerPredicates = new ArrayList<>(reservedRunnerPredicates);
   }
 
   @WorkerThread
@@ -116,6 +144,7 @@ class JobController {
 
     synchronized (this) {
       notifyAll();
+      maybeScaleUpRunners(jobStorage.getEligibleJobCount(System.currentTimeMillis()));
     }
   }
 
@@ -167,6 +196,7 @@ class JobController {
 
     synchronized (this) {
       notifyAll();
+      maybeScaleUpRunners(jobStorage.getEligibleJobCount(System.currentTimeMillis()));
     }
   }
 
@@ -202,6 +232,7 @@ class JobController {
 
     synchronized (this) {
       notifyAll();
+      maybeScaleUpRunners(jobStorage.getEligibleJobCount(System.currentTimeMillis()));
     }
   }
 
@@ -337,20 +368,30 @@ class JobController {
    *  - Has no dependencies
    *  - Has no unmet constraints
    *
-   * This method will block until a job is available.
-   * When the job returned from this method has been run, you must call {@link #onJobFinished(Job)}.
+   * @param predicate Filter for jobs to consider
+   * @param timeoutMs Maximum time to wait for a job. If 0, waits indefinitely.
+   * @return Job to execute, or null if the timeout is hit
    */
   @WorkerThread
-  synchronized @NonNull Job pullNextEligibleJobForExecution(@NonNull Predicate<MinimalJobSpec> predicate) {
+  synchronized @Nullable Job pullNextEligibleJobForExecution(@NonNull Predicate<MinimalJobSpec> predicate, long timeoutMs) {
     try {
       Job job;
+      long startTime = System.currentTimeMillis();
 
       while ((job = getNextEligibleJobForExecution(predicate)) == null) {
         if (runningJobs.isEmpty()) {
           debouncer.publish(callback::onEmpty);
         }
 
-        wait();
+        if (timeoutMs > 0) {
+          long remainingTime = timeoutMs - (System.currentTimeMillis() - startTime);
+          if (remainingTime <= 0) {
+            return null;
+          }
+          wait(remainingTime);
+        } else {
+          wait();
+        }
       }
 
       jobStorage.markJobAsRunning(job.getId(), System.currentTimeMillis());
@@ -409,6 +450,68 @@ class JobController {
 
   synchronized boolean areQueuesEmpty(@NonNull Set<String> queueKeys) {
     return jobStorage.areQueuesEmpty(queueKeys);
+  }
+
+  /**
+   * Initializes the dynamic JobRunner system with minimum threads.
+   */
+  @WorkerThread
+  synchronized void startJobRunners() {
+    Log.i(TAG, "Starting JobRunners. (Reserved: " + reservedRunnerPredicates.size() + ", MinGeneral: " + minGeneralRunners + ", MaxGeneral: " + maxGeneralRunners + ", GeneralIdleTimeout: " + generalRunnerIdleTimeout + " ms)");
+    runnersStarted.set(true);
+
+    for (Predicate<MinimalJobSpec> predicate : reservedRunnerPredicates) {
+      int id = nextRunnerId.incrementAndGet();
+      JobRunner runner = new JobRunner(application, id, this, predicate == null ? NO_PREDICATE : predicate, 0);
+      runner.start();
+      Log.i(TAG, "Spawned new reserved JobRunner[" + id + "]");
+    }
+
+    for (int i = 0; i < minGeneralRunners; i++) {
+      spawnGeneralRunner(0);
+    }
+
+    maybeScaleUpRunners(jobStorage.getEligibleJobCount(System.currentTimeMillis()));
+
+    notifyAll();
+  }
+
+  /**
+   * Scales up the number of {@link JobRunner}s to satisfy the number of eligible jobs, if needed.
+   */
+  @VisibleForTesting
+  synchronized void maybeScaleUpRunners(int eligibleJobCount) {
+    if (!runnersStarted.get()) {
+      return;
+    }
+
+    int activeRunners              = this.activeGeneralRunners.size();
+    int maxPossibleRunnersToSpawn  = maxGeneralRunners - activeRunners;
+    int runnersToCoverEligibleJobs = eligibleJobCount - activeRunners;
+    int actualRunnersToSpawn       = Math.min(runnersToCoverEligibleJobs, maxPossibleRunnersToSpawn);
+
+    if (actualRunnersToSpawn > 0) {
+      Log.i(TAG, "Spawning " + actualRunnersToSpawn + " new JobRunner(s) to meet demand. (CurrentActive: " + activeRunners + ", EligibleJobs: " + eligibleJobCount + ", MaxAllowed: " + maxGeneralRunners + ")");
+
+      for (int i = 0; i < actualRunnersToSpawn; i++) {
+        spawnGeneralRunner(generalRunnerIdleTimeout);
+      }
+    }
+  }
+
+  private synchronized void spawnGeneralRunner(long timeOutMs) {
+    int id = nextRunnerId.incrementAndGet();
+    JobRunner runner = new JobRunner(application, id, this, NO_PREDICATE, timeOutMs);
+    runner.start();
+    activeGeneralRunners.add(runner);
+
+    Log.d(TAG, "Spawned new " + (timeOutMs == 0 ? "core" : "temporary") + " general JobRunner[" + id + "] (CurrentActive: " + activeGeneralRunners.size() + ")");
+  }
+
+  @VisibleForTesting
+  synchronized void onRunnerTerminated(@NonNull JobRunner runner) {
+    activeGeneralRunners.remove(runner);
+    Log.i(TAG, "JobRunner[" + runner.getId() + "] terminated. (CurrentActive: " + activeGeneralRunners.size() + ")");
   }
 
   @WorkerThread

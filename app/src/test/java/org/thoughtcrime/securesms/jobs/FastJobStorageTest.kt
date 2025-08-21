@@ -830,6 +830,14 @@ class FastJobStorageTest {
   }
 
   @Test
+  fun `getEligibleJobCount - general`() {
+    val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    assertThat(subject.getEligibleJobCount(0)).isEqualTo(1)
+  }
+
+  @Test
   fun `deleteJobs - writes to database`() {
     val database = mockDatabase(DataSet1.FULL_SPECS)
     val ids: List<String> = listOf("id1", "id2")

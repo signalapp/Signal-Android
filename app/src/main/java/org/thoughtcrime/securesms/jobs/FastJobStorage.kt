@@ -149,6 +149,27 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   }
 
   @Synchronized
+  override fun getEligibleJobCount(currentTime: Long): Int {
+    val migrationJob: MinimalJobSpec? = migrationJobs.firstOrNull()
+
+    return if (migrationJob != null && !migrationJob.isRunning && migrationJob.hasEligibleRunTime(currentTime)) {
+      1
+    } else if (migrationJob != null) {
+      0
+    } else {
+      eligibleJobs
+        .asSequence()
+        .filter { job ->
+          // Filter out all jobs with unmet dependencies
+          dependenciesByJobId[job.id].isNullOrEmpty()
+        }
+        .filterNot { it.isRunning }
+        .filter { job -> job.hasEligibleRunTime(currentTime) }
+        .count()
+    }
+  }
+
+  @Synchronized
   override fun getJobsInQueue(queue: String): List<JobSpec> {
     return minimalJobs
       .filter { it.queueKey == queue }
