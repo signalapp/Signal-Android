@@ -12,7 +12,8 @@ object AppCapabilities {
     return AccountAttributes.Capabilities(
       storage = storageCapable,
       versionedExpirationTimer = true,
-      attachmentBackfill = true
+      attachmentBackfill = true,
+      spqr = true
     )
   }
 }
