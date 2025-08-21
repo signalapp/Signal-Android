@@ -1579,7 +1579,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Не зараз</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">Калі вы не зробіце аднаўленне зараз, пазней аднавіць гэта ўжо не атрымаецца. Вашы медыяфайлы будуць аднаўляцца ў фонавым рэжыме.</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Your media will restore in the background. If you choose not to restore now, you won\'t be able to restore later.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Апавяшчаць мяне аб згадваннях</string>
@@ -8091,7 +8091,7 @@
     <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
     <string name="VerifyBackupKey__title">Праверце свой ключ для рэзервовага капіравання</string>
     <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">Каб дапамагчы вам запомніць свой ключ, мы будзем час ад часу запытваць яго ў вас.</string>
+    <string name="VerifyBackupKey__body">We\'ll occasionally ask you to verify your key to ensure you still know it</string>
     <!-- Button of a megaphone that will take users to the verify backup key screen -->
     <string name="VerifyBackupKey__verify">Праверыць</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->

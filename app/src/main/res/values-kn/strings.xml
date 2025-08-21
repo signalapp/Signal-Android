@@ -1499,7 +1499,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">ಈಗಲ್ಲ</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__if_you_choose_not_to_restore">ನೀವು ಈಗ ರಿಸ್ಟೋರ್ ಮಾಡದಿರುವುದನ್ನು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡಲ್ಲಿ, ನಂತರದಲ್ಲಿ ನಿಮಗೆ ರಿಸ್ಟೋರ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ನಿಮ್ಮ ಮೀಡಿಯಾ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ರಿಸ್ಟೋರ್ ಆಗುತ್ತದೆ.</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Your media will restore in the background. If you choose not to restore now, you won\'t be able to restore later.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">\@ಉಲ್ಲೇಖಗಳು ಬಂದರೆ ಎಚ್ಚರಿಸು</string>
@@ -7749,7 +7749,7 @@
     <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
     <string name="VerifyBackupKey__title">ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಕೀಯನ್ನು ದೃಢೀಕರಿಸಿ</string>
     <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">ನಿಮ್ಮ ಕೀಯನ್ನು ನೆನಪಿಟ್ಟುಕೊಳ್ಳಲು ಸಹಾಯ ಮಾಡಲು, ನಾವು ಆಗಾಗ ಅದನ್ನು ಕೇಳುತ್ತೇವೆ.</string>
+    <string name="VerifyBackupKey__body">We\'ll occasionally ask you to verify your key to ensure you still know it</string>
     <!-- Button of a megaphone that will take users to the verify backup key screen -->
     <string name="VerifyBackupKey__verify">ದೃಢೀಕರಿಸಿ</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
