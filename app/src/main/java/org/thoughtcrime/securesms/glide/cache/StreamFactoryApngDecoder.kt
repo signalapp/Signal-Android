@@ -29,7 +29,7 @@ class StreamFactoryApngDecoder(
   override fun handles(source: InputStreamFactory, options: Options): Boolean {
     return if (options.get(ApngOptions.ANIMATE) == true) {
       val imageType = ImageHeaderParserUtils.getType(registry.imageHeaderParsers, source.create(), glide.arrayPool)
-      imageType == ImageHeaderParser.ImageType.PNG_A
+      imageType == ImageHeaderParser.ImageType.PNG || imageType == ImageHeaderParser.ImageType.PNG_A
     } else {
       false
     }
