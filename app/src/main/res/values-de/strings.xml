@@ -1483,7 +1483,7 @@
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Übertragung konnte nicht abgeschlossen werden</string>
     <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
-    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Dieses Backup kann nicht wiederhergestellt werden</string>
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Backup kann nicht wiederhergestellt werden</string>
     <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
     <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Beim Wiederherstellen deines Backups ist ein Fehler aufgetreten. Dein Backup lässt sich nicht wiederherstellen. Bitte kontaktiere den Support, falls du Hilfe benötigst.</string>
     <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
@@ -8604,7 +8604,7 @@
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup-Wiederherstellung: Netzwerk-Problem</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
     <!-- Email subject when contacting support on a permanent backup import failure -->
-    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android Backup-Wiederherstellung: dauerhafter Fehler</string>
+    <string name="EnterBackupKey_permanent_failure_support_email">Dauerhafter Fehler bei Signal Android Backup-Wiederherstellung</string>
   <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
 
     <!-- Email subject when contacting support on a create backup failure -->

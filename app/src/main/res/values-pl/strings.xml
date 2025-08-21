@@ -3761,7 +3761,7 @@
     <string name="BubbleOptOutTooltip__turn_off">Wyłącz</string>
 
     <!-- safety_number_change_dialog -->
-    <string name="safety_number_change_dialog__safety_number_changes">Zmiany numeru bezpieczeństwa</string>
+    <string name="safety_number_change_dialog__safety_number_changes">Zmiany w numerze bezpieczeństwa</string>
     <string name="safety_number_change_dialog__accept">Zaakceptuj</string>
     <string name="safety_number_change_dialog__call_anyway">Mimo to zadzwoń</string>
     <string name="safety_number_change_dialog__join_call">Dołącz do rozmowy</string>
@@ -6088,7 +6088,7 @@
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="ConversationSettingsFragment__muted">Wyciszono</string>
     <!-- Button label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="ConversationSettingsFragment__search">Szukaj</string>
+    <string name="ConversationSettingsFragment__search">Wyszukaj</string>
     <string name="ConversationSettingsFragment__disappearing_messages">Znikające wiadomości</string>
     <string name="ConversationSettingsFragment__sounds_and_notifications">Dźwięki i powiadomienia</string>
   <!-- Removed by excludeNonTranslatables <string name="ConversationSettingsFragment__internal_details" translatable="false">Internal details</string> -->
@@ -6188,12 +6188,12 @@
     </plurals>
 
     <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Szukaj po nazwie lub numerze</string>
+    <string name="ContactFilterView__search_name_or_number">Wyszukaj imię lub numer</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
     <string name="VoiceNotePlayerView__stop_voice_message">Zatrzymaj odtwarzanie wiadomości głosowej</string>
-    <string name="VoiceNotePlayerView__change_voice_message_speed">Zmień szybkość odtwarzania wiadomości głosowej</string>
+    <string name="VoiceNotePlayerView__change_voice_message_speed">Zmień prędkość odtwarzania wiadomości głosowej</string>
     <string name="VoiceNotePlayerView__pause_voice_message">Wstrzymaj odtwarzanie wiadomości głosowej</string>
     <string name="VoiceNotePlayerView__play_voice_message">Odtwórz wiadomość głosową</string>
     <string name="VoiceNotePlayerView__navigate_to_voice_message">Przejdź do wiadomości głosowej</string>
@@ -6225,10 +6225,10 @@
 
     <!-- DSLSettingsToolbar -->
     <!-- Content description describing the back arrow on toolbars -->
-    <string name="DSLSettingsToolbar__navigate_up">Przejdź do góry</string>
-    <string name="MultiselectForwardFragment__forward_to">Przekaż do</string>
+    <string name="DSLSettingsToolbar__navigate_up">Wstecz</string>
+    <string name="MultiselectForwardFragment__forward_to">Przekaż</string>
     <!-- Displayed when sharing content to people via the fragment -->
-    <string name="MultiselectForwardFragment__share_with">Podziel się z</string>
+    <string name="MultiselectForwardFragment__share_with">Udostępnij</string>
     <string name="MultiselectForwardFragment__add_a_message">Dodaj wiadomość</string>
     <string name="MultiselectForwardFragment__faster_forwards">Szybsze przekazywanie</string>
     <!-- Displayed when user selects a video that will be clipped before sharing to a story -->
@@ -6236,12 +6236,12 @@
     <!-- Displayed when user selects a video that cannot be sent as a story -->
     <string name="MultiselectForwardFragment__videos_sent_to_stories_cant">Filmy przesyłane do relacji mogą mieć maksymalnie 30 sekund.</string>
     <!-- Body in alert dialog telling users that messages are now sent immediately -->
-    <string name="MultiselectForwardFragment__forwarded_messages_are_now">Przekazywane wiadomości są teraz natychmiast wysyłane.</string>
+    <string name="MultiselectForwardFragment__forwarded_messages_are_now">Przekazywane wiadomości wysyłają się teraz natychmiast.</string>
     <plurals name="MultiselectForwardFragment_send_d_messages">
-        <item quantity="one">Wysłano %1$d wiadomość</item>
-        <item quantity="few">Wysłano %1$d wiadomości</item>
-        <item quantity="many">Wysłano %1$d wiadomości</item>
-        <item quantity="other">Wysłano %1$d wiadomości</item>
+        <item quantity="one">Wyślij %1$d wiadomość</item>
+        <item quantity="few">Wyślij %1$d wiadomości</item>
+        <item quantity="many">Wyślij %1$d wiadomości</item>
+        <item quantity="other">Wyślij %1$d wiadomości</item>
     </plurals>
     <plurals name="MultiselectForwardFragment_messages_sent">
         <item quantity="one">Wiadomość wysłana</item>
@@ -6256,13 +6256,13 @@
         <item quantity="other">Nie udało się wysłać wiadomości</item>
     </plurals>
     <plurals name="MultiselectForwardFragment__couldnt_forward_messages">
-        <item quantity="one">Nie udało się przekazać wiadomości, gdyż nie jest już dostępna.</item>
-        <item quantity="few">Nie udało się przekazać wiadomości, gdyż nie są już dostępne.</item>
-        <item quantity="many">Nie udało się przekazać wiadomości, gdyż nie są już dostępne.</item>
-        <item quantity="other">Nie udało się przekazać wiadomości, gdyż nie są już dostępne.</item>
+        <item quantity="one">Nie udało się przekazać wiadomości, ponieważ nie jest już ona dostępna.</item>
+        <item quantity="few">Nie udało się przekazać wiadomości, ponieważ nie są już one dostępne.</item>
+        <item quantity="many">Nie udało się przekazać wiadomości, ponieważ nie są już one dostępne.</item>
+        <item quantity="other">Nie udało się przekazać wiadomości, ponieważ nie są już one dostępne.</item>
     </plurals>
     <!-- Error message shown when attempting to select a group to forward/share but it\'s announcement only and you are not an admin -->
-    <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">Tylko administratorzy mogą wysyłać wiadomości w tej grupie.</string>
+    <string name="MultiselectForwardFragment__only_admins_can_send_messages_to_this_group">W tej grupie wiadomości mogą wysyłać tylko administratorzy.</string>
     <!-- Error message shown when users try to choose more than 5 chats to send a message to -->
     <string name="MultiselectForwardFragment__you_cant_select_more_chats">Nie możesz wybrać więcej niż pięciu czatów</string>
 
@@ -6278,7 +6278,7 @@
     <string name="MediaReviewFragment__view_once_message">Multimedia jednorazowe</string>
     <string name="MediaReviewFragment__one_or_more_items_were_too_large">Co najmniej jeden element był zbyt duży</string>
     <string name="MediaReviewFragment__one_or_more_items_were_invalid">Co najmniej jeden element był nieprawidłowy</string>
-    <string name="MediaReviewFragment__too_many_items_selected">Zbyt wiele wybranych elementów</string>
+    <string name="MediaReviewFragment__too_many_items_selected">Zaznaczono zbyt wiele elementów</string>
     <!-- Small notification presented to the user when they set their video to view-once mode -->
     <string name="MediaReviewFragment__video_set_to_view_once">Wideo do jednorazowego wyświetlenia</string>
     <!-- Small notification presented to the user when they set their photo to view-once mode -->
@@ -6329,10 +6329,10 @@
     <string name="ImageEditorHud__write_text">Dodaj tekst</string>
     <string name="ImageEditorHud__add_a_sticker">Dodaj naklejkę</string>
     <string name="ImageEditorHud__blur">Rozmyj</string>
-    <string name="ImageEditorHud__done_editing">Zakończono obróbkę</string>
-    <string name="ImageEditorHud__clear_all">Wyczyść wszystko</string>
+    <string name="ImageEditorHud__done_editing">Koniec edycji</string>
+    <string name="ImageEditorHud__clear_all">Usuń wszystko</string>
     <string name="ImageEditorHud__undo">Cofnij</string>
-    <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Przełącz między markerem i zakreślaczem</string>
+    <string name="ImageEditorHud__toggle_between_marker_and_highlighter">Przełącz się między pisakiem a zakreślaczem</string>
     <string name="ImageEditorHud__toggle_between_text_styles">Przełącz styl tekstu</string>
 
     <!-- Header for section of featured stickers (location/time stickers) -->
@@ -6341,11 +6341,11 @@
     <string name="MediaCountIndicatorButton__send">Wyślij</string>
 
     <string name="MediaReviewSelectedItem__tap_to_remove">Dotknij, aby usunąć</string>
-    <string name="MediaReviewSelectedItem__tap_to_select">Stuknij, aby zaznaczyć</string>
+    <string name="MediaReviewSelectedItem__tap_to_select">Dotknij, aby zaznaczyć</string>
 
     <string name="MediaReviewImagePageFragment__discard">Odrzuć</string>
     <string name="MediaReviewImagePageFragment__discard_changes">Odrzucić zmiany?</string>
-    <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Utracisz wszystkie zmiany dokonane w tym zdjęciu.</string>
+    <string name="MediaReviewImagePageFragment__youll_lose_any_changes">Stracisz wszelkie zmiany wprowadzone na tym zdjęciu.</string>
 
     <!-- The title of a dialog notifying that a user was found matching a scanned QR code. The placeholder is a username. Usernames are always latin characters. -->
     <string name="MediaCaptureFragment_username_dialog_title">Znaleziono %1$s</string>
@@ -6410,18 +6410,18 @@
     <!-- Third small text blurb on learn more sheet -->
     <string name="SubscribeLearnMoreBottomSheetDialogFragment__if_you_can">Jeśli możesz, wesprzyj Signal darowizną. To dzięki osobom takim jak Ty nasza aplikacja jest przyjazną przestrzenią godną zaufania i dostępną dla wszystkich.</string>
 
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dziękujemy za Twoje wsparcie!</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__thanks_for_your_support">Dziękujemy Ci za wsparcie!</string>
     <!-- Subtext underneath the dialog title on the thanks sheet -->
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__youve_earned_a_donor_badge">Zdobywasz odznakę darczyńcy Signal! Pochwal się nią na profilu i pokaż, że wspierasz apkę.</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Możesz również</string>
-    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">zostać comiesięcznym wspierającym.</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__you_can_also">Możesz też</string>
+    <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__become_a_montly_sustainer">wspierać nas co miesiąc.</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__display_on_profile">Pokaż w profilu</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__make_featured_badge">Ustaw wyświetlaną odznakę</string>
     <string name="SubscribeThanksForYourSupportBottomSheetDialogFragment__continue">Kontynuuj</string>
     <string name="ThanksForYourSupportBottomSheetFragment__when_you_have_more">Kiedy masz więcej niż jedną odznakę, możesz zdecydować, którą z nich pokazać na swoim profilu.</string>
 
     <string name="BecomeASustainerFragment__get_badges">Zdobywaj odznaki dla swojego profilu, wspierając Signal.</string>
-    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal jest organizacją non-profit, bez reklamodawców i inwestorów, finansowaną wyłącznie przez ludzi takich, jak Ty.</string>
+    <string name="BecomeASustainerFragment__signal_is_a_non_profit">Signal jest organizacją non profit. Nie mamy reklamodawców ani inwestorów. Utrzymujemy się dzięki wsparciu osób takich jak Ty.</string>
 
     <!-- Button label for creating a donation -->
     <string name="ManageDonationsFragment__donate_to_signal">Wesprzyj Signal</string>
@@ -6436,7 +6436,7 @@
     <string name="ManageDonationsFragment__badges">Odznaki</string>
     <string name="ManageDonationsFragment__subscription_faq">FAQ subskrypcji</string>
     <!-- Preference heading for other ways to donate -->
-    <string name="ManageDonationsFragment__other_ways_to_give">Inne metody</string>
+    <string name="ManageDonationsFragment__other_ways_to_give">Inne metody wsparcia</string>
     <!-- Preference label to launch badge gifting -->
     <string name="ManageDonationsFragment__donate_for_a_friend">Wpłać darowiznę w imieniu znajomego</string>
     <!-- Dialog title shown when a donation requires verifying/confirmation outside of the app and the user hasn\'t done that yet -->
@@ -6493,7 +6493,7 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_reactivate">Możesz reaktywować swoją odznakę za wsparcie na kolejne 30 dni dzięki jednorazowej darowiźnie.</string>
     <!-- Displayed when we do not think the user is a subscriber when their boost expires -->
     <string name="ExpiredBadgeBottomSheetDialogFragment__you_can_keep">Możesz nadal korzystać z Signal, ale rozważ comiesięczną darowiznę, aby wspierać technologię stworzoną dla Ciebie.</string>
-    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Zostań wspierającym</string>
+    <string name="ExpiredBadgeBottomSheetDialogFragment__become_a_sustainer">Wesprzyj nas</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__add_a_boost">Wesprzyj</string>
     <string name="ExpiredBadgeBottomSheetDialogFragment__not_now">Nie teraz</string>
     <!-- Copy displayed when badge expires after user inactivity -->
@@ -6508,10 +6508,10 @@
     <string name="ExpiredBadgeBottomSheetDialogFragment__go_to_google_pay">Przejdź do Google Pay</string>
 
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__cant_process_subscription_payment">Nie można przetworzyć opłaty subskrypcji</string>
-    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Mamy problem z odebraniem Twojej płatności Wspierającego Signal. Upewnij się, że Twoja metoda płatności jest aktualna. Jeśli nie, uaktualnij ją w Google Pay. Za kilka dni Signal spróbuje ponownie przetworzyć płatność.</string>
+    <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__were_having_trouble">Mamy problem z odebraniem Twojej darowizny na rzecz aplikacji Signal. Upewnij się, że wybrana metoda płatności jest aktualna. Jeśli nie, zmień ją w Google Pay. Za kilka dni spróbujemy przetworzyć płatność jeszcze raz.</string>
     <string name="CantProcessSubscriptionPaymentBottomSheetDialogFragment__dont_show_this_again">Nie pokazuj tego ponownie</string>
 
-    <string name="Subscription__contact_support">Kontakt z pomocą techniczną</string>
+    <string name="Subscription__contact_support">Skontaktuj się z pomocą techniczną</string>
     <string name="Subscription__get_a_s_badge">Zdobądź odznakę %1$s</string>
 
     <!-- *PaymentInProgressFragment strings -->
@@ -6545,7 +6545,7 @@
     <!-- Displayed on "My Support" screen when user subscription payment method failed. -->
     <string name="DonationsErrors__error_processing_payment_s">Błąd przy przetwarzaniu darowizny. %1$s</string>
     <string name="DonationsErrors__your_payment">Twoja darowizna nie mogła zostać przetworzona i Twoje konto nie zostało obciążone. Spróbuj ponownie.</string>
-    <string name="DonationsErrors__still_processing">Trwa przetwarzanie</string>
+    <string name="DonationsErrors__still_processing">Jeszcze trwa przetwarzanie</string>
     <string name="DonationsErrors__couldnt_add_badge">Nie udało się dodać odznaki</string>
     <!-- Displayed when backup credential could not be redeemed. Dialog or notification title -->
     <string name="DonationsError__something_went_wrong">Coś poszło nie tak</string>
@@ -6565,7 +6565,7 @@
     <string name="DonationsErrors__subscription_cancellation_requires_an_internet_connection">Anulowanie subskrypcji wymaga połączenia z internetem.</string>
     <string name="ViewBadgeBottomSheetDialogFragment__your_device_doesn_t_support">Twoje urządzenie nie obsługuje darowizn w aplikacji, nie możesz więc otrzymać odznaki za darowiznę cykliczną. Jeśli chcesz wesprzeć Signal, zrób to na naszej stronie internetowej.</string>
     <string name="NetworkFailure__network_error_check_your_connection_and_try_again">Błąd sieci. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
-    <string name="NetworkFailure__retry">Ponów</string>
+    <string name="NetworkFailure__retry">Spróbuj ponownie</string>
     <!-- Displayed as a dialog title when the selected recipient for a gift doesn\'t support gifting -->
     <string name="DonationsErrors__cannot_send_donation">Nie można wysłać darowizny</string>
     <!-- Displayed as a dialog message when the selected recipient for a gift doesn\'t support gifting -->
@@ -6582,41 +6582,41 @@
     <!-- Gift badge redeem action label -->
     <string name="GiftMessageView__redeem">Odbierz</string>
     <!-- Gift badge view action label -->
-    <string name="GiftMessageView__view">Pokaż</string>
+    <string name="GiftMessageView__view">Wyświetl</string>
     <!-- Gift badge redeeming action label -->
     <string name="GiftMessageView__redeeming">Odbieranie…</string>
     <!-- Gift badge redeemed label -->
-    <string name="GiftMessageView__redeemed">Odebrane</string>
+    <string name="GiftMessageView__redeemed">Odebrano</string>
 
 
     <!-- Stripe decline code generic_failure -->
-    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Wypróbuj inną metodę płatności lub skontaktuj się ze swoim bankiem, aby otrzymać więcej informacji.</string>
+    <string name="DeclineCode__try_another_payment_method_or_contact_your_bank">Użyj innej metody płatności lub skontaktuj się ze swoim bankiem, aby otrzymać więcej informacji.</string>
     <!-- PayPal decline code for payment declined -->
     <string name="DeclineCode__try_another_payment_method_or_contact_your_bank_for_more_information_if_this_was_a_paypal">Wypróbuj inną metodę płatności lub skontaktuj się ze swoim bankiem, aby otrzymać więcej informacji. Jeśli transakcja odbyła się za pośrednictwem usługi PayPal, skontaktuj się z działem wsparcia PayPal.</string>
     <!-- Stripe decline code verify on Google Pay and try again -->
-    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Sprawdź, czy Twoja metoda płatności, ustawiona w Google Pay, jest aktualna i spróbuj ponownie.</string>
+    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again">Sprawdź w Google Pay, czy wybrana metoda płatności jest aktualna, i spróbuj ponownie.</string>
     <!-- Stripe decline code learn more action label -->
     <string name="DeclineCode__learn_more">Dowiedz się więcej</string>
     <!-- Stripe decline code contact issuer -->
-    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Sprawdź, czy Twoja metoda płatności, ustawiona w Google Pay, jest aktualna i spróbuj ponownie. Jeśli problem trwa nadal, skontaktuj się ze swoim bankiem.</string>
+    <string name="DeclineCode__verify_your_payment_method_is_up_to_date_in_google_pay_and_try_again_if_the_problem">Sprawdź w Google Pay, czy wybrana metoda płatności jest aktualna, i spróbuj ponownie. Jeśli problem będzie się powtarzać, skontaktuj się ze swoim bankiem.</string>
     <!-- Stripe decline code purchase not supported -->
-    <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Twoja karta nie obsługuje tego rodzaju transakcji. Spróbuj innej metody płatności.</string>
+    <string name="DeclineCode__your_card_does_not_support_this_type_of_purchase">Twoja karta nie obsługuje takich płatności. Użyj innej metody płatności.</string>
     <!-- Stripe decline code your card has expired -->
-    <string name="DeclineCode__your_card_has_expired">Ważność twojej karty wygasła. Uaktualnij swoją metodę płatności w Google Pay i spróbuj ponownie.</string>
+    <string name="DeclineCode__your_card_has_expired">Karta jest nieważna. Zmień metodę płatności w Google Pay i spróbuj ponownie.</string>
     <!-- Stripe decline code go to google pay action label -->
     <string name="DeclineCode__go_to_google_pay">Przejdź do Google Pay</string>
     <!-- Stripe decline code try credit card again action label -->
     <string name="DeclineCode__try">Spróbuj ponownie</string>
     <!-- Stripe decline code incorrect card number -->
-    <string name="DeclineCode__your_card_number_is_incorrect">Numer Twojej karty jest nieprawidłowy. Uaktualnij go w Google Pay i spróbuj ponownie.</string>
+    <string name="DeclineCode__your_card_number_is_incorrect">Numer karty jest niepoprawny. Zmień go w Google Pay i spróbuj ponownie.</string>
     <!-- Stripe decline code incorrect cvc -->
-    <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Numer CVC Twojej karty jest nieprawidłowy. Uaktualnij go w Google Pay i spróbuj ponownie.</string>
+    <string name="DeclineCode__your_cards_cvc_number_is_incorrect">Kod CVC karty jest niepoprawny. Zmień go w Google Pay i spróbuj ponownie.</string>
     <!-- Stripe decline code insufficient funds -->
-    <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Na Twojej karcie brak wystarczających środków, aby dokonać tej transakcji. Spróbuj innej metody płatności.</string>
+    <string name="DeclineCode__your_card_does_not_have_sufficient_funds">Na karcie nie ma wystarczających środków. Użyj innej metody płatności.</string>
     <!-- Stripe decline code incorrect expiration month -->
-    <string name="DeclineCode__the_expiration_month">Miesiąc wygaśnięcia Twojej metody płatności jest nieprawidłowy. Uaktualnij go w Google Pay i spróbuj ponownie.</string>
+    <string name="DeclineCode__the_expiration_month">Miesiąc ważności wybranej metody płatności jest niepoprawny. Zmień go w Google Pay i spróbuj ponownie.</string>
     <!-- Stripe decline code incorrect expiration year -->
-    <string name="DeclineCode__the_expiration_year">Rok wygaśnięcia Twojej metody płatności jest nieprawidłowy. Uaktualnij go w Google Pay i spróbuj ponownie.</string>
+    <string name="DeclineCode__the_expiration_year">Rok ważności wybranej metody płatności jest niepoprawny. Zmień go w Google Pay i spróbuj ponownie.</string>
     <!-- Stripe decline code issuer not available -->
     <string name="DeclineCode__try_completing_the_payment_again">Spróbuj ponownie dokonać płatności lub skontaktuj się ze swoim bankiem, aby otrzymać więcej informacji.</string>
     <!-- Stripe decline code processing error -->
@@ -6651,7 +6651,7 @@
     <string name="StripeFailureCode__verify_your_bank_details_are_correct">Sprawdź, czy dane banku są poprawne i spróbuj ponownie. Jeśli problem nie ustąpi, skontaktuj się ze swoim bankiem.</string>
 
     <!-- Title of create notification profile screen -->
-    <string name="EditNotificationProfileFragment__name_your_profile">Nazwij swój profil</string>
+    <string name="EditNotificationProfileFragment__name_your_profile">Nazwij profil</string>
     <!-- Hint text for create/edit notification profile name -->
     <string name="EditNotificationProfileFragment__profile_name">Nazwa profilu</string>
     <!-- Name has a max length, this shows how many characters are used out of the max -->
@@ -6663,15 +6663,15 @@
     <!-- Call to action button once the profile name is edited -->
     <string name="EditNotificationProfileFragment__save">Zapisz</string>
     <!-- Title of edit notification profile screen -->
-    <string name="EditNotificationProfileFragment__edit_this_profile">Edytuj ten profil</string>
+    <string name="EditNotificationProfileFragment__edit_this_profile">Edytuj profil</string>
     <!-- Error message shown when attempting to create or edit a profile name to an existing profile name -->
-    <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Profil o tej nazwie już istnieje</string>
+    <string name="EditNotificationProfileFragment__a_profile_with_this_name_already_exists">Już masz profil o takiej nazwie</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
     <string name="EditNotificationProfileFragment__work">Praca</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
     <string name="EditNotificationProfileFragment__sleep">Sen</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
-    <string name="EditNotificationProfileFragment__driving">W pojeździe</string>
+    <string name="EditNotificationProfileFragment__driving">Za kierownicą</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
     <string name="EditNotificationProfileFragment__downtime">Czas wolny</string>
     <!-- Preset selectable name for a profile name, shown as list in edit/create screen -->
@@ -6682,7 +6682,7 @@
     <!-- Title for add recipients to notification profile screen in create flow -->
     <string name="AddAllowedMembers__allowed_notifications">Dozwolone powiadomienia</string>
     <!-- Description of what the user should be doing with this screen -->
-    <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Dodaj osoby i grupy, których powiadomienia i połączenia chcesz otrzymywać, gdy ten profil jest włączony</string>
+    <string name="AddAllowedMembers__add_people_and_groups_you_want_notifications_and_calls_from_when_this_profile_is_on">Dodaj osoby oraz grupy, od których chcesz otrzymywać powiadomienia i połączenia, gdy ten profil będzie włączony</string>
     <!-- Button text that launches the contact picker to select from -->
     <string name="AddAllowedMembers__add_people_or_groups">Dodaj osoby lub grupy</string>
     <!-- Title for exceptions section of add people to notification profile screen in create flow -->
@@ -6696,7 +6696,7 @@
     <string name="SelectRecipientsFragment__add">Dodaj</string>
 
     <!-- Notification profiles home fragment, shown when no profiles have been created yet -->
-    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Utwórz profil, aby otrzymywać powiadomienia i połączenia tylko od osób i grup, które Cię interesują.</string>
+    <string name="NotificationProfilesFragment__create_a_profile_to_receive_notifications_and_calls_only_from_the_people_and_groups_you_want_to_hear_from">Utwórz profil, aby otrzymywać powiadomienia i połączenia tylko od wybranych przez siebie osób i grup.</string>
     <!-- Header shown above list of all notification profiles -->
     <string name="NotificationProfilesFragment__profiles">Profile</string>
     <!-- Button that starts the create new notification profile flow -->
@@ -6733,18 +6733,18 @@
     <!-- Section header for showing schedule information -->
     <string name="NotificationProfileDetails__schedule">Harmonogram</string>
     <!-- If member list is long, will truncate the list and show an option to then see all when tapped -->
-    <string name="NotificationProfileDetails__see_all">Zobacz wszystko</string>
+    <string name="NotificationProfileDetails__see_all">Wyświetl wszystko</string>
 
     <!-- Title for add schedule to profile in create flow -->
     <string name="EditNotificationProfileSchedule__add_a_schedule">Dodaj harmonogram</string>
     <!-- Descriptor text indicating what the user can do with this screen -->
-    <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Ustaw harmonogram, aby automatycznie włączyć ten profil powiadomień.</string>
+    <string name="EditNotificationProfileSchedule__set_up_a_schedule_to_enable_this_notification_profile_automatically">Ustaw harmonogram, według którego ten profil ma się automatycznie włączać.</string>
     <!-- Text shown next to toggle switch to enable/disable schedule -->
     <string name="EditNotificationProfileSchedule__schedule">Harmonogram</string>
     <!-- Label for showing the start time for the schedule -->
-    <string name="EditNotificationProfileSchedule__start">Początek</string>
+    <string name="EditNotificationProfileSchedule__start">Od</string>
     <!-- Label for showing the end time for the schedule -->
-    <string name="EditNotificationProfileSchedule__end">Koniec</string>
+    <string name="EditNotificationProfileSchedule__end">Do</string>
     <!-- First letter of Sunday -->
     <string name="EditNotificationProfileSchedule__sunday_first_letter">Nd</string>
     <!-- First letter of Monday -->
@@ -6754,7 +6754,7 @@
     <!-- First letter of Wednesday -->
     <string name="EditNotificationProfileSchedule__wednesday_first_letter">Śr</string>
     <!-- First letter of Thursday -->
-    <string name="EditNotificationProfileSchedule__thursday_first_letter">Czw</string>
+    <string name="EditNotificationProfileSchedule__thursday_first_letter">Cz</string>
     <!-- First letter of Friday -->
     <string name="EditNotificationProfileSchedule__friday_first_letter">Pt</string>
     <!-- First letter of Saturday -->
@@ -6770,18 +6770,18 @@
     <!-- If in create mode, call to action button text to show to use the enabled schedule and move to the next screen -->
     <string name="EditNotificationProfileSchedule__next">Dalej</string>
     <!-- Error message shown if trying to save/use a schedule with no days selected -->
-    <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">W harmonogramie musi być przynajmniej jeden dzień</string>
+    <string name="EditNotificationProfileSchedule__schedule_must_have_at_least_one_day">Harmonogram musi obowiązywać przez co najmniej 1 dzień</string>
 
     <!-- Title for final screen shown after completing a profile creation -->
-    <string name="NotificationProfileCreated__profile_created">Utworzono profil</string>
+    <string name="NotificationProfileCreated__profile_created">Profil utworzony</string>
     <!-- Call to action button to press to close the created screen and move to the profile details screen -->
     <string name="NotificationProfileCreated__done">Gotowe</string>
     <!-- Descriptor text shown to indicate how to manually turn a profile on/off -->
     <string name="NotificationProfileCreated__you_can_turn_your_profile_on_or_off_manually_via_the_menu_on_the_chat_list">Możesz włączyć lub wyłączyć swój profil ręcznie, przez menu na liście czatów.</string>
     <!-- Descriptor text shown to indicate you can add a schedule later since you did not add one during create flow -->
-    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Dodaj harmonogram w ustawieniach, aby zautomatyzować swój profil.</string>
+    <string name="NotificationProfileCreated__add_a_schedule_in_settings_to_automate_your_profile">Aby profil włączał się automatycznie, w ustawieniach utwórz harmonogram.</string>
     <!-- Descriptor text shown to indicate your profile will follow the schedule set during create flow -->
-    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Twój profil będzie automatycznie włączać się i wyłączać zgodnie z harmonogramem.</string>
+    <string name="NotificationProfileCreated__your_profile_will_turn_on_and_off_automatically_according_to_your_schedule">Profil będzie się automatycznie włączać i wyłączać według harmonogramu.</string>
 
     <!-- Button text shown in profile selection bottom sheet to create a new profile -->
     <string name="NotificationProfileSelection__new_profile">Nowy profil</string>
@@ -6790,19 +6790,19 @@
     <!-- Manual enable option to manually enable a profile until a set time (currently 6pm or 8am depending on what is next) -->
     <string name="NotificationProfileSelection__until_s">Do %1$s</string>
     <!-- Option to view profile details -->
-    <string name="NotificationProfileSelection__view_settings">Pokaż ustawienia</string>
+    <string name="NotificationProfileSelection__view_settings">Wyświetl ustawienia</string>
     <!-- Descriptor text indicating how long a profile will be on when there is a time component associated with it -->
     <string name="NotificationProfileSelection__on_until_s">Włączony do %1$s</string>
 
     <!-- Displayed in a toast when we fail to open the ringtone picker -->
-    <string name="NotificationSettingsFragment__failed_to_open_picker">Nie udało się otworzyć selektora dzwonków.</string>
+    <string name="NotificationSettingsFragment__failed_to_open_picker">Nie udało się otworzyć selektora.</string>
     <!-- Banner title when notification permission is disabled -->
     <string name="NotificationSettingsFragment__to_enable_notifications">W celu włączenia powiadomień Signal potrzebuje uprawnienia na ich wyświetlanie.</string>
     <!-- Banner action when notification permission is disabled -->
     <string name="NotificationSettingsFragment__turn_on">Włącz</string>
 
     <!-- Description shown for the Signal Release Notes channel -->
-    <string name="ReleaseNotes__signal_release_notes_and_news">Listy zmian i nowości w Signal</string>
+    <string name="ReleaseNotes__signal_release_notes_and_news">Aktualizacje i nowości w aplikacji Signal</string>
     <!-- Text description shown for the Signal Release Notes channel explaining that it is the only chat from Signal -->
     <string name="ReleaseNotes__this_is_official_chat_period">To oficjalny i jedyny czat twórców aplikacji Signal.</string>
     <!-- Text description shown for the Signal Release Notes channel explaining what the channel is for -->
@@ -6815,11 +6815,11 @@
     <string name="ReleaseNotes__official_only_chat">Oficjalny i jedyny czat twórców aplikacji Signal</string>
 
     <!-- Donation receipts activity title -->
-    <string name="DonationReceiptListFragment__all_activity">Wszystkie aktywności</string>
+    <string name="DonationReceiptListFragment__all_activity">Wszystkie transakcje</string>
     <!-- Donation receipts all tab label -->
     <string name="DonationReceiptListFragment__all">Wszystkie</string>
     <!-- Donation receipts recurring tab label -->
-    <string name="DonationReceiptListFragment__recurring">Odnawiana</string>
+    <string name="DonationReceiptListFragment__recurring">Cykliczne</string>
     <!-- Donation receipts one-time tab label -->
     <string name="DonationReceiptListFragment__one_time">Jednorazowo</string>
     <!-- Donation receipts gift tab -->
@@ -6829,9 +6829,9 @@
     <!-- Donation receipts donation type heading -->
     <string name="DonationReceiptDetailsFragment__donation_type">Rodzaj darowizny</string>
     <!-- Donation receipts date paid heading -->
-    <string name="DonationReceiptDetailsFragment__date_paid">Data zapłaty</string>
+    <string name="DonationReceiptDetailsFragment__date_paid">Data wpłaty</string>
     <!-- Donation receipts share PNG -->
-    <string name="DonationReceiptDetailsFragment__share_receipt">Udostępnij fakturę</string>
+    <string name="DonationReceiptDetailsFragment__share_receipt">Udostępnij potwierdzenie</string>
     <!-- Donation receipts list end note -->
     <string name="DonationReceiptListFragment__if_you_have">Jeśli ponownie zainstalowałeś(aś) Signal, pokwitowania za poprzednie darowizny nie będą dostępne.</string>
     <!-- Donation receipts document title -->
@@ -6839,9 +6839,9 @@
     <!-- Donation receipts amount title -->
     <string name="DonationReceiptDetailsFragment__amount">Kwota</string>
     <!-- Donation receipts thanks -->
-    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Dziękujemy za wsparcie Signal. Twój datek wspiera misję rozwoju otwartoźródłowej, zapewniającej prywatność technologii, która chroni wolność słowa i umożliwia bezpieczną, globalną komunikację. Jeśli mieszkasz w Stanach Zjednoczonych, zachowaj tę fakturę do swojego zeznania podatkowego. Signal Technology Foundation jest organizacją non-profit, zwolnioną z podatku w USA, na podstawie sekcji 501c3 Krajowego Kodeksu Podatkowego. Nasz federalny numer identyfikacji podatkowej to 82–4506840.</string>
+    <string name="DonationReceiptDetailsFragment__thank_you_for_supporting">Dziękujemy za wsparcie aplikacji Signal. Twoja darowizna wspomaga rozwój otwartoźródłowej technologii, która zapewnia prywatność, chroni wolność słowa i umożliwia bezpieczną komunikację milionom osób na całym świecie. Jeśli mieszkasz w Stanach Zjednoczonych, zachowaj to potwierdzenie, aby uwzględnić wpłatę w zeznaniu podatkowym. Signal Technology Foundation jest organizacją non profit zwolnioną z podatku w USA na podstawie zapisu 501c3 Internal Revenue Code (Kodeksu Podatkowego). Nasz federalny numer identyfikacji podatkowej to 82-4506840.</string>
     <!-- Donation reciepts screen empty state title -->
-    <string name="DonationReceiptListFragment__no_receipts">Brak faktur</string>
+    <string name="DonationReceiptListFragment__no_receipts">Brak potwierdzeń</string>
 
     <!-- region "Stories Tab" -->
 
@@ -6874,15 +6874,15 @@
     <!-- Context menu option to go to story info -->
     <string name="StoriesLandingItem__info">Informacje</string>
     <!-- Label when a story is pending sending -->
-    <string name="StoriesLandingItem__sending">Wysyłanie…</string>
+    <string name="StoriesLandingItem__sending">Udostępnianie…</string>
     <!-- Label when multiple stories are pending sending where %1$d is the number of stories being sent -->
-    <string name="StoriesLandingItem__sending_d">Wysyłanie %1$d…</string>
+    <string name="StoriesLandingItem__sending_d">Udostępnianie %1$d…</string>
     <!-- Label when a story fails to send due to networking -->
-    <string name="StoriesLandingItem__send_failed">Wysyłanie nie powiodło się</string>
+    <string name="StoriesLandingItem__send_failed">Nie udało się udostępnić</string>
     <!-- Label when a story fails to send due to identity mismatch -->
-    <string name="StoriesLandingItem__partially_sent">Częściowo wysłana</string>
+    <string name="StoriesLandingItem__partially_sent">Częściowo udostępniona</string>
     <!-- Status label when a story fails to send indicating user action to retry -->
-    <string name="StoriesLandingItem__tap_to_retry">Stuknij, aby spróbować ponownie</string>
+    <string name="StoriesLandingItem__tap_to_retry">Dotknij, aby spróbować ponownie</string>
     <!-- Title of dialog confirming decision to hide a story -->
     <string name="StoriesLandingFragment__hide_story">Ukryć relację?</string>
     <!-- Message of dialog confirming decision to hide a story -->
@@ -6895,10 +6895,10 @@
     <string name="StoriesLandingFragment__hidden_stories">Ukryte relacje</string>
     <!-- Displayed on each sent story under My Stories -->
     <plurals name="MyStories__d_views">
-        <item quantity="one">%1$d odsłona</item>
-        <item quantity="few">%1$d odsłony</item>
-        <item quantity="many">%1$d odsłon</item>
-        <item quantity="other">%1$d odsłony</item>
+        <item quantity="one">%1$d wyświetlenie</item>
+        <item quantity="few">%1$d wyświetlenia</item>
+        <item quantity="many">%1$d wyświetleń</item>
+        <item quantity="other">%1$d wyświetlenia</item>
     </plurals>
     <!-- Forward story label, displayed in My Stories context menu -->
     <string name="MyStories_forward">Przekaż</string>
@@ -6909,13 +6909,13 @@
     <!-- Message of dialog to confirm deletion of story -->
     <string name="MyStories__this_story_will_be_deleted">Ta relacja zostanie usunięta u Ciebie i wszystkich, którzy ją otrzymali.</string>
     <!-- Toast shown when story media cannot be saved -->
-    <string name="MyStories__unable_to_save">Nie udało się zapisać</string>
+    <string name="MyStories__unable_to_save">Nie można zapisać</string>
     <!-- Displayed at bottom of story viewer when current item has views -->
     <plurals name="StoryViewerFragment__d_views">
-        <item quantity="one">%1$d odsłona</item>
-        <item quantity="few">%1$d odsłony</item>
-        <item quantity="many">%1$d odsłon</item>
-        <item quantity="other">%1$d odsłony</item>
+        <item quantity="one">%1$d wyświetlenie</item>
+        <item quantity="few">%1$d wyświetlenia</item>
+        <item quantity="many">%1$d wyświetleń</item>
+        <item quantity="other">%1$d wyświetlenia</item>
     </plurals>
     <!-- Displayed at bottom of story viewer when current item has replies -->
     <plurals name="StoryViewerFragment__d_replies">
@@ -6929,13 +6929,13 @@
     <!-- Label on group stories to add a story -->
     <string name="StoryViewerPageFragment__add">Dodaj</string>
     <!-- Used when view receipts are disabled -->
-    <string name="StoryViewerPageFragment__views_off">Wyświetlenia: wyłączone</string>
+    <string name="StoryViewerPageFragment__views_off">Wyświetlenia wyłączone</string>
     <!-- Used to join views and replies when both exist on a story item -->
     <string name="StoryViewerFragment__s_s">%1$s %2$s</string>
     <!-- Displayed when viewing a post you sent -->
     <string name="StoryViewerPageFragment__you">Ty</string>
     <!-- Displayed when viewing a story sent to a group, placeholders are person who sent the story and the group name -->
-    <string name="StoryViewerPageFragment__s_to_s">%1$s do %2$s</string>
+    <string name="StoryViewerPageFragment__s_to_s">%1$s do grupy %2$s</string>
     <!-- Displayed when viewing a post from another user with no replies -->
     <string name="StoryViewerPageFragment__reply">Odpowiedz</string>
     <!-- Displayed when viewing a post that has failed to send to some users -->
@@ -6947,7 +6947,7 @@
     <!-- Content description for the any reaction button in reply to story composer, which will launch the emojis bottom sheet. -->
     <string name="StoryViewerPageFragment_any_reaction_content_description">Więcej reakcji</string>
     <!-- Displayed when a story has no views -->
-    <string name="StoryViewsFragment__no_views_yet">Brak odsłon</string>
+    <string name="StoryViewsFragment__no_views_yet">Brak wyświetleń</string>
     <!-- Displayed when user has disabled receipts -->
     <string name="StoryViewsFragment__enable_view_receipts_to_see_whos_viewed_your_story">Włącz potwierdzenia wyświetlenia i sprawdzaj, kto wyświetlił Twoje relacje.</string>
     <!-- Button label displayed when user has disabled receipts -->
@@ -6957,7 +6957,7 @@
     <!-- Dialog title when removing a viewer from a story -->
     <string name="StoryViewsFragment__remove_viewer">Usunąć odbiorcę?</string>
     <!-- Dialog message when removing a viewer from a story -->
-    <string name="StoryViewsFragment__s_will_still_be_able">%1$s zachowa możliwość wyświetlania tego posta, ale nie zobaczy postów, które udostępnisz w %2$s w przyszłości.</string>
+    <string name="StoryViewsFragment__s_will_still_be_able">%1$s wciąż może wyświetlić tę relację, ale nie będzie mieć możliwości wyświetlania niczego, co w przyszłości opublikujesz w relacjach %2$s.</string>
     <!-- Story View context menu action to remove them from a story -->
     <string name="StoryViewItem__remove_viewer">Usuń odbiorcę</string>
     <!-- Displayed when a story has no replies yet -->
@@ -6969,7 +6969,7 @@
     <!-- Displayed for other users that reacted to a story when viewing replies -->
     <string name="StoryGroupReactionReplyItem__someone_reacted_to_the_story">Zareagował/a na relację</string>
     <!-- Label for story views tab -->
-    <string name="StoryViewsAndRepliesDialogFragment__views">Odsłony</string>
+    <string name="StoryViewsAndRepliesDialogFragment__views">Wyświetlenia</string>
     <!-- Label for story replies tab -->
     <string name="StoryViewsAndRepliesDialogFragment__replies">Odpowiedzi</string>
     <!-- Description of action for reaction button -->
@@ -6978,7 +6978,7 @@
     <string name="StoryReplyComposer__reply_to_s">Odpowiedz %1$s</string>
     <!-- Context menu item to privately reply to a story response -->
     <!-- Context menu item to copy a story response -->
-    <string name="StoryGroupReplyItem__copy">Kopiuj</string>
+    <string name="StoryGroupReplyItem__copy">Skopiuj</string>
     <!-- Context menu item to delete a story response -->
     <string name="StoryGroupReplyItem__delete">Usuń</string>
     <!-- Page title for My Story options -->
@@ -6999,20 +6999,20 @@
     <string name="MyStorySettingsFragment__all_signal_connections">Wszystkie kontakty Signal</string>
     <!-- Privacy setting description for sending stories to all your signal connections -->
     <!-- Privacy setting title for sending stories to all except the specified connections -->
-    <string name="MyStorySettingsFragment__all_except">Wszyscy za wyjątkiem…</string>
+    <string name="MyStorySettingsFragment__all_except">Wszyscy oprócz…</string>
     <!-- Privacy setting description for sending stories to all except the specified connections -->
     <string name="MyStorySettingsFragment__hide_your_story_from_specific_people">Ukryj relację przed konkretnymi osobami</string>
     <!-- Summary of clickable option displaying how many people you have excluded from your story -->
     <plurals name="MyStorySettingsFragment__d_people_excluded">
-        <item quantity="one">%1$d wykluczona osoba</item>
-        <item quantity="few">%1$d wykluczone osoby</item>
-        <item quantity="many">%1$d wykluczonych osób</item>
-        <item quantity="other">%1$d wykluczone osoby</item>
+        <item quantity="one">%1$d pominięta osoba</item>
+        <item quantity="few">%1$d pominięte osoby</item>
+        <item quantity="many">%1$d pominiętych osób</item>
+        <item quantity="other">%1$d pominiętej osoby</item>
     </plurals>
     <!-- Privacy setting title for only sharing your story with specified connections -->
-    <string name="MyStorySettingsFragment__only_share_with">Udostępnij tylko…</string>
+    <string name="MyStorySettingsFragment__only_share_with">Udostępniaj tylko…</string>
     <!-- Privacy setting description for only sharing your story with specified connections -->
-    <string name="MyStorySettingsFragment__only_share_with_selected_people">Udostępnij tylko wybranym osobom</string>
+    <string name="MyStorySettingsFragment__only_share_with_selected_people">Udostępniaj tylko wybranym osobom</string>
     <!-- Summary of clickable option displaying how many people you have included to send to in your story -->
     <plurals name="MyStorySettingsFragment__d_people">
         <item quantity="one">%1$d odbiorca</item>
@@ -7031,17 +7031,17 @@
     <!-- Signal connections bolded text in the Signal Connections sheet -->
     <string name="SignalConnectionsBottomSheet___signal_connections">Kontakty Signal</string>
     <!-- Displayed at the top of the signal connections sheet. Please remember to insert strong tag as required. -->
-    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Kontakty Signal to osoby, którym postanowiłeś(-aś) zaufać przez:</string>
+    <string name="SignalConnectionsBottomSheet__signal_connections_are_people">Kontakty Signal to osoby, które zostały uznane za zaufane z jednego z tych powodów:</string>
     <!-- Signal connections sheet bullet point 1 -->
     <string name="SignalConnectionsBottomSheet__starting_a_conversation">Rozpoczynanie czatu</string>
     <!-- Signal connections sheet bullet point 2 -->
-    <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Zaakceptowanie prośby o kontakt</string>
+    <string name="SignalConnectionsBottomSheet__accepting_a_message_request">Została przez Ciebie zaakceptowana prośba o kontakt od nich</string>
     <!-- Signal connections sheet bullet point 3 -->
     <string name="SignalConnectionsBottomSheet__having_them_in_your_system_contacts">Posiadanie ich w kontaktach telefonu</string>
     <!-- Note at the bottom of the Signal connections sheet -->
     <string name="SignalConnectionsBottomSheet__your_connections_can_see_your_name">"Twoje kontakty widzą Twoje imię i zdjęcie, a także widzą posty w „Moja relacja”, chyba że je przed nimi ukryjesz."</string>
     <!-- Clickable option to add a viewer to a custom story -->
-    <string name="PrivateStorySettingsFragment__add_viewer">Dodaj widza</string>
+    <string name="PrivateStorySettingsFragment__add_viewer">Dodaj odbiorcę</string>
     <!-- Clickable option to delete a custom story -->
     <string name="PrivateStorySettingsFragment__delete_custom_story">Usuń relację niestandardową</string>
     <!-- Dialog title when attempting to remove someone from a custom story -->
@@ -7058,29 +7058,29 @@
     <string name="EditPrivateStoryNameFragment__story_name">Tytuł relacji</string>
     <!-- Save button label when editing a custom story name -->
     <!-- Displayed in text post creator before user enters text -->
-    <string name="TextStoryPostCreationFragment__tap_to_add_text">Stuknij, aby dodać tekst</string>
+    <string name="TextStoryPostCreationFragment__tap_to_add_text">Dotknij, aby dodać tekst</string>
     <!-- Button label for changing font when creating a text post -->
     <!-- Displayed in text post creator when prompting user to enter text -->
     <string name="TextStoryPostTextEntryFragment__add_text">Dodaj tekst</string>
     <!-- Content description for \'done\' button when adding text to a story post -->
-    <string name="TextStoryPostTextEntryFragment__done_adding_text">Skończ dodawać tekst</string>
+    <string name="TextStoryPostTextEntryFragment__done_adding_text">Koniec dodawania tekstu</string>
     <!-- Text label for media selection toggle -->
     <string name="MediaSelectionActivity__text">Tekst</string>
     <!-- Camera label for media selection toggle -->
-    <string name="MediaSelectionActivity__camera">Kamera</string>
+    <string name="MediaSelectionActivity__camera">Aparat</string>
     <!-- Hint for entering a URL for a text post -->
-    <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Napisz coś albo wklej link</string>
+    <string name="TextStoryPostLinkEntryFragment__type_or_paste_a_url">Napisz coś lub wklej link</string>
     <!-- Displayed prior to the user entering a URL for a text post -->
     <string name="TextStoryPostLinkEntryFragment__share_a_link_with_viewers_of_your_story">Udostępnij link widzom swojej relacji</string>
     <!-- Hint text for searching for a story text post recipient. -->
-    <string name="TextStoryPostSendFragment__search">Szukaj</string>
+    <string name="TextStoryPostSendFragment__search">Wyszukaj</string>
     <!-- Toast shown when an unexpected error occurs while sending a text story -->
     <!-- Toast shown when a trying to add a link preview to a text story post and the link/url is not valid (e.g., missing .com at the end) -->
     <string name="TextStoryPostSendFragment__please_enter_a_valid_link">Dodaj poprawny link.</string>
     <!-- Title for screen allowing user to exclude "My Story" entries from specific people -->
-    <string name="ChangeMyStoryMembershipFragment__all_except">Wszystkie za wyjątkiem…</string>
+    <string name="ChangeMyStoryMembershipFragment__all_except">Wszyscy oprócz…</string>
     <!-- Title for screen allowing user to only share "My Story" entries with specific people -->
-    <string name="ChangeMyStoryMembershipFragment__only_share_with">Udostępnij tylko…</string>
+    <string name="ChangeMyStoryMembershipFragment__only_share_with">Udostępniaj tylko…</string>
     <!-- Done button label for hide story from screen -->
     <string name="HideStoryFromFragment__done">Gotowe</string>
     <!-- Dialog title for removing a group story -->
@@ -7104,21 +7104,21 @@
     <!-- Error message shown when a failure occurs during story send -->
     <string name="StoryDialogs__story_could_not_be_sent">Nie udało się wysłać relacji. Sprawdź połączenie z internetem i spróbuj ponownie.</string>
     <!-- Error message dialog button to resend a previously failed story send -->
-    <string name="StoryDialogs__send">Wyślij</string>
+    <string name="StoryDialogs__send">Udostępnij</string>
     <!-- Action button for turning off stories when stories are present on the device -->
     <string name="StoryDialogs__turn_off_and_delete">Wyłącz i usuń</string>
     <!-- Privacy Settings toggle title for stories -->
     <!-- Privacy Settings toggle summary for stories -->
     <!-- New story viewer selection screen title -->
-    <string name="CreateStoryViewerSelectionFragment__choose_viewers">Wybierz widzów</string>
+    <string name="CreateStoryViewerSelectionFragment__choose_viewers">Wybierz odbiorców</string>
     <!-- New story viewer selection action button label -->
     <string name="CreateStoryViewerSelectionFragment__next">Dalej</string>
     <!-- New story viewer selection screen title as recipients are selected -->
     <plurals name="SelectViewersFragment__d_viewers">
-        <item quantity="one">%1$d widz</item>
-        <item quantity="few">%1$d widzów</item>
-        <item quantity="many">%1$d widzów</item>
-        <item quantity="other">%1$d widzów</item>
+        <item quantity="one">%1$d odbiorca</item>
+        <item quantity="few">%1$d odbiorców</item>
+        <item quantity="many">%1$d odbiorców</item>
+        <item quantity="other">%1$d odbiorcy</item>
     </plurals>
     <!-- Name story screen title -->
     <string name="CreateStoryWithViewersFragment__name_story">Nazwij relację</string>
@@ -7127,7 +7127,7 @@
     <!-- Name story screen label hint -->
     <string name="CreateStoryWithViewersFragment__story_name_required">Tytuł relacji (wymagane)</string>
     <!-- Name story screen viewers subheading -->
-    <string name="CreateStoryWithViewersFragment__viewers">Widzowie</string>
+    <string name="CreateStoryWithViewersFragment__viewers">Odbiorcy</string>
     <!-- Name story screen create button label -->
     <string name="CreateStoryWithViewersFragment__create">Utwórz</string>
     <!-- Name story screen error when save attempted with no label -->
@@ -7135,7 +7135,7 @@
     <!-- Name story screen error when save attempted but label is duplicate -->
     <string name="CreateStoryWithViewersFragment__there_is_already_a_story_with_this_name">Już istnieje relacja o takim tytule.</string>
     <!-- Text for select all action when editing recipients for a story -->
-    <string name="BaseStoryRecipientSelectionFragment__select_all">Zaznacz wszystko</string>
+    <string name="BaseStoryRecipientSelectionFragment__select_all">Zaznacz wszystkich</string>
     <!-- Choose story type bottom sheet title -->
     <string name="ChooseStoryTypeBottomSheet__choose_your_story_type">Wybierz rodzaj relacji</string>
     <!-- Choose story type bottom sheet new story row title -->
@@ -7145,7 +7145,7 @@
     <!-- Choose story type bottom sheet group story title -->
     <string name="ChooseStoryTypeBottomSheet__group_story">Relacja grupowa</string>
     <!-- Choose story type bottom sheet group story summary -->
-    <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Udostępnij istniejącej grupie</string>
+    <string name="ChooseStoryTypeBottomSheet__share_to_an_existing_group">Udostępnij grupie</string>
     <!-- Choose groups bottom sheet title -->
     <string name="ChooseGroupStoryBottomSheet__choose_groups">Wybierz grupy</string>
     <!-- Displayed when copying group story reply text to clipboard -->
@@ -7161,7 +7161,7 @@
     <!-- Displayed in the viewer when the network is not available -->
     <string name="StorySlateView__no_internet_connection">Brak połączenia z internetem</string>
     <!-- Displayed in the viewer when network is available but content could not be downloaded -->
-    <string name="StorySlateView__couldnt_load_content">Nie można załadować zawartości</string>
+    <string name="StorySlateView__couldnt_load_content">Nie udało się załadować treści</string>
     <!-- Toasted when the user externally shares to a text story successfully -->
     <string name="TextStoryPostCreationFragment__sent_story">Wysłano relację</string>
     <!-- Toasted when the user external share to a text story fails -->
@@ -7169,7 +7169,7 @@
     <!-- Displayed in a dialog to let the user select a given users story -->
     <string name="StoryDialogs__view_story">Obejrzyj relację</string>
     <!-- Displayed in a dialog to let the user select a given users profile photo -->
-    <string name="StoryDialogs__view_profile_photo">Zobacz zdjęcie profilowe</string>
+    <string name="StoryDialogs__view_profile_photo">Wyświetl zdjęcie profilowe</string>
 
     <!-- Title for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
     <!-- Body for a notification at the bottom of the chat list suggesting that the user disable censorship circumvention because the service has become reachable -->
@@ -7185,15 +7185,15 @@
 
     <!-- endregion -->
     <!-- Content description for expand contacts chevron -->
-    <string name="ExpandModel__view_more">Pokaż więcej</string>
-    <string name="StoriesLinkPopup__visit_link">Odwiedź link</string>
+    <string name="ExpandModel__view_more">Wyświetl więcej</string>
+    <string name="StoriesLinkPopup__visit_link">Otwórz link</string>
 
     <!-- Gift price and duration, formatted as: {price} dot {n} day duration -->
     <plurals name="GiftRowItem_s_dot_d_day_duration">
-        <item quantity="one">%1$s · aktywna %2$d dzień</item>
-        <item quantity="few">%1$s · aktywna %2$d dni</item>
-        <item quantity="many">%1$s · aktywna %2$d dni</item>
-        <item quantity="other">%1$s · aktywna %2$d dni</item>
+        <item quantity="one">%1$s · przez %2$d dzień</item>
+        <item quantity="few">%1$s · przez %2$d dni</item>
+        <item quantity="many">%1$s · przez %2$d dni</item>
+        <item quantity="other">%1$s · przez %2$d dnia</item>
     </plurals>
     <!-- Headline text on start fragment for gifting a badge -->
     <string name="GiftFlowStartFragment__donate_for_a_friend">Wpłać darowiznę w imieniu znajomego</string>
@@ -7223,7 +7223,7 @@
     <!-- Title for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_for_you">%1$s wpłacił(a) darowiznę w Twoim imieniu</string>
     <!-- Title for sheet shown when opening a sent gift -->
-    <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Dziękujemy za Twoje wsparcie!</string>
+    <string name="ViewSentGiftBottomSheet__thanks_for_your_support">Dziękujemy Ci za wsparcie!</string>
     <!-- Description for sheet shown when opening a redeemed gift -->
     <string name="ViewReceivedGiftBottomSheet__s_made_a_donation_to_signal">%1$s wpłacił(a) darowiznę na rzecz Signal w Twoim imieniu! Pochwal się na profilu, że wspierasz apkę.</string>
     <!-- Description for sheet shown when opening a sent gift -->
@@ -7241,7 +7241,7 @@
     <!-- Expired gift sheet top description text -->
     <string name="ExpiredGiftSheetConfiguration__your_badge_has_expired_and_is">Twoja odznaka wygasła i nie jest już widoczna dla innych na Twoim profilu.</string>
     <!-- Expired gift sheet bottom description text -->
-    <string name="ExpiredGiftSheetConfiguration__to_continue">Aby nadal wspierać technologię stworzoną dla Ciebie, nie dla zdobycia Twoich danych, rozważ miesięczną subskrypcję.</string>
+    <string name="ExpiredGiftSheetConfiguration__to_continue">Aby dalej wspierać rozwój technologii tworzonej dla osób takich jak Ty, możesz przekazywać nam darowiznę cykliczną.</string>
     <!-- Expired gift sheet make a monthly donation button -->
     <string name="ExpiredGiftSheetConfiguration__make_a_monthly_donation">Przekaż comiesięczną darowiznę</string>
     <!-- Expired gift sheet not now button -->
@@ -7271,10 +7271,10 @@
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_viewers">
-        <item quantity="one">%1$s · %2$d widz</item>
-        <item quantity="few">%1$s · %2$d widzów</item>
-        <item quantity="many">%1$s · %2$d widzów</item>
-        <item quantity="other">%1$s · %2$d widzów</item>
+        <item quantity="one">%1$s · %2$d odbiorca</item>
+        <item quantity="few">%1$s · %2$d odbiorców</item>
+        <item quantity="many">%1$s · %2$d odbiorców</item>
+        <item quantity="other">%1$s · %2$d odbiorcy</item>
     </plurals>
     <!-- Label under name for my story -->
     <plurals name="ContactSearchItems__my_story_s_dot_d_excluded">
@@ -7284,7 +7284,7 @@
         <item quantity="other">%1$s · %2$d wykluczonych osób</item>
     </plurals>
     <!-- Label under name for My Story when first sending to my story -->
-    <string name="ContactSearchItems__tap_to_choose_your_viewers">Stuknij, by wybrać widzów</string>
+    <string name="ContactSearchItems__tap_to_choose_your_viewers">Dotknij, aby wybrać odbiorców</string>
     <!-- Label for context menu item to open story settings -->
     <string name="ContactSearchItems__story_settings">Ustawienia relacji</string>
     <!-- Label for context menu item to remove a group story from contact results -->
@@ -7305,30 +7305,30 @@
     <string name="ContactSearchMediator__delete">Usuń</string>
     <!-- Donation for a friend expiry days remaining -->
     <plurals name="Gifts__d_days_remaining">
-        <item quantity="one">Pozostał %1$d dzień</item>
-        <item quantity="few">Pozostały %1$d dni</item>
-        <item quantity="many">Pozostało %1$d dni</item>
-        <item quantity="other">Pozostały %1$d dni</item>
+        <item quantity="one">Jeszcze przez %1$d dzień</item>
+        <item quantity="few">Jeszcze przez %1$d dni</item>
+        <item quantity="many">Jeszcze przez %1$d dni</item>
+        <item quantity="other">Jeszcze przez %1$d dnia</item>
     </plurals>
     <!-- Donation for a friend expiry hours remaining -->
     <plurals name="Gifts__d_hours_remaining">
-        <item quantity="one">Pozostała %1$d godzina</item>
-        <item quantity="few">Pozostały %1$d godziny</item>
-        <item quantity="many">Pozostało %1$d godzin</item>
-        <item quantity="other">Pozostały %1$d godziny</item>
+        <item quantity="one">Jeszcze przez %1$d godzinę</item>
+        <item quantity="few">Jeszcze przez %1$d godziny</item>
+        <item quantity="many">Jeszcze przez %1$d godzin</item>
+        <item quantity="other">Jeszcze przez %1$d godziny</item>
     </plurals>
     <!-- Gift expiry minutes remaining -->
     <plurals name="Gifts__d_minutes_remaining">
-        <item quantity="one">Pozostała %1$d minuta</item>
-        <item quantity="few">Pozostały %1$d minuty</item>
-        <item quantity="many">Pozostało %1$d minut</item>
-        <item quantity="other">Pozostały %1$d minuty</item>
+        <item quantity="one">Jeszcze przez %1$d minutę</item>
+        <item quantity="few">Jeszcze przez %1$d minuty</item>
+        <item quantity="many">Jeszcze przez %1$d minut</item>
+        <item quantity="other">Jeszcze przez %1$d minuty</item>
     </plurals>
     <!-- Donation for a friend expiry expired -->
     <string name="Gifts__expired">Wygasła</string>
 
     <!-- Label indicating that a user can tap to advance to the next post in a story -->
-    <string name="StoryFirstTimeNavigationView__tap_to_advance">Stuknij, aby przejść dalej</string>
+    <string name="StoryFirstTimeNavigationView__tap_to_advance">Dotknij, aby przejść dalej</string>
     <!-- Label indicating swipe direction to skip current story -->
     <string name="StoryFirstTimeNavigationView__swipe_up_to_skip">Przesuń w górę, aby pominąć</string>
     <!-- Label indicating swipe direction to exit story viewer -->
@@ -7338,19 +7338,19 @@
     <!-- Content description for vertical context menu button in safety number sheet rows -->
     <string name="SafetyNumberRecipientRowItem__open_context_menu">Otwórz menu kontekstowe</string>
     <!-- Sub-line when a user is verified. -->
-    <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Zweryfikowany użytkownik</string>
+    <string name="SafetyNumberRecipientRowItem__s_dot_verified">%1$s · Zweryfikowany kontakt</string>
     <!-- Sub-line when a user is verified. -->
-    <string name="SafetyNumberRecipientRowItem__verified">Zweryfikowano</string>
+    <string name="SafetyNumberRecipientRowItem__verified">Zweryfikowany kontakt</string>
     <!-- Title of safety number changes bottom sheet when showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_changes">Zmiany w numerze bezpieczeństwa</string>
     <!-- Message of safety number changes bottom sheet when showing individual records -->
-    <string name="SafetyNumberBottomSheetFragment__the_following_people">Następujące osoby mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Stuknij w odbiorcę, aby potwierdzić nowy numer bezpieczeństwa. Ta czynność jest opcjonalna.</string>
+    <string name="SafetyNumberBottomSheetFragment__the_following_people">Te osoby mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie na inne. Aby potwierdzić nowy numer bezpieczeństwa, dotknij danego kontaktu. Ta czynność jest opcjonalna.</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records -->
     <string name="SafetyNumberBottomSheetFragment__safety_number_checkup">Test numeru bezpieczeństwa</string>
     <!-- Title of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
-    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Ukończono test numeru bezpieczeństwa</string>
+    <string name="SafetyNumberBottomSheetFragment__safety_number_checkup_complete">Test numeru bezpieczeństwa zakończony</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records and user has seen review screen -->
-    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Wszystkie kontakty zostały przejrzane. Stuknij w opcję „wyślij”, aby kontynuować.</string>
+    <string name="SafetyNumberBottomSheetFragment__all_connections_have_been_reviewed">Wszystkie kontakty zostały sprawdzone. Aby przejść dalej, dotknij opcji „Wyślij”.</string>
     <!-- Message of safety number changes bottom sheet when not showing individual records -->
     <plurals name="SafetyNumberBottomSheetFragment__you_have_d_connections_plural">
         <item quantity="one">Wśród kontaktów masz %1$d osobę, która mogła ponownie zainstalować aplikację Signal albo zmienić urządzenie. Możesz zweryfikować jej numer bezpieczeństwa lub wysłać bez weryfikacji.</item>
@@ -7363,21 +7363,21 @@
     <!-- Menu action to remove user from story -->
     <string name="SafetyNumberBottomSheetFragment__remove_from_story">Usuń z listy odbiorców relacji</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to send anyway -->
-    <string name="SafetyNumberBottomSheetFragment__send_anyway">Wyślij mimo to</string>
+    <string name="SafetyNumberBottomSheetFragment__send_anyway">Mimo to wyślij</string>
     <!-- Action button at bottom of SafetyNumberBottomSheetFragment to review connections -->
-    <string name="SafetyNumberBottomSheetFragment__review_connections">Przejrzyj kontakty</string>
+    <string name="SafetyNumberBottomSheetFragment__review_connections">Sprawdź kontakty</string>
     <!-- Empty state copy for SafetyNumberBottomSheetFragment -->
-    <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Brak nowych odbiorców do wyświetlenia</string>
+    <string name="SafetyNumberBottomSheetFragment__no_more_recipients_to_show">Nie masz więcej takich kontaktów</string>
     <!-- Done button on safety number review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__done">Gotowe</string>
     <!-- Title of safety number review fragment -->
     <string name="SafetyNumberReviewConnectionsFragment__safety_number_changes">Zmiany w numerze bezpieczeństwa</string>
     <!-- Message of safety number review fragment -->
     <plurals name="SafetyNumberReviewConnectionsFragment__d_recipients_may_have">
-        <item quantity="one">Wśród kontaktów masz %1$d osobę, która mogła ponownie zainstalować aplikację Signal albo zmienić urządzenie. Stuknij w odbiorcę, aby potwierdzić nowy numer bezpieczeństwa. Ta czynność jest opcjonalna.</item>
-        <item quantity="few">Wśród kontaktów masz osoby (%1$d), które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Stuknij w odbiorcę, aby potwierdzić nowy numer bezpieczeństwa. Ta czynność jest opcjonalna.</item>
-        <item quantity="many">Wśród kontaktów masz osoby (%1$d), które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Stuknij w odbiorcę, aby potwierdzić nowy numer bezpieczeństwa. Ta czynność jest opcjonalna.</item>
-        <item quantity="other">Wśród kontaktów masz osoby (%1$d), które mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie. Stuknij w odbiorcę, aby potwierdzić nowy numer bezpieczeństwa. Ta czynność jest opcjonalna.</item>
+        <item quantity="one">%1$d osoba mogła ponownie zainstalować aplikację Signal albo zmienić urządzenie na inne. Aby potwierdzić nowy numer bezpieczeństwa, dotknij danego kontaktu. Ta czynność jest opcjonalna.</item>
+        <item quantity="few">%1$d osoby mogły ponownie zainstalować aplikację Signal albo zmienić urządzenie na inne. Aby potwierdzić nowy numer bezpieczeństwa, dotknij danego kontaktu. Ta czynność jest opcjonalna.</item>
+        <item quantity="many">%1$d osób mogło ponownie zainstalować aplikację Signal albo zmienić urządzenie na inne. Aby potwierdzić nowy numer bezpieczeństwa, dotknij danego kontaktu. Ta czynność jest opcjonalna.</item>
+        <item quantity="other">%1$d osoby mogło ponownie zainstalować aplikację Signal albo zmienić urządzenie na inne. Aby potwierdzić nowy numer bezpieczeństwa, dotknij danego kontaktu. Ta czynność jest opcjonalna.</item>
     </plurals>
     <!-- Section header for 1:1 contacts in review fragment -->
     <string name="SafetyNumberBucketRowItem__contacts">Kontakty</string>
@@ -7393,14 +7393,14 @@
     <!-- All connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
     <string name="ChooseInitialMyStoryMembershipFragment__all_signal_connections">Wszystkie kontakty Signal</string>
     <!-- All connections except option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__all_except">Wszystkim za wyjątkiem…</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__all_except">Wszyscy oprócz…</string>
     <!-- Only with selected connections option for initial My Story settings configuration shown when sending to My Story for the first time -->
-    <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Udostępnij tylko…</string>
+    <string name="ChooseInitialMyStoryMembershipFragment__only_share_with">Udostępniaj tylko…</string>
 
     <!-- Story info header sent heading -->
-    <string name="StoryInfoHeader__sent">Wysłano</string>
+    <string name="StoryInfoHeader__sent">Udostępniona</string>
     <!-- Story info header received heading -->
-    <string name="StoryInfoHeader__received">Odebrano</string>
+    <string name="StoryInfoHeader__received">Odebrana</string>
     <!-- Story info header file size heading -->
     <string name="StoryInfoHeader__file_size">Rozmiar pliku</string>
     <!-- Story info "Sent to" header -->
@@ -7445,7 +7445,7 @@
     <string name="GroupStorySettingsFragment__remove_group_story">Usuń relację grupową</string>
 
     <!-- Generic title for overflow menus -->
-    <string name="OverflowMenu__overflow_menu">Rozwijane menu</string>
+    <string name="OverflowMenu__overflow_menu">Menu rozwijane</string>
 
     <!-- First step number/bullet for choose new default sms app instructions -->
     <string name="ChooseANewDefaultSmsAppFragment__bullet_1">1</string>

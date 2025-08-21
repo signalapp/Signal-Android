@@ -607,7 +607,7 @@
     <string name="ConversationFragment_this_message_will_be_deleted_for_everyone_in_the_conversation">यह संदेश चैट में शामिल सभी के लिए डिलीट कर दिया जाएगा यदि वे Signal के नवीनमत वर्ज़न पर हैं। वे देख सकेंगे कि आपने एक संदेश को डिलीट कर दिया है।</string>
     <string name="ConversationFragment_quoted_message_not_found">मूल मैसेज नहीं मिला</string>
     <string name="ConversationFragment_quoted_message_no_longer_available">मूल मैसेज अब उपलब्ध नहीं है</string>
-    <string name="ConversationFragment_failed_to_open_message">मैसेज नहीं खुल सका</string>
+    <string name="ConversationFragment_failed_to_open_message">मैसेज नहीं खुला</string>
     <string name="ConversationFragment_you_can_swipe_to_the_right_reply">जल्दी जवाब देने के लिए किसी भी मैसेज को दाईं ओर स्वाइप करें</string>
     <string name="ConversationFragment_you_can_swipe_to_the_left_reply">जल्दी जवाब देने के लिए किसी भी मैसेज को बाईं ओर स्वाइप करें</string>
     <string name="ConversationFragment_view_once_media_is_deleted_after_sending">व्यू-वन्स मीडिया भेजने के बाद डिलीट कर जाता है</string>
@@ -621,11 +621,11 @@
     <string name="ConversationFragment_verify">वेरिफ़ाई करें</string>
     <string name="ConversationFragment_not_now">अभी नहीं</string>
     <string name="ConversationFragment_your_safety_number_with_s_changed">%1$s के साथ आपका सेफ़्टी नंबर बदल गया है</string>
-    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%1$s के साथ आपकी सुरक्षा संख्या बदल गई, संभावना है कि उन्होंने Signal को फिर से इंस्टॉल किया है या डिवाइस को बदल लिया है। नए सुरक्षा नंबर की पुष्टि करने के लिए वेरिफाई पर क्लिक करें। यह वैकल्पिक है।</string>
+    <string name="ConversationFragment_your_safety_number_with_s_changed_likey_because_they_reinstalled_signal">%1$s के साथ आपका सेफ़्टी नंबर बदल गया है। ऐसा इसलिए, क्योंकि हो सकता है कि उन्होंने फिर से Signal इंस्टॉल किया हो या फिर उनका डिवाइस बदल गया हो। नए सेफ़्टी नंबर की पुष्टि करने के लिए \'वेरिफ़ाई करें\' पर टैप करें। हालांकि, ऐसा करना ज़रूरी नहीं है।</string>
     <!-- Dialog title for block group link join requests -->
     <string name="ConversationFragment__block_request">अनुरोध ब्लॉक करना है?</string>
     <!-- Dialog message for block group link join requests -->
-    <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s लोग ग्रुप लिंक के माध्यम से इस ग्रुप से नहीं जुड़ पाएंगे या जुड़ने हेतु अनुरोध नहीं कर पाएंगे। उन्हें फिर भी मैनुअल तरीके से ग्रुप में जोड़ा जा सकता है।</string>
+    <string name="ConversationFragment__s_will_not_be_able_to_join_or_request_to_join_this_group_via_the_group_link">%1$s इस ग्रुप लिंक के ज़रिए न तो ग्रुप में जुड़ पाएंगे और न ही जुड़ने का अनुरोध कर पाएंगे। इन्हें फिर भी मैन्युअल तरीके से ग्रुप में जोड़ा जा सकता है।</string>
     <!-- Dialog confirm block request button -->
     <string name="ConversationFragment__block_request_button">अनुरोध ब्लॉक करें</string>
     <!-- Dialog cancel block request button -->
@@ -740,7 +740,7 @@
         <item quantity="one">यह आपकी सभी डिवाइस से चयनित चैट को स्थायी रूप से डिलीट कर देगा।</item>
         <item quantity="other">यह आपकी सभी डिवाइस से सभी %1$d चयनित चैट को स्थायी रूप से डिलीट कर देगा।</item>
     </plurals>
-    <string name="ConversationListFragment_deleting">हटाया जा रहा है</string>
+    <string name="ConversationListFragment_deleting">डिलीट किया जा रहा है</string>
     <plurals name="ConversationListFragment_deleting_selected_conversations">
         <item quantity="one">चयनित चैट डिलीट हो रही है…</item>
         <item quantity="other">चयनित चैट डिलीट हो रही हैं…</item>
@@ -749,7 +749,7 @@
         <item quantity="one">चैट संग्रहित की गई</item>
         <item quantity="other">%1$d चैट संग्रहित की गई</item>
     </plurals>
-    <string name="ConversationListFragment_undo">अनडू करें</string>
+    <string name="ConversationListFragment_undo">पहले जैसा करें</string>
     <plurals name="ConversationListFragment_moved_conversations_to_inbox">
         <item quantity="one">चैट को इनबॉक्स में ले जाया गया</item>
         <item quantity="other">%1$d चैट को इनबॉक्स में ले जाया गया</item>
@@ -773,8 +773,8 @@
     <string name="ConversationListFragment_select_all">सभी को चुन लो</string>
     <!-- Screen title shown when selecting multiple items from a list like conversation threads or call logs. -->
     <plurals name="ConversationListFragment_s_selected">
-        <item quantity="one">%1$d चुना हुआ</item>
-        <item quantity="other">%1$d चुना हुआ</item>
+        <item quantity="one">%1$d चुना गया</item>
+        <item quantity="other">%1$d चुने गए</item>
     </plurals>
     <!-- Context menu option to add a chat to a folder -->
     <string name="ConversationListFragment_add_to_folder">फ़ोल्डर में जोड़ें</string>
@@ -794,20 +794,20 @@
     <!-- Show in conversation list overflow menu to open selection bottom sheet -->
     <string name="ConversationListFragment__notification_profile">नोटिफ़िकेशन प्रोफ़ाइल</string>
     <!-- Tooltip shown after you have created your first notification profile -->
-    <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">यहाँ अपनी नोटिफ़िकेशन प्रोफ़ाइल को ऑन या ऑफ़ करें।</string>
+    <string name="ConversationListFragment__turn_your_notification_profile_on_or_off_here">यहां पर अपनी नोटिफ़िकेशन प्रोफ़ाइल चालू या बंद करें।</string>
     <!-- Message shown in top toast to indicate the named profile is on -->
-    <string name="ConversationListFragment__s_on">%1$s ऑन है</string>
+    <string name="ConversationListFragment__s_on">%1$s चालू है</string>
     <!-- -->
     <string name="ConversationListFragment_username_recovered_toast">आपका QR कोड और लिंक फिर से स्थापित कर दिया गया है और आपका यूज़रनेम %1$s है</string>
 
     <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">की विनिमय मेसेज</string>
+    <string name="ConversationListItem_key_exchange_message">\'की\' एक्सचेंज करने का मैसेज</string>
 
     <!-- ConversationListItemAction -->
     <string name="ConversationListItemAction_archived_conversations_d">संग्रहीत चैट (%1$d)</string>
 
     <!-- ConversationTitleView -->
-    <string name="ConversationTitleView_verified">सत्यापित</string>
+    <string name="ConversationTitleView_verified">वेरिफ़ाई किया हुआ है</string>
     <string name="ConversationTitleView_you">आप</string>
 
     <!-- ConversationTypingView -->
@@ -827,45 +827,45 @@
 
     <!-- CreateProfileActivity -->
     <string name="CreateProfileActivity__profile">प्रोफ़ाइल</string>
-    <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफाइल फोटो सेट करने में त्रुटि</string>
-    <string name="CreateProfileActivity_problem_setting_profile">प्रोफ़ाइल सेट करने में समस्या</string>
-    <string name="CreateProfileActivity_set_up_your_profile">अपना प्रोफ़ाइल सेट करें</string>
-    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">आपकी प्रोफ़ाइल और उसमें किए गए बदलाव आपके संपर्कों व समूहों सहित उन सभी लोगों को दिखेंगे जिन्हें आप संदेश भेजते हैं।</string>
-    <string name="CreateProfileActivity_set_avatar_description">अपने बारे में कुछ लिखें</string>
+    <string name="CreateProfileActivity_error_setting_profile_photo">प्रोफ़ाइल फ़ोटो सेट करने में कोई गड़बड़ी हुई</string>
+    <string name="CreateProfileActivity_problem_setting_profile">प्रोफ़ाइल सेट करने में कोई समस्या हुई</string>
+    <string name="CreateProfileActivity_set_up_your_profile">अपनी प्रोफ़ाइल सेट करें</string>
+    <string name="CreateProfileActivity_signal_profiles_are_end_to_end_encrypted">आपकी प्रोफ़ाइल और उसमें किए गए बदलाव आपके कॉन्टैक्ट, ग्रुप, और उन लोगों को दिखेंगे जिन्हें आपने मैसेज किया है।</string>
+    <string name="CreateProfileActivity_set_avatar_description">अवतार सेट करें</string>
 
     <!-- ProfileCreateFragment -->
     <!-- Displayed at the top of the screen and explains how profiles can be viewed. -->
-    <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">आपके संपर्कों व समूहों सहित उन सभी लोगों को प्रोफ़ाइलें दिखेंगी जिन्हें आप संदेश भेजते हैं।</string>
+    <string name="ProfileCreateFragment__profiles_are_visible_to_contacts_and_people_you_message">आपकी प्रोफ़ाइल आपके कॉन्टैक्ट, ग्रुप, और उन लोगों को दिखेंगे जिन्हें आपने मैसेज किया है।</string>
     <!-- Title of clickable row to select phone number privacy settings -->
-    <string name="ProfileCreateFragment__who_can_find_me">मुझे नंबर द्वारा कौन ढूँढ़ सकता है?</string>
+    <string name="ProfileCreateFragment__who_can_find_me">मुझे नंबर से कौन ढूंढ सकता है?</string>
 
     <!-- WhoCanSeeMyPhoneNumberFragment -->
     <!-- Toolbar title for this screen -->
-    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">मुझे नंबर द्वारा कौन ढूँढ़ सकता है?</string>
+    <string name="WhoCanSeeMyPhoneNumberFragment__who_can_find_me_by_number">मुझे नंबर से कौन ढूंढ सकता है?</string>
     <!-- Description for radio item stating anyone can see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__anyone_who_has_your">जिस किसी के पास आपका फोन नंबर है, वो आपको Signal पर देख सकेगा और आपसे चैट शुरू कर सकता है।</string>
     <!-- Description for radio item stating no one will be able to see your phone number -->
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">कोई भी यह नहीं देख पाएगा कि आप Signal पर हैं, जब तक कि आप उन्हें संदेश न भेजें या उनके साथ चैट न करें।</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">बैकअप से बहाल करना?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">स्थानीय मेसेज से अपने मेसेज और मीडिया को पुनर्स्थापित करें। अगर आप अभी पुनर्स्थापित नहीं करते हैं, तो आप बाद में बैकअप नहीं कर पाएंगे।</string>
-    <string name="ChooseBackupFragment__icon_content_description">बैकअप आइकन से बहाल करें</string>
+    <string name="ChooseBackupFragment__restore_from_backup">बैकअप से रीस्टोर करना है?</string>
+    <string name="ChooseBackupFragment__restore_your_messages_and_media">अपने मैसेज और मीडिया को लोकल बैकअप से रीस्टोर करें। अगर आपने अभी रीस्टोर नहीं किया, तो बाद में ऐसा करना मुमकिन नहीं होगा।</string>
+    <string name="ChooseBackupFragment__icon_content_description">बैकअप आइकन से रीस्टोर करें</string>
     <string name="ChooseBackupFragment__choose_backup">बैकअप चुनें</string>
-    <string name="ChooseBackupFragment__learn_more">अधिक जानें</string>
+    <string name="ChooseBackupFragment__learn_more">ज़्यादा जानें</string>
     <string name="ChooseBackupFragment__no_file_browser_available">कोई फ़ाइल ब्राउज़र उपलब्ध नहीं है</string>
 
     <!-- RestoreBackupFragment -->
-    <string name="RestoreBackupFragment__restore_complete">पुनर्स्थापित पूर्ण</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">बैकअप का उपयोग करना जारी रखने के लिए, कृपया एक फोल्डर चुनें। नए बैकअप इस जगह पर संगृहीत किए जाएंगे।</string>
-    <string name="RestoreBackupFragment__choose_folder">फोल्डर को चुनो</string>
+    <string name="RestoreBackupFragment__restore_complete">रीस्टोर पूरा हुआ</string>
+    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">बैकअप का इस्तेमाल जारी रखने के लिए, कोई फ़ोल्डर चुनें। नए बैकअप यहीं सेव होंगे।</string>
+    <string name="RestoreBackupFragment__choose_folder">फ़ोल्डर चुनें</string>
     <string name="RestoreBackupFragment__not_now">अभी नहीं</string>
     <!-- Couldn\'t find the selected backup -->
     <string name="RestoreBackupFragment__backup_not_found">बैकअप नहीं मिला।</string>
     <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">बैकअप रीड नहीं किया जा सका।</string>
+    <string name="RestoreBackupFragment__backup_could_not_be_read">बैकअप खोलने में कोई समस्या हुई।</string>
     <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">बैकअप के एक्सटेंशन में गड़बड़ है।</string>
+    <string name="RestoreBackupFragment__backup_has_a_bad_extension">बैकअप का एक्सटेंशन सही नहीं है।</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
@@ -914,42 +914,42 @@
 
     <!-- BackupsPreferenceFragment -->
     <string name="BackupsPreferenceFragment__chat_backups">बैकअप चैट करें</string>
-    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">बैकअप एक पासफ्रेस के साथ एनक्रिप्टेड होते हैं और आपके डिवाइस पर स्टोर किए जाते हैं।</string>
-    <string name="BackupsPreferenceFragment__create_backup">बैकअप बनाओ</string>
-    <string name="BackupsPreferenceFragment__last_backup">पिछला बैकअप:%1$s</string>
+    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">बैकअप पासफ़्रेज़ से एन्क्रिप्ट किए जाते हैं और इन्हें आपके डिवाइस पर ही स्टोर रखा जाता है।</string>
+    <string name="BackupsPreferenceFragment__create_backup">बैकअप बनाएं</string>
+    <string name="BackupsPreferenceFragment__last_backup">पिछला बैकअप: %1$s</string>
     <string name="BackupsPreferenceFragment__backup_folder">बैकअप फ़ोल्डर</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
     <string name="BackupsPreferenceFragment__backup_time">बैकअप समय</string>
-    <string name="BackupsPreferenceFragment__verify_backup_passphrase">बैकअप पासफ्रेज की पुष्टि करें</string>
-    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">अपने बैकअप पासफ्रेज की जाँच करें और इसके मेल खाने की पुष्टि करें</string>
-    <string name="BackupsPreferenceFragment__turn_on">शुरु करें</string>
+    <string name="BackupsPreferenceFragment__verify_backup_passphrase">बैकअप पासफ़्रेज़ की पुष्टि करें</string>
+    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">अपने बैकअप पासफ़्रेज़ की जांच करें और पुष्टि करें कि यह मेल खाता है</string>
+    <string name="BackupsPreferenceFragment__turn_on">चालू करें</string>
     <string name="BackupsPreferenceFragment__turn_off">बंद करें</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"किसी बैकअप को बहाल करने के लिए, Signal की एक नई कॉपी इंस्टॉल करें। ऐप को खोलें और \"बैकअप को बहाल करें\" पर टैप करें, और फिर बैकअप फाइल को ढूँढें। %1$s"</string>
-    <string name="BackupsPreferenceFragment__learn_more">अधिक जानें</string>
-    <string name="BackupsPreferenceFragment__in_progress">प्रगति में</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"बैकअप को रीस्टोर करने के लिए, Signal को फिर से इंस्टॉल करें। ऐप खोलें और \"बैकअप रीस्टोर करें\" पर टैप करें, फिर बैकअप फ़ाइल चुनें। %1$s"</string>
+    <string name="BackupsPreferenceFragment__learn_more">ज़्यादा जानें</string>
+    <string name="BackupsPreferenceFragment__in_progress">जारी है…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
-    <string name="BackupsPreferenceFragment__verifying_backup">बैकअप सत्यापित किया जा रहा है…</string>
+    <string name="BackupsPreferenceFragment__verifying_backup">बैकअप की पुष्टि की जा रही है…</string>
     <!-- Progress of backup where %d is the number of files completed so far -->
-    <string name="BackupsPreferenceFragment__d_so_far">%1$d अब तक</string>
+    <string name="BackupsPreferenceFragment__d_so_far">अब तक %1$d%%…</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">अब तक %1$s%%…</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">बैकअप बनाने के लिए Signal को बाहरी संग्रहण अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स को जारी रखें, \"अनुमतियां\" चुनें और \"संग्रहण\" सक्षम करें।</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">बैकअप बनाने के लिए Signal को बाहरी स्टोरेज का ऐक्सेस चाहिए। हालांकि, ऐसा लगता है कि आपने इसकी अनुमति स्थायी रूप से बंद कर दी है। ऐक्सेस देने के लिए, ऐप सेटिंग में जाकर \'अनुमतियां\' चुनें और फिर \'स्टोरेज\' चालू करें।</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
     <string name="BackupsPreferenceFragment__set_backup_time">बैकअप समय निर्धारित करें</string>
 
 
     <!-- CustomDefaultPreference -->
-    <string name="CustomDefaultPreference_using_custom">कस्टम इस्तेमाल: %1$s</string>
-    <string name="CustomDefaultPreference_using_default">डिफ़ॉल्ट इस्तेमाल: %1$s</string>
-    <string name="CustomDefaultPreference_none">कुछ नहीं</string>
+    <string name="CustomDefaultPreference_using_custom">कस्टम इस्तेमाल किया जा रहा है: %1$s</string>
+    <string name="CustomDefaultPreference_using_default">डिफ़ॉल्ट इस्तेमाल किया जा रहा है: %1$s</string>
+    <string name="CustomDefaultPreference_none">कोई नहीं</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
-    <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">फोटो लेने के लिए कैमरा की इजाज़त की ज़रूरत होती है।</string>
-    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">गैलरी को देखने के लिए स्टोरेज इजाज़त की ज़रूरत होती है।</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__taking_a_photo_requires_the_camera_permission">फ़ोटो खींचने के लिए कैमरे का ऐक्सेस देना ज़रूरी है।</string>
+    <string name="AvatarSelectionBottomSheetDialogFragment__viewing_your_gallery_requires_the_storage_permission">गैलरी देखने के लिए स्टोरेज का ऐक्सेस देना ज़रूरी है।</string>
 
     <!-- DateUtils -->
     <string name="DateUtils_just_now">अभी</string>
-    <string name="DateUtils_minutes_ago">%1$dm</string>
+    <string name="DateUtils_minutes_ago">%1$dमि.</string>
     <string name="DateUtils_today">आज</string>
     <string name="DateUtils_yesterday">कल</string>
     <!-- When scheduling a message, %1$s replaced with either today, tonight, or tomorrow. %2$s replaced with the time. e.g. Tonight at 9:00pm -->
@@ -1150,18 +1150,18 @@
 
     <!-- DeviceListActivity -->
     <string name="DeviceListActivity_unlink_s">\"%1$s\" को अनलिंक करें?</string>
-    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">इस डिवाइस को अनलिंक करने के बाद, यह अब संदेश भेजने या प्राप्त करने में सक्षम नहीं होगा।</string>
-    <string name="DeviceListActivity_network_connection_failed">नेटवर्क कनेक्शन असफल रहा</string>
+    <string name="DeviceListActivity_by_unlinking_this_device_it_will_no_longer_be_able_to_send_or_receive">इस डिवाइस को अनलिंक करने का मतलब है कि आगे से इस पर कोई मैसेज न तो आएगा और न ही इससे कोई मैसेज भेजा जा सकेगा।</string>
+    <string name="DeviceListActivity_network_connection_failed">नेटवर्क से कनेक्ट नहीं हो सका</string>
     <!-- Button label on an alert dialog. The dialog informs the user they have network issues. If pressed, we will retry the network request. -->
-    <string name="DeviceListActivity_try_again">फिर से कोशिश करो</string>
-    <string name="DeviceListActivity_unlinking_device">डिवाइस अनलिंक किया जा रहा है</string>
+    <string name="DeviceListActivity_try_again">फिर से कोशिश करें</string>
+    <string name="DeviceListActivity_unlinking_device">डिवाइस अनलिंक किया जा रहा है…</string>
     <string name="DeviceListActivity_unlinking_device_no_ellipsis">डिवाइस अनलिंक किया जा रहा है</string>
-    <string name="DeviceListActivity_network_failed">नेटवर्क असफल रहा</string>
+    <string name="DeviceListActivity_network_failed">नेटवर्क काम नहीं कर रहा है!</string>
 
     <!-- DeviceListItem -->
-    <string name="DeviceListItem_unnamed_device">अज्ञात डिवाइस</string>
-    <string name="DeviceListItem_linked_s">%1$sजोड़ा गया</string>
-    <string name="DeviceListItem_last_active_s">अंतिम सक्रिय %1$s</string>
+    <string name="DeviceListItem_unnamed_device">बेनाम डिवाइस</string>
+    <string name="DeviceListItem_linked_s">जोड़ा गया %1$s</string>
+    <string name="DeviceListItem_last_active_s">आखिरी बार सक्रिय %1$s</string>
     <string name="DeviceListItem_today">आज</string>
 
     <!-- DocumentView -->
@@ -1169,11 +1169,11 @@
     <string name="DocumentView_document_file">दस्तावेज़ फ़ाइल</string>
 
     <!-- DozeReminder -->
-    <string name="DozeReminder_optimize_for_missing_play_services">लापता प्ले सेवाओं के लिए अनुकूलित करें</string>
-    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">यह डिवाइस Play सेवाओं का समर्थन नहीं करता है। सिस्टम बैटरी ऑप्टिमाइज़ेशन को अक्षम करने के लिए टैप करें, जो निष्क्रिय होने पर संदेशों को पुनर्प्राप्त करने से Signal को रोकता है।</string>
+    <string name="DozeReminder_optimize_for_missing_play_services">प्ले सर्विस न होने पर बेहतर चलाएं</string>
+    <string name="DozeReminder_this_device_does_not_support_play_services_tap_to_disable_system_battery">इस डिवाइस पर Google Play सेवाएं काम नहीं करतीं। सिस्टम की बैटरी ऑप्टिमाइज़ेशन बंद करने के लिए टैप करें, ताकि Signal इनएक्टिव रहने पर भी आपको मैसेज मिल सके।</string>
 
     <!-- ExpiredBuildReminder -->
-    <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal का यह वर्ज़न एक्सपायर हो गया है। मेसेज भेजने और प्राप्त करने के लिए अभी अपडेट करें।</string>
+    <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal का यह वर्ज़न एक्सपायर हो गया है। मैसेज भेजने और पानेे के लिए इसे अभी अपडेट करें।</string>
     <string name="ExpiredBuildReminder_update_now">अभी अपडेट करें</string>
 
     <!-- Title of notification telling users to update Signal -->
@@ -1183,35 +1183,35 @@
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
-        <item quantity="one">%1$d लंबित मेंबर अनुरोध।</item>
-        <item quantity="other">%1$d लंबित मेंबर अनुरोध।</item>
+        <item quantity="one">%1$d सदस्य का पेंडिंग अनुरोध।</item>
+        <item quantity="other">%1$d सदस्य के पेंडिंग अनुरोध।</item>
     </plurals>
-    <string name="PendingGroupJoinRequestsReminder_view">देखना</string>
+    <string name="PendingGroupJoinRequestsReminder_view">देखें</string>
 
     <!-- GcmRefreshJob -->
-    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">स्थायी Signal संचार विफलता</string>
-    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal Google Play सेवाओं के साथ पंजीकरण करने में असमर्थ था। Signal मेसेज और कॉल अक्षम कर दिए गए हैं, कृपया सेटिंग्स &gt; उन्नत में पुनः पंजीकरण करने का प्रयास करें।</string>
+    <string name="GcmRefreshJob_Permanent_Signal_communication_failure">Signal से स्थायी रूप से कनेक्शन नहीं हो पाया!</string>
+    <string name="GcmRefreshJob_Signal_was_unable_to_register_with_Google_Play_Services">Signal, Google Play सेवाओं पर रजिस्टर नहीं हो पाया। Signal की मैसेज और कॉल सेवाएं बंद हैं। कृपया सेटिंग &gt; ऐडवांस्ड में जाकर दोबारा रजिस्टर करें।</string>
 
 
     <!-- GiphyActivity -->
-    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">पूर्ण रिज़ॉल्यूशन GIF पुनर्प्राप्त करते समय त्रुटि</string>
+    <string name="GiphyActivity_error_while_retrieving_full_resolution_gif">फ़ुल रिज़ॉल्यूशन GIF रिट्रीव करने में कोई गड़बड़ी हुई</string>
 
     <!-- GiphyFragmentPageAdapter -->
 
     <!-- AddToGroupActivity -->
-    <string name="AddToGroupActivity_add_member">सदस्य जोड़ें?</string>
-    <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" को \"%2$s\" में शामिल करना है?</string>
-    <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" को \"%2$s\" में शामिल किया गया।</string>
-    <string name="AddToGroupActivity_add_to_group">समूह में शामिल करें</string>
-    <string name="AddToGroupActivity_add_to_groups">समूहों में शामिल करें</string>
-    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">इस व्यक्ति को लेगेसी ग्रुप्स में शामिल नहीं किया जा सकता।</string>
+    <string name="AddToGroupActivity_add_member">सदस्य जोड़ना है?</string>
+    <string name="AddToGroupActivity_add_s_to_s">\"%1$s\" को \"%2$s\" में जोड़ना है?</string>
+    <string name="AddToGroupActivity_s_added_to_s">\"%1$s\" को \"%2$s\" में जोड़ा गया।</string>
+    <string name="AddToGroupActivity_add_to_group">ग्रुप में जोड़ें</string>
+    <string name="AddToGroupActivity_add_to_groups">ग्रुप में जोड़ें</string>
+    <string name="AddToGroupActivity_this_person_cant_be_added_to_legacy_groups">इस व्यक्ति को पुराने ग्रुप में नहीं जोड़ा जा सकता।</string>
     <string name="AddToGroupActivity_add">जोड़ें</string>
-    <string name="AddToGroupActivity_add_to_a_group">किसी समूह में शामिल करें</string>
+    <string name="AddToGroupActivity_add_to_a_group">ग्रुप में जोड़ें</string>
 
     <!-- ChooseNewAdminActivity -->
-    <string name="ChooseNewAdminActivity_choose_new_admin">नया एडमिन चुनें</string>
-    <string name="ChooseNewAdminActivity_done">पूर्ण</string>
-    <string name="ChooseNewAdminActivity_you_left">आपने \"%1$s\" छोड़ दिया</string>
+    <string name="ChooseNewAdminActivity_choose_new_admin">नया ऐडमिन चुनें</string>
+    <string name="ChooseNewAdminActivity_done">हो गया</string>
+    <string name="ChooseNewAdminActivity_you_left">आपने \"%1$s\" छोड़ दिया है।</string>
 
     <!-- GroupMembersDialog -->
     <string name="GroupMembersDialog_you">आप</string>
@@ -1219,7 +1219,7 @@
     <!-- GV2 access levels -->
     <string name="GroupManagement_access_level_anyone">कोई भी</string>
     <string name="GroupManagement_access_level_all_members">सभी सदस्य</string>
-    <string name="GroupManagement_access_level_only_admins">सिर्फ एडमिन</string>
+    <string name="GroupManagement_access_level_only_admins">सिर्फ़ ऐडमिन</string>
     <string name="GroupManagement_access_level_no_one">कोई नहीं</string>
   <!-- Removed by excludeNonTranslatables <string name="GroupManagement_access_level_unknown" translatable="false">Unknown</string> -->
     <array name="GroupManagement_edit_group_membership_choices">
@@ -1233,21 +1233,21 @@
 
     <!-- GV2 invites sent -->
     <plurals name="GroupManagement_invitation_sent">
-        <item quantity="one">आमंत्रण भेजा गया</item>
-        <item quantity="other">%1$d आमंत्रण भेजे गए</item>
+        <item quantity="one">न्योता भेजा गया</item>
+        <item quantity="other">%1$d न्योते भेजे गए</item>
     </plurals>
     <!-- Dialog message shown when you are attempting to add a single contact to a group and you don\'t have enough information about them to do it automatically, so must do it via an invite instead. Placeholder is name/username/phone number. -->
-    <string name="GroupManagement_invite_single_user">“%1$s” को आपके द्वारा स्वचालित रूप से इस ग्रुप में शामिल नहीं किया जा सकता।\n\nउन्हें जुड़ने के लिए आमंत्रित किया गया है, और उन्हें ग्रुप के कोई भी मेसेज दिखाई नहीं देंगे जब तक वे स्वीकार नहीं कर लेते।</string>
-    <string name="GroupManagement_invite_multiple_users">इन उपयोगकर्ताओं को आपके द्वारा स्वचालित रूप से इस ग्रुप में शामिल नहीं किया जा सकता।\n\nउनको ग्रुप में जुड़ने के लिए आमंत्रित किया गया है, जब तक वे आमंत्रण स्वीकार नहीं कर लेते, ग्रुप के संदेश नहीं देख सकते।</string>
+    <string name="GroupManagement_invite_single_user">“%1$s” को इस ग्रुप में अपने-आप नहीं जोड़ा जा सकता।\n\nउन्हें जुड़ने का न्योता भेजा गया है। जब तक वे न्योता स्वीकार नहीं करते, उन्हें ग्रुप के मैसेज दिखाई नहीं देंगे।</string>
+    <string name="GroupManagement_invite_multiple_users">इन यूज़र को इस ग्रुप में अपने-आप नहीं जोड़ा जा सकता।\n\nउन्हें जुड़ने का न्योता भेजा गया है। जब तक वे न्योता स्वीकार नहीं करते, उन्हें ग्रुप के मैसेज दिखाई नहीं देंगे।</string>
 
     <!-- GroupsV1MigrationLearnMoreBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">नए समूह क्या हैं?</string>
-    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">नए ग्रुप्स में कई फ़ीचर्स हैं जैसे कि @mentions और ग्रुप एडमिन, और भविष्य में और भी कई फ़ीचर्स शामिल किए जाएँगे।</string>
+    <string name="GroupsV1MigrationLearnMore_what_are_new_groups">नए ग्रुप क्या होते हैं?</string>
+    <string name="GroupsV1MigrationLearnMore_new_groups_have_features_like_mentions">नए ग्रुप में @मेंशन और ग्रुप ऐडमिन जैसी सुविधाएं मौजूद हैं। आने वाले दिनों में इनमें और भी फ़ीचर जोड़े जाएंगे।</string>
     <string name="GroupsV1MigrationLearnMore_all_message_history_and_media_has_been_kept">अपग्रेड करने से पहले के सभी संदेश इतिहास और मीडिया को रख लिया गया है।</string>
-    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">इस ग्रुप में दोबारा जुड़ने के लिए बस आपको आमंत्रण को स्वीकार करना होगा, और जब तक आप स्वीकार नहीं कर लेते, आपको ग्रुप के मेसेज प्राप्त नहीं होंगे।</string>
+    <string name="GroupsV1MigrationLearnMore_you_will_need_to_accept_an_invite_to_join_this_group_again">इस ग्रुप में फिर से जुड़ने के लिए न्योता स्वीकार करना ज़रूरी है। स्वीकार करने तक आपको ग्रुप के मैसेज नहीं मिलेंगे।</string>
     <plurals name="GroupsV1MigrationLearnMore_these_members_will_need_to_accept_an_invite">
-        <item quantity="one">इस ग्रुप में दोबारा जुड़ने के लिए इस मेंबर को आमंत्रण को स्वीकार करना होगा, और जब तक वे स्वीकार नहीं कर लेते, उन्हें ग्रुप के मेसेज प्राप्त नहीं होंगे:</item>
-        <item quantity="other">इस ग्रुप में दोबारा जुड़ने के लिए इन मेंबर्स को आमंत्रण को स्वीकार करना होगा, और जब तक वे स्वीकार नहीं कर लेते, उन्हें ग्रुप के मेसेज प्राप्त नहीं होंगे:</item>
+        <item quantity="one">इस ग्रुप में फिर से जुड़ने के लिए, इस सदस्य को न्योता स्वीकार करना होगा। स्वीकार करने तक उसे ग्रुप के मैसेज नहीं मिलेंगे:</item>
+        <item quantity="other">इस ग्रुप में फिर से जुड़ने के लिए, इन सदस्यों को न्योता स्वीकार करना होगा। स्वीकार करने तक उन्हें ग्रुप के मैसेज नहीं मिलेंगे:</item>
     </plurals>
     <plurals name="GroupsV1MigrationLearnMore_these_members_were_removed_from_the_group">
         <item quantity="one">इस मेंबर को ग्रुप में से निकाल दिया गया था और जब तक वे अपग्रेड नहीं कर लेते, वे दोबारा जुड़ने के योग्य नहीं होंगे:</item>
@@ -1255,15 +1255,15 @@
     </plurals>
 
     <!-- GroupsV1MigrationInitiationBottomSheetDialogFragment -->
-    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">नए समूह में अपग्रेड करें</string>
-    <string name="GroupsV1MigrationInitiation_upgrade_this_group">इस समूह को अपग्रेड करें</string>
-    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">नए ग्रुप्स में कई फ़ीचर्स हैं जैसे कि @mentions और ग्रुप एडमिन, और भविष्य में और भी कई फ़ीचर्स शामिल किए जाएँगे।</string>
+    <string name="GroupsV1MigrationInitiation_upgrade_to_new_group">नए ग्रुप में अपग्रेड करें</string>
+    <string name="GroupsV1MigrationInitiation_upgrade_this_group">इस ग्रुप को अपग्रेड करें</string>
+    <string name="GroupsV1MigrationInitiation_new_groups_have_features_like_mentions">नए ग्रुप में @मेंशन और ग्रुप ऐडमिन जैसी सुविधाएं मौजूद हैं। आने वाले दिनों में इनमें और भी फ़ीचर जोड़े जाएंगे।</string>
     <string name="GroupsV1MigrationInitiation_all_message_history_and_media_will_be_kept">अपग्रेड करने से पहले के सभी संदेश इतिहास और मीडिया को रख लिया जाएगा।</string>
-    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">एक नेटवर्क त्रुटि हो गई। बाद में दोबरा प्रयास करें।</string>
-    <string name="GroupsV1MigrationInitiation_failed_to_upgrade">अपग्रेड करने में विफल।</string>
+    <string name="GroupsV1MigrationInitiation_encountered_a_network_error">नेटवर्क में कोई गड़बड़ी हुई। बाद में दोबारा कोशिश करें।</string>
+    <string name="GroupsV1MigrationInitiation_failed_to_upgrade">अपग्रेड नहीं हो सका।</string>
     <plurals name="GroupsV1MigrationInitiation_these_members_will_need_to_accept_an_invite">
-        <item quantity="one">इस ग्रुप में दोबारा जुड़ने के लिए इस मेंबर को आमंत्रण स्वीकार करना होगा, और जब तक वे स्वीकार नहीं कर लेते, उन्हें ग्रुप के मेसेज प्राप्त नहीं होंगे:</item>
-        <item quantity="other">इस ग्रुप में दोबारा जुड़ने के लिए इन मेंबर्स को आमंत्रण को स्वीकार करना होगा, और जब तक वे स्वीकार नहीं कर लेते, उन्हें ग्रुप के मेसेज प्राप्त नहीं होंगे:</item>
+        <item quantity="one">इस ग्रुप में फिर से जुड़ने के लिए, इस सदस्य को न्योता स्वीकार करना होगा। स्वीकार करने तक उसे ग्रुप के मैसेज नहीं मिलेंगे:</item>
+        <item quantity="other">इस ग्रुप में फिर से जुड़ने के लिए, इन सदस्यों को न्योता स्वीकार करना होगा। स्वीकार करने तक उन्हें ग्रुप के मैसेज नहीं मिलेंगे:</item>
     </plurals>
     <plurals name="GroupsV1MigrationInitiation_these_members_are_not_capable_of_joining_new_groups">
         <item quantity="one">यह मेंबर नए ग्रुपस में शामिल होने के योग्य नहीं हैं, और इसे ग्रुप में से निकाल दिया जाएगा:</item>
@@ -1272,56 +1272,56 @@
 
     <!-- GroupsV1MigrationSuggestionsReminder -->
     <plurals name="GroupsV1MigrationSuggestionsReminder_members_couldnt_be_added_to_the_new_group">
-        <item quantity="one">%1$d मेंबर को नए ग्रुप में दोबारा शामिल नहीं किया जा सका। क्या आप उन्हें अब शामिल करना चाहते हैं?</item>
-        <item quantity="other">%1$d मेंबर्स को नए ग्रुप में दोबारा शामिल नहीं किया जा सका। क्या आप उन्हें अब शामिल करना चाहते हैं?</item>
+        <item quantity="one">%1$d सदस्य को नए समूह में फिर से नहीं जोड़ा जा सका। क्या आपको उसे अभी जोड़ना है?</item>
+        <item quantity="other">%1$d सदस्यों को नए समूह में फिर से नहीं जोड़ा जा सका। क्या आपको उन्हें अभी जोड़ना है?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsReminder_add_members">
         <item quantity="one">सदस्य जोड़ें</item>
         <item quantity="other">सदस्य जोड़ें</item>
     </plurals>
-    <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">नहीं धन्यवाद</string>
+    <string name="GroupsV1MigrationSuggestionsReminder_no_thanks">नहीं, रहने दें</string>
 
     <!-- GroupsV1MigrationSuggestionsDialog -->
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members_question">
-        <item quantity="one">मेंबर को जोड़ना है?</item>
-        <item quantity="other">मेंबर्स को जोड़ना है?</item>
+        <item quantity="one">सदस्य जोड़ना है?</item>
+        <item quantity="other">सदस्य जोड़ने हैं?</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_these_members_couldnt_be_automatically_added">
-        <item quantity="one">इस मेंबर को नए ग्रुप में अपग्रेड होने पर स्वचालित रूप से शामिल नहीं किया जा सका:</item>
-        <item quantity="other">इन मेंबर्स को नए ग्रुप में अपग्रेड होने पर स्वचालित रूप से शामिल नहीं किया जा सका:</item>
+        <item quantity="one">ग्रुप अपग्रेड होने पर इस सदस्य को नए ग्रुप में अपने-आप नहीं जोड़ा जा सका:</item>
+        <item quantity="other">ग्रुप अपग्रेड होने पर इन सदस्यों को नए ग्रुप में अपने-आप नहीं जोड़ा जा सका:</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_add_members">
-        <item quantity="one">मेंबर जोड़ें</item>
-        <item quantity="other">मेंबर्स जोड़ें</item>
+        <item quantity="one">सदस्य जोड़ें</item>
+        <item quantity="other">सदस्य जोड़ें</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_failed_to_add_members_try_again_later">
-        <item quantity="one">मेंबर को जोड़ना असफल रहा। बाद में दोबारा प्रयास करें।</item>
-        <item quantity="other">मेंबर्स को जोड़ना असफल रहा। बाद में दोबारा प्रयास करें।</item>
+        <item quantity="one">सदस्य नहीं जोड़ा जा सका। बाद में फिर से कोशिश करें।</item>
+        <item quantity="other">सदस्य नहीं जोड़े जा सके। बाद में फिर से कोशिश करें।</item>
     </plurals>
     <plurals name="GroupsV1MigrationSuggestionsDialog_cannot_add_members">
-        <item quantity="one">मेंबर को नहीं जोड़ा जा सकता।</item>
-        <item quantity="other">मेंबर्स को नहीं जोड़ा जा सकता।</item>
+        <item quantity="one">सदस्य नहीं जोड़ा जा सकता।</item>
+        <item quantity="other">सदस्य नहीं जोड़े जा सकते।</item>
     </plurals>
 
     <!-- LeaveGroupDialog -->
-    <string name="LeaveGroupDialog_leave_group">समूह छोड़ दें?</string>
-    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">अब आप इस ग्रुप मे कोई मेसेज भेज या प्राप्त नहीं कर पाऐंगे।</string>
-    <string name="LeaveGroupDialog_leave">छोङें</string>
-    <string name="LeaveGroupDialog_choose_new_admin">नया एडमिन चुनें</string>
-    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">इससे पहले कि आप छोड़ें, आपको इस ग्रुप के लिए कम से कम एक नया एडमिन चुनना होगा।</string>
-    <string name="LeaveGroupDialog_choose_admin">एडमिन चुनें</string>
+    <string name="LeaveGroupDialog_leave_group">ग्रुप छोड़ना है?</string>
+    <string name="LeaveGroupDialog_you_will_no_longer_be_able_to_send_or_receive_messages_in_this_group">इसके बाद, आपके पास इस ग्रुप में मैसेज भेजने या पाने की सुविधा मौजूद नहीं रहेगी।</string>
+    <string name="LeaveGroupDialog_leave">छोड़ें</string>
+    <string name="LeaveGroupDialog_choose_new_admin">नया ऐडमिन चुनें</string>
+    <string name="LeaveGroupDialog_before_you_leave_you_must_choose_at_least_one_new_admin_for_this_group">ग्रुप छोड़ने से पहले, आपको इस ग्रुप के लिए कम से कम कोई एक ऐडमिन चुनना होगा।</string>
+    <string name="LeaveGroupDialog_choose_admin">ऐडमिन चुनें</string>
 
     <!-- LinkPreviewView -->
-    <string name="LinkPreviewView_no_link_preview_available">कोई लिंक प्रिव्यु उपलब्ध नहीं है</string>
-    <string name="LinkPreviewView_this_group_link_is_not_active">यह समूह लिंक सक्रिय नहीं है</string>
+    <string name="LinkPreviewView_no_link_preview_available">लिंक का कोई प्रीव्यू उपलब्ध नहीं है</string>
+    <string name="LinkPreviewView_this_group_link_is_not_active">यह ग्रुप लिंक सक्रिय नहीं है</string>
     <string name="LinkPreviewView_domain_date">%1$s · %2$s</string>
     <!-- Description for Call Link url previews -->
     <string name="LinkPreviewView__use_this_link_to_join_a_signal_call">Signal कॉल से जुड़ने के लिए यह लिंक इस्तेमाल करें</string>
 
     <!-- LinkPreviewRepository -->
     <plurals name="LinkPreviewRepository_d_members">
-        <item quantity="one">%1$d मेंबर</item>
-        <item quantity="other">%1$d मेंबर्स</item>
+        <item quantity="one">%1$d सदस्य</item>
+        <item quantity="other">%1$d सदस्य</item>
     </plurals>
 
     <!-- Title for dialog asking user to submit logs for debugging slow notification issues -->
@@ -1364,18 +1364,18 @@
     <!-- PendingMembersActivity -->
     <string name="PendingMembersActivity_pending_group_invites">अनुरोध और आमंत्रण</string>
     <string name="PendingMembersActivity_requests">अनुरोध</string>
-    <string name="PendingMembersActivity_invites">आमंत्रण</string>
-    <string name="PendingMembersActivity_people_you_invited">आपके द्वारा आमंत्रित लोग</string>
-    <string name="PendingMembersActivity_you_have_no_pending_invites">आपके कोई भी लंबित आमंत्रण नहीं हैं।</string>
-    <string name="PendingMembersActivity_invites_by_other_group_members">ग्रूप के बाकी सदस्यों के आमंत्रण</string>
-    <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">ग्रुप के अन्य सदस्यों के द्वारा कोई भी लंबित आमंत्रण नहीं हैं।</string>
-    <string name="PendingMembersActivity_missing_detail_explanation">ग्रूप के अन्य सदस्यों द्वारा आमंत्रित लोगों की जानकारी नहीं दिखाई गई है। अगर आमंत्रित व्यक्ति आमंत्रण स्वीकार करेगा, तो उनकी जानकारी ग्रूप के साथ साझा कर दी जाएगी। वे जुङने से पहले ग्रूप के कोई मेसेज नहीं देख पाएँगे।</string>
+    <string name="PendingMembersActivity_invites">न्योते</string>
+    <string name="PendingMembersActivity_people_you_invited">जिन्हें आपने न्योता भेजा</string>
+    <string name="PendingMembersActivity_you_have_no_pending_invites">आपके कोई पेंडिंग न्योता मौजूद नहीं है।</string>
+    <string name="PendingMembersActivity_invites_by_other_group_members">जिन्हें ग्रुप के दूसरे सदस्यों ने न्योता भेजा</string>
+    <string name="PendingMembersActivity_no_pending_invites_by_other_group_members">ग्रुप के अन्य सदस्यों की ओर से कोई पेंडिंग न्योता नहीं है।</string>
+    <string name="PendingMembersActivity_missing_detail_explanation">जिन्हें ग्रुप के अन्य सदस्यों ने न्योता भेजा उनकी जानकारी यहां नहीं दिखेगी। अगर वे जुड़ने का विकल्प चुनते हैं, तो उस समय उनकी जानकारी ग्रुप में शेयर की जाएगी। जब तक वे ग्रुप में शामिल नहीं होते, तब तक वे कोई मैसेज नहीं देख सकते।</string>
 
-    <string name="PendingMembersActivity_revoke_invite">आमंत्रण को रद्द करें</string>
-    <string name="PendingMembersActivity_revoke_invites">आमंत्रणों को रद्द करें</string>
+    <string name="PendingMembersActivity_revoke_invite">भेजा गया न्योता रद्द करें</string>
+    <string name="PendingMembersActivity_revoke_invites">भेजे गए न्योते रद्द करें</string>
     <plurals name="PendingMembersActivity_revoke_d_invites">
-        <item quantity="one">आमंत्रण रद्द करें</item>
-        <item quantity="other">%1$d आमंत्रण रद्द करें</item>
+        <item quantity="one">भेजा गया न्योता रद्द करें</item>
+        <item quantity="other">भेजे गए %1$d न्योते रद्द करें</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
         <item quantity="one">आमंत्रण को रद्द करने को लेकर त्रुटि</item>
@@ -1391,14 +1391,14 @@
 
     <!-- AddMembersActivity -->
     <string name="AddMembersActivity__done">पूर्ण</string>
-    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">इस व्यक्ति को लेगेसी ग्रुप्स में नहीं शामिल किया जा सकता।</string>
+    <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">इस व्यक्ति को पुराने ग्रुप में नहीं जोड़ा जा सकता।</string>
     <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
         <item quantity="one">\"%1$s\" को \"%2$s\" में जोड़ना है?</item>
         <item quantity="other">%3$d सदस्यों को \"%2$s\" में जोड़ना है?</item>
     </plurals>
     <string name="AddMembersActivity__add">जोड़ें</string>
-    <string name="AddMembersActivity__add_members">मेंबर्स जोड़ें</string>
+    <string name="AddMembersActivity__add_members">सदस्य जोड़ें</string>
 
     <!-- AddGroupDetailsFragment -->
     <string name="AddGroupDetailsFragment__name_this_group">इस समूह को नाम दें</string>
