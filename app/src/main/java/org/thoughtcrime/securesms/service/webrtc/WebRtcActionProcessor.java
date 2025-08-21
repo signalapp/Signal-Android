@@ -198,7 +198,6 @@ public abstract class WebRtcActionProcessor {
     NotificationProfile activeProfile = NotificationProfiles.getActiveProfile(SignalDatabase.notificationProfiles().getProfiles());
     if (activeProfile != null && !(activeProfile.isRecipientAllowed(callMetadata.getRemotePeer().getId()) || activeProfile.getAllowAllCalls())) {
       Log.w(tag, "Caller is excluded by notification profile.");
-      currentState = currentState.getActionProcessor().handleSendHangup(currentState, callMetadata, WebRtcData.HangupMetadata.fromType(HangupMessage.Type.BUSY), true);
       webRtcInteractor.insertMissedCall(callMetadata.getRemotePeer(), receivedOfferMetadata.getServerReceivedTimestamp(), offerMetadata.getOfferType() == OfferMessage.Type.VIDEO_CALL, CallTable.Event.MISSED_NOTIFICATION_PROFILE);
       return currentState;
     }
