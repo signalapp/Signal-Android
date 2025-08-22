@@ -256,6 +256,16 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           }
         }
       }
+
+      launch {
+        mainNavigationViewModel.backupStatus.collect { remainingRestoreSize ->
+          if (SignalStore.backup.restoreState == RestoreState.RESTORING_MEDIA && remainingRestoreSize != 0L) {
+            Log.i(TAG, "Still restoring media, launching a service. Remaining restoration size: $remainingRestoreSize")
+            BackupMediaRestoreService.resetTimeout()
+            BackupMediaRestoreService.start(this@MainActivity, resources.getString(R.string.BackupStatus__restoring_media))
+          }
+        }
+      }
     }
 
     val callback = object : OnBackPressedCallback(toolbarViewModel.state.value.mode == MainToolbarMode.ACTION_MODE) {
@@ -270,12 +280,6 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           callback.isEnabled = state.mode == MainToolbarMode.ACTION_MODE
         }
       }
-    }
-
-    if (SignalStore.backup.restoreState == RestoreState.RESTORING_MEDIA) {
-      Log.i(TAG, "Still restoring media, launching a service.")
-      BackupMediaRestoreService.resetTimeout()
-      BackupMediaRestoreService.start(this, resources.getString(R.string.BackupStatus__restoring_media))
     }
 
     onBackPressedDispatcher.addCallback(this, callback)
