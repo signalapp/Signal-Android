@@ -265,7 +265,7 @@ fun SupportSQLiteStatement.bindValue(index: Int, value: Any?) {
     is Boolean -> this.bindLong(index, value.toInt().toLong())
     is ByteArray -> this.bindBlob(index, value)
     is Number -> {
-      if (value.toLong() == value) {
+      if (value.toLong() == value || value.toInt() == value || value.toShort() == value || value.toByte() == value) {
         this.bindLong(index, value.toLong())
       } else {
         this.bindDouble(index, value.toDouble())

@@ -172,7 +172,6 @@ class AttachmentTable(
     const val DISPLAY_ORDER = "display_order"
     const val UPLOAD_TIMESTAMP = "upload_timestamp"
     const val ARCHIVE_CDN = "archive_cdn"
-    const val ARCHIVE_TRANSFER_FILE = "archive_transfer_file"
     const val ARCHIVE_TRANSFER_STATE = "archive_transfer_state"
     const val THUMBNAIL_RESTORE_STATE = "thumbnail_restore_state"
     const val ATTACHMENT_UUID = "attachment_uuid"
@@ -652,10 +651,13 @@ class AttachmentTable(
    * At archive creation time, we need to ensure that all relevant attachments have populated [REMOTE_KEY]s.
    * This does that.
    */
-  fun createRemoteKeyForAttachmentsThatNeedArchiveUpload(): Int {
-    var count = 0
+  fun createRemoteKeyForAttachmentsThatNeedArchiveUpload(): CreateRemoteKeyResult {
+    var totalCount = 0
+    var notQuoteOrStickerDupeNotFoundCount = 0
+    var notQuoteOrStickerDupeFoundCount = 0
 
-    writableDatabase.select(ID, REMOTE_KEY, DATA_FILE, DATA_RANDOM)
+    val missingKeys = readableDatabase
+      .select(ID, DATA_FILE, QUOTE, STICKER_ID)
       .from(TABLE_NAME)
       .where(
         """
@@ -666,21 +668,75 @@ class AttachmentTable(
         """
       )
       .run()
-      .forEach { cursor ->
-        val attachmentId = AttachmentId(cursor.requireLong(ID))
-        Log.w(TAG, "[createRemoteKeyForAttachmentsThatNeedArchiveUpload][$attachmentId] Missing key. Generating.")
+      .readToList { Triple(AttachmentId(it.requireLong(ID)), it.requireBoolean(QUOTE), it.requireInt(STICKER_ID) >= 0) to it.requireNonNullString(DATA_FILE) }
+      .groupBy({ (_, dataFile) -> dataFile }, { (record, _) -> record })
 
-        val key = cursor.requireString(REMOTE_KEY)?.let { Base64.decode(it) } ?: Util.getSecretBytes(64)
+    missingKeys.forEach { dataFile, ids ->
+      val duplicateAttachmentWithRemoteData = readableDatabase
+        .select()
+        .from(TABLE_NAME)
+        .where("$DATA_FILE = ? AND $DATA_RANDOM NOT NULL AND $REMOTE_KEY NOT NULL AND $REMOTE_LOCATION NOT NULL AND $REMOTE_DIGEST NOT NULL", dataFile)
+        .orderBy("$ID DESC")
+        .limit(1)
+        .run()
+        .readToSingleObject { cursor ->
+          val duplicateAttachment = cursor.readAttachment()
+          val dataFileInfo = cursor.readDataFileInfo()!!
 
-        writableDatabase.update(TABLE_NAME)
-          .values(REMOTE_KEY to Base64.encodeWithPadding(key))
-          .where("$ID = ?", attachmentId.id)
-          .run()
+          duplicateAttachment to dataFileInfo
+        }
 
-        count++
+      if (duplicateAttachmentWithRemoteData != null) {
+        val (duplicateAttachment, duplicateAttachmentDataInfo) = duplicateAttachmentWithRemoteData
+
+        ids.forEach { (attachmentId, isQuote, isSticker) ->
+          Log.w(TAG, "[createRemoteKeyForAttachmentsThatNeedArchiveUpload][$attachmentId] Missing key but found same data file with remote data. Updating. isQuote:$isQuote isSticker:$isSticker")
+
+          writableDatabase
+            .update(TABLE_NAME)
+            .values(
+              REMOTE_KEY to duplicateAttachment.remoteKey,
+              REMOTE_LOCATION to duplicateAttachment.remoteLocation,
+              REMOTE_DIGEST to duplicateAttachment.remoteDigest,
+              REMOTE_INCREMENTAL_DIGEST to duplicateAttachment.incrementalDigest?.takeIf { it.isNotEmpty() },
+              REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to duplicateAttachment.incrementalMacChunkSize,
+              UPLOAD_TIMESTAMP to duplicateAttachment.uploadTimestamp,
+              ARCHIVE_CDN to duplicateAttachment.archiveCdn,
+              ARCHIVE_TRANSFER_STATE to duplicateAttachment.archiveTransferState.value,
+              THUMBNAIL_FILE to duplicateAttachmentDataInfo.thumbnailFile,
+              THUMBNAIL_RANDOM to duplicateAttachmentDataInfo.thumbnailRandom,
+              THUMBNAIL_RESTORE_STATE to duplicateAttachmentDataInfo.thumbnailRestoreState
+            )
+            .where("$ID = ?", attachmentId.id)
+            .run()
+
+          if (!isQuote && !isSticker) {
+            notQuoteOrStickerDupeFoundCount++
+          }
+
+          totalCount++
+        }
+      } else {
+        ids.forEach { (attachmentId, isQuote, isSticker) ->
+          Log.w(TAG, "[createRemoteKeyForAttachmentsThatNeedArchiveUpload][$attachmentId] Missing key. Generating. isQuote:$isQuote isSticker:$isSticker")
+
+          val key = Util.getSecretBytes(64)
+
+          writableDatabase.update(TABLE_NAME)
+            .values(REMOTE_KEY to Base64.encodeWithPadding(key))
+            .where("$ID = ?", attachmentId.id)
+            .run()
+
+          totalCount++
+
+          if (!isQuote && !isSticker) {
+            notQuoteOrStickerDupeNotFoundCount++
+          }
+        }
       }
+    }
 
-    return count
+    return CreateRemoteKeyResult(totalCount, notQuoteOrStickerDupeNotFoundCount, notQuoteOrStickerDupeFoundCount)
   }
 
   /**
@@ -3088,4 +3144,8 @@ class AttachmentTable(
     val validForArchiveTransferStateCounts: Map<String, Long>,
     val estimatedThumbnailCount: Long
   )
+
+  data class CreateRemoteKeyResult(val totalCount: Int, val notQuoteOrSickerDupeNotFoundCount: Int, val notQuoteOrSickerDupeFoundCount: Int) {
+    val unexpectedKeyCreation = notQuoteOrSickerDupeFoundCount > 0 || notQuoteOrSickerDupeNotFoundCount > 0
+  }
 }

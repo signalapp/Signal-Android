@@ -5,6 +5,12 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import android.app.Notification
+import android.app.PendingIntent
+import android.content.Intent
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
@@ -12,6 +18,7 @@ import org.signal.core.util.logging.logW
 import org.signal.libsignal.messagebackup.BackupForwardSecrecyToken
 import org.signal.libsignal.net.SvrBStoreResponse
 import org.signal.protos.resumableuploads.ResumableUpload
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.ArchiveMediaItemIterator
@@ -25,7 +32,10 @@ import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraint
 import org.thoughtcrime.securesms.jobs.protos.BackupMessagesJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
+import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.net.SignalNetwork
+import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -179,7 +189,13 @@ class BackupMessagesJob private constructor(
     Log.i(TAG, "Successfully stored data on SVRB.")
     stopwatch.split("svrb")
 
-    SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload().takeIf { it > 0 }?.let { count -> Log.w(TAG, "Needed to create $count remote keys.") }
+    val createKeyResult = SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload()
+    if (createKeyResult.totalCount > 0) {
+      Log.w(TAG, "Needed to create remote keys. $createKeyResult")
+      if (createKeyResult.unexpectedKeyCreation) {
+        maybePostRemoteKeyMissingNotification()
+      }
+    }
     stopwatch.split("keygen")
 
     SignalDatabase.attachments.clearIncrementalMacsForAttachmentsThatNeedArchiveUpload().takeIf { it > 0 }?.let { count -> Log.w(TAG, "Needed to clear $count incrementalMacs.") }
@@ -407,6 +423,21 @@ class BackupMessagesJob private constructor(
         )
       }
     }
+  }
+
+  private fun maybePostRemoteKeyMissingNotification() {
+    if (!RemoteConfig.internalUser || !SignalStore.backup.backsUpMedia) {
+      return
+    }
+
+    val notification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
+      .setSmallIcon(R.drawable.ic_notification)
+      .setContentTitle("[Internal-only] Unexpected remote key missing!")
+      .setContentText("Tap to send a debug log")
+      .setContentIntent(PendingIntent.getActivity(context, 0, Intent(context, SubmitDebugLogActivity::class.java), PendingIntentFlags.mutable()))
+      .build()
+
+    NotificationManagerCompat.from(context).notify(NotificationIds.INTERNAL_ERROR, notification)
   }
 
   class Factory : Job.Factory<BackupMessagesJob> {
