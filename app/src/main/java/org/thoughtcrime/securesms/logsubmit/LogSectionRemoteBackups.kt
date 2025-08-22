@@ -52,8 +52,8 @@ class LogSectionRemoteBackups : LogSection {
     if (inAppPayment != null) {
       output.append("IAP end of period (seconds):       ${inAppPayment.endOfPeriodSeconds}\n")
       output.append("IAP state:                         ${inAppPayment.state.name}\n")
-      output.append("IAP inserted at:                   ${inAppPayment.insertedAt}\n")
-      output.append("IAP updated at:                    ${inAppPayment.updatedAt}\n")
+      output.append("IAP inserted at (seconds):         ${inAppPayment.insertedAt.inWholeSeconds}\n")
+      output.append("IAP updated at (seconds):          ${inAppPayment.updatedAt.inWholeSeconds}\n")
       output.append("IAP notified flag:                 ${inAppPayment.notified}\n")
       output.append("IAP level:                         ${inAppPayment.data.level}\n")
       output.append("IAP redemption stage (or null):    ${inAppPayment.data.redemption?.stage}\n")
