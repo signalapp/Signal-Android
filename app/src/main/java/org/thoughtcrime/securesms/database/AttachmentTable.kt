@@ -684,6 +684,29 @@ class AttachmentTable(
   }
 
   /**
+   * Clears incrementalMac's for any attachments that still need to be uploaded.
+   * This is important because when we upload an attachment to the archive CDN, we'll be re-encrypting it, and so the incrementalMac will end up changing.
+   * So we want to be sure that we don't write a potentially-invalid incrementalMac in the meantime.
+   */
+  fun clearIncrementalMacsForAttachmentsThatNeedArchiveUpload(): Int {
+    return writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        REMOTE_INCREMENTAL_DIGEST to null,
+        REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to 0
+      )
+      .where(
+        """
+        $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.NONE.value} AND
+        $DATA_FILE NOT NULL AND
+        $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
+        $REMOTE_INCREMENTAL_DIGEST NOT NULL
+        """
+      )
+      .run()
+  }
+
+  /**
    * Similar to [getAttachmentsThatNeedArchiveUpload], but returns if the list would be non-null in a more efficient way.
    */
   fun doAnyAttachmentsNeedArchiveUpload(): Boolean {

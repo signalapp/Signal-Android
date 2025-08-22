@@ -182,6 +182,9 @@ class BackupMessagesJob private constructor(
     SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload().takeIf { it > 0 }?.let { count -> Log.w(TAG, "Needed to create $count remote keys.") }
     stopwatch.split("keygen")
 
+    SignalDatabase.attachments.clearIncrementalMacsForAttachmentsThatNeedArchiveUpload().takeIf { it > 0 }?.let { count -> Log.w(TAG, "Needed to clear $count incrementalMacs.") }
+    stopwatch.split("clear-incmac")
+
     if (isCanceled) {
       return Result.failure()
     }
