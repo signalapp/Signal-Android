@@ -200,6 +200,10 @@ class TestSignalSQLiteDatabase(private val database: SupportSQLiteDatabase) : Si
     return database.yieldIfContendedSafely()
   }
 
+  override fun close() {
+    database.close()
+  }
+
   override fun yieldIfContendedSafely(sleepAfterYieldDelayMillis: Long): Boolean {
     return database.yieldIfContendedSafely(sleepAfterYieldDelayMillis)
   }
