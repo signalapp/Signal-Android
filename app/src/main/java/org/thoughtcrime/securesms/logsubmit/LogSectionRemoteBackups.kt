@@ -8,12 +8,14 @@ package org.thoughtcrime.securesms.logsubmit
 import android.content.Context
 import kotlinx.coroutines.runBlocking
 import org.signal.donations.InAppPaymentType
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
+import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 
 class LogSectionRemoteBackups : LogSection {
   override fun getTitle(): String = "REMOTE BACKUPS"
@@ -57,6 +59,7 @@ class LogSectionRemoteBackups : LogSection {
       output.append("IAP redemption stage (or null):    ${inAppPayment.data.redemption?.stage}\n")
       output.append("IAP error type (or null):          ${inAppPayment.data.error?.type}\n")
       output.append("IAP cancellation reason (or null): ${inAppPayment.data.cancellation?.reason}\n")
+      output.append("IAP price:                         ${inAppPayment.data.amount?.toFiatMoney()?.let { FiatMoneyUtil.format(context.resources, it)} ?: "Not available" }")
     } else {
       output.append("No in-app payment data available.\n")
     }
