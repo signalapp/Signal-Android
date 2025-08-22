@@ -155,6 +155,9 @@ class AttachmentUploadJob private constructor(
       return
     } else if (databaseAttachment.uploadTimestamp > 0) {
       Log.i(TAG, "This file was previously-uploaded, but too long ago to be re-used. Age: $timeSinceUpload ms (${timeSinceUpload.milliseconds.inRoundedDays()} days)")
+      if (databaseAttachment.archiveTransferState != AttachmentTable.ArchiveTransferState.NONE) {
+        SignalDatabase.attachments.clearArchiveData(attachmentId)
+      }
     }
 
     if (uploadSpec != null && System.currentTimeMillis() > uploadSpec!!.timeout) {
@@ -188,9 +191,6 @@ class AttachmentUploadJob private constructor(
           if (SignalStore.backup.backsUpMedia) {
             val messageId = SignalDatabase.attachments.getMessageId(databaseAttachment.attachmentId)
             when {
-              databaseAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED -> {
-                Log.i(TAG, "[$attachmentId] Already archived. Skipping.")
-              }
               messageId == AttachmentTable.PREUPLOAD_MESSAGE_ID -> {
                 Log.i(TAG, "[$attachmentId] Avoid uploading preuploaded attachments to archive. Skipping.")
               }

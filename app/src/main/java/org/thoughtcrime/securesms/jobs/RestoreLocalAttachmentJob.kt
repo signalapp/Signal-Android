@@ -162,7 +162,14 @@ class RestoreLocalAttachmentJob private constructor(
         incrementalDigest = null,
         incrementalMacChunkSize = 0
       ).use { input ->
-        SignalDatabase.attachments.finalizeAttachmentAfterDownload(attachment.mmsId, attachment.attachmentId, input)
+        SignalDatabase
+          .attachments
+          .finalizeAttachmentAfterDownload(
+            mmsId = attachment.mmsId,
+            attachmentId = attachment.attachmentId,
+            inputStream = input,
+            archiveRestore = true
+          )
       }
     } catch (e: InvalidMessageException) {
       Log.w(TAG, "Experienced an InvalidMessageException while trying to read attachment.", e)

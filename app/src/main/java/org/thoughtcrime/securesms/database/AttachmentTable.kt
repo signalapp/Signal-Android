@@ -1270,13 +1270,12 @@ class AttachmentTable(
    * that the content of the attachment will never change.
    */
   @Throws(MmsException::class)
-  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: InputStream, offloadRestoredAt: Duration? = null) {
+  fun finalizeAttachmentAfterDownload(mmsId: Long, attachmentId: AttachmentId, inputStream: InputStream, offloadRestoredAt: Duration? = null, archiveRestore: Boolean = false) {
     Log.i(TAG, "[finalizeAttachmentAfterDownload] Finalizing downloaded data for $attachmentId. (MessageId: $mmsId, $attachmentId)")
 
     val existingPlaceholder: DatabaseAttachment = getAttachment(attachmentId) ?: throw MmsException("No attachment found for id: $attachmentId")
 
     val fileWriteResult: DataFileWriteResult = writeToDataFile(newDataFile(context), inputStream, TransformProperties.empty(), closeInputStream = false)
-    val transferFile: File? = getTransferFile(databaseHelper.signalReadableDatabase, attachmentId)
 
     val foundDuplicate = writableDatabase.withinTransaction { db ->
       // We can look and see if we have any exact matches on hash_ends and dedupe the file if we see one.
@@ -1299,11 +1298,15 @@ class AttachmentTable(
         values.put(DATA_RANDOM, hashMatch.random)
         values.put(DATA_HASH_START, hashMatch.hashEnd)
         values.put(DATA_HASH_END, hashMatch.hashEnd)
-        values.put(ARCHIVE_CDN, hashMatch.archiveCdn)
-        values.put(ARCHIVE_TRANSFER_STATE, hashMatch.archiveTransferState)
-        values.put(THUMBNAIL_FILE, hashMatch.thumbnailFile)
-        values.put(THUMBNAIL_RANDOM, hashMatch.thumbnailRandom)
-        values.put(THUMBNAIL_RESTORE_STATE, hashMatch.thumbnailRestoreState)
+        if (archiveRestore) {
+          // We aren't getting an updated remote key/mediaName when restoring, can reuse
+          values.put(ARCHIVE_CDN, hashMatch.archiveCdn)
+          values.put(ARCHIVE_TRANSFER_STATE, hashMatch.archiveTransferState)
+        } else {
+          // Clear archive cdn and transfer state so it can be re-archived with the new remote key/mediaName
+          values.putNull(ARCHIVE_CDN)
+          values.put(ARCHIVE_TRANSFER_STATE, ArchiveTransferState.NONE.value)
+        }
       } else {
         values.put(DATA_FILE, fileWriteResult.file.absolutePath)
         values.put(DATA_SIZE, fileWriteResult.length)
@@ -1333,10 +1336,18 @@ class AttachmentTable(
 
       val dataFilePath = hashMatch?.file?.absolutePath ?: fileWriteResult.file.absolutePath
 
-      db.update(TABLE_NAME)
-        .values(values)
-        .where("$ID = ? OR $DATA_FILE = ?", attachmentId.id, dataFilePath)
-        .run()
+      if (archiveRestore) {
+        // Can update all rows with the same mediaName as data_file column will likely be null
+        db.update(TABLE_NAME)
+          .values(values)
+          .where("$ID = ? OR ($REMOTE_KEY = ? AND $DATA_HASH_END = ?)", attachmentId.id, existingPlaceholder.remoteKey, existingPlaceholder.dataHash!!)
+          .run()
+      } else {
+        db.update(TABLE_NAME)
+          .values(values)
+          .where("$ID = ? OR $DATA_FILE = ?", attachmentId.id, dataFilePath)
+          .run()
+      }
 
       Log.i(TAG, "[finalizeAttachmentAfterDownload] Finalized downloaded data for $attachmentId. (MessageId: $mmsId, $attachmentId)")
 
@@ -1356,12 +1367,6 @@ class AttachmentTable(
     if (foundDuplicate) {
       if (!fileWriteResult.file.delete()) {
         Log.w(TAG, "Failed to delete unused attachment")
-      }
-    }
-
-    if (transferFile != null) {
-      if (!transferFile.delete()) {
-        Log.w(TAG, "Unable to delete transfer file.")
       }
     }
 
@@ -2008,6 +2013,18 @@ class AttachmentTable(
       .run()
   }
 
+  fun clearArchiveData(attachmentId: AttachmentId) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        ARCHIVE_CDN to null,
+        ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value,
+        UPLOAD_TIMESTAMP to 0
+      )
+      .where("$ID = ?", attachmentId)
+      .run()
+  }
+
   fun clearAllArchiveData() {
     writableDatabase
       .update(TABLE_NAME)
@@ -2228,7 +2245,7 @@ class AttachmentTable(
    */
   @Throws(MmsException::class)
   private fun insertUndownloadedAttachment(messageId: Long, attachment: Attachment, quote: Boolean): AttachmentId {
-    Log.d(TAG, "[insertAttachment] Inserting attachment for messageId $messageId.")
+    Log.d(TAG, "[insertUndownloadedAttachment] Inserting attachment for messageId $messageId.")
 
     val attachmentId: AttachmentId = writableDatabase.withinTransaction { db ->
       val contentValues = ContentValues().apply {
@@ -2285,7 +2302,7 @@ class AttachmentTable(
    */
   @Throws(MmsException::class)
   private fun insertArchivedAttachment(messageId: Long, attachment: ArchivedAttachment, quote: Boolean): AttachmentId {
-    Log.d(TAG, "[insertAttachment] Inserting attachment for messageId $messageId.")
+    Log.d(TAG, "[insertArchivedAttachment] Inserting attachment for messageId $messageId.")
 
     val attachmentId: AttachmentId = writableDatabase.withinTransaction { db ->
       val plaintextHash = attachment.plaintextHash.takeIf { it.isNotEmpty() }?.let { Base64.encodeWithPadding(it) }
@@ -2344,7 +2361,8 @@ class AttachmentTable(
   }
 
   /**
-   * Inserts an attachment with existing data. This is likely an outgoing attachment that we're in the process of sending.
+   * Inserts an attachment with existing data. This is likely an outgoing attachment that we're in the process of sending or
+   * an incoming sticker we have already downloaded.
    */
   @Throws(MmsException::class)
   private fun insertAttachmentWithData(messageId: Long, attachment: Attachment, quote: Boolean): AttachmentId {
@@ -2416,11 +2434,6 @@ class AttachmentTable(
         contentValues.put(DATA_RANDOM, hashMatch.random)
         contentValues.put(DATA_HASH_START, fileWriteResult.hash)
         contentValues.put(DATA_HASH_END, hashMatch.hashEnd)
-        contentValues.put(ARCHIVE_CDN, hashMatch.archiveCdn)
-        contentValues.put(ARCHIVE_TRANSFER_STATE, hashMatch.archiveTransferState)
-        contentValues.put(THUMBNAIL_FILE, hashMatch.thumbnailFile)
-        contentValues.put(THUMBNAIL_RANDOM, hashMatch.thumbnailRandom)
-        contentValues.put(THUMBNAIL_RESTORE_STATE, hashMatch.thumbnailRestoreState)
 
         if (hashMatch.transformProperties.skipTransform) {
           Log.i(TAG, "[insertAttachmentWithData] The hash match has a DATA_HASH_END and skipTransform=true, so skipping transform of the new file as well. (MessageId: $messageId, ${attachment.uri})")
@@ -2452,6 +2465,9 @@ class AttachmentTable(
           "[insertAttachmentWithData] Found a valid template we could use to skip upload. Template: ${uploadTemplate.attachmentId}, TemplateUploadTimestamp: ${hashMatch?.uploadTimestamp}, CurrentTime: ${System.currentTimeMillis()}, InsertingAttachment: (MessageId: $messageId, ${attachment.uri})"
         )
         transformProperties = (uploadTemplate.transformProperties ?: transformProperties).copy(skipTransform = true)
+
+        contentValues.put(ARCHIVE_CDN, hashMatch!!.archiveCdn)
+        contentValues.put(ARCHIVE_TRANSFER_STATE, hashMatch.archiveTransferState)
       }
 
       contentValues.put(MESSAGE_ID, messageId)
@@ -3018,7 +3034,7 @@ class AttachmentTable(
     val remoteKey: ByteArray
   )
 
-  class RestorableAttachment(
+  data class RestorableAttachment(
     val attachmentId: AttachmentId,
     val mmsId: Long,
     val size: Long,

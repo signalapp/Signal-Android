@@ -347,8 +347,21 @@ class RestoreAttachmentJob private constructor(
       ArchiveRestoreProgress.onDownloadEnd(attachmentId, attachmentFile.length())
 
       decryptingStream.use { input ->
-        SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, input, if (manual) System.currentTimeMillis().milliseconds else null)
+        SignalDatabase
+          .attachments
+          .finalizeAttachmentAfterDownload(
+            mmsId = messageId,
+            attachmentId = attachmentId,
+            inputStream = input,
+            offloadRestoredAt = if (manual) System.currentTimeMillis().milliseconds else null,
+            archiveRestore = true
+          )
       }
+
+      if (useArchiveCdn && attachment.archiveCdn == null) {
+        SignalDatabase.attachments.setArchiveCdn(attachmentId, pointer.cdnNumber)
+      }
+
       ArchiveRestoreProgress.onWriteToDiskEnd(attachmentId)
     } catch (e: RangeException) {
       Log.w(TAG, "[$attachmentId] Range exception, file size " + attachmentFile.length(), e)

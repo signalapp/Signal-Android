@@ -252,7 +252,6 @@ class AttachmentTableTest_deduping {
       assertSkipTransform(id2, true)
 
       assertDoesNotHaveRemoteFields(id2)
-      assertArchiveFieldsMatch(id1, id2)
 
       upload(id2)
 
