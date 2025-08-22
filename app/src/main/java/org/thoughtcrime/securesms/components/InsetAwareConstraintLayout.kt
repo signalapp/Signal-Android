@@ -1,10 +1,7 @@
 package org.thoughtcrime.securesms.components
 
 import android.content.Context
-import android.os.Build
 import android.util.AttributeSet
-import android.util.DisplayMetrics
-import android.view.Surface
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.Guideline
@@ -16,8 +13,8 @@ import androidx.core.view.WindowInsetsCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.ViewUtil
+import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
 
 /**
  * A specialized [ConstraintLayout] that sets guidelines based on the window insets provided
@@ -61,7 +58,6 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private val windowInsetsListeners: MutableSet<WindowInsetsListener> = mutableSetOf()
   private val keyboardStateListeners: MutableSet<KeyboardStateListener> = mutableSetOf()
   private val keyboardAnimator = KeyboardInsetAnimator()
-  private val displayMetrics = DisplayMetrics()
   private var overridingKeyboard: Boolean = false
   private var previousKeyboardHeight: Int = 0
   private var applyRootInsets: Boolean = false
@@ -103,6 +99,16 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   }
 
   private fun insetTarget(): View = if (applyRootInsets) rootView else this
+
+  fun setApplyRootInsets(useRootInsets: Boolean) {
+    if (applyRootInsets == useRootInsets) {
+      return
+    }
+
+    ViewCompat.setOnApplyWindowInsetsListener(insetTarget(), null)
+    applyRootInsets = useRootInsets
+    ViewCompat.setOnApplyWindowInsetsListener(insetTarget(), windowInsetsListener)
+  }
 
   /**
    * Specifies whether or not window insets should be accounted for when applying
@@ -222,23 +228,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   }
 
   private fun isLandscape(): Boolean {
-    val rotation = getDeviceRotation()
-    return rotation == Surface.ROTATION_90
-  }
-
-  @Suppress("DEPRECATION")
-  private fun getDeviceRotation(): Int {
-    if (isInEditMode) {
-      return Surface.ROTATION_0
-    }
-
-    if (Build.VERSION.SDK_INT >= 30) {
-      context.display?.getRealMetrics(displayMetrics)
-    } else {
-      ServiceUtil.getWindowManager(context).defaultDisplay.getRealMetrics(displayMetrics)
-    }
-
-    return if (displayMetrics.widthPixels > displayMetrics.heightPixels) Surface.ROTATION_90 else Surface.ROTATION_0
+    return resources.getWindowSizeClass().isLandscape()
   }
 
   private val Guideline?.guidelineEnd: Int

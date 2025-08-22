@@ -594,6 +594,7 @@ class ConversationFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     binding.toolbar.isBackInvokedCallbackEnabled = false
 
+    binding.root.setApplyRootInsets(!resources.getWindowSizeClass().isSplitPane())
     binding.root.setUseWindowTypes(!resources.getWindowSizeClass().isSplitPane())
 
     disposables.bindTo(viewLifecycleOwner)
