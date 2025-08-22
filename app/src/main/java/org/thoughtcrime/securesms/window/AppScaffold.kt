@@ -8,11 +8,15 @@ package org.thoughtcrime.securesms.window
 import android.content.res.Configuration
 import android.content.res.Resources
 import androidx.compose.foundation.background
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -20,6 +24,7 @@ import androidx.compose.material3.adaptive.layout.AnimatedPane
 import androidx.compose.material3.adaptive.layout.PaneExpansionState
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldScope
 import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
+import androidx.compose.material3.adaptive.layout.defaultDragHandleSemantics
 import androidx.compose.material3.adaptive.layout.rememberPaneExpansionState
 import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold
 import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
@@ -28,11 +33,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.window.core.ExperimentalWindowCoreApi
 import androidx.window.core.layout.WindowHeightSizeClass
@@ -44,6 +52,7 @@ import org.thoughtcrime.securesms.main.MainNavigationBar
 import org.thoughtcrime.securesms.main.MainNavigationRail
 import org.thoughtcrime.securesms.main.MainNavigationState
 import org.thoughtcrime.securesms.util.RemoteConfig
+import java.lang.Integer.max
 
 enum class Navigation {
   RAIL,
@@ -169,6 +178,7 @@ enum class WindowSizeClass(
                 MEDIUM_LANDSCAPE
               }
             }
+
             WindowWidthSizeClass.EXPANDED -> EXTENDED_LANDSCAPE
             else -> error("Unsupported.")
           }
@@ -191,6 +201,7 @@ fun AppScaffold(
   detailContent: @Composable () -> Unit = {},
   navRailContent: @Composable () -> Unit = {},
   bottomNavContent: @Composable () -> Unit = {},
+  paneExpansionState: PaneExpansionState = rememberPaneExpansionState(),
   paneExpansionDragHandle: (@Composable ThreePaneScaffoldScope.(PaneExpansionState) -> Unit)? = null,
   listContent: @Composable () -> Unit
 ) {
@@ -208,25 +219,68 @@ fun AppScaffold(
     return
   }
 
+  val minPaneWidth = 300.dp
+
   NavigableListDetailPaneScaffold(
     navigator = navigator,
     listPane = {
       AnimatedPane {
-        ListAndNavigation(
-          listContent = listContent,
-          navRailContent = navRailContent,
-          bottomNavContent = bottomNavContent,
-          windowSizeClass = windowSizeClass
-        )
+        Box(
+          modifier = Modifier
+            .clipToBounds()
+            .layout { measurable, constraints ->
+              val width = max(minPaneWidth.roundToPx(), constraints.maxWidth)
+              val placeable = measurable.measure(
+                constraints.copy(
+                  minWidth = minPaneWidth.roundToPx(),
+                  maxWidth = width
+                )
+              )
+              layout(constraints.maxWidth, placeable.height) {
+                placeable.placeRelative(
+                  x = 0,
+                  y = 0
+                )
+              }
+            }
+        ) {
+          ListAndNavigation(
+            listContent = listContent,
+            navRailContent = navRailContent,
+            bottomNavContent = bottomNavContent,
+            windowSizeClass = windowSizeClass
+          )
+        }
       }
     },
     detailPane = {
       AnimatedPane {
-        detailContent()
+        Box(
+          modifier = Modifier
+            .clipToBounds()
+            .layout { measurable, constraints ->
+              val width = max(minPaneWidth.roundToPx(), constraints.maxWidth)
+              val placeable = measurable.measure(
+                constraints.copy(
+                  minWidth = minPaneWidth.roundToPx(),
+                  maxWidth = width
+                )
+              )
+              layout(constraints.maxWidth, placeable.height) {
+                placeable.placeRelative(
+                  x = constraints.maxWidth -
+                    max(constraints.maxWidth, placeable.width),
+                  y = 0
+                )
+              }
+            }
+        ) {
+          detailContent()
+        }
       }
     },
     paneExpansionDragHandle = paneExpansionDragHandle,
-    paneExpansionState = rememberPaneExpansionState()
+    paneExpansionState = paneExpansionState
   )
 }
 
@@ -271,12 +325,10 @@ private fun AppScaffoldPreview() {
     val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
 
     AppScaffold(
-      navigator = rememberListDetailPaneScaffoldNavigator<Any>(
-        scaffoldDirective = calculatePaneScaffoldDirective(
-          currentWindowAdaptiveInfo()
-        ).copy(
-          horizontalPartitionSpacerSize = 10.dp
-        )
+      navigator = rememberAppScaffoldNavigator(
+        isSplitPane = windowSizeClass.navigation != Navigation.BAR,
+        defaultPanePreferredWidth = 416.dp,
+        horizontalPartitionSpacerSize = 16.dp
       ),
       listContent = {
         Box(
@@ -316,7 +368,56 @@ private fun AppScaffoldPreview() {
           state = MainNavigationState(),
           onDestinationSelected = {}
         )
+      },
+      paneExpansionState = rememberPaneExpansionState(),
+      paneExpansionDragHandle = {
+        AppPaneDragHandle(
+          paneExpansionState = it,
+          mutableInteractionSource = remember { MutableInteractionSource() }
+        )
       }
     )
   }
+}
+
+@OptIn(ExperimentalMaterial3AdaptiveApi::class)
+@Composable
+fun ThreePaneScaffoldScope.AppPaneDragHandle(
+  paneExpansionState: PaneExpansionState,
+  mutableInteractionSource: MutableInteractionSource
+) {
+  Box(
+    contentAlignment = Alignment.Center,
+    modifier = Modifier
+      .paneExpansionDraggable(
+        state = paneExpansionState,
+        minTouchTargetSize = LocalMinimumInteractiveComponentSize.current,
+        interactionSource = mutableInteractionSource,
+        semanticsProperties = paneExpansionState.defaultDragHandleSemantics()
+      )
+  ) {
+    Box(
+      modifier = Modifier
+        .size(4.dp, 48.dp)
+        .background(color = Color(0xFF605F5D), RoundedCornerShape(percent = 50))
+    )
+  }
+}
+
+@OptIn(ExperimentalMaterial3AdaptiveApi::class)
+@Composable
+fun rememberAppScaffoldNavigator(
+  isSplitPane: Boolean,
+  horizontalPartitionSpacerSize: Dp,
+  defaultPanePreferredWidth: Dp
+): ThreePaneScaffoldNavigator<Any> {
+  return rememberListDetailPaneScaffoldNavigator<Any>(
+    scaffoldDirective = calculatePaneScaffoldDirective(
+      currentWindowAdaptiveInfo()
+    ).copy(
+      maxHorizontalPartitions = if (isSplitPane) 2 else 1,
+      horizontalPartitionSpacerSize = horizontalPartitionSpacerSize,
+      defaultPanePreferredWidth = defaultPanePreferredWidth
+    )
+  )
 }
