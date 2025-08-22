@@ -66,7 +66,7 @@ class SecondaryProvisioningCipher(private val secondaryIdentityKeyPair: Identity
       return ProvisioningDecryptResult.Error()
     }
 
-    val plaintext = decrypt(expectedVersion = 0, primaryEphemeralPublicKey = envelope.publicKey.toByteArray(), body = envelope.body.toByteArray())
+    val plaintext = decrypt(expectedVersion = 1, primaryEphemeralPublicKey = envelope.publicKey.toByteArray(), body = envelope.body.toByteArray())
 
     if (plaintext == null) {
       Log.w(TAG, "Plaintext is null")

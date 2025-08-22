@@ -62,7 +62,7 @@ public class PrimaryProvisioningCipher {
     byte[]    derivedSecret = HKDF.deriveSecrets(sharedSecret, PROVISIONING_MESSAGE.getBytes(), 64);
     byte[][]  parts         = Util.split(derivedSecret, 32, 32);
 
-    byte[] version    = { 0x00 };
+    byte[] version    = { 0x01 };
     byte[] ciphertext = getCiphertext(parts[0], message.encode());
     byte[] mac        = getMac(parts[1], Util.join(version, ciphertext));
     byte[] body       = Util.join(version, ciphertext, mac);
