@@ -25,6 +25,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -33,6 +34,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,6 +46,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -377,7 +383,9 @@ object Dialogs {
           Text(
             text = title,
             style = MaterialTheme.typography.titleLarge,
-            modifier = Modifier.padding(top = 16.dp).horizontalGutters()
+            modifier = Modifier
+              .padding(top = 16.dp)
+              .horizontalGutters()
           )
 
           LazyColumn(
@@ -413,6 +421,106 @@ object Dialogs {
 
                 Text(text = labels[index])
               }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @Composable
+  fun MultiSelectListDialog(
+    onDismissRequest: () -> Unit,
+    properties: DialogProperties = DialogProperties(),
+    title: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selection: Array<String>,
+    onSelectionChanged: (Array<String>) -> Unit
+  ) {
+    var selectedIndicies by remember {
+      mutableStateOf(
+        values.mapIndexedNotNull { index, value ->
+          if (value in selection) {
+            index
+          } else {
+            null
+          }
+        }
+      )
+    }
+
+    Dialog(
+      onDismissRequest = onDismissRequest,
+      properties = properties
+    ) {
+      Surface(
+        modifier = Modifier
+          .padding(vertical = 100.dp)
+          .background(
+            color = SignalTheme.colors.colorSurface2,
+            shape = AlertDialogDefaults.shape
+          )
+          .clip(AlertDialogDefaults.shape)
+      ) {
+        Column {
+          Text(
+            text = title,
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier
+              .padding(top = 16.dp)
+              .horizontalGutters()
+          )
+
+          LazyColumn(
+            modifier = Modifier.padding(top = 24.dp, bottom = 16.dp)
+          ) {
+            items(
+              count = values.size,
+              key = { values[it] }
+            ) { index ->
+              Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                  .fillMaxWidth()
+                  .defaultMinSize(minHeight = 48.dp)
+                  .clickable(
+                    enabled = true,
+                    onClick = {
+                      selectedIndicies = if (index in selectedIndicies) {
+                        selectedIndicies - index
+                      } else {
+                        selectedIndicies + index
+                      }
+                    }
+                  )
+                  .horizontalGutters()
+              ) {
+                Checkbox(
+                  enabled = true,
+                  checked = index in selectedIndicies,
+                  onCheckedChange = null,
+                  modifier = Modifier.padding(end = 24.dp)
+                )
+
+                Text(text = labels[index])
+              }
+            }
+          }
+
+          FlowRow(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+          ) {
+            TextButton(onClick = onDismissRequest) {
+              Text(text = stringResource(R.string.cancel))
+            }
+
+            TextButton(onClick = {
+              onSelectionChanged(selectedIndicies.sorted().map { values[it] }.toTypedArray())
+              onDismissRequest()
+            }) {
+              Text(text = stringResource(R.string.ok))
             }
           }
         }

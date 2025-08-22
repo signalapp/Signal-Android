@@ -183,6 +183,52 @@ object Rows {
     }
   }
 
+  /*
+   multiSelectPref(
+        text = stringResource(R.string.preferences_chats__when_using_mobile_data),
+        listItems = autoDownloadLabels,
+        selected = autoDownloadValues.map { state.mobileAutoDownloadValues.contains(it) }.toBooleanArray(),
+        onSelected = {
+          val resultSet = it.mapIndexed { index, selected -> if (selected) autoDownloadValues[index] else null }.filterNotNull().toSet()
+          viewModel.setMobileAutoDownloadValues(resultSet)
+        }
+      )
+   */
+
+  @Composable
+  fun MultiSelectRow(
+    text: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selection: Array<String>,
+    onSelectionChanged: (Array<String>) -> Unit
+  ) {
+    var displayDialog by remember { mutableStateOf(false) }
+
+    TextRow(
+      text = text,
+      label = selection.joinToString(", ") {
+        val index = values.indexOf(it)
+        if (index == -1) error("not found: $it in ${values.joinToString(", ")}")
+        labels[index]
+      },
+      onClick = {
+        displayDialog = true
+      }
+    )
+
+    if (displayDialog) {
+      Dialogs.MultiSelectListDialog(
+        onDismissRequest = { displayDialog = false },
+        labels = labels,
+        values = values,
+        selection = selection,
+        title = text,
+        onSelectionChanged = onSelectionChanged
+      )
+    }
+  }
+
   /**
    * Row that positions [text] and optional [label] in a [TextAndLabel] to the side of a [Switch].
    *
@@ -618,6 +664,24 @@ private fun RadioListRowPreview() {
       selectedValue = selectedValue,
       onSelected = {
         selectedValue = it
+      }
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun MultiSelectRowPreview() {
+  var selectedValues by remember { mutableStateOf(arrayOf("b")) }
+
+  Previews.Preview {
+    Rows.MultiSelectRow(
+      text = "MultiSelect List",
+      labels = arrayOf("A", "B", "C"),
+      values = arrayOf("a", "b", "c"),
+      selection = selectedValues,
+      onSelectionChanged = {
+        selectedValues = it
       }
     )
   }
