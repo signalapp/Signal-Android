@@ -23,6 +23,7 @@ import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ApkUpdateJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -90,7 +91,9 @@ private fun AppUpdatesSettingsScreen(
   ) { paddingValues ->
 
     LazyColumn(
-      modifier = Modifier.padding(paddingValues)
+      modifier = Modifier
+        .padding(paddingValues)
+        .then(rememberStatusBarColorNestedScrollModifier())
     ) {
       if (Build.VERSION.SDK_INT >= 31) {
         item {

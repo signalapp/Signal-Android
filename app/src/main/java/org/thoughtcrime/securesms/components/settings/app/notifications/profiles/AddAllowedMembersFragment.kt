@@ -40,6 +40,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.emoji.EmojiStrings
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.AddAllowedMembersViewModel.NotificationProfileAndRecipients
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfileId
@@ -166,7 +167,9 @@ private fun AddAllowedMembersContent(
       modifier = Modifier.padding(contentPadding)
     ) {
       LazyColumn(
-        modifier = Modifier.weight(1f)
+        modifier = Modifier
+          .weight(1f)
+          .then(rememberStatusBarColorNestedScrollModifier())
       ) {
         item {
           Text(

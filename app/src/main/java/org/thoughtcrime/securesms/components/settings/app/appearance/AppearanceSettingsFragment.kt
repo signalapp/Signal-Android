@@ -24,6 +24,7 @@ import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.appearance.navbar.ChooseNavigationBarStyleFragment
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
@@ -107,7 +108,9 @@ private fun AppearanceSettingsScreen(
     navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24)
   ) { paddingValues ->
     LazyColumn(
-      modifier = Modifier.padding(paddingValues)
+      modifier = Modifier
+        .padding(paddingValues)
+        .then(rememberStatusBarColorNestedScrollModifier())
     ) {
       item {
         Rows.RadioListRow(
