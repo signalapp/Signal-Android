@@ -40,6 +40,7 @@ class LogSectionRemoteBackups : LogSection {
     output.append("Optimize storage:                     ${SignalStore.backup.optimizeStorage}\n")
     output.append("Detected subscription state mismatch: ${SignalStore.backup.subscriptionStateMismatchDetected}\n")
     output.append("Last verified key time:               ${SignalStore.backup.lastVerifyKeyTime}\n")
+    output.append("Media restore state:                  ${SignalStore.backup.restoreState}\n")
     output.append("\n -- Subscription State\n")
 
     val backupSubscriptionId = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
