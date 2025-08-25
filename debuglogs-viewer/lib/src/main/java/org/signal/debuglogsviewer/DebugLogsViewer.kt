@@ -88,7 +88,8 @@ object DebugLogsViewer {
 
   @JvmStatic
   fun onSearchInput(webview: WebView, query: String) {
-    webview.evaluateJavascript("onSearchInput('$query')", null)
+    val escaped = JSONObject.quote(query)
+    webview.evaluateJavascript("onSearchInput($escaped)", null)
   }
 
   @JvmStatic
