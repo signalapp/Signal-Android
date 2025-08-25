@@ -420,6 +420,10 @@ class RestoreAttachmentJob private constructor(
       } else {
         markFailed(attachmentId)
       }
+    } catch (e: org.signal.libsignal.protocol.incrementalmac.InvalidMacException) {
+      Log.w(TAG, "[$attachmentId] Detected an invalid incremental mac. Clearing and marking as a temporary failure, requiring the user to manually try again.")
+      SignalDatabase.attachments.clearIncrementalMacsForAttachmentAndAnyDuplicates(attachmentId, attachment.remoteKey, attachment.dataHash)
+      markFailed(attachmentId)
     }
   }
 

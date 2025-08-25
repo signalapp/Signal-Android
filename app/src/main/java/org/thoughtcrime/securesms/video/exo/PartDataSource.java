@@ -33,6 +33,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -75,6 +76,7 @@ class PartDataSource implements DataSource {
       final byte[] decodedKey = Base64.decode(attachmentKey);
       
       if (attachment.transferState == AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS && attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
+        Log.d(TAG, "Playing partial video content for archive attachment.");
         final File archiveFile = attachmentDatabase.getOrCreateTransferFile(attachment.attachmentId);
         try {
           String mediaName = DatabaseAttachmentArchiveUtil.requireMediaNameAsString(attachment);
@@ -82,10 +84,6 @@ class PartDataSource implements DataSource {
 
           MediaRootBackupKey.MediaKeyMaterial mediaKeyMaterial     = SignalStore.backup().getMediaRootBackupKey().deriveMediaSecretsFromMediaId(mediaId);
           long                                originalCipherLength = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size));
-
-          if (attachment.remoteDigest == null) {
-            throw new InvalidMessageException("Missing digest!");
-          }
 
           if (attachment.dataHash == null || attachment.dataHash.isEmpty()) {
             throw new InvalidMessageException("Missing plaintextHash!");
@@ -96,13 +94,14 @@ class PartDataSource implements DataSource {
           throw new IOException("Error decrypting attachment stream!", e);
         }
       } else {
+        Log.d(TAG, "Playing partial video content for normal attachment.");
         final File transferFile = attachmentDatabase.getOrCreateTransferFile(attachment.attachmentId);
         try {
           long                                       streamLength   = AttachmentCipherStreamUtil.getCiphertextLength(PaddingInputStream.getPaddedSize(attachment.size));
           AttachmentCipherInputStream.StreamSupplier streamSupplier = () -> new TailerInputStream(() -> new FileInputStream(transferFile), streamLength);
 
           if (attachment.remoteDigest == null && attachment.dataHash == null) {
-            throw new InvalidMessageException("Missing digest!");
+            throw new InvalidMessageException("Missing digest and plaintextHash!");
           }
 
           IntegrityCheck integrityCheck = IntegrityCheck.forEncryptedDigestAndPlaintextHash(attachment.remoteDigest, attachment.dataHash);
@@ -119,6 +118,7 @@ class PartDataSource implements DataSource {
 
       Log.d(TAG, "Successfully loaded partial attachment file.");
     } else if (!inProgress || hasData) {
+      Log.d(TAG, "Playing a fully downloaded attachment.");
       this.inputStream = attachmentDatabase.getAttachmentStream(partUri.getPartId(), dataSpec.position);
 
       Log.d(TAG, "Successfully loaded completed attachment file.");

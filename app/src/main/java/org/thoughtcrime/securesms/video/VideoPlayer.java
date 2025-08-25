@@ -39,19 +39,24 @@ import androidx.media3.common.Player;
 import androidx.media3.common.Tracks;
 import androidx.media3.common.util.UnstableApi;
 import androidx.media3.exoplayer.ExoPlayer;
+import androidx.media3.exoplayer.analytics.AnalyticsListener;
 import androidx.media3.exoplayer.source.ClippingMediaSource;
 import androidx.media3.exoplayer.source.DefaultMediaSourceFactory;
+import androidx.media3.exoplayer.source.LoadEventInfo;
+import androidx.media3.exoplayer.source.MediaLoadData;
 import androidx.media3.exoplayer.source.MediaSource;
 import androidx.media3.ui.AspectRatioFrameLayout;
 import androidx.media3.ui.LegacyPlayerControlView;
 import androidx.media3.ui.PlayerView;
 
 import org.signal.core.util.logging.Log;
+import org.signal.libsignal.protocol.incrementalmac.InvalidMacException;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.mediapreview.MediaPreviewPlayerControlView;
 import org.thoughtcrime.securesms.mms.VideoSlide;
 
+import java.io.IOException;
 import java.util.Objects;
 
 @OptIn(markerClass = UnstableApi.class)
@@ -74,6 +79,7 @@ public class VideoPlayer extends FrameLayout {
   private long                                clippedStartUs;
   private ExoPlayerListener                   exoPlayerListener;
   private Player.Listener                     playerListener;
+  private AnalyticsListener                   analyticsListener;
   private boolean                             muted;
   private AudioFocusRequest                   audioFocusRequest;
   private boolean                             requestAudioFocus = true;
@@ -119,6 +125,15 @@ public class VideoPlayer extends FrameLayout {
     }
 
     this.exoPlayerListener = new ExoPlayerListener();
+    this.analyticsListener = new AnalyticsListener() {
+      @Override
+      public void onLoadError(EventTime eventTime, LoadEventInfo loadEventInfo, MediaLoadData mediaLoadData, IOException error, boolean wasCanceled) {
+        if (error instanceof InvalidMacException) {
+          Log.w(TAG, "Bad incremental mac!", error);
+          playerCallback.onError(error);
+        }
+      }
+    };
     this.playerListener    = new Player.Listener() {
 
       @Override
@@ -159,7 +174,6 @@ public class VideoPlayer extends FrameLayout {
             );
           }
         }
-
       }
 
       @Override
@@ -201,7 +215,7 @@ public class VideoPlayer extends FrameLayout {
       public void onPlayerError(@NonNull PlaybackException error) {
         Log.w(TAG, "A player error occurred", error);
         if (playerCallback != null) {
-          playerCallback.onError();
+          playerCallback.onError(error);
         }
       }
     };
@@ -226,6 +240,7 @@ public class VideoPlayer extends FrameLayout {
       exoPlayer = AppDependencies.getExoPlayerPool().require(poolTag);
       exoPlayer.addListener(exoPlayerListener);
       exoPlayer.addListener(playerListener);
+      exoPlayer.addAnalyticsListener(analyticsListener);
       exoView.setPlayer(exoPlayer);
       exoControls.setPlayer(exoPlayer);
       if (muted) {
@@ -513,6 +528,6 @@ public class VideoPlayer extends FrameLayout {
 
     void onStopped();
 
-    void onError();
+    void onError(Exception e);
   }
 }

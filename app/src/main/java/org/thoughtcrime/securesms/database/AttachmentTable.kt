@@ -966,6 +966,26 @@ class AttachmentTable(
       }
   }
 
+  /**
+   * Clears out the incrementalMac for the specified [attachmentId], as well as any other attachments that share the same ([remoteKey], [plaintextHash]) pair (if present).
+   */
+  fun clearIncrementalMacsForAttachmentAndAnyDuplicates(attachmentId: AttachmentId, remoteKey: String?, plaintextHash: String?) {
+    val query = if (remoteKey != null && plaintextHash != null) {
+      SqlUtil.buildQuery("$ID = ? OR ($REMOTE_KEY = ?  AND $DATA_HASH_END = ?)", attachmentId, remoteKey, plaintextHash)
+    } else {
+      SqlUtil.buildQuery("$ID = ?", attachmentId)
+    }
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        REMOTE_INCREMENTAL_DIGEST to null,
+        REMOTE_INCREMENTAL_DIGEST_CHUNK_SIZE to 0
+      )
+      .where(query.where, query.whereArgs)
+      .run()
+  }
+
   fun deleteAttachmentsForMessage(mmsId: Long): Boolean {
     Log.d(TAG, "[deleteAttachmentsForMessage] mmsId: $mmsId")
 

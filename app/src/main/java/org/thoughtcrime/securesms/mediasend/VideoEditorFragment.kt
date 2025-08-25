@@ -97,7 +97,7 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
 
         override fun onStopped() = Unit
 
-        override fun onError() {
+        override fun onError(e: Exception) {
           controller.onPlayerError()
         }
       })
@@ -126,7 +126,7 @@ class VideoEditorFragment : Fragment(), PositionDragListener, MediaSendPageFragm
           hud.showPlayButton()
         }
 
-        override fun onError() {
+        override fun onError(e: Exception) {
           controller.onPlayerError()
         }
       })
