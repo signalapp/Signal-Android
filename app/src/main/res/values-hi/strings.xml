@@ -1378,19 +1378,19 @@
         <item quantity="other">भेजे गए %1$d न्योते रद्द करें</item>
     </plurals>
     <plurals name="PendingMembersActivity_error_revoking_invite">
-        <item quantity="one">आमंत्रण को रद्द करने को लेकर त्रुटि</item>
-        <item quantity="other">आमंत्रणों को रद्द करने को लेकर त्रुटि</item>
+        <item quantity="one">इनवाइट रद्द करने में कोई गड़बड़ी हुई</item>
+        <item quantity="other">इनवाइट रद्द करने में कोई गड़बड़ी हुई</item>
     </plurals>
 
     <!-- RequestingMembersFragment -->
-    <string name="RequestingMembersFragment_pending_member_requests">सदस्य के लंबित अनुरोध</string>
-    <string name="RequestingMembersFragment_no_member_requests_to_show">दिखाने के लिए मेंबर के कोई अनुरोध नहीं हैं।</string>
-    <string name="RequestingMembersFragment_explanation">इस सूची के लोग ग्रुप लिंक के माध्यम से इस ग्रुप में शामिल होने का प्रयास कर रहे हैं।</string>
-    <string name="RequestingMembersFragment_added_s">"\"%1$s\" को शामिल किया गया"</string>
-    <string name="RequestingMembersFragment_denied_s">"\"%1$s\" को इनकार किया गया"</string>
+    <string name="RequestingMembersFragment_pending_member_requests">सदस्य के पेंडिंग इनवाइट</string>
+    <string name="RequestingMembersFragment_no_member_requests_to_show">सदस्यों की ओर से कोई इनवाइट नहीं है।</string>
+    <string name="RequestingMembersFragment_explanation">इस सूची में मौजूद लोग ग्रुप लिंक के ज़रिए इस ग्रुप में जुड़ने की कोशिश कर रहे हैं।</string>
+    <string name="RequestingMembersFragment_added_s">"\"%1$s\" को जोड़ा गया"</string>
+    <string name="RequestingMembersFragment_denied_s">"\"%1$s\" के अनुरोध को नामंज़ूर किया गया"</string>
 
     <!-- AddMembersActivity -->
-    <string name="AddMembersActivity__done">पूर्ण</string>
+    <string name="AddMembersActivity__done">हो गया</string>
     <string name="AddMembersActivity__this_person_cant_be_added_to_legacy_groups">इस व्यक्ति को पुराने ग्रुप में नहीं जोड़ा जा सकता।</string>
     <!-- Confirmation text when adding a member to a group. If one person is added, %1$s is their name. If multiple people are added, the total number is %3$d. %2$s is the name of the group -->
     <plurals name="AddMembersActivity__add_d_members_to_s">
@@ -1401,18 +1401,18 @@
     <string name="AddMembersActivity__add_members">सदस्य जोड़ें</string>
 
     <!-- AddGroupDetailsFragment -->
-    <string name="AddGroupDetailsFragment__name_this_group">इस समूह को नाम दें</string>
-    <string name="AddGroupDetailsFragment__create_group">समूह बनाएँ</string>
-    <string name="AddGroupDetailsFragment__create">बनाएँ</string>
-    <string name="AddGroupDetailsFragment__members">सदस्यों</string>
-    <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">आप इस ग्रुप को बनाने के बाद मित्रों को शामिल या आमंत्रित कर सकते हैं।</string>
-    <string name="AddGroupDetailsFragment__group_name_required">ग्रूप का नाम (आवश्यक)</string>
-    <string name="AddGroupDetailsFragment__group_name_optional">समूह का नाम(वैकल्पिक)</string>
-    <string name="AddGroupDetailsFragment__this_field_is_required">यह फ़ील्ड आवश्यक है।</string>
-    <string name="AddGroupDetailsFragment__group_creation_failed">समूह निर्माण विफल रहा।</string>
-    <string name="AddGroupDetailsFragment__try_again_later">बाद में पुन: प्रयास करें।</string>
+    <string name="AddGroupDetailsFragment__name_this_group">इस ग्रुप का नाम रखें</string>
+    <string name="AddGroupDetailsFragment__create_group">ग्रुप बनाएं</string>
+    <string name="AddGroupDetailsFragment__create">बनाएं</string>
+    <string name="AddGroupDetailsFragment__members">सदस्य</string>
+    <string name="AddGroupDetailsFragment__you_can_add_or_invite_friends_after_creating_this_group">ग्रुप बनाने के बाद दोस्तों को जोड़ें या उन्हें इनवाइट भेजें।</string>
+    <string name="AddGroupDetailsFragment__group_name_required">ग्रुप का नाम (ज़रूरी है)</string>
+    <string name="AddGroupDetailsFragment__group_name_optional">ग्रुप का नाम (वैकल्पिक)</string>
+    <string name="AddGroupDetailsFragment__this_field_is_required">यह फ़ील्ड भरना ज़रूरी है।</string>
+    <string name="AddGroupDetailsFragment__group_creation_failed">ग्रुप नहीं बन सका।</string>
+    <string name="AddGroupDetailsFragment__try_again_later">बाद में फिर से कोशिश करें।</string>
     <string name="AddGroupDetailsFragment__remove">हटा दें</string>
-    <string name="AddGroupDetailsFragment__sms_contact">SMS संपर्क</string>
+    <string name="AddGroupDetailsFragment__sms_contact">SMS कॉन्टैक्ट</string>
     <string name="AddGroupDetailsFragment__remove_s_from_this_group">%1$sको इस समूह से निकालें?</string>
     <!-- Info message shown in the middle of the screen, displayed when adding group details to an MMS Group -->
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support">आपने किसी ऐसे संपर्क को चुना है जो Signal ग्रुप को सपोर्ट नहीं करता है, इसलिए यह ग्रुप, MMS होगा। कस्टम ग्रुप नाम और फ़ोटो केवल आपको दिखेंगे।</string>
@@ -1420,34 +1420,34 @@
     <string name="AddGroupDetailsFragment__youve_selected_a_contact_that_doesnt_support_signal_groups_mms_removal">आपने एक ऐसे संपर्क को चुना है जो Signal ग्रुप्स का समर्थन नहीं करता, इसलिए यह ग्रुप MMS होगा। कस्टम MMS ग्रुप के नाम और तस्वीरें केवल आप देख सकेंगे। एनक्रिप्टेड संदेश सेवा पर ध्यान देने के लिए जल्द ही MMS ग्रुप्स का समर्थन हटा दिया जाएगा।</string>
 
     <!-- ManageGroupActivity -->
-    <string name="ManageGroupActivity_who_can_add_new_members">नए मेंबर कौन शामिल कर सकता है?</string>
-    <string name="ManageGroupActivity_who_can_edit_this_groups_info">इस ग्रुप की जानकारी को कौन संपादित कर सकता है?</string>
+    <string name="ManageGroupActivity_who_can_add_new_members">नए सदस्य जोड़ने की अनुमति किनके पास है?</string>
+    <string name="ManageGroupActivity_who_can_edit_this_groups_info">इस ग्रुप की जानकारी को एडिट करने की अनुमति किनके पास है?</string>
 
     <plurals name="ManageGroupActivity_added">
-        <item quantity="one">%1$d सदस्य को शामिल किया गया।</item>
-        <item quantity="other">%1$d सदस्यों को शामिल किया गया।</item>
+        <item quantity="one">%1$d सदस्य जोड़ा गया।</item>
+        <item quantity="other">%1$d सदस्य जोड़े गए।</item>
     </plurals>
 
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">आपके पास ऐसा करने का अधिकार नहीं है</string>
-    <string name="ManageGroupActivity_not_capable">आपने किसी ऐसे व्यक्ति को शामिल किया है जिसके पास नए ग्रुप्स समर्थित नहीं हैं और उसे Signal को अपडेट करने की ज़रूरत है</string>
-    <string name="ManageGroupActivity_not_announcement_capable">आपने किसी ऐसे व्यक्ति को शामिल किया है जिसके पास नए ग्रुप्स समर्थित नहीं हैं और उसे Signal को अपडेट करने की ज़रूरत है</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">ग्रुप को अपडेट करना असफल रहा</string>
-    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">आपने इस समूह के सदस्य नहीं हैं</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">ग्रुप को अपडेट करना असफल रहा कृपया बाद में दोबारा प्रयास करें</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">नेटवर्क त्रुटि के कारण ग्रुप को अपडेट करना असफल रहा, कृपया बाद में दोबारा प्रयास करें</string>
+    <string name="ManageGroupActivity_not_capable">आपने जिन्हें जोड़ा है, उनके पास \'नए ग्रुप\' की सुविधा मौजूद नहीं है। उन्हें Signal अपडेट करने को कहें।</string>
+    <string name="ManageGroupActivity_not_announcement_capable">आपने जिन्हें जोड़ा है, उनके पास \'अनाउंसमेंट ग्रुप\' की सुविधा मौजूद नहीं है। उन्हें Signal अपडेट करने को कहें।</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group">ग्रुप अपडेट नहीं हो सका</string>
+    <string name="ManageGroupActivity_youre_not_a_member_of_the_group">आप इस ग्रुप में सदस्य नहीं हैं</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">ग्रुप अपडेट नहीं हो सका। कृपया बाद में फिर से कोशिश करें</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">नेटवर्क में आई गड़बड़ी की वजह से ग्रुप अपडेट नहीं हो सका। कृपया बाद में फिर से कोशिश करें</string>
 
-    <string name="ManageGroupActivity_edit_name_and_picture">नाम और चित्र संपादित करें</string>
-    <string name="ManageGroupActivity_legacy_group">लेगेसी ग्रुप</string>
+    <string name="ManageGroupActivity_edit_name_and_picture">नाम और तस्वीर एडिट करें</string>
+    <string name="ManageGroupActivity_legacy_group">पुराना ग्रुप</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code -->
-    <string name="ManageGroupActivity_legacy_group_learn_more">यह एक लेगेसी ग्रुप है। फ़ीचर्स जैसे कि ग्रुप एडमिन केवल नए ग्रुप्स के लिए उपलब्ध हैं।</string>
+    <string name="ManageGroupActivity_legacy_group_learn_more">यह एक पुराना ग्रुप है। ग्रुप ऐडमिन जैसे फ़ीचर सिर्फ़ नए ग्रुप में मौजूद हैं।</string>
     <!-- This is placed inside a "Learn More" text view, which automatically appends LearnMoreTextView_learn_more in code to the end of the string -->
-    <string name="ManageGroupActivity_legacy_group_upgrade">यह एक लेगेसी ग्रुप है। नए फ़ीचर्स जैसे कि @mentions और एडमिन तक पहुँच प्राप्त करने के लिए,</string>
-    <string name="ManageGroupActivity_legacy_group_too_large">इस लेगेसी ग्रुप को एक नए ग्रुप में अपग्रेड नहीं किया जा सकता क्योंकि यह बहुत बड़ा है। अधिकतम ग्रुप साइज़ है %1$d।</string>
-    <string name="ManageGroupActivity_upgrade_this_group">इस समूह को अपग्रेड करें।</string>
+    <string name="ManageGroupActivity_legacy_group_upgrade">यह एक पुराना ग्रुप है। @mentions और ऐडमिन जैसे नए फ़ीचर का ऐक्सेस पाने के लिए</string>
+    <string name="ManageGroupActivity_legacy_group_too_large">इस पुराने ग्रुप को अपग्रेड करके नया ग्रुप नहीं बनाया जा सकता। ऐसा इसलिए, क्योंकि यह बहुत बड़ा है। ग्रुप का अधिकतम साइज़ %1$d होना चाहिए।</string>
+    <string name="ManageGroupActivity_upgrade_this_group">इस ग्रुप को अपग्रेड करें।</string>
     <string name="ManageGroupActivity_this_is_an_insecure_mms_group">यह एक असुरक्षित MMS ग्रुप है। प्राइवेट रूप से चैट करने के लिए, अपने संपर्कों को Signal पर आमंत्रित करें।</string>
-    <string name="ManageGroupActivity_invite_now">अब आमंत्रित करें</string>
-    <string name="ManageGroupActivity_more">अधिक</string>
-    <string name="ManageGroupActivity_add_group_description">ग्रुप विवरण जोड़ें…</string>
+    <string name="ManageGroupActivity_invite_now">अब इनवाइट भेजें</string>
+    <string name="ManageGroupActivity_more">ज़्यादा</string>
+    <string name="ManageGroupActivity_add_group_description">ग्रुप के बारे में जानकारी जोड़ें…</string>
 
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
@@ -1502,20 +1502,20 @@
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Your media will restore in the background. If you choose not to restore now, you won\'t be able to restore later.</string>
 
     <!-- GroupMentionSettingDialog -->
-    <string name="GroupMentionSettingDialog_notify_me_for_mentions">मेंछन किए जाने पर मुझे सूचित करें</string>
+    <string name="GroupMentionSettingDialog_notify_me_for_mentions">मेंशन किए जाने पर मुझे सूचित करें</string>
     <string name="GroupMentionSettingDialog_receive_notifications_when_youre_mentioned_in_muted_chats">म्यूट की हुई चैट में आपको मेंछन किए जाने पर नोटिफ़िकेशन प्राप्त करनी हैं?</string>
     <string name="GroupMentionSettingDialog_always_notify_me">हमेशा मुझे सूचित करें</string>
-    <string name="GroupMentionSettingDialog_dont_notify_me">मुझे सूचित ना करें</string>
+    <string name="GroupMentionSettingDialog_dont_notify_me">मुझे सूचित न करें</string>
 
     <!-- ManageProfileFragment -->
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc -->
     <string name="ManageProfileFragment__your_username">आपका यूज़रनेम, QR कोड और लिंक आपके प्रोफाइल पर दिखाई नहीं दे रहे हैं। अपना यूज़रनेम केवल उन लोगों के साथ साझा करें जिन पर आपको भरोसा है।</string>
     <!-- Explanation text about usernames etc displayed underneath buttons to view and edit username etc, shown when you have no username -->
     <string name="ManageProfileFragment__username_footer_no_username">लोग अब आपका वैकल्पिक यूज़रनेम इस्तेमाल करके आपको संदेश भेज सकते हैं, ताकि आपको अपना फोन नंबर न देना पड़े। </string>
-    <string name="ManageProfileFragment_profile_name">प्रोफ़ाइल नाम</string>
+    <string name="ManageProfileFragment_profile_name">प्रोफ़ाइल नेम</string>
     <string name="ManageProfileFragment_username">यूज़रनेम</string>
     <string name="ManageProfileFragment_about">हमारे बारे में</string>
-    <string name="ManageProfileFragment_failed_to_set_avatar">अवतार सेट करने में विफल</string>
+    <string name="ManageProfileFragment_failed_to_set_avatar">अवतार सेट नहीं हो सका</string>
     <string name="ManageProfileFragment_badges">बैज</string>
     <!-- Text for a button that will take the user to the screen to manage their username link and QR code -->
     <string name="ManageProfileFragment_link_setting_text">QR कोड या लिंक</string>
@@ -1547,26 +1547,26 @@
 
 
     <!-- ManageRecipientActivity -->
-    <string name="ManageRecipientActivity_no_groups_in_common">कोई साझा समूह नहीं</string>
+    <string name="ManageRecipientActivity_no_groups_in_common">कोई साझा ग्रुप मौजूद नहीं है</string>
     <plurals name="ManageRecipientActivity_d_groups_in_common">
-        <item quantity="one">%1$d ग्रुप साझा है</item>
-        <item quantity="other">%1$d ग्रुप्स साझे हैं</item>
+        <item quantity="one">%1$d साझा ग्रुप मौजूद है</item>
+        <item quantity="other">%1$d साझे ग्रुप मौजूद हैं</item>
     </plurals>
 
     <plurals name="GroupMemberList_invited">
-        <item quantity="one">%1$s ने 1 व्यक्ति को आमंत्रित किया</item>
-        <item quantity="other">%1$s ने %2$d लोगों को आमंत्रित किया</item>
+        <item quantity="one">%1$s ने 1 व्यक्ति को इनवाइट भेजा</item>
+        <item quantity="other">%1$s ने %2$d लोगों को इनवाइट भेजा</item>
     </plurals>
 
     <!-- CustomNotificationsDialogFragment -->
-    <string name="CustomNotificationsDialogFragment__custom_notifications">कस्टम अधिसूचनाएं</string>
-    <string name="CustomNotificationsDialogFragment__messages">मेसेज</string>
-    <string name="CustomNotificationsDialogFragment__use_custom_notifications">कस्टम सूचनाओं का उपयोग करें</string>
-    <string name="CustomNotificationsDialogFragment__notification_sound">सूचना ध्वनि</string>
-    <string name="CustomNotificationsDialogFragment__vibrate">कांपना</string>
+    <string name="CustomNotificationsDialogFragment__custom_notifications">कस्टम नोटिफ़िकेशन</string>
+    <string name="CustomNotificationsDialogFragment__messages">मैसेज</string>
+    <string name="CustomNotificationsDialogFragment__use_custom_notifications">कस्टम नोटिफ़िकेशन इस्तेमाल करें</string>
+    <string name="CustomNotificationsDialogFragment__notification_sound">नोटिफ़िकेशन की आवाज़</string>
+    <string name="CustomNotificationsDialogFragment__vibrate">वाइब्रेट</string>
     <!-- Button text for customizing notification options -->
     <string name="CustomNotificationsDialogFragment__customize">कस्टमाइज़ करें</string>
-    <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">ध्वनि व कंपन बदलें</string>
+    <string name="CustomNotificationsDialogFragment__change_sound_and_vibration">आवाज़ और वाइब्रेशन बदलें</string>
     <string name="CustomNotificationsDialogFragment__call_settings">कॉल सेटिंग</string>
     <string name="CustomNotificationsDialogFragment__ringtone">रिंगटोन</string>
     <!-- Subtitle when the ringtone used for calls is the default system -->
@@ -1575,81 +1575,81 @@
     <string name="CustomNotificationsDialogFragment__unknown">अनजान</string>
 
     <!-- ShareableGroupLinkDialogFragment -->
-    <string name="ShareableGroupLinkDialogFragment__group_link">समूह लिंक</string>
-    <string name="ShareableGroupLinkDialogFragment__share">साझा करें</string>
-    <string name="ShareableGroupLinkDialogFragment__reset_link">रीसेट लिंक</string>
+    <string name="ShareableGroupLinkDialogFragment__group_link">ग्रुप लिंक</string>
+    <string name="ShareableGroupLinkDialogFragment__share">शेयर करें</string>
+    <string name="ShareableGroupLinkDialogFragment__reset_link">रीसेट करने के लिए लिंक</string>
     <string name="ShareableGroupLinkDialogFragment__require_admin_approval">एडमिन की मंज़ूरी की ज़रूरत है</string>
-    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ग्रुप लिंक के माध्यम से नए ग्रुप में शामिल होने वाले मेंबर्स को अनुमोदित करने के लिए एडमिन को आवश्यक करें।</string>
-    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">क्या आप वाकई में ग्रुप के लिंक को रीसेट करना चाहते हैं? लोग वर्तमान लिंक का उपयोग करते हुए ग्रुप में जुड़ नहीं सकेंगे।</string>
+    <string name="ShareableGroupLinkDialogFragment__require_an_admin_to_approve_new_members_joining_via_the_group_link">ग्रुप लिंक की मदद से जुड़ने वाले नए सदस्यों के लिए ऐडमिन की मंज़ूरी ज़रूरी है।</string>
+    <string name="ShareableGroupLinkDialogFragment__are_you_sure_you_want_to_reset_the_group_link">क्या आपको वाकई ग्रुप का लिंक रीसेट करना है? लोग मौजूदा लिंक की मदद से इस ग्रुप में नहीं जुड़ पाएंगे।</string>
 
     <!-- GroupLinkShareQrDialogFragment -->
     <string name="GroupLinkShareQrDialogFragment__qr_code">क्यूआर कोड</string>
-    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">इस कोड को स्कैन करने वाले लोग आपके ग्रुप में जुड़ सकेंगे। एडमिन्स को फिर भी नए मेंबर्स को अनुमोदित करने की ज़रूरत होगी यदि आपने उस सेटिंग को चालू किया है।</string>
-    <string name="GroupLinkShareQrDialogFragment__share_code">कोड साझा करें</string>
+    <string name="GroupLinkShareQrDialogFragment__people_who_scan_this_code_will">इस कोड को स्कैन करके लोग आपके ग्रुप से जुड़ सकेंगे। फिर भी नए सदस्यों को शामिल करने के लिए ऐडमिन की मंज़ूरी ज़रूरी होगी। हालांकि, ऐसा सिर्फ़ तभी होगा, जब आपने मंज़ूरी से जुड़ी सेटिंग चालू की हो।</string>
+    <string name="GroupLinkShareQrDialogFragment__share_code">कोड शेयर करें</string>
 
     <!-- GV2 Invite Revoke confirmation dialog -->
-    <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">क्या आप %1$s को भेजे आमंत्रण को रद्द करना चाहते हैं?</string>
+    <string name="InviteRevokeConfirmationDialog_revoke_own_single_invite">क्या आपको %1$s को भेजी गई इनवाइट रद्द करनी है?</string>
     <plurals name="InviteRevokeConfirmationDialog_revoke_others_invites">
-        <item quantity="one">क्या आप %1$s द्वारा भेजा गया आमंत्रण रद्द करना चाहते हैं?</item>
-        <item quantity="other">क्या आप %1$s द्वारा भेजे गए %2$d आमंत्रण रद्द करना चाहते हैं?</item>
+        <item quantity="one">क्या आपको %1$s द्वारा भेजी गई इनवाइट रद्द करनी है?</item>
+        <item quantity="other">क्या आप %1$s द्वारा भेजी गई %2$d इनवाइट रद्द करना है?</item>
     </plurals>
 
     <!-- GroupJoinBottomSheetDialogFragment -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">आप पहले से ही एक मेंबर हैं</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_are_already_a_member">आप पहले से ही सदस्य हैं</string>
     <string name="GroupJoinBottomSheetDialogFragment_join">जुड़ें</string>
-    <string name="GroupJoinBottomSheetDialogFragment_request_to_join">जुड़ने का अनुरोध</string>
-    <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ग्रुप जुड़ने में अक्षम। कृपया बाद में दोबारा प्रयास करें</string>
-    <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">एक नेटवर्क त्रुटि का सामना करना पड़ा|</string>
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">यह समूह लिंक सक्रिय नहीं है</string>
+    <string name="GroupJoinBottomSheetDialogFragment_request_to_join">जुड़ने के लिए अनुरोध करें</string>
+    <string name="GroupJoinBottomSheetDialogFragment_unable_to_join_group_please_try_again_later">ग्रुप में नहीं जोड़ा जा सका। कृपया बाद में फिर से कोशिश करें</string>
+    <string name="GroupJoinBottomSheetDialogFragment_encountered_a_network_error">नेटवर्क से जुड़ी कोई गड़बड़ी हुई।</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_not_active">यह ग्रुप लिंक ऐक्टिव नहीं है</string>
     <!-- Title shown when there was an known issue getting group information from a group link -->
-    <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">ग्रुप में शामिल नहीं हो सकते</string>
+    <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">ग्रुप में शामिल नहीं किया जा सकता</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
     <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">आप ग्रुप लिंक से इस ग्रुप में शामिल नहीं हो सकते, क्योंकि एक एडमिन ने आपको हटा दिया है। ग्रुप में वापस शामिल होने के लिए किसी एडमिन से संपर्क करें।</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
-    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">यह ग्रुप लिंक अब वैध नहीं रहा।</string>
+    <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">यह ग्रुप लिंक अब काम नहीं करता।</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
-    <string name="GroupJoinBottomSheetDialogFragment_link_error">लिंक दोष</string>
+    <string name="GroupJoinBottomSheetDialogFragment_link_error">लिंक में कोई गड़बड़ी है</string>
     <!-- Message shown when you try to get information for a group via link but an unknown issue occurred -->
-    <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">इस लिंक के माध्यम से शामिल होना विफल रहा। बाद में फिर से शामिल होने का प्रयास करें।</string>
+    <string name="GroupJoinBottomSheetDialogFragment_joining_via_this_link_failed_try_joining_again_later">इस लिंक के ज़रिए शामिल नहीं हुआ जा सका। कृपया थोड़ी देर बाद फिर से कोशिश करें।</string>
 
-    <string name="GroupJoinBottomSheetDialogFragment_direct_join">क्या आप इस ग्रुप में जुड़ना चाहते हैं और इसके मेंबर्स के साथ अपना नाम और फोटो शेयर करना चाहते हैं?</string>
-    <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">इस ग्रुप में जुड़ने से पहले एक एडमिन को आपका अनुरोध स्वीकार करना होगा। जब आप जुड़ने के लिए अनुरोध करते हैं, आपके नाम और तस्वीर को इसके सदस्यों के साथ साझा किया जाएगा।</string>
+    <string name="GroupJoinBottomSheetDialogFragment_direct_join">क्या आपको इस ग्रुप में शामिल होना है। साथ ही, अपना नाम और फ़ोटो ग्रुप के सदस्यों के साथ शेयर करना है?</string>
+    <string name="GroupJoinBottomSheetDialogFragment_admin_approval_needed">इस ग्रुप में शामिल होने के लिए ज़रूरी है कि ऐडमिन आपके अनुरोध को मंज़ूरी दे। ग्रुप में शामिल होने के अनुरोध भेजने पर आपका नाम और फ़ोटो ग्रुप के सदस्यों के साथ शेयर किए जाएंगे।</string>
     <plurals name="GroupJoinBottomSheetDialogFragment_group_dot_d_members">
-        <item quantity="one">ग्रुप · %1$d सदस्य</item>
-        <item quantity="other">ग्रुप · %1$d सदस्य</item>
+        <item quantity="one">ग्रुप। %1$d सदस्य</item>
+        <item quantity="other">ग्रुप । %1$d सदस्य</item>
     </plurals>
 
     <!-- GroupJoinUpdateRequiredBottomSheetDialogFragment -->
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">समूह लिंक उपयोग करने के लिए Signal अपडेट करें</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">आप Signal के जिस वर्ज़न का उपयोग कर रहे हैं, वह इस ग्रुप के लिंक को समर्थित नहीं करता। लिंक के माध्यम से इस ग्रुप के साथ जुड़ने के लिए लेटेस्ट वर्ज़न में अपडेट करें।</string>
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal_to_use_group_links">ग्रुप लिंक का इस्तेमाल करने के लिए Signal अपडेट करें</string>
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_message">आपके पास मौजूद Signal के वर्ज़न पर ग्रुप लिंक की सुविधा मौजूद नहीं है। इस लिंक की मदद से ग्रुप में जुड़ने के लिए Signal का नया वर्ज़न डाउनलोड करें।</string>
     <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_update_signal">Signal अपडेट करें</string>
-    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">समूह लिंक मान्य नहीं है</string>
+    <string name="GroupJoinUpdateRequiredBottomSheetDialogFragment_group_link_is_not_valid">ग्रुप लिंक सही नहीं है</string>
 
     <!-- GroupInviteLinkEnableAndShareBottomSheetDialogFragment -->
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">मित्रों को आमंत्रित करें</string>
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">दोस्तों के साथ एक लिंक शेयर करें ताकि वे जल्दी से इस ग्रुप में जुड़ सकें।</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_invite_friends">दोस्तों को इनवाइट भेजें</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_a_link_with_friends_to_let_them_quickly_join_this_group">दोस्तों के साथ लिंक शेयर करें, ताकि वे तुरंत इस ग्रुप में जुड़ सकें।</string>
 
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">एनेबल करें और लिंक शेयर करें</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_enable_and_share_link">लिंक चालू करें और शेयर करें</string>
     <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_share_link">लिंक शेयर करें</string>
 
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">ग्रुप लिंक एनेबल करने में अक्षम। कृपया बाद में दोबारा प्रयास करें</string>
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">एक नेटवर्क त्रुटि का सामना करना पड़ा|</string>
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">आपके पास ग्रुप लिंक को एनेबल करने का अधिकार नहीं है। कृपया किसी एडमिन से पूछें</string>
-    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">आप वर्तमान में समूह के सदस्य नहीं हैं।</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_unable_to_enable_group_link_please_try_again_later">ग्रुप लिंक चालू नहीं हो सका। कृपया थोड़ी देर बाद फिर से कोशिश करें</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_encountered_a_network_error">नेटवर्क में कोई गड़बड़ी आई।</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_dont_have_the_right_to_enable_group_link">आपके पास ग्रुप लिंक चालू करने का अधिकार नहीं है। ऐसा करने के लिए ऐडमिन से कहें।</string>
+    <string name="GroupInviteLinkEnableAndShareBottomSheetDialogFragment_you_are_not_currently_a_member_of_the_group">फ़िलहाल आप इस ग्रुप में सदस्य नहीं हैं।</string>
 
     <!-- GV2 Request confirmation dialog -->
     <string name="RequestConfirmationDialog_add_s_to_the_group">“%1$s” को ग्रुप में शामिल करना है?</string>
-    <string name="RequestConfirmationDialog_deny_request_from_s">“%1$s” के अनुरोध को अस्वीकार करना है?</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s">“%1$s” का अनुरोध खारिज़ करना है?</string>
     <!-- Confirm dialog message shown when deny a group link join request and group link is enabled. -->
-    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">\"%1$s\" का अनुरोध अस्वीकार करना है? वे फिर से ग्रुप लिंक के माध्यम से शामिल होने के लिए अनुरोध नहीं कर पाएंगे।</string>
+    <string name="RequestConfirmationDialog_deny_request_from_s_they_will_not_be_able_to_request">\"%1$s\" का अनुरोध खारिज करना है? ऐसा करने पर उनके पास इस ग्रुप लिंक की मदद से दोबारा इस ग्रुप में शामिल होने का विकल्प नहीं बचेगा।</string>
     <string name="RequestConfirmationDialog_add">जोड़ें</string>
-    <string name="RequestConfirmationDialog_deny">अस्वीकार करें</string>
+    <string name="RequestConfirmationDialog_deny">खारिज करें</string>
 
     <!-- ImageEditorHud -->
-    <string name="ImageEditorHud_blur_faces">धुंधले चेहरे</string>
-    <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">नया: चेहरों को धुंधला करें या धुंधला करने के लिए कहीं भी ड्रॉ करें</string>
-    <string name="ImageEditorHud_draw_anywhere_to_blur">धुंधला करने के लिए कहीं भी ड्रॉ करें</string>
-    <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">अतिरिक्त चेहरे या जगहें धुंधली करने के लिए ड्रॉ करें</string>
+    <string name="ImageEditorHud_blur_faces">चेहरे ब्लर करें</string>
+    <string name="ImageEditorHud_new_blur_faces_or_draw_anywhere_to_blur">नया: चेहरे ब्लर करें या कहीं भी ड्रॉ करके ब्लर करें</string>
+    <string name="ImageEditorHud_draw_anywhere_to_blur">ब्लर करने के लिए कहीं भी ड्रॉ करें</string>
+    <string name="ImageEditorHud_draw_to_blur_additional_faces_or_areas">अतिरिक्त चेहरे या कोई हिस्सा ब्लर करने के लिए ड्रॉ करें</string>
 
     <!-- InputPanel -->
     <string name="InputPanel_tap_and_hold_to_record_a_voice_message_release_to_send">वॉइस मेसेज रिकॉर्ड करने टैप करें, दबाएं, भेजने के लिए रिलीज़ करें</string>
@@ -1663,42 +1663,42 @@
     <string name="InputPanel__discard">रद्द करें</string>
 
     <!-- InviteActivity -->
-    <string name="InviteActivity_share">साझा करें</string>
-    <string name="InviteActivity_share_with_contacts">संपर्कों के साथ शेयर करें</string>
-    <string name="InviteActivity_share_via">के ज़रिए शेयर करें…</string>
+    <string name="InviteActivity_share">शेयर करें</string>
+    <string name="InviteActivity_share_with_contacts">कॉन्टैक्ट के साथ शेयर करें</string>
+    <string name="InviteActivity_share_via">इसके ज़रिए शेयर करें…</string>
 
     <string name="InviteActivity_cancel">रद्द करें</string>
     <string name="InviteActivity_sending">भेजा जा रहा है…</string>
-    <string name="InviteActivity_invitations_sent">आमंत्रण भेजा गया</string>
-    <string name="InviteActivity_invite_to_signal">Signal को आमंत्रित करें</string>
+    <string name="InviteActivity_invitations_sent">इनविटेशन भेजे गए!</string>
+    <string name="InviteActivity_invite_to_signal">Signal डाउनलोड करने के लिए इनवाइट भेजें</string>
     <string name="InviteActivity_send_sms">(%1$d) SMS भेजें</string>
     <plurals name="InviteActivity_send_sms_invites">
-        <item quantity="one">%1$d एसएमएस आमंत्रण भेजें?</item>
-        <item quantity="other">%1$d SMS आमंत्रण भेजें?</item>
+        <item quantity="one">%1$d SMS इनवाइट भेजना है?</item>
+        <item quantity="other">%1$d SMS इनवाइट भेजने हैं?</item>
     </plurals>
-    <string name="InviteActivity_lets_switch_to_signal">चलो Signal पर स्विच करें: %1$s</string>
+    <string name="InviteActivity_lets_switch_to_signal">आइए, Signal पर स्विच करें: %1$s</string>
     <!-- Toast shown when Signal is unable to find an external app to share the Invite text string to -->
-    <string name="InviteActivity_no_app_to_share_to">ऐसा लगता है कि आपके पास साझा करने के लिए कोई ऐप नहीं है।</string>
+    <string name="InviteActivity_no_app_to_share_to">ऐसा लगता है कि शेयर करने के लिए आपके पास कोई ऐप मौजूद नहीं है।</string>
 
     <!-- LearnMoreTextView -->
-    <string name="LearnMoreTextView_learn_more">अधिक जानें</string>
+    <string name="LearnMoreTextView_learn_more">ज़्यादा जानें</string>
 
     <string name="SpanUtil__read_more">ज़्यादा पढ़ें</string>
 
     <!-- LongMessageActivity -->
-    <string name="LongMessageActivity_unable_to_find_message">मेसेज खोजने में असमर्थ</string>
-    <string name="LongMessageActivity_message_from_s">%1$s से मेसेज</string>
-    <string name="LongMessageActivity_your_message">आपका मेसेज</string>
+    <string name="LongMessageActivity_unable_to_find_message">मैसेज नहीं मिला</string>
+    <string name="LongMessageActivity_message_from_s">%1$s से मिला मैसेज</string>
+    <string name="LongMessageActivity_your_message">आपका मैसेज</string>
 
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
-    <string name="MessageRetrievalService_background_connection_enabled">पृष्ठभूमि कनेक्शन सक्षम</string>
+    <string name="MessageRetrievalService_background_connection_enabled">बैकग्राउंड कनेक्शन चालू किया गया</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">मीडिया</string>
     <string name="MediaOverviewActivity_Files">फ़ाइलें</string>
     <string name="MediaOverviewActivity_Audio">ऑडियो</string>
-    <string name="MediaOverviewActivity_All">सब</string>
+    <string name="MediaOverviewActivity_All">सभी</string>
     <plurals name="MediaOverviewActivity_Media_delete_confirm_title">
         <item quantity="one">चयनित आइटम डिलीट करें?</item>
         <item quantity="other">चयनित आइटम डिलीट करें?</item>
@@ -1707,17 +1707,17 @@
         <item quantity="one">यह चयनित फ़ाइल को स्थायी रूप से डिलीट कर देगा। इस आइटम से जुड़ा कोई भी मेसेज टेक्स्ट भी डिलीट कर दिया जाएगा।</item>
         <item quantity="other">%1$d यह सभी चयनित फ़ाइलों को स्थायी रूप से हटा देगा। इन आइटम से जुड़ा कोई भी मेसेज पाठ भी हटा दिया जाएगा।</item>
     </plurals>
-    <string name="MediaOverviewActivity_Media_delete_progress_title">हटाना</string>
-    <string name="MediaOverviewActivity_Media_delete_progress_message">मेसेज हटाए जा रहे हैं</string>
-    <string name="MediaOverviewActivity_Sort_by">इसके अनुसार क्रमबद्ध करें</string>
-    <string name="MediaOverviewActivity_Newest">नवीनतम</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_title">डिलीट किया जा रहा है</string>
+    <string name="MediaOverviewActivity_Media_delete_progress_message">मैसेज डिलीट किए जा रहे हैं…</string>
+    <string name="MediaOverviewActivity_Sort_by">इस तरह सॉर्ट करें</string>
+    <string name="MediaOverviewActivity_Newest">सबसे नया</string>
     <string name="MediaOverviewActivity_Oldest">सबसे पुराना</string>
-    <string name="MediaOverviewActivity_Storage_used">स्टॉरेज का उपयोग किया</string>
-    <string name="MediaOverviewActivity_All_storage_use">सभी स्टॉरेज उपयोग</string>
-    <string name="MediaOverviewActivity_Grid_view_description">ग्रिड व्यु</string>
-    <string name="MediaOverviewActivity_List_view_description">लिस्ट व्यु</string>
-    <string name="MediaOverviewActivity_Selected_description">चयनित</string>
-    <string name="MediaOverviewActivity_select_all">सभी को चुन लो</string>
+    <string name="MediaOverviewActivity_Storage_used">स्टोरेज का इस्तेमाल</string>
+    <string name="MediaOverviewActivity_All_storage_use">स्टोरेज का कुल इस्तेमाल</string>
+    <string name="MediaOverviewActivity_Grid_view_description">ग्रिड व्यू</string>
+    <string name="MediaOverviewActivity_List_view_description">लिस्ट व्यू</string>
+    <string name="MediaOverviewActivity_Selected_description">चुना गया</string>
+    <string name="MediaOverviewActivity_select_all">सभी को चुनें</string>
     <plurals name="MediaOverviewActivity_save_plural">
         <item quantity="one">सेव करें</item>
         <item quantity="other">सेव करें</item>
@@ -1729,28 +1729,28 @@
 
     <!-- Screen title shown when selecting multiple items in the media overview screen. The first placeholder is the number of items, the second number is the cumulative file size in bytes. -->
     <plurals name="MediaOverviewActivity_d_selected_s">
-        <item quantity="one">%1$d चुना हुआ (%2$s)</item>
-        <item quantity="other">%1$d चुना हुआ (%2$s)</item>
+        <item quantity="one">%1$d चुना गया (%2$s)</item>
+        <item quantity="other">%1$d चुना गया। (%2$s)</item>
     </plurals>
     <string name="MediaOverviewActivity_file">फ़ाइल</string>
     <string name="MediaOverviewActivity_audio">ऑडियो</string>
     <string name="MediaOverviewActivity_video">वीडियो</string>
-    <string name="MediaOverviewActivity_image">तस्वीर</string>
+    <string name="MediaOverviewActivity_image">इमेज</string>
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_2_part" translatable="false">%1$s · %2$s</string> -->
   <!-- Removed by excludeNonTranslatables <string name="MediaOverviewActivity_detail_line_3_part" translatable="false">%1$s · %2$s · %3$s</string> -->
 
-    <string name="MediaOverviewActivity_sent_by_s">%1$s द्वारा भेजा</string>
-    <string name="MediaOverviewActivity_sent_by_you">आपके द्वारा भेजा गया</string>
-    <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s द्वारा %2$s को भेजा गया</string>
-    <string name="MediaOverviewActivity_sent_by_you_to_s">आपके द्वारा %1$s को भेजा गया</string>
+    <string name="MediaOverviewActivity_sent_by_s">%1$s ने भेजा</string>
+    <string name="MediaOverviewActivity_sent_by_you">आपने भेजा</string>
+    <string name="MediaOverviewActivity_sent_by_s_to_s">%1$s ने %2$s को भेज</string>
+    <string name="MediaOverviewActivity_sent_by_you_to_s">आपने %1$s को भेजा</string>
     <!-- Error message shown when the user is trying to open a media that is not sent yet. -->
     <string name="MediaOverviewActivity_this_media_is_not_sent_yet">यह मीडिया अभी तक भेजा नहीं गया है।</string>
 
     <!-- Megaphones -->
-    <string name="Megaphones_remind_me_later">मुझे बाद में याद दिलाना</string>
-    <string name="Megaphones_verify_your_signal_pin">अपना Signal पिन सत्यापित करें</string>
-    <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">हम कभी-कभी आपको अपना पिन वेरिफाई करने के लिए कहेंगे ताकि आपको यह याद रहे।</string>
-    <string name="Megaphones_verify_pin">पिन सत्यापित करें</string>
+    <string name="Megaphones_remind_me_later">बाद में याद दिलाएं</string>
+    <string name="Megaphones_verify_your_signal_pin">अपना Signal पिन वेरिफ़ाई करें</string>
+    <string name="Megaphones_well_occasionally_ask_you_to_verify_your_pin">हम बीच-बीच में आपको अपना पिन वेरिफ़ाई करने के लिए कहेंगे, ताकि आपको यह याद रहे।</string>
+    <string name="Megaphones_verify_pin">पिन वेरिफ़ाई करें</string>
     <string name="Megaphones_get_started">शुरू हो जाओ</string>
     <string name="Megaphones_new_group">नया ग्रुप</string>
     <!-- Text in a card view to invite friends as part of the onboarding megaphone -->
@@ -1769,28 +1769,28 @@
     <string name="MessageQuotesBottomSheet_replies">जवाब</string>
 
     <!-- NotificationBarManager -->
-    <string name="NotificationBarManager__establishing_signal_call">Signal कॉल की स्थापना की जा रही है</string>
+    <string name="NotificationBarManager__establishing_signal_call">Signal कॉल की जा रही है</string>
     <!-- Temporary notification shown when starting the calling service -->
     <string name="NotificationBarManager__starting_signal_call_service">Signal कॉल सेवा शुरू की जा रही है</string>
     <string name="NotificationBarManager__stopping_signal_call_service">Signal कॉल सेवा बंद की जा रही है</string>
     <string name="NotificationBarManager__cancel_call">कॉल रद्द करें</string>
 
     <!-- NotificationsMegaphone -->
-    <string name="NotificationsMegaphone_turn_on_notifications">सूचनाओं को चालू करना है?</string>
-    <string name="NotificationsMegaphone_never_miss_a_message">अपने संपर्कों और ग्रुप्स से कभी भी कोई मेसेज न छूट पाएँ।</string>
-    <string name="NotificationsMegaphone_turn_on">शुरु करें</string>
+    <string name="NotificationsMegaphone_turn_on_notifications">नोटिफ़िकेशन चालू करना है?</string>
+    <string name="NotificationsMegaphone_never_miss_a_message">कभी भी अपने कॉन्टैक्ट और ग्रुप का मैसेज मिस न करें।</string>
+    <string name="NotificationsMegaphone_turn_on">चालू करें</string>
     <string name="NotificationsMegaphone_not_now">अभी नहीं</string>
 
     <!-- NotificationMmsMessageRecord -->
-    <string name="NotificationMmsMessageRecord_multimedia_message">मल्टीमीडिया मेसेज</string>
-    <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS मेसेज डाउनलोड किया जा रहा है</string>
-    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS मेसेज डाउनलोड करने में त्रुटि, पुनः प्रयास करने के लिए टैप करें</string>
+    <string name="NotificationMmsMessageRecord_multimedia_message">मल्टीमीडिया मैसेज</string>
+    <string name="NotificationMmsMessageRecord_downloading_mms_message">MMS मैसेज डाउनलोड किया जा रहा है</string>
+    <string name="NotificationMmsMessageRecord_error_downloading_mms_message">MMS मैसेज डाउनलोड करने में कोई गड़बड़ी हुई। दोबारा कोशिश करने के लिए टैप करें</string>
 
     <!-- MediaPickerActivity -->
     <string name="MediaPickerActivity__menu_open_camera">कैमरा खोलें</string>
 
     <!-- MediaSendActivity -->
-    <string name="MediaSendActivity_camera_unavailable">कैमरा अनुपलब्ध।</string>
+    <string name="MediaSendActivity_camera_unavailable">कैमरा उपलब्ध नहीं है।</string>
 
     <!-- MediaRepository -->
     <string name="MediaRepository_all_media">सभी मीडिया</string>
@@ -1798,10 +1798,10 @@
 
     <!-- MessageRecord -->
     <string name="MessageRecord_unknown">अनजान</string>
-    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal के पुराने वर्ज़न का उपयोग करके एन्क्रिप्ट किया गया एक संदेश प्राप्त हुआ जो अब समर्थित नहीं है। कृपया प्रेषक से नवीनतम वर्ज़न में अपडेट करने और संदेश भेजने के लिए कहें।</string>
-    <string name="MessageRecord_left_group">आपने समूह छोड़ दिया है</string>
-    <string name="MessageRecord_you_updated_group">आपने समूह को अपडेट किया है।</string>
-    <string name="MessageRecord_the_group_was_updated">ग्रुप को अपडेट किया गया था।</string>
+    <string name="MessageRecord_message_encrypted_with_a_legacy_protocol_version_that_is_no_longer_supported">Signal के पुराने वर्ज़न से एनक्रिप्ट किया गया मैसेज मिला है, जो अब काम नहीं करता। कृपया भेजने वाले से कहें कि वह Signal का नया वर्ज़न डाउनलोड करे और मैसेज दोबारा भेजे।</string>
+    <string name="MessageRecord_left_group">आपने ग्रुप छोड़ दिया है।</string>
+    <string name="MessageRecord_you_updated_group">आपने ग्रुप अपडेट किया है।</string>
+    <string name="MessageRecord_the_group_was_updated">ग्रुप अपडेट हुआ था।</string>
     <!-- Update message shown when placing an outgoing 1:1 voice/audio call -->
     <string name="MessageRecord_outgoing_voice_call">आउटगोइंग वॉयस कॉल</string>
     <!-- Update message shown when placing an outgoing 1:1 video call -->
