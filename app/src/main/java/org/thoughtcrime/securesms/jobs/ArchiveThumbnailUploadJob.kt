@@ -98,6 +98,11 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.success()
     }
 
+    if (attachment.quote) {
+      Log.w(TAG, "$attachmentId is a quote, skipping.")
+      return Result.success()
+    }
+
     if (attachment.remoteDigest == null && attachment.dataHash == null && attachment.hadIntegrityCheckPerformed()) {
       Log.w(TAG, "$attachmentId has no integrity check! Cannot proceed.")
       return Result.success()

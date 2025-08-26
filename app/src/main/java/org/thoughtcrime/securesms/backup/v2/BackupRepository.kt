@@ -41,8 +41,10 @@ import org.signal.core.util.getForeignKeyViolations
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
 import org.signal.core.util.money.FiatMoney
+import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireIntOrNull
 import org.signal.core.util.requireNonNullString
+import org.signal.core.util.requireString
 import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.core.util.urlEncode
 import org.signal.core.util.withinTransaction
@@ -2393,11 +2395,22 @@ class ArchiveMediaItemIterator(private val cursor: Cursor) : Iterator<ArchiveMed
     val plaintextHash = cursor.requireNonNullString(AttachmentTable.DATA_HASH_END).decodeBase64OrThrow()
     val remoteKey = cursor.requireNonNullString(AttachmentTable.REMOTE_KEY).decodeBase64OrThrow()
     val cdn = cursor.requireIntOrNull(AttachmentTable.ARCHIVE_CDN)
+    val quote = cursor.requireBoolean(AttachmentTable.QUOTE)
+    val contentType = cursor.requireString(AttachmentTable.CONTENT_TYPE)
 
     val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
     val thumbnailMediaId = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
 
     cursor.moveToNext()
-    return ArchiveMediaItem(mediaId, thumbnailMediaId, cdn, plaintextHash, remoteKey)
+
+    return ArchiveMediaItem(
+      mediaId = mediaId,
+      thumbnailMediaId = thumbnailMediaId,
+      cdn = cdn,
+      plaintextHash = plaintextHash,
+      remoteKey = remoteKey,
+      quote = quote,
+      contentType = contentType
+    )
   }
 }

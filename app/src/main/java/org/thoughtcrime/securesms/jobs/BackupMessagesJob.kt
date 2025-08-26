@@ -366,7 +366,7 @@ class BackupMessagesJob private constructor(
       cancellationSignal = { this.isCanceled },
       currentTime = currentTime
     ) {
-      writeMediaCursorToTemporaryTable(it, currentTime = currentTime, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
+      writeMediaCursorToTemporaryTable(it, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
     }
 
     if (isCanceled) {
@@ -415,7 +415,7 @@ class BackupMessagesJob private constructor(
     )
   }
 
-  private fun writeMediaCursorToTemporaryTable(db: SignalDatabase, mediaBackupEnabled: Boolean, currentTime: Long) {
+  private fun writeMediaCursorToTemporaryTable(db: SignalDatabase, mediaBackupEnabled: Boolean) {
     if (mediaBackupEnabled) {
       db.attachmentTable.getAttachmentsEligibleForArchiveUpload().use {
         SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(

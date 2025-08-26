@@ -24,6 +24,7 @@ import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
+import org.thoughtcrime.securesms.util.MediaUtil
 
 /**
  * When we delete attachments locally, we can't immediately delete them from the archive CDN. This is because there is still a backup that exists that
@@ -140,7 +141,10 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
         )
 
         writePendingMediaObjectsChunk(
-          chunk.map { MediaEntry(it.thumbnailMediaId, it.cdn, it.plaintextHash, it.remoteKey, isThumbnail = true) }
+          chunk
+            .filterNot { it.quote }
+            .filter { MediaUtil.isImageOrVideoType(it.contentType) }
+            .map { MediaEntry(it.thumbnailMediaId, it.cdn, it.plaintextHash, it.remoteKey, isThumbnail = true) }
         )
       }
   }
@@ -291,6 +295,10 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
   }
 
   private fun writePendingMediaObjectsChunk(chunk: List<MediaEntry>) {
+    if (chunk.isEmpty()) {
+      return
+    }
+
     val values = chunk.map {
       contentValuesOf(
         MEDIA_ID to it.mediaId,
@@ -324,7 +332,9 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     val thumbnailMediaId: String,
     val cdn: Int?,
     val plaintextHash: ByteArray,
-    val remoteKey: ByteArray
+    val remoteKey: ByteArray,
+    val quote: Boolean,
+    val contentType: String?
   )
 
   class CdnMismatchResult(

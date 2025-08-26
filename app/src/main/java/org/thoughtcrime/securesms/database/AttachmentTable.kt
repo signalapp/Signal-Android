@@ -416,7 +416,7 @@ class AttachmentTable(
    */
   fun getAttachmentsEligibleForArchiveUpload(): Cursor {
     return readableDatabase
-      .select(DATA_HASH_END, REMOTE_KEY, ARCHIVE_CDN)
+      .select(DATA_HASH_END, REMOTE_KEY, ARCHIVE_CDN, QUOTE, CONTENT_TYPE)
       .from(TABLE_NAME)
       .where("$DATA_HASH_END NOT NULL AND $REMOTE_KEY NOT NULL AND $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}")
       .run()

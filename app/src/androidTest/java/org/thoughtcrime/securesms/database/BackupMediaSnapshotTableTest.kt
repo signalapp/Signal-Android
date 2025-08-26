@@ -52,6 +52,30 @@ class BackupMediaSnapshotTableTest {
   }
 
   @Test
+  fun givenAnEmptyTable_whenIWriteToTableAndCommitQuotes_thenIExpectFilledTableWithNoThumbnails() {
+    val inputCount = 100
+
+    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = inputCount, quote = true))
+    SignalDatabase.backupMediaSnapshots.commitPendingRows()
+
+    val count = getCountForLatestSnapshot(includeThumbnails = true)
+
+    assertThat(count).isEqualTo(inputCount)
+  }
+
+  @Test
+  fun givenAnEmptyTable_whenIWriteToTableAndCommitNonMedia_thenIExpectFilledTableWithNoThumbnails() {
+    val inputCount = 100
+
+    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = inputCount, contentType = "text/plain"))
+    SignalDatabase.backupMediaSnapshots.commitPendingRows()
+
+    val count = getCountForLatestSnapshot(includeThumbnails = true)
+
+    assertThat(count).isEqualTo(inputCount)
+  }
+
+  @Test
   fun givenAFilledTable_whenIReinsertObjects_thenIExpectUncommittedOverrides() {
     val initialCount = 100
     val additionalCount = 25
@@ -290,19 +314,21 @@ class BackupMediaSnapshotTableTest {
       .readToSingleInt(0)
   }
 
-  private fun generateArchiveMediaItemSequence(count: Int): Sequence<ArchiveMediaItem> {
+  private fun generateArchiveMediaItemSequence(count: Int, quote: Boolean = false, contentType: String = "image/jpeg"): Sequence<ArchiveMediaItem> {
     return (1..count)
       .asSequence()
-      .map { createArchiveMediaItem(it) }
+      .map { createArchiveMediaItem(it, quote = quote, contentType = contentType) }
   }
 
-  private fun createArchiveMediaItem(seed: Int, cdn: Int = 0): ArchiveMediaItem {
+  private fun createArchiveMediaItem(seed: Int, cdn: Int = 0, quote: Boolean = false, contentType: String = "image/jpeg"): ArchiveMediaItem {
     return ArchiveMediaItem(
       mediaId = "media_id_$seed",
       thumbnailMediaId = "thumbnail_media_id_$seed",
       cdn = cdn,
       plaintextHash = Util.toByteArray(seed),
-      remoteKey = Util.toByteArray(seed)
+      remoteKey = Util.toByteArray(seed),
+      quote = quote,
+      contentType = contentType
     )
   }
 
