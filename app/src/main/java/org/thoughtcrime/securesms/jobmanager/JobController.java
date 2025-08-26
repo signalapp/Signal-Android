@@ -27,6 +27,7 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -43,15 +44,15 @@ class JobController {
 
   private static final Predicate<MinimalJobSpec> NO_PREDICATE = spec -> true;
 
-  private final Application            application;
-  private final JobStorage             jobStorage;
-  private final JobInstantiator        jobInstantiator;
-  private final ConstraintInstantiator constraintInstantiator;
-  private final JobTracker             jobTracker;
-  private final Scheduler              scheduler;
-  private final Debouncer              debouncer;
-  private final Callback               callback;
-  private final Map<String, Job>       runningJobs;
+  private final Application                application;
+  private final JobStorage                 jobStorage;
+  private final JobInstantiator            jobInstantiator;
+  private final ConstraintInstantiator     constraintInstantiator;
+  private final JobTracker                 jobTracker;
+  private final Scheduler                  scheduler;
+  private final Debouncer                  debouncer;
+  private final Callback                   callback;
+  private final Map<String, ActiveJobInfo> runningJobs;
 
   private final int                             minGeneralRunners;
   private final int                             maxGeneralRunners;
@@ -242,11 +243,11 @@ class JobController {
     List<Job> inactiveJobDependents = Collections.emptyList();
 
     synchronized (this) {
-      Job runningJob = runningJobs.get(id);
+      ActiveJobInfo runningJob = runningJobs.get(id);
 
       if (runningJob != null) {
-        Log.w(TAG, JobLogger.format(runningJob, "Canceling while running."));
-        runningJob.cancel();
+        Log.w(TAG, JobLogger.format(runningJob.job, "Canceling while running."));
+        runningJob.job.cancel();
       } else {
         JobSpec jobSpec = jobStorage.getJobSpec(id);
 
@@ -373,7 +374,7 @@ class JobController {
    * @return Job to execute, or null if the timeout is hit
    */
   @WorkerThread
-  synchronized @Nullable Job pullNextEligibleJobForExecution(@NonNull Predicate<MinimalJobSpec> predicate, long timeoutMs) {
+  synchronized @Nullable Job pullNextEligibleJobForExecution(@NonNull Predicate<MinimalJobSpec> predicate, String runnerName, long timeoutMs) {
     try {
       Job job;
       long startTime = System.currentTimeMillis();
@@ -395,7 +396,7 @@ class JobController {
       }
 
       jobStorage.markJobAsRunning(job.getId(), System.currentTimeMillis());
-      runningJobs.put(job.getId(), job);
+      runningJobs.put(job.getId(), new ActiveJobInfo(job, runnerName, timeoutMs == 0));
       jobTracker.onStateChange(job, JobTracker.JobState.RUNNING);
 
       return job;
@@ -410,6 +411,7 @@ class JobController {
    */
   @WorkerThread
   synchronized @NonNull String getDebugInfo() {
+    List<JobSpec>        running      = runningJobs.keySet().stream().map(jobStorage::getJobSpec).collect(java.util.stream.Collectors.toList());
     List<JobSpec>        jobs         = jobStorage.debugGetJobSpecs(1000);
     List<ConstraintSpec> constraints  = jobStorage.debugGetConstraintSpecs(1000);
     List<DependencySpec> dependencies = jobStorage.debugGetAllDependencySpecs();
@@ -417,7 +419,18 @@ class JobController {
 
     StringBuilder info = new StringBuilder();
 
-    info.append("-- Jobs\n");
+    info.append("-- Running Jobs\n");
+    if (!jobs.isEmpty()) {
+      running.stream().forEach(j -> {
+        ActiveJobInfo activeInfo  = Objects.requireNonNull(runningJobs.get(j.getId()));
+
+        info.append("[").append(activeInfo.runnerName).append("] ").append(j.toString()).append('\n');
+      });
+    } else {
+      info.append("None\n");
+    }
+
+    info.append("\n-- Jobs\n");
     if (!jobs.isEmpty()) {
       Stream.of(jobs).forEach(j -> info.append(j.toString()).append('\n'));
     } else {
@@ -439,10 +452,14 @@ class JobController {
     }
 
     info.append("\n-- Additional Details\n");
+    info.append("Runners started: ").append(runnersStarted.get()).append('\n');
+    info.append("General runner count: ").append(activeGeneralRunners.size()).append('\n');
+    info.append("Reserved runner count: ").append(reservedRunnerPredicates.size()).append("\n\n");
+
     if (additional != null) {
       info.append(additional).append('\n');
     } else {
-      info.append("None\n");
+      info.append("No job storage info.\n");
     }
 
     return info.toString();
@@ -462,9 +479,9 @@ class JobController {
 
     for (Predicate<MinimalJobSpec> predicate : reservedRunnerPredicates) {
       int id = nextRunnerId.incrementAndGet();
-      JobRunner runner = new JobRunner(application, id, this, predicate == null ? NO_PREDICATE : predicate, 0);
+      JobRunner runner = new JobRunner(application, JobRunner.generateName(id, true, true), this, predicate == null ? NO_PREDICATE : predicate, 0);
       runner.start();
-      Log.i(TAG, "Spawned new reserved JobRunner[" + id + "]");
+      Log.i(TAG, "Spawned new runner " + runner.getName());
     }
 
     for (int i = 0; i < minGeneralRunners; i++) {
@@ -501,17 +518,17 @@ class JobController {
 
   private synchronized void spawnGeneralRunner(long timeOutMs) {
     int id = nextRunnerId.incrementAndGet();
-    JobRunner runner = new JobRunner(application, id, this, NO_PREDICATE, timeOutMs);
+    JobRunner runner = new JobRunner(application, JobRunner.generateName(id, false, timeOutMs == 0), this, NO_PREDICATE, timeOutMs);
     runner.start();
     activeGeneralRunners.add(runner);
 
-    Log.d(TAG, "Spawned new " + (timeOutMs == 0 ? "core" : "temporary") + " general JobRunner[" + id + "] (CurrentActive: " + activeGeneralRunners.size() + ")");
+    Log.d(TAG, "Spawned new general runner " + runner.getName() + " (CurrentActive: " + activeGeneralRunners.size() + ")");
   }
 
   @VisibleForTesting
   synchronized void onRunnerTerminated(@NonNull JobRunner runner) {
     activeGeneralRunners.remove(runner);
-    Log.i(TAG, "JobRunner[" + runner.getId() + "] terminated. (CurrentActive: " + activeGeneralRunners.size() + ")");
+    Log.i(TAG, runner.getName() + " terminated. (CurrentActive: " + activeGeneralRunners.size() + ")");
   }
 
   @WorkerThread
@@ -712,4 +729,10 @@ class JobController {
   interface Callback {
     void onEmpty();
   }
+
+  record ActiveJobInfo(
+    @NonNull Job job,
+    String runnerName,
+    boolean coreRunner
+  ) {}
 }

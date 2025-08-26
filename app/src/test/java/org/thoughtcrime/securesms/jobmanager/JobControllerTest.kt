@@ -157,7 +157,7 @@ class JobControllerTest {
     every { jobStorage.getNextEligibleJob(any(), any()) } returns null
 
     // When
-    val result = jobController.pullNextEligibleJobForExecution({ true }, 100)
+    val result = jobController.pullNextEligibleJobForExecution({ true }, "runner", 100)
 
     // Then
     assertThat(result).isNull()
@@ -175,7 +175,7 @@ class JobControllerTest {
     every { jobStorage.markJobAsRunning("test-job-1", any()) } returns Unit
 
     // When
-    val result = jobController.pullNextEligibleJobForExecution({ true }, 0)
+    val result = jobController.pullNextEligibleJobForExecution({ true }, "runner", 0)
 
     // Then
     assertThat(result).isEqualTo(testJob)
@@ -313,7 +313,7 @@ class JobControllerTest {
     every { jobStorage.getNextEligibleJob(any(), any()) } returns null
 
     // When
-    jobController.pullNextEligibleJobForExecution({ true }, 10)
+    jobController.pullNextEligibleJobForExecution({ true }, "runner", 10)
 
     // Then
     verify { debouncer.publish(any()) }
