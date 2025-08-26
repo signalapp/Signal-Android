@@ -35,6 +35,8 @@ import org.thoughtcrime.securesms.database.PendingRetryReceiptCache;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobmanager.JobMigrator;
 import org.thoughtcrime.securesms.jobmanager.impl.FactoryJobPredicate;
+import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob;
+import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
 import org.thoughtcrime.securesms.jobs.FastJobStorage;
 import org.thoughtcrime.securesms.jobs.GroupCallUpdateSendJob;
 import org.thoughtcrime.securesms.jobs.IndividualSendJob;
@@ -201,6 +203,7 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                                                   .setJobStorage(new FastJobStorage(JobDatabase.getInstance(context)))
                                                                   .setJobMigrator(new JobMigrator(TextSecurePreferences.getJobManagerVersion(context), JobManager.CURRENT_VERSION, JobManagerFactories.getJobMigrations(context)))
                                                                   .addReservedJobRunner(new FactoryJobPredicate(PushProcessMessageJob.KEY, MarkerJob.KEY))
+                                                                  .addReservedJobRunner(new FactoryJobPredicate(AttachmentUploadJob.KEY, AttachmentCompressionJob.KEY))
                                                                   .addReservedJobRunner(new FactoryJobPredicate(
                                                                       IndividualSendJob.KEY,
                                                                       PushGroupSendJob.KEY,
