@@ -95,12 +95,15 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.jobs.GenerateAudioWaveFormJob
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.mms.MediaStream
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.stickers.StickerLocator
+import org.thoughtcrime.securesms.util.BitmapDecodingException
 import org.thoughtcrime.securesms.util.FileUtils
+import org.thoughtcrime.securesms.util.ImageCompressionUtil
 import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -298,6 +301,9 @@ class AttachmentTable(
     private val DATA_FILE_INFO_PROJECTION = arrayOf(
       ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_TRANSFER_STATE, THUMBNAIL_FILE, THUMBNAIL_RESTORE_STATE, THUMBNAIL_RANDOM
     )
+
+    private const val QUOTE_THUMBNAIL_DIMEN = 150
+    private const val QUOTE_IMAGE_QUALITY = 80
 
     @JvmStatic
     @Throws(IOException::class)
@@ -1789,7 +1795,7 @@ class AttachmentTable(
     try {
       for (attachment in quoteAttachment) {
         val attachmentId = when {
-          attachment.uri != null -> insertAttachmentWithData(mmsId, attachment, true)
+          attachment.uri != null -> insertQuoteAttachment(mmsId, attachment)
           attachment is ArchivedAttachment -> insertArchivedAttachment(mmsId, attachment, true)
           else -> insertUndownloadedAttachment(mmsId, attachment, true)
         }
@@ -2407,6 +2413,104 @@ class AttachmentTable(
 
     AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
     return attachmentId
+  }
+
+  /**
+   * When inserting a quote attachment, it looks a lot like a normal attachment insert, but rather than insert the actual data pointed at by the attachment's
+   * URI, we instead want to generate a thumbnail of that attachment and use that instead.
+   */
+  @Throws(MmsException::class)
+  private fun insertQuoteAttachment(messageId: Long, attachment: Attachment): AttachmentId {
+    Log.d(TAG, "[insertQuoteAttachment] Inserting quote attachment for messageId $messageId.")
+
+    val thumbnail = generateQuoteThumbnail(DecryptableUri(attachment.uri!!), attachment.contentType)
+    if (thumbnail != null) {
+      Log.d(TAG, "[insertQuoteAttachment] Successfully generated quote thumbnail for messageId $messageId.")
+
+      return insertAttachmentWithData(
+        messageId = messageId,
+        dataStream = thumbnail.data.inputStream(),
+        attachment = attachment,
+        quote = true
+      )
+    }
+
+    Log.d(TAG, "[insertQuoteAttachment] Unable to generate quote thumbnail for messageId $messageId. Content type: ${attachment.contentType}")
+    val attachmentId: AttachmentId = writableDatabase.withinTransaction { db ->
+      val contentValues = ContentValues().apply {
+        put(MESSAGE_ID, messageId)
+        put(CONTENT_TYPE, attachment.contentType)
+        put(VOICE_NOTE, attachment.voiceNote.toInt())
+        put(BORDERLESS, attachment.borderless.toInt())
+        put(VIDEO_GIF, attachment.videoGif.toInt())
+        put(TRANSFER_STATE, TRANSFER_PROGRESS_DONE)
+        put(DATA_SIZE, 0)
+        put(WIDTH, attachment.width)
+        put(HEIGHT, attachment.height)
+        put(QUOTE, 1)
+        put(BLUR_HASH, attachment.blurHash?.hash)
+        put(FILE_NAME, attachment.fileName)
+
+        attachment.stickerLocator?.let { sticker ->
+          put(STICKER_PACK_ID, sticker.packId)
+          put(STICKER_PACK_KEY, sticker.packKey)
+          put(STICKER_ID, sticker.stickerId)
+          put(STICKER_EMOJI, sticker.emoji)
+        }
+      }
+
+      val rowId = db.insert(TABLE_NAME, null, contentValues)
+      AttachmentId(rowId)
+    }
+
+    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
+    return attachmentId
+  }
+
+  private fun generateQuoteThumbnail(uri: DecryptableUri, contentType: String?): ImageCompressionUtil.Result? {
+    return try {
+      when {
+        MediaUtil.isImageType(contentType) -> {
+          val hasTransparency = MediaUtil.isPngType(contentType) || MediaUtil.isWebpType(contentType)
+          val outputFormat = if (hasTransparency) MediaUtil.IMAGE_WEBP else MediaUtil.IMAGE_JPEG
+
+          ImageCompressionUtil.compress(
+            context,
+            contentType,
+            outputFormat,
+            uri,
+            QUOTE_THUMBNAIL_DIMEN,
+            QUOTE_IMAGE_QUALITY
+          )
+        }
+        MediaUtil.isVideoType(contentType) -> {
+          val videoThumbnail = MediaUtil.getVideoThumbnail(context, uri.uri)
+          if (videoThumbnail != null) {
+            ImageCompressionUtil.compress(
+              context,
+              MediaUtil.IMAGE_JPEG,
+              MediaUtil.IMAGE_JPEG,
+              uri,
+              QUOTE_THUMBNAIL_DIMEN,
+              QUOTE_IMAGE_QUALITY
+            )
+          } else {
+            Log.w(TAG, "[generateQuoteThumbnail] Failed to extract video thumbnail")
+            null
+          }
+        }
+        else -> {
+          Log.w(TAG, "[generateQuoteThumbnail] Unsupported content type for thumbnail generation: $contentType")
+          null
+        }
+      }
+    } catch (e: BitmapDecodingException) {
+      Log.w(TAG, "[generateQuoteThumbnail] Failed to decode image for thumbnail", e)
+      null
+    } catch (e: Exception) {
+      Log.w(TAG, "[generateQuoteThumbnail] Failed to generate thumbnail", e)
+      null
+    }
   }
 
   /**

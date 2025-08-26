@@ -128,7 +128,7 @@ object EditMessageProcessor {
         targetQuote.author,
         targetQuote.displayText.toString(),
         targetQuote.isOriginalMissing,
-        emptyList(),
+        null,
         null,
         targetQuote.quoteType,
         null

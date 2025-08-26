@@ -464,8 +464,13 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
     return body;
   }
 
-  public List<Attachment> getAttachments() {
-    return attachments.asAttachments();
+  public @Nullable Attachment getAttachment() {
+    List<Attachment> converted = attachments.asAttachments();
+    if (converted.size() > 0) {
+      return converted.get(0);
+    } else {
+      return null;
+    }
   }
 
   public @NonNull QuoteModel.Type getQuoteType() {

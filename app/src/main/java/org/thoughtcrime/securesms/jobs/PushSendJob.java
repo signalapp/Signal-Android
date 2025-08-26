@@ -77,6 +77,7 @@ import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulRespons
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
 import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
+import org.whispersystems.signalservice.internal.push.AttachmentPointer;
 import org.whispersystems.signalservice.internal.push.BodyRange;
 
 import java.io.ByteArrayInputStream;
@@ -363,48 +364,19 @@ public abstract class PushSendJob extends SendJob {
     List<BodyRange>                                       bodyRanges           = getBodyRanges(message.getOutgoingQuote().getBodyRanges());
     QuoteModel.Type                                       quoteType            = message.getOutgoingQuote().getType();
     List<SignalServiceDataMessage.Quote.QuotedAttachment> quoteAttachments     = new LinkedList<>();
-    Optional<Attachment>                                  localQuoteAttachment = message.getOutgoingQuote()
-                                                                                        .getAttachments()
-                                                                                        .stream()
-                                                                                        .filter(a -> !MediaUtil.isViewOnceType(a.contentType))
-                                                                                        .findFirst();
+    Optional<Attachment>                                  localQuoteAttachment = Optional.ofNullable(message.getOutgoingQuote()).map(QuoteModel::getAttachment);
+
+    if (localQuoteAttachment.isPresent() && MediaUtil.isViewOnceType(localQuoteAttachment.get().contentType)) {
+      localQuoteAttachment = Optional.empty();
+    }
 
     if (localQuoteAttachment.isPresent()) {
-      Attachment attachment = localQuoteAttachment.get();
+      Attachment              attachment             = localQuoteAttachment.get();
+      SignalServiceAttachment quoteAttachmentPointer = getAttachmentPointerFor(localQuoteAttachment.get());
 
-      ImageCompressionUtil.Result thumbnailData = null;
-      SignalServiceAttachment     thumbnail     = null;
-
-      try {
-        if (MediaUtil.isImageType(attachment.contentType) && attachment.getUri() != null) {
-          thumbnailData = ImageCompressionUtil.compress(context, attachment.contentType, attachment.contentType, new DecryptableUri(attachment.getUri()), 100, 50);
-        } else if (Build.VERSION.SDK_INT >= 23 && MediaUtil.isVideoType(attachment.contentType) && attachment.getUri() != null) {
-          Bitmap bitmap = MediaUtil.getVideoThumbnail(context, attachment.getUri(), 1000);
-
-          if (bitmap != null) {
-            thumbnailData = ImageCompressionUtil.compress(context, attachment.contentType, attachment.contentType, new DecryptableUri(attachment.getUri()), 100, 50);
-          }
-        }
-
-        if (thumbnailData != null) {
-          SignalServiceAttachment.Builder builder = SignalServiceAttachment.newStreamBuilder()
-                                                                           .withContentType(thumbnailData.getMimeType())
-                                                                           .withWidth(thumbnailData.getWidth())
-                                                                           .withHeight(thumbnailData.getHeight())
-                                                                           .withLength(thumbnailData.getData().length)
-                                                                           .withStream(new ByteArrayInputStream(thumbnailData.getData()))
-                                                                           .withResumableUploadSpec(AppDependencies.getSignalServiceMessageSender().getResumableUploadSpec())
-                                                                           .withUuid(UUID.randomUUID());
-
-          thumbnail = builder.build();
-        }
-
-        quoteAttachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.videoGif ? MediaUtil.IMAGE_GIF : attachment.contentType,
-                                                                                 attachment.fileName,
-                                                                                 thumbnail));
-      } catch (BitmapDecodingException e) {
-        Log.w(TAG, e);
-      }
+      quoteAttachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.videoGif ? MediaUtil.IMAGE_GIF : attachment.contentType,
+                                                                               attachment.fileName,
+                                                                               quoteAttachmentPointer));
     }
 
     Recipient quoteAuthorRecipient = Recipient.resolved(quoteAuthor);

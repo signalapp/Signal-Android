@@ -703,7 +703,7 @@ class AttachmentTableTest_deduping {
             author = Recipient.self().id,
             text = "Some quote text",
             isOriginalMissing = false,
-            attachments = listOf(originalAttachment),
+            attachment = originalAttachment,
             mentions = emptyList(),
             type = QuoteModel.Type.NORMAL,
             bodyRanges = null
@@ -712,7 +712,7 @@ class AttachmentTableTest_deduping {
         threadId = threadId,
         forceSms = false,
         insertListener = null
-      )
+      ).messageId
 
       val attachments = SignalDatabase.attachments.getAttachmentsForMessage(messageId)
       return attachments[0].attachmentId

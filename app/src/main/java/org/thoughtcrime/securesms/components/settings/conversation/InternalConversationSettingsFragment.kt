@@ -185,7 +185,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
             val id = SignalDatabase.messages.insertMessageOutbox(
               message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i"),
               threadId = targetThread
-            )
+            ).messageId
             SignalDatabase.messages.markAsSent(id, true)
           } else {
             SignalDatabase.messages.insertMessageInbox(
@@ -215,7 +215,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
           val id = SignalDatabase.messages.insertMessageOutbox(
             message = OutgoingMessage(threadRecipient = recipient, sentTimeMillis = time, body = "Outgoing: $i", attachments = listOf(attachment)),
             threadId = targetThread
-          )
+          ).messageId
           SignalDatabase.messages.markAsSent(id, true)
           SignalDatabase.attachments.getAttachmentsForMessage(id).forEach {
             SignalDatabase.attachments.debugMakeValidForArchive(it.attachmentId)
@@ -249,7 +249,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
       splitThreadId,
       false,
       null
-    )
+    ).messageId
     SignalDatabase.messages.markAsSent(messageId, true)
 
     SignalDatabase.threads.update(splitThreadId, true)

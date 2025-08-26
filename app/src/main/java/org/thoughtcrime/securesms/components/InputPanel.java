@@ -309,7 +309,7 @@ public class InputPanel extends ConstraintLayout
                                         quoteView.getAuthor().getId(),
                                         quoteView.getBody().toString(),
                                         false,
-                                        quoteView.getAttachments(),
+                                        quoteView.getAttachment(),
                                         quoteView.getMentions(),
                                         quoteView.getQuoteType(),
                                         quoteView.getBodyRanges()));

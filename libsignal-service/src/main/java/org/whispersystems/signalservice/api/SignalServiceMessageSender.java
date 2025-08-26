@@ -1098,7 +1098,11 @@ public class SignalServiceMessageSender {
           }
 
           if (attachment.getThumbnail() != null) {
-            quotedAttachment.thumbnail(createAttachmentPointer(attachment.getThumbnail().asStream()));
+            if (attachment.getThumbnail().isStream()) {
+              quotedAttachment.thumbnail(createAttachmentPointer(attachment.getThumbnail().asStream()));
+            } else {
+              quotedAttachment.thumbnail(createAttachmentPointer(attachment.getThumbnail().asPointer()));
+            }
           }
 
           quotedAttachments.add(quotedAttachment.build());

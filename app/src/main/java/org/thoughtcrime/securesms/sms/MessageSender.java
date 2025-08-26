@@ -36,6 +36,7 @@ import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MessageTable;
+import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
 import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
 import org.thoughtcrime.securesms.database.RecipientTable;
@@ -63,6 +64,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
+import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.recipients.RecipientUtil;
@@ -76,6 +78,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
@@ -114,7 +117,7 @@ public class MessageSender {
 
       for (OutgoingMessage message : messages) {
         long allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getThreadRecipient(), -1L, message.getDistributionType());
-        long messageId         = database.insertMessageOutbox(message.stripAttachments(), allocatedThreadId, false, insertListener);
+        long messageId         = database.insertMessageOutbox(message.stripAttachments(), allocatedThreadId, false, insertListener).getMessageId();
 
         messageIds.add(messageId);
         threads.add(allocatedThreadId);
@@ -199,6 +202,7 @@ public class MessageSender {
                           recipient,
                           SendType.SIGNAL,
                           messageId,
+                          null,
                           jobDependencyIds
       );
     }
@@ -222,9 +226,11 @@ public class MessageSender {
       ThreadTable  threadTable = SignalDatabase.threads();
       MessageTable database    = SignalDatabase.messages();
 
-      long      allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getThreadRecipient(), threadId, message.getDistributionType());
-      Recipient recipient         = message.getThreadRecipient();
-      long      messageId         = database.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId), allocatedThreadId, sendType != SendType.SIGNAL, insertListener);
+      long         allocatedThreadId = threadTable.getOrCreateValidThreadId(message.getThreadRecipient(), threadId, message.getDistributionType());
+      Recipient    recipient         = message.getThreadRecipient();
+      InsertResult insertResult      = database.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId), allocatedThreadId, sendType != SendType.SIGNAL, insertListener);
+      long         messageId         = insertResult.getMessageId();
+
 
       if (message.getThreadRecipient().isGroup()) {
         if (message.getAttachments().isEmpty() && message.getLinkPreviews().isEmpty() && message.getSharedContacts().isEmpty()) {
@@ -236,7 +242,7 @@ public class MessageSender {
         SignalLocalMetrics.IndividualMessageSend.onInsertedIntoDatabase(messageId, metricId);
       }
 
-      sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList());
+      sendMessageInternal(context, recipient, sendType, messageId, insertResult.getQuoteAttachmentId(), Collections.emptyList());
       onMessageSent();
       threadTable.update(allocatedThreadId, true, true);
 
@@ -271,10 +277,11 @@ public class MessageSender {
         return false;
       }
 
-      long messageId = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId),
-                                                       allocatedThreadId,
-                                                       false,
-                                                       insertListener);
+      InsertResult insertResult = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId),
+                                                                  allocatedThreadId,
+                                                                  false,
+                                                                  insertListener);
+      long         messageId    = insertResult.getMessageId();
 
       for (AttachmentId attachmentId: attachmentIds) {
         boolean wasPreuploaded = SignalDatabase.attachments().getMessageId(attachmentId) == AttachmentTable.PREUPLOAD_MESSAGE_ID;
@@ -286,7 +293,7 @@ public class MessageSender {
 
       attachmentDatabase.updateMessageId(attachmentIds, messageId, message.getStoryType().isStory());
 
-      sendMessageInternal(context, recipient, SendType.SIGNAL, messageId, jobIds);
+      sendMessageInternal(context, recipient, SendType.SIGNAL, messageId, insertResult.getQuoteAttachmentId(), jobIds);
       onMessageSent();
       threadTable.update(allocatedThreadId, true, true);
 
@@ -324,7 +331,7 @@ public class MessageSender {
         long primaryMessageId = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, primaryMessage.getThreadRecipient(), primaryMessage, primaryThreadId),
                                                                 primaryThreadId,
                                                                 false,
-                                                                null);
+                                                                null).getMessageId();
 
         attachmentDatabase.updateMessageId(preUploadAttachmentIds, primaryMessageId, primaryMessage.getStoryType().isStory());
         if (primaryMessage.getStoryType() != StoryType.NONE) {
@@ -352,7 +359,7 @@ public class MessageSender {
           long               messageId         = mmsDatabase.insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, secondaryMessage.getThreadRecipient(), secondaryMessage, allocatedThreadId),
                                                                                  allocatedThreadId,
                                                                                  false,
-                                                                                 null);
+                                                                                 null).getMessageId();
           List<AttachmentId> attachmentIds     = new ArrayList<>(preUploadAttachmentIds.size());
 
           for (int i = 0; i < preUploadAttachments.size(); i++) {
@@ -517,7 +524,15 @@ public class MessageSender {
       sendType = SendType.SIGNAL;
     }
 
-    sendMessageInternal(context, recipient, sendType, messageId, Collections.emptyList());
+    AttachmentId quoteAttachmentId = SignalDatabase.attachments()
+                                                   .getAttachmentsForMessage(messageId)
+                                                   .stream()
+                                                   .filter(it -> it.quote)
+                                                   .findFirst()
+                                                   .map(it -> it.attachmentId)
+                                                   .orElse(null);
+
+    sendMessageInternal(context, recipient, sendType, messageId, quoteAttachmentId, Collections.emptyList());
 
     onMessageSent();
   }
@@ -542,14 +557,23 @@ public class MessageSender {
                                           Recipient recipient,
                                           SendType sendType,
                                           long messageId,
+                                          @Nullable AttachmentId quoteAttachmentId,
                                           @NonNull Collection<String> uploadJobIds)
   {
+    Set<String> finalUploadJobIds = new HashSet<>(uploadJobIds);
+
+    if (quoteAttachmentId != null) {
+      Job uploadJob = new AttachmentUploadJob(quoteAttachmentId);
+      AppDependencies.getJobManager().add(uploadJob);
+      finalUploadJobIds.add(uploadJob.getId());
+    }
+
     if (recipient.isPushGroup()) {
-      sendGroupPush(context, recipient, messageId, Collections.emptySet(), uploadJobIds);
+      sendGroupPush(context, recipient, messageId, Collections.emptySet(), finalUploadJobIds);
     } else if (recipient.isDistributionList()) {
-      sendDistributionList(context, recipient, messageId, Collections.emptySet(), uploadJobIds);
+      sendDistributionList(context, recipient, messageId, Collections.emptySet(), finalUploadJobIds);
     } else if (sendType == SendType.SIGNAL && isPushMediaSend(context, recipient)) {
-      sendMediaPush(context, recipient, messageId, uploadJobIds);
+      sendMediaPush(context, recipient, messageId, finalUploadJobIds);
     } else {
       Log.w(TAG, "Unknown send type!");
     }

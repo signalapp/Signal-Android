@@ -676,7 +676,7 @@ class GroupsV2StateProcessor private constructor(
 
       try {
         val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
-        val id = SignalDatabase.messages.insertMessageOutbox(leaveMessage, threadId, false, null)
+        val id = SignalDatabase.messages.insertMessageOutbox(leaveMessage, threadId, false, null).messageId
         SignalDatabase.messages.markAsSent(id, true)
         SignalDatabase.drafts.clearDrafts(threadId)
         SignalDatabase.threads.update(threadId, unarchive = false, allowDeletion = false)
@@ -733,7 +733,7 @@ class GroupsV2StateProcessor private constructor(
           val recipient = Recipient.resolved(recipientId)
           val outgoingMessage = OutgoingMessage.groupUpdateMessage(recipient, updateDescription, timestamp)
           val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
-          val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, null)
+          val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, null).messageId
 
           SignalDatabase.messages.markAsSent(messageId, true)
           SignalDatabase.threads.update(threadId, unarchive = false, allowDeletion = false)

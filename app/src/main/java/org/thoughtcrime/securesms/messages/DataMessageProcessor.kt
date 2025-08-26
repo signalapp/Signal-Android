@@ -443,7 +443,7 @@ object DataMessageProcessor {
           }
 
           parentStoryId = DirectReply(storyId)
-          quoteModel = QuoteModel(sentTimestamp, authorRecipientId, displayText, false, story.slideDeck.asAttachments(), emptyList(), QuoteModel.Type.NORMAL, bodyRanges)
+          quoteModel = QuoteModel(sentTimestamp, authorRecipientId, displayText, false, story.slideDeck.asAttachments().firstOrNull(), emptyList(), QuoteModel.Type.NORMAL, bodyRanges)
           expiresIn = message.expireTimerDuration
         } else {
           warn(envelope.timestamp!!, "Story has reactions disabled. Dropping reaction.")
@@ -769,7 +769,7 @@ object DataMessageProcessor {
             bodyRanges = story.messageRanges
           }
 
-          quoteModel = QuoteModel(sentTimestamp, storyAuthorRecipientId, displayText, false, story.slideDeck.asAttachments(), emptyList(), QuoteModel.Type.NORMAL, bodyRanges)
+          quoteModel = QuoteModel(sentTimestamp, storyAuthorRecipientId, displayText, false, story.slideDeck.asAttachments().firstOrNull(), emptyList(), QuoteModel.Type.NORMAL, bodyRanges)
           expiresInMillis = message.expireTimerDuration
         } else {
           warn(envelope.timestamp!!, "Story has replies disabled. Dropping reply.")
@@ -898,7 +898,7 @@ object DataMessageProcessor {
 
     SignalDatabase.messages.beginTransaction()
     try {
-      val quote: QuoteModel? = getValidatedQuote(context, envelope.timestamp!!, message, senderRecipient, threadRecipient)
+      val quoteModel: QuoteModel? = getValidatedQuote(context, envelope.timestamp!!, message, senderRecipient, threadRecipient)
       val contacts: List<Contact> = getContacts(message)
       val linkPreviews: List<LinkPreview> = getLinkPreviews(message.preview, message.body ?: "", false)
       val mentions: List<Mention> = getMentions(message.bodyRanges.take(BODY_RANGE_PROCESSING_LIMIT))
@@ -920,7 +920,7 @@ object DataMessageProcessor {
         body = message.body?.ifEmpty { null },
         groupId = groupId,
         attachments = attachments + if (sticker != null) listOf(sticker) else emptyList(),
-        quote = quote,
+        quote = quoteModel,
         sharedContacts = contacts,
         linkPreviews = linkPreviews,
         mentions = mentions,
@@ -1092,24 +1092,31 @@ object DataMessageProcessor {
     if (quotedMessage != null && isSenderValid(quotedMessage, timestamp, senderRecipient, threadRecipient) && !quotedMessage.isRemoteDelete) {
       log(timestamp, "Found matching message record...")
 
-      val attachments: MutableList<Attachment> = mutableListOf()
-      val mentions: MutableList<Mention> = mutableListOf()
+      var thumbnailAttachment: Attachment? = null
+      val targetMessageAttachments = SignalDatabase.attachments.getAttachmentsForMessage(quotedMessage.id)
+      val mentions: List<Mention> = SignalDatabase.mentions.getMentionsForMessage(quotedMessage.id)
 
-      quotedMessage = quotedMessage.withAttachments(SignalDatabase.attachments.getAttachmentsForMessage(quotedMessage.id))
-
-      mentions.addAll(SignalDatabase.mentions.getMentionsForMessage(quotedMessage.id))
+      // We want our thumbnail attachment to be the first "thumbnailable" item from the target message.
+      // That means we want to pick the earliest image/video that has data.
+      thumbnailAttachment = targetMessageAttachments
+        .sortedBy { it.displayOrder }
+        .sortedBy {
+          if (MediaUtil.isImageType(it.contentType) || MediaUtil.isVideoType(it.contentType)) {
+            0
+          } else {
+            1
+          }
+        }
+        .firstOrNull { it.hasData }
 
       if (quotedMessage.isViewOnce) {
-        attachments.add(TombstoneAttachment(MediaUtil.VIEW_ONCE, true))
-      } else {
-        attachments += quotedMessage.slideDeck.asAttachments()
-
-        if (attachments.isEmpty()) {
-          attachments += quotedMessage
-            .linkPreviews
-            .filter { it.thumbnail.isPresent }
-            .map { it.thumbnail.get() }
-        }
+        thumbnailAttachment = TombstoneAttachment(MediaUtil.VIEW_ONCE, true)
+      } else if (thumbnailAttachment == null) {
+        thumbnailAttachment = quotedMessage
+          .linkPreviews
+          .filter { it.thumbnail.isPresent }
+          .map { it.thumbnail.get() }
+          .firstOrNull()
       }
 
       if (quotedMessage.isPaymentNotification) {
@@ -1119,14 +1126,14 @@ object DataMessageProcessor {
       val body = if (quotedMessage.isPaymentNotification) quotedMessage.getDisplayBody(context).toString() else quotedMessage.body
 
       return QuoteModel(
-        quote.id!!,
-        authorId,
-        body,
-        false,
-        attachments,
-        mentions,
-        QuoteModel.Type.fromProto(quote.type),
-        quotedMessage.messageRanges
+        id = quote.id!!,
+        author = authorId,
+        text = body,
+        isOriginalMissing = false,
+        attachment = thumbnailAttachment,
+        mentions = mentions,
+        type = QuoteModel.Type.fromProto(quote.type),
+        bodyRanges = quotedMessage.messageRanges
       )
     } else if (quotedMessage != null && quotedMessage.isRemoteDelete) {
       warn(timestamp, "Found the target for the quote, but it's flagged as remotely deleted.")
@@ -1134,14 +1141,14 @@ object DataMessageProcessor {
 
     warn(timestamp, "Didn't find matching message record...")
     return QuoteModel(
-      quote.id!!,
-      authorId,
-      quote.text ?: "",
-      true,
-      quote.attachments.mapNotNull { PointerAttachment.forPointer(it).orNull() },
-      getMentions(quote.bodyRanges),
-      QuoteModel.Type.fromProto(quote.type),
-      quote.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
+      id = quote.id!!,
+      author = authorId,
+      text = quote.text ?: "",
+      isOriginalMissing = true,
+      attachment = quote.attachments.firstNotNullOfOrNull { PointerAttachment.forPointer(it).orNull() },
+      mentions = getMentions(quote.bodyRanges),
+      type = QuoteModel.Type.fromProto(quote.type),
+      bodyRanges = quote.bodyRanges.filter { it.mentionAci == null }.toBodyRangeList()
     )
   }
 
