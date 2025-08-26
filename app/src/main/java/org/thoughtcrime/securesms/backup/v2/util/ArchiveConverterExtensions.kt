@@ -227,7 +227,7 @@ private fun DatabaseAttachment.toRemoteAttachmentType(): AttachmentType {
   }
 
   val activelyOnArchiveCdn = this.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED
-  val couldBeOnArchiveCdn = this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE && this.archiveTransferState != AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE
+  val couldBeOnArchiveCdn = (this.transferState == AttachmentTable.TRANSFER_PROGRESS_DONE || this.transferState == AttachmentTable.TRANSFER_NEEDS_RESTORE) && this.archiveTransferState != AttachmentTable.ArchiveTransferState.PERMANENT_FAILURE
 
   if (this.dataHash != null && (activelyOnArchiveCdn || couldBeOnArchiveCdn)) {
     return AttachmentType.ARCHIVE
