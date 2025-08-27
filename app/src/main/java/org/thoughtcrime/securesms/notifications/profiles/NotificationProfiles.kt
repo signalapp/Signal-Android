@@ -49,11 +49,7 @@ object NotificationProfiles {
       return manualProfile ?: scheduledProfile
     }
 
-    return if (manualProfile == scheduledProfile) {
-      manualProfile
-    } else {
-      scheduledProfile
-    }
+    return manualProfile
   }
 
   private fun shouldClearManualOverride(manualProfile: NotificationProfile?, scheduledProfile: NotificationProfile?): Boolean {

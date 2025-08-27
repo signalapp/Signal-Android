@@ -111,7 +111,7 @@ class NotificationProfilesTest {
   }
 
   @Test
-  fun `when first is scheduled and second is manually enabled forever before first's schedule start then return first`() {
+  fun `when first is scheduled and second is manually enabled forever before first's schedule start then return second`() {
     every { notificationProfileValues.manuallyEnabledProfile } returns second.id
     every { notificationProfileValues.manuallyEnabledUntil } returns Long.MAX_VALUE
     every { notificationProfileValues.manuallyDisabledAt } returns sunday830am.toMillis(ZoneOffset.UTC)
@@ -119,7 +119,7 @@ class NotificationProfilesTest {
     val schedule = NotificationProfileSchedule(id = 3L, true, start = 900, daysEnabled = setOf(DayOfWeek.SUNDAY))
     val profiles = listOf(first.copy(schedule = schedule), second)
 
-    assertThat(NotificationProfiles.getActiveProfile(profiles, sunday930am.toMillis(ZoneOffset.UTC), utc), "active profile is first").isEqualTo(profiles[0])
+    assertThat(NotificationProfiles.getActiveProfile(profiles, sunday930am.toMillis(ZoneOffset.UTC), utc), "active profile is second").isEqualTo(profiles[1])
   }
 
   @Test
