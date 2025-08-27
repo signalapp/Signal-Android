@@ -1824,19 +1824,19 @@
     <string name="MessageRecord_missed_video_call_notification_profile">नोटिफ़िकेशन प्रोफ़ाइल चालू होने पर वीडियो कॉल छूट गई</string>
     <!-- Call update formatter string to place the update message next to a time stamp. e.g., \'Incoming voice call · 11:11am\' -->
     <string name="MessageRecord_call_message_with_date">%1$s · %2$s</string>
-    <string name="MessageRecord_s_updated_group">%1$s ने समूह को अद्यतन किया</string>
-    <string name="MessageRecord_s_joined_signal">%1$sअब Signal पर हैं!</string>
-    <string name="MessageRecord_you_disabled_disappearing_messages">आपने गायब मेसेज अक्षम कर दिए हैं।</string>
-    <string name="MessageRecord_s_disabled_disappearing_messages">%1$sने गायब मेसेज अक्षम कर दिए हैं।</string>
-    <string name="MessageRecord_you_set_disappearing_message_time_to_s">आपने गायब मेसेज टाइमर को %1$s में सेट कर दिया है।</string>
-    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ने गायब मेसेज टाइमर को %2$s तक सेट कर दिया है।</string>
-    <string name="MessageRecord_disappearing_message_time_set_to_s">गायब होने वाले मेसेज के टाइमर को %1$s पर सेट किया गया है।</string>
-    <string name="MessageRecord_this_group_was_updated_to_a_new_group">इस ग्रुप को एक नए ग्रुप में अपडेट किया गया था।</string>
-    <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">आपको नए ग्रुप में शमिल नहीं किया जा सका और आपको शामिल होने के लिए आमंत्रित किया गया है।</string>
+    <string name="MessageRecord_s_updated_group">%1$s ने ग्रुप को अपडेट किया है।</string>
+    <string name="MessageRecord_s_joined_signal">%1$s अब Signal पर हैं!</string>
+    <string name="MessageRecord_you_disabled_disappearing_messages">आपने मैसेज गायब होने की सुविधा बंद कर दी है।</string>
+    <string name="MessageRecord_s_disabled_disappearing_messages">%1$s ने मैसेज गायब होने की सुविधा बंद कर दी है।</string>
+    <string name="MessageRecord_you_set_disappearing_message_time_to_s">आपने मैसेज गायब होने का टाइमर %1$s पर सेट किया है।</string>
+    <string name="MessageRecord_s_set_disappearing_message_time_to_s">%1$s ने मैसेज गायब होने का टाइमर %2$s पर सेट किया है।</string>
+    <string name="MessageRecord_disappearing_message_time_set_to_s">मैसेज गायब होने का टाइमर %1$s पर सेट किया गया है।</string>
+    <string name="MessageRecord_this_group_was_updated_to_a_new_group">इस ग्रुप को \'नए ग्रुप\' में अपडेट किया गया था।</string>
+    <string name="MessageRecord_you_couldnt_be_added_to_the_new_group_and_have_been_invited_to_join">आपको नए ग्रुप में नहीं जोड़ा जा सका। हालांकि, आपको इसमें शामिल होने का इनवाइट भेजा गया है।</string>
     <string name="MessageRecord_chat_session_refreshed">चैट सेशन रीफ्रेश हुआ</string>
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_invited">
-        <item quantity="one">एक सदस्य को नए ग्रुप में शमिल नहीं किया जा सका और उसे शामिल होने के लिए आमंत्रित किया गया है।</item>
-        <item quantity="other">%1$s सदस्यों को नए ग्रुप में शमिल नहीं किया जा सका और उन्हें शामिल होने के लिए आमंत्रित किया गया है।</item>
+        <item quantity="one">%1$s सदस्य को नए ग्रुप में नहीं जोड़ा जा सका। हालांकि, उन्हें इसमें शामिल होने का इनवाइट भेजा गया है।</item>
+        <item quantity="other">%1$s सदस्यों को नए ग्रुप में नहीं जोड़ा जा सका। हालांकि, उन्हें इसमें शामिल होने का इनवाइट भेजा गया है।</item>
     </plurals>
 
     <plurals name="MessageRecord_members_couldnt_be_added_to_the_new_group_and_have_been_removed">
@@ -1845,174 +1845,174 @@
     </plurals>
 
     <!-- Profile change updates -->
-    <string name="MessageRecord_changed_their_profile_name_to">%1$s ने अपना प्रोफ़ाइल नाम बदल कर %2$s रख दिया है।</string>
-    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ने अपना प्रोफ़ाइल नाम %2$s से बदल कर %3$s रख लिया।</string>
-    <string name="MessageRecord_changed_their_profile">%1$s ने अपनी प्रोफाइल को बदल लिया।</string>
+    <string name="MessageRecord_changed_their_profile_name_to">%1$s ने अपना प्रोफ़ाइल नेम बदल कर %2$s रख लिया है।</string>
+    <string name="MessageRecord_changed_their_profile_name_from_to">%1$s ने अपना प्रोफ़ाइल नेम %2$s से बदल कर %3$s रख लिया है।</string>
+    <string name="MessageRecord_changed_their_profile">%1$s ने अपनी प्रोफ़ाइल बदली है।</string>
     <!-- Conversation update event message shown when you\'ve started a conversation by phone number or username and then learn their profile name. placeholder is username or phone number -->
     <string name="MessageRecord_started_this_chat">आपने %1$s के साथ इस चैट को शुरू किया।</string>
 
     <!-- GV2 specific -->
-    <string name="MessageRecord_you_created_the_group">यह ग्रूप आपने बनाया है।</string>
+    <string name="MessageRecord_you_created_the_group">आपने ग्रुप बना लिया है।</string>
     <string name="MessageRecord_group_updated">ग्रुप अपडेट हो गया है।</string>
-    <string name="MessageRecord_invite_friends_to_this_group">एक ग्रुप लिंक के माध्यम से मित्रों को इस ग्रुप में आमंत्रित करें।</string>
+    <string name="MessageRecord_invite_friends_to_this_group">ग्रुप लिंक की मदद से दोस्तों को इस ग्रुप में शामिल होने का इनवाइट भेजें</string>
 
     <!-- GV2 member additions -->
-    <string name="MessageRecord_you_added_s">आपने %1$s को शामिल किया।</string>
-    <string name="MessageRecord_s_added_s">%1$s ने %2$s को शामिल किया।</string>
-    <string name="MessageRecord_s_added_you">%1$sने आपको ग्रुप में शामिल किया।</string>
-    <string name="MessageRecord_you_joined_the_group">आप ग्रुप में शामिल हो गए हैं।</string>
-    <string name="MessageRecord_s_joined_the_group">%1$s समूह में शामिल हो गए</string>
+    <string name="MessageRecord_you_added_s">आपने %1$s को जोड़ा।</string>
+    <string name="MessageRecord_s_added_s">%1$s ने %2$s को जोड़ा।</string>
+    <string name="MessageRecord_s_added_you">%1$s ने आपको ग्रुप में जोड़ा।</string>
+    <string name="MessageRecord_you_joined_the_group">आपने ग्रुप जॉइन किया है।</string>
+    <string name="MessageRecord_s_joined_the_group">%1$s ने ग्रुप जॉइन किया है।</string>
 
     <!-- GV2 member removals -->
     <string name="MessageRecord_you_removed_s">आपने %1$s को निकाल दिया।</string>
     <string name="MessageRecord_s_removed_s">%1$s ने %2$s को निकाल दिया।</string>
     <string name="MessageRecord_s_removed_you_from_the_group">%1$s ने आपको ग्रुप में से निकाल दिया।</string>
-    <string name="MessageRecord_you_left_the_group">आपने ग्रुप को छोड़ दिया।</string>
-    <string name="MessageRecord_s_left_the_group">%1$s ने ग्रुप को छोड़ दिया।</string>
-    <string name="MessageRecord_you_are_no_longer_in_the_group">आप अब ग्रुप में नहीं हैं।</string>
-    <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s अब ग्रुप में नहीं है।</string>
+    <string name="MessageRecord_you_left_the_group">आपने ग्रुप छोड़ दिया है।</string>
+    <string name="MessageRecord_s_left_the_group">%1$s ने ग्रुप छोड़ दिया है।</string>
+    <string name="MessageRecord_you_are_no_longer_in_the_group">अब आप इस ग्रुप में मौजूद नहीं हैं।</string>
+    <string name="MessageRecord_s_is_no_longer_in_the_group">%1$s अब इस ग्रुप में मौजूद नहीं हैं।</string>
 
     <!-- GV2 role change -->
-    <string name="MessageRecord_you_made_s_an_admin">आपने %1$s को एक एडमिन बना दिया।</string>
-    <string name="MessageRecord_s_made_s_an_admin">%1$s ने %2$s को एडमिन बना दिया।</string>
-    <string name="MessageRecord_s_made_you_an_admin">%1$s ने आपको एडमिन बना दिया।</string>
-    <string name="MessageRecord_you_revoked_admin_privileges_from_s">आपने %1$s के एडमिन अधिकार वापस ले लिए हैं।</string>
-    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ने आपके एडमिन अधिकार वापस ले लिए हैं।</string>
-    <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ने %2$s के एडमिन अधिकार वापस ले लिए हैं।</string>
-    <string name="MessageRecord_s_is_now_an_admin">%1$s अब एक एडमिन है।</string>
-    <string name="MessageRecord_you_are_now_an_admin">आप अब एक एडमिन हैं।</string>
-    <string name="MessageRecord_s_is_no_longer_an_admin">%1$s अब एडमिन नहीं है।</string>
-    <string name="MessageRecord_you_are_no_longer_an_admin">अब आप एडमिन नहीं हैं।</string>
+    <string name="MessageRecord_you_made_s_an_admin">आपने %1$s को ऐडमिन बनाया है।</string>
+    <string name="MessageRecord_s_made_s_an_admin">%1$s ने %2$s को ऐडमिन बनाया है।</string>
+    <string name="MessageRecord_s_made_you_an_admin">%1$s ने आपको ऐडमिन बनाया है।</string>
+    <string name="MessageRecord_you_revoked_admin_privileges_from_s">आपने %1$s से ऐडमिन वाले अधिकार वापस ले लिए हैं।</string>
+    <string name="MessageRecord_s_revoked_your_admin_privileges">%1$s ने आपसे ऐडमिन वाले अधिकार वापस ले लिए हैं।</string>
+    <string name="MessageRecord_s_revoked_admin_privileges_from_s">%1$s ने %2$s से ऐडमिन वाले अधिकार वापस ले लिए हैं।</string>
+    <string name="MessageRecord_s_is_now_an_admin">%1$s अब एक ऐडमिन हैं।</string>
+    <string name="MessageRecord_you_are_now_an_admin">आप अब एक ऐडमिन हैं।</string>
+    <string name="MessageRecord_s_is_no_longer_an_admin">%1$s अब ऐडमिन नहीं हैं।</string>
+    <string name="MessageRecord_you_are_no_longer_an_admin">अब आप ऐडमिन नहीं हैं।</string>
 
     <!-- GV2 invitations -->
-    <string name="MessageRecord_you_invited_s_to_the_group">आपने %1$s को ग्रुप में आमंत्रित किया।</string>
-    <string name="MessageRecord_s_invited_you_to_the_group">%1$s ने आपको ग्रुप में आमंत्रित किया।</string>
+    <string name="MessageRecord_you_invited_s_to_the_group">आपने %1$s को ग्रुप में शामिल होने का इनवाइट भेजा है।</string>
+    <string name="MessageRecord_s_invited_you_to_the_group">%1$s ने आपको ग्रुप में शामिल होने का इनवाइट भेजा है।</string>
     <plurals name="MessageRecord_s_invited_members">
-        <item quantity="one">%1$s ने 1 व्यक्ति को ग्रुप में आमंत्रित किया।</item>
-        <item quantity="other">%1$s ने %2$d लोगों को ग्रुप में आमंत्रित किया।</item>
+        <item quantity="one">%1$s ने 1 व्यक्ति को ग्रुप में शामिल होने का इनवाइट भेजा है।</item>
+        <item quantity="other">%1$s ने %2$d लोगों को ग्रुप में शामिल होने का इनवाइट भेजा है।</item>
     </plurals>
-    <string name="MessageRecord_you_were_invited_to_the_group">आपको ग्रूप से जुङने के लिये आमंत्रित किया गया था।</string>
+    <string name="MessageRecord_you_were_invited_to_the_group">आपको ग्रुप में शामिल होने का इनवाइट भेजा गया था।</string>
     <plurals name="MessageRecord_d_people_were_invited_to_the_group">
-        <item quantity="one">1 व्यक्ति को ग्रुप में आमंत्रित किया गया।</item>
-        <item quantity="other">%1$d लोगों को ग्रुप में आमंत्रित किया गया।</item>
+        <item quantity="one">1 व्यक्ति को ग्रुप में शामिल होने का इनवाइट भेजा गया था।</item>
+        <item quantity="other">%1$d लोगों को ग्रुप में शामिल होने का इनवाइट भेजा गया था।</item>
     </plurals>
 
     <!-- GV2 invitation revokes -->
     <plurals name="MessageRecord_you_revoked_invites">
-        <item quantity="one">आपने ग्रुप का एक आमंत्रण वापस ले लिया।</item>
-        <item quantity="other">आपने ग्रुप के %1$d आमंत्रण वापस ले लिए।</item>
+        <item quantity="one">आपने ग्रुप में शामिल होने का इनवाइट वापस ले लिया है।</item>
+        <item quantity="other">आपने ग्रुप में शामिल होने के %1$d इनवाइट वापस ले लिए हैंय़</item>
     </plurals>
     <plurals name="MessageRecord_s_revoked_invites">
-        <item quantity="one">%1$s ने ग्रुप का एक आमंत्रण वापस ले लिया।</item>
-        <item quantity="other">%1$s ने ग्रुप के %2$d आमंत्रण वापस ले लिए।</item>
+        <item quantity="one">%1$s ने ग्रुप में शामिल होने का इनवाइट वापस ले लिया है।</item>
+        <item quantity="other">%1$s ने ग्रुप में शामिल होने के %2$d इनवाइट वापस ले लिए हैं।</item>
     </plurals>
-    <string name="MessageRecord_someone_declined_an_invitation_to_the_group">किसी ने ग्रुप के आमंत्रण को अस्वीकार कर दिया।</string>
-    <string name="MessageRecord_you_declined_the_invitation_to_the_group">आपने ग्रुप के आमंत्रण को अस्वीकार कर दिया।</string>
-    <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s ने आपके ग्रुप के आमंत्रण को वापस ले लिया।</string>
-    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">एक एडमिन ने आपके ग्रुप के आमंत्रण को वापस ले लिया।</string>
+    <string name="MessageRecord_someone_declined_an_invitation_to_the_group">किसी ने ग्रुप में शामिल होने का इनवाइट खारिज कर दिया है।</string>
+    <string name="MessageRecord_you_declined_the_invitation_to_the_group">आपने ग्रुप में शामिल होने का इनवाइट खारिज कर दिया है।</string>
+    <string name="MessageRecord_s_revoked_your_invitation_to_the_group">%1$s ने आपको ग्रुप में शामिल होने के लिए भेजा गया इनवाइट वापस ले लिया है।</string>
+    <string name="MessageRecord_an_admin_revoked_your_invitation_to_the_group">किसी ऐडमिन ने आपको ग्रुप में शामिल होने के लिए भेजा गया इनवाइट वापस ले लिया है।</string>
     <plurals name="MessageRecord_d_invitations_were_revoked">
-        <item quantity="one">ग्रुप का एक आमंत्रण वापस ले लिया गया।</item>
-        <item quantity="other">ग्रुप के %1$d आमंत्रण वापस ले लिए गए।</item>
+        <item quantity="one">ग्रुप में शामिल होने के लिए भेजा गया इनवाइट वापस ले लिया है।</item>
+        <item quantity="other">ग्रुप में शामिल होने के लिए भेजे गए %1$d इनवाइट वापस ले लिए गए हैं।</item>
     </plurals>
 
     <!-- GV2 invitation acceptance -->
-    <string name="MessageRecord_you_accepted_invite">आपने ग्रुप के आमंत्रण को स्वीकार कर लिया।</string>
-    <string name="MessageRecord_s_accepted_invite">%1$s ने ग्रुप के आमंत्रण को स्वीकार कर लिया।</string>
-    <string name="MessageRecord_you_added_invited_member_s">आपने आमंत्रित मेंबर %1$s को शामिल किया।</string>
-    <string name="MessageRecord_s_added_invited_member_s">%1$s ने आमंत्रित मेंबर %2$s को शामिल किया।</string>
+    <string name="MessageRecord_you_accepted_invite">आपने ग्रुप में शामिल होने का इनवाइट स्वीकार कर लिया है।</string>
+    <string name="MessageRecord_s_accepted_invite">%1$s ने ग्रुप में शामिल होने का इनवाइट स्वीकार कर लिया है।</string>
+    <string name="MessageRecord_you_added_invited_member_s">आपने इनवाइट भेजे गए सदस्य %1$s को जोड़ा है।</string>
+    <string name="MessageRecord_s_added_invited_member_s">%1$s ने इनवाइट भेजे गए सदस्य %2$s को जोड़ा है।</string>
 
     <!-- GV2 title change -->
-    <string name="MessageRecord_you_changed_the_group_name_to_s">आपने ग्रुप का नाम बदल कर \"%1$s\" रख दिया है।</string>
-    <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ने ग्रुप का नाम बदल कर \"%2$s\" रख दिया है।</string>
+    <string name="MessageRecord_you_changed_the_group_name_to_s">आपने ग्रुप का नाम बदल कर \"%1$s\" कर दिया है।</string>
+    <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s ने ग्रुप का नाम बदल कर \"%2$s\" कर दिया है।</string>
     <string name="MessageRecord_the_group_name_has_changed_to_s">ग्रुप का नाम बदल कर \"%1$s\" हो गया है।</string>
 
     <!-- GV2 description change -->
-    <string name="MessageRecord_you_changed_the_group_description">आपने समूह विवरण बदल दिया है।</string>
-    <string name="MessageRecord_s_changed_the_group_description">%1$s ने ग्रुप विवरण बदला</string>
-    <string name="MessageRecord_the_group_description_has_changed">ग्रुप विवरण बदल दिया गया है।</string>
+    <string name="MessageRecord_you_changed_the_group_description">आपने ग्रुप के बारे में जानकारी बदल दी है।</string>
+    <string name="MessageRecord_s_changed_the_group_description">%1$s ने ग्रुप के बारे में जानकारी बदल दी है।</string>
+    <string name="MessageRecord_the_group_description_has_changed">ग्रुप के बारे में जानकारी बदल दी गई है।</string>
 
     <!-- GV2 avatar change -->
-    <string name="MessageRecord_you_changed_the_group_avatar">आपने ग्रुप का अवतार बदल दिया है।</string>
-    <string name="MessageRecord_s_changed_the_group_avatar">%1$s ने ग्रुप का अवतार बदल दिया है।</string>
-    <string name="MessageRecord_the_group_group_avatar_has_been_changed">ग्रुप का अवतार बदल दिया गया है।</string>
+    <string name="MessageRecord_you_changed_the_group_avatar">आपने ग्रुप अवतार बदल दिया है।</string>
+    <string name="MessageRecord_s_changed_the_group_avatar">%1$s ने ग्रुप अवतार बदल दिया है।</string>
+    <string name="MessageRecord_the_group_group_avatar_has_been_changed">ग्रुप अवतार बदल दिया गया है।</string>
 
     <!-- GV2 attribute access level change -->
-    <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">आपने ग्रुप की जानकारी बदल पाने का अधिकार \"%1$s\" को दे दिया है।</string>
-    <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ने ग्रुप की जानकारी बदल पाने का अधिकार \"%2$s\" को दे दिया है।</string>
-    <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">ग्रुप की जानकारी बदल पाने का अधिकार \"%1$s\" को दे दिया गया है।</string>
+    <string name="MessageRecord_you_changed_who_can_edit_group_info_to_s">आपने ग्रुप की जानकारी एडिट करने के अधिकार को बदलकर \"%1$s\" कर दिया है।</string>
+    <string name="MessageRecord_s_changed_who_can_edit_group_info_to_s">%1$s ने ग्रुप की जानकारी एडिट करने के अधिकार को बदलकर \"%2$s\" कर दिया है।</string>
+    <string name="MessageRecord_who_can_edit_group_info_has_been_changed_to_s">ग्रुप की जानकारी एडिट करने के अधिकार को बदलकर \"%1$s\" कर दिया गया है।</string>
 
     <!-- GV2 membership access level change -->
-    <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">आपने ग्रुप की मेंबरशिप को बदलने का अधिकार \"%1$s\" को दे दिया है।</string>
-    <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ने ग्रुप की मेंबरशिप को बदलने का अधिकार \"%2$s\" को दे दिया है।</string>
-    <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ग्रुप की मेंबरशिप को बदल पाने का अधिकार \"%1$s\" को दे दिया गया है।</string>
+    <string name="MessageRecord_you_changed_who_can_edit_group_membership_to_s">आपने ग्रुप की मेंबरशिप एडिट करने के अधिकार को बदलकर \"%1$s\" कर दिया है।</string>
+    <string name="MessageRecord_s_changed_who_can_edit_group_membership_to_s">%1$s ने ग्रुप की मेंबरशिप एडिट करने के अधिकार को बदलकर \"%2$s\" कर दिया है।</string>
+    <string name="MessageRecord_who_can_edit_group_membership_has_been_changed_to_s">ग्रुप की मेंबरशिप एडिट करने के अधिकार को बदलकर \"%1$s\" कर दिया गया है।</string>
 
     <!-- GV2 announcement group change -->
-    <string name="MessageRecord_you_allow_all_members_to_send">आपने सभी सदस्यों को संदेश भेजने की अनुमति देने के लिए ग्रुप सेटिंग्स बदल दी हैं।</string>
-    <string name="MessageRecord_you_allow_only_admins_to_send">आपने ग्रुप सेटिंग को केवल व्यवस्थापकों को संदेश भेजने की अनुमति देने के लिए बदल दिया है।</string>
-    <string name="MessageRecord_s_allow_all_members_to_send">%1$s ने सभी सदस्यों को संदेश भेजने की अनुमति देने के लिए ग्रुप सेटिंग्स को बदल दिया।</string>
-    <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ने ग्रुप सेटिंग्स को केवल व्यवस्थापकों को संदेश भेजने की अनुमति देने के लिए बदल दिया।</string>
-    <string name="MessageRecord_allow_all_members_to_send">सभी सदस्यों को संदेश भेजने की अनुमति देने के लिए ग्रुप सेटिंग्स बदली गईं।</string>
-    <string name="MessageRecord_allow_only_admins_to_send">केवल व्यवस्थापकों को संदेश भेजने की अनुमति देने के लिए ग्रुप सेटिंग्स बदली गईं।</string>
+    <string name="MessageRecord_you_allow_all_members_to_send">आपने ग्रुप की सेटिंग बदल दी है। अब सभी सदस्य मैसेज भेज सकेंगे।</string>
+    <string name="MessageRecord_you_allow_only_admins_to_send">आपने ग्रुप की सेटिंग बदल दी है। अब सिर्फ़ ऐडमिन मैसेज भेज सकेंगे।</string>
+    <string name="MessageRecord_s_allow_all_members_to_send">%1$s ने ग्रुप की सेटिंग बदल दी है। अब सभी सदस्य मैसेज भेज सकेंगे।</string>
+    <string name="MessageRecord_s_allow_only_admins_to_send">%1$s ने ग्रुप की सेटिंग बदल दी है। अब सिर्फ़ ऐडमिन मैसेज भेज सकेंगे।</string>
+    <string name="MessageRecord_allow_all_members_to_send">ग्रुप की सेटिंग बदल दी गई है। अब सभी सदस्य मैसेज भेज सकेंगे।</string>
+    <string name="MessageRecord_allow_only_admins_to_send">ग्रुप की सेटिंग बदल दी गई है। अब सिर्फ़ ऐडमिन मैसेज भेज सकेंगे।</string>
 
     <!-- GV2 group link invite access level change -->
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">आपने एडमिन के एप्रूवल के बिना ग्रुप लिंक को चालू कर दिया है।</string>
-    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">आपने एडमिन के एप्रूवल के साथ ग्रुप लिंक को चालू कर दिया है।</string>
-    <string name="MessageRecord_you_turned_off_the_group_link">आपने ग्रुप लिंक को बंद कर दिया।</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ने एडमिन की एप्रूवल के बिना ग्रुप लिंक को चालू कर दिया है।</string>
-    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ने एडमिन की एप्रूवल के साथ ग्रुप लिंक को चालू कर दिया है।</string>
-    <string name="MessageRecord_s_turned_off_the_group_link">%1$s ने ग्रुप लिंक को बंद कर दिया।</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">ग्रुप लिंक को एडमिन की एप्रूवल के बिना चालू कर दिया गया है।</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">ग्रुप लिंक को एडमिन की एप्रूवल के साथ चालू कर दिया गया है।</string>
-    <string name="MessageRecord_the_group_link_has_been_turned_off">इस ग्रुप कि लिंक बंद कर दी गयी है</string>
-    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">आपने ग्रुप लिंक के लिए एडमिन एप्रूवल को बंद कर दिया है।</string>
-    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ने ग्रुप लिंक के लिए एडमिन एप्रूवल को बंद कर दिया है।</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">ग्रुप लिंक के लिए एडमिन एप्रूवल को बंद कर दिया गया है।</string>
-    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">आपने ग्रुप लिंक के लिए एडमिन एप्रूवल को चालू कर दिया है।</string>
-    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ने ग्रुप लिंक के लिए एडमिन एप्रूवल को शुरू कर दिया है।</string>
-    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">ग्रुप लिंक के लिए एडमिन एप्रूवल को शुरू कर दिया गया है।</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_off">आपने ग्रुप लिंक चालू किया है। अब कोई भी व्यक्ति ऐडमिन की मंज़ूरी के बिना ग्रुप में जुड़ सकता है।</string>
+    <string name="MessageRecord_you_turned_on_the_group_link_with_admin_approval_on">आपने ग्रुप लिंक चालू किया है। अब कोई भी व्यक्ति ऐडमिन की मंज़ूरी के बिना ग्रुप में नहीं जुड़ सकता।</string>
+    <string name="MessageRecord_you_turned_off_the_group_link">आपने ग्रुप लिंक बंद कर दिया है।</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_off">%1$s ने ग्रुप लिंक चालू किया है। अब कोई भी व्यक्ति ऐडमिन की मंज़ूरी के बिना ग्रुप में जुड़ सकता है।</string>
+    <string name="MessageRecord_s_turned_on_the_group_link_with_admin_approval_on">%1$s ने ग्रुप लिंक चालू किया है। अब कोई भी व्यक्ति ऐडमिन की मंज़ूरी के बिना ग्रुप में नहीं जुड़ सकता।</string>
+    <string name="MessageRecord_s_turned_off_the_group_link">%1$s ने ग्रुप लिंक को बंद कर दिया है।</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_off">ग्रुप लिंक चालू किया गया है। अब कोई भी व्यक्ति ऐडमिन की मंज़ूरी के बिना ग्रुप में जुड़ सकता है।</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_on_with_admin_approval_on">ग्रुप लिंक चालू किया गया है। अब कोई भी व्यक्ति ऐडमिन की मंज़ूरी के बिना ग्रुप में नहीं जुड़ सकता।</string>
+    <string name="MessageRecord_the_group_link_has_been_turned_off">ग्रुप लिंक बंद कर दिया गया है।</string>
+    <string name="MessageRecord_you_turned_off_admin_approval_for_the_group_link">आपने ग्रुप लिंक के लिए ऐडमिन की मंज़ूरी बंद कर दी है</string>
+    <string name="MessageRecord_s_turned_off_admin_approval_for_the_group_link">%1$s ने आपने ग्रुप लिंक के लिए ऐडमिन की मंज़ूरी बंद कर दी है</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_off">ग्रुप लिंक के लिए ऐडमिन की मंज़ूरी बंद कर दी गई है।</string>
+    <string name="MessageRecord_you_turned_on_admin_approval_for_the_group_link">आपने ग्रुप लिंक के लिए ऐडमिन की मंज़ूरी ज़रूरी कर दी है।</string>
+    <string name="MessageRecord_s_turned_on_admin_approval_for_the_group_link">%1$s ने ग्रुप लिंक के लिए ऐडमिन की मंज़ूरी ज़रूरी कर दी है।</string>
+    <string name="MessageRecord_the_admin_approval_for_the_group_link_has_been_turned_on">ग्रुप लिंक के लिए ऐडमिन की मंज़ूरी ज़रूरी कर दी गई है।</string>
 
     <!-- GV2 group link reset -->
-    <string name="MessageRecord_you_reset_the_group_link">आपने ग्रुप लिंक को रीसेट कर दिया है।</string>
-    <string name="MessageRecord_s_reset_the_group_link">%1$s ने ग्रुप लिंक को रीसेट कर दिया है।</string>
-    <string name="MessageRecord_the_group_link_has_been_reset">ग्रुप लिंक को रीसेट कर दिया गया है।</string>
+    <string name="MessageRecord_you_reset_the_group_link">आपने ग्रुप लिंक रीसेट कर दिया है।</string>
+    <string name="MessageRecord_s_reset_the_group_link">%1$s ने ग्रुप लिंक रीसेट कर दिया है।</string>
+    <string name="MessageRecord_the_group_link_has_been_reset">ग्रुप लिंक रीसेट कर दिया गया है।</string>
 
     <!-- GV2 group link joins -->
-    <string name="MessageRecord_you_joined_the_group_via_the_group_link">आप ग्रुप लिंक के माध्यम से ग्रुप में जुड़े।</string>
-    <string name="MessageRecord_s_joined_the_group_via_the_group_link">%1$s ग्रुप लिंक के माध्यम से ग्रुप में जुड़े।</string>
+    <string name="MessageRecord_you_joined_the_group_via_the_group_link">ग्रुप लिंक की मदद से आपने ग्रुप जॉइन किया।</string>
+    <string name="MessageRecord_s_joined_the_group_via_the_group_link">ग्रुप लिंक की मदद से %1$s ने ग्रुप जॉइन किया।</string>
 
     <!-- GV2 group link requests -->
     <string name="MessageRecord_you_sent_a_request_to_join_the_group">आपने ग्रुप में जुड़ने के लिए अनुरोध भेजा।</string>
-    <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ने ग्रुप लिंक के माध्यम से जुड़ने का अनुरोध किया।</string>
+    <string name="MessageRecord_s_requested_to_join_via_the_group_link">%1$s ने ग्रुप लिंक के ज़रिए जुड़ने का अनुरोध भेजा।</string>
     <!-- Update message shown when someone requests to join via group link and cancels the request back to back -->
     <plurals name="MessageRecord_s_requested_and_cancelled_their_request_to_join_via_the_group_link">
-        <item quantity="one">%1$s ने अनुरोध किया और ग्रुप लिंक के माध्यम से शामिल होने का अपना अनुरोध रद्द कर दिया।</item>
-        <item quantity="other">%1$s ने अनुरोध किया और ग्रुप लिंक के माध्यम से शामिल होने के %2$d अनुरोध रद्द कर दिए।</item>
+        <item quantity="one">%1$s ने ग्रुप लिंक के ज़रिए जुड़ने का अनुरोध किया और फिर उसे रद्द कर दिया।</item>
+        <item quantity="other">%1$s ग्रुप लिंक के ज़रिए जुड़ने के लिए %2$d अनुरोध किए और फिर उन्हें रद्द कर दिया।</item>
     </plurals>
 
     <!-- GV2 group link approvals -->
     <string name="MessageRecord_s_approved_your_request_to_join_the_group">%1$s को ग्रुप में जुड़ने के आपके अनुरोध को स्वीकार किया।</string>
-    <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ने %2$s से ग्रुप में जुड़ने के अनुरोध को स्वीकार किया।</string>
-    <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">आपने %1$s से ग्रुप में जुड़ने का निवेदन स्वीकार किया।</string>
-    <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">आपका ग्रुप से जुड़ने का निवेदन स्वीकारा जा चूका है।</string>
-    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s का ग्रुप से जुड़ने का निवेदन स्वीकारा जा चूका है।</string>
+    <string name="MessageRecord_s_approved_a_request_to_join_the_group_from_s">%1$s ने %2$s की मदद से ग्रुप में जुड़ने के अनुरोध को स्वीकार किया।</string>
+    <string name="MessageRecord_you_approved_a_request_to_join_the_group_from_s">आपने %1$s की मदद से ग्रुप में जुड़ने का निवेदन स्वीकार किया।</string>
+    <string name="MessageRecord_your_request_to_join_the_group_has_been_approved">आपका ग्रुप से जुड़ने का अनुरोध स्वीकार किया गया।</string>
+    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_approved">%1$s के ज़रिए ग्रुप से जुड़ने का अनुरोध स्वीकार किया गया।</string>
 
     <!-- GV2 group link deny -->
-    <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">एडमिन ने आपका इस ग्रुप से जुड़ने का निवेदन खरिज कर दिया है।</string>
+    <string name="MessageRecord_your_request_to_join_the_group_has_been_denied_by_an_admin">ग्रुप से जुड़ने के आपके अनुरोध को ऐडमिन ने खारिज कर दिया।</string>
     <string name="MessageRecord_you_denied_a_request_to_join_the_group_from_s">आपने %1$s से  ग्रुप में जुड़ने के निवेदन से इनकार किया।</string>
-    <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ने %2$s के ग्रुप से जुड़ने का निवेदन खरिज कर दिया है।</string>
-    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s से ग्रुप में जुड़ने के अनुरोध को अस्वीकार किया गया है।</string>
-    <string name="MessageRecord_you_canceled_your_request_to_join_the_group">आपने ग्रुप में जुड़ने के अपने अनुरोध को रद्द कर दिया।</string>
-    <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s ने ग्रुप में जुड़ने के उनके अनुरोध को रद्द कर दिया।</string>
+    <string name="MessageRecord_s_denied_a_request_to_join_the_group_from_s">%1$s ने %2$s के ज़रिए ग्रुप से जुड़ने का अनुरोध खरिज कर दिया।</string>
+    <string name="MessageRecord_a_request_to_join_the_group_from_s_has_been_denied">%1$s के ज़रिए ग्रुप में जुड़ने का अनुरोध खारिज कर दिया गया।</string>
+    <string name="MessageRecord_you_canceled_your_request_to_join_the_group">आपने ग्रुप में जुड़ने का अनुरोध रद्द कर दिया है।</string>
+    <string name="MessageRecord_s_canceled_their_request_to_join_the_group">%1$s ने ग्रुप में जुड़ने का अनुरोध रद्द कर दिया है।</string>
 
     <!-- End of GV2 specific update messages -->
 
-    <string name="MessageRecord_your_safety_number_with_s_has_changed">%1$s के साथ आपका सुरक्षा नंबर बदल गया है।</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">आपने %1$s के साथ अपना सुरक्षा नंबर सत्यापित मार्क करा हुआ है</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">आपने %1$s के साथ अपना सुरक्षा नंबर किसी और डिवाइस से सत्यापित चिह्नित किया है</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">आपने %1$s के साथ अपना सुरक्षा नंबर असत्यापित मार्क करा हुआ है</string>
-    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">आपने %1$s के साथ अपना सुरक्षा नंबर किसी और डिवाइस से असत्यापित मार्क करा हुआ है</string>
-    <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s से एक संदेश डिलीवर नहीं किया जा सका</string>
-    <string name="MessageRecord_s_changed_their_phone_number">%1$s ने अपने फोन नंबर बदल दिए।</string>
+    <string name="MessageRecord_your_safety_number_with_s_has_changed">%1$s के साथ आपका सेफ़्टी नंबर बदल गया है।</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified">आपने %1$s के साथ अपने सेफ़्टी नंबर वेरिफ़ाई किया है</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_verified_from_another_device">आपने %1$s के साथ अपना सेफ़्टी नंबर दूसरे डिवाइस से वेरिफ़ाई किया है</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified">आपने %1$s के साथ अपने सेफ़्टी नंबर को \'वेरिफ़ाई नहीं हुआ\' के तौर पर मार्क किया है</string>
+    <string name="MessageRecord_you_marked_your_safety_number_with_s_unverified_from_another_device">आपने %1$s के साथ अपने सेफ़्टी नंबर को दूसरे डिवाइस से \'वेरिफ़ाई नहीं हुआ\' के तौर पर मार्क किया है</string>
+    <string name="MessageRecord_a_message_from_s_couldnt_be_delivered">%1$s का मैसेज डिलीवर नहीं हुआ</string>
+    <string name="MessageRecord_s_changed_their_phone_number">%1$s ने अपना फ़ोन नंबर बदल लिया है।</string>
     <!-- Update item message shown in the release channel when someone is already a sustainer so we ask them if they want to boost. -->
     <string name="MessageRecord_like_this_new_feature_help_support_signal_with_a_one_time_donation">यह नया फ़ीचर पसंद आया? एक बार का दान देकर Signal को सहयोग देने में मदद करें।</string>
     <!-- Update item message shown when we merge two threads together. First placeholder is a name, second placeholder is a phone number. -->
@@ -2114,16 +2114,18 @@
     <string name="MessageRecord_you_blocked_this_group">आपने इस ग्रुप को ब्लॉक किया है</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">आपने इस ग्रुप को अनब्लॉक किया है</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s sent you a message that can\'t be processed or displayed because it uses a new Signal feature.</string>
 
     <!-- MessageRequestBottomView -->
-    <string name="MessageRequestBottomView_accept">स्वीकृत</string>
-    <string name="MessageRequestBottomView_continue">आगे</string>
+    <string name="MessageRequestBottomView_accept">स्वीकार करें</string>
+    <string name="MessageRequestBottomView_continue">जारी रखें</string>
     <string name="MessageRequestBottomView_delete">डिलीट करें</string>
     <string name="MessageRequestBottomView_block">ब्लॉक करें</string>
     <string name="MessageRequestBottomView_unblock">अनब्लॉक करें</string>
     <!-- Text explaining a message request from someone you\'ve removed before -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_you_removed_them_before">%1$s को आपको संदेश भेजने और अपना नाम और फ़ोटो उनके साथ साझा करने दें? आपने इस व्यक्ति को पहले हटाया है।</string>
-    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">%1$s को आपको मेसेज करने देना है और उनके साथ अपना नाम और तस्वीर शेयर करनी है? उन्हें पता नहीं चलेगा कि आपने उनका मेसेज देख लिया है जब तक आप स्वीकार नहीं करते।</string>
+    <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_they_wont_know_youve_seen_their_messages_until_you_accept">क्या %1$s को यह अनुमति देनी है कि वह आपको मैसेज भेज सकें और आपका नाम और फ़ोटो देख सकें? स्वीकार करने के बाद ही उन्हें पता चल पाएगा कि आपने उनका मैसेज देखा है।</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock a Signal user -->
     <string name="MessageRequestBottomView_do_you_want_to_let_s_message_you_wont_receive_any_messages_until_you_unblock_them">%1$s को आपको मेसेज करने देना है और उनके साथ अपना नाम और तस्वीर शेयर करनी है? आप कोई भी मेसेज प्राप्त नहीं करेंगे जब तक आप उन्हें अनब्लॉक नहीं करते।</string>
     <!-- Shown in message request flow. Describes what will happen if you unblock an SMS user -->
@@ -2132,21 +2134,21 @@
     <string name="MessageRequestBottomView_get_updates_and_news_from_s_you_wont_receive_any_updates_until_you_unblock_them">%1$s से अपडेट और खबरें पानी हैं? जब तक आप उनकी अनब्लॉक नहीं करते, तब तक आपको कोई अपडेट नहीं मिलेगा।</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_this_group_and_share_your_name_and_photo">इस ग्रुप के साथ अपनी चैट जारी रखनी है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है?</string>
     <string name="MessageRequestBottomView_upgrade_this_group_to_activate_new_features">इस लेगेसी ग्रुप का अब उपयोग नहीं किया जा सकता. @mentions और एडमिन जैसे नए फ़ीचर को सक्रिय करने के लिए एक नया ग्रुप बनाएं।</string>
-    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">इस लेगेसी ग्रुप को अब उपयोग नहीं किया जा सकता क्योंकि यह बहुत बड़ा है। अधिकतम ग्रुप साइज़ है %1$d।</string>
+    <string name="MessageRequestBottomView_this_legacy_group_can_no_longer_be_used">इस पुराने ग्रुप का अब इस्तेमाल नहीं किया जा सकता, क्योंकि यह बहुत बड़ा है। ग्रुप का साइज़ ज़्यादा से ज़्यादा %1$d हो सकता है।</string>
     <string name="MessageRequestBottomView_continue_your_conversation_with_s_and_share_your_name_and_photo">%1$s के साथ आपका चैट जारी रखनी है और इनके साथ अपना नाम और तस्वीर शेयर करनी है?</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">इस ग्रुप में जुड़ना है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है? उन्हें पता नहीं चलेगा कि आपने उनके मेसेज देख लिए हैं जब तक आप स्वीकार नहीं करते।</string>
-    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">इस ग्रुप में शामिल होकर अपना नाम और फ़ोटो इसके सदस्यों के साथ साझा करने हैं? जब तक आप स्वीकार नहीं करते, आपको उनके संदेश नहीं दिखेंगे।</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">क्या आपको इस ग्रुप से जुड़ना है और अपना नाम और फ़ोटो इसके सदस्यों के साथ शेयर करनी है? स्वीकार करने के बाद ही उन्हें पता चल पाएगा कि आपने उनके मैसेज देखे हैं।</string>
+    <string name="MessageRequestBottomView_do_you_want_to_join_this_group_you_wont_see_their_messages">क्या आपको इस ग्रुप से जुड़ना है और अपना नाम और फ़ोटो इसके सदस्यों के साथ शेयर करनी है? स्वीकार करने के बाद ही आपको उनके मैसेज दिख पाएंगे।</string>
     <!-- Shown when you are invited to a group and explains that until you accept the invitation to the group, members will not know that you have seen their messages. -->
-    <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">इस ग्रुप में जुड़ना है? उन्हें पता नहीं चलेगा कि आपने उनके मेसेज देख लिए हैं जब तक आप स्वीकार नहीं करते।</string>
+    <string name="MessageRequestBottomView_join_this_group_they_wont_know_youve_seen_their_messages_until_you_accept">इस ग्रुप में जुड़ना है? आपकी ओर से स्वीकार करने के बाद ही ग्रुप के सदस्यों को पता चल पाएगा कि आपने उनके मैसेज देखे हैं।</string>
     <string name="MessageRequestBottomView_unblock_this_group_and_share_your_name_and_photo_with_its_members">इस ग्रुप को अनब्लॉक करना है और इसके मेंबर्स के साथ अपना नाम और तस्वीर शेयर करनी है? आप कोई भी मेसेज प्राप्त नहीं करेंगे जब तक आप उन्हें अनब्लॉक नहीं करते।</string>
   <!-- Removed by excludeNonTranslatables <string name="MessageRequestBottomView_legacy_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007459591</string> -->
-    <string name="MessageRequestProfileView_view">देखना</string>
+    <string name="MessageRequestProfileView_view">देखें</string>
     <string name="MessageRequestProfileView_member_of_one_group">%1$s का सदस्य</string>
     <string name="MessageRequestProfileView_member_of_two_groups">%1$s और %2$s का सदस्य</string>
-    <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s और %3$s का सदस्य</string>
+    <string name="MessageRequestProfileView_member_of_many_groups">%1$s, %2$s, और %3$s का सदस्य</string>
     <plurals name="MessageRequestProfileView_members">
-        <item quantity="one">%1$d मेंबर</item>
-        <item quantity="other">%1$d मेंबर्स</item>
+        <item quantity="one">%1$d सदस्य</item>
+        <item quantity="other">%1$d सदस्य</item>
     </plurals>
     <!-- Describes the number of members in a group. The string MessageRequestProfileView_invited is nested in the parentheses. -->
     <plurals name="MessageRequestProfileView_members_and_invited">
@@ -2155,13 +2157,13 @@
     </plurals>
     <!-- Describes the number of people invited to a group. Nested inside of the string MessageRequestProfileView_members_and_invited -->
     <plurals name="MessageRequestProfileView_invited">
-        <item quantity="one">+%1$d आमंत्रित किए गए</item>
-        <item quantity="other">+%1$d आमंत्रित किए गए</item>
+        <item quantity="one">+%1$d को इनवाइट भेजा गया</item>
+        <item quantity="other">+%1$d को इनवाइट भेजा गया</item>
     </plurals>
     <!-- Describe the total number of groups, besides two groups, that you and a person have in common. Nested inside MessageRequestProfileView_member_of_many_groups -->
     <plurals name="MessageRequestProfileView_member_of_d_additional_groups">
         <item quantity="one">%1$d अतिरिक्त ग्रुप</item>
-        <item quantity="other">%1$d अतिरिक्त ग्रुप्स</item>
+        <item quantity="other">%1$d अतिरिक्त ग्रुप</item>
     </plurals>
     <!-- Describes the names of members in a group. MessageRequestProfileView_group_members_* is nested in the first parentheses. MessageRequestProfileView_invited is nested in the second -->
     <string name="MessageRequestProfileView_member_names_and_invited">%1$s (%2$s)</string>
@@ -2198,65 +2200,65 @@
     <string name="MessageRequestBottomView_join">जुड़ें</string>
 
     <!-- PassphraseChangeActivity -->
-    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">पासफ्रेज़ मेल नहीं खाते हैं</string>
-    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">गलत पुराना पासफ्रेज</string>
-    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">नया पासफ्रेज दर्ज करें</string>
+    <string name="PassphraseChangeActivity_passphrases_dont_match_exclamation">पासफ़्रेज़ मेल नहीं खाते हैं!</string>
+    <string name="PassphraseChangeActivity_incorrect_old_passphrase_exclamation">गलत या पुराना पासफ़्रेज़!</string>
+    <string name="PassphraseChangeActivity_enter_new_passphrase_exclamation">नया पासफ़्रेज़ डालें!</string>
 
     <!-- DeviceProvisioningActivity -->
-    <string name="DeviceProvisioningActivity_link_this_device">इस डिवाइस को लिंक करें?</string>
+    <string name="DeviceProvisioningActivity_link_this_device">इस डिवाइस को लिंक करना है?</string>
     <string name="DeviceProvisioningActivity_continue">जारी रखें</string>
 
-    <string name="DeviceProvisioningActivity_content_intro">यह करने में सक्षम हो जाएगा</string>
+    <string name="DeviceProvisioningActivity_content_intro">इससे यह डिवाइस</string>
     <string name="DeviceProvisioningActivity_content_bullets">
-        अपने सभी मेसेज पढ़ें अपने नाम में मेसेज भेजें
+        • आपके सभी मैसेज पढ़ पाएगा \n• आपके नाम से मैसेज भेज पाएगा
     </string>
     <string name="DeviceProvisioningActivity_content_progress_title">डिवाइस लिंक किया जा रहा है</string>
-    <string name="DeviceProvisioningActivity_content_progress_content">नया डिवाइस लिंक किया जा रहा है</string>
-    <string name="DeviceProvisioningActivity_content_progress_success">डिवाइस मंजूर</string>
-    <string name="DeviceProvisioningActivity_content_progress_no_device">कोई डिवाइस नहीं मिला</string>
-    <string name="DeviceProvisioningActivity_content_progress_network_error">नेटवर्क त्रुटि</string>
-    <string name="DeviceProvisioningActivity_content_progress_key_error">अवैध क्यूआर कोड</string>
+    <string name="DeviceProvisioningActivity_content_progress_content">नया डिवाइस लिंक किया जा रहा है…</string>
+    <string name="DeviceProvisioningActivity_content_progress_success">डिवाइस को मंज़ूरी मिली!</string>
+    <string name="DeviceProvisioningActivity_content_progress_no_device">कोई डिवाइस नहीं मिला।</string>
+    <string name="DeviceProvisioningActivity_content_progress_network_error">नेटवर्क में कोई गड़बड़ी है।</string>
+    <string name="DeviceProvisioningActivity_content_progress_key_error">QR कोड सही नहीं है।</string>
     <!-- Toast message shown when a user has too many linked devices and needs to remove one before linking another -->
-    <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">क्षमा करें, आपके पास पहले से जुड़े बहुत से डिवाइस हैं, कुछ को हटाने का प्रयास करें</string>
-    <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">क्षमा करें, यह एक वैध डिवाइस लिंक क्यूआर कोड नहीं है।</string>
-    <string name="DeviceProvisioningActivity_link_a_signal_device">Signal डिवाइस को लिंक करें?</string>
+    <string name="DeviceProvisioningActivity_sorry_you_have_too_many_devices_linked_already">माफ़ करें, आपने पहले ही कई डिवाइस लिंक कर लिए हैं। इनमें से कुछ को हटाकर फिर से कोशिश करें</string>
+    <string name="DeviceActivity_sorry_this_is_not_a_valid_device_link_qr_code">माफ़ करें, यह डिवाइस लिंक करने का सही QR कोड नहीं है।</string>
+    <string name="DeviceProvisioningActivity_link_a_signal_device">Signal डिवाइस लिंक करना है?</string>
     <string name="DeviceProvisioningActivity_to_link_a_desktop_or_ipad_to_this_signal_account">इस Signal अकाउंट से डेस्कटॉप या iPad को लिंक करने के लिए, लिंक्ड डिवाइस पर जाएँ और \"नया डिवाइस लिंक करें\" पर टैप करके QR कोड को फिर से स्कैन करें। पक्का करें कि आप वही QR कोड स्कैन करें जो सीधा Signal से आता है।</string>
 
-    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">एक क्यूआर कोड स्कैन करने के लिए Signal को कैमरा अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"कैमरा\" सक्षम करें।</string>
-    <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">कैमरा अनुमति के बिना एक क्यूआर कोड स्कैन करने में असमर्थ</string>
+    <string name="DeviceActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code">Signal को QR कोड स्कैन करने के लिए कैमरे का ऐक्सेस चाहिए। हालांकि, आपने इसे स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए ऐप सेटिंग में जाएं, \"अनुमतियां\" चुनें, और \"कैमरा\" चालू करें।</string>
+    <string name="DeviceActivity_unable_to_scan_a_qr_code_without_the_camera_permission">कैमरा ऐक्सेस के बिना QR कोड स्कैन नहीं किया जा सकता</string>
 
     <!-- OutdatedBuildReminder -->
     <string name="OutdatedBuildReminder_update_now">अभी अपडेट करें</string>
-    <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal का यह वर्ज़न आज एक्सपायर हो जाएगा। सबसे नवीनतम वर्ज़न में अपडेट करें।</string>
+    <string name="OutdatedBuildReminder_your_version_of_signal_will_expire_today">Signal का यह वर्ज़न आज एक्सपायर हो जाएगा। सबसे नया वर्ज़न डाउनलोड करें।</string>
     <plurals name="OutdatedBuildReminder_your_version_of_signal_will_expire_in_n_days">
-        <item quantity="one">Signal का यह संस्करण कल समाप्त हो जाएगा। सबसे नवीनतम संस्करण में अपडेट करें।</item>
-        <item quantity="other">Signal का यह संस्करण %1$d दिनों में समाप्त हो जाएगा। सबसे नवीनतम संस्करण में अपडेट करें।</item>
+        <item quantity="one">Signal का यह वर्ज़न कल एक्सपायर हो जाएगा। सबसे नया वर्ज़न डाउनलोड करें।</item>
+        <item quantity="other">Signal का यह वर्ज़न %1$d दिन में एक्सपायर हो जाएगा। सबसे नया वर्ज़न डाउनलोड करें।</item>
     </plurals>
 
     <!-- PassphrasePromptActivity -->
-    <string name="PassphrasePromptActivity_enter_passphrase">पासफ्रेज दर्ज करें</string>
-    <string name="PassphrasePromptActivity_watermark_content_description">Signal आइकन</string>
-    <string name="PassphrasePromptActivity_ok_button_content_description">पासफ्रेज जमा करें</string>
-    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">अमान्य पासफ्रेज</string>
-    <string name="PassphrasePromptActivity_unlock_signal">Signal खोलो</string>
+    <string name="PassphrasePromptActivity_enter_passphrase">पासफ़्रेज़ डालें</string>
+    <string name="PassphrasePromptActivity_watermark_content_description">Signal का आइकन</string>
+    <string name="PassphrasePromptActivity_ok_button_content_description">पासफ़्रेज़ सबमिट करें</string>
+    <string name="PassphrasePromptActivity_invalid_passphrase_exclamation">पासफ़्रेज़ सही नहीं है!</string>
+    <string name="PassphrasePromptActivity_unlock_signal">Signal अनलॉक करें</string>
     <!-- This is the subject line for the email that is sent to support -->
     <string name="PassphrasePromptActivity_signal_android_lock_screen">Signal Android - लॉक स्क्रीन</string>
 
     <!-- PlacePickerActivity -->
-    <string name="PlacePickerActivity_title">नक्शा</string>
+    <string name="PlacePickerActivity_title">मैप</string>
 
     <!-- Content description of the pin image -->
-    <string name="PlacePickerActivity_drop_pin">पीन दें</string>
-    <string name="PlacePickerActivity_accept_address">पता स्वीकारें</string>
+    <string name="PlacePickerActivity_drop_pin">पिन सही जगह पर रखें</string>
+    <string name="PlacePickerActivity_accept_address">पते को मंज़ूरी दें</string>
 
     <!-- PlayServicesProblemFragment -->
-    <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">आपके द्वारा इंस्टॉल की गई Google Play सेवाओं का वर्ज़न सही ढंग से कार्य नहीं कर रहा है। कृपया Google Play सेवाओं को पुनर्स्थापित करें और पुनः प्रयास करें।</string>
+    <string name="PlayServicesProblemFragment_the_version_of_google_play_services_you_have_installed_is_not_functioning">आपके फ़ोन में इंस्टॉल किए गए Google Play Services का वर्ज़न सही तरीके से काम नहीं कर रहा है। कृपया इसे दोबारा इंस्टॉल करें और फिर कोशिश करें।</string>
 
     <!-- PinRestoreEntryFragment -->
-    <string name="PinRestoreEntryFragment_incorrect_pin">ग़लत पिन</string>
-    <string name="PinRestoreEntryFragment_skip_pin_entry">पिन दर्ज करना छोड़ें?</string>
-    <string name="PinRestoreEntryFragment_need_help">मदद चाहिए?</string>
-    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">आपका पिन आपके द्वारा बनाया %1$d+ अंक का एक कोड होता है जो अंकीय या अक्षरांकीय हो सकता है।\n\nअगर आप अपना पिन याद नहीं कर पा रहे हैं तो, आप नया पिन बना सकते हैं। आप रजिस्टर करके अपना खाता इस्तेमाल कर सकते हैं पर आप कुछ सेटिंग्स खो देंगे जैसे प्रोफ़ाइल की जानकारी।</string>
+    <string name="PinRestoreEntryFragment_incorrect_pin">पिन सही नहीं है</string>
+    <string name="PinRestoreEntryFragment_skip_pin_entry">बिना पिन डाले ही आगे बढ़ना है?</string>
+    <string name="PinRestoreEntryFragment_need_help">क्या आपको कोई मदद चाहिए?</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">आपका पिन एक %1$d+ अंकों का कोड है, जिसे आपने बनाया था। यह न्यूमेरिक या अल्फ़ान्यूमेरिक हो सकता है।\n\nअगर आपको अपना पिन याद नहीं है, तो आपके पास नया पिन बनाने का विकल्प मौजूद है। रजिस्टर करके अपना अकाउंट इस्तेमाल किया जा सकता है, लेकिन कुछ सेव की गई सेटिंग खो सकती है, जैसे कि आपकी प्रोफ़ाइल से जुड़ी जानकारी।</string>
     <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">अगर आपको अपना पिन याद नहीं है तो आप नया पिन बना सकते हैं। आप पंजीकरण करके अपना खाता इस्तेमाल कर सकते हैं पर आप कुछ सेटिंग्स खो देंगे जैसे प्रोफ़ाइल की जानकारी।</string>
     <string name="PinRestoreEntryFragment_create_new_pin">नया पिन बनाएँ</string>
     <string name="PinRestoreEntryFragment_contact_support">समर्थन से संपर्क करें</string>

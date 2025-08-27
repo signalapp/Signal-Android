@@ -422,7 +422,7 @@
     <string name="ConversationItem_copied_text">Skopiowano %1$s</string>
     <string name="ConversationItem_from_s">Nadawca: %1$s</string>
     <!-- Footer shown in legacy SMS message where %s is the name of the recipient the message is going to -->
-    <string name="ConversationItem_to_s">Adresat: %1$s</string>
+    <string name="ConversationItem_to_s">Odbiorca: %1$s</string>
     <string name="ConversationItem_read_more">  Czytaj dalej</string>
     <!-- Footer shown at the end of long body messages to download more of it -->
     <string name="ConversationItem_download_more">  Pobierz więcej</string>
@@ -841,7 +841,7 @@
     <string name="ConversationListFragment_username_recovered_toast">Twój kod QR i link zostały zresetowane, a Twoja nazwa użytkownika to %1$s</string>
 
     <!-- ConversationListItem -->
-    <string name="ConversationListItem_key_exchange_message">Wiadomość wymiany kluczy</string>
+    <string name="ConversationListItem_key_exchange_message">Wiadomość z wymianą kluczy</string>
 
     <!-- ConversationListItemAction -->
     <string name="ConversationListItemAction_archived_conversations_d">Czaty zarchiwizowane (%1$d)</string>
@@ -979,8 +979,8 @@
 
 
     <!-- CustomDefaultPreference -->
-    <string name="CustomDefaultPreference_using_custom">W użyciu niestandardowe: %1$s</string>
-    <string name="CustomDefaultPreference_using_default">W użyciu domyślne: %1$s</string>
+    <string name="CustomDefaultPreference_using_custom">Użycie ustawień niestandardowych: %1$s</string>
+    <string name="CustomDefaultPreference_using_default">Użycie ustawień domyślnych: %1$s</string>
     <string name="CustomDefaultPreference_none">Brak</string>
 
     <!-- AvatarSelectionBottomSheetDialogFragment -->
@@ -1782,7 +1782,7 @@
 
     <!-- MessageRetrievalService -->
     <string name="MessageRetrievalService_signal">Signal</string>
-    <string name="MessageRetrievalService_background_connection_enabled">Połączenie w tle jest włączone</string>
+    <string name="MessageRetrievalService_background_connection_enabled">Działanie w tle włączone</string>
 
     <!-- MediaOverviewActivity -->
     <string name="MediaOverviewActivity_Media">Multimedia</string>
@@ -2234,6 +2234,8 @@
     <string name="MessageRecord_you_blocked_this_group">Blokujesz tę grupę</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">Odblokowujesz tę grupę</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s sent you a message that can\'t be processed or displayed because it uses a new Signal feature.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Zaakceptuj</string>
@@ -2993,7 +2995,7 @@
     <!-- SmsMessageRecord -->
     <string name="SmsMessageRecord_secure_session_reset">Resetujesz bezpieczną sesję.</string>
     <string name="SmsMessageRecord_secure_session_reset_s">%1$s resetuje bezpieczną sesję.</string>
-    <string name="SmsMessageRecord_duplicate_message">Duplikuj wiadomość.</string>
+    <string name="SmsMessageRecord_duplicate_message">Zdublowana wiadomość.</string>
 
     <!-- Sticker management screen default title. -->
     <string name="StickerManagement_title_stickers">Naklejki</string>
@@ -3357,7 +3359,7 @@
     <string name="MessageNotifier_view_once_photo">Zdjęcie jednorazowe</string>
     <string name="MessageNotifier_view_once_video">Wideo jednorazowe</string>
     <string name="MessageNotifier_reply">Odpowiedz</string>
-    <string name="MessageNotifier_signal_message">Wiadomość Signal</string>
+    <string name="MessageNotifier_signal_message">Wyślij w aplikacji Signal</string>
     <string name="MessageNotifier_contact_message">%1$s %2$s</string>
     <string name="MessageNotifier_unknown_contact_message">Kontakt</string>
     <string name="MessageNotifier_reacted_s_to_s">Zareagował(a) tak %1$s na \"%2$s\".</string>
@@ -3701,7 +3703,7 @@
     <string name="ConversationUpdateItem_call_is_full">Połączenie jest pełne</string>
     <string name="ConversationUpdateItem_invite_friends">Zaproś znajomych</string>
     <string name="ConversationUpdateItem_enable_call_notifications">Włącz powiadomienia o połączeniach</string>
-    <string name="ConversationUpdateItem_update_contact">Uaktualnij kontakt</string>
+    <string name="ConversationUpdateItem_update_contact">Edytuj kontakt</string>
     <!-- Update item button text to show to block a recipient from requesting to join via group link -->
     <string name="ConversationUpdateItem_block_request">Zablokuj prośbę</string>
     <!-- Text shown in conversation header that the account messaging the user does not have any groups in common with them -->
@@ -3723,7 +3725,7 @@
     <string name="ConversationUpdateItem_update">Uaktualnij</string>
 
     <!-- audio_view -->
-    <string name="audio_view__play_pause_accessibility_description">Odtwarzanie … Pauza</string>
+    <string name="audio_view__play_pause_accessibility_description">Odtwórz … Wstrzymaj odtwarzanie</string>
     <string name="audio_view__download_accessibility_description">Pobierz</string>
 
     <!-- document_view -->
@@ -6139,10 +6141,10 @@
     <string name="StickerKeyboard__recently_used">Ostatnio używane</string>
 
     <!-- PlaybackSpeedToggleTextView -->
-    <string name="PlaybackSpeedToggleTextView__p5x">0,5x</string>
-    <string name="PlaybackSpeedToggleTextView__1x">1x</string>
-    <string name="PlaybackSpeedToggleTextView__1p5x">1,5x</string>
-    <string name="PlaybackSpeedToggleTextView__2x">2x</string>
+    <string name="PlaybackSpeedToggleTextView__p5x">0,5×</string>
+    <string name="PlaybackSpeedToggleTextView__1x">1×</string>
+    <string name="PlaybackSpeedToggleTextView__1p5x">1,5×</string>
+    <string name="PlaybackSpeedToggleTextView__2x">2×</string>
 
     <!-- PaymentRecipientSelectionFragment -->
     <string name="PaymentRecipientSelectionFragment__new_payment">Nowa płatność</string>
@@ -6389,10 +6391,10 @@
     <string name="SubscribeFragment__you_wont_be_charged_again">Nie zostaną pobrane od Ciebie żadne, kolejne środki. Twoja odznaka zostanie usunięta z Twojego profilu wraz z końcem okresu rozliczeniowego.</string>
     <string name="SubscribeFragment__not_now">Nie teraz</string>
     <string name="SubscribeFragment__confirm">Potwierdź</string>
-    <string name="SubscribeFragment__update_subscription">Uaktualnij subskrypcję</string>
+    <string name="SubscribeFragment__update_subscription">Zmień darowiznę cykliczną</string>
     <string name="SubscribeFragment__your_subscription_has_been_cancelled">Twoja subskrypcja została anulowana.</string>
-    <string name="SubscribeFragment__update_subscription_question">Uaktualnić subskrypcję?</string>
-    <string name="SubscribeFragment__update">Uaktualnij</string>
+    <string name="SubscribeFragment__update_subscription_question">Zmienić darowiznę cykliczną?</string>
+    <string name="SubscribeFragment__update">Zmień</string>
     <string name="SubscribeFragment__you_will_be_charged_the_full_amount_s_of">Dziś z Twojego konta zostanie pobrana pełna kwota (%1$s) za nową subskrypcję. Twoja subskrypcja będzie odnawiać się co miesiąc.</string>
 
     <string name="Subscription__s_per_month">%1$s miesięcznie</string>
