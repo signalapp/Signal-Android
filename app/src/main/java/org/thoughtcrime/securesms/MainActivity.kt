@@ -259,8 +259,9 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
       launch {
         mainNavigationViewModel.backupStatus.collect { remainingRestoreSize ->
-          if (SignalStore.backup.restoreState == RestoreState.RESTORING_MEDIA && remainingRestoreSize != 0L) {
-            Log.i(TAG, "Still restoring media, launching a service. Remaining restoration size: $remainingRestoreSize")
+          val totalRestorableSize = SignalStore.backup.totalRestorableAttachmentSize
+          if (SignalStore.backup.restoreState == RestoreState.RESTORING_MEDIA && remainingRestoreSize != 0L && totalRestorableSize != 0L) {
+            Log.i(TAG, "Still restoring media, launching a service. Remaining restoration size: $remainingRestoreSize out of $totalRestorableSize ")
             BackupMediaRestoreService.resetTimeout()
             BackupMediaRestoreService.start(this@MainActivity, resources.getString(R.string.BackupStatus__restoring_media))
           }
