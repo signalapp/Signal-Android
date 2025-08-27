@@ -67,6 +67,7 @@ import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.attachments.AttachmentId
 import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
+import org.thoughtcrime.securesms.attachments.LocalStickerAttachment
 import org.thoughtcrime.securesms.attachments.WallpaperAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
@@ -532,7 +533,7 @@ class AttachmentTable(
   fun getLast30DaysOfRestorableAttachments(batchSize: Int): List<RestorableAttachment> {
     val thirtyDaysAgo = System.currentTimeMillis().milliseconds - 30.days
     return readableDatabase
-      .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY)
+      .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID)
       .from("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID")
       .where("$TRANSFER_STATE = ? AND ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} >= ?", TRANSFER_NEEDS_RESTORE, thirtyDaysAgo.inWholeMilliseconds)
       .limit(batchSize)
@@ -544,7 +545,8 @@ class AttachmentTable(
           mmsId = it.requireLong(MESSAGE_ID),
           size = it.requireLong(DATA_SIZE),
           plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
-          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) }
+          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) },
+          stickerPackId = it.requireString(STICKER_PACK_ID)
         )
       }
   }
@@ -556,7 +558,7 @@ class AttachmentTable(
   fun getOlderRestorableAttachments(batchSize: Int): List<RestorableAttachment> {
     val thirtyDaysAgo = System.currentTimeMillis().milliseconds - 30.days
     return readableDatabase
-      .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY)
+      .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID)
       .from("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID")
       .where("$TRANSFER_STATE = ? AND ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < ?", TRANSFER_NEEDS_RESTORE, thirtyDaysAgo.inWholeMilliseconds)
       .limit(batchSize)
@@ -568,14 +570,15 @@ class AttachmentTable(
           mmsId = it.requireLong(MESSAGE_ID),
           size = it.requireLong(DATA_SIZE),
           plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
-          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) }
+          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) },
+          stickerPackId = it.requireString(STICKER_PACK_ID)
         )
       }
   }
 
   fun getRestorableAttachments(batchSize: Int): List<RestorableAttachment> {
     return readableDatabase
-      .select(ID, MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY)
+      .select(ID, MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID)
       .from(TABLE_NAME)
       .where("$TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE)
       .limit(batchSize)
@@ -587,14 +590,15 @@ class AttachmentTable(
           mmsId = it.requireLong(MESSAGE_ID),
           size = it.requireLong(DATA_SIZE),
           plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
-          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) }
+          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) },
+          stickerPackId = it.requireString(STICKER_PACK_ID)
         )
       }
   }
 
   fun getRestorableOptimizedAttachments(): List<RestorableAttachment> {
     return readableDatabase
-      .select(ID, MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY)
+      .select(ID, MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID)
       .from(TABLE_NAME)
       .where("$TRANSFER_STATE = ? AND $DATA_HASH_END NOT NULL AND $REMOTE_KEY NOT NULL", TRANSFER_RESTORE_OFFLOADED)
       .orderBy("$ID DESC")
@@ -605,7 +609,8 @@ class AttachmentTable(
           mmsId = it.requireLong(MESSAGE_ID),
           size = it.requireLong(DATA_SIZE),
           plaintextHash = it.requireString(DATA_HASH_END)?.let { hash -> Base64.decode(hash) },
-          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) }
+          remoteKey = it.requireString(REMOTE_KEY)?.let { key -> Base64.decode(key) },
+          stickerPackId = it.requireString(STICKER_PACK_ID)
         )
       }
   }
@@ -1760,6 +1765,7 @@ class AttachmentTable(
     val insertedAttachments: MutableMap<Attachment, AttachmentId> = mutableMapOf()
     for (attachment in attachments) {
       val attachmentId = when {
+        attachment is LocalStickerAttachment -> insertLocalStickerAttachment(mmsId, attachment)
         attachment.uri != null -> insertAttachmentWithData(mmsId, attachment, attachment.quote)
         attachment is ArchivedAttachment -> insertArchivedAttachment(mmsId, attachment, attachment.quote)
         else -> insertUndownloadedAttachment(mmsId, attachment, attachment.quote)
@@ -2460,8 +2466,103 @@ class AttachmentTable(
   }
 
   /**
-   * Inserts an attachment with existing data. This is likely an outgoing attachment that we're in the process of sending or
-   * an incoming sticker we have already downloaded.
+   * Inserts an incoming sticker with pre-existing local data (i.e., the sticker pack is installed).
+   */
+  @Throws(MmsException::class)
+  private fun insertLocalStickerAttachment(messageId: Long, stickerAttachment: LocalStickerAttachment): AttachmentId {
+    Log.d(TAG, "[insertLocalStickerAttachment] Inserting attachment for messageId $messageId. (MessageId: $messageId, ${stickerAttachment.uri})")
+
+    // find sticker record and reuse
+    var attachmentId: AttachmentId? = null
+
+    writableDatabase.withinTransaction { db ->
+      val match = db.select()
+        .from(TABLE_NAME)
+        .where("$DATA_FILE NOT NULL AND $DATA_RANDOM NOT NULL AND $STICKER_PACK_ID = ? AND $STICKER_ID = ?", stickerAttachment.packId, stickerAttachment.stickerId)
+        .run()
+        .readToSingleObject {
+          it.readAttachment() to it.readDataFileInfo()!!
+        }
+
+      if (match != null) {
+        val (attachment, dataFileInfo) = match
+
+        Log.i(TAG, "[insertLocalStickerAttachment] Found that the sticker matches an existing sticker attachment: ${attachment.attachmentId}. Using all of it's fields. (MessageId: $messageId, ${attachment.uri})")
+
+        val contentValues = ContentValues().apply {
+          put(MESSAGE_ID, messageId)
+          put(CONTENT_TYPE, attachment.contentType)
+          put(REMOTE_KEY, attachment.remoteKey)
+          put(REMOTE_LOCATION, attachment.remoteLocation)
+          put(REMOTE_DIGEST, attachment.remoteDigest)
+          put(CDN_NUMBER, attachment.cdn.serialize())
+          put(TRANSFER_STATE, attachment.transferState)
+          put(DATA_FILE, dataFileInfo.file.absolutePath)
+          put(DATA_SIZE, attachment.size)
+          put(DATA_RANDOM, dataFileInfo.random)
+          put(FAST_PREFLIGHT_ID, stickerAttachment.fastPreflightId)
+          put(WIDTH, attachment.width)
+          put(HEIGHT, attachment.height)
+          put(STICKER_PACK_ID, attachment.stickerLocator!!.packId)
+          put(STICKER_PACK_KEY, attachment.stickerLocator.packKey)
+          put(STICKER_ID, attachment.stickerLocator.stickerId)
+          put(STICKER_EMOJI, attachment.stickerLocator.emoji)
+          put(BLUR_HASH, attachment.blurHash?.hash)
+          put(UPLOAD_TIMESTAMP, attachment.uploadTimestamp)
+          put(DATA_HASH_START, dataFileInfo.hashStart)
+          put(DATA_HASH_END, dataFileInfo.hashEnd ?: dataFileInfo.hashStart)
+          put(ARCHIVE_CDN, attachment.archiveCdn)
+          put(ARCHIVE_TRANSFER_STATE, attachment.archiveTransferState.value)
+          put(THUMBNAIL_RESTORE_STATE, dataFileInfo.thumbnailRestoreState)
+          put(THUMBNAIL_RANDOM, dataFileInfo.thumbnailRandom)
+          put(THUMBNAIL_FILE, dataFileInfo.thumbnailFile)
+          put(ATTACHMENT_UUID, stickerAttachment.uuid?.toString())
+        }
+
+        val rowId = db.insert(TABLE_NAME, null, contentValues)
+        attachmentId = AttachmentId(rowId)
+      }
+    }
+
+    if (attachmentId == null) {
+      val dataStream = try {
+        PartAuthority.getAttachmentStream(context, stickerAttachment.uri)
+      } catch (e: IOException) {
+        throw MmsException(e)
+      }
+      val fileWriteResult: DataFileWriteResult = writeToDataFile(newDataFile(context), dataStream, stickerAttachment.transformProperties ?: TransformProperties.empty())
+      Log.d(TAG, "[insertLocalStickerAttachment] Wrote data to file: ${fileWriteResult.file.absolutePath} (MessageId: $messageId, ${stickerAttachment.uri})")
+      val remoteKey = Util.getSecretBytes(64)
+
+      val contentValues = ContentValues().apply {
+        put(MESSAGE_ID, messageId)
+        put(CONTENT_TYPE, stickerAttachment.contentType)
+        put(REMOTE_KEY, Base64.encodeWithPadding(remoteKey))
+        put(TRANSFER_STATE, stickerAttachment.transferState)
+        put(DATA_FILE, fileWriteResult.file.absolutePath)
+        put(DATA_SIZE, fileWriteResult.length)
+        put(DATA_RANDOM, fileWriteResult.random)
+        put(FAST_PREFLIGHT_ID, stickerAttachment.fastPreflightId)
+        put(WIDTH, stickerAttachment.width)
+        put(HEIGHT, stickerAttachment.height)
+        put(STICKER_PACK_ID, stickerAttachment.stickerLocator!!.packId)
+        put(STICKER_PACK_KEY, stickerAttachment.stickerLocator.packKey)
+        put(STICKER_ID, stickerAttachment.stickerLocator.stickerId)
+        put(STICKER_EMOJI, stickerAttachment.stickerLocator.emoji)
+        put(DATA_HASH_START, fileWriteResult.hash)
+        put(DATA_HASH_END, fileWriteResult.hash)
+        put(ATTACHMENT_UUID, stickerAttachment.uuid?.toString())
+      }
+
+      val rowId = writableDatabase.insert(TABLE_NAME, null, contentValues)
+      attachmentId = AttachmentId(rowId)
+    }
+
+    return attachmentId
+  }
+
+  /**
+   * Inserts an attachment with existing data. This is likely an outgoing attachment that we're in the process of sending.
    */
   @Throws(MmsException::class)
   private fun insertAttachmentWithData(messageId: Long, attachment: Attachment, quote: Boolean): AttachmentId {
@@ -3138,7 +3239,8 @@ class AttachmentTable(
     val mmsId: Long,
     val size: Long,
     val plaintextHash: ByteArray?,
-    val remoteKey: ByteArray?
+    val remoteKey: ByteArray?,
+    val stickerPackId: String?
   ) {
     override fun equals(other: Any?): Boolean {
       return this === other || attachmentId == (other as? RestorableAttachment)?.attachmentId

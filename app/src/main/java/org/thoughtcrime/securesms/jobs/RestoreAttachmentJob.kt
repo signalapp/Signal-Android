@@ -34,13 +34,16 @@ import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil
 import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.StickersNotDownloadingConstraint
 import org.thoughtcrime.securesms.jobs.protos.RestoreAttachmentJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.mms.MmsException
+import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.service.BackupMediaRestoreService
+import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
@@ -110,13 +113,14 @@ class RestoreAttachmentJob private constructor(
      * Create a restore job for the initial large batch of media on a fresh restore.
      * Will enqueue with some amount of parallization with low job priority.
      */
-    fun forInitialRestore(attachmentId: AttachmentId, messageId: Long): RestoreAttachmentJob {
+    fun forInitialRestore(attachmentId: AttachmentId, messageId: Long, stickerPackId: String?): RestoreAttachmentJob {
       return RestoreAttachmentJob(
         attachmentId = attachmentId,
         messageId = messageId,
         manual = false,
         queue = Queues.INITIAL_RESTORE.random(),
-        priority = Parameters.PRIORITY_LOW
+        priority = Parameters.PRIORITY_LOW,
+        stickerPackId = stickerPackId
       )
     }
 
@@ -155,7 +159,7 @@ class RestoreAttachmentJob private constructor(
     }
   }
 
-  private constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, queue: String, priority: Int) : this(
+  private constructor(messageId: Long, attachmentId: AttachmentId, manual: Boolean, queue: String, priority: Int, stickerPackId: String? = null) : this(
     Parameters.Builder()
       .setQueue(queue)
       .apply {
@@ -164,6 +168,10 @@ class RestoreAttachmentJob private constructor(
         } else {
           addConstraint(RestoreAttachmentConstraint.KEY)
           addConstraint(BatteryNotLowConstraint.KEY)
+        }
+
+        if (stickerPackId != null && SignalDatabase.stickers.isPackInstalled(stickerPackId)) {
+          addConstraint(StickersNotDownloadingConstraint.KEY)
         }
       }
       .setLifespan(TimeUnit.DAYS.toMillis(30))
@@ -223,6 +231,28 @@ class RestoreAttachmentJob private constructor(
     ) {
       Log.w(TAG, "[$attachmentId] Attachment does not need to be restored. Current state: ${attachment.transferState}")
       return
+    }
+
+    if (attachment.stickerLocator.isValid()) {
+      val locator = attachment.stickerLocator!!
+      val stickerRecord = SignalDatabase.stickers.getSticker(locator.packId, locator.stickerId, false)
+
+      if (stickerRecord != null) {
+        val dataStream = try {
+          PartAuthority.getAttachmentStream(context, stickerRecord.uri)
+        } catch (e: IOException) {
+          Log.w(TAG, "[$attachmentId] Attachment is sticker but no sticker available", e)
+          null
+        }
+
+        dataStream?.use { input ->
+          Log.i(TAG, "[$attachmentId] Attachment is sticker, restoring from local storage")
+          SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, input, if (manual) System.currentTimeMillis().milliseconds else null)
+          return
+        }
+      }
+
+      Log.i(TAG, "[$attachmentId] Attachment is sticker, but unable to restore from local storage. Attempting to download.")
     }
 
     SignalLocalMetrics.ArchiveAttachmentRestore.start(attachmentId)
@@ -372,7 +402,7 @@ class RestoreAttachmentJob private constructor(
         throw IOException("Failed to delete temp download file following range exception")
       }
     } catch (e: InvalidAttachmentException) {
-      Log.w(TAG, e.message)
+      Log.w(TAG, "[$attachmentId] Invalid attachment: ${e.message}")
       markFailed(attachmentId)
     } catch (e: NonSuccessfulResponseCodeException) {
       when (e.code) {
@@ -476,4 +506,11 @@ class RestoreAttachmentJob private constructor(
       )
     }
   }
+}
+
+private fun StickerLocator?.isValid(): Boolean {
+  return this != null &&
+    this.packId.isNotNullOrBlank() &&
+    this.packKey.isNotNullOrBlank() &&
+    this.stickerId >= 0
 }

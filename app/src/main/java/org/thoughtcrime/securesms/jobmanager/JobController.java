@@ -469,6 +469,10 @@ class JobController {
     return jobStorage.areQueuesEmpty(queueKeys);
   }
 
+  synchronized boolean areFactoriesEmpty(@NonNull Set<String> factoryKeys) {
+    return jobStorage.areFactoriesEmpty(factoryKeys);
+  }
+
   /**
    * Initializes the dynamic JobRunner system with minimum threads.
    */

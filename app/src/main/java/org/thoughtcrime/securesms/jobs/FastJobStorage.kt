@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage
 import org.thoughtcrime.securesms.util.LRUCache
 import java.util.TreeSet
+import java.util.concurrent.atomic.AtomicInteger
 import java.util.function.Predicate
 
 class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
@@ -50,6 +51,9 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   /** We need a fast way to know what the "most eligible job" is for a given queue. This serves as a lookup table that speeds up the maintenance of [eligibleJobs]. */
   private val mostEligibleJobForQueue: MutableMap<String, MinimalJobSpec> = hashMapOf()
 
+  /** Quick lookup of job counts per factory for all jobs */
+  private val factoryCountIndex: MutableMap<String, AtomicInteger> = hashMapOf()
+
   @Synchronized
   override fun init() {
     val stopwatch = Stopwatch("init", decimalPlaces = 2)
@@ -62,6 +66,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       } else {
         placeJobInEligibleList(job)
       }
+      factoryCountIndex.getOrPut(job.factoryKey) { AtomicInteger(0) }.incrementAndGet()
     }
     stopwatch.split("sort-min-jobs")
 
@@ -105,6 +110,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       } else {
         placeJobInEligibleList(minimalJobSpec)
       }
+      factoryCountIndex.getOrPut(minimalJobSpec.factoryKey) { AtomicInteger(0) }.incrementAndGet()
 
       constraintsByJobId[fullSpec.jobSpec.id] = fullSpec.constraintSpecs.toMutableList()
       dependenciesByJobId[fullSpec.jobSpec.id] = fullSpec.dependencySpecs.toMutableList()
@@ -178,9 +184,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   @Synchronized
   override fun getJobCountForFactory(factoryKey: String): Int {
-    return minimalJobs
-      .filter { it.factoryKey == factoryKey }
-      .size
+    return factoryCountIndex[factoryKey]?.get() ?: 0
   }
 
   @Synchronized
@@ -193,6 +197,11 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   @Synchronized
   override fun areQueuesEmpty(queueKeys: Set<String>): Boolean {
     return minimalJobs.none { it.queueKey != null && queueKeys.contains(it.queueKey) }
+  }
+
+  @Synchronized
+  override fun areFactoriesEmpty(factoryKeys: Set<String>): Boolean {
+    return factoryKeys.all { (factoryCountIndex[it]?.get() ?: 0) == 0 }
   }
 
   @Synchronized
@@ -301,6 +310,13 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       if (updatedJob != null) {
         iterator.set(updatedJob.toMinimalJobSpec())
         replaceJobInEligibleList(current, updatedJob.toMinimalJobSpec())
+
+        if (current.factoryKey != updatedJob.factoryKey) {
+          if (factoryCountIndex[current.factoryKey]?.decrementAndGet() == 0) {
+            factoryCountIndex.remove(current.factoryKey)
+          }
+          factoryCountIndex.getOrPut(updatedJob.factoryKey) { AtomicInteger(0) }.incrementAndGet()
+        }
       }
     }
   }
@@ -355,6 +371,12 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
             iter.remove()
           }
         }
+      }
+    }
+
+    for (job in jobsToDelete) {
+      if (factoryCountIndex[job.factoryKey]?.decrementAndGet() == 0) {
+        factoryCountIndex.remove(job.factoryKey)
       }
     }
   }
@@ -425,6 +447,13 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
         val updated = transformer(current)
         iterator.set(updated)
         replaceJobInEligibleList(current, updated)
+
+        if (current.factoryKey != updated.factoryKey) {
+          if (factoryCountIndex[current.factoryKey]?.decrementAndGet() == 0) {
+            factoryCountIndex.remove(current.factoryKey)
+          }
+          factoryCountIndex.getOrPut(updated.factoryKey) { AtomicInteger(0) }.incrementAndGet()
+        }
 
         jobSpecCache.remove(current.id)?.let { currentJobSpec ->
           val updatedJobSpec = currentJobSpec.copy(

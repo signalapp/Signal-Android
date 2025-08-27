@@ -437,6 +437,19 @@ public class JobManager implements ConstraintObserver.Notifier {
   }
 
   /**
+   * Can tell you if there are no jobs for the given factories at the time of invocation. It is worth noting
+   * that the state could change immediately after this method returns due to a call on some
+   * other thread, and you should take that into consideration when using the result.
+   *
+   * @return True if there are no jobs for the given factories at the time of invocation, otherwise false.
+   */
+  @WorkerThread
+  public boolean areFactoriesEmpty(@NonNull Set<String> factoryKeys) {
+    waitUntilInitialized();
+    return jobController.areFactoriesEmpty(factoryKeys);
+  }
+
+  /**
    * Pokes the system to take another pass at the job queue.
    */
   void wakeUp() {

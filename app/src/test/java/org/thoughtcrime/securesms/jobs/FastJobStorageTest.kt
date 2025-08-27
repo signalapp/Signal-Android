@@ -977,6 +977,338 @@ class FastJobStorageTest {
     assertThat(subject.areQueuesEmpty(TestHelpers.setOf("q4", "q5"))).isEqualTo(true)
   }
 
+  @Test
+  fun `areFactoriesEmpty - all non-empty`() {
+    val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f1", "f2"))).isEqualTo(false)
+
+    subject.deleteJobs(listOf("id1"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(true)
+    assertThat(subject.areFactoriesEmpty(setOf("f1", "f2"))).isEqualTo(false)
+
+    subject.deleteJobs(listOf("id2"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(true)
+    assertThat(subject.areFactoriesEmpty(setOf("f1", "f2"))).isEqualTo(true)
+  }
+
+  @Test
+  fun `areFactoriesEmpty - mixed empty`() {
+    val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    assertThat(subject.areFactoriesEmpty(setOf("f1", "f5"))).isEqualTo(false)
+
+    subject.deleteJobs(listOf("id1"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1", "f5"))).isEqualTo(true)
+  }
+
+  @Test
+  fun `areFactoriesEmpty - queue does not exist`() {
+    val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    assertThat(subject.areFactoriesEmpty(setOf("f4"))).isEqualTo(true)
+    assertThat(subject.areFactoriesEmpty(setOf("f4", "f5"))).isEqualTo(true)
+
+    subject.insertJobs(listOf(fullSpec("id4", "f4")))
+    assertThat(subject.areFactoriesEmpty(setOf("f4"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f4", "f5"))).isEqualTo(false)
+  }
+
+  @Test
+  fun `areFactoriesEmpty - empty set parameter`() {
+    val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
+    subject.init()
+
+    assertThat(subject.areFactoriesEmpty(emptySet())).isEqualTo(true)
+  }
+
+  @Test
+  fun `areFactoriesEmpty - factory key change via updateJobs maintains correct counts`() {
+    val fullSpec1 = fullSpec(id = "id1", factoryKey = "f1")
+    val fullSpec2 = fullSpec(id = "id2", factoryKey = "f1")
+
+    val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2)))
+    subject.init()
+
+    // Initially, f1 has 2 jobs, f2 has 0
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(true)
+
+    // Update one job to change factory key from f1 to f2
+    val updatedJob = jobSpec(id = "id1", factoryKey = "f2")
+    subject.updateJobs(listOf(updatedJob))
+
+    // Now f1 has 1 job, f2 has 1 job
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(false)
+
+    // Update the other job from f1 to f3
+    val updatedJob2 = jobSpec(id = "id2", factoryKey = "f3")
+    subject.updateJobs(listOf(updatedJob2))
+
+    // Now f1 has 0 jobs, f2 has 1 job, f3 has 1 job
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(true)
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f3"))).isEqualTo(false)
+  }
+
+  @Test
+  fun `areFactoriesEmpty - factory key change via transformJobs maintains correct counts`() {
+    val fullSpec1 = fullSpec(id = "id1", factoryKey = "f1")
+    val fullSpec2 = fullSpec(id = "id2", factoryKey = "f1")
+    val fullSpec3 = fullSpec(id = "id3", factoryKey = "f2")
+
+    val subject = FastJobStorage(mockDatabase(listOf(fullSpec1, fullSpec2, fullSpec3)))
+    subject.init()
+
+    // Initially, f1 has 2 jobs, f2 has 1 job, f3 has 0 jobs
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f3"))).isEqualTo(true)
+
+    // Transform jobs: change job "id1" from f1 to f3, and job "id3" from f2 to f1
+    subject.transformJobs { job ->
+      when (job.id) {
+        "id1" -> job.copy(factoryKey = "f3")
+        "id3" -> job.copy(factoryKey = "f1")
+        else -> job
+      }
+    }
+
+    // Now f1 has 2 jobs (job "id2" + transformed job "id3"), f2 has 0 jobs, f3 has 1 job (transformed job "id1")
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(true)
+    assertThat(subject.areFactoriesEmpty(setOf("f3"))).isEqualTo(false)
+  }
+
+  @Test
+  fun `areFactoriesEmpty - memory-only jobs affect factory counts correctly`() {
+    val memoryJob = fullSpec(id = "id1", factoryKey = "f1")
+    val durableJob = fullSpec(id = "id2", factoryKey = "f1")
+
+    val subject = FastJobStorage(mockDatabase(listOf(memoryJob, durableJob)))
+    subject.init()
+
+    // Both memory-only and durable jobs should be counted for factory
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+
+    // Delete the durable job - f1 should still have the memory-only job
+    subject.deleteJobs(listOf("id2"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+
+    // Delete the memory-only job - now f1 should be empty
+    subject.deleteJobs(listOf("id1"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(true)
+
+    // Insert a new memory-only job
+    val newMemoryJob = fullSpec(id = "id3", factoryKey = "f2")
+    subject.insertJobs(listOf(newMemoryJob))
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(false)
+  }
+
+  @Test
+  fun `areFactoriesEmpty - migration queue jobs counted in factory index`() {
+    val normalJob = fullSpec(id = "id1", factoryKey = "f1", queueKey = "normalQueue")
+    val migrationJob = fullSpec(id = "id2", factoryKey = "f1", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY)
+    val otherMigrationJob = fullSpec(id = "id3", factoryKey = "f2", queueKey = Job.Parameters.MIGRATION_QUEUE_KEY)
+
+    val subject = FastJobStorage(mockDatabase(listOf(normalJob, migrationJob, otherMigrationJob)))
+    subject.init()
+
+    // Both normal and migration jobs should be counted for their factories
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false) // has normal + migration job
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(false) // has migration job
+    assertThat(subject.areFactoriesEmpty(setOf("f3"))).isEqualTo(true) // empty
+
+    // Delete the normal job - f1 should still have the migration job
+    subject.deleteJobs(listOf("id1"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+
+    // Delete the migration job - now f1 should be empty
+    subject.deleteJobs(listOf("id2"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(true)
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(false) // still has migration job
+
+    // Delete the other migration job - now f2 should be empty
+    subject.deleteJobs(listOf("id3"))
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(true)
+  }
+
+  @Test
+  fun `areFactoriesEmpty - unrelated operations dont affect factory counts`() {
+    val subject = FastJobStorage(mockDatabase(listOf(DataSet1.FULL_SPEC_1)))
+    subject.init()
+
+    // Initial state
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+
+    // Operations that should NOT affect factory counts
+    subject.markJobAsRunning("id1", 100)
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+
+    subject.updateJobAfterRetry("id1", 200, 1, 1000, "data".toByteArray())
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+
+    subject.updateAllJobsToBePending()
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+
+    // Verify the job is still there and counts are still accurate
+    assertThat(subject.getJobSpec("id1")).isNotNull()
+    assertThat(subject.getJobCountForFactory("f1")).isEqualTo(1)
+  }
+
+  @Test
+  fun `areFactoriesEmpty - multiple jobs same factory complex lifecycle`() {
+    val job1 = fullSpec(id = "id1", factoryKey = "f1")
+    val job2 = fullSpec(id = "id2", factoryKey = "f1")
+    val job3 = fullSpec(id = "id3", factoryKey = "f1")
+
+    val subject = FastJobStorage(mockDatabase(listOf(job1, job2, job3)))
+    subject.init()
+
+    // Initially f1 has 3 jobs
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+    assertThat(subject.getJobCountForFactory("f1")).isEqualTo(3)
+
+    // Delete 2 jobs, f1 should still have 1
+    subject.deleteJobs(listOf("id1", "id2"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+    assertThat(subject.getJobCountForFactory("f1")).isEqualTo(1)
+
+    // Add more jobs to the same factory
+    val job4 = fullSpec(id = "id4", factoryKey = "f1")
+    val job5 = fullSpec(id = "id5", factoryKey = "f1")
+    subject.insertJobs(listOf(job4, job5))
+
+    // Now f1 should have 3 jobs (remaining job3 + new job4 + job5)
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+    assertThat(subject.getJobCountForFactory("f1")).isEqualTo(3)
+
+    // Transform one job to different factory
+    subject.transformJobs { job ->
+      if (job.id == "id3") job.copy(factoryKey = "f2") else job
+    }
+
+    // Now f1 should have 2 jobs, f2 should have 1 job
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(false)
+    assertThat(subject.getJobCountForFactory("f1")).isEqualTo(2)
+    assertThat(subject.getJobCountForFactory("f2")).isEqualTo(1)
+
+    // Delete all remaining jobs from f1
+    subject.deleteJobs(listOf("id4", "id5"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(true)
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(false)
+    assertThat(subject.getJobCountForFactory("f1")).isEqualTo(0)
+  }
+
+  @Test
+  fun `areFactoriesEmpty - factory count consistency after complex operations`() {
+    val job1 = fullSpec(id = "id1", factoryKey = "f1")
+    val job2 = fullSpec(id = "id2", factoryKey = "f2")
+
+    val subject = FastJobStorage(mockDatabase(listOf(job1, job2)))
+    subject.init()
+
+    // Complex operation chain: insert -> transform -> update -> delete
+
+    // 1. Insert new jobs
+    val newJobs = listOf(
+      fullSpec(id = "id3", factoryKey = "f1"),
+      fullSpec(id = "id4", factoryKey = "f3")
+    )
+    subject.insertJobs(newJobs)
+
+    // State: f1=2, f2=1, f3=1
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f3"))).isEqualTo(false)
+
+    // 2. Transform jobs: change factory keys around
+    subject.transformJobs { job ->
+      when (job.id) {
+        "id1" -> job.copy(factoryKey = "f2") // f1 -> f2
+        "id2" -> job.copy(factoryKey = "f3") // f2 -> f3
+        "id3" -> job.copy(factoryKey = "f4") // f1 -> f4
+        else -> job
+      }
+    }
+
+    // State: f1=0, f2=1, f3=2, f4=1
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(true)
+    assertThat(subject.areFactoriesEmpty(setOf("f2"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f3"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f4"))).isEqualTo(false)
+
+    // 3. Update jobs: change factory key again
+    val updatedJob = jobSpec(id = "id4", factoryKey = "f5") // f3 -> f5
+    subject.updateJobs(listOf(updatedJob))
+
+    // State: f1=0, f2=1, f3=1, f4=1, f5=1
+    assertThat(subject.areFactoriesEmpty(setOf("f3"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f5"))).isEqualTo(false)
+
+    // 4. Delete jobs and verify final counts
+    subject.deleteJobs(listOf("id1", "id2"))
+
+    // State: f1=0, f2=0, f3=0, f4=1, f5=1
+    assertThat(subject.areFactoriesEmpty(setOf("f1", "f2", "f3"))).isEqualTo(true)
+    assertThat(subject.areFactoriesEmpty(setOf("f4", "f5"))).isEqualTo(false)
+    assertThat(subject.areFactoriesEmpty(setOf("f1", "f2", "f3", "f4", "f5"))).isEqualTo(false)
+
+    // Verify actual counts match areFactoriesEmpty results
+    assertThat(subject.getJobCountForFactory("f1")).isEqualTo(0)
+    assertThat(subject.getJobCountForFactory("f2")).isEqualTo(0)
+    assertThat(subject.getJobCountForFactory("f3")).isEqualTo(0)
+    assertThat(subject.getJobCountForFactory("f4")).isEqualTo(1)
+    assertThat(subject.getJobCountForFactory("f5")).isEqualTo(1)
+  }
+
+  @Test
+  fun `areFactoriesEmpty - atomic counter behavior edge cases`() {
+    val job1 = fullSpec(id = "id1", factoryKey = "f1")
+
+    val subject = FastJobStorage(mockDatabase(listOf(job1)))
+    subject.init()
+
+    // Initial state - f1 has 1 job
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+
+    // Try to delete the same job multiple times - should be idempotent
+    subject.deleteJobs(listOf("id1"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(true)
+
+    // Delete again - should not affect the count (already 0)
+    subject.deleteJobs(listOf("id1"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(true)
+
+    // Delete non-existent job - should not affect counts
+    subject.deleteJobs(listOf("nonexistent"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(true)
+
+    // Add job back and test multiple deletes in single call
+    val newJob = fullSpec(id = "id2", factoryKey = "f1")
+    subject.insertJobs(listOf(newJob))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+
+    // Delete with duplicate IDs in the same call - should be handled gracefully
+    subject.deleteJobs(listOf("id2", "id2", "nonexistent"))
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(true)
+
+    // Verify factory counting works correctly after edge case operations
+    val finalJobs = listOf(
+      fullSpec(id = "id3", factoryKey = "f1"),
+      fullSpec(id = "id4", factoryKey = "f1")
+    )
+    subject.insertJobs(finalJobs)
+    assertThat(subject.areFactoriesEmpty(setOf("f1"))).isEqualTo(false)
+    assertThat(subject.getJobCountForFactory("f1")).isEqualTo(2)
+  }
+
   private fun mockDatabase(fullSpecs: List<FullSpec> = emptyList()): JobDatabase {
     val jobs = fullSpecs.map { it.jobSpec }.toMutableList()
     val constraints = fullSpecs.map { it.constraintSpecs }.flatten().toMutableList()
@@ -1064,6 +1396,10 @@ class FastJobStorageTest {
     }
 
     return mock
+  }
+
+  private fun fullSpec(id: String, factoryKey: String, queueKey: String? = null): FullSpec {
+    return FullSpec(jobSpec(id, factoryKey, queueKey), emptyList(), emptyList())
   }
 
   private fun jobSpec(

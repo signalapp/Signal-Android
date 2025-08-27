@@ -34,6 +34,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.RestoreAttachmentConstraintObserver;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.SqlCipherMigrationConstraintObserver;
+import org.thoughtcrime.securesms.jobmanager.impl.StickersNotDownloadingConstraint;
 import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint;
 import org.thoughtcrime.securesms.jobmanager.migrations.DeprecatedJobMigration;
 import org.thoughtcrime.securesms.jobmanager.migrations.DonationReceiptRedemptionJobMigration;
@@ -427,6 +428,7 @@ public final class JobManagerFactories {
       put(RegisteredConstraint.KEY,                              new RegisteredConstraint.Factory());
       put(RestoreAttachmentConstraint.KEY,                       new RestoreAttachmentConstraint.Factory(application));
       put(SqlCipherMigrationConstraint.KEY,                      new SqlCipherMigrationConstraint.Factory(application));
+      put(StickersNotDownloadingConstraint.KEY,                  new StickersNotDownloadingConstraint.Factory());
       put(WifiConstraint.KEY,                                    new WifiConstraint.Factory(application));
     }};
   }
@@ -444,7 +446,8 @@ public final class JobManagerFactories {
                          NoRemoteArchiveGarbageCollectionPendingConstraint.Observer.INSTANCE,
                          RegisteredConstraint.Observer.INSTANCE,
                          BackupMessagesConstraintObserver.INSTANCE,
-                         DeletionNotAwaitingMediaDownloadConstraint.Observer.INSTANCE);
+                         DeletionNotAwaitingMediaDownloadConstraint.Observer.INSTANCE,
+                         StickersNotDownloadingConstraint.Observer.INSTANCE);
   }
 
   public static List<JobMigration> getJobMigrations(@NonNull Application application) {

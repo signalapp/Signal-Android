@@ -91,6 +91,7 @@ import org.thoughtcrime.securesms.database.OneTimePreKeyTable
 import org.thoughtcrime.securesms.database.SearchTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.SignedPreKeyTable
+import org.thoughtcrime.securesms.database.StickerTable
 import org.thoughtcrime.securesms.database.ThreadTable
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -110,6 +111,7 @@ import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
+import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
 import org.thoughtcrime.securesms.keyvalue.BackupValues.ArchiveServiceCredentials
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -1374,6 +1376,17 @@ object BackupRepository {
     AppDependencies.recipientCache.warmUp()
     SignalDatabase.threads.clearCache()
 
+    val stickerJobs = SignalDatabase.stickers.getAllStickerPacks().use { cursor ->
+      val reader = StickerTable.StickerPackRecordReader(cursor)
+      reader
+        .filter { it.isInstalled }
+        .map {
+          StickerPackDownloadJob.forInstall(it.packId, it.packKey, false)
+        }
+    }
+    AppDependencies.jobManager.addAll(stickerJobs)
+    stopwatch.split("sticker-jobs")
+
     val recipientIds = SignalDatabase.threads.getRecentConversationList(
       limit = RECENT_RECIPIENTS_MAX,
       includeInactiveGroups = false,
@@ -1391,6 +1404,7 @@ object BackupRepository {
     }
 
     RetrieveProfileJob.enqueue(recipientIds, skipDebounce = false)
+    stopwatch.split("profile-jobs")
 
     AppDependencies.jobManager.add(CreateReleaseChannelJob.create())
 

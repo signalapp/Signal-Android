@@ -18,8 +18,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.StickerTable
 import org.thoughtcrime.securesms.database.StickerTable.StickerPackRecordReader
 import org.thoughtcrime.securesms.database.model.StickerPackRecord
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
 import java.io.IOException
 
 private val TAG = Log.tag(StickerArchiveProcessor::class)
@@ -55,14 +53,6 @@ object StickerArchiveProcessor {
         StickerTable.FILE_PATH to ""
       )
       .run(SQLiteDatabase.CONFLICT_IGNORE)
-
-    AppDependencies.jobManager.add(
-      StickerPackDownloadJob.forInstall(
-        Hex.toStringCondensed(stickerPack.packId.toByteArray()),
-        Hex.toStringCondensed(stickerPack.packKey.toByteArray()),
-        false
-      )
-    )
   }
 }
 

@@ -36,6 +36,9 @@ interface JobStorage {
   fun areQueuesEmpty(queueKeys: Set<String>): Boolean
 
   @WorkerThread
+  fun areFactoriesEmpty(factoryKeys: Set<String>): Boolean
+
+  @WorkerThread
   fun markJobAsRunning(id: String, currentTime: Long)
 
   @WorkerThread
