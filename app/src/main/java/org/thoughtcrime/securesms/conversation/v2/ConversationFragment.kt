@@ -3040,6 +3040,10 @@ class ConversationFragment :
       UnverifiedProfileNameBottomSheet.show(parentFragmentManager, forGroup)
     }
 
+    override fun onUpdateSignalClicked() {
+      PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
+    }
+
     override fun onJoinGroupCallClicked() {
       val activity = activity ?: return
       val recipient = viewModel.recipientSnapshot ?: return

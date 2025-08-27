@@ -291,6 +291,8 @@ public abstract class MessageRecord extends DisplayRecord {
       return staticUpdateDescription(context.getString(isGroupV2() ? R.string.MessageRecord_you_blocked_this_group : R.string.MessageRecord_you_blocked_this_person), Glyph.BLOCK);
     } else if (isUnblocked()) {
       return staticUpdateDescription(context.getString(isGroupV2() ? R.string.MessageRecord_you_unblocked_this_group : R.string.MessageRecord_you_unblocked_this_person) , Glyph.THREAD);
+    } else if (isUnsupported()) {
+      return staticUpdateDescription(context.getString(R.string.MessageRecord_unsupported_feature, getFromRecipient().getDisplayName(context)), Glyph.ERROR);
     }
 
     return null;
@@ -730,7 +732,7 @@ public abstract class MessageRecord extends DisplayRecord {
            isProfileChange() || isGroupV1MigrationEvent() || isChatSessionRefresh() || isBadDecryptType() ||
            isChangeNumber() || isReleaseChannelDonationRequest() || isThreadMergeEventType() || isSmsExportType() || isSessionSwitchoverEventType() ||
            isPaymentsRequestToActivate() || isPaymentsActivated() || isReportedSpam() || isMessageRequestAccepted() ||
-           isBlocked() || isUnblocked();
+           isBlocked() || isUnblocked() || isUnsupported();
   }
 
   public boolean isMediaPending() {

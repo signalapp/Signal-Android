@@ -142,5 +142,6 @@ public interface BindableConversationItem extends Unbindable, GiphyMp4Playable, 
     void onPaymentTombstoneClicked();
     void onDisplayMediaNoLongerAvailableSheet();
     void onShowUnverifiedProfileSheet(boolean forGroup);
+    void onUpdateSignalClicked();
   }
 }

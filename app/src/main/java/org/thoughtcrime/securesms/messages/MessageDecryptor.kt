@@ -45,6 +45,7 @@ import org.thoughtcrime.securesms.jobs.SendRetryReceiptJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
 import org.thoughtcrime.securesms.messages.MessageDecryptor.FollowUpOperation
+import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.hasGroupContext
 import org.thoughtcrime.securesms.messages.protocol.BufferedProtocolStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
@@ -528,10 +529,15 @@ object MessageDecryptor {
   }
 
   private fun SignalServiceCipherResult.toErrorMetadata(): ErrorMetadata {
+    val groupId = if (this.content.dataMessage.hasGroupContext) {
+      GroupId.v2(GroupMasterKey(this.content.dataMessage!!.groupV2!!.masterKey!!.toByteArray()))
+    } else {
+      null
+    }
     return ErrorMetadata(
       sender = this.metadata.sourceServiceId.toString(),
       senderDevice = this.metadata.sourceDeviceId,
-      groupId = null
+      groupId = groupId
     )
   }
 

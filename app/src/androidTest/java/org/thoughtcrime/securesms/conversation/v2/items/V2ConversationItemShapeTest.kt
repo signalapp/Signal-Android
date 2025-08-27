@@ -346,5 +346,7 @@ class V2ConversationItemShapeTest {
     override fun onDisplayMediaNoLongerAvailableSheet() = Unit
 
     override fun onShowUnverifiedProfileSheet(forGroup: Boolean) = Unit
+
+    override fun onUpdateSignalClicked() = Unit
   }
 }
