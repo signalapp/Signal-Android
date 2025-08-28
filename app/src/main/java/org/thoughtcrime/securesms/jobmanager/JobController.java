@@ -32,6 +32,7 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.function.IntSupplier;
 import java.util.function.Predicate;
 
 /**
@@ -104,6 +105,7 @@ class JobController {
 
   synchronized void wakeUp() {
     notifyAll();
+    maybeScaleUpRunners(() -> jobStorage.getEligibleJobCount(System.currentTimeMillis()));
   }
 
   @WorkerThread
@@ -145,7 +147,7 @@ class JobController {
 
     synchronized (this) {
       notifyAll();
-      maybeScaleUpRunners(jobStorage.getEligibleJobCount(System.currentTimeMillis()));
+      maybeScaleUpRunners(() -> jobStorage.getEligibleJobCount(System.currentTimeMillis()));
     }
   }
 
@@ -197,7 +199,7 @@ class JobController {
 
     synchronized (this) {
       notifyAll();
-      maybeScaleUpRunners(jobStorage.getEligibleJobCount(System.currentTimeMillis()));
+      maybeScaleUpRunners(() -> jobStorage.getEligibleJobCount(System.currentTimeMillis()));
     }
   }
 
@@ -233,7 +235,7 @@ class JobController {
 
     synchronized (this) {
       notifyAll();
-      maybeScaleUpRunners(jobStorage.getEligibleJobCount(System.currentTimeMillis()));
+      maybeScaleUpRunners(() -> jobStorage.getEligibleJobCount(System.currentTimeMillis()));
     }
   }
 
@@ -492,7 +494,7 @@ class JobController {
       spawnGeneralRunner(0);
     }
 
-    maybeScaleUpRunners(jobStorage.getEligibleJobCount(System.currentTimeMillis()));
+    maybeScaleUpRunners(() -> jobStorage.getEligibleJobCount(System.currentTimeMillis()));
 
     notifyAll();
   }
@@ -501,11 +503,12 @@ class JobController {
    * Scales up the number of {@link JobRunner}s to satisfy the number of eligible jobs, if needed.
    */
   @VisibleForTesting
-  synchronized void maybeScaleUpRunners(int eligibleJobCount) {
+  synchronized void maybeScaleUpRunners(IntSupplier eligibleJobCountSupplier) {
     if (!runnersStarted.get()) {
       return;
     }
 
+    int eligibleJobCount            = eligibleJobCountSupplier.getAsInt();
     int activeRunners              = this.activeGeneralRunners.size();
     int maxPossibleRunnersToSpawn  = maxGeneralRunners - activeRunners;
     int runnersToCoverEligibleJobs = eligibleJobCount - activeRunners;

@@ -113,7 +113,9 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       factoryCountIndex.getOrPut(minimalJobSpec.factoryKey) { AtomicInteger(0) }.incrementAndGet()
 
       constraintsByJobId[fullSpec.jobSpec.id] = fullSpec.constraintSpecs.toMutableList()
-      dependenciesByJobId[fullSpec.jobSpec.id] = fullSpec.dependencySpecs.toMutableList()
+      if (fullSpec.dependencySpecs.isNotEmpty()) {
+        dependenciesByJobId[fullSpec.jobSpec.id] = fullSpec.dependencySpecs.toMutableList()
+      }
     }
     stopwatch?.split("cache")
     stopwatch?.stop(TAG)
@@ -422,6 +424,8 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   @Synchronized
   override fun debugAdditionalDetails(): String {
+    val nonEmptyDependencies = dependenciesByJobId.filterValues { it.isNotEmpty() }
+
     return buildString {
       appendLine("minimalJobs: Size(${minimalJobs.size}), Items(${minimalJobs.joinToString(", ") { it.toLogString() }})")
       appendLine("jobSpecCache: Size(${jobSpecCache.size}), Items(${jobSpecCache.keys.joinToString(", ") { it.toLogString() }})")
@@ -429,7 +433,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       appendLine("migrationJobs: Size(${migrationJobs.size}), Items(${migrationJobs.joinToString(", ") { it.toLogString() }})")
       appendLine("mostEligibleForQueue: Size(${mostEligibleJobForQueue.size}), Items(${mostEligibleJobForQueue.entries.joinToString(", ") { "[${it.key} => ${it.value.toLogString()}]" }})")
       appendLine("constraintsByJobId: Size(${constraintsByJobId.size}), Items(${constraintsByJobId.entries.joinToString(", ") { "[${it.key.toLogString()} => ${it.value.joinToString(", ") { c -> c.toLogString() }}]" }})")
-      appendLine("dependenciesByJobId: Size(${dependenciesByJobId.size}), Items(${dependenciesByJobId.entries.joinToString(", ") { "[${it.key.toLogString()} => ${it.value.map { d -> d.toLogString() }}]" }})")
+      appendLine("dependenciesByJobId: Size(${nonEmptyDependencies.size}), Items(${nonEmptyDependencies.entries.joinToString(", ") { "[${it.key.toLogString()} => ${it.value.map { d -> d.toLogString() }}]" }})")
     }
   }
 

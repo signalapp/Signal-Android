@@ -479,7 +479,7 @@ class JobControllerTest {
   fun `maybeScaleUpRunners - creates runners to satisfy demand`() {
     // When
     jobController.runnersStarted.set(true)
-    jobController.maybeScaleUpRunners(MAX_RUNNERS)
+    jobController.maybeScaleUpRunners { MAX_RUNNERS }
 
     // Then
     assertThat(jobController.activeGeneralRunners.size).isEqualTo(MAX_RUNNERS)
@@ -489,7 +489,7 @@ class JobControllerTest {
   fun `maybeScaleUpRunners - does not exceed max runners`() {
     // When
     jobController.runnersStarted.set(true)
-    jobController.maybeScaleUpRunners(MAX_RUNNERS * 2)
+    jobController.maybeScaleUpRunners { MAX_RUNNERS * 2 }
 
     // Then
     assertThat(jobController.activeGeneralRunners.size).isEqualTo(MAX_RUNNERS)
