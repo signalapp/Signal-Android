@@ -69,7 +69,7 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
     try {
       if (PartAuthority.isBlobUri(uri) && BlobProvider.isSingleUseMemoryBlob(uri)) {
         return PartAuthority.getAttachmentThumbnailStream(context, uri);
-      } else if (isSafeSize(PartAuthority.getAttachmentThumbnailStream(context, uri))) {
+      } else if (isSafeSize(context, uri)) {
         return PartAuthority.getAttachmentThumbnailStream(context, uri);
       } else {
         throw new IOException("File dimensions are too large!");
@@ -80,13 +80,15 @@ class DecryptableStreamLocalUriFetcher extends StreamLocalUriFetcher {
     }
   }
 
-  private boolean isSafeSize(InputStream stream) {
+  private boolean isSafeSize(Context context, Uri uri) throws IOException {
     try {
+      InputStream            stream      = PartAuthority.getAttachmentThumbnailStream(context, uri);
       Pair<Integer, Integer> dimensions  = BitmapUtil.getDimensions(stream);
       long                   totalPixels = (long) dimensions.first * dimensions.second;
       return totalPixels < TOTAL_PIXEL_SIZE_LIMIT;
     } catch (BitmapDecodingException e) {
-      return false;
+      Long size = PartAuthority.getAttachmentSize(context, uri);
+      return size != null && size < GlideStreamConfig.getMarkReadLimitBytes();
     }
   }
 }

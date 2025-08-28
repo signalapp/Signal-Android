@@ -187,9 +187,10 @@ public class ApplicationMigrations {
     static final int SVR2_ENCLAVE_UPDATE_4         = 143;
     static final int RESET_ARCHIVE_TIER            = 144;
     static final int ARCHIVE_BACKUP_ID             = 145;
+    static final int QUOTE_THUMBNAIL_BACKFILL      = 146;
   }
 
-  public static final int CURRENT_VERSION = 145;
+  public static final int CURRENT_VERSION = 146;
 
  /**
    * This *must* be called after the {@link JobManager} has been instantiated, but *before* the call
@@ -862,6 +863,10 @@ public class ApplicationMigrations {
 
     if (lastSeenVersion < Version.ARCHIVE_BACKUP_ID) {
       jobs.put(Version.ARCHIVE_BACKUP_ID, new ArchiveBackupIdReservationMigrationJob());
+    }
+
+    if (lastSeenVersion < Version.QUOTE_THUMBNAIL_BACKFILL) {
+      jobs.put(Version.QUOTE_THUMBNAIL_BACKFILL, new QuoteThumbnailBackfillMigrationJob());
     }
 
     return jobs;

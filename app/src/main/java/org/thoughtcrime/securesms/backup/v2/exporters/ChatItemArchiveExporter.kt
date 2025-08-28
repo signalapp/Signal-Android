@@ -460,7 +460,7 @@ class ChatItemArchiveExporter(
 
     val attachmentsFuture = executor.submitTyped {
       extraDataTimer.timeEvent("attachments") {
-        db.attachmentTable.getAttachmentsForMessages(messageIds)
+        db.attachmentTable.getAttachmentsForMessages(messageIds, excludeTranscodingQuotes = true)
       }
     }
 

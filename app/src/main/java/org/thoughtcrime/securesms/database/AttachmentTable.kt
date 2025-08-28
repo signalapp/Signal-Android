@@ -302,8 +302,9 @@ class AttachmentTable(
       ID, DATA_FILE, DATA_SIZE, DATA_RANDOM, DATA_HASH_START, DATA_HASH_END, TRANSFORM_PROPERTIES, UPLOAD_TIMESTAMP, ARCHIVE_CDN, ARCHIVE_TRANSFER_STATE, THUMBNAIL_FILE, THUMBNAIL_RESTORE_STATE, THUMBNAIL_RANDOM
     )
 
-    private const val QUOTE_THUMBNAIL_DIMEN = 150
-    private const val QUOTE_IMAGE_QUALITY = 80
+    private const val QUOTE_THUMBNAIL_DIMEN = 200
+    private const val QUOTE_THUMBAIL_QUALITY = 50
+    const val QUOTE_PENDING_TRANSCODE = 2
 
     @JvmStatic
     @Throws(IOException::class)
@@ -453,17 +454,23 @@ class AttachmentTable(
       .flatten()
   }
 
-  fun getAttachmentsForMessages(mmsIds: Collection<Long?>): Map<Long, List<DatabaseAttachment>> {
+  @JvmOverloads
+  fun getAttachmentsForMessages(mmsIds: Collection<Long?>, excludeTranscodingQuotes: Boolean = false): Map<Long, List<DatabaseAttachment>> {
     if (mmsIds.isEmpty()) {
       return emptyMap()
     }
 
     val query = SqlUtil.buildFastCollectionQuery(MESSAGE_ID, mmsIds)
+    val where = if (excludeTranscodingQuotes) {
+      "(${query.where}) AND $QUOTE != $QUOTE_PENDING_TRANSCODE"
+    } else {
+      query.where
+    }
 
     return readableDatabase
       .select(*PROJECTION)
       .from(TABLE_NAME)
-      .where(query.where, query.whereArgs)
+      .where(where, query.whereArgs)
       .orderBy("$ID ASC")
       .run()
       .groupBy { cursor ->
@@ -2027,12 +2034,12 @@ class AttachmentTable(
               incrementalDigest = null,
               incrementalMacChunkSize = 0,
               fastPreflightId = jsonObject.getString(FAST_PREFLIGHT_ID),
-              voiceNote = jsonObject.getInt(VOICE_NOTE) == 1,
-              borderless = jsonObject.getInt(BORDERLESS) == 1,
-              videoGif = jsonObject.getInt(VIDEO_GIF) == 1,
+              voiceNote = jsonObject.getInt(VOICE_NOTE) != 0,
+              borderless = jsonObject.getInt(BORDERLESS) != 0,
+              videoGif = jsonObject.getInt(VIDEO_GIF) != 0,
               width = jsonObject.getInt(WIDTH),
               height = jsonObject.getInt(HEIGHT),
-              quote = jsonObject.getInt(QUOTE) == 1,
+              quote = jsonObject.getInt(QUOTE) != 0,
               caption = jsonObject.getString(CAPTION),
               stickerLocator = if (jsonObject.getInt(STICKER_ID) >= 0) {
                 StickerLocator(
@@ -2386,7 +2393,7 @@ class AttachmentTable(
         put(VIDEO_GIF, attachment.videoGif.toInt())
         put(WIDTH, attachment.width)
         put(HEIGHT, attachment.height)
-        put(QUOTE, quote)
+        put(QUOTE, quote.toInt())
         put(CAPTION, attachment.caption)
         put(UPLOAD_TIMESTAMP, attachment.uploadTimestamp)
         put(BLUR_HASH, attachment.blurHash?.hash)
@@ -2467,7 +2474,7 @@ class AttachmentTable(
     return attachmentId
   }
 
-  private fun generateQuoteThumbnail(uri: DecryptableUri, contentType: String?): ImageCompressionUtil.Result? {
+  fun generateQuoteThumbnail(uri: DecryptableUri, contentType: String?, quiet: Boolean = false): ImageCompressionUtil.Result? {
     return try {
       when {
         MediaUtil.isImageType(contentType) -> {
@@ -2480,7 +2487,8 @@ class AttachmentTable(
             outputFormat,
             uri,
             QUOTE_THUMBNAIL_DIMEN,
-            QUOTE_IMAGE_QUALITY
+            QUOTE_THUMBAIL_QUALITY,
+            true
           )
         }
         MediaUtil.isVideoType(contentType) -> {
@@ -2492,7 +2500,7 @@ class AttachmentTable(
               MediaUtil.IMAGE_JPEG,
               uri,
               QUOTE_THUMBNAIL_DIMEN,
-              QUOTE_IMAGE_QUALITY
+              QUOTE_THUMBAIL_QUALITY
             )
           } else {
             Log.w(TAG, "[generateQuoteThumbnail] Failed to extract video thumbnail")
@@ -2505,10 +2513,10 @@ class AttachmentTable(
         }
       }
     } catch (e: BitmapDecodingException) {
-      Log.w(TAG, "[generateQuoteThumbnail] Failed to decode image for thumbnail", e)
+      Log.w(TAG, "[generateQuoteThumbnail] Failed to decode image for thumbnail", e.takeUnless { quiet })
       null
     } catch (e: Exception) {
-      Log.w(TAG, "[generateQuoteThumbnail] Failed to generate thumbnail", e)
+      Log.w(TAG, "[generateQuoteThumbnail] Failed to generate thumbnail", e.takeUnless { quiet })
       null
     }
   }
@@ -2543,7 +2551,7 @@ class AttachmentTable(
         put(VIDEO_GIF, attachment.videoGif.toInt())
         put(WIDTH, attachment.width)
         put(HEIGHT, attachment.height)
-        put(QUOTE, quote)
+        put(QUOTE, quote.toInt())
         put(CAPTION, attachment.caption)
         put(UPLOAD_TIMESTAMP, attachment.uploadTimestamp)
         put(ARCHIVE_CDN, attachment.archiveCdn)
@@ -2799,7 +2807,7 @@ class AttachmentTable(
       contentValues.put(VIDEO_GIF, if (attachment.videoGif) 1 else 0)
       contentValues.put(WIDTH, uploadTemplate?.width ?: attachment.width)
       contentValues.put(HEIGHT, uploadTemplate?.height ?: attachment.height)
-      contentValues.put(QUOTE, quote)
+      contentValues.put(QUOTE, quote.toInt())
       contentValues.put(CAPTION, attachment.caption)
       contentValues.put(UPLOAD_TIMESTAMP, uploadTemplate?.uploadTimestamp ?: 0)
       contentValues.put(TRANSFORM_PROPERTIES, transformProperties.serialize())
@@ -3128,6 +3136,38 @@ class AttachmentTable(
       permanentFailureCount = archiveStateCounts[ArchiveTransferState.PERMANENT_FAILURE]?.toInt() ?: 0,
       temporaryFailureCount = archiveStateCounts[ArchiveTransferState.TEMPORARY_FAILURE]?.toInt() ?: 0
     )
+  }
+
+  /**
+   * Used in an app migration that creates quote thumbnails. Updates all quote attachments that share the same
+   * [previousDataFile] to use the new thumbnail.
+   *
+   * Handling deduping shouldn't be necessary here because we're updating by the dataFile we used to generate
+   * the thumbnail. It *is* theoretically possible that generating thumbnails for two different dataFiles
+   * could result in the same output thumbnail... but that's fine. That rare scenario will result in some missed
+   * disk savings.
+   */
+  @Throws(Exception::class)
+  fun migrationFinalizeQuoteWithData(previousDataFile: String, thumbnail: ImageCompressionUtil.Result): String {
+    val newDataFileInfo = writeToDataFile(newDataFile(context), thumbnail.data.inputStream(), TransformProperties.empty())
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        DATA_FILE to newDataFileInfo.file.absolutePath,
+        DATA_SIZE to newDataFileInfo.length,
+        DATA_RANDOM to newDataFileInfo.random,
+        DATA_HASH_START to newDataFileInfo.hash,
+        DATA_HASH_END to newDataFileInfo.hash,
+        CONTENT_TYPE to thumbnail.mimeType,
+        WIDTH to thumbnail.width,
+        HEIGHT to thumbnail.height,
+        QUOTE to 1
+      )
+      .where("$DATA_FILE = ? AND $QUOTE != 0", previousDataFile)
+      .run()
+
+    return newDataFileInfo.file.absolutePath
   }
 
   class DataFileWriteResult(

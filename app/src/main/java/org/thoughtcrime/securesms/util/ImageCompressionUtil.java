@@ -45,7 +45,7 @@ public final class ImageCompressionUtil {
     }
   };
 
-  private ImageCompressionUtil () {}
+  private ImageCompressionUtil() {}
 
   /**
    * A result satisfying the provided constraints, or null if they could not be met.
@@ -80,6 +80,22 @@ public final class ImageCompressionUtil {
                                          @IntRange(from = 0, to = 100) int quality)
       throws BitmapDecodingException
   {
+    return compress(context, contentType, targetContentType, glideModel, maxDimension, quality, false);
+  }
+
+  /**
+   * Compresses the image to match the requested parameters.
+   */
+  @WorkerThread
+  public static @NonNull Result compress(@NonNull Context context,
+                                         @Nullable String contentType,
+                                         @Nullable String targetContentType,
+                                         @NonNull Object glideModel,
+                                         int maxDimension,
+                                         @IntRange(from = 0, to = 100) int quality,
+                                         boolean quiet)
+      throws BitmapDecodingException
+  {
     Bitmap scaledBitmap;
 
     try {
@@ -93,6 +109,10 @@ public final class ImageCompressionUtil {
                              .submit(maxDimension, maxDimension)
                              .get();
     } catch (ExecutionException | InterruptedException e) {
+      if (quiet) {
+        throw new BitmapDecodingException(e);
+      }
+
       Log.w(TAG, "Verbose logging to try to give all possible debug information for Glide issues. Exceptions below may be duplicated.", e);
       if (e.getCause() instanceof GlideException) {
         List<Throwable> rootCauses = ((GlideException) e.getCause()).getRootCauses();
