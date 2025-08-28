@@ -19,8 +19,8 @@ class ApkUpdateValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val PENDING_APK_UPLOAD_TIME = "apk_update.pending_apk_upload_time"
   }
 
-  override fun onFirstEverAppLaunch() = Unit
-  override fun getKeysToIncludeInBackup(): List<String> = emptyList()
+  public override fun onFirstEverAppLaunch() = Unit
+  public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
 
   val downloadId: Long by longValue(DOWNLOAD_ID, -2)
   val digest: ByteArray? get() = store.getBlob(DIGEST, null)

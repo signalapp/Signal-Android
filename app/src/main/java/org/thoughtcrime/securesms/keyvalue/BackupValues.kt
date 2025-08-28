@@ -97,8 +97,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private val lock = ReentrantLock()
   }
 
-  override fun onFirstEverAppLaunch() = Unit
-  override fun getKeysToIncludeInBackup(): List<String> = emptyList()
+  public override fun onFirstEverAppLaunch() = Unit
+  public override fun getKeysToIncludeInBackup(): List<String> = emptyList()
 
   var cachedMediaCdnPath: String? by stringValue(KEY_CDN_MEDIA_PATH, null)
 
