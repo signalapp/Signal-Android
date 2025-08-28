@@ -112,7 +112,6 @@ public final class Megaphones {
   private static Map<Event, MegaphoneSchedule> buildDisplayOrder(@NonNull Context context, @NonNull Map<Event, MegaphoneRecord> records) {
     return new LinkedHashMap<>() {{
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
-      put(Event.UPDATE_PIN_AFTER_AEP_REGISTRATION, new UpdatePinAfterAepRegistrationSchedule());
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
       put(Event.NEW_LINKED_DEVICE, shouldShowNewLinkedDeviceMegaphone() ? ALWAYS: NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
@@ -175,8 +174,6 @@ public final class Megaphones {
         return buildPnpLaunchMegaphone();
       case NEW_LINKED_DEVICE:
         return buildNewLinkedDeviceMegaphone(context);
-      case UPDATE_PIN_AFTER_AEP_REGISTRATION:
-        return buildUpdatePinAfterAepRegistrationMegaphone();
       case TURN_ON_SIGNAL_BACKUPS:
         return buildTurnOnSignalBackupsMegaphone();
       case VERIFY_BACKUP_KEY:
@@ -448,19 +445,6 @@ public final class Megaphones {
         .build();
   }
 
-  public static @NonNull Megaphone buildUpdatePinAfterAepRegistrationMegaphone() {
-    return new Megaphone.Builder(Event.UPDATE_PIN_AFTER_AEP_REGISTRATION, Megaphone.Style.BASIC)
-        .setImage(R.drawable.kbs_pin_megaphone)
-        .setTitle(R.string.UpdatePinMegaphone__update_signal_pin)
-        .setBody(R.string.UpdatePinMegaphone__message)
-        .setActionButton(R.string.UpdatePinMegaphone__update_pin, (megaphone, listener) -> {
-          Intent intent = CreateSvrPinActivity.getIntentForPinCreate(AppDependencies.getApplication());
-
-          listener.onMegaphoneNavigationRequested(intent, CreateSvrPinActivity.REQUEST_NEW_PIN);
-        })
-        .build();
-  }
-
   public static @NonNull Megaphone buildTurnOnSignalBackupsMegaphone() {
     return new Megaphone.Builder(Event.TURN_ON_SIGNAL_BACKUPS, Megaphone.Style.BASIC)
         .setImage(R.drawable.backups_megaphone_image)
@@ -624,7 +608,6 @@ public final class Megaphones {
     PNP_LAUNCH("pnp_launch"),
     GRANT_FULL_SCREEN_INTENT("grant_full_screen_intent"),
     NEW_LINKED_DEVICE("new_linked_device"),
-    UPDATE_PIN_AFTER_AEP_REGISTRATION("update_pin_after_registration"),
     TURN_ON_SIGNAL_BACKUPS("turn_on_signal_backups"),
     VERIFY_BACKUP_KEY("verify_backup_key");
 
