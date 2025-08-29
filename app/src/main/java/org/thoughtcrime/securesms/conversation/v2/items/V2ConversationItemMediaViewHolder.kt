@@ -88,7 +88,8 @@ class V2ConversationItemMediaViewHolder<Model : MappingModel<Model>>(
       quote.isOriginalMissing,
       quote.attachment,
       if (conversationMessage.messageRecord.isStoryReaction()) conversationMessage.messageRecord.body else null,
-      quote.quoteType
+      quote.quoteType,
+      false
     )
 
     quoteView.setMessageType(

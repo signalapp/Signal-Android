@@ -388,6 +388,7 @@ class AttachmentTableTest {
       stickerLocator = null,
       gif = false,
       quote = false,
+      quoteTargetContentType = null,
       uuid = UUID.randomUUID(),
       fileName = null
     )

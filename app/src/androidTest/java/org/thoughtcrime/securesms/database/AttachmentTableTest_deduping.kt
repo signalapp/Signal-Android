@@ -670,7 +670,9 @@ class AttachmentTableTest_deduping {
             caption = null,
             stickerLocator = null,
             blurHash = null,
-            uuid = UUID.randomUUID()
+            uuid = UUID.randomUUID(),
+            quote = false,
+            quoteTargetContentType = null
           )
         ),
         quoteAttachment = emptyList()

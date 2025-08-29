@@ -829,7 +829,7 @@ object SyncMessageProcessor {
     val giftBadge: GiftBadge? = if (dataMessage.giftBadge?.receiptCredentialPresentation != null) GiftBadge.Builder().redemptionToken(dataMessage.giftBadge!!.receiptCredentialPresentation!!).build() else null
     val viewOnce: Boolean = dataMessage.isViewOnce == true
     val bodyRanges: BodyRangeList? = dataMessage.bodyRanges.toBodyRangeList()
-    val syncAttachments: List<Attachment> = listOfNotNull(sticker) + if (viewOnce) listOf<Attachment>(TombstoneAttachment(MediaUtil.VIEW_ONCE, false)) else dataMessage.attachments.toPointersWithinLimit()
+    val syncAttachments: List<Attachment> = listOfNotNull(sticker) + if (viewOnce) listOf<Attachment>(TombstoneAttachment.forNonQuote(MediaUtil.VIEW_ONCE)) else dataMessage.attachments.toPointersWithinLimit()
 
     val mediaMessage = OutgoingMessage(
       recipient = recipient,

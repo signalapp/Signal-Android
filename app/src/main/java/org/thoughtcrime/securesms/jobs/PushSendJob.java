@@ -374,7 +374,7 @@ public abstract class PushSendJob extends SendJob {
       Attachment              attachment             = localQuoteAttachment.get();
       SignalServiceAttachment quoteAttachmentPointer = getAttachmentPointerFor(localQuoteAttachment.get());
 
-      quoteAttachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.videoGif ? MediaUtil.IMAGE_GIF : attachment.contentType,
+      quoteAttachments.add(new SignalServiceDataMessage.Quote.QuotedAttachment(attachment.quoteTargetContentType != null ? attachment.quoteTargetContentType : MediaUtil.IMAGE_JPEG,
                                                                                attachment.fileName,
                                                                                quoteAttachmentPointer));
     }

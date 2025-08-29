@@ -45,11 +45,13 @@ class ArchivedAttachment : Attachment {
     stickerLocator: StickerLocator?,
     gif: Boolean,
     quote: Boolean,
+    quoteTargetContentType: String?,
     uuid: UUID?,
     fileName: String?
   ) : super(
     contentType = contentType ?: "",
     quote = quote,
+    quoteTargetContentType = quoteTargetContentType,
     transferState = AttachmentTable.TRANSFER_NEEDS_RESTORE,
     size = size,
     fileName = fileName,

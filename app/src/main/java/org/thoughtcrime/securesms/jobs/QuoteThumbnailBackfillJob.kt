@@ -83,7 +83,7 @@ class QuoteThumbnailBackfillJob private constructor(parameters: Parameters) : Jo
 
     val thumbnail = SignalDatabase.attachments.generateQuoteThumbnail(DecryptableUri(attachment.uri), attachment.contentType, quiet = true)
     if (thumbnail != null) {
-      SignalDatabase.attachments.migrationFinalizeQuoteWithData(attachment.dataFile, thumbnail)
+      SignalDatabase.attachments.migrationFinalizeQuoteWithData(attachment.dataFile, thumbnail, attachment.contentType)
     } else {
       Log.w(TAG, "Failed to generate thumbnail for attachment: ${attachment.id}. Clearing data.")
       SignalDatabase.attachments.finalizeQuoteWithNoData(attachment.dataFile)

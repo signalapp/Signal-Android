@@ -47,6 +47,7 @@ import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 
 public class QuoteView extends ConstraintLayout implements RecipientForeverObserver {
 
@@ -200,7 +201,8 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
                        boolean originalMissing,
                        @NonNull SlideDeck attachments,
                        @Nullable String storyReaction,
-                       @NonNull QuoteModel.Type quoteType)
+                       @NonNull QuoteModel.Type quoteType,
+                       boolean composeMode)
   {
     if (this.author != null) this.author.removeForeverObserver(this);
 
@@ -211,9 +213,19 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
     this.quoteType   = quoteType;
 
     this.author.observeForever(this);
+
+    Slide slide = attachments.getFirstSlide();
+
+    String quoteTargetContentType;
+    if (composeMode) {
+      quoteTargetContentType = Optional.ofNullable(slide).map(Slide::getContentType).orElse(null);
+    } else {
+      quoteTargetContentType = Optional.ofNullable(slide).map(Slide::getQuoteTargetContentType).orElse(null);
+    }
+
     setQuoteAuthor(author);
-    setQuoteText(resolveBody(body, quoteType), attachments, originalMissing, storyReaction);
-    setQuoteAttachment(requestManager, body, attachments, originalMissing);
+    setQuoteText(resolveBody(body, quoteType), slide, originalMissing, storyReaction, quoteTargetContentType);
+    setQuoteAttachment(requestManager, body, slide, originalMissing, quoteTargetContentType);
     setQuoteMissingFooter(originalMissing);
     applyColorTheme();
   }
@@ -267,9 +279,10 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
   }
 
   private void setQuoteText(@Nullable CharSequence body,
-                            @NonNull SlideDeck attachments,
+                            @Nullable Slide slide,
                             boolean originalMissing,
-                            @Nullable String storyReaction)
+                            @Nullable String storyReaction,
+                            @Nullable String quoteTargetContentType)
   {
     if (originalMissing && isStoryReply()) {
       bodyView.setVisibility(GONE);
@@ -316,40 +329,37 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
     bodyView.setVisibility(GONE);
     mediaDescriptionText.setVisibility(VISIBLE);
 
-    Slide audioSlide    = attachments.getSlides().stream().filter(Slide::hasAudio).findFirst().orElse(null);
-    Slide documentSlide = attachments.getSlides().stream().filter(Slide::hasDocument).findFirst().orElse(null);
-    Slide imageSlide    = attachments.getSlides().stream().filter(Slide::hasImage).findFirst().orElse(null);
-    Slide videoSlide    = attachments.getSlides().stream().filter(Slide::hasVideo).findFirst().orElse(null);
-    Slide stickerSlide  = attachments.getSlides().stream().filter(Slide::hasSticker).findFirst().orElse(null);
-    Slide viewOnceSlide = attachments.getSlides().stream().filter(Slide::hasViewOnce).findFirst().orElse(null);
-
-    // Given that most types have images, we specifically check images last
-    if (viewOnceSlide != null) {
+    if (MediaUtil.isViewOnceType(quoteTargetContentType)) {
       mediaDescriptionText.setPadding(0, mediaDescriptionText.getPaddingTop(), 0, (int) DimensionUnit.DP.toPixels(8));
       mediaDescriptionText.setText(R.string.QuoteView_view_once_media);
-    } else if (audioSlide != null) {
+    } else if (MediaUtil.isAudioType(quoteTargetContentType)) {
       mediaDescriptionText.setPadding(0, mediaDescriptionText.getPaddingTop(), 0, (int) DimensionUnit.DP.toPixels(8));
       mediaDescriptionText.setText(R.string.QuoteView_audio);
-    } else if (documentSlide != null) {
-      mediaDescriptionText.setVisibility(GONE);
-    } else if (videoSlide != null) {
-      if (videoSlide.isVideoGif()) {
+    } else if (MediaUtil.isVideoType(quoteTargetContentType)) {
+      if (slide != null && slide.isVideoGif()) {
         mediaDescriptionText.setText(R.string.QuoteView_gif);
       } else {
         mediaDescriptionText.setText(R.string.QuoteView_video);
       }
-    } else if (stickerSlide != null) {
+    } else if (slide != null && slide.hasSticker()) {
       mediaDescriptionText.setText(R.string.QuoteView_sticker);
-    } else if (imageSlide != null) {
-      if (MediaUtil.isGif(imageSlide.getContentType())) {
+    } else if (MediaUtil.isImageType(quoteTargetContentType)) {
+      if (MediaUtil.isGif(quoteTargetContentType)) {
         mediaDescriptionText.setText(R.string.QuoteView_gif);
       } else {
         mediaDescriptionText.setText(R.string.QuoteView_photo);
       }
+    } else {
+      mediaDescriptionText.setVisibility(GONE);
     }
   }
 
-  private void setQuoteAttachment(@NonNull RequestManager requestManager, @NonNull CharSequence body, @NonNull SlideDeck slideDeck, boolean originalMissing) {
+  private void setQuoteAttachment(@NonNull RequestManager requestManager,
+                                  @NonNull CharSequence body,
+                                  @NonNull Slide slide,
+                                  boolean originalMissing,
+                                  @Nullable String quoteTargetContentType)
+  {
     boolean outgoing = messageType != MessageType.INCOMING && messageType != MessageType.STORY_REPLY_INCOMING;
     boolean preview  = messageType == MessageType.PREVIEW || messageType == MessageType.STORY_REPLY_PREVIEW;
 
@@ -394,41 +404,49 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
       return;
     }
 
-    Slide imageVideoSlide = slideDeck.getSlides().stream().filter(s -> s.hasImage() || s.hasVideo() || s.hasSticker()).findFirst().orElse(null);
-    Slide documentSlide   = slideDeck.getSlides().stream().filter(Slide::hasDocument).findFirst().orElse(null);
-    Slide viewOnceSlide   = slideDeck.getSlides().stream().filter(Slide::hasViewOnce).findFirst().orElse(null);
-
-    attachmentVideoOVerlayStub.setVisibility(GONE);
-
-    if (viewOnceSlide != null) {
-      thumbnailView.setVisibility(GONE);
-      attachmentNameViewStub.setVisibility(GONE);
-    } else if (imageVideoSlide != null && imageVideoSlide.getUri() != null) {
-      thumbnailView.setVisibility(VISIBLE);
-      attachmentNameViewStub.setVisibility(GONE);
-
-      if (dismissStub.resolved()) {
-        dismissStub.get().setBackgroundResource(R.drawable.dismiss_background);
-      }
-      if (imageVideoSlide.hasVideo() && !imageVideoSlide.isVideoGif()) {
-        attachmentVideoOVerlayStub.setVisibility(VISIBLE);
-      }
-      requestManager.load(new DecryptableUri(imageVideoSlide.getUri()))
-                   .centerCrop()
-                   .override(thumbWidth, thumbHeight)
-                   .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
-                   .into(thumbnailView);
-    } else if (documentSlide != null){
-      thumbnailView.setVisibility(GONE);
-      attachmentNameViewStub.setVisibility(VISIBLE);
-      attachmentNameViewStub.get().setText(documentSlide.getFileName().orElse(""));
-    } else {
+    if (TextUtils.isEmpty(quoteTargetContentType) || slide == null || slide.getUri() == null) {
       thumbnailView.setVisibility(GONE);
       attachmentNameViewStub.setVisibility(GONE);
 
       if (dismissStub.resolved()) {
         dismissStub.get().setBackground(null);
       }
+      return;
+    }
+
+    attachmentVideoOVerlayStub.setVisibility(GONE);
+
+    if (MediaUtil.isViewOnceType(quoteTargetContentType)) {
+      thumbnailView.setVisibility(GONE);
+      attachmentNameViewStub.setVisibility(GONE);
+    } else if (MediaUtil.isImageOrVideoType(quoteTargetContentType)) {
+      thumbnailView.setVisibility(VISIBLE);
+      attachmentNameViewStub.setVisibility(GONE);
+
+      if (dismissStub.resolved()) {
+        dismissStub.get().setBackgroundResource(R.drawable.dismiss_background);
+      }
+
+      if (MediaUtil.isVideoType(quoteTargetContentType) && !slide.isVideoGif()) {
+        attachmentVideoOVerlayStub.setVisibility(VISIBLE);
+      }
+
+      requestManager.load(new DecryptableUri(slide.getUri()))
+                    .centerCrop()
+                    .override(thumbWidth, thumbHeight)
+                    .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
+                    .into(thumbnailView);
+    } else if (MediaUtil.isAudioType(quoteTargetContentType)) {
+      thumbnailView.setVisibility(GONE);
+      attachmentNameViewStub.setVisibility(GONE);
+
+      if (dismissStub.resolved()) {
+        dismissStub.get().setBackground(null);
+      }
+    } else {
+      thumbnailView.setVisibility(GONE);
+      attachmentNameViewStub.setVisibility(VISIBLE);
+      attachmentNameViewStub.get().setText(slide.getFileName().orElse(""));
     }
   }
 

@@ -100,7 +100,8 @@ object FakeMessageRecords {
       archiveCdn = archiveCdn,
       thumbnailRestoreState = thumbnailRestoreState,
       archiveTransferState = archiveTransferState,
-      uuid = null
+      uuid = null,
+      quoteTargetContentType = null
     )
   }
 

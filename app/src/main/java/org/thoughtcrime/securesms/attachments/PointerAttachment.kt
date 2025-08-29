@@ -38,7 +38,9 @@ class PointerAttachment : Attachment {
     caption: String?,
     stickerLocator: StickerLocator?,
     blurHash: BlurHash?,
-    uuid: UUID?
+    uuid: UUID?,
+    quote: Boolean,
+    quoteTargetContentType: String? = null
   ) : super(
     contentType = contentType,
     transferState = transferState,
@@ -56,7 +58,8 @@ class PointerAttachment : Attachment {
     width = width,
     height = height,
     incrementalMacChunkSize = incrementalMacChunkSize,
-    quote = false,
+    quote = quote,
+    quoteTargetContentType = quoteTargetContentType,
     uploadTimestamp = uploadTimestamp,
     caption = caption,
     stickerLocator = stickerLocator,
@@ -91,7 +94,9 @@ class PointerAttachment : Attachment {
       pointer: Optional<SignalServiceAttachment>,
       stickerLocator: StickerLocator? = null,
       fastPreflightId: String? = null,
-      transferState: Int = AttachmentTable.TRANSFER_PROGRESS_PENDING
+      transferState: Int = AttachmentTable.TRANSFER_PROGRESS_PENDING,
+      quote: Boolean = false,
+      quoteTargetContentType: String? = null
     ): Optional<Attachment> {
       if (!pointer.isPresent || !pointer.get().isPointer()) {
         return Optional.empty()
@@ -122,7 +127,9 @@ class PointerAttachment : Attachment {
           caption = pointer.get().asPointer().caption.orElse(null),
           stickerLocator = stickerLocator,
           blurHash = BlurHash.parseOrNull(pointer.get().asPointer().blurHash.orElse(null)),
-          uuid = pointer.get().asPointer().uuid
+          uuid = pointer.get().asPointer().uuid,
+          quote = quote,
+          quoteTargetContentType = quoteTargetContentType
         )
       )
     }
@@ -140,7 +147,9 @@ class PointerAttachment : Attachment {
 
       return Optional.of(
         PointerAttachment(
-          contentType = quotedAttachment.contentType!!,
+          quote = true,
+          contentType = quotedAttachment.thumbnail?.contentType,
+          quoteTargetContentType = quotedAttachment.contentType!!,
           transferState = AttachmentTable.TRANSFER_PROGRESS_PENDING,
           size = (if (thumbnail != null) thumbnail.asPointer().size.orElse(0) else 0).toLong(),
           fileName = quotedAttachment.fileName,

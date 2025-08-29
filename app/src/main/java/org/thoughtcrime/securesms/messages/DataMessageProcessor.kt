@@ -1110,7 +1110,7 @@ object DataMessageProcessor {
         .firstOrNull { it.hasData }
 
       if (quotedMessage.isViewOnce) {
-        thumbnailAttachment = TombstoneAttachment(MediaUtil.VIEW_ONCE, true)
+        thumbnailAttachment = TombstoneAttachment.forQuote()
       } else if (thumbnailAttachment == null) {
         thumbnailAttachment = quotedMessage
           .linkPreviews

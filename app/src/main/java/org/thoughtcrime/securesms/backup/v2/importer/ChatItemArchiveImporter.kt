@@ -76,7 +76,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.JsonUtils
-import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.whispersystems.signalservice.api.payments.Money
 import org.whispersystems.signalservice.api.push.ServiceId
@@ -1059,8 +1058,8 @@ class ChatItemArchiveImporter(
               else -> null
             }
           },
-          start = bodyRange.start ?: 0,
-          length = bodyRange.length ?: 0
+          start = bodyRange.start,
+          length = bodyRange.length
         )
       }
     )
@@ -1090,11 +1089,11 @@ class ChatItemArchiveImporter(
 
   private fun Quote.toLocalAttachments(): List<Attachment> {
     if (this.type == Quote.Type.VIEW_ONCE) {
-      return listOf(TombstoneAttachment(contentType = MediaUtil.VIEW_ONCE, quote = true))
+      return listOf(TombstoneAttachment.forQuote())
     }
 
-    return attachments.mapNotNull { attachment ->
-      val thumbnail = attachment.thumbnail?.toLocalAttachment(quote = true)
+    return this.attachments.mapNotNull { attachment ->
+      val thumbnail = attachment.thumbnail?.toLocalAttachment(quote = true, quoteTargetContentType = attachment.contentType)
 
       if (thumbnail != null) {
         return@mapNotNull thumbnail
@@ -1141,7 +1140,7 @@ class ChatItemArchiveImporter(
     )
   }
 
-  private fun MessageAttachment.toLocalAttachment(quote: Boolean = false, contentType: String? = pointer?.contentType): Attachment? {
+  private fun MessageAttachment.toLocalAttachment(quote: Boolean = false, quoteTargetContentType: String? = null, contentType: String? = pointer?.contentType): Attachment? {
     return pointer?.toLocalAttachment(
       voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
       borderless = flag == MessageAttachment.Flag.BORDERLESS,
@@ -1150,7 +1149,8 @@ class ChatItemArchiveImporter(
       contentType = contentType,
       fileName = pointer.fileName,
       uuid = clientUuid,
-      quote = quote
+      quote = quote,
+      quoteTargetContentType = quoteTargetContentType
     )
   }
 

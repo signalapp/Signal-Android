@@ -39,7 +39,8 @@ fun FilePointer?.toLocalAttachment(
   contentType: String? = this?.contentType,
   fileName: String? = this?.fileName,
   uuid: ByteString? = null,
-  quote: Boolean = false
+  quote: Boolean = false,
+  quoteTargetContentType: String? = null
 ): Attachment? {
   if (this == null || this.locatorInfo == null) return null
 
@@ -71,6 +72,7 @@ fun FilePointer?.toLocalAttachment(
         stickerLocator = stickerLocator,
         gif = gif,
         quote = quote,
+        quoteTargetContentType = quoteTargetContentType,
         uuid = UuidUtil.fromByteStringOrNull(uuid),
         fileName = fileName
       )
@@ -100,7 +102,9 @@ fun FilePointer?.toLocalAttachment(
       PointerAttachment.forPointer(
         pointer = Optional.of(signalAttachmentPointer),
         stickerLocator = stickerLocator,
-        transferState = if (wasDownloaded) AttachmentTable.TRANSFER_NEEDS_RESTORE else AttachmentTable.TRANSFER_PROGRESS_PENDING
+        transferState = if (wasDownloaded) AttachmentTable.TRANSFER_NEEDS_RESTORE else AttachmentTable.TRANSFER_PROGRESS_PENDING,
+        quote = quote,
+        quoteTargetContentType = quoteTargetContentType
       ).orNull()
     }
     AttachmentType.INVALID -> {
@@ -117,6 +121,7 @@ fun FilePointer?.toLocalAttachment(
         borderless = borderless,
         gif = gif,
         quote = quote,
+        quoteTargetContentType = quoteTargetContentType,
         stickerLocator = stickerLocator,
         uuid = UuidUtil.fromByteStringOrNull(uuid)
       )

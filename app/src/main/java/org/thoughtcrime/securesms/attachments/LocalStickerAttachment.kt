@@ -40,6 +40,7 @@ class LocalStickerAttachment : Attachment {
     height = StickerSlide.HEIGHT,
     incrementalMacChunkSize = 0,
     quote = false,
+    quoteTargetContentType = null,
     uploadTimestamp = 0,
     caption = null,
     stickerLocator = stickerLocator,

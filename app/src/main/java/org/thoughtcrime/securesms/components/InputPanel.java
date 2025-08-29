@@ -219,7 +219,7 @@ public class InputPanel extends ConstraintLayout
                        @NonNull SlideDeck attachments,
                        @NonNull QuoteModel.Type quoteType)
   {
-    this.quoteView.setQuote(requestManager, id, author, body, false, attachments, null, quoteType);
+    this.quoteView.setQuote(requestManager, id, author, body, false, attachments, null, quoteType, true);
     if (listener != null) {
       this.quoteView.setOnClickListener(v -> listener.onQuoteClicked(id, author.getId()));
     }

@@ -180,6 +180,7 @@ class AttachmentTable(
     const val THUMBNAIL_RESTORE_STATE = "thumbnail_restore_state"
     const val ATTACHMENT_UUID = "attachment_uuid"
     const val OFFLOAD_RESTORED_AT = "offload_restored_at"
+    const val QUOTE_TARGET_CONTENT_TYPE = "quote_target_content_type"
 
     const val ATTACHMENT_JSON_ALIAS = "attachment_json"
 
@@ -217,6 +218,7 @@ class AttachmentTable(
       BORDERLESS,
       VIDEO_GIF,
       QUOTE,
+      QUOTE_TARGET_CONTENT_TYPE,
       WIDTH,
       HEIGHT,
       CAPTION,
@@ -279,7 +281,8 @@ class AttachmentTable(
         $THUMBNAIL_RANDOM BLOB DEFAULT NULL,
         $THUMBNAIL_RESTORE_STATE INTEGER DEFAULT ${ThumbnailRestoreState.NONE.value},
         $ATTACHMENT_UUID TEXT DEFAULT NULL,
-        $OFFLOAD_RESTORED_AT INTEGER DEFAULT 0
+        $OFFLOAD_RESTORED_AT INTEGER DEFAULT 0,
+        $QUOTE_TARGET_CONTENT_TYPE TEXT DEFAULT NULL
       )
       """
 
@@ -420,6 +423,13 @@ class AttachmentTable(
       .select(DATA_HASH_END, REMOTE_KEY, ARCHIVE_CDN, QUOTE, CONTENT_TYPE)
       .from(TABLE_NAME)
       .where("$DATA_HASH_END NOT NULL AND $REMOTE_KEY NOT NULL AND $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}")
+      .run()
+  }
+
+  fun hasData(attachmentId: AttachmentId): Boolean {
+    return readableDatabase
+      .exists(TABLE_NAME)
+      .where("$ID = ? AND $DATA_FILE NOT NULL", attachmentId)
       .run()
   }
 
@@ -1790,9 +1800,9 @@ class AttachmentTable(
     for (attachment in attachments) {
       val attachmentId = when {
         attachment is LocalStickerAttachment -> insertLocalStickerAttachment(mmsId, attachment)
-        attachment.uri != null -> insertAttachmentWithData(mmsId, attachment, attachment.quote)
-        attachment is ArchivedAttachment -> insertArchivedAttachment(mmsId, attachment, attachment.quote)
-        else -> insertUndownloadedAttachment(mmsId, attachment, attachment.quote)
+        attachment.uri != null -> insertAttachmentWithData(mmsId, attachment)
+        attachment is ArchivedAttachment -> insertArchivedAttachment(mmsId, attachment, quote = false, quoteTargetContentType = null)
+        else -> insertUndownloadedAttachment(mmsId, attachment, quote = false)
       }
 
       insertedAttachments[attachment] = attachmentId
@@ -1803,8 +1813,8 @@ class AttachmentTable(
       for (attachment in quoteAttachment) {
         val attachmentId = when {
           attachment.uri != null -> insertQuoteAttachment(mmsId, attachment)
-          attachment is ArchivedAttachment -> insertArchivedAttachment(mmsId, attachment, true)
-          else -> insertUndownloadedAttachment(mmsId, attachment, true)
+          attachment is ArchivedAttachment -> insertArchivedAttachment(mmsId, attachment, quote = true, quoteTargetContentType = attachment.quoteTargetContentType)
+          else -> insertUndownloadedAttachment(mmsId, attachment, quote = true)
         }
 
         insertedAttachments[attachment] = attachmentId
@@ -2040,6 +2050,7 @@ class AttachmentTable(
               width = jsonObject.getInt(WIDTH),
               height = jsonObject.getInt(HEIGHT),
               quote = jsonObject.getInt(QUOTE) != 0,
+              quoteTargetContentType = if (!jsonObject.isNull(QUOTE_TARGET_CONTENT_TYPE)) jsonObject.getString(QUOTE_TARGET_CONTENT_TYPE) else null,
               caption = jsonObject.getString(CAPTION),
               stickerLocator = if (jsonObject.getInt(STICKER_ID) >= 0) {
                 StickerLocator(
@@ -2394,6 +2405,7 @@ class AttachmentTable(
         put(WIDTH, attachment.width)
         put(HEIGHT, attachment.height)
         put(QUOTE, quote.toInt())
+        put(QUOTE_TARGET_CONTENT_TYPE, attachment.quoteTargetContentType)
         put(CAPTION, attachment.caption)
         put(UPLOAD_TIMESTAMP, attachment.uploadTimestamp)
         put(BLUR_HASH, attachment.blurHash?.hash)
@@ -2425,6 +2437,8 @@ class AttachmentTable(
   /**
    * When inserting a quote attachment, it looks a lot like a normal attachment insert, but rather than insert the actual data pointed at by the attachment's
    * URI, we instead want to generate a thumbnail of that attachment and use that instead.
+   *
+   * It's important to note that it's assumed that [attachment] is the attachment that you're *quoting*. We'll use it's contentType as the quoteTargetContentType.
    */
   @Throws(MmsException::class)
   private fun insertQuoteAttachment(messageId: Long, attachment: Attachment): AttachmentId {
@@ -2438,7 +2452,8 @@ class AttachmentTable(
         messageId = messageId,
         dataStream = thumbnail.data.inputStream(),
         attachment = attachment,
-        quote = true
+        quote = true,
+        quoteTargetContentType = attachment.contentType
       )
     }
 
@@ -2446,7 +2461,7 @@ class AttachmentTable(
     val attachmentId: AttachmentId = writableDatabase.withinTransaction { db ->
       val contentValues = ContentValues().apply {
         put(MESSAGE_ID, messageId)
-        put(CONTENT_TYPE, attachment.contentType)
+        putNull(CONTENT_TYPE)
         put(VOICE_NOTE, attachment.voiceNote.toInt())
         put(BORDERLESS, attachment.borderless.toInt())
         put(VIDEO_GIF, attachment.videoGif.toInt())
@@ -2455,6 +2470,7 @@ class AttachmentTable(
         put(WIDTH, attachment.width)
         put(HEIGHT, attachment.height)
         put(QUOTE, 1)
+        put(QUOTE_TARGET_CONTENT_TYPE, attachment.contentType)
         put(BLUR_HASH, attachment.blurHash?.hash)
         put(FILE_NAME, attachment.fileName)
 
@@ -2529,7 +2545,7 @@ class AttachmentTable(
    * Callers are expected to later call [finalizeAttachmentAfterDownload] once they have downloaded the data for this attachment.
    */
   @Throws(MmsException::class)
-  private fun insertArchivedAttachment(messageId: Long, attachment: ArchivedAttachment, quote: Boolean): AttachmentId {
+  private fun insertArchivedAttachment(messageId: Long, attachment: ArchivedAttachment, quote: Boolean, quoteTargetContentType: String?): AttachmentId {
     Log.d(TAG, "[insertArchivedAttachment] Inserting attachment for messageId $messageId.")
 
     val attachmentId: AttachmentId = writableDatabase.withinTransaction { db ->
@@ -2552,6 +2568,7 @@ class AttachmentTable(
         put(WIDTH, attachment.width)
         put(HEIGHT, attachment.height)
         put(QUOTE, quote.toInt())
+        put(QUOTE_TARGET_CONTENT_TYPE, quoteTargetContentType)
         put(CAPTION, attachment.caption)
         put(UPLOAD_TIMESTAMP, attachment.uploadTimestamp)
         put(ARCHIVE_CDN, attachment.archiveCdn)
@@ -2681,14 +2698,14 @@ class AttachmentTable(
       attachmentId = AttachmentId(rowId)
     }
 
-    return attachmentId
+    return attachmentId as AttachmentId
   }
 
   /**
    * Inserts an attachment with existing data. This is likely an outgoing attachment that we're in the process of sending.
    */
   @Throws(MmsException::class)
-  private fun insertAttachmentWithData(messageId: Long, attachment: Attachment, quote: Boolean): AttachmentId {
+  private fun insertAttachmentWithData(messageId: Long, attachment: Attachment): AttachmentId {
     requireNotNull(attachment.uri) { "Attachment must have a uri!" }
 
     Log.d(TAG, "[insertAttachmentWithData] Inserting attachment for messageId $messageId. (MessageId: $messageId, ${attachment.uri})")
@@ -2699,7 +2716,7 @@ class AttachmentTable(
       throw MmsException(e)
     }
 
-    return insertAttachmentWithData(messageId, dataStream, attachment, quote)
+    return insertAttachmentWithData(messageId, dataStream, attachment, quote = false, quoteTargetContentType = null)
   }
 
   /**
@@ -2708,7 +2725,7 @@ class AttachmentTable(
    * @param dataStream The stream to read the data from. This stream will be closed by this method.
    */
   @Throws(MmsException::class)
-  private fun insertAttachmentWithData(messageId: Long, dataStream: InputStream, attachment: Attachment, quote: Boolean): AttachmentId {
+  private fun insertAttachmentWithData(messageId: Long, dataStream: InputStream, attachment: Attachment, quote: Boolean, quoteTargetContentType: String?): AttachmentId {
     // To avoid performing long-running operations in a transaction, we write the data to an independent file first in a way that doesn't rely on db state.
     val fileWriteResult: DataFileWriteResult = writeToDataFile(newDataFile(context), dataStream, attachment.transformProperties ?: TransformProperties.empty())
     Log.d(TAG, "[insertAttachmentWithData] Wrote data to file: ${fileWriteResult.file.absolutePath} (MessageId: $messageId, ${attachment.uri})")
@@ -2808,6 +2825,7 @@ class AttachmentTable(
       contentValues.put(WIDTH, uploadTemplate?.width ?: attachment.width)
       contentValues.put(HEIGHT, uploadTemplate?.height ?: attachment.height)
       contentValues.put(QUOTE, quote.toInt())
+      contentValues.put(QUOTE_TARGET_CONTENT_TYPE, quoteTargetContentType)
       contentValues.put(CAPTION, attachment.caption)
       contentValues.put(UPLOAD_TIMESTAMP, uploadTemplate?.uploadTimestamp ?: 0)
       contentValues.put(TRANSFORM_PROPERTIES, transformProperties.serialize())
@@ -2849,7 +2867,7 @@ class AttachmentTable(
   }
 
   fun insertWallpaper(dataStream: InputStream): AttachmentId {
-    return insertAttachmentWithData(WALLPAPER_MESSAGE_ID, dataStream, WallpaperAttachment(), quote = false).also { id ->
+    return insertAttachmentWithData(WALLPAPER_MESSAGE_ID, dataStream, WallpaperAttachment(), quote = false, quoteTargetContentType = null).also { id ->
       createRemoteKeyIfNecessary(id)
     }
   }
@@ -2964,6 +2982,7 @@ class AttachmentTable(
       width = cursor.requireInt(WIDTH),
       height = cursor.requireInt(HEIGHT),
       quote = cursor.requireBoolean(QUOTE),
+      quoteTargetContentType = cursor.requireString(QUOTE_TARGET_CONTENT_TYPE),
       caption = cursor.requireString(CAPTION),
       stickerLocator = cursor.readStickerLocator(),
       blurHash = if (MediaUtil.isAudioType(contentType)) null else BlurHash.parseOrNull(cursor.requireString(BLUR_HASH)),
@@ -3148,7 +3167,7 @@ class AttachmentTable(
    * disk savings.
    */
   @Throws(Exception::class)
-  fun migrationFinalizeQuoteWithData(previousDataFile: String, thumbnail: ImageCompressionUtil.Result): String {
+  fun migrationFinalizeQuoteWithData(previousDataFile: String, thumbnail: ImageCompressionUtil.Result, quoteTargetContentType: String?): String {
     val newDataFileInfo = writeToDataFile(newDataFile(context), thumbnail.data.inputStream(), TransformProperties.empty())
 
     writableDatabase
@@ -3160,6 +3179,7 @@ class AttachmentTable(
         DATA_HASH_START to newDataFileInfo.hash,
         DATA_HASH_END to newDataFileInfo.hash,
         CONTENT_TYPE to thumbnail.mimeType,
+        QUOTE_TARGET_CONTENT_TYPE to quoteTargetContentType,
         WIDTH to thumbnail.width,
         HEIGHT to thumbnail.height,
         QUOTE to 1

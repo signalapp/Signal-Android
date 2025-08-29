@@ -562,7 +562,7 @@ public class MessageSender {
   {
     Set<String> finalUploadJobIds = new HashSet<>(uploadJobIds);
 
-    if (quoteAttachmentId != null) {
+    if (quoteAttachmentId != null && SignalDatabase.attachments().hasData(quoteAttachmentId)) {
       Job uploadJob = new AttachmentUploadJob(quoteAttachmentId);
       AppDependencies.getJobManager().add(uploadJob);
       finalUploadJobIds.add(uploadJob.getId());

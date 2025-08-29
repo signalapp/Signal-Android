@@ -1071,7 +1071,7 @@ private fun BackupMessageRecord.toRemoteQuote(exportState: ExportState, attachme
   val localType = QuoteModel.Type.fromCode(this.quoteType)
   val remoteType = when (localType) {
     QuoteModel.Type.NORMAL -> {
-      if (attachments?.any { it.contentType == MediaUtil.VIEW_ONCE } == true) {
+      if (attachments?.any { it.quoteTargetContentType == MediaUtil.VIEW_ONCE } == true) {
         Quote.Type.VIEW_ONCE
       } else {
         Quote.Type.NORMAL
@@ -1158,11 +1158,11 @@ private fun DatabaseAttachment.toRemoteStickerMessage(sentTimestamp: Long, react
 private fun List<DatabaseAttachment>.toRemoteQuoteAttachments(): List<Quote.QuotedAttachment> {
   return this.map { attachment ->
     Quote.QuotedAttachment(
-      contentType = attachment.contentType,
+      contentType = attachment.quoteTargetContentType,
       fileName = attachment.fileName,
       thumbnail = attachment.toRemoteMessageAttachment(
         flagOverride = MessageAttachment.Flag.NONE,
-        contentTypeOverride = "image/jpeg"
+        contentTypeOverride = attachment.contentType
       )
     )
   }

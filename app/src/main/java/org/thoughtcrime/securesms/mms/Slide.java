@@ -92,6 +92,11 @@ public abstract class Slide {
     return attachment.fastPreflightId;
   }
 
+  @Nullable
+  public String getQuoteTargetContentType() {
+    return attachment.quoteTargetContentType;
+  }
+
   public long getFileSize() {
     return attachment.size;
   }
@@ -222,6 +227,7 @@ public abstract class Slide {
                              borderless,
                              gif,
                              quote,
+                             null,
                              caption,
                              stickerLocator,
                              blurHash,

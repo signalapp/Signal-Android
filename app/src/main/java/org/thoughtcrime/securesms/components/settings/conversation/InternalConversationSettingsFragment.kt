@@ -98,6 +98,7 @@ class InternalConversationSettingsFragment : ComposeFragment(), InternalConversa
       borderless = false,
       videoGif = false,
       quote = false,
+      quoteTargetContentType = null,
       caption = null,
       stickerLocator = null,
       blurHash = null,
