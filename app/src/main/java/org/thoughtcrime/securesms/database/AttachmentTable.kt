@@ -1028,7 +1028,10 @@ class AttachmentTable(
   fun deleteAttachmentsForMessage(mmsId: Long): Boolean {
     Log.d(TAG, "[deleteAttachmentsForMessage] mmsId: $mmsId")
 
-    return writableDatabase.withinTransaction { db ->
+    val filePathsToDelete: MutableSet<String> = mutableSetOf()
+    val contentTypesToDelete: MutableSet<String> = mutableSetOf()
+
+    val deleteCount = writableDatabase.withinTransaction { db ->
       db.select(DATA_FILE, CONTENT_TYPE, ID)
         .from(TABLE_NAME)
         .where("$MESSAGE_ID = ?", mmsId)
@@ -1038,11 +1041,13 @@ class AttachmentTable(
 
           AppDependencies.jobManager.cancelAllInQueue(AttachmentDownloadJob.constructQueueString(attachmentId))
 
-          deleteDataFileIfPossible(
-            filePath = cursor.requireString(DATA_FILE),
-            contentType = cursor.requireString(CONTENT_TYPE),
-            attachmentId = attachmentId
-          )
+          val filePath = cursor.requireString(DATA_FILE)
+          val contentType = cursor.requireString(CONTENT_TYPE)
+
+          if (filePath != null && isSafeToDeleteDataFile(filePath, attachmentId)) {
+            filePathsToDelete += filePath
+            contentType?.let { contentTypesToDelete += it }
+          }
         }
 
       val deleteCount = db.delete(TABLE_NAME)
@@ -1051,8 +1056,12 @@ class AttachmentTable(
 
       AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
 
-      deleteCount > 0
+      deleteCount
     }
+
+    deleteDataFiles(filePathsToDelete, contentTypesToDelete)
+
+    return deleteCount > 0
   }
 
   /**
@@ -1082,17 +1091,23 @@ class AttachmentTable(
   fun deleteAttachmentFilesForViewOnceMessage(messageId: Long) {
     Log.d(TAG, "[deleteAttachmentFilesForViewOnceMessage] messageId: $messageId")
 
+    val filePathsToDelete: MutableSet<String> = mutableSetOf()
+    val contentTypesToDelete: MutableSet<String> = mutableSetOf()
+
     writableDatabase.withinTransaction { db ->
       db.select(DATA_FILE, CONTENT_TYPE, ID)
         .from(TABLE_NAME)
         .where("$MESSAGE_ID = ?", messageId)
         .run()
         .forEach { cursor ->
-          deleteDataFileIfPossible(
-            filePath = cursor.requireString(DATA_FILE),
-            contentType = cursor.requireString(CONTENT_TYPE),
-            attachmentId = AttachmentId(cursor.requireLong(ID))
-          )
+          val filePath = cursor.requireString(DATA_FILE)
+          val contentType = cursor.requireString(CONTENT_TYPE)
+          val id = AttachmentId(cursor.requireLong(ID))
+
+          if (filePath != null && isSafeToDeleteDataFile(filePath, id)) {
+            filePathsToDelete += filePath
+            contentType?.let { contentTypesToDelete += it }
+          }
         }
 
       db.update(TABLE_NAME)
@@ -1127,10 +1142,15 @@ class AttachmentTable(
         notifyConversationListeners(threadId)
       }
     }
+
+    deleteDataFiles(filePathsToDelete, contentTypesToDelete)
   }
 
   fun deleteAttachment(id: AttachmentId) {
     Log.d(TAG, "[deleteAttachment] attachmentId: $id")
+
+    val filePathsToDelete = mutableSetOf<String>()
+    val contentTypesToDelete = mutableSetOf<String>()
 
     writableDatabase.withinTransaction { db ->
       db.select(DATA_FILE, CONTENT_TYPE)
@@ -1143,23 +1163,23 @@ class AttachmentTable(
             return@withinTransaction
           }
 
-          val data = cursor.requireString(DATA_FILE)
+          val filePath = cursor.requireString(DATA_FILE)
           val contentType = cursor.requireString(CONTENT_TYPE)
-
-          deleteDataFileIfPossible(
-            filePath = data,
-            contentType = contentType,
-            attachmentId = id
-          )
 
           db.delete(TABLE_NAME)
             .where("$ID = ?", id.id)
             .run()
 
-          deleteDataFileIfPossible(data, contentType, id)
+          if (filePath != null && isSafeToDeleteDataFile(filePath, id)) {
+            filePathsToDelete += filePath
+            contentType?.let { contentTypesToDelete += it }
+          }
+
           AppDependencies.databaseObserver.notifyAttachmentDeletedObservers()
         }
     }
+
+    deleteDataFiles(filePathsToDelete, contentTypesToDelete)
   }
 
   fun deleteAttachments(toDelete: List<SyncAttachmentId>): List<SyncMessageId> {
@@ -2195,53 +2215,39 @@ class AttachmentTable(
       )
   }
 
-  /**
-   * Deletes the data file if there's no strong references to other attachments.
-   * If deleted, it will also clear all weak references (i.e. quotes) of the attachment.
-   */
-  private fun deleteDataFileIfPossible(
-    filePath: String?,
-    contentType: String?,
-    attachmentId: AttachmentId
-  ) {
-    check(writableDatabase.inTransaction()) { "Must be in a transaction!" }
-
-    if (filePath == null) {
-      Log.w(TAG, "[deleteDataFileIfPossible] Null data file path for $attachmentId! Can't delete anything.")
-      return
+  private fun deleteDataFiles(filePaths: Set<String>, contentTypes: Set<String>) {
+    for (path in filePaths) {
+      if (File(path).delete()) {
+        Log.d(TAG, "[deleteDataFiles] Successfully deleted $path")
+      } else {
+        Log.w(TAG, "[deleteDataFiles] Failed to delete $path")
+      }
     }
 
-    val strongReferenceExists = readableDatabase
-      .exists(TABLE_NAME)
-      .where("$DATA_FILE = ? AND QUOTE = 0 AND $ID != ${attachmentId.id}", filePath)
-      .run()
-
-    if (strongReferenceExists) {
-      Log.i(TAG, "[deleteDataFileIfPossible] Attachment in use. Skipping deletion of $attachmentId. Path: $filePath")
-      return
-    }
-
-    val weakReferenceCount = writableDatabase
-      .update(TABLE_NAME)
-      .values(
-        DATA_FILE to null,
-        DATA_RANDOM to null,
-        DATA_HASH_START to null,
-        DATA_HASH_END to null
-      )
-      .where("$DATA_FILE = ?", filePath)
-      .run()
-
-    Log.i(TAG, "[deleteDataFileIfPossible] Cleared $weakReferenceCount weak references for $attachmentId. Path: $filePath")
-
-    if (!File(filePath).delete()) {
-      Log.w(TAG, "[deleteDataFileIfPossible] Failed to delete $attachmentId. Path: $filePath")
-    }
-
-    if (MediaUtil.isImageType(contentType) || MediaUtil.isVideoType(contentType)) {
+    if (contentTypes.any { MediaUtil.isImageOrVideoType(it) }) {
       Glide.get(context).clearDiskCache()
       ThreadUtil.runOnMain { Glide.get(context).clearMemory() }
     }
+  }
+
+  /**
+   * Checks if it's safe to delete a specific [filePath] for an attachment with [attachmentId] that is in the process of being deleted.
+   * Basically it checks if anyone else is using that file -- if so, it's not safe to delete.
+   */
+  private fun isSafeToDeleteDataFile(filePath: String, attachmentId: AttachmentId): Boolean {
+    check(writableDatabase.inTransaction()) { "Must be in a transaction!" }
+
+    val attachmentInUse = readableDatabase
+      .exists(TABLE_NAME)
+      .where("$DATA_FILE = ? AND $ID != ${attachmentId.id}", filePath)
+      .run()
+
+    if (attachmentInUse) {
+      Log.i(TAG, "[deleteDataFileIfPossible] Attachment in use. Skipping deletion of $attachmentId. Path: $filePath")
+      return false
+    }
+
+    return true
   }
 
   @Throws(FileNotFoundException::class)
