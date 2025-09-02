@@ -483,15 +483,16 @@ class JobController {
     Log.i(TAG, "Starting JobRunners. (Reserved: " + reservedRunnerPredicates.size() + ", MinGeneral: " + minGeneralRunners + ", MaxGeneral: " + maxGeneralRunners + ", GeneralIdleTimeout: " + generalRunnerIdleTimeout + " ms)");
     runnersStarted.set(true);
 
+    int reservedId = 1;
     for (Predicate<MinimalJobSpec> predicate : reservedRunnerPredicates) {
-      int id = nextRunnerId.incrementAndGet();
-      JobRunner runner = new JobRunner(application, JobRunner.generateName(id, true, true), this, predicate == null ? NO_PREDICATE : predicate, 0);
+      JobRunner runner = new JobRunner(application, JobRunner.generateName(reservedId++, true, true), this, predicate == null ? NO_PREDICATE : predicate, 0);
       runner.start();
       Log.i(TAG, "Spawned new runner " + runner.getName());
     }
 
+    int coreId = 1;
     for (int i = 0; i < minGeneralRunners; i++) {
-      spawnGeneralRunner(0);
+      spawnGeneralRunner(coreId++, 0);
     }
 
     maybeScaleUpRunners(() -> jobStorage.getEligibleJobCount(System.currentTimeMillis()));
@@ -518,13 +519,12 @@ class JobController {
       Log.i(TAG, "Spawning " + actualRunnersToSpawn + " new JobRunner(s) to meet demand. (CurrentActive: " + activeRunners + ", EligibleJobs: " + eligibleJobCount + ", MaxAllowed: " + maxGeneralRunners + ")");
 
       for (int i = 0; i < actualRunnersToSpawn; i++) {
-        spawnGeneralRunner(generalRunnerIdleTimeout);
+        spawnGeneralRunner(nextRunnerId.incrementAndGet(), generalRunnerIdleTimeout);
       }
     }
   }
 
-  private synchronized void spawnGeneralRunner(long timeOutMs) {
-    int id = nextRunnerId.incrementAndGet();
+  private synchronized void spawnGeneralRunner(int id, long timeOutMs) {
     JobRunner runner = new JobRunner(application, JobRunner.generateName(id, false, timeOutMs == 0), this, NO_PREDICATE, timeOutMs);
     runner.start();
     activeGeneralRunners.add(runner);
