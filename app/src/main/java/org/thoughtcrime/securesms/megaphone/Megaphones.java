@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.profiles.username.NewWaysToConnectDialogFragme
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ServiceUtil;
 import org.thoughtcrime.securesms.util.VersionTracker;
@@ -552,6 +553,10 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowTurnOnBackupsMegaphone(@NonNull Context context) {
+    if (!Environment.IS_STAGING) {
+      return false;
+    }
+
     if (!RemoteConfig.messageBackups() || SignalStore.backup().getLatestBackupTier() != null) {
       return false;
     }
