@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.annotation.VisibleForTesting
+import kotlinx.collections.immutable.toImmutableSet
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.JobDatabase
@@ -28,9 +29,9 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   /**
    * We keep a set of job specs in memory to facilitate fast retrieval. This is important because the most common job storage pattern is
-   * [getNextEligibleJob], which needs to return full specs.
+   * [getNextEligibleJob], which needs to return full specs. Memory-only jobs are protected from eviction since they don't exist in the database.
    */
-  private val jobSpecCache: LRUCache<String, JobSpec> = LRUCache(JOB_CACHE_LIMIT)
+  private val jobSpecCache: JobSpecCache = JobSpecCache(JOB_CACHE_LIMIT)
 
   /**
    * We keep a set of constraints in memory, seeded by the same jobs in the [jobSpecCache]. It doesn't need to necessarily stay in sync with that cache, though.
@@ -181,7 +182,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   override fun getJobsInQueue(queue: String): List<JobSpec> {
     return minimalJobs
       .filter { it.queueKey == queue }
-      .mapNotNull { it.toJobSpec() }
+      .map { it.toJobSpec() }
   }
 
   @Synchronized
@@ -348,7 +349,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
     val deleteIds: Set<String> = ids.toSet()
     minimalJobs.removeIf { deleteIds.contains(it.id) }
-    jobSpecCache.keys.removeAll(deleteIds)
+    deleteIds.forEach { jobSpecCache.remove(it) }
     eligibleJobs.removeIf { deleteIds.contains(it.id) }
     migrationJobs.removeIf { deleteIds.contains(it.id) }
 
@@ -596,10 +597,19 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
    * Converts a [MinimalJobSpec] to a [JobSpec]. We prefer using the cache, but if it's not found, we'll hit the database.
    * We consider this a "recent access" and will cache it for future use.
    */
-  private fun MinimalJobSpec.toJobSpec(): JobSpec? {
-    return jobSpecCache.getOrPut(this.id) {
-      jobDatabase.getJobSpec(this.id) ?: return null
+  private fun MinimalJobSpec.toJobSpec(): JobSpec {
+    val cachedJob = jobSpecCache[this.id]
+    if (cachedJob != null) {
+      return cachedJob
     }
+
+    val dbJob = jobDatabase.getJobSpec(this.id)
+    if (dbJob != null) {
+      jobSpecCache[dbJob.id] = dbJob
+      return dbJob
+    }
+
+    error("Failed to get a full JobSpec for ${this.id}")
   }
 
   private object EligibleMinJobComparator : Comparator<MinimalJobSpec> {
@@ -667,4 +677,36 @@ fun JobSpec.toMinimalJobSpec(): MinimalJobSpec {
     isMemoryOnly = this.isMemoryOnly,
     initialDelay = this.initialDelay
   )
+}
+
+/**
+ * A cache over top of LRUCache to protect memory-only jobs from eviction.
+ * Memory-only jobs are stored separately and never evicted since they don't exist in the database.
+ */
+private class JobSpecCache(capacity: Int) {
+
+  private val durableJobCache = LRUCache<String, JobSpec>(capacity)
+  private val memoryOnlyJobs = mutableMapOf<String, JobSpec>()
+
+  operator fun get(key: String): JobSpec? {
+    return memoryOnlyJobs[key] ?: durableJobCache[key]
+  }
+
+  operator fun set(key: String, value: JobSpec) {
+    if (value.isMemoryOnly) {
+      memoryOnlyJobs[key] = value
+    } else {
+      durableJobCache[key] = value
+    }
+  }
+
+  fun remove(key: String): JobSpec? {
+    return memoryOnlyJobs.remove(key) ?: durableJobCache.remove(key)
+  }
+
+  val keys: Set<String>
+    get() = (durableJobCache.keys + memoryOnlyJobs.keys).toImmutableSet()
+
+  val size: Int
+    get() = durableJobCache.size + memoryOnlyJobs.size
 }

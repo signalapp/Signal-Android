@@ -1309,6 +1309,47 @@ class FastJobStorageTest {
     assertThat(subject.getJobCountForFactory("f1")).isEqualTo(2)
   }
 
+  @Test
+  fun `getNextEligibleJob - memory job remains eligible after cache eviction`() {
+    val mostEligibleInMemoryJob = jobSpec(
+      id = "memory-job",
+      factoryKey = "memory-factory",
+      queueKey = "memory-queue",
+      isMemoryOnly = true,
+      globalPriority = Job.Parameters.PRIORITY_HIGH,
+      createTime = 0
+    )
+
+    val subject = FastJobStorage(mockDatabase(emptyList()))
+    subject.init()
+
+    subject.insertJobs(listOf(FullSpec(mostEligibleInMemoryJob, emptyList(), emptyList())))
+    assertThat(subject.getNextEligibleJob(100, NO_PREDICATE)).isEqualTo(mostEligibleInMemoryJob)
+
+    // Trigger cache eviction
+    val lessEligibleJobs = (1..2000).map { i ->
+      FullSpec(
+        jobSpec(
+          id = "job-$i",
+          factoryKey = "factory-$i",
+          queueKey = "queue-$i",
+          isMemoryOnly = false,
+          globalPriority = Job.Parameters.PRIORITY_DEFAULT,
+          createTime = i.toLong()
+        ),
+        emptyList(),
+        emptyList()
+      )
+    }
+    subject.insertJobs(lessEligibleJobs)
+
+    // The memory job should still be the most eligible despite cache eviction
+    val nextJob = subject.getNextEligibleJob(100, NO_PREDICATE)
+    assertThat(nextJob).isNotNull()
+    assertThat(nextJob!!.id).isEqualTo("memory-job")
+    assertThat(nextJob.isMemoryOnly).isEqualTo(true)
+  }
+
   private fun mockDatabase(fullSpecs: List<FullSpec> = emptyList()): JobDatabase {
     val jobs = fullSpecs.map { it.jobSpec }.toMutableList()
     val constraints = fullSpecs.map { it.constraintSpecs }.flatten().toMutableList()
@@ -1320,7 +1361,7 @@ class FastJobStorageTest {
     every { mock.getConstraintSpecs(any()) } returns constraints
     every { mock.getAllDependencySpecs() } returns dependencies
     every { mock.getConstraintSpecsForJobs(any()) } returns constraints
-    every { mock.getJobSpec(any()) } answers { jobs.first { it.id == firstArg() } }
+    every { mock.getJobSpec(any()) } answers { jobs.firstOrNull() { it.id == firstArg() } }
     every { mock.insertJobs(any()) } answers {
       val inserts: List<FullSpec> = firstArg()
       for (insert in inserts) {
