@@ -11,13 +11,13 @@ import java.util.Date;
 import java.util.Locale;
 import java.util.Map;
 
-public class LogSectionThreadDump implements LogSection {
+public class LogSectionSuspiciousThreadDump implements LogSection {
 
   private static final SimpleDateFormat DATE_FORMAT = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS zzz", Locale.US);
 
   @Override
   public @NonNull String getTitle() {
-    return "LAST THREAD DUMP";
+    return "LAST SUSPICIOUS THREAD DUMP";
   }
 
   @Override
