@@ -8,6 +8,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.websocket.SignalWebSocket
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -58,6 +59,8 @@ class RemoteConfigRefreshJob private constructor(parameters: Parameters) : Job(p
       is NetworkResult.StatusCodeError ->
         if (result.code == 304) {
           Log.i(TAG, "Remote config has not changed since last pull.")
+          SignalStore.remoteConfig.lastFetchTime = System.currentTimeMillis()
+          SignalStore.misc.setLastKnownServerTime(result.headers[SignalWebSocket.SERVER_DELIVERED_TIMESTAMP_HEADER]?.toLongOrNull() ?: System.currentTimeMillis(), System.currentTimeMillis())
           Result.success()
         } else {
           Result.retry(defaultBackoff())
