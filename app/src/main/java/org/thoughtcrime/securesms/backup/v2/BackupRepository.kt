@@ -100,6 +100,7 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
+import org.thoughtcrime.securesms.jobs.ArchiveAttachmentBackfillJob
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
@@ -112,6 +113,7 @@ import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
+import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.keyvalue.BackupValues.ArchiveServiceCredentials
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -611,6 +613,23 @@ object BackupRepository {
 
   fun snoozeDownloadYourBackupData() {
     SignalStore.backup.snoozeDownloadNotifier()
+  }
+
+  @JvmStatic
+  fun maybeFixAnyDanglingAttachmentUploads() {
+    if (!SignalStore.backup.backsUpMedia || !AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)) {
+      return
+    }
+
+    val pendingBytes = SignalDatabase.attachments.getPendingArchiveUploadBytes()
+    if (pendingBytes == 0L) {
+      return
+    }
+
+    Log.w(TAG, "There are ${pendingBytes.bytes.toUnitString(maxPlaces = 2)} of attachments that need to be uploaded to the archive, but no jobs for them! Attempting to fix.")
+    val resetCount = SignalDatabase.attachments.clearArchiveTransferStateForInProgressItems()
+    Log.w(TAG, "Cleared the archive transfer state of $resetCount attachments.")
+    AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob())
   }
 
   /**

@@ -869,6 +869,17 @@ class AttachmentTable(
   }
 
   /**
+   * Resets the [ARCHIVE_TRANSFER_STATE] of any attachments that are currently in-progress of uploading.
+   */
+  fun clearArchiveTransferStateForInProgressItems(): Int {
+    return writableDatabase
+      .update(TABLE_NAME)
+      .values(ARCHIVE_TRANSFER_STATE to ArchiveTransferState.NONE.value)
+      .where("$ARCHIVE_TRANSFER_STATE IN (${ArchiveTransferState.UPLOAD_IN_PROGRESS.value}, ${ArchiveTransferState.COPY_PENDING.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value})")
+      .run()
+  }
+
+  /**
    * Marks eligible attachments as offloaded based on their received at timestamp, their last restore time,
    * presence of thumbnail if media, and the full file being available in the archive.
    *

@@ -164,6 +164,10 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         }
       }
     }
+
+    viewModelScope.launch(Dispatchers.IO) {
+      BackupRepository.maybeFixAnyDanglingAttachmentUploads()
+    }
   }
 
   fun setCanBackUpUsingCellular(canBackUpUsingCellular: Boolean) {
