@@ -228,8 +228,9 @@ class InAppPaymentRecurringContextJob private constructor(
 
     return when (inAppPayment.type) {
       InAppPaymentType.RECURRING_BACKUP -> {
-        if (whoAmIResponse.entitlements?.backup?.backupLevel != SubscriptionsConfiguration.BACKUPS_LEVEL.toLong()) {
-          info("Entitlement level does not match expected paid backups level.")
+        val whoAmIEntitlementLevel = whoAmIResponse.entitlements?.backup?.backupLevel
+        if (whoAmIEntitlementLevel != SubscriptionsConfiguration.BACKUPS_LEVEL.toLong()) {
+          info("WhoAmI entitlement level ($whoAmIEntitlementLevel) does not match expected paid backups level (${SubscriptionsConfiguration.BACKUPS_LEVEL.toLong()}). Forcing a redemption.")
           return false
         }
 
