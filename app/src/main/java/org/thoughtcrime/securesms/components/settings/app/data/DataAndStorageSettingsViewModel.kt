@@ -1,14 +1,15 @@
 package org.thoughtcrime.securesms.components.settings.app.data
 
 import android.content.SharedPreferences
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.update
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.SentMediaQuality
 import org.thoughtcrime.securesms.util.TextSecurePreferences
-import org.thoughtcrime.securesms.util.livedata.Store
 import org.thoughtcrime.securesms.webrtc.CallDataMode
 
 class DataAndStorageSettingsViewModel(
@@ -16,9 +17,9 @@ class DataAndStorageSettingsViewModel(
   private val repository: DataAndStorageSettingsRepository
 ) : ViewModel() {
 
-  private val store = Store(getState())
+  private val store = MutableStateFlow(getState())
 
-  val state: LiveData<DataAndStorageSettingsState> = store.stateLiveData
+  val state: StateFlow<DataAndStorageSettingsState> = store
 
   fun refresh() {
     repository.getTotalStorageUse { totalStorageUse ->

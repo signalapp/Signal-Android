@@ -31,6 +31,7 @@ import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.attachments.Attachment;
 import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
+import org.thoughtcrime.securesms.backup.v2.BackupRepository;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.AttachmentTable;
@@ -51,6 +52,7 @@ import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.AttachmentCompressionJob;
 import org.thoughtcrime.securesms.jobs.AttachmentCopyJob;
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob;
+import org.thoughtcrime.securesms.jobs.CopyAttachmentToArchiveJob;
 import org.thoughtcrime.securesms.jobs.IndividualSendJob;
 import org.thoughtcrime.securesms.jobs.ProfileKeySendJob;
 import org.thoughtcrime.securesms.jobs.PushDistributionListSendJob;
@@ -274,6 +276,14 @@ public class MessageSender {
                                                        false,
                                                        insertListener);
 
+      for (AttachmentId attachmentId: attachmentIds) {
+        boolean wasPreuploaded = SignalDatabase.attachments().getMessageId(attachmentId) == AttachmentTable.PREUPLOAD_MESSAGE_ID;
+        if (wasPreuploaded && BackupRepository.shouldCopyAttachmentToArchive(attachmentId, messageId)) {
+          Log.i(TAG, "[" + attachmentId + "] Was previously preuploaded and should now be copied to the archive.");
+          AppDependencies.getJobManager().add(new CopyAttachmentToArchiveJob(attachmentId));
+        }
+      }
+
       attachmentDatabase.updateMessageId(attachmentIds, messageId, message.getStoryType().isStory());
 
       sendMessageInternal(context, recipient, SendType.SIGNAL, messageId, jobIds);
@@ -296,15 +306,16 @@ public class MessageSender {
     Preconditions.checkArgument(messages.size() > 0, "No messages!");
     Preconditions.checkArgument(Stream.of(messages).allMatch(m -> m.getAttachments().isEmpty()), "Messages can't have attachments! They should be pre-uploaded.");
 
-    JobManager         jobManager             = AppDependencies.getJobManager();
-    AttachmentTable    attachmentDatabase     = SignalDatabase.attachments();
-    MessageTable       mmsDatabase            = SignalDatabase.messages();
-    ThreadTable        threadTable            = SignalDatabase.threads();
-    List<AttachmentId> preUploadAttachmentIds = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).toList();
-    List<String>       preUploadJobIds        = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).toList();
-    List<Long>         messageIds             = new ArrayList<>(messages.size());
-    List<String>       messageDependsOnIds    = new ArrayList<>(preUploadJobIds);
-    OutgoingMessage    primaryMessage         = messages.get(0);
+    JobManager         jobManager                 = AppDependencies.getJobManager();
+    AttachmentTable    attachmentDatabase         = SignalDatabase.attachments();
+    MessageTable       mmsDatabase                = SignalDatabase.messages();
+    ThreadTable        threadTable                = SignalDatabase.threads();
+    List<AttachmentId> preUploadAttachmentIds     = Stream.of(preUploadResults).map(PreUploadResult::getAttachmentId).toList();
+    List<String>       preUploadJobIds            = Stream.of(preUploadResults).map(PreUploadResult::getJobIds).flatMap(Stream::of).toList();
+    List<Long>         messageIds                 = new ArrayList<>(messages.size());
+    List<String>       messageDependsOnIds        = new ArrayList<>(preUploadJobIds);
+    OutgoingMessage    primaryMessage             = messages.get(0);
+    List<AttachmentId> attachmentsWithPreuploadId = preUploadAttachmentIds.stream().filter(id -> SignalDatabase.attachments().getMessageId(id) == AttachmentTable.PREUPLOAD_MESSAGE_ID).collect(Collectors.toList());
 
     mmsDatabase.beginTransaction();
     try {
@@ -376,6 +387,14 @@ public class MessageSender {
           List<RecipientId> members        = SignalDatabase.distributionLists().getMembers(recipient.requireDistributionListId());
           DistributionId    distributionId = Objects.requireNonNull(SignalDatabase.distributionLists().getDistributionId(recipient.requireDistributionListId()));
           SignalDatabase.storySends().insert(messageId, members, message.getSentTimeMillis(), message.getStoryType().isStoryWithReplies(), distributionId);
+        }
+      }
+
+      for (AttachmentId attachmentId : attachmentsWithPreuploadId) {
+        long messageId = SignalDatabase.attachments().getMessageId(attachmentId);
+        if (BackupRepository.shouldCopyAttachmentToArchive(attachmentId, messageId)) {
+          Log.i(TAG, "[" + attachmentId + "] Was previously preuploaded and should now be copied to the archive.");
+          jobManager.add(new CopyAttachmentToArchiveJob(attachmentId));
         }
       }
 

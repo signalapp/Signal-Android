@@ -12,6 +12,7 @@ import org.thoughtcrime.securesms.net.NotPushRegisteredException
 import org.thoughtcrime.securesms.profiles.AvatarHelper
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContact
 import org.whispersystems.signalservice.api.messages.multidevice.DeviceContactsInputStream
@@ -59,7 +60,7 @@ class MultiDeviceContactSyncJob(parameters: Parameters, private val attachmentPo
     try {
       val contactsFile: File = BlobProvider.getInstance().forNonAutoEncryptingSingleSessionOnDisk(context)
       AppDependencies.signalServiceMessageReceiver
-        .retrieveAttachment(contactAttachment, contactsFile, MAX_ATTACHMENT_SIZE)
+        .retrieveAttachment(contactAttachment, contactsFile, MAX_ATTACHMENT_SIZE, IntegrityCheck.forEncryptedDigest(contactAttachment.digest.get()))
         .use(this::processContactFile)
     } catch (e: MissingConfigurationException) {
       throw IOException(e)

@@ -62,7 +62,7 @@ import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectFor
 import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StickerPackKey
 import org.thoughtcrime.securesms.database.model.StickerPackParams
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewUiState.ContentState
 import org.thoughtcrime.securesms.stickers.StickerPackPreviewUiState.NavTarget
@@ -227,7 +227,7 @@ private fun TopAppBar(
   Scaffolds.DefaultTopAppBar(
     title = "", // TODO collapse title into top app bar on scroll
     titleContent = { _, text -> Text(text = text, style = MaterialTheme.typography.titleLarge) },
-    navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
     navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
     onNavigationClick = onNavigateUp,
     actions = {
@@ -415,7 +415,7 @@ private fun HasDataPreview() {
 
 private val StickerManifest.Sticker.imageModel: Key
   get() = uri
-    .map(DecryptableStreamUriLoader::DecryptableUri)
+    .map(::DecryptableUri)
     .getOrElse { StickerRemoteUri(packId, packKey, id) }
 
 private val StickerManifest.params: StickerPackParams

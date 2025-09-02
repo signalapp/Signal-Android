@@ -113,14 +113,13 @@ class RestoreAttachmentThumbnailJob private constructor(
       return
     }
 
-    if (attachment.remoteDigest == null) {
-      Log.w(TAG, "$attachmentId has no digest! Cannot proceed.")
+    if (attachment.dataHash == null) {
+      Log.w(TAG, "$attachmentId has no plaintext hash! Cannot proceed.")
       return
     }
 
     val maxThumbnailSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val thumbnailTransferFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
-    val thumbnailFile: File = SignalDatabase.attachments.createArchiveThumbnailTransferFile()
 
     val progressListener = object : SignalServiceAttachment.ProgressListener {
       override fun onAttachmentProgress(progress: AttachmentTransferProgress) = Unit
@@ -131,19 +130,19 @@ class RestoreAttachmentThumbnailJob private constructor(
     val pointer = attachment.createArchiveThumbnailPointer()
 
     Log.i(TAG, "Downloading thumbnail for $attachmentId")
-    val downloadResult = AppDependencies.signalServiceMessageReceiver
-      .retrieveArchivedAttachment(
+    val decryptingStream = AppDependencies.signalServiceMessageReceiver
+      .retrieveArchivedThumbnail(
         SignalStore.backup.mediaRootBackupKey.deriveMediaSecrets(attachment.requireThumbnailMediaName()),
         cdnCredentials,
         thumbnailTransferFile,
         pointer,
-        thumbnailFile,
         maxThumbnailSize,
-        true,
         progressListener
       )
 
-    SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.remoteDigest, downloadResult.dataStream, thumbnailTransferFile)
+    decryptingStream.use { input ->
+      SignalDatabase.attachments.finalizeAttachmentThumbnailAfterDownload(attachmentId, attachment.dataHash, attachment.remoteKey, input, thumbnailTransferFile)
+    }
 
     if (!SignalDatabase.messages.isStory(messageId)) {
       AppDependencies.messageNotifier.updateNotification(context)
@@ -159,7 +158,15 @@ class RestoreAttachmentThumbnailJob private constructor(
   override fun onShouldRetry(exception: Exception): Boolean {
     if (exception is NonSuccessfulResponseCodeException) {
       if (exception.code == 404) {
-        Log.w(TAG, "[$attachmentId-thumbnail] Unable to find file")
+        Log.w(TAG, "[$attachmentId-thumbnail] Unable to find file!")
+        return false
+      }
+      if (exception.code == 403) {
+        Log.w(TAG, "[$attachmentId-thumbnail] No permission!")
+        return false
+      }
+      if (exception.code == 555) {
+        Log.w(TAG, "[$attachmentId-thumbnail] Syntetic failure!")
         return false
       }
     }

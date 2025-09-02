@@ -32,7 +32,7 @@ import org.thoughtcrime.securesms.components.quotes.QuoteViewColorTheme;
 import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
 import org.thoughtcrime.securesms.mms.SlideDeck;

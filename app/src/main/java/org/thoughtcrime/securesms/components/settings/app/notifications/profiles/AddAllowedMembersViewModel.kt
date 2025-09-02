@@ -1,15 +1,30 @@
 package org.thoughtcrime.securesms.components.settings.app.notifications.profiles
 
+import androidx.compose.runtime.Immutable
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 class AddAllowedMembersViewModel(private val profileId: Long, private val repository: NotificationProfilesRepository) : ViewModel() {
+
+  private val internalSnackbarRequests = MutableSharedFlow<Unit>()
+
+  val snackbarRequests: Flow<Unit> = internalSnackbarRequests
+
+  fun requestSnackbar() {
+    viewModelScope.launch {
+      internalSnackbarRequests.emit(Unit)
+    }
+  }
 
   fun getProfile(): Observable<NotificationProfileAndRecipients> {
     return repository.getProfile(profileId)
@@ -40,6 +55,7 @@ class AddAllowedMembersViewModel(private val profileId: Long, private val reposi
       .observeOn(AndroidSchedulers.mainThread())
   }
 
+  @Immutable
   data class NotificationProfileAndRecipients(val profile: NotificationProfile, val recipients: List<Recipient>)
 
   class Factory(private val profileId: Long) : ViewModelProvider.Factory {

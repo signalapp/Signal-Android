@@ -108,7 +108,7 @@ object NetworkResultUtil {
           404 -> UnregisteredUserException(destination, result.exception)
           409 -> MismatchedDevicesException(result.parseJsonBody())
           410 -> StaleDevicesException(result.parseJsonBody())
-          413, 429 -> RateLimitException(result.code, "Rate Limited", Optional.ofNullable(result.header("retry-after")?.toLongOrNull()))
+          413, 429 -> RateLimitException(result.code, "Rate Limited", Optional.ofNullable(result.header("retry-after")?.toLongOrNull()?.seconds?.inWholeMilliseconds))
           428 -> ProofRequiredException(result.parseJsonBody(), result.header("retry-after")?.toLongOrNull() ?: -1)
           508 -> ServerRejectedException()
           else -> result.exception
@@ -147,7 +147,7 @@ object NetworkResultUtil {
           404 -> NotFoundException("At least one unregistered user is message send.")
           409 -> GroupMismatchedDevicesException(result.parseJsonBody())
           410 -> GroupStaleDevicesException(result.parseJsonBody())
-          413, 429 -> throw RateLimitException(result.code, "Rate Limited", Optional.ofNullable(result.header("retry-after")?.toLongOrNull()))
+          413, 429 -> throw RateLimitException(result.code, "Rate Limited", Optional.ofNullable(result.header("retry-after")?.toLongOrNull()?.seconds?.inWholeMilliseconds))
           508 -> ServerRejectedException()
           else -> result.exception
         }

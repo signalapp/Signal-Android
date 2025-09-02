@@ -30,7 +30,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.res.colorResource
@@ -72,7 +71,7 @@ import org.thoughtcrime.securesms.components.settings.app.subscription.BadgeImag
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.completed.InAppPaymentsBottomSheetDelegate
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
+import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.profiles.ProfileName
 import org.thoughtcrime.securesms.recipients.Recipient
@@ -107,16 +106,11 @@ class AppSettingsFragment : ComposeFragment(), Callbacks {
       )
     }
 
-    val nestedScrollConnection = remember {
-      StatusBarColorNestedScrollConnection(requireActivity())
-    }
-
     AppSettingsContent(
       self = self!!,
       state = state!!,
       bannerManager = bannerManager,
-      callbacks = this,
-      lazyColumnModifier = Modifier.nestedScroll(nestedScrollConnection)
+      callbacks = this
     )
   }
 
@@ -176,15 +170,14 @@ private fun AppSettingsContent(
   self: BioRecipientState,
   state: AppSettingsState,
   bannerManager: BannerManager,
-  callbacks: Callbacks,
-  lazyColumnModifier: Modifier = Modifier
+  callbacks: Callbacks
 ) {
   val isRegisteredAndUpToDate by rememberUpdatedState(state.isRegisteredAndUpToDate())
 
   Scaffolds.Settings(
     title = stringResource(R.string.text_secure_normal__menu_settings),
     navigationContentDescription = stringResource(R.string.CallScreenTopBar__go_back),
-    navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
     onNavigationClick = callbacks::onNavigationClick
   ) { contentPadding ->
     Column(
@@ -193,7 +186,7 @@ private fun AppSettingsContent(
       bannerManager.Banner()
 
       LazyColumn(
-        modifier = lazyColumnModifier
+        modifier = rememberStatusBarColorNestedScrollModifier()
       ) {
         item {
           BioRow(
@@ -351,7 +344,7 @@ private fun AppSettingsContent(
             onClick = {
               callbacks.navigate(R.id.action_appSettingsFragment_to_chatsSettingsFragment)
             },
-            enabled = isRegisteredAndUpToDate
+            enabled = state.legacyLocalBackupsEnabled || isRegisteredAndUpToDate
           )
         }
 
@@ -683,7 +676,8 @@ private fun AppSettingsContentPreview() {
         showPayments = true,
         showAppUpdates = true,
         showBackups = true,
-        backupFailureState = BackupFailureState.OUT_OF_STORAGE_SPACE
+        backupFailureState = BackupFailureState.OUT_OF_STORAGE_SPACE,
+        legacyLocalBackupsEnabled = false
       ),
       bannerManager = BannerManager(
         banners = listOf(TestBanner())

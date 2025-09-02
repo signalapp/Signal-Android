@@ -32,6 +32,7 @@ import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment.ProgressListener;
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId;
 import org.whispersystems.signalservice.api.messages.calls.CallingResponse;
+import org.whispersystems.signalservice.api.messages.multidevice.RegisterAsSecondaryDeviceResponse;
 import org.whispersystems.signalservice.api.push.SignalServiceAddress;
 import org.whispersystems.signalservice.api.push.SignedPreKeyEntity;
 import org.whispersystems.signalservice.api.push.exceptions.AlreadyVerifiedException;
@@ -65,6 +66,7 @@ import org.whispersystems.signalservice.api.push.exceptions.SubmitVerificationCo
 import org.whispersystems.signalservice.api.push.exceptions.TokenNotAcceptedException;
 import org.whispersystems.signalservice.api.push.exceptions.UnregisteredUserException;
 import org.whispersystems.signalservice.api.registration.RestoreMethodBody;
+import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigResponse;
 import org.whispersystems.signalservice.api.svr.Svr3Credentials;
 import org.whispersystems.signalservice.api.util.CredentialsProvider;
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory;
@@ -136,6 +138,7 @@ import okhttp3.Call;
 import okhttp3.ConnectionPool;
 import okhttp3.ConnectionSpec;
 import okhttp3.Dns;
+import okhttp3.Headers;
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.MediaType;
@@ -176,9 +179,11 @@ public class PushServiceSocket {
   private static final String VERIFICATION_SESSION_PATH = "/v1/verification/session";
   private static final String VERIFICATION_CODE_PATH    = "/v1/verification/session/%s/code";
 
+  private static final String REMOTE_CONFIG = "/v2/config";
+
   private static final String REGISTRATION_PATH    = "/v1/registration";
 
-  private static final String BACKUP_AUTH_CHECK_V2 = "/v2/backup/auth/check";
+  private static final String BACKUP_AUTH_CHECK_V2 = "/v2/svr/auth/check";
   private static final String BACKUP_AUTH_CHECK_V3 = "/v3/backup/auth/check";
 
   private static final String ARCHIVE_MEDIA_DOWNLOAD_PATH = "backups/%s/%s";
@@ -341,6 +346,11 @@ public class PushServiceSocket {
 
   public void requestPushChallenge(String sessionId, String gcmRegistrationId) throws IOException {
     patchVerificationSession(sessionId, gcmRegistrationId, null, null, null, null);
+  }
+
+  public RegisterAsSecondaryDeviceResponse registerAsSecondaryDevice(RegisterAsSecondaryDeviceRequest request) throws IOException {
+    String responseText = makeServiceRequest("/v1/devices/link", "PUT", JsonUtil.toJson(request));
+    return JsonUtil.fromJson(responseText, RegisterAsSecondaryDeviceResponse.class);
   }
 
   public SendGroupMessageResponse sendGroupMessage(byte[] body, @Nonnull SealedSenderAccess sealedSenderAccess, long timestamp, boolean online, boolean urgent, boolean story)
@@ -533,6 +543,14 @@ public class PushServiceSocket {
     }
   }
 
+  public RemoteConfigResponse getRemoteConfig() throws IOException {
+    try (Response response = makeServiceRequest(REMOTE_CONFIG, "GET", jsonRequestBody(null), NO_HEADERS, NO_HANDLER, SealedSenderAccess.NONE, false)) {
+      RemoteConfigResponse remoteConfigResponse = JsonUtil.fromJson(readBodyString(response), RemoteConfigResponse.class);
+      remoteConfigResponse.setServerEpochTime(response.headers().get("X-Signal-Timestamp") != null ? Long.parseLong(response.headers().get("X-Signal-Timestamp")) : System.currentTimeMillis());
+      return remoteConfigResponse;
+    }
+  }
+
   public void cancelInFlightRequests() {
     synchronized (connections) {
       Log.w(TAG, "Canceling: " + connections.size());
@@ -677,8 +695,7 @@ public class PushServiceSocket {
     }
   }
 
-  @Nullable
-  public ZonedDateTime getCdnLastModifiedTime(int cdnNumber, Map<String, String> headers, String path) throws MissingConfigurationException, PushNetworkException, NonSuccessfulResponseCodeException {
+  public @Nonnull ZonedDateTime getCdnLastModifiedTime(int cdnNumber, Map<String, String> headers, String path) throws MissingConfigurationException, PushNetworkException, NonSuccessfulResponseCodeException, MalformedResponseException {
     ConnectionHolder[] cdnNumberClients = cdnClientsMap.get(cdnNumber);
     if (cdnNumberClients == null) {
       throw new MissingConfigurationException("Attempted to download from unsupported CDN number: " + cdnNumber + ", Our configuration supports: " + cdnClientsMap.keySet());
@@ -690,7 +707,7 @@ public class PushServiceSocket {
                                                           .readTimeout(soTimeoutMillis, TimeUnit.MILLISECONDS)
                                                           .build();
 
-    Request.Builder request = new Request.Builder().url(connectionHolder.getUrl() + "/" + path).get();
+    Request.Builder request = new Request.Builder().url(connectionHolder.getUrl() + "/" + path).head();
 
     if (connectionHolder.getHostHeader().isPresent()) {
       request.addHeader("Host", connectionHolder.getHostHeader().get());
@@ -710,7 +727,7 @@ public class PushServiceSocket {
       if (response.isSuccessful()) {
         String lastModified = response.header("Last-Modified");
         if (lastModified == null) {
-          return null;
+          throw new MalformedResponseException("No Last-Modified header in response");
         }
         return ZonedDateTime.parse(lastModified, DateTimeFormatter.RFC_1123_DATE_TIME);
       } else {
@@ -956,7 +973,7 @@ public class PushServiceSocket {
       if (response.isSuccessful()) {
         return file.getAttachmentDigest();
       } else {
-        throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response);
+        throw new NonSuccessfulResponseCodeException(response.code(), "Response: " + response, response.body().string());
       }
     } catch (PushNetworkException | NonSuccessfulResponseCodeException e) {
       throw e;
@@ -1713,7 +1730,16 @@ public class PushServiceSocket {
       throw new NonSuccessfulResponseCodeException(500, "Missing timestamp header");
     }
 
-    if (responseCode == 400) throw new GroupPatchNotAcceptedException();
+    if (responseCode == 400) {
+      String message = null;
+      try {
+        message = JsonUtil.fromJson(body.string(), GroupPatchResponse.class).getMessage();
+      } catch (IOException e) {
+        Log.w(TAG, "Unable to parse group patch error", e);
+      }
+
+      throw message != null ? new GroupPatchNotAcceptedException(message) : new GroupPatchNotAcceptedException();
+    }
   };
 
   private static final ResponseCodeHandler GROUPS_V2_GET_JOIN_INFO_HANDLER  = (responseCode, body, getHeader) -> {

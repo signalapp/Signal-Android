@@ -223,6 +223,8 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
         put(NotificationProfileTable.ALLOW_ALL_MENTIONS, profile.allowAllMentions.toInt())
         put(NotificationProfileTable.STORAGE_SERVICE_ID, Base64.encodeWithPadding(storageServiceId))
         put(NotificationProfileTable.STORAGE_SERVICE_PROTO, storageServiceProto)
+        put(NotificationProfileTable.DELETED_TIMESTAMP_MS, profile.deletedTimestampMs)
+        put(NotificationProfileTable.CREATED_AT, profile.createdAt)
       }
 
       val updateQuery = SqlUtil.buildTrueUpdateQuery(ID_WHERE, SqlUtil.buildArgs(profile.id), profileValues)
@@ -321,6 +323,7 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
       .select()
       .from(NotificationProfileTable.TABLE_NAME)
       .where("${NotificationProfileTable.DELETED_TIMESTAMP_MS} = 0")
+      .orderBy("${NotificationProfileTable.CREATED_AT} DESC")
       .run()
       .readToList { cursor -> getProfile(cursor) }
   }

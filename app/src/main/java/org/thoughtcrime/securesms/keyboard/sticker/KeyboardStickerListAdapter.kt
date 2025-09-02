@@ -9,7 +9,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.model.StickerRecord
 import org.thoughtcrime.securesms.glide.cache.ApngOptions
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
@@ -41,11 +41,12 @@ class KeyboardStickerListAdapter(
 
   private inner class StickerViewHolder(itemView: View) : MappingViewHolder<Sticker>(itemView) {
 
-    private val image: ImageView = findViewById(R.id.sticker_keyboard_page_image)
+    val image: ImageView = findViewById(R.id.sticker_keyboard_page_image)
 
     override fun bind(model: Sticker) {
       requestManager.load(model.uri)
         .set(ApngOptions.ANIMATE, allowApngAnimation)
+        .skipMemoryCache(true)
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(image)
 
@@ -59,6 +60,12 @@ class KeyboardStickerListAdapter(
         itemView.setOnClickListener(null)
         itemView.setOnLongClickListener(null)
       }
+    }
+  }
+
+  override fun onViewRecycled(holder: MappingViewHolder<*>) {
+    if (holder is StickerViewHolder) {
+      requestManager.clear(holder.image)
     }
   }
 

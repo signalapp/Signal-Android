@@ -12,7 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
  */
 data class SetLinkedDeviceTransferArchiveRequest(
   @JsonProperty val destinationDeviceId: Int,
-  @JsonProperty val destinationDeviceCreated: Long,
+  @JsonProperty val destinationDeviceRegistrationId: Int,
   @JsonProperty val transferArchive: TransferArchive
 ) {
   sealed class TransferArchive {

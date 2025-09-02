@@ -9,7 +9,6 @@ import android.content.Context
 import android.database.Cursor
 import com.google.protobuf.InvalidProtocolBufferException
 import org.signal.core.util.Base64
-import org.signal.core.util.Bitmask
 import org.signal.core.util.logging.Log
 import org.signal.core.util.optionalBlob
 import org.signal.core.util.optionalBoolean
@@ -28,7 +27,6 @@ import org.thoughtcrime.securesms.badges.models.Badge
 import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.database.IdentityTable.VerifiedStatus
-import org.thoughtcrime.securesms.database.RecipientTable.Capabilities
 import org.thoughtcrime.securesms.database.RecipientTable.RegisteredState
 import org.thoughtcrime.securesms.database.model.DistributionListId
 import org.thoughtcrime.securesms.database.model.RecipientRecord
@@ -175,8 +173,7 @@ object RecipientTableCursorUtil {
   fun readCapabilities(cursor: Cursor): RecipientRecord.Capabilities {
     val capabilities = cursor.requireLong(RecipientTable.CAPABILITIES)
     return RecipientRecord.Capabilities(
-      rawBits = capabilities,
-      storageServiceEncryptionV2 = Recipient.Capability.deserialize(Bitmask.read(capabilities, Capabilities.STORAGE_SERVICE_ENCRYPTION_V2, Capabilities.BIT_LENGTH).toInt())
+      rawBits = capabilities
     )
   }
 

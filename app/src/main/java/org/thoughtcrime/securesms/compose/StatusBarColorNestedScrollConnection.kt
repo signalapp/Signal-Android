@@ -2,9 +2,15 @@ package org.thoughtcrime.securesms.compose
 
 import android.animation.ValueAnimator
 import android.app.Activity
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.input.nestedscroll.NestedScrollConnection
 import androidx.compose.ui.input.nestedscroll.NestedScrollSource
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Velocity
 import androidx.core.content.ContextCompat
 import com.google.android.material.animation.ArgbEvaluatorCompat
@@ -14,10 +20,14 @@ import kotlin.math.abs
 
 /**
  * Controls status-bar color based off a nested scroll
+ *
+ * Recommended to use this with [rememberStatusBarColorNestedScrollModifier] since it'll prevent you from having to wire through
+ * an activity or the connection to subcomponents.
  */
 class StatusBarColorNestedScrollConnection(
   private val activity: Activity
 ) : NestedScrollConnection {
+
   private var animator: ValueAnimator? = null
 
   private val normalColor = ContextCompat.getColor(activity, R.color.signal_colorBackground)
@@ -77,4 +87,22 @@ class StatusBarColorNestedScrollConnection(
   }
 
   private fun Float.isNearZero(): Boolean = abs(this) < 0.001
+}
+
+/**
+ * Remembers the nested scroll modifier to ensure the proper status bar coloring behavior.
+ *
+ * This is only required if the screen you are modifying does not utilize edgeToEdge.
+ */
+@Composable
+fun rememberStatusBarColorNestedScrollModifier(): Modifier {
+  val activity = LocalContext.current as? AppCompatActivity
+
+  return remember {
+    if (activity != null) {
+      Modifier.nestedScroll(StatusBarColorNestedScrollConnection(activity))
+    } else {
+      Modifier
+    }
+  }
 }

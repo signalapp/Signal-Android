@@ -350,6 +350,7 @@ internal class SpinnerServer(
         try {
           row += transformers[i].transform(null, columnName, this)
         } catch (e: Exception) {
+          Log.w(TAG, "Failed to transform", e)
           row += "*Failed to Transform*\n\n${DefaultColumnTransformer.transform(null, columnName, this)}"
         }
       }

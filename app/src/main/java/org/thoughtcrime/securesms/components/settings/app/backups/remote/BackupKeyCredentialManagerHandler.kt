@@ -7,6 +7,8 @@ package org.thoughtcrime.securesms.components.settings.app.backups.remote
 
 import org.signal.core.util.logging.Log
 import org.signal.core.util.logging.logW
+import org.thoughtcrime.securesms.util.storage.CredentialManagerError
+import org.thoughtcrime.securesms.util.storage.CredentialManagerResult
 
 /**
  * Handles the process of storing a backup key to the device password manager.
@@ -48,6 +50,11 @@ interface BackupKeyCredentialManagerHandler {
         updateBackupKeySaveState(newState = BackupKeySaveState.Error(result))
       }
 
+      is CredentialManagerError.SavePromptDisabled -> {
+        Log.w(TAG, "Error saving backup key to credential manager: the user has disabled the save prompt.", result.exception)
+        updateBackupKeySaveState(newState = BackupKeySaveState.Error(result))
+      }
+
       is CredentialManagerError.Unexpected -> {
         throw result.exception.logW(TAG, "Unexpected error when saving backup key to credential manager.")
       }
@@ -64,20 +71,4 @@ sealed interface BackupKeySaveState {
   data class AwaitingCredentialManager(val isRetry: Boolean) : BackupKeySaveState
   data object Success : BackupKeySaveState
   data class Error(val errorType: CredentialManagerError) : BackupKeySaveState
-}
-
-sealed interface CredentialManagerResult {
-  data object Success : CredentialManagerResult
-  data object UserCanceled : CredentialManagerResult
-
-  /** The backup key save operation was interrupted and should be retried. */
-  data class Interrupted(val exception: Exception) : CredentialManagerResult
-}
-
-sealed class CredentialManagerError : CredentialManagerResult {
-  abstract val exception: Exception
-
-  /** No password manager is configured on the device. */
-  data class MissingCredentialManager(override val exception: Exception) : CredentialManagerError()
-  data class Unexpected(override val exception: Exception) : CredentialManagerError()
 }

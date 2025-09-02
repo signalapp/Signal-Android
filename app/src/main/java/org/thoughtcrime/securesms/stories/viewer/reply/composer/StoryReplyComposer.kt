@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.transition.AutoTransition
 import androidx.transition.TransitionManager
+import org.signal.core.util.ByteLimitInputFilter
 import org.signal.core.util.dp
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ComposeText
@@ -34,6 +35,7 @@ import org.thoughtcrime.securesms.keyboard.emoji.toMappingModels
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
 
@@ -86,6 +88,7 @@ class StoryReplyComposer @JvmOverloads constructor(
         else -> false
       }
     }
+    input.filters += ByteLimitInputFilter(MessageUtil.MAX_TOTAL_BODY_SIZE_BYTES)
 
     anyReactionView.setOnClickListener {
       callback?.onPickAnyReactionClicked()

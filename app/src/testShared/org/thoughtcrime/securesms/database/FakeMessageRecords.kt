@@ -79,7 +79,6 @@ object FakeMessageRecords {
       cdn = Cdn.fromCdnNumber(cdnNumber),
       location = location,
       key = key,
-      iv = iv,
       digest = digest,
       incrementalDigest = incrementalDigest,
       incrementalMacChunkSize = incrementalMacChunkSize,

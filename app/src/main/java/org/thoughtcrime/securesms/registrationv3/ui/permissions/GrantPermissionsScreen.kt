@@ -46,11 +46,16 @@ fun GrantPermissionsScreen(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier.fillMaxWidth()
       ) {
-        TextButton(onClick = onNotNowClicked) {
+        TextButton(
+          modifier = Modifier.weight(weight = 1f, fill = false),
+          onClick = onNotNowClicked
+        ) {
           Text(
             text = stringResource(id = R.string.GrantPermissionsFragment__not_now)
           )
         }
+
+        Spacer(modifier = Modifier.size(24.dp))
 
         Buttons.LargeTonal(
           onClick = onNextClicked

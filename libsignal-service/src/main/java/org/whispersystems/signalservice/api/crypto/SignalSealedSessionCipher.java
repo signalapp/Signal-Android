@@ -1,7 +1,5 @@
 package org.whispersystems.signalservice.api.crypto;
 
-import org.signal.libsignal.internal.Native;
-import org.signal.libsignal.internal.NativeHandleGuard;
 import org.signal.libsignal.metadata.InvalidMetadataMessageException;
 import org.signal.libsignal.metadata.InvalidMetadataVersionException;
 import org.signal.libsignal.metadata.ProtocolDuplicateMessageException;

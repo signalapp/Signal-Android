@@ -13,7 +13,7 @@ androidx-window = "1.3.0"
 glide = "4.15.1"
 gradle = "8.9.2"
 kotlin = "2.1.0"
-libsignal-client = "0.74.0"
+libsignal-client = "0.79.0"
 mp4parser = "1.9.39"
 android-gradle-plugin = "8.7.2"
 accompanist = "0.28.0"
@@ -39,7 +39,7 @@ android-application = { module = "com.android.application:com.android.applicatio
 androidx-benchmark-gradle-plugin = "androidx.benchmark:benchmark-gradle-plugin:1.3.3"
 
 # Compose
-androidx-compose-bom = "androidx.compose:compose-bom:2025.03.01"
+androidx-compose-bom = "androidx.compose:compose-bom:2025.08.00"
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive"}
 androidx-compose-material3-adaptive-layout = { module = "androidx.compose.material3.adaptive:adaptive-layout"}
@@ -129,6 +129,7 @@ google-libphonenumber = "com.googlecode.libphonenumber:libphonenumber:8.13.50"
 google-play-services-maps = "com.google.android.gms:play-services-maps:19.0.0"
 google-play-services-auth = "com.google.android.gms:play-services-auth:21.3.0"
 google-play-services-wallet = "com.google.android.gms:play-services-wallet:19.4.0"
+google-signin = "com.google.android.libraries.identity.googleid:googleid:1.1.1"
 google-zxing-android-integration = "com.google.zxing:android-integration:3.3.0"
 google-zxing-core = "com.google.zxing:core:3.4.1"
 google-ez-vcard = "com.googlecode.ez-vcard:ez-vcard:0.9.11"
@@ -145,7 +146,7 @@ libsignal-client = { module = "org.signal:libsignal-client", version.ref = "libs
 libsignal-android = { module = "org.signal:libsignal-android", version.ref = "libsignal-client" }
 protobuf-gradle-plugin = { module = "com.google.protobuf:protobuf-gradle-plugin", version.ref = "protobuf-gradle-plugin" }
 signal-aesgcmprovider = "org.signal:aesgcmprovider:0.0.4"
-signal-ringrtc = "org.signal:ringrtc-android:2.53.0"
+signal-ringrtc = "org.signal:ringrtc-android:2.57.0"
 signal-android-database-sqlcipher = "org.signal:sqlcipher-android:4.6.0-S1"
 
 # Third Party

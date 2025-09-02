@@ -20,7 +20,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -119,7 +118,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
   override fun onShareClicked() {
     val mimeType = Intent.normalizeMimeType("text/plain")
     val shareIntent = ShareCompat.IntentBuilder(requireContext())
-      .setText(CallLinks.url(viewModel.rootKeySnapshot))
+      .setText(CallLinks.url(viewModel.rootKeySnapshot, viewModel.epochSnapshot))
       .setType(mimeType)
       .createChooserIntent()
 
@@ -131,7 +130,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
   }
 
   override fun onCopyClicked() {
-    Util.copyToClipboard(requireContext(), CallLinks.url(viewModel.rootKeySnapshot))
+    Util.copyToClipboard(requireContext(), CallLinks.url(viewModel.rootKeySnapshot, viewModel.epochSnapshot))
     Toast.makeText(requireContext(), R.string.CreateCallLinkBottomSheetDialogFragment__copied_to_clipboard, Toast.LENGTH_LONG).show()
   }
 
@@ -139,7 +138,7 @@ class CallLinkDetailsFragment : ComposeFragment(), CallLinkDetailsCallback {
     startActivity(
       ShareActivity.sendSimpleText(
         requireContext(),
-        getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.rootKeySnapshot))
+        getString(R.string.CreateCallLink__use_this_link_to_join_a_signal_call, CallLinks.url(viewModel.rootKeySnapshot, viewModel.epochSnapshot))
       )
     )
   }
@@ -231,6 +230,7 @@ private fun CallLinkDetailsPreview() {
   val callLink = remember {
     val credentials = CallLinkCredentials(
       byteArrayOf(1, 2, 3, 4),
+      byteArrayOf(0, 1, 2, 3),
       byteArrayOf(3, 4, 5, 6)
     )
     CallLinkTable.CallLink(
@@ -283,7 +283,7 @@ private fun CallLinkDetails(
       YouAreAlreadyInACallSnackbar(showAlreadyInACall)
     },
     onNavigationClick = callback::onNavigationClicked,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
+    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
   ) { paddingValues ->
     if (state.callLink == null) {
       return@Settings

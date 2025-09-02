@@ -41,7 +41,7 @@ public final class GroupChangeReconstructTest {
    */
   @Test
   public void ensure_GroupChangeReconstruct_knows_about_all_fields_of_DecryptedGroup() {
-    int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class);
+    int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class, ProtobufTestUtils.IGNORED_DECRYPTED_GROUP_TAGS);
 
     assertEquals("GroupChangeReconstruct and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
                  13, maxFieldFound);

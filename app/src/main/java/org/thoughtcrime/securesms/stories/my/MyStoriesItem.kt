@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.DebouncedOnClickListener
@@ -152,7 +152,7 @@ object MyStoriesItem {
       } else if (thumbnail != null) {
         storyBlur.visible = blur != null
         Glide.with(storyPreview)
-          .load(DecryptableStreamUriLoader.DecryptableUri(thumbnail))
+          .load(DecryptableUri(thumbnail))
           .addListener(HideBlurAfterLoadListener())
           .centerCrop()
           .dontAnimate()

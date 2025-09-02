@@ -116,13 +116,16 @@ class LinkDeviceApi(
       aci = aci.toString(),
       pni = pni.toStringWithoutPrefix(),
       number = e164,
-      profileKey = profileKey.serialize().toByteString(),
       provisioningCode = code,
+      userAgent = null,
+      profileKey = profileKey.serialize().toByteString(),
       provisioningVersion = ProvisioningVersion.CURRENT.value,
-      accountEntropyPool = accountEntropyPool.value,
       masterKey = masterKey.serialize().toByteString(),
+      ephemeralBackupKey = ephemeralMessageBackupKey?.value?.toByteString(),
+      accountEntropyPool = accountEntropyPool.value,
       mediaRootBackupKey = mediaRootBackupKey.value.toByteString(),
-      ephemeralBackupKey = ephemeralMessageBackupKey?.value?.toByteString()
+      aciBinary = aci.toByteString(),
+      pniBinary = pni.toByteStringWithoutPrefix()
     )
     val ciphertext: ByteArray = cipher.encrypt(message)
     val body = ProvisioningMessage(encodeWithPadding(ciphertext))
@@ -163,10 +166,10 @@ class LinkDeviceApi(
    * - 422: Bad inputs.
    * - 429: Rate-limited.
    */
-  fun setTransferArchive(destinationDeviceId: Int, destinationDeviceCreated: Long, cdn: Int, cdnKey: String): NetworkResult<Unit> {
+  fun setTransferArchive(destinationDeviceId: Int, destinationDeviceRegistrationId: Int, cdn: Int, cdnKey: String): NetworkResult<Unit> {
     val body = SetLinkedDeviceTransferArchiveRequest(
       destinationDeviceId = destinationDeviceId,
-      destinationDeviceCreated = destinationDeviceCreated,
+      destinationDeviceRegistrationId = destinationDeviceRegistrationId,
       transferArchive = SetLinkedDeviceTransferArchiveRequest.TransferArchive.CdnInfo(
         cdn = cdn,
         key = cdnKey
@@ -186,10 +189,10 @@ class LinkDeviceApi(
    * - 422: Bad inputs.
    * - 429: Rate-limited.
    */
-  fun setTransferArchiveError(destinationDeviceId: Int, destinationDeviceCreated: Long, error: TransferArchiveError): NetworkResult<Unit> {
+  fun setTransferArchiveError(destinationDeviceId: Int, destinationDeviceRegistrationId: Int, error: TransferArchiveError): NetworkResult<Unit> {
     val body = SetLinkedDeviceTransferArchiveRequest(
       destinationDeviceId = destinationDeviceId,
-      destinationDeviceCreated = destinationDeviceCreated,
+      destinationDeviceRegistrationId = destinationDeviceRegistrationId,
       transferArchive = SetLinkedDeviceTransferArchiveRequest.TransferArchive.Error(error)
     )
     val request = WebSocketRequestMessage.put("/v1/devices/transfer_archive", body)
@@ -208,5 +211,28 @@ class LinkDeviceApi(
   fun setDeviceName(encryptedDeviceName: String, deviceId: Int): NetworkResult<Unit> {
     val request = WebSocketRequestMessage.put("/v1/accounts/name?deviceId=$deviceId", SetDeviceNameRequest(encryptedDeviceName))
     return NetworkResult.fromWebSocketRequest(authWebSocket, request)
+  }
+
+  /**
+   * A "long-polling" endpoint that will return once the primary device has successfully sent sync data.
+   *
+   * @param timeout The max amount of time to wait. Capped at 30 seconds.
+   *
+   * GET /v1/devices/transfer_archive?timeout=[timeout]
+   *
+   * - 200: Success, the primary device was sent backup sync data.
+   * - 204: The primary didn't provide data before the max waiting time elapsed.
+   * - 400: Invalid timeout.
+   * - 429: Rate-limited.
+   */
+  fun waitForPrimaryDevice(timeout: Duration = 30.seconds): NetworkResult<TransferArchiveResponse> {
+    val request = WebSocketRequestMessage.get("/v1/devices/transfer_archive?timeout=${timeout.inWholeSeconds}")
+    return NetworkResult
+      .fromWebSocketRequest(
+        signalWebSocket = authWebSocket,
+        request = request,
+        timeout = timeout,
+        webSocketResponseConverter = NetworkResult.LongPollingWebSocketConverter(TransferArchiveResponse::class)
+      )
   }
 }

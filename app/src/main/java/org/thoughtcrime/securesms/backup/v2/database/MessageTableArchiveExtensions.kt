@@ -23,7 +23,7 @@ import kotlin.time.Duration.Companion.days
 
 private val TAG = "MessageTableArchiveExtensions"
 
-fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, mediaBackupEnabled: Boolean, selfRecipientId: RecipientId, exportState: ExportState): ChatItemArchiveExporter {
+fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, selfRecipientId: RecipientId, exportState: ExportState): ChatItemArchiveExporter {
   // We create a covering index for the query to drastically speed up perf here.
   // Remember that we're working on a temporary snapshot of the database, so we can create an index and not worry about cleaning it up.
   val startTime = System.currentTimeMillis()
@@ -88,11 +88,10 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
 
   return ChatItemArchiveExporter(
     db = db,
-    backupStartTime = backupTime,
-    batchSize = 10_000,
-    mediaArchiveEnabled = mediaBackupEnabled,
     selfRecipientId = selfRecipientId,
     noteToSelfThreadId = db.threadTable.getThreadIdFor(selfRecipientId) ?: -1L,
+    backupStartTime = backupTime,
+    batchSize = 10_000,
     exportState = exportState,
     cursorGenerator = { lastSeenReceivedTime, count ->
       readableDatabase

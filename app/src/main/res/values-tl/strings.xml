@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">Nag-a-upload ng media…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Kino-compress ang video…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Bina-back up ang media…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Chine-check ang messages…</string>
 
@@ -1172,6 +1176,11 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Itong version ng Signal ay expired na. Mag-update ngayon para makapag-send at makapag-receive ng messages</string>
     <string name="ExpiredBuildReminder_update_now">I-update na</string>
 
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">I-update ang Signal</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">Expired na itong version ng Signal. I-tap ang update para makapag-send at receive ng messages.</string>
+
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
         <item quantity="one">%1$d pending member request.</item>
@@ -1473,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">I-skip ang restore</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Hindi matapos ang paglipat</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Hindi ma-restore ang backup</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Nagkaroon ng error habang sinusubukang i-restore ang backup mo. Hindi na maaaring i-recover ang backup mo. Paki contact ang support para makakuha ng tulong.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Kontakin ang Support</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Nagkaroon ng error at hindi mailipat ang account mo. Subukan ulit sa pamamagitan ng pagpili ng paraan ng paglipat.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -1483,6 +1498,8 @@
     <string name="RemoteRestoreActivity__update_signal">I-update ang Signal</string>
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Hindi na muna</string>
+    <!-- Text shown on restore screen as information on what will happen if you skip -->
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Your media will restore in the background. If you choose not to restore now, you won\'t be able to restore later.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">I-notify ako sa Mentions</string>
@@ -2097,6 +2114,8 @@
     <string name="MessageRecord_you_blocked_this_group">Binlock mo ang group na ito</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">In-unblock mo ang group na ito</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s sent you a message that can\'t be processed or displayed because it uses a new Signal feature.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Tanggapin</string>
@@ -2907,6 +2926,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">This log will be posted publicly online para ma-view ng contributors. Pwede mo itong i-examine before uploading.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Kapag na-click mo na ang Submit, ang iyong log ay ipo-post sa isang unique, unpublished URL online sa loob ng 30 days. Maaari mo muna itong i-Save locally.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -4557,6 +4583,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">Nalikha na ang PIN.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Re-enter your PIN</string>
     <string name="ConfirmKbsPinFragment__creating_pin">Lumilikha ng PIN…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">PIN ng Signal</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Ipinakikilala ang mga PIN</string>
@@ -4855,7 +4883,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">I-restore ang messages mo mula sa isang local backup. Kung hindi ka magre-restore ngayon, hindi ka na pwedeng mag-restore mamaya.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">I-restore ang local backup</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">I-restore ang Signal backup</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">I-restore ang lahat ng text messages mo + media mo noong nakaraang 30 araw</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Karagdagang options</string>
 
@@ -7222,7 +7249,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Ilagay ang iyong bangko, pangalan, at email. Gagamitin ng Stripe ang email na ito para padalhan ka ng updates tungkol sa donation mo. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Ilagay ang pangalan at email mo. Gagamitin ng Stripe ang email na ito para padalhan ka ng updates tungkol sa donation mo. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Ilagay ang iyong bank details. Hindi kinokolekta o itinatago ng Signal ang iyong personal na impormasyon. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7712,6 +7739,28 @@
     <!-- Button text to deny all participants from joining the call -->
     <string name="PendingParticipantsBottomSheet__deny_all">Tanggihan lahat</string>
 
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__title">I-on ang Signal Backups</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__body">Hindi ka mawawalan ng anumang message kapag may bago kang bagong phone o nagre-install ng Signal.</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
+    <string name="TurnOnSignalBackups__turn_on">I-on</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
+    <string name="TurnOnSignalBackups__not_now">Hindi na muna</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
+    <string name="VerifyBackupKey__title">I-verify ang iyong backup key</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
+    <string name="VerifyBackupKey__body">We\'ll occasionally ask you to verify your key to ensure you still know it</string>
+    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <string name="VerifyBackupKey__verify">I-verify</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <string name="VerifyBackupKey__not_now">Hindi na muna</string>
+    <!-- Snackbar text shown when the backup key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">Tama ang backup key. Panatilihing ligtas ang iyong key.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <string name="VerifyBackupKey__we_will_ask_again">Tatanungin ka namin ulit sa susunod na linggo.</string>
+
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Gusto mo bang i-on ang full screen notifications?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -7865,6 +7914,8 @@
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Matuto pa</string>
+    <!-- Clickable text to enter contact support flow -->
+    <string name="BackupAlertBottomSheet__contact_support">Kontakin ang Support</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">I-skip ang restore</string>
     <!-- Primary action button to open backups management screen -->
@@ -7905,6 +7956,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Hindi ma-redeem ang backups subscription mo</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Nagkaroon ng error at hindi natapos ang pag-backup. Siguraduhing gamit mo ang latest version ng Signal at subukan ulit. Kung magpatuloy ang problema, kontakin ang support.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Nagkaroon ng error at hindi natapos ang pag-backup. Kung magpatuloy ang problema, kontakin ang support.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Tingnan kung may update</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8012,7 +8065,7 @@
     <!-- Setting row title for storage optimization -->
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">I-optimize ang storage ng device</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Mawawala ang unused media, ngunit maaari itong ma-download anumang oras mula sa backup mo.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">I-o-offload o buburahin ang unused media sa device mo, ngunit maaari mo pa rin itong ma-download anumang oras mula sa backup mo.</string>
     <!-- Dialog message for paid tier pending dialog -->
     <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Magagamit lamang ang storage optimization sa paid tier ng Signal Backups. Pinoproseso pa ang backups subscription mo at hindi pa active. Subukan ulit mamaya.</string>
 
@@ -8052,15 +8105,33 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
+    <!-- NoManualBackupBottomSheet -->
+    <!-- Title for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
+        <item quantity="one">Walang backup nitong nakaraang %1$d araw</item>
+        <item quantity="other">Walang backup nitong nakaraang %1$d araw</item>
+    </plurals>
+    <!-- Body for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
+        <item quantity="one">Hindi ka nakapag-backup nitong nakaraang %1$d araw. Mag-backup ngayon para masigurong hindi mawala ang messages at media mo.</item>
+        <item quantity="other">Hindi ka nakapag-backup nitong nakaraang %1$d araw. Mag-backup ngayon para masigurong hindi mawala ang messages at media mo.</item>
+    </plurals>
+
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/month, magre-renew sa %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Huling backup: %1$s</string>
+    <!-- Subtitle for row for canceled backup -->
+    <string name="BackupsSettingsFragment__subscription_canceled">Kinancel ang subscription</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatic backups na may secure end-to-end encrypted storage service ng Signal.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Walang mahanap na subscription sa device na ito."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">I-set up</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">View settings</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8077,6 +8148,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Ipagtuloy ang pag-download</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Size ng backup</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Naglo-load…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Dalas ng backup</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8085,6 +8158,8 @@
     <string name="RemoteBackupsSettingsFragment__view_backup_key">Tingnan ang backup key</string>
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">I-unlock para makita ang backup key</string>
+    <!-- Title of bottom sheet explaining that authentication is required to view your key -->
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">Upang makita ang iyong key, kumpirmahing ikaw ito</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">I-off at burahin ang backup</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8097,6 +8172,8 @@
     <string name="RemoteBackupsSettingsFragment__download_complete">Tapos na ang pag-download</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Gagawin ang backup overnight.</string>
+    <!-- Snackbar text displayed when user rotates AEP -->
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Nagawa ang bagong backup key</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Inactive ang subscription</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8145,6 +8222,8 @@
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Gusto mo bang i-off at burahin ang backups?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Mabubura ang backup mo at walang gagawing bagong backups. Anumang media na nasa backup mo ay mada-download ngayon sa phone mo.</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Ica-cancel ang subscription mo at hindi ka na sisingilin ulit. Mabubura rin ang backup mo at walang gagawing bagong backups. Anumang media na nasa backup mo ay mada-download na ngayon sa phone mo.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">I-off at burahin</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8188,6 +8267,10 @@
     <string name="RemoteBackupsSettingsFragment__processing_backup">Pinoproseso ang backup…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Hinahanda ang backup…</string>
+    <!-- Linear progress dialog text shown when backup is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">Naghihintay ng WiFi…</string>
+    <!-- Linear progress dialog text shown when backup is paused because internet is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">Naghihintay ng Internet connection…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
         <item quantity="one">Pinoproseso ang %1$s ng %2$s message (%3$d%%)</item>
@@ -8316,12 +8399,18 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">I-save sa password manager mo?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">I-store lamang ang iyong backup key sa isang password manager na sigurado kang secure. Hindi nagrerekomenda ang Signal ng anumang password manager na tama para sa\'yo.</string>
+    <!-- ID used when saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Backups</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Nai-save sa iyong password manager</string>
-    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Hindi ma-save sa password manager</string>
+    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Hindi ma-save sa password manager</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Wala ka pang naka-set up na password manager, o hindi suportado ang password manager na ginagamit mo ngayon.</string>
+    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Pinili mo dati na huwag i-save ang passwords para sa Signal sa Google Password Manager. Sa iyong Google Password Manager settings, alisin ang Signal sa \"Declined sites and apps\" at subukan ulit.</string>
+    <!-- Label for a button that navigates to the device settings -->
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Pumunta sa settings</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Susunod</string>
     <!-- Bottom sheet title -->
@@ -8334,6 +8423,28 @@
     <string name="MessageBackupsKeyRecordScreen__continue">Magpatuloy</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Tingnan ulit ang key</string>
+    <!-- Action label to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">Gumawa ng bagong key</string>
+    <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__download_media">Mag-download ng media</string>
+    <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Upang gumawa ng bagong backup key, dapat mong i-off ang \"I-optimize ang storage\" at maghintay hanggang ma-download ang iyong media. Kapag tapos na ang pag-download, maaari ka nang gumawa ng bagong key.</string>
+    <!-- Action label to turn off optimized storage and download media -->
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">I-off at i-download</string>
+    <!-- Bottom Sheet title for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Gumawa ng bagong backup key</string>
+    <!-- Bottom Sheet body for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Kinakailangan lang ang paggawa ng bagong key kung may ibang nakakaalam ng iyong key. Kailangan mong i-upload ulit ang iyong backup, kasama ang media. Kung gumagamit ka ng \"Optimize storage\" kailangan mo munang mag-download ng na-offload na media.</string>
+
+    <!-- BackupKeyDisplayFragment -->
+    <!-- Dialog title when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Kanselahin ang paggawa ng key?</string>
+    <!-- Dialog body when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Hindi magagawa ang iyong bagong backup key hangga\'t kumpirmahin mo ito.</string>
+    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__confirm_key">Kumpirmahin ang key</string>
+    <!-- Dialog button to cancel new key creation -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">Kanselahin ang paggawa ng key</string>
 
     <!-- Confirm key title -->
     <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">I-confirm ang backup key mo</string>
@@ -8348,6 +8459,13 @@
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Susunod</string>
 
+    <!-- Verify your key title -->
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Ilagay ang backup key mo</string>
+    <!-- Verify your key subtitle -->
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Ilagay ang 64-character code na ni-record mo noong in-on mo ang backups.</string>
+    <!-- Button text when you forget your backup key -->
+    <string name="VerifyBackupPinScreen__forgot_key">Nakalimutan ang key?</string>
+
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
     <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Pumili ng backup plan</string>
@@ -8355,8 +8473,10 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">End-to-end encrypted ang lahat ng backups. Ang Signal ay isang non-profit—ang pagbabayad mo sa backups ay makatutulong sa pagsuporta sa aming misyon.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Matuto pa</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Mag-subscribe</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Piliin ang free plan</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Mag-subscribe. %1$s/month.</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8484,7 +8604,15 @@
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Network error sa pag-restore ng Signal Android Backup</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Permanenteng pagkabigo sa pag-restore ng Signal Android Backup</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
+
+    <!-- Email subject when contacting support on a create backup failure -->
+    <string name="BackupAlertBottomSheet_network_failure_support_email">May network error sa pag-restore ng Signal Android Backup</string>
+    <!-- Email filter when contacting support on a create backup failure -->
+  <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
     <string name="ContactSupportDialog_submit_debug_log">Gusto mo bang mag-submit ng debug log?</string>
@@ -8573,6 +8701,25 @@
     <string name="SignalCheckbox_accessibility_checked_description">Pinili</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
     <string name="SignalCheckbox_accessibility_unchecked_description">Hindi Pinili</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">Puno ang backup storage</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">Naabot mo na ang backup storage limit mo. Mag-free up ng space sa Signal para magpatuloy sa pag-back up ng chats at media.</string>
+    <!-- Notification title for when initial backup failed -->
+    <string name="Notification_backup_failed">Backup failed</string>
+    <!-- Notification body for when initial backup failed -->
+    <string name="Notification_an_error_occurred_and_your_backup">Nagkaroon ng error at hindi natapos ang pag-backup. I-tap para sa karagdagang detalye.</string>
+    <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_no_backup_for_d_days">
+        <item quantity="one">Walang backup nitong nakaraang %1$d araw</item>
+        <item quantity="other">Walang backup nitong nakaraang %1$d araw</item>
+    </plurals>
+    <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_you_have_not_completed_a_backup">
+        <item quantity="one">Hindi ka nakapag-backup nitong nakaraang %1$d araw. Mag-backup ngayon.</item>
+        <item quantity="other">Hindi ka nakapag-backup nitong nakaraang %1$d araw. Mag-backup ngayon.</item>
+    </plurals>
 
     <!-- EOF -->
 </resources>

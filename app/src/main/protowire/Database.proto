@@ -564,6 +564,15 @@ message LocalRegistrationMetadata {
     bytes profileKey = 15;
     string servicePassword = 16;
     bool reglockEnabled = 17;
+    LinkedDeviceInfo linkedDeviceInfo = 18;
+}
+
+message LinkedDeviceInfo {
+    uint32 deviceId = 1;
+    string deviceName = 2;
+    optional bytes ephemeralBackupKey = 3;
+    optional string accountEntropyPool = 4;
+    optional bytes mediaRootBackupKey = 5;
 }
 
 message RestoreDecisionState {

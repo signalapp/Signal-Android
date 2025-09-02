@@ -24,6 +24,9 @@ import kotlin.concurrent.withLock
 
 /**
  * Foreground service to provide "long" run support to backup jobs.
+ *
+ * For the restoration of backup media, see [BackupMediaRestoreService] instead
+ *
  */
 class BackupProgressService : SafeForegroundService() {
 
@@ -57,8 +60,8 @@ class BackupProgressService : SafeForegroundService() {
       }
     }
 
-    private fun stop(context: Context) {
-      SafeForegroundService.stop(context, BackupProgressService::class.java)
+    private fun stop(context: Context, fromTimeout: Boolean = false) {
+      SafeForegroundService.stop(context, BackupProgressService::class.java, fromTimeout)
       controllerLock.withLock {
         controller = null
       }
@@ -80,6 +83,11 @@ class BackupProgressService : SafeForegroundService() {
 
   override fun getForegroundNotification(intent: Intent): Notification {
     return getForegroundNotification(this)
+  }
+
+  override fun onTimeout(startId: Int, fgsType: Int) {
+    Log.w(TAG, "BackupProgressService has timed out. startId: $startId, foregroundServiceType: $fgsType")
+    stop(context = this, fromTimeout = true)
   }
 
   /**

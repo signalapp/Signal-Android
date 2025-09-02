@@ -32,6 +32,7 @@ import org.thoughtcrime.securesms.recipients.RecipientUtil;
 import org.thoughtcrime.securesms.service.ExpiringMessageManager;
 import org.thoughtcrime.securesms.transport.RetryLaterException;
 import org.thoughtcrime.securesms.transport.UndeliverableMessageException;
+import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.SignalLocalMetrics;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.SignalServiceMessageSender;
@@ -59,6 +60,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
+
+import okio.Utf8;
 
 public class IndividualSendJob extends PushSendJob {
 
@@ -218,7 +221,7 @@ public class IndividualSendJob extends PushSendJob {
       }
       database.addMismatchedIdentity(messageId, recipient.getId(), uie.getIdentityKey());
       database.markAsSentFailed(messageId);
-      RetrieveProfileJob.enqueue(recipient.getId());
+      RetrieveProfileJob.enqueue(recipient.getId(), true);
     } catch (ProofRequiredException e) {
       ProofRequiredExceptionHandler.Result result = ProofRequiredExceptionHandler.handle(context, e, SignalDatabase.threads().getRecipientForThreadId(threadId), threadId, messageId);
       if (result.isRetry()) {
@@ -251,6 +254,10 @@ public class IndividualSendJob extends PushSendJob {
       throw new UndeliverableMessageException("No destination address.");
     }
 
+    if (Utf8.size(message.getBody()) > MessageUtil.MAX_INLINE_BODY_SIZE_BYTES) {
+      throw new UndeliverableMessageException("The total body size was greater than our limit of " + MessageUtil.MAX_INLINE_BODY_SIZE_BYTES + " bytes.");
+    }
+
     try {
       rotateSenderCertificateIfNecessary();
 
@@ -258,6 +265,14 @@ public class IndividualSendJob extends PushSendJob {
 
       if (messageRecipient.isUnregistered()) {
         throw new UndeliverableMessageException(messageRecipient.getId() + " not registered!");
+      }
+
+      if (!messageRecipient.getHasServiceId()) {
+        messageRecipient = messageRecipient.fresh();
+
+        if (!messageRecipient.getHasServiceId()) {
+          throw new UndeliverableMessageException(messageRecipient.getId() + " has no serviceId!");
+        }
       }
 
       SignalServiceMessageSender                 messageSender      = AppDependencies.getSignalServiceMessageSender();

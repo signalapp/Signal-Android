@@ -2,7 +2,6 @@ package org.thoughtcrime.securesms.messages
 
 import android.content.Context
 import com.mobilecoin.lib.exceptions.SerializationException
-import okio.ByteString
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.isNotEmpty
@@ -91,6 +90,7 @@ import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress
 import org.thoughtcrime.securesms.ratelimit.RateLimitUtil
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
+import org.thoughtcrime.securesms.recipients.RecipientUtil
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkCredentials
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
@@ -102,6 +102,8 @@ import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.AccountEntropyPool
+import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 import org.whispersystems.signalservice.api.crypto.EnvelopeMetadata
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.push.DistributionId
@@ -109,7 +111,6 @@ import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.push.ServiceId.ACI
 import org.whispersystems.signalservice.api.push.ServiceId.PNI
 import org.whispersystems.signalservice.api.push.SignalServiceAddress
-import org.whispersystems.signalservice.api.storage.StorageKey
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.AddressableMessage
 import org.whispersystems.signalservice.internal.push.Content
@@ -166,6 +167,7 @@ object SyncMessageProcessor {
       syncMessage.messageRequestResponse != null -> handleSynchronizeMessageRequestResponse(syncMessage.messageRequestResponse!!, envelope.timestamp!!)
       syncMessage.outgoingPayment != null -> handleSynchronizeOutgoingPayment(syncMessage.outgoingPayment!!, envelope.timestamp!!)
       syncMessage.contacts != null -> handleSynchronizeContacts(syncMessage.contacts!!, envelope.timestamp!!)
+      syncMessage.keys != null -> handleSynchronizeKeys(syncMessage.keys!!, envelope.timestamp!!)
       syncMessage.callEvent != null -> handleSynchronizeCallEvent(syncMessage.callEvent!!, envelope.timestamp!!)
       syncMessage.callLinkUpdate != null -> handleSynchronizeCallLink(syncMessage.callLinkUpdate!!, envelope.timestamp!!)
       syncMessage.callLogEvent != null -> handleSynchronizeCallLogEvent(syncMessage.callLogEvent!!, envelope.timestamp!!)
@@ -1169,7 +1171,7 @@ object SyncMessageProcessor {
       }
       MessageRequestResponse.Type.BLOCK -> {
         SignalDatabase.recipients.setBlocked(recipient.id, true)
-        SignalDatabase.recipients.setProfileSharing(recipient.id, false)
+        RecipientUtil.updateProfileSharingAfterBlock(recipient, true)
         SignalDatabase.messages.insertMessageOutbox(
           message = OutgoingMessage.blockedMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
           threadId = threadId
@@ -1177,7 +1179,7 @@ object SyncMessageProcessor {
       }
       MessageRequestResponse.Type.BLOCK_AND_DELETE -> {
         SignalDatabase.recipients.setBlocked(recipient.id, true)
-        SignalDatabase.recipients.setProfileSharing(recipient.id, false)
+        RecipientUtil.updateProfileSharingAfterBlock(recipient, true)
         if (threadId > 0) {
           SignalDatabase.threads.deleteConversation(threadId, syncThreadDelete = false)
         }
@@ -1190,7 +1192,7 @@ object SyncMessageProcessor {
       }
       MessageRequestResponse.Type.BLOCK_AND_SPAM -> {
         SignalDatabase.recipients.setBlocked(recipient.id, true)
-        SignalDatabase.recipients.setProfileSharing(recipient.id, false)
+        RecipientUtil.updateProfileSharingAfterBlock(recipient, true)
         SignalDatabase.messages.insertMessageOutbox(
           message = OutgoingMessage.reportSpamMessage(recipient, System.currentTimeMillis(), TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong())),
           threadId = threadId
@@ -1255,7 +1257,7 @@ object SyncMessageProcessor {
     log("Inserted synchronized payment $uuid")
   }
 
-  private fun handleSynchronizeKeys(storageKey: ByteString, envelopeTimestamp: Long) {
+  private fun handleSynchronizeKeys(keys: SyncMessage.Keys, envelopeTimestamp: Long) {
     if (SignalStore.account.isLinkedDevice) {
       log(envelopeTimestamp, "Synchronize keys.")
     } else {
@@ -1263,7 +1265,13 @@ object SyncMessageProcessor {
       return
     }
 
-    SignalStore.storageService.setStorageKeyFromPrimary(StorageKey(storageKey.toByteArray()))
+    if (keys.accountEntropyPool != null) {
+      SignalStore.account.setAccountEntropyPoolFromPrimaryDevice(AccountEntropyPool(keys.accountEntropyPool!!))
+    }
+
+    if (keys.mediaRootBackupKey != null) {
+      SignalStore.backup.mediaRootBackupKey = MediaRootBackupKey(keys.mediaRootBackupKey!!.toByteArray())
+    }
   }
 
   @Throws(IOException::class)
@@ -1370,6 +1378,7 @@ object SyncMessageProcessor {
         roomId,
         CallLinkCredentials(
           callLinkUpdate.rootKey!!.toByteArray(),
+          callLinkUpdate.epoch?.toByteArray(),
           callLinkUpdate.adminPasskey?.toByteArray()
         )
       )
@@ -1381,6 +1390,7 @@ object SyncMessageProcessor {
           roomId = roomId,
           credentials = CallLinkCredentials(
             linkKeyBytes = callLinkRootKey.keyBytes,
+            epochBytes = callLinkUpdate.epoch?.toByteArray(),
             adminPassBytes = callLinkUpdate.adminPasskey?.toByteArray()
           ),
           state = SignalCallLinkState(),

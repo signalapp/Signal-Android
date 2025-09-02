@@ -39,14 +39,11 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
   private static final String TAG = Log.tag(Camera.class);
 
   @NonNull  private final Context                   context;
-  @Nullable private       CameraVideoCapturer       capturer;
+  @Nullable private final CameraVideoCapturer       capturer;
   @Nullable private       CameraEventListener       cameraEventListener;
   @NonNull  private final EglBaseWrapper            eglBase;
             private final int                       cameraCount;
   @NonNull  private       CameraState.Direction     activeDirection;
-            private       CameraState.Direction     oldActiveDirection;
-            private       CapturerObserver          observer;
-
             private       boolean                   enabled;
             private       boolean                   isInitialized;
             private       int                       orientation;
@@ -82,7 +79,6 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
   @Override
   public void initCapturer(@NonNull CapturerObserver observer) {
     if (capturer != null) {
-      this.observer = observer;  // save in case we need to disposeAndFlipCamera
       eglBase.performWithValidEglBase(base -> {
         capturer.initialize(SurfaceTextureHelper.create("WebRTC-SurfaceTextureHelper", base.getEglBaseContext()),
                             context,
@@ -103,7 +99,6 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     if (capturer == null || cameraCount < 2) {
       throw new AssertionError("Tried to flip the camera, but we only have " + cameraCount + " of them.");
     }
-    oldActiveDirection = activeDirection;
     activeDirection = PENDING;
     capturer.switchCamera(this);
   }
@@ -148,28 +143,6 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     if (capturer != null) {
       capturer.dispose();
       isInitialized = false;
-    }
-  }
-
-  public void disposeAndFlipCamera() {
-    if (capturer != null) {
-      capturer.dispose();
-      boolean wasInitialized = isInitialized;
-      isInitialized = false;
-      CameraState.Direction candidateDirection = oldActiveDirection.switchDirection();
-      CameraVideoCapturer captureCandidate = createVideoCapturer(getCameraEnumerator(context), candidateDirection);
-      if (captureCandidate != null) {
-        capturer = captureCandidate;
-        activeDirection = candidateDirection;
-        if (wasInitialized) {
-          initCapturer(this.observer);
-        }
-        if (enabled) {
-          setEnabled(true);
-        }
-      } else {
-        activeDirection = NONE;
-      }
     }
   }
 
@@ -231,9 +204,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
   @Override
   public void onCameraSwitchError(String errorMessage) {
     Log.e(TAG, "onCameraSwitchError: " + errorMessage);
-    if (cameraEventListener != null) {
-      cameraEventListener.onCameraSwitchFailure(new CameraState(getActiveDirection(), getCount()));
-    }
+    if (cameraEventListener != null) cameraEventListener.onCameraSwitchCompleted(new CameraState(getActiveDirection(), getCount()));
   }
 
   private static class FilteredCamera2Enumerator extends Camera2Enumerator {
@@ -343,7 +314,7 @@ public class Camera implements CameraControl, CameraVideoCapturer.CameraSwitchHa
     public void onCapturerStarted(boolean success) {
       observer.onCapturerStarted(success);
       if (success && cameraEventListener != null) {
-        cameraEventListener.onFullyInitialized(getCameraState());
+        cameraEventListener.onFullyInitialized();
       }
     }
 

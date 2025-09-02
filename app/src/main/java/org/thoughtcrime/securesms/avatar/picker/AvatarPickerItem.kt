@@ -13,7 +13,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.Avatar
 import org.thoughtcrime.securesms.avatar.AvatarRenderer
 import org.thoughtcrime.securesms.avatar.Avatars
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingModel
@@ -132,7 +132,7 @@ object AvatarPickerItem {
         }
         is Avatar.Photo -> {
           textView.visible = false
-          Glide.with(imageView).load(DecryptableStreamUriLoader.DecryptableUri(model.avatar.uri)).into(imageView)
+          Glide.with(imageView).load(DecryptableUri(model.avatar.uri)).into(imageView)
         }
         is Avatar.Resource -> {
           imageView.setPadding((imageView.width * 0.2).toInt())

@@ -7,14 +7,16 @@ import io.mockk.mockk
 import io.mockk.mockkObject
 import org.junit.Before
 import org.junit.Test
+import org.signal.core.util.Base64
 import org.thoughtcrime.securesms.MockCursor
 import org.thoughtcrime.securesms.keyvalue.BackupValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 
 class ArchivedMediaObjectIteratorTest {
   private val cursor = mockk<MockCursor>(relaxed = true) {
-    every { getString(any()) } returns "A"
+    every { getString(any()) } returns Base64.encodeWithPadding(Util.getSecretBytes(32))
     every { moveToPosition(any()) } answers { callOriginal() }
     every { moveToNext() } answers { callOriginal() }
     every { position } answers { callOriginal() }

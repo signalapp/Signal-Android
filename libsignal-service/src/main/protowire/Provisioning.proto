@@ -1,48 +1,56 @@
-/**
- * Copyright (C) 2014-2016 Open Whisper Systems
- *
- * Licensed according to the LICENSE file in this repository.
+/*
+ * Copyright 2020 Signal Messenger, LLC
+ * SPDX-License-Identifier: AGPL-3.0-only
  */
+
 syntax = "proto2";
 
 package signalservice;
 
-option java_package         = "org.whispersystems.signalservice.internal.push";
+option java_package = "org.whispersystems.signalservice.internal.push";
 option java_outer_classname = "ProvisioningProtos";
 
+// An opaque address sent by the server when clients first open a provisioning
+// WebSocket
 message ProvisioningAddress {
+
+  // The opaque provisioning address for the active provisioning WebSocket
+  // session; clients should not attempt to interpret or modify the contents
+  // of the address string
   optional string address = 1;
 }
 
 message ProvisionEnvelope {
   optional bytes publicKey = 1;
-  optional bytes body      = 2; // Encrypted ProvisionMessage
+  optional bytes body = 2; // Encrypted ProvisionMessage
 }
 
 message ProvisionMessage {
-  optional bytes  aciIdentityKeyPublic  = 1;
-  optional bytes  aciIdentityKeyPrivate = 2;
-  optional bytes  pniIdentityKeyPublic  = 11;
-  optional bytes  pniIdentityKeyPrivate = 12;
-  optional string aci                   = 8;
-  optional string pni                   = 10;
-  optional string number                = 3;
-  optional string provisioningCode      = 4;
-  optional string userAgent             = 5;
-  optional bytes  profileKey            = 6;
-  optional bool   readReceipts          = 7;
-  optional uint32 provisioningVersion   = 9;
-  optional bytes  masterKey             = 13;
-  optional bytes  ephemeralBackupKey    = 14; // 32 bytes
-  optional string accountEntropyPool    = 15;
-  optional bytes  mediaRootBackupKey    = 16; // 32-bytes
-  // NEXT ID: 17
+  optional bytes aciIdentityKeyPublic = 1;
+  optional bytes aciIdentityKeyPrivate = 2;
+  optional bytes pniIdentityKeyPublic = 11;
+  optional bytes pniIdentityKeyPrivate = 12;
+  optional string aci = 8;
+  optional string pni = 10;
+  optional string number = 3;
+  optional string provisioningCode = 4;
+  optional string userAgent = 5;
+  optional bytes profileKey = 6;
+  optional bool readReceipts = 7;
+  optional uint32 provisioningVersion = 9;
+  optional bytes masterKey = 13; // Deprecated, but required by linked devices
+  optional bytes ephemeralBackupKey = 14; // 32 bytes
+  optional string accountEntropyPool = 15;
+  optional bytes mediaRootBackupKey = 16; // 32-bytes
+  optional bytes aciBinary = 17; // 16-byte UUID
+  optional bytes pniBinary = 18; // 16-byte UUID
+  // NEXT ID: 19
 }
 
 enum ProvisioningVersion {
   option allow_alias = true;
 
-  INITIAL         = 0;
-  TABLET_SUPPORT  = 1;
-  CURRENT         = 1;
+  INITIAL = 0;
+  TABLET_SUPPORT = 1;
+  CURRENT = 1;
 }

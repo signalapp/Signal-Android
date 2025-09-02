@@ -14,8 +14,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.rxjava3.subscribeAsState
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
@@ -46,7 +47,7 @@ class LicenseFragment : ComposeFragment() {
     Scaffolds.Settings(
       title = stringResource(id = R.string.HelpSettingsFragment__licenses),
       onNavigationClick = findNavController()::popBackStack,
-      navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
+      navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) {
       LicenseScreen(licenseTextLines = textState.value, modifier = Modifier.padding(it))

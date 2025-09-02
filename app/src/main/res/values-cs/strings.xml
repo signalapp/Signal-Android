@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">Nahrávám médium…</string>
     <string name="AttachmentUploadJob_compressing_video_start">Komprimování videa…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Zálohování médií…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Kontroluji zprávy…</string>
 
@@ -1135,9 +1139,9 @@
     <!-- Button to dismiss dialog -->
     <string name="LinkDeviceFragment__ok">OK</string>
     <!-- Dialog title shown when you don\'t have enough storage space -->
-    <string name="LinkDeviceFragment__not_enough_storage_space">Not enough storage space</string>
+    <string name="LinkDeviceFragment__not_enough_storage_space">Nedostatek úložného prostoru</string>
     <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
-    <string name="LinkDeviceFragment__you_dont_have_enough">You don\'t have enough free storage space on your device to transfer your messages. Free up some space and try again, or link your device without transferring your messages.</string>
+    <string name="LinkDeviceFragment__you_dont_have_enough">V zařízení nemáte dostatek volného místa pro přenos zpráv. Uvolněte místo a zkuste to znovu, nebo propojte zařízení bez přenosu zpráv.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1215,6 +1219,11 @@
     <!-- ExpiredBuildReminder -->
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Tato verze aplikace Signal je zastaralá. Proveďte aktualizaci, abyste mohli odesílat a přijímat zprávy.</string>
     <string name="ExpiredBuildReminder_update_now">Aktualizovat nyní</string>
+
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">Aktualizujte Signal</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">Platnost této verze aplikace Signal vypršela. Proveďte aktualizaci, abyste mohli odesílat a přijímat zprávy.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1526,7 +1535,7 @@
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">Obnovování zpráv…</string>
     <!-- Progress dialog label when finishing a backup restore -->
-    <string name="RemoteRestoreActivity__finishing_restore">Finishing…</string>
+    <string name="RemoteRestoreActivity__finishing_restore">Dokončování…</string>
     <!-- Progress dialog label while awaiting updates -->
     <string name="RemoteRestoreActivity__restoring">Obnovování…</string>
     <!-- Progress readout for dialog while downloading or restoring a backup. First placeholder is the formatted size of the backup downloaded, the second is formatted total amount to go, and the last is a percentage. -->
@@ -1553,6 +1562,12 @@
     <string name="RemoteRestoreActivity__skip_restore">Přeskočit obnovení</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Přenos se nepodařilo dokončit</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Zálohu nelze obnovit</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Při obnovování zálohy se vyskytla chyba. Vaši zálohu nelze obnovit. Kontaktujte prosím podporu.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Kontaktovat podporu</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Vyskytla se chyba a váš účet nebylo možné převést. Vyberte způsob přenosu a zkuste to znovu.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -1563,6 +1578,8 @@
     <string name="RemoteRestoreActivity__update_signal">Aktualizovat Signal</string>
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Nyní ne</string>
+    <!-- Text shown on restore screen as information on what will happen if you skip -->
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Your media will restore in the background. If you choose not to restore now, you won\'t be able to restore later.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozornit mne na zmínky</string>
@@ -2217,6 +2234,8 @@
     <string name="MessageRecord_you_blocked_this_group">Tuto skupinu jste zablokovali</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">Tuto skupinu jste odblokovali</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s sent you a message that can\'t be processed or displayed because it uses a new Signal feature.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Přijmout</string>
@@ -3093,6 +3112,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Tento protokol bude zveřejněn online, aby si jej mohli prohlédnout přispěvatelé. Před odesláním si jej můžete prohlédnout.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Po kliknutí na tlačítko Odeslat bude váš protokol zveřejněn online po dobu 30 dnů na jedinečné neveřejné adrese URL. Můžete si jej nejprve uložit lokálně.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -4793,6 +4819,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">PIN vytvořen.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Zadejte znovu váš PIN</string>
     <string name="ConfirmKbsPinFragment__creating_pin">Vytvářím PIN…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Představujeme PIN</string>
@@ -5101,7 +5129,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Obnovit zprávy z lokální zálohy. Pokud neobnovíte ze zálohy nyní, později to již nebude možné.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Obnovit místní zálohu</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Obnovit zálohu Signal</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Obnovit všechny textové zprávy a média za posledních 30 dní</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Více možností</string>
 
@@ -5607,7 +5634,7 @@
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Nepodařilo se obnovit vaše předplatné pro zálohování</string>
     <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Backup storage limit reached</string>
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Dosažen limit pro ukládání záloh</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Pozvěte své přátele</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7552,7 +7579,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Zadejte název své banky, jméno a e-mailovou adresu. Společnost Stripe tento e-mail používá k zasílání aktuálních informací o vašem příspěvku. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Zadejte své jméno a e-mail. Tento e-mail používá společnost Stripe k zasílání aktuálních informací o vašem příspěvku. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Zadejte své bankovní údaje. Signal neshromažďuje ani neukládá vaše osobní údaje. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -8054,6 +8081,28 @@
     <!-- Button text to deny all participants from joining the call -->
     <string name="PendingParticipantsBottomSheet__deny_all">Zamítnout všechny</string>
 
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__title">Zapněte zálohování služby Signal</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__body">Už nepřijdete o žádnou zprávu, když si pořídíte nový telefon nebo přeinstalujete aplikaci Signal.</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
+    <string name="TurnOnSignalBackups__turn_on">Zapnout</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
+    <string name="TurnOnSignalBackups__not_now">Nyní ne</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
+    <string name="VerifyBackupKey__title">Ověřte svůj záložní klíč</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
+    <string name="VerifyBackupKey__body">We\'ll occasionally ask you to verify your key to ensure you still know it</string>
+    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <string name="VerifyBackupKey__verify">Ověřit</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <string name="VerifyBackupKey__not_now">Nyní ne</string>
+    <!-- Snackbar text shown when the backup key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">Záložní klíč je správný. Uchovávejte svůj klíč v bezpečí.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <string name="VerifyBackupKey__we_will_ask_again">Zeptáme se vás znovu za týden.</string>
+
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Zapnout oznámení na celou obrazovku?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -8181,17 +8230,17 @@
     <!-- Sheet body part 2 when media backups have been disabled. -->
     <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Kdykoliv můžete opět začít platit za zálohování a pokračovat v zálohování všech svých médií. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Download your backup data today</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Stáhněte si záložní data ještě dnes</string>
     <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data">Download your backup data</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Stáhněte si záložní data</string>
     <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
-    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">You have %1$s of media that\'s not on this device. The media and attachments stored in your backup will be permanently deleted without a paid subscription.</string>
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">Máte %1$s médií, která nejsou v tomto zařízení. Média a přílohy uložené v záloze budou bez placeného předplatného navždy odstraněny.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Uvolněte %1$s v tomto zařízení</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">Pro kompletní stažení vaší Signal zálohy je nutné, aby vaše zařízení mělo %1$s volného místa.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
-    <string name="BackupAlertBottomSheet__to_free_up_space_offload">Místo můžete uvolnit odstraněním nepoužívaných aplikací nebo velkých souborů.</string>
+    <string name="BackupAlertBottomSheet__to_free_up_space_offload">Místo můžete uvolnit odložením nebo odstraněním nepoužívaných aplikací nebo velkých souborů.</string>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">Předplatné pro zálohování se nepodařilo obnovit</string>
     <!-- Sheet body when user payment failed to process -->
@@ -8213,6 +8262,8 @@
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Zjistit více</string>
+    <!-- Clickable text to enter contact support flow -->
+    <string name="BackupAlertBottomSheet__contact_support">Kontaktovat podporu</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">Přeskočit obnovení</string>
     <!-- Primary action button to open backups management screen -->
@@ -8226,9 +8277,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Předplatit za %1$s / měsíc</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_backup_now">Download backup now</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Stáhnout zálohu teď</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_backup">Don\'t download backup</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">Nestahovat zálohu</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Nyní ne</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -8253,6 +8304,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Nepodařilo se obnovit vaše předplatné pro zálohování</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Vyskytla se chyba a vaši zálohu se nepodařilo dokončit. Ujistěte se, že máte nejnovější verzi aplikace Signal a zkuste to znovu. Pokud problém přetrvává, kontaktujte podporu.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Vyskytla se chyba a vaši zálohu se nepodařilo dokončit. Pokud problém přetrvává, kontaktujte podporu.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Zkontrolovat aktualizace</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8360,7 +8413,7 @@
     <!-- Setting row title for storage optimization -->
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Optimalizace úložiště v zařízení</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nevyužívaná média budou odložena, ale můžete si je kdykoli stáhnout ze zálohy.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nepoužívaná média budou odložena, ale můžete si je kdykoli stáhnout ze zálohy.</string>
     <!-- Dialog message for paid tier pending dialog -->
     <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optimalizaci úložiště lze použít pouze s placenou verzí zálohování služby Signal. Vaše předplatné zálohování se stále zpracovává a není ještě aktivní. Zkuste to prosím znovu později.</string>
 
@@ -8402,15 +8455,37 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
+    <!-- NoManualBackupBottomSheet -->
+    <!-- Title for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
+        <item quantity="one">Žádná záloha po dobu %1$d dne</item>
+        <item quantity="few">Žádná záloha po dobu %1$d dnů</item>
+        <item quantity="many">Žádná záloha po dobu %1$d dnů</item>
+        <item quantity="other">Žádná záloha po dobu %1$d dnů</item>
+    </plurals>
+    <!-- Body for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
+        <item quantity="one">Nedokončili jste zálohování po dobu %1$d dne. Pokud chcete mít zachované zprávy a média, vytvořte zálohu nyní.</item>
+        <item quantity="few">Nedokončili jste zálohování po dobu %1$d dnů. Pokud chcete mít zachované zprávy a média, vytvořte zálohu nyní.</item>
+        <item quantity="many">Nedokončili jste zálohování po dobu %1$d dnů. Pokud chcete mít zachované zprávy a média, vytvořte zálohu nyní.</item>
+        <item quantity="other">Nedokončili jste zálohování po dobu %1$d dnů. Pokud chcete mít zachované zprávy a média, vytvořte zálohu nyní.</item>
+    </plurals>
+
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s / měsíc, obnovení %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Poslední záloha %1$s</string>
+    <!-- Subtitle for row for canceled backup -->
+    <string name="BackupsSettingsFragment__subscription_canceled">Předplatné zrušeno</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatické zálohování pomocí zabezpečené end-to-end šifrované služby úložiště aplikace Signal.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Předplatné nebylo v tomto zařízení nalezeno."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Nastavit</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">Zobrazit nastavení</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8427,6 +8502,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Obnovit stahování</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Velikost zálohy</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">Načítání…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Frekvence zálohování</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8435,6 +8512,8 @@
     <string name="RemoteBackupsSettingsFragment__view_backup_key">Zobrazit klíč zálohy</string>
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Odemknout pro zobrazení klíče zálohy</string>
+    <!-- Title of bottom sheet explaining that authentication is required to view your key -->
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">Chcete-li zobrazit svůj klíč, potvrďte, že jste to vy</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Vypnout a odstranit zálohování</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8447,6 +8526,8 @@
     <string name="RemoteBackupsSettingsFragment__download_complete">Stahování dokončeno</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Záloha bude vytvořena přes noc.</string>
+    <!-- Snackbar text displayed when user rotates AEP -->
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Nový záložní klíč vytvořen</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Předplatné neaktivní</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8495,6 +8576,8 @@
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Vypnout a odstranit zálohování?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Vaše záloha bude odstraněna a žádné nové zálohy se nebudou vytvářet. Veškerá média uložená v záloze se nyní stáhnou do vašeho telefonu.</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Vaše předplatné bude zrušeno a nebude vám znovu účtováno. Vaše záloha bude rovněž odstraněna a žádné nové zálohy se nebudou vytvářet. Veškerá média uložená v záloze se nyní stáhnou do vašeho telefonu.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Vypnout a smazat</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8540,6 +8623,10 @@
     <string name="RemoteBackupsSettingsFragment__processing_backup">Probíhá zpracování zálohy…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Příprava zálohování…</string>
+    <!-- Linear progress dialog text shown when backup is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">Čeká se na signál Wi-Fi…</string>
+    <!-- Linear progress dialog text shown when backup is paused because internet is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">Čeká se na připojení k internetu…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
         <item quantity="one">Zpracována %1$s z %2$s zpráv (%3$d %%)</item>
@@ -8548,7 +8635,7 @@
         <item quantity="other">Zpracováno %1$s z ~%2$s zpráv (%3$d %%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Without a paid subscription media can\'t be offloaded.</string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Máte %1$s záložních dat, která nejsou v tomto zařízení. Bez placeného předplatného nelze média odložit.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Máte %1$s záložních dat, která nejsou v tomto zařízení. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8595,15 +8682,15 @@
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
     <string name="RemoteBackupsSettingsFragment__downloading_s_of_s_d">Stahování: %1$s z %2$s (%3$d %%)</string>
     <!-- Text displayed when user is out of storage space. Placeholder is storage limit in human readable form (ex. 1GB) -->
-    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">You\'ve reached the %1$s storage limit that\'s included with your backup plan. To backup new chats and media free up space.</string>
+    <string name="RemoteBackupsSettingsFragment__youve_reached_the_s_storage_limit">Dosáhli jste limitu úložiště %1$s, který je součástí vašeho plánu zálohování. Pro zálohování nových chatů a médií uvolněte místo.</string>
     <!-- Button label to open storage management screen -->
     <string name="RemoteBackupsSettingsFragment__manage_storage">Správa úložiště</string>
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
-    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Download your backup today</string>
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Stáhněte si zálohu ještě dnes</string>
     <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
-    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">You have %1$s of backup data that\'s not on this device. Your media and attachments will be permanently deleted without a paid subscription.</string>
+    <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">Máte %1$s záložních dat, která nejsou v tomto zařízení. Vaše média a přílohy budou bez placeného předplatného navždy odstraněny.</string>
     <!-- Dialog positive action label -->
     <string name="DownloadYourBackupTodayDialog__download">Stáhnout</string>
     <!-- Dialog negative action label -->
@@ -8672,12 +8759,18 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Uložit do správce hesel?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Záložní klíč ukládejte pouze do zabezpečeného správce hesel, kterému důvěřujete. Signal neposkytuje žádné doporučení, jaký správce hesel je pro vás vhodný.</string>
+    <!-- ID used when saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Zálohování služby Signal</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Uloženo do správce hesel</string>
-    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Nelze uložit do správce hesel</string>
+    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Nelze uložit do správce hesel</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Nemáte nastaveného správce hesel nebo vámi používaný správce hesel není podporován.</string>
+    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Dříve jste se rozhodli neukládat hesla pro aplikaci Signal do Správce hesel. V nastavení Správce hesel odstraňte Signal z řádku Odmítnuté weby a aplikace a zkuste to znovu.</string>
+    <!-- Label for a button that navigates to the device settings -->
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Přejít do nastavení</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Další</string>
     <!-- Bottom sheet title -->
@@ -8690,6 +8783,28 @@
     <string name="MessageBackupsKeyRecordScreen__continue">Pokračovat</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Zobrazit klíč znovu</string>
+    <!-- Action label to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">Vytvořit nový klíč</string>
+    <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__download_media">Stáhnout média</string>
+    <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Pro vytvoření nového záložního klíče musíte vypnout funkci Optimalizovat úložiště a počkat, až se média stáhnou. Po ukončení stahování můžete vytvořit nový klíč.</string>
+    <!-- Action label to turn off optimized storage and download media -->
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Vypnout a stáhnout</string>
+    <!-- Bottom Sheet title for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Vytvořit nový záložní klíč</string>
+    <!-- Bottom Sheet body for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Vytvoření nového klíč je nutné pouze v případě, že váš klíč zná někdo jiný. Budete muset znovu nahrát svou zálohu včetně médií. Pokud používáte funkci Optimalizovat úložiště, budete muset nejprve stáhnout odložená média.</string>
+
+    <!-- BackupKeyDisplayFragment -->
+    <!-- Dialog title when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Zrušit vytvoření klíče?</string>
+    <!-- Dialog body when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Váš nový záložní klíč nebude vytvořen, pokud jej nepotvrdíte.</string>
+    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__confirm_key">Potvrdit klíč</string>
+    <!-- Dialog button to cancel new key creation -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">Zrušit vytvoření klíče</string>
 
     <!-- Confirm key title -->
     <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Potvrďte svůj záložní klíč</string>
@@ -8704,6 +8819,13 @@
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Další</string>
 
+    <!-- Verify your key title -->
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Zadejte svůj záložní klíč</string>
+    <!-- Verify your key subtitle -->
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Zadejte 64místný kód, který jste si zaznamenali při povolení zálohování.</string>
+    <!-- Button text when you forget your backup key -->
+    <string name="VerifyBackupPinScreen__forgot_key">Zapomněli jste klíč?</string>
+
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
     <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Vyberte svůj plán zálohování</string>
@@ -8711,8 +8833,10 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Všechny zálohy jsou koncově šifrovány. Signal je nezisková organizace – platba za zálohování nám pomáhá plnit naše poslání.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Zjistit více</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Zvolit</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Vyberte si bezplatný plán</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Předplatit za %1$s / měsíc</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8844,7 +8968,15 @@
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Chyba sítě při obnově zálohy Signal v systému Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Opakovaně neúspěšné obnovení zálohy Signal v systému Android</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
+
+    <!-- Email subject when contacting support on a create backup failure -->
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Chyba sítě při exportu zálohy Signal Android</string>
+    <!-- Email filter when contacting support on a create backup failure -->
+  <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
     <string name="ContactSupportDialog_submit_debug_log">Odeslat protokol ladění?</string>
@@ -8933,6 +9065,29 @@
     <string name="SignalCheckbox_accessibility_checked_description">Zaškrtnuto</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
     <string name="SignalCheckbox_accessibility_unchecked_description">Nezaškrtnuto</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">Úložiště pro zálohy je plné</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">Dosáhli jste limitu úložiště pro zálohy. Uvolněte v aplikaci Signal místo a pokračujte v zálohování chatů a médií.</string>
+    <!-- Notification title for when initial backup failed -->
+    <string name="Notification_backup_failed">Zálohování se nezdařilo</string>
+    <!-- Notification body for when initial backup failed -->
+    <string name="Notification_an_error_occurred_and_your_backup">Vyskytla se chyba a vaši zálohu se nepodařilo dokončit. Klepnutím zobrazíte podrobnosti.</string>
+    <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_no_backup_for_d_days">
+        <item quantity="one">Žádná záloha po dobu %1$d dne</item>
+        <item quantity="few">Žádná záloha po dobu %1$d dnů</item>
+        <item quantity="many">Žádná záloha po dobu %1$d dnů</item>
+        <item quantity="other">Žádná záloha po dobu %1$d dnů</item>
+    </plurals>
+    <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_you_have_not_completed_a_backup">
+        <item quantity="one">Nedokončili jste zálohování po dobu %1$d dne. Vytvořte zálohu nyní.</item>
+        <item quantity="few">Nedokončili jste zálohování po dobu %1$d dnů. Vytvořte zálohu nyní.</item>
+        <item quantity="many">Nedokončili jste zálohování po dobu %1$d dnů. Vytvořte zálohu nyní.</item>
+        <item quantity="other">Nedokončili jste zálohování po dobu %1$d dnů. Vytvořte zálohu nyní.</item>
+    </plurals>
 
     <!-- EOF -->
 </resources>

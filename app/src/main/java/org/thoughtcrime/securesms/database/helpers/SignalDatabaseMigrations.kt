@@ -134,6 +134,14 @@ import org.thoughtcrime.securesms.database.helpers.migration.V276_AttachmentCdnD
 import org.thoughtcrime.securesms.database.helpers.migration.V277_AddNotificationProfileStorageSync
 import org.thoughtcrime.securesms.database.helpers.migration.V278_BackupSnapshotTableVersions
 import org.thoughtcrime.securesms.database.helpers.migration.V279_AddNotificationProfileForeignKey
+import org.thoughtcrime.securesms.database.helpers.migration.V280_RemoveAttachmentIv
+import org.thoughtcrime.securesms.database.helpers.migration.V281_RemoveArchiveTransferFile
+import org.thoughtcrime.securesms.database.helpers.migration.V282_AddSnippetMessageIdColumnToThreadTable
+import org.thoughtcrime.securesms.database.helpers.migration.V283_ViewOnceRemoteDataCleanup
+import org.thoughtcrime.securesms.database.helpers.migration.V284_SetPlaceholderGroupFlag
+import org.thoughtcrime.securesms.database.helpers.migration.V285_AddEpochToCallLinksTable
+import org.thoughtcrime.securesms.database.helpers.migration.V286_FixRemoteKeyEncoding
+import org.thoughtcrime.securesms.database.helpers.migration.V287_FixInvalidArchiveState
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -273,10 +281,18 @@ object SignalDatabaseMigrations {
     276 to V276_AttachmentCdnDefaultValueMigration,
     277 to V277_AddNotificationProfileStorageSync,
     278 to V278_BackupSnapshotTableVersions,
-    279 to V279_AddNotificationProfileForeignKey
+    279 to V279_AddNotificationProfileForeignKey,
+    280 to V280_RemoveAttachmentIv,
+    281 to V281_RemoveArchiveTransferFile,
+    282 to V282_AddSnippetMessageIdColumnToThreadTable,
+    283 to V283_ViewOnceRemoteDataCleanup,
+    284 to V284_SetPlaceholderGroupFlag,
+    285 to V285_AddEpochToCallLinksTable,
+    286 to V286_FixRemoteKeyEncoding,
+    287 to V287_FixInvalidArchiveState
   )
 
-  const val DATABASE_VERSION = 279
+  const val DATABASE_VERSION = 287
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {

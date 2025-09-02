@@ -107,6 +107,7 @@ class E164UtilTest {
     Assert.assertEquals("40404", formatter.formatAsE164("+40404"))
     Assert.assertEquals("404040", formatter.formatAsE164("+404040"))
     Assert.assertEquals("404040", formatter.formatAsE164("404040"))
+    Assert.assertEquals("49173", formatter.formatAsE164("+49173"))
     Assert.assertEquals("7726", formatter.formatAsE164("+7726"))
     Assert.assertEquals("69987", formatter.formatAsE164("+69987"))
     Assert.assertEquals("40404", formatter.formatAsE164("40404"))
@@ -127,6 +128,7 @@ class E164UtilTest {
     Assert.assertEquals("988", formatter.formatAsE164("988"))
     Assert.assertEquals("999", formatter.formatAsE164("999"))
     Assert.assertEquals("118", formatter.formatAsE164("118"))
+    Assert.assertEquals("20202", formatter.formatAsE164("020202"))
     Assert.assertEquals("+119990001", formatter.formatAsE164("19990001"))
 
     formatter = E164Util.createFormatterForE164("+61 2 9876 5432")
@@ -145,6 +147,7 @@ class E164UtilTest {
     Assert.assertEquals(null, formatter.formatAsE164("55"))
     Assert.assertEquals(null, formatter.formatAsE164("0"))
     Assert.assertEquals(null, formatter.formatAsE164("000"))
+    Assert.assertEquals(null, formatter.formatAsE164("+1555ABC4567"))
   }
 
   @Test

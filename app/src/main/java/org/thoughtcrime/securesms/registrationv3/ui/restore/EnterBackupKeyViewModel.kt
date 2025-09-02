@@ -86,10 +86,10 @@ class EnterBackupKeyViewModel : ViewModel() {
     }
   }
 
-  fun handleBackupTierNotRestored() {
+  fun handleBackupTimestampNotRestored() {
     store.update {
       it.copy(
-        showBackupTierNotRestoreError = if (SignalStore.backup.isBackupTierRestored) TierRestoreError.NOT_FOUND else TierRestoreError.NETWORK_ERROR
+        showBackupTierNotRestoreError = if (SignalStore.backup.isBackupTimestampRestored) TierRestoreError.NOT_FOUND else TierRestoreError.NETWORK_ERROR
       )
     }
   }

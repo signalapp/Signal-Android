@@ -107,6 +107,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     const val SNIPPET_CONTENT_TYPE = "snippet_content_type"
     const val SNIPPET_EXTRAS = "snippet_extras"
     const val SNIPPET_MESSAGE_EXTRAS = "snippet_message_extras"
+    const val SNIPPET_MESSAGE_ID = "snippet_message_id"
     const val ARCHIVED = "archived"
     const val STATUS = "status"
     const val HAS_DELIVERY_RECEIPT = "has_delivery_receipt"
@@ -148,7 +149,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         $PINNED_ORDER INTEGER UNIQUE DEFAULT NULL, 
         $UNREAD_SELF_MENTION_COUNT INTEGER DEFAULT 0,
         $ACTIVE INTEGER DEFAULT 0,
-        $SNIPPET_MESSAGE_EXTRAS BLOB DEFAULT NULL
+        $SNIPPET_MESSAGE_EXTRAS BLOB DEFAULT NULL,
+        $SNIPPET_MESSAGE_ID INTEGER DEFAULT 0
       )
     """
 
@@ -222,6 +224,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
   private fun updateThread(
     threadId: Long,
+    messageId: Long,
     meaningfulMessages: Boolean,
     body: String?,
     attachment: Uri?,
@@ -263,7 +266,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       ACTIVE to 1,
       UNREAD_COUNT to unreadCount,
       UNREAD_SELF_MENTION_COUNT to unreadMentionCount,
-      SNIPPET_MESSAGE_EXTRAS to messageExtras?.encode()
+      SNIPPET_MESSAGE_EXTRAS to messageExtras?.encode(),
+      SNIPPET_MESSAGE_ID to messageId
     )
 
     writableDatabase
@@ -291,11 +295,11 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     return threadRecipientId == null || !recipients.isMuted(threadRecipientId)
   }
 
-  fun updateSnippetUriSilently(threadId: Long, attachment: Uri?) {
+  fun updateSnippetUriSilently(threadId: Long, snippetMessageId: Long, attachment: Uri?) {
     writableDatabase
       .update(TABLE_NAME)
       .values(SNIPPET_URI to attachment?.toString())
-      .where("$ID = ?", threadId)
+      .where("$ID = ? AND $SNIPPET_MESSAGE_ID = ?", threadId, snippetMessageId)
       .run()
   }
 
@@ -310,7 +314,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       SNIPPET_URI to attachment?.toString(),
       SNIPPET_TYPE to type,
       SNIPPET_CONTENT_TYPE to null,
-      SNIPPET_EXTRAS to null
+      SNIPPET_EXTRAS to null,
+      SNIPPET_MESSAGE_ID to 0
     )
 
     if (unarchive && allowedToUnarchive(threadId)) {
@@ -1777,6 +1782,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         } else if (isPinned) {
           updateThread(
             threadId = threadId,
+            messageId = 0,
             meaningfulMessages = meaningfulMessages,
             body = null,
             attachment = null,
@@ -1807,6 +1813,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       updateThread(
         threadId = threadId,
+        messageId = record.id,
         meaningfulMessages = meaningfulMessages,
         body = threadBody.body.toString(),
         attachment = getAttachmentUriFor(record),
@@ -1991,6 +1998,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       SNIPPET_CONTENT_TYPE to null,
       SNIPPET_EXTRAS to null,
       SNIPPET_MESSAGE_EXTRAS to null,
+      SNIPPET_MESSAGE_ID to 0,
       UNREAD_COUNT to 0,
       STATUS to 0,
       HAS_DELIVERY_RECEIPT to 0,

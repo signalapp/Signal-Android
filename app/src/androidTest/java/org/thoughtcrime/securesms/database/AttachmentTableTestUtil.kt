@@ -22,7 +22,6 @@ object AttachmentTableTestUtil {
       remoteId = SignalServiceAttachmentRemoteId.V4("somewhere-${Random.nextLong()}"),
       cdnNumber = Cdn.CDN_3.cdnNumber,
       key = databaseAttachment.remoteKey?.let { Base64.decode(it) } ?: Util.getSecretBytes(64),
-      iv = databaseAttachment.remoteIv ?: Util.getSecretBytes(16),
       digest = Random.nextBytes(32),
       incrementalDigest = Random.nextBytes(16),
       incrementalDigestChunkSize = 5,

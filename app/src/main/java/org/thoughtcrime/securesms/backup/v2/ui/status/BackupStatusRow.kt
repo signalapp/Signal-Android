@@ -102,7 +102,8 @@ fun BackupStatusRow(
           drawStopIndicator = {}
         )
 
-        if (onCancelClick != null) {
+        val isFinished = backupStatusData is BackupStatusData.RestoringMedia && backupStatusData.restoreStatus == BackupStatusData.RestoreStatus.FINISHED
+        if (onCancelClick != null && !isFinished) {
           IconButton(
             onClick = onCancelClick
           ) {

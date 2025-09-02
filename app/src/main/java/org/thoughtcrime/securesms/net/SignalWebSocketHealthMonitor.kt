@@ -74,7 +74,7 @@ class SignalWebSocketHealthMonitor(
         .distinctUntilChanged()
         .subscribeBy { onStateChanged(it) }
 
-      webSocket.keepAliveChangedListener = { executor.execute(this::updateKeepAliveSenderStatus) }
+      webSocket.addKeepAliveChangeListener { executor.execute(this::updateKeepAliveSenderStatus) }
     }
   }
 

@@ -31,7 +31,6 @@ class MediaTable internal constructor(context: Context?, databaseHelper: SignalD
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.CDN_NUMBER},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_LOCATION},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_KEY},
-        ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_IV},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.REMOTE_DIGEST}, 
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.FAST_PREFLIGHT_ID},
         ${AttachmentTable.TABLE_NAME}.${AttachmentTable.VOICE_NOTE}, 

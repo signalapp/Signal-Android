@@ -326,6 +326,7 @@ class ChatFolderTables(context: Context?, databaseHelper: SignalDatabase?) : Dat
           ChatFolderTable.SHOW_MUTED to chatFolder.showMutedChats,
           ChatFolderTable.SHOW_INDIVIDUAL to chatFolder.showIndividualChats,
           ChatFolderTable.SHOW_GROUPS to chatFolder.showGroupChats,
+          ChatFolderTable.STORAGE_SERVICE_ID to chatFolder.storageServiceId.let { Base64.encodeWithPadding(chatFolder.storageServiceId!!.raw) },
           ChatFolderTable.STORAGE_SERVICE_PROTO to storageServiceProto,
           ChatFolderTable.DELETED_TIMESTAMP_MS to chatFolder.deletedTimestampMs
         )

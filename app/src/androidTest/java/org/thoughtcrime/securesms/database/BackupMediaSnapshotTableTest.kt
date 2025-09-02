@@ -146,7 +146,8 @@ class BackupMediaSnapshotTableTest {
     val mismatches = SignalDatabase.backupMediaSnapshots.getMediaObjectsWithNonMatchingCdn(remoteData)
     assertThat(mismatches.size).isEqualTo(1)
     assertThat(mismatches[0].cdn).isEqualTo(99)
-    assertThat(mismatches[0].digest).isEqualTo(localData[1].digest)
+    assertThat(mismatches[0].plaintextHash).isEqualTo(localData[1].plaintextHash)
+    assertThat(mismatches[0].remoteKey).isEqualTo(localData[1].remoteKey)
   }
 
   @Test
@@ -300,7 +301,8 @@ class BackupMediaSnapshotTableTest {
       mediaId = "media_id_$seed",
       thumbnailMediaId = "thumbnail_media_id_$seed",
       cdn = cdn,
-      digest = Util.toByteArray(seed)
+      plaintextHash = Util.toByteArray(seed),
+      remoteKey = Util.toByteArray(seed)
     )
   }
 

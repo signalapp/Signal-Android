@@ -25,7 +25,6 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
@@ -70,10 +69,15 @@ import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.getLength
 import org.thoughtcrime.securesms.R
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
+import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.DialogState
 import org.thoughtcrime.securesms.components.settings.app.internal.backup.InternalBackupPlaygroundViewModel.ScreenState
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobs.ArchiveAttachmentReconciliationJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Util
@@ -146,9 +150,9 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
       mainContent = {
         Screen(
           state = state,
-          onBackupTierSelected = { tier -> viewModel.onBackupTierSelected(tier) },
           onCheckRemoteBackupStateClicked = { viewModel.checkRemoteBackupState() },
           onEnqueueRemoteBackupClicked = { viewModel.triggerBackupJob() },
+          onEnqueueReconciliationClicked = { AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob(forced = true)) },
           onHaltAllBackupJobsClicked = { viewModel.haltAllJobs() },
           onValidateBackupClicked = { viewModel.validateBackup() },
           onSaveEncryptedBackupToDiskClicked = {
@@ -219,7 +223,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
           onDeleteRemoteBackup = {
             MaterialAlertDialogBuilder(context)
               .setTitle("Are you sure?")
-              .setMessage("This will delete all of your remote backup data?")
+              .setMessage("This will delete all of your remote backup data!")
               .setPositiveButton("Delete remote data") { _, _ ->
                 lifecycleScope.launch {
                   val success = viewModel.deleteRemoteBackupData()
@@ -230,6 +234,27 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
               }
               .setNegativeButton("Cancel", null)
               .show()
+          },
+          onClearLocalMediaBackupState = {
+            MaterialAlertDialogBuilder(context)
+              .setTitle("Are you sure?")
+              .setMessage("This will cause you to have to re-upload all of your media!")
+              .setPositiveButton("Clear local media state") { _, _ ->
+                lifecycleScope.launch {
+                  viewModel.clearLocalMediaBackupState()
+                  withContext(Dispatchers.Main) {
+                    Toast.makeText(requireContext(), "Done!", Toast.LENGTH_SHORT).show()
+                  }
+                }
+              }
+              .setNegativeButton("Cancel", null)
+              .show()
+          },
+          onDisplayInitialBackupFailureSheet = {
+            BackupRepository.displayInitialBackupFailureNotification()
+            BackupAlertBottomSheet
+              .create(BackupAlert.BackupFailed)
+              .show(parentFragmentManager, null)
           }
         )
       },
@@ -303,8 +328,8 @@ fun Screen(
   onImportNewStyleLocalBackupClicked: () -> Unit = {},
   onCheckRemoteBackupStateClicked: () -> Unit = {},
   onEnqueueRemoteBackupClicked: () -> Unit = {},
+  onEnqueueReconciliationClicked: () -> Unit = {},
   onWipeDataAndRestoreFromRemoteClicked: () -> Unit = {},
-  onBackupTierSelected: (MessageBackupTier?) -> Unit = {},
   onHaltAllBackupJobsClicked: () -> Unit = {},
   onSavePlaintextCopyOfRemoteBackupClicked: () -> Unit = {},
   onValidateBackupClicked: () -> Unit = {},
@@ -313,7 +338,9 @@ fun Screen(
   onImportEncryptedBackupFromDiskClicked: () -> Unit = {},
   onImportEncryptedBackupFromDiskDismissed: () -> Unit = {},
   onImportEncryptedBackupFromDiskConfirmed: (aci: String, backupKey: String) -> Unit = { _, _ -> },
-  onDeleteRemoteBackup: () -> Unit = {}
+  onClearLocalMediaBackupState: () -> Unit = {},
+  onDeleteRemoteBackup: () -> Unit = {},
+  onDisplayInitialBackupFailureSheet: () -> Unit = {}
 ) {
   val context = LocalContext.current
   val scrollState = rememberScrollState()
@@ -343,21 +370,6 @@ fun Screen(
         .fillMaxSize()
         .verticalScroll(scrollState)
     ) {
-      Row(verticalAlignment = Alignment.CenterVertically) {
-        Text("Tier", fontWeight = FontWeight.Bold)
-        options.forEach { option ->
-          Row(verticalAlignment = Alignment.CenterVertically) {
-            RadioButton(
-              selected = option.value == state.backupTier,
-              onClick = { onBackupTierSelected(option.value) }
-            )
-            Text(option.key)
-          }
-        }
-      }
-
-      Dividers.Default()
-
       Rows.TextRow(
         text = {
           Text(
@@ -380,6 +392,12 @@ fun Screen(
         text = "Enqueue remote backup",
         label = "Schedules a job that will perform a routine remote backup.",
         onClick = onEnqueueRemoteBackupClicked
+      )
+
+      Rows.TextRow(
+        text = "Enqueue reconciliation job",
+        label = "Schedules a job that will ensure local and remote media state are in sync.",
+        onClick = onEnqueueReconciliationClicked
       )
 
       Rows.TextRow(
@@ -503,13 +521,25 @@ fun Screen(
         onClick = onDeleteRemoteBackup
       )
 
+      Rows.TextRow(
+        text = "Clear local media backup state",
+        label = "Resets local state tracking so you think you haven't uploaded any media. The media still exists on the server.",
+        onClick = onClearLocalMediaBackupState
+      )
+
       Dividers.Default()
+
+      Rows.TextRow(
+        text = "Display initial backup failure sheet",
+        label = "This will display the error sheet immediately and force the notification to display.",
+        onClick = onDisplayInitialBackupFailureSheet
+      )
 
       Rows.TextRow(
         text = "Mark backup failure",
         label = "This will display the error sheet when returning to the chats list.",
         onClick = {
-          SignalStore.backup.internalSetBackupFailedErrorState()
+          BackupRepository.markBackupFailure()
         }
       )
 
@@ -518,6 +548,13 @@ fun Screen(
         label = "This will not actually downgrade the user.",
         onClick = {
           SignalStore.backup.backupExpiredAndDowngraded = true
+        }
+      )
+
+      Rows.TextRow(
+        text = "Mark out of remote storage space",
+        onClick = {
+          BackupRepository.markOutOfRemoteStorageSpaceError()
         }
       )
 

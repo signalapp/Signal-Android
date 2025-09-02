@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
+import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.RequestManager
 import org.signal.core.util.logging.Log
+import org.signal.ringrtc.CallLinkEpoch
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.FullScreenDialogFragment
@@ -358,7 +360,7 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
-  override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) {
+  override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey, callLinkEpoch: CallLinkEpoch?) {
     Log.w(TAG, "Not yet implemented!", Exception())
   }
 
@@ -388,6 +390,10 @@ class MessageDetailsFragment : FullScreenDialogFragment(), MessageDetailsAdapter
 
   override fun onShowUnverifiedProfileSheet(forGroup: Boolean) {
     Log.w(TAG, "Not yet implemented!", Exception())
+  }
+
+  override fun onUpdateSignalClicked() {
+    Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
   }
 
   interface Callback {

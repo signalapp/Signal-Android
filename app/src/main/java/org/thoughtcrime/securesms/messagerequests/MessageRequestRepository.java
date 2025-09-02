@@ -216,7 +216,7 @@ public final class MessageRequestRepository {
 
         SendViewedReceiptJob.enqueue(threadId, recipientId, viewedInfos);
 
-        if (SignalStore.account().hasLinkedDevices()) {
+        if (SignalStore.account().isMultiDevice()) {
           AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipientId));
         }
 
@@ -278,7 +278,7 @@ public final class MessageRequestRepository {
         }
       }
 
-      if (SignalStore.account().hasLinkedDevices()) {
+      if (SignalStore.account().isMultiDevice()) {
         AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forDelete(recipientId));
       }
 
@@ -316,7 +316,7 @@ public final class MessageRequestRepository {
       }
       Recipient.live(recipientId).refresh();
 
-      if (SignalStore.account().hasLinkedDevices()) {
+      if (SignalStore.account().isMultiDevice()) {
         AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forBlock(recipientId));
       }
 
@@ -376,7 +376,7 @@ public final class MessageRequestRepository {
 
       AppDependencies.getJobManager().add(new ReportSpamJob(threadId, System.currentTimeMillis()));
 
-      if (SignalStore.account().hasLinkedDevices()) {
+      if (SignalStore.account().isMultiDevice()) {
         AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forBlockAndReportSpam(recipientId));
       }
 
@@ -403,7 +403,7 @@ public final class MessageRequestRepository {
 
       AppDependencies.getJobManager().add(new ReportSpamJob(threadId, System.currentTimeMillis()));
 
-      if (SignalStore.account().hasLinkedDevices()) {
+      if (SignalStore.account().isMultiDevice()) {
         AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forReportSpam(recipientId));
       }
 
@@ -428,7 +428,7 @@ public final class MessageRequestRepository {
 
       RecipientUtil.unblock(recipient);
 
-      if (SignalStore.account().hasLinkedDevices()) {
+      if (SignalStore.account().isMultiDevice()) {
         AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forAccept(recipientId));
       }
 

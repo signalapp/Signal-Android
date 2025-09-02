@@ -7,5 +7,6 @@ package org.whispersystems.signalservice.api.remoteconfig
 
 data class RemoteConfigResult(
   val config: Map<String, Any>,
-  val serverEpochTimeMilliseconds: Long
+  val serverEpochTimeMilliseconds: Long,
+  val eTag: String? = ""
 )

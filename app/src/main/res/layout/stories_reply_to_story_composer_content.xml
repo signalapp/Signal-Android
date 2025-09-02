@@ -81,7 +81,6 @@
             android:layout_gravity="center_vertical"
             android:imeOptions="flagNoEnterAction|actionSend"
             android:inputType="textAutoCorrect|textCapSentences|textMultiLine"
-            android:maxLength="65536"
             android:maxLines="3"
             android:paddingBottom="2dp"
             android:textAppearance="@style/Signal.Text.Body"

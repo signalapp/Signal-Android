@@ -10,6 +10,7 @@ import androidx.sqlite.db.SupportSQLiteOpenHelper
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import assertk.assertions.isNotNull
+import org.junit.After
 import org.junit.Assert.assertArrayEquals
 import org.junit.Before
 import org.junit.Test
@@ -48,6 +49,11 @@ class SQLiteDatabaseExtensionsTest {
         BLOB_COLUMN to byteArrayOf(1, 2, 3)
       )
       .run()
+  }
+
+  @After
+  fun cleanUp() {
+    db.close()
   }
 
   @Test

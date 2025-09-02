@@ -28,7 +28,8 @@ import org.thoughtcrime.securesms.events.GroupCallReactionEvent
  */
 @Composable
 fun CallScreenReactionsContainer(
-  reactions: List<GroupCallReactionEvent>
+  reactions: List<GroupCallReactionEvent>,
+  modifier: Modifier = Modifier
 ) {
   val adapter = remember { WebRtcReactionsRecyclerAdapter() }
   AndroidView(factory = {
@@ -41,7 +42,7 @@ fun CallScreenReactionsContainer(
     view.isVerticalScrollBarEnabled = false
 
     view
-  }, modifier = Modifier.fillMaxSize().padding(16.dp).padding(bottom = 16.dp)) {
+  }, modifier = modifier.fillMaxSize().padding(16.dp).padding(bottom = 16.dp)) {
     adapter.submitList(reactions.toMutableList())
   }
 }

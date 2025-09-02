@@ -36,6 +36,11 @@ enum class DeletionState(private val id: Int) {
   AWAITING_MEDIA_DOWNLOAD(1),
 
   /**
+   * Media has downloaded so the deletion job can pick up from where it left off.
+   */
+  MEDIA_DOWNLOAD_FINISHED(5),
+
+  /**
    * Deleting the backups themselves.
    * User should see the "deleting backups..." UX
    */
@@ -47,6 +52,12 @@ enum class DeletionState(private val id: Int) {
    */
   COMPLETE(3);
 
+  fun isInProgress(): Boolean {
+    return this != FAILED && this != NONE && this != COMPLETE
+  }
+
+  fun isIdle(): Boolean = !isInProgress()
+
   companion object {
     val serializer: LongSerializer<DeletionState> = Serializer()
   }
@@ -56,11 +67,12 @@ enum class DeletionState(private val id: Int) {
       return data.id.toLong()
     }
 
-    override fun deserialize(data: Long): DeletionState {
-      return when (data.toInt()) {
+    override fun deserialize(input: Long): DeletionState {
+      return when (input.toInt()) {
         FAILED.id -> FAILED
         CLEAR_LOCAL_STATE.id -> CLEAR_LOCAL_STATE
         AWAITING_MEDIA_DOWNLOAD.id -> AWAITING_MEDIA_DOWNLOAD
+        MEDIA_DOWNLOAD_FINISHED.id -> MEDIA_DOWNLOAD_FINISHED
         DELETE_BACKUPS.id -> DELETE_BACKUPS
         COMPLETE.id -> COMPLETE
         else -> NONE

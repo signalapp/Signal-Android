@@ -73,6 +73,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.TextFields
 import org.signal.core.ui.compose.Tooltips
+import org.signal.core.ui.compose.circularReveal
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.calls.log.CallLogFilter

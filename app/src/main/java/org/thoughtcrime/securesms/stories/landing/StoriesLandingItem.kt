@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.view.AvatarView
 import org.thoughtcrime.securesms.badges.BadgeImageView
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.stories.StoryTextPostModel
 import org.thoughtcrime.securesms.stories.dialogs.StoryContextMenu
@@ -190,7 +190,7 @@ object StoriesLandingItem {
       } else if (thumbnail != null) {
         storyBlur.visible = blur != null
         Glide.with(storyPreview)
-          .load(DecryptableStreamUriLoader.DecryptableUri(thumbnail))
+          .load(DecryptableUri(thumbnail))
           .addListener(HideBlurAfterLoadListener())
           .centerCrop()
           .dontAnimate()
@@ -214,7 +214,7 @@ object StoriesLandingItem {
           storyMulti.visible = true
         } else if (secondaryThumb != null) {
           Glide.with(storyMulti)
-            .load(DecryptableStreamUriLoader.DecryptableUri(secondaryThumb))
+            .load(DecryptableUri(secondaryThumb))
             .centerCrop()
             .dontAnimate()
             .into(storyMulti)

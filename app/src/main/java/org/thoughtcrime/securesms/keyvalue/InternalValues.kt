@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.keyvalue
 
 import org.signal.ringrtc.CallManager.DataMode
 import org.thoughtcrime.securesms.BuildConfig
+import org.thoughtcrime.securesms.backup.v2.proto.BackupDebugInfo
 import org.thoughtcrime.securesms.util.Environment.Calling.defaultSfuUrl
 import org.thoughtcrime.securesms.util.RemoteConfig
 
@@ -34,6 +35,8 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
     const val LARGE_SCREEN_UI: String = "internal.large.screen.ui"
     const val FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE: String = "internal.force.split.pane.on.compact.landscape.ui"
     const val SHOW_ARCHIVE_STATE_HINT: String = "internal.show_archive_state_hint"
+    const val INCLUDE_DEBUGLOG_IN_BACKUP: String = "internal.include_debuglog_in_backup"
+    const val IMPORTED_BACKUP_DEBUG_INFO: String = "internal.imported_backup_debug_info"
   }
 
   public override fun onFirstEverAppLaunch() = Unit
@@ -180,6 +183,12 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   var forceSsre2Capability by booleanValue("internal.force_ssre2_capability", false).defaultForExternalUsers()
 
   var showArchiveStateHint by booleanValue(SHOW_ARCHIVE_STATE_HINT, false).defaultForExternalUsers()
+
+  /** Whether or not we should include a debuglog in the backup debug info when generating a backup. */
+  var includeDebuglogInBackup by booleanValue(INCLUDE_DEBUGLOG_IN_BACKUP, true).falseForExternalUsers()
+
+  /** Any [BackupDebugInfo] that was imported during the last backup restore, if any. */
+  var importedBackupDebugInfo: BackupDebugInfo? by protoValue(IMPORTED_BACKUP_DEBUG_INFO, BackupDebugInfo.ADAPTER).defaultForExternalUsers()
 
   private fun <T> SignalStoreValueDelegate<T>.defaultForExternalUsers(): SignalStoreValueDelegate<T> {
     return this.withPrecondition { RemoteConfig.internalUser }

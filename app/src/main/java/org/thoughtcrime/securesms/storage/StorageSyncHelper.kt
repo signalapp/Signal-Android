@@ -7,6 +7,7 @@ import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64.encodeWithPadding
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.getSubscriber
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.isUserManuallyCancelled
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.setSubscriber
@@ -174,6 +175,14 @@ object StorageSyncHelper {
           color = StorageSyncModels.localToRemoteUsernameColor(SignalStore.misc.usernameQrCodeColorScheme)
         )
       }
+
+      hasBackup = SignalStore.backup.areBackupsEnabled && SignalStore.backup.hasBackupBeenUploaded
+      if (SignalStore.backup.areBackupsEnabled && SignalStore.backup.backupTier != null) {
+        backupTier = getBackupLevelValue(SignalStore.backup.backupTier!!)
+      } else if (SignalStore.backup.backupTierInternalOverride != null) {
+        backupTier = getBackupLevelValue(SignalStore.backup.backupTierInternalOverride!!)
+      }
+
       notificationProfileManualOverride = getNotificationProfileManualOverride()
 
       getSubscriber(InAppPaymentSubscriberRecord.Type.DONATION)?.let {
@@ -190,6 +199,14 @@ object StorageSyncHelper {
     return accountRecord.toSignalAccountRecord(StorageId.forAccount(storageId)).toSignalStorageRecord()
   }
 
+  // TODO: Currently we don't have access to the private values of the BackupLevel. Update when it becomes available.
+  private fun getBackupLevelValue(tier: MessageBackupTier): Long {
+    return when (tier) {
+      MessageBackupTier.FREE -> 200
+      MessageBackupTier.PAID -> 201
+    }
+  }
+
   private fun getNotificationProfileManualOverride(): AccountRecord.NotificationProfileManualOverride {
     val profile = SignalDatabase.notificationProfiles.getProfile(SignalStore.notificationProfile.manuallyEnabledProfile)
     return if (profile != null && profile.deletedTimestampMs == 0L) {
@@ -201,10 +218,12 @@ object StorageSyncHelper {
           endAtTimestampMs = endTimestamp
         )
       )
-    } else {
+    } else if (SignalStore.notificationProfile.manuallyDisabledAt != 0L) {
       AccountRecord.NotificationProfileManualOverride(
         disabledAtTimestampMs = SignalStore.notificationProfile.manuallyDisabledAt
       )
+    } else {
+      AccountRecord.NotificationProfileManualOverride()
     }
   }
 
@@ -295,7 +314,7 @@ object StorageSyncHelper {
             SignalStore.notificationProfile.manuallyDisabledAt = System.currentTimeMillis()
           }
         }
-      } else {
+      } else if (update.new.proto.notificationProfileManualOverride!!.disabledAtTimestampMs != null) {
         SignalStore.notificationProfile.manuallyEnabledProfile = 0
         SignalStore.notificationProfile.manuallyEnabledUntil = 0
         SignalStore.notificationProfile.manuallyDisabledAt = update.new.proto.notificationProfileManualOverride!!.disabledAtTimestampMs!!

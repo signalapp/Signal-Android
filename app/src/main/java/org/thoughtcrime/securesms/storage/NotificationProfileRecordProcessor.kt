@@ -72,7 +72,7 @@ class NotificationProfileRecordProcessor : DefaultStorageRecordProcessor<SignalN
     val isLocalDeleted = local.proto.deletedAtTimestampMs > 0
 
     return when {
-      isRemoteDeleted && isLocalDeleted -> if (remote.proto.deletedAtTimestampMs < local.proto.deletedAtTimestampMs) remote else local
+      isRemoteDeleted && isLocalDeleted -> if (remote.proto.deletedAtTimestampMs <= local.proto.deletedAtTimestampMs) remote else local
       isRemoteDeleted -> remote
       isLocalDeleted -> local
       else -> remote

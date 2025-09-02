@@ -51,7 +51,6 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.MessageUtil;
 import org.thoughtcrime.securesms.util.Util;
 
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -116,7 +115,7 @@ public final class MultiShareSender {
       List<Contact>   contacts           = multiShareArgs.getSharedContacts();
       SlideDeck       slideDeck          = new SlideDeck(primarySlideDeck);
 
-      boolean needsSplit = message != null && Utf8.size(message) > MessageUtil.MAX_MESSAGE_SIZE_BYTES;
+      boolean needsSplit = message != null && Utf8.size(message) > MessageUtil.MAX_INLINE_BODY_SIZE_BYTES;
       boolean hasMmsMedia = !multiShareArgs.getMedia().isEmpty() ||
                             (multiShareArgs.getDataUri() != null && multiShareArgs.getDataUri() != Uri.EMPTY) ||
                             multiShareArgs.getStickerLocator() != null ||

@@ -40,7 +40,6 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.graphics.vector.rememberVectorPainter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.SpanStyle
@@ -78,7 +77,7 @@ fun CountryCodeSelectScreen(
           Text(text = title, style = MaterialTheme.typography.titleLarge)
         },
         onNavigationClick = onDismissed,
-        navigationIconPainter = rememberVectorPainter(ImageVector.vectorResource(R.drawable.symbol_x_24)),
+        navigationIcon = ImageVector.vectorResource(R.drawable.symbol_x_24),
         navigationContentDescription = stringResource(R.string.Material3SearchToolbar__close)
       )
     }

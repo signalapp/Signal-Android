@@ -255,7 +255,7 @@ class ConversationViewModel(
       .conversationRecipient
       .filter { it.isRegistered }
       .take(1)
-      .subscribeBy { RetrieveProfileJob.enqueue(it.id) }
+      .subscribeBy { RetrieveProfileJob.enqueue(it.id, skipDebounce = false) }
       .addTo(disposables)
 
     disposables += recipientRepository

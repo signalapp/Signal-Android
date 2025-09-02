@@ -42,7 +42,7 @@ data class MainContentLayoutData(
    */
   @Composable
   fun hasDragHandle(): Boolean {
-    return WindowSizeClass.rememberWindowSizeClass().isExtended()
+    return !WindowSizeClass.rememberWindowSizeClass().isCompact()
   }
 
   /**

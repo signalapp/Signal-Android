@@ -13,7 +13,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
@@ -22,7 +21,6 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.AliceClient
 import org.thoughtcrime.securesms.testing.BobClient
 import org.thoughtcrime.securesms.testing.Entry
-import org.thoughtcrime.securesms.testing.FakeClientHelpers
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.awaitFor
 import org.whispersystems.signalservice.internal.push.Envelope
@@ -51,12 +49,13 @@ class MessageProcessingPerformanceTest {
   @get:Rule
   val harness = SignalActivityRule()
 
-  private val trustRoot: ECKeyPair = Curve.generateKeyPair()
+  private val trustRoot: ECKeyPair = ECKeyPair.generate()
 
   @Before
   fun setup() {
     mockkStatic(SealedSenderAccessUtil::class)
-    every { SealedSenderAccessUtil.getCertificateValidator() } returns FakeClientHelpers.noOpCertificateValidator
+    // TODO reinstate this for libsignal 0.76.1
+//    every { SealedSenderAccessUtil.getCertificateValidator() } returns FakeClientHelpers.noOpCertificateValidator
 
     mockkObject(MessageContentProcessor)
     every { MessageContentProcessor.create(harness.application) } returns TimingMessageContentProcessor(harness.application)

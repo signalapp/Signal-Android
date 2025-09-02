@@ -41,7 +41,7 @@ import org.thoughtcrime.securesms.components.compose.RoundCheckbox
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressIndicator
 import org.thoughtcrime.securesms.components.transfercontrols.TransferProgressState
 import org.thoughtcrime.securesms.compose.GlideImage
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.stickers.AvailableStickerPack.DownloadStatus
 import org.thoughtcrime.securesms.util.DeviceProperties
 

@@ -27,6 +27,7 @@ class GenericForegroundService : Service() {
   private val allActiveMessages = LinkedHashMap<Int, Entry>()
   private val lock = ReentrantLock()
 
+  var hasTimedOut = false
   private var lastPosted: Entry? = null
 
   companion object {
@@ -175,6 +176,20 @@ class GenericForegroundService : Service() {
     super.onTrimMemory(level)
   }
 
+  override fun onTimeout(startId: Int, foregroundServiceType: Int) {
+    Log.i(TAG, "[onTimeout] startId: $startId, fgsType: $foregroundServiceType")
+    stopDueToTimeout()
+  }
+
+  private fun stopDueToTimeout() {
+    lock.withLock {
+      hasTimedOut = true
+      allActiveMessages.clear()
+    }
+    ServiceCompat.stopForeground(this, ServiceCompat.STOP_FOREGROUND_REMOVE)
+    stopSelf()
+  }
+
   fun replaceTitle(id: Int, title: String) {
     lock.withLock {
       updateEntry(id) { oldEntry ->
@@ -206,16 +221,25 @@ class GenericForegroundService : Service() {
   private fun postObligatoryForegroundNotification(active: Entry) {
     lastPosted = active
 
-    startForeground(
-      NOTIFICATION_ID,
-      NotificationCompat.Builder(this, active.channelId)
-        .setSmallIcon(active.iconRes)
-        .setContentTitle(active.title)
-        .setProgress(active.progressMax, active.progress, active.indeterminate)
-        .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), mutable()))
-        .setVibrate(longArrayOf(0))
-        .build()
-    )
+    try {
+      startForeground(
+        NOTIFICATION_ID,
+        NotificationCompat.Builder(this, active.channelId)
+          .setSmallIcon(active.iconRes)
+          .setContentTitle(active.title)
+          .setProgress(active.progressMax, active.progress, active.indeterminate)
+          .setContentIntent(PendingIntent.getActivity(this, 0, MainActivity.clearTop(this), mutable()))
+          .setVibrate(longArrayOf(0))
+          .build()
+      )
+    } catch (e: Exception) {
+      if (Build.VERSION.SDK_INT >= 31 && e.message?.contains("Time limit", ignoreCase = true) == true) {
+        Log.w(TAG, "Foreground service timed out, but not in onTimeout call", e)
+        stopDueToTimeout()
+      } else {
+        throw e
+      }
+    }
   }
 
   private fun updateEntry(id: Int, transform: (Entry) -> Entry) {

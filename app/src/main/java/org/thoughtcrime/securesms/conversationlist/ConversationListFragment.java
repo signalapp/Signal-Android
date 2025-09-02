@@ -1012,7 +1012,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
     alert.setTitle(context.getResources().getQuantityString(R.plurals.ConversationListFragment_delete_selected_conversations,
                                                             conversationsCount, conversationsCount));
 
-    if (SignalStore.account().hasLinkedDevices()) {
+    if (SignalStore.account().isMultiDevice()) {
       alert.setMessage(context.getResources().getQuantityString(R.plurals.ConversationListFragment_this_will_permanently_delete_all_n_selected_conversations_linked_device,
                                                                 conversationsCount, conversationsCount));
     } else {

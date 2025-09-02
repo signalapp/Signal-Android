@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">上載緊媒體…</string>
     <string name="AttachmentUploadJob_compressing_video_start">壓縮緊條片…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">備份緊媒體……</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">睇緊有無新訊息…</string>
 
@@ -1150,6 +1154,11 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">呢個版本嘅 Signal 已經過期喇。即刻更新以傳送同接收訊息。</string>
     <string name="ExpiredBuildReminder_update_now">即刻更新</string>
 
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">更新 Signal</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">呢個 Signal 版本已經過咗期。㩒一下更新嚟收發訊息。</string>
+
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
         <item quantity="other">%1$d 個成員請求仲等緊。</item>
@@ -1433,6 +1442,12 @@
     <string name="RemoteRestoreActivity__skip_restore">跳過還原</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">完成唔到轉移</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">還原唔到備份</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">備份還原嗰陣出現錯誤。攞唔返你嘅備份。請聯絡支援團隊幫你。</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">聯絡支援團隊</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">發生錯誤，轉移唔到你嘅帳戶。揀過個轉移方法再試過啦。</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -1443,6 +1458,8 @@
     <string name="RemoteRestoreActivity__update_signal">更新 Signal</string>
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">遲啲先啦</string>
+    <!-- Text shown on restore screen as information on what will happen if you skip -->
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Your media will restore in the background. If you choose not to restore now, you won\'t be able to restore later.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">點名講起我嘅時候通知</string>
@@ -2037,6 +2054,8 @@
     <string name="MessageRecord_you_blocked_this_group">你封鎖咗呢個群組</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">你解除封鎖咗呢個群組</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s sent you a message that can\'t be processed or displayed because it uses a new Signal feature.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">接受</string>
@@ -2814,6 +2833,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">下低呢個記錄檔將會公開擺上網，畀有心貢獻嘅人睇到。您可以自己睇一次先，上載嘅話先至撳掣。</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">當你㩒咗提交之後，你嘅記錄會透過一個專屬而且未經發佈嘅網址喺網上發佈 30 日。你可以事先喺你部機度儲存記錄。</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -4439,6 +4465,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">整好咗 PIN 碼。</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">打多次您個 PIN 碼</string>
     <string name="ConfirmKbsPinFragment__creating_pin">建立緊 PIN 碼…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN 碼</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">為您介紹 PIN 碼</string>
@@ -4732,7 +4760,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">攞返本機備份嚟還原您嘅訊息。如果您而家唔做嘅話，遲啲就冇得再還原㗎喇。</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">還原本機備份</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">還原 Signal 備份</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">還原全部文字訊息 + 最近 30 日嘅媒體內容</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">其他選項</string>
 
@@ -7057,7 +7084,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">請輸入你嘅銀行、姓名同電郵地址。Stripe 會用呢個電郵地址向你發送有關捐款嘅最新消息。 %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">請輸入你嘅姓名同電郵地址。Stripe 會用呢個電郵地址向你發送有關捐款嘅最新消息。%1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">請輸入你嘅銀行資料。 Signal 唔會收集或者儲存你嘅個人資料。%1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7541,6 +7568,28 @@
     <!-- Button text to deny all participants from joining the call -->
     <string name="PendingParticipantsBottomSheet__deny_all">全部拒絕</string>
 
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__title">啟用 Signal 備份</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__body">當你換新手機或者重新安裝 Signal 嗰陣，就唔會冇哂啲訊息。</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
+    <string name="TurnOnSignalBackups__turn_on">開啟</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
+    <string name="TurnOnSignalBackups__not_now">遲啲先啦</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
+    <string name="VerifyBackupKey__title">驗證你嘅備份金鑰</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
+    <string name="VerifyBackupKey__body">We\'ll occasionally ask you to verify your key to ensure you still know it</string>
+    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <string name="VerifyBackupKey__verify">驗證</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <string name="VerifyBackupKey__not_now">遲啲先</string>
+    <!-- Snackbar text shown when the backup key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">備份金鑰正確。好好儲存你嘅金鑰。</string>
+    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <string name="VerifyBackupKey__we_will_ask_again">我哋過一個禮拜會再問你。</string>
+
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">係咪要開啟全螢幕通知？</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -7691,6 +7740,8 @@
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">了解詳情</string>
+    <!-- Clickable text to enter contact support flow -->
+    <string name="BackupAlertBottomSheet__contact_support">聯絡支援團隊</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">跳過還原</string>
     <!-- Primary action button to open backups management screen -->
@@ -7731,6 +7782,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">換領唔到備份課金計劃</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">發生錯誤，完成唔到備份。請確保你用緊最新版本嘅 Signal，然後再試。如果問題持續，請聯絡支援團隊。</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">發生錯誤，完成唔到備份。如果問題持續，請聯絡支援團隊。</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">檢查更新</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -7877,15 +7930,31 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">確定</string>
 
+    <!-- NoManualBackupBottomSheet -->
+    <!-- Title for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
+        <item quantity="other">冇備份 %1$d 日</item>
+    </plurals>
+    <!-- Body for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
+        <item quantity="other">你已經有 %1$d 日冇完成備份。為咗確保你嘅訊息同媒體可以好好保存，請即刻建立備份。</item>
+    </plurals>
+
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">每月 %1$s · %2$s 續期</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">上次備份 %1$s</string>
+    <!-- Subtitle for row for canceled backup -->
+    <string name="BackupsSettingsFragment__subscription_canceled">取消咗課金計劃</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">用 Signal 嘅端對端加密儲存服務安全自動備份。</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"喺呢部機度搵唔到課金計劃。"</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">設定</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">睇下設定</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -7902,6 +7971,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">恢復下載</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">備份大小</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">載入緊…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">備份頻率</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -7910,6 +7981,8 @@
     <string name="RemoteBackupsSettingsFragment__view_backup_key">睇吓備份金鑰</string>
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">解鎖就會睇到備份金鑰</string>
+    <!-- Title of bottom sheet explaining that authentication is required to view your key -->
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">如果想睇吓你嘅金鑰，請確認係你本人</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">閂咗佢同埋刪除備份</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -7922,6 +7995,8 @@
     <string name="RemoteBackupsSettingsFragment__download_complete">下載完成</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">備份將會通宵建立。</string>
+    <!-- Snackbar text displayed when user rotates AEP -->
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">已經建立新嘅備份金鑰</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">未有課金計劃</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -7970,6 +8045,8 @@
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">係咪想閂咗同埋刪除備份呀？</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">你嘅備份將會刪除，而系統亦唔會再建立新嘅備份。備份入面儲存嘅任何媒體都會即刻下載去你部手機度。</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">我哋會取消你嘅課金計劃，唔會再向你收錢。你嘅備份將會刪除，而系統亦唔會再建立新嘅備份。備份入面儲存嘅任何媒體都會即刻下載去你部手機度。</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">關閉，然後刪除</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8012,6 +8089,10 @@
     <string name="RemoteBackupsSettingsFragment__processing_backup">處理緊備份…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">準備緊備份…</string>
+    <!-- Linear progress dialog text shown when backup is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">等緊 WiFi……</string>
+    <!-- Linear progress dialog text shown when backup is paused because internet is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">等緊網絡連線……</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
         <item quantity="other">處理緊 %1$s / %2$s 個訊息（%3$d%%）</item>
@@ -8138,12 +8219,18 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">係咪儲存去密碼管理器？</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">只可以將備份金鑰儲存喺你相信安全嘅密碼管理器入面。Signal 唔會推薦最啱你嘅密碼管理器。</string>
+    <!-- ID used when saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal 備份</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">已經儲存咗去密碼管理器</string>
-    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">儲存唔到去密碼管理器</string>
+    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">儲存唔到去密碼管理器</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">你冇設定密碼管理器，或者你用緊嘅密碼管理器唔支援。</string>
+    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">你之前揀咗唔將 Signal 密碼儲存到 Google 密碼管理工具。喺 Google 密碼管理工具嘅設定嗰度，喺「已拒絕的網站和應用程式」下面移除 Signal，然後再試一次。</string>
+    <!-- Label for a button that navigates to the device settings -->
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">前往設定</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">下一步</string>
     <!-- Bottom sheet title -->
@@ -8156,6 +8243,28 @@
     <string name="MessageBackupsKeyRecordScreen__continue">繼續</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">再睇多次金鑰</string>
+    <!-- Action label to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">建立新金鑰</string>
+    <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__download_media">下載媒體</string>
+    <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">要建立新嘅備份金鑰，你一定要閂咗「優化儲存空間」功能，等媒體完成下載。下載完成之後，你就可以建立新金鑰。</string>
+    <!-- Action label to turn off optimized storage and download media -->
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">關閉功能然後下載</string>
+    <!-- Bottom Sheet title for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">建立新嘅備份金鑰</string>
+    <!-- Bottom Sheet body for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">只有當其他人知道你嘅金鑰嗰陣，先要建立新嘅金鑰。你一定要重新上載備份，包括媒體。如果你用緊「優化儲存空間」功能，咁就一定要先下載已卸載嘅媒體。</string>
+
+    <!-- BackupKeyDisplayFragment -->
+    <!-- Dialog title when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">係咪取消建立金鑰？</string>
+    <!-- Dialog body when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">除非你確認新備份金鑰，如果冇咁做系統就唔會幫你建立㗎喇。</string>
+    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__confirm_key">確認金鑰</string>
+    <!-- Dialog button to cancel new key creation -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">取消建立金鑰</string>
 
     <!-- Confirm key title -->
     <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">確認你嘅備份金鑰</string>
@@ -8170,6 +8279,13 @@
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">下一步</string>
 
+    <!-- Verify your key title -->
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">輸入你嘅備份金鑰</string>
+    <!-- Verify your key subtitle -->
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">輸入啟用備份嗰陣記低嘅 64 位代碼。</string>
+    <!-- Button text when you forget your backup key -->
+    <string name="VerifyBackupPinScreen__forgot_key">唔記得咗個備份金鑰？</string>
+
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
     <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">選擇你嘅備份計劃</string>
@@ -8177,8 +8293,10 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">所有備份都經端對端加密。Signal 係一間非牟利組織—課金備份，支持我哋嘅使命啦。</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">了解詳情</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">課金</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">揀免費計劃</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">每月課金 %1$s</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8304,7 +8422,15 @@
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android 備份還原嗰陣網絡有問題</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android 備份還原出現恆常性錯誤</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
+
+    <!-- Email subject when contacting support on a create backup failure -->
+    <string name="BackupAlertBottomSheet_network_failure_support_email">匯出 Signal Android 備份嗰陣網絡有問題</string>
+    <!-- Email filter when contacting support on a create backup failure -->
+  <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
     <string name="ContactSupportDialog_submit_debug_log">係咪要提交除錯記錄？</string>
@@ -8393,6 +8519,23 @@
     <string name="SignalCheckbox_accessibility_checked_description">剔咗</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
     <string name="SignalCheckbox_accessibility_unchecked_description">冇剔到</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">備份儲存空間爆哂棚</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">你嘅備份儲存空間頂晒櫳喇。喺 Signal 度搵多啲位嚟繼續備份聊天同媒體。</string>
+    <!-- Notification title for when initial backup failed -->
+    <string name="Notification_backup_failed">備份唔到</string>
+    <!-- Notification body for when initial backup failed -->
+    <string name="Notification_an_error_occurred_and_your_backup">發生錯誤，完成唔到備份。㩒一下了解詳情。</string>
+    <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_no_backup_for_d_days">
+        <item quantity="other">冇備份 %1$d 日</item>
+    </plurals>
+    <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_you_have_not_completed_a_backup">
+        <item quantity="other">你已經有 %1$d 日冇完成備份。請即刻建立備份。</item>
+    </plurals>
 
     <!-- EOF -->
 </resources>

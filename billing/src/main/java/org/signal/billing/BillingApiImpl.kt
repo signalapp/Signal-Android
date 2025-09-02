@@ -221,9 +221,18 @@ internal class BillingApiImpl(
 
   /**
    * Launches the Google Play billing flow.
-   * Returns a billing result if we launched the flow, null otherwise.
+   *
+   * If the user already has an active purchase (purchase exists and autoRenew == true) then we will not
+   * launch and instead immediately post the purchase.
    */
   override suspend fun launchBillingFlow(activity: Activity) {
+    val latestPurchase = queryPurchases()
+    if (latestPurchase is BillingPurchaseResult.Success && latestPurchase.isAutoRenewing) {
+      Log.w(TAG, "Already purchased.")
+      internalResults.emit(latestPurchase)
+      return
+    }
+
     val productDetails = queryProductsInternal().productDetailsList
     if (productDetails.isNullOrEmpty()) {
       Log.w(TAG, "No products are available! Cancelling billing flow launch.")

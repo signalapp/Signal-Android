@@ -31,9 +31,10 @@ import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.input.KeyboardType
@@ -221,7 +222,7 @@ private fun BankTransferDetailsContent(
   Scaffolds.Settings(
     title = "Bank transfer",
     onNavigationClick = onNavigationClick,
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
+    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
   ) {
     Column(
       horizontalAlignment = CenterHorizontally,

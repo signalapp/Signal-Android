@@ -43,8 +43,7 @@ class DeleteSyncEducationDialog : ComposeBottomSheetDialogFragment() {
 
     @JvmStatic
     fun shouldShow(): Boolean {
-      return SignalStore.account.hasLinkedDevices &&
-        !SignalStore.uiHints.hasSeenDeleteSyncEducationSheet
+      return SignalStore.account.isMultiDevice && !SignalStore.uiHints.hasSeenDeleteSyncEducationSheet
     }
 
     @JvmStatic

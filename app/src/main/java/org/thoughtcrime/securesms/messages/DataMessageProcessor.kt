@@ -14,9 +14,9 @@ import org.signal.core.util.toOptional
 import org.signal.libsignal.zkgroup.groups.GroupSecretParams
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.thoughtcrime.securesms.attachments.Attachment
+import org.thoughtcrime.securesms.attachments.LocalStickerAttachment
 import org.thoughtcrime.securesms.attachments.PointerAttachment
 import org.thoughtcrime.securesms.attachments.TombstoneAttachment
-import org.thoughtcrime.securesms.attachments.UriAttachment
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil
 import org.thoughtcrime.securesms.contactshare.Contact
@@ -82,7 +82,6 @@ import org.thoughtcrime.securesms.messages.SignalServiceProtoUtil.toPointersWith
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.mms.MmsException
 import org.thoughtcrime.securesms.mms.QuoteModel
-import org.thoughtcrime.securesms.mms.StickerSlide
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.Recipient.HiddenState
@@ -108,7 +107,6 @@ import org.whispersystems.signalservice.internal.push.DataMessage
 import org.whispersystems.signalservice.internal.push.Envelope
 import org.whispersystems.signalservice.internal.push.GroupContextV2
 import org.whispersystems.signalservice.internal.push.Preview
-import java.security.SecureRandom
 import java.util.Optional
 import java.util.UUID
 import kotlin.time.Duration
@@ -256,7 +254,7 @@ object DataMessageProcessor {
       if (SignalDatabase.recipients.setProfileKey(senderRecipient.id, messageProfileKey)) {
         log(timestamp, "Profile key on message from " + senderRecipient.id + " didn't match our local store. It has been updated.")
         SignalDatabase.runPostSuccessfulTransaction {
-          RetrieveProfileJob.enqueue(senderRecipient.id)
+          RetrieveProfileJob.enqueue(senderRecipient.id, skipDebounce = true)
         }
       }
     } else {
@@ -1211,25 +1209,7 @@ object DataMessageProcessor {
     val stickerRecord: StickerRecord? = SignalDatabase.stickers.getSticker(stickerLocator.packId, stickerLocator.stickerId, false)
 
     return if (stickerRecord != null) {
-      UriAttachment(
-        stickerRecord.uri,
-        stickerRecord.contentType,
-        AttachmentTable.TRANSFER_PROGRESS_DONE,
-        stickerRecord.size,
-        StickerSlide.WIDTH,
-        StickerSlide.HEIGHT,
-        null,
-        SecureRandom().nextLong().toString(),
-        false,
-        false,
-        false,
-        false,
-        null,
-        stickerLocator,
-        null,
-        null,
-        null
-      )
+      LocalStickerAttachment(stickerRecord, stickerLocator)
     } else {
       sticker.data_!!.toPointer(stickerLocator)
     }

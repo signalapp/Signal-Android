@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardActivity
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.visible
 
@@ -42,12 +42,12 @@ class StoriesMultiselectForwardActivity : MultiselectForwardActivity() {
 
     if (previewMedia.isNotEmpty()) {
       Glide.with(this)
-        .load(DecryptableStreamUriLoader.DecryptableUri(previewMedia.first()))
+        .load(DecryptableUri(previewMedia.first()))
         .into(preview1View)
     }
 
     if (previewMedia.size > 1) {
-      Glide.with(this).load(DecryptableStreamUriLoader.DecryptableUri(previewMedia[1])).into(preview2View)
+      Glide.with(this).load(DecryptableUri(previewMedia[1])).into(preview2View)
     }
   }
 

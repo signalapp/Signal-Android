@@ -48,7 +48,7 @@ import org.thoughtcrime.securesms.jobmanager.impl.BackoffUtil;
 import org.thoughtcrime.securesms.keyvalue.CertificateType;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.linkpreview.LinkPreview;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
 import org.thoughtcrime.securesms.mms.PartAuthority;
 import org.thoughtcrime.securesms.mms.QuoteModel;
@@ -75,6 +75,7 @@ import org.whispersystems.signalservice.api.messages.shared.SharedContact;
 import org.whispersystems.signalservice.api.push.ServiceId.ACI;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.ProofRequiredException;
+import org.whispersystems.signalservice.api.push.exceptions.RateLimitException;
 import org.whispersystems.signalservice.api.push.exceptions.ServerRejectedException;
 import org.whispersystems.signalservice.internal.push.BodyRange;
 
@@ -172,6 +173,11 @@ public abstract class PushSendJob extends SendJob {
       warn(TAG, "[Proof Required] Retry-After is " + backoff + " seconds.");
       if (backoff >= 0) {
         return TimeUnit.SECONDS.toMillis(backoff);
+      }
+    } else if (exception instanceof RateLimitException) {
+      long backoff = ((RateLimitException) exception).getRetryAfterMilliseconds().orElse(-1L);
+      if (backoff >= 0) {
+        return backoff;
       }
     } else if (exception instanceof NonSuccessfulResponseCodeException) {
       if (((NonSuccessfulResponseCodeException) exception).is5xx()) {

@@ -12,8 +12,10 @@ import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob.Companion.isForArchiveThumbnailUploadJob
 import org.thoughtcrime.securesms.jobs.protos.ArchiveAttachmentReconciliationJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -71,6 +73,16 @@ class ArchiveAttachmentReconciliationJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
+    if (!SignalStore.backup.hasBackupBeenUploaded) {
+      Log.w(TAG, "No backup has been uploaded yet! Skipping.")
+      return Result.success()
+    }
+
+    if (!SignalStore.backup.backsUpMedia) {
+      Log.w(TAG, "This user doesn't back up media! Skipping.")
+      return Result.success()
+    }
+
     val timeSinceLastSync = System.currentTimeMillis() - SignalStore.backup.lastAttachmentReconciliationTime
     if (!forced && serverCursor == null && timeSinceLastSync > 0 && timeSinceLastSync < RemoteConfig.archiveReconciliationSyncInterval.inWholeMilliseconds) {
       Log.d(TAG, "No need to do a remote sync yet. Time since last sync: $timeSinceLastSync ms")
@@ -117,21 +129,53 @@ class ArchiveAttachmentReconciliationJob private constructor(
       return Result.failure()
     }
 
-    val mediaObjectsThatNeedReUpload = SignalDatabase.backupMediaSnapshots.getMediaObjectsLastSeenOnCdnBeforeSnapshotVersion(snapshotVersion)
-    val needReUploadCount = mediaObjectsThatNeedReUpload.count
+    val mediaObjectsThatMayNeedReUpload = SignalDatabase.backupMediaSnapshots.getMediaObjectsLastSeenOnCdnBeforeSnapshotVersion(snapshotVersion)
+    val mayNeedReUploadCount = mediaObjectsThatMayNeedReUpload.count
 
-    if (needReUploadCount > 0) {
-      Log.w(TAG, "Found $needReUploadCount attachments that we thought were uploaded, but could not be found on the CDN. Clearing state and enqueuing uploads.")
+    if (mayNeedReUploadCount > 0) {
+      Log.w(TAG, "Found $mayNeedReUploadCount attachments that are present in the target snapshot, but could not be found on the CDN. This could be a bookkeeping error, or the upload may still be in progress. Checking.", true)
 
-      mediaObjectsThatNeedReUpload.forEach {
-        val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(it)
-        // TODO [backup] Re-enqueue thumbnail uploads if necessary
-        if (!entry.isThumbnail) {
-          SignalDatabase.attachments.resetArchiveTransferStateByDigest(entry.digest)
+      var newBackupJobRequired = false
+      var bookkeepingErrorCount = 0
+
+      mediaObjectsThatMayNeedReUpload.forEach { mediaObjectCursor ->
+        val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(mediaObjectCursor)
+
+        if (entry.isThumbnail) {
+          val parentAttachmentId = SignalDatabase.attachments.getAttachmentIdByPlaintextHashAndRemoteKey(entry.plaintextHash, entry.remoteKey)
+          if (parentAttachmentId == null) {
+            Log.w(TAG, "Failed to find parent attachment for thumbnail that may need reupload. Skipping.", true)
+            return@forEach
+          }
+
+          if (AppDependencies.jobManager.find { it.isForArchiveThumbnailUploadJob(parentAttachmentId) }.isEmpty()) {
+            Log.w(TAG, "A thumbnail was missing from remote for $parentAttachmentId and no in-progress job was found. Re-enqueueing one.", true)
+            ArchiveThumbnailUploadJob.enqueueIfNecessary(parentAttachmentId)
+            bookkeepingErrorCount++
+          } else {
+            Log.i(TAG, "A thumbnail was missing from remote for $parentAttachmentId, but a job is already in progress.", true)
+          }
+        } else {
+          val wasReset = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
+          if (wasReset) {
+            newBackupJobRequired = true
+            bookkeepingErrorCount++
+          } else {
+            Log.w(TAG, "Did not need to reset the the transfer state by hash/key because the attachment either no longer exists or the upload is already in-progress.", true)
+          }
         }
       }
 
-      BackupMessagesJob.enqueue()
+      if (bookkeepingErrorCount > 0) {
+        Log.w(TAG, "Found that $bookkeepingErrorCount/$mayNeedReUploadCount of the CDN mismatches were bookkeeping errors.", true)
+      } else {
+        Log.i(TAG, "None of the $mayNeedReUploadCount CDN mismatches were bookkeeping errors.", true)
+      }
+
+      if (newBackupJobRequired) {
+        Log.w(TAG, "Some of the errors require re-uploading a new backup job to resolve.", true)
+        BackupMessagesJob.enqueue()
+      }
     } else {
       Log.d(TAG, "No attachments need to be repaired.")
     }
@@ -170,7 +214,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
     if (cdnMismatches.isNotEmpty()) {
       Log.w(TAG, "Found ${cdnMismatches.size} items with CDNs that differ from what we have locally. Updating our local store.")
       for (mismatch in cdnMismatches) {
-        SignalDatabase.attachments.setArchiveCdnByDigest(mismatch.digest, mismatch.cdn)
+        SignalDatabase.attachments.setArchiveCdnByPlaintextHashAndRemoteKey(mismatch.plaintextHash, mismatch.remoteKey, mismatch.cdn)
       }
     }
 

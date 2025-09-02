@@ -1172,14 +1172,14 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       //noinspection ConstantConditions
       LinkPreview linkPreview = ((MmsMessageRecord) messageRecord).getLinkPreviews().get(0);
 
-      CallLinkRootKey callLinkRootKey = CallLinks.parseUrl(linkPreview.getUrl());
-      if (callLinkRootKey != null) {
+      CallLinks.CallLinkParseResult linkParseResult = CallLinks.parseUrl(linkPreview.getUrl());
+      if (linkParseResult != null) {
         joinCallLinkStub.setVisibility(View.VISIBLE);
         joinCallLinkStub.get().setTextColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? R.color.signal_light_colorOnPrimary : R.color.signal_colorOnPrimaryContainer));
         joinCallLinkStub.get().setBackgroundColor(ContextCompat.getColor(context, messageRecord.isOutgoing() ? R.color.signal_light_colorTransparent2 : R.color.signal_colorOnPrimary));
         joinCallLinkStub.get().setOnClickListener(v -> {
           if (eventListener != null) {
-            eventListener.onJoinCallLink(callLinkRootKey);
+            eventListener.onJoinCallLink(linkParseResult.getRootKey(), linkParseResult.getEpoch());
           }
         });
       }

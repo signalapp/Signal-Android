@@ -252,7 +252,6 @@ class AttachmentTableTest_deduping {
       assertSkipTransform(id2, true)
 
       assertDoesNotHaveRemoteFields(id2)
-      assertArchiveFieldsMatch(id1, id2)
 
       upload(id2)
 
@@ -726,7 +725,7 @@ class AttachmentTableTest_deduping {
     }
 
     fun upload(attachmentId: AttachmentId, uploadTimestamp: Long = System.currentTimeMillis()) {
-      SignalDatabase.attachments.createKeyIvIfNecessary(attachmentId)
+      SignalDatabase.attachments.createRemoteKeyIfNecessary(attachmentId)
       SignalDatabase.attachments.finalizeAttachmentAfterUpload(attachmentId, AttachmentTableTestUtil.createUploadResult(attachmentId, uploadTimestamp))
 
       val attachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
@@ -747,8 +746,7 @@ class AttachmentTableTest_deduping {
       SignalDatabase.attachments.finalizeAttachmentAfterDownload(
         mmsId = 1,
         attachmentId = attachmentId,
-        inputStream = LimitedInputStream(paddedData.inputStream(), data.size.toLong()),
-        iv = Util.getSecretBytes(16)
+        inputStream = LimitedInputStream(paddedData.inputStream(), data.size.toLong())
       )
     }
 
@@ -842,7 +840,6 @@ class AttachmentTableTest_deduping {
 
       assertEquals(lhsAttachment.remoteLocation, rhsAttachment.remoteLocation)
       assertEquals(lhsAttachment.remoteKey, rhsAttachment.remoteKey)
-      assertArrayEquals(lhsAttachment.remoteIv, rhsAttachment.remoteIv)
       assertArrayEquals(lhsAttachment.remoteDigest, rhsAttachment.remoteDigest)
       assertArrayEquals(lhsAttachment.incrementalDigest, rhsAttachment.incrementalDigest)
       assertEquals(lhsAttachment.incrementalMacChunkSize, rhsAttachment.incrementalMacChunkSize)

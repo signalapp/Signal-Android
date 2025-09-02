@@ -17,7 +17,7 @@ import org.thoughtcrime.securesms.avatar.fallback.FallbackAvatarDrawable
 import org.thoughtcrime.securesms.contacts.avatars.ContactPhoto
 import org.thoughtcrime.securesms.contacts.avatars.ProfileContactPhoto
 import org.thoughtcrime.securesms.conversation.colors.AvatarGradientColors
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.BitmapUtil

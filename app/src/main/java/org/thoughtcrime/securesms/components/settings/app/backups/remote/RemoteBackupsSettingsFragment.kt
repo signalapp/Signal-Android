@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -69,7 +68,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.window.DialogProperties
+import androidx.fragment.app.setFragmentResultListener
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -90,6 +89,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
+import org.thoughtcrime.securesms.DevicePinAuthEducationSheet
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
@@ -105,6 +105,7 @@ import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
 import org.thoughtcrime.securesms.components.compose.BetaHeader
 import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
+import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.StatusBarColorNestedScrollConnection
@@ -212,7 +213,14 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onViewBackupKeyClick() {
-      if (!biometricDeviceAuthentication.authenticate(requireContext(), true, this@RemoteBackupsSettingsFragment::showConfirmDeviceCredentialIntent)) {
+      if (biometricDeviceAuthentication.shouldShowEducationSheet(requireContext())) {
+        DevicePinAuthEducationSheet.show(getString(R.string.RemoteBackupsSettingsFragment__to_view_your_key), parentFragmentManager)
+        parentFragmentManager.setFragmentResultListener(DevicePinAuthEducationSheet.REQUEST_KEY, viewLifecycleOwner) { _, _ ->
+          if (!biometricDeviceAuthentication.authenticate(requireContext(), true, this@RemoteBackupsSettingsFragment::showConfirmDeviceCredentialIntent)) {
+            displayBackupKey()
+          }
+        }
+      } else if (!biometricDeviceAuthentication.authenticate(requireContext(), true, this@RemoteBackupsSettingsFragment::showConfirmDeviceCredentialIntent)) {
         displayBackupKey()
       }
     }
@@ -278,6 +286,10 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       requireActivity().finish()
       requireActivity().startActivity(AppSettingsActivity.manageStorage(requireActivity()))
     }
+
+    override fun onIncludeDebuglogClick(newState: Boolean) {
+      viewModel.setIncludeDebuglog(newState)
+    }
   }
 
   private fun displayBackupKey() {
@@ -296,6 +308,13 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     checkoutLauncher = createBackupsCheckoutLauncher { backUpLater ->
       if (backUpLater) {
         viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.BACKUP_WILL_BE_CREATED_OVERNIGHT)
+      }
+    }
+
+    setFragmentResultListener(BackupKeyDisplayFragment.AEP_ROTATION_KEY) { _, bundle ->
+      val didRotate = bundle.getBoolean(BackupKeyDisplayFragment.AEP_ROTATION_KEY, false)
+      if (didRotate) {
+        viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.AEP_KEY_ROTATED)
       }
     }
 
@@ -367,6 +386,7 @@ private interface ContentCallbacks {
   fun onDisplayProgressDialog() = Unit
   fun onDisplayDownloadingBackupDialog() = Unit
   fun onManageStorageClick() = Unit
+  fun onIncludeDebuglogClick(newState: Boolean) = Unit
 
   object Empty : ContentCallbacks
 }
@@ -405,7 +425,7 @@ private fun RemoteBackupsSettingsContent(
           TextWithBetaLabel(text = title, textStyle = MaterialTheme.typography.titleLarge)
         },
         onNavigationClick = contentCallbacks::onNavigationClick,
-        navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
+        navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
         navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
         scrollBehavior = scrollBehavior
       )
@@ -440,7 +460,7 @@ private fun RemoteBackupsSettingsContent(
         }
       }
 
-      if (state.isOutOfStorageSpace) {
+      if (state.hasRedemptionError) {
         item {
           RedemptionErrorAlert(onDetailsClick = contentCallbacks::onRedemptionErrorDetailsClick)
         }
@@ -448,45 +468,47 @@ private fun RemoteBackupsSettingsContent(
 
       item {
         when (state.backupState) {
-          is RemoteBackupsSettingsState.BackupState.Loading -> {
+          is BackupState.LocalStore -> {
             LoadingCard()
           }
 
-          is RemoteBackupsSettingsState.BackupState.Error -> {
+          is BackupState.Error -> {
             ErrorCard()
           }
 
-          is RemoteBackupsSettingsState.BackupState.Pending -> {
+          is BackupState.Pending -> {
             PendingCard(state.backupState.price)
           }
 
-          is RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay -> {
+          is BackupState.SubscriptionMismatchMissingGooglePlay -> {
             SubscriptionMismatchMissingGooglePlayCard(
               state = state.backupState,
               onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription,
               onRenewClick = contentCallbacks::onRenewLostSubscription,
-              isRenewEnabled = backupDeleteState != DeletionState.DELETE_BACKUPS
+              isRenewEnabled = backupDeleteState.isIdle()
             )
           }
 
-          RemoteBackupsSettingsState.BackupState.None -> Unit
+          BackupState.None -> Unit
 
-          is RemoteBackupsSettingsState.BackupState.WithTypeAndRenewalTime -> {
+          is BackupState.WithTypeAndRenewalTime -> {
             BackupCard(
               backupState = state.backupState,
               onBackupTypeActionButtonClicked = contentCallbacks::onBackupTypeActionClick,
-              buttonsEnabled = backupDeleteState != DeletionState.DELETE_BACKUPS
+              buttonsEnabled = backupDeleteState.isIdle()
             )
           }
 
-          RemoteBackupsSettingsState.BackupState.NotFound -> {
+          BackupState.NotFound -> {
             SubscriptionNotFoundCard(
               title = stringResource(R.string.RemoteBackupsSettingsFragment__your_subscription_was_not_found),
               onRenewClick = contentCallbacks::onRenewLostSubscription,
               onLearnMoreClick = contentCallbacks::onLearnMoreAboutLostSubscription,
-              isRenewEnabled = backupDeleteState != DeletionState.DELETE_BACKUPS
+              isRenewEnabled = backupDeleteState.isIdle()
             )
           }
+
+          BackupState.NotAvailable -> error("This shouldn't happen on this screen.")
         }
       }
 
@@ -503,11 +525,15 @@ private fun RemoteBackupsSettingsContent(
           canViewBackupKey = state.canViewBackupKey,
           backupRestoreState = backupRestoreState,
           backupProgress = backupProgress,
+          canBackupMessagesRun = state.canBackupMessagesJobRun,
           lastBackupTimestamp = state.lastBackupTimestamp,
           backupMediaSize = state.backupMediaSize,
           backupsFrequency = state.backupsFrequency,
           canBackUpUsingCellular = state.canBackUpUsingCellular,
           canRestoreUsingCellular = state.canRestoreUsingCellular,
+          canBackUpNow = !state.isOutOfStorageSpace,
+          includeDebuglog = state.includeDebuglog,
+          backupMediaDetails = state.backupMediaDetails,
           contentCallbacks = contentCallbacks
         )
       } else {
@@ -549,6 +575,7 @@ private fun RemoteBackupsSettingsContent(
 
     RemoteBackupsSettingsState.Dialog.TURN_OFF_AND_DELETE_BACKUPS -> {
       TurnOffAndDeleteBackupsDialog(
+        tier = state.tier!!,
         onConfirm = contentCallbacks::onTurnOffAndDeleteBackupsConfirm,
         onDismiss = contentCallbacks::onDialogDismissed
       )
@@ -563,7 +590,7 @@ private fun RemoteBackupsSettingsContent(
     }
 
     RemoteBackupsSettingsState.Dialog.PROGRESS_SPINNER -> {
-      CircularProgressDialog(onDismiss = contentCallbacks::onDialogDismissed)
+      Dialogs.IndeterminateProgressDialog(onDismissRequest = { contentCallbacks.onDialogDismissed() })
     }
 
     RemoteBackupsSettingsState.Dialog.DOWNLOADING_YOUR_BACKUP -> {
@@ -582,7 +609,7 @@ private fun RemoteBackupsSettingsContent(
         SkipDownloadDuringDeleteDialog()
       } else {
         SkipDownloadDialog(
-          renewalTime = if (state.backupState is RemoteBackupsSettingsState.BackupState.WithTypeAndRenewalTime) {
+          renewalTime = if (state.backupState is BackupState.WithTypeAndRenewalTime) {
             state.backupState.renewalTime
           } else {
             error("Unexpected dialog display without renewal time.")
@@ -616,6 +643,7 @@ private fun RemoteBackupsSettingsContent(
       RemoteBackupsSettingsState.Snackbar.SUBSCRIPTION_CANCELLED -> R.string.RemoteBackupsSettingsFragment__subscription_cancelled
       RemoteBackupsSettingsState.Snackbar.DOWNLOAD_COMPLETE -> R.string.RemoteBackupsSettingsFragment__download_complete
       RemoteBackupsSettingsState.Snackbar.BACKUP_WILL_BE_CREATED_OVERNIGHT -> R.string.RemoteBackupsSettingsFragment__backup_will_be_created_overnight
+      RemoteBackupsSettingsState.Snackbar.AEP_KEY_ROTATED -> R.string.RemoteBackupsSettingsFragment__new_backup_key_created
     }
   }
 
@@ -637,7 +665,7 @@ private fun RemoteBackupsSettingsContent(
 
 @Composable
 private fun ReenableBackupsButton(contentCallbacks: ContentCallbacks) {
-  Buttons.LargePrimary(
+  Buttons.LargeTonal(
     onClick = { contentCallbacks.onBackupTypeActionClick(MessageBackupTier.FREE) },
     modifier = Modifier.horizontalGutters()
   ) {
@@ -735,13 +763,13 @@ private fun LazyListScope.appendBackupDeletionItems(
       } else {
         item {
           LinearProgressIndicator(
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.horizontalGutters().fillMaxWidth()
           )
         }
       }
     }
 
-    DeletionState.DELETE_BACKUPS -> {
+    DeletionState.MEDIA_DOWNLOAD_FINISHED, DeletionState.DELETE_BACKUPS -> {
       item {
         DescriptionText(text = stringResource(R.string.RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data))
       }
@@ -800,15 +828,19 @@ private fun DescriptionText(
 }
 
 private fun LazyListScope.appendBackupDetailsItems(
-  backupState: RemoteBackupsSettingsState.BackupState,
+  backupState: BackupState,
   canViewBackupKey: Boolean,
   backupRestoreState: BackupRestoreState,
   backupProgress: ArchiveUploadProgressState?,
+  canBackupMessagesRun: Boolean,
   lastBackupTimestamp: Long,
   backupMediaSize: Long,
   backupsFrequency: BackupFrequency,
   canBackUpUsingCellular: Boolean,
   canRestoreUsingCellular: Boolean,
+  canBackUpNow: Boolean,
+  includeDebuglog: Boolean?,
+  backupMediaDetails: RemoteBackupsSettingsState.BackupMediaDetails?,
   contentCallbacks: ContentCallbacks
 ) {
   item {
@@ -817,6 +849,16 @@ private fun LazyListScope.appendBackupDetailsItems(
 
   item {
     Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
+  }
+
+  if (backupMediaDetails != null) {
+    item {
+      Column(modifier = Modifier.horizontalGutters()) {
+        Text("[Internal Only] Backup Media Details")
+        Text("Awaiting Restore: ${backupMediaDetails.awaitingRestore.toUnitString()}")
+        Text("Offloaded: ${backupMediaDetails.offloaded.toUnitString()}")
+      }
+    }
   }
 
   if (backupRestoreState !is BackupRestoreState.None) {
@@ -837,10 +879,17 @@ private fun LazyListScope.appendBackupDetailsItems(
     }
   }
 
+  if (includeDebuglog != null) {
+    item {
+      IncludeDebuglogRow(includeDebuglog) { contentCallbacks.onIncludeDebuglogClick(it) }
+    }
+  }
+
   if (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None || backupProgress.state == ArchiveUploadProgressState.State.UserCanceled) {
     item {
       LastBackupRow(
         lastBackupTimestamp = lastBackupTimestamp,
+        enabled = canBackUpNow,
         onBackupNowClick = contentCallbacks::onBackupNowClick
       )
     }
@@ -848,13 +897,21 @@ private fun LazyListScope.appendBackupDetailsItems(
     item {
       InProgressBackupRow(
         archiveUploadProgressState = backupProgress,
+        canBackupMessagesRun = canBackupMessagesRun,
+        canBackupUsingCellular = canBackUpUsingCellular,
         cancelArchiveUpload = contentCallbacks::onCancelUploadClick
       )
     }
   }
 
-  if (backupState !is RemoteBackupsSettingsState.BackupState.ActiveFree) {
+  if (backupState !is BackupState.ActiveFree) {
     item {
+      val sizeText = if (backupMediaSize < 0L) {
+        stringResource(R.string.RemoteBackupsSettingsFragment__loading)
+      } else {
+        backupMediaSize.bytes.toUnitString()
+      }
+
       Rows.TextRow(text = {
         Column {
           Text(
@@ -923,7 +980,7 @@ private fun LazyListScope.appendBackupDetailsItems(
 
 @Composable
 private fun BackupCard(
-  backupState: RemoteBackupsSettingsState.BackupState.WithTypeAndRenewalTime,
+  backupState: BackupState.WithTypeAndRenewalTime,
   buttonsEnabled: Boolean,
   onBackupTypeActionButtonClicked: (MessageBackupTier) -> Unit = {}
 ) {
@@ -950,21 +1007,21 @@ private fun BackupCard(
         )
 
         when (backupState) {
-          is RemoteBackupsSettingsState.BackupState.ActivePaid -> {
+          is BackupState.ActivePaid -> {
             Text(
               text = stringResource(R.string.RemoteBackupsSettingsFragment__s_per_month, FiatMoneyUtil.format(LocalContext.current.resources, backupState.price)),
               modifier = Modifier.padding(top = 12.dp)
             )
           }
 
-          is RemoteBackupsSettingsState.BackupState.ActiveFree -> {
+          is BackupState.ActiveFree -> {
             Text(
               text = stringResource(R.string.RemoteBackupsSettingsFragment__your_backup_plan_is_free),
               modifier = Modifier.padding(top = 12.dp)
             )
           }
 
-          is RemoteBackupsSettingsState.BackupState.Inactive -> {
+          is BackupState.Inactive -> {
             val text = when (messageBackupsType) {
               is MessageBackupsType.Paid -> stringResource(R.string.RemoteBackupsSettingsFragment__subscription_inactive)
               is MessageBackupsType.Free -> stringResource(R.string.RemoteBackupsSettingsFragment__you_turned_off_backups)
@@ -978,7 +1035,7 @@ private fun BackupCard(
             )
           }
 
-          is RemoteBackupsSettingsState.BackupState.Canceled -> {
+          is BackupState.Canceled -> {
             Text(
               text = stringResource(R.string.RemoteBackupsSettingsFragment__subscription_cancelled),
               color = MaterialTheme.colorScheme.error,
@@ -992,9 +1049,9 @@ private fun BackupCard(
 
         if (messageBackupsType is MessageBackupsType.Paid) {
           val resource = when (backupState) {
-            is RemoteBackupsSettingsState.BackupState.ActivePaid -> R.string.RemoteBackupsSettingsFragment__renews_s
-            is RemoteBackupsSettingsState.BackupState.Inactive -> R.string.RemoteBackupsSettingsFragment__expired_on_s
-            is RemoteBackupsSettingsState.BackupState.Canceled -> R.string.RemoteBackupsSettingsFragment__expires_on_s
+            is BackupState.ActivePaid -> R.string.RemoteBackupsSettingsFragment__renews_s
+            is BackupState.Inactive -> R.string.RemoteBackupsSettingsFragment__expired_on_s
+            is BackupState.Canceled -> R.string.RemoteBackupsSettingsFragment__expires_on_s
             else -> error("Not supported here.")
           }
 
@@ -1026,7 +1083,7 @@ private fun BackupCard(
         enabled = buttonsEnabled,
         onClick = { onBackupTypeActionButtonClicked(messageBackupsType.tier) }
       )
-    } else if (backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
+    } else if (backupState is BackupState.Canceled) {
       CallToActionButton(
         text = stringResource(R.string.RemoteBackupsSettingsFragment__resubscribe),
         enabled = buttonsEnabled,
@@ -1288,7 +1345,7 @@ private fun SubscriptionNotFoundCard(
 
 @Composable
 private fun SubscriptionMismatchMissingGooglePlayCard(
-  state: RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay,
+  state: BackupState.SubscriptionMismatchMissingGooglePlay,
   isRenewEnabled: Boolean,
   onRenewClick: () -> Unit = {},
   onLearnMoreClick: () -> Unit = {}
@@ -1306,6 +1363,8 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
 @Composable
 private fun InProgressBackupRow(
   archiveUploadProgressState: ArchiveUploadProgressState,
+  canBackupMessagesRun: Boolean = true,
+  canBackupUsingCellular: Boolean = true,
   cancelArchiveUpload: () -> Unit = {}
 ) {
   Row(
@@ -1341,7 +1400,7 @@ private fun InProgressBackupRow(
       }
 
       Text(
-        text = getProgressStateMessage(archiveUploadProgressState),
+        text = getProgressStateMessage(archiveUploadProgressState, canBackupMessagesRun, canBackupUsingCellular),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )
@@ -1379,18 +1438,26 @@ private fun ArchiveProgressIndicator(
 }
 
 @Composable
-private fun getProgressStateMessage(archiveUploadProgressState: ArchiveUploadProgressState): String {
+private fun getProgressStateMessage(archiveUploadProgressState: ArchiveUploadProgressState, canBackupMessagesRun: Boolean, canBackupUsingCellular: Boolean): String {
   return when (archiveUploadProgressState.state) {
     ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled -> stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
-    ArchiveUploadProgressState.State.Export -> getBackupExportPhaseProgressString(archiveUploadProgressState)
+    ArchiveUploadProgressState.State.Export -> getBackupExportPhaseProgressString(archiveUploadProgressState, canBackupMessagesRun, canBackupUsingCellular)
     ArchiveUploadProgressState.State.UploadBackupFile, ArchiveUploadProgressState.State.UploadMedia -> getBackupUploadPhaseProgressString(archiveUploadProgressState)
   }
 }
 
 @Composable
-private fun getBackupExportPhaseProgressString(state: ArchiveUploadProgressState): String {
+private fun getBackupExportPhaseProgressString(state: ArchiveUploadProgressState, canBackupMessagesRun: Boolean, canBackupUsingCellular: Boolean): String {
   return when (state.backupPhase) {
-    ArchiveUploadProgressState.BackupPhase.BackupPhaseNone -> stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
+    ArchiveUploadProgressState.BackupPhase.BackupPhaseNone -> {
+      if (canBackupMessagesRun) {
+        stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
+      } else if (canBackupUsingCellular) {
+        stringResource(R.string.RemoteBackupsSettingsFragment__Waiting_for_internet_connection)
+      } else {
+        stringResource(R.string.RemoteBackupsSettingsFragment__Waiting_for_Wifi)
+      }
+    }
     ArchiveUploadProgressState.BackupPhase.Message -> {
       pluralStringResource(
         R.plurals.RemoteBackupsSettingsFragment__processing_messages_progress_text,
@@ -1415,8 +1482,22 @@ private fun getBackupUploadPhaseProgressString(state: ArchiveUploadProgressState
 }
 
 @Composable
+private fun IncludeDebuglogRow(
+  enabled: Boolean,
+  onToggle: (Boolean) -> Unit
+) {
+  Rows.ToggleRow(
+    checked = enabled,
+    text = "[INTERNAL ONLY] Include debuglog?",
+    label = "If enabled, we will capture a debuglog and include it in the backup file.",
+    onCheckChanged = onToggle
+  )
+}
+
+@Composable
 private fun LastBackupRow(
   lastBackupTimestamp: Long,
+  enabled: Boolean,
   onBackupNowClick: () -> Unit
 ) {
   Row(
@@ -1458,7 +1539,7 @@ private fun LastBackupRow(
       }
     }
 
-    Buttons.MediumTonal(onClick = onBackupNowClick) {
+    Buttons.MediumTonal(onClick = onBackupNowClick, enabled = enabled) {
       Text(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__back_up_now))
     }
   }
@@ -1479,12 +1560,18 @@ private fun FailedToTurnOffBackupDialog(
 
 @Composable
 private fun TurnOffAndDeleteBackupsDialog(
+  tier: MessageBackupTier,
   onConfirm: () -> Unit,
   onDismiss: () -> Unit
 ) {
+  val body = when (tier) {
+    MessageBackupTier.FREE -> R.string.RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created
+    MessageBackupTier.PAID -> R.string.RemoteBackupsSettingsFragment__your_subscription_will_be_canceled
+  }
+
   Dialogs.SimpleAlertDialog(
     title = stringResource(id = R.string.RemoteBackupsSettingsFragment__turn_off_and_delete_backups),
-    body = stringResource(id = R.string.RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created),
+    body = stringResource(id = body),
     confirm = stringResource(id = R.string.RemoteBackupsSettingsFragment__turn_off_and_delete),
     dismiss = stringResource(id = android.R.string.cancel),
     confirmColor = MaterialTheme.colorScheme.error,
@@ -1574,35 +1661,6 @@ private fun ResumeRestoreOverCellularDialog(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun CircularProgressDialog(
-  onDismiss: () -> Unit
-) {
-  BasicAlertDialog(
-    onDismissRequest = onDismiss,
-    properties = DialogProperties(
-      dismissOnBackPress = false,
-      dismissOnClickOutside = false
-    )
-  ) {
-    Surface(
-      shape = Dialogs.Defaults.shape,
-      color = Dialogs.Defaults.containerColor
-    ) {
-      Box(
-        contentAlignment = Alignment.Center,
-        modifier = Modifier.aspectRatio(1f)
-      ) {
-        CircularProgressIndicator(
-          modifier = Modifier
-            .size(48.dp)
-        )
-      }
-    }
-  }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
 private fun BackupFrequencyDialog(
   selected: BackupFrequency,
   onSelected: (BackupFrequency) -> Unit,
@@ -1662,10 +1720,10 @@ private fun BackupFrequencyDialog(
 @Composable
 private fun BackupReadyToDownloadRow(
   ready: BackupRestoreState.Ready,
-  backupState: RemoteBackupsSettingsState.BackupState,
+  backupState: BackupState,
   onDownloadClick: () -> Unit = {}
 ) {
-  val string = if (backupState is RemoteBackupsSettingsState.BackupState.Canceled) {
+  val string = if (backupState is BackupState.Canceled) {
     stringResource(R.string.RemoteBackupsSettingsFragment__you_have_s_of_backup_data, ready.bytes)
   } else {
     stringResource(R.string.RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device, ready.bytes)
@@ -1719,11 +1777,41 @@ private fun RemoteBackupsSettingsContentPreview() {
         dialog = RemoteBackupsSettingsState.Dialog.NONE,
         snackbar = RemoteBackupsSettingsState.Snackbar.NONE,
         backupMediaSize = 2300000,
-        backupState = RemoteBackupsSettingsState.BackupState.ActiveFree(
+        backupState = BackupState.ActiveFree(
           messageBackupsType = MessageBackupsType.Free(mediaRetentionDays = 30)
         ),
         hasRedemptionError = true,
         isOutOfStorageSpace = true
+      ),
+      statusBarColorNestedScrollConnection = null,
+      backupDeleteState = DeletionState.NONE,
+      backupRestoreState = BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup),
+      contentCallbacks = ContentCallbacks.Empty,
+      backupProgress = null
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun RemoteBackupsSettingsInternalUserContentPreview() {
+  Previews.Preview {
+    RemoteBackupsSettingsContent(
+      state = RemoteBackupsSettingsState(
+        backupsEnabled = true,
+        lastBackupTimestamp = -1,
+        canBackUpUsingCellular = false,
+        canRestoreUsingCellular = false,
+        backupsFrequency = BackupFrequency.MANUAL,
+        dialog = RemoteBackupsSettingsState.Dialog.NONE,
+        snackbar = RemoteBackupsSettingsState.Snackbar.NONE,
+        backupMediaSize = 2300000,
+        backupState = BackupState.ActiveFree(
+          messageBackupsType = MessageBackupsType.Free(mediaRetentionDays = 30)
+        ),
+        hasRedemptionError = false,
+        isOutOfStorageSpace = false,
+        includeDebuglog = true
       ),
       statusBarColorNestedScrollConnection = null,
       backupDeleteState = DeletionState.NONE,
@@ -1784,7 +1872,7 @@ private fun SubscriptionNotFoundCardPreview() {
 private fun SubscriptionMismatchMissingGooglePlayCardPreview() {
   Previews.Preview {
     SubscriptionMismatchMissingGooglePlayCard(
-      state = RemoteBackupsSettingsState.BackupState.SubscriptionMismatchMissingGooglePlay(
+      state = BackupState.SubscriptionMismatchMissingGooglePlay(
         messageBackupsType = MessageBackupsType.Paid(
           pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
           storageAllowanceBytes = 100_000_000,
@@ -1803,7 +1891,7 @@ private fun BackupCardPreview() {
   Previews.Preview {
     Column {
       BackupCard(
-        backupState = RemoteBackupsSettingsState.BackupState.ActivePaid(
+        backupState = BackupState.ActivePaid(
           messageBackupsType = MessageBackupsType.Paid(
             pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
             storageAllowanceBytes = 100_000_000,
@@ -1816,7 +1904,7 @@ private fun BackupCardPreview() {
       )
 
       BackupCard(
-        backupState = RemoteBackupsSettingsState.BackupState.Canceled(
+        backupState = BackupState.Canceled(
           messageBackupsType = MessageBackupsType.Paid(
             pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
             storageAllowanceBytes = 100_000_000,
@@ -1828,7 +1916,7 @@ private fun BackupCardPreview() {
       )
 
       BackupCard(
-        backupState = RemoteBackupsSettingsState.BackupState.Inactive(
+        backupState = BackupState.Inactive(
           messageBackupsType = MessageBackupsType.Paid(
             pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
             storageAllowanceBytes = 100_000_000,
@@ -1840,7 +1928,7 @@ private fun BackupCardPreview() {
       )
 
       BackupCard(
-        backupState = RemoteBackupsSettingsState.BackupState.ActivePaid(
+        backupState = BackupState.ActivePaid(
           messageBackupsType = MessageBackupsType.Paid(
             pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
             storageAllowanceBytes = 100_000_000,
@@ -1853,7 +1941,7 @@ private fun BackupCardPreview() {
       )
 
       BackupCard(
-        backupState = RemoteBackupsSettingsState.BackupState.ActiveFree(
+        backupState = BackupState.ActiveFree(
           messageBackupsType = MessageBackupsType.Free(
             mediaRetentionDays = 30
           )
@@ -1870,7 +1958,7 @@ private fun BackupReadyToDownloadPreview() {
   Previews.Preview {
     BackupReadyToDownloadRow(
       ready = BackupRestoreState.Ready("12GB"),
-      backupState = RemoteBackupsSettingsState.BackupState.None
+      backupState = BackupState.None
     )
   }
 }
@@ -1881,7 +1969,7 @@ private fun BackupReadyToDownloadAfterCancelPreview() {
   Previews.Preview {
     BackupReadyToDownloadRow(
       ready = BackupRestoreState.Ready("12GB"),
-      backupState = RemoteBackupsSettingsState.BackupState.Canceled(
+      backupState = BackupState.Canceled(
         messageBackupsType = MessageBackupsType.Paid(
           pricePerMonth = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")),
           storageAllowanceBytes = 10.gibiBytes.bytes,
@@ -1899,6 +1987,7 @@ private fun LastBackupRowPreview() {
   Previews.Preview {
     LastBackupRow(
       lastBackupTimestamp = -1,
+      enabled = true,
       onBackupNowClick = {}
     )
   }
@@ -1985,6 +2074,7 @@ private fun FailedToTurnOffBackupDialogPreview() {
 private fun TurnOffAndDeleteBackupsDialogPreview() {
   Previews.Preview {
     TurnOffAndDeleteBackupsDialog(
+      tier = MessageBackupTier.PAID,
       onConfirm = {},
       onDismiss = {}
     )
@@ -2015,16 +2105,6 @@ private fun SkipDownloadDialogPreview() {
   Previews.Preview {
     SkipDownloadDialog(
       renewalTime = System.currentTimeMillis().milliseconds + 30.days
-    )
-  }
-}
-
-@SignalPreview
-@Composable
-private fun CircularProgressDialogPreview() {
-  Previews.Preview {
-    CircularProgressDialog(
-      onDismiss = {}
     )
   }
 }

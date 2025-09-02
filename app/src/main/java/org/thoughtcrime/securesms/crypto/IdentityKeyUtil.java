@@ -19,7 +19,6 @@ package org.thoughtcrime.securesms.crypto;
 
 import org.signal.libsignal.protocol.IdentityKey;
 import org.signal.libsignal.protocol.IdentityKeyPair;
-import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECKeyPair;
 import org.signal.libsignal.protocol.ecc.ECPrivateKey;
 
@@ -32,7 +31,7 @@ import org.signal.libsignal.protocol.ecc.ECPrivateKey;
 public class IdentityKeyUtil {
 
   public static IdentityKeyPair generateIdentityKeyPair() {
-    ECKeyPair    djbKeyPair     = Curve.generateKeyPair();
+    ECKeyPair    djbKeyPair     = ECKeyPair.generate();
     IdentityKey  djbIdentityKey = new IdentityKey(djbKeyPair.getPublicKey());
     ECPrivateKey djbPrivateKey  = djbKeyPair.getPrivateKey();
 

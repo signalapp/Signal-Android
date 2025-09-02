@@ -95,7 +95,7 @@ class StoryPostFragment : Fragment(R.layout.stories_post_fragment) {
       }
 
       override fun onStopped() {}
-      override fun onError() {
+      override fun onError(e: Exception) {
         requireCallback().onContentNotAvailable()
       }
     })

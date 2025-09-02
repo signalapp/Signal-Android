@@ -24,9 +24,7 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.painter.ColorPainter
-import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -34,14 +32,17 @@ import org.signal.core.ui.compose.theme.SignalTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 object Scaffolds {
+
   /**
+   * Settings scaffold that takes an icon as an ImageVector.
+   *
    * @param titleContent The title area content. First parameter is the contentOffset.
    */
   @Composable
   fun Settings(
     title: String,
     onNavigationClick: () -> Unit,
-    navigationIconPainter: Painter,
+    navigationIcon: ImageVector,
     modifier: Modifier = Modifier,
     navigationContentDescription: String? = null,
     titleContent: @Composable (Float, String) -> Unit = { _, title ->
@@ -60,7 +61,7 @@ object Scaffolds {
           title = title,
           titleContent = titleContent,
           onNavigationClick = onNavigationClick,
-          navigationIconPainter = navigationIconPainter,
+          navigationIcon = navigationIcon,
           navigationContentDescription = navigationContentDescription,
           actions = actions,
           scrollBehavior = scrollBehavior
@@ -71,12 +72,15 @@ object Scaffolds {
     )
   }
 
+  /**
+   * Top app bar that takes an ImageVector
+   */
   @Composable
   fun DefaultTopAppBar(
     title: String,
     titleContent: @Composable (Float, String) -> Unit,
     onNavigationClick: () -> Unit,
-    navigationIconPainter: Painter,
+    navigationIcon: ImageVector,
     navigationContentDescription: String? = null,
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -91,7 +95,7 @@ object Scaffolds {
           Modifier.padding(end = 16.dp)
         ) {
           Icon(
-            painter = navigationIconPainter,
+            imageVector = navigationIcon,
             contentDescription = navigationContentDescription
           )
         }
@@ -112,7 +116,7 @@ private fun SettingsScaffoldPreview() {
     Scaffolds.Settings(
       "Settings Scaffold",
       onNavigationClick = {},
-      navigationIconPainter = ColorPainter(Color.Black),
+      navigationIcon = Icons.Filled.Settings,
       actions = {
         IconButton(onClick = {}) {
           Icon(Icons.Default.Settings, contentDescription = null)

@@ -21,7 +21,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
@@ -109,7 +110,7 @@ private fun Content(
 ) {
   Scaffolds.Settings(
     title = "One-time donation state",
-    navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
+    navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24),
     navigationContentDescription = null,
     onNavigationClick = onNavigationClick
   ) {

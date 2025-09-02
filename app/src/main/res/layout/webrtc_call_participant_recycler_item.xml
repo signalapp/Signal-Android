@@ -16,7 +16,7 @@
     <include
         android:id="@+id/call_participant"
         layout="@layout/call_participant_item"
-        android:layout_width="72dp"
-        android:layout_height="72dp" />
+        android:layout_width="@dimen/call_screen_overflow_item_size"
+        android:layout_height="@dimen/call_screen_overflow_item_size" />
 
 </com.google.android.material.card.MaterialCardView>

@@ -11,6 +11,7 @@ import org.signal.core.util.gibiBytes
 import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
+import org.signal.libsignal.protocol.UsePqRatchet
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
@@ -1022,14 +1023,26 @@ object RemoteConfig {
     value.asLong(8.kibiBytes.inWholeBytes).bytes
   }
 
-  /** Whether unauthenticated chat web socket is backed by libsignal-net  */
+  /** Whether the chat web socket is backed by libsignal for direct connections  */
   @JvmStatic
   @get:JvmName("libSignalWebSocketEnabled")
   val libSignalWebSocketEnabled: Boolean by remoteValue(
-    key = "android.libsignalWebSocketEnabled.5",
+    key = "android.libsignalWebSocketEnabled.8",
     hotSwappable = false
   ) { value ->
-    value.asBoolean(false)
+    value.asBoolean(false) || Environment.IS_NIGHTLY
+  }
+
+  /** Whether the chat web socket is backed by libsignal for all connections, including proxied connections.
+   *  Note, this does *not* gate HTTP proxies, which are treated as direct connections.
+   *  This only has an effect if libSignalWebSocketEnabled is also enabled. */
+  @JvmStatic
+  @get:JvmName("libSignalWebSocketEnabledForProxies")
+  val libSignalWebSocketEnabledForProxies: Boolean by remoteValue(
+    key = "android.libSignalWebSocketEnabledForProxies.8",
+    hotSwappable = false
+  ) { value ->
+    value.asBoolean(false) || Environment.IS_NIGHTLY
   }
 
   @JvmStatic
@@ -1048,7 +1061,7 @@ object RemoteConfig {
     hotSwappable = false,
     active = false
   ) { value ->
-    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
+    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || BuildConfig.LINK_DEVICE_UX_ENABLED || value.asBoolean(false)
   }
 
   @JvmStatic
@@ -1153,6 +1166,16 @@ object RemoteConfig {
     hotSwappable = true,
     durationUnit = DurationUnit.DAYS
   )
+
+  /** Whether or not to use the new post-quantum ratcheting. */
+  @JvmStatic
+  @get:JvmName("usePqRatchet")
+  val usePqRatchet: UsePqRatchet by remoteValue(
+    key = "android.usePqRatchet",
+    hotSwappable = false
+  ) { value ->
+    if (value.asBoolean(false)) UsePqRatchet.YES else UsePqRatchet.NO
+  }
 
   // endregion
 }

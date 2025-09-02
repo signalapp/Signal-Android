@@ -25,9 +25,10 @@ import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.dimensionResource
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextRange
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
@@ -77,7 +78,7 @@ class EditCallLinkNameDialogFragment : ComposeDialogFragment() {
     Scaffolds.Settings(
       title = stringResource(id = R.string.EditCallLinkNameDialogFragment__edit_call_name),
       onNavigationClick = this::dismiss,
-      navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
+      navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { paddingValues ->
       val focusRequester = remember { FocusRequester() }

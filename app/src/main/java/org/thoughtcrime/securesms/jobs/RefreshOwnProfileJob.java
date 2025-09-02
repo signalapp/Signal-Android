@@ -221,12 +221,6 @@ public class RefreshOwnProfileJob extends BaseJob {
     Recipient selfSnapshot = Recipient.self();
 
     SignalDatabase.recipients().setCapabilities(Recipient.self().getId(), capabilities);
-
-    if (selfSnapshot.getStorageServiceEncryptionV2Capability() == Recipient.Capability.NOT_SUPPORTED && capabilities.isStorageServiceEncryptionV2()) {
-      Log.i(TAG, "Transitioned to storageServiceEncryptionV2 capable. Notifying other devices and pushing to storage service with a recordIkm.");
-      AppDependencies.getJobManager().add(new MultiDeviceProfileContentUpdateJob());
-      AppDependencies.getJobManager().add(new StorageForcePushJob());
-    }
   }
 
   private void ensureUnidentifiedAccessCorrect(@Nullable String unidentifiedAccessVerifier, boolean universalUnidentifiedAccess) {

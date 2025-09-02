@@ -44,24 +44,28 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.InAppPaymentPurchaseTokenJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
+import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.util.next
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import kotlin.time.Duration.Companion.seconds
 
 class MessageBackupsFlowViewModel(
-  initialTierSelection: MessageBackupTier?,
+  private val initialTierSelection: MessageBackupTier?,
   startScreen: MessageBackupsStage = if (SignalStore.backup.backupTier == null) MessageBackupsStage.EDUCATION else MessageBackupsStage.TYPE_SELECTION
 ) : ViewModel(), BackupKeyCredentialManagerHandler {
 
   companion object {
     private val TAG = Log.tag(MessageBackupsFlowViewModel::class)
+    private val DEFAULT_BACKUP_TIER: MessageBackupTier = MessageBackupTier.FREE
   }
 
   private val internalStateFlow = MutableStateFlow(
     MessageBackupsFlowState(
       availableBackupTypes = emptyList(),
-      selectedMessageBackupTier = initialTierSelection ?: SignalStore.backup.backupTier,
+      currentMessageBackupTier = SignalStore.backup.backupTier,
+      selectedMessageBackupTier = resolveSelectedTier(initialTierSelection, SignalStore.backup.backupTier),
       startScreen = startScreen
     )
   )
@@ -87,7 +91,7 @@ class MessageBackupsFlowViewModel(
     }
 
     viewModelScope.launch {
-      val availableBackupTypes = try {
+      val availableBackupTypes: List<MessageBackupsType> = try {
         withContext(SignalDispatchers.IO) {
           BackupRepository.getAvailableBackupsTypes(
             if (!RemoteConfig.messageBackups) emptyList() else listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)
@@ -98,8 +102,11 @@ class MessageBackupsFlowViewModel(
         emptyList()
       }
 
-      internalStateFlow.update {
-        it.copy(availableBackupTypes = availableBackupTypes)
+      internalStateFlow.update { state ->
+        state.copy(
+          availableBackupTypes = availableBackupTypes,
+          selectedMessageBackupTier = if (state.selectedMessageBackupTier in availableBackupTypes.map { it.tier }) state.selectedMessageBackupTier else availableBackupTypes.firstOrNull()?.tier
+        )
       }
     }
 
@@ -109,18 +116,6 @@ class MessageBackupsFlowViewModel(
           is BillingPurchaseResult.Success -> {
             Log.d(TAG, "Got successful purchase result for purchase at ${result.purchaseTime}")
             val id = internalStateFlow.value.inAppPayment!!.id
-
-            if (result.isAcknowledged) {
-              Log.w(TAG, "Payment is already acknowledged. Ignoring.")
-
-              internalStateFlow.update {
-                it.copy(
-                  stage = MessageBackupsStage.COMPLETED
-                )
-              }
-
-              return@collect
-            }
 
             try {
               Log.d(TAG, "Attempting to handle successful purchase.")
@@ -171,22 +166,52 @@ class MessageBackupsFlowViewModel(
           RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
         }
 
-        activeSubscription.onSuccess {
-          if (it.isCanceled) {
+        activeSubscription.onSuccess { subscription ->
+          if (subscription.willCancelAtPeriodEnd()) {
             Log.d(TAG, "Active subscription is cancelled. Clearing tier.")
-            internalStateFlow.update { it.copy(currentMessageBackupTier = null) }
-          } else if (it.isActive) {
+            internalStateFlow.update {
+              it.copy(
+                currentMessageBackupTier = null,
+                selectedMessageBackupTier = resolveSelectedTier(initialTierSelection, null)
+              )
+            }
+          } else if (subscription.isActive) {
             Log.d(TAG, "Active subscription is active. Setting tier.")
-            internalStateFlow.update { it.copy(currentMessageBackupTier = SignalStore.backup.backupTier) }
+            internalStateFlow.update {
+              it.copy(
+                currentMessageBackupTier = SignalStore.backup.backupTier,
+                selectedMessageBackupTier = resolveSelectedTier(initialTierSelection, SignalStore.backup.backupTier)
+              )
+            }
           } else {
             Log.w(TAG, "Subscription is inactive. Clearing tier.")
-            internalStateFlow.update { it.copy(currentMessageBackupTier = null) }
+            internalStateFlow.update {
+              it.copy(
+                currentMessageBackupTier = null,
+                selectedMessageBackupTier = resolveSelectedTier(initialTierSelection, null)
+              )
+            }
           }
         }
       }
     } else {
       Log.d(TAG, "User is on tier: $tier")
-      internalStateFlow.update { it.copy(currentMessageBackupTier = tier) }
+      internalStateFlow.update {
+        it.copy(
+          currentMessageBackupTier = tier,
+          selectedMessageBackupTier = resolveSelectedTier(initialTierSelection, SignalStore.backup.backupTier)
+        )
+      }
+    }
+  }
+
+  private fun resolveSelectedTier(desiredTier: MessageBackupTier?, currentTier: MessageBackupTier?): MessageBackupTier {
+    return when {
+      desiredTier == null && currentTier == null -> DEFAULT_BACKUP_TIER
+      desiredTier == null && currentTier != null -> currentTier.next()
+      desiredTier != null && currentTier == null -> desiredTier
+      desiredTier != null && currentTier == desiredTier -> currentTier.next()
+      else -> desiredTier ?: DEFAULT_BACKUP_TIER
     }
   }
 
@@ -248,6 +273,10 @@ class MessageBackupsFlowViewModel(
   private fun validateTypeAndUpdateState(state: MessageBackupsFlowState): MessageBackupsFlowState {
     return when (state.selectedMessageBackupTier!!) {
       MessageBackupTier.FREE -> {
+        viewModelScope.launch(SignalDispatchers.IO) {
+          SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
+          StorageSyncHelper.scheduleSyncForDataChange()
+        }
         SignalStore.backup.backupTier = MessageBackupTier.FREE
         SignalStore.uiHints.markHasEverEnabledRemoteBackups()
 

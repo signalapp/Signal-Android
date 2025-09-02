@@ -9,6 +9,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobmanager.Job;
 import org.thoughtcrime.securesms.jobmanager.JobManager;
 import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob;
+import org.thoughtcrime.securesms.jobs.MultiDeviceStorageSyncRequestJob;
 import org.thoughtcrime.securesms.jobs.StorageSyncJob;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -52,10 +53,10 @@ public class StorageServiceMigrationJob extends MigrationJob {
 
     JobManager jobManager = AppDependencies.getJobManager();
 
-    if (SignalStore.account().hasLinkedDevices()) {
+    if (SignalStore.account().isMultiDevice()) {
       Log.i(TAG, "Multi-device.");
       jobManager.startChain(StorageSyncJob.forLocalChange())
-                .then(new MultiDeviceKeysUpdateJob())
+                .then(new MultiDeviceStorageSyncRequestJob())
                 .enqueue();
     } else {
       Log.i(TAG, "Single-device.");

@@ -58,7 +58,12 @@ class NotificationController internal constructor(private val context: Context, 
       } else {
         Log.w(TAG, "[close] Service was not bound at the time of close()...")
       }
-      stopForegroundTask(context, id)
+
+      if (service.get()?.hasTimedOut == true) {
+        Log.w(TAG, "[close] Service has timed out, skipping stop foreground task.")
+      } else {
+        stopForegroundTask(context, id)
+      }
     } catch (e: IllegalStateException) {
       Log.w(TAG, "[close] Failed to unbind service...", e)
     } catch (e: UnableToStartException) {

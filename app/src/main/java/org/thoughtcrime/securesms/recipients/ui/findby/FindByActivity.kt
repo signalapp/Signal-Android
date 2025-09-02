@@ -42,10 +42,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.VisualTransformation
@@ -132,17 +134,15 @@ class FindByActivity : PassphraseRequiredActivity() {
             Scaffolds.Settings(
               title = stringResource(id = title),
               onNavigationClick = { finishAfterTransition() },
-              navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24)
+              navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24)
             ) {
-              val context = LocalContext.current
-
               Content(
                 paddingValues = it,
                 state = state,
                 onUserEntryChanged = viewModel::onUserEntryChanged,
                 onNextClick = {
                   lifecycleScope.launch {
-                    when (val result = viewModel.onNextClicked(context)) {
+                    when (val result = viewModel.onNextClicked()) {
                       is FindByResult.Success -> {
                         setResult(RESULT_OK, Intent().putExtra(RECIPIENT_ID, result.recipientId))
                         finishAfterTransition()
@@ -191,10 +191,6 @@ class FindByActivity : PassphraseRequiredActivity() {
             val body = if (state.mode == FindByMode.USERNAME) {
               stringResource(id = R.string.FindByActivity__s_is_not_a_valid_username, state.userEntry)
             } else {
-              val formattedNumber = remember(state.userEntry) {
-                val cleansed = state.userEntry.removePrefix(state.selectedCountry.countryCode.toString())
-                E164Util.formatAsE164WithCountryCodeForDisplay(state.selectedCountry.countryCode.toString(), cleansed)
-              }
               stringResource(id = R.string.FindByActivity__s_is_not_a_valid_phone_number, state.userEntry)
             }
 

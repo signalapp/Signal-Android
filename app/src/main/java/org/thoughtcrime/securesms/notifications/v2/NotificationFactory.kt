@@ -160,9 +160,11 @@ object NotificationFactory {
     val threadsThatNewlyAlerted: MutableSet<ConversationId> = mutableSetOf()
 
     state.conversations.forEach { conversation ->
-      if (conversation.thread == visibleThread && conversation.hasNewNotifications()) {
-        Log.internal().i(TAG, "Thread is visible, notifying in thread. notificationId: ${conversation.notificationId}")
-        notifyInThread(context, conversation.recipient, lastAudibleNotification)
+      if (conversation.thread == visibleThread) {
+        if (conversation.hasNewNotifications()) {
+          Log.internal().i(TAG, "Thread is visible, notifying in thread. notificationId: ${conversation.notificationId}")
+          notifyInThread(context, conversation.recipient, lastAudibleNotification)
+        }
       } else if (notificationConfigurationChanged || conversation.hasNewNotifications() || alertOverrides.contains(conversation.thread) || !conversation.hasSameContent(previousState.getConversation(conversation.thread))) {
         if (conversation.hasNewNotifications()) {
           threadsThatNewlyAlerted += conversation.thread
@@ -311,7 +313,8 @@ object NotificationFactory {
     if (!NotificationChannels.getInstance().areNotificationsEnabled() ||
       !SignalStore.settings.isMessageNotificationsInChatSoundsEnabled ||
       ServiceUtil.getAudioManager(context).ringerMode != AudioManager.RINGER_MODE_NORMAL ||
-      (System.currentTimeMillis() - lastAudibleNotification) < DefaultMessageNotifier.MIN_AUDIBLE_PERIOD_MILLIS
+      (System.currentTimeMillis() - lastAudibleNotification) < DefaultMessageNotifier.MIN_AUDIBLE_PERIOD_MILLIS ||
+      InChatNotificationSoundSuppressor.isSuppressed
     ) {
       return
     }

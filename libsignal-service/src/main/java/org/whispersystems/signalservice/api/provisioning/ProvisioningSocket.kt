@@ -30,6 +30,7 @@ import org.whispersystems.signalservice.api.buildOkHttpClient
 import org.whispersystems.signalservice.api.chooseUrl
 import org.whispersystems.signalservice.internal.configuration.SignalServiceConfiguration
 import org.whispersystems.signalservice.internal.crypto.SecondaryProvisioningCipher
+import org.whispersystems.signalservice.internal.push.ProvisionEnvelope
 import org.whispersystems.signalservice.internal.push.ProvisioningAddress
 import org.whispersystems.signalservice.internal.websocket.WebSocketMessage
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
@@ -43,7 +44,8 @@ import kotlin.time.Duration.Companion.seconds
 /**
  * A provisional web socket for communicating with a primary device during registration.
  */
-class ProvisioningSocket private constructor(
+class ProvisioningSocket<T> private constructor(
+  private val mode: Mode,
   val id: Int,
   identityKeyPair: IdentityKeyPair,
   configuration: SignalServiceConfiguration,
@@ -56,19 +58,20 @@ class ProvisioningSocket private constructor(
 
     val LIFESPAN = 90.seconds
 
-    fun start(
+    fun <T> start(
+      mode: Mode,
       identityKeyPair: IdentityKeyPair,
       configuration: SignalServiceConfiguration,
       handler: ProvisioningSocketExceptionHandler,
-      block: suspend CoroutineScope.(ProvisioningSocket) -> Unit
+      block: suspend CoroutineScope.(ProvisioningSocket<T>) -> Unit
     ): Closeable {
       val socketId = nextSocketId++
       val scope = CoroutineScope(Dispatchers.IO) + SupervisorJob() + CoroutineExceptionHandler { _, t -> handler.handleException(socketId, t) }
 
       scope.launch {
-        var socket: ProvisioningSocket? = null
+        var socket: ProvisioningSocket<T>? = null
         try {
-          socket = ProvisioningSocket(socketId, identityKeyPair, configuration, scope)
+          socket = ProvisioningSocket(mode, socketId, identityKeyPair, configuration, scope)
           socket.connect()
           block(socket)
         } catch (e: CancellationException) {
@@ -115,13 +118,13 @@ class ProvisioningSocket private constructor(
   private var webSocket: WebSocket? = null
 
   private val provisioningUrlDeferral: CompletableDeferred<String> = CompletableDeferred()
-  private val provisioningMessageDeferral: CompletableDeferred<SecondaryProvisioningCipher.RegistrationProvisionResult> = CompletableDeferred()
+  private val provisioningMessageDeferral: CompletableDeferred<SecondaryProvisioningCipher.ProvisioningDecryptResult<T>> = CompletableDeferred()
 
   suspend fun getProvisioningUrl(): String {
     return provisioningUrlDeferral.await()
   }
 
-  suspend fun getRegistrationProvisioningMessage(): SecondaryProvisioningCipher.RegistrationProvisionResult {
+  suspend fun getProvisioningMessageDecryptResult(): SecondaryProvisioningCipher.ProvisioningDecryptResult<T> {
     return provisioningMessageDeferral.await()
   }
 
@@ -172,6 +175,7 @@ class ProvisioningSocket private constructor(
       }
     }
 
+    @Suppress("UNCHECKED_CAST")
     override fun onMessage(webSocket: WebSocket, bytes: ByteString) {
       val message: WebSocketMessage = WebSocketMessage.ADAPTER.decode(bytes)
 
@@ -207,8 +211,10 @@ class ProvisioningSocket private constructor(
           }
 
           "/v1/message" -> {
-            val result = cipher.decrypt(RegistrationProvisionEnvelope.ADAPTER.decode(message.request.body))
-            provisioningMessageDeferral.complete(result)
+            when (mode) {
+              Mode.REREG -> provisioningMessageDeferral.complete(cipher.decrypt(RegistrationProvisionEnvelope.ADAPTER.decode(message.request.body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
+              Mode.LINK -> provisioningMessageDeferral.complete(cipher.decrypt(ProvisionEnvelope.ADAPTER.decode(message.request.body)) as SecondaryProvisioningCipher.ProvisioningDecryptResult<T>)
+            }
           }
 
           else -> Log.w(TAG, "[$id] Unknown path requested")
@@ -243,7 +249,7 @@ class ProvisioningSocket private constructor(
     private fun generateProvisioningUrl(deviceAddress: String): String {
       val encodedDeviceId = URLEncoder.encode(deviceAddress, "UTF-8")
       val encodedPubKey: String = URLEncoder.encode(Base64.encodeWithoutPadding(cipher.secondaryDevicePublicKey.serialize()), "UTF-8")
-      return "sgnl://rereg?uuid=$encodedDeviceId&pub_key=$encodedPubKey"
+      return "sgnl://${mode.host}?uuid=$encodedDeviceId&pub_key=$encodedPubKey${mode.params}"
     }
 
     private suspend fun keepAlive(webSocket: WebSocket) {
@@ -280,6 +286,11 @@ class ProvisioningSocket private constructor(
         )
       )
     }
+  }
+
+  enum class Mode(val host: String, val params: String) {
+    REREG("rereg", ""),
+    LINK("linkdevice", "&capabilities=backup4")
   }
 
   fun interface ProvisioningSocketExceptionHandler {

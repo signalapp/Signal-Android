@@ -32,9 +32,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -112,7 +114,7 @@ class ScreenLockSettingsFragment : ComposeFragment() {
     Scaffolds.Settings(
       title = stringResource(id = R.string.preferences_app_protection__screen_lock),
       onNavigationClick = { navController.popBackStack() },
-      navigationIconPainter = painterResource(id = R.drawable.symbol_arrow_start_24),
+      navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_arrow_start_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
     ) { contentPadding: PaddingValues ->
       ScreenLockScreen(

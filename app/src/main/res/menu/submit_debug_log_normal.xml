@@ -8,20 +8,9 @@
       android:icon="@drawable/symbol_search_24"
       android:title="@string/CameraContacts__menu_search"
       android:visible="false"
+      app:iconTint="@color/signal_colorOnSurface"
       app:actionViewClass="org.thoughtcrime.securesms.components.SearchView"
       app:showAsAction="collapseActionView|always" />
-
-  <item
-      android:id="@+id/menu_edit_log"
-      android:title="@string/SubmitDebugLogActivity_edit"
-      android:visible="false"
-      app:showAsAction="always" />
-
-  <item
-      android:id="@+id/menu_done_editing_log"
-      android:title="@string/SubmitDebugLogActivity_done"
-      android:visible="false"
-      app:showAsAction="always" />
 
   <item
       android:id="@+id/menu_save"

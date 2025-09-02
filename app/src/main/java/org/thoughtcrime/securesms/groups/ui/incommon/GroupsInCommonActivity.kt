@@ -33,11 +33,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.Previews
@@ -158,7 +159,7 @@ private fun TopAppBar(
   Scaffolds.DefaultTopAppBar(
     title = pluralStringResource(R.plurals.GroupsInCommon__n_groups_in_common_title, groupCount, NumberFormat.getInstance().format(groupCount)),
     titleContent = { _, title -> Text(text = title, style = MaterialTheme.typography.titleLarge) },
-    navigationIconPainter = painterResource(R.drawable.symbol_arrow_start_24),
+    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
     navigationContentDescription = stringResource(R.string.DefaultTopAppBar__navigate_up_content_description),
     onNavigationClick = onBackPress,
     scrollBehavior = scrollBehavior

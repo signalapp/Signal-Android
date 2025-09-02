@@ -113,7 +113,8 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
         masterKey = null,
         pin = null,
         aciPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account.aciIdentityKey, SignalStore.account.aciPreKeys),
-        pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account.aciIdentityKey, SignalStore.account.pniPreKeys)
+        pniPreKeyCollection = RegistrationRepository.generateSignedAndLastResortPreKeys(SignalStore.account.aciIdentityKey, SignalStore.account.pniPreKeys),
+        reRegistration = false
       )
       val localRegistrationData = LocalRegistrationMetadataUtil.createLocalRegistrationMetadata(SignalStore.account.aciIdentityKey, SignalStore.account.pniIdentityKey, registrationData, remoteResult, false)
       RegistrationRepository.registerAccountLocally(application, localRegistrationData)
@@ -145,7 +146,7 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
       SignalDatabase.recipients.setProfileSharing(recipientId, true)
       SignalDatabase.recipients.markRegistered(recipientId, aci)
       val otherIdentity = IdentityKeyUtil.generateIdentityKeyPair()
-      AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(aci.toString(), 0), otherIdentity.publicKey)
+      AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(aci.toString(), 1), otherIdentity.publicKey)
       others += recipientId
       othersKeys += otherIdentity
     }

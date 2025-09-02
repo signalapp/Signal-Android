@@ -95,7 +95,7 @@ class SecureValueRecoveryV2(
 
   @Throws(IOException::class)
   override fun authorization(): AuthCredentials {
-    val request = WebSocketRequestMessage.get("/v2/backup/auth")
+    val request = WebSocketRequestMessage.get("/v2/svr/auth")
     return NetworkResult.fromWebSocketRequest(authWebSocket, request, AuthCredentials::class).successOrThrow()
   }
 

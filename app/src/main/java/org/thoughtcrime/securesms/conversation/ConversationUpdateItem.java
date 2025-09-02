@@ -634,6 +634,16 @@ public final class ConversationUpdateItem extends FrameLayout
           passthroughClickListener.onClick(v);
         }
       });
+    } else if (conversationMessage.getMessageRecord().isUnsupported()) {
+      actionButton.setText(R.string.ConversationFragment__update_build);
+      actionButton.setVisibility(VISIBLE);
+      actionButton.setOnClickListener(v -> {
+        if (batchSelected.isEmpty() && eventListener != null) {
+          eventListener.onUpdateSignalClicked();
+        } else {
+          passthroughClickListener.onClick(v);
+        }
+      });
     } else {
       actionButton.setVisibility(GONE);
       actionButton.setOnClickListener(null);

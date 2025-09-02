@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Copyright 2025 Signal Messenger, LLC
+  ~ SPDX-License-Identifier: AGPL-3.0-only
+  -->
+
+<resources>
+    <dimen name="call_screen_overflow_item_size">124dp</dimen>
+</resources>

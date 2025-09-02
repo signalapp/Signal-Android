@@ -251,14 +251,14 @@
   </string-array>
 
   <!-- discrete MIME type (the part before the "/") -->
-  <string-array name="pref_media_download_entries">
+  <string-array name="pref_media_download_values">
       <item>image</item>
       <item>audio</item>
       <item>video</item>
       <item>documents</item>
   </string-array>
 
-  <string-array name="pref_media_download_values">
+  <string-array name="pref_media_download_entries">
       <item>@string/arrays__images</item>
       <item>@string/arrays__audio</item>
       <item>@string/arrays__video</item>

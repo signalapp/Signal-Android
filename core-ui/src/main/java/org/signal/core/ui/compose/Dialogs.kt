@@ -7,25 +7,37 @@ package org.signal.core.ui.compose
 
 import android.R
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.AlertDialogDefaults
+import androidx.compose.material3.Checkbox
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,6 +46,7 @@ import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -183,9 +196,11 @@ object Dialogs {
    * let the user know that some action is completing.
    */
   @Composable
-  fun IndeterminateProgressDialog() {
+  fun IndeterminateProgressDialog(
+    onDismissRequest: () -> Unit = {}
+  ) {
     BaseAlertDialog(
-      onDismissRequest = {},
+      onDismissRequest = onDismissRequest,
       confirmButton = {},
       dismissButton = {},
       text = {
@@ -215,7 +230,9 @@ object Dialogs {
         Column(
           verticalArrangement = Arrangement.Center,
           horizontalAlignment = Alignment.CenterHorizontally,
-          modifier = Modifier.fillMaxWidth().fillMaxHeight()
+          modifier = Modifier
+            .fillMaxWidth()
+            .fillMaxHeight()
         ) {
           Spacer(modifier = Modifier.size(24.dp))
           CircularProgressIndicator()
@@ -248,7 +265,7 @@ object Dialogs {
         Column(
           verticalArrangement = Arrangement.Center,
           horizontalAlignment = Alignment.CenterHorizontally,
-          modifier = Modifier.fillMaxWidth().fillMaxHeight()
+          modifier = Modifier.fillMaxWidth()
         ) {
           Spacer(modifier = Modifier.size(32.dp))
           CircularProgressIndicator()
@@ -270,7 +287,7 @@ object Dialogs {
           }
         }
       },
-      modifier = Modifier.size(200.dp, 270.dp)
+      modifier = Modifier.width(200.dp)
     )
   }
 
@@ -332,6 +349,178 @@ object Dialogs {
 
             TextButton(onClick = onConfirm) {
               Text(text = confirm)
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @Composable
+  fun RadioListDialog(
+    onDismissRequest: () -> Unit,
+    properties: DialogProperties = DialogProperties(),
+    title: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selectedIndex: Int,
+    onSelected: (Int) -> Unit
+  ) {
+    Dialog(
+      onDismissRequest = onDismissRequest,
+      properties = properties
+    ) {
+      Surface(
+        modifier = Modifier
+          .padding(vertical = 100.dp)
+          .background(
+            color = SignalTheme.colors.colorSurface2,
+            shape = AlertDialogDefaults.shape
+          )
+          .clip(AlertDialogDefaults.shape)
+      ) {
+        Column {
+          Text(
+            text = title,
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier
+              .padding(top = 16.dp)
+              .horizontalGutters()
+          )
+
+          LazyColumn(
+            modifier = Modifier.padding(top = 24.dp, bottom = 16.dp),
+            state = rememberLazyListState(
+              initialFirstVisibleItemIndex = selectedIndex
+            )
+          ) {
+            items(
+              count = values.size,
+              key = { values[it] }
+            ) { index ->
+              Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                  .fillMaxWidth()
+                  .defaultMinSize(minHeight = 48.dp)
+                  .clickable(
+                    enabled = true,
+                    onClick = {
+                      onSelected(index)
+                      onDismissRequest()
+                    }
+                  )
+                  .horizontalGutters()
+              ) {
+                RadioButton(
+                  enabled = true,
+                  selected = index == selectedIndex,
+                  onClick = null,
+                  modifier = Modifier.padding(end = 24.dp)
+                )
+
+                Text(text = labels[index])
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @Composable
+  fun MultiSelectListDialog(
+    onDismissRequest: () -> Unit,
+    properties: DialogProperties = DialogProperties(),
+    title: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selection: Array<String>,
+    onSelectionChanged: (Array<String>) -> Unit
+  ) {
+    var selectedIndicies by remember {
+      mutableStateOf(
+        values.mapIndexedNotNull { index, value ->
+          if (value in selection) {
+            index
+          } else {
+            null
+          }
+        }
+      )
+    }
+
+    Dialog(
+      onDismissRequest = onDismissRequest,
+      properties = properties
+    ) {
+      Surface(
+        modifier = Modifier
+          .padding(vertical = 100.dp)
+          .background(
+            color = SignalTheme.colors.colorSurface2,
+            shape = AlertDialogDefaults.shape
+          )
+          .clip(AlertDialogDefaults.shape)
+      ) {
+        Column {
+          Text(
+            text = title,
+            style = MaterialTheme.typography.titleLarge,
+            modifier = Modifier
+              .padding(top = 16.dp)
+              .horizontalGutters()
+          )
+
+          LazyColumn(
+            modifier = Modifier.padding(top = 24.dp, bottom = 16.dp)
+          ) {
+            items(
+              count = values.size,
+              key = { values[it] }
+            ) { index ->
+              Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier
+                  .fillMaxWidth()
+                  .defaultMinSize(minHeight = 48.dp)
+                  .clickable(
+                    enabled = true,
+                    onClick = {
+                      selectedIndicies = if (index in selectedIndicies) {
+                        selectedIndicies - index
+                      } else {
+                        selectedIndicies + index
+                      }
+                    }
+                  )
+                  .horizontalGutters()
+              ) {
+                Checkbox(
+                  enabled = true,
+                  checked = index in selectedIndicies,
+                  onCheckedChange = null,
+                  modifier = Modifier.padding(end = 24.dp)
+                )
+
+                Text(text = labels[index])
+              }
+            }
+          }
+
+          FlowRow(
+            horizontalArrangement = Arrangement.End,
+            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+          ) {
+            TextButton(onClick = onDismissRequest) {
+              Text(text = stringResource(R.string.cancel))
+            }
+
+            TextButton(onClick = {
+              onSelectionChanged(selectedIndicies.sorted().map { values[it] }.toTypedArray())
+              onDismissRequest()
+            }) {
+              Text(text = stringResource(R.string.ok))
             }
           }
         }
@@ -480,5 +669,21 @@ private fun IndeterminateProgressDialogMessagePreview() {
 private fun IndeterminateProgressDialogCancellablePreview() {
   Previews.Preview {
     Dialogs.IndeterminateProgressDialog("Completing...", "Do not close app", "Cancel") {}
+  }
+}
+
+@SignalPreview
+@Composable
+private fun RadioListDialogPreview() {
+  Previews.Preview {
+    Dialogs.RadioListDialog(
+      onDismissRequest = {},
+      title = "TestDialog",
+      properties = DialogProperties(),
+      labels = arrayOf(),
+      values = arrayOf(),
+      selectedIndex = -1,
+      onSelected = {}
+    )
   }
 }

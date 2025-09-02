@@ -141,6 +141,10 @@
     <string name="AttachmentUploadJob_uploading_media">મીડિયા અપલોડ કરી રહ્યું છે…</string>
     <string name="AttachmentUploadJob_compressing_video_start">વિડિયો કંપ્રેસ થઈ રહ્યો છે…</string>
 
+    <!-- UploadAttachmentToArchiveJob -->
+    <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
+    <string name="UploadAttachmentToArchiveJob_uploading_media">મીડિયાનું બેકઅપ લેવાઈ રહ્યું છે…</string>
+
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">મેસેજ માટે ચકાસી રહ્યું છે…</string>
 
@@ -1172,6 +1176,11 @@
     <string name="ExpiredBuildReminder_this_version_of_signal_has_expired">Signal નું આ વર્ઝન સમાપ્ત થઈ ગયું છે. મેસેજ મોકલવા અને મેળવવા કરવા માટે અત્યારે અપડેટ કરો.</string>
     <string name="ExpiredBuildReminder_update_now">અત્યારે અપડેટ કરો</string>
 
+    <!-- Title of notification telling users to update Signal -->
+    <string name="DeprecatedNotificationJob_update_signal">Signalને અપડેટ કરો</string>
+    <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">Signalનું આ વર્ઝન સમાપ્ત થઈ ગયું છે. મેસેજ મોકલવા અને મેળવવા માટે અપડેટ કરો પર ટેપ કરો.</string>
+
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
         <item quantity="one">%1$d મેમ્બર વિનંતી બાકી</item>
@@ -1473,6 +1482,12 @@
     <string name="RemoteRestoreActivity__skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">ટ્રાન્સફર પૂર્ણ ન કરી શક્યા</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">બેકઅપ રિસ્ટોર કરી શકતા નથી</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">તમારા બેકઅપને રિસ્ટોર કરતી વખતે એક એરર આવી. તમારું બેકઅપ પાછું મેળવી શકાતું નથી. મદદ માટે કૃપા કરીને સપોર્ટનો સંપર્ક કરો.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">સપોર્ટનો સંપર્ક કરો</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">એક એરર આવી અને તમારું એકાઉન્ટ ટ્રાન્સફર કરી શકાયું નથી. તમારી ટ્રાન્સફર પદ્ધતિ પસંદ કરીને ફરી પ્રયાસ કરો.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -1483,6 +1498,8 @@
     <string name="RemoteRestoreActivity__update_signal">Signalને અપડેટ કરો</string>
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">અત્યારે નહીં</string>
+    <!-- Text shown on restore screen as information on what will happen if you skip -->
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Your media will restore in the background. If you choose not to restore now, you won\'t be able to restore later.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">મને ઉલ્લેખો માટે સૂચિત કરો</string>
@@ -2097,6 +2114,8 @@
     <string name="MessageRecord_you_blocked_this_group">તમે આ ગ્રૂપને બ્લૉક કર્યું</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">તમે આ ગ્રૂપને અનબ્લૉક કર્યું</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s sent you a message that can\'t be processed or displayed because it uses a new Signal feature.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">સ્વીકાર</string>
@@ -2907,6 +2926,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">યોગદાનકર્તાઓને જોવા માટે આ લૉગ જાહેરમાં ઓનલાઇન પોસ્ટ કરવામાં આવશે. તમે અપલોડ કરતા પહેલા તેની તપાસ કરી શકો છો.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">તમે સબમિટ પર ક્લિક કરશો ત્યારે લૉગ 30 દિવસ માટે ઓનલાઇન એક અનન્ય, અપ્રકાશિત URL પર પોસ્ટ થશે. તમે પહેલાં તેને સ્થાનિક રીતે સેવ કરી શકો છો.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -4557,6 +4583,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">PIN બનાવ્યો.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">તમારો પિન ફરી દાખલ કરો</string>
     <string name="ConfirmKbsPinFragment__creating_pin">PIN બનાવી રહ્યાં છે…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">PIN રજૂ કરી રહ્યા છીએ</string>
@@ -4855,7 +4883,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">સ્થાનિક બેકઅપમાંથી તમારા મેસેજ રિસ્ટોર કરો. જો તમે હમણાં રિસ્ટોર કરશો નહીં, તો તમે પછીથી રિસ્ટોર કરી શકશો નહીં.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">લોકલ બેકઅપ રિસ્ટોર કરો</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal બેકઅપ રિસ્ટોર કરો</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">તમારા બધા ટેક્સ્ટ મેસેજ + તમારા છેલ્લા 30 દિવસના મીડિયાને રિસ્ટોર કરો</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">વધુ વિકલ્પો</string>
 
@@ -7222,7 +7249,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">તમારી બેંક, નામ અને ઇમેઇલ દાખલ કરો. Stripe તમને તમારા દાન વિશે અપડેટ્સ મોકલવા માટે આ ઇમેઇલનો ઉપયોગ કરે છે. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">તમારું નામ અને ઇમેઇલ દાખલ કરો. Stripe તમને તમારા દાન વિશે અપડેટ મોકલવા માટે આ ઇમેઇલનો ઉપયોગ કરે છે. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">તમારી બેંકની વિગતો દાખલ કરો. Signal તમારી અંગત માહિતી એકત્રિત કે સંગ્રહિત કરતું નથી. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7712,6 +7739,28 @@
     <!-- Button text to deny all participants from joining the call -->
     <string name="PendingParticipantsBottomSheet__deny_all">બધી નામંજૂર કરો</string>
 
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__title">Signal બેકઅપ ચાલુ કરો</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__body">જ્યારે તમે નવો ફોન મેળવો અથવા Signalને ફરીથી ઇન્સ્ટોલ કરો ત્યારે ક્યારેય કોઈ મેસેજ ગુમાવશો નહીં.</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
+    <string name="TurnOnSignalBackups__turn_on">ચાલુ કરો</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
+    <string name="TurnOnSignalBackups__not_now">અત્યારે નહીં</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
+    <string name="VerifyBackupKey__title">તમારી બેકઅપ કી ચકાસો</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
+    <string name="VerifyBackupKey__body">We\'ll occasionally ask you to verify your key to ensure you still know it</string>
+    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <string name="VerifyBackupKey__verify">ચકાસો</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <string name="VerifyBackupKey__not_now">અત્યારે નહીં</string>
+    <!-- Snackbar text shown when the backup key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">બેકઅપ કી સાચી છે. તમારી કીને સુરક્ષિત રાખો.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <string name="VerifyBackupKey__we_will_ask_again">અમે તમને એક અઠવાડિયામાં ફરી પૂછીશું.</string>
+
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">ફૂલ સ્ક્રીન નોટિફિકેશન ચાલુ કરવા છે?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -7845,7 +7894,7 @@
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
     <string name="BackupAlertBottomSheet__to_finish_downloading_your_signal_backup">તમારા Signal બેકઅપને ડાઉનલોડ કરવાનું સમાપ્ત કરવા માટે તમારા ડિવાઇસમાં %1$s સ્ટોરેજ જગ્યાની જરૂર છે.</string>
     <!-- Sheet body part 2 when user does not have enough space to download their backup. -->
-    <string name="BackupAlertBottomSheet__to_free_up_space_offload">જગ્યા ખાલી કરવા માટે ન વપરાયેલ ઍપ અથવા ફાઈલ સાઇઝ મોટી હોય તેવી કન્ટેન્ટ ઑફલોડ કરો અથવા ડિલીટ કરો.</string>
+    <string name="BackupAlertBottomSheet__to_free_up_space_offload">જગ્યા ખાલી કરવા માટે ન વપરાયેલ ઍપ કે ફાઇલનું કદ મોટું હોય તેવું કન્ટેન્ટ ઓફલોડ કરો અથવા ડિલીટ કરો.</string>
     <!-- Sheet title when user payment failed to process -->
     <string name="BackupAlertBottomSheet__your_backups_subscription_failed_to_renew">તમારા બેકઅપ સબ્સ્ક્રિપ્શનને રિન્યૂ કરવાનું નિષ્ફળ થયું</string>
     <!-- Sheet body when user payment failed to process -->
@@ -7865,6 +7914,8 @@
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">વધુ જાણો</string>
+    <!-- Clickable text to enter contact support flow -->
+    <string name="BackupAlertBottomSheet__contact_support">સપોર્ટનો સંપર્ક કરો</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
     <!-- Primary action button to open backups management screen -->
@@ -7905,6 +7956,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">તમારું બેકઅપ સબ્સ્ક્રિપ્શન રિડીમ કરી શકાયું નથી</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">એક એરર આવી અને તમારું બેકઅપ પૂર્ણ કરી શકાયું નથી. ખાતરી કરો કે તમે Signalનું લેટેસ્ટ વર્ઝન વાપરો છો અને ફરી પ્રયાસ કરો. જો સમસ્યા ચાલુ રહે તો સપોર્ટનો સંપર્ક કરો.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">એક એરર આવી અને તમારું બેકઅપ પૂર્ણ કરી શકાયું નથી. જો સમસ્યા ચાલુ રહે તો સપોર્ટનો સંપર્ક કરો.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">અપડેટ માટે તપાસો</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -8012,7 +8065,7 @@
     <!-- Setting row title for storage optimization -->
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">ડિવાઇસ પરના સ્ટોરેજને ઑપ્ટિમાઈઝ કરો</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ન વપરાયેલ મીડિયાને ઑફલોડ કરવામાં આવશે, પરંતુ તમારા બેકઅપમાંથી ગમે ત્યારે ડાઉનલોડ કરી શકાય છે.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ન વપરાયેલ મીડિયાને ઓફલોડ કરવામાં આવશે, પરંતુ તમારા બેકઅપમાંથી ગમે ત્યારે ડાઉનલોડ કરી શકાય છે.</string>
     <!-- Dialog message for paid tier pending dialog -->
     <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">સ્ટોરેજ ઑપ્ટિમાઇઝેશનનો ઉપયોગ માત્ર Signal બેકઅપના પેઇડ ટીયર સાથે જ થઈ શકે છે. તમારું બેકઅપ સબ્સ્ક્રિપ્શન હજી પ્રક્રિયામાં છે અને હજી સક્રિય નથી. કૃપા કરીને પછી ફરી પ્રયાસ કરો.</string>
 
@@ -8052,15 +8105,33 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">ઓકે</string>
 
+    <!-- NoManualBackupBottomSheet -->
+    <!-- Title for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
+        <item quantity="one">%1$d દિવસ માટે કોઈ બેકઅપ નથી</item>
+        <item quantity="other">%1$d દિવસ માટે કોઈ બેકઅપ નથી</item>
+    </plurals>
+    <!-- Body for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
+        <item quantity="one">તમે %1$d દિવસથી બેકઅપ પૂર્ણ કર્યું નથી. તમારા મેસેજ અને મીડિયા સેવ કરવામાં આવે તેની ખાતરી કરવા માટે, હમણાં જ બેકઅપ બનાવો.</item>
+        <item quantity="other">તમે %1$d દિવસથી બેકઅપ પૂર્ણ કર્યું નથી. તમારા મેસેજ અને મીડિયા સેવ કરવામાં આવે તેની ખાતરી કરવા માટે, હમણાં જ બેકઅપ બનાવો.</item>
+    </plurals>
+
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/મહિને, %2$sના રોજ રિન્યૂ થશે</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">છેલ્લું બેકઅપ %1$s</string>
+    <!-- Subtitle for row for canceled backup -->
+    <string name="BackupsSettingsFragment__subscription_canceled">સબ્સ્ક્રિપ્શન રદ કર્યું</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Signalની સુરક્ષિત, એન્ડ-ટૂ-એન્ડ એન્ક્રિપ્ટેડ સ્ટોરેજ સેવા સાથે ઓટોમેટિક બેકઅપ.</string>
+    <!-- Subtitle for row for backups that are active but subscription not found -->
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"આ ડિવાઇસ પર સબ્સ્ક્રિપ્શન મળ્યું નથી."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">સેટ કરો</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">સેટિંગ્સ જુઓ</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
@@ -8077,6 +8148,8 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">ડાઉનલોડ ફરી શરૂ કરો</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">બેકઅપની સાઇઝ</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__loading">લોડ કરી રહ્યું છે</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">બેકઅપનું આવર્તન</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
@@ -8085,6 +8158,8 @@
     <string name="RemoteBackupsSettingsFragment__view_backup_key">બેકઅપ કી જુઓ</string>
     <!-- Prompt title for unlocking device to view backup key -->
     <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">બેકઅપ કી જોવા માટે અનલૉક કરો</string>
+    <!-- Title of bottom sheet explaining that authentication is required to view your key -->
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">તમારી કી જોવા માટે, ખાતરી કરો કે તે તમે જ છો</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">બેકઅપ બંધ કરો અને ડિલીટ કરો</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8097,6 +8172,8 @@
     <string name="RemoteBackupsSettingsFragment__download_complete">ડાઉનલોડ પૂર્ણ</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">બેકઅપ રાત્રિ દરમિયાન લેવામાં આવશે.</string>
+    <!-- Snackbar text displayed when user rotates AEP -->
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">નવી બેકઅપ કી બનાવી</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">સબ્સ્ક્રિપ્શન નિષ્ક્રિય</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8145,6 +8222,8 @@
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">બેકઅપ બંધ કરી અને ડિલીટ કરીએ?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">તમારું બેકઅપ ડિલીટ કરવામાં આવશે અને કોઈ નવા બેકઅપ બનાવવામાં આવશે નહીં. તમારા બેકઅપમાં સંગ્રહિત કોઈ પણ મીડિયા હવે તમારા ફોનમાં ડાઉનલોડ થશે.</string>
+    <!-- Dialog message when confirming whether to turn off and delete backups -->
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">તમારું સબ્સ્ક્રિપ્શન રદ કરવામાં આવશે અને તમારી પાસેથી ફરીથી ચાર્જ લેવામાં આવશે નહીં. તમારું બેકઅપ ડિલીટ કરવામાં આવશે અને કોઈ નવા બેકઅપ બનાવવામાં આવશે નહીં. તમારા બેકઅપમાં સંગ્રહિત કોઈ પણ મીડિયા હવે તમારા ફોનમાં ડાઉનલોડ થશે.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">બંધ કરો અને ડિલીટ કરો</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8188,6 +8267,10 @@
     <string name="RemoteBackupsSettingsFragment__processing_backup">બેકઅપની પ્રક્રિયા કરી રહ્યાં છીએ…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">બેકઅપ તૈયાર કરી રહ્યાં છીએ…</string>
+    <!-- Linear progress dialog text shown when backup is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">વાઇ-ફાઇની રાહ જોઈ રહ્યાં છીએ…</string>
+    <!-- Linear progress dialog text shown when backup is paused because internet is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">ઇન્ટરનેટ કનેક્શનની રાહ જોઈ રહ્યાં છીએ…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
         <item quantity="one">%2$sમાંથી %1$s મેસેજ પર પ્રક્રિયા થઈ રહી છે (%3$d%%)</item>
@@ -8316,12 +8399,18 @@
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">પાસવર્ડ મેનેજરમાં સેવ કરવું છે?</string>
     <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">તમારી બેકઅપ કી ફક્ત એવા પાસવર્ડ મેનેજરમાં સ્ટોર કરો જેના પર તમને વિશ્વાસ હોય કે તે સુરક્ષિત છે. Signal તમારા માટે કયું પાસવર્ડ મેનેજર યોગ્ય છે તેની ભલામણ કરતું નથી.</string>
+    <!-- ID used when saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal બેકઅપ</string>
     <!-- Message shown after the backup key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">તમારા પાસવર્ડ મેનેજરમાં સેવ કર્યું</string>
-    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">પાસવર્ડ મેનેજરમાં સેવ કરી શકાતું નથી</string>
+    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">પાસવર્ડ મેનેજરમાં સેવ કરી શકાતું નથી</string>
     <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">તમારી પાસે કોઈ પાસવર્ડ મેનેજર સેટ કરેલ નથી અથવા તમે જે પાસવર્ડ મેનેજરનો ઉપયોગ કરી રહ્યા છો તે સપોર્ટેડ નથી.</string>
+    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">તમે પહેલાં Signal માટેના પાસવર્ડને Google પાસવર્ડ મેનેજર પર સેવ ન કરવાનું પસંદ કર્યું હતું. તમારા Google પાસવર્ડ મેનેજર સેટિંગ્સમાં, \"નકારેલી સાઇટ અને ઍપ\"માંથી Signalને દૂર કરો અને ફરી પ્રયાસ કરો.</string>
+    <!-- Label for a button that navigates to the device settings -->
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">સેટિંગ્સ પર જાઓ</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">આગળ</string>
     <!-- Bottom sheet title -->
@@ -8334,6 +8423,28 @@
     <string name="MessageBackupsKeyRecordScreen__continue">ચાલુ રાખો</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">કી ફરીથી જુઓ</string>
+    <!-- Action label to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">નવી કી બનાવો</string>
+    <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__download_media">મીડિયા ડાઉનલોડ કરો</string>
+    <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">નવી બેકઅપ કી બનાવવા માટે, તમારે \"સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\" બંધ કરવું પડશે અને તમારા મીડિયા ડાઉનલોડ થાય ત્યાં સુધી રાહ જોવી પડશે. ડાઉનલોડ પૂર્ણ થયા પછી, તમે એક નવી કી બનાવી શકો છો.</string>
+    <!-- Action label to turn off optimized storage and download media -->
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">બંધ કરો અને ડાઉનલોડ કરો</string>
+    <!-- Bottom Sheet title for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">નવી બેકઅપ કી બનાવો</string>
+    <!-- Bottom Sheet body for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">જો કોઈ બીજાને તમારી કી ખબર પડી ગઈ હોય તો જ નવી કી બનાવવી જરૂરી છે. તમારે મીડિયા સહિત તમારો બેકઅપ ફરીથી અપલોડ કરવો પડશે. જો તમે \"સ્ટોરેજ ઑપ્ટિમાઇઝ કરો\"નો ઉપયોગ કરી રહ્યા હો, તો તમારે પહેલા ઓફલોડ થયેલા મીડિયા ડાઉનલોડ કરવા પડશે.</string>
+
+    <!-- BackupKeyDisplayFragment -->
+    <!-- Dialog title when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">કી બનાવવાનું રદ કરવું છે?</string>
+    <!-- Dialog body when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">જ્યાં સુધી તમે તેની ખાતરી નહીં કરો ત્યાં સુધી તમારી નવી બેકઅપ કી બનાવવામાં આવશે નહીં.</string>
+    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__confirm_key">ખાતરીની કી</string>
+    <!-- Dialog button to cancel new key creation -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">કી બનાવવાનું રદ કરો</string>
 
     <!-- Confirm key title -->
     <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">તમારી બેકઅપ કી કન્ફર્મ કરો</string>
@@ -8348,6 +8459,13 @@
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">આગળ</string>
 
+    <!-- Verify your key title -->
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">તમારી બેકઅપ કી દાખલ કરો</string>
+    <!-- Verify your key subtitle -->
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">બેકઅપ ચાલુ કરતી વખતે તમે રેકોર્ડ કરેલો 64-અંકનો કોડ દાખલ કરો.</string>
+    <!-- Button text when you forget your backup key -->
+    <string name="VerifyBackupPinScreen__forgot_key">કી ભૂલી ગયા?</string>
+
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
     <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">તમારો બેકઅપ પ્લાન પસંદ કરો</string>
@@ -8355,8 +8473,10 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">બધા બેકઅપ એન્ડ-ટૂ-એન્ડ એન્ક્રિપ્ટેડ છે. Signal એક બિન-લાભકારી છે—બેકઅપ માટે ચૂકવણી કરવાથી અમારા મિશનને સપોર્ટ કરવામાં મદદ મળે છે.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">વધુ જાણો</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">સબ્સ્ક્રાઇબ કરો</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">મફત પ્લાન પસંદ કરો</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">%1$s/મહિને સબ્સ્ક્રાઇબ કરો</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
@@ -8484,7 +8604,15 @@
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android બેકઅપ રિસ્ટોર નેટવર્ક એરર</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android બેકઅપ રિસ્ટોર કાયમી નિષ્ફળતા</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
+
+    <!-- Email subject when contacting support on a create backup failure -->
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android બેકઅપ એક્સપોર્ટ કરવામાં નેટવર્ક એરર</string>
+    <!-- Email filter when contacting support on a create backup failure -->
+  <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
     <string name="ContactSupportDialog_submit_debug_log">ડીબગ લૉગ સબમિટ કરવો છે?</string>
@@ -8573,6 +8701,25 @@
     <string name="SignalCheckbox_accessibility_checked_description">ટીક કરેલું</string>
     <!-- Accessibility label describing an unchecked checkbox. -->
     <string name="SignalCheckbox_accessibility_unchecked_description">અનટીક કરેલું</string>
+
+    <!-- Notification title for when user is out of remote storage -->
+    <string name="Notification_backup_storage_full">બેકઅપ સ્ટોરેજ ભરાઈ ગયું છે</string>
+    <!-- Notification body for when user is out of remote storage -->
+    <string name="Notification_youve_reached_your_backup_storage_limit">તમે તમારી બેકઅપ સ્ટોરેજ મર્યાદા સુધી પહોંચી ગયા છો. ચેટ અને મીડિયાનો બેકઅપ લેવાનું ચાલુ રાખવા માટે Signalમાં જગ્યા ખાલી કરો.</string>
+    <!-- Notification title for when initial backup failed -->
+    <string name="Notification_backup_failed">બેકઅપ નિષ્ફળ થયું</string>
+    <!-- Notification body for when initial backup failed -->
+    <string name="Notification_an_error_occurred_and_your_backup">એક એરર આવી અને તમારું બેકઅપ પૂર્ણ કરી શકાયું નથી. વિગતો માટે ટેપ કરો.</string>
+    <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_no_backup_for_d_days">
+        <item quantity="one">%1$d દિવસ માટે કોઈ બેકઅપ નથી</item>
+        <item quantity="other">%1$d દિવસ માટે કોઈ બેકઅપ નથી</item>
+    </plurals>
+    <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_you_have_not_completed_a_backup">
+        <item quantity="one">તમે %1$d દિવસથી બેકઅપ પૂર્ણ કર્યું નથી. હમણાં જ બેકઅપ બનાવો.</item>
+        <item quantity="other">તમે %1$d દિવસથી બેકઅપ પૂર્ણ કર્યું નથી. હમણાં જ બેકઅપ બનાવો.</item>
+    </plurals>
 
     <!-- EOF -->
 </resources>

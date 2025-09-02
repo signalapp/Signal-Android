@@ -7,8 +7,8 @@
 package org.whispersystems.signalservice.internal.crypto;
 
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECKeyPair;
+import org.signal.libsignal.protocol.ecc.ECPrivateKey;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.protocol.kdf.HKDF;
 import org.signal.registration.proto.RegistrationProvisionEnvelope;
@@ -39,8 +39,8 @@ public class PrimaryProvisioningCipher {
   }
 
   public byte[] encrypt(ProvisionMessage message) throws InvalidKeyException {
-    ECKeyPair ourKeyPair    = Curve.generateKeyPair();
-    byte[]    sharedSecret  = Curve.calculateAgreement(theirPublicKey, ourKeyPair.getPrivateKey());
+    ECKeyPair ourKeyPair    = ECKeyPair.generate();
+    byte[]    sharedSecret  = ourKeyPair.getPrivateKey().calculateAgreement(theirPublicKey);
     byte[]    derivedSecret = HKDF.deriveSecrets(sharedSecret, PROVISIONING_MESSAGE.getBytes(), 64);
     byte[][]  parts         = Util.split(derivedSecret, 32, 32);
 
@@ -57,12 +57,12 @@ public class PrimaryProvisioningCipher {
   }
 
   public byte[] encrypt(RegistrationProvisionMessage message) throws InvalidKeyException {
-    ECKeyPair ourKeyPair    = Curve.generateKeyPair();
-    byte[]    sharedSecret  = Curve.calculateAgreement(theirPublicKey, ourKeyPair.getPrivateKey());
+    ECKeyPair ourKeyPair    = ECKeyPair.generate();
+    byte[]    sharedSecret  = ourKeyPair.getPrivateKey().calculateAgreement(theirPublicKey);
     byte[]    derivedSecret = HKDF.deriveSecrets(sharedSecret, PROVISIONING_MESSAGE.getBytes(), 64);
     byte[][]  parts         = Util.split(derivedSecret, 32, 32);
 
-    byte[] version    = { 0x00 };
+    byte[] version    = { 0x01 };
     byte[] ciphertext = getCiphertext(parts[0], message.encode());
     byte[] mac        = getMac(parts[1], Util.join(version, ciphertext));
     byte[] body       = Util.join(version, ciphertext, mac);

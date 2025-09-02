@@ -252,4 +252,6 @@
 
     <dimen name="donation_pill_max_width">150dp</dimen>
 
+    <dimen name="call_screen_overflow_item_size">72dp</dimen>
+
 </resources>

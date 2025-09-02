@@ -29,7 +29,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -74,20 +73,14 @@ class InternalStorageServicePlaygroundFragment : ComposeFragment() {
     val storageRecords by viewModel.storageRecords
     val storageInsights by viewModel.storageInsights
     val oneOffEvent by viewModel.oneOffEvents
-    var forceSsreToggled by remember { mutableStateOf(SignalStore.internal.forceSsre2Capability) }
 
     Screen(
-      onBackPressed = { findNavController().popBackStack() },
       manifest = manifest,
       storageRecords = storageRecords,
       storageInsights = storageInsights,
       oneOffEvent = oneOffEvent,
-      forceSsreCapability = forceSsreToggled,
-      onForceSsreToggled = { checked ->
-        SignalStore.internal.forceSsre2Capability = checked
-        forceSsreToggled = checked
-      },
-      onViewTabSelected = { viewModel.onViewTabSelected() }
+      onViewTabSelected = { viewModel.onViewTabSelected() },
+      onBackPressed = { findNavController().popBackStack() }
     )
   }
 }
@@ -98,9 +91,7 @@ fun Screen(
   manifest: SignalStorageManifest,
   storageRecords: List<SignalStorageRecord>,
   storageInsights: StorageInsights,
-  forceSsreCapability: Boolean,
   oneOffEvent: OneOffEvent,
-  onForceSsreToggled: (Boolean) -> Unit = {},
   onViewTabSelected: () -> Unit = {},
   onBackPressed: () -> Unit = {}
 ) {
@@ -141,10 +132,7 @@ fun Screen(
   ) { contentPadding ->
     Surface(modifier = Modifier.padding(contentPadding)) {
       when (tabIndex) {
-        0 -> ToolScreen(
-          forceSsreCapability = forceSsreCapability,
-          onForceSsreToggled = onForceSsreToggled
-        )
+        0 -> ToolScreen()
         1 -> ViewScreen(
           manifest = manifest,
           storageRecords = storageRecords,
@@ -157,10 +145,7 @@ fun Screen(
 }
 
 @Composable
-fun ToolScreen(
-  forceSsreCapability: Boolean,
-  onForceSsreToggled: (Boolean) -> Unit = {}
-) {
+fun ToolScreen() {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
     modifier = Modifier.fillMaxWidth()
@@ -184,12 +169,6 @@ fun ToolScreen(
     ActionRow("Clear initial master key", "Sets it to null.") {
       SignalStore.svr.masterKeyForInitialDataRestore = null
     }
-
-    Rows.ToggleRow(
-      text = "Force SSRE2 Capability",
-      checked = forceSsreCapability,
-      onCheckChanged = onForceSsreToggled
-    )
   }
 }
 
@@ -262,6 +241,7 @@ private fun InsightsRow(insights: StorageInsights) {
     ManifestItemRow("Total Call Link Record Size", insights.totalCallLinkSize.toUnitString())
     ManifestItemRow("Total Distribution List Record Size", insights.totalDistributionListSize.toUnitString())
     ManifestItemRow("Total Chat Folder Record Size", insights.totalChatFolderSize.toUnitString())
+    ManifestItemRow("Total Notification Profile Record Size", insights.totalNotificationProfileSize.toUnitString())
     ManifestItemRow("Total Unknown Record Size", insights.totalUnknownSize.toUnitString())
 
     Spacer(Modifier.height(16.dp))
@@ -273,7 +253,8 @@ private fun InsightsRow(insights: StorageInsights) {
         insights.totalAccountRecordSize,
         insights.totalCallLinkSize,
         insights.totalDistributionListSize,
-        insights.totalChatFolderSize
+        insights.totalChatFolderSize,
+        insights.totalNotificationProfileSize
       ).sumOf { it.bytes } != insights.totalRecordSize.bytes
     ) {
       Text("Mismatch! Sum of record sizes does not match our total record size!")
@@ -379,7 +360,6 @@ private fun RunButton(onClick: () -> Unit) {
 fun ScreenPreview() {
   Previews.Preview {
     Screen(
-      forceSsreCapability = true,
       manifest = SignalStorageManifest.EMPTY,
       storageRecords = emptyList(),
       storageInsights = StorageInsights(),

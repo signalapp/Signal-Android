@@ -131,16 +131,16 @@ class ContactSearchPagedDataSource(
 
   private fun getSectionSize(section: ContactSearchConfiguration.Section, query: String?): Int {
     return when (section) {
-      is ContactSearchConfiguration.Section.Individuals -> getNonGroupSearchIterator(section, query).getCollectionSize(section, query, null)
-      is ContactSearchConfiguration.Section.Groups -> contactSearchPagedDataSourceRepository.getGroupSearchIterator(section, query).getCollectionSize(section, query, this::canSendToGroup)
-      is ContactSearchConfiguration.Section.Recents -> getRecentsSearchIterator(section, query).getCollectionSize(section, query, null)
-      is ContactSearchConfiguration.Section.Stories -> getStoriesSearchIterator(query).getCollectionSize(section, query, null)
+      is ContactSearchConfiguration.Section.Individuals -> getNonGroupSearchIterator(section, query).getCollectionSizeAndClose(section, query, null)
+      is ContactSearchConfiguration.Section.Groups -> contactSearchPagedDataSourceRepository.getGroupSearchIterator(section, query).getCollectionSizeAndClose(section, query, this::canSendToGroup)
+      is ContactSearchConfiguration.Section.Recents -> getRecentsSearchIterator(section, query).getCollectionSizeAndClose(section, query, null)
+      is ContactSearchConfiguration.Section.Stories -> getStoriesSearchIterator(query).getCollectionSizeAndClose(section, query, null)
       is ContactSearchConfiguration.Section.Arbitrary -> arbitraryRepository?.getSize(section, query) ?: error("Invalid arbitrary section.")
-      is ContactSearchConfiguration.Section.GroupMembers -> getGroupMembersSearchIterator(query).getCollectionSize(section, query, null)
-      is ContactSearchConfiguration.Section.Chats -> getThreadData(query, section.isUnreadOnly).getCollectionSize(section, query, null)
-      is ContactSearchConfiguration.Section.Messages -> getMessageData(query).getCollectionSize(section, query, null)
-      is ContactSearchConfiguration.Section.GroupsWithMembers -> getGroupsWithMembersIterator(query).getCollectionSize(section, query, null)
-      is ContactSearchConfiguration.Section.ContactsWithoutThreads -> getContactsWithoutThreadsIterator(query).getCollectionSize(section, query, null)
+      is ContactSearchConfiguration.Section.GroupMembers -> getGroupMembersSearchIterator(query).getCollectionSizeAndClose(section, query, null)
+      is ContactSearchConfiguration.Section.Chats -> getThreadData(query, section.isUnreadOnly).getCollectionSizeAndClose(section, query, null)
+      is ContactSearchConfiguration.Section.Messages -> getMessageData(query).getCollectionSizeAndClose(section, query, null)
+      is ContactSearchConfiguration.Section.GroupsWithMembers -> getGroupsWithMembersIterator(query).getCollectionSizeAndClose(section, query, null)
+      is ContactSearchConfiguration.Section.ContactsWithoutThreads -> getContactsWithoutThreadsIterator(query).getCollectionSizeAndClose(section, query, null)
       is ContactSearchConfiguration.Section.PhoneNumber -> if (isPossiblyPhoneNumber(query)) 1 else 0
       is ContactSearchConfiguration.Section.Username -> if (isPossiblyUsername(query)) 1 else 0
       is ContactSearchConfiguration.Section.Empty -> 1
@@ -148,7 +148,7 @@ class ContactSearchPagedDataSource(
     }
   }
 
-  private fun <R> ContactSearchIterator<R>.getCollectionSize(section: ContactSearchConfiguration.Section, query: String?, recordsPredicate: ((R) -> Boolean)?): Int {
+  private fun <R> ContactSearchIterator<R>.getCollectionSizeAndClose(section: ContactSearchConfiguration.Section, query: String?, recordsPredicate: ((R) -> Boolean)?): Int {
     val extras: List<ContactSearchData> = when (section) {
       is ContactSearchConfiguration.Section.Stories -> getFilteredGroupStories(section, query)
       else -> emptyList()
@@ -161,7 +161,8 @@ class ContactSearchPagedDataSource(
       extraData = extras,
       recordMapper = { error("Unsupported") }
     )
-    return collection.getSize()
+
+    return collection.getSize().also { this.close() }
   }
 
   private fun getFilteredGroupStories(section: ContactSearchConfiguration.Section.Stories, query: String?): List<ContactSearchData> {

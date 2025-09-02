@@ -13,7 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 class DeleteArchivedMediaRequest(
   @JsonProperty val mediaToDelete: List<ArchivedMediaObject>
 ) {
-  class ArchivedMediaObject(
+  data class ArchivedMediaObject(
     @JsonProperty val cdn: Int,
     @JsonProperty val mediaId: String
   )
