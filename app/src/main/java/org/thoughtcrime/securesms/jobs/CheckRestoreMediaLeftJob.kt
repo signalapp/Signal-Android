@@ -10,6 +10,7 @@ import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.service.BackupMediaRestoreService
@@ -54,6 +55,11 @@ class CheckRestoreMediaLeftJob private constructor(parameters: Parameters) : Job
 
         if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
           SignalStore.backup.deletionState = DeletionState.MEDIA_DOWNLOAD_FINISHED
+        }
+
+        if (!SignalStore.backup.backsUpMedia) {
+          SignalDatabase.attachments.markQuotesThatNeedReconstruction()
+          AppDependencies.jobManager.add(QuoteThumbnailReconstructionJob())
         }
       }
     } else if (runAttempt == 0) {

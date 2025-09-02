@@ -307,7 +307,12 @@ class AttachmentTable(
 
     private const val QUOTE_THUMBNAIL_DIMEN = 200
     private const val QUOTE_THUMBAIL_QUALITY = 50
+
+    /** Indicates a legacy quote is pending transcoding to a new quote thumbnail. */
     const val QUOTE_PENDING_TRANSCODE = 2
+
+    /** Indicates a quote from a free-tier backup restore is pending potential reconstruction from a parent attachment. */
+    const val QUOTE_PENDING_RECONSTRUCTION = 3
 
     @JvmStatic
     @Throws(IOException::class)
@@ -3161,6 +3166,96 @@ class AttachmentTable(
       permanentFailureCount = archiveStateCounts[ArchiveTransferState.PERMANENT_FAILURE]?.toInt() ?: 0,
       temporaryFailureCount = archiveStateCounts[ArchiveTransferState.TEMPORARY_FAILURE]?.toInt() ?: 0
     )
+  }
+
+  /**
+   * After restoring from the free-tier, it's possible we'll be missing many of our quoted replies.
+   * This marks quotes with a special flag to indicate that they'd be eligible for reconstruction.
+   * See [QUOTE_PENDING_RECONSTRUCTION].
+   */
+  fun markQuotesThatNeedReconstruction() {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(QUOTE to QUOTE_PENDING_RECONSTRUCTION)
+      .where("$QUOTE != 0 AND $DATA_FILE IS NULL AND $REMOTE_LOCATION IS NULL")
+      .run()
+  }
+
+  /**
+   * Retrieves data for the newest quote that is pending reconstruction (see [QUOTE_PENDING_RECONSTRUCTION]), if any.
+   */
+  fun getNewestQuotePendingReconstruction(): DatabaseAttachment? {
+    return readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$QUOTE = $QUOTE_PENDING_RECONSTRUCTION")
+      .orderBy("$ID DESC")
+      .limit(1)
+      .run()
+      .readToSingleObject { it.readAttachment() }
+  }
+
+  /**
+   * After reconstructing a thumbnail, this method can be used to write the data to the quote.
+   * It'll handle duplicates as well as clearing the [QUOTE_PENDING_RECONSTRUCTION] flag.
+   */
+  @Throws(MmsException::class)
+  fun applyReconstructedQuoteData(attachmentId: AttachmentId, thumbnail: ImageCompressionUtil.Result) {
+    val newDataFileInfo = writeToDataFile(newDataFile(context), thumbnail.data.inputStream(), TransformProperties.empty())
+
+    val foundDuplicate = writableDatabase.withinTransaction { db ->
+      val existingMatch: DataFileInfo? = db
+        .select(*DATA_FILE_INFO_PROJECTION)
+        .from(TABLE_NAME)
+        .where("$DATA_HASH_END = ?", newDataFileInfo.hash)
+        .run()
+        .readToSingleObject { it.readDataFileInfo() }
+
+      db.update(TABLE_NAME)
+        .values(
+          DATA_FILE to (existingMatch?.file?.absolutePath ?: newDataFileInfo.file.absolutePath),
+          DATA_SIZE to (existingMatch?.length ?: newDataFileInfo.length),
+          DATA_RANDOM to (existingMatch?.random ?: newDataFileInfo.random),
+          DATA_HASH_START to (existingMatch?.hashStart ?: newDataFileInfo.hash),
+          DATA_HASH_END to (existingMatch?.hashEnd ?: newDataFileInfo.hash),
+          CONTENT_TYPE to thumbnail.mimeType,
+          WIDTH to thumbnail.width,
+          HEIGHT to thumbnail.height,
+          QUOTE to 1
+        )
+        .where("$ID = ?", attachmentId)
+        .run()
+
+      existingMatch != null
+    }
+
+    if (foundDuplicate) {
+      if (!newDataFileInfo.file.delete()) {
+        Log.w(TAG, "[applyReconstructedQuoteData] Failed to delete a duplicated file!")
+      }
+    }
+  }
+
+  /**
+   * Clears the [QUOTE_PENDING_RECONSTRUCTION] status of an attachment. Used for when an error occurs and you can't call [applyReconstructedQuoteData].
+   */
+  fun clearQuotePendingReconstruction(attachmentId: AttachmentId) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(QUOTE to 1)
+      .where("$ID = ?", attachmentId)
+      .run()
+  }
+
+  /**
+   * Clears all [QUOTE_PENDING_RECONSTRUCTION] flags on attachments.
+   */
+  fun clearAllQuotesPendingReconstruction() {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(QUOTE to 1)
+      .where("$QUOTE = $QUOTE_PENDING_RECONSTRUCTION")
+      .run()
   }
 
   /**

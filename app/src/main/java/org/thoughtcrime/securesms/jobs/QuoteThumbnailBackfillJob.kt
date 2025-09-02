@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 
 /**
  * This job processes quote attachments to generate thumbnails where possible.
- * In order to avoid hammering the device, this job will process a single attachment
+ * In order to avoid hammering the device, this job will process a few attachments
  * and then reschedule itself to run again if necessary.
  */
 class QuoteThumbnailBackfillJob private constructor(parameters: Parameters) : Job(parameters) {
