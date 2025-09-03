@@ -897,7 +897,7 @@ private fun LazyListScope.appendBackupDetailsItems(
   if (backupState !is BackupState.ActiveFree) {
     item {
       val sizeText = if (backupMediaSize < 0L) {
-        stringResource(R.string.RemoteBackupsSettingsFragment__loading)
+        stringResource(R.string.RemoteBackupsSettingsFragment__calculating)
       } else {
         backupMediaSize.bytes.toUnitString()
       }
@@ -910,7 +910,7 @@ private fun LazyListScope.appendBackupDetailsItems(
             color = MaterialTheme.colorScheme.onSurface
           )
           Text(
-            text = backupMediaSize.bytes.toUnitString(),
+            text = sizeText,
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
           )
