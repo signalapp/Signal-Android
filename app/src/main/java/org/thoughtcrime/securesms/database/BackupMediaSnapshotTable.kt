@@ -136,10 +136,14 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     mediaObjects
       .chunked(SqlUtil.MAX_QUERY_ARGS)
       .forEach { chunk ->
+        // Full attachment
         writePendingMediaObjectsChunk(
-          chunk.map { MediaEntry(it.mediaId, it.cdn, it.plaintextHash, it.remoteKey, isThumbnail = false) }
+          chunk
+            .filterNot { MediaUtil.isViewOnceType(it.contentType) || MediaUtil.isLongTextType(it.contentType) }
+            .map { MediaEntry(it.mediaId, it.cdn, it.plaintextHash, it.remoteKey, isThumbnail = false) }
         )
 
+        // Thumbnail
         writePendingMediaObjectsChunk(
           chunk
             .filterNot { it.quote }
