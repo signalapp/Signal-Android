@@ -113,6 +113,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
 private val TAG = Log.tag(ChatItemArchiveExporter::class.java)
 private val MAX_INLINED_BODY_SIZE = 128.kibiBytes.bytes.toInt()
 private val MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER = 2.kibiBytes.bytes.toInt()
+private val MAX_INLINED_QUOTE_BODY_SIZE = 2.kibiBytes.bytes.toInt()
 
 /**
  * An iterator for chat items with a clever performance twist: rather than do the extra queries one at a time (for reactions,
@@ -1081,7 +1082,8 @@ private fun BackupMessageRecord.toRemoteQuote(exportState: ExportState, attachme
   }
 
   val bodyRanges = this.quoteBodyRanges?.toRemoteBodyRanges(dateSent) ?: emptyList()
-  val body = this.quoteBody?.takeUnless { it.isBlank() }?.let { body ->
+  val trimmedQuoteBody = StringUtil.trimToFit(this.quoteBody, MAX_INLINED_QUOTE_BODY_SIZE)
+  val body = trimmedQuoteBody.takeUnless { it.isBlank() }?.let { body ->
     Text(
       body = body,
       bodyRanges = bodyRanges
