@@ -21,6 +21,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.AliceClient
 import org.thoughtcrime.securesms.testing.BobClient
 import org.thoughtcrime.securesms.testing.Entry
+import org.thoughtcrime.securesms.testing.FakeClientHelpers
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.testing.awaitFor
 import org.whispersystems.signalservice.internal.push.Envelope
@@ -54,8 +55,7 @@ class MessageProcessingPerformanceTest {
   @Before
   fun setup() {
     mockkStatic(SealedSenderAccessUtil::class)
-    // TODO reinstate this for libsignal 0.76.1
-//    every { SealedSenderAccessUtil.getCertificateValidator() } returns FakeClientHelpers.noOpCertificateValidator
+    every { SealedSenderAccessUtil.getCertificateValidator() } returns FakeClientHelpers.noOpCertificateValidator
 
     mockkObject(MessageContentProcessor)
     every { MessageContentProcessor.create(harness.application) } returns TimingMessageContentProcessor(harness.application)

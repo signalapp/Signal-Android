@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.testing
 
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.Base64
+import org.signal.libsignal.metadata.certificate.CertificateValidator
 import org.signal.libsignal.metadata.certificate.SenderCertificate
 import org.signal.libsignal.metadata.certificate.ServerCertificate
 import org.signal.libsignal.protocol.ecc.ECKeyPair
@@ -22,10 +23,9 @@ import java.util.UUID
 
 object FakeClientHelpers {
 
-  // TODO reinstate this for libsignal 0.76.1
-//  val noOpCertificateValidator = object : CertificateValidator(ECKeyPair.generate().publicKey) {
-//    override fun validate(certificate: SenderCertificate, validationTime: Long) = Unit
-//  }
+  val noOpCertificateValidator = object : CertificateValidator(ECKeyPair.generate().publicKey) {
+    override fun validate(certificate: SenderCertificate, validationTime: Long) = Unit
+  }
 
   fun createCertificateFor(trustRoot: ECKeyPair, uuid: UUID, e164: String, deviceId: Int, identityKey: ECPublicKey, expires: Long): SenderCertificate {
     val serverKey: ECKeyPair = ECKeyPair.generate()
