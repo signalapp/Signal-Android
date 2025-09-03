@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.components.settings.app.backups.remote
 
 import org.signal.core.util.ByteSize
-import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
 
@@ -24,7 +23,6 @@ data class RemoteBackupsSettingsState(
   val totalAllowedStorageSpace: String = "",
   val backupState: BackupState,
   val backupMediaSize: Long = -1L,
-  val backupsFrequency: BackupFrequency = BackupFrequency.DAILY,
   val lastBackupTimestamp: Long = 0,
   val dialog: Dialog = Dialog.NONE,
   val snackbar: Snackbar = Snackbar.NONE,

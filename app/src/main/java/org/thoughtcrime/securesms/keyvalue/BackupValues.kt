@@ -6,8 +6,6 @@ import okio.withLock
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.RestoreState
-import org.thoughtcrime.securesms.backup.v2.BackupFrequency
-import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupStateObserver
 import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraintObserver
@@ -53,7 +51,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_LAST_BACKUP_TIME = "backup.lastBackupTime"
     private const val KEY_LAST_ATTACHMENT_RECONCILIATION_TIME = "backup.lastBackupMediaSyncTime"
     private const val KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE = "backup.totalRestorableAttachmentSize"
-    private const val KEY_BACKUP_FREQUENCY = "backup.backupFrequency"
     private const val KEY_LAST_BACKUP_PROTO_VERSION = "backup.lastBackupProtoVersion"
 
     private const val KEY_CDN_MEDIA_PATH = "backup.cdn.mediaPath"
@@ -143,8 +140,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     get() = getLong(KEY_LAST_BACKUP_TIME, -1)
     set(value) {
       putLong(KEY_LAST_BACKUP_TIME, value)
-      isNoBackupForManualUploadNotified = false
-      BackupRepository.cancelManualBackupNotCreatedInThresholdNotification()
       clearMessageBackupFailureSheetWatermark()
     }
 
@@ -154,7 +149,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   val daysSinceLastBackup: Int get() = (System.currentTimeMillis().milliseconds - lastBackupTime.milliseconds).inWholeDays.toInt()
 
   var lastAttachmentReconciliationTime: Long by longValue(KEY_LAST_ATTACHMENT_RECONCILIATION_TIME, -1)
-  var backupFrequency: BackupFrequency by enumValue(KEY_BACKUP_FREQUENCY, BackupFrequency.DAILY, BackupFrequency.Serializer)
 
   var userManuallySkippedMediaRestore: Boolean by booleanValue(KEY_USER_MANUALLY_SKIPPED_MEDIA_RESTORE, false)
 
@@ -479,14 +473,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
   }
 
   private fun getNextBackupFailureSheetSnoozeTime(previous: Duration): Duration {
-    val timeoutPerSnooze = when (SignalStore.backup.backupFrequency) {
-      BackupFrequency.DAILY -> 7.days
-      BackupFrequency.WEEKLY -> 14.days
-      BackupFrequency.MONTHLY -> 14.days
-      BackupFrequency.MANUAL -> Int.MAX_VALUE.days
-    }
-
-    return previous + timeoutPerSnooze
+    return previous + 7.days
   }
 
   class SerializedCredentials(

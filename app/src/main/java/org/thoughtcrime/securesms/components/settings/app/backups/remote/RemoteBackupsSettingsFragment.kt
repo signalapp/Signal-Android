@@ -16,7 +16,6 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -30,7 +29,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.BasicAlertDialog
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -40,7 +38,6 @@ import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.SnackbarHostState
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TopAppBarDefaults
@@ -191,7 +188,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
       viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.TURN_OFF_AND_DELETE_BACKUPS)
     }
 
-    override fun onChangeBackupFrequencyClick() {
+    override fun onBackupFrequencyClick() {
       viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.BACKUP_FREQUENCY)
     }
 
@@ -201,10 +198,6 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
 
     override fun onSnackbarDismissed() {
       viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.NONE)
-    }
-
-    override fun onSelectBackupsFrequencyChange(newFrequency: BackupFrequency) {
-      viewModel.setBackupsFrequency(newFrequency)
     }
 
     override fun onTurnOffAndDeleteBackupsConfirm() {
@@ -365,10 +358,9 @@ private interface ContentCallbacks {
   fun onBackupNowClick() = Unit
   fun onCancelUploadClick() = Unit
   fun onTurnOffAndDeleteBackupsClick() = Unit
-  fun onChangeBackupFrequencyClick() = Unit
+  fun onBackupFrequencyClick() = Unit
   fun onDialogDismissed() = Unit
   fun onSnackbarDismissed() = Unit
-  fun onSelectBackupsFrequencyChange(newFrequency: BackupFrequency) = Unit
   fun onTurnOffAndDeleteBackupsConfirm() = Unit
   fun onViewBackupKeyClick() = Unit
   fun onStartMediaRestore() = Unit
@@ -527,7 +519,6 @@ private fun RemoteBackupsSettingsContent(
           canBackupMessagesRun = state.canBackupMessagesJobRun,
           lastBackupTimestamp = state.lastBackupTimestamp,
           backupMediaSize = state.backupMediaSize,
-          backupsFrequency = state.backupsFrequency,
           canBackUpUsingCellular = state.canBackUpUsingCellular,
           canRestoreUsingCellular = state.canRestoreUsingCellular,
           canBackUpNow = !state.isOutOfStorageSpace,
@@ -581,10 +572,11 @@ private fun RemoteBackupsSettingsContent(
     }
 
     RemoteBackupsSettingsState.Dialog.BACKUP_FREQUENCY -> {
-      BackupFrequencyDialog(
-        selected = state.backupsFrequency,
-        onSelected = contentCallbacks::onSelectBackupsFrequencyChange,
-        onDismiss = contentCallbacks::onDialogDismissed
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.RemoteBackupsSettingsFragment__backup_frequency),
+        body = stringResource(R.string.RemoteBackupsSettingsFragment__backup_frequency_dialog_body),
+        confirm = stringResource(android.R.string.ok),
+        onConfirm = contentCallbacks::onDialogDismissed
       )
     }
 
@@ -834,7 +826,6 @@ private fun LazyListScope.appendBackupDetailsItems(
   canBackupMessagesRun: Boolean,
   lastBackupTimestamp: Long,
   backupMediaSize: Long,
-  backupsFrequency: BackupFrequency,
   canBackUpUsingCellular: Boolean,
   canRestoreUsingCellular: Boolean,
   canBackUpNow: Boolean,
@@ -938,13 +929,13 @@ private fun LazyListScope.appendBackupDetailsItems(
             color = MaterialTheme.colorScheme.onSurface
           )
           Text(
-            text = getTextForFrequency(backupsFrequency = backupsFrequency),
+            text = stringResource(id = R.string.RemoteBackupsSettingsFragment__daily),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant
           )
         }
       },
-      onClick = contentCallbacks::onChangeBackupFrequencyClick
+      onClick = contentCallbacks::onBackupFrequencyClick
     )
   }
 
@@ -1658,64 +1649,6 @@ private fun ResumeRestoreOverCellularDialog(
   )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-private fun BackupFrequencyDialog(
-  selected: BackupFrequency,
-  onSelected: (BackupFrequency) -> Unit,
-  onDismiss: () -> Unit
-) {
-  BasicAlertDialog(
-    onDismissRequest = onDismiss
-  ) {
-    Surface(
-      color = Dialogs.Defaults.containerColor,
-      shape = Dialogs.Defaults.shape,
-      shadowElevation = Dialogs.Defaults.TonalElevation
-    ) {
-      Column(
-        modifier = Modifier.fillMaxWidth()
-      ) {
-        Text(
-          text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_frequency),
-          style = MaterialTheme.typography.headlineMedium,
-          color = MaterialTheme.colorScheme.onSurface,
-          modifier = Modifier.padding(24.dp)
-        )
-
-        BackupFrequency.entries.forEach {
-          Rows.RadioRow(
-            selected = selected == it,
-            text = getTextForFrequency(backupsFrequency = it),
-            label = when (it) {
-              BackupFrequency.MANUAL -> stringResource(id = R.string.RemoteBackupsSettingsFragment__by_tapping_back_up_now)
-              else -> null
-            },
-            modifier = Modifier
-              .padding(end = 24.dp)
-              .clickable(onClick = {
-                onSelected(it)
-                onDismiss()
-              })
-          )
-        }
-
-        Box(
-          contentAlignment = Alignment.CenterEnd,
-          modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = 24.dp)
-            .padding(bottom = 24.dp)
-        ) {
-          TextButton(onClick = onDismiss) {
-            Text(text = stringResource(id = android.R.string.cancel))
-          }
-        }
-      }
-    }
-  }
-}
-
 @Composable
 private fun BackupReadyToDownloadRow(
   ready: BackupRestoreState.Ready,
@@ -1772,7 +1705,6 @@ private fun RemoteBackupsSettingsContentPreview() {
         lastBackupTimestamp = -1,
         canBackUpUsingCellular = false,
         canRestoreUsingCellular = false,
-        backupsFrequency = BackupFrequency.MANUAL,
         dialog = RemoteBackupsSettingsState.Dialog.NONE,
         snackbar = RemoteBackupsSettingsState.Snackbar.NONE,
         backupMediaSize = 2300000,
@@ -1801,7 +1733,6 @@ private fun RemoteBackupsSettingsInternalUserContentPreview() {
         lastBackupTimestamp = -1,
         canBackUpUsingCellular = false,
         canRestoreUsingCellular = false,
-        backupsFrequency = BackupFrequency.MANUAL,
         dialog = RemoteBackupsSettingsState.Dialog.NONE,
         snackbar = RemoteBackupsSettingsState.Snackbar.NONE,
         backupMediaSize = 2300000,
@@ -2104,18 +2035,6 @@ private fun SkipDownloadDialogPreview() {
   Previews.Preview {
     SkipDownloadDialog(
       renewalTime = System.currentTimeMillis().milliseconds + 30.days
-    )
-  }
-}
-
-@SignalPreview
-@Composable
-private fun BackupFrequencyDialogPreview() {
-  Previews.Preview {
-    BackupFrequencyDialog(
-      selected = BackupFrequency.DAILY,
-      onSelected = {},
-      onDismiss = {}
     )
   }
 }

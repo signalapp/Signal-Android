@@ -38,10 +38,6 @@ object BackupAlertDelegate {
         } else if (BackupRepository.shouldDisplayBackupExpiredAndDowngradedSheet()) {
           Log.d(TAG, "Displaying ExpiredAndDowngraded sheet.")
           BackupAlertBottomSheet.create(BackupAlert.ExpiredAndDowngraded).show(fragmentManager, FRAGMENT_TAG)
-        } else if (BackupRepository.shouldDisplayNoManualBackupForTimeoutSheet()) {
-          Log.d(TAG, "Displaying NoManualBackupBottomSheet.")
-          NoManualBackupBottomSheet().show(fragmentManager, FRAGMENT_TAG)
-          BackupRepository.displayManualBackupNotCreatedInThresholdNotification()
         } else if (BackupRepository.shouldDisplayOutOfRemoteStorageSpaceSheet()) {
           Log.d(TAG, "Displaying NoRemoteStorageSpaceAvailableBottomSheet.")
           NoRemoteStorageSpaceAvailableBottomSheet().show(fragmentManager, FRAGMENT_TAG)

@@ -30,7 +30,6 @@ import org.signal.core.util.throttleLatest
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
-import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
@@ -45,7 +44,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraint
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
-import org.thoughtcrime.securesms.service.MessageBackupListener
 import org.thoughtcrime.securesms.util.Environment
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
@@ -70,7 +68,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       canBackupMessagesJobRun = BackupMessagesConstraint.isMet(AppDependencies.application),
       canViewBackupKey = !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
       lastBackupTimestamp = SignalStore.backup.lastBackupTime,
-      backupsFrequency = SignalStore.backup.backupFrequency,
       canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
       canRestoreUsingCellular = SignalStore.backup.restoreWithCellular,
       includeDebuglog = SignalStore.internal.includeDebuglogInBackup.takeIf { RemoteConfig.internalUser }
@@ -185,13 +182,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     _state.update { it.copy(canRestoreUsingCellular = true) }
   }
 
-  fun setBackupsFrequency(backupsFrequency: BackupFrequency) {
-    SignalStore.backup.backupFrequency = backupsFrequency
-    _state.update { it.copy(backupsFrequency = backupsFrequency) }
-    MessageBackupListener.setNextBackupTimeToIntervalFromNow()
-    MessageBackupListener.schedule(AppDependencies.application)
-  }
-
   fun beginMediaRestore() {
     BackupRepository.resumeMediaRestore()
   }
@@ -302,7 +292,6 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         lastBackupTimestamp = SignalStore.backup.lastBackupTime,
         canBackupMessagesJobRun = BackupMessagesConstraint.isMet(AppDependencies.application),
         backupMediaSize = getBackupMediaSize(),
-        backupsFrequency = SignalStore.backup.backupFrequency,
         canBackUpUsingCellular = SignalStore.backup.backupWithCellular,
         canRestoreUsingCellular = SignalStore.backup.restoreWithCellular,
         isOutOfStorageSpace = BackupRepository.shouldDisplayOutOfRemoteStorageSpaceUx(),

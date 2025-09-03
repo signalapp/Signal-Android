@@ -100,8 +100,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentBackfillJob
 import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
@@ -381,29 +379,6 @@ object BackupRepository {
     }
   }
 
-  fun displayManualBackupNotCreatedInThresholdNotification() {
-    if (SignalStore.backup.lastBackupTime <= 0) {
-      return
-    }
-
-    val daysSinceLastBackup = (System.currentTimeMillis().milliseconds - SignalStore.backup.lastBackupTime.milliseconds).inWholeDays.toInt()
-    val context = AppDependencies.application
-    val pendingIntent = PendingIntent.getActivity(context, 0, AppSettingsActivity.remoteBackups(context), cancelCurrent())
-    val notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().APP_ALERTS)
-      .setSmallIcon(R.drawable.ic_notification)
-      .setContentTitle(context.resources.getQuantityString(R.plurals.Notification_no_backup_for_d_days, daysSinceLastBackup, daysSinceLastBackup))
-      .setContentText(context.resources.getQuantityString(R.plurals.Notification_you_have_not_completed_a_backup, daysSinceLastBackup, daysSinceLastBackup))
-      .setContentIntent(pendingIntent)
-      .setAutoCancel(true)
-      .build()
-
-    ServiceUtil.getNotificationManager(context).notify(NotificationIds.MANUAL_BACKUP_NOT_CREATED, notification)
-  }
-
-  fun cancelManualBackupNotCreatedInThresholdNotification() {
-    ServiceUtil.getNotificationManager(AppDependencies.application).cancel(NotificationIds.MANUAL_BACKUP_NOT_CREATED)
-  }
-
   @Discouraged("This is only public to allow internal settings to call it directly.")
   fun displayInitialBackupFailureNotification() {
     val context = AppDependencies.application
@@ -525,45 +500,6 @@ object BackupRepository {
 
   fun markBackupAlreadyRedeemedIndicatorClicked() {
     SignalStore.backup.hasBackupAlreadyRedeemedError = false
-  }
-
-  /**
-   * Whether or not the "No backup" for manual backups should be displayed.
-   * This should only be displayed after a set threshold has passed and the user
-   * has set the MANUAL backups frequency.
-   */
-  fun shouldDisplayNoManualBackupForTimeoutSheet(): Boolean {
-    if (shouldNotDisplayBackupFailedMessaging()) {
-      return false
-    }
-
-    if (SignalStore.backup.backupFrequency != BackupFrequency.MANUAL) {
-      return false
-    }
-
-    if (SignalStore.backup.lastBackupTime <= 0) {
-      return false
-    }
-
-    val isNetworkConstraintMet = if (SignalStore.backup.backupWithCellular) {
-      NetworkConstraint.isMet(AppDependencies.application)
-    } else {
-      WifiConstraint.isMet(AppDependencies.application)
-    }
-
-    if (!isNetworkConstraintMet) {
-      return false
-    }
-
-    val durationSinceLastBackup = System.currentTimeMillis().milliseconds - SignalStore.backup.lastBackupTime.milliseconds
-    if (durationSinceLastBackup < MANUAL_BACKUP_NOTIFICATION_THRESHOLD) {
-      return false
-    }
-
-    val display = !SignalStore.backup.isNoBackupForManualUploadNotified
-    SignalStore.backup.isNoBackupForManualUploadNotified = false
-
-    return display
   }
 
   /**

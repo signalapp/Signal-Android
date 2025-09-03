@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.service
 
 import android.content.Context
-import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -58,13 +57,7 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
       val now = LocalDateTime.now()
       val hour = SignalStore.settings.backupHour
       val minute = SignalStore.settings.backupMinute
-      var next = getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, maxJitterSeconds)
-      next = when (SignalStore.backup.backupFrequency) {
-        BackupFrequency.MANUAL -> next.plusDays(364)
-        BackupFrequency.MONTHLY -> next.plusDays(29)
-        BackupFrequency.WEEKLY -> next.plusDays(6)
-        else -> next
-      }
+      val next = getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, maxJitterSeconds).plusDays(1)
       val nextTime = next.toMillis()
       SignalStore.backup.nextBackupTime = nextTime
       return nextTime
