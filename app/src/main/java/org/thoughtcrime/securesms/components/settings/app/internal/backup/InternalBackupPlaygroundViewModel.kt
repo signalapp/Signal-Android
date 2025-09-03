@@ -24,6 +24,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.util.Hex
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.bytes
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.copyTo
@@ -305,10 +306,10 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
       }
   }
 
-  fun wipeAllDataAndRestoreFromRemote() {
+  fun wipeAllDataAndRestoreFromRemote(afterDbRestoreCallback: () -> Unit) {
     SignalExecutors.BOUNDED_IO.execute {
       SignalStore.backup.restoreWithCellular = false
-      restoreFromRemote()
+      restoreFromRemote(afterDbRestoreCallback)
     }
   }
 
@@ -352,12 +353,15 @@ class InternalBackupPlaygroundViewModel : ViewModel() {
     _state.value = _state.value.copy(dialog = DialogState.None)
   }
 
-  private fun restoreFromRemote() {
+  private fun restoreFromRemote(afterDbRestoreCallback: () -> Unit) {
     _state.value = _state.value.copy(statusMessage = "Importing from remote...")
 
     viewModelScope.launch {
       when (val result = BackupRepository.restoreRemoteBackup()) {
-        RemoteRestoreResult.Success -> _state.value = _state.value.copy(statusMessage = "Import complete!")
+        RemoteRestoreResult.Success -> {
+          _state.value = _state.value.copy(statusMessage = "Import complete!")
+          ThreadUtil.runOnMain { afterDbRestoreCallback() }
+        }
         RemoteRestoreResult.Canceled,
         RemoteRestoreResult.Failure,
         RemoteRestoreResult.PermanentSvrBFailure,

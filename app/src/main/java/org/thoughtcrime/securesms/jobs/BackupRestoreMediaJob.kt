@@ -47,6 +47,10 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
 
   override fun onFailure() = Unit
 
+  override fun onAdded() {
+    ArchiveRestoreProgress.onStartMediaRestore()
+  }
+
   override fun onRun() {
     if (!SignalStore.account.isRegistered) {
       Log.e(TAG, "Not registered, cannot restore!")
@@ -121,7 +125,7 @@ class BackupRestoreMediaJob private constructor(parameters: Parameters) : BaseJo
     } while (restoreThumbnailJobs.isNotEmpty() || restoreFullAttachmentJobs.isNotEmpty() || notRestorable.isNotEmpty())
 
     BackupMediaRestoreService.start(context, context.getString(R.string.BackupStatus__restoring_media))
-    SignalStore.backup.totalRestorableAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
+    ArchiveRestoreProgress.onRestoringMedia()
 
     RestoreAttachmentJob.Queues.INITIAL_RESTORE.forEach { queue ->
       jobManager.add(CheckRestoreMediaLeftJob(queue))

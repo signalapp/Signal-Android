@@ -62,6 +62,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.distinctUntilChangedBy
+import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -69,7 +71,7 @@ import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
 import org.signal.donations.StripeApi
-import org.thoughtcrime.securesms.backup.RestoreState
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.ui.verify.VerifyBackupKeyActivity
 import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar.show
 import org.thoughtcrime.securesms.calls.log.CallLogFilter
@@ -258,13 +260,16 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       }
 
       launch {
-        mainNavigationViewModel.backupStatus.collect { remainingRestoreSize ->
-          val totalRestorableSize = SignalStore.backup.totalRestorableAttachmentSize
-          if (SignalStore.backup.restoreState == RestoreState.RESTORING_MEDIA && remainingRestoreSize != 0L && totalRestorableSize != 0L) {
-            Log.i(TAG, "Still restoring media, launching a service. Remaining restoration size: $remainingRestoreSize out of $totalRestorableSize ")
-            BackupMediaRestoreService.resetTimeout()
-            BackupMediaRestoreService.start(this@MainActivity, resources.getString(R.string.BackupStatus__restoring_media))
-          }
+        repeatOnLifecycle(Lifecycle.State.STARTED) {
+          ArchiveRestoreProgress
+            .stateFlow
+            .distinctUntilChangedBy { it.needRestoreMediaService() }
+            .filter { it.needRestoreMediaService() }
+            .collect {
+              Log.i(TAG, "Still restoring media, launching a service. Remaining restoration size: ${it.remainingRestoreSize} out of ${it.totalRestoreSize} ")
+              BackupMediaRestoreService.resetTimeout()
+              BackupMediaRestoreService.start(this@MainActivity, resources.getString(R.string.BackupStatus__restoring_media))
+            }
         }
       }
     }

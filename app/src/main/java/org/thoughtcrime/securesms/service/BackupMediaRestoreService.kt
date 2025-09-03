@@ -13,8 +13,7 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.RestoreState
-import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.service.BackupMediaRestoreService.Companion.hasTimedOut
@@ -176,12 +175,10 @@ class BackupMediaRestoreService : SafeForegroundService() {
 
     val title: String = startingTitle
     val downloadedBytes: ByteSize
-      get() {
-        val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
-        return totalBytes - remainingAttachmentSize.bytes
-      }
+      get() = ArchiveRestoreProgress.state.completedRestoredSize
+
     val totalBytes: ByteSize
-      get() = SignalStore.backup.totalRestorableAttachmentSize.bytes
+      get() = ArchiveRestoreProgress.state.totalRestoreSize
 
     fun closeFromTimeout() {
       controllerLock.withLock {

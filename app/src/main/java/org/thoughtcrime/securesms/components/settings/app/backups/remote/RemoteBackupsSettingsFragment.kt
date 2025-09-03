@@ -90,11 +90,14 @@ import org.thoughtcrime.securesms.DevicePinAuthEducationSheet
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
+import org.thoughtcrime.securesms.backup.RestoreState
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState.RestoreStatus
 import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
-import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
+import org.thoughtcrime.securesms.backup.v2.ui.status.BackupCreateErrorRow
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusRow
 import org.thoughtcrime.securesms.backup.v2.ui.status.RestoreType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
@@ -222,7 +225,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     }
 
     override fun onCancelMediaRestore() {
-      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.CANCEL_MEDIA_RESTORE_PROTECTION)
+      viewModel.cancelMediaRestore()
     }
 
     override fun onDisplaySkipMediaRestoreProtectionDialog() {
@@ -512,28 +515,28 @@ private fun RemoteBackupsSettingsContent(
         )
       } else if (state.backupsEnabled) {
         appendBackupDetailsItems(
-          backupState = state.backupState,
-          canViewBackupKey = state.canViewBackupKey,
+          state = state,
           backupRestoreState = backupRestoreState,
           backupProgress = backupProgress,
-          canBackupMessagesRun = state.canBackupMessagesJobRun,
-          lastBackupTimestamp = state.lastBackupTimestamp,
-          backupMediaSize = state.backupMediaSize,
-          canBackUpUsingCellular = state.canBackUpUsingCellular,
-          canRestoreUsingCellular = state.canRestoreUsingCellular,
-          canBackUpNow = !state.isOutOfStorageSpace,
-          includeDebuglog = state.includeDebuglog,
-          backupMediaDetails = state.backupMediaDetails,
           contentCallbacks = contentCallbacks
         )
       } else {
-        if (backupRestoreState is BackupRestoreState.FromBackupStatusData) {
+        if (state.showBackupCreateFailedError || state.showBackupCreateCouldNotCompleteError) {
+          item {
+            BackupCreateErrorRow(
+              showCouldNotComplete = state.showBackupCreateCouldNotCompleteError,
+              showBackupFailed = state.showBackupCreateFailedError,
+              onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
+            )
+          }
+        }
+
+        if (backupRestoreState is BackupRestoreState.Restoring) {
           item {
             BackupStatusRow(
-              backupStatusData = backupRestoreState.backupStatusData,
+              backupStatusData = backupRestoreState.state,
               onCancelClick = contentCallbacks::onCancelMediaRestore,
-              onSkipClick = contentCallbacks::onSkipMediaRestore,
-              onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
+              onSkipClick = contentCallbacks::onSkipMediaRestore
             )
           }
         }
@@ -665,24 +668,24 @@ private fun ReenableBackupsButton(contentCallbacks: ContentCallbacks) {
 }
 
 private fun LazyListScope.appendRestoreFromBackupStatusData(
-  backupRestoreState: BackupRestoreState.FromBackupStatusData,
+  backupRestoreState: BackupRestoreState.Restoring,
   canRestoreUsingCellular: Boolean,
   contentCallbacks: ContentCallbacks,
   isCancelable: Boolean = true
 ) {
   item {
     BackupStatusRow(
-      backupStatusData = backupRestoreState.backupStatusData,
+      backupStatusData = backupRestoreState.state,
       restoreType = if (isCancelable) RestoreType.DOWNLOAD else RestoreType.RESTORE,
       onCancelClick = if (isCancelable) contentCallbacks::onCancelMediaRestore else null,
-      onSkipClick = contentCallbacks::onDisplaySkipMediaRestoreProtectionDialog,
-      onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
+      onSkipClick = contentCallbacks::onDisplaySkipMediaRestoreProtectionDialog
     )
   }
 
-  val displayResumeButton = when (val data = backupRestoreState.backupStatusData) {
-    is BackupStatusData.RestoringMedia -> !canRestoreUsingCellular && data.restoreStatus == BackupStatusData.RestoreStatus.WAITING_FOR_WIFI
-    else -> false
+  val displayResumeButton = if (backupRestoreState.state.restoreState == RestoreState.RESTORING_MEDIA) {
+    !canRestoreUsingCellular && backupRestoreState.state.restoreStatus == RestoreStatus.WAITING_FOR_WIFI
+  } else {
+    false
   }
 
   if (displayResumeButton) {
@@ -744,7 +747,7 @@ private fun LazyListScope.appendBackupDeletionItems(
         )
       }
 
-      if (backupRestoreState is BackupRestoreState.FromBackupStatusData) {
+      if (backupRestoreState is BackupRestoreState.Restoring) {
         appendRestoreFromBackupStatusData(
           backupRestoreState = backupRestoreState,
           canRestoreUsingCellular = canRestoreUsingCellular,
@@ -754,7 +757,9 @@ private fun LazyListScope.appendBackupDeletionItems(
       } else {
         item {
           LinearProgressIndicator(
-            modifier = Modifier.horizontalGutters().fillMaxWidth()
+            modifier = Modifier
+              .horizontalGutters()
+              .fillMaxWidth()
           )
         }
       }
@@ -819,18 +824,9 @@ private fun DescriptionText(
 }
 
 private fun LazyListScope.appendBackupDetailsItems(
-  backupState: BackupState,
-  canViewBackupKey: Boolean,
+  state: RemoteBackupsSettingsState,
   backupRestoreState: BackupRestoreState,
   backupProgress: ArchiveUploadProgressState?,
-  canBackupMessagesRun: Boolean,
-  lastBackupTimestamp: Long,
-  backupMediaSize: Long,
-  canBackUpUsingCellular: Boolean,
-  canRestoreUsingCellular: Boolean,
-  canBackUpNow: Boolean,
-  includeDebuglog: Boolean?,
-  backupMediaDetails: RemoteBackupsSettingsState.BackupMediaDetails?,
   contentCallbacks: ContentCallbacks
 ) {
   item {
@@ -841,45 +837,55 @@ private fun LazyListScope.appendBackupDetailsItems(
     Texts.SectionHeader(text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_details))
   }
 
-  if (backupMediaDetails != null) {
+  if (state.backupMediaDetails != null) {
     item {
       Column(modifier = Modifier.horizontalGutters()) {
         Text("[Internal Only] Backup Media Details")
-        Text("Awaiting Restore: ${backupMediaDetails.awaitingRestore.toUnitString()}")
-        Text("Offloaded: ${backupMediaDetails.offloaded.toUnitString()}")
+        Text("Awaiting Restore: ${state.backupMediaDetails.awaitingRestore.toUnitString()}")
+        Text("Offloaded: ${state.backupMediaDetails.offloaded.toUnitString()}")
       }
     }
   }
 
+  if (state.showBackupCreateFailedError || state.showBackupCreateCouldNotCompleteError) {
+    item {
+      BackupCreateErrorRow(
+        showCouldNotComplete = state.showBackupCreateCouldNotCompleteError,
+        showBackupFailed = state.showBackupCreateFailedError,
+        onLearnMoreClick = contentCallbacks::onLearnMoreAboutBackupFailure
+      )
+    }
+  }
+
   if (backupRestoreState !is BackupRestoreState.None) {
-    if (backupRestoreState is BackupRestoreState.FromBackupStatusData) {
+    if (backupRestoreState is BackupRestoreState.Restoring) {
       appendRestoreFromBackupStatusData(
         backupRestoreState = backupRestoreState,
-        canRestoreUsingCellular = canRestoreUsingCellular,
+        canRestoreUsingCellular = state.canRestoreUsingCellular,
         contentCallbacks = contentCallbacks
       )
     } else if (backupRestoreState is BackupRestoreState.Ready) {
       item {
         BackupReadyToDownloadRow(
           ready = backupRestoreState,
-          backupState = backupState,
+          backupState = state.backupState,
           onDownloadClick = contentCallbacks::onStartMediaRestore
         )
       }
     }
   }
 
-  if (includeDebuglog != null) {
+  if (state.includeDebuglog != null) {
     item {
-      IncludeDebuglogRow(includeDebuglog) { contentCallbacks.onIncludeDebuglogClick(it) }
+      IncludeDebuglogRow(state.includeDebuglog) { contentCallbacks.onIncludeDebuglogClick(it) }
     }
   }
 
   if (backupProgress == null || backupProgress.state == ArchiveUploadProgressState.State.None || backupProgress.state == ArchiveUploadProgressState.State.UserCanceled) {
     item {
       LastBackupRow(
-        lastBackupTimestamp = lastBackupTimestamp,
-        enabled = canBackUpNow,
+        lastBackupTimestamp = state.lastBackupTimestamp,
+        enabled = !state.isOutOfStorageSpace,
         onBackupNowClick = contentCallbacks::onBackupNowClick
       )
     }
@@ -887,19 +893,19 @@ private fun LazyListScope.appendBackupDetailsItems(
     item {
       InProgressBackupRow(
         archiveUploadProgressState = backupProgress,
-        canBackupMessagesRun = canBackupMessagesRun,
-        canBackupUsingCellular = canBackUpUsingCellular,
+        canBackupMessagesRun = state.canBackupMessagesJobRun,
+        canBackupUsingCellular = state.canBackUpUsingCellular,
         cancelArchiveUpload = contentCallbacks::onCancelUploadClick
       )
     }
   }
 
-  if (backupState !is BackupState.ActiveFree) {
+  if (state.backupState !is BackupState.ActiveFree) {
     item {
-      val sizeText = if (backupMediaSize < 0L) {
+      val sizeText = if (state.backupMediaSize < 0L) {
         stringResource(R.string.RemoteBackupsSettingsFragment__calculating)
       } else {
-        backupMediaSize.bytes.toUnitString()
+        state.backupMediaSize.bytes.toUnitString()
       }
 
       Rows.TextRow(text = {
@@ -941,7 +947,7 @@ private fun LazyListScope.appendBackupDetailsItems(
 
   item {
     Rows.ToggleRow(
-      checked = canBackUpUsingCellular,
+      checked = state.canBackUpUsingCellular,
       text = stringResource(id = R.string.RemoteBackupsSettingsFragment__back_up_using_cellular),
       onCheckChanged = contentCallbacks::onBackUpUsingCellularClick
     )
@@ -951,7 +957,7 @@ private fun LazyListScope.appendBackupDetailsItems(
     Rows.TextRow(
       text = stringResource(R.string.RemoteBackupsSettingsFragment__view_backup_key),
       onClick = contentCallbacks::onViewBackupKeyClick,
-      enabled = canViewBackupKey
+      enabled = state.canViewBackupKey
     )
   }
 
@@ -1112,13 +1118,17 @@ private fun OutOfStorageSpaceBlock(
   Dividers.Default()
 
   Row(
-    modifier = Modifier.horizontalGutters().padding(vertical = 12.dp)
+    modifier = Modifier
+      .horizontalGutters()
+      .padding(vertical = 12.dp)
   ) {
     Icon(
       imageVector = ImageVector.vectorResource(R.drawable.symbol_error_circle_fill_24),
       tint = MaterialTheme.colorScheme.error,
       contentDescription = null,
-      modifier = Modifier.padding(top = 4.dp, end = 4.dp, start = 2.dp).size(20.dp)
+      modifier = Modifier
+        .padding(top = 4.dp, end = 4.dp, start = 2.dp)
+        .size(20.dp)
     )
 
     Column {
@@ -1716,7 +1726,7 @@ private fun RemoteBackupsSettingsContentPreview() {
       ),
       statusBarColorNestedScrollConnection = null,
       backupDeleteState = DeletionState.NONE,
-      backupRestoreState = BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup),
+      backupRestoreState = BackupRestoreState.None,
       contentCallbacks = ContentCallbacks.Empty,
       backupProgress = null
     )
@@ -1745,7 +1755,7 @@ private fun RemoteBackupsSettingsInternalUserContentPreview() {
       ),
       statusBarColorNestedScrollConnection = null,
       backupDeleteState = DeletionState.NONE,
-      backupRestoreState = BackupRestoreState.FromBackupStatusData(BackupStatusData.CouldNotCompleteBackup),
+      backupRestoreState = BackupRestoreState.None,
       contentCallbacks = ContentCallbacks.Empty,
       backupProgress = null
     )
@@ -2047,11 +2057,8 @@ private fun BackupDeletionCardPreview() {
       for (state in DeletionState.entries.filter { it.hasUx() }) {
         appendBackupDeletionItems(
           backupDeleteState = state,
-          backupRestoreState = BackupRestoreState.FromBackupStatusData(
-            backupStatusData = BackupStatusData.RestoringMedia(
-              bytesDownloaded = 80.mebiBytes,
-              bytesTotal = 3.gibiBytes
-            )
+          backupRestoreState = BackupRestoreState.Restoring(
+            state = ArchiveRestoreProgressState(restoreState = RestoreState.RESTORING_MEDIA, restoreStatus = RestoreStatus.RESTORING, remainingRestoreSize = 800.mebiBytes, totalRestoreSize = 1024.mebiBytes)
           ),
           contentCallbacks = ContentCallbacks.Empty,
           canRestoreUsingCellular = true

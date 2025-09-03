@@ -7,7 +7,6 @@ package org.thoughtcrime.securesms.jobs
 
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.DeletionState
-import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -46,21 +45,17 @@ class CheckRestoreMediaLeftJob private constructor(parameters: Parameters) : Job
     val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
 
     if (remainingAttachmentSize == 0L) {
-      if (SignalStore.backup.restoreState != RestoreState.NONE) {
-        Log.d(TAG, "Media restore complete: there are no remaining restorable attachments.")
-        SignalStore.backup.totalRestorableAttachmentSize = 0
-        SignalStore.backup.restoreState = RestoreState.NONE
-        ArchiveRestoreProgress.onProcessEnd()
-        BackupMediaRestoreService.stop(context)
+      Log.d(TAG, "Media restore complete: there are no remaining restorable attachments.")
+      ArchiveRestoreProgress.allMediaRestored()
+      BackupMediaRestoreService.stop(context)
 
-        if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
-          SignalStore.backup.deletionState = DeletionState.MEDIA_DOWNLOAD_FINISHED
-        }
+      if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
+        SignalStore.backup.deletionState = DeletionState.MEDIA_DOWNLOAD_FINISHED
+      }
 
-        if (!SignalStore.backup.backsUpMedia) {
-          SignalDatabase.attachments.markQuotesThatNeedReconstruction()
-          AppDependencies.jobManager.add(QuoteThumbnailReconstructionJob())
-        }
+      if (!SignalStore.backup.backsUpMedia) {
+        SignalDatabase.attachments.markQuotesThatNeedReconstruction()
+        AppDependencies.jobManager.add(QuoteThumbnailReconstructionJob())
       }
     } else if (runAttempt == 0) {
       Log.w(TAG, "Still have remaining data to restore, will retry before checking job queues, queue: ${parameters.queue} estimated remaining: $remainingAttachmentSize")

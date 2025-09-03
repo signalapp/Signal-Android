@@ -7960,6 +7960,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Free up %1$s of space to restore your media.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Restoring media</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">Canceling media restore</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">Media restore paused</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->

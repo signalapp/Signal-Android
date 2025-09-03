@@ -59,7 +59,6 @@ import org.thoughtcrime.securesms.attachments.Cdn
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
 import org.thoughtcrime.securesms.backup.DeletionState
-import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.copyAttachmentToArchive
 import org.thoughtcrime.securesms.backup.v2.BackupRepository.exportForDebugging
 import org.thoughtcrime.securesms.backup.v2.importer.ChatItemArchiveImporter
@@ -105,11 +104,10 @@ import org.thoughtcrime.securesms.jobs.AvatarGroupsV2DownloadJob
 import org.thoughtcrime.securesms.jobs.BackupDeleteJob
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
-import org.thoughtcrime.securesms.jobs.CheckRestoreMediaLeftJob
+import org.thoughtcrime.securesms.jobs.CancelRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
-import org.thoughtcrime.securesms.jobs.RestoreAttachmentJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
@@ -362,11 +360,7 @@ object BackupRepository {
    */
   @JvmStatic
   fun skipMediaRestore() {
-    SignalStore.backup.userManuallySkippedMediaRestore = true
-
-    RestoreAttachmentJob.Queues.ALL.forEach { AppDependencies.jobManager.cancelAllInQueue(it) }
-
-    RestoreAttachmentJob.Queues.ALL.forEach { AppDependencies.jobManager.add(CheckRestoreMediaLeftJob(it)) }
+    CancelRestoreMediaJob.enqueue()
   }
 
   fun markBackupFailure() {
@@ -1991,7 +1985,7 @@ object BackupRepository {
 
   suspend fun restoreRemoteBackup(): RemoteRestoreResult {
     val context = AppDependencies.application
-    SignalStore.backup.restoreState = RestoreState.PENDING
+    ArchiveRestoreProgress.onRestorePending()
 
     try {
       DataRestoreConstraint.isRestoringData = true
@@ -2006,7 +2000,7 @@ object BackupRepository {
   }
 
   private fun restoreRemoteBackup(controller: BackupProgressService.Controller, cancellationSignal: () -> Boolean): RemoteRestoreResult {
-    SignalStore.backup.restoreState = RestoreState.RESTORING_DB
+    ArchiveRestoreProgress.onRestoringDb()
 
     val progressListener = object : ProgressListener {
       override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
@@ -2098,8 +2092,6 @@ object BackupRepository {
       return RemoteRestoreResult.Failure
     }
 
-    SignalStore.backup.restoreState = RestoreState.RESTORING_MEDIA
-
     BackupMediaRestoreService.resetTimeout()
     AppDependencies.jobManager.add(BackupRestoreMediaJob())
 
@@ -2109,7 +2101,7 @@ object BackupRepository {
 
   suspend fun restoreLinkAndSyncBackup(response: TransferArchiveResponse, ephemeralBackupKey: MessageBackupKey) {
     val context = AppDependencies.application
-    SignalStore.backup.restoreState = RestoreState.PENDING
+    ArchiveRestoreProgress.onRestorePending()
 
     try {
       DataRestoreConstraint.isRestoringData = true
@@ -2124,7 +2116,7 @@ object BackupRepository {
   }
 
   private fun restoreLinkAndSyncBackup(response: TransferArchiveResponse, ephemeralBackupKey: MessageBackupKey, controller: BackupProgressService.Controller, cancellationSignal: () -> Boolean): RemoteRestoreResult {
-    SignalStore.backup.restoreState = RestoreState.RESTORING_DB
+    ArchiveRestoreProgress.onRestoringDb()
 
     val progressListener = object : ProgressListener {
       override fun onAttachmentProgress(progress: AttachmentTransferProgress) {
@@ -2174,8 +2166,6 @@ object BackupRepository {
       Log.w(TAG, "[restoreLinkAndSyncBackup] Failed to import backup")
       return RemoteRestoreResult.Failure
     }
-
-    SignalStore.backup.restoreState = RestoreState.RESTORING_MEDIA
 
     BackupMediaRestoreService.resetTimeout()
     AppDependencies.jobManager.add(BackupRestoreMediaJob())

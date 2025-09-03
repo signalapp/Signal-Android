@@ -8,6 +8,7 @@ package org.thoughtcrime.securesms.logsubmit
 import android.content.Context
 import kotlinx.coroutines.runBlocking
 import org.signal.donations.InAppPaymentType
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -39,7 +40,7 @@ class LogSectionRemoteBackups : LogSection {
     output.append("Optimize storage:                     ${SignalStore.backup.optimizeStorage}\n")
     output.append("Detected subscription state mismatch: ${SignalStore.backup.subscriptionStateMismatchDetected}\n")
     output.append("Last verified key time:               ${SignalStore.backup.lastVerifyKeyTime}\n")
-    output.append("Media restore state:                  ${SignalStore.backup.restoreState}\n")
+    output.append("Restore state:                        ${ArchiveRestoreProgress.state}\n")
     output.append("\n -- Subscription State\n")
 
     val backupSubscriptionId = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)

@@ -28,7 +28,9 @@ data class RemoteBackupsSettingsState(
   val snackbar: Snackbar = Snackbar.NONE,
   val includeDebuglog: Boolean? = null,
   val canBackupMessagesJobRun: Boolean = false,
-  val backupMediaDetails: BackupMediaDetails? = null
+  val backupMediaDetails: BackupMediaDetails? = null,
+  val showBackupCreateFailedError: Boolean = false,
+  val showBackupCreateCouldNotCompleteError: Boolean = false
 ) {
 
   data class BackupMediaDetails(

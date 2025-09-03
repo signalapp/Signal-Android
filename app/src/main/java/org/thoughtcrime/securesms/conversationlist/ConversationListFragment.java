@@ -76,10 +76,12 @@ import org.thoughtcrime.securesms.MainFragment;
 import org.thoughtcrime.securesms.MainNavigator;
 import org.thoughtcrime.securesms.MuteDialog;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.RestoreState;
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress;
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet;
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertDelegate;
-import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData;
 import org.thoughtcrime.securesms.badges.models.Badge;
 import org.thoughtcrime.securesms.badges.self.expired.ExpiredOneTimeBadgeBottomSheetDialogFragment;
 import org.thoughtcrime.securesms.badges.self.expired.MonthlyDonationCanceledBottomSheetDialogFragment;
@@ -94,9 +96,9 @@ import org.thoughtcrime.securesms.banner.banners.OutdatedBuildBanner;
 import org.thoughtcrime.securesms.banner.banners.ServiceOutageBanner;
 import org.thoughtcrime.securesms.banner.banners.UnauthorizedBanner;
 import org.thoughtcrime.securesms.banner.banners.UsernameOutOfSyncBanner;
-import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog;
 import org.thoughtcrime.securesms.components.RatingManager;
 import org.thoughtcrime.securesms.components.SignalProgressDialog;
+import org.thoughtcrime.securesms.components.compose.DeleteSyncEducationDialog;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
 import org.thoughtcrime.securesms.components.menu.SignalBottomActionBar;
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu;
@@ -746,16 +748,20 @@ public class ConversationListFragment extends MainFragment implements Conversati
           }
 
           @Override
-          public void onActionClick(@NonNull BackupStatusData backupStatusData) {
-            if (backupStatusData instanceof BackupStatusData.NotEnoughFreeSpace) {
-              BackupAlertBottomSheet.create(new BackupAlert.DiskFull(((BackupStatusData.NotEnoughFreeSpace) backupStatusData).getRequiredSpace()))
-                                    .show(getParentFragmentManager(), null);
-            } else if (backupStatusData instanceof BackupStatusData.RestoringMedia && ((BackupStatusData.RestoringMedia) backupStatusData).getRestoreStatus() == BackupStatusData.RestoreStatus.WAITING_FOR_WIFI) {
+          public void onActionClick(@NonNull ArchiveRestoreProgressState data) {
+            if (data.getRestoreStatus() == ArchiveRestoreProgressState.RestoreStatus.NOT_ENOUGH_DISK_SPACE) {
+              BackupAlertBottomSheet.create(new BackupAlert.DiskFull(data.getRemainingRestoreSize().toUnitString())).show(getParentFragmentManager(), null);
+            } else if (data.getRestoreState() == RestoreState.RESTORING_MEDIA && data.getRestoreStatus() == ArchiveRestoreProgressState.RestoreStatus.WAITING_FOR_WIFI) {
               new MaterialAlertDialogBuilder(requireContext())
                   .setTitle(R.string.ResumeRestoreCellular_resume_using_cellular_title)
                   .setMessage(R.string.ResumeRestoreCellular_resume_using_cellular_message)
                   .setNegativeButton(android.R.string.cancel, null)
-                  .setPositiveButton(R.string.BackupStatus__resume, (d, w) -> SignalStore.backup().setRestoreWithCellular(true))
+                  .setPositiveButton(R.string.BackupStatus__resume, (d, w) -> {
+                    SignalExecutors.BOUNDED.execute(() -> {
+                      SignalStore.backup().setRestoreWithCellular(true);
+                      ArchiveRestoreProgress.forceUpdate();
+                    });
+                  })
                   .show();
             }
           }

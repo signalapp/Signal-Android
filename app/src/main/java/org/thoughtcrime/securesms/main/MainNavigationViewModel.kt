@@ -21,9 +21,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.rx3.asObservable
-import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
-import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.megaphone.Megaphone
@@ -64,9 +62,6 @@ class MainNavigationViewModel(
   private val internalMainNavigationState = MutableStateFlow(MainNavigationState(currentListLocation = initialListLocation))
   val mainNavigationState: StateFlow<MainNavigationState> = internalMainNavigationState
 
-  private val internalBackupStatus = MutableStateFlow(0L)
-  val backupStatus: StateFlow<Long> = internalBackupStatus
-
   /**
    * This is Rx because these are still accessed from Java.
    */
@@ -89,8 +84,6 @@ class MainNavigationViewModel(
     performStoreUpdate(MainNavigationRepository.getHasFailedOutgoingStories()) { hasFailedStories, state ->
       state.copy(storyFailure = hasFailedStories)
     }
-
-    getRemainingRestoreAttachmentSize()
   }
 
   /**
@@ -215,18 +208,6 @@ class MainNavigationViewModel(
         internalTabClickEvents.emit(destination)
       } else {
         goTo(destination)
-      }
-    }
-  }
-
-  private fun getRemainingRestoreAttachmentSize() {
-    viewModelScope.launch {
-      internalBackupStatus.update {
-        if (SignalStore.backup.restoreState == RestoreState.RESTORING_MEDIA) {
-          SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
-        } else {
-          0L
-        }
       }
     }
   }

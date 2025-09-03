@@ -116,7 +116,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   val deletionStateFlow: Flow<DeletionState> = deletionStateValue.toFlow()
 
-  var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
   var optimizeStorage: Boolean by booleanValue(KEY_OPTIMIZE_STORAGE, false)
   var backupWithCellular: Boolean
     get() = getBoolean(KEY_BACKUP_OVER_CELLULAR, false)
@@ -359,13 +358,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   var backupsInitialized: Boolean by booleanValue(KEY_BACKUPS_INITIALIZED, false)
 
-  private val totalRestorableAttachmentSizeValue = longValue(KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE, 0)
-  var totalRestorableAttachmentSize: Long by totalRestorableAttachmentSizeValue
-  val totalRestorableAttachmentSizeFlow: Flow<Long>
-    get() = totalRestorableAttachmentSizeValue.toFlow()
-
-  val isMediaRestoreInProgress: Boolean
-    get() = totalRestorableAttachmentSize > 0
+  var restoreState: RestoreState by enumValue(KEY_RESTORE_STATE, RestoreState.NONE, RestoreState.serializer)
+  var totalRestorableAttachmentSize: Long by longValue(KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE, 0)
 
   /** Store that lets you interact with message ZK credentials. */
   val messageCredentials = CredentialStore(KEY_MESSAGE_CREDENTIALS, KEY_MESSAGE_CDN_READ_CREDENTIALS, KEY_MESSAGE_CDN_READ_CREDENTIALS_TIMESTAMP)

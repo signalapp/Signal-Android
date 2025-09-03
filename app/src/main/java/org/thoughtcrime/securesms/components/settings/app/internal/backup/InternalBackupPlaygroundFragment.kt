@@ -68,6 +68,7 @@ import org.signal.core.ui.compose.TextFields.TextField
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.getLength
+import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -190,7 +191,12 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
             MaterialAlertDialogBuilder(context)
               .setTitle("Are you sure?")
               .setMessage("This will delete all of your chats! Make sure you've finished a backup first, we don't check for you. Only do this on a test device!")
-              .setPositiveButton("Wipe and restore") { _, _ -> viewModel.wipeAllDataAndRestoreFromRemote() }
+              .setPositiveButton("Wipe and restore") { _, _ ->
+                Toast.makeText(this@InternalBackupPlaygroundFragment.requireContext(), "Restoring backup...", Toast.LENGTH_SHORT).show()
+                viewModel.wipeAllDataAndRestoreFromRemote {
+                  startActivity(MainActivity.clearTop(this@InternalBackupPlaygroundFragment.requireActivity()))
+                }
+              }
               .show()
           },
           onImportEncryptedBackupFromDiskClicked = {

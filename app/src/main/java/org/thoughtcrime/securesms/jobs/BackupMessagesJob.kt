@@ -20,8 +20,8 @@ import org.signal.libsignal.net.SvrBStoreResponse
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
-import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.ArchiveMediaItemIterator
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ResumableMessagesBackupUploadSpec
@@ -80,12 +80,7 @@ class BackupMessagesJob private constructor(
           false
         }
 
-        SignalStore.backup.restoreState == RestoreState.PENDING -> {
-          Log.i(TAG, "Backup not allowed: a restore is pending.")
-          false
-        }
-
-        SignalStore.backup.restoreState == RestoreState.RESTORING_DB -> {
+        ArchiveRestoreProgress.state.activelyRestoring() -> {
           Log.i(TAG, "Backup not allowed: a restore is in progress.")
           false
         }
