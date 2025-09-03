@@ -248,7 +248,7 @@ class RegistrationViewModel : ViewModel() {
     store.update {
       it.copy(fcmToken = fcmToken)
     }
-    Log.d(TAG, "FCM token fetched.")
+    Log.d(TAG, "FCM token fetched.", true)
     return fcmToken
   }
 
@@ -461,9 +461,9 @@ class RegistrationViewModel : ViewModel() {
 
     viewModelScope.launch {
       val session = getOrCreateValidSession(context) ?: return@launch bail { Log.i(TAG, "Could not create valid session for submitting a captcha token.") }
-      Log.d(TAG, "Submitting captcha token…")
+      Log.d(TAG, "Submitting captcha token…", true)
       val captchaSubmissionResult = RegistrationRepository.submitCaptchaToken(context, e164, password, session.sessionId, captchaToken)
-      Log.d(TAG, "Captcha token submitted.")
+      Log.d(TAG, "Captcha token submitted.", true)
 
       handleSessionStateResult(context, captchaSubmissionResult)
     }
@@ -486,7 +486,7 @@ class RegistrationViewModel : ViewModel() {
 
       Log.d(TAG, "Requesting push challenge token…")
       val pushSubmissionResult = RegistrationRepository.requestAndVerifyPushToken(context, session.sessionId, e164, password)
-      Log.d(TAG, "Push challenge token submitted.")
+      Log.d(TAG, "Push challenge token submitted.", true)
       handleSessionStateResult(context, pushSubmissionResult)
     }
   }
@@ -517,7 +517,7 @@ class RegistrationViewModel : ViewModel() {
       }
 
       is ChallengeRequired -> {
-        Log.d(TAG, "[${sessionResult.challenges.joinToString()}] registration challenges received.")
+        Log.d(TAG, "[${sessionResult.challenges.joinToString()}] registration challenges received.", true)
         store.update {
           it.copy(
             registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_RECEIVED,
@@ -550,7 +550,7 @@ class RegistrationViewModel : ViewModel() {
             )
           }
         } else {
-          Log.w(TAG, "Request verification code rate limit is forever, need to start new session")
+          Log.w(TAG, "Request verification code rate limit is forever, need to start new session", true)
           SignalStore.registration.sessionId = null
           store.update { RegistrationState() }
         }
@@ -589,7 +589,7 @@ class RegistrationViewModel : ViewModel() {
     var stayInProgress = false
     when (registrationResult) {
       is RegisterAccountResult.Success -> {
-        Log.i(TAG, "Register account result: Success! Registration lock: $reglockEnabled")
+        Log.i(TAG, "Register account result: Success! Registration lock: $reglockEnabled", true)
         store.update {
           it.copy(
             registrationCheckpoint = RegistrationCheckpoint.SERVICE_REGISTRATION_COMPLETED
@@ -605,7 +605,7 @@ class RegistrationViewModel : ViewModel() {
       }
 
       is RegisterAccountResult.RegistrationLocked -> {
-        Log.i(TAG, "Account is registration locked!", registrationResult.getCause())
+        Log.i(TAG, "Account is registration locked!", registrationResult.getCause(), true)
         stayInProgress = true
       }
 
@@ -735,11 +735,11 @@ class RegistrationViewModel : ViewModel() {
         registrationResult = RegisterAccountResult.Success(registrationResult.accountRegistrationResult.copy(masterKey = masterKey))
       }
 
-      Log.i(TAG, "Received a non-registration lock response to registration. Assuming registration lock as DISABLED")
+      Log.i(TAG, "Received a non-registration lock response to registration. Assuming registration lock as DISABLED", true)
       return Pair(registrationResult, false)
     }
 
-    Log.i(TAG, "Received a registration lock response when trying to register an account. Retrying with master key.")
+    Log.i(TAG, "Received a registration lock response when trying to register an account. Retrying with master key.", true)
     store.update {
       it.copy(
         svr2AuthCredentials = registrationResult.svr2Credentials,
@@ -802,14 +802,14 @@ class RegistrationViewModel : ViewModel() {
     if (session.verified) {
       Log.i(TAG, "Session is already verified, registering account.")
     } else {
-      Log.d(TAG, "Submitting verification code…")
+      Log.d(TAG, "Submitting verification code…", true)
 
       val verificationResponse = RegistrationRepository.submitVerificationCode(context, sessionId, registrationData)
 
       val submissionSuccessful = verificationResponse is Success
       val alreadyVerified = verificationResponse is AlreadyVerified
 
-      Log.d(TAG, "Verification code submission network call completed. Submission successful? $submissionSuccessful Account already verified? $alreadyVerified")
+      Log.d(TAG, "Verification code submission network call completed. Submission successful? $submissionSuccessful Account already verified? $alreadyVerified", true)
 
       if (!submissionSuccessful && !alreadyVerified) {
         handleSessionStateResult(context, verificationResponse)
@@ -898,7 +898,7 @@ class RegistrationViewModel : ViewModel() {
   }
 
   private suspend fun onSuccessfulRegistration(context: Context, registrationData: RegistrationData, remoteResult: AccountRegistrationResult, reglockEnabled: Boolean) = withContext(Dispatchers.IO) {
-    Log.v(TAG, "onSuccessfulRegistration()")
+    Log.v(TAG, "onSuccessfulRegistration()", true)
     val metadata = LocalRegistrationMetadataUtil.createLocalRegistrationMetadata(SignalStore.account.aciIdentityKey, SignalStore.account.pniIdentityKey, registrationData, remoteResult, reglockEnabled)
     SignalStore.registration.localRegistrationMetadata = metadata
     RegistrationRepository.registerAccountLocally(context, metadata)

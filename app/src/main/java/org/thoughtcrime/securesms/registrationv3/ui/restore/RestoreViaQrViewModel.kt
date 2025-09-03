@@ -57,7 +57,7 @@ class RestoreViaQrViewModel : ViewModel() {
         if (isActive) {
           startNewSocket()
           count++
-          Log.d(TAG, "Started next websocket count: $count")
+          Log.d(TAG, "Started next websocket count: $count", true)
         }
       }
     }
@@ -66,7 +66,7 @@ class RestoreViaQrViewModel : ViewModel() {
   fun handleRegistrationFailure(registerAccountResult: RegisterAccountResult) {
     store.update {
       if (it.isRegistering) {
-        Log.w(TAG, "Unable to register [${registerAccountResult::class.simpleName}]", registerAccountResult.getCause())
+        Log.w(TAG, "Unable to register [${registerAccountResult::class.simpleName}]", registerAccountResult.getCause(), true)
         it.copy(
           isRegistering = false,
           provisioningMessage = null,
@@ -140,7 +140,7 @@ class RestoreViaQrViewModel : ViewModel() {
     ) { socket ->
       val url = socket.getProvisioningUrl()
       store.update {
-        Log.d(TAG, "Updating QR code with data from [${socket.id}]")
+        Log.d(TAG, "Updating QR code with data from [${socket.id}]", true)
 
         it.copy(
           currentSocketId = socket.id,

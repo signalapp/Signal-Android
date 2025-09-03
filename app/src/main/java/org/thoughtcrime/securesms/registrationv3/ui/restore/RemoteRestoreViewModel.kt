@@ -102,7 +102,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
 
         when (val result = BackupRepository.restoreRemoteBackup()) {
           RemoteRestoreResult.Success -> {
-            Log.i(TAG, "Restore successful")
+            Log.i(TAG, "Restore successful", true)
             SignalStore.registration.restoreDecisionState = RestoreDecisionState.Completed
 
             StorageServiceRestore.restore()
@@ -111,18 +111,18 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
           }
 
           RemoteRestoreResult.NetworkError -> {
-            Log.w(TAG, "Restore failed to download")
+            Log.w(TAG, "Restore failed to download", true)
             store.update { it.copy(importState = ImportState.NetworkFailure) }
           }
 
           RemoteRestoreResult.Canceled,
           RemoteRestoreResult.Failure -> {
-            Log.w(TAG, "Restore failed with $result")
+            Log.w(TAG, "Restore failed with $result", true)
             store.update { it.copy(importState = ImportState.Failed) }
           }
 
           RemoteRestoreResult.PermanentSvrBFailure -> {
-            Log.w(TAG, "Hit a permanent SVRB error.")
+            Log.w(TAG, "Hit a permanent SVRB error.", true)
             store.update { it.copy(importState = ImportState.FailureWithLogPrompt) }
           }
         }

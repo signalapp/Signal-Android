@@ -57,7 +57,7 @@ class EnterBackupKeyViewModel : ViewModel() {
   fun handleRegistrationFailure(registerAccountResult: RegisterAccountResult) {
     store.update {
       if (it.isRegistering) {
-        Log.w(TAG, "Unable to register [${registerAccountResult::class.simpleName}]", registerAccountResult.getCause())
+        Log.w(TAG, "Unable to register [${registerAccountResult::class.simpleName}]", registerAccountResult.getCause(), true)
         val incorrectKeyError = registerAccountResult is RegisterAccountResult.IncorrectRecoveryPassword
 
         if (incorrectKeyError && SignalStore.account.restoredAccountEntropyPool) {
