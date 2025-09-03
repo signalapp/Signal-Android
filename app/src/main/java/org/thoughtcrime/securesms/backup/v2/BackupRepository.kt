@@ -1438,6 +1438,7 @@ object BackupRepository {
 
   fun enablePaidBackupTier() {
     Log.i(TAG, "Setting backup tier to PAID", true)
+    resetInitializedStateAndAuthCredentials()
     SignalStore.backup.backupTier = MessageBackupTier.PAID
     SignalStore.backup.lastCheckInMillis = System.currentTimeMillis()
     SignalStore.backup.lastCheckInSnoozeMillis = 0

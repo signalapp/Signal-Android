@@ -63,9 +63,9 @@ class BackupStateObserver(
     private val backupTierChangedNotifier = MutableSharedFlow<Unit>()
 
     /**
-     * Called when the value returned by [SignalStore.backup.backupTier] changes.
+     * Called when the backup state likely changed.
      */
-    fun notifyBackupTierChanged(scope: CoroutineScope = staticScope) {
+    fun notifyBackupStateChanged(scope: CoroutineScope = staticScope) {
       Log.d(TAG, "Notifier got a change")
       scope.launch {
         backupTierChangedNotifier.emit(Unit)

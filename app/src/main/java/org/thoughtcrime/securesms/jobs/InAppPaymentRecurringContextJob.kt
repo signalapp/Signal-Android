@@ -106,7 +106,7 @@ class InAppPaymentRecurringContextJob private constructor(
     warning("A permanent failure occurred.")
 
     val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
-    val isRedeemed = inAppPayment?.state == InAppPaymentTable.State.END && inAppPayment.data.redemption?.stage != InAppPaymentData.RedemptionState.Stage.REDEEMED
+    val isRedeemed = inAppPayment?.state == InAppPaymentTable.State.END && inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEEMED
     if (isRedeemed) {
       info("Already redeemed. Exiting quietly.")
       return
@@ -116,11 +116,11 @@ class InAppPaymentRecurringContextJob private constructor(
         inAppPayment.copy(
           notified = false,
           state = InAppPaymentTable.State.END,
-          data = inAppPayment.data.copy(
+          data = inAppPayment.data.newBuilder().error(
             error = InAppPaymentData.Error(
               type = InAppPaymentData.Error.Type.REDEMPTION
             )
-          )
+          ).build()
         )
       )
     }
@@ -544,7 +544,9 @@ class InAppPaymentRecurringContextJob private constructor(
       409 -> {
         warning("Already redeemed this token during new subscription. Failing.", applicationError)
 
-        if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+        // During keep-alive processing, we don't alert the user about redemption failures.
+        if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP && inAppPayment.data.redemption?.keepAlive != true) {
+          info("Displaying redemption failure for non-keep-alive processing.")
           SignalStore.backup.hasBackupAlreadyRedeemedError = true
         }
 
@@ -633,12 +635,14 @@ class InAppPaymentRecurringContextJob private constructor(
     SignalDatabase.inAppPayments.update(
       inAppPayment = inAppPayment.copy(
         state = InAppPaymentTable.State.END,
-        data = inAppPayment.data.copy(
-          error = InAppPaymentData.Error(
-            type = InAppPaymentData.Error.Type.REDEMPTION,
-            data_ = "409"
+        data = inAppPayment.data.newBuilder()
+          .error(
+            InAppPaymentData.Error(
+              type = InAppPaymentData.Error.Type.REDEMPTION,
+              data_ = "409"
+            )
           )
-        )
+          .build()
       )
     )
   }

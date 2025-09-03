@@ -262,7 +262,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
         putLong(KEY_BACKUP_TIER, serializedValue)
       }
 
-      BackupStateObserver.notifyBackupTierChanged()
+      BackupStateObserver.notifyBackupStateChanged()
     }
 
   /** An internal setting that can override the backup tier for a user. */

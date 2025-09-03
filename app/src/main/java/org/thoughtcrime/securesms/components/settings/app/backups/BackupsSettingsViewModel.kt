@@ -59,6 +59,6 @@ class BackupsSettingsViewModel : ViewModel() {
       StorageSyncHelper.scheduleSyncForDataChange()
     }
 
-    BackupStateObserver.notifyBackupTierChanged(scope = viewModelScope)
+    BackupStateObserver.notifyBackupStateChanged(scope = viewModelScope)
   }
 }

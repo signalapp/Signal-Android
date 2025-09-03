@@ -14,6 +14,7 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.settings.app.backups.BackupStateObserver
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
@@ -225,6 +226,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
         if (backupExpiration != null) {
           Log.i(TAG, "Marking subscription failed or canceled.")
           SignalStore.backup.setDownloadNotifierToTriggerAtHalfwayPoint(backupExpiration)
+          BackupStateObserver.notifyBackupStateChanged()
         } else {
           Log.w(TAG, "Failed to mark, no entitlement was found on WhoAmIResponse")
         }
