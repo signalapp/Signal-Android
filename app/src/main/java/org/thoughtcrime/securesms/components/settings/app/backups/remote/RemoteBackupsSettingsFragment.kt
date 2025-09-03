@@ -103,7 +103,6 @@ import org.thoughtcrime.securesms.backup.v2.ui.status.RestoreType
 import org.thoughtcrime.securesms.backup.v2.ui.subscription.MessageBackupsType
 import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
 import org.thoughtcrime.securesms.components.compose.BetaHeader
-import org.thoughtcrime.securesms.components.compose.TextWithBetaLabel
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupState
 import org.thoughtcrime.securesms.components.settings.app.subscription.MessageBackupsCheckoutLauncher.createBackupsCheckoutLauncher
@@ -420,9 +419,9 @@ private fun RemoteBackupsSettingsContent(
   Scaffold(
     topBar = {
       Scaffolds.DefaultTopAppBar(
-        title = stringResource(R.string.RemoteBackupsSettingsFragment__signal_backups),
+        title = stringResource(R.string.RemoteBackupsSettingsFragment__secure_backups),
         titleContent = { _, title ->
-          TextWithBetaLabel(text = title, textStyle = MaterialTheme.typography.titleLarge)
+          Text(text = title, style = MaterialTheme.typography.titleLarge)
         },
         onNavigationClick = contentCallbacks::onNavigationClick,
         navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),

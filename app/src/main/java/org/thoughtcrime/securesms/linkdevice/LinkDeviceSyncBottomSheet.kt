@@ -28,6 +28,7 @@ import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
  * Bottom sheet dialog allowing users to choose whether to transfer their message history
@@ -42,7 +43,8 @@ class LinkDeviceSyncBottomSheet : ComposeBottomSheetDialogFragment() {
       onLink = { shouldSync ->
         viewModel.addDevice(shouldSync)
         findNavController().popBackStack(R.id.linkDeviceFragment, false)
-      }
+      },
+      enabledMediaBackups = SignalStore.backup.backsUpMedia
     )
   }
 
@@ -54,7 +56,8 @@ class LinkDeviceSyncBottomSheet : ComposeBottomSheetDialogFragment() {
 
 @Composable
 fun SyncSheet(
-  onLink: (Boolean) -> Unit
+  onLink: (Boolean) -> Unit,
+  enabledMediaBackups: Boolean = false
 ) {
   Column(
     horizontalAlignment = Alignment.CenterHorizontally,
@@ -66,7 +69,11 @@ fun SyncSheet(
     SheetOption(
       painterResource(R.drawable.symbol_chat_check),
       stringResource(R.string.LinkDeviceSyncBottomSheet_transfer),
-      stringResource(R.string.LinkDeviceSyncBottomSheet_transfer_your_text)
+      if (enabledMediaBackups) {
+        stringResource(R.string.LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media)
+      } else {
+        stringResource(R.string.LinkDeviceSyncBottomSheet_transfer_your_text)
+      }
     ) { onLink(true) }
 
     SheetOption(
