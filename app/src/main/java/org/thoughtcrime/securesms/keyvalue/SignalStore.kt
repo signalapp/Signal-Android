@@ -243,6 +243,8 @@ class SignalStore(context: Application, private val store: KeyValueStore) {
     val imageEditor: ImageEditorValues
       get() = instance!!.imageEditorValues
 
+    @JvmStatic
+    @get:JvmName("notificationProfile")
     val notificationProfile: NotificationProfileValues
       get() = instance!!.notificationProfileValues
 

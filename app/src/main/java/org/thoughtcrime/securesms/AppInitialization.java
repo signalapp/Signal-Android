@@ -55,6 +55,8 @@ public final class AppInitialization {
     SignalStore.onPostBackupRestore();
     SignalStore.onFirstEverAppLaunch();
     SignalStore.onboarding().clearAll();
+    SignalStore.settings().setPassphraseDisabled(true);
+    SignalStore.notificationProfile().setHasSeenTooltip(true);
     TextSecurePreferences.onPostBackupRestore(context);
     SignalStore.settings().setPassphraseDisabled(true);
     AppDependencies.getJobManager().add(StickerPackDownloadJob.forInstall(BlessedPacks.ZOZO.getPackId(), BlessedPacks.ZOZO.getPackKey(), false));
