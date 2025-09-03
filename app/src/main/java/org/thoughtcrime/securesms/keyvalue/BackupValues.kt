@@ -54,6 +54,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_LAST_ATTACHMENT_RECONCILIATION_TIME = "backup.lastBackupMediaSyncTime"
     private const val KEY_TOTAL_RESTORABLE_ATTACHMENT_SIZE = "backup.totalRestorableAttachmentSize"
     private const val KEY_BACKUP_FREQUENCY = "backup.backupFrequency"
+    private const val KEY_LAST_BACKUP_PROTO_VERSION = "backup.lastBackupProtoVersion"
 
     private const val KEY_CDN_MEDIA_PATH = "backup.cdn.mediaPath"
 
@@ -146,6 +147,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
       BackupRepository.cancelManualBackupNotCreatedInThresholdNotification()
       clearMessageBackupFailureSheetWatermark()
     }
+
+  /** The version of the backup file we last successfully made. */
+  var lastBackupProtoVersion: Long by longValue(KEY_LAST_BACKUP_PROTO_VERSION, -1)
 
   val daysSinceLastBackup: Int get() = (System.currentTimeMillis().milliseconds - lastBackupTime.milliseconds).inWholeDays.toInt()
 

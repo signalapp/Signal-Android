@@ -92,7 +92,8 @@ object QuickRegistrationRepository {
             aciIdentityKeyPublic = SignalStore.account.aciIdentityKey.publicKey.serialize().toByteString(),
             aciIdentityKeyPrivate = SignalStore.account.aciIdentityKey.privateKey.serialize().toByteString(),
             pniIdentityKeyPublic = SignalStore.account.pniIdentityKey.publicKey.serialize().toByteString(),
-            pniIdentityKeyPrivate = SignalStore.account.pniIdentityKey.privateKey.serialize().toByteString()
+            pniIdentityKeyPrivate = SignalStore.account.pniIdentityKey.privateKey.serialize().toByteString(),
+            backupVersion = SignalStore.backup.lastBackupProtoVersion
           )
         )
         .successOrThrow()

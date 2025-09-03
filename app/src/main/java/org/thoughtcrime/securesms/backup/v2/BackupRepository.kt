@@ -179,7 +179,7 @@ import kotlin.time.Duration.Companion.seconds
 object BackupRepository {
 
   private val TAG = Log.tag(BackupRepository::class.java)
-  private const val VERSION = 1L
+  const val VERSION = 1L
   private const val REMOTE_MAIN_DB_SNAPSHOT_NAME = "remote-signal-snapshot"
   private const val REMOTE_KEYVALUE_DB_SNAPSHOT_NAME = "remote-signal-key-value-snapshot"
   private const val LOCAL_MAIN_DB_SNAPSHOT_NAME = "local-signal-snapshot"

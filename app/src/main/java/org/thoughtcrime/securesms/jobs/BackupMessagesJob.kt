@@ -212,6 +212,7 @@ class BackupMessagesJob private constructor(
     }
 
     ArchiveUploadProgress.onMessageBackupCreated(tempBackupFile.length())
+    SignalStore.backup.lastBackupProtoVersion = BackupRepository.VERSION
 
     this.syncTime = currentTime
     this.dataFile = tempBackupFile.path
