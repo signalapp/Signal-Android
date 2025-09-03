@@ -98,13 +98,23 @@ class ArchiveThumbnailUploadJob private constructor(
       return Result.success()
     }
 
+    if (!MediaUtil.isImageOrVideoType(attachment.contentType)) {
+      Log.w(TAG, "$attachmentId isn't visual media (contentType = ${attachment.contentType}). Skipping.")
+      return Result.success()
+    }
+
     if (attachment.quote) {
-      Log.w(TAG, "$attachmentId is a quote, skipping.")
+      Log.w(TAG, "$attachmentId is a quote. Skipping.")
       return Result.success()
     }
 
     if (attachment.remoteDigest == null && attachment.dataHash == null && attachment.hadIntegrityCheckPerformed()) {
       Log.w(TAG, "$attachmentId has no integrity check! Cannot proceed.")
+      return Result.success()
+    }
+
+    if (SignalDatabase.messages.isStory(attachment.mmsId)) {
+      Log.w(TAG, "$attachmentId is a story. Skipping.")
       return Result.success()
     }
 
