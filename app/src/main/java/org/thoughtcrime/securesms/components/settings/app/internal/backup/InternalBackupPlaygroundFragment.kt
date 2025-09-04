@@ -79,6 +79,7 @@ import org.thoughtcrime.securesms.components.settings.app.internal.backup.Intern
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ArchiveAttachmentReconciliationJob
+import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.Util
@@ -154,6 +155,7 @@ class InternalBackupPlaygroundFragment : ComposeFragment() {
           onCheckRemoteBackupStateClicked = { viewModel.checkRemoteBackupState() },
           onEnqueueRemoteBackupClicked = { viewModel.triggerBackupJob() },
           onEnqueueReconciliationClicked = { AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob(forced = true)) },
+          onEnqueueMediaRestoreClicked = { AppDependencies.jobManager.add(BackupRestoreMediaJob()) },
           onHaltAllBackupJobsClicked = { viewModel.haltAllJobs() },
           onValidateBackupClicked = { viewModel.validateBackup() },
           onSaveEncryptedBackupToDiskClicked = {
@@ -335,6 +337,7 @@ fun Screen(
   onCheckRemoteBackupStateClicked: () -> Unit = {},
   onEnqueueRemoteBackupClicked: () -> Unit = {},
   onEnqueueReconciliationClicked: () -> Unit = {},
+  onEnqueueMediaRestoreClicked: () -> Unit = {},
   onWipeDataAndRestoreFromRemoteClicked: () -> Unit = {},
   onHaltAllBackupJobsClicked: () -> Unit = {},
   onSavePlaintextCopyOfRemoteBackupClicked: () -> Unit = {},
@@ -404,6 +407,12 @@ fun Screen(
         text = "Enqueue reconciliation job",
         label = "Schedules a job that will ensure local and remote media state are in sync.",
         onClick = onEnqueueReconciliationClicked
+      )
+
+      Rows.TextRow(
+        text = "Enqueue media restore job",
+        label = "Schedules a job that will restore any NEEDS_RESTORE media.",
+        onClick = onEnqueueMediaRestoreClicked
       )
 
       Rows.TextRow(
