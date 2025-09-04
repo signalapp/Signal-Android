@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.registration.ui.reregisterwithpin
 
 import android.os.Bundle
 import android.text.InputType
+import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -201,8 +202,9 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
 
   private fun updateKeyboard(keyboard: PinKeyboardType) {
     val isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC
-    binding.pinRestorePinInput.inputType = if (isAlphaNumeric) InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD else InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+    binding.pinRestorePinInput.inputType = if (isAlphaNumeric) InputType.TYPE_CLASS_TEXT else InputType.TYPE_CLASS_NUMBER
     binding.pinRestorePinInput.text?.clear()
+    binding.pinRestorePinInput.transformationMethod = PasswordTransformationMethod.getInstance()
   }
 
   private fun onNeedHelpClicked() {

@@ -3,14 +3,9 @@ package org.thoughtcrime.securesms.lock.v2
 import android.app.Activity
 import android.content.DialogInterface
 import android.view.View
-import androidx.autofill.HintConstants
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.lock.v2.ConfirmSvrPinViewModel.SaveAnimation
@@ -18,7 +13,6 @@ import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.SpanUtil
-import org.thoughtcrime.securesms.util.storage.AndroidCredentialRepository
 
 internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel>() {
 
@@ -29,9 +23,6 @@ internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel
     } else {
       initializeViewStatesForPinCreate()
     }
-
-    ViewCompat.setImportantForAutofill(input, View.IMPORTANT_FOR_AUTOFILL_YES)
-    ViewCompat.setAutofillHints(input, HintConstants.AUTOFILL_HINT_NEW_PASSWORD)
   }
 
   override fun initializeViewModel(): ConfirmSvrPinViewModel {
@@ -92,7 +83,6 @@ internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel
         closeNavGraphBranch()
         RegistrationUtil.maybeMarkRegistrationComplete()
         StorageSyncHelper.scheduleSyncForDataChange()
-        showSavePinToPasswordManagerPrompt()
       }
 
       SaveAnimation.FAILURE -> {
@@ -126,15 +116,5 @@ internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel
 
   private fun markMegaphoneSeenIfNecessary() {
     AppDependencies.megaphoneRepository.markSeen(Megaphones.Event.PINS_FOR_ALL)
-  }
-
-  private fun showSavePinToPasswordManagerPrompt() {
-    CoroutineScope(Dispatchers.Main).launch {
-      AndroidCredentialRepository.saveCredential(
-        activityContext = requireActivity(),
-        username = getString(R.string.ConfirmKbsPinFragment__pin_password_manager_id),
-        password = input.text.toString()
-      )
-    }
   }
 }

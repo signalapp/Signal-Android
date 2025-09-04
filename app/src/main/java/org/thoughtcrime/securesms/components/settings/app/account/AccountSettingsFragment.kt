@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
 import android.text.InputType
+import android.text.method.PasswordTransformationMethod
 import android.util.DisplayMetrics
 import android.view.ViewGroup
 import android.widget.EditText
@@ -13,7 +14,6 @@ import androidx.annotation.ColorRes
 import androidx.annotation.StringRes
 import androidx.annotation.VisibleForTesting
 import androidx.appcompat.app.AlertDialog
-import androidx.autofill.HintConstants
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.MaterialTheme
@@ -31,7 +31,6 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.core.app.DialogCompat
-import androidx.core.view.ViewCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
@@ -117,10 +116,10 @@ class AccountSettingsFragment : ComposeFragment() {
 
       changeKeyboard.setOnClickListener {
         if (pinEditText.inputType and InputType.TYPE_CLASS_NUMBER == 0) {
-          pinEditText.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+          pinEditText.inputType = InputType.TYPE_CLASS_NUMBER
           changeKeyboard.setIconResource(PinKeyboardType.ALPHA_NUMERIC.iconResource)
         } else {
-          pinEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+          pinEditText.inputType = InputType.TYPE_CLASS_TEXT
           changeKeyboard.setIconResource(PinKeyboardType.NUMERIC.iconResource)
         }
         pinEditText.typeface = Typeface.DEFAULT
@@ -130,20 +129,19 @@ class AccountSettingsFragment : ComposeFragment() {
         ViewUtil.focusAndShowKeyboard(pinEditText)
       }
 
-      ViewCompat.setAutofillHints(pinEditText, HintConstants.AUTOFILL_HINT_PASSWORD)
-
       when (SignalStore.pin.keyboardType) {
         PinKeyboardType.NUMERIC -> {
-          pinEditText.inputType = InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+          pinEditText.inputType = InputType.TYPE_CLASS_NUMBER
           changeKeyboard.setIconResource(PinKeyboardType.ALPHA_NUMERIC.iconResource)
         }
 
         PinKeyboardType.ALPHA_NUMERIC -> {
-          pinEditText.inputType = InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
+          pinEditText.inputType = InputType.TYPE_CLASS_TEXT
           changeKeyboard.setIconResource(PinKeyboardType.NUMERIC.iconResource)
         }
       }
 
+      pinEditText.transformationMethod = PasswordTransformationMethod.getInstance()
       pinEditText.addTextChangedListener(object : SimpleTextWatcher() {
         override fun onTextChanged(text: String) {
           turnOffButton.isEnabled = text.length >= SvrConstants.MINIMUM_PIN_LENGTH

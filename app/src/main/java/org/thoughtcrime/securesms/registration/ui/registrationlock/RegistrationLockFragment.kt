@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.registration.ui.registrationlock
 
 import android.os.Bundle
 import android.text.InputType
+import android.text.method.PasswordTransformationMethod
 import android.view.KeyEvent
 import android.view.View
 import android.view.inputmethod.EditorInfo
@@ -275,11 +276,11 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
     val isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC
 
     binding.kbsLockPinInput.setInputType(
-      if (isAlphaNumeric) InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
-      else InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
+      if (isAlphaNumeric) InputType.TYPE_CLASS_TEXT else InputType.TYPE_CLASS_NUMBER
     )
 
     binding.kbsLockPinInput.getText().clear()
+    binding.kbsLockPinInput.transformationMethod = PasswordTransformationMethod.getInstance()
   }
 
   private fun sendEmailToSupport() {

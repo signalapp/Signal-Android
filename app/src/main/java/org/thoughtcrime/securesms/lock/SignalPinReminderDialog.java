@@ -9,6 +9,7 @@ import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -21,9 +22,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
-import androidx.autofill.HintConstants;
 import androidx.core.app.DialogCompat;
-import androidx.core.view.ViewCompat;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
@@ -74,16 +73,16 @@ public final class SignalPinReminderDialog {
     SpannableString forgotText   = new SpannableString(context.getString(R.string.KbsReminderDialog__forgot_pin));
 
     ViewUtil.focusAndShowKeyboard(pinEditText);
-    ViewCompat.setAutofillHints(pinEditText, HintConstants.AUTOFILL_HINT_PASSWORD);
 
     switch (SignalStore.pin().getKeyboardType()) {
       case NUMERIC:
-        pinEditText.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+        pinEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
         break;
       case ALPHA_NUMERIC:
-        pinEditText.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+        pinEditText.setInputType(InputType.TYPE_CLASS_TEXT );
         break;
     }
+    pinEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
     ClickableSpan clickableSpan = new ClickableSpan() {
       @Override

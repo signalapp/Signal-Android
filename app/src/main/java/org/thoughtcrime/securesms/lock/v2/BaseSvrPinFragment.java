@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.lock.v2;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -192,8 +193,8 @@ public abstract class BaseSvrPinFragment<ViewModel extends BaseSvrPinViewModel> 
   private void updateKeyboard(@NonNull PinKeyboardType keyboard) {
     boolean isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC;
 
-    input.setInputType(isAlphaNumeric ? InputType.TYPE_CLASS_TEXT   | InputType.TYPE_TEXT_VARIATION_PASSWORD
-                                      : InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_VARIATION_PASSWORD);
+    input.setInputType(isAlphaNumeric ? InputType.TYPE_CLASS_TEXT : InputType.TYPE_CLASS_NUMBER);
+    input.setTransformationMethod(PasswordTransformationMethod.getInstance());
   }
 
   private @StringRes int resolveKeyboardToggleText(@NonNull PinKeyboardType keyboard) {

@@ -62,7 +62,6 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:imeOptions="actionDone"
-                android:inputType="numberPassword"
                 tools:text="1234567890" />
         </com.google.android.material.textfield.TextInputLayout>
 
