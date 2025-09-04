@@ -50,8 +50,8 @@ object StorageServiceRestore {
 
       val isMissingProfileData = RegistrationRepository.isMissingProfileData()
 
+      RegistrationUtil.maybeMarkRegistrationComplete()
       if (!isMissingProfileData) {
-        RegistrationUtil.maybeMarkRegistrationComplete()
         AppDependencies.jobManager.add(ProfileUploadJob())
       }
     }
