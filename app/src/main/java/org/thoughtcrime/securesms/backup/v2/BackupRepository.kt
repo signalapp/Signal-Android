@@ -116,6 +116,7 @@ import org.thoughtcrime.securesms.keyvalue.BackupValues.ArchiveServiceCredential
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.isDecisionPending
+import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogRepository
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.notifications.NotificationChannels
@@ -548,7 +549,13 @@ object BackupRepository {
   }
 
   @JvmStatic
-  fun maybeFixAnyDanglingAttachmentUploads() {
+  fun maybeFixAnyDanglingUploadProgress() {
+    if (SignalStore.backup.archiveUploadState?.backupPhase == ArchiveUploadProgressState.BackupPhase.Message && AppDependencies.jobManager.find { it.factoryKey == BackupMessagesJob.KEY }.isEmpty()) {
+      SignalStore.backup.archiveUploadState = null
+      BackupMessagesJob.enqueue()
+      return
+    }
+
     if (!SignalStore.backup.backsUpMedia || !AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)) {
       return
     }

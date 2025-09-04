@@ -159,7 +159,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     }
 
     viewModelScope.launch(Dispatchers.IO) {
-      BackupRepository.maybeFixAnyDanglingAttachmentUploads()
+      BackupRepository.maybeFixAnyDanglingUploadProgress()
     }
   }
 

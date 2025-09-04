@@ -205,7 +205,7 @@ public class ApplicationContext extends Application implements AppForegroundObse
               .addNonBlocking(AppDependencies::getBillingApi)
               .addNonBlocking(this::ensureProfileUploaded)
               .addNonBlocking(() -> AppDependencies.getExpireStoriesManager().scheduleIfNecessary())
-              .addNonBlocking(BackupRepository::maybeFixAnyDanglingAttachmentUploads)
+              .addNonBlocking(BackupRepository::maybeFixAnyDanglingUploadProgress)
               .addPostRender(() -> AppDependencies.getDeletedCallEventManager().scheduleIfNecessary())
               .addPostRender(() -> RateLimitUtil.retryAllRateLimitedMessages(this))
               .addPostRender(this::initializeExpiringMessageManager)
