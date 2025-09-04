@@ -237,8 +237,8 @@ android {
     buildConfigField("String", "STRIPE_BASE_URL", "\"https://api.stripe.com/v1\"")
     buildConfigField("String", "STRIPE_PUBLISHABLE_KEY", "\"pk_live_6cmGZopuTsV8novGgJJW9JpC00vLIgtQ1D\"")
     buildConfigField("boolean", "TRACING_ENABLED", "false")
-    buildConfigField("boolean", "MESSAGE_BACKUP_RESTORE_ENABLED", "false")
-    buildConfigField("boolean", "LINK_DEVICE_UX_ENABLED", "false")
+    buildConfigField("boolean", "MESSAGE_BACKUP_RESTORE_ENABLED", "true")
+    buildConfigField("boolean", "LINK_DEVICE_UX_ENABLED", "true")
 
     ndk {
       abiFilters += listOf("armeabi-v7a", "arm64-v8a", "x86", "x86_64")

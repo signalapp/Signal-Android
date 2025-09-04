@@ -234,11 +234,6 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
       return MessageBackupTier.deserialize(getLong(KEY_BACKUP_TIER, -1))
     }
     set(value) {
-      // TODO [backup] Remove for launch
-      if (!RemoteConfig.internalUser && !Environment.IS_INSTRUMENTATION && value != null) {
-        throw IllegalStateException("Setting backup tier is only allowed for internal users!")
-      }
-
       Log.i(TAG, "Setting backup tier to $value", Throwable(), true)
       val serializedValue = MessageBackupTier.serialize(value)
       val storedValue = MessageBackupTier.deserialize(getLong(KEY_BACKUP_TIER, -1))
