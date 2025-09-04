@@ -564,8 +564,8 @@ class AttachmentTable(
     val thirtyDaysAgo = System.currentTimeMillis().milliseconds - 30.days
     return readableDatabase
       .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID)
-      .from("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID")
-      .where("$TRANSFER_STATE = ? AND ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} >= ?", TRANSFER_NEEDS_RESTORE, thirtyDaysAgo.inWholeMilliseconds)
+      .from("$TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID")
+      .where("$TRANSFER_STATE = ? AND (${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} >= ? OR $MESSAGE_ID = ?)", TRANSFER_NEEDS_RESTORE, thirtyDaysAgo.inWholeMilliseconds, WALLPAPER_MESSAGE_ID)
       .limit(batchSize)
       .orderBy("$TABLE_NAME.$ID DESC")
       .run()
@@ -589,8 +589,8 @@ class AttachmentTable(
     val thirtyDaysAgo = System.currentTimeMillis().milliseconds - 30.days
     return readableDatabase
       .select("$TABLE_NAME.$ID", MESSAGE_ID, DATA_SIZE, DATA_HASH_END, REMOTE_KEY, STICKER_PACK_ID)
-      .from("$TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID")
-      .where("$TRANSFER_STATE = ? AND ${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < ?", TRANSFER_NEEDS_RESTORE, thirtyDaysAgo.inWholeMilliseconds)
+      .from("$TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON ${MessageTable.TABLE_NAME}.${MessageTable.ID} = $TABLE_NAME.$MESSAGE_ID")
+      .where("$TRANSFER_STATE = ? AND (${MessageTable.TABLE_NAME}.${MessageTable.DATE_RECEIVED} < ? OR $MESSAGE_ID = ?)", TRANSFER_NEEDS_RESTORE, thirtyDaysAgo.inWholeMilliseconds, WALLPAPER_MESSAGE_ID)
       .limit(batchSize)
       .orderBy("$TABLE_NAME.$ID DESC")
       .run()
