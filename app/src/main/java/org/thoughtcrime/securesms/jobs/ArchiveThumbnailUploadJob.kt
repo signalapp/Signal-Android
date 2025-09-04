@@ -253,16 +253,21 @@ class ArchiveThumbnailUploadJob private constructor(
   }
 
   private fun generateThumbnailIfPossible(attachment: DatabaseAttachment): ImageCompressionUtil.Result? {
-    val uri: DecryptableUri = attachment.uri?.let { DecryptableUri(it) } ?: return null
+    try {
+      val uri: DecryptableUri = attachment.uri?.let { DecryptableUri(it) } ?: return null
 
-    return if (MediaUtil.isImageType(attachment.contentType)) {
-      compress(uri, attachment.contentType ?: "")
-    } else if (Build.VERSION.SDK_INT >= 23 && MediaUtil.isVideoType(attachment.contentType)) {
-      MediaUtil.getVideoThumbnail(context, attachment.uri)?.let {
+      return if (MediaUtil.isImageType(attachment.contentType)) {
         compress(uri, attachment.contentType ?: "")
+      } else if (Build.VERSION.SDK_INT >= 23 && MediaUtil.isVideoType(attachment.contentType)) {
+        MediaUtil.getVideoThumbnail(context, attachment.uri)?.let {
+          compress(uri, attachment.contentType ?: "")
+        }
+      } else {
+        null
       }
-    } else {
-      null
+    } catch (e: Exception) {
+      Log.w(TAG, "Failed to generate thumbnail for $attachmentId", e)
+      return null
     }
   }
 
