@@ -64,6 +64,22 @@ public final class RegistrationUtil {
 
     } else if (!SignalStore.registration().isRegistrationComplete()) {
       Log.i(TAG, "Registration is not yet complete.", new Throwable());
+
+      boolean isRegistrationComplete = SignalStore.registration().isRegistrationComplete();
+      boolean isRegistered = SignalStore.account().isRegistered();
+      boolean hasProfileName = isRegistered && !Recipient.self().getProfileName().isEmpty();
+      boolean hasPinOrOptedOut = SignalStore.svr().hasPin() || SignalStore.svr().hasOptedOut();
+      boolean hasTerminalDecisionStateOrRestoreAfterRegistration = !RemoteConfig.restoreAfterRegistration() || RestoreDecisionStateUtil.isTerminal(SignalStore.registration().getRestoreDecisionState());
+
+      Log.i(TAG,
+            String.format(
+                "RegistrationState {\n\tisRegistrationComplete: %b\n\tisRegistered: %b\n\thasProfileName: %b\n\thasPinOrOptedOut: %b\n\thasTerminalDecisionStateOrRestoreAfterRegistration: %b\n}",
+                isRegistrationComplete,
+                isRegistered,
+                hasProfileName,
+                hasPinOrOptedOut,
+                hasTerminalDecisionStateOrRestoreAfterRegistration
+            ));
     }
   }
 }
