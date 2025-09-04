@@ -318,6 +318,13 @@ class BackupMessagesJob private constructor(
       ArchiveUploadProgress.onMessageBackupFinishedEarly()
     }
 
+    if (SignalStore.backup.backsUpMedia && SignalDatabase.attachments.doAnyThumbnailsNeedArchiveUpload()) {
+      Log.i(TAG, "Enqueuing thumbnail backfill job.")
+      AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob())
+    } else {
+      Log.i(TAG, "No thumbnails need to be uploaded: ${SignalStore.backup.backupTier}")
+    }
+
     BackupRepository.clearBackupFailure()
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
@@ -413,7 +420,7 @@ class BackupMessagesJob private constructor(
 
   private fun writeMediaCursorToTemporaryTable(db: SignalDatabase, mediaBackupEnabled: Boolean) {
     if (mediaBackupEnabled) {
-      db.attachmentTable.getAttachmentsEligibleForArchiveUpload().use {
+      db.attachmentTable.getAttachmentsThatWillBeIncludedInArchive().use {
         SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(
           mediaObjects = ArchiveMediaItemIterator(it).asSequence()
         )

@@ -130,6 +130,7 @@ public final class JobManagerFactories {
       put(ArchiveAttachmentReconciliationJob.KEY,      new ArchiveAttachmentReconciliationJob.Factory());
       put(ArchiveBackupIdReservationJob.KEY,           new ArchiveBackupIdReservationJob.Factory());
       put(ArchiveCommitAttachmentDeletesJob.KEY,       new ArchiveCommitAttachmentDeletesJob.Factory());
+      put(ArchiveThumbnailBackfillJob.KEY,             new ArchiveThumbnailBackfillJob.Factory());
       put(ArchiveThumbnailUploadJob.KEY,               new ArchiveThumbnailUploadJob.Factory());
       put(AttachmentCompressionJob.KEY,                new AttachmentCompressionJob.Factory());
       put(AttachmentCopyJob.KEY,                       new AttachmentCopyJob.Factory());

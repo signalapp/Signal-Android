@@ -111,7 +111,7 @@ class RestoreAttachmentJob private constructor(
 
     /**
      * Create a restore job for the initial large batch of media on a fresh restore.
-     * Will enqueue with some amount of parallization with low job priority.
+     * Will enqueue with some amount of parallelization with low job priority.
      */
     fun forInitialRestore(attachmentId: AttachmentId, messageId: Long, stickerPackId: String?): RestoreAttachmentJob {
       return RestoreAttachmentJob(

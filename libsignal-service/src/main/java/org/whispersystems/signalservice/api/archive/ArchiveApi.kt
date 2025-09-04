@@ -267,7 +267,7 @@ class ArchiveApi(
 
       var cursor: String? = null
       do {
-        val response: ArchiveGetMediaItemsResponse = getArchiveMediaItemsPage(aci, archiveServiceAccess, 512, cursor).successOrThrow()
+        val response: ArchiveGetMediaItemsResponse = getArchiveMediaItemsPage(aci, archiveServiceAccess, 10_000, cursor).successOrThrow()
         mediaObjects += response.storedMediaObjects
         cursor = response.cursor
       } while (cursor != null)

@@ -80,6 +80,7 @@ class UploadAttachmentToArchiveJob private constructor(
       .setLifespan(30.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
       .setQueue(QUEUES.random())
+      .setGlobalPriority(Parameters.PRIORITY_LOW)
       .build()
   )
 

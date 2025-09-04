@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Dividers
+import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.bytes
 
@@ -24,49 +25,65 @@ import org.signal.core.util.bytes
 fun InternalBackupStatsTab(stats: InternalBackupPlaygroundViewModel.StatsState, callbacks: StatsCallbacks) {
   val scrollState = rememberScrollState()
   Column(modifier = Modifier.verticalScroll(scrollState)) {
-    Texts.SectionHeader(text = "Local Attachment State")
-
     if (stats.attachmentStats != null) {
-      Text(text = "Attachment Count: ${stats.attachmentStats.attachmentCount}")
+      Texts.SectionHeader(text = "Local Attachments")
 
-      Text(text = "Transit Download State:")
-      stats.attachmentStats.transferStateCounts.forEach { (state, count) ->
-        if (count > 0) {
-          Text(text = "$state: $count")
-        }
-      }
+      Rows.TextRow(
+        text = "Total attachment rows",
+        label = "${stats.attachmentStats.totalAttachmentRows}"
+      )
 
-      Text(text = "Valid for archive Transit Download State:")
-      stats.attachmentStats.validForArchiveTransferStateCounts.forEach { (state, count) ->
-        if (count > 0) {
-          Text(text = "$state: $count")
-        }
-      }
+      Rows.TextRow(
+        text = "Total unique data files",
+        label = "${stats.attachmentStats.totalUniqueDataFiles}"
+      )
 
-      Spacer(modifier = Modifier.size(4.dp))
+      Rows.TextRow(
+        text = "Total unique media names",
+        label = "${stats.attachmentStats.totalUniqueMediaNames}"
+      )
 
-      Text(text = "Archive State:")
-      stats.attachmentStats.archiveStateCounts.forEach { (state, count) ->
-        if (count > 0) {
-          Text(text = "$state: $count")
-        }
-      }
+      Rows.TextRow(
+        text = "Total eligible for upload rows",
+        label = "${stats.attachmentStats.totalEligibleForUploadRows}"
+      )
+
+      Rows.TextRow(
+        text = "Total unique media names eligible for upload ⭐",
+        label = "${stats.attachmentStats.totalUniqueMediaNamesEligibleForUpload}"
+      )
+
+      Rows.TextRow(
+        text = "Eligible attachments by status ⭐",
+        label = stats.attachmentStats.archiveStatusMediaNameCounts.entries.joinToString("\n") { (status, count) -> "$status: $count" }
+      )
+
+      Rows.TextRow(
+        text = "Total media names with thumbnails",
+        label = "${stats.attachmentStats.mediaNamesWithThumbnailsCount}"
+      )
+
+      Rows.TextRow(
+        text = "Eligible thumbnails by status ⭐",
+        label = stats.attachmentStats.archiveStatusMediaNameThumbnailCounts.entries.joinToString("\n") { (status, count) -> "$status: $count" }
+      )
+
+      Rows.TextRow(
+        text = "Pending attachment upload bytes ⭐",
+        label = "${stats.attachmentStats.pendingAttachmentUploadBytes} (~${stats.attachmentStats.pendingAttachmentUploadBytes.bytes.toUnitString()})"
+      )
+
+      Rows.TextRow(
+        text = "Uploaded attachment bytes ⭐",
+        label = "${stats.attachmentStats.uploadedAttachmentBytes} (~${stats.attachmentStats.uploadedAttachmentBytes.bytes.toUnitString()})"
+      )
+
+      Rows.TextRow(
+        text = "Uploaded thumbnail bytes (estimated)",
+        label = "${stats.attachmentStats.uploadedThumbnailBytes} (~${stats.attachmentStats.uploadedThumbnailBytes.bytes.toUnitString()})"
+      )
 
       Spacer(modifier = Modifier.size(16.dp))
-
-      Text(text = "Unique/archived data files: ${stats.attachmentStats.attachmentFileCount}/${stats.attachmentStats.finishedAttachmentFileCount}")
-      Text(text = "Unique/archived verified plaintextHash count: ${stats.attachmentStats.attachmentPlaintextHashAndKeyCount}/${stats.attachmentStats.finishedAttachmentPlaintextHashAndKeyCount}")
-      Text(text = "Unique/expected thumbnail files: ${stats.attachmentStats.thumbnailFileCount}/${stats.attachmentStats.estimatedThumbnailCount}")
-      Text(text = "Local Total: ${stats.attachmentStats.attachmentFileCount + stats.attachmentStats.thumbnailFileCount}")
-      Text(text = "Expected remote total: ${stats.attachmentStats.estimatedThumbnailCount + stats.attachmentStats.finishedAttachmentPlaintextHashAndKeyCount}")
-
-      Spacer(modifier = Modifier.size(16.dp))
-
-      Text(text = "Pending upload: ${stats.attachmentStats.pendingUploadBytes} (~${stats.attachmentStats.pendingUploadBytes.bytes.toUnitString()})")
-      Text(text = "Est uploaded attachments: ${stats.attachmentStats.uploadedAttachmentBytes} (~${stats.attachmentStats.uploadedAttachmentBytes.bytes.toUnitString()})")
-      Text(text = "Est uploaded thumbnails: ${stats.attachmentStats.thumbnailBytes} (~${stats.attachmentStats.thumbnailBytes.bytes.toUnitString()})")
-      val total = stats.attachmentStats.thumbnailBytes + stats.attachmentStats.uploadedAttachmentBytes
-      Text(text = "Est total: $total (~${total.bytes.toUnitString()})")
     } else {
       CircularProgressIndicator()
     }
@@ -79,28 +96,43 @@ fun InternalBackupStatsTab(stats: InternalBackupPlaygroundViewModel.StatsState, 
       Button(onClick = callbacks::loadRemoteState) {
         Text(text = "Load remote stats (expensive and long)")
       }
+    } else if (stats.remoteFailureMsg != null) {
+      Text(text = stats.remoteFailureMsg)
+    } else if (stats.loadingRemoteStats) {
+      CircularProgressIndicator()
+    } else if (stats.remoteState != null) {
+      Rows.TextRow(
+        "Total media items ⭐",
+        label = "${stats.remoteState.mediaCount}"
+      )
+
+      Rows.TextRow(
+        "Total media size ⭐",
+        label = "${stats.remoteState.mediaSize} (~${stats.remoteState.mediaSize.bytes.toUnitString()})"
+      )
+
+      Rows.TextRow(
+        text = "Server estimated used size",
+        label = "${stats.remoteState.usedSpace} (~${stats.remoteState.usedSpace.bytes.toUnitString()})"
+      )
+    }
+
+    Dividers.Default()
+
+    Texts.SectionHeader(text = "Expected vs Actual")
+
+    if (stats.attachmentStats != null && stats.remoteState != null) {
+      Rows.TextRow(
+        text = "Counts ⭐",
+        label = "Local: ${stats.attachmentStats.totalUploadCount}\nRemote: ${stats.remoteState.mediaCount}"
+      )
+
+      Rows.TextRow(
+        text = "Bytes ⭐",
+        label = "Local: ${stats.attachmentStats.totalUploadBytes} (~${stats.attachmentStats.totalUploadBytes.bytes.toUnitString()}, thumbnails are estimated)\nRemote: ${stats.remoteState.mediaSize} (~${stats.remoteState.mediaSize.bytes.toUnitString()})"
+      )
     } else {
-      if (stats.loadingRemoteStats) {
-        CircularProgressIndicator()
-      } else if (stats.remoteState != null) {
-        Text(text = "Media item count: ${stats.remoteState.mediaCount}")
-        Text(text = "Media items sum size: ${stats.remoteState.mediaSize} (~${stats.remoteState.mediaSize.bytes.toUnitString()})")
-        Text(text = "Server estimated used size: ${stats.remoteState.usedSpace} (~${stats.remoteState.usedSpace.bytes.toUnitString()})")
-      } else if (stats.remoteFailureMsg != null) {
-        Text(text = stats.remoteFailureMsg)
-      }
-
-      Dividers.Default()
-
-      Texts.SectionHeader(text = "Expected vs Actual")
-
-      if (stats.attachmentStats != null && stats.remoteState != null) {
-        val finished = stats.attachmentStats.finishedAttachmentFileCount
-        val thumbnails = stats.attachmentStats.thumbnailFileCount
-        Text(text = "Expected Count/Actual Remote Count: ${finished + thumbnails} / ${stats.remoteState.mediaCount}")
-      } else {
-        CircularProgressIndicator()
-      }
+      CircularProgressIndicator()
     }
   }
 }

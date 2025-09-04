@@ -12,10 +12,8 @@ import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.jobs.ArchiveThumbnailUploadJob.Companion.isForArchiveThumbnailUploadJob
 import org.thoughtcrime.securesms.jobs.protos.ArchiveAttachmentReconciliationJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -142,18 +140,12 @@ class ArchiveAttachmentReconciliationJob private constructor(
         val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(mediaObjectCursor)
 
         if (entry.isThumbnail) {
-          val parentAttachmentId = SignalDatabase.attachments.getAttachmentIdByPlaintextHashAndRemoteKey(entry.plaintextHash, entry.remoteKey)
-          if (parentAttachmentId == null) {
-            Log.w(TAG, "Failed to find parent attachment for thumbnail that may need reupload. Skipping.", true)
-            return@forEach
-          }
-
-          if (AppDependencies.jobManager.find { it.isForArchiveThumbnailUploadJob(parentAttachmentId) }.isEmpty()) {
-            Log.w(TAG, "A thumbnail was missing from remote for $parentAttachmentId and no in-progress job was found. Re-enqueueing one.", true)
-            ArchiveThumbnailUploadJob.enqueueIfNecessary(parentAttachmentId)
+          val wasReset = SignalDatabase.attachments.resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
+          if (wasReset) {
+            newBackupJobRequired = true
             bookkeepingErrorCount++
           } else {
-            Log.i(TAG, "A thumbnail was missing from remote for $parentAttachmentId, but a job is already in progress.", true)
+            Log.w(TAG, "[Thumbnail] Did not need to reset the transfer state by hash/key because the thumbnail either no longer exists or the upload is already in-progress.", true)
           }
         } else {
           val wasReset = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
@@ -161,7 +153,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
             newBackupJobRequired = true
             bookkeepingErrorCount++
           } else {
-            Log.w(TAG, "Did not need to reset the the transfer state by hash/key because the attachment either no longer exists or the upload is already in-progress.", true)
+            Log.w(TAG, "[Fullsize] Did not need to reset the the transfer state by hash/key because the attachment either no longer exists or the upload is already in-progress.", true)
           }
         }
       }

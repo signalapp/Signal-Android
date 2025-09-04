@@ -87,19 +87,6 @@ class LogSectionRemoteBackups : LogSection {
 
       if (SignalStore.backup.archiveUploadState!!.state !in setOf(ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled)) {
         output.append("Pending bytes: ${SignalDatabase.attachments.getPendingArchiveUploadBytes()}\n")
-
-        val pendingAttachments = SignalDatabase.attachments.debugGetPendingArchiveUploadAttachments()
-        if (pendingAttachments.isNotEmpty()) {
-          output.append("Pending attachments:\n")
-          output.append("  Count: ${pendingAttachments.size}\n")
-          output.append("  Sum of Size: ${pendingAttachments.sumOf { it.size }}\n")
-          output.append("  Content types:\n")
-          pendingAttachments.groupBy { it.contentType }.forEach { (contentType, attachments) ->
-            output.append("    $contentType: ${attachments.size}\n")
-          }
-        } else {
-          output.append("Pending attachments: None!\n")
-        }
       }
     } else {
       output.append("None\n")
