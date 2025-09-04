@@ -562,15 +562,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">Pokalbio metu negalima įrašyti balso žinutės.</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Suformatuoto teksto siuntimas</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Gali būti, kad kai kurie žmonės naudoja suformatuoto teksto nepalaikančią „Signal“ versiją. Jie nematys šioje žinutėje tavo atliktų formatavimo pakeitimų.</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">Vis tiek siųsti</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">Atsisakyti</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%1$d neskaityta žinutė</item>
@@ -1182,6 +1173,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">Perkelti žinučių istoriją</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Perkelkite tekstines žinutes ir paskutinių 45 dienų įrašus</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Transfer your text messages and media</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Neperkelti</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1579,7 +1572,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Ne dabar</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Your media will restore in the background. If you choose not to restore now, you won\'t be able to restore later.</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Jūsų įrašai bus atkuriami fone. Jei pasirinksite neatkurti dabar, vėliau to padaryti nebegalėsite.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Pranešti apie paminėjimus</string>
@@ -2235,7 +2228,7 @@
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">Atblokavote šią grupę</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
-    <string name="MessageRecord_unsupported_feature">%1$s sent you a message that can\'t be processed or displayed because it uses a new Signal feature.</string>
+    <string name="MessageRecord_unsupported_feature">%1$s išsiuntė jums žinutę, kurios nepavyksta apdoroti ar parodyti, nes žinutė naudoja naująją Signal ypatybę.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Priimti</string>
@@ -5628,7 +5621,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Atnaujinkite savo „Signal“ atsarginių kopijų prenumeratą</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Nepavyko sukurti atsarginės kopijos</string>
     <!-- String alerting user that backup redemption -->
@@ -7953,15 +7946,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Redagavimo istorija</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Redaguoti žinutę</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Jei redaguosi žinutę, tai bus matoma tik naujausias „Signal“ versijas naudojantiems žmonėms. Jie matys, kad redagavai žinutę.</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Atšaukti</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Siųsti</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -8082,7 +8066,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Visus atmesti</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Įjungti „Signal“ atsargines kopijas</string>
+    <string name="TurnOnSignalBackups__title">Turn on Signal Secure Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Nepraraskite nė vienos žinutes įsigiję naują telefoną arba iš naujo įdiegę „Signal“.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -8090,17 +8074,17 @@
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">Ne dabar</string>
 
-    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">Patvirtinkite savo atsarginės kopijos raktą</string>
-    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">We\'ll occasionally ask you to verify your key to ensure you still know it</string>
-    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">Verify your recovery key</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">Tam kad prisimintumėte savo raktą, retkarčiais prašysime jūsų jį patvirtinti</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
     <string name="VerifyBackupKey__verify">Patvirtinti</string>
-    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">Ne dabar</string>
-    <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Atsarginės kopijos raktas teisingas. Saugokite savo raktą.</string>
-    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">Recovery key correct. Keep your key safe.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Priminsime dar kartą po savaitės.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -8250,7 +8234,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Nepavyko atkurti prenumeratos naudojant jūsų mokėjimo būdą. Norėdami toliau kurti atsargines įrašų kopijas, privalote turėti aktyvią prenumeratą.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Ir toliau turėsite prieigą prie nemokamo „Signal“ atsarginių kopijų plano.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Secure Backups plan.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Nepavyko sukurti atsarginės kopijos</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -8320,6 +8304,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Atlaisvinkite iki %1$s vietos, kad galėtumėte atkurti savo įrašus.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Įrašai atkuriami</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">Canceling media restore</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">Įrašų atkūrimas pristabdytas</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8415,13 +8401,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nepanaudoti įrašai bus išimti, tačiau juos bet kada galėsite atsisiųsti iš atsarginės kopijos.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Saugyklos optimizavimą galima naudoti tik įsigijus mokamą „Signal“ atsarginių kopijų planą. Jūsų atsarginių kopijų prenumerata vis dar apdorojama ir dar neaktyvi. Bandykite dar kartą vėliau.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Atnaujinkite, kad įgalintumėte šią funkciją</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Saugyklos optimizavimą galima naudoti tik įsigijus mokamą „Signal“ atsarginių kopijų planą. Norėdami pradėti naudotis šia funkcija, atnaujinkite atsarginių kopijų planą.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Upgrade your backup plan to start using this feature.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Prenumeruokite už %1$s/mėn.</string>
 
@@ -8442,7 +8428,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Šis įrašas nebeprieinamas</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Norėdami kurti visų įrašų atsargines kopijas, įjunkite „Signal“ atsargines kopijas ir pasirinkite mokamą variantą.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Secure Backups and choose the paid tier.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Tęsti</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8490,8 +8476,10 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">Atšaukti įkėlimą</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Secure Backups</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">„Signal“ atsarginės kopijos</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Secure Backups</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Reikalingas autentifikavimas</string>
     <!-- Row label to launch payment history screen -->
@@ -8503,15 +8491,17 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Atsarginės kopijos dydis</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">Įkeliama…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">Calculating…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Atsarginės kopijos atlikimo dažnis</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">New media and messages you receive are backed up daily.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Daryti atsargines kopijas naudojant mobilųjį ryšį</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">Peržiūrėti atsarginės kopijos raktą</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Atrakinkite, kad peržiūrėtumėte atsarginės kopijos raktą</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">View recovery key</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view recovery key</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">Norėdami peržiūrėti savo raktą, patvirtinkite savo tapatybę</string>
     <!-- Row label for cancelling and deleting backup -->
@@ -8527,7 +8517,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Atsarginė kopija bus sukurta per naktį.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Sukurtas naujas atsarginės kopijos raktas</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New recovery key created</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Prenumerata neaktyvi</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8605,13 +8595,13 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Priklausomai nuo atsarginės kopijos dydžio, tai gali ilgai užtrukti. Kol vyksta atsisiuntimas, telefoną naudoti galite kaip įprasta.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Jūsų prenumerata šiame įrenginyje nerasta. Atnaujinkite, kad galėtumėte toliau naudoti „Signal“ atsargines kopijas.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Secure Backups.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Jūsų prenumerata šiame įrenginyje galioja dar %1$d d. Atnaujinkite, kad galėtumėte toliau naudoti „Signal“ atsargines kopijas</item>
-        <item quantity="few">Jūsų prenumerata šiame įrenginyje galioja dar %1$d d. Atnaujinkite, kad galėtumėte toliau naudoti „Signal“ atsargines kopijas</item>
-        <item quantity="many">Jūsų prenumerata šiame įrenginyje galioja dar %1$d d. Atnaujinkite, kad galėtumėte toliau naudoti „Signal“ atsargines kopijas</item>
-        <item quantity="other">Jūsų prenumerata šiame įrenginyje galioja dar %1$d d. Atnaujinkite, kad galėtumėte toliau naudoti „Signal“ atsargines kopijas</item>
+        <item quantity="one">Your subscription on this device is valid for the next %1$d day. Renew to continue using Signal Secure Backups</item>
+        <item quantity="few">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Secure Backups</item>
+        <item quantity="many">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Secure Backups</item>
+        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Secure Backups</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Prenumeruoti iš naujo</string>
@@ -8738,9 +8728,9 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Jūsų atsarginės kopijos raktas</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your recovery key</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Atsarginis raktas yra 64 simbolių kodas, leidžiantis atkurti atsarginę kopiją iš naujo įdiegus „Signal“.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Pamiršę savo raktą atsarginės kopijos atkurti negalėsite. „Signal“ negali padėti jums atkurti atsarginės kopijos.</string>
     <!-- Action button label -->
@@ -8748,26 +8738,26 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Užsirašykite savo atsarginės kopijos raktą</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your recovery key</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Šis raktas reikalingas norint atkurti paskyrą ir duomenis. Išsaugokite jį saugioje vietoje. Pamiršę raktą savo paskyros atkurti negalėsite.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Kopijuoti į iškarpinę</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Išsaugoti slaptažodžių tvarkyklėje</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Išsaugoti slaptažodžių tvarkyklėje?</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Atsarginės kopijos raktą saugokite tik toje slaptažodžių tvarkyklėje, kurios saugumu pasitikite. „Signal“ neteikia rekomendacijų, kurią slaptažodžių tvarkyklę jums rinktis.</string>
-    <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">„Signal“ atsarginės kopijos</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your recovery key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Secure Backups</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Išsaugota slaptažodžių tvarkyklėje</string>
-    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Neįmanoma išsaugoti slaptažodžių tvarkyklėje</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Neturite nustatytos slaptažodžių tvarkyklės arba jūsų naudojama slaptažodžių tvarkyklė nepalaikoma.</string>
-    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
     <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Anksčiau pasirinkote neišsaugoti „Signal“ slaptažodžių „Google“ slaptažodžių tvarkyklėje. „Google“ slaptažodžių tvarkyklės nustatymuose pašalinkite „Signal“ iš „Atmestos svetainės ir programos“ ir bandykite dar kartą.</string>
     <!-- Label for a button that navigates to the device settings -->
     <string name="MessageBackupsKeyRecordScreen__go_to_settings">Eiti į nustatymus</string>
@@ -8788,11 +8778,11 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">Atsisiųsti įrašus</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Norėdami sukurti naują atsarginės kopijos raktą, turite išjungti parinktį „Optimizuoti saugyklą“ ir palaukti, kol įrašai bus atsisiųsti. Kai atsisiuntimas bus baigtas, galėsite sukurti naują raktą.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new recovery key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Išjungti ir atsisiųsti</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Sukurti naują atsarginės kopijos raktą</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new recovery key</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Naują raktą sukurti būtina tik tuo atveju, jei kažkas kitas žino jūsų raktą. Turėsite iš naujo įkelti atsarginę kopiją, įskaitant įrašų. Jei naudojate parinktį „Optimizuoti saugyklą“, pirmiausia turėsite atsisiųsti išimtus įrašus.</string>
 
@@ -8800,30 +8790,30 @@
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Atšaukti rakto kūrimą?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Jūsų naujas atsarginės kopijos raktas nebus sukurtas, nebent jį patvirtinsite.</string>
-    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new recovery key won\'t be created unless you confirm it.</string>
+    <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">Patvirtinti raktą</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">Atšaukti rakto kūrimą</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Patvirtinkite atsarginės kopijos raktą</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your recovery key</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Įveskite ką tik įrašytą atsarginės kopijos raktą</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the recovery key that you just recorded</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Atsarginės kopijos raktas</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Recovery key</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Neteisingas atsarginės kopijos raktas</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect recovery key</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Rodyti raktą dar kartą</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Kitas</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">Įveskite savo atsarginės kopijos raktą</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Enter your recovery key</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Įveskite 64 simbolių kodą, kurį užsirašėte įjungę atsargines kopijas.</string>
-    <!-- Button text when you forget your backup key -->
+    <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">Pamiršote raktą?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
@@ -8903,9 +8893,9 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Atkurti arba perkelti paskyrą</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Gaukite savo „Signal“ paskyrą ir žinučių istoriją į šį įrenginį.</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Iš „Signal“ atsarginių kopijų</string>
-    <!-- Option subtitle for restoring via signal backups -->
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Secure Backups</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Jūsų nemokamas arba mokamas „Signal“ atsarginių kopijų planas</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">Iš atsarginės kopijos aplanko</string>
@@ -8923,40 +8913,40 @@
     <!-- Screen subtitle for restore via local backup -->
     <string name="RestoreLocalBackup_subtitle">Atkurkite žinutes iš atsarginės kopijos, kurią išsaugojote įrenginyje. Jeigu neatkursite dabar, vėliau to padaryti nebegalėsite.</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Įveskite savo atsarginės kopijos raktą</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Jūsų atsarginės kopijos raktas yra 64 simbolių kodas, reikalingas norint atkurti paskyrą ir duomenis.</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Neturite atsarginės kopijos rakto?</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Atsarginės kopijos raktas</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Atsarginių kopijų negalima atkurti be 64 simbolių atkūrimo kodo. Jei prarasite savo atsarginės kopijos raktą, „Signal“ negalės jums padėti atkurti atsarginės kopijos.</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Jei turite senąjį įrenginį, atsarginės kopijos raktą rasite skiltyje Nustatymai &gt; Atsarginės kopijos. Tada bakstelėkite „Peržiūrėti atsarginės kopijos raktą“.</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">Enter your recovery key</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">No recovery key?</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">Recovery key</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your recovery key Signal can\'t help restore your backup.</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your recovery key in Settings &gt; Backups. Then tap View recovery key.</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Sužinoti daugiau</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Praleisti ir neatkurti</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Neteisingas atsarginės kopijos raktas</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect recovery key</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Įsitikinkite, kad registruojatės naudodami tą patį telefono numerį ir 64 simbolių atsarginės kopijos raktą, kurį išsaugojote įjungdami „Signal“ atsargines kopijas. Be šio rakto atsarginių kopijų atkurti negalima.</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal Secure Backups. Backups can not be recovered without this key.</string>
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Bandykite dar kartą</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">Pagalba dėl atsarginės kopijos rakto</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Neteisingas atsarginės kopijos raktas</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">Recovery key help</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect recovery key</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">Per ilgas (%1$d/%2$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Negaliojantis atsarginės kopijos raktas</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">Invalid recovery key</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Atsarginė kopija nerasta</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Įvestas atsarginės kopijos raktas yra teisingas, tačiau su juo nesusieta jokia atsarginė kopija. Jei vis dar turite senąjį telefoną, įsitikinkite, kad atsarginės kopijos yra įjungtos ir atsarginė kopija buvo sukurta – tada bandykite dar kartą.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The recovery key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Praleisti atkūrimą</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -9035,7 +9025,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">Nėra atsarginės kopijos, kurią būtų galima atkurti</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Kadangi pereinate iš „iPhone“ į „Android“, vienintelis būdas perkelti žinutes ir įrašus yra įjungti „Signal“ atsargines kopijas senajame įrenginyje.</string>
+    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Secure Backups on your old device.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Atverkite „Signal“ senajame telefone</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->

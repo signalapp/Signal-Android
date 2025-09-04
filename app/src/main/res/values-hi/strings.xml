@@ -552,15 +552,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">कॉल के दौरान वॉइस संदेश रिकॉर्ड नहीं किया जा सकता।</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">फॉर्मेटेड टेक्स्ट भेजा जा रहा है</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">कुछ लोग Signal के ऐसे संस्करण का इस्तेमाल कर रहे होंगे जो फॉर्मेटेड टेक्स्ट को सपोर्ट नहीं करता। वे आपके द्वारा अपने संदेश में किए गए फॉर्मेटिंग बदलावों को नहीं देख पाएंगे।</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">फिर भी भेजें</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">रद्द करें</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%1$d अनरीड मैसेज</item>
@@ -1138,6 +1129,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">संदेश ट्रांसफ़र करने का इतिहास</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">अपने पिछले 45 दिनों के टेक्स्ट संदेश और मीडिया को ट्रांसफ़र करें</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Transfer your text messages and media</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">ट्रांसफ़र न करें</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1499,7 +1492,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">अभी नहीं</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Your media will restore in the background. If you choose not to restore now, you won\'t be able to restore later.</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">आपके मीडिया को बैकग्राउंड में रीस्टोर किया जाएगा। अगर आपने अभी रीस्टोर करना नहीं चुना है, तो आपके पास बाद में इसे रीस्टोर करने का विकल्प नहीं रहेगा।</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">मेंशन किए जाने पर मुझे सूचित करें</string>
@@ -2115,7 +2108,7 @@
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">आपने इस ग्रुप को अनब्लॉक किया है</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
-    <string name="MessageRecord_unsupported_feature">%1$s sent you a message that can\'t be processed or displayed because it uses a new Signal feature.</string>
+    <string name="MessageRecord_unsupported_feature">%1$s ने आपको एक मैसेज भेजा है, जिसे दिखाया या प्रोसेस नहीं किया जा सकता क्योंकि इसमें Signal की एक नई सुविधा का इस्तेमाल किया गया है।</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">स्वीकार करें</string>
@@ -2258,22 +2251,22 @@
     <string name="PinRestoreEntryFragment_incorrect_pin">पिन सही नहीं है</string>
     <string name="PinRestoreEntryFragment_skip_pin_entry">बिना पिन डाले ही आगे बढ़ना है?</string>
     <string name="PinRestoreEntryFragment_need_help">क्या आपको कोई मदद चाहिए?</string>
-    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">आपका पिन एक %1$d+ अंकों का कोड है, जिसे आपने बनाया था। यह न्यूमेरिक या अल्फ़ान्यूमेरिक हो सकता है।\n\nअगर आपको अपना पिन याद नहीं है, तो आपके पास नया पिन बनाने का विकल्प मौजूद है। रजिस्टर करके अपना अकाउंट इस्तेमाल किया जा सकता है, लेकिन कुछ सेव की गई सेटिंग खो सकती है, जैसे कि आपकी प्रोफ़ाइल से जुड़ी जानकारी।</string>
-    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">अगर आपको अपना पिन याद नहीं है तो आप नया पिन बना सकते हैं। आप पंजीकरण करके अपना खाता इस्तेमाल कर सकते हैं पर आप कुछ सेटिंग्स खो देंगे जैसे प्रोफ़ाइल की जानकारी।</string>
-    <string name="PinRestoreEntryFragment_create_new_pin">नया पिन बनाएँ</string>
-    <string name="PinRestoreEntryFragment_contact_support">समर्थन से संपर्क करें</string>
+    <string name="PinRestoreEntryFragment_your_pin_is_a_d_digit_code">आपका पिन एक %1$d+ अंकों का कोड होता है, जिसे आपने बनाया था। यह न्यूमेरिक या अल्फ़ान्यूमेरिक हो सकता है।\n\nअगर आपको अपना पिन याद नहीं है, तो आपके पास नया पिन बनाने का विकल्प मौजूद है। रजिस्टर करके अपना अकाउंट इस्तेमाल किया जा सकता है, लेकिन कुछ सेव की गई सेटिंग खो सकती है, जैसे कि आपकी प्रोफ़ाइल से जुड़ी जानकारी।</string>
+    <string name="PinRestoreEntryFragment_if_you_cant_remember_your_pin">अगर आपको अपना पिन याद नहीं है, तो आपके पास नया पिन बनाने का विकल्प मौजूद है। रजिस्टर करके अपना अकाउंट इस्तेमाल किया जा सकता है, लेकिन कुछ सेव की गई सेटिंग खो सकती है, जैसे कि आपकी प्रोफ़ाइल से जुड़ी जानकारी।</string>
+    <string name="PinRestoreEntryFragment_create_new_pin">नया पिन बनाएं</string>
+    <string name="PinRestoreEntryFragment_contact_support">सपोर्ट टीम से संपर्क करें</string>
     <string name="PinRestoreEntryFragment_cancel">रद्द करें</string>
-    <string name="PinRestoreEntryFragment_skip">छोड़ दे</string>
+    <string name="PinRestoreEntryFragment_skip">आगे बढ़ें</string>
     <plurals name="PinRestoreEntryFragment_you_have_d_attempt_remaining">
-        <item quantity="one">आपके पास %1$d मौका बचा है। अगर आपके मौके खत्म हो गए तो आप नया पिन बना सकते हैं। आप रजिस्टर करके अपना खाता इस्तेमाल कर सकते हैं पर आप कुछ सेटिंग्स खो देंगे जैसे प्रोफ़ाइल की जानकारी।</item>
+        <item quantity="one">आपके पास %1$d मौका बचा है। अगर आपके सभी मौके खत्म हो जाते हैं, तो नया पिन बनाया जा सकता है। रजिस्टर करके अपना अकाउंट इस्तेमाल किया जा सकता है, लेकिन कुछ सेव की गई सेटिंग खो सकती है, जैसे कि आपकी प्रोफ़ाइल से जुड़ी जानकारी।</item>
         <item quantity="other">आपके पास %1$d मौके बचे हैं। अगर आपके मौके खत्म हो गए तो आप नया पिन बना सकते हैं। आप रजिस्टर करके अपना खाता इस्तेमाल कर सकते हैं पर आप कुछ सेटिंग्स खो देंगे जैसे प्रोफ़ाइल की जानकारी।</item>
     </plurals>
-    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal रजिस्ट्रेशन - Android के लिए पिन को लेकर मदद चाहिए</string>
+    <string name="PinRestoreEntryFragment_signal_registration_need_help_with_pin">Signal रजिस्ट्रेशन - Android में पिन से जुड़ी मदद चाहिए</string>
 
     <!-- PinRestoreLockedFragment -->
-    <string name="PinRestoreLockedFragment_create_your_pin">अपना पिन बनाएँ</string>
-    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">आपके पिन सोचने के सारे मौके ख्तम हो चुके हैं, पर आप नया पिन बना के अपना Signal खाता चला सकते हैं। आपकी गोपनीयता और सुरक्षा के लिये आपका खाता बिना किसी सहेजी हुई प्रोफ़ाइल की जानकारी या सेटिंग्स के पुनः स्थापित होगा।</string>
-    <string name="PinRestoreLockedFragment_create_new_pin">नया पिन बनाएँ</string>
+    <string name="PinRestoreLockedFragment_create_your_pin">अपना पिन बनाएं</string>
+    <string name="PinRestoreLockedFragment_youve_run_out_of_pin_guesses">पिन डालने की आपकी सभी कोशिशें खत्म हो चुकी हैं। हालांकि, अपना Signal अकाउंट अब भी ऐक्सेस किया जा सकता है। इसके लिए, आपको नया पिन बनाना होगा। आपका अकाउंट तो रीस्टोर हो जाएगा, लेकिन आपकी प्राइवेसी और सुरक्षा को ध्यान में रखते हुए इसमें सेव की गई प्रोफ़ाइल से जुड़ी जानकारी और सेटिंग मौजूद नहीं होंगी।</string>
+    <string name="PinRestoreLockedFragment_create_new_pin">नया पिन बनाएं</string>
   <!-- Removed by excludeNonTranslatables <string name="PinRestoreLockedFragment_learn_more_url" translatable="false">https://support.signal.org/hc/articles/360007059792</string> -->
 
     <!-- Dialog button text indicating user wishes to send an sms code isntead of skipping it -->
@@ -2290,13 +2283,13 @@
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">चेतावनी</string>
     <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">यदि आप पिन को डिसेबल कर देते हैं, तो आप Signal के साथ दोबारा रजिस्टर करने पर अपना सारा डेटा खो बैठेंगे यदि आप मैन्युअल तरीके से बैक अप और रीस्टोर नहीं करते हैं। आप पिन के डिसेबल होते हुए रजिस्ट्रेशन लॉक को चालू नहीं कर सकते।</string>
-    <string name="PinOptOutDialog_disable_pin">पिन को डिसेबल करें</string>
+    <string name="PinOptOutDialog_disable_pin">पिन की सुविधा बंद करें</string>
 
     <!-- RatingManager -->
-    <string name="RatingManager_rate_this_app">इस ऐप्लिकेशन को रेट करें</string>
-    <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">यदि आप इस ऐप का उपयोग करने का आनंद लेते हैं, तो कृपया इसे रेटिंग करके हमारी सहायता करने के लिए कुछ समय दें।</string>
-    <string name="RatingManager_rate_now">अब रेट करें</string>
-    <string name="RatingManager_no_thanks">नहीं धन्यवाद</string>
+    <string name="RatingManager_rate_this_app">इस ऐप्लिकेशन को रेटिंग दें</string>
+    <string name="RatingManager_if_you_enjoy_using_this_app_please_take_a_moment">अगर आपको यह ऐप इस्तेमाल करना अच्छा लगता है, तो इसे रेटिंग देकर हमारा हौसला बढ़ाएं।</string>
+    <string name="RatingManager_rate_now">अभी रेटिंग दें!</string>
+    <string name="RatingManager_no_thanks">नहीं, रहने दें</string>
     <string name="RatingManager_later">बाद में</string>
 
     <!-- ReactionsBottomSheetDialogFragment -->
@@ -2310,9 +2303,9 @@
     <string name="ReactionsRecipientAdapter_you">आप</string>
 
     <!-- RecaptchaRequiredBottomSheetFragment -->
-    <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">संदेश भेजना जारी रखने के लिए सत्यापित करें</string>
-    <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal पर स्पैम रोकने में मदद करने के लिए, कृपया सत्यापन पूर्ण करें।</string>
-    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">सत्यापित करने के बाद, आप संदेश भेजना जारी रख सकते हैं। कोई भी रोके गए संदेश स्वचालित रूप से भेजे जाएंगे।</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_verify_to_continue_messaging">मैसेज भेजने की सुविधा जारी रखने के लिए वेरिफ़ाई करें</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_to_help_prevent_spam_on_signal">Signal पर स्पैम रोकने में मदद करने के लिए, कृपया वेरिफ़िकेशन की प्रक्रिया पूरी करें।</string>
+    <string name="RecaptchaRequiredBottomSheetFragment_after_verifying_you_can_continue_messaging">वेरिफ़िकेशन के बाद, मैसेज भेजे जा सकते हैं। कोई भी पॉज़ हुआ मैसेज अपने-आप भेज दिया जाएगा।</string>
 
     <!-- Recipient -->
     <string name="Recipient_you">आप</string>
@@ -2330,13 +2323,13 @@
     <!-- RedPhone -->
     <string name="RedPhone_answering">जवाब दिया जा रहा है…</string>
     <string name="RedPhone_ending_call">कॉल समाप्त की जा रही है…</string>
-    <string name="RedPhone_ringing">बज रहा है</string>
-    <string name="RedPhone_busy">व्यस्त</string>
-    <string name="RedPhone_recipient_unavailable">प्राप्तकर्ता अनुपलब्ध</string>
+    <string name="RedPhone_ringing">रिंग हो रही है…</string>
+    <string name="RedPhone_busy">व्यस्त है</string>
+    <string name="RedPhone_recipient_unavailable">कॉल रिसीव करने वाला व्यक्ति उपलब्ध नहीं है</string>
     <!-- Error message shown during a call when a fatal network error occurs. -->
     <string name="RedPhone_network_failed">नेटवर्क असफल रहा कृपया नेटवर्क जाँचें और फिर से प्रयास करें।</string>
-    <string name="RedPhone_number_not_registered">नंबर पंजीकृत नहीं है</string>
-    <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">आपके द्वारा डायल किया गया नंबर सुरक्षित आवाज का समर्थन नहीं करता है!</string>
+    <string name="RedPhone_number_not_registered">नंबर रजिस्टर नहीं है!</string>
+    <string name="RedPhone_the_number_you_dialed_does_not_support_secure_voice">डायल किए गए नंबर पर सिक्योर वॉइस की सुविधा मौजूद नहीं है!</string>
     <string name="RedPhone_got_it">समझ गया</string>
 
     <!-- Valentine\'s Day Megaphone -->
@@ -2354,19 +2347,19 @@
     <string name="CallScreenPreJoinOverlay__your_camera_is_off">आपका कैमरा बंद है</string>
 
     <!-- WebRtcCallActivity -->
-    <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">वीडियो शुरु करने के लिये यहाँ टैप करें</string>
-    <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s को कॉल करने के लिए, Signal को आपके कैमरा तक पहुँच करने की ज़रूरत है</string>
+    <string name="WebRtcCallActivity__tap_here_to_turn_on_your_video">वीडियो चालू करने के लिए यहां टैप करें</string>
+    <string name="WebRtcCallActivity__to_call_s_signal_needs_access_to_your_camera">%1$s को कॉल करने के लिए, Signal को आपके कैमरा का ऐक्सेस चाहिए</string>
     <!-- Subtitle shown at top of call where %s is the elapsed time of the call -->
     <string name="WebRtcCallActivity__signal_s">Signal %1$s</string>
     <string name="WebRtcCallActivity__calling">कॉल की जा रही है…</string>
     <!-- Call status shown when an active call was disconnected (e.g., network hiccup) and is trying to reconnect -->
-    <string name="WebRtcCallActivity__reconnecting">फिर से जोङ रहे हैं…</string>
+    <string name="WebRtcCallActivity__reconnecting">फिर से कनेक्ट हो रहा है…</string>
     <!-- Title for dialog warning about lacking bluetooth permissions during a call -->
-    <string name="WebRtcCallActivity__bluetooth_permission_denied">ब्लूटूथ अनुमति नहीं दी गई</string>
+    <string name="WebRtcCallActivity__bluetooth_permission_denied">ब्लूटूथ का ऐक्सेस नहीं है</string>
     <!-- Message for dialog warning about lacking bluetooth permissions during a call and references the permission needed by name -->
-    <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">कॉल के दौरान ब्लूटूथ का इस्तेमाल करने के लिए कृपया \"आसपास के डिवाइस\" अनुमति को सक्षम करें।</string>
+    <string name="WebRtcCallActivity__please_enable_the_nearby_devices_permission_to_use_bluetooth_during_a_call">कॉल के दौरान ब्लूटूथ का इस्तेमाल करने के लिए, \"आस-पास मौजूद डिवाइस\" अनुमति को चालू करें।</string>
     <!-- Positive action for bluetooth warning dialog to open settings -->
-    <string name="WebRtcCallActivity__open_settings">सेटिंग्स खोलें</string>
+    <string name="WebRtcCallActivity__open_settings">सेटिंग खोलें</string>
     <!-- Negative action for bluetooth warning dialog to dismiss dialog -->
     <string name="WebRtcCallActivity__not_now">अभी नहीं</string>
     <!-- Title for dialog to approve all requests -->
@@ -2433,15 +2426,15 @@
     <string name="WebRtcCallActivity__to_enable_video">अपना वीडियो सक्षम करने के लिए:</string>
 
     <!-- WebRtcCallView -->
-    <string name="WebRtcCallView__signal_call">Signal ऑडियो</string>
+    <string name="WebRtcCallView__signal_call">Signal कॉल</string>
     <string name="WebRtcCallView__signal_video_call">Signal वीडियो कॉल</string>
     <string name="WebRtcCallView__start_call">कॉल शुरू करें</string>
     <string name="WebRtcCallView__join_call">कॉल से जुड़ें</string>
-    <string name="WebRtcCallView__call_is_full">कॉल पूर्ण है</string>
-    <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">इस कॉल के लिए %1$d भागीदारों की अधिकतम संख्या पूरी हो चुकी है। बाद में दोबारा प्रयास करें।</string>
-    <string name="WebRtcCallView__your_video_is_off">आपकी वीडियो बंद है</string>
-    <string name="WebRtcCallView__reconnecting">फिर से जोङ रहे हैं…</string>
-    <string name="WebRtcCallView__joining">शामिल हो रहे हैं…</string>
+    <string name="WebRtcCallView__call_is_full">कॉल में जगह उपलब्ध नहीं है</string>
+    <string name="WebRtcCallView__the_maximum_number_of_d_participants_has_been_Reached_for_this_call">इस कॉल में ज़्यादा से ज़्यादा %1$d लोग हिस्सा ले सकते हैं। यह संख्या सीमा फ़िलहाल पूरी हो चुकी है। बाद में फिर से कोशिश करें।</string>
+    <string name="WebRtcCallView__your_video_is_off">आपका वीडियो बंद है</string>
+    <string name="WebRtcCallView__reconnecting">फिर से कनेक्ट हो रहा है…</string>
+    <string name="WebRtcCallView__joining">जॉइन किया जा रहा है…</string>
     <string name="WebRtcCallView__disconnected">डिस्कनेक्ट किया गया</string>
     <!-- Utilized in the lobby before joining a call link -->
     <string name="WebRtcCallView__signal_call_link">Signal कॉल लिंक</string>
@@ -2452,37 +2445,37 @@
     <!-- Displayed on the call screen as the status when waiting to be let into a call link by an admin -->
     <string name="WebRtcCallView__waiting_to_be_let_in">अंदर जाने देने की प्रतीक्षा में…</string>
 
-    <string name="WebRtcCallView__signal_will_ring_s">सिग्नल %1$s रिंग करेगा</string>
-    <string name="WebRtcCallView__signal_will_ring_s_and_s">सिग्नल %1$s और %2$s बजेंगे</string>
+    <string name="WebRtcCallView__signal_will_ring_s">Signal %1$s को रिंग करेगा</string>
+    <string name="WebRtcCallView__signal_will_ring_s_and_s">Signal %1$s और %2$s को रिंग करेगा</string>
     <plurals name="WebRtcCallView__signal_will_ring_s_s_and_d_others">
-        <item quantity="one">सिग्नल %1$s, %2$s, और %3$d अन्य पर बजेगा</item>
-        <item quantity="other">सिग्नल %1$s, %2$s, और %3$d अन्य पर बजेगा</item>
+        <item quantity="one">Signal %1$s, %2$s, और %3$d अन्य को रिंग करेगा</item>
+        <item quantity="other">Signal %1$s, %2$s, और %3$d अन्य को रिंग करेगा</item>
     </plurals>
 
-    <string name="WebRtcCallView__s_will_be_notified">%1$s को सूचित किया जाएगा</string>
-    <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s और %2$s को सूचित किया जाएगा</string>
+    <string name="WebRtcCallView__s_will_be_notified">%1$s को सूचना मिल जाएगी</string>
+    <string name="WebRtcCallView__s_and_s_will_be_notified">%1$s और %2$s को सूचना मिल जाएगी</string>
     <plurals name="WebRtcCallView__s_s_and_d_others_will_be_notified">
-        <item quantity="one">%1$s, %2$s, और %3$d अन्य को सूचित किया जाएगा</item>
-        <item quantity="other">%1$s, %2$s, और %3$d अन्य को सूचित किया जाएगा</item>
+        <item quantity="one">%1$s, %2$s, और %3$d अन्य को सूचना मिल जाएगी</item>
+        <item quantity="other">%1$s, %2$s, और %3$d अन्य को सूचना मिल जाएगी</item>
     </plurals>
 
-    <string name="WebRtcCallView__ringing_s">%1$s रिंग कर रहा है</string>
-    <string name="WebRtcCallView__ringing_s_and_s">%1$s और %2$s रिंग कर रहा है</string>
+    <string name="WebRtcCallView__ringing_s">%1$s को रिंग किया जा रहा है</string>
+    <string name="WebRtcCallView__ringing_s_and_s">%1$s और %2$s को रिंग किया जा रहा है</string>
     <plurals name="WebRtcCallView__ringing_s_s_and_d_others">
-        <item quantity="one">%1$s, %2$s, और %3$d अन्य रिंग कर रहे हैं</item>
-        <item quantity="other">%1$s, %2$s, और %3$d अन्य रिंग कर रहे हैं</item>
+        <item quantity="one">%1$s, %2$s, और %3$d अन्य को रिंग किया जा रहा है</item>
+        <item quantity="other">%1$s, %2$s, और %3$d अन्य को रिंग किया जा रहा है</item>
     </plurals>
 
-    <string name="WebRtcCallView__s_is_calling_you">%1$s आपको कॉल कर रहे हैं</string>
-    <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s आपको कॉल कर रहे हैं और %2$s</string>
-    <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s आपको कॉल कर रहे हैं, %2$s, और %3$s</string>
+    <string name="WebRtcCallView__s_is_calling_you">%1$s ने आपको कॉल किया है</string>
+    <string name="WebRtcCallView__s_is_calling_you_and_s">%1$s ने आपको और %2$s को कॉल किया है</string>
+    <string name="WebRtcCallView__s_is_calling_you_s_and_s">%1$s ने आपको, %2$s को, और %3$s को कॉल किया है</string>
     <plurals name="WebRtcCallView__s_is_calling_you_s_s_and_d_others">
-        <item quantity="one">%1$s आपको कॉल कर रहे हैं, %2$s, %3$s, और %4$d अन्य</item>
-        <item quantity="other">%1$s आपको कॉल कर रहे हैं, %2$s, %3$s, और %4$d अन्य</item>
+        <item quantity="one">%1$s ने आपको, %2$s को, %3$s को, और %4$d अन्य को कॉल किया है</item>
+        <item quantity="other">%1$s ने आपको, %2$s को, %3$s को, और %4$d अन्य को कॉल किया है</item>
     </plurals>
 
-    <string name="WebRtcCallView__no_one_else_is_here">यहाँ और कोई नहीं है</string>
-    <string name="WebRtcCallView__s_is_in_this_call">%1$s इस कॉल में है</string>
+    <string name="WebRtcCallView__no_one_else_is_here">यहां और कोई मौजूद नहीं है</string>
+    <string name="WebRtcCallView__s_is_in_this_call">%1$s इस कॉल में हैं</string>
     <!-- Description of who is in the call when it is only you, %1$s is replaced with either CallParticipant__you or CallParticipant__you_on_another_device -->
     <string name="WebRtcCallView__s_are_in_this_call">%1$s इस कॉल में हैं</string>
     <string name="WebRtcCallView__s_and_s_are_in_this_call">%1$s और %2$s इस कॉल में हैं</string>
@@ -2503,7 +2496,7 @@
     <!-- Content description for additional actions menu button -->
     <string name="WebRtcCallView__additional_actions">अतिरिक्त कार्रवाइयां</string>
     <!-- Content description for end-call button -->
-    <string name="WebRtcCallView__end_call">कॉल बंद</string>
+    <string name="WebRtcCallView__end_call">कॉल खत्म हुई</string>
     <!-- Content description for toggling group ring state -->
     <string name="WebRtcCallView__toggle_group_ringing">ग्रुप रिंगिग टॉगल करें</string>
 
@@ -2644,33 +2637,33 @@
     <!-- CallParticipantView -->
     <string name="CallParticipantView__s_is_blocked">%1$s ब्लॉक किया गया है</string>
     <string name="CallParticipantView__more_info">औेर जानकारी</string>
-    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">आपको उनके ऑडियो या वीडियो प्राप्त नहीं होंगे और उन्हें आपके नहीं।</string>
-    <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s से ऑडियो और वीडियो नहीं प्राप्त की जा सकती</string>
-    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s से ऑडियो और वीडियो नहीं प्राप्त की जा सकती</string>
+    <string name="CallParticipantView__you_wont_receive_their_audio_or_video">आपको उनका ऑडियो या वीडियो नहीं मिलेगा और उन्हें आपका।</string>
+    <string name="CallParticipantView__cant_receive_audio_video_from_s">%1$s से ऑडियो और वीडियो नहीं मिल रहे हैं</string>
+    <string name="CallParticipantView__cant_receive_audio_and_video_from_s">%1$s से ऑडियो और वीडियो नहीं मिल रहे हैं</string>
     <string name="CallParticipantView__this_may_be_Because_they_have_not_verified_your_safety_number_change">यह इसलिए हो सकता है क्योंकि उन्होंने आपके सुरक्षा नंबर में परिवर्तन को वेरिफाई नहीं किया है, उनके डिवाइस के साथ कोई समस्या है, या उन्होंने आपको ब्लॉक कर दिया है।</string>
 
     <!-- CallToastPopupWindow -->
-    <string name="CallToastPopupWindow__swipe_to_view_screen_share">स्क्रीन शेयर करने के लिए स्वाइप करें</string>
+    <string name="CallToastPopupWindow__swipe_to_view_screen_share">शेयर की जा रही स्क्रीन देखने के लिए स्वाइप करें</string>
 
     <!-- ProxyBottomSheetFragment -->
     <string name="ProxyBottomSheetFragment_proxy_server">प्रॉक्सी सर्वर</string>
     <string name="ProxyBottomSheetFragment_proxy_address">प्रॉक्सी पता</string>
-    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">क्या आप प्रॉक्सी पते का उपयोग करना चाहते हैं?</string>
-    <string name="ProxyBottomSheetFragment_use_proxy">प्रॉक्सी का उपयोग करें</string>
-    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">सफलतापूर्वक प्रॉक्सी से कनेक्ट हो गया है।</string>
+    <string name="ProxyBottomSheetFragment_do_you_want_to_use_this_proxy_address">क्या आपको प्रॉक्सी पते का इस्तेमाल करना है?</string>
+    <string name="ProxyBottomSheetFragment_use_proxy">प्रॉक्सी का इस्तेमाल करें</string>
+    <string name="ProxyBottomSheetFragment_successfully_connected_to_proxy">प्रॉक्सी से कनेक्ट हो गया है।</string>
 
     <!-- RecaptchaProofActivity -->
-    <string name="RecaptchaProofActivity_failed_to_submit">सबमिट करने में विफल</string>
+    <string name="RecaptchaProofActivity_failed_to_submit">सबमिट नहीं हो सका</string>
     <!-- Toolbar title when solving a captcha -->
-    <string name="RecaptchaProofActivity_complete_verification">सत्यापन पूरा करें</string>
+    <string name="RecaptchaProofActivity_complete_verification">वेरिफ़िकेशन पूरा करें</string>
 
     <!-- RegistrationActivity -->
-    <string name="RegistrationActivity_select_your_country">अपने देश का चयन करें</string>
-    <string name="RegistrationActivity_you_must_specify_your_country_code">आपको अपना देश कोड निर्दिष्ट करना होगा
+    <string name="RegistrationActivity_select_your_country">अपना देश चुनें</string>
+    <string name="RegistrationActivity_you_must_specify_your_country_code">आपको अपना कंट्री कोड बताना होगा
     </string>
     <string name="RegistrationActivity_please_enter_a_valid_phone_number_to_register">कृपया पंजीकरन के लिये कोई वैध फोन नंबर डालें।</string>
-    <string name="RegistrationActivity_invalid_number">अवैध नंबर</string>
-    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">आपके द्वारा निर्दिष्ट नंबर (%1$s) अमान्य है।
+    <string name="RegistrationActivity_invalid_number">नंबर सही नहीं है</string>
+    <string name="RegistrationActivity_the_number_you_specified_s_is_invalid">आपने जो नंबर (%1$s) बताया, वह सही नहीं है।
     </string>
 
     <!-- Dialog title shown when registering and we want to verify they entered the correct number before proceeding. -->
@@ -2685,57 +2678,57 @@
     <string name="RegistrationActivity_select_a_country">कोई देश चुनें</string>
     <!-- Hint text explaining that this is where the country code should go -->
     <string name="RegistrationActivity_default_country_code">0</string>
-    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">इस नंबर को वेरिफाई करने के लिए आपको एक कॉल आएगी।</string>
-    <string name="RegistrationActivity_edit_number">नंबर संपादित करें</string>
-    <string name="RegistrationActivity_missing_google_play_services">लापता Google Play Services</string>
-    <string name="RegistrationActivity_this_device_is_missing_google_play_services">इस डिवाइस में Google Play सेवाएं अनुपलब्ध हैं। आप अभी भी Signal का उपयोग कर सकते हैं, लेकिन इस कॉन्फ़िगरेशन के परिणामस्वरूप कम विश्वसनीयता या प्रदर्शन हो सकता है। \n\n अगर आप एक उन्नत उपयोगकर्ता नहीं हैं, बाद वाले Android ROM नहीं चला रहे हैं, या मानते हैं कि आप इसे गलती से देख रहे हैं, तो कृपया support@signal.org पर निवारण कीजिए</string>
-    <string name="RegistrationActivity_i_understand">मै समझता हुँ…</string>
-    <string name="RegistrationActivity_play_services_error">Play Services त्रुटि</string>
-    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play सेवाएं अपडेट हो रही है या अस्थायी रूप से अनुपलब्ध है। कृपया पुन: प्रयास करें।</string>
+    <string name="RegistrationActivity_you_will_receive_a_call_to_verify_this_number">इस नंबर को वेरिफ़ाई करने के लिए आपको एक कॉल आएगी।</string>
+    <string name="RegistrationActivity_edit_number">नंबर एडिट करें</string>
+    <string name="RegistrationActivity_missing_google_play_services">Google Play सेवाएं मौजूद नहीं हैं</string>
+    <string name="RegistrationActivity_this_device_is_missing_google_play_services">इस डिवाइस में Google Play सेवाएं मौजूद नहीं हैं। हालांकि, इस पर Signal का इस्तेमाल किया जा सकता है, लेकिन उसकी विश्वसनीयता या परफ़ॉर्मेंस कमज़ोर होगी।\n\nअगर आप एडवांस यूज़र नहीं हैं, आपके पास कोई कस्टम/आफ़्टरमार्केट Android ROM नहीं है या आपको लगता है कि यह मैसेज गलती से दिख रहा है, तो मदद के लिए support@signal.org पर संपर्क करें।</string>
+    <string name="RegistrationActivity_i_understand">मुझे पता है</string>
+    <string name="RegistrationActivity_play_services_error">Play सेवाओं में कोई गड़बड़ी हुई</string>
+    <string name="RegistrationActivity_google_play_services_is_updating_or_unavailable">Google Play सेवाएं अपडेट हो रही हैं या फिर यह अस्थायी रूप से उपलब्ध नहीं है। कृपया दोबाार कोशिश करें।</string>
     <string name="RegistrationActivity_terms_and_privacy">नियम और गोपनीयता नीति</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">दोस्तों से जुड़ने और मेसेज भेजने में आपकी मदद करने के लिए Signal को कॉन्टैक्ट और मीडिया के अनुमति की ज़रुरत है. आपके कॉन्टैक्ट Signal की निजी कॉन्टैक्ट डिस्कवरी का इस्तेमाल करके अपलोड किए जाते हैं, जिसका अर्थ है कि वे एंड-टू-एंड एन्क्रिप्टेड हैं और Signal सेवा को कभी भी नहीं दिखते हैं.</string>
-    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">दोस्तों से जुड़ने में आपकी मदद के लिए Signal को कॉन्टैक्ट की अनुमति की ज़रुरत है. आपके कॉन्टैक्ट Signal की निजी कॉन्टैक्ट डिस्कवरी का इस्तेमाल करके अपलोड किए जाते हैं, जिसका अर्थ है कि वे एंड-टू-एंड एन्क्रिप्टेड हैं और Signal सेवा को कभी भी नहीं दिखते हैं.</string>
-    <string name="RegistrationActivity_rate_limited_to_service">इस नंबर को रजिस्टर करने के लिए आपके द्वारा बहुत बार प्रयास किया जा चुका है। कृपया कुछ देर बाद फिर से कोशिश करें।</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_and_media_in_order_to_connect_with_friends">Signal को आपके कॉन्टैक्ट और मीडिया का ऐक्सेस चाहिए, ताकि वह आपके दोस्तों से कनेक्ट कर सके और उन्हें मैसेज भेज सके।आपके कॉन्टैक्ट Signal की प्राइवेट कॉन्टैक्ट डिसकवरी से अपलोड किए जाते हैं। इसका मतलब है कि वे एंड-टू-एंड एनक्रिप्टेड होते हैं और Signal सेवा उन्हें नहीं देख पाती।</string>
+    <string name="RegistrationActivity_signal_needs_access_to_your_contacts_in_order_to_connect_with_friends">Signal को आपके कॉन्टैक्ट का ऐक्सेस चाहिए, ताकि वह आपके दोस्तों से कनेक्ट कर सके। आपके कॉन्टैक्ट Signal की प्राइवेट कॉन्टैक्ट डिसकवरी से अपलोड किए जाते हैं। इसका मतलब है कि वे एंड-टू-एंड एनक्रिप्टेड होते हैं और Signal सेवा उन्हें नहीं देख पाती।</string>
+    <string name="RegistrationActivity_rate_limited_to_service">इस नंबर को रजिस्टर करने के लिए आपने कई बार कोशिशें कर ली हैं। कृपया कुछ देर बाद फिर से कोशिश करें।</string>
     <!--    During registration, if the user attempts (and fails) to register, we display this error message with a number of minutes timer they are allowed to try again.-->
     <string name="RegistrationActivity_rate_limited_to_try_again">आपने इस नंबर को पंजीकृत करने के बहुत सारे प्रयास किए। कृपया %1$s में पुन: प्रयास करें।</string>
-    <string name="RegistrationActivity_unable_to_connect_to_service">सेवा से कनेक्ट करने में असमर्थ। कृपया नेटवर्क कनेक्शन की जांच करें और पुनः प्रयास करें।</string>
+    <string name="RegistrationActivity_unable_to_connect_to_service">सेवा से कनेक्ट नहीं हो पाया। कृपया नेटवर्क कनेक्शन देखें और दोबारा कोशिश करें।</string>
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
     <string name="RegistrationActivity_sms_provider_error">SMS प्रोवाइडर से जुड़ी समस्या की वजह से, Signal SMS कोड नहीं भेज सका। कुछ घंटों में फिर से कोशिश करें।</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
     <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">हम आपको SMS द्वारा सत्यापन कोड नहीं भेज सकते। इसके बजाय वॉयस कॉल द्वारा अपना कोड प्राप्त करने का प्रयास करें।</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
     <string name="RegistrationActivity_unable_to_request_verification_code">सत्यापन कोड का अनुरोध करने में असमर्थ। कृपया नेटवर्क जाँचें और फिर से प्रयास करें।</string>
-    <string name="RegistrationActivity_non_standard_number_format">नॉन-स्टैंडर्ड नंबर फ़ॉर्मैट</string>
+    <string name="RegistrationActivity_non_standard_number_format">नंबर स्टैंडर्ड फ़ॉर्मैट में नहीं है</string>
     <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
-    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">आपके ज़रिए दर्ज किया गया नंबर (%1$s) एक नॉन-स्टैंडर्ड फ़ॉर्मैट लगता है.\n\nक्या आपका मतलब %2$s था?</string>
-    <string name="RegistrationActivity_signal_android_phone_number_format">Signal एंड्रॉइड - फोन नंबर का फ़ॉर्मेट</string>
+    <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">आपने जो नंबर (%1$s) डाला है वह स्टैंडर्ड फ़ॉर्मैट में नहीं है।\n\nक्या आपका मतलब %2$s था?</string>
+    <string name="RegistrationActivity_signal_android_phone_number_format">Signal Android - फ़ोन नंबर का फ़ॉर्मैट</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via voice call.-->
-    <string name="RegistrationActivity_call_requested">कॉल की मांग की गई</string>
+    <string name="RegistrationActivity_call_requested">कॉल का अनुरोध किया गया</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
     <string name="RegistrationActivity_sms_requested">SMS का अनुरोध किया गया</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
     <string name="RegistrationActivity_code_requested">सत्यापन कोड का अनुरोध किया गया</string>
     <plurals name="RegistrationActivity_debug_log_hint">
-        <item quantity="one">debug log भेजने के लिये %1$d चरण और बाचे हैं</item>
-        <item quantity="other">डीबग लॉग भेजने के लिये %1$d चरण और बाचे हैं</item>
+        <item quantity="one">डीबग लॉग सबमिट होने में अब सिर्फ़ %1$d कदम बाकी है।</item>
+        <item quantity="other">डीबग लॉग सबमिट होने में अब सिर्फ़ %1$d कदम बाकी हैं।</item>
     </plurals>
-    <string name="RegistrationActivity_we_need_to_verify_that_youre_human">हमें ये निशचित करना होगा कि आप इंसान हैं</string>
+    <string name="RegistrationActivity_we_need_to_verify_that_youre_human">यह वेरिफ़ाई करना ज़रूरी है कि आप इंसान हैं।</string>
     <!-- Button label to trigger a phone call to provide the registration code, in lieu of an SMS code -->
     <string name="RegistrationActivity_voice_call">वीडियो कॉल</string>
     <!-- Dialog button to cancel the pending action and return to the previous state. -->
     <string name="RegistrationActivity_cancel">रद्द करें</string>
-    <string name="RegistrationActivity_next">अगला</string>
-    <string name="RegistrationActivity_continue">आगे</string>
-    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">अपनी गुप्तता बानाये रखें। वास्तविक बने रहें|</string>
+    <string name="RegistrationActivity_next">आगे जाएं</string>
+    <string name="RegistrationActivity_continue">जारी रखें</string>
+    <string name="RegistrationActivity_take_privacy_with_you_be_yourself_in_every_message">प्राइवेसी रहे हमेशा आपके साथ।\nबिना किसी फ़िक्र के अपने अंदाज़ में भेजें हर मैसेज।</string>
     <!-- Title of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_phone_number">फोन नंबर</string>
     <!-- Subtitle of registration screen when asking for the users phone number -->
     <string name="RegistrationActivity_enter_your_phone_number_to_get_started">आरंभ करने के लिए अपना फोन नंबर दर्ज करें।</string>
-    <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s को भेजे गए सत्यापन कोड दर्ज करें</string>
+    <string name="RegistrationActivity_enter_the_code_we_sent_to_s">%1$s पर भेजा गया कोड डालें</string>
 
-    <string name="RegistrationActivity_phone_number_description">फोन नंबर</string>
-    <string name="RegistrationActivity_country_code_description">देश कोड</string>
-    <string name="RegistrationActivity_call">कॉल</string>
+    <string name="RegistrationActivity_phone_number_description">फ़ोन नंबर</string>
+    <string name="RegistrationActivity_country_code_description">कंट्री कोड</string>
+    <string name="RegistrationActivity_call">कॉल करें</string>
     <string name="RegistrationActivity_verification_code">सत्यापन कोड</string>
     <string name="RegistrationActivity_resend_code">कोड फ़िर से भेजें</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
@@ -2752,8 +2745,8 @@
     <!-- RegistrationLockV2Dialog -->
     <string name="RegistrationLockV2Dialog_turn_on_registration_lock">रजिस्ट्रेशन लॉक चालू करना है?</string>
     <string name="RegistrationLockV2Dialog_turn_off_registration_lock">रजिस्ट्रेशन लॉक बंद करना है?</string>
-    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">अगर आप अपना Signal पिन, Signal पर पुनः पंजीकरण करवाते समय भूल गये़, तो आप अपने खाते को 7 दिन तक नहीं खोल पाएँगे।</string>
-    <string name="RegistrationLockV2Dialog_turn_on">शुरु करें</string>
+    <string name="RegistrationLockV2Dialog_if_you_forget_your_signal_pin_when_registering_again">अगर Signal पर दोबारा रजिस्टर करते समय आपको अपना Signal पिन याद नहीं रहता, तो आपका अकाउंट 7 दिनों के लिए लॉक हो जाएगा।</string>
+    <string name="RegistrationLockV2Dialog_turn_on">चालू करें</string>
     <string name="RegistrationLockV2Dialog_turn_off">बंद करें</string>
 
     <!-- RevealableMessageView -->
@@ -2769,7 +2762,7 @@
     <string name="ReviewBannerView__view">देखना</string>
 
     <!-- Search -->
-    <string name="SearchFragment_no_results">\'%1$s\' के लिए कोई परिणाम नहीं मिला</string>
+    <string name="SearchFragment_no_results">\'%1$s\' के लिए कोई नतीजा नहीं मिला</string>
 
     <!-- ShakeToReport -->
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_shake_detected" translatable="false">Shake detected</string> -->
@@ -2780,27 +2773,27 @@
   <!-- Removed by excludeNonTranslatables <string name="ShakeToReport_share" translatable="false">Share</string> -->
 
     <!-- SharedContactDetailsActivity -->
-    <string name="SharedContactDetailsActivity_add_to_contacts">संपर्क के खाते में जोड़ दे</string>
-    <string name="SharedContactDetailsActivity_invite_to_signal">Signal का उपयोग करने के लिए आमंत्रित करें</string>
-    <string name="SharedContactDetailsActivity_signal_message">Signal मेसेज</string>
+    <string name="SharedContactDetailsActivity_add_to_contacts">कॉन्टैक्ट में जोड़ें</string>
+    <string name="SharedContactDetailsActivity_invite_to_signal">Signal इस्तेमाल करने के लिए इनवाइट भेजें</string>
+    <string name="SharedContactDetailsActivity_signal_message">Signal मैसेज</string>
     <string name="SharedContactDetailsActivity_signal_call">Signal कॉल</string>
 
     <!-- SharedContactView -->
-    <string name="SharedContactView_add_to_contacts">संपर्क के खाते में जोड़ दे</string>
-    <string name="SharedContactView_invite_to_signal">Signal को आमंत्रित करें</string>
-    <string name="SharedContactView_message">Signal मेसेज</string>
+    <string name="SharedContactView_add_to_contacts">कॉन्टैक्ट में जोड़ें</string>
+    <string name="SharedContactView_invite_to_signal">Signal इस्तेमाल करने के लिए इनवाइट भेजें</string>
+    <string name="SharedContactView_message">Signal मैसेज</string>
 
     <!-- SignalBottomActionBar -->
     <!-- Text to describe a button that will show more options -->
-    <string name="SignalBottomActionBar_more">अधिक</string>
+    <string name="SignalBottomActionBar_more">और</string>
 
     <!-- SignalPinReminders -->
-    <string name="SignalPinReminders_well_remind_you_again_later">पिन सफलतापूर्वक सत्यापित किया गया। हम बाद में आपको फिर से याद दिलाएँगे।</string>
-    <string name="SignalPinReminders_well_remind_you_again_tomorrow">पिन सफलतापूर्वक सत्यापित किया गया। हम कल आपको फिर से याद दिलाएँगे।</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">पिन सफलतापूर्वक सत्यापित किया गया। हम कुछ दिनों में आपको फिर से याद दिलाएँगे।</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_week">पिन सफलतापूर्वक सत्यापित किया गया। हम एक सप्ताह में आपको फिर से याद दिलाएँगे।</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">पिन सफलतापूर्वक सत्यापित किया गया। कुछ ही हफ़्तों में हम फिर से आपको याद दिलाएँगे।</string>
-    <string name="SignalPinReminders_well_remind_you_again_in_a_month">पिन सफलतापूर्वक सत्यापित किया गया। एक महीने में हम फिर से आपको याद दिलाएँगे।</string>
+    <string name="SignalPinReminders_well_remind_you_again_later">पिन वेरिफ़ाई हो गया है। हम आपको बाद में फिर से याद दिलाएंगे।</string>
+    <string name="SignalPinReminders_well_remind_you_again_tomorrow">पिन वेरिफ़ाई हो गया है। हम आपको कल फिर से याद दिलाएंगे।</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_few_days">पिन वेरिफ़ाई हो गया है। हम आपको कुछ दिनों बाद फिर से याद दिलाएंगे।</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_week">पिन वेरिफ़ाई हो गया है। हम आपको हफ़्ते भर बाद फिर से याद दिलाएंगे।</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_couple_weeks">पिन वेरिफ़ाई हो गया है। हम आपको कुछ हफ़्तों बाद फिर से याद दिलाएंगे।</string>
+    <string name="SignalPinReminders_well_remind_you_again_in_a_month">पिन वेरिफ़ाई हो गया है। हम आपको महीने भर बाद फिर से याद दिलाएंगे।</string>
     <string name="SignalPinReminders__well_remind_you_again_later">हम आपको बाद में फिर से याद दिलाएँगे।</string>
     <string name="SignalPinReminders__well_remind_you_again_tomorrow">हम आपको कल फिर से याद दिलाएँगे।</string>
     <string name="SignalPinReminders__well_remind_you_again_in_a_few_days">हम आपको कुछ दिन बाद फिर से याद दिलाएँगे।</string>
@@ -2809,15 +2802,15 @@
     <string name="SignalPinReminders__well_remind_you_again_in_a_month">हम आपको एक महीने बाद फिर से याद दिलाएँगे।</string>
 
     <!-- Slide -->
-    <string name="Slide_image">तस्वीर</string>
+    <string name="Slide_image">इमेज</string>
     <string name="Slide_sticker">स्टिकर</string>
     <string name="Slide_audio">ऑडियो</string>
     <string name="Slide_video">वीडियो</string>
 
     <!-- SmsMessageRecord -->
-    <string name="SmsMessageRecord_secure_session_reset">आपने सुरक्षित सत्र रीसेट कर दिया है।</string>
-    <string name="SmsMessageRecord_secure_session_reset_s">%1$s ने सुरक्षित सत्र को रीसेट कर दिया है</string>
-    <string name="SmsMessageRecord_duplicate_message">मेसेज डुप्लिकेट करें</string>
+    <string name="SmsMessageRecord_secure_session_reset">आपने सिक्योर सेशन रीसेट किया है।</string>
+    <string name="SmsMessageRecord_secure_session_reset_s">%1$s ने सिक्योर सेशन रीसेट किया है।</string>
+    <string name="SmsMessageRecord_duplicate_message">डुप्लिकेट मैसेज</string>
 
     <!-- Sticker management screen default title. -->
     <string name="StickerManagement_title_stickers">स्टिकर</string>
@@ -2897,33 +2890,33 @@
     <string name="StickerManagement_accessibility_exit_multi_select_mode">चुनने के मोड से बाहर आएँ और चयन हटाएँ</string>
 
     <!-- StickerManagementAdapter -->
-    <string name="StickerManagementAdapter_untitled">शीर्षकहीन</string>
+    <string name="StickerManagementAdapter_untitled">बिना टाइटल के</string>
 
     <!-- StickerPackPreviewActivity -->
-    <string name="StickerPackPreviewActivity_untitled">शीर्षकहीन</string>
+    <string name="StickerPackPreviewActivity_untitled">बिना टाइटल के</string>
     <string name="StickerPackPreviewActivity_unknown">अनजान</string>
     <string name="StickerPackPreviewActivity_install">इंस्टॉल करें</string>
     <!-- Label for a button that, if pressed, will uninstall the sticker pack that is currently being previewed. -->
     <string name="StickerPackPreviewActivity_remove">अनइंस्टॉल</string>
     <string name="StickerPackPreviewActivity_stickers">स्टिकर</string>
-    <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">स्टीकर पैक लोड करने में असमर्थ</string>
+    <string name="StickerPackPreviewActivity_failed_to_load_sticker_pack">स्टीकर पैक लोड नहीं हो सका</string>
 
     <!-- SubmitDebugLogActivity -->
-    <string name="SubmitDebugLogActivity_edit">बदलें</string>
-    <string name="SubmitDebugLogActivity_done">पूर्ण</string>
+    <string name="SubmitDebugLogActivity_edit">एडिट करें</string>
+    <string name="SubmitDebugLogActivity_done">हो गया</string>
     <!-- Menu option to save a debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save">सेव करें</string>
     <!-- Error that is show in a toast when we fail to save a debug log file to disk. -->
-    <string name="SubmitDebugLogActivity_failed_to_save">सेव नहीं किया जा सका</string>
+    <string name="SubmitDebugLogActivity_failed_to_save">सेव नहीं हो सका</string>
     <!-- Toast that is show to notify that we have saved the debug log file to disk. -->
     <string name="SubmitDebugLogActivity_save_complete">सेव करना पूरा हुआ</string>
     <string name="SubmitDebugLogActivity_tap_a_line_to_delete_it">किसी लाइन को डिलीट करने के लिए उस पर टैप करें</string>
-    <string name="SubmitDebugLogActivity_submit">सबमिट</string>
-    <string name="SubmitDebugLogActivity_failed_to_submit_logs">लॉग जमा करना असफल रहा</string>
-    <string name="SubmitDebugLogActivity_success">सफलता</string>
-    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">इस URL को कॉपी करें और इसे अपनी समस्या रिपोर्ट या समर्थन ईमेल में शामिल करें:\n\n<b>%1$s</b></string>
-    <string name="SubmitDebugLogActivity_share">साझा करें</string>
-    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">योगदानकर्ताओं को देखने के लिए यह लॉग सार्वजनिक रूप से ऑनलाइन पोस्ट किया जाएगा। अपलोड करने से पहले आप इसकी जांच कर सकते हैं।</string>
+    <string name="SubmitDebugLogActivity_submit">सबमिट करें</string>
+    <string name="SubmitDebugLogActivity_failed_to_submit_logs">लॉग सबमिट नहीं हो सके</string>
+    <string name="SubmitDebugLogActivity_success">हो गया!</string>
+    <string name="SubmitDebugLogActivity_copy_this_url_and_add_it_to_your_issue">इस URL को कॉपी करें और इसे अपनी समस्या रिपोर्ट या सपोर्ट ईमेल में शामिल करें:\n\n<b>%1$s</b></string>
+    <string name="SubmitDebugLogActivity_share">शेयर करें</string>
+    <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">इस लॉग को लॉग सार्वजनिक रूप से ऑनलाइन पोस्ट किया जाएगा, ताकि लोग इसे देख सकें। आपके पास लोड करने से पहले इसे सही से देखने की सुविधा मौजूद है।</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">जब आप सबमिट करें पर क्लिक करते हैं तब एक विशेष, अप्रकाशित URL पर 30 दिनों के लिए आपका लॉग ऑनलाइन पोस्ट किया जाएगा। आप इसे अपने पास सबसे पहले सहेज कर रख सकते हैं।</string>
     <!-- Debug log level names to filter by levels. -->
@@ -2936,7 +2929,7 @@
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
-    <string name="SupportEmailUtil_filter">फिल्टर:</string>
+    <string name="SupportEmailUtil_filter">फ़िल्टर:</string>
     <string name="SupportEmailUtil_device_info">डिवाइस की जानकारी:</string>
     <string name="SupportEmailUtil_android_version">Android वर्ज़न:</string>
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_signal_version" translatable="false">Signal version:</string> -->
@@ -2945,16 +2938,16 @@
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_locale" translatable="false">Locale:</string> -->
 
     <!-- ThreadRecord -->
-    <string name="ThreadRecord_group_updated">समूह अद्यतन</string>
+    <string name="ThreadRecord_group_updated">ग्रुप अपडेट किया गया</string>
     <!-- Text shown you have left a group -->
-    <string name="ThreadRecord_left_the_group">समूह छोड़ दिया</string>
-    <string name="ThreadRecord_secure_session_reset">सुरक्षित सत्र रीसेट कर दिया गया है</string>
-    <string name="ThreadRecord_draft">ड्राफ्ट:</string>
-    <string name="ThreadRecord_media_message">मीडिया मेसेज</string>
+    <string name="ThreadRecord_left_the_group">आपने ग्रुप छोड़ दिया</string>
+    <string name="ThreadRecord_secure_session_reset">सिक्योर सेशन रीसेट करें।</string>
+    <string name="ThreadRecord_draft">ड्राफ़्ट:</string>
+    <string name="ThreadRecord_media_message">मीडिया मैसेज</string>
     <string name="ThreadRecord_sticker">स्टिकर</string>
-    <string name="ThreadRecord_view_once_photo">देखें-एक बार फोटो</string>
-    <string name="ThreadRecord_view_once_video">देखें-एक बार वीडियो</string>
-    <string name="ThreadRecord_view_once_media">देखें-एक बार मीडिया</string>
+    <string name="ThreadRecord_view_once_photo">एक बार देखी जा सकने वाली फ़ोटो</string>
+    <string name="ThreadRecord_view_once_video">एक बार देखा जा सकने वाला वीडियो</string>
+    <string name="ThreadRecord_view_once_media">एक बार देखा जा सकने वाला मीडिया</string>
     <string name="ThreadRecord_this_message_was_deleted">यह मेसेज डिलीट कर दिया गया है।</string>
     <string name="ThreadRecord_you_deleted_this_message">आपने यह मेसेज डिलीट कर दिया।</string>
     <!-- Displayed in the notification when the user sends a request to activate payments -->
@@ -2966,20 +2959,20 @@
     <!-- Displayed in the notification when the recipient can accept payments -->
     <string name="ThreadRecord_can_accept_payments">%1$s अब भुगतान स्वीकार कर सकते हैं</string>
     <string name="ThreadRecord_s_is_on_signal">%1$sअब Signal पर हैं!</string>
-    <string name="ThreadRecord_disappearing_messages_disabled">मेसेज जो गायब हो जाते हैं अक्षम करे</string>
-    <string name="ThreadRecord_disappearing_message_time_updated_to_s">गायब मेसेज समय %1$s तक सेट हो गया</string>
-    <string name="ThreadRecord_safety_number_changed">सुरक्षा संख्या बदल गई</string>
-    <string name="ThreadRecord_your_safety_number_with_s_has_changed">%1$s के साथ आपका सुरक्षा नंबर बदल गया है।</string>
-    <string name="ThreadRecord_you_marked_verified">आपने सत्यापित मार्क किया है</string>
-    <string name="ThreadRecord_you_marked_unverified">आपने असत्यापित मार्क किया है</string>
-    <string name="ThreadRecord_message_could_not_be_processed">मेसेज संसाधित नहीं किया जा सका</string>
-    <string name="ThreadRecord_delivery_issue">डिलिवरी का मामला</string>
-    <string name="ThreadRecord_message_request">बाच-चीत का निवेदन</string>
+    <string name="ThreadRecord_disappearing_messages_disabled">मैसेज गायब होने की सुविधा बंद कर दी गई है</string>
+    <string name="ThreadRecord_disappearing_message_time_updated_to_s">मैसेज गायब होने का समय %1$s सेट कर दिया गया है</string>
+    <string name="ThreadRecord_safety_number_changed">सेफ़्टी नंबर बदला गया</string>
+    <string name="ThreadRecord_your_safety_number_with_s_has_changed">%1$s के साथ आपका सेफ़्टी नंबर बदल गया है।</string>
+    <string name="ThreadRecord_you_marked_verified">आपने वेरिफ़ाइड के तौर पर मार्क किया</string>
+    <string name="ThreadRecord_you_marked_unverified">आपने अनवेरिफ़ाइड के तौर पर मार्क किया</string>
+    <string name="ThreadRecord_message_could_not_be_processed">मैसेज प्रोसेस नहीं किया जा सका</string>
+    <string name="ThreadRecord_delivery_issue">डिलीवर होने में कोई गड़बड़ी हुई</string>
+    <string name="ThreadRecord_message_request">मैसेज का अनुरोध</string>
     <!-- Thread preview for a recipient that has been hidden -->
     <string name="ThreadRecord_hidden_recipient">आपने इस व्यक्ति को छिपा दिया है, उन्हें अपनी सूची में वापस जोड़ने के लिए उन्हें फिर से संदेश भेजें।</string>
-    <string name="ThreadRecord_photo">तस्वीर</string>
+    <string name="ThreadRecord_photo">फ़ोटो</string>
     <string name="ThreadRecord_gif">GIF</string>
-    <string name="ThreadRecord_voice_message">ऑडियो मेसेज</string>
+    <string name="ThreadRecord_voice_message">वॉइस मैसेज</string>
     <string name="ThreadRecord_file">फ़ाइल</string>
     <string name="ThreadRecord_video">वीडियो</string>
     <string name="ThreadRecord_chat_session_refreshed">चैट सेशन रीफ्रेश हुआ</string>
@@ -3016,40 +3009,40 @@
     <string name="ApkUpdateNotifications_manual_update_success_body">आपने %1$s वर्ज़न पर अपडेट कर लिया है।</string>
 
     <!-- UntrustedSendDialog -->
-    <string name="UntrustedSendDialog_send_message">मेसेज भेजें?</string>
+    <string name="UntrustedSendDialog_send_message">मैसेज भेजना है?</string>
     <string name="UntrustedSendDialog_send">भेजें</string>
 
     <!-- UnverifiedSendDialog -->
-    <string name="UnverifiedSendDialog_send_message">मेसेज भेजें?</string>
+    <string name="UnverifiedSendDialog_send_message">मैसेज भेजना है?</string>
     <string name="UnverifiedSendDialog_send">भेजें</string>
 
     <!-- UsernameEditFragment -->
     <!-- Placeholder text for custom discriminator -->
     <string name="UsernameEditFragment__00">00</string>
     <!-- Toolbar title when entering from registration -->
-    <string name="UsernameEditFragment__add_a_username">कोई यूज़रनेम जोड़ें</string>
+    <string name="UsernameEditFragment__add_a_username">यूज़रनेम जोड़ें</string>
     <!-- Instructional text at the top of the username edit screen -->
     <string name="UsernameEditFragment__choose_your_username">अपना यूज़रनेम चुनें</string>
     <string name="UsernameEditFragment_username">यूज़रनेम</string>
     <string name="UsernameEditFragment_delete">डिलीट करें</string>
     <string name="UsernameEditFragment_successfully_removed_username">सफलतापूर्वक यूज़रनेम हटा दिया गया।</string>
-    <string name="UsernameEditFragment_encountered_a_network_error">एक नेटवर्क त्रुटि का सामना करना पड़ा|</string>
+    <string name="UsernameEditFragment_encountered_a_network_error">नेटवर्क में कोई गड़बड़ी हुई।</string>
     <!-- Toast message shown if user exceeds the rate limit for reserving usernames -->
     <string name="UsernameEditFragment_rate_limit_exceeded_error">बहुत अधिक प्रयास किए गए, कृपया बाद में पुनः प्रयास करें।</string>
-    <string name="UsernameEditFragment_this_username_is_taken">यह यूज़रनेम ले लिया गया है।</string>
-    <string name="UsernameEditFragment_usernames_can_only_include">यूज़रनेम में केवल a–Z, 0–9, और अंडरस्कोर शामिल हो सकते हैं।</string>
-    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">यूज़रनेम एक संख्या से शुरू नहीं हो सकते हैं।</string>
-    <string name="UsernameEditFragment_username_is_invalid">यूज़रनेम अमान्य है।</string>
+    <string name="UsernameEditFragment_this_username_is_taken">यह यूज़रनेम पहले से इस्तेमाल में है।</string>
+    <string name="UsernameEditFragment_usernames_can_only_include">यूज़रनेम में सिर्फ़ a–Z, 0–9, और अंडरस्कोर का इस्तेमाल किया जा सकता है।</string>
+    <string name="UsernameEditFragment_usernames_cannot_begin_with_a_number">यूज़रनेम किसी संख्या के साथ शुरू नहीं हो सकता।</string>
+    <string name="UsernameEditFragment_username_is_invalid">यूज़रनेम सही नहीं है।</string>
     <string name="UsernameEditFragment_usernames_must_be_between_a_and_b_characters">यूज़रनेम %1$d और %2$d वर्णों के बीच होना चाहिए।</string>
     <!-- Explanation about what usernames provide -->
     <string name="UsernameEditFragment__usernames_let_others_message">यूज़रनेम हमेशा संख्याओं के एक समूह के साथ जोड़े जाते हैं।</string>
     <!-- Dialog title for explanation about numbers at the end of the username -->
-    <string name="UsernameEditFragment__what_is_this_number">यह नंबर क्या है?</string>
+    <string name="UsernameEditFragment__what_is_this_number">इस नंबर का क्या मतलब है?</string>
     <string name="UsernameEditFragment__these_digits_help_keep">यह अंक आपको अपना यूज़रनेम निजी रखने में मदद करते हैं ताकि आप अवांछित संदेशों से बच सकें। अपना यूज़रनेम केवल उन लोगों और ग्रुप्स के साथ शेयर करें जिनके साथ आप चैट करना चाहते हैं। यदि आप अपना यूज़रनेम बदलते हैं तो आपको अंकों का एक नया सेट मिलेगा।</string>
     <!-- Button to allow user to skip -->
-    <string name="UsernameEditFragment__skip">छोड़ दे</string>
+    <string name="UsernameEditFragment__skip">आगे बढ़ें</string>
     <!-- Content description for done button -->
-    <string name="UsernameEditFragment__done">पूर्ण</string>
+    <string name="UsernameEditFragment__done">हो गया</string>
     <!-- Displayed when the chosen discriminator is not available for the given nickname -->
     <string name="UsernameEditFragment__this_username_is_not_available_try_another_number">यह यूज़रनेम उपलब्ध नहीं है, कोई अन्य नंबर आज़माएँ।</string>
     <!-- Displayed when the chosen discriminator is too short -->
@@ -3068,24 +3061,24 @@
     <string name="UsernameEditFragment_continue">जारी रखें</string>
 
     <plurals name="UserNotificationMigrationJob_d_contacts_are_on_signal">
-        <item quantity="one">%1$d संपर्क सिग्नल पर है!</item>
-        <item quantity="other">%1$d संपर्क Signal पर उपलब्ध हैं!</item>
+        <item quantity="one">%1$d कॉन्टैक्ट Signal पर मौजूद है!</item>
+        <item quantity="other">%1$d कॉन्टैक्ट Signal पर मौजूद हैं!</item>
     </plurals>
 
     <!-- UsernameShareBottomSheet -->
     <!-- Explanation of what the sheet enables the user to do -->
-    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">कोई यूज़रनेम लिंक कॉपी या शेयर करें</string>
+    <string name="UsernameShareBottomSheet__copy_or_share_a_username_link">यूज़र का प्रोफ़ाइल लिंक कॉपी या शेयर करें</string>
 
     <!-- VerifyIdentityActivity -->
-    <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">आपका संपर्क एक असंगत क्यूआर कोड ड्राफ्ट के साथ Signal का एक नया वर्ज़न चला रहा है। तुलना करने के लिए कृपया अपडेट करें।</string>
-    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">स्कैन किए गए क्यूआर कोड सही ढंग से स्वरूपित सुरक्षा संख्या सत्यापन कोड नहीं है। कृपया फिर से स्कैन करने का प्रयास करें।</string>
-    <string name="VerifyIdentityActivity_share_safety_number_via">…के माध्यम से सुरक्षा संख्या साझा करें</string>
-    <string name="VerifyIdentityActivity_our_signal_safety_number">हमारा Signal सुरक्षा नंबर:</string>
-    <string name="VerifyIdentityActivity_no_app_to_share_to">ऐसा लगता है कि आपके पास साझा करने के लिए कोई ऐप नहीं है।</string>
-    <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">तुलना करने के लिए कोई सुरक्षा संख्या क्लिपबोर्ड में नहीं मिली थी</string>
-    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">एक क्यूआर कोड स्कैन करने के लिए Signal को कैमरा अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"कैमरा\" सक्षम करें।</string>
-    <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">कैमरा अनुमति के बिना क्यूआर कोड स्कैन करने में असमर्थ</string>
-    <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s का सुरक्षा नंबर देखने के लिए आपको पहले मेसेजेस का आदान-प्रदान करना होगा।</string>
+    <string name="VerifyIdentityActivity_your_contact_is_running_a_newer_version_of_Signal">आपका कॉन्टैक्ट Signal का नया वर्ज़न इस्तेमाल कर रहा है, जिसमें QR कोड का फ़ॉर्मैट मेल नहीं खा रहा है। तुलना करने के लिए कृपया ऐप अपडेट करें।</string>
+    <string name="VerifyIdentityActivity_the_scanned_qr_code_is_not_a_correctly_formatted_safety_number">स्कैन किया गया QR कोड, सही फ़ॉर्मैट में सेफ़्टी नंबर वेरिफ़िकेशन कोड नहीं है। कृपया दोबारा स्कैन करें।</string>
+    <string name="VerifyIdentityActivity_share_safety_number_via">…के ज़रिए सेफ़्टी नंबर शेयर करें</string>
+    <string name="VerifyIdentityActivity_our_signal_safety_number">हमारा Signal सेफ़्टी नंबर है:</string>
+    <string name="VerifyIdentityActivity_no_app_to_share_to">लगता है कि शेयर करने के लिए आपके पास कोई ऐप मौजूद नहीं है।</string>
+    <string name="VerifyIdentityActivity_no_safety_number_to_compare_was_found_in_the_clipboard">क्लिपबोर्ड में तुलना करने के लिए कोई सेफ़्टी नंबर नहीं मिला</string>
+    <string name="VerifyIdentityActivity_signal_needs_the_camera_permission_in_order_to_scan_a_qr_code_but_it_has_been_permanently_denied">Signal को QR कोड स्कैन करने के लिए कैमरे का ऐक्सेस चाहिए। हालांकि, आपने इसे स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए ऐप सेटिंग में जाएं, \"अनुमतियां\" चुनें, और \"कैमरा\" चालू करें।</string>
+    <string name="VerifyIdentityActivity_unable_to_scan_qr_code_without_camera_permission">कैमरा ऐक्सेस के बिना QR कोड स्कैन नहीं किया जा सकता</string>
+    <string name="VerifyIdentityActivity_you_must_first_exchange_messages_in_order_to_view">%1$s का सेफ़्टी नंबर देखने के लिए ज़रूरी है कि पहले आप मैसेज पर एक-दूसरे से बात करें।</string>
     <!-- Dialog message explaining to user they must exchange messages first to create a safety number -->
     <string name="VerifyIdentityActivity_dialog_exchange_messages_to_create_safety_number_message">आपके साथ संदेशों का आदान-प्रदान करने के बाद इस व्यक्ति के साथ एक सुरक्षा संख्या बनाई जाएगी।</string>
     <!-- Confirmation option for dialog explaining to user they must exchange messages first to create a safety number  -->
@@ -3102,23 +3095,23 @@
   <!-- Removed by excludeNonTranslatables <string name="AudioView_duration" translatable="false">%1$d:%2$02d</string> -->
 
     <!-- MessageDisplayHelper -->
-    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">गैर-मौजूदा सत्र के लिए मेसेज एन्क्रिप्ट किया गया</string>
+    <string name="MessageDisplayHelper_message_encrypted_for_non_existing_session">संदेश एन्क्रिप्ट किया गया, लेकिन सेशन मौजूद नहीं है</string>
 
     <!-- MuteDialog -->
     <string name="MuteDialog_mute_notifications">नोटिफिकेशन म्यूट करें</string>
 
     <!-- KeyCachingService -->
-    <string name="KeyCachingService_signal_passphrase_cached">खोलने के लिए स्पर्श करें</string>
-    <string name="KeyCachingService_passphrase_cached">Signal खुला है</string>
-    <string name="KeyCachingService_lock">Signal पर ताला लगाओ</string>
+    <string name="KeyCachingService_signal_passphrase_cached">खोलने के लिए टच करें।</string>
+    <string name="KeyCachingService_passphrase_cached">Signal खुला हुआ है</string>
+    <string name="KeyCachingService_lock">Signal लॉक करें</string>
 
     <!-- MediaPreviewActivity -->
     <string name="MediaPreviewActivity_you">आप</string>
-    <string name="MediaPreviewActivity_unssuported_media_type">असमर्थित मीडिया प्रकार</string>
-    <string name="MediaPreviewActivity_draft">ड्राफ्ट</string>
+    <string name="MediaPreviewActivity_unssuported_media_type">यह मीडिया टाइप काम नहीं करता</string>
+    <string name="MediaPreviewActivity_draft">ड्राफ़्ट</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_title">चयनित मेसेज डिलीट करें?</string>
     <string name="MediaPreviewActivity_media_delete_confirmation_message">यह इस मेसेज को स्थायी रूप से डिलीट कर देगा।</string>
-    <string name="MediaPreviewActivity_s_to_s">%1$sसे%2$s</string>
+    <string name="MediaPreviewActivity_s_to_s">%1$s से %2$s को</string>
     <!-- All media preview title when viewing media send by you to another recipient (allows changing of \'You\' based on context) -->
     <string name="MediaPreviewActivity_you_to_s">आपसे %1$s को</string>
     <!-- All media preview title when viewing media sent by another recipient to you (allows changing of \'You\' based on context) -->
@@ -3128,7 +3121,7 @@
     <string name="MediaPreviewActivity_unable_to_play_media">मीडिया चलाने में असमर्थ</string>
     <!-- Toast shown when there is an error finding a media-based message -->
     <string name="MediaPreviewActivity_error_finding_message">संदेश ढूँढ़ने में त्रुटि हुई।</string>
-    <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">इस मीडिया को शेयर करने के लिए कोई ऐप नहीं मिल रही।</string>
+    <string name="MediaPreviewActivity_cant_find_an_app_able_to_share_this_media">इस मीडिया को शेयर करने के लिए कोई ऐप नहीं मिल रहा है।</string>
     <string name="MediaPreviewActivity_dismiss_due_to_error">बंद करो</string>
     <string name="MediaPreviewFragment_edit_media_error">मीडिया त्रुटि</string>
     <!-- This is displayed as a toast notification when we encounter an error deleting a message, including potentially on other people\'s devices -->
@@ -3150,26 +3143,26 @@
         <item quantity="other">%1$d चैट</item>
     </plurals>
     <!-- Shown in a notification when you receive multiple chat messages. %s is the contact name of the most recent message -->
-    <string name="MessageNotifier_most_recent_from_s">%1$s से हाल ही में</string>
-    <string name="MessageNotifier_locked_message">लॉक मेसेज</string>
-    <string name="MessageNotifier_message_delivery_failed">मेसेज प्रेषण असफल हुआ</string>
+    <string name="MessageNotifier_most_recent_from_s">इनसे हाल ही में मिला: %1$s</string>
+    <string name="MessageNotifier_locked_message">लॉक मैसेज</string>
+    <string name="MessageNotifier_message_delivery_failed">मैसेज डिलीवर नहीं हो सका।</string>
     <!-- Shown in a notification when a story the user tries to send fails to be sent -->
     <string name="MessageNotifier_story_delivery_failed">स्टोरी भेजने में विफल</string>
     <!-- Shown as notification title for when a notification about a story sent to a group story %1$s replaced with the group name -->
     <string name="MessageNotifier_group_story_title">आपसे %1$s को</string>
-    <string name="MessageNotifier_failed_to_deliver_message">मेसेज देने में विफल रहा</string>
-    <string name="MessageNotifier_error_delivering_message">मेसेज देने में त्रुटि</string>
-    <string name="MessageNotifier_message_delivery_paused">संदेश प्रेषण रोका गया</string>
-    <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signal पर संदेश भेजना जारी रखने के लिए सत्यापित करें</string>
-    <string name="MessageNotifier_mark_all_as_read">सभी को पढ़ा हुआ मार्क करें</string>
-    <string name="MessageNotifier_mark_read">पढ़ा हुआ मार्क करें</string>
-    <string name="MessageNotifier_turn_off_these_notifications">इन सूचनाओं को बंद करें</string>
-    <string name="MessageNotifier_view_once_photo">देखें-एक बार फोटो</string>
-    <string name="MessageNotifier_view_once_video">देखें-एक बार वीडियो</string>
-    <string name="MessageNotifier_reply">उत्तर</string>
-    <string name="MessageNotifier_signal_message">Signal मेसेज</string>
+    <string name="MessageNotifier_failed_to_deliver_message">मैसेज डिलीवर नहीं हो सका।</string>
+    <string name="MessageNotifier_error_delivering_message">मैसेज डिलीवर होने में कोई गड़बड़ी हुई।</string>
+    <string name="MessageNotifier_message_delivery_paused">मैसेज डिलीवर होने से पहले ही रुक गया।</string>
+    <string name="MessageNotifier_verify_to_continue_messaging_on_signal">Signal पर आगे मैसेज भजेने के लिए वेरिफ़ाई करना ज़रूरी है।</string>
+    <string name="MessageNotifier_mark_all_as_read">सभी को \'पढ़ा गया\' के तौर पर मार्क करें</string>
+    <string name="MessageNotifier_mark_read">\'पढ़ा गया\' के तौर पर मार्क करें</string>
+    <string name="MessageNotifier_turn_off_these_notifications">इन नोटिफ़िकेशन को बंद करें</string>
+    <string name="MessageNotifier_view_once_photo">सिर्फ़ एक बार देखी जा सकने वाली फ़ोटो</string>
+    <string name="MessageNotifier_view_once_video">सिर्फ़ एक बार देखा जा सकने वाला वीडियो</string>
+    <string name="MessageNotifier_reply">जवाब दें</string>
+    <string name="MessageNotifier_signal_message">Signal मैसेज</string>
     <string name="MessageNotifier_contact_message">%1$s%2$s</string>
-    <string name="MessageNotifier_unknown_contact_message">संपर्क</string>
+    <string name="MessageNotifier_unknown_contact_message">कॉन्टैक्ट</string>
     <string name="MessageNotifier_reacted_s_to_s">प्रतिक्रिया की गई %1$s से: \"%2$s\".</string>
     <string name="MessageNotifier_reacted_s_to_your_video">आपके वीडियो पर %1$s ने प्रतिक्रिया दी।</string>
     <string name="MessageNotifier_reacted_s_to_your_image">आपकी तस्वीर पर %1$s ने प्रतिक्रिया दी।</string>
@@ -3182,7 +3175,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">आपके स्टिकर पर %1$sको पुन: सक्रिय किया।</string>
     <string name="MessageNotifier_this_message_was_deleted">यह मेसेज डिलीट कर दिया गया है।</string>
 
-    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">संपर्क से जुड़ी Signal की सूचनाओं को बंद करना है? आप उन्हें Signal &gt; सेटिंग्स &gt; सूचनाएँ में जाकर फिर से एनेबल कर सकते हैं।</string>
+    <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">क्या आपको \"कॉन्टैक्ट ने Signal जॉइन किया\" वाले नोटिफ़िकेशन बंद करने हैं? इन्हें Signal &gt; सेटिंग &gt; नोटिफ़िकेशन में जाकर फिर से चालू किया जा सकता है।</string>
 
     <!-- TurnOnNotificationsBottomSheet -->
     <!-- Title for sheet explaining how to turn on app notifications -->
@@ -3197,24 +3190,24 @@
     <string name="TurnOnNotificationsBottomSheet__settings">सेटिंग्स</string>
 
     <!-- Notification Channels -->
-    <string name="NotificationChannel_channel_messages">मेसेज</string>
+    <string name="NotificationChannel_channel_messages">मैसेज</string>
     <string name="NotificationChannel_calls">कॉल</string>
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
-    <string name="NotificationChannel_failures">विफलतायें</string>
+    <string name="NotificationChannel_failures">नहीं हो सका</string>
     <string name="NotificationChannel_backups">बैकअप</string>
-    <string name="NotificationChannel_locked_status">लॉक स्थिति</string>
+    <string name="NotificationChannel_locked_status">लॉक का स्टेटस</string>
     <string name="NotificationChannel_app_updates">ऐप अपडेट</string>
     <string name="NotificationChannel_other">अन्य</string>
     <string name="NotificationChannel_group_chats">चैट</string>
     <string name="NotificationChannel_missing_display_name">अनजान</string>
-    <string name="NotificationChannel_voice_notes">ऑडियो नोट्स</string>
-    <string name="NotificationChannel_contact_joined_signal">संपर्क Signal में शामिल हो गए</string>
+    <string name="NotificationChannel_voice_notes">वॉइस नोट</string>
+    <string name="NotificationChannel_contact_joined_signal">कॉन्टैक्ट ने Signal में जॉइन किया</string>
     <!-- Toast shown when there is no application available to open the settings -->
-    <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">अधिसूचना चैनल सेटिंग्ज़ खोलने के लिए कोई गतिविधि उपलब्ध नहीं है।</string>
+    <string name="NotificationChannels__no_activity_available_to_open_notification_channel_settings">नोटिफ़िकेशन चैनल सेटिंग खोलने के लिए कोई गतिविधि उपलब्ध नहीं है।</string>
     <!-- Notification channel name for showing persistent background connection on devices without push notifications -->
     <string name="NotificationChannel_background_connection">बैकग्राउंड कनेक्शन</string>
     <!-- Notification channel name for showing call status information (like connection, ongoing, etc.) Not ringing. -->
-    <string name="NotificationChannel_call_status">कॉल स्टेटस</string>
+    <string name="NotificationChannel_call_status">कॉल का स्टेटस</string>
     <!-- Notification channel name for occasional alerts to the user. Will appear in the system notification settings as the title of this notification channel. -->
     <string name="NotificationChannel_critical_app_alerts">महत्त्वपूर्ण ऐप अलर्ट</string>
     <!-- Notification channel name for other notifications related to messages. Will appear in the system notification settings as the title of this notification channel. -->
@@ -3223,8 +3216,8 @@
     <string name="NotificationChannel_new_linked_device">नया लिंक्ड डिवाइस</string>
 
     <!-- QuickResponseService -->
-    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal लॉक होने पर त्वरित प्रतिक्रिया अनुपलब्ध है!</string>
-    <string name="QuickResponseService_problem_sending_message">मेसेज भेजने में दिक्कत हुआ</string>
+    <string name="QuickResponseService_quick_response_unavailable_when_Signal_is_locked">Signal लॉक होने पर तुरंत मिलने वाले रेस्पॉन्स की सुविधा उपलब्ध नहीं है!</string>
+    <string name="QuickResponseService_problem_sending_message">मैसेज भेजने में कोई गड़बड़ी हुई!</string>
 
     <!-- A toast notification that is shown when the app does not have sufficient permissions to save media files to the device storage. -->
     <string name="SaveAttachment_unable_to_write_to_sd_card_exclamation">स्टॉरेज में लिखने में असमर्थ!</string>
@@ -3264,22 +3257,22 @@
     <string name="AttachmentSaver__unable_to_write_to_external_storage_without_permission">अनुमति के बिना बाहरी स्टॉरेज में सहेजने में असमर्थ</string>
 
     <!-- SearchToolbar -->
-    <string name="SearchToolbar_search">सर्च</string>
+    <string name="SearchToolbar_search">खोजें</string>
     <!-- Hint when searching filtered chat content -->
     <string name="SearchToolbar_search_unread_chats">अपठित चैट में ढूँढ़ें</string>
     <string name="SearchToolbar_search_for_conversations_contacts_and_messages">चैट, संपर्क और संदेश खोजें</string>
 
     <!-- Material3 Search Toolbar -->
-    <string name="Material3SearchToolbar__close">बंद करो</string>
-    <string name="Material3SearchToolbar__clear">हटाएँ</string>
+    <string name="Material3SearchToolbar__close">बंद करें</string>
+    <string name="Material3SearchToolbar__clear">हटाएं</string>
 
     <!-- ShortcutLauncherActivity -->
-    <string name="ShortcutLauncherActivity_invalid_shortcut">अमान्य शॉर्टकट</string>
+    <string name="ShortcutLauncherActivity_invalid_shortcut">शॉर्टकट सही नहीं है</string>
 
     <!-- SingleRecipientNotificationBuilder -->
     <string name="SingleRecipientNotificationBuilder_signal">Signal</string>
-    <string name="SingleRecipientNotificationBuilder_new_message">नया Signal मेसेज</string>
-    <string name="SingleRecipientNotificationBuilder_message_request">संदेश अनुरोध</string>
+    <string name="SingleRecipientNotificationBuilder_new_message">नया मैसेज</string>
+    <string name="SingleRecipientNotificationBuilder_message_request">मैसेज का अनुरोध</string>
     <string name="SingleRecipientNotificationBuilder_you">आप</string>
     <!-- Notification subtext for group stories -->
     <string name="SingleRecipientNotificationBuilder__s_dot_story">%1$s • स्टोरी</string>
@@ -3311,8 +3304,8 @@
 
     <!-- TransferControlView -->
     <plurals name="TransferControlView_n_items">
-        <item quantity="one">%1$dचीज़ें</item>
-        <item quantity="other">%1$dचीज़ें</item>
+        <item quantity="one">%1$d आइटम</item>
+        <item quantity="other">%1$d आइटम</item>
     </plurals>
     <!-- Status update label used while the device is transcoding video as a prerequisite to uploading -->
     <string name="TransferControlView__processing">प्रोसेस हो रहा है</string>
@@ -3334,26 +3327,26 @@
     <!-- Banner button to update now -->
 
     <!-- WebRtcCallActivity -->
-    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">कॉल का जवाब देने के लिए Signal को अपने माइक्रोफ़ोन का ऐक्सेस दें।</string>
+    <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone">कॉल का जवाब देने के लिए, Signal को अपने माइक्रोफ़ोन का ऐक्सेस दें।</string>
     <!-- Message shown in permission dialog when attempting to answer a video call without camera or microphone permissions already granted. -->
     <string name="WebRtcCallActivity_to_answer_the_call_give_signal_access_to_your_microphone_and_camera">वीडियो कॉल का उत्तर देने के लिए, Signal को अपने माइक्रोफ़ोन और कैमरे तक पहुंच प्रदान करें।</string>
-    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">कॉल करने या प्राप्त करने के लिए Signal को माइक्रोफ़ोन और कैमरा अनुमतियों की आवश्यकता होती है, लेकिन उन्हें स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स जारी रखें, \"अनुमतियां\" चुनें, और \"माइक्रोफ़ोन\" और \"कैमरा\" सक्षम करें।</string>
-    <string name="WebRtcCallActivity__answered_on_a_linked_device">एक लिंक किए हुए डिवाइस पर जवाब दिया गया।</string>
-    <string name="WebRtcCallActivity__declined_on_a_linked_device">एक लिंक किए हुए डिवाइस पर रद्द किया गया।</string>
-    <string name="WebRtcCallActivity__busy_on_a_linked_device">एक लिंक किए डिवाइस पर व्यस्त हैं।</string>
+    <string name="WebRtcCallActivity_signal_requires_microphone_and_camera_permissions_in_order_to_make_or_receive_calls">कॉल करने या कॉल रिसीव करने के लिए Signal को आपके माइक्रोफ़ोन और कैमरे का ऐक्सेस चाहिए। हालांकि, ऐसा लगता है कि आपने इसे स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए, ऐप सेटिंग में जाएं, \"अनुमतियां\" चुने, और इसके बाद \"माइक्रोफ़ोन\" और \"कैमरा\" चालू करें।</string>
+    <string name="WebRtcCallActivity__answered_on_a_linked_device">लिंक हुए डिवाइस पर जवाब दें।</string>
+    <string name="WebRtcCallActivity__declined_on_a_linked_device">लिंक हुए डिवाइस पर खारिज करें।</string>
+    <string name="WebRtcCallActivity__busy_on_a_linked_device">लिंक हुए डिवाइस पर \'व्यस्त हैं\' बताएं।</string>
     <!-- Tooltip message shown first time user is in a video call after switch camera button moved -->
     <string name="WebRtcCallActivity__flip_camera_tooltip">फ्लिप कैमरे को यहां लाया गया है, इसे आज़माने के लिए अपने वीडियो पर टैप करें</string>
 
-    <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">कोई एक बदल चुके सुरक्षा नंबर के साथ इस कॉल में जुड़ चुका है।</string>
+    <string name="GroupCallSafetyNumberChangeNotification__someone_has_joined_this_call_with_a_safety_number_that_has_changed">इस कॉल में शामिल हुए किसी व्यक्ति का सेफ़्टी नंबर बदल गया है।</string>
 
     <!-- WebRtcCallScreen -->
-    <string name="WebRtcCallScreen_swipe_up_to_change_views">दृश्य देखने के लिए ऊपर स्वाइप करें</string>
+    <string name="WebRtcCallScreen_swipe_up_to_change_views">व्यू बदलने के लिए ऊपर की ओर स्वाइप करें</string>
 
     <!-- WebRtcCallScreen V2 -->
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallScreen__decline">रद्द करें</string>
+    <string name="WebRtcCallScreen__decline">खारिज करें</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
-    <string name="WebRtcCallScreen__answer">उत्तर</string>
+    <string name="WebRtcCallScreen__answer">जवाब दें</string>
     <!-- Label with hyphenation. Translation can use soft hyphen - Unicode U+00AD -->
     <string name="WebRtcCallScreen__answer_without_video">वीडियो के बिना जवाब दें</string>
 
@@ -3361,11 +3354,11 @@
     <!-- Label for a dialog asking the user to switch the audio output device during a call -->
     <string name="WebRtcAudioOutputToggle__audio_output">ऑडियो आउटपुट</string>
     <!-- Audio output option referring to the earpiece built into the phone -->
-    <string name="WebRtcAudioOutputToggle__phone_earpiece">फोन ईयरपीस</string>
+    <string name="WebRtcAudioOutputToggle__phone_earpiece">फ़ोन ईयरपीस</string>
     <!-- Audio output option referring to the louder speaker built into the phone -->
     <string name="WebRtcAudioOutputToggle__speaker">स्पीकर</string>
     <!-- Audio output option referring to an external audio device connected via wireless Bluetooth -->
-    <string name="WebRtcAudioOutputToggle__bluetooth">ब्लूटुथ</string>
+    <string name="WebRtcAudioOutputToggle__bluetooth">ब्लूटूथ</string>
     <!-- Audio output option referring to a pair of headphones that do not contain a microphone connected via a 3.5mm headphone jack -->
     <string name="WebRtcAudioOutputToggle__wired_headphones">वायर्ड हेडफ़ोन</string>
     <!-- Audio output option referring to an external headset that contains a microphone connected via a 3.5mm headphone jack -->
@@ -3373,17 +3366,17 @@
     <!-- Audio output option referring to an external headset connected via a USB-C data cable -->
     <string name="WebRtcAudioOutputToggle__wired_headset_usb">वायर्ड हेडसेट (USB)</string>
 
-    <string name="WebRtcCallControls_answer_call_description">कॉल का उत्तर दें</string>
-    <string name="WebRtcCallControls_reject_call_description">कॉल अस्वीकार करें</string>
+    <string name="WebRtcCallControls_answer_call_description">कॉल का जवाब दें</string>
+    <string name="WebRtcCallControls_reject_call_description">कॉल खारिज करें</string>
 
     <!-- change_passphrase_activity -->
-    <string name="change_passphrase_activity__old_passphrase">पुराना पासफ्रेज</string>
-    <string name="change_passphrase_activity__new_passphrase">नया पासफ्रेज</string>
-    <string name="change_passphrase_activity__repeat_new_passphrase">नया पासफ्रेज दोहराएं</string>
+    <string name="change_passphrase_activity__old_passphrase">पुराना पासफ़्रेज़</string>
+    <string name="change_passphrase_activity__new_passphrase">नया पासफ़्रेज़</string>
+    <string name="change_passphrase_activity__repeat_new_passphrase">नया पासफ़्रेज़ दोहराएं</string>
 
     <!-- contact_selection_activity -->
-    <string name="contact_selection_activity__invite_to_signal">Signal का उपयोग करने के लिए आमंत्रित करें</string>
-    <string name="contact_selection_activity__new_group">नया समूह</string>
+    <string name="contact_selection_activity__invite_to_signal">Signal का इस्तेमाल करने के लिए इनवाइट भेजें</string>
+    <string name="contact_selection_activity__new_group">नया ग्रुप</string>
     <!-- Row item title for refreshing contacts -->
     <string name="contact_selection_activity__refresh_contacts">संपर्क रिफ्रेश करें</string>
     <!-- Row item description for refreshing contacts -->
@@ -3396,20 +3389,20 @@
     <string name="contact_selection_activity__more">अधिक</string>
 
     <!-- contact_filter_toolbar -->
-    <string name="contact_filter_toolbar__clear_entered_text_description">लिखे गये शब्दों को मिटा दें</string>
+    <string name="contact_filter_toolbar__clear_entered_text_description">डाला गया टेक्स्ट हटाएं</string>
     <string name="contact_filter_toolbar__show_keyboard_description">कीबोर्ड दिखाएं</string>
-    <string name="contact_filter_toolbar__show_dial_pad_description">डाइल पैड दिखाएँ</string>
+    <string name="contact_filter_toolbar__show_dial_pad_description">डायलपैड दिखाएं</string>
 
     <!-- contact_selection_group_activity -->
-    <string name="contact_selection_group_activity__no_contacts">कोई संपर्क नहीं</string>
-    <string name="contact_selection_group_activity__finding_contacts">संपर्क लोड हो रहे हैं</string>
+    <string name="contact_selection_group_activity__no_contacts">कोई कॉन्टैक्ट मौजूद नहीं है</string>
+    <string name="contact_selection_group_activity__finding_contacts">कॉन्टैक्ट लोड हो रहे हैं…</string>
 
     <!-- single_contact_selection_activity -->
-    <string name="SingleContactSelectionActivity_contact_photo">संपर्क फोटो</string>
+    <string name="SingleContactSelectionActivity_contact_photo">कॉन्टैक्ट की फ़ोटो</string>
 
     <!-- ContactSelectionListFragment-->
-    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">Signal को आपके संपर्कों को प्रदर्शित करने के लिए संपर्क अनुमति की आवश्यकता होती है, लेकिन इसे स्थायी रूप से अस्वीकार कर दिया गया है। कृपया ऐप सेटिंग्स मेनू पर जारी रखें, \"अनुमतियां\" चुनें, और \"संपर्क\" सक्षम करें।</string>
-    <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">संपर्क पुनर्प्राप्त करने में त्रुटि, अपना नेटवर्क कनेक्शन जांचें</string>
+    <string name="ContactSelectionListFragment_signal_requires_the_contacts_permission_in_order_to_display_your_contacts">आपके कॉन्टैक्ट दिखाने के लिए, Signal को आपके कॉन्टैक्ट का ऐक्सेस चाहिए। हालांकि, ऐसा लगता है कि आपने इसे स्थायी रूप से बंद कर रखा है। ऐक्सेस देने के लिए, ऐप सेटिंग मेन्यू में जाएं, \"अनुमतियां\" चुनें और \"कॉन्टैक्ट\" चालू करें।</string>
+    <string name="ContactSelectionListFragment_error_retrieving_contacts_check_your_network_connection">कॉन्टैक्ट रिट्रीव करने में कोई गड़बड़ी हुई। अपना इंटरनेट नेटवर्क देखें।</string>
     <string name="ContactSelectionListFragment_username_not_found">यूज़रनेम नहीं मिला</string>
     <string name="ContactSelectionListFragment_s_is_not_a_signal_user">"%1$s एक Signal यूज़र नहीं है। कृपया यूज़रनेम जांचें और पुनः प्रयास करें।"</string>
     <string name="ContactSelectionListFragment_you_do_not_need_to_add_yourself_to_the_group">आपको खुद को ग्रुप में जोड़ने की ज़रूरत नहीं है।</string>
@@ -5366,7 +5359,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">अपने Signal बैकअप का सब्सक्रिप्शन रिन्यू करें</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">बैकअप पूरा नहीं कर सका</string>
     <!-- String alerting user that backup redemption -->
@@ -7615,15 +7608,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">संपादित इतिहास</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">संदेश संपादित करें</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">यदि आप किसी संदेश को संपादित करते हैं, तो वह केवल उन लोगों को दिखाई देगा जो Signal के नवीनतम संस्करण पर हैं। वे आपके द्वारा संपादित संदेश देख सकेंगे।</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">रद्द करें</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">भेजें</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -7740,7 +7724,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">सभी को अस्वीकार करें</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Signal बैकअप चालू करें</string>
+    <string name="TurnOnSignalBackups__title">Turn on Signal Secure Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">नया फ़ोन लेने पर या Signal को रीइंस्टॉल करने पर, कभी भी अपने संदेश न खोएँ।</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7748,17 +7732,17 @@
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">अभी नहीं</string>
 
-    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">अपनी बैकअप की वेरिफ़ाय करें</string>
-    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">We\'ll occasionally ask you to verify your key to ensure you still know it</string>
-    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">Verify your recovery key</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">हम कभी-कभी आपको अपनी की वेरिफ़ाई करने के लिए कहेंगे, ताकि यह आपको याद रहे</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
     <string name="VerifyBackupKey__verify">वेरिफ़ाई करें</string>
-    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">अभी नहीं</string>
-    <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">बैकअप की सही है। अपनी की सुरक्षित रखें।</string>
-    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">Recovery key correct. Keep your key safe.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">हम आपसे एक हफ़्ते में दोबारा पूछेंगे।</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -7904,7 +7888,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">आपके भुगतान के तरीके से आपके सब्सक्रिप्शन को रिन्यू नहीं किया जा सका। मीडिया को बैकअप करना जारी रखने के लिए, आपको ऐक्टिव सब्सक्रिप्शन की ज़रूरत है।</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">आपके पास Signal बैकअप के मुफ़्त प्लान का ऐक्सेस रहेगा।</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Secure Backups plan.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">बैकअप पूरा नहीं कर सका</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7972,6 +7956,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">अपना मीडिया रीस्टोर करने के लिए, %1$s स्पेस खाली करें।</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">मीडिया रीस्टोर किया जा रहा है</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">Canceling media restore</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">मीडिया रीस्टोर पॉज़ किया गया</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8067,13 +8053,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">इस्तेमाल न किया गया मीडिया ऑफ़लोड हो जाएगा, लेकिन इसे आपके बैकअप से कभी भी डाउनलोड किया जा सकता है।</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">स्टोरेज ऑप्टिमाइज़ेशन को सिर्फ़ Signal बैकअप के भुगतान वाले टियर के साथ इस्तेमाल किया जा सकता है। आपका बैकअप सब्सक्रिप्शन अब भी प्रोसेस हो रहा है और अभी ऐक्टिव नहीं है। कृपया बाद में कोशिश करें।</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">इस फ़ीचर को चालू करने के लिए अपग्रेड करें</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">स्टोरेज ऑप्टिमाइज़ेशन को सिर्फ़ Signal Backups के भुगतान वाले टियर के साथ इस्तेमाल किया जा सकता है। इस फ़ीचर को इस्तेमाल करना शुरू करने के लिए, अपना बैकअप प्लान अपग्रेड करें।</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Upgrade your backup plan to start using this feature.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">%1$s/महीने में सब्सक्राइब करें</string>
 
@@ -8092,7 +8078,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">अब यह मीडिया उपलब्ध नहीं है</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">अपने पूरे मीडिया का बैकअप शुरू करने के लिए, Signal बैकअप चालू करें और भुगतान वाला टियर चुनें।</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Secure Backups and choose the paid tier.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">जारी रखें</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8136,8 +8122,10 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">अपलोड रद्द करें</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Secure Backups</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal बैकअप</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Secure Backups</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">ऑथेंटिकेशन की ज़रूरत है</string>
     <!-- Row label to launch payment history screen -->
@@ -8149,15 +8137,17 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">बैकअप आकार</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">लोड हो रहा है</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">Calculating…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">बैकअप फ़्रीक्वेंसी</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">New media and messages you receive are backed up daily.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">सेल्यूलर का उपयोग करके बैकअप लें</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">बैकअप की देखें</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">बैकअप की देखने के लिए अनलॉक करें</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">View recovery key</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view recovery key</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">अपनी \'की\' देखने के लिए, पुष्टि करें कि यह आप ही हैं</string>
     <!-- Row label for cancelling and deleting backup -->
@@ -8173,7 +8163,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">बैकअप को रात के समय बनाया जाएगा।</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">नई बैकअप \'की\' बनाई गई</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New recovery key created</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">सब्सक्रिप्शन निष्क्रिय है</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8251,11 +8241,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">आपके बैकअप के आकार के आधार पर, इसमें लंबा समय लग सकता है। डाउनलोड के दौरान, आप फ़ोन को सामान्य रूप से इस्तेमाल कर सकते हैं।</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">इस डिवाइस पर आपका सब्सक्रिप्शन नहीं मिला। Signal बैकअप इस्तेमाल करना जारी रखने के लिए रिन्यू करें।</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Secure Backups.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">इस डिवाइस पर आपका सब्सक्रिप्शन अगले %1$d दिन के लिए मान्य है। Signal बैकअप का इस्तेमाल जारी रखने के लिए रिन्यू करें</item>
-        <item quantity="other">इस डिवाइस पर आपका सब्सक्रिप्शन अगले %1$d दिनों के लिए मान्य है। Signal बैकअप का इस्तेमाल जारी रखने के लिए रिन्यू करें</item>
+        <item quantity="one">Your subscription on this device is valid for the next %1$d day. Renew to continue using Signal Secure Backups</item>
+        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Secure Backups</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">फिर से सब्सक्राइब करें</string>
@@ -8378,9 +8368,9 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">आपकी बैकअप की</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your recovery key</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">आपकी बैकअप की 64 वर्णों का कोड होती है, जो आपको Signal फिर से इंस्टॉल करते समय अपना बैकअप रीस्टोर करने में मदद करती है।</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">अगर आप अपनी की भूल जाते हैं, तो आप अपना बैकअप रीस्टोर नहीं कर पाएँगे। Signal आपके बैकअप को रिकवर करने में मदद नहीं कर सकता।</string>
     <!-- Action button label -->
@@ -8388,26 +8378,26 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">अपनी बैकअप की रिकॉर्ड करें</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your recovery key</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">आपके अकाउंट और डेटा को रिकवर करने के लिए यह की ज़रूरी है। इस की को किसी सुरक्षित जगह पर स्टोर करें। अगर यह खो जाती है, तो आप अपना अकाउंट रिकवर नहीं कर पाएँगे।</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">क्लिपबोर्ड पर कॉपी करें</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">पासवर्ड मैनेजर में सेव करें</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">पासवर्ड मैनेजर में सेव करें?</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">सिर्फ़ उस पासवर्ड मैनेजर में अपनी बैकअप की स्टोर करें जिसके सुरक्षित होने पर आपको भरोसा है। Signal इस बारे में कोई सुझाव नहीं देता कि कौनसा पासवर्ड मैनेजर आपके लिए सही है।</string>
-    <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal बैकअप</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your recovery key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Secure Backups</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">आपके पासवर्ड मैनेजर में सेव किया गया</string>
-    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">पासवर्ड मैनेजर में सेव नहीं किया जा सका</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">आपका पासवर्ड मैनेजर सेट अप नहीं है या आप जिस पासवर्ड मैनेजर का इस्तेमाल कर रहे हैं वह सपोर्टेड नहीं है।</string>
-    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
     <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">आपने पहले Google Password Manager में Signal के पासवर्ड सेव न करना चुना था। अपने Google Password Manager की सेटिंग्स में, Signal को \"अस्वीकार की गई साइटें और ऐप्स\" से हटाकर फिर से कोशिश करें।</string>
     <!-- Label for a button that navigates to the device settings -->
     <string name="MessageBackupsKeyRecordScreen__go_to_settings">सेटिंग्स पर जाएँ</string>
@@ -8428,11 +8418,11 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">मीडिया डाउनलोड करें</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">नई बैकअप \'की\' बनाने के लिए, आपको \"स्टोरेज ऑप्टिमाइज़ करें\" को बंद करना होगा और तब तक इंतज़ार करना होगा, जब तक आपका मीडिया डाउनलोड नहीं हो जाता। डाउनलोड पूरा होने के बाद, आप नई \'की\' बना सकते हैं।</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new recovery key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">बंद करें और डाउनलोड करें</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">नई बैकअप \'की\' बनाएँ</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new recovery key</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">नई \'की\' बनाना सिर्फ़ तब ज़रूरी होता है, जब किसी और को आपकी नई ‘की’ की जानकारी हो। आपको अपना बैकअप फिर से अपलोड करना होगा, जिसमें मीडिया भी शामिल है। \"स्टोरेज ऑप्टिमाइज़ करें\" इस्तेमाल करने पर, आपको पहले ऑफ़लोड किया गया मीडिया डाउनलोड करना होगा।</string>
 
@@ -8440,30 +8430,30 @@
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">क्या आपको \'की\' बनाना रद्द करना है?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">पुष्टि करना ज़रूरी है। पुष्टि के बिना, आपकी नई बैकअप \'की\' नहीं बनाई जाएगी।</string>
-    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new recovery key won\'t be created unless you confirm it.</string>
+    <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">\'की\' की पुष्टि करें</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">\'की\' बनाना रद्द करें</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">अपनी बैकअप की की पुष्टि करें</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your recovery key</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">अभी अपनी रिकॉर्ड की गई बैकअप की दर्ज करें</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the recovery key that you just recorded</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">आपकी बैकअप की</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Recovery key</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">गलत बैकअप की</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect recovery key</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">फिर से की देखें</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">अगला</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">अपनी बैकअप की दर्ज करें</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Enter your recovery key</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">बैकअप चालू करने के बाद, अपना रिकॉर्ड किया गया 64 अंकों वाला कोड डालें।</string>
-    <!-- Button text when you forget your backup key -->
+    <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">की भूल गए?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
@@ -8539,9 +8529,9 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">अकाउंट ट्रांसफ़र या रीस्टोर करें</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">इस डिवाइस पर अपना Signal अकाउंट और संदेश इतिहास पाएँ।</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal बैकअप से</string>
-    <!-- Option subtitle for restoring via signal backups -->
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Secure Backups</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">आपका मुफ़्त या भुगतान वाला Signal बैकअप प्लान</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">किसी बैकअप फ़ोल्डर से</string>
@@ -8559,40 +8549,40 @@
     <!-- Screen subtitle for restore via local backup -->
     <string name="RestoreLocalBackup_subtitle">अपने डिवाइस पर सेव किए गए बैकअप से अपने संदेश रीस्टोर करें। अगर आप अभी रीस्टोर नहीं करते, तो आप बाद में रीस्टोर नहीं कर पाएँगे।</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">अपनी बैकअप की दर्ज करें</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">आपकी बैकअप की 64 वर्णों वाला एक कोड होती है, जो आपके अकाउंट और डेटा को रिकवर करने के लिए ज़रूरी होती है।</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">आपकी बैकअप की नहीं है?</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">आपकी बैकअप की</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">बैकअप की को उनके 64 वर्णों वाले रिकवरी कोड के बिना रिकवर नहीं किया जा सकता। अगर आपकी बैकअप की खो गई है, तो Signal आपका बैकअप रीस्टोर करने में मदद नहीं कर सकता।</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">अगर आपके पास अपना पुराना डिवाइस है, तो आप अपनी बैकअप की को सेटिंग्स &gt; बैकअप में देख सकते हैं। फिर \'बैकअप की देखें\' पर टैप करें।</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">Enter your recovery key</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">No recovery key?</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">Recovery key</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your recovery key Signal can\'t help restore your backup.</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your recovery key in Settings &gt; Backups. Then tap View recovery key.</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">अधिक जानें</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">छोड़ें और रीस्टोर न करें</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">गलत बैकअप की</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect recovery key</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">पक्का करें कि आप उसी फ़ोन नंबर और 64 वर्णों की बैकअप की से रजिस्टर कर रहे हों जो आपने Signal बैकअप चालू करते समय सेव की थी। इस की के बिना बैकअप रिकवर नहीं किए जा सकते।</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal Secure Backups. Backups can not be recovered without this key.</string>
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">फिर से कोशिश करें</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">बैकअप की के लिए मदद</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">गलत बैकअप की</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">Recovery key help</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect recovery key</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">बहुत लंबा (%1$d/%2$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">अमान्य बैकअप की</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">Invalid recovery key</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">बैकअप नहीं मिला</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">आपने जो बैकअप की दर्ज की थी वह सही है, लेकिन उससे जुड़ा कोई बैकअप नहीं है। अगर आपके पास अब भी आपका पुराना फ़ोन है, तो पक्का करें कि बैकअप चालू हों और बैकअप पूरा हो गया हो और फिर से कोशिश करें।</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The recovery key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">रीस्टोर करना छोड़ें</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8671,7 +8661,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">रीस्टोर करने के लिए कोई बैकअप नहीं है</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">आप iPhone से Android पर जा रहे हैं, इसलिए आपके संदेश और मीडिया को ट्रांसफ़र करने का इकलौता तरीका अपने पुराने डिवाइस पर Signal बैकअप चालू करना है।</string>
+    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Secure Backups on your old device.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">अपने पुराने डिवाइस पर Signal खोलें</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->

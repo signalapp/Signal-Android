@@ -552,15 +552,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">కాల్ సమయంలో స్వర సందేశాన్ని రికార్డ్ చేయలేరు.</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">ఫార్మాట్ అయిన టెక్స్ట్ పంపిస్తున్నాము</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">కొంతమంది ఫార్మాట్ అయిన టెక్స్ట్‌కు మద్దతు ఇవ్వని Signal వెర్షన్ ఉపయోగిస్తుండవచ్చు. మీ సందేశానికి మీరు చేసిన ఫార్మాటింగ్ మార్పులను వారు చూడలేరు.</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">ఏదేమైనా పంపండి</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">రద్దు చేయండి</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%1$d చదవని సందేశం</item>
@@ -1138,6 +1129,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">సందేశ చరిత్రను బదిలీ చేయండి</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">మీ టెక్స్ట్ సందేశాలను మరియు మీ చివరి 45 రోజుల మీడియాను బదిలీ చేయండి</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Transfer your text messages and media</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">బదిలీ చేయవద్దు</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1499,7 +1492,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">ఇప్పుడు కాదు</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Your media will restore in the background. If you choose not to restore now, you won\'t be able to restore later.</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">మీ మీడియా నేపథ్యంలో పునరుద్ధరించబడుతుంది. ఒకవేళ మీరు ఇప్పుడు పునరుద్ధరించకూడదని ఎంచుకుంటే, మీరు తర్వాత పునరుద్ధరించలేరు.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">నాకు ప్రస్తావనల తెలియజేయండి</string>
@@ -2115,7 +2108,7 @@
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">మీరు ఈ గ్రూప్‌ను అన్‌బ్లాక్ చేశారు</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
-    <string name="MessageRecord_unsupported_feature">%1$s sent you a message that can\'t be processed or displayed because it uses a new Signal feature.</string>
+    <string name="MessageRecord_unsupported_feature">%1$s మీకు క్రొత్త Signal లక్షణాన్ని ఉపయోగిస్తున్నందున ప్రాసెస్ చేయలేని లేదా ప్రదర్శించలేని సందేశాన్ని పంపింది.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">అంగీకరించండి</string>
@@ -5366,7 +5359,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">మీ Signal బ్యాకప్‌ల సబ్‌స్క్రిప్షన్‌ను పునరుద్ధరించండి</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">బ్యాకప్‌ను పూర్తి చేయలేకపోయాము</string>
     <!-- String alerting user that backup redemption -->
@@ -7615,15 +7608,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">సవరణ చరిత్ర</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">సందేశాన్ని సవరించండి</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">ఒకవేళ మీరు ఒక సందేశాన్ని సవరిస్తే, Signal యొక్క తాజా వెర్షన్‌లలో ఉన్న వ్యక్తులకు మాత్రమే ఇది కనిపిస్తుంది. మీరు సందేశాన్ని సవరించినట్లు వారు చూడగలరు.</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">రద్దు చేయండి</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">పంపు</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -7740,7 +7724,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">అన్నిటిని తిరస్కరించండి</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Signal బ్యాకప్‌లను ఆన్ చేయండి</string>
+    <string name="TurnOnSignalBackups__title">Turn on Signal Secure Backups</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">మీరు కొత్త ఫోన్ కొనుక్కునప్పుడు లేదా Signal రీ-ఇన్‌స్టాల్ చేసినప్పుడు ఎప్పుడూ ఒక్క సందేశాన్ని కూడా కోల్పోవద్దు.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7748,17 +7732,17 @@
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
     <string name="TurnOnSignalBackups__not_now">ఇప్పుడు కాదు</string>
 
-    <!-- Title of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__title">మీ బ్యాకప్ కీని ధృవీకరించండి</string>
-    <!-- Body of a megaphone shown to prompt the user to verify their backup key -->
-    <string name="VerifyBackupKey__body">We\'ll occasionally ask you to verify your key to ensure you still know it</string>
-    <!-- Button of a megaphone that will take users to the verify backup key screen -->
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">Verify your recovery key</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">మీకు ఇంకా తెలుసునని నిర్ధారించుకోవడానికి మేము అప్పుడప్పుడు మీ కీని ధృవీకరించమని అడుగుతాము</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
     <string name="VerifyBackupKey__verify">ధృవీకరించండి</string>
-    <!-- Button of a megaphone that will snooze the reminder to verify their backup key -->
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">ఇప్పుడు కాదు</string>
-    <!-- Snackbar text shown when the backup key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">బ్యాకప్ కీ సరైనది. మీ కీని సురక్షితంగా ఉంచండి.</string>
-    <!-- Snackbar text shown when the user chooses to snooze the backup key reminder. -->
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">Recovery key correct. Keep your key safe.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">మేము ఒక వారంలో మిమ్మల్ని మళ్ళీ అడుగుతాము.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -7904,7 +7888,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">మీ చెల్లింపు పద్ధతితో మీ సబ్‌స్క్రిప్షన్ పునరుద్ధరించబడదు. మీడియాను బ్యాకప్ చేయడం కొనసాగించడానికి మీకు యాక్టివ్ సబ్‌స్క్రిప్షన్ అవసరం.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">మీరు ఉచిత Signal బ్యాకప్‌ల ప్లాన్‌కు యాక్సెస్ కలిగి ఉండటాన్ని కొనసాగిస్తారు.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Secure Backups plan.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">బ్యాకప్‌ను పూర్తి చేయలేకపోయాము</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7972,6 +7956,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">మీ మీడియాను పునరుద్ధరించడానికి స్థలంలో %1$s ని ఖాళీ చేయండి.\n\n</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">మీడియాను పునరుద్ధరిస్తోంది</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">Canceling media restore</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">మీడియా పునరుద్ధరణ పాజ్ చేయబడింది</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8067,13 +8053,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">ఉపయోగించని మీడియా ఆఫ్‌లోడ్ చేయబడుతుంది, అయితే మీ బ్యాకప్ నుండి ఎప్పుడైనా దానిని డౌన్‌లోడ్ చేసుకోవచ్చు.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">నిల్వ అనుకూలీకరణ Signal బ్యాకప్ల చెల్లింపు శ్రేణితో మాత్రమే ఉపయోగించడానికి సాధ్యం అవుతుంది. మీ బ్యాకప్‌ల సబ్స్క్రిప్షన్ ఇప్పటికీ ప్రాసెస్ చేయబడుతోంది మరియు ఇంకా సక్రియంగా లేదు. దయచేసి తర్వాత మళ్లీ ప్రయత్నించండి.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">ఈ విలక్షణత ప్రారంభించడానికి అప్‌గ్రేడ్ చేయండి</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">నిల్వ అనుకూలత Signal బ్యాకప్‌ల చెల్లింపు శ్రేణితో మాత్రమే ఉపయోగించడానికి సాధ్యం అవుతుంది. ఈ విలక్షణత ఉపయోగించడం ప్రారంభించడానికి మీ బ్యాకప్ ప్లాన్ అప్‌గ్రేడ్ చేయండి.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Upgrade your backup plan to start using this feature.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">%1$s/నెలకు సబ్‌స్క్రైబ్ చేయండి</string>
 
@@ -8092,7 +8078,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">ఈ మీడియా ఇకపై అందుబాటులో లేదు</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">మీ మీడియా మొత్తాన్ని బ్యాకప్ చేయడం ప్రారంభించడానికి, Signal బ్యాకప్‌లను ప్రారంభించి, చెల్లింపు శ్రేణిని ఎంచుకోండి.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Secure Backups and choose the paid tier.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">కొనసాగండి</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8136,8 +8122,10 @@
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">అప్‌లోడ్‌ను రద్దు చేయండి</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Secure Backups</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal బ్యాకప్‌లు</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Secure Backups</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">ప్రమాణీకరణ అవసరం</string>
     <!-- Row label to launch payment history screen -->
@@ -8149,15 +8137,17 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">బ్యాకప్ పరిమాణం</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__loading">లోడ్…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">Calculating…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">బ్యాకప్ తరచుదనం</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">New media and messages you receive are backed up daily.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">సెల్యులార్ ఉపయోగించి బ్యాకప్ చేయండి</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">బ్యాకప్ కీని వీక్షించండి</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">బ్యాకప్ కీని వీక్షించడంచడానికి అన్‌లాక్ చేయండి</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">View recovery key</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view recovery key</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">మీ కీని వీక్షించడానికి, ఇది మీరేనని నిర్ధారించండి</string>
     <!-- Row label for cancelling and deleting backup -->
@@ -8173,7 +8163,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">బ్యాకప్ రాత్రికి రాత్రి సృష్టించబడుతుంది.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">కొత్త బ్యాకప్ కీ సృష్టించబడింది</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New recovery key created</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">సబ్స్క్రిప్షన్ నిష్క్రియంగా ఉంది</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8251,11 +8241,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">మీ బ్యాకప్ పరిమాణం ఆధారంగా, దీనికి ఎక్కువ సమయం పట్టవచ్చు. డౌన్‌లోడ్ జరుగుతున్నప్పుడు మీరు మీ ఫోన్‌ను ఎప్పటిలానే మామూలుగా ఉపయోగించవచ్చు.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">మీ సబ్‌స్క్రిప్షన్ ఈ పరికరంలో కనుగొనబడలేదు. Signal బ్యాకప్‌లను ఉపయోగించడం కొనసాగించడానికి పునరుద్ధరించండి.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Secure Backups.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">ఈ పరికరంలో మీ సబ్స్క్రిప్షన్ తదుపరి %1$d రోజు వరకు చెల్లుబాటు అవుతుంది. Signal బ్యాకప్‌లను ఉపయోగించడం కొనసాగించడానికి పునరుద్ధరించండి</item>
-        <item quantity="other">ఈ పరికరంలో మీ సబ్స్క్రిప్షన్ తదుపరి %1$d రోజుల వరకు చెల్లుబాటు అవుతుంది. Signal బ్యాకప్‌లను ఉపయోగించడం కొనసాగించడానికి పునరుద్ధరించండి</item>
+        <item quantity="one">Your subscription on this device is valid for the next %1$d day. Renew to continue using Signal Secure Backups</item>
+        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Secure Backups</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">రీసబ్‌స్క్రైబ్ చేయండి</string>
@@ -8378,9 +8368,9 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">మీ బ్యాకప్ కీ</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your recovery key</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">మీ బ్యాకప్ కీ అనేది 64-అంకెల కోడ్, ఇది మీరు Signal ను మళ్ళీ ఇన్‌స్టాల్ చేసినప్పుడు మీ బ్యాకప్‌ను పునరుద్ధరించడానికి మిమ్మల్ని అనుమతిస్తుంది.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">ఒకవేళ మీరు మీ కీని మర్చిపోతే, మీరు మీ బ్యాకప్‌ను పునరుద్ధరించలేరు. మీ బ్యాకప్‌ను తిరిగి పొందడంలో Signal మీకు సహాయం చేయలేదు.</string>
     <!-- Action button label -->
@@ -8388,26 +8378,26 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">మీ బ్యాకప్ కీని రికార్డ్ చేయండి</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your recovery key</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">మీ ఖాతా మరియు డేటాను తిరిగి పొందడానికి ఈ కీ అవసరం. ఈ కీని ఎక్కడైనా సురక్షితంగా నిల్వ చేయండి. ఒకవేళ మీరు దీన్ని పోగొట్టుకుంటే, మీరు మీ ఖాతాను తిరిగి పొందలేరు.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">తాత్కాలికంగా భద్రపరుచు ప్రదేశముకు నకలు చెయ్యి</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">పాస్‌వర్డ్ మేనేజర్‌లో సేవ్ చేయండి</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">పాస్‌వర్డ్ మేనేజర్‌లో సేవ్ చేయాలా?</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">మీరు సురక్షితమని విశ్వసించే పాస్‌వర్డ్ మేనేజర్‌లో మాత్రమే మీ బ్యాకప్ కీని నిల్వ చేయండి. మీకు ఏ పాస్‌వర్డ్ మేనేజర్ సరైనదో Signal సిఫార్సు చేయదు.</string>
-    <!-- ID used when saving the backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal బ్యాకప్‌లు</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your recovery key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Secure Backups</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">మీ పాస్‌వర్డ్ మేనేజర్‌లో సేవ్ చేయబడింది</string>
-    <!-- Dialog title shown when there is an error saving the backup key to the device password manager. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">పాస్‌వర్డ్ మేనేజర్‌లో సేవ్ చేయడం సాధ్యం కాలేదు</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">మీకు పాస్‌వర్డ్ మేనేజర్ సెటప్ చేయబడలేదు లేదా మీరు ఉపయోగిస్తున్న పాస్‌వర్డ్ మేనేజర్‌కు మద్దతు ఇవ్వబడలేదు.</string>
-    <!-- Dialog message shown when there is an error saving the backup key because the user previously chose not to save Signal passwords to their password manager. -->
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
     <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">మీరు గతంలో Signal కోసం పాస్‌వర్డ్‌లను Google పాస్‌వర్డ్ మేనేజర్‌లో సేవ్ చేయకూడదని ఎంచుకున్నారు. మీ Google పాస్‌వర్డ్ మేనేజర్ సెట్టింగ్‌లలో, \"తిరస్కరించిన సైట్‌లు మరియు యాప్‌లు\" నుండి Signal ను తొలగించి, మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Label for a button that navigates to the device settings -->
     <string name="MessageBackupsKeyRecordScreen__go_to_settings">సెట్టింగ్‌లకు వెళ్లండి</string>
@@ -8428,11 +8418,11 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">మీడియాను డౌన్‌లోడ్ చేయండి</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">కొత్త బ్యాకప్ కీని సృష్టించడానికి, మీరు \"నిల్వను అనుకూలపరచండి\" ని ఆఫ్ చేయాలి మరియు మీ మీడియా డౌన్‌లోడ్ అయ్యే వరకు వేచి ఉండాలి. డౌన్‌లోడ్ పూర్తయిన తర్వాత, మీరు కొత్త కీని సృష్టించవచ్చు.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new recovery key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">ఆఫ్ చేసి, డౌన్‌లోడ్ చేయండి</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">కొత్త బ్యాకప్ కీని సృష్టించండి</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new recovery key</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">ఒకవేళ వేరొకరు మీ కీని తెలుసుకుంటే మాత్రమే కొత్త కీని సృష్టించడం అవసరం. మీరు మీడియాతో సహా మీ బ్యాకప్‌ను తిరిగి అప్‌లోడ్ చేయాల్సి ఉంటుంది. ఒకవేళ మీరు \"నిల్వను అనుకూలపరచండి\" ని ఉపయోగిస్తుంటే, మీరు ముందుగా ఆప్‌లోడ్ చేసిన మీడియాను డౌన్‌లోడ్ చేసుకోవాలి.</string>
 
@@ -8440,30 +8430,30 @@
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">కీ సృష్టిని రద్దు చేసేదా?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">మీరు నిర్ధారించే వరకు మీ కొత్త బ్యాకప్ కీ సృష్టించబడదు.</string>
-    <!-- Dialog button to continue confirming new backup key-->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new recovery key won\'t be created unless you confirm it.</string>
+    <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">కీని నిర్ధారించండి</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">కీ సృష్టిని రద్దు చేయండి</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">మీ బ్యాకప్ కీని నిర్ధారించండి</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your recovery key</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">మీరు ఇప్పుడే రికార్డ్ చేసిన బ్యాకప్ కీని ఎంటర్ చేయండి</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the recovery key that you just recorded</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">బ్యాకప్ కీ</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Recovery key</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">తప్పు బ్యాకప్ కీ</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect recovery key</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">కీని మళ్ళీ చూడండి</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">తరువాత</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">మీ బ్యాకప్ కీని ఎంటర్ చేయండి</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Enter your recovery key</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">మీరు బ్యాకప్‌లను ప్రారంభించినప్పుడు మీరు రికార్డ్ చేసిన 64-అంకెల కోడ్‌ను ఎంటర్ చేయండి.</string>
-    <!-- Button text when you forget your backup key -->
+    <!-- Button text when you forget your recovery key -->
     <string name="VerifyBackupPinScreen__forgot_key">కీని మర్చిపోయారా?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
@@ -8539,9 +8529,9 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">ఖాతాను పునరుద్ధరించండి లేదా బదిలీ చేయండి</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">ఈ పరికరంలో మీ Signal ఖాతా మరియు సందేశ చరిత్రను పొందండి.</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal బ్యాకప్‌ల నుండి</string>
-    <!-- Option subtitle for restoring via signal backups -->
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Secure Backups</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">మీ ఉచిత లేదా చెల్లింపు Signal బ్యాకప్ ప్లాన్</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">బ్యాకప్ ఫోల్డర్ నుండి</string>
@@ -8559,40 +8549,40 @@
     <!-- Screen subtitle for restore via local backup -->
     <string name="RestoreLocalBackup_subtitle">మీరు మీ పరికరంలో సేవ్ చేసిన బ్యాకప్ నుండి మీ సందేశాలను పునరుద్ధరించండి. ఒకవేళ మీరు ఇప్పుడు పునరుద్ధరించలేకపోతే తరువాత పునరుద్ధరించలేరు.</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">మీ బ్యాకప్ కీని ఎంటర్ చేయండి</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">మీ బ్యాకప్ కీ అనేది 64-అంకెల కోడ్, ఇది మీ ఖాతా మరియు డేటాను పునరుద్ధరించడానికి అవసరం.</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">బ్యాకప్ కీ లేదా?</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">బ్యాకప్ కీ</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">బ్యాకప్‌లను వాటి 64-అంకెల పునరుద్ధరణ కోడ్ లేకుండా తిరిగి పొందడం సాధ్యం కాదు. ఒకవేళ మీరు మీ బ్యాకప్ కీని పోగొట్టుకున్నట్లయితే, మీ బ్యాకప్‌ను పునరుద్ధరించడంలో Signal సహాయం చేయలేదు.</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">ఒకవేళ మీరు మీ పాత పరికరాన్ని కలిగి ఉంటే, మీరు మీ బ్యాకప్ కీని సెట్టింగ్‌లు &gt; బ్యాకప్‌లలో వీక్షించవచ్చు. ఆపై బ్యాకప్ కీని వీక్షించండిని తట్టండి.</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">Enter your recovery key</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">No recovery key?</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">Recovery key</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your recovery key Signal can\'t help restore your backup.</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your recovery key in Settings &gt; Backups. Then tap View recovery key.</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">మరింత తెలుసుకోండి</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">దాటవేయి మరియు పునరుద్ధరించవద్దు</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">తప్పు బ్యాకప్ కీ</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect recovery key</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Signal బ్యాకప్‌లను ప్రారంభించేటప్పుడు మీరు సేవ్ చేసిన అదే ఫోన్ నంబర్ మరియు 64-అక్షరాల బ్యాకప్ కీతో మీరు నమోదు చేసుకుంటున్నారని నిర్ధారించుకోండి. ఈ కీ లేకుండా బ్యాకప్‌లను తిరిగి పొందడం సాధ్యం కాదు.</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal Secure Backups. Backups can not be recovered without this key.</string>
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">మళ్ళీ ప్రయత్నించండి</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">బ్యాకప్ కీ సహాయం</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">తప్పు బ్యాకప్ కీ</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">Recovery key help</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect recovery key</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">చాలా పొడవుగా ఉంది (%1$d/%2$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">చెల్లని బ్యాకప్ కీ</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">Invalid recovery key</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">బ్యాకప్ కనుగొనబడలేదు</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">మీరు ఎంటర్ చేసిన బ్యాకప్ కీ సరైనది, కానీ దానితో అనుబంధించబడిన బ్యాకప్ ఏదీ లేదు. ఒకవేళ మీ పాత ఫోన్ ఇంకా మీ దగ్గర ఉంటే, బ్యాకప్‌లు ఎనేబుల్ చేయబడ్డాయని మరియు బ్యాకప్ పూర్తయిందని నిర్ధారించుకుని, మళ్లీ ప్రయత్నించండి.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The recovery key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8671,7 +8661,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">పునరుద్ధరించడానికి ఎటువంటి బ్యాకప్ లేదు</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">మీరు iPhone నుండి Android కి మారుతున్నందున, మీ పాత పరికరంలో Signal బ్యాకప్‌లను ప్రారంభించడం ద్వారా మీ సందేశాలు మరియు మీడియాను బదిలీ చేయడమే ఏకైక మార్గం.</string>
+    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Secure Backups on your old device.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">మీ పాత పరికరంలో Signal ను తెరవండి</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
