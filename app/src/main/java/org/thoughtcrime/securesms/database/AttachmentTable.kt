@@ -1604,7 +1604,7 @@ class AttachmentTable(
 
       val dataFilePath = hashMatch?.file?.absolutePath ?: fileWriteResult.file.absolutePath
 
-      if (archiveRestore) {
+      if (archiveRestore && existingPlaceholder.dataHash != null) {
         // Can update all rows with the same mediaName as data_file column will likely be null
         db.update(TABLE_NAME)
           .values(values)
