@@ -81,6 +81,12 @@ class ArchiveAttachmentReconciliationJob private constructor(
       return Result.success()
     }
 
+    if (SignalStore.backup.lastAttachmentReconciliationTime < 0) {
+      Log.w(TAG, "First ever time we're attempting a reconciliation. Setting the last sync time to now, so we'll run at the proper interval. Skipping this iteration.")
+      SignalStore.backup.lastAttachmentReconciliationTime = System.currentTimeMillis()
+      return Result.success()
+    }
+
     val timeSinceLastSync = System.currentTimeMillis() - SignalStore.backup.lastAttachmentReconciliationTime
     if (!forced && serverCursor == null && timeSinceLastSync > 0 && timeSinceLastSync < RemoteConfig.archiveReconciliationSyncInterval.inWholeMilliseconds) {
       Log.d(TAG, "No need to do a remote sync yet. Time since last sync: $timeSinceLastSync ms")
