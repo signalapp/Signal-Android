@@ -8141,7 +8141,7 @@
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Gereeldheid van rugsteun</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
-    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Nuwe media en boodskappe wat jy ontvang, word daagliks gerugsteun.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Your media and messages are backed up daily.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Rugsteun met behulp van mobiele data</string>
     <!-- Row label for viewing recovery key -->

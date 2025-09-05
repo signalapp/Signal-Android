@@ -8141,7 +8141,7 @@
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Συχνότητα αντιγράφου ασφαλείας</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
-    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">New media and messages you receive are backed up daily.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Your media and messages are backed up daily.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Αντίγραφο ασφαλείας με δεδομένα κινητής</string>
     <!-- Row label for viewing recovery key -->
