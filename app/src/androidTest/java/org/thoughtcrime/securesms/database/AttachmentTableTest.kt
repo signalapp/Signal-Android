@@ -259,6 +259,7 @@ class AttachmentTableTest {
     val messageId = SignalDatabase.messages.insertMessageInbox(message).map { it.messageId }.get()
     SignalDatabase.attachments.setArchiveTransferState(AttachmentId(1L), AttachmentTable.ArchiveTransferState.NONE)
     SignalDatabase.attachments.setTransferState(messageId, AttachmentId(1L), AttachmentTable.TRANSFER_PROGRESS_DONE)
+    SignalDatabase.attachments.finalizeAttachmentAfterUpload(AttachmentId(1L), AttachmentTableTestUtil.createUploadResult(AttachmentId(1L)))
 
     // WHEN
     val attachments = SignalDatabase.attachments.getAttachmentsThatNeedArchiveUpload()
@@ -277,6 +278,7 @@ class AttachmentTableTest {
     val messageId = SignalDatabase.messages.insertMessageInbox(message).map { it.messageId }.get()
     SignalDatabase.attachments.setArchiveTransferState(AttachmentId(1L), AttachmentTable.ArchiveTransferState.NONE)
     SignalDatabase.attachments.setTransferState(messageId, AttachmentId(1L), AttachmentTable.TRANSFER_PROGRESS_DONE)
+    SignalDatabase.attachments.finalizeAttachmentAfterUpload(AttachmentId(1L), AttachmentTableTestUtil.createUploadResult(AttachmentId(1L)))
 
     // WHEN
     val attachments = SignalDatabase.attachments.getAttachmentsThatNeedArchiveUpload()
@@ -296,6 +298,7 @@ class AttachmentTableTest {
     SignalDatabase.messages.markExpireStarted(messageId)
     SignalDatabase.attachments.setArchiveTransferState(AttachmentId(1L), AttachmentTable.ArchiveTransferState.NONE)
     SignalDatabase.attachments.setTransferState(messageId, AttachmentId(1L), AttachmentTable.TRANSFER_PROGRESS_DONE)
+    SignalDatabase.attachments.finalizeAttachmentAfterUpload(AttachmentId(1L), AttachmentTableTestUtil.createUploadResult(AttachmentId(1L)))
 
     // WHEN
     val attachments = SignalDatabase.attachments.getAttachmentsThatNeedArchiveUpload()
@@ -314,6 +317,7 @@ class AttachmentTableTest {
     val messageId = SignalDatabase.messages.insertMessageInbox(message).map { it.messageId }.get()
     SignalDatabase.attachments.setArchiveTransferState(AttachmentId(1L), AttachmentTable.ArchiveTransferState.NONE)
     SignalDatabase.attachments.setTransferState(messageId, AttachmentId(1L), AttachmentTable.TRANSFER_PROGRESS_DONE)
+    SignalDatabase.attachments.finalizeAttachmentAfterUpload(AttachmentId(1L), AttachmentTableTestUtil.createUploadResult(AttachmentId(1L)))
 
     // WHEN
     val attachments = SignalDatabase.attachments.getAttachmentsThatNeedArchiveUpload()
