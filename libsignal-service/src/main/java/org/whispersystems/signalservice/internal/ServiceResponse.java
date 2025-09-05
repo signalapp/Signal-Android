@@ -2,11 +2,14 @@ package org.whispersystems.signalservice.internal;
 
 
 
+import org.whispersystems.signalservice.api.NetworkResult;
+import org.whispersystems.signalservice.api.NetworkResultUtil;
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException;
 import org.whispersystems.signalservice.api.push.exceptions.PushNetworkException;
 import org.whispersystems.signalservice.api.util.Preconditions;
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse;
 
+import java.io.IOException;
 import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 
@@ -81,6 +84,25 @@ public final class ServiceResponse<Result> {
       return Single.error(executionError.get());
     } else {
       return Single.error(new AssertionError("Should never get here."));
+    }
+  }
+
+  public NetworkResult<Result> toNetworkResult() {
+    if (result.isPresent()) {
+      return new NetworkResult.Success<>(result.get());
+    } else if (applicationError.isPresent()) {
+      return new NetworkResult.ApplicationError<>(applicationError.get());
+    } else  if (executionError.isPresent()) {
+      Throwable error = executionError.get();
+      if (error instanceof NonSuccessfulResponseCodeException) {
+        return new NetworkResult.StatusCodeError<>((NonSuccessfulResponseCodeException) error);
+      } else if (error instanceof IOException) {
+        return new NetworkResult.NetworkError<>((IOException) error);
+      } else {
+        return new NetworkResult.ApplicationError<>(error);
+      }
+    } else {
+      throw new AssertionError("Should never get here");
     }
   }
 

@@ -1830,8 +1830,9 @@ object BackupRepository {
 
   @WorkerThread
   fun getBackupLevelConfiguration(): NetworkResult<SubscriptionsConfiguration.BackupLevelConfiguration> {
-    return AppDependencies.donationsApi
+    return AppDependencies.donationsService
       .getDonationsConfiguration(Locale.getDefault())
+      .toNetworkResult()
       .then {
         val config = it.backupConfiguration.backupLevelConfigurationMap[SubscriptionsConfiguration.BACKUPS_LEVEL]
         if (config != null) {
@@ -1844,8 +1845,9 @@ object BackupRepository {
 
   @WorkerThread
   fun getFreeType(): NetworkResult<MessageBackupsType.Free> {
-    return AppDependencies.donationsApi
+    return AppDependencies.donationsService
       .getDonationsConfiguration(Locale.getDefault())
+      .toNetworkResult()
       .map {
         MessageBackupsType.Free(
           mediaRetentionDays = it.backupConfiguration.freeTierMediaDays

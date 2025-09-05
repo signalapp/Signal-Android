@@ -31,11 +31,15 @@ import java.util.Locale
 
 /**
  * One-stop shop for Signal service calls related to in-app payments.
+ *
+ * Be sure to check for cached versions of these methods in DonationsService before calling these methods elsewhere.
  */
 class DonationsApi(private val authWebSocket: SignalWebSocket.AuthenticatedWebSocket, private val unauthWebSocket: SignalWebSocket.UnauthenticatedWebSocket) {
 
   /**
    * Get configuration data associated with donations, like gift, one-time, and monthly levels, etc.
+   *
+   * Note, this will skip cached values, causing us to hit the network more than necessary. Consider accessing this method via the DonationsService instead.
    *
    * GET /v1/subscription/configuration
    * - 200: Success
