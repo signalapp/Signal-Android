@@ -1452,7 +1452,7 @@
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Bukan sekarang</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
-    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Media anda akan dipulihkan di latar belakang. Jika anda pilih untuk tidak memulihkan sekarang, anda tidak akan dapat memulihkan kemudian.</string>
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Media anda akan dipulihkan di latar belakang. Jika anda memilih untuk tidak memulihkan sekarang, anda tidak akan dapat memulihkannya kemudian.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Maklumkan saya untuk Sebutan</string>
@@ -2048,7 +2048,7 @@
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">Anda nyahsekat kumpulan ini</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
-    <string name="MessageRecord_unsupported_feature">%1$s telah menghantar anda satu mesej yang tidak dapat diproses atau dipaparkan kerana ia menggunakan ciri-ciri Signal yang baru.</string>
+    <string name="MessageRecord_unsupported_feature">%1$s telah menghantar mesej kepada anda yang tidak dapat diproses atau dipaparkan kerana ia menggunakan ciri Signal yang baharu.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Terima</string>
