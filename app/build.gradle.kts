@@ -608,8 +608,7 @@ dependencies {
   implementation(libs.androidx.credentials)
   implementation(libs.androidx.credentials.compat)
 
-  "playImplementation"(project(":billing"))
-  "nightlyImplementation"(project(":billing"))
+  implementation(project(":billing"))
 
   "spinnerImplementation"(project(":spinner"))
 
