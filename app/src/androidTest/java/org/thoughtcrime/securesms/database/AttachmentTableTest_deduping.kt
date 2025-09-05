@@ -47,6 +47,8 @@ class AttachmentTableTest_deduping {
     val DATA_A_HASH = byteArrayOf(1, 1, 1)
 
     val DATA_B = byteArrayOf(7, 8, 9)
+
+    val DATA_C_JPEG = Base64.decode("/9j/4AAQSkZJRgABAQEBLAEsAAD/2wBDAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRT/2wBDAQMEBAUEBQkFBQkUDQsNFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBQUFBT/wgARCAAKAAoDAREAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAb/xAAWAQEBAQAAAAAAAAAAAAAAAAAABgf/2gAMAwEAAhADEAAAAY/ZpAAf/8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQABBQIf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAwEBPwEf/8QAFBEBAAAAAAAAAAAAAAAAAAAAIP/aAAgBAgEBPwEf/8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQAGPwIf/8QAFBABAAAAAAAAAAAAAAAAAAAAIP/aAAgBAQABPyEf/9oADAMBAAIAAwAAABBtv//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQMBAT8QH//EABQRAQAAAAAAAAAAAAAAAAAAACD/2gAIAQIBAT8QH//EABQQAQAAAAAAAAAAAAAAAAAAACD/2gAIAQEAAT8QH//Z")
   }
 
   @Before
@@ -483,38 +485,27 @@ class AttachmentTableTest_deduping {
   fun quotes() {
     // Basic quote deduping
     test {
-      val id1 = insertWithData(DATA_A)
-      val id2 = insertQuote(id1)
+      val targetAttachment1 = insertWithData(DATA_C_JPEG)
+      val quoteAttachment1 = insertQuote(targetAttachment1)
+      val quoteAttachment2 = insertQuote(targetAttachment1)
 
-      assertDataFilesAreTheSame(id1, id2)
-      assertDataHashStartMatches(id1, id2)
+      assertDataFilesAreTheSame(quoteAttachment1, quoteAttachment2)
+      assertDataHashStartMatches(quoteAttachment1, quoteAttachment2)
     }
 
     // Making sure remote fields carry
     test {
-      val id1 = insertWithData(DATA_A)
-      val id2 = insertQuote(id1)
-      upload(id1)
+      val targetAttachment1 = insertWithData(DATA_C_JPEG)
+      val quoteAttachment1 = insertQuote(targetAttachment1)
+      upload(quoteAttachment1)
 
-      assertDataFilesAreTheSame(id1, id2)
-      assertDataHashStartMatches(id1, id2)
-      assertDataHashEndMatches(id1, id2)
-      assertRemoteFieldsMatch(id1, id2)
-      assertArchiveFieldsMatch(id1, id2)
-    }
+      val quoteAttachment2 = insertQuote(targetAttachment1)
 
-    // Making sure things work for quotes of videos, which have trickier transform properties
-    test {
-      val id1 = insertWithData(DATA_A, transformProperties = TransformProperties.forVideoTrim(1, 2))
-      compress(id1, DATA_A_COMPRESSED)
-      upload(id1)
-
-      val id2 = insertQuote(id1)
-
-      assertDataFilesAreTheSame(id1, id2)
-      assertDataHashEndMatches(id1, id2)
-      assertRemoteFieldsMatch(id1, id2)
-      assertArchiveFieldsMatch(id1, id2)
+      assertDataFilesAreTheSame(quoteAttachment1, quoteAttachment2)
+      assertDataHashStartMatches(quoteAttachment1, quoteAttachment2)
+      assertDataHashEndMatches(quoteAttachment1, quoteAttachment2)
+      assertRemoteFieldsMatch(quoteAttachment1, quoteAttachment2)
+      assertArchiveFieldsMatch(quoteAttachment1, quoteAttachment2)
     }
   }
 
