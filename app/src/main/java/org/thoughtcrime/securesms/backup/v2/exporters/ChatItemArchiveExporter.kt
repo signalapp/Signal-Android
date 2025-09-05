@@ -1048,7 +1048,7 @@ private fun BackupMessageRecord.getBodyText(attachments: List<DatabaseAttachment
     PartAuthority.getAttachmentStream(AppDependencies.application, longTextAttachment.uri!!)?.readFully()?.toString(Charsets.UTF_8)
   } catch (e: IOException) {
     Log.w(TAG, ExportOddities.unreadableLongTextAttachment(this.dateSent))
-    return this.body.emptyIfNull() to longTextAttachment
+    return this.body.emptyIfNull() to null
   }
 
   if (longText == null) {
