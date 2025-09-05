@@ -11,6 +11,7 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
@@ -83,7 +84,7 @@ class LogSectionRemoteBackups : LogSection {
 
     output.append("\n -- ArchiveUploadProgress\n")
     if (SignalStore.backup.archiveUploadState != null) {
-      output.append("State: ${SignalStore.backup.archiveUploadState}\n")
+      output.append(SignalStore.backup.archiveUploadState!!.toPrettyString())
 
       if (SignalStore.backup.archiveUploadState!!.state !in setOf(ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled)) {
         output.append("Pending bytes: ${SignalDatabase.attachments.getPendingArchiveUploadBytes()}\n")
@@ -92,6 +93,67 @@ class LogSectionRemoteBackups : LogSection {
       output.append("None\n")
     }
 
+    output.append("\n -- Attachment Stats\n")
+    output.append(SignalDatabase.attachments.debugGetAttachmentStats().toPrettyString())
+
     return output
+  }
+}
+
+private fun AttachmentTable.DebugAttachmentStats.toPrettyString(): String {
+  return buildString {
+    appendLine("Total attachment rows: $totalAttachmentRows")
+    appendLine("Total eligible for upload rows: $totalEligibleForUploadRows")
+    appendLine("Total unique media names eligible for upload: $totalUniqueMediaNamesEligibleForUpload")
+    appendLine("Total unique data files: $totalUniqueDataFiles")
+    appendLine("Total unique media names: $totalUniqueMediaNames")
+    appendLine("Media names with thumbnails count: $mediaNamesWithThumbnailsCount")
+    appendLine("Pending attachment upload bytes: $pendingAttachmentUploadBytes")
+    appendLine("Uploaded attachment bytes: $uploadedAttachmentBytes")
+    appendLine("Uploaded thumbnail bytes: $uploadedThumbnailBytes")
+    appendLine("Total upload count: $totalUploadCount")
+    appendLine("Total upload bytes: $totalUploadBytes")
+
+    if (archiveStatusMediaNameCounts.isNotEmpty()) {
+      appendLine("Archive status media name counts:")
+      archiveStatusMediaNameCounts.forEach { (state, count) ->
+        appendLine("  ${state.name}: $count")
+      }
+    }
+
+    if (archiveStatusMediaNameThumbnailCounts.isNotEmpty()) {
+      appendLine("Archive status media name thumbnail counts:")
+      archiveStatusMediaNameThumbnailCounts.forEach { (state, count) ->
+        appendLine("  ${state.name}: $count")
+      }
+    }
+  }
+}
+
+private fun ArchiveUploadProgressState.toPrettyString(): String {
+  return buildString {
+    appendLine("state: ${state.name}")
+    appendLine("backupPhase: ${backupPhase.name}")
+    appendLine("frameExportCount: $frameExportCount")
+    appendLine("frameTotalCount: $frameTotalCount")
+    appendLine("backupFileUploadedBytes: $backupFileUploadedBytes")
+    appendLine("backupFileTotalBytes: $backupFileTotalBytes")
+    appendLine("mediaUploadedBytes: $mediaUploadedBytes")
+    appendLine("mediaTotalBytes: $mediaTotalBytes")
+
+    if (frameTotalCount > 0) {
+      val frameProgress = (frameExportCount.toDouble() / frameTotalCount * 100).toInt()
+      appendLine("Frame export progress: $frameProgress%")
+    }
+
+    if (backupFileTotalBytes > 0) {
+      val backupFileProgress = (backupFileUploadedBytes.toDouble() / backupFileTotalBytes * 100).toInt()
+      appendLine("Backup file upload progress: $backupFileProgress%")
+    }
+
+    if (mediaTotalBytes > 0) {
+      val mediaProgress = (mediaUploadedBytes.toDouble() / mediaTotalBytes * 100).toInt()
+      appendLine("Media upload progress: $mediaProgress%")
+    }
   }
 }
