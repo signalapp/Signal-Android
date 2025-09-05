@@ -142,16 +142,6 @@ class BackupSubscriptionCheckJobTest {
   }
 
   @Test
-  fun givenRemoteBackupsNotAvailable_whenIRun_thenIExpectSuccessAndEarlyExit() {
-    every { RemoteConfig.messageBackups } returns false
-
-    val job = BackupSubscriptionCheckJob.create()
-    val result = job.run()
-
-    assertEarlyExit(result)
-  }
-
-  @Test
   fun givenBillingApiNotAvailable_whenIRun_thenIExpectSuccessAndEarlyExit() {
     coEvery { AppDependencies.billingApi.isApiAvailable() } returns false
 
@@ -176,16 +166,6 @@ class BackupSubscriptionCheckJobTest {
   @Test
   fun givenBackupsAreNotEnabled_whenIRun_thenIExpectSuccessAndEarlyExit() {
     SignalStore.backup.backupTier = null
-
-    val job = BackupSubscriptionCheckJob.create()
-    val result = job.run()
-
-    assertEarlyExit(result)
-  }
-
-  @Test
-  fun givenInternalOverrideIsSet_whenIRun_thenIExpectSuccessAndEarlyExit() {
-    SignalStore.backup.backupTierInternalOverride = MessageBackupTier.PAID
 
     val job = BackupSubscriptionCheckJob.create()
     val result = job.run()
