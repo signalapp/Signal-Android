@@ -121,6 +121,11 @@ class UploadAttachmentToArchiveJob private constructor(
       return Result.failure()
     }
 
+    if (attachment.uri == null) {
+      Log.w(TAG, "[$attachmentId] Attachment has no uri! Cannot upload.")
+      return Result.failure()
+    }
+
     if (attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
       Log.i(TAG, "[$attachmentId] Already finished. Skipping.")
       return Result.success()
