@@ -175,7 +175,7 @@ object ExportOddities {
   }
 
   fun unreadableLongTextAttachment(sentTimestamp: Long): String {
-    return log(sentTimestamp, "Long text attachment was unreadable. Falling back to the known body with an attachment pointer.")
+    return log(sentTimestamp, "Long text attachment was unreadable. Dropping the pointer.")
   }
 
   fun unopenableLongTextAttachment(sentTimestamp: Long): String {

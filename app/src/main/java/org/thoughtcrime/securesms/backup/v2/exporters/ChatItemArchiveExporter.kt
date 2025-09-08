@@ -1041,7 +1041,9 @@ private fun BackupMessageRecord.getBodyText(attachments: List<DatabaseAttachment
   }
 
   if (longTextAttachment.uri == null || longTextAttachment.transferState != AttachmentTable.TRANSFER_PROGRESS_DONE) {
-    return StringUtil.trimToFit(this.body.emptyIfNull(), MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER) to longTextAttachment
+    Log.w(TAG, ExportOddities.undownloadedLongTextAttachment(this.dateSent))
+    val body = StringUtil.trimToFit(this.body.emptyIfNull(), MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER)
+    return body to longTextAttachment.takeUnless { body.isBlank() }
   }
 
   val longText = try {
@@ -1053,7 +1055,8 @@ private fun BackupMessageRecord.getBodyText(attachments: List<DatabaseAttachment
 
   if (longText == null) {
     Log.w(TAG, ExportOddities.unopenableLongTextAttachment(this.dateSent))
-    return StringUtil.trimToFit(this.body.emptyIfNull(), MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER) to longTextAttachment
+    val body = StringUtil.trimToFit(this.body.emptyIfNull(), MAX_INLINED_BODY_SIZE_WITH_LONG_ATTACHMENT_POINTER)
+    return body to longTextAttachment.takeUnless { body.isBlank() }
   }
 
   val trimmed = StringUtil.trimToFit(longText, MAX_INLINED_BODY_SIZE)
