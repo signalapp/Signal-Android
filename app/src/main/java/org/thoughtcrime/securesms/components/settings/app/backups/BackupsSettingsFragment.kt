@@ -314,7 +314,7 @@ private fun InactiveBackupsRow(
         )
 
         Text(
-          text = stringResource(R.string.preferences_off),
+          text = stringResource(R.string.RemoteBackupsSettingsFragment__off),
           style = MaterialTheme.typography.bodyMedium,
           color = MaterialTheme.colorScheme.onSurfaceVariant
         )
