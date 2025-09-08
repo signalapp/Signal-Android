@@ -263,6 +263,7 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
   private fun enableAndFocusPinEntry() {
     binding.kbsLockPinInput.setEnabled(true)
     binding.kbsLockPinInput.setFocusable(true)
+    binding.kbsLockPinInput.transformationMethod = PasswordTransformationMethod.getInstance()
     ViewUtil.focusAndShowKeyboard(binding.kbsLockPinInput)
   }
 

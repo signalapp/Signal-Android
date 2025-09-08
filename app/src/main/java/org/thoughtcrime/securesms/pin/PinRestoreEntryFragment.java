@@ -95,7 +95,6 @@ public class PinRestoreEntryFragment extends LoggingFragment {
       }
       return false;
     });
-    ViewCompat.setAutofillHints(pinEntry, HintConstants.AUTOFILL_HINT_PASSWORD);
 
     enableAndFocusPinEntry();
 
@@ -263,7 +262,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   private void updateKeyboard(@NonNull PinKeyboardType keyboard) {
     boolean isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC;
 
-    pinEntry.setInputType(isAlphaNumeric ? InputType.TYPE_CLASS_TEXT : InputType.TYPE_CLASS_NUMBER );
+    pinEntry.setInputType(isAlphaNumeric ? InputType.TYPE_CLASS_TEXT : InputType.TYPE_CLASS_NUMBER);
     pinEntry.setTransformationMethod(PasswordTransformationMethod.getInstance());
 
     pinEntry.getText().clear();
@@ -272,6 +271,7 @@ public class PinRestoreEntryFragment extends LoggingFragment {
   private void enableAndFocusPinEntry() {
     pinEntry.setEnabled(true);
     pinEntry.setFocusable(true);
+    pinEntry.setTransformationMethod(PasswordTransformationMethod.getInstance());
     ViewUtil.focusAndShowKeyboard(pinEntry);
   }
 }

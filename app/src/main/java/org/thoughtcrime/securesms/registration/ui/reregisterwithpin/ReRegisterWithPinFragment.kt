@@ -192,6 +192,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
   private fun enableAndFocusPinEntry() {
     binding.pinRestorePinInput.isEnabled = true
     binding.pinRestorePinInput.isFocusable = true
+    binding.pinRestorePinInput.transformationMethod = PasswordTransformationMethod.getInstance()
     ViewUtil.focusAndShowKeyboard(binding.pinRestorePinInput)
   }
 
