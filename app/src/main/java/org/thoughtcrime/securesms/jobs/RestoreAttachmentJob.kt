@@ -328,13 +328,14 @@ class RestoreAttachmentJob private constructor(
         throw MmsException("[$attachmentId] Attachment too large, failing download")
       }
 
-      useArchiveCdn = if (SignalStore.backup.backsUpMedia && !forceTransitTier) {
-        if (attachment.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED) {
-          throw InvalidAttachmentException("[$attachmentId] Invalid attachment configuration! backsUpMedia: ${SignalStore.backup.backsUpMedia}, forceTransitTier: $forceTransitTier, archiveTransferState: ${attachment.archiveTransferState}")
-        }
-        true
-      } else {
-        false
+      useArchiveCdn = !forceTransitTier && SignalStore.backup.backsUpMedia && attachment.dataHash != null
+
+      if (!forceTransitTier && SignalStore.backup.backsUpMedia && attachment.dataHash == null) {
+        Log.w(TAG, "[$attachmentId] No plaintextHash, implying the attachment was never downloaded before being backed up. Forced to attempt download from the transit CDN.")
+      }
+
+      if (useArchiveCdn && attachment.archiveTransferState != AttachmentTable.ArchiveTransferState.FINISHED) {
+        throw InvalidAttachmentException("[$attachmentId] Invalid attachment configuration! backsUpMedia: ${SignalStore.backup.backsUpMedia}, forceTransitTier: $forceTransitTier, archiveTransferState: ${attachment.archiveTransferState}")
       }
 
       val messageReceiver = AppDependencies.signalServiceMessageReceiver
