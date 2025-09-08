@@ -37,6 +37,7 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
+import androidx.compose.material3.adaptive.layout.PaneExpansionAnchor
 import androidx.compose.material3.adaptive.layout.rememberPaneExpansionState
 import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
 import androidx.compose.runtime.Composable
@@ -50,6 +51,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.compose.AndroidFragment
 import androidx.fragment.compose.rememberFragmentState
@@ -329,7 +331,15 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
       MainContainer {
         val wrappedNavigator = rememberNavigator(windowSizeClass, contentLayoutData, maxWidth)
-        val paneExpansionState = rememberPaneExpansionState()
+        val listPaneWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
+        val halfPartitionWidth = contentLayoutData.partitionWidth / 2
+        val paneExpansionState = rememberPaneExpansionState(
+          anchors = listOf(
+            PaneExpansionAnchor.Offset.fromStart(72.dp + contentLayoutData.listPaddingStart + halfPartitionWidth),
+            PaneExpansionAnchor.Offset.fromStart(listPaneWidth + halfPartitionWidth),
+            PaneExpansionAnchor.Offset.fromEnd(contentLayoutData.detailPaddingEnd - halfPartitionWidth)
+          )
+        )
         val mutableInteractionSource = remember { MutableInteractionSource() }
 
         AppScaffold(

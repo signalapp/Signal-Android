@@ -219,7 +219,7 @@ fun AppScaffold(
     return
   }
 
-  val minPaneWidth = 300.dp
+  val minPaneWidth = navigator.scaffoldDirective.defaultPanePreferredWidth
 
   NavigableListDetailPaneScaffold(
     navigator = navigator,
