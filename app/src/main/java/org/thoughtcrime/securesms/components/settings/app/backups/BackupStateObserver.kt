@@ -95,19 +95,19 @@ class BackupStateObserver(
   }
 
   private val internalBackupState = MutableStateFlow(getNonIOBackupState())
-  private val backupStateRefreshRequest = MutableSharedFlow<Unit>()
+  private val backupStateRefreshRequest = MutableSharedFlow<Unit>(replay = 1)
 
   val backupState: StateFlow<BackupState> = internalBackupState
 
   init {
     scope.launch(SignalDispatchers.IO) {
       performDatabaseBackupStateRefresh()
-    }
 
-    scope.launch(SignalDispatchers.IO) {
+      requestBackupStateRefresh()
       backupStateRefreshRequest
         .throttleLatest(100.milliseconds)
         .collect {
+          Log.d(TAG, "Dispatching refresh")
           performFullBackupStateRefresh()
         }
     }
@@ -160,19 +160,20 @@ class BackupStateObserver(
   @WorkerThread
   private fun getDatabaseBackupState(): BackupState {
     if (SignalStore.backup.backupTier != MessageBackupTier.PAID) {
-      Log.d(TAG, "No additional information available without accessing the network.")
+      Log.d(TAG, "[getDatabaseBackupState] No additional information for non PAID backup available without accessing the network.")
       return getNonIOBackupState()
     }
 
     val latestPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
     if (latestPayment == null) {
-      Log.d(TAG, "No additional information is available in the local database.")
+      Log.d(TAG, "[getDatabaseBackupState] No additional information for PAID backup is available in the local database.")
       return getNonIOBackupState()
     }
 
     val price = latestPayment.data.amount!!.toFiatMoney()
     val isPending = SignalDatabase.inAppPayments.hasPendingBackupRedemption()
     if (isPending) {
+      Log.d(TAG, "[getDatabaseBackupState] We have a pending subscription.")
       return BackupState.Pending(price = price)
     }
 
@@ -184,6 +185,7 @@ class BackupStateObserver(
 
     val isCanceled = latestPayment.data.cancellation != null
     if (isCanceled) {
+      Log.d(TAG, "[getDatabaseBackupState] We have a canceled subscription.")
       return BackupState.Canceled(
         messageBackupsType = paidBackupType,
         renewalTime = latestPayment.endOfPeriod
@@ -191,6 +193,7 @@ class BackupStateObserver(
     }
 
     if (SignalStore.backup.subscriptionStateMismatchDetected) {
+      Log.d(TAG, "[getDatabaseBackupState] We have a subscription state mismatch with Google Play.")
       return BackupState.SubscriptionMismatchMissingGooglePlay(
         messageBackupsType = paidBackupType,
         renewalTime = latestPayment.endOfPeriod
@@ -198,12 +201,14 @@ class BackupStateObserver(
     }
 
     if (latestPayment.endOfPeriod < System.currentTimeMillis().milliseconds) {
+      Log.d(TAG, "[getDatabaseBackupState] We have an inactive subscription.")
       return BackupState.Inactive(
         messageBackupsType = paidBackupType,
         renewalTime = latestPayment.endOfPeriod
       )
     }
 
+    Log.d(TAG, "[getDatabaseBackupState] We have an active subscription.")
     return BackupState.ActivePaid(
       messageBackupsType = paidBackupType,
       price = price,
@@ -213,16 +218,17 @@ class BackupStateObserver(
 
   private suspend fun performDatabaseBackupStateRefresh() {
     if (!RemoteConfig.messageBackups) {
+      Log.d(TAG, "[performDatabaseBackupStateRefresh] Dropping refresh for disabled feature.")
       return
     }
 
     if (!SignalStore.account.isRegistered) {
-      Log.d(TAG, "Dropping refresh for unregistered user.")
+      Log.d(TAG, "[performDatabaseBackupStateRefresh] Dropping refresh for unregistered user.")
       return
     }
 
     if (backupState.value !is BackupState.LocalStore) {
-      Log.d(TAG, "Dropping database refresh for non-local store state.")
+      Log.d(TAG, "[performDatabaseBackupStateRefresh] Dropping database refresh for non-local store state.")
       return
     }
 
@@ -231,15 +237,16 @@ class BackupStateObserver(
 
   private suspend fun performFullBackupStateRefresh() {
     if (!RemoteConfig.messageBackups) {
+      Log.d(TAG, "[performFullBackupStateRefresh] Dropping refresh for disabled feature.")
       return
     }
 
     if (!SignalStore.account.isRegistered) {
-      Log.d(TAG, "Dropping refresh for unregistered user.")
+      Log.d(TAG, "[performFullBackupStateRefresh] Dropping refresh for unregistered user.")
       return
     }
 
-    Log.d(TAG, "Performing refresh.")
+    Log.d(TAG, "[performFullBackupStateRefresh] Performing refresh.")
     withContext(SignalDispatchers.IO) {
       val latestInAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
       internalBackupState.emit(getNetworkBackupState(latestInAppPayment))
@@ -251,28 +258,28 @@ class BackupStateObserver(
    */
   private suspend fun getNetworkBackupState(lastPurchase: InAppPaymentTable.InAppPayment?): BackupState {
     if (lastPurchase?.state == InAppPaymentTable.State.PENDING) {
-      Log.d(TAG, "We have a pending subscription.")
+      Log.d(TAG, "[getNetworkBackupState] We have a pending subscription.")
       return BackupState.Pending(
         price = lastPurchase.data.amount!!.toFiatMoney()
       )
     }
 
     if (SignalStore.backup.subscriptionStateMismatchDetected) {
-      Log.d(TAG, "[subscriptionStateMismatchDetected] A mismatch was detected.")
+      Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] A mismatch was detected.")
 
       val hasActiveGooglePlayBillingSubscription = when (val purchaseResult = AppDependencies.billingApi.queryPurchases()) {
         is BillingPurchaseResult.Success -> {
-          Log.d(TAG, "[subscriptionStateMismatchDetected] Found a purchase: $purchaseResult")
+          Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Found a purchase: $purchaseResult")
           purchaseResult.isAcknowledged && purchaseResult.isAutoRenewing
         }
 
         else -> {
-          Log.d(TAG, "[subscriptionStateMismatchDetected] No purchase found in Google Play Billing: $purchaseResult")
+          Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] No purchase found in Google Play Billing: $purchaseResult")
           false
         }
       } || SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID
 
-      Log.d(TAG, "[subscriptionStateMismatchDetected] hasActiveGooglePlayBillingSubscription: $hasActiveGooglePlayBillingSubscription")
+      Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] hasActiveGooglePlayBillingSubscription: $hasActiveGooglePlayBillingSubscription")
 
       val activeSubscription = withContext(Dispatchers.IO) {
         RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()
@@ -280,17 +287,18 @@ class BackupStateObserver(
 
       val hasActiveSignalSubscription = activeSubscription?.isActive == true
 
-      Log.d(TAG, "[subscriptionStateMismatchDetected] hasActiveSignalSubscription: $hasActiveSignalSubscription")
+      Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] hasActiveSignalSubscription: $hasActiveSignalSubscription")
 
       when {
         hasActiveSignalSubscription && !hasActiveGooglePlayBillingSubscription -> {
           val type = buildPaidTypeFromSubscription(activeSubscription.activeSubscription)
 
           if (type == null) {
-            Log.d(TAG, "[subscriptionMismatchDetected] failed to load backup configuration. Likely a network error.")
+            Log.d(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] failed to load backup configuration. Likely a network error.")
             return getStateOnError()
           }
 
+          Log.d(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] found a subscription mismatch and successfully loaded configuration.")
           return BackupState.SubscriptionMismatchMissingGooglePlay(
             messageBackupsType = type,
             renewalTime = activeSubscription.activeSubscription.endOfCurrentPeriod.seconds
@@ -298,17 +306,17 @@ class BackupStateObserver(
         }
 
         hasActiveSignalSubscription && hasActiveGooglePlayBillingSubscription -> {
-          Log.d(TAG, "Found active signal subscription and active google play subscription. Clearing mismatch.")
+          Log.d(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] Found active signal subscription and active google play subscription. Clearing mismatch.")
           SignalStore.backup.subscriptionStateMismatchDetected = false
         }
 
         !hasActiveSignalSubscription && !hasActiveGooglePlayBillingSubscription -> {
-          Log.d(TAG, "Found inactive signal subscription and inactive google play subscription. Clearing mismatch.")
+          Log.d(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] Found inactive signal subscription and inactive google play subscription. Clearing mismatch.")
           SignalStore.backup.subscriptionStateMismatchDetected = false
         }
 
         else -> {
-          Log.w(TAG, "Hit unexpected subscription mismatch state: signal:false, google:true")
+          Log.w(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] Hit unexpected subscription mismatch state: signal:false, google:true")
           return BackupState.NotFound
         }
       }
@@ -324,7 +332,7 @@ class BackupStateObserver(
       }
 
       null -> {
-        Log.d(TAG, "Updating UI state with NONE null tier.")
+        Log.d(TAG, "[getNetworkBackupState] Updating UI state with NONE null tier.")
         return BackupState.None
       }
     }
@@ -335,14 +343,16 @@ class BackupStateObserver(
    */
   private fun getStateOnError(): BackupState {
     return if (useDatabaseFallbackOnNetworkError) {
+      Log.d(TAG, "[getStateOnError] Getting fallback state from database.")
       getDatabaseBackupState()
     } else {
+      Log.d(TAG, "[getStateOnError] Displaying error without database.")
       BackupState.Error
     }
   }
 
   private suspend fun getPaidBackupState(lastPurchase: InAppPaymentTable.InAppPayment?): BackupState {
-    Log.d(TAG, "Attempting to retrieve subscription details for active PAID backup.")
+    Log.d(TAG, "[getPaidBackupState] Attempting to retrieve subscription details for active PAID backup.")
 
     val typeResult = withContext(Dispatchers.IO) {
       BackupRepository.getPaidType()
@@ -350,52 +360,62 @@ class BackupStateObserver(
 
     val type = if (typeResult is NetworkResult.Success) typeResult.result else null
 
-    Log.d(TAG, "Attempting to retrieve current subscription...")
+    Log.d(TAG, "[getPaidBackupState] Attempting to retrieve current subscription...")
     val activeSubscription = withContext(Dispatchers.IO) {
       RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
     }
 
     return if (activeSubscription.isSuccess) {
-      Log.d(TAG, "Retrieved subscription details.")
+      Log.d(TAG, "[getPaidBackupState] Retrieved subscription details.")
 
       val subscription = activeSubscription.getOrThrow().activeSubscription
       if (subscription != null) {
-        Log.d(TAG, "Subscription found. Updating UI state with subscription details. Status: ${subscription.status}")
+        Log.d(TAG, "[getPaidBackupState] Subscription found. Updating UI state with subscription details. Status: ${subscription.status}")
 
         val subscriberType = type ?: buildPaidTypeFromSubscription(subscription)
         if (subscriberType == null) {
-          Log.d(TAG, "Failed to create backup type. Possible network error.")
+          Log.d(TAG, "[getPaidBackupState] Failed to create backup type. Possible network error.")
 
           getStateOnError()
         } else {
           when {
-            subscription.isCanceled && subscription.isActive -> BackupState.Canceled(
-              messageBackupsType = subscriberType,
-              renewalTime = subscription.endOfCurrentPeriod.seconds
-            )
+            subscription.isCanceled && subscription.isActive -> {
+              Log.d(TAG, "[getPaidBackupState] Found a canceled subscription.")
+              BackupState.Canceled(
+                messageBackupsType = subscriberType,
+                renewalTime = subscription.endOfCurrentPeriod.seconds
+              )
+            }
 
-            subscription.isActive -> BackupState.ActivePaid(
-              messageBackupsType = subscriberType,
-              price = FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency)),
-              renewalTime = subscription.endOfCurrentPeriod.seconds
-            )
+            subscription.isActive -> {
+              Log.d(TAG, "[getPaidBackupState] Found an active subscription.")
+              BackupState.ActivePaid(
+                messageBackupsType = subscriberType,
+                price = FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency)),
+                renewalTime = subscription.endOfCurrentPeriod.seconds
+              )
+            }
 
-            else -> BackupState.Inactive(
-              messageBackupsType = subscriberType,
-              renewalTime = subscription.endOfCurrentPeriod.seconds
-            )
+            else -> {
+              Log.d(TAG, "[getPaidBackupState] Found an inactive subscription.")
+              BackupState.Inactive(
+                messageBackupsType = subscriberType,
+                renewalTime = subscription.endOfCurrentPeriod.seconds
+              )
+            }
           }
         }
       } else {
-        Log.d(TAG, "ActiveSubscription had null subscription object.")
+        Log.d(TAG, "[getPaidBackupState] ActiveSubscription had null subscription object.")
         if (SignalStore.backup.areBackupsEnabled) {
           BackupState.NotFound
         } else if (lastPurchase != null && lastPurchase.endOfPeriod > System.currentTimeMillis().milliseconds) {
           val canceledType = type ?: buildPaidTypeFromInAppPayment(lastPurchase)
           if (canceledType == null) {
-            Log.w(TAG, "Failed to load canceled type information. Possible network error.")
+            Log.w(TAG, "[getPaidBackupState] Failed to load canceled type information. Possible network error.")
             getStateOnError()
           } else {
+            Log.d(TAG, "[getPaidBackupState] Found a canceled subscription via the last purchase object.")
             BackupState.Canceled(
               messageBackupsType = canceledType,
               renewalTime = lastPurchase.endOfPeriod
@@ -404,9 +424,10 @@ class BackupStateObserver(
         } else {
           val inactiveType = type ?: buildPaidTypeWithoutPricing()
           if (inactiveType == null) {
-            Log.w(TAG, "Failed to load inactive type information. Possible network error.")
+            Log.w(TAG, "[getPaidBackupState] Failed to load inactive type information. Possible network error.")
             getStateOnError()
           } else {
+            Log.d(TAG, "[getPaidBackupState] Found an inactive subscription via the last purchase object.")
             BackupState.Inactive(
               messageBackupsType = inactiveType,
               renewalTime = lastPurchase?.endOfPeriod ?: 0.seconds
@@ -415,28 +436,32 @@ class BackupStateObserver(
         }
       }
     } else {
-      Log.d(TAG, "Failed to load ActiveSubscription data. Updating UI state with error.")
+      Log.d(TAG, "[getPaidBackupState] Failed to load ActiveSubscription data. Updating UI state with error.")
       getStateOnError()
     }
   }
 
   private suspend fun getFreeBackupState(): BackupState {
+    Log.d(TAG, "[getFreeBackupState] Attempting to retrieve details for active FREE backup.")
+
     val type = withContext(Dispatchers.IO) {
       BackupRepository.getFreeType()
     }
 
     if (type !is NetworkResult.Success) {
-      Log.w(TAG, "Failed to load FREE type.", type.getCause())
+      Log.w(TAG, "[getFreeBackupState] Failed to load FREE type.", type.getCause())
       return getStateOnError()
     }
 
     val backupState = if (SignalStore.backup.areBackupsEnabled) {
+      Log.d(TAG, "[getFreeBackupState] Found an active free backup.")
       BackupState.ActiveFree(type.result)
     } else {
+      Log.d(TAG, "[getFreeBackupState] Found an inactive free backup.")
       BackupState.Inactive(type.result)
     }
 
-    Log.d(TAG, "Updating UI state with $backupState FREE tier.")
+    Log.d(TAG, "[getFreeBackupState] Updating UI state with $backupState FREE tier.")
     return backupState
   }
 
@@ -446,7 +471,14 @@ class BackupStateObserver(
    * @return A paid type, or null if we were unable to get the backup level configuration.
    */
   private fun buildPaidTypeFromSubscription(subscription: ActiveSubscription.Subscription): MessageBackupsType.Paid? {
-    val config = BackupRepository.getBackupLevelConfiguration().successOrThrow()
+    val configResult = BackupRepository.getBackupLevelConfiguration()
+    if (configResult.getCause() != null) {
+      Log.w(TAG, "[buildPaidTypeFromSubscription] failed to build paid type.", configResult.getCause())
+      return null
+    }
+
+    // This should never throw
+    val config = configResult.successOrThrow()
 
     val price = FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency))
     return MessageBackupsType.Paid(
@@ -462,7 +494,14 @@ class BackupStateObserver(
    * @return A paid type, or null if we were unable to get the backup level configuration.
    */
   private fun buildPaidTypeFromInAppPayment(inAppPayment: InAppPaymentTable.InAppPayment): MessageBackupsType.Paid? {
-    val config = BackupRepository.getBackupLevelConfiguration().successOrThrow()
+    val configResult = BackupRepository.getBackupLevelConfiguration()
+    if (configResult.getCause() != null) {
+      Log.w(TAG, "[buildPaidTypeFromInAppPayment] failed to build paid type.", configResult.getCause())
+      return null
+    }
+
+    // This should never throw
+    val config = configResult.successOrThrow()
 
     val price = inAppPayment.data.amount!!.toFiatMoney()
     return MessageBackupsType.Paid(
@@ -479,7 +518,14 @@ class BackupStateObserver(
    * @return A paid type, or null if we were unable to get the backup level configuration.
    */
   private fun buildPaidTypeWithoutPricing(): MessageBackupsType? {
-    val config = BackupRepository.getBackupLevelConfiguration().successOrThrow()
+    val configResult = BackupRepository.getBackupLevelConfiguration()
+    if (configResult.getCause() != null) {
+      Log.w(TAG, "[buildPaidTypeWithoutPricing] failed to build paid type.", configResult.getCause())
+      return null
+    }
+
+    // This should never throw
+    val config = configResult.successOrThrow()
 
     return MessageBackupsType.Paid(
       pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance(Locale.getDefault())),
