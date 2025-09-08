@@ -3214,8 +3214,10 @@ class AttachmentTable(
           SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY
           FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
           WHERE 
-            ${buildAttachmentsThatNeedUploadQuery(transferStateFilter = "$ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${state.value}")}
-            AND ($CONTENT_TYPE LIKE 'image%' OR $CONTENT_TYPE LIKE 'video%')
+            $ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${state.value} AND
+            $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND
+            $QUOTE = 0 AND
+            ($CONTENT_TYPE LIKE 'image%' OR $CONTENT_TYPE LIKE 'video%')
         )
         """
       )
