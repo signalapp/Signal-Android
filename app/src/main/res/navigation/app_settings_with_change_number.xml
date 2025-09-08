@@ -791,6 +791,9 @@
         <action
             android:id="@+id/action_internalSettingsFragment_to_internalSqlitePlaygroundFragment"
             app:destination="@id/internalSqlitePlaygroundFragment" />
+        <action
+            android:id="@+id/action_internalSettingsFragment_to_dataSeedingPlaygroundFragment"
+            app:destination="@id/dataSeedingPlaygroundFragment" />
     </fragment>
 
     <fragment
@@ -852,6 +855,11 @@
         android:id="@+id/internalSqlitePlaygroundFragment"
         android:name="org.thoughtcrime.securesms.components.settings.app.internal.sqlite.InternalSqlitePlaygroundFragment"
         android:label="internal_sqlite_playground_fragment" />
+
+    <fragment
+        android:id="@+id/dataSeedingPlaygroundFragment"
+        android:name="org.thoughtcrime.securesms.components.settings.app.internal.dataseeding.DataSeedingPlaygroundFragment"
+        android:label="data_seeding_playground_fragment" />
 
     <!-- endregion -->
 
