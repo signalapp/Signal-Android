@@ -54,8 +54,10 @@ class ChangeNumberVerifyFragment : LoggingFragment(R.layout.fragment_change_phon
   private fun onStateUpdate(state: ChangeNumberState) {
     if (state.challengesRequested.contains(Challenge.CAPTCHA) && state.captchaToken.isNotNullOrBlank()) {
       viewModel.submitCaptchaToken(requireContext())
-    } else if (state.challengesRemaining.isNotEmpty()) {
-      handleChallenges(state.challengesRemaining)
+    } else if (state.challengesRequested.isNotEmpty()) {
+      if (!state.challengeInProgress) {
+        handleChallenges(state.challengesRequested)
+      }
     } else if (state.changeNumberOutcome != null) {
       handleRequestCodeResult(state.changeNumberOutcome)
     } else if (!state.inProgress) {

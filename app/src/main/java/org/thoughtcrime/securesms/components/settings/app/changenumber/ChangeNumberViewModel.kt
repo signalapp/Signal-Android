@@ -156,20 +156,6 @@ class ChangeNumberViewModel : ViewModel() {
     }
   }
 
-  fun addPresentedChallenge(challenge: Challenge) {
-    Log.v(TAG, "addPresentedChallenge()")
-    store.update {
-      it.copy(challengesPresented = it.challengesPresented.plus(challenge))
-    }
-  }
-
-  fun removePresentedChallenge(challenge: Challenge) {
-    Log.v(TAG, "addPresentedChallenge()")
-    store.update {
-      it.copy(challengesPresented = it.challengesPresented.minus(challenge))
-    }
-  }
-
   fun resetLocalSessionState() {
     Log.v(TAG, "resetLocalSessionState()")
     store.update {
@@ -292,7 +278,8 @@ class ChangeNumberViewModel : ViewModel() {
       it.copy(
         captchaToken = null,
         inProgress = true,
-        changeNumberOutcome = null
+        changeNumberOutcome = null,
+        challengeInProgress = true
       )
     }
 
@@ -304,7 +291,8 @@ class ChangeNumberViewModel : ViewModel() {
         store.update {
           it.copy(
             inProgress = false,
-            changeNumberOutcome = null
+            changeNumberOutcome = null,
+            challengeInProgress = false
           )
         }
         return@launch
@@ -313,15 +301,13 @@ class ChangeNumberViewModel : ViewModel() {
       val captchaSubmissionResult = RegistrationRepository.submitCaptchaToken(context, e164, password, sessionData.sessionId, captchaToken)
       Log.d(TAG, "Captcha token submitted.")
       store.update {
-        it.copy(inProgress = false, changeNumberOutcome = ChangeNumberOutcome.ChangeNumberRequestOutcome(captchaSubmissionResult))
+        it.copy(inProgress = false, changeNumberOutcome = ChangeNumberOutcome.ChangeNumberRequestOutcome(captchaSubmissionResult), challengeInProgress = false)
       }
     }
   }
 
   fun requestAndSubmitPushToken(context: Context) {
     Log.v(TAG, "validatePushToken()")
-
-    addPresentedChallenge(Challenge.PUSH)
 
     val e164 = number.e164Number
 

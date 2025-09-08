@@ -42,7 +42,6 @@ data class RegistrationState(
   val isAllowedToRequestCode: Boolean = false,
   val fcmToken: String? = null,
   val challengesRequested: List<Challenge> = emptyList(),
-  val challengesPresented: Set<Challenge> = emptySet(),
   val captchaToken: String? = null,
   val allowedToRequestCode: Boolean = false,
   val nextSmsTimestamp: Duration = 0.seconds,
@@ -54,10 +53,9 @@ data class RegistrationState(
   val networkError: Throwable? = null,
   val sessionCreationError: RegistrationSessionResult? = null,
   val sessionStateError: VerificationCodeRequestResult? = null,
-  val registerAccountError: RegisterAccountResult? = null
+  val registerAccountError: RegisterAccountResult? = null,
+  val challengeInProgress: Boolean = false
 ) {
-  val challengesRemaining: List<Challenge> = challengesRequested.filterNot { it in challengesPresented }
-
   companion object {
     private val TAG = Log.tag(RegistrationState::class)
 
@@ -77,7 +75,7 @@ data class RegistrationState(
   }
 
   fun toNavigationStateOnly(): NavigationState {
-    return NavigationState(challengesRequested, challengesPresented, captchaToken, registrationCheckpoint, canSkipSms)
+    return NavigationState(challengesRequested, captchaToken, registrationCheckpoint, canSkipSms, challengeInProgress)
   }
 
   /**
@@ -86,11 +84,9 @@ data class RegistrationState(
    */
   data class NavigationState(
     val challengesRequested: List<Challenge>,
-    val challengesPresented: Set<Challenge>,
     val captchaToken: String? = null,
     val registrationCheckpoint: RegistrationCheckpoint,
-    val canSkipSms: Boolean
-  ) {
-    val challengesRemaining: List<Challenge> = challengesRequested.filterNot { it in challengesPresented }
-  }
+    val canSkipSms: Boolean,
+    val challengeInProgress: Boolean
+  )
 }

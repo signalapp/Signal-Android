@@ -98,7 +98,6 @@ import java.io.IOException
 import java.nio.charset.StandardCharsets
 import kotlin.jvm.optionals.getOrNull
 import kotlin.math.max
-import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 
@@ -191,7 +190,6 @@ class RegistrationViewModel : ViewModel() {
   fun setCaptchaResponse(token: String) {
     store.update {
       it.copy(
-        registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_COMPLETED,
         captchaToken = token
       )
     }
@@ -218,18 +216,6 @@ class RegistrationViewModel : ViewModel() {
   fun incrementIncorrectCodeAttempts() {
     store.update {
       it.copy(incorrectCodeAttempts = it.incorrectCodeAttempts + 1)
-    }
-  }
-
-  fun addPresentedChallenge(challenge: Challenge) {
-    store.update {
-      it.copy(challengesPresented = it.challengesPresented.plus(challenge))
-    }
-  }
-
-  fun removePresentedChallenge(challenge: Challenge) {
-    store.update {
-      it.copy(challengesPresented = it.challengesPresented.minus(challenge))
     }
   }
 
@@ -317,14 +303,8 @@ class RegistrationViewModel : ViewModel() {
       }
 
       if (!validSession.allowedToRequestCode) {
-        if (System.currentTimeMillis().milliseconds > validSession.nextVerificationAttempt) {
-          store.update {
-            it.copy(registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED)
-          }
-        } else {
-          Log.i(TAG, "Not allowed to request code! Remaining challenges: ${validSession.challengesRequested.joinToString()}")
-          handleSessionStateResult(context, ChallengeRequired(validSession.challengesRequested))
-        }
+        Log.i(TAG, "Not allowed to request code! Remaining challenges: ${validSession.challengesRequested.joinToString()}")
+        handleSessionStateResult(context, ChallengeRequired(validSession.challengesRequested))
         return@launch
       }
 
@@ -410,6 +390,8 @@ class RegistrationViewModel : ViewModel() {
           registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED
         )
       }
+    } else {
+      Log.i(TAG, "SMS code request failed: ${codeRequestResponse::class.simpleName}")
     }
   }
 
@@ -427,6 +409,7 @@ class RegistrationViewModel : ViewModel() {
       mcc = mccMncProducer.mcc,
       mnc = mccMncProducer.mnc,
       successListener = { sessionData ->
+        Log.i(TAG, "[getOrCreateValidSession] Challenges requested: ${sessionData.challengesRequested}", true)
         store.update {
           it.copy(
             sessionId = sessionData.sessionId,
@@ -456,7 +439,7 @@ class RegistrationViewModel : ViewModel() {
     val captchaToken = store.value.captchaToken ?: throw IllegalStateException("Can't submit captcha token if no captcha token is set!")
 
     store.update {
-      it.copy(captchaToken = null)
+      it.copy(captchaToken = null, challengeInProgress = true, inProgress = true)
     }
 
     viewModelScope.launch {
@@ -466,13 +449,19 @@ class RegistrationViewModel : ViewModel() {
       Log.d(TAG, "Captcha token submitted.", true)
 
       handleSessionStateResult(context, captchaSubmissionResult)
+
+      store.update { it.copy(challengeInProgress = false) }
+
+      if (captchaSubmissionResult is Success) {
+        requestSmsCode(context)
+      } else {
+        setInProgress(false)
+      }
     }
   }
 
   fun requestAndSubmitPushToken(context: Context) {
     Log.v(TAG, "validatePushToken()")
-
-    addPresentedChallenge(Challenge.PUSH)
 
     val e164 = getCurrentE164() ?: throw IllegalStateException("Can't submit captcha token if no phone number is set!")
 
@@ -520,7 +509,6 @@ class RegistrationViewModel : ViewModel() {
         Log.d(TAG, "[${sessionResult.challenges.joinToString()}] registration challenges received.", true)
         store.update {
           it.copy(
-            registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_RECEIVED,
             challengesRequested = sessionResult.challenges
           )
         }

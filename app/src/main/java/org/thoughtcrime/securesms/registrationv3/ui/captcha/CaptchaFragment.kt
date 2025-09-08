@@ -10,8 +10,6 @@ import android.os.Bundle
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
 import androidx.navigation.fragment.findNavController
 import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.LoggingFragment
@@ -23,12 +21,6 @@ import org.thoughtcrime.securesms.registration.fragments.RegistrationConstants
 abstract class CaptchaFragment : LoggingFragment(R.layout.fragment_registration_captcha) {
 
   private val binding: FragmentRegistrationCaptchaBinding by ViewBinderDelegate(FragmentRegistrationCaptchaBinding::bind)
-
-  private val backListener = object : OnBackPressedCallback(true) {
-    override fun handleOnBackPressed() {
-      handleUserExit()
-    }
-  }
 
   @SuppressLint("SetJavaScriptEnabled")
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,20 +34,14 @@ abstract class CaptchaFragment : LoggingFragment(R.layout.fragment_registration_
         if (url.startsWith(RegistrationConstants.SIGNAL_CAPTCHA_SCHEME)) {
           val token = url.substring(RegistrationConstants.SIGNAL_CAPTCHA_SCHEME.length)
           handleCaptchaToken(token)
-          backListener.isEnabled = false
           findNavController().navigateUp()
           return true
         }
         return false
       }
     }
-    requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner) {
-      handleUserExit()
-    }
     binding.registrationCaptchaWebView.loadUrl(BuildConfig.SIGNAL_CAPTCHA_URL)
   }
 
   abstract fun handleCaptchaToken(token: String)
-
-  abstract fun handleUserExit()
 }

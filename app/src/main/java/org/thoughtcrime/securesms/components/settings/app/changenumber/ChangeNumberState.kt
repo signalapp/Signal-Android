@@ -35,10 +35,9 @@ data class ChangeNumberState(
   val challengesPresented: Set<Challenge> = emptySet(),
   val allowedToRequestCode: Boolean = false,
   val oldCountry: Country? = null,
-  val newCountry: Country? = null
-) {
-  val challengesRemaining: List<Challenge> = challengesRequested.filterNot { it in challengesPresented }
-}
+  val newCountry: Country? = null,
+  val challengeInProgress: Boolean = false
+)
 
 sealed interface ChangeNumberOutcome {
   data object RecoveryPasswordWorked : ChangeNumberOutcome

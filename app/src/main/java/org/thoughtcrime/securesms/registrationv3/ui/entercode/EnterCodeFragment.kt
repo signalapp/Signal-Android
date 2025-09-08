@@ -140,8 +140,8 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
 
       if (sharedState.challengesRequested.contains(Challenge.CAPTCHA) && sharedState.captchaToken.isNotNullOrBlank()) {
         sharedViewModel.submitCaptchaToken(requireContext())
-      } else if (sharedState.challengesRemaining.isNotEmpty()) {
-        handleChallenges(sharedState.challengesRemaining)
+      } else if (sharedState.challengesRequested.isNotEmpty() && !sharedState.challengeInProgress) {
+        handleChallenges(sharedState.challengesRequested)
       }
 
       binding.resendSmsCountDown.startCountDownTo(sharedState.nextSmsTimestamp)

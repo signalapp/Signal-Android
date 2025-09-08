@@ -5,10 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.changenumber
 
-import android.os.Bundle
-import android.view.View
 import androidx.fragment.app.activityViewModels
-import org.thoughtcrime.securesms.registration.data.network.Challenge
 import org.thoughtcrime.securesms.registration.ui.captcha.CaptchaFragment
 
 /**
@@ -16,16 +13,8 @@ import org.thoughtcrime.securesms.registration.ui.captcha.CaptchaFragment
  */
 class ChangeNumberCaptchaFragment : CaptchaFragment() {
   private val viewModel by activityViewModels<ChangeNumberViewModel>()
-  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-    super.onViewCreated(view, savedInstanceState)
-    viewModel.addPresentedChallenge(Challenge.CAPTCHA)
-  }
 
   override fun handleCaptchaToken(token: String) {
     viewModel.setCaptchaResponse(token)
-  }
-
-  override fun handleUserExit() {
-    viewModel.removePresentedChallenge(Challenge.CAPTCHA)
   }
 }
