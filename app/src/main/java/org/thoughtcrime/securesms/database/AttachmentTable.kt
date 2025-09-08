@@ -818,7 +818,8 @@ class AttachmentTable(
         $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND 
         $ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${ArchiveTransferState.NONE.value} AND
         $QUOTE = 0 AND
-        ($CONTENT_TYPE LIKE 'image%' OR $CONTENT_TYPE LIKE 'video%')
+        ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
+        $CONTENT_TYPE != 'image/svg+xml'
       """
       )
       .run()
@@ -836,7 +837,8 @@ class AttachmentTable(
         $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND 
         $ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${ArchiveTransferState.NONE.value} AND
         $QUOTE = 0 AND
-        ($CONTENT_TYPE LIKE 'image%' OR $CONTENT_TYPE LIKE 'video%')
+        ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
+        $CONTENT_TYPE != 'image/svg+xml'
       """
       )
       .run()
@@ -893,18 +895,26 @@ class AttachmentTable(
     check(state != ArchiveTransferState.COPY_PENDING) { "COPY_PENDING is not a valid transfer state for a thumbnail!" }
 
     writableDatabase.withinTransaction {
-      val thumbnailFile: String = readableDatabase
+      val thumbnailFile: String? = readableDatabase
         .select(THUMBNAIL_FILE)
         .from(TABLE_NAME)
         .where("$ID = ?", id.id)
         .run()
-        .readToSingleObject { it.requireString(THUMBNAIL_FILE) } ?: return@withinTransaction
+        .readToSingleObject { it.requireString(THUMBNAIL_FILE) }
 
-      writableDatabase
-        .update(TABLE_NAME)
-        .values(ARCHIVE_THUMBNAIL_TRANSFER_STATE to state.value)
-        .where("$THUMBNAIL_FILE = ?", thumbnailFile)
-        .run()
+      if (thumbnailFile != null) {
+        writableDatabase
+          .update(TABLE_NAME)
+          .values(ARCHIVE_THUMBNAIL_TRANSFER_STATE to state.value)
+          .where("$THUMBNAIL_FILE = ?", thumbnailFile)
+          .run()
+      } else {
+        writableDatabase
+          .update(TABLE_NAME)
+          .values(ARCHIVE_THUMBNAIL_TRANSFER_STATE to state.value)
+          .where("$ID = ?", id)
+          .run()
+      }
     }
   }
 
@@ -3012,6 +3022,7 @@ class AttachmentTable(
             $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
             $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value} AND 
             ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
+            $CONTENT_TYPE != 'image/svg+xml' AND
             ${getMessageDoesNotExpireWithinTimeoutClause(tablePrefix = "m")}
         )
         """
@@ -3217,7 +3228,8 @@ class AttachmentTable(
             $ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${state.value} AND
             $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND
             $QUOTE = 0 AND
-            ($CONTENT_TYPE LIKE 'image%' OR $CONTENT_TYPE LIKE 'video%')
+            ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
+            $CONTENT_TYPE != 'image/svg+xml'
         )
         """
       )
