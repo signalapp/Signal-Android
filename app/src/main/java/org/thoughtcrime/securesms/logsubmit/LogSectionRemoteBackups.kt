@@ -60,7 +60,7 @@ class LogSectionRemoteBackups : LogSection {
       output.append("IAP redemption stage (or null):    ${inAppPayment.data.redemption?.stage}\n")
       output.append("IAP error type (or null):          ${inAppPayment.data.error?.type}\n")
       output.append("IAP cancellation reason (or null): ${inAppPayment.data.cancellation?.reason}\n")
-      output.append("IAP price:                         ${inAppPayment.data.amount?.toFiatMoney()?.let { FiatMoneyUtil.format(context.resources, it)} ?: "Not available" }")
+      output.append("IAP price:                         ${inAppPayment.data.amount?.toFiatMoney()?.let { FiatMoneyUtil.format(context.resources, it)} ?: "Not available" }\n")
     } else {
       output.append("No in-app payment data available.\n")
     }
