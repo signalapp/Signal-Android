@@ -135,7 +135,9 @@ class BackupDeleteJob private constructor(
   }
 
   override fun onFailure() {
-    if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
+    if (SignalStore.backup.deletionState.isIdle()) {
+      Log.w(TAG, "Backup is idle. Not marking a deletion.")
+    } else if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
       Log.w(TAG, "BackupDeleteFailure occurred while awaiting media download, ignoring.")
     } else {
       SignalStore.backup.deletionState = DeletionState.FAILED
