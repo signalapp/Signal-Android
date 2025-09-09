@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.keyvalue.EmojiValues
 import org.thoughtcrime.securesms.keyvalue.InAppPaymentValues
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
 import org.thoughtcrime.securesms.keyvalue.RegistrationValues
+import org.thoughtcrime.securesms.keyvalue.SettingsValues
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.SvrValues
 import kotlin.reflect.KClass
@@ -53,6 +54,9 @@ class MockSignalStoreRule(private val relaxed: Set<KClass<*>> = emptySet()) : Ex
   lateinit var backup: BackupValues
     private set
 
+  lateinit var settings: SettingsValues
+    private set
+
   override fun before() {
     account = mockk(relaxed = relaxed.contains(AccountValues::class), relaxUnitFun = true)
     phoneNumberPrivacy = mockk(relaxed = relaxed.contains(PhoneNumberPrivacyValues::class), relaxUnitFun = true)
@@ -61,6 +65,7 @@ class MockSignalStoreRule(private val relaxed: Set<KClass<*>> = emptySet()) : Ex
     emoji = mockk(relaxed = relaxed.contains(EmojiValues::class), relaxUnitFun = true)
     inAppPayments = mockk(relaxed = relaxed.contains(InAppPaymentValues::class), relaxUnitFun = true)
     backup = mockk(relaxed = relaxed.contains(BackupValues::class), relaxUnitFun = true)
+    settings = mockk(relaxed = relaxed.contains(SettingsValues::class), relaxUnitFun = true)
 
     mockkObject(SignalStore)
     every { SignalStore.account } returns account
@@ -70,6 +75,7 @@ class MockSignalStoreRule(private val relaxed: Set<KClass<*>> = emptySet()) : Ex
     every { SignalStore.emoji } returns emoji
     every { SignalStore.inAppPayments } returns inAppPayments
     every { SignalStore.backup } returns backup
+    every { SignalStore.settings } returns settings
   }
 
   override fun after() {

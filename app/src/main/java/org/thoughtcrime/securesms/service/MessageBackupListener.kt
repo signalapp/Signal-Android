@@ -6,12 +6,14 @@
 package org.thoughtcrime.securesms.service
 
 import android.content.Context
+import androidx.annotation.VisibleForTesting
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.toMillis
 import java.time.LocalDateTime
 import java.util.Random
+import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.minutes
 
 class MessageBackupListener : PersistentAlarmManagerListener() {
@@ -19,8 +21,14 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
     return true
   }
 
-  override fun getNextScheduledExecutionTime(context: Context): Long {
-    return SignalStore.backup.nextBackupTime
+  @VisibleForTesting
+  public override fun getNextScheduledExecutionTime(context: Context): Long {
+    val nextTime = SignalStore.backup.nextBackupTime
+    return if (nextTime > (System.currentTimeMillis() + 2.days.inWholeMilliseconds)) {
+      setNextBackupTimeToIntervalFromNow()
+    } else {
+      nextTime
+    }
   }
 
   override fun onAlarm(context: Context, scheduledTime: Long): Long {
@@ -40,6 +48,7 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
       }
     }
 
+    @VisibleForTesting
     @JvmStatic
     fun getNextDailyBackupTimeFromNowWithJitter(now: LocalDateTime, hour: Int, minute: Int, maxJitterSeconds: Int, randomSource: Random = Random()): LocalDateTime {
       var next = now.withHour(hour).withMinute(minute).withSecond(0)
