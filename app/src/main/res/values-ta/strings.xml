@@ -1130,7 +1130,7 @@
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">உங்களின் மெசேஜ்களையும், கடைசி 45 நாட்களின் ஊடகத்தையும் இடமாற்றவும்</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Transfer your text messages and media</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">உங்களின் உரை செய்திகள் மற்றும் ஊடகத்தை இடமாற்றுங்கள்</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">இடமாற்றம் செய்ய வேண்டாம்</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -5359,7 +5359,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">உங்கள் சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகளின் சந்தாவை புதுப்பிக்கவும்</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">பேக்கப்பை நிறைவு செய்ய முடியவில்லை</string>
     <!-- String alerting user that backup redemption -->
@@ -7724,7 +7724,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">அனைத்தையும் மறு</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title">சிக்னலின் பாதுகாப்பான காப்புப்பிரதிகளை ஆன் செய்யுங்கள்</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">புதிய தொலைபேசியைப் பெறும்போது அல்லது சிக்னலை மீண்டும் நிறுவும் போது எந்த செய்தியையும் தவறவிடாதீர்கள்.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7733,7 +7733,7 @@
     <string name="TurnOnSignalBackups__not_now">இப்போது வேண்டாம்</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
-    <string name="VerifyBackupKey__title">Verify your recovery key</string>
+    <string name="VerifyBackupKey__title">உங்கள் மீட்புக் குறியீட்டைச் சரிபார்க்கவும்</string>
     <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__body">உங்கள் குறியீட்டை நீங்கள் அறிந்திருக்கிறீர்கள் என்பதை உறுதிப்படுத்த, அவ்வப்போது அதனைச் சரிபார்க்கும்படி உங்களிடம் கேட்போம்</string>
     <!-- Button of a megaphone that will take users to the verify recovery key screen -->
@@ -7741,7 +7741,7 @@
     <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">இப்போது வேண்டாம்</string>
     <!-- Snackbar text shown when the recovery key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Recovery key correct. Keep your key safe.</string>
+    <string name="VerifyBackupKey__backup_key_correct">மீட்புக் குறியீடு சரியானது. உங்கள் குறியீட்டைப் பாதுகாப்பாக வைத்திருங்கள்.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">ஒரு வாரத்தில் நாங்கள் மீண்டும் உங்களிடம் கேட்போம்.</string>
 
@@ -7888,7 +7888,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">உங்கள் பேமெண்ட் முறையுடன் சந்தாவை மீட்டெடுக்க முடியவில்லை. உங்கள் ஊடகத்தை தொடர்ந்து காப்புப் பிரதி எடுக்க, உங்களிடம் செயலில் உள்ள சந்தா இருக்க வேண்டும்.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Secure Backups plan.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">சிக்னலின் இலவச பாதுகாப்பான காப்புப்பிரதிகள் திட்டத்தை நீங்கள் தொடர்ந்து அணுகுவீர்கள்.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">பேக்கப்பை நிறைவு செய்ய முடியவில்லை</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7957,7 +7957,7 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">மீடியாவை மீட்டமைக்கிறது</string>
     <!-- Status title for banner when user is canceling restore media from a backup -->
-    <string name="BackupStatus__cancel_restore_media">Canceling media restore</string>
+    <string name="BackupStatus__cancel_restore_media">ஊடக மீட்டமைப்பை ரத்துசெய்கிறது</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">ஊடகத்தை மீட்டமைப்பது இடைநிறுத்தப்பட்டது</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8053,13 +8053,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">பயன்படுத்தப்படாத மீடியா ஆஃப்லோட் செய்யப்படும், ஆனால் அவற்றை எப்போது வேண்டுமானாலும் உங்கள் காப்புப்பிரதியிலிருந்து பதிவிறக்கம் செய்யலாம்.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">சிக்லின் பாதுகாப்பான காப்புப் பிரதிகளின் கட்டண அடுக்குடன் மட்டுமே சேமிப்பக உகந்ததாக்கலைப் பயன்படுத்த முடியும். உங்கள் காப்புப் பிரதி சந்தா இன்னும் செயலாக்கத்தில் உள்ளது ஆனால் இன்னும் செயல்படத் தொடங்கவில்லை. பின்னர் மீண்டும் முயலவும்.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">இந்த அம்சத்தை இயக்க அப்கிரேட் செய்யவும்</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Upgrade your backup plan to start using this feature.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">சிக்லின் பாதுகாப்பான காப்புப் பிரதிகளின் கட்டண அடுக்குடன் மட்டுமே சேமிப்பக உகந்ததாக்கலைப் பயன்படுத்த முடியும். இந்த அம்சத்தைப் பயன்படுத்தத் தொடங்க, உங்கள் காப்புப்பிரதித் திட்டத்தைத் தரமேற்றவும்.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">மாதத்திற்கு %1$s க்கு சப்ஸ்கிரைப் செய்க</string>
 
@@ -8078,7 +8078,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">இந்த மீடியா இனி கிடைக்கப்பெறாது</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Secure Backups and choose the paid tier.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">உங்கள் எல்லா ஊடகத்தையும் காப்புப் பிரதி எடுக்கத் தொடங்க, சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகள் அம்சத்தைச் செயல்படுத்தி, கட்டண அடுக்கைத் தேர்ந்தெடுங்கள்.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">தொடர்க</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8123,9 +8123,11 @@
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">பதிவேற்றத்தை ரத்துசெய்</string>
     <!-- Displayed on the title bar for Signal Secure Backups -->
-    <string name="RemoteBackupsSettingsFragment__secure_backups">Secure Backups</string>
+    <string name="RemoteBackupsSettingsFragment__secure_backups">பாதுகாப்பான காப்புப் பிரதிகள்</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Secure Backups</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகள்</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">Off</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">அனுமதி தேவை</string>
     <!-- Row label to launch payment history screen -->
@@ -8137,7 +8139,7 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">காப்புப்பிரதி அளவு</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__calculating">Calculating…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">கணக்கிடுகிறது…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">காப்புப்பிரதி கால இடைவெளி</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
@@ -8145,9 +8147,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">செல்லுலாரைப் பயன்படுத்தி காப்புப்பிரதி எடுத்தல்</string>
     <!-- Row label for viewing recovery key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View recovery key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">மீட்புக் குறியீட்டை காண்க</string>
     <!-- Prompt title for unlocking device to view recovery key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view recovery key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">மீட்புக் குறியீட்டைக் காண, தடை நீக்கவும்</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">உங்கள் குறியீட்டைக் காண, அது நீங்கள் தான் என்பதை உறுதிப்படுத்தவும்</string>
     <!-- Row label for cancelling and deleting backup -->
@@ -8163,7 +8165,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ஒரு இரவிற்குள் காப்புப்பிரதி உருவாக்கப்படும்.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New recovery key created</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">புதிய மீட்புக் குறியீடு உருவாக்கப்பட்டது</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">சந்தா செயலில் இல்லை</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8241,11 +8243,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">உங்கள் காப்புப்பிரதியின் அளவைப் பொறுத்து, இதற்கு நீண்ட நேரம் ஆகலாம். பதிவிறக்கம் நடைபெறும் போது நீங்கள் வழக்கம் போல் உங்கள் ஃபோனைப் பயன்படுத்தலாம்.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Secure Backups.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">உங்கள் சந்தா இந்தச் சாதனத்தில் கிடைக்கப்பெறவில்லை. சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகளைத் தொடர்ந்து உபயோகிக்கப் புதுப்பியுங்கள்.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Your subscription on this device is valid for the next %1$d day. Renew to continue using Signal Secure Backups</item>
-        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Secure Backups</item>
+        <item quantity="one">இந்தச் சாதனத்தில் உங்கள் சந்தா அடுத்த %1$d நாளுக்குச் செல்லுபடியாகும். சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகள் அம்சத்தைத் தொடர்ந்து உபயோகிக்கப் புதுப்பியுங்கள்</item>
+        <item quantity="other">இந்தச் சாதனத்தில் உங்கள் சந்தா அடுத்த %1$d நாட்களுக்குச் செல்லுபடியாகும். சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகள் அம்சத்தைத் தொடர்ந்து உபயோகிக்கப் புதுப்பியுங்கள்</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">மீண்டும் சந்தா சேர்க்க</string>
@@ -8368,9 +8370,9 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">உங்களின் மீட்புக் குறியீடு</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">உங்கள் மீட்பு குறியீடானது 64 இலக்கக் குறியீடாகும், இது சிக்னலை நீங்கள் மீண்டும் நிறுவும்போது உங்கள் காப்புப் பிரதியை மீட்டமைக்க உதவுகிறது.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">உங்கள் குறியீட்டை மறந்துவிட்டால், உங்கள் காப்புப்பிரதியை மீட்டெடுக்க முடியாது. உங்கள் காப்புப்பிரதியை மீட்டெடுக்க சிக்னல் உங்களுக்கு உதவாது.</string>
     <!-- Action button label -->
@@ -8378,7 +8380,7 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your recovery key</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">உங்கள் மீட்புக் குறியீட்டைப் பதிவுசெய்க</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">உங்கள் கணக்கு மற்றும் தரவை மீட்டெடுக்க இந்தக் குறியீடு தேவை. இந்தக் குறியீட்டைப் பாதுகாப்பான இடத்தில் சேமித்து வைக்கவும். நீங்கள் அதை இழந்துவிட்டால், உங்கள் கணக்கை மீட்டெடுக்க முடியாது.</string>
     <!-- Copy to clipboard button label -->
@@ -8388,9 +8390,9 @@
     <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">கடவுச்சொல் மேலாளரில் சேமிக்கவா?</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your recovery key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">நீங்கள் பாதுகாப்பானது என்று நம்பும் கடவுச்சொல் மேலாளரில் மட்டுமே உங்கள் மீட்புக் குறியீட்டைச் சேமித்து வையுங்கள். உங்களுக்கு எந்தக் கடவுச்சொல் மேலாளர் பொருத்தமானது என்பது குறித்துச் சிக்னல் எந்தப் பரிந்துரையும் செய்யாது.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Secure Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகள்</string>
     <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">உங்கள் கடவுச்சொல் மேலாளரில் சேமிக்கவும்</string>
     <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
@@ -8418,11 +8420,11 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">மீடியாவை இப்போதே பதிவிறக்குக</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new recovery key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">புதிய மீட்புக் குறியீட்டை உருவாக்க, நீங்கள் \"சேமிப்பகத்தை மேம்படுத்துதல்\" அம்சத்தை ஆஃப் செய்ய வேண்டும், மேலும் உங்கள் ஊடகப் பதிவிறக்கம் செய்யப்படும் வரை காத்திருக்க வேண்டும். பதிவிறக்கம் முடிந்ததும், நீங்கள் ஒரு புதிய குறியீட்டை உருவாக்கலாம்.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">ஆஃப் செய்துவிட்டு, பதிவிறக்கவும்</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new recovery key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">புதிய மீட்பு குறியீட்டை உருவாக்கவும்</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">உங்கள் குறியீட்டை வேறு யாராவது அறிந்துகொண்டால் மட்டுமே புதிய குறியீட்டை உருவாக்குவது அவசியம். மீடியா உட்பட உங்கள் காப்புப்பிரதியை மீண்டும் பதிவேற்ற வேண்டும். நீங்கள் \"சேமிப்பகத்தை மேம்படுத்துதல்\" அம்சத்தைப் பயன்படுத்தினால், முதலில் ஆஃப்லோட் செய்யப்பட்ட மீடியாவை பதிவிறக்கம் செய்ய வேண்டும்.</string>
 
@@ -8430,27 +8432,27 @@
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">குறியீட்டு உருவாக்கத்தை ரத்துசெய்யவா?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new recovery key won\'t be created unless you confirm it.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">நீங்கள் உறுதிப்படுத்தாவிட்டால் உங்கள் புதிய மீட்புக் குறியீடு உருவாக்கப்படாது.</string>
     <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">குறியீட்டை உறுதிப்படுத்துக</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">குறியீட்டு உருவாக்கத்தை ரத்துசெய்க</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">உங்கள் மீட்புக் குறியீட்டை உறுதிப்படுத்துக</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the recovery key that you just recorded</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">நீங்கள் தற்போது பதிவுசெய்த உங்கள் மீட்புக் குறியீட்டை உள்ளிடுங்கள்</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">மீட்புக் குறியீடு</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">தவறான மீட்புக் குறியீடு</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">குறியீட்டைப் மீண்டும் காண்க</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">அடுத்து</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">Enter your recovery key</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">உங்கள் மீட்புக் குறியீட்டை உள்ளிடுங்க்ள</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">நீங்கள் காப்புப்பிரதிகளைச் செயல்படுத்தும்போது நீங்கள் பதிவுசெய்த 64 இலக்க குறியீட்டை உள்ளிடவும்.</string>
     <!-- Button text when you forget your recovery key -->
@@ -8530,7 +8532,7 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">இந்தச் சாதனத்தில் உங்கள் சிக்னல் கணக்கு மற்றும் மெசேஜ் வரலாற்றைப் பெறவும்.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Secure Backups</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகளில்இருந்து</string>
     <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">உங்கள் இலவச அல்லது கட்டண சிக்னல் காப்புப்பிரதி திட்டம்</string>
     <!-- Option title for restoring via a local backup folder -->
@@ -8550,39 +8552,39 @@
     <string name="RestoreLocalBackup_subtitle">உங்கள் சாதனத்தில் நீங்கள் சேமித்த காப்புப்பிரதியிலிருந்து மெசேஜ்களை மீட்டெடுக்கவும். இப்போது மீட்டெடுக்கப்படவில்லை எனில், பின்னர் மீட்டெடுக்க முடியாது.</string>
 
     <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Enter your recovery key</string>
+    <string name="EnterBackupKey_title">உங்கள் மீட்புக் குறியீட்டை உள்ளிடுங்கள்</string>
     <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">உங்கள் மீட்புக் குறியீடு என்பது உங்கள் கணக்கையும் தரவையும் மீட்டெடுக்க உதவும் 64 இலக்கக் குறியீடாகும்.</string>
     <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">No recovery key?</string>
+    <string name="EnterBackupKey_no_backup_key">மீட்புக் குறியீடு இல்லையா?</string>
     <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Recovery key</string>
+    <string name="EnterBackupKey_backup_key">மீட்புக் குறியீடு</string>
     <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your recovery key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">64 இலக்கம் கொண்ட மீட்புக் குறியீடு இல்லாமல் காப்புப் பிரதிகளை மீட்டெடுக்க முடியாது. உங்கள் காப்புப்பிரதி குறியீட்டை நீங்கள் இழந்திருந்தால், உங்கள் காப்புப் பிரதியை மீட்டெடுக்க சிக்னலால் உதவ இயலாது.</string>
     <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your recovery key in Settings &gt; Backups. Then tap View recovery key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">உங்களிடம் பழைய சாதனம் இருந்தால், அமைப்புகள் &gt; காப்புப்பிரதிகள் என்பதில் இருக்கும் உங்கள் மீட்புக் குறியீட்டைப் பார்க்க முடியும். பின்னர் மீட்புக் குறியீட்டைக் காண்க என்பதைத் தட்டவும்.</string>
     <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">மேலும் அறிக</string>
     <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">தவிர்த்து, மீட்டெடுக்க வேண்டாம்</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect recovery key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">தவறான மீட்புக் குறியீடு</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal Secure Backups. Backups can not be recovered without this key.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகளைச் செயல்படுத்தும் போது நீங்கள் சேமித்த அதே தொலைபேசி எண் மற்றும் 64 எழுத்து மீட்பு குறியீட்டுடன் நீங்கள் பதிவு செய்கிறீர்கள் என்பதை உறுதிப்படுத்திக் கொள்ளுங்கள். இந்தக் குறியீடு இல்லாமல் காப்புப் பிரதிகளை மீட்டெடுக்க முடியாது. இந்தக் குறியீடு இல்லாமல் காப்புப் பிரதிகளை மீட்டெடுக்க முடியாது.</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">மீண்டும் முயற்சிக்கவும்</string>
     <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Recovery key help</string>
+    <string name="EnterBackupKey_backup_key_help">மீட்புக் குறியீடு உதவி</string>
     <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect recovery key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_error">தவறான மீட்புக் குறியீடு</string>
     <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">மிக நீளமாக உள்ளது (%1$d/%2$d)</string>
     <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Invalid recovery key</string>
+    <string name="EnterBackupKey_invalid_backup_key_error">தவறான மீட்புக் குறியீடு</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">காப்புப்பிரதி கிடைக்கவில்லை</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The recovery key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">நீங்கள் உள்ளீடு செய்த மீட்பு குறியீடு சரியானது, ஆனால் அதனுடன் தொடர்புடைய காப்புப் பிரதி எதுவும் இல்லை. நீங்கள் பழைய தொலைபேசியை இன்னும் வைத்திருந்தால், காப்புப் பிரதிகள் இயக்கப்பட்டிருப்பதை உறுதிசெய்து, காப்புப் பிரதி நிறைவு செய்யப்பட்டது என்பதை உறுதிப்படுத்தி, மீண்டும் முயலுங்கள்.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">மீட்டமைப்பதைத் தவிர்</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8661,7 +8663,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">மீட்டமைக்க காப்புப்பிரதி இல்லை</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Secure Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">நீங்கள் iPhone இலிருந்து Androidக்குச் செல்வதால், உங்கள் பழைய சாதனத்தில் சிக்னலின் பாதுகாப்பான காப்புப் பிரதிகளைச் செயல்படுத்துவதே உங்கள் மெசேஜ்களையும் ஊடகத்தையும் இடமாற்றுவதற்கான ஒரே வழி.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">உங்களின் பழைய சாதனத்தில் சிக்னலைத் திறந்திடுங்கள்</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->

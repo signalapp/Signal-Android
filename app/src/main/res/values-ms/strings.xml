@@ -1108,7 +1108,7 @@
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Pindahkan mesej teks anda dan media dari 45 hari yang lalu dengan mudah</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Transfer your text messages and media</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Pindahkan mesej teks dan media anda</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Jangan pindahkan</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -5228,7 +5228,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Perbaharui langganan Sandaran Selamat Signal anda</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Tidak dapat melengkapkan sandaran</string>
     <!-- String alerting user that backup redemption -->
@@ -7553,7 +7553,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Tolak semua</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title">Hidupkan Sandaran Selamat Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Mesej tidak akan pernah hilang apabila anda mendapat telefon baharu atau memasang semula Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7562,7 +7562,7 @@
     <string name="TurnOnSignalBackups__not_now">Bukan sekarang</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
-    <string name="VerifyBackupKey__title">Verify your recovery key</string>
+    <string name="VerifyBackupKey__title">Sahkan kunci pemulihan anda</string>
     <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__body">Kami akan sesekali meminta anda mengesahkan kunci anda untuk memastikan anda masih mengingatinya</string>
     <!-- Button of a megaphone that will take users to the verify recovery key screen -->
@@ -7570,7 +7570,7 @@
     <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">Bukan sekarang</string>
     <!-- Snackbar text shown when the recovery key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Recovery key correct. Keep your key safe.</string>
+    <string name="VerifyBackupKey__backup_key_correct">Kunci pemulihan betul. Pastikan kunci anda selamat.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Kami akan bertanya anda semula dalam seminggu.</string>
 
@@ -7715,7 +7715,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Langganan anda tidak dapat diperbaharui dengan kaedah pembayaran anda. Untuk meneruskan sandaran media, anda memerlukan langganan yang aktif.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Secure Backups plan.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Anda akan terus mendapat akses kepada pelan percuma Sandaran Selamat Signal.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Tidak dapat melengkapkan sandaran</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7783,7 +7783,7 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Memulihkan media</string>
     <!-- Status title for banner when user is canceling restore media from a backup -->
-    <string name="BackupStatus__cancel_restore_media">Canceling media restore</string>
+    <string name="BackupStatus__cancel_restore_media">Membatalkan pemulihan media</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">Pemulihan media dijeda</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -7879,13 +7879,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Media yang tidak digunakan akan dialih keluar, tetapi boleh dimuat turun semula daripada sandaran anda pada bila-bila masa.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Pengoptimuman storan hanya boleh digunakan dengan Sandaran Selamat Signal berbayar. Langganan sandaran anda masih diproses dan belum lagi aktif. Sila cuba lagi nanti.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Naik taraf untuk mendayakan ciri ini</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Upgrade your backup plan to start using this feature.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Pengoptimuman storan hanya boleh digunakan dengan Sandaran Selamat Signal berbayar. Naik taraf pelan sandaran anda untuk mula menggunakan ciri ini.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Langgan dengan %1$s/bulan</string>
 
@@ -7903,7 +7903,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Media ini tidak lagi tersedia</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Secure Backups and choose the paid tier.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Untuk mula membuat sandaran semua media anda, dayakan Sandaran Selamat Signal dan pilih berbayar.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Teruskan</string>
     <!-- Secondary action button on bottom sheet -->
@@ -7946,9 +7946,11 @@
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">Batalkan muat naik</string>
     <!-- Displayed on the title bar for Signal Secure Backups -->
-    <string name="RemoteBackupsSettingsFragment__secure_backups">Secure Backups</string>
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Sandaran Selamat</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Secure Backups</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Sandaran Selamat Signal</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">Off</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Pengesahan diperlukan</string>
     <!-- Row label to launch payment history screen -->
@@ -7960,7 +7962,7 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Saiz sandaran</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__calculating">Calculating…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">Mengira…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Kekerapan sandaran</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
@@ -7968,9 +7970,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Sandarkan menggunakan selular</string>
     <!-- Row label for viewing recovery key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View recovery key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Lihat kunci pemulihan</string>
     <!-- Prompt title for unlocking device to view recovery key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view recovery key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Buka kunci untuk melihat kunci pemulihan</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">Untuk melihat kunci anda, sahkan identiti anda</string>
     <!-- Row label for cancelling and deleting backup -->
@@ -7986,7 +7988,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Sandaran akan dibuat semalaman.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New recovery key created</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Kunci pemulihan baharu dicipta</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Langganan tidak aktif</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8064,10 +8066,10 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Bergantung pada saiz sandaran anda, ini mungkin mengambil masa yang lama. Anda boleh menggunakan telefon anda seperti biasa semasa sandaran dilakukan.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Secure Backups.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Langganan anda tidak ditemui pada peranti ini. Perbaharui untuk terus menggunakan Sandaran Selamat Signal.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Secure Backups</item>
+        <item quantity="other">Langganan anda pada peranti ini sah untuk %1$d hari seterusnya. Perbaharui untuk terus menggunakan Sandaran Selamat Signal</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Langgan semula</string>
@@ -8188,9 +8190,9 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Kunci pemulihan anda</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Kunci pemulihan anda ialah kod 64 aksara yang boleh memulihkan sandaran apabila anda memasang semula Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Jika terlupa PIN, anda tidak akan dapat memulihkan sandaran. Signal tidak dapat membantu memulihkan sandaran anda.</string>
     <!-- Action button label -->
@@ -8198,7 +8200,7 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your recovery key</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Rekodkan kunci pemulihan anda</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Kunci ini diperlukan untuk memulihkan akaun dan data anda. Simpan kunci ini di tempat yang selamat. Jika anda kehilangannya, anda tidak akan dapat memulihkan akaun anda.</string>
     <!-- Copy to clipboard button label -->
@@ -8208,9 +8210,9 @@
     <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Simpan ke pengurus kata laluan?</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your recovery key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Hanya simpan kunci pemulihan anda dalam pengurus kata laluan yang anda percaya selamat. Signal tidak membuat sebarang cadangan tentang pengurus kata laluan yang sesuai untuk anda.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Secure Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Sandaran Selamat Signal</string>
     <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Disimpan ke pengurus kata laluan anda</string>
     <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
@@ -8238,11 +8240,11 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">Muat turun media</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new recovery key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Untuk mencipta kunci pemulihan baharu, anda mesti mematikan \"Optimumkan storan\" dan tunggu sehingga media anda selesai dimuat turun. Apabila muat turun selesai, anda boleh mencipta kunci baharu.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Matikan dan muat turun</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new recovery key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Cipta kunci pemulihan baharu</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Mencipta kunci baharu hanya perlu dilakukan jika ada orang lain yang mengetahui kunci anda. Anda perlu memuat naik semula sandaran anda, termasuk media. Jika anda menggunakan \"Optimumkan storan\", anda perlu memuat turun media yang telah dialih keluar terlebih dahulu.</string>
 
@@ -8250,27 +8252,27 @@
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Batalkan penciptaan kunci?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new recovery key won\'t be created unless you confirm it.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Kunci pemulihan baharu anda tidak akan dicipta melainkan anda mengesahkannya.</string>
     <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">Sahkan kunci</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">Batalkan penciptaan kunci</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Sahkan kunci pemulihan anda</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the recovery key that you just recorded</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Masukkan kunci pemulihan yang anda baru rekodkan</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Kunci pemulihan</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Kunci pemulihan salah</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Lihat kunci lagi</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Seterusnya</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">Enter your recovery key</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Masukkan kunci pemulihan anda</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Masukkan kod 64 aksara yang anda simpan semasa anda mendayakan sandaran.</string>
     <!-- Button text when you forget your recovery key -->
@@ -8348,7 +8350,7 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Dapatkan akaun Signal dan sejarah mesej anda ke peranti ini.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Secure Backups</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Daripada Sandaran Selamat Signal</string>
     <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Pelan Sandaran Signal percuma atau berbayar anda</string>
     <!-- Option title for restoring via a local backup folder -->
@@ -8368,39 +8370,39 @@
     <string name="RestoreLocalBackup_subtitle">Pulihkan mesej anda daripada sandaran yang disimpan pada peranti anda. Jika anda tidak memulihkan sekarang, anda tidak akan dapat memulihkan kemudian.</string>
 
     <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Enter your recovery key</string>
+    <string name="EnterBackupKey_title">Masukkan kunci pemulihan anda</string>
     <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">Kunci pemulihan anda ialah kod 64 aksara yang diperlukan untuk memulihkan akaun dan data anda.</string>
     <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">No recovery key?</string>
+    <string name="EnterBackupKey_no_backup_key">Tiada kunci pemulihan?</string>
     <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Recovery key</string>
+    <string name="EnterBackupKey_backup_key">Kunci pemulihan</string>
     <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your recovery key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Sandaran tidak boleh dipulihkan tanpa kod pemulihan 64 aksara. Jika anda kehilangan kunci pemulihan, Signal tidak dapat membantu memulihkan sandaran anda.</string>
     <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your recovery key in Settings &gt; Backups. Then tap View recovery key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">Jika anda masih mempunyai peranti lama, anda boleh melihat kunci pemulihan anda dalam Tetapan &gt; Sandaran. Kemudian ketik Lihat kunci pemulihan.</string>
     <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Ketahui lebih lanjut</string>
     <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Langkau dan jangan pulihkan</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect recovery key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Kunci pemulihan salah</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal Secure Backups. Backups can not be recovered without this key.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Pastikan anda mendaftar dengan nombor telefon yang sama dan kunci pemulihan 64 aksara yang anda simpan ketika mendayakan Sandaran Selamat Signal. Sandaran tidak boleh dipulihkan tanpa kunci ini.</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Cuba lagi</string>
     <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Recovery key help</string>
+    <string name="EnterBackupKey_backup_key_help">Bantuan kunci pemulihan</string>
     <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect recovery key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_error">Kunci pemulihan salah</string>
     <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">Terlalu panjang (%1$d/%2$d)</string>
     <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Invalid recovery key</string>
+    <string name="EnterBackupKey_invalid_backup_key_error">Kunci pemulihan tidak sah</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Sandaran tidak ditemui</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The recovery key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Kunci pemulihan yang anda masukkan adalah betul, tetapi tiada sandaran yang dikaitkan dengannya. Jika anda masih mempunyai telefon lama anda, pastikan sandaran diaktifkan dan satu telah selesai dibuat, kemudian cuba lagi.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Langkau pemulihan</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8479,7 +8481,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">Tiada Sandaran untuk Dipulihkan</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Secure Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">Oleh kerana anda bertukar daripada iPhone ke Android, satu-satunya cara untuk memindahkan mesej dan media anda adalah dengan mendayakan Sandaran Selamat Signal pada peranti lama anda.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Buka Signal pada peranti lama anda</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->

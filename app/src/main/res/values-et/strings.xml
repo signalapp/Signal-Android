@@ -1130,7 +1130,7 @@
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Kanna üle oma tekstisõnumid ja viimase 45 päeva meedia</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Transfer your text messages and media</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Edasta oma tekstisõnumid ja meedia</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Ära edasta</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -5359,7 +5359,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Uuenda oma Signali turvaliste varukoopia tellimust</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Varundamine ei õnnestunud</string>
     <!-- String alerting user that backup redemption -->
@@ -7724,7 +7724,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Keeldu kõigist</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title">Lülita Signali turvalised varukoopiad sisse</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Nii ei kaota sa ühtki sõnumit, kui uue telefoni saad või Signali uuesti paigaldad.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7733,7 +7733,7 @@
     <string name="TurnOnSignalBackups__not_now">Mitte praegu</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
-    <string name="VerifyBackupKey__title">Verify your recovery key</string>
+    <string name="VerifyBackupKey__title">Kinnita oma varukoopia võti</string>
     <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__body">Palume aeg-ajalt sul varukoopia võtit sisestada, et veenduda, et see sul meeles on</string>
     <!-- Button of a megaphone that will take users to the verify recovery key screen -->
@@ -7741,7 +7741,7 @@
     <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">Mitte praegu</string>
     <!-- Snackbar text shown when the recovery key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Recovery key correct. Keep your key safe.</string>
+    <string name="VerifyBackupKey__backup_key_correct">Varukoopia võti on õige. Hoia oma võtit turvaliselt.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Küsime sult nädala pärast uuesti.</string>
 
@@ -7888,7 +7888,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Sinu tellimust ei õnnestunud sinu maksemeetodiga uuendada. Meedia jätkuvaks varundamiseks on sul vaja aktiivset tellimust.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Secure Backups plan.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Sul on ka edaspidi ligipääs tasuta Signali turvaliste varukoopiate plaanile.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Varundamine ei õnnestunud</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7957,7 +7957,7 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Meedia taastamine</string>
     <!-- Status title for banner when user is canceling restore media from a backup -->
-    <string name="BackupStatus__cancel_restore_media">Canceling media restore</string>
+    <string name="BackupStatus__cancel_restore_media">Meedia taastamise tühistamine</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">Meedia taastamine on peatatud</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8053,13 +8053,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Kasutamata meedia teisaldatakse seadmevälisesse varukoopiasse, kuid saad neid igal ajal oma varukoopiast alla laadida.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Salvestusruumi saab optimeerida ainult Signali tasulise turvaliste varukoopiate tasemega. Sinu varukoopiate tellimus on töötlemisel ega ole veel aktiivne. Proovi hiljem uuesti.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Selle funktsiooni lubamiseks on vajalik uuendamine</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Upgrade your backup plan to start using this feature.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Salvestusruumi saab optimeerida ainult Signali tasulise turvaliste varukoopiate tasemega. Selle funktsiooni kasutamiseks uuenda oma varundamisplaani.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Telli hinnaga %1$s kuus</string>
 
@@ -8078,7 +8078,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">See meedia ei ole enam saadaval</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Secure Backups and choose the paid tier.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Kogu meedia varundamise alustamiseks luba Signali turvalised varukoopiad ning vali tasuline tellimus.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Jätka</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8123,9 +8123,11 @@
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">Tühista üleslaadimine</string>
     <!-- Displayed on the title bar for Signal Secure Backups -->
-    <string name="RemoteBackupsSettingsFragment__secure_backups">Secure Backups</string>
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Turvalised varukoopiad</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Secure Backups</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signali turvalised varukoopiad</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">Off</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Vajalik autentimine</string>
     <!-- Row label to launch payment history screen -->
@@ -8137,7 +8139,7 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Varukoopia suurus</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__calculating">Calculating…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">Arvutamine …</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Varundamise sagedus</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
@@ -8145,9 +8147,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Varunda mobiiliside kaudu</string>
     <!-- Row label for viewing recovery key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View recovery key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Vaata varukoopia võtit</string>
     <!-- Prompt title for unlocking device to view recovery key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view recovery key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Ava, et vaadata varukoopia võtit</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">Oma võtme vaatamiseks kinnita oma isik</string>
     <!-- Row label for cancelling and deleting backup -->
@@ -8163,7 +8165,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Varukoopia luuakse öösel.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New recovery key created</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Uus varukoopia võti loodud</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Tellimus on mitteaktiivne</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8241,11 +8243,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Olenevalt varukoopia suurusest võib selleks kuluda palju aega. Allalaadimise ajal saad oma telefoni tavapäraselt kasutada.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Secure Backups.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Sellest seadmest ei leitud sinu tellimust. Uuenda, et jätkata Signali turvaliste varukoopiate kasutamist.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Your subscription on this device is valid for the next %1$d day. Renew to continue using Signal Secure Backups</item>
-        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Secure Backups</item>
+        <item quantity="one">Sinu tellimus kehtib selles seadmes veel järgmised %1$d päeva. Uuenda, et jätkata Signali turvaliste varukoopiate kasutamist</item>
+        <item quantity="other">Sinu tellimus kehtib selles seadmes veel järgmised %1$d päeva. Uuenda, et jätkata Signali turvaliste varukoopiate kasutamist</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Telli uuesti</string>
@@ -8368,9 +8370,9 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Sinu varukoopia võti</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Sinu varukoopia võti on 64-kohaline kood, mille abil saad varukoopia taastada, kui Signali uuesti paigaldad.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Kui oma võtme unustad, ei ole sul võimalik oma varukoopiat taastada. Signal ei saa sul aidata varukoopiat taastada.</string>
     <!-- Action button label -->
@@ -8378,7 +8380,7 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your recovery key</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Pane oma varukoopia võti kirja</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Seda võtit on vaja sinu andmete ja konto taastamiseks. Hoia seda turvalises kohas. Kui selle kaotad, ei ole sul võimalik oma kontot taastada.</string>
     <!-- Copy to clipboard button label -->
@@ -8388,9 +8390,9 @@
     <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Kas salvestada paroolihaldurisse?</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your recovery key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Hoia oma varukoopia võtit ainult paroolihalduris, mille turvalisust usaldad. Signal ei anna soovitust, milline paroolihaldur sulle sobib.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Secure Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signali turvalised varukoopiad</string>
     <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Salvestatud paroolihaldurisse</string>
     <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
@@ -8418,11 +8420,11 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">Laadi meedia alla</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new recovery key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Uue varukoopia võtme loomiseks pead välja lülitama valiku „Salvestusruumi optimeerimine” ja ootama, kuni sinu meedia on alla laetud. Kui allalaadimine on lõpule viidud, saad luua uue võtme.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Lülita välja ja laadi alla</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new recovery key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Loo uus varukoopia võti</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Uue võtme loomine on vajalik ainult siis, kui keegi teine sinu võtit teab. Pead oma varukoopia, sealhulgas meedia, uuesti üles laadima. Kui kasutad valikut „Salvestusruumi optimeerimine”, pead kõigepealt seadmevälisesse varukoopiasse teisaldatud meedia alla laadima.</string>
 
@@ -8430,27 +8432,27 @@
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Tühista võtme loomine?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new recovery key won\'t be created unless you confirm it.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Uut varukoopia võtit ei looda enne, kui sa selle kinnitad.</string>
     <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">Kinnita võti</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">Tühista võtme loomine</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Kinnita oma varukoopia võti</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the recovery key that you just recorded</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Sisesta just kirja pandud varukoopia võti</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Varukoopia võti</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Vale varukoopia võti</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Vaata võtit veelkord</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Edasi</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">Enter your recovery key</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Sisesta oma varukoopia võti</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Sisesta 64-kohaline kood, mille panid varundamise lubamisel kirja.</string>
     <!-- Button text when you forget your recovery key -->
@@ -8530,7 +8532,7 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Liiguta oma Signali konto ja sõnumiajalugu sellesse seadmesse.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Secure Backups</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Signali turvalistest varukoopiatest</string>
     <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Sinu tasuta või tasuline Signali varundamisplaan</string>
     <!-- Option title for restoring via a local backup folder -->
@@ -8550,39 +8552,39 @@
     <string name="RestoreLocalBackup_subtitle">Taasta oma sõnumid sinu seadmesse salvestatud varukoopiast. Kui sa nüüd ei taasta, siis sa ei saa ka hiljem taastada.</string>
 
     <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Enter your recovery key</string>
+    <string name="EnterBackupKey_title">Sisesta oma varukoopia võti</string>
     <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">Sinu varukoopia võti on 64-kohaline kood, mida on vaja sinu andmete ja konto taastamiseks.</string>
     <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">No recovery key?</string>
+    <string name="EnterBackupKey_no_backup_key">Kas sul ei ole varukoopia võtit?</string>
     <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Recovery key</string>
+    <string name="EnterBackupKey_backup_key">Varukoopia võti</string>
     <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your recovery key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Ilma 64-kohalise koodita ei saa varukoopiat taastada. Kui oled oma varukoopia võtme kaotanud, ei saa Signal sul aidata varukoopiat taastada.</string>
     <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your recovery key in Settings &gt; Backups. Then tap View recovery key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">Kui sul on vana seade alles, saad vaadata oma varukoopia võtit, kui valid Sätted &gt; Varukoopiad. Seejärel vali „Vaata varukoopia võtit“.</string>
     <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Rohkem teavet</string>
     <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Jäta vahele ja ära taasta</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect recovery key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Vale varukoopia võti</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal Secure Backups. Backups can not be recovered without this key.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Veendu, et kasutad registreerimisel sama telefoninumbrit ja 64-kohalist varukoopia võtit, mille salvestasid Signali turvalisi varukoopiaid seadistades. Ilma selle võtmeta ei ole võimalik varukoopiaid taastada.</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Proovi uuesti</string>
     <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Recovery key help</string>
+    <string name="EnterBackupKey_backup_key_help">Varukoopia võtme abi</string>
     <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect recovery key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_error">Vale varukoopia võti</string>
     <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">Liiga pikk (%1$d/%2$d)</string>
     <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Invalid recovery key</string>
+    <string name="EnterBackupKey_invalid_backup_key_error">Kehtetu varukoopia võti</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Varukoopiat ei leitud</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The recovery key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Sinu sisestatud varukoopia võti on õige, kuid sellega ei ole seotud ühtegi varukoopiat. Kui sul on vana telefon endiselt olemas, veendu, et varundamine on lubatud ja lõpule viidud, ning proovi uuesti.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Jäta taastamine vahele</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8661,7 +8663,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">Ühtegi varukoopiat taastamiseks ei ole</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Secure Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">Kuna liigud iPhone\'ist Androidi, on ainus viis sõnumite ja meedia edastamiseks lülitada vanas seadmes sisse Signali turvalised varukoopiad.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Ava Signal oma vanas seadmes</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->

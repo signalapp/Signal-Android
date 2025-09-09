@@ -1130,7 +1130,7 @@
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Hamisha ujumbe wako wa maandishi na video na picha za siku 45 zilizopita</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Transfer your text messages and media</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Hamisha ujumbe wako wa maandishi, picha na video</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Usihamishe</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -5359,7 +5359,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Sasisha usajili wako wa Hifadhi Nakala ya Signal iliyo Salama</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Imeshindwa kumaliza nakala</string>
     <!-- String alerting user that backup redemption -->
@@ -7724,7 +7724,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Wakatalie wote</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title">Washa Hifadhi Nakala ya Signal iliyo Salama</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">Usipoteze ujumbe unapopata simu mpya au kusakinisha tena Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7733,7 +7733,7 @@
     <string name="TurnOnSignalBackups__not_now">Sio sasa</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
-    <string name="VerifyBackupKey__title">Verify your recovery key</string>
+    <string name="VerifyBackupKey__title">Thibitisha ufunguo wa kurejesha akaunti</string>
     <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__body">Mara kwa mara tutakuomba uthibitishe ufunguo wako kuhakikisha kuwa bado unaujua</string>
     <!-- Button of a megaphone that will take users to the verify recovery key screen -->
@@ -7741,7 +7741,7 @@
     <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">Sio sasa</string>
     <!-- Snackbar text shown when the recovery key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Recovery key correct. Keep your key safe.</string>
+    <string name="VerifyBackupKey__backup_key_correct">Ufunguo wa kurejesha akaunti ni sahihi. Ulinde ufunguo wako.</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">Tutakuuliza tena baada ya wiki.</string>
 
@@ -7888,7 +7888,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Usajili wako umeshindwa kusasishwa kwa kutumia njia yako ya malipo. Ili uendelee kuhifadhi nakala za picha na video unahitaji usajili unaotumika.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Secure Backups plan.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Utaendelea kuwa na uwezo wa kufikia wa mpango wa Hifadhi Nakala ya Signal iliyo Salama bila malipo.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Imeshindwa kumaliza nakala</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7957,7 +7957,7 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Inarejesha video na picha</string>
     <!-- Status title for banner when user is canceling restore media from a backup -->
-    <string name="BackupStatus__cancel_restore_media">Canceling media restore</string>
+    <string name="BackupStatus__cancel_restore_media">Inasitisha urejeshaji wa picha na video</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">Urejeshaji wa picha na video umesitishwa</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8053,13 +8053,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Picha na video ambazo hazijatumika zitahamishwa, lakini zinaweza kupakuliwa kutoka kwenye hifadhi nakala yako wakati wowote.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Uboreshaji wa hifadhi unaweza tu kutumika kwa kiwango cha kulipia cha Hifadhi Nakala ya Signal iliyo Salama. Usajili wako wa nakala ya hifadhi bado unachakata na haujaanza kutumika. Tafadhali jaribu tena baadae.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Sasisha ili kuwasha kipengele hiki</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Upgrade your backup plan to start using this feature.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Uboreshaji wa hifadhi unaweza tu kutumika kwa kiwango cha kulipia cha Hifadhi Nakala ya Signal iliyo Salama. Sasisha mpango wako wa hifadhi nakala ili uanze kutumia kipengele hiki.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Sajili kwa %1$s/mwezi</string>
 
@@ -8078,7 +8078,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Video hii haipatikani tena</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Secure Backups and choose the paid tier.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Ili uanze kuhifadhi video na picha zako zote, washa Hifadhi Nakala ya Signal iliyo Salama kisha uchague kiwango cha kulipia.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Endelea</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8123,9 +8123,11 @@
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">Sitisha upakiaji</string>
     <!-- Displayed on the title bar for Signal Secure Backups -->
-    <string name="RemoteBackupsSettingsFragment__secure_backups">Secure Backups</string>
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Dumisha usalama wa Hifadhi Nakala</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Secure Backups</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Hifadhi Nakala ya Signal iliyo Salama</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">Off</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Uthibitishaji unahitajika</string>
     <!-- Row label to launch payment history screen -->
@@ -8137,7 +8139,7 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Ukubwa wa nakala</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__calculating">Calculating…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">Inahesabu…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Masafa ya nakala</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
@@ -8145,9 +8147,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Weka nakala kwa kutumia mtandao</string>
     <!-- Row label for viewing recovery key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View recovery key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Tazama ufunguo wa kurejesha akaunti</string>
     <!-- Prompt title for unlocking device to view recovery key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view recovery key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Fungua kifaa tazama ufunguo wa kurejesha akaunti</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">Ili utazame ufunguo wako, thibitisha kuwa ni wewe</string>
     <!-- Row label for cancelling and deleting backup -->
@@ -8163,7 +8165,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Hifadhi nakala itaundwa usiku.</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New recovery key created</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Ufunguo mpya wa kurejesha akaunti umeundwa</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Usajili hautumiki</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8241,11 +8243,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Kulingana na ukubwa wa hifadhi nakala yako, hii inaweza kuchukua muda mrefu. Unaweza kutumia simu yako kama kawaida wakati upakuaji unaendelea.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Secure Backups.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Usajili wako haujapatikana katika kifaa hiki. Sasisha ili uendelee kutumia Hifadhi Nakala ya Signal iliyo Salama.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Your subscription on this device is valid for the next %1$d day. Renew to continue using Signal Secure Backups</item>
-        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Secure Backups</item>
+        <item quantity="one">Usajili wako kwenye kifaa hiki ni halali kwa siku %1$d ijayo. Sasisha ili uendelee kutumia Hifadhi Nakala ya Signal</item>
+        <item quantity="other">Usajili wako kwenye kifaa hiki ni halali kwa siku %1$d zijazo. Sasisha ili uendelee kutumia Hifadhi Nakala ya Signal</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Jisajili tena</string>
@@ -8368,9 +8370,9 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Ufunguo wako wa kurejesha akaunti</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Ufunguo wako wa kurejesha akaunti ni code ya herufi 64 zinazokuwezesha kurejesha hifadhi nakala yako unaposakinisha tena Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ukisahau ufunguo wako, hutaweza kurejesha nakala yako. Signal haiwezi kukusaidia kurejesha hifadhi nakala yako.</string>
     <!-- Action button label -->
@@ -8378,7 +8380,7 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your recovery key</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Rekodi ufunguo wako wa kurejesha akaunti</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Ufunguo huu unahitajika kurejesha akaunti na data yako. Hifadhi ufunguo huu mahali salama. Ukiipoteza, hutaweza kurejesha akaunti yako.</string>
     <!-- Copy to clipboard button label -->
@@ -8388,9 +8390,9 @@
     <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Ungependa kuhifadhi kwenye kidhibiti cha manenosiri?</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your recovery key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Hifadhi tu ufunguo wako wa kurejesha akaunti katika kidhibiti cha manenosiri ambacho unaamini ni salama. Signal haitoi mapendekezo kuhusu kidhibiti gani cha manenosiri ni sahihi kwako.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Secure Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Hifadhi Nakala ya Signal iliyo Salama</string>
     <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Hifadhi kwenye kidhibiti chako cha manenosiri</string>
     <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
@@ -8418,11 +8420,11 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">Pakua picha na video</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new recovery key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Ili uunde ufunguo mpya wa kurejesha akaunti, lazima uzime \"Boresha hifadhi\" kisha usubiri hadi picha na video zako zipakuliwe. Upakuaji utakapokuwa umekamilika, unaweza kuunda ufunguo mpya.</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Zima na upakue</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new recovery key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Unda ufunguo mpya wa kurejesha akaunti</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Kuunda ufunguo mpya ni muhimu tu ikiwa mtu mwingine anajua ufunguo wako. Utalazimika kupakia upya hifadhi nakala yako, zikiwemo picha na video. Ikiwa unatumia \"Boresha hifadhi\" itabidi kwanza upakue picha na video zilizohamishwa.</string>
 
@@ -8430,27 +8432,27 @@
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Ungependa kusitisha uthibitishaji wa funguo?</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new recovery key won\'t be created unless you confirm it.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Ufunguo wako mpya wa kurejesha akaunti hautaundwa isipokuwa uuthibitishe.</string>
     <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">Thibitisha ufunguo</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">Sitisha uundaji wa ufunguo</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Thibitisha ufunguo wako wa kurejesha akaunti</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the recovery key that you just recorded</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Weka ufunguo wako wa kurejesha akaunti ambao umetoka kurekodi hivi punde</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Ufunguo wa kurejesha akaunti</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Ufunguo wa kurejesha akaunti usio sahihi</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Angalia ufunguo tena</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Inayofuata</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">Enter your recovery key</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Weka ufunguo wako wa kurejesha akaunti</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Weka msimbo wa tarakimu 64 uliorekodi ulipowasha hifadhi nakala.</string>
     <!-- Button text when you forget your recovery key -->
@@ -8530,7 +8532,7 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Pata akaunti yako ya Signal na historia ya jumbe kwenye kifaa hiki.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Secure Backups</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Kutoka Hifadhi Nakala ya Signal iliyo Salama</string>
     <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Mpango wako wa bila malipo na wa kulipia wa Hifadhi Nakala ya Signal</string>
     <!-- Option title for restoring via a local backup folder -->
@@ -8550,39 +8552,39 @@
     <string name="RestoreLocalBackup_subtitle">Rejesha jumbe zako kutoka kwenye hifadhi nakala uliyohifadhi kwenye kifaa chako. Usiporejesha sasa hivi, hutaweza kurejesha baadaye.</string>
 
     <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Enter your recovery key</string>
+    <string name="EnterBackupKey_title">Weka ufunguo wako wa kurejesha akaunti</string>
     <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">Ufunguo wako wa kurejesha akaunti ni code ya herufi 64 inayohitajika kurejesha akaunti na data yako.</string>
     <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">No recovery key?</string>
+    <string name="EnterBackupKey_no_backup_key">Hakuna ufunguo wa kurejesha akaunti?</string>
     <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Recovery key</string>
+    <string name="EnterBackupKey_backup_key">Ufunguo wa kurejesha akaunti</string>
     <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your recovery key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Hifadhi nakala haiwezi kurejeshwa bila code yake yenye herufi 64. Ikiwa umepoteza ufunguo wako wa kurejesha akaunti Signal haiwezi kukusaidia kurejesha akaunti na data.</string>
     <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your recovery key in Settings &gt; Backups. Then tap View recovery key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">Ikiwa una kifaa chako cha zamani, unaweza tazama ufunguo wako wa kurejesha akaunti kwenye Mipangilio &gt; Hifadhi Nakala. Kisha gusa Tazama ufunguo wa kurejesha akaunti.</string>
     <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Jifunze zaidi</string>
     <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Ruka na usirejeshe</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect recovery key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Ufunguo wa kurejesha akaunti usio sahihi</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal Secure Backups. Backups can not be recovered without this key.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Hakikisha unasajili kwa kutumia namba sawa ya simu na ufunguo wa kurejesha akaunti wenye herufi 64 uliohifadhi wakati wa kuwasha Hifadhi Nakala ya Signal iliyo Salama. Nakala zilizohifadhiwa haziwezi kurejeshwa bila ufunguo huu.</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Jaribu tena</string>
     <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Recovery key help</string>
+    <string name="EnterBackupKey_backup_key_help">Usaidizi wa kurejesha akaunti</string>
     <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect recovery key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_error">Ufunguo wa kurejesha akaunti usio sahihi</string>
     <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">Ndefu sana (%1$d/%2$d)</string>
     <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Invalid recovery key</string>
+    <string name="EnterBackupKey_invalid_backup_key_error">Ufunguo wa kurejesha akaunti batili</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Nakala ya hifadhi haijapatikana</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The recovery key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Ufunguo wa kurejesha akaunti ulioingiza ni sahihi, lakini hakuna hifadhi nakala inayohusiana nayo. Ikiwa bado una simu yako ya zamani, hakikisha nakala ya hifadhi inawashwa na kwamba uhifadhi umekamilika kisha ujaribu tena.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Ruka rejesha</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8661,7 +8663,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">Hakuna Hifadhi Nakala ya Kurejesha</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Secure Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">Kwa sababu unahama kutoka iPhone kwenda Android, njia pekee ya kuhamisha ujumbe, picha na video zako ni kwa kuwasha Hifadhi Nakala ya Signal iliyo Salama kwenye kifaa chako cha zamani.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Fungua Signal kwenye kifaa chako cha zamani</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->

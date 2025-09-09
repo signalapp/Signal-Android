@@ -1108,7 +1108,7 @@
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">သင်၏ စာသားမက်ဆေ့ချ်များနှင့် သင်၏ နောက်ဆုံး မီဒီယာ 45 ရက်ကို လွှဲပြောင်းပါ</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
-    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Transfer your text messages and media</string>
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">သင်၏စာသားမက်ဆေ့ချ်များနှင့် မီဒီယာကို လွှဲပြောင်းပါ</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">မလွှဲပြောင်းပါ</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -5228,7 +5228,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renew your Signal Secure Backups subscription</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">သင်၏ Signal လုံခြုံရေးဘက်ခ်အပ် စာရင်းသွင်းမှုကို သက်တမ်းတိုးပါ</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">ဘက်ခ်အပ်လုပ်ခြင်းကို အပြီးသတ်၍မရပါ။</string>
     <!-- String alerting user that backup redemption -->
@@ -7553,7 +7553,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">အားလုံးကို ငြင်းပယ်မည်</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Turn on Signal Secure Backups</string>
+    <string name="TurnOnSignalBackups__title">Signal လုံခြုံရေးဘက်ခ်အပ်ကို ဖွင့်ပါ</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">ဖုန်းအသစ်တစ်ခုရသောအခါ သို့မဟုတ် Signal ကို ပြန်လည်ထည့်သွင်းသည့်အခါ မက်ဆေ့ချ်ဘယ်သောအခါမျှ မဆုံးရှုံးပါ။</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7562,7 +7562,7 @@
     <string name="TurnOnSignalBackups__not_now">ယခု မလုပ်သေးပါ</string>
 
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
-    <string name="VerifyBackupKey__title">Verify your recovery key</string>
+    <string name="VerifyBackupKey__title">သင်၏ ပြန်လည်ရယူရေးကီးကို အတည်ပြုပါ</string>
     <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__body">သင့်ကီးကို သင်သိနေသေးကြောင်းသေချာစေရန် သင့်အား အခါအားလျော်စွာ အတည်ပြုမေးမြန်းပါမည်။</string>
     <!-- Button of a megaphone that will take users to the verify recovery key screen -->
@@ -7570,7 +7570,7 @@
     <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
     <string name="VerifyBackupKey__not_now">ယခု မလုပ်သေးပါ</string>
     <!-- Snackbar text shown when the recovery key entered is correct. -->
-    <string name="VerifyBackupKey__backup_key_correct">Recovery key correct. Keep your key safe.</string>
+    <string name="VerifyBackupKey__backup_key_correct">ပြန်လည်ရယူရေးကီး မှန်ကန်ပါသည်။ သင့်ကီးကို လုံခြုံအောင်ထားပါ။</string>
     <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
     <string name="VerifyBackupKey__we_will_ask_again">တစ်ပတ်အတွင်း ထပ်မေးပါမည်။</string>
 
@@ -7715,7 +7715,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">သင့်ငွေပေးချေမှုနည်းလမ်းဖြင့် သင်၏ပုံမှန်လှူဒါန်းမှုကို သက်တမ်းတိုး၍မရပါ။ မီဒီယာကို ဘက်ခ်အပ်ဆက်လက်ပြုလုပ်ရန် အသက်ဝင်သော ပုံမှန်လှူဒါန်းမှုတစ်ခု လိုအပ်ပါသည်။</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">You\'ll continue to have access to the free Signal Secure Backups plan.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">အခမဲ့ Signal လုံခြုံရေးဘက်ခ်အပ် အစီအစဉ်ကို သင် ဆက်သုံးခွင့်ရှိပါမည်။</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">ဘက်ခ်အပ်လုပ်ခြင်းကို အပြီးသတ်၍မရပါ။</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7783,7 +7783,7 @@
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">မီဒီယာကို ပြန်လည်ရယူနေသည်</string>
     <!-- Status title for banner when user is canceling restore media from a backup -->
-    <string name="BackupStatus__cancel_restore_media">Canceling media restore</string>
+    <string name="BackupStatus__cancel_restore_media">မီဒီယာပြန်လည်ရယူခြင်းကို ပယ်ဖျက်ခြင်း</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">မီဒီယာပြန်လည်ရယူခြင်းကို ခေတ္တရပ်ထားသည်</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -7879,13 +7879,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">အသုံးမပြုသော မီဒီယာကို Offload လုပ်ထားမည်ဖြစ်သော်လည်း သင်၏ဘက်ခ်အပ်မှ အချိန်မရွေး ဒေါင်းလုဒ်လုပ်နိုင်ပါသည်။</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Your backups subscription is still processing and not yet active. Please try again later.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">သိုလှောင်မှု အကောင်းဆုံးချိန်ညှိခြင်းကို Signal လုံခြုံရေးဘက်ခ်အပ်၏ အခပေးပလန်ဖြင့်သာ အသုံးပြုနိုင်သည်။ သင်၏ ပုံမှန်လှူဒါန်းမှုသည် လုပ်ဆောင်ဆဲဖြစ်ပြီး အသက်မဝင်သေးပါ။ နောက်မှ ထပ်ကြိုးစားကြည့်ပါ။</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">ဤအင်္ဂါရပ်ကိုဖွင့်ရန် အဆင့်မြှင့်တင်ပါ</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Storage optimization can only be used with the paid tier of Signal Secure Backups. Upgrade your backup plan to start using this feature.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">သိုလှောင်မှု အကောင်းဆုံးချိန်ညှိခြင်းကို Signal လုံခြုံရေးဘက်ခ်အပ်၏ အခပေးပလန်ဖြင့်သာ အသုံးပြုနိုင်သည်။ ဤအင်္ဂါရပ်ကို စတင်အသုံးပြုရန် သင်၏ ဘက်ခ်အပ်အစီအစဉ်ကို အဆင့်မြှင့်တင်ပါ။</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">၁ လ %1$s ပုံမှန်လှူဒါန်းရန်</string>
 
@@ -7903,7 +7903,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">ဤမီဒီယာမရှိတော့ပါ</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">To start backing up all your media, enable Signal Secure Backups and choose the paid tier.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">သင့်မီဒီယာအားလုံးကို စတင်ဘက်ခ်အပ်လုပ်ရန် Signal လုံခြုံရေးဘက်ခ်အပ်ကိုဖွင့်ပြီး အခပေးပလန်ကို ရွေးချယ်ပါ။</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">ဆက်လုပ်ရန်</string>
     <!-- Secondary action button on bottom sheet -->
@@ -7946,9 +7946,11 @@
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">အပ်လုဒ်ကို ပယ်ဖျက်ပါ</string>
     <!-- Displayed on the title bar for Signal Secure Backups -->
-    <string name="RemoteBackupsSettingsFragment__secure_backups">Secure Backups</string>
+    <string name="RemoteBackupsSettingsFragment__secure_backups">လုံခြုံရေး ဘက်ခ်အပ်</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Secure Backups</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal လုံခြုံရေးဘက်ခ်အပ်</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">Off</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">စစ်မှန်ကြောင်းအတည်ပြုချက် လိုအပ်သည်</string>
     <!-- Row label to launch payment history screen -->
@@ -7960,7 +7962,7 @@
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">ဘက်ခ်အပ် အရွယ်အစား</string>
     <!-- Row description for backup size when waiting for it to load in from the database -->
-    <string name="RemoteBackupsSettingsFragment__calculating">Calculating…</string>
+    <string name="RemoteBackupsSettingsFragment__calculating">တွက်ချက်နေသည်…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">ဘက်ခ်အပ် အကြိမ်ရေ</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
@@ -7968,9 +7970,9 @@
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">ဆယ်လူလာသုံး၍ ဘက်ခ်အပ်လုပ်ပါ</string>
     <!-- Row label for viewing recovery key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">View recovery key</string>
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">ပြန်လည်ရယူရေးကီးကို ကြည့်ရန်</string>
     <!-- Prompt title for unlocking device to view recovery key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Unlock to view recovery key</string>
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">ပြန်လည်ရယူရေးကီးကို ကြည့်ရန် လော့ခ်ဖွင့်ပါ</string>
     <!-- Title of bottom sheet explaining that authentication is required to view your key -->
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">သင့်ကီးကို ကြည့်ရှုရန် သင်ဖြစ်ကြောင်း အတည်ပြုပါ</string>
     <!-- Row label for cancelling and deleting backup -->
@@ -7986,7 +7988,7 @@
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">ဘက်ခ်အပ်ကို ညတွင်းချင်း ဖန်တီးပါမည်။</string>
     <!-- Snackbar text displayed when user rotates AEP -->
-    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">New recovery key created</string>
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">ပြန်လည်ရယူရေးကီးအသစ်ကို ဖန်တီးထားသည်</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">ပုံမှန်လှူဒါန်းမှု အသက်မဝင်ပါ</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8064,10 +8066,10 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">သင်၏ ဘက်ခ်အပ်အရွယ်အစားပေါ်မူတည်၍ အချိန်ကြာမြင့်နိုင်သည်။ ဘက်ခ်အပ်လုပ်နေစဉ် ပုံမှန်အတိုင်း သင့်ဖုန်းကို အသုံးပြုနိုင်သည်။</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Your subscription was not found on this device. Renew to continue using Signal Secure Backups.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">သင်၏ ပုံမှန်လှူဒါန်းမှုကို ဤစက်တွင်ရှာမတွေ့ပါ။ Signal လုံခြုံရေးဘက်ခ်အပ်ကို ဆက်လက်အသုံးပြုရန် သက်တမ်းတိုးပါ။</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="other">Your subscription on this device is valid for the next %1$d days. Renew to continue using Signal Secure Backups</item>
+        <item quantity="other">ဤစက်ရှိ သင်၏ပုံမှန်လှူဒါန်းမှုသည် လာမည့် %1$d ရက်အတွက် အကျုံးဝင်ပါသည်။ Signal လုံခြုံရေးဘက်ခ်အပ်ကို ဆက်လက်အသုံးပြုရန် သက်တမ်းတိုးပါ။</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">ပြန်လည်၍ ပုံမှန်လှူဒါန်းမည်</string>
@@ -8188,9 +8190,9 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">သင်၏ ပြန်လည်ရယူရေးကီး</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">သင်၏ပြန်လည်ရယူရေးကီးသည် Signal ကို ပြန်လည်ထည့်သွင်းသောအခါ သင့်ဘက်ခ်အပ်ကို ပြန်လည်ရယူနိုင်စေမည့် စာလုံး 64 လုံးကုဒ်ဖြစ်သည်။</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">သင့် ကီးကိုမေ့သွားပါက သင်၏ဘက်ခ်အပ်ကို ပြန်လည်ရယူနိုင်တော့မည် မဟုတ်ပါ။ Signal သည် သင်၏ဘက်ခ်အပ်ကို ပြန်လည်ရယူရန် မကူညီနိုင်ပါ။</string>
     <!-- Action button label -->
@@ -8198,7 +8200,7 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Record your recovery key</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">ပြန်လည်ရယူရေးကီးကို မှတ်တမ်းတင်ပါ</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">သင့်အကောင့်နှင့် ဒေတာကို ပြန်လည်ရယူရန် ဤကီးလိုအပ်ပါသည်။ ဤကီးကို လုံခြုံသောနေရာတွင် သိမ်းဆည်းပါ။ ၎င်းကိုဆုံးရှုံးသွားပါက သင့်အကောင့်ကို ပြန်လည်ရယူနိုင်မည်မဟုတ်ပါ။</string>
     <!-- Copy to clipboard button label -->
@@ -8208,9 +8210,9 @@
     <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">စကားဝှက်စီမံရေးတွင် သိမ်းဆည်းပါမည်လား။</string>
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Only store your recovery key in a password manager that you trust is secure. Signal does not make a recommendation on which password manager is right for you.</string>
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">ပြန်လည်ရယူရေးကီးကို သင်ယုံကြည်စိတ်ချရသော စကားဝှက်စီမံရေးတွင်သာ သိမ်းဆည်းပါ။ Signal သည် သင့်အတွက် သင့်လျော်သော စကားဝှက်စီမံရေးကို အကြံပြုချက်မပေးပါ။</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Secure Backups</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal လုံခြုံရေးဘက်ခ်အပ်</string>
     <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">သင့်စကားဝှက်စီမံရေးတွင် သိမ်းဆည်းထားသည်</string>
     <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
@@ -8238,11 +8240,11 @@
     <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
     <string name="MessageBackupsKeyRecordScreen__download_media">မီဒီယာကို ဒေါင်းလုဒ်လုပ်ရန်</string>
     <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">To create a new recovery key, you must turn off \"Optimize storage\" and wait until your media has been downloaded. When the download is complete, you can create a new key.</string>
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">ပြန်လည်ရယူရေးကီး အသစ်တစ်ခုဖန်တီးရန် သင်၏မီဒီယာကို ဒေါင်းလုဒ်လုပ်ပြီးသည်အထိ \"ထားသိုမှု အကောင်းဆုံးချိန်ညှိရန်\" ကို ပိတ်ထားကာ စောင့်ဆိုင်းရပါမည်။ ဒေါင်းလုဒ်ပြီးသွားသောအခါတွင် ကီးအသစ်တစ်ခု ဖန်တီးနိုင်သည်။</string>
     <!-- Action label to turn off optimized storage and download media -->
     <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">ပိတ်ပြီး ဒေါင်းလုဒ်လုပ်ပါ</string>
     <!-- Bottom Sheet title for creating a new AEP key -->
-    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Create a new recovery key</string>
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">ပြန်လည်ရယူရေးကီးအသစ်တစ်ခု ဖန်တီးရန်</string>
     <!-- Bottom Sheet body for creating a new AEP key -->
     <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">သင့်ကီးကို အခြားသူတစ်ဦး သိရှိမှသာ ကီးအသစ်ဖန်တီးရန် လိုအပ်ပါသည်။ မီဒီယာ အပါအဝင် သင်၏ဘက်ခ်အပ်ကို ပြန်လည်အပ်လုဒ်လုပ်ရပါမည်။ အကယ်၍ သင်သည် \"ထားသိုမှု အကောင်းဆုံးချိန်ညှိရန်\" ကို အသုံးပြုနေပါက Offloaded မီဒီယာကို ဦးစွာ ဒေါင်းလုဒ်လုပ်ရပါမည်။</string>
 
@@ -8250,27 +8252,27 @@
     <!-- Dialog title when exiting before confirming new key -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation_question">ကီးဖန်တီးမှုကို ပယ်ဖျက်မလား။</string>
     <!-- Dialog body when exiting before confirming new key -->
-    <string name="BackupKeyDisplayFragment__your_new_backup_key">Your new recovery key won\'t be created unless you confirm it.</string>
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">သင်အတည်မပြုပေးပါက ပြန်လည်ရယူရေးကီး အသစ်ကို ဖန်တီးမည်မဟုတ်ပါ။</string>
     <!-- Dialog button to continue confirming new recovery key-->
     <string name="BackupKeyDisplayFragment__confirm_key">ကီးကိုအတည်ပြုပါ</string>
     <!-- Dialog button to cancel new key creation -->
     <string name="BackupKeyDisplayFragment__cancel_key_creation">ကီးဖန်တီးမှုကို ပယ်ဖျက်ပါ</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Confirm your recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">ပြန်လည်ရယူရေးကီးကို အတည်ပြုပါ</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Enter the recovery key that you just recorded</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">သင်မှတ်တမ်းတင်လိုက်သော ပြန်လည်ရယူရေးကီးကို ထည့်ပါ</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">ပြန်လည်ရယူရေးကီး</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Incorrect recovery key</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">ပြန်လည်ရယူရေးကီး မှားနေသည်</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">ကီး ကိုပြန်ကြည့်ရန်</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">ဆက်သွားမည်</string>
 
     <!-- Verify your key title -->
-    <string name="VerifyBackupPinScreen__enter_your_backup_key">Enter your recovery key</string>
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">သင့် ပြန်လည်ရယူရေးကီးကို ထည့်ပါ</string>
     <!-- Verify your key subtitle -->
     <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">ဘက်ခ်အပ်ကို ဖွင့်ထားသောအခါတွင် သင်မှတ်ထားသော စာလုံး 64 လုံးကုဒ်ကို ထည့်ပါ။</string>
     <!-- Button text when you forget your recovery key -->
@@ -8348,7 +8350,7 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">သင်၏ Signal အကောင့်နှင့် မက်ဆေ့ချ်မှတ်တမ်းကို ဤစက်ပေါ်တွင် ရယူရန်</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">From Signal Secure Backups</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal လုံခြုံရေးဘက်ခ်အပ်မှ</string>
     <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">သင်၏ အခမဲ့ သို့မဟုတ် အခပေး Signal ဘက်ခ်အပ်အစီစဉ်</string>
     <!-- Option title for restoring via a local backup folder -->
@@ -8368,39 +8370,39 @@
     <string name="RestoreLocalBackup_subtitle">သင့်စက်ပေါ်တွင် သင်သိမ်းဆည်းထားသော ဘက်ခ်အပ်မှ မက်ဆေ့ချ်များကို ပြန်လည်ရယူပါ။ ယခု ပြန်လည်မရယူလျှင် နောက်မှပြန်လည်မရယူနိုင်ပါ။</string>
 
     <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_title">Enter your recovery key</string>
+    <string name="EnterBackupKey_title">သင့် ပြန်လည်ရယူရေးကီးကို ထည့်ပါ</string>
     <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
-    <string name="EnterBackupKey_subtitle">Your recovery key is a 64-character code required to recover your account and data.</string>
+    <string name="EnterBackupKey_subtitle">ပြန်လည်ရယူရေးကီးသည် သင့်အကောင့်နှင့် ဒေတာကို ပြန်လည်ရယူရန်လိုအပ်သော စာလုံး 64 လုံးပါ ကုဒ်တစ်ခုဖြစ်သည်။</string>
     <!-- Button to skip entering recovery key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">No recovery key?</string>
+    <string name="EnterBackupKey_no_backup_key">ပြန်လည်ရယူရေးကီး မရှိသေးဘူးလား။</string>
     <!-- Recovery key text field hint -->
-    <string name="EnterBackupKey_backup_key">Recovery key</string>
+    <string name="EnterBackupKey_backup_key">ပြန်လည်ရယူရေးကီး</string>
     <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Backups can\'t be recovered without their 64-character recovery code. If you\'ve lost your recovery key Signal can\'t help restore your backup.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">စာလုံး 64 လုံးရှိသော ပြန်လည်ရယူရေးကုဒ်မပါဘဲ ဘက်ခ်အပ်များကို ပြန်လည်ရယူ၍မရပါ။ သင့် ပြန်လည်ရယူရေးကီး ပျောက်ဆုံးသွားပါက သင်၏ဘက်ခ်အပ်ကို ပြန်လည်ရယူနိုင်တော့မည် မဟုတ်ပါ။</string>
     <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">If you have your old device you can view your recovery key in Settings &gt; Backups. Then tap View recovery key.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">သင့်စက်အဟောင်းရှိလျှင် ပြန်လည်ရယူရေးကီးကို ဆက်တင် &gt; ဘက်ခ်အပ် တွင် ကြည့်ရှုနိုင်သည်။ ထို့နောက် ပြန်လည်ရယူရေးကီး ကြည့်ရန်ကို နှိပ်ပါ။</string>
     <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">ပိုမိုလေ့လာရန်</string>
     <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">ကျော်ပြီး ပြန်လည်ရယူခြင်းမပြုပါ</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Incorrect recovery key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">ပြန်လည်ရယူရေးကီး မှားနေသည်</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Make sure you\'re registering with the same phone number and 64-character recovery key you saved when enabling Signal Secure Backups. Backups can not be recovered without this key.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Signal လုံခြုံရေး ဘက်ခ်အပ်ကို ဖွင့်စဥ်က သင်သိမ်းဆည်းထားသည့် တူညီသော ဖုန်းနံပါတ်နှင့် 64 လုံးပါ ပြန်လည်ရယူရေးကီးဖြင့် စာရင်းသွင်းဝင်ရောက်ကြောင်း သေချာပါစေ။ ဤကီးမပါဘဲ ဘက်ခ်အပ်များကို ပြန်လည်ရယူ၍မရပါ။</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">ထပ်မံကြိုးစားမည်</string>
     <!-- Dialog negative button text to get help with recovery key -->
-    <string name="EnterBackupKey_backup_key_help">Recovery key help</string>
+    <string name="EnterBackupKey_backup_key_help">ပြန်လည်ရယူရေးကီးဆိုင်ရာ အကူအညီ</string>
     <!-- Text field error text when the recovery key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Incorrect recovery key</string>
+    <string name="EnterBackupKey_incorrect_backup_key_error">ပြန်လည်ရယူရေးကီး မှားနေသည်</string>
     <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">ရှည်လွန်းသည် (%1$d/%2$d)</string>
     <!-- Text field error when the recovery key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Invalid recovery key</string>
+    <string name="EnterBackupKey_invalid_backup_key_error">ပြန်လည်ရယူရေးကီး မမှန်ကန်ပါ</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">ဘက်ခ်အပ် ရှာမတွေ့ပါ</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">The recovery key you entered is correct, but there is no backup associated with it. If you still have your old phone, make sure backups are enabled and that a backup has been completed and try again.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">သင်ထည့်လိုက်သော ပြန်လည်ရယူရေးကီးသည် မှန်ကန်သော်လည်း ၎င်းနှင့် ဆက်စပ်နေသည့် ဘက်ခ်အပ်မရှိပါ။ သင့်တွင် ဖုန်းအဟောင်းရှိနေသေးပါက ဘက်ခ်အပ်ကိုဖွင့်ထားပြီး ဘက်ခ်အပ်ကူးယူမှုပြီးသွားကြောင်း သေချာစေကာ ထပ်စမ်းကြည့်ပါ။</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8479,7 +8481,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">ပြန်လည်ရယူရန် ဘက်ခ်အပ်မရှိပါ</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Because you\'re moving from iPhone to Android, the only way to transfer your messages and media is by enabling Signal Secure Backups on your old device.</string>
+    <string name="NoBackupToRestore_subtitle">သင်သည် iPhone မှ Android သို့ ပြောင်းရွှေ့သောကြောင့် သင်၏ မက်ဆေ့ချ်များနှင့် မီဒီယာကို လွှဲပြောင်းရန် တစ်ခုတည်းသောနည်းလမ်းမှာ သင့်စက်အဟောင်းတွင် Signal လုံခြုံရေးဘက်ခ်အပ်ကို ဖွင့်ထားခြင်းဖြစ်သည်။</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">သင့်စက်အဟောင်းတွင် Signal ကိုဖွင့်ပါ</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->

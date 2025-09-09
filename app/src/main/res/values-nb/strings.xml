@@ -8126,6 +8126,8 @@
     <string name="RemoteBackupsSettingsFragment__secure_backups">Sikkerhetskopiering</string>
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Sikkerhetskopiering av Signal</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">Off</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Autentisering kreves</string>
     <!-- Row label to launch payment history screen -->
