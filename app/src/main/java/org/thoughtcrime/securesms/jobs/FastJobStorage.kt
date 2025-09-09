@@ -636,25 +636,25 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   private fun MinimalJobSpec.toLogString(): String {
     return if (this.isMemoryOnly) {
-      return "😶‍🌫️JOB::$this"
+      "😶‍🌫️$this"
     } else {
-      return "JOB::$this"
+      "$this"
     }
   }
 
   private fun ConstraintSpec.toLogString(): String {
     return if (this.isMemoryOnly) {
-      return "😶‍🌫️JOB::$this"
+      "😶‍🌫️$this"
     } else {
-      return "JOB::$this"
+      "$this"
     }
   }
 
   private fun DependencySpec.toLogString(): String {
     return if (this.isMemoryOnly) {
-      return "😶‍🌫️JOB::$this"
+      "😶‍🌫️$this"
     } else {
-      return "JOB::$this"
+      "$this"
     }
   }
 }
