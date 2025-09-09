@@ -174,7 +174,11 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
           val isGooglePlayBillingCanceled = purchase is BillingPurchaseResult.Success && !purchase.isAutoRenewing
 
           if (isGooglePlayBillingCanceled && (!hasActiveSignalSubscription || isSignalSubscriptionFailedOrCanceled)) {
-            Log.i(TAG, "Valid cancel state. Clearing mismatch. (isGooglePlayBillingCanceled: true, hasActiveSignalSubscription: $hasActiveSignalSubscription, isSignalSubscriptionFailedOrCanceled: $isSignalSubscriptionFailedOrCanceled", true)
+            Log.i(
+              TAG,
+              "Valid cancel state. Clearing mismatch. (isGooglePlayBillingCanceled: true, hasActiveSignalSubscription: $hasActiveSignalSubscription, isSignalSubscriptionFailedOrCanceled: $isSignalSubscriptionFailedOrCanceled",
+              true
+            )
             SignalStore.backup.subscriptionStateMismatchDetected = false
             return Result.success()
           } else {

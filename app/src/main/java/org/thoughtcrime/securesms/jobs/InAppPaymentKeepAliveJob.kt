@@ -151,6 +151,8 @@ class InAppPaymentKeepAliveJob private constructor(
       return
     }
 
+    clearOldPendingPaymentsIfRequired()
+
     val activeInAppPayment = getActiveInAppPayment(subscriber, subscription)
     if (activeInAppPayment == null) {
       warn(type, "Failed to generate active in-app payment. Exiting")
@@ -223,6 +225,38 @@ class InAppPaymentKeepAliveJob private constructor(
           warn(type, "An unknown server error occurred: ${serviceResponse.status}", error)
           throw InAppPaymentRetryException(error)
         }
+      }
+    }
+  }
+
+  /**
+   * If we have a pending payment that is at least 24 hours old AND we have no jobs
+   * enqueued that are associated with it, then something weird has happened. We should
+   * fail the job and let the keep-alive check create a new one as necessary.
+   */
+  private fun clearOldPendingPaymentsIfRequired() {
+    val inAppPayments = SignalDatabase.inAppPayments.getOldPendingPayments(type.inAppPaymentType)
+
+    inAppPayments.forEach { inAppPayment ->
+      val queue = InAppPaymentsRepository.resolveJobQueueKey(inAppPayment)
+
+      if (AppDependencies.jobManager.isQueueEmpty(queue)) {
+        Log.i(TAG, "User has an aged-out pending in-app payment [${inAppPayment.id}][${inAppPayment.type}]. Marking failed and proceeding with check.")
+        SignalDatabase.inAppPayments.update(
+          inAppPayment = inAppPayment.copy(
+            notified = true,
+            endOfPeriod = 0.seconds,
+            subscriberId = null,
+            state = InAppPaymentTable.State.END,
+            data = inAppPayment.data.newBuilder()
+              .error(
+                InAppPaymentData.Error(
+                  type = InAppPaymentData.Error.Type.REDEMPTION
+                )
+              )
+              .build()
+          )
+        )
       }
     }
   }

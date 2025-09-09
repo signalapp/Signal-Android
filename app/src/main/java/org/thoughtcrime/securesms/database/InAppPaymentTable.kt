@@ -38,6 +38,7 @@ import org.thoughtcrime.securesms.util.parcelers.MillisecondDurationParceler
 import org.thoughtcrime.securesms.util.parcelers.NullableSubscriberIdParceler
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.hours
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
@@ -182,6 +183,20 @@ class InAppPaymentTable(context: Context, databaseHelper: SignalDatabase) : Data
       .run()
 
     AppDependencies.databaseObserver.notifyInAppPaymentsObservers(inAppPayment)
+  }
+
+  fun getOldPendingPayments(type: InAppPaymentType): List<InAppPayment> {
+    val oneDayAgo = System.currentTimeMillis().milliseconds - 24.hours
+    return readableDatabase
+      .select()
+      .from(TABLE_NAME)
+      .where(
+        "$STATE = ? AND $TYPE = ? AND $UPDATED_AT <= ${oneDayAgo.inWholeSeconds}",
+        State.serialize(State.PENDING),
+        InAppPaymentType.serialize(type)
+      )
+      .run()
+      .readToList(mapper = InAppPayment::deserialize)
   }
 
   /**

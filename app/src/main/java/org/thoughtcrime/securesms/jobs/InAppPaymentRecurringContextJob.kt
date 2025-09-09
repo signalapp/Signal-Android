@@ -61,7 +61,7 @@ class InAppPaymentRecurringContextJob private constructor(
         parameters = Parameters.Builder()
           .addConstraint(NetworkConstraint.KEY)
           .setQueue(InAppPaymentsRepository.resolveJobQueueKey(inAppPayment))
-          .setLifespan(InAppPaymentsRepository.resolveContextJobLifespan(inAppPayment).inWholeMilliseconds)
+          .setLifespan(InAppPaymentsRepository.resolveContextJobLifespanMillis(inAppPayment))
           .setMaxAttempts(Parameters.UNLIMITED)
           .build()
       )
