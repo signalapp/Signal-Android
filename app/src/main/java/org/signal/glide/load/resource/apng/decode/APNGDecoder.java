@@ -38,6 +38,8 @@ public class APNGDecoder extends FrameSeqDecoder<APNGReader, APNGWriter> {
     private int mLoopCount;
     private final Paint paint = new Paint();
 
+    public static final int  MAX_DIMENSION    = 4096;
+    public static final long MAX_TOTAL_PIXELS = 64_000_000L;
 
     private class SnapShot {
         byte dispose_op;
@@ -126,8 +128,12 @@ public class APNGDecoder extends FrameSeqDecoder<APNGReader, APNGWriter> {
                 otherChunks.add(chunk);
             }
         }
-        frameBuffer = ByteBuffer.allocate((canvasWidth * canvasHeight / (sampleSize * sampleSize) + 1) * 4);
-        snapShot.byteBuffer = ByteBuffer.allocate((canvasWidth * canvasHeight / (sampleSize * sampleSize) + 1) * 4);
+
+        int capacity = getSafeAllocationSize(canvasWidth, canvasHeight, sampleSize);
+
+        frameBuffer         = ByteBuffer.allocate(capacity);
+        snapShot.byteBuffer = ByteBuffer.allocate(capacity);
+
         return new Rect(0, 0, canvasWidth, canvasHeight);
     }
 
@@ -207,5 +213,28 @@ public class APNGDecoder extends FrameSeqDecoder<APNGReader, APNGWriter> {
         } catch (Throwable t) {
             Log.e(TAG, "Failed to render!", t);
         }
+    }
+
+    public static int getSafeAllocationSize(int width, int height, int sampleSize) throws IOException {
+        if (width <= 0 || height <= 0 || width > MAX_DIMENSION || height > MAX_DIMENSION) {
+            throw new IOException("APNG dimensions exceed safe limits: " + width + "x" + height);
+        }
+
+        int capacity;
+        try {
+            int ss         = Math.multiplyExact(sampleSize, sampleSize);
+            int canvasSize = Math.multiplyExact(width, height);
+
+            int pixelCount = canvasSize / ss + 1;
+            if (pixelCount <= 0 || pixelCount > MAX_TOTAL_PIXELS) {
+                throw new IOException("APNG pixel count exceeds safe limits: " + pixelCount);
+            }
+
+            capacity = Math.multiplyExact(pixelCount, 4);
+        } catch (ArithmeticException e) {
+            throw new IOException("Failed to multiply dimensions and sample size: " + width + "x" + height + " @ sample size " + sampleSize + " (overflow?)", e);
+        }
+
+        return capacity;
     }
 }
