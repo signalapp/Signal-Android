@@ -86,6 +86,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
+import org.thoughtcrime.securesms.BiometricDeviceLockContract
 import org.thoughtcrime.securesms.DevicePinAuthEducationSheet
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
@@ -113,7 +114,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
 import org.thoughtcrime.securesms.util.DateUtils
-import org.thoughtcrime.securesms.util.ServiceUtil
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
 import java.math.BigDecimal
@@ -132,7 +132,6 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
 
   companion object {
     private val TAG = Log.tag(RemoteBackupsSettingsFragment::class)
-    private const val AUTHENTICATE_REQUEST_CODE = 1
   }
 
   private val viewModel by viewModel {
@@ -143,6 +142,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
 
   private lateinit var checkoutLauncher: ActivityResultLauncher<MessageBackupTier?>
   private lateinit var biometricDeviceAuthentication: BiometricDeviceAuthentication
+  private lateinit var biometricFallbackLauncher: ActivityResultLauncher<String>
 
   @Composable
   override fun FragmentContent() {
@@ -292,10 +292,7 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
   }
 
   private fun showConfirmDeviceCredentialIntent() {
-    val keyguardManager = ServiceUtil.getKeyguardManager(requireContext())
-    val intent = keyguardManager.createConfirmDeviceCredentialIntent(getString(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key), "")
-
-    startActivityForResult(intent, AUTHENTICATE_REQUEST_CODE)
+    biometricFallbackLauncher.launch(getString(R.string.RemoteBackupsSettingsFragment__unlock_to_view_backup_key))
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -305,6 +302,15 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
         viewModel.requestSnackbar(RemoteBackupsSettingsState.Snackbar.BACKUP_WILL_BE_CREATED_OVERNIGHT)
       }
     }
+
+    biometricFallbackLauncher = registerForActivityResult(
+      contract = BiometricDeviceLockContract(),
+      callback = { result ->
+        if (result == BiometricDeviceAuthentication.AUTHENTICATED) {
+          displayBackupKey()
+        }
+      }
+    )
 
     setFragmentResultListener(BackupKeyDisplayFragment.AEP_ROTATION_KEY) { _, bundle ->
       val didRotate = bundle.getBoolean(BackupKeyDisplayFragment.AEP_ROTATION_KEY, false)
