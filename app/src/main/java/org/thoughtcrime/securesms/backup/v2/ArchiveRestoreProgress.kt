@@ -169,6 +169,18 @@ object ArchiveRestoreProgress {
       val remainingRestoreSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize().bytes
       var restoreState = SignalStore.backup.restoreState
 
+      if (restoreState.isMediaRestoreOperation) {
+        if (remainingRestoreSize == 0.bytes && SignalStore.backup.totalRestorableAttachmentSize == 0L) {
+          restoreState = RestoreState.NONE
+          SignalStore.backup.restoreState = restoreState
+          unregisterUpdateListeners()
+        } else {
+          registerUpdateListeners()
+        }
+      } else {
+        unregisterUpdateListeners()
+      }
+
       val status = when {
         !WifiConstraint.isMet(AppDependencies.application) && !SignalStore.backup.restoreWithCellular -> ArchiveRestoreProgressState.RestoreStatus.WAITING_FOR_WIFI
         !NetworkConstraint.isMet(AppDependencies.application) -> ArchiveRestoreProgressState.RestoreStatus.WAITING_FOR_INTERNET
@@ -185,17 +197,6 @@ object ArchiveRestoreProgress {
         }
       }
 
-      if (restoreState.isMediaRestoreOperation) {
-        if (remainingRestoreSize == 0.bytes && SignalStore.backup.totalRestorableAttachmentSize == 0L) {
-          restoreState = RestoreState.NONE
-          SignalStore.backup.restoreState = restoreState
-        } else {
-          registerUpdateListeners()
-        }
-      } else {
-        unregisterUpdateListeners()
-      }
-
       val totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize.bytes
 
       state.copy(
@@ -203,7 +204,7 @@ object ArchiveRestoreProgress {
         remainingRestoreSize = remainingRestoreSize,
         restoreStatus = status,
         totalRestoreSize = totalRestoreSize,
-        hasActivelyRestoredThisRun = state.hasActivelyRestoredThisRun || SignalStore.backup.totalRestorableAttachmentSize > 0,
+        hasActivelyRestoredThisRun = state.hasActivelyRestoredThisRun || totalRestoreSize > 0.bytes,
         totalToRestoreThisRun = if (totalRestoreSize > 0.bytes) totalRestoreSize else state.totalToRestoreThisRun
       )
     }
