@@ -21,7 +21,7 @@ class BackupMediaSnapshotTableTest {
 
   @Test
   fun givenAnEmptyTable_whenIWriteToTable_thenIExpectEmptyTable() {
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = 100))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = 100))
 
     val count = getCountForLatestSnapshot(includeThumbnails = true)
 
@@ -30,7 +30,7 @@ class BackupMediaSnapshotTableTest {
 
   @Test
   fun givenAnEmptyTable_whenIWriteToTableAndCommit_thenIExpectFilledTable() {
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = 100))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = 100))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val count = getCountForLatestSnapshot(includeThumbnails = false)
@@ -43,7 +43,8 @@ class BackupMediaSnapshotTableTest {
     val inputCount = 100
     val countWithThumbnails = inputCount * 2
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = inputCount))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = inputCount))
+    SignalDatabase.backupMediaSnapshots.writeThumbnailPendingMediaObjects(generateArchiveMediaItemSequence(count = inputCount))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val count = getCountForLatestSnapshot(includeThumbnails = true)
@@ -55,7 +56,7 @@ class BackupMediaSnapshotTableTest {
   fun givenAnEmptyTable_whenIWriteToTableAndCommitQuotes_thenIExpectFilledTableWithNoThumbnails() {
     val inputCount = 100
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = inputCount, quote = true))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = inputCount, quote = true))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val count = getCountForLatestSnapshot(includeThumbnails = true)
@@ -67,7 +68,7 @@ class BackupMediaSnapshotTableTest {
   fun givenAnEmptyTable_whenIWriteToTableAndCommitNonMedia_thenIExpectFilledTableWithNoThumbnails() {
     val inputCount = 100
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = inputCount, contentType = "text/plain"))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = inputCount, contentType = "text/plain"))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val count = getCountForLatestSnapshot(includeThumbnails = true)
@@ -80,11 +81,11 @@ class BackupMediaSnapshotTableTest {
     val initialCount = 100
     val additionalCount = 25
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = initialCount))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = initialCount))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     // This relies on how the sequence of mediaIds is generated in tests -- the ones we generate here will have the mediaIds as the ones we generated above
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = additionalCount))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = additionalCount))
 
     val pendingCount = getCountForPending(includeThumbnails = false)
     val latestVersionCount = getCountForLatestSnapshot(includeThumbnails = false)
@@ -98,11 +99,11 @@ class BackupMediaSnapshotTableTest {
     val initialCount = 100
     val additionalCount = 25
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = initialCount))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = initialCount))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     // This relies on how the sequence of mediaIds is generated in tests -- the ones we generate here will have the mediaIds as the ones we generated above
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = additionalCount))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = additionalCount))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val pendingCount = getCountForPending(includeThumbnails = false)
@@ -119,10 +120,10 @@ class BackupMediaSnapshotTableTest {
     val initialCount = 100
     val additionalCount = 25
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = initialCount))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = initialCount))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = additionalCount))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = additionalCount))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val page = SignalDatabase.backupMediaSnapshots.getPageOfOldMediaObjects(pageSize = 1_000)
@@ -145,7 +146,7 @@ class BackupMediaSnapshotTableTest {
       createArchiveMediaObject(seed = 2, cdn = 2)
     )
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(localData.asSequence())
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(localData.asSequence())
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val mismatches = SignalDatabase.backupMediaSnapshots.getMediaObjectsWithNonMatchingCdn(remoteData)
@@ -164,7 +165,7 @@ class BackupMediaSnapshotTableTest {
       createArchiveMediaObject(seed = 2, cdn = 99)
     )
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(localData.asSequence())
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(localData.asSequence())
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val mismatches = SignalDatabase.backupMediaSnapshots.getMediaObjectsWithNonMatchingCdn(remoteData)
@@ -186,7 +187,7 @@ class BackupMediaSnapshotTableTest {
       createArchiveMediaObject(seed = 2, cdn = 2)
     )
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(localData.asSequence())
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(localData.asSequence())
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val notFound = SignalDatabase.backupMediaSnapshots.getMediaObjectsThatCantBeFound(remoteData)
@@ -205,7 +206,7 @@ class BackupMediaSnapshotTableTest {
       createArchiveMediaObject(seed = 3, cdn = 2)
     )
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(localData.asSequence())
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(localData.asSequence())
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val notFound = SignalDatabase.backupMediaSnapshots.getMediaObjectsThatCantBeFound(remoteData)
@@ -222,7 +223,7 @@ class BackupMediaSnapshotTableTest {
 
   @Test
   fun getCurrentSnapshotVersion_singleCommit() {
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = 100))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = 100))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val version = SignalDatabase.backupMediaSnapshots.getCurrentSnapshotVersion()
@@ -234,7 +235,8 @@ class BackupMediaSnapshotTableTest {
   fun getMediaObjectsLastSeenOnCdnBeforeSnapshotVersion_noneMarkedSeen() {
     val initialCount = 100
 
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(generateArchiveMediaItemSequence(count = initialCount))
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(generateArchiveMediaItemSequence(count = initialCount))
+    SignalDatabase.backupMediaSnapshots.writeThumbnailPendingMediaObjects(generateArchiveMediaItemSequence(count = initialCount))
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val notSeenCount = SignalDatabase.backupMediaSnapshots.getMediaObjectsLastSeenOnCdnBeforeSnapshotVersion(1).count
@@ -250,7 +252,8 @@ class BackupMediaSnapshotTableTest {
     val markSeenCount = 25
 
     val itemsToCommit = generateArchiveMediaItemSequence(count = initialCount)
-    SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(itemsToCommit)
+    SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(itemsToCommit)
+    SignalDatabase.backupMediaSnapshots.writeThumbnailPendingMediaObjects(itemsToCommit)
     SignalDatabase.backupMediaSnapshots.commitPendingRows()
 
     val normalIdsToMarkSeen = itemsToCommit.take(markSeenCount).map { it.mediaId }.toList()

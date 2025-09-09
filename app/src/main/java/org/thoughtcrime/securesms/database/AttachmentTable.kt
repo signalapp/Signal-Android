@@ -30,6 +30,8 @@ import com.bumptech.glide.Glide
 import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
+import okio.ByteString
+import okio.ByteString.Companion.toByteString
 import org.json.JSONArray
 import org.json.JSONException
 import org.signal.core.util.Base64
@@ -46,6 +48,7 @@ import org.signal.core.util.groupBy
 import org.signal.core.util.isNull
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.readToSingleObject
@@ -95,6 +98,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.AttachmentDownloadJob
 import org.thoughtcrime.securesms.jobs.AttachmentUploadJob
 import org.thoughtcrime.securesms.jobs.GenerateAudioWaveFormJob
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.mms.MediaStream
 import org.thoughtcrime.securesms.mms.MmsException
@@ -111,6 +115,8 @@ import org.thoughtcrime.securesms.util.StorageUtil
 import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.video.EncryptedMediaDataSource
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
+import org.whispersystems.signalservice.api.backup.MediaId
+import org.whispersystems.signalservice.api.backup.MediaName
 import org.whispersystems.signalservice.api.crypto.AttachmentCipherStreamUtil
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.crypto.PaddingInputStream
@@ -422,14 +428,33 @@ class AttachmentTable(
   }
 
   /**
-   * Returns a cursor (with just the plaintextHash+remoteKey+archive_cdn) for all attachments that are slated to be included in the current archive upload.
+   * Returns a cursor (with just the plaintextHash+remoteKey+archive_cdn) for all full-size attachments that are slated to be included in the current archive upload.
    * Used for snapshotting data in [BackupMediaSnapshotTable].
    */
-  fun getAttachmentsThatWillBeIncludedInArchive(): Cursor {
+  fun getFullSizeAttachmentsThatWillBeIncludedInArchive(): Cursor {
     return readableDatabase
       .select(DATA_HASH_END, REMOTE_KEY, ARCHIVE_CDN, QUOTE, CONTENT_TYPE)
       .from("$TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
       .where(buildAttachmentsThatNeedUploadQuery(transferStateFilter = "$ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}"))
+      .run()
+  }
+
+  /**
+   * Returns a cursor (with just the plaintextHash+remoteKey+archive_cdn) for all thumbnail attachments that are slated to be included in the current archive upload.
+   * Used for snapshotting data in [BackupMediaSnapshotTable].
+   */
+  fun getThumbnailAttachmentsThatWillBeIncludedInArchive(): Cursor {
+    return readableDatabase
+      .select(DATA_HASH_END, REMOTE_KEY, ARCHIVE_CDN, QUOTE, CONTENT_TYPE)
+      .from("$TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}")
+      .where(
+        """
+        ${buildAttachmentsThatNeedUploadQuery(transferStateFilter = "$ARCHIVE_THUMBNAIL_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value}")} AND
+        $QUOTE = 0 AND
+        ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
+        $CONTENT_TYPE != 'image/svg+xml'
+        """
+      )
       .run()
   }
 
@@ -1074,6 +1099,7 @@ class AttachmentTable(
    * Should be the same or subset of that returned by [getAttachmentsThatNeedArchiveUpload].
    */
   fun getPendingArchiveUploadBytes(): Long {
+    val archiveTransferStateFilter = "$ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value})"
     return readableDatabase
       .rawQuery(
         """
@@ -1081,48 +1107,11 @@ class AttachmentTable(
           FROM (
             SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY, $DATA_SIZE
             FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
-            WHERE 
-              $DATA_FILE NOT NULL AND 
-              $DATA_HASH_END NOT NULL AND 
-              $REMOTE_KEY NOT NULL AND
-              $ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value}) AND
-              $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}' AND
-              (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND
-              (${MessageTable.EXPIRES_IN} = 0 OR ${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds}) AND
-              ${MessageTable.TABLE_NAME}.${MessageTable.VIEW_ONCE} = 0
+            WHERE ${buildAttachmentsThatNeedUploadQuery(archiveTransferStateFilter)}
           )
         """.trimIndent()
       )
       .readToSingleLong()
-  }
-
-  /**
-   * Returns sum of the file sizes of attachments that are not fully uploaded to the archive CDN.
-   */
-  fun debugGetPendingArchiveUploadAttachments(): List<DatabaseAttachment> {
-    return readableDatabase
-      .rawQuery(
-        """
-          SELECT *
-          FROM $TABLE_NAME as t
-          JOIN (
-            SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY, $DATA_SIZE
-            FROM $TABLE_NAME LEFT JOIN ${MessageTable.TABLE_NAME} ON $TABLE_NAME.$MESSAGE_ID = ${MessageTable.TABLE_NAME}.${MessageTable.ID}
-            WHERE
-              $DATA_FILE NOT NULL AND
-              $DATA_HASH_END NOT NULL AND
-              $REMOTE_KEY NOT NULL AND
-              $ARCHIVE_TRANSFER_STATE NOT IN (${ArchiveTransferState.FINISHED.value}, ${ArchiveTransferState.PERMANENT_FAILURE.value}) AND
-              $CONTENT_TYPE != '${MediaUtil.LONG_TEXT}' AND
-              (${MessageTable.STORY_TYPE} = 0 OR ${MessageTable.STORY_TYPE} IS NULL) AND
-              (${MessageTable.EXPIRES_IN} = 0 OR ${MessageTable.EXPIRES_IN} > ${ChatItemArchiveExporter.EXPIRATION_CUTOFF.inWholeMilliseconds})
-          ) as filtered
-          ON t.$DATA_HASH_END = filtered.$DATA_HASH_END
-        """.trimIndent()
-      )
-      .readToList {
-        it.readAttachment()
-      }
   }
 
   /**
@@ -3186,9 +3175,41 @@ class AttachmentTable(
     }
   }
 
+  /**
+   * Important: This is an expensive query that involves iterating over every row in the table. Only call this for debug stuff!
+   */
+  fun debugGetAttachmentsForMediaIds(mediaIds: Set<MediaId>, limit: Int): List<Pair<DatabaseAttachment, Boolean>> {
+    val byteStringMediaIds: Set<ByteString> = mediaIds.map { it.value.toByteString() }.toSet()
+    val found = mutableListOf<Pair<DatabaseAttachment, Boolean>>()
+
+    readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL")
+      .run()
+      .forEach { cursor ->
+        val remoteKey = Base64.decode(cursor.requireNonNullString(REMOTE_KEY))
+        val plaintextHash = Base64.decode(cursor.requireNonNullString(DATA_HASH_END))
+        val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).value.toByteString()
+        val mediaIdThumbnail = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).value.toByteString()
+
+        if (mediaId in byteStringMediaIds) {
+          found.add(getAttachment(cursor) to false)
+        }
+
+        if (mediaIdThumbnail in byteStringMediaIds) {
+          found.add(getAttachment(cursor) to true)
+        }
+
+        if (found.size >= limit) return@forEach
+      }
+
+    return found
+  }
+
   fun debugGetAttachmentStats(): DebugAttachmentStats {
     val totalAttachmentRows = readableDatabase.count().from(TABLE_NAME).run().readToSingleLong(0)
-    val totalEligibleForUploadRows = getAttachmentsThatWillBeIncludedInArchive().count
+    val totalEligibleForUploadRows = getFullSizeAttachmentsThatWillBeIncludedInArchive().count
 
     val totalUniqueDataFiles = readableDatabase.select("COUNT(DISTINCT $DATA_FILE)").from(TABLE_NAME).run().readToSingleLong(0)
     val totalUniqueMediaNames = readableDatabase.query("SELECT COUNT(*) FROM (SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY FROM $TABLE_NAME WHERE $DATA_HASH_END NOT NULL AND $REMOTE_KEY NOT NULL)").readToSingleLong(0)
@@ -3271,6 +3292,26 @@ class AttachmentTable(
       uploadedAttachmentBytes = uploadedAttachmentBytes,
       uploadedThumbnailBytes = uploadedThumbnailBytes
     )
+  }
+
+  fun getDebugMediaInfoForEntries(hashes: Collection<BackupMediaSnapshotTable.MediaEntry>): Set<DebugArchiveMediaInfo> {
+    val entriesByHash = hashes.associateBy { Base64.encodeWithPadding(it.plaintextHash) }
+
+    val query = SqlUtil.buildFastCollectionQuery(DATA_HASH_END, entriesByHash.keys)
+
+    return readableDatabase
+      .select(ID, MESSAGE_ID, CONTENT_TYPE, DATA_HASH_END)
+      .from(TABLE_NAME)
+      .where(query.where, query.whereArgs)
+      .run()
+      .readToSet { cursor ->
+        DebugArchiveMediaInfo(
+          attachmentId = AttachmentId(cursor.requireLong(ID)),
+          messageId = cursor.requireLong(MESSAGE_ID),
+          contentType = cursor.requireString(CONTENT_TYPE),
+          isThumbnail = entriesByHash[cursor.requireString(DATA_HASH_END)]!!.isThumbnail
+        )
+      }
   }
 
   fun debugAttachmentStatsForBackupProto(): BackupDebugInfo.AttachmentDetails {
@@ -3676,4 +3717,11 @@ class AttachmentTable(
   data class CreateRemoteKeyResult(val totalCount: Int, val notQuoteOrSickerDupeNotFoundCount: Int, val notQuoteOrSickerDupeFoundCount: Int) {
     val unexpectedKeyCreation = notQuoteOrSickerDupeFoundCount > 0 || notQuoteOrSickerDupeNotFoundCount > 0
   }
+
+  class DebugArchiveMediaInfo(
+    val attachmentId: AttachmentId,
+    val messageId: Long,
+    val contentType: String?,
+    val isThumbnail: Boolean
+  )
 }

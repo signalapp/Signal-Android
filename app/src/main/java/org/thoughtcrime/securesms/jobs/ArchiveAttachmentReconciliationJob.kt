@@ -5,22 +5,35 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import android.app.Notification
+import android.app.PendingIntent
+import android.content.Intent
+import androidx.core.app.NotificationCompat
+import androidx.core.app.NotificationManagerCompat
+import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.ArchiveAttachmentReconciliationJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
+import org.thoughtcrime.securesms.notifications.NotificationChannels
+import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
+import org.whispersystems.signalservice.api.backup.MediaId
 import java.lang.RuntimeException
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.hours
 
 /**
  * We do our best to keep our local attachments in sync with the archive CDN, but we still want to have a backstop that periodically
@@ -88,7 +101,8 @@ class ArchiveAttachmentReconciliationJob private constructor(
     }
 
     val timeSinceLastSync = System.currentTimeMillis() - SignalStore.backup.lastAttachmentReconciliationTime
-    if (!forced && serverCursor == null && timeSinceLastSync > 0 && timeSinceLastSync < RemoteConfig.archiveReconciliationSyncInterval.inWholeMilliseconds) {
+    val syncThreshold = if (RemoteConfig.internalUser) 12.hours.inWholeMilliseconds else RemoteConfig.archiveReconciliationSyncInterval.inWholeMilliseconds
+    if (!forced && serverCursor == null && timeSinceLastSync > 0 && timeSinceLastSync < syncThreshold) {
       Log.d(TAG, "No need to do a remote sync yet. Time since last sync: $timeSinceLastSync ms")
       return Result.success()
     }
@@ -123,6 +137,8 @@ class ArchiveAttachmentReconciliationJob private constructor(
       }
       check(archivedItemPage != null)
 
+      Log.d(TAG, "Fetched CDN page. Requested size: $CDN_FETCH_LIMIT, Actual size: ${archivedItemPage.storedMediaObjects.size}")
+
       syncCdnPage(archivedItemPage, snapshotVersion)?.let { return it }
 
       serverCursor = archivedItemPage.cursor
@@ -136,16 +152,27 @@ class ArchiveAttachmentReconciliationJob private constructor(
     val mediaObjectsThatMayNeedReUpload = SignalDatabase.backupMediaSnapshots.getMediaObjectsLastSeenOnCdnBeforeSnapshotVersion(snapshotVersion)
     val mayNeedReUploadCount = mediaObjectsThatMayNeedReUpload.count
 
+    val mediaIdsThatNeedUpload = mutableSetOf<MediaId>()
+    val internalUser = RemoteConfig.internalUser
+
     if (mayNeedReUploadCount > 0) {
       Log.w(TAG, "Found $mayNeedReUploadCount attachments that are present in the target snapshot, but could not be found on the CDN. This could be a bookkeeping error, or the upload may still be in progress. Checking.", true)
 
       var newBackupJobRequired = false
       var bookkeepingErrorCount = 0
 
+      var fullSizeMismatchFound = false
+      var thumbnailMismatchFound = false
+
       mediaObjectsThatMayNeedReUpload.forEach { mediaObjectCursor ->
         val entry = BackupMediaSnapshotTable.MediaEntry.fromCursor(mediaObjectCursor)
 
+        if (internalUser) {
+          mediaIdsThatNeedUpload += MediaId(entry.mediaId)
+        }
+
         if (entry.isThumbnail) {
+          thumbnailMismatchFound = true
           val wasReset = SignalDatabase.attachments.resetArchiveThumbnailTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
           if (wasReset) {
             newBackupJobRequired = true
@@ -154,6 +181,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
             Log.w(TAG, "[Thumbnail] Did not need to reset the transfer state by hash/key because the thumbnail either no longer exists or the upload is already in-progress.", true)
           }
         } else {
+          fullSizeMismatchFound = true
           val wasReset = SignalDatabase.attachments.resetArchiveTransferStateByPlaintextHashAndRemoteKeyIfNecessary(entry.plaintextHash, entry.remoteKey)
           if (wasReset) {
             newBackupJobRequired = true
@@ -170,9 +198,30 @@ class ArchiveAttachmentReconciliationJob private constructor(
         Log.i(TAG, "None of the $mayNeedReUploadCount CDN mismatches were bookkeeping errors.", true)
       }
 
+      if (internalUser && mediaIdsThatNeedUpload.isNotEmpty()) {
+        Log.w(TAG, "Starting internal-only lookup of matching attachments. May take a while!")
+
+        val matchingAttachments = SignalDatabase.attachments.debugGetAttachmentsForMediaIds(mediaIdsThatNeedUpload, limit = 100)
+        Log.w(TAG, "Found ${matchingAttachments.size} out of the ${mediaIdsThatNeedUpload.size} attachments we looked up (capped lookups to 100).", true)
+
+        matchingAttachments.forEach { attachment ->
+          Log.w(TAG, "Needed Upload: attachmentId=${attachment.first.attachmentId}, messageId=${attachment.first.mmsId}, thumbnail=${attachment.second}, contentType=${attachment.first.contentType}, quote=${attachment.first.quote}, transferState=${attachment.first.transferState}, archiveTransferState=${attachment.first.archiveTransferState}, hasData=${attachment.first.hasData}")
+        }
+      }
+
       if (newBackupJobRequired) {
         Log.w(TAG, "Some of the errors require re-uploading a new backup job to resolve.", true)
+        maybePostReconciliationFailureNotification()
         BackupMessagesJob.enqueue()
+      } else {
+        if (fullSizeMismatchFound) {
+          Log.d(TAG, "Full size mismatch found. Enqueuing an attachment backfill job to be safe.", true)
+          AppDependencies.jobManager.add(ArchiveAttachmentBackfillJob())
+        }
+        if (thumbnailMismatchFound) {
+          Log.d(TAG, "Thumbnail mismatch found. Enqueuing a thumbnail backfill job to be safe.", true)
+          AppDependencies.jobManager.add(ArchiveThumbnailBackfillJob())
+        }
       }
     } else {
       Log.d(TAG, "No attachments need to be repaired.")
@@ -207,6 +256,10 @@ class ArchiveAttachmentReconciliationJob private constructor(
 
     val mediaOnRemoteButNotLocal = SignalDatabase.backupMediaSnapshots.getMediaObjectsThatCantBeFound(mediaObjects)
     val mediaObjectsOnBothRemoteAndLocal = mediaObjects - mediaOnRemoteButNotLocal
+
+    if (RemoteConfig.internalUser && mediaOnRemoteButNotLocal.isNotEmpty()) {
+      Log.w(TAG, "MediaIds of items on remote but not local: ${mediaOnRemoteButNotLocal.joinToString(", ") { it.mediaId }}", true)
+    }
 
     val cdnMismatches = SignalDatabase.backupMediaSnapshots.getMediaObjectsWithNonMatchingCdn(mediaObjectsOnBothRemoteAndLocal)
     if (cdnMismatches.isNotEmpty()) {
@@ -249,6 +302,21 @@ class ArchiveAttachmentReconciliationJob private constructor(
         return null to Result.fatalFailure(RuntimeException(result.getCause()))
       }
     }
+  }
+
+  private fun maybePostReconciliationFailureNotification() {
+    if (!RemoteConfig.internalUser) {
+      return
+    }
+
+    val notification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
+      .setSmallIcon(R.drawable.ic_notification)
+      .setContentTitle("[Internal-only] Archive reconciliation found an error!")
+      .setContentText("Tap to send a debug log")
+      .setContentIntent(PendingIntent.getActivity(context, 0, Intent(context, SubmitDebugLogActivity::class.java), PendingIntentFlags.mutable()))
+      .build()
+
+    NotificationManagerCompat.from(context).notify(NotificationIds.RECONCILIATION_ERROR, notification)
   }
 
   class Factory : Job.Factory<ArchiveAttachmentReconciliationJob> {

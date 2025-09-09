@@ -420,8 +420,14 @@ class BackupMessagesJob private constructor(
 
   private fun writeMediaCursorToTemporaryTable(db: SignalDatabase, mediaBackupEnabled: Boolean) {
     if (mediaBackupEnabled) {
-      db.attachmentTable.getAttachmentsThatWillBeIncludedInArchive().use {
-        SignalDatabase.backupMediaSnapshots.writePendingMediaObjects(
+      db.attachmentTable.getFullSizeAttachmentsThatWillBeIncludedInArchive().use {
+        SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(
+          mediaObjects = ArchiveMediaItemIterator(it).asSequence()
+        )
+      }
+
+      db.attachmentTable.getThumbnailAttachmentsThatWillBeIncludedInArchive().use {
+        SignalDatabase.backupMediaSnapshots.writeThumbnailPendingMediaObjects(
           mediaObjects = ArchiveMediaItemIterator(it).asSequence()
         )
       }

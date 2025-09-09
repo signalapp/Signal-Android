@@ -24,7 +24,6 @@ import org.signal.core.util.toInt
 import org.signal.core.util.update
 import org.signal.core.util.withinTransaction
 import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
-import org.thoughtcrime.securesms.util.MediaUtil
 
 /**
  * When we delete attachments locally, we can't immediately delete them from the archive CDN. This is because there is still a backup that exists that
@@ -129,26 +128,29 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
   }
 
   /**
-   * Writes the set of media items that are slated to be referenced in the next backup, updating their pending sync time.
+   * Writes the set of full-size media items that are slated to be referenced in the next backup, updating their pending sync time.
    * Will insert multiple rows per object -- one for the main item, and one for the thumbnail.
    */
-  fun writePendingMediaObjects(mediaObjects: Sequence<ArchiveMediaItem>) {
+  fun writeFullSizePendingMediaObjects(mediaObjects: Sequence<ArchiveMediaItem>) {
     mediaObjects
       .chunked(SqlUtil.MAX_QUERY_ARGS)
       .forEach { chunk ->
-        // Full attachment
         writePendingMediaObjectsChunk(
-          chunk
-            .filterNot { MediaUtil.isViewOnceType(it.contentType) || MediaUtil.isLongTextType(it.contentType) }
-            .map { MediaEntry(it.mediaId, it.cdn, it.plaintextHash, it.remoteKey, isThumbnail = false) }
+          chunk.map { MediaEntry(it.mediaId, it.cdn, it.plaintextHash, it.remoteKey, isThumbnail = false) }
         )
+      }
+  }
 
-        // Thumbnail
+  /**
+   * Writes the set of thumbnail media items that are slated to be referenced in the next backup, updating their pending sync time.
+   * Will insert multiple rows per object -- one for the main item, and one for the thumbnail.
+   */
+  fun writeThumbnailPendingMediaObjects(mediaObjects: Sequence<ArchiveMediaItem>) {
+    mediaObjects
+      .chunked(SqlUtil.MAX_QUERY_ARGS)
+      .forEach { chunk ->
         writePendingMediaObjectsChunk(
-          chunk
-            .filterNot { it.quote }
-            .filter { MediaUtil.isImageOrVideoType(it.contentType) }
-            .map { MediaEntry(it.thumbnailMediaId, it.cdn, it.plaintextHash, it.remoteKey, isThumbnail = true) }
+          chunk.map { MediaEntry(it.thumbnailMediaId, it.cdn, it.plaintextHash, it.remoteKey, isThumbnail = true) }
         )
       }
   }
@@ -235,6 +237,32 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
     }
 
     return objects.filterNot { foundObjects.contains(it.mediaId) }.toSet()
+  }
+
+  fun getMediaEntriesForObjects(objects: List<ArchivedMediaObject>): Set<MediaEntry> {
+    if (objects.isEmpty()) {
+      return emptySet()
+    }
+
+    val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(
+      column = MEDIA_ID,
+      values = objects.map { it.mediaId },
+      collectionOperator = SqlUtil.CollectionOperator.IN,
+      prefix = "$SNAPSHOT_VERSION = $MAX_VERSION AND "
+    )
+
+    val entries: MutableSet<MediaEntry> = mutableSetOf()
+
+    for (query in queries) {
+      entries += readableDatabase
+        .select(MEDIA_ID, CDN, PLAINTEXT_HASH, REMOTE_KEY, IS_THUMBNAIL)
+        .from("$TABLE_NAME JOIN ${AttachmentTable.TABLE_NAME}")
+        .where(query.where, query.whereArgs)
+        .run()
+        .readToList { MediaEntry.fromCursor(it) }
+    }
+
+    return entries.toSet()
   }
 
   /**
