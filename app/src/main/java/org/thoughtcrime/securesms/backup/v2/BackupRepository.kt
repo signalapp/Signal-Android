@@ -556,7 +556,14 @@ object BackupRepository {
       return
     }
 
-    if (!SignalStore.backup.backsUpMedia || !AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)) {
+    if (!SignalStore.backup.backsUpMedia) {
+      return
+    }
+
+    if (!AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)) {
+      if (SignalStore.backup.archiveUploadState?.state == ArchiveUploadProgressState.State.None) {
+        ArchiveUploadProgress.onAttachmentSectionStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
+      }
       return
     }
 

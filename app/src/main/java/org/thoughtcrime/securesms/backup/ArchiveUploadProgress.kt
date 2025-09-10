@@ -168,8 +168,9 @@ object ArchiveUploadProgress {
 
   fun onAttachmentSectionStarted(totalAttachmentBytes: Long) {
     debugAttachmentStartTime = System.currentTimeMillis()
+    attachmentProgress.clear()
     updateState {
-      it.copy(
+      ArchiveUploadProgressState(
         state = ArchiveUploadProgressState.State.UploadMedia,
         mediaUploadedBytes = 0,
         mediaTotalBytes = totalAttachmentBytes
@@ -203,15 +204,24 @@ object ArchiveUploadProgress {
   }
 
   fun onMessageBackupFinishedEarly() {
-    updateState { PROGRESS_NONE }
+    resetState()
   }
 
   fun onValidationFailure() {
-    updateState { PROGRESS_NONE }
+    resetState()
   }
 
   fun onMainBackupFileUploadFailure() {
-    updateState { PROGRESS_NONE }
+    resetState()
+  }
+
+  private fun resetState() {
+    val shouldRevertToUploadMedia = SignalStore.backup.backsUpMedia && !AppDependencies.jobManager.areQueuesEmpty(UploadAttachmentToArchiveJob.QUEUES)
+    if (shouldRevertToUploadMedia) {
+      onAttachmentSectionStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
+    } else {
+      updateState { PROGRESS_NONE }
+    }
   }
 
   private fun updateState(
