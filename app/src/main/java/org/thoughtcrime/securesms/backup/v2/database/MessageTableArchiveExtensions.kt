@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTable.Companion.DATE_RECEIVED
 import org.thoughtcrime.securesms.database.MessageTable.Companion.EXPIRES_IN
 import org.thoughtcrime.securesms.database.MessageTable.Companion.PARENT_STORY_ID
+import org.thoughtcrime.securesms.database.MessageTable.Companion.SCHEDULED_DATE
 import org.thoughtcrime.securesms.database.MessageTable.Companion.STORY_TYPE
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -66,7 +67,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
       ${MessageTable.MESSAGE_EXTRAS},
       ${MessageTable.VIEW_ONCE}
     )
-    WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0
+    WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1
     """.trimMargin()
   )
   Log.d(TAG, "Creating index took ${System.currentTimeMillis() - startTime} ms")
@@ -133,7 +134,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, self
           PARENT_STORY_ID
         )
         .from("${MessageTable.TABLE_NAME} INDEXED BY $dateReceivedIndex")
-        .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime")
+        .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime")
         .limit(count)
         .orderBy("$DATE_RECEIVED ASC")
         .run()
