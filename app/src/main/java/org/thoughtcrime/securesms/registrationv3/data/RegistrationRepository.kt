@@ -241,7 +241,7 @@ object RegistrationRepository {
       NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID)
 
       val masterKey = if (data.masterKey != null) MasterKey(data.masterKey.toByteArray()) else null
-      SvrRepository.onRegistrationComplete(masterKey, data.pin, hasPin, data.reglockEnabled)
+      SvrRepository.onRegistrationComplete(masterKey, data.pin, hasPin, data.reglockEnabled, SignalStore.account.restoredAccountEntropyPool)
 
       AppDependencies.resetNetwork()
       AppDependencies.startNetwork()
