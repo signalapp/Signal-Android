@@ -36,6 +36,7 @@ class GroupReceiptTable(context: Context?, databaseHelper: SignalDatabase?) : Da
     const val STATUS_READ = 2
     const val STATUS_VIEWED = 3
     const val STATUS_SKIPPED = 4
+    const val STATUS_FAILED = 5
 
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (

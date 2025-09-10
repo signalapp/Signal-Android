@@ -1073,7 +1073,7 @@ class ChatItemArchiveImporter(
       this.read != null -> GroupReceiptTable.STATUS_READ
       this.viewed != null -> GroupReceiptTable.STATUS_VIEWED
       this.skipped != null -> GroupReceiptTable.STATUS_SKIPPED
-      this.failed != null -> GroupReceiptTable.STATUS_UNKNOWN
+      this.failed != null -> GroupReceiptTable.STATUS_FAILED
       else -> GroupReceiptTable.STATUS_UNKNOWN
     }
   }

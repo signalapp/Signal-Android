@@ -1379,7 +1379,7 @@ private fun List<GroupReceiptTable.GroupReceiptInfo>?.toRemoteSendStatus(message
             reason = SendStatus.Failed.FailureReason.NETWORK
           )
         }
-        MessageTypes.isFailedMessageType(messageRecord.type) -> {
+        it.status == GroupReceiptTable.STATUS_FAILED -> {
           statusBuilder.failed = SendStatus.Failed(
             reason = SendStatus.Failed.FailureReason.UNKNOWN
           )

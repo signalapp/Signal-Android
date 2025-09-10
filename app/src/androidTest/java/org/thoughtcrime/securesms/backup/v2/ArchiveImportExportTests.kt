@@ -172,6 +172,11 @@ class ArchiveImportExportTests {
   }
 
 //  @Test
+  fun chatItemStandardMessageGroupTextOnly() {
+    runTests { it.startsWith("chat_item_standard_message_group_text_only_") }
+  }
+
+//  @Test
   fun chatItemStandardMessageTextOnly() {
     runTests { it.startsWith("chat_item_standard_message_text_only_") }
   }
