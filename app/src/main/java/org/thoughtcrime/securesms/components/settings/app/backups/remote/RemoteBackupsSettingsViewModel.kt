@@ -263,7 +263,8 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
         backupMediaDetails = if (RemoteConfig.internalUser || Environment.IS_STAGING) {
           RemoteBackupsSettingsState.BackupMediaDetails(
             awaitingRestore = SignalDatabase.attachments.getRemainingRestorableAttachmentSize().bytes,
-            offloaded = SignalDatabase.attachments.getOptimizedMediaAttachmentSize().bytes
+            offloaded = SignalDatabase.attachments.getOptimizedMediaAttachmentSize().bytes,
+            protoFileSize = SignalStore.backup.lastBackupProtoSize.bytes
           )
         } else null
       )

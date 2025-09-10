@@ -850,6 +850,7 @@ private fun LazyListScope.appendBackupDetailsItems(
         Text("[Internal Only] Backup Media Details")
         Text("Awaiting Restore: ${state.backupMediaDetails.awaitingRestore.toUnitString()}")
         Text("Offloaded: ${state.backupMediaDetails.offloaded.toUnitString()}")
+        Text("Last Proto Size: ${state.backupMediaDetails.protoFileSize.toUnitString()}")
       }
     }
   }

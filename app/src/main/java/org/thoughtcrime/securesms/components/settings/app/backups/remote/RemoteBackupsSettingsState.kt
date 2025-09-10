@@ -36,7 +36,8 @@ data class RemoteBackupsSettingsState(
 
   data class BackupMediaDetails(
     val awaitingRestore: ByteSize,
-    val offloaded: ByteSize
+    val offloaded: ByteSize,
+    val protoFileSize: ByteSize
   )
 
   enum class Dialog {
