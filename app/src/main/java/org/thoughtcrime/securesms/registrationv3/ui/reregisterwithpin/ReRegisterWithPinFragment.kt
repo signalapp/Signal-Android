@@ -6,8 +6,6 @@
 package org.thoughtcrime.securesms.registrationv3.ui.reregisterwithpin
 
 import android.os.Bundle
-import android.text.InputType
-import android.text.method.PasswordTransformationMethod
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -44,6 +42,9 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
 
   private val binding: FragmentRegistrationPinRestoreEntryV2Binding by ViewBinderDelegate(FragmentRegistrationPinRestoreEntryV2Binding::bind)
 
+  private val pinEntryKeyboardType: PinKeyboardType
+    get() = PinKeyboardType.fromEditText(editText = binding.pinRestorePinInput)
+
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
 
@@ -72,12 +73,9 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
     }
 
     binding.pinRestoreKeyboardToggle.setOnClickListener {
-      val currentKeyboardType: PinKeyboardType = getPinEntryKeyboardType()
-      updateKeyboard(currentKeyboardType.other)
-      binding.pinRestoreKeyboardToggle.setIconResource(currentKeyboardType.iconResource)
+      updateKeyboard(newType = pinEntryKeyboardType.other)
     }
-
-    binding.pinRestoreKeyboardToggle.setIconResource(getPinEntryKeyboardType().other.iconResource)
+    updateKeyboard(newType = pinEntryKeyboardType)
 
     LiveDataUtil
       .combineLatest(registrationViewModel.uiState, reRegisterViewModel.uiState) { reg, rereg -> reg to rereg }
@@ -193,20 +191,14 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
   private fun enableAndFocusPinEntry() {
     binding.pinRestorePinInput.isEnabled = true
     binding.pinRestorePinInput.isFocusable = true
-    binding.pinRestorePinInput.transformationMethod = PasswordTransformationMethod.getInstance()
     ViewUtil.focusAndShowKeyboard(binding.pinRestorePinInput)
   }
 
-  private fun getPinEntryKeyboardType(): PinKeyboardType {
-    val isNumeric = binding.pinRestorePinInput.inputType and InputType.TYPE_MASK_CLASS == InputType.TYPE_CLASS_NUMBER
-    return if (isNumeric) PinKeyboardType.NUMERIC else PinKeyboardType.ALPHA_NUMERIC
-  }
-
-  private fun updateKeyboard(keyboard: PinKeyboardType) {
-    val isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC
-    binding.pinRestorePinInput.inputType = if (isAlphaNumeric) InputType.TYPE_CLASS_TEXT else InputType.TYPE_CLASS_NUMBER
-    binding.pinRestorePinInput.text?.clear()
-    binding.pinRestorePinInput.transformationMethod = PasswordTransformationMethod.getInstance()
+  private fun updateKeyboard(newType: PinKeyboardType) {
+    newType.applyTo(
+      pinEditText = binding.pinRestorePinInput,
+      toggleTypeButton = binding.pinRestoreKeyboardToggle
+    )
   }
 
   private fun onNeedHelpClicked() {

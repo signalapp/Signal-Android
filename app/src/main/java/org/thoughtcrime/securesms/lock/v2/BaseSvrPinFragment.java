@@ -2,8 +2,6 @@ package org.thoughtcrime.securesms.lock.v2;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
-import android.text.method.PasswordTransformationMethod;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -71,9 +69,8 @@ public abstract class BaseSvrPinFragment<ViewModel extends BaseSvrPinViewModel> 
     });
 
     viewModel.getKeyboard().observe(getViewLifecycleOwner(), keyboardType -> {
-      updateKeyboard(keyboardType);
+      keyboardType.applyTo(input, keyboardToggle);
       keyboardToggle.setText(resolveKeyboardToggleText(keyboardType));
-      keyboardToggle.setIconResource(keyboardType.getOther().getIconResource());
     });
 
     description.setOnLinkClickListener(v -> {
@@ -190,15 +187,8 @@ public abstract class BaseSvrPinFragment<ViewModel extends BaseSvrPinViewModel> 
     return true;
   }
 
-  private void updateKeyboard(@NonNull PinKeyboardType keyboard) {
-    boolean isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC;
-
-    input.setInputType(isAlphaNumeric ? InputType.TYPE_CLASS_TEXT : InputType.TYPE_CLASS_NUMBER);
-    input.setTransformationMethod(PasswordTransformationMethod.getInstance());
-  }
-
-  private @StringRes int resolveKeyboardToggleText(@NonNull PinKeyboardType keyboard) {
-    if (keyboard == PinKeyboardType.ALPHA_NUMERIC) {
+  private @StringRes int resolveKeyboardToggleText(@NonNull PinKeyboardType keyboardType) {
+    if (keyboardType == PinKeyboardType.ALPHA_NUMERIC) {
       return R.string.BaseKbsPinFragment__create_numeric_pin;
     } else {
       return R.string.BaseKbsPinFragment__create_alphanumeric_pin;

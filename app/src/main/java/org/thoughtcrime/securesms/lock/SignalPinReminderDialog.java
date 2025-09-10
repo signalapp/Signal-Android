@@ -3,13 +3,11 @@ package org.thoughtcrime.securesms.lock;
 import android.content.Context;
 import android.content.Intent;
 import android.text.Editable;
-import android.text.InputType;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.method.LinkMovementMethod;
-import android.text.method.PasswordTransformationMethod;
 import android.text.style.ClickableSpan;
 import android.util.DisplayMetrics;
 import android.view.Display;
@@ -74,15 +72,7 @@ public final class SignalPinReminderDialog {
 
     ViewUtil.focusAndShowKeyboard(pinEditText);
 
-    switch (SignalStore.pin().getKeyboardType()) {
-      case NUMERIC:
-        pinEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
-        break;
-      case ALPHA_NUMERIC:
-        pinEditText.setInputType(InputType.TYPE_CLASS_TEXT );
-        break;
-    }
-    pinEditText.setTransformationMethod(PasswordTransformationMethod.getInstance());
+    SignalStore.pin().getKeyboardType().applyInputTypeTo(pinEditText);
 
     ClickableSpan clickableSpan = new ClickableSpan() {
       @Override

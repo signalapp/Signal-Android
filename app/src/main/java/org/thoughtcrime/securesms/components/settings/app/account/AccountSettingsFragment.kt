@@ -3,8 +3,6 @@ package org.thoughtcrime.securesms.components.settings.app.account
 import android.content.Context
 import android.content.Intent
 import android.graphics.Typeface
-import android.text.InputType
-import android.text.method.PasswordTransformationMethod
 import android.util.DisplayMetrics
 import android.view.ViewGroup
 import android.widget.EditText
@@ -115,13 +113,11 @@ class AccountSettingsFragment : ComposeFragment() {
       val changeKeyboard = DialogCompat.requireViewById(dialog, R.id.reminder_change_keyboard) as MaterialButton
 
       changeKeyboard.setOnClickListener {
-        if (pinEditText.inputType and InputType.TYPE_CLASS_NUMBER == 0) {
-          pinEditText.inputType = InputType.TYPE_CLASS_NUMBER
-          changeKeyboard.setIconResource(PinKeyboardType.ALPHA_NUMERIC.iconResource)
-        } else {
-          pinEditText.inputType = InputType.TYPE_CLASS_TEXT
-          changeKeyboard.setIconResource(PinKeyboardType.NUMERIC.iconResource)
-        }
+        val newType = PinKeyboardType.fromEditText(pinEditText).other
+        newType.applyTo(
+          pinEditText = pinEditText,
+          toggleTypeButton = changeKeyboard
+        )
         pinEditText.typeface = Typeface.DEFAULT
       }
 
@@ -129,19 +125,11 @@ class AccountSettingsFragment : ComposeFragment() {
         ViewUtil.focusAndShowKeyboard(pinEditText)
       }
 
-      when (SignalStore.pin.keyboardType) {
-        PinKeyboardType.NUMERIC -> {
-          pinEditText.inputType = InputType.TYPE_CLASS_NUMBER
-          changeKeyboard.setIconResource(PinKeyboardType.ALPHA_NUMERIC.iconResource)
-        }
+      SignalStore.pin.keyboardType.applyTo(
+        pinEditText = pinEditText,
+        toggleTypeButton = changeKeyboard
+      )
 
-        PinKeyboardType.ALPHA_NUMERIC -> {
-          pinEditText.inputType = InputType.TYPE_CLASS_TEXT
-          changeKeyboard.setIconResource(PinKeyboardType.NUMERIC.iconResource)
-        }
-      }
-
-      pinEditText.transformationMethod = PasswordTransformationMethod.getInstance()
       pinEditText.addTextChangedListener(object : SimpleTextWatcher() {
         override fun onTextChanged(text: String) {
           turnOffButton.isEnabled = text.length >= SvrConstants.MINIMUM_PIN_LENGTH
