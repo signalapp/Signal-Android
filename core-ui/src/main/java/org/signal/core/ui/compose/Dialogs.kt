@@ -18,6 +18,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -44,6 +45,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalWindowInfo
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -372,7 +375,7 @@ object Dialogs {
     ) {
       Surface(
         modifier = Modifier
-          .padding(vertical = 100.dp)
+          .heightIn(min = 0.dp, max = getScreenHeight() - 200.dp)
           .background(
             color = SignalTheme.colors.colorSurface2,
             shape = AlertDialogDefaults.shape
@@ -456,7 +459,7 @@ object Dialogs {
     ) {
       Surface(
         modifier = Modifier
-          .padding(vertical = 100.dp)
+          .heightIn(min = 0.dp, max = getScreenHeight() - 200.dp)
           .background(
             color = SignalTheme.colors.colorSurface2,
             shape = AlertDialogDefaults.shape
@@ -585,6 +588,13 @@ object Dialogs {
           }
         }
       }
+    }
+  }
+
+  @Composable
+  private fun getScreenHeight(): Dp {
+    return with(LocalDensity.current) {
+      LocalWindowInfo.current.containerSize.height.toDp()
     }
   }
 }

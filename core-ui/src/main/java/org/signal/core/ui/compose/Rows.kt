@@ -50,6 +50,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.R
 import org.signal.core.ui.compose.Rows.TextAndLabel
+import org.signal.core.ui.compose.Rows.TextRow
 
 object Rows {
 
@@ -150,20 +151,47 @@ object Rows {
     labels: Array<String>,
     values: Array<String>,
     selectedValue: String,
-    onSelected: (String) -> Unit
+    onSelected: (String) -> Unit,
+    enabled: Boolean = true
+  ) {
+    RadioListRow(
+      text = { selectedIndex ->
+        val selectedLabel = if (selectedIndex in labels.indices) {
+          labels[selectedIndex]
+        } else {
+          null
+        }
+
+        TextAndLabel(
+          text = text,
+          label = selectedLabel
+        )
+      },
+      dialogTitle = text,
+      labels = labels,
+      values = values,
+      selectedValue = selectedValue,
+      onSelected = onSelected,
+      enabled = enabled
+    )
+  }
+
+  @Composable
+  fun RadioListRow(
+    text: @Composable RowScope.(Int) -> Unit,
+    dialogTitle: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selectedValue: String,
+    onSelected: (String) -> Unit,
+    enabled: Boolean = true
   ) {
     val selectedIndex = values.indexOf(selectedValue)
-    val selectedLabel = if (selectedIndex in labels.indices) {
-      labels[selectedIndex]
-    } else {
-      null
-    }
-
     var displayDialog by remember { mutableStateOf(false) }
 
     TextRow(
-      text = text,
-      label = selectedLabel,
+      text = { text(selectedIndex) },
+      enabled = enabled,
       onClick = {
         displayDialog = true
       }
@@ -175,25 +203,13 @@ object Rows {
         labels = labels,
         values = values,
         selectedIndex = selectedIndex,
-        title = text,
+        title = dialogTitle,
         onSelected = {
           onSelected(values[it])
         }
       )
     }
   }
-
-  /*
-   multiSelectPref(
-        text = stringResource(R.string.preferences_chats__when_using_mobile_data),
-        listItems = autoDownloadLabels,
-        selected = autoDownloadValues.map { state.mobileAutoDownloadValues.contains(it) }.toBooleanArray(),
-        onSelected = {
-          val resultSet = it.mapIndexed { index, selected -> if (selected) autoDownloadValues[index] else null }.filterNotNull().toSet()
-          viewModel.setMobileAutoDownloadValues(resultSet)
-        }
-      )
-   */
 
   @Composable
   fun MultiSelectRow(
