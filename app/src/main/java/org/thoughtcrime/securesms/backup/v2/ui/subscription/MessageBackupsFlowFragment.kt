@@ -170,7 +170,7 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
           stage = state.stage,
           currentBackupTier = state.currentMessageBackupTier,
           selectedBackupTier = state.selectedMessageBackupTier,
-          availableBackupTypes = state.availableBackupTypes,
+          allBackupTypes = state.allBackupTypes,
           isNextEnabled = state.isCheckoutButtonEnabled(),
           onMessageBackupsTierSelected = viewModel::onMessageBackupTierUpdated,
           onNavigationClick = viewModel::goToPreviousStage,
@@ -180,7 +180,14 @@ class MessageBackupsFlowFragment : ComposeFragment(), InAppPaymentCheckoutDelega
               getString(R.string.backup_support_url)
             )
           },
-          onNextClicked = viewModel::goToNextStage
+          onNextClicked = viewModel::goToNextStage,
+          isBillingApiAvailable = state.isBillingApiAvailable,
+          onLearnMoreAboutWhyUserCanNotUpgrade = {
+            CommunicationActions.openBrowserLink(
+              requireContext(),
+              getString(R.string.backup_support_url)
+            )
+          }
         )
       }
     }

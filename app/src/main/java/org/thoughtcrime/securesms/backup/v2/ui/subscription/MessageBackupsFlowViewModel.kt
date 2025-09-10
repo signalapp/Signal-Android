@@ -63,7 +63,7 @@ class MessageBackupsFlowViewModel(
 
   private val internalStateFlow = MutableStateFlow(
     MessageBackupsFlowState(
-      availableBackupTypes = emptyList(),
+      allBackupTypes = emptyList(),
       currentMessageBackupTier = SignalStore.backup.backupTier,
       selectedMessageBackupTier = resolveSelectedTier(initialTierSelection, SignalStore.backup.backupTier),
       startScreen = startScreen
@@ -91,9 +91,9 @@ class MessageBackupsFlowViewModel(
     }
 
     viewModelScope.launch {
-      val availableBackupTypes: List<MessageBackupsType> = try {
+      val allBackupTypes: List<MessageBackupsType> = try {
         withContext(SignalDispatchers.IO) {
-          BackupRepository.getAvailableBackupsTypes(
+          BackupRepository.getBackupTypes(
             if (!RemoteConfig.messageBackups) emptyList() else listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)
           )
         }
@@ -104,8 +104,9 @@ class MessageBackupsFlowViewModel(
 
       internalStateFlow.update { state ->
         state.copy(
-          availableBackupTypes = availableBackupTypes,
-          selectedMessageBackupTier = if (state.selectedMessageBackupTier in availableBackupTypes.map { it.tier }) state.selectedMessageBackupTier else availableBackupTypes.firstOrNull()?.tier
+          allBackupTypes = allBackupTypes,
+          isBillingApiAvailable = AppDependencies.billingApi.isApiAvailable(),
+          selectedMessageBackupTier = if (state.selectedMessageBackupTier in allBackupTypes.map { it.tier }) state.selectedMessageBackupTier else allBackupTypes.firstOrNull()?.tier
         )
       }
     }
@@ -285,7 +286,7 @@ class MessageBackupsFlowViewModel(
 
       MessageBackupTier.PAID -> {
         check(state.selectedMessageBackupTier == MessageBackupTier.PAID)
-        check(state.availableBackupTypes.any { it.tier == state.selectedMessageBackupTier })
+        check(state.allBackupTypes.any { it.tier == state.selectedMessageBackupTier })
 
         viewModelScope.launch(SignalDispatchers.IO) {
           internalStateFlow.update { it.copy(inAppPayment = null) }

@@ -74,12 +74,14 @@ fun MessageBackupsTypeSelectionScreen(
   stage: MessageBackupsStage,
   currentBackupTier: MessageBackupTier?,
   selectedBackupTier: MessageBackupTier?,
-  availableBackupTypes: List<MessageBackupsType>,
+  allBackupTypes: List<MessageBackupsType>,
+  isBillingApiAvailable: Boolean,
   isNextEnabled: Boolean,
   onMessageBackupsTierSelected: (MessageBackupTier) -> Unit,
   onNavigationClick: () -> Unit,
   onReadMoreClicked: () -> Unit,
-  onNextClicked: () -> Unit
+  onNextClicked: () -> Unit,
+  onLearnMoreAboutWhyUserCanNotUpgrade: () -> Unit
 ) {
   Scaffolds.Settings(
     title = "",
@@ -144,7 +146,7 @@ fun MessageBackupsTypeSelectionScreen(
         }
 
         itemsIndexed(
-          availableBackupTypes,
+          allBackupTypes,
           { _, item -> item.tier }
         ) { index, item ->
           MessageBackupsTypeBlock(
@@ -159,9 +161,31 @@ fun MessageBackupsTypeSelectionScreen(
       }
 
       val hasCurrentBackupTier = currentBackupTier != null
+      var displayNotAvailableDialog by remember { mutableStateOf(false) }
+      val onSubscribeButtonClick = remember(isBillingApiAvailable, selectedBackupTier) {
+        {
+          if (selectedBackupTier == MessageBackupTier.PAID && !isBillingApiAvailable) {
+            displayNotAvailableDialog = true
+          } else {
+            onNextClicked()
+          }
+        }
+      }
+
+      if (displayNotAvailableDialog) {
+        UpgradeNotAvailableDialog(
+          onConfirm = {
+            displayNotAvailableDialog = false
+          },
+          onDismiss = onLearnMoreAboutWhyUserCanNotUpgrade,
+          onDismissRequest = {
+            displayNotAvailableDialog = false
+          }
+        )
+      }
 
       Buttons.LargeTonal(
-        onClick = onNextClicked,
+        onClick = onSubscribeButtonClick,
         enabled = isNextEnabled,
         modifier = Modifier
           .testTag("subscribe-button")
@@ -169,8 +193,8 @@ fun MessageBackupsTypeSelectionScreen(
           .padding(vertical = if (hasCurrentBackupTier) 10.dp else 16.dp)
       ) {
         val text: String = if (currentBackupTier == null) {
-          if (selectedBackupTier == MessageBackupTier.PAID && availableBackupTypes.map { it.tier }.contains(selectedBackupTier)) {
-            val paidTier = availableBackupTypes.first { it.tier == MessageBackupTier.PAID } as MessageBackupsType.Paid
+          if (selectedBackupTier == MessageBackupTier.PAID && allBackupTypes.map { it.tier }.contains(selectedBackupTier)) {
+            val paidTier = allBackupTypes.first { it.tier == MessageBackupTier.PAID } as MessageBackupsType.Paid
             val context = LocalContext.current
 
             val price = remember(paidTier) {
@@ -200,6 +224,23 @@ fun MessageBackupsTypeSelectionScreen(
   }
 }
 
+@Composable
+private fun UpgradeNotAvailableDialog(
+  onConfirm: () -> Unit,
+  onDismiss: () -> Unit,
+  onDismissRequest: () -> Unit
+) {
+  Dialogs.SimpleAlertDialog(
+    title = stringResource(R.string.MessageBackupsTypeSelectionScreen__cant_upgrade_plan),
+    body = stringResource(R.string.MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups),
+    confirm = stringResource(android.R.string.ok),
+    dismiss = stringResource(R.string.MessageBackupsTypeSelectionScreen__learn_more),
+    onConfirm = onConfirm,
+    onDismiss = onDismiss,
+    onDismissRequest = onDismissRequest
+  )
+}
+
 @SignalPreview
 @Composable
 private fun MessageBackupsTypeSelectionScreenPreview() {
@@ -209,12 +250,14 @@ private fun MessageBackupsTypeSelectionScreenPreview() {
     MessageBackupsTypeSelectionScreen(
       stage = MessageBackupsStage.TYPE_SELECTION,
       selectedBackupTier = selectedBackupsType,
-      availableBackupTypes = testBackupTypes(),
+      allBackupTypes = testBackupTypes(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },
       onNavigationClick = {},
       onReadMoreClicked = {},
       onNextClicked = {},
+      onLearnMoreAboutWhyUserCanNotUpgrade = {},
       currentBackupTier = null,
+      isBillingApiAvailable = true,
       isNextEnabled = true
     )
   }
@@ -229,13 +272,27 @@ private fun MessageBackupsTypeSelectionScreenWithCurrentTierPreview() {
     MessageBackupsTypeSelectionScreen(
       stage = MessageBackupsStage.TYPE_SELECTION,
       selectedBackupTier = selectedBackupsType,
-      availableBackupTypes = testBackupTypes(),
+      allBackupTypes = testBackupTypes(),
       onMessageBackupsTierSelected = { selectedBackupsType = it },
       onNavigationClick = {},
       onReadMoreClicked = {},
       onNextClicked = {},
+      onLearnMoreAboutWhyUserCanNotUpgrade = {},
       currentBackupTier = MessageBackupTier.PAID,
+      isBillingApiAvailable = true,
       isNextEnabled = true
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun UpgradeNotAvailableDialogPreview() {
+  Previews.Preview {
+    UpgradeNotAvailableDialog(
+      onConfirm = {},
+      onDismiss = {},
+      onDismissRequest = {}
     )
   }
 }

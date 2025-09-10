@@ -16,7 +16,8 @@ import org.whispersystems.signalservice.api.AccountEntropyPool
 data class MessageBackupsFlowState(
   val selectedMessageBackupTier: MessageBackupTier? = SignalStore.backup.backupTier,
   val currentMessageBackupTier: MessageBackupTier? = null,
-  val availableBackupTypes: List<MessageBackupsType> = emptyList(),
+  val allBackupTypes: List<MessageBackupsType> = emptyList(),
+  val isBillingApiAvailable: Boolean = false,
   val inAppPayment: InAppPaymentTable.InAppPayment? = null,
   val startScreen: MessageBackupsStage,
   val stage: MessageBackupsStage = startScreen,
@@ -35,7 +36,7 @@ data class MessageBackupsFlowState(
    * Whether or not the 'next' button on the type selection screen is enabled.
    */
   fun isCheckoutButtonEnabled(): Boolean {
-    return selectedMessageBackupTier in availableBackupTypes.map { it.tier } &&
+    return selectedMessageBackupTier in allBackupTypes.map { it.tier } &&
       selectedMessageBackupTier != currentMessageBackupTier &&
       paymentReadyState == PaymentReadyState.READY
   }

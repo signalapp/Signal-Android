@@ -97,8 +97,8 @@ abstract class UpgradeToPaidTierBottomSheet : ComposeBottomSheetDialogFragment()
   override fun SheetContent() {
     val state by viewModel.stateFlow.collectAsStateWithLifecycle()
 
-    val paidBackupType = state.availableBackupTypes.firstOrNull { it.tier == MessageBackupTier.PAID } as? MessageBackupsType.Paid
-    val freeBackupType = state.availableBackupTypes.firstOrNull { it.tier == MessageBackupTier.FREE } as? MessageBackupsType.Free
+    val paidBackupType = state.allBackupTypes.firstOrNull { it.tier == MessageBackupTier.PAID } as? MessageBackupsType.Paid
+    val freeBackupType = state.allBackupTypes.firstOrNull { it.tier == MessageBackupTier.FREE } as? MessageBackupsType.Free
 
     if (paidBackupType != null && freeBackupType != null) {
       UpgradeSheetContent(

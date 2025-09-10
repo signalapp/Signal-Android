@@ -84,6 +84,20 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   init {
     viewModelScope.launch(Dispatchers.IO) {
+      val isBillingApiAvailable = AppDependencies.billingApi.isApiAvailable()
+      if (isBillingApiAvailable) {
+        _state.update {
+          it.copy(isPaidTierPricingAvailable = true)
+        }
+      } else {
+        val paidType = BackupRepository.getPaidType()
+        _state.update {
+          it.copy(isPaidTierPricingAvailable = paidType is NetworkResult.Success)
+        }
+      }
+    }
+
+    viewModelScope.launch(Dispatchers.IO) {
       refreshBackupMediaSizeState()
     }
 

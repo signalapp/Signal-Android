@@ -495,6 +495,7 @@ private fun RemoteBackupsSettingsContent(
             BackupCard(
               backupState = state.backupState,
               onBackupTypeActionButtonClicked = contentCallbacks::onBackupTypeActionClick,
+              isPaidTierPricingAvailable = state.isPaidTierPricingAvailable,
               buttonsEnabled = backupDeleteState.isIdle()
             )
           }
@@ -983,6 +984,7 @@ private fun LazyListScope.appendBackupDetailsItems(
 @Composable
 private fun BackupCard(
   backupState: BackupState.WithTypeAndRenewalTime,
+  isPaidTierPricingAvailable: Boolean,
   buttonsEnabled: Boolean,
   onBackupTypeActionButtonClicked: (MessageBackupTier) -> Unit = {}
 ) {
@@ -1074,7 +1076,7 @@ private fun BackupCard(
       )
     }
 
-    if (backupState.isActive()) {
+    if (backupState.isActive() && isPaidTierPricingAvailable) {
       val buttonText = when (messageBackupsType) {
         is MessageBackupsType.Paid -> stringResource(R.string.RemoteBackupsSettingsFragment__manage_or_cancel)
         is MessageBackupsType.Free -> stringResource(R.string.RemoteBackupsSettingsFragment__upgrade)
@@ -1464,6 +1466,7 @@ private fun getBackupExportPhaseProgressString(state: ArchiveUploadProgressState
         stringResource(R.string.RemoteBackupsSettingsFragment__Waiting_for_Wifi)
       }
     }
+
     ArchiveUploadProgressState.BackupPhase.Message -> {
       pluralStringResource(
         R.plurals.RemoteBackupsSettingsFragment__processing_messages_progress_text,
@@ -1835,65 +1838,92 @@ private fun SubscriptionMismatchMissingGooglePlayCardPreview() {
 @Composable
 private fun BackupCardPreview() {
   Previews.Preview {
-    Column {
-      BackupCard(
-        backupState = BackupState.ActivePaid(
-          messageBackupsType = MessageBackupsType.Paid(
-            pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
-            storageAllowanceBytes = 100_000_000,
-            mediaTtl = 30.days
+    LazyColumn {
+      item {
+        BackupCard(
+          backupState = BackupState.ActivePaid(
+            messageBackupsType = MessageBackupsType.Paid(
+              pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
+              storageAllowanceBytes = 100_000_000,
+              mediaTtl = 30.days
+            ),
+            renewalTime = 1727193018.seconds,
+            price = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD"))
           ),
-          renewalTime = 1727193018.seconds,
-          price = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD"))
-        ),
-        buttonsEnabled = true
-      )
+          isPaidTierPricingAvailable = true,
+          buttonsEnabled = true
+        )
+      }
 
-      BackupCard(
-        backupState = BackupState.Canceled(
-          messageBackupsType = MessageBackupsType.Paid(
-            pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
-            storageAllowanceBytes = 100_000_000,
-            mediaTtl = 30.days
+      item {
+        BackupCard(
+          backupState = BackupState.Canceled(
+            messageBackupsType = MessageBackupsType.Paid(
+              pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
+              storageAllowanceBytes = 100_000_000,
+              mediaTtl = 30.days
+            ),
+            renewalTime = 1727193018.seconds
           ),
-          renewalTime = 1727193018.seconds
-        ),
-        buttonsEnabled = true
-      )
+          isPaidTierPricingAvailable = true,
+          buttonsEnabled = true
+        )
+      }
 
-      BackupCard(
-        backupState = BackupState.Inactive(
-          messageBackupsType = MessageBackupsType.Paid(
-            pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
-            storageAllowanceBytes = 100_000_000,
-            mediaTtl = 30.days
+      item {
+        BackupCard(
+          backupState = BackupState.Inactive(
+            messageBackupsType = MessageBackupsType.Paid(
+              pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
+              storageAllowanceBytes = 100_000_000,
+              mediaTtl = 30.days
+            ),
+            renewalTime = 1727193018.seconds
           ),
-          renewalTime = 1727193018.seconds
-        ),
-        buttonsEnabled = true
-      )
+          isPaidTierPricingAvailable = true,
+          buttonsEnabled = true
+        )
+      }
 
-      BackupCard(
-        backupState = BackupState.ActivePaid(
-          messageBackupsType = MessageBackupsType.Paid(
-            pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
-            storageAllowanceBytes = 100_000_000,
-            mediaTtl = 30.days
+      item {
+        BackupCard(
+          backupState = BackupState.ActivePaid(
+            messageBackupsType = MessageBackupsType.Paid(
+              pricePerMonth = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD")),
+              storageAllowanceBytes = 100_000_000,
+              mediaTtl = 30.days
+            ),
+            renewalTime = 1727193018.seconds,
+            price = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD"))
           ),
-          renewalTime = 1727193018.seconds,
-          price = FiatMoney(BigDecimal.valueOf(3), Currency.getInstance("CAD"))
-        ),
-        buttonsEnabled = true
-      )
+          isPaidTierPricingAvailable = true,
+          buttonsEnabled = true
+        )
+      }
 
-      BackupCard(
-        backupState = BackupState.ActiveFree(
-          messageBackupsType = MessageBackupsType.Free(
-            mediaRetentionDays = 30
-          )
-        ),
-        buttonsEnabled = true
-      )
+      item {
+        BackupCard(
+          backupState = BackupState.ActiveFree(
+            messageBackupsType = MessageBackupsType.Free(
+              mediaRetentionDays = 30
+            )
+          ),
+          isPaidTierPricingAvailable = true,
+          buttonsEnabled = true
+        )
+      }
+
+      item {
+        BackupCard(
+          backupState = BackupState.ActiveFree(
+            messageBackupsType = MessageBackupsType.Free(
+              mediaRetentionDays = 30
+            )
+          ),
+          isPaidTierPricingAvailable = false,
+          buttonsEnabled = true
+        )
+      }
     }
   }
 }

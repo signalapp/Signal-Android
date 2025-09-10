@@ -20,6 +20,7 @@ data class RemoteBackupsSettingsState(
   val canRestoreUsingCellular: Boolean = false,
   val hasRedemptionError: Boolean = false,
   val isOutOfStorageSpace: Boolean = false,
+  val isPaidTierPricingAvailable: Boolean = false,
   val totalAllowedStorageSpace: String = "",
   val backupState: BackupState,
   val backupMediaSize: Long = -1L,

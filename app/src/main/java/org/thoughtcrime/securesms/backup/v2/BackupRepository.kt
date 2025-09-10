@@ -1820,7 +1820,7 @@ object BackupRepository {
       }
   }
 
-  suspend fun getAvailableBackupsTypes(availableBackupTiers: List<MessageBackupTier>): List<MessageBackupsType> {
+  suspend fun getBackupTypes(availableBackupTiers: List<MessageBackupTier>): List<MessageBackupsType> {
     return availableBackupTiers.mapNotNull {
       val type = getBackupsType(it)
 
@@ -1868,9 +1868,20 @@ object BackupRepository {
       RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()?.activeSubscription?.let {
         FiatMoney.fromSignalNetworkAmount(it.amount, Currency.getInstance(it.currency))
       }
-    } else {
+    } else if (AppDependencies.billingApi.isApiAvailable()) {
       Log.d(TAG, "Accessing price via billing api.")
       AppDependencies.billingApi.queryProduct()?.price
+    } else {
+      Log.d(TAG, "Billing API is not available on this device. Accessing price via subscription configuration.")
+      val configurationResult = AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault()).toNetworkResult()
+      val currency = Currency.getInstance(Locale.getDefault())
+
+      when (configurationResult) {
+        is NetworkResult.Success -> configurationResult.result.currencies[currency.currencyCode.lowercase()]?.backupSubscription[SubscriptionsConfiguration.BACKUPS_LEVEL]?.let {
+          FiatMoney(it, currency)
+        }
+        else -> null
+      }
     }
 
     if (productPrice == null) {
