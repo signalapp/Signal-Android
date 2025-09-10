@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState.RestoreStatus
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
-import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.backups.BackupStateObserver
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
@@ -321,7 +320,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
   }
 
   private fun getBackupMediaSize(): Long {
-    return if (SignalStore.backup.backupTier == MessageBackupTier.PAID && SignalStore.backup.hasBackupBeenUploaded) {
+    return if (SignalStore.backup.hasBackupBeenUploaded || SignalStore.backup.lastBackupTime > 0L) {
       SignalDatabase.attachments.getEstimatedArchiveMediaSize()
     } else {
       0L

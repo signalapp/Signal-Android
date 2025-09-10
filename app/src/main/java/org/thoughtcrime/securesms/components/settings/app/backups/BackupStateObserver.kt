@@ -121,7 +121,7 @@ class BackupStateObserver(
     scope.launch(SignalDispatchers.IO) {
       InternetConnectionObserver.observe().asFlow()
         .collect {
-          if (backupState.value == BackupState.Error) {
+          if (backupState.value is BackupState.Error) {
             requestBackupStateRefresh()
           }
         }
@@ -347,7 +347,7 @@ class BackupStateObserver(
       getDatabaseBackupState()
     } else {
       Log.d(TAG, "[getStateOnError] Displaying error without database.")
-      BackupState.Error
+      BackupState.Error(getDatabaseBackupState())
     }
   }
 

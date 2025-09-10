@@ -88,7 +88,7 @@ class BackupsSettingsFragment : ComposeFragment() {
       onNavigationClick = { requireActivity().onNavigateUp() },
       onBackupsRowClick = {
         when (state.backupState) {
-          BackupState.Error, BackupState.NotAvailable -> Unit
+          is BackupState.Error, BackupState.NotAvailable -> Unit
 
           BackupState.None -> {
             checkoutLauncher.launch(null)
@@ -185,7 +185,7 @@ private fun BackupsSettingsContent(
             OtherWaysToBackUpHeading()
           }
 
-          BackupState.Error -> {
+          is BackupState.Error -> {
             WaitingForNetworkRow(
               onBackupsRowClick = onBackupsRowClick
             )

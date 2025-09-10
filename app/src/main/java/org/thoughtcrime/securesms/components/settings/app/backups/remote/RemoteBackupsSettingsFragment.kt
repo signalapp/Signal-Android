@@ -907,7 +907,7 @@ private fun LazyListScope.appendBackupDetailsItems(
     }
   }
 
-  if (state.backupState !is BackupState.ActiveFree) {
+  if (state.backupState.isLikelyPaidTier()) {
     item {
       val sizeText = if (state.backupMediaSize < 0L) {
         stringResource(R.string.RemoteBackupsSettingsFragment__calculating)

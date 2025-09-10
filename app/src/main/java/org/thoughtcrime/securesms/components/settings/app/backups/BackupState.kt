@@ -100,5 +100,11 @@ sealed interface BackupState {
   /**
    * An error occurred retrieving the network state
    */
-  data object Error : BackupState
+  data class Error(val localState: BackupState) : BackupState
+
+  fun isLikelyPaidTier(): Boolean {
+    return (this is WithTypeAndRenewalTime && this.messageBackupsType is MessageBackupsType.Paid) ||
+      (this is LocalStore && this.tier == MessageBackupTier.PAID) ||
+      (this is Error && this.localState.isLikelyPaidTier())
+  }
 }
