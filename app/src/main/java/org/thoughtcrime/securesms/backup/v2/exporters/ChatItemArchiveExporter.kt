@@ -398,7 +398,7 @@ class ChatItemArchiveExporter(
 
       if (record.latestRevisionId == null) {
         builder.revisions = revisionMap.remove(record.id)?.repairRevisions(builder) ?: emptyList()
-        val chatItem = builder.build().validateChatItem() ?: continue
+        val chatItem = builder.build().validateChatItem(exportState) ?: continue
         buffer += chatItem
       } else {
         var previousEdits = revisionMap[record.latestRevisionId]
@@ -1513,7 +1513,7 @@ private fun <T> ExecutorService.submitTyped(callable: Callable<T>): Future<T> {
   return this.submit(callable)
 }
 
-fun ChatItem.validateChatItem(): ChatItem? {
+private fun ChatItem.validateChatItem(exportState: ExportState): ChatItem? {
   if (this.standardMessage == null &&
     this.contactMessage == null &&
     this.stickerMessage == null &&
@@ -1527,10 +1527,24 @@ fun ChatItem.validateChatItem(): ChatItem? {
     Log.w(TAG, ExportSkips.emptyChatItem(this.dateSent))
     return null
   }
+
+  if (this.updateMessage != null && this.updateMessage.isOnlyForIndividualChats() && exportState.threadIdToRecipientId[this.chatId] !in exportState.contactRecipientIds) {
+    Log.w(TAG, ExportSkips.individualChatUpdateInWrongTypeOfChat(this.dateSent))
+    return null
+  }
+
   return this
 }
 
-fun List<ChatItem>.repairRevisions(current: ChatItem.Builder): List<ChatItem> {
+private fun ChatUpdateMessage.isOnlyForIndividualChats(): Boolean {
+  return this.simpleUpdate?.type == SimpleChatUpdate.Type.JOINED_SIGNAL ||
+    this.simpleUpdate?.type == SimpleChatUpdate.Type.END_SESSION ||
+    this.simpleUpdate?.type == SimpleChatUpdate.Type.CHAT_SESSION_REFRESH ||
+    this.simpleUpdate?.type == SimpleChatUpdate.Type.PAYMENT_ACTIVATION_REQUEST ||
+    this.simpleUpdate?.type == SimpleChatUpdate.Type.PAYMENTS_ACTIVATED
+}
+
+private fun List<ChatItem>.repairRevisions(current: ChatItem.Builder): List<ChatItem> {
   return if (current.standardMessage != null) {
     val filtered = this
       .filter { it.standardMessage != null }
