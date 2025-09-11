@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
 import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
@@ -558,6 +559,10 @@ public final class Megaphones {
     }
 
     if (!RemoteConfig.messageBackups() || SignalStore.backup().getLatestBackupTier() != null) {
+      return false;
+    }
+
+    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context)) {
       return false;
     }
 

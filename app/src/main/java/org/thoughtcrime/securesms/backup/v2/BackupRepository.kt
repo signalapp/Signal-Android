@@ -130,6 +130,7 @@ import org.thoughtcrime.securesms.service.BackupProgressService
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.ServiceUtil
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.toMillis
 import org.whispersystems.signalservice.api.AccountEntropyPool
 import org.whispersystems.signalservice.api.ApplicationErrorAction
@@ -542,7 +543,9 @@ object BackupRepository {
       return false
     }
 
-    return SignalStore.backup.hasBackupBeenUploaded && System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime
+    val isRegistered = SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)
+
+    return SignalStore.backup.hasBackupBeenUploaded && System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime && isRegistered
   }
 
   fun snoozeDownloadYourBackupData() {
