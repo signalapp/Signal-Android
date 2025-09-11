@@ -166,7 +166,7 @@ class UploadAttachmentToArchiveJob private constructor(
       return Result.success()
     }
 
-    if (attachment.remoteKey == null) {
+    if (attachment.remoteKey == null || attachment.remoteKey.isBlank()) {
       Log.w(TAG, "[$attachmentId] Attachment is missing remote key! Cannot upload.")
       return Result.failure()
     }

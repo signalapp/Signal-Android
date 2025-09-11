@@ -724,7 +724,7 @@ class AttachmentTable(
         $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.NONE.value} AND
         $DATA_FILE NOT NULL AND
         $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
-        $REMOTE_KEY IS NULL
+        ($REMOTE_KEY IS NULL OR LENGTH($REMOTE_KEY) = 0)
         """
       )
       .run()
@@ -1845,13 +1845,11 @@ class AttachmentTable(
   fun createRemoteKeyIfNecessary(attachmentId: AttachmentId) {
     val key = Util.getSecretBytes(64)
 
-    writableDatabase.withinTransaction {
-      writableDatabase
-        .update(TABLE_NAME)
-        .values(REMOTE_KEY to Base64.encodeWithPadding(key))
-        .where("$ID = ? AND $REMOTE_KEY IS NULL", attachmentId.id)
-        .run()
-    }
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(REMOTE_KEY to Base64.encodeWithPadding(key))
+      .where("$ID = ? AND ($REMOTE_KEY IS NULL OR LENGTH($REMOTE_KEY) = 0)", attachmentId.id)
+      .run()
   }
 
   /**
