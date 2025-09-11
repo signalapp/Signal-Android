@@ -85,7 +85,7 @@ class MessageBackupsFlowViewModel(
       }
 
       result.runOnStatusCodeError { code ->
-        Log.d(TAG, "Failed to trigger backup id reservation. ($code)")
+        Log.w(TAG, "Failed to trigger backup id reservation. ($code)")
         internalStateFlow.update { it.copy(paymentReadyState = MessageBackupsFlowState.PaymentReadyState.FAILED) }
       }
     }
