@@ -396,6 +396,7 @@ class BackupMessagesJob private constructor(
 
       is ArchiveValidator.ValidationResult.RecipientDuplicateE164Error -> {
         Log.w(TAG, "The backup file fails validation with a duplicate recipient! Message: ${result.exception.message}, Details: ${result.details}", true)
+        AppDependencies.jobManager.add(E164FormattingJob())
         ArchiveUploadProgress.onValidationFailure()
         return BackupFileResult.Failure
       }
