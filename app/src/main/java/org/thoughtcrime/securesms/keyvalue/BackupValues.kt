@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.keyvalue
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableStateFlow
 import okio.withLock
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.DeletionState
@@ -140,7 +141,13 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     set(value) {
       putLong(KEY_LAST_BACKUP_TIME, value)
       clearMessageBackupFailureSheetWatermark()
+      if (_lastBackupTimeFlow.isInitialized()) {
+        _lastBackupTimeFlow.value.tryEmit(value)
+      }
     }
+
+  private val _lastBackupTimeFlow: Lazy<MutableStateFlow<Long>> = lazy { MutableStateFlow(lastBackupTime) }
+  val lastBackupTimeFlow by lazy { _lastBackupTimeFlow.value }
 
   /** The version of the backup file we last successfully made. */
   var lastBackupProtoVersion: Long by longValue(KEY_LAST_BACKUP_PROTO_VERSION, -1)

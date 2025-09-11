@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.components.settings.app.backups
 
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.activity.result.ActivityResultLauncher
@@ -23,8 +24,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -37,6 +41,7 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
+import kotlinx.coroutines.delay
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
@@ -61,6 +66,7 @@ import java.util.Currency
 import java.util.Locale
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
+import kotlin.time.Duration.Companion.minutes
 import kotlin.time.Duration.Companion.seconds
 import org.signal.core.ui.R as CoreUiR
 
@@ -537,14 +543,15 @@ private fun ActiveBackupsRow(
 
 @Composable
 private fun LastBackedUpText(lastBackupAt: Duration) {
-  val lastBackupString = if (lastBackupAt.inWholeMilliseconds > 0) {
-    DateUtils.getDatelessRelativeTimeSpanFormattedDate(
-      LocalContext.current,
-      Locale.getDefault(),
-      lastBackupAt.inWholeMilliseconds
-    ).value
-  } else {
-    stringResource(R.string.RemoteBackupsSettingsFragment__never)
+  val context = LocalContext.current
+
+  var lastBackupString by remember { mutableStateOf(calculateLastBackupTimeString(context, lastBackupAt)) }
+
+  LaunchedEffect(Unit) {
+    while (true) {
+      delay(1.minutes)
+      lastBackupString = calculateLastBackupTimeString(context, lastBackupAt)
+    }
   }
 
   Text(
@@ -555,6 +562,18 @@ private fun LastBackedUpText(lastBackupAt: Duration) {
     color = MaterialTheme.colorScheme.onSurfaceVariant,
     style = MaterialTheme.typography.bodyMedium
   )
+}
+
+private fun calculateLastBackupTimeString(context: Context, lastBackupAt: Duration): String {
+  return if (lastBackupAt.inWholeMilliseconds > 0) {
+    DateUtils.getDatelessRelativeTimeSpanFormattedDate(
+      context,
+      Locale.getDefault(),
+      lastBackupAt.inWholeMilliseconds
+    ).value
+  } else {
+    context.getString(R.string.RemoteBackupsSettingsFragment__never)
+  }
 }
 
 @Composable

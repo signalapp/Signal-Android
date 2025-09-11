@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.settings.app.backups
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
@@ -48,6 +49,15 @@ class BackupsSettingsViewModel : ViewModel() {
           )
         }
       }
+    }
+
+    viewModelScope.launch(Dispatchers.IO) {
+      SignalStore.backup.lastBackupTimeFlow
+        .collect { lastBackupTime ->
+          internalStateFlow.update {
+            it.copy(lastBackupAt = lastBackupTime.milliseconds)
+          }
+        }
     }
   }
 
