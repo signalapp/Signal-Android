@@ -108,6 +108,7 @@ import org.thoughtcrime.securesms.jobs.CancelRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
+import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
@@ -1340,6 +1341,10 @@ object BackupRepository {
     AppDependencies.recipientCache.clear()
     AppDependencies.recipientCache.warmUp()
     SignalDatabase.threads.clearCache()
+
+    if (SignalStore.svr.pin?.isNotBlank() == true) {
+      AppDependencies.jobManager.add(ResetSvrGuessCountJob())
+    }
 
     val stickerJobs = SignalDatabase.stickers.getAllStickerPacks().use { cursor ->
       val reader = StickerTable.StickerPackRecordReader(cursor)
