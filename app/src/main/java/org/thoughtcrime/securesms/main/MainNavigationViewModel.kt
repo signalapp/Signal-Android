@@ -68,6 +68,9 @@ class MainNavigationViewModel(
   private val internalTabClickEvents: MutableSharedFlow<MainNavigationListLocation> = MutableSharedFlow()
   val tabClickEvents: Observable<MainNavigationListLocation> = internalTabClickEvents.asObservable()
 
+  private var earlyNavigationListLocationRequested: MainNavigationListLocation? = null
+  private var earlyNavigationDetailLocationRequested: MainNavigationDetailLocation? = null
+
   init {
     performStoreUpdate(MainNavigationRepository.getNumberOfUnreadMessages()) { unreadChats, state ->
       state.copy(chatsCount = unreadChats.toInt())
@@ -94,6 +97,19 @@ class MainNavigationViewModel(
     this.goToLegacyDetailLocation = goToLegacyDetailLocation
     this.navigatorScope = composeScope
     this.navigator = threePaneScaffoldNavigator
+
+    earlyNavigationListLocationRequested?.let {
+      goTo(it)
+    }
+
+    earlyNavigationListLocationRequested = null
+
+    earlyNavigationDetailLocationRequested?.let {
+      goTo(it)
+    }
+
+    earlyNavigationDetailLocationRequested = null
+
     return threePaneScaffoldNavigator
   }
 
@@ -104,6 +120,11 @@ class MainNavigationViewModel(
   fun goTo(location: MainNavigationDetailLocation) {
     if (!SignalStore.internal.largeScreenUi) {
       goToLegacyDetailLocation?.invoke(location)
+      return
+    }
+
+    if (navigator == null) {
+      earlyNavigationDetailLocationRequested = location
       return
     }
 
@@ -128,6 +149,11 @@ class MainNavigationViewModel(
   }
 
   fun goTo(location: MainNavigationListLocation) {
+    if (navigator == null) {
+      earlyNavigationListLocationRequested = location
+      return
+    }
+
     if (location != MainNavigationListLocation.CHATS) {
       internalDetailLocation.update {
         MainNavigationDetailLocation.Empty

@@ -753,6 +753,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
   private fun handleConversationIntent(intent: Intent) {
     if (ConversationIntents.isConversationIntent(intent)) {
+      Log.d(TAG, "Got conversation intent. Navigating to conversation.")
       mainNavigationViewModel.goTo(MainNavigationListLocation.CHATS)
       mainNavigationViewModel.goTo(MainNavigationDetailLocation.Conversation(intent))
     }
