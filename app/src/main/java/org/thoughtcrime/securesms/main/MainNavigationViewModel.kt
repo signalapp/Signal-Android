@@ -184,6 +184,11 @@ class MainNavigationViewModel(
     navigatorScope?.launch {
       val currentPane = navigator?.currentDestination?.pane ?: return@launch
       if (currentPane == ThreePaneScaffoldRole.Secondary) {
+        val multiPane = navigator?.scaffoldDirective?.maxHorizontalPartitions == 2
+        if (multiPane && location == MainNavigationListLocation.CHATS && latestConversationLocation != null) {
+          navigator?.navigateTo(ThreePaneScaffoldRole.Primary)
+        }
+
         return@launch
       } else {
         navigator?.navigateBack()
