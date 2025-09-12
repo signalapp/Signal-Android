@@ -38,6 +38,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.PaneExpansionAnchor
+import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
 import androidx.compose.material3.adaptive.layout.rememberPaneExpansionState
 import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
 import androidx.compose.runtime.Composable
@@ -46,6 +47,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -345,8 +347,14 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         val mutableInteractionSource = remember { MutableInteractionSource() }
 
         LaunchedEffect(mainNavigationDetailLocation) {
-          if (paneExpansionState.currentAnchor == listOnlyAnchor) {
+          if (paneExpansionState.currentAnchor == listOnlyAnchor && wrappedNavigator.currentDestination?.pane == ThreePaneScaffoldRole.Primary) {
             paneExpansionState.animateTo(detailOnlyAnchor)
+          }
+        }
+
+        LaunchedEffect(mainNavigationState.currentListLocation) {
+          if (paneExpansionState.currentAnchor == detailOnlyAnchor && wrappedNavigator.currentDestination?.pane == ThreePaneScaffoldRole.Secondary) {
+            paneExpansionState.animateTo(listOnlyAnchor)
           }
         }
 
