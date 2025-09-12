@@ -32,19 +32,20 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
 
   private static final String TAG = Log.tag(EmojiSearchIndexDownloadJob.class);
 
-  public static final String KEY = "EmojiSearchIndexDownloadJob";
+  public static final  String KEY                   = "EmojiSearchIndexDownloadJob";
+  public static final String LANGUAGE_CODE_ENGLISH = "en";
 
   private static final long INTERVAL_WITHOUT_INDEX = TimeUnit.DAYS.toMillis(1);
   private static final long INTERVAL_WITH_INDEX    = TimeUnit.DAYS.toMillis(7);
 
   private EmojiSearchIndexDownloadJob() {
     this(new Parameters.Builder()
-                       .setQueue("EmojiSearchIndexDownloadJob")
-                       .setMaxInstancesForFactory(2)
-                       .addConstraint(NetworkConstraint.KEY)
-                       .setLifespan(TimeUnit.DAYS.toMillis(1))
-                       .setMaxAttempts(Parameters.UNLIMITED)
-                       .build());
+             .setQueue("EmojiSearchIndexDownloadJob")
+             .setMaxInstancesForFactory(2)
+             .addConstraint(NetworkConstraint.KEY)
+             .setLifespan(TimeUnit.DAYS.toMillis(1))
+             .setMaxAttempts(Parameters.UNLIMITED)
+             .build());
   }
 
   private EmojiSearchIndexDownloadJob(@NonNull Parameters parameters) {
@@ -99,14 +100,20 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
     }
 
     Log.i(TAG, "Need to get a new search index. Downloading version: " + manifest.getVersion() + ", language: " + remoteLanguage);
+    List<EmojiSearchData> localizedSearchIndex = downloadSearchIndex(manifest.getVersion(), remoteLanguage);
 
-    List<EmojiSearchData> searchIndex = downloadSearchIndex(manifest.getVersion(), remoteLanguage);
+    List<EmojiSearchData> englishSearchIndex;
+    if (remoteLanguage.equals(LANGUAGE_CODE_ENGLISH) || remoteLanguage.startsWith(LANGUAGE_CODE_ENGLISH + "_")) {
+      englishSearchIndex = Collections.emptyList();
+    } else {
+      englishSearchIndex = downloadSearchIndex(manifest.getVersion(), LANGUAGE_CODE_ENGLISH);
+    }
 
-    if (searchIndex.isEmpty()) {
+    if (localizedSearchIndex.isEmpty()) {
       throw new IOException("Emoji search data is empty");
     }
 
-    SignalDatabase.emojiSearch().setSearchIndex(searchIndex);
+    SignalDatabase.emojiSearch().setSearchIndex(localizedSearchIndex, englishSearchIndex);
     SignalStore.emoji().onSearchIndexUpdated(manifest.getVersion(), remoteLanguage);
     SignalStore.emoji().setLastSearchIndexCheck(System.currentTimeMillis());
 
@@ -153,9 +160,9 @@ public final class EmojiSearchIndexDownloadJob extends BaseJob {
     if (parentLanguage != null) {
       Log.i(TAG, "No exact match found. Using parent language: " + parentLanguage);
       return parentLanguage;
-    } else if (languages.contains("en")) {
-      Log.w(TAG, "No match, so falling back to en locale.");
-      return "en";
+    } else if (languages.contains(LANGUAGE_CODE_ENGLISH)) {
+      Log.w(TAG, "No match, so falling back to " + LANGUAGE_CODE_ENGLISH + " locale.");
+      return LANGUAGE_CODE_ENGLISH;
     } else if (languages.contains("en_US")) {
       Log.w(TAG, "No match, so falling back to en_US locale.");
       return "en_US";
