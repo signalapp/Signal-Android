@@ -333,14 +333,22 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         val wrappedNavigator = rememberNavigator(windowSizeClass, contentLayoutData, maxWidth)
         val listPaneWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
         val halfPartitionWidth = contentLayoutData.partitionWidth / 2
+
+        val detailOnlyAnchor = PaneExpansionAnchor.Offset.fromStart(72.dp + contentLayoutData.listPaddingStart + halfPartitionWidth)
+        val detailAndListAnchor = PaneExpansionAnchor.Offset.fromStart(listPaneWidth + halfPartitionWidth)
+        val listOnlyAnchor = PaneExpansionAnchor.Offset.fromEnd(contentLayoutData.detailPaddingEnd - halfPartitionWidth)
+
         val paneExpansionState = rememberPaneExpansionState(
-          anchors = listOf(
-            PaneExpansionAnchor.Offset.fromStart(72.dp + contentLayoutData.listPaddingStart + halfPartitionWidth),
-            PaneExpansionAnchor.Offset.fromStart(listPaneWidth + halfPartitionWidth),
-            PaneExpansionAnchor.Offset.fromEnd(contentLayoutData.detailPaddingEnd - halfPartitionWidth)
-          )
+          anchors = listOf(detailOnlyAnchor, detailAndListAnchor, listOnlyAnchor)
         )
+
         val mutableInteractionSource = remember { MutableInteractionSource() }
+
+        LaunchedEffect(mainNavigationDetailLocation) {
+          if (paneExpansionState.currentAnchor == listOnlyAnchor) {
+            paneExpansionState.animateTo(detailOnlyAnchor)
+          }
+        }
 
         AppScaffold(
           navigator = wrappedNavigator,
