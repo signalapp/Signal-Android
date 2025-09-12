@@ -903,10 +903,6 @@
     <string name="CreateBackupBottomSheet__you_are_all_set">Vse je pripravljeno. Začnite varnostno kopiranje.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Glede na velikost varnostne kopije lahko to traja zelo dolgo. Med varnostnim kopiranjem lahko telefon uporabljate kot običajno.</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Varnostno kopijo izdelaj pozneje</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">Izdelaj varnostno kopijo</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Ni mogoče obnoviti medijev</string>
@@ -5054,7 +5050,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">Info</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">To je funkcija beta, ki jo bomo sproti dopolnjevali.</string>
+    <string name="Beta__this_is_beta">This is a beta feature and will be improved over time.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Odkleni Signal</string>
@@ -5137,7 +5133,7 @@
     <string name="NewDeviceTransferInstructions__second_bullet">2.</string>
     <string name="NewDeviceTransferInstructions__tap_on_account">"Tapnite na \"Račun\""</string>
     <string name="NewDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Tapnite na \"Prenesi račun\" in nato \"Dalje\" na obeh napravah"</string>
+    <string name="NewDeviceTransferInstructions__tap_transfer_account_and_then_continue_on_both_devices">"Tapnite na \"Prenos računa\" in nato \"Nadaljuj\" na obeh napravah."</string>
 
     <!-- NewDeviceTransferSetupFragment -->
     <string name="NewDeviceTransferSetup__preparing_to_connect_to_old_android_device">Priprava za povezavo s staro androidno napravo …</string>
@@ -5210,13 +5206,13 @@
     <string name="DeviceTransfer__unable_to_transfer">Prenos ni bil mogoč</string>
 
     <!-- OldDeviceTransferInstructionsFragment -->
-    <string name="OldDeviceTransferInstructions__transfer_account">Prenesi račun</string>
+    <string name="OldDeviceTransferInstructions__transfer_account">Prenos računa</string>
     <string name="OldDeviceTransferInstructions__first_bullet">1.</string>
-    <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">namestite Signal na novi androidni napravi</string>
+    <string name="OldDeviceTransferInstructions__download_signal_on_your_new_android_device">Namestite Signal na novi androidni napravi.</string>
     <string name="OldDeviceTransferInstructions__second_bullet">2.</string>
-    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"tapnite na \"Prenos ali obnovitev računa\""</string>
+    <string name="OldDeviceTransferInstructions__tap_on_transfer_or_restore_account">"Tapnite na \"Prenesi ali obnovi račun\"."</string>
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
-    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"ob pozivu izberite \"Prenos iz androidne naprave\" in nato \"Naprej\". Napravi naj bosta v neposredni bližini."</string>
+    <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Ob pozivu izberite \"Prenos iz druge androidne naprave\" in nato \"Naprej\". Napravi naj bosta v neposredni bližini."</string>
     <string name="OldDeviceTransferInstructions__continue">Nadaljuj</string>
 
     <!-- OldDeviceTransferComplete -->
@@ -8481,7 +8477,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Varne varnostne kopije Signal</string>
     <!-- Displayed as a label when remote backups are off -->
-    <string name="RemoteBackupsSettingsFragment__off">Off</string>
+    <string name="RemoteBackupsSettingsFragment__off">Izklopljeno</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Zahtevano je preverjanje pristnosti</string>
     <!-- Row label to launch payment history screen -->
@@ -8865,6 +8861,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">Trenutni načrt</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Can\'t upgrade plan</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">To subscribe to Signal Secure Backups, you must have Google Services enabled on your phone and be signed into the Google Play Store.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

@@ -863,10 +863,6 @@
     <string name="CreateBackupBottomSheet__you_are_all_set">Све је спремно. Покрените креирање резервне копије.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">У зависности од величине ваше резервне копије, ово може дуже потрајати. Можете нормално да користите телефон док се прави резервна копија.</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Касније направи резервну копију</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">Направи резервну копију</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Враћање медија није успело</string>
@@ -4808,7 +4804,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">Информације</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Ово је бета функција којој ћемо континуирано додавати функционалности.</string>
+    <string name="Beta__this_is_beta">This is a beta feature and will be improved over time.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Откључајте Signal</string>
@@ -8127,7 +8123,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Безбедне резервне копије Signal-а</string>
     <!-- Displayed as a label when remote backups are off -->
-    <string name="RemoteBackupsSettingsFragment__off">Off</string>
+    <string name="RemoteBackupsSettingsFragment__off">Искључено</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Потребна је потврда идентитета</string>
     <!-- Row label to launch payment history screen -->
@@ -8143,7 +8139,7 @@
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Учесталост резервних копија</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
-    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Your media and messages are backed up daily.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Свакодневно се креирају резервне копије ваших медија и порука.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Резервне копије преко мобилне мреже</string>
     <!-- Row label for viewing recovery key -->
@@ -8501,6 +8497,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">Тренутни пакет</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Can\'t upgrade plan</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">To subscribe to Signal Secure Backups, you must have Google Services enabled on your phone and be signed into the Google Play Store.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

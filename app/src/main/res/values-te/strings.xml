@@ -863,10 +863,6 @@
     <string name="CreateBackupBottomSheet__you_are_all_set">మీరు అంతా సిద్ధంగా ఉన్నారు. మీ బ్యాకప్‌ను ఇప్పుడే ప్రారంభించండి.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">మీ బ్యాకప్ పరిమాణంపై ఆధారపడి, దీనికి ఎక్కువ సమయం పట్టవచ్చు. బ్యాకప్ జరుగుతున్నప్పుడు మీరు మీ ఫోన్‌ను ఎప్పటిలానే మామూలుగా ఉపయోగించవచ్చు.</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">తర్వాత బ్యాకప్ చేయండి</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">భద్రపరచు</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">మీడియాను పునరుద్ధరించడం సాధ్యం కాదు</string>
@@ -4808,7 +4804,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">సమాచారం</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">ఇది బీటా ఫీచర్, దీనికి మేము కొనసాగుతున్న ప్రాతిపదికన కార్యాచరణను జోడిస్తాము.</string>
+    <string name="Beta__this_is_beta">This is a beta feature and will be improved over time.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal ను అన్‌లాక్ చేయండి</string>
@@ -8127,7 +8123,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal సురక్షిత బ్యాకప్‌లు</string>
     <!-- Displayed as a label when remote backups are off -->
-    <string name="RemoteBackupsSettingsFragment__off">Off</string>
+    <string name="RemoteBackupsSettingsFragment__off">ఆఫ్</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">ప్రమాణీకరణ అవసరం</string>
     <!-- Row label to launch payment history screen -->
@@ -8501,6 +8497,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">ప్రస్తుత ప్లాన్</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Can\'t upgrade plan</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">To subscribe to Signal Secure Backups, you must have Google Services enabled on your phone and be signed into the Google Play Store.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->

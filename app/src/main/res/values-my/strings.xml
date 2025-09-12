@@ -843,10 +843,6 @@
     <string name="CreateBackupBottomSheet__you_are_all_set">အားလုံး ပြင်ဆင်ပြီးပါပြီ။ ယခု စတင် ဘက်ခ်အပ်လုပ်ပါ။</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">သင်၏ ဘက်ခ်အပ်အရွယ်အစားပေါ် မူတည်၍ အချိန်ကြာမြင့်နိုင်သည်။ ဘက်ခ်အပ်လုပ်နေစဉ်တွင် သင်သည် ပုံမှန်အတိုင်း သင့်ဖုန်းကို အသုံးပြုနိုင်သည်။</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">ဘက်ခ်အပ် နောက်မှလုပ်မည်</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">ဘက်ခ်အပ် အခုလုပ်မည်</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">မီဒီယာကို ပြန်လည်ရယူ၍မရပါ</string>
@@ -4685,7 +4681,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">အချက်အလက်</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">၎င်းသည် ကျွန်ုပ်တို့လုပ်ဆောင်နိုင်စွမ်းကို ဆက်လက်ထည့်သွင်းပေးမည့် Beta အင်္ဂါရပ်တစ်ခုဖြစ်သည်။</string>
+    <string name="Beta__this_is_beta">This is a beta feature and will be improved over time.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal ကို ပြန်ဖွင့်ပါ</string>
@@ -7950,7 +7946,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Signal လုံခြုံရေးဘက်ခ်အပ်</string>
     <!-- Displayed as a label when remote backups are off -->
-    <string name="RemoteBackupsSettingsFragment__off">Off</string>
+    <string name="RemoteBackupsSettingsFragment__off">ပိတ်ထားသည်</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">စစ်မှန်ကြောင်းအတည်ပြုချက် လိုအပ်သည်</string>
     <!-- Row label to launch payment history screen -->
@@ -8319,6 +8315,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">လက်ရှိအစီအစဉ်</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Can\'t upgrade plan</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">To subscribe to Signal Secure Backups, you must have Google Services enabled on your phone and be signed into the Google Play Store.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
