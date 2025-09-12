@@ -379,7 +379,7 @@ class BackupStateObserver(
           getStateOnError()
         } else {
           when {
-            subscription.isCanceled && subscription.isActive -> {
+            (subscription.isCanceled || subscription.willCancelAtPeriodEnd()) && subscription.isActive -> {
               Log.d(TAG, "[getPaidBackupState] Found a canceled subscription.")
               BackupState.Canceled(
                 messageBackupsType = subscriberType,
