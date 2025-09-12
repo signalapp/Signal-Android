@@ -118,6 +118,8 @@ class InAppPaymentKeepAliveJob private constructor(
       return
     }
 
+    clearOldPendingPaymentsIfRequired()
+
     if (SignalDatabase.inAppPayments.hasPrePendingRecurringTransaction(type.inAppPaymentType)) {
       info(type, "We are currently processing a transaction for this type. Skipping.")
       return
@@ -150,8 +152,6 @@ class InAppPaymentKeepAliveJob private constructor(
       info(type, "User does not have a subscription. Exiting.")
       return
     }
-
-    clearOldPendingPaymentsIfRequired()
 
     val activeInAppPayment = getActiveInAppPayment(subscriber, subscription)
     if (activeInAppPayment == null) {
@@ -235,6 +235,8 @@ class InAppPaymentKeepAliveJob private constructor(
    * fail the job and let the keep-alive check create a new one as necessary.
    */
   private fun clearOldPendingPaymentsIfRequired() {
+    info(type, "Clearing out old pending payments as required.")
+
     val inAppPayments = SignalDatabase.inAppPayments.getOldPendingPayments(type.inAppPaymentType)
 
     inAppPayments.forEach { inAppPayment ->
