@@ -267,9 +267,10 @@ class ArchiveAttachmentReconciliationJob private constructor(
     val mediaOnRemoteButNotLocal = SignalDatabase.backupMediaSnapshots.getMediaObjectsThatCantBeFound(mediaObjects)
     val mediaObjectsOnBothRemoteAndLocal = mediaObjects - mediaOnRemoteButNotLocal
 
-    if (RemoteConfig.internalUser && mediaOnRemoteButNotLocal.isNotEmpty()) {
-      Log.w(TAG, "MediaIds of items on remote but not local: ${mediaOnRemoteButNotLocal.joinToString(", ") { it.mediaId }}", true)
-    }
+    // TODO [backups] Temporarily remove deletes
+//    if (RemoteConfig.internalUser && mediaOnRemoteButNotLocal.isNotEmpty()) {
+//      Log.w(TAG, "MediaIds of items on remote but not local: ${mediaOnRemoteButNotLocal.joinToString(", ") { it.mediaId }}", true)
+//    }
 
     val cdnMismatches = SignalDatabase.backupMediaSnapshots.getMediaObjectsWithNonMatchingCdn(mediaObjectsOnBothRemoteAndLocal)
     if (cdnMismatches.isNotEmpty()) {
@@ -279,11 +280,12 @@ class ArchiveAttachmentReconciliationJob private constructor(
       }
     }
 
-    val deleteResult = ArchiveCommitAttachmentDeletesJob.deleteMediaObjectsFromCdn(TAG, mediaOnRemoteButNotLocal, this::defaultBackoff, this::isCanceled)
-    if (deleteResult != null) {
-      Log.w(TAG, "Failed to delete orphaned attachments from the CDN. Returning failure.")
-      return deleteResult
-    }
+    // TODO [backups] Temporarily remove deletes
+//    val deleteResult = ArchiveCommitAttachmentDeletesJob.deleteMediaObjectsFromCdn(TAG, mediaOnRemoteButNotLocal, this::defaultBackoff, this::isCanceled)
+//    if (deleteResult != null) {
+//      Log.w(TAG, "Failed to delete orphaned attachments from the CDN. Returning failure.")
+//      return deleteResult
+//    }
 
     return null
   }
