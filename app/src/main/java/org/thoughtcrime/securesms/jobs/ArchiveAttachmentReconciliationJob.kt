@@ -149,6 +149,8 @@ class ArchiveAttachmentReconciliationJob private constructor(
       return Result.failure()
     }
 
+    Log.d(TAG, "BEFORE:\n" + SignalDatabase.attachments.debugGetAttachmentStats().prettyString())
+
     val mediaObjectsThatMayNeedReUpload = SignalDatabase.backupMediaSnapshots.getMediaObjectsLastSeenOnCdnBeforeSnapshotVersion(snapshotVersion)
     val mayNeedReUploadCount = mediaObjectsThatMayNeedReUpload.count
 
@@ -198,14 +200,22 @@ class ArchiveAttachmentReconciliationJob private constructor(
         Log.i(TAG, "None of the $mayNeedReUploadCount CDN mismatches were bookkeeping errors.", true)
       }
 
+      Log.d(TAG, "AFTER:\n" + SignalDatabase.attachments.debugGetAttachmentStats().prettyString())
+
       if (internalUser && mediaIdsThatNeedUpload.isNotEmpty()) {
         Log.w(TAG, "Starting internal-only lookup of matching attachments. May take a while!")
 
-        val matchingAttachments = SignalDatabase.attachments.debugGetAttachmentsForMediaIds(mediaIdsThatNeedUpload, limit = 100)
-        Log.w(TAG, "Found ${matchingAttachments.size} out of the ${mediaIdsThatNeedUpload.size} attachments we looked up (capped lookups to 100).", true)
+        val matchingAttachments = SignalDatabase.attachments.debugGetAttachmentsForMediaIds(mediaIdsThatNeedUpload, limit = 10_000)
+        Log.w(TAG, "Found ${matchingAttachments.size} out of the ${mediaIdsThatNeedUpload.size} attachments we looked up (capped lookups to 10k).", true)
 
-        matchingAttachments.forEach { attachment ->
-          Log.w(TAG, "Needed Upload: attachmentId=${attachment.first.attachmentId}, messageId=${attachment.first.mmsId}, thumbnail=${attachment.second}, contentType=${attachment.first.contentType}, quote=${attachment.first.quote}, transferState=${attachment.first.transferState}, archiveTransferState=${attachment.first.archiveTransferState}, hasData=${attachment.first.hasData}")
+        matchingAttachments.forEach { pair ->
+          val (attachment, isThumbnail) = pair
+          if (isThumbnail) {
+            val thumbnailTransferState = SignalDatabase.attachments.getArchiveThumbnailTransferState(attachment.attachmentId)
+            Log.w(TAG, "[Thumbnail] Needed Upload: attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, contentType=${attachment.contentType}, quote=${attachment.quote}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, archiveThumbnailTransferState=$thumbnailTransferState, hasData=${attachment.hasData}")
+          } else {
+            Log.w(TAG, "[Fullsize] Needed Upload: attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, contentType=${attachment.contentType}, quote=${attachment.quote}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}")
+          }
         }
       }
 

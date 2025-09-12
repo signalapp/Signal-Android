@@ -132,6 +132,7 @@ import java.security.NoSuchAlgorithmException
 import java.util.LinkedList
 import java.util.Optional
 import java.util.UUID
+import kotlin.text.appendLine
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
@@ -3180,27 +3181,31 @@ class AttachmentTable(
     val byteStringMediaIds: Set<ByteString> = mediaIds.map { it.value.toByteString() }.toSet()
     val found = mutableListOf<Pair<DatabaseAttachment, Boolean>>()
 
-    readableDatabase
-      .select(*PROJECTION)
-      .from(TABLE_NAME)
-      .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL")
-      .run()
-      .forEach { cursor ->
-        val remoteKey = Base64.decode(cursor.requireNonNullString(REMOTE_KEY))
-        val plaintextHash = Base64.decode(cursor.requireNonNullString(DATA_HASH_END))
-        val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).value.toByteString()
-        val mediaIdThumbnail = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).value.toByteString()
+    run {
+      readableDatabase
+        .select(*PROJECTION)
+        .from(TABLE_NAME)
+        .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL")
+        .groupBy(DATA_HASH_END)
+        .run()
+        .forEach { cursor ->
 
-        if (mediaId in byteStringMediaIds) {
-          found.add(getAttachment(cursor) to false)
+          val remoteKey = Base64.decode(cursor.requireNonNullString(REMOTE_KEY))
+          val plaintextHash = Base64.decode(cursor.requireNonNullString(DATA_HASH_END))
+          val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).value.toByteString()
+          val mediaIdThumbnail = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).value.toByteString()
+
+          if (mediaId in byteStringMediaIds) {
+            found.add(getAttachment(cursor) to false)
+          }
+
+          if (mediaIdThumbnail in byteStringMediaIds) {
+            found.add(getAttachment(cursor) to true)
+          }
+
+          if (found.size >= limit) return@run
         }
-
-        if (mediaIdThumbnail in byteStringMediaIds) {
-          found.add(getAttachment(cursor) to true)
-        }
-
-        if (found.size >= limit) return@forEach
-      }
+    }
 
     return found
   }
@@ -3710,6 +3715,60 @@ class AttachmentTable(
 
     val totalUploadCount get() = uploadedAttachmentCount + uploadedThumbnailCount
     val totalUploadBytes get() = uploadedAttachmentBytes + uploadedThumbnailBytes
+
+    fun prettyString(): String {
+      return buildString {
+        appendLine("Total attachment rows: $totalAttachmentRows")
+        appendLine("Total eligible for upload rows: $totalEligibleForUploadRows")
+        appendLine("Total unique media names eligible for upload: $totalUniqueMediaNamesEligibleForUpload")
+        appendLine("Total unique data files: $totalUniqueDataFiles")
+        appendLine("Total unique media names: $totalUniqueMediaNames")
+        appendLine("Media names with thumbnails count: $mediaNamesWithThumbnailsCount")
+        appendLine("Pending attachment upload bytes: $pendingAttachmentUploadBytes")
+        appendLine("Uploaded attachment bytes: $uploadedAttachmentBytes")
+        appendLine("Uploaded thumbnail bytes: $uploadedThumbnailBytes")
+        appendLine("Total upload count: $totalUploadCount")
+        appendLine("Total upload bytes: $totalUploadBytes")
+
+        if (archiveStatusMediaNameCounts.isNotEmpty()) {
+          appendLine("Archive status media name counts:")
+          archiveStatusMediaNameCounts.forEach { (state, count) ->
+            appendLine("  ${state.name}: $count")
+          }
+        }
+
+        if (archiveStatusMediaNameThumbnailCounts.isNotEmpty()) {
+          appendLine("Archive status media name thumbnail counts:")
+          archiveStatusMediaNameThumbnailCounts.forEach { (state, count) ->
+            appendLine("  ${state.name}: $count")
+          }
+        }
+      }
+    }
+
+    fun shortPrettyString(): String {
+      return buildString {
+        appendLine("Total eligible for upload rows: $totalEligibleForUploadRows")
+        appendLine("Total unique media names eligible for upload: $totalUniqueMediaNamesEligibleForUpload")
+        appendLine("Total unique data files: $totalUniqueDataFiles")
+        appendLine("Total unique media names: $totalUniqueMediaNames")
+        appendLine("Pending attachment upload bytes: $pendingAttachmentUploadBytes")
+
+        if (archiveStatusMediaNameCounts.isNotEmpty()) {
+          appendLine("Archive status media name counts:")
+          archiveStatusMediaNameCounts.forEach { (state, count) ->
+            appendLine("  ${state.name}: $count")
+          }
+        }
+
+        if (archiveStatusMediaNameThumbnailCounts.isNotEmpty()) {
+          appendLine("Archive status media name thumbnail counts:")
+          archiveStatusMediaNameThumbnailCounts.forEach { (state, count) ->
+            appendLine("  ${state.name}: $count")
+          }
+        }
+      }
+    }
   }
 
   data class CreateRemoteKeyResult(val totalCount: Int, val notQuoteOrSickerDupeNotFoundCount: Int, val notQuoteOrSickerDupeFoundCount: Int) {

@@ -40,13 +40,13 @@ class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Paramete
     fun deleteMediaObjectsFromCdn(tag: String, attachmentsToDelete: Set<ArchivedMediaObject>, backoffGenerator: () -> Long, cancellationSignal: () -> Boolean): Result? {
       attachmentsToDelete.chunked(REMOTE_DELETE_BATCH_SIZE).forEach { chunk ->
         if (cancellationSignal()) {
-          Log.w(tag, "Job cancelled while deleting attachments from the CDN.")
+          Log.w(tag, "Job cancelled while deleting attachments from the CDN.", true)
           return Result.failure()
         }
 
         when (val result = BackupRepository.deleteAbandonedMediaObjects(chunk)) {
           is NetworkResult.Success -> {
-            Log.i(tag, "Successfully deleted ${chunk.size} attachments off of the CDN. (Note: Count includes thumbnails)")
+            Log.i(tag, "Successfully deleted ${chunk.size} attachments off of the CDN. (Note: Count includes thumbnails)", true)
           }
 
           is NetworkResult.NetworkError -> {
@@ -56,24 +56,24 @@ class ArchiveCommitAttachmentDeletesJob private constructor(parameters: Paramete
           is NetworkResult.StatusCodeError -> {
             when (result.code) {
               429 -> {
-                Log.w(tag, "Rate limited while attempting to delete media objects. Retrying later.")
+                Log.w(tag, "Rate limited while attempting to delete media objects. Retrying later.", true)
                 return Result.retry(result.retryAfter()?.inWholeMilliseconds ?: backoffGenerator())
               }
 
               in 500..599 -> {
-                Log.w(tag, "Failed to delete attachments from CDN with code: ${result.code}. Retrying with a larger backoff.", result.getCause())
+                Log.w(tag, "Failed to delete attachments from CDN with code: ${result.code}. Retrying with a larger backoff.", result.getCause(), true)
                 return Result.retry(1.hours.inWholeMilliseconds)
               }
 
               else -> {
-                Log.w(tag, "Failed to delete attachments from CDN with code: ${result.code}. Considering this a terminal failure.", result.getCause())
+                Log.w(tag, "Failed to delete attachments from CDN with code: ${result.code}. Considering this a terminal failure.", result.getCause(), true)
                 return Result.failure()
               }
             }
           }
 
           is NetworkResult.ApplicationError -> {
-            Log.w(tag, "Crash when trying to delete attachments from the CDN", result.getCause())
+            Log.w(tag, "Crash when trying to delete attachments from the CDN", result.getCause(), true)
             Result.fatalFailure(RuntimeException(result.getCause()))
           }
         }
