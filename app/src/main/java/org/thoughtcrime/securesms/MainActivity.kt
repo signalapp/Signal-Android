@@ -347,13 +347,17 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         val mutableInteractionSource = remember { MutableInteractionSource() }
 
         LaunchedEffect(mainNavigationDetailLocation) {
+          println("Detail Location Changed pane:${wrappedNavigator.currentDestination?.pane}")
           if (paneExpansionState.currentAnchor == listOnlyAnchor && wrappedNavigator.currentDestination?.pane == ThreePaneScaffoldRole.Primary) {
+            println("Animate detail")
             paneExpansionState.animateTo(detailOnlyAnchor)
           }
         }
 
         LaunchedEffect(mainNavigationState.currentListLocation) {
+          println("List Location Changed pane:${wrappedNavigator.currentDestination?.pane}")
           if (paneExpansionState.currentAnchor == detailOnlyAnchor && wrappedNavigator.currentDestination?.pane == ThreePaneScaffoldRole.Secondary) {
+            println("Animate list")
             paneExpansionState.animateTo(listOnlyAnchor)
           }
         }

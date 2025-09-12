@@ -144,7 +144,20 @@ class MainNavigationViewModel(
     }
 
     navigatorScope?.launch {
-      navigator?.navigateTo(focusedPane)
+      val currentPane: ThreePaneScaffoldRole = navigator?.currentDestination?.pane ?: return@launch
+
+      if (currentPane == focusedPane) {
+        return@launch
+      }
+
+      if (currentPane == ThreePaneScaffoldRole.Secondary) {
+        navigator?.navigateTo(focusedPane)
+      } else {
+        navigator?.navigateBack()
+        if (navigator?.currentDestination == null) {
+          navigator?.navigateTo(ThreePaneScaffoldRole.Secondary)
+        }
+      }
     }
   }
 
@@ -169,7 +182,15 @@ class MainNavigationViewModel(
     }
 
     navigatorScope?.launch {
-      navigator?.navigateTo(ThreePaneScaffoldRole.Secondary)
+      val currentPane = navigator?.currentDestination?.pane ?: return@launch
+      if (currentPane == ThreePaneScaffoldRole.Secondary) {
+        return@launch
+      } else {
+        navigator?.navigateBack()
+        if (navigator?.currentDestination == null) {
+          navigator?.navigateTo(ThreePaneScaffoldRole.Secondary)
+        }
+      }
     }
   }
 
