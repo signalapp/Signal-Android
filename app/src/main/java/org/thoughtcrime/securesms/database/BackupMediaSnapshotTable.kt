@@ -129,7 +129,6 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
 
   /**
    * Writes the set of full-size media items that are slated to be referenced in the next backup, updating their pending sync time.
-   * Will insert multiple rows per object -- one for the main item, and one for the thumbnail.
    */
   fun writeFullSizePendingMediaObjects(mediaObjects: Sequence<ArchiveMediaItem>) {
     mediaObjects
@@ -143,7 +142,6 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
 
   /**
    * Writes the set of thumbnail media items that are slated to be referenced in the next backup, updating their pending sync time.
-   * Will insert multiple rows per object -- one for the main item, and one for the thumbnail.
    */
   fun writeThumbnailPendingMediaObjects(mediaObjects: Sequence<ArchiveMediaItem>) {
     mediaObjects
