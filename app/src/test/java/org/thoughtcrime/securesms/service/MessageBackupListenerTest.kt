@@ -24,6 +24,7 @@ import org.robolectric.annotation.Config
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testutil.MockRandom
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
+import org.thoughtcrime.securesms.util.toLocalDateTime
 import java.time.Duration
 import java.time.LocalDateTime
 import java.util.concurrent.TimeUnit
@@ -56,12 +57,33 @@ class MessageBackupListenerTest {
 
     nextTime = System.currentTimeMillis() + 7.days.inWholeMilliseconds
     every { SignalStore.backup.nextBackupTime } returns nextTime
-    every { SignalStore.settings.backupHour } returns 2
-    every { SignalStore.settings.backupMinute } returns 0
+    every { SignalStore.settings.signalBackupHour } returns 2
+    every { SignalStore.settings.signalBackupMinute } returns 0
     every { SignalStore.backup.nextBackupTime = any() } just runs
     val adjustedTime = listener.getNextScheduledExecutionTime(ApplicationProvider.getApplicationContext())
     assertThat(adjustedTime).isGreaterThan(System.currentTimeMillis())
     assertThat(adjustedTime).isLessThan(System.currentTimeMillis() + 2.days.inWholeMilliseconds)
+  }
+
+  @Test
+  fun testSetNextBackupTimeToIntervalFromNow() {
+    val mockRandom = MockRandom(listOf(1.minutes.inWholeSeconds.toInt()))
+    val now = LocalDateTime.of(2025, 6, 27, 2, 0, 0)
+    val jitterWindow = 10.minutes
+
+    every { SignalStore.settings.signalBackupHour } returns 2
+    every { SignalStore.settings.signalBackupMinute } returns 1
+    every { SignalStore.backup.nextBackupTime = any() } just runs
+
+    val nextDateTime = MessageBackupListener.setNextBackupTimeToIntervalFromNow(
+      now = now,
+      maxJitterSeconds = jitterWindow.inWholeSeconds.toInt(),
+      randomSource = mockRandom
+    ).toLocalDateTime()
+
+    assertThat(nextDateTime.dayOfMonth).isEqualTo(28)
+    assertThat(nextDateTime.hour).isEqualTo(1)
+    assertThat(nextDateTime.minute).isEqualTo(57)
   }
 
   @Test

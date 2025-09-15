@@ -47,6 +47,8 @@ public final class SettingsValues extends SignalStoreValues {
   public static final  String BACKUPS_ENABLED                         = "settings.backups.enabled";
   public static final  String BACKUPS_SCHEDULE_HOUR                   = "settings.backups.schedule.hour";
   public static final  String BACKUPS_SCHEDULE_MINUTE                 = "settings.backups.schedule.minute";
+  public static final  String SIGNAL_BACKUPS_SCHEDULE_HOUR            = "settings.signal.backups.schedule.hour";
+  public static final  String SIGNAL_BACKUPS_SCHEDULE_MINUTE          = "settings.signal.backups.schedule.minute";
   public static final  String SMS_DELIVERY_REPORTS_ENABLED            = "settings.sms.delivery.reports.enabled";
   public static final  String WIFI_CALLING_COMPATIBILITY_MODE_ENABLED = "settings.wifi.calling.compatibility.mode.enabled";
   public static final  String MESSAGE_NOTIFICATIONS_ENABLED           = "settings.message.notifications.enabled";
@@ -107,6 +109,9 @@ public final class SettingsValues extends SignalStoreValues {
     if (!store.containsKey(BACKUPS_SCHEDULE_HOUR)) {
       // Initialize backup time to a 5min interval between 1-5am
       setBackupSchedule(new Random().nextInt(5) + 1, new Random().nextInt(12) * 5);
+    }
+    if (!store.containsKey(SIGNAL_BACKUPS_SCHEDULE_HOUR)) {
+      initSignalBackupsSchedule();
     }
   }
 
@@ -315,9 +320,38 @@ public final class SettingsValues extends SignalStoreValues {
     return getInteger(BACKUPS_SCHEDULE_MINUTE, BACKUP_DEFAULT_MINUTE);
   }
 
+  public int getSignalBackupHour() {
+    int hour = getInteger(SIGNAL_BACKUPS_SCHEDULE_HOUR, -1);
+    if (hour < 0) {
+      initSignalBackupsSchedule();
+      return getInteger(SIGNAL_BACKUPS_SCHEDULE_HOUR, BACKUP_DEFAULT_HOUR);
+    } else {
+      return hour;
+    }
+  }
+
+  public int getSignalBackupMinute() {
+    int minute = getInteger(SIGNAL_BACKUPS_SCHEDULE_MINUTE, -1);
+    if (minute < 0) {
+      initSignalBackupsSchedule();
+      return getInteger(SIGNAL_BACKUPS_SCHEDULE_MINUTE, BACKUP_DEFAULT_MINUTE);
+    } else {
+      return minute;
+    }
+  }
+
   public void setBackupSchedule(int hour, int minute) {
     putInteger(BACKUPS_SCHEDULE_HOUR, hour);
     putInteger(BACKUPS_SCHEDULE_MINUTE, minute);
+  }
+
+  private void initSignalBackupsSchedule() {
+    setSignalBackupSchedule(new Random().nextInt(5) + 1, new Random().nextInt(12) * 5);
+  }
+
+  public void setSignalBackupSchedule(int hour, int minute) {
+    putInteger(SIGNAL_BACKUPS_SCHEDULE_HOUR, hour);
+    putInteger(SIGNAL_BACKUPS_SCHEDULE_MINUTE, minute);
   }
 
   public boolean isSmsDeliveryReportsEnabled() {

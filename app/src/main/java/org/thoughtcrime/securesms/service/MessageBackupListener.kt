@@ -24,7 +24,7 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
   @VisibleForTesting
   public override fun getNextScheduledExecutionTime(context: Context): Long {
     val nextTime = SignalStore.backup.nextBackupTime
-    return if (nextTime > (System.currentTimeMillis() + 2.days.inWholeMilliseconds)) {
+    return if (nextTime < 0 || nextTime > (System.currentTimeMillis() + 2.days.inWholeMilliseconds)) {
       setNextBackupTimeToIntervalFromNow()
     } else {
       nextTime
@@ -62,11 +62,11 @@ class MessageBackupListener : PersistentAlarmManagerListener() {
       return next.plusSeconds(jitter.toLong())
     }
 
-    fun setNextBackupTimeToIntervalFromNow(maxJitterSeconds: Int = BACKUP_JITTER_WINDOW_SECONDS): Long {
-      val now = LocalDateTime.now()
-      val hour = SignalStore.settings.backupHour
-      val minute = SignalStore.settings.backupMinute
-      val next = getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, maxJitterSeconds).plusDays(1)
+    @VisibleForTesting
+    fun setNextBackupTimeToIntervalFromNow(now: LocalDateTime = LocalDateTime.now(), maxJitterSeconds: Int = BACKUP_JITTER_WINDOW_SECONDS, randomSource: Random = Random()): Long {
+      val hour = SignalStore.settings.signalBackupHour
+      val minute = SignalStore.settings.signalBackupMinute
+      val next = getNextDailyBackupTimeFromNowWithJitter(now, hour, minute, maxJitterSeconds, randomSource)
       val nextTime = next.toMillis()
       SignalStore.backup.nextBackupTime = nextTime
       return nextTime
