@@ -8,6 +8,8 @@ package org.thoughtcrime.securesms.backup.v2
 import org.signal.core.util.ByteSize
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.backup.RestoreState
+import kotlin.math.max
+import kotlin.math.min
 
 /**
  * In-memory view of the current state of an attachment restore process.
@@ -24,13 +26,15 @@ data class ArchiveRestoreProgressState(
 
   val progress: Float? = when (this.restoreState) {
     RestoreState.CALCULATING_MEDIA,
-    RestoreState.CANCELING_MEDIA -> this.completedRestoredSize.percentageOf(this.totalRestoreSize)
+    RestoreState.CANCELING_MEDIA -> {
+      max(0f, min(1f, this.completedRestoredSize.percentageOf(this.totalRestoreSize)))
+    }
 
     RestoreState.RESTORING_MEDIA -> {
       when (this.restoreStatus) {
         RestoreStatus.NONE -> null
         RestoreStatus.FINISHED -> 1f
-        else -> this.completedRestoredSize.percentageOf(this.totalRestoreSize)
+        else -> max(0f, min(1f, this.completedRestoredSize.percentageOf(this.totalRestoreSize)))
       }
     }
 
