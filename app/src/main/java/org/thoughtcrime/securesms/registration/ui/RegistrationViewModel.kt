@@ -211,6 +211,12 @@ class RegistrationViewModel : ViewModel() {
     return fcmToken
   }
 
+  fun togglePinKeyboardType() {
+    store.update { previousState ->
+      previousState.copy(pinKeyboardType = previousState.pinKeyboardType.other)
+    }
+  }
+
   fun onBackupSuccessfullyRestored() {
     val recoveryPassword = SignalStore.svr.recoveryPassword
     store.update {
@@ -723,6 +729,8 @@ class RegistrationViewModel : ViewModel() {
 
   fun verifyCodeAndRegisterAccountWithRegistrationLock(context: Context, pin: String) {
     Log.v(TAG, "verifyCodeAndRegisterAccountWithRegistrationLock()")
+    SignalStore.pin.keyboardType = store.value.pinKeyboardType
+
     store.update {
       it.copy(
         inProgress = true,

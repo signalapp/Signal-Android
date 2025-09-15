@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationPinRestoreEntryV2Binding
-import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
@@ -41,9 +40,6 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
   private val reRegisterViewModel by viewModels<ReRegisterWithPinViewModel>()
 
   private val binding: FragmentRegistrationPinRestoreEntryV2Binding by ViewBinderDelegate(FragmentRegistrationPinRestoreEntryV2Binding::bind)
-
-  private val pinEntryKeyboardType: PinKeyboardType
-    get() = PinKeyboardType.fromEditText(editText = binding.pinRestorePinInput)
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -72,10 +68,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
       handlePinEntry()
     }
 
-    binding.pinRestoreKeyboardToggle.setOnClickListener {
-      updateKeyboard(newType = pinEntryKeyboardType.other)
-    }
-    updateKeyboard(newType = pinEntryKeyboardType)
+    binding.pinRestoreKeyboardToggle.setOnClickListener { reRegisterViewModel.toggleKeyboardType() }
 
     LiveDataUtil
       .combineLatest(registrationViewModel.uiState, reRegisterViewModel.uiState) { reg, rereg -> reg to rereg }
@@ -96,6 +89,11 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
       presentProgress(state.inProgress)
       presentTriesRemaining(reRegisterState, state.svrTriesRemaining)
     }
+
+    reRegisterState.pinKeyboardType.applyTo(
+      pinEditText = binding.pinRestorePinInput,
+      toggleTypeButton = binding.pinRestoreKeyboardToggle
+    )
 
     state.registerAccountError?.let { error ->
       registrationErrorHandler(error)
@@ -192,13 +190,6 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
     binding.pinRestorePinInput.isEnabled = true
     binding.pinRestorePinInput.isFocusable = true
     ViewUtil.focusAndShowKeyboard(binding.pinRestorePinInput)
-  }
-
-  private fun updateKeyboard(newType: PinKeyboardType) {
-    newType.applyTo(
-      pinEditText = binding.pinRestorePinInput,
-      toggleTypeButton = binding.pinRestoreKeyboardToggle
-    )
   }
 
   private fun onNeedHelpClicked() {

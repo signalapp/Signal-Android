@@ -24,15 +24,6 @@ enum class PinKeyboardType(val code: String) {
      */
     @JvmStatic
     fun fromCode(code: String?): PinKeyboardType = entries.firstOrNull { it.code == code } ?: NUMERIC
-
-    /**
-     * Gets the keyboard type that is associated with an [EditText]'s current input type.
-     */
-    @JvmStatic
-    fun fromEditText(editText: EditText): PinKeyboardType = when {
-      (editText.inputType and InputType.TYPE_MASK_CLASS) == InputType.TYPE_CLASS_NUMBER -> NUMERIC
-      else -> ALPHA_NUMERIC
-    }
   }
 
   private val inputType: Int by lazy {

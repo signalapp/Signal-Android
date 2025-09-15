@@ -31,10 +31,12 @@ import androidx.compose.ui.res.vectorResource
 import androidx.core.app.DialogCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
@@ -112,23 +114,20 @@ class AccountSettingsFragment : ComposeFragment() {
       val turnOffButton = DialogCompat.requireViewById(dialog, R.id.reminder_disable_turn_off)
       val changeKeyboard = DialogCompat.requireViewById(dialog, R.id.reminder_change_keyboard) as MaterialButton
 
-      changeKeyboard.setOnClickListener {
-        val newType = PinKeyboardType.fromEditText(pinEditText).other
-        newType.applyTo(
-          pinEditText = pinEditText,
-          toggleTypeButton = changeKeyboard
-        )
-        pinEditText.typeface = Typeface.DEFAULT
+      dialog.lifecycleScope.launch {
+        viewModel.state.collect { state ->
+          state.pinKeyboardType.applyTo(
+            pinEditText = pinEditText,
+            toggleTypeButton = changeKeyboard
+          )
+        }
       }
+
+      changeKeyboard.setOnClickListener { viewModel.togglePinKeyboardType() }
 
       pinEditText.post {
         ViewUtil.focusAndShowKeyboard(pinEditText)
       }
-
-      SignalStore.pin.keyboardType.applyTo(
-        pinEditText = pinEditText,
-        toggleTypeButton = changeKeyboard
-      )
 
       pinEditText.addTextChangedListener(object : SimpleTextWatcher() {
         override fun onTextChanged(text: String) {
@@ -459,6 +458,7 @@ private fun AccountSettingsScreenPreview() {
     AccountSettingsScreen(
       state = AccountSettingsState(
         hasPin = true,
+        pinKeyboardType = PinKeyboardType.NUMERIC,
         hasRestoredAep = true,
         pinRemindersEnabled = true,
         registrationLockEnabled = true,

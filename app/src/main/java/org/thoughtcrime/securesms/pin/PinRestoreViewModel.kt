@@ -7,6 +7,7 @@ import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.schedulers.Schedulers
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.util.DefaultValueLiveData
@@ -19,11 +20,18 @@ class PinRestoreViewModel : ViewModel() {
   @JvmField
   val triesRemaining: DefaultValueLiveData<TriesRemaining> = DefaultValueLiveData(TriesRemaining(10, false))
 
+  private val _keyboardType = DefaultValueLiveData(SignalStore.pin.keyboardType)
+  val keyboardType: LiveData<PinKeyboardType> = _keyboardType
+
   private val event: SingleLiveEvent<Event> = SingleLiveEvent()
 
   private val disposables = CompositeDisposable()
 
-  fun onPinSubmitted(pin: String, pinKeyboardType: PinKeyboardType) {
+  fun toggleKeyboardType() {
+    _keyboardType.value = _keyboardType.value.other
+  }
+
+  fun onPinSubmitted(pin: String) {
     val trimmedLength = pin.trim().length
     if (trimmedLength == 0) {
       event.postValue(Event.EMPTY_PIN)
@@ -35,7 +43,7 @@ class PinRestoreViewModel : ViewModel() {
     }
 
     disposables += Single
-      .fromCallable { repo.restoreMasterKeyPostRegistration(pin, pinKeyboardType) }
+      .fromCallable { repo.restoreMasterKeyPostRegistration(pin, _keyboardType.value) }
       .subscribeOn(Schedulers.io())
       .observeOn(AndroidSchedulers.mainThread())
       .subscribe { result ->
@@ -43,16 +51,20 @@ class PinRestoreViewModel : ViewModel() {
           is SecureValueRecovery.RestoreResponse.Success -> {
             event.postValue(Event.SUCCESS)
           }
+
           is SecureValueRecovery.RestoreResponse.PinMismatch -> {
             event.postValue(Event.PIN_INCORRECT)
             triesRemaining.postValue(TriesRemaining(result.triesRemaining, true))
           }
+
           SecureValueRecovery.RestoreResponse.Missing -> {
             event.postValue(Event.PIN_LOCKED)
           }
+
           is SecureValueRecovery.RestoreResponse.NetworkError -> {
             event.postValue(Event.NETWORK_ERROR)
           }
+
           is SecureValueRecovery.RestoreResponse.ApplicationError -> {
             event.postValue(Event.NETWORK_ERROR)
           }

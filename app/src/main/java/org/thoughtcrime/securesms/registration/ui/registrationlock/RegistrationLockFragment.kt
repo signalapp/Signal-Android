@@ -19,8 +19,6 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationLockBinding
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
@@ -42,9 +40,6 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
   private val viewModel by activityViewModels<RegistrationViewModel>()
 
   private var timeRemaining: Long = 0
-
-  private val pinEntryKeyboardType: PinKeyboardType
-    get() = PinKeyboardType.fromEditText(editText = binding.kbsLockPinInput)
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -74,10 +69,7 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
       handlePinEntry()
     }
 
-    binding.kbsLockKeyboardToggle.setOnClickListener {
-      updateKeyboard(pinEntryKeyboardType.other)
-    }
-    updateKeyboard(pinEntryKeyboardType)
+    binding.kbsLockKeyboardToggle.setOnClickListener { viewModel.togglePinKeyboardType() }
 
     viewModel.lockedTimeRemaining.observe(viewLifecycleOwner) { t: Long -> timeRemaining = t }
 
@@ -114,6 +106,11 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
         handleRegistrationErrorResponse(error)
         viewModel.registerAccountErrorShown()
       }
+
+      it.pinKeyboardType.applyTo(
+        pinEditText = binding.kbsLockPinInput,
+        toggleTypeButton = binding.kbsLockKeyboardToggle
+      )
     }
   }
 
@@ -134,8 +131,6 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
       enableAndFocusPinEntry()
       return
     }
-
-    SignalStore.pin.keyboardType = pinEntryKeyboardType
 
     binding.kbsLockPinConfirm.setSpinning()
 
@@ -261,13 +256,6 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
     binding.kbsLockPinInput.setEnabled(true)
     binding.kbsLockPinInput.setFocusable(true)
     ViewUtil.focusAndShowKeyboard(binding.kbsLockPinInput)
-  }
-
-  private fun updateKeyboard(newType: PinKeyboardType) {
-    newType.applyTo(
-      pinEditText = binding.kbsLockPinInput,
-      toggleTypeButton = binding.kbsLockKeyboardToggle
-    )
   }
 
   private fun sendEmailToSupport() {

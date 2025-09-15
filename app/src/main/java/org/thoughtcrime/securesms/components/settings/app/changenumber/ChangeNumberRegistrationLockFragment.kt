@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberUtil.changeNumberSuccess
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationLockBinding
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
@@ -50,9 +49,6 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
   private val viewModel by activityViewModels<ChangeNumberViewModel>()
 
   private var timeRemaining: Long = 0
-
-  private val pinEntryKeyboardType: PinKeyboardType
-    get() = PinKeyboardType.fromEditText(editText = binding.kbsLockPinInput)
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -93,10 +89,7 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
       handlePinEntry()
     }
 
-    binding.kbsLockKeyboardToggle.setOnClickListener {
-      updateKeyboard(pinEntryKeyboardType.other)
-    }
-    updateKeyboard(pinEntryKeyboardType)
+    binding.kbsLockKeyboardToggle.setOnClickListener { viewModel.togglePinKeyboardType() }
 
     viewModel.liveLockedTimeRemaining.observe(viewLifecycleOwner) { t: Long -> timeRemaining = t }
 
@@ -123,6 +116,11 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
     if (state.changeNumberOutcome == ChangeNumberOutcome.VerificationCodeWorked) {
       handleSuccessfulPinEntry(state.enteredPin)
     }
+
+    state.pinKeyboardType.applyTo(
+      pinEditText = binding.kbsLockPinInput,
+      toggleTypeButton = binding.kbsLockKeyboardToggle
+    )
   }
 
   private fun handlePinEntry() {
@@ -273,13 +271,6 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
     binding.kbsLockPinInput.setEnabled(true)
     binding.kbsLockPinInput.setFocusable(true)
     ViewUtil.focusAndShowKeyboard(binding.kbsLockPinInput)
-  }
-
-  private fun updateKeyboard(newType: PinKeyboardType) {
-    newType.applyTo(
-      pinEditText = binding.kbsLockPinInput,
-      toggleTypeButton = binding.kbsLockKeyboardToggle
-    )
   }
 
   private fun navigateToAccountLocked() {

@@ -3,7 +3,6 @@ package org.thoughtcrime.securesms.pin;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +28,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies;
 import org.thoughtcrime.securesms.jobs.ProfileUploadJob;
 import org.thoughtcrime.securesms.keyvalue.RestoreDecisionStateUtil;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.lock.v2.PinKeyboardType;
 import org.thoughtcrime.securesms.lock.v2.SvrConstants;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity;
@@ -100,14 +98,13 @@ public class PinRestoreEntryFragment extends LoggingFragment {
       onPinSubmitted();
     });
 
-    keyboardToggle.setOnClickListener((v) -> {
-      getPinEntryKeyboardType().getOther().applyTo(pinEntry, keyboardToggle);
-    });
-    getPinEntryKeyboardType().applyTo(pinEntry, keyboardToggle);
+    keyboardToggle.setOnClickListener((v) -> viewModel.toggleKeyboardType());
   }
 
   private void initViewModel() {
     viewModel = new ViewModelProvider(this).get(PinRestoreViewModel.class);
+
+    viewModel.getKeyboardType().observe(getViewLifecycleOwner(), keyboardType -> keyboardType.applyTo(pinEntry, keyboardToggle));
 
     viewModel.triesRemaining.observe(getViewLifecycleOwner(), this::presentTriesRemaining);
     viewModel.getEvent().observe(getViewLifecycleOwner(), this::presentEvent);
@@ -175,13 +172,9 @@ public class PinRestoreEntryFragment extends LoggingFragment {
     }
   }
 
-  private PinKeyboardType getPinEntryKeyboardType() {
-    return PinKeyboardType.fromEditText(pinEntry);
-  }
-
   private void onPinSubmitted() {
     pinEntry.setEnabled(false);
-    viewModel.onPinSubmitted(pinEntry.getText().toString(), getPinEntryKeyboardType());
+    viewModel.onPinSubmitted(pinEntry.getText().toString());
     pinButton.setSpinning();
   }
 

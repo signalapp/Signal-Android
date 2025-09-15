@@ -18,9 +18,16 @@ class AccountSettingsViewModel : ViewModel() {
     store.update { getCurrentState() }
   }
 
+  fun togglePinKeyboardType() {
+    store.update { previousState ->
+      previousState.copy(pinKeyboardType = previousState.pinKeyboardType.other)
+    }
+  }
+
   private fun getCurrentState(): AccountSettingsState {
     return AccountSettingsState(
       hasPin = SignalStore.svr.hasPin() && !SignalStore.svr.hasOptedOut(),
+      pinKeyboardType = SignalStore.pin.keyboardType,
       hasRestoredAep = SignalStore.account.restoredAccountEntropyPool,
       pinRemindersEnabled = SignalStore.pin.arePinRemindersEnabled() && SignalStore.svr.hasPin(),
       registrationLockEnabled = SignalStore.svr.isRegistrationLockEnabled,

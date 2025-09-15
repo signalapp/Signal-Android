@@ -150,6 +150,12 @@ class ChangeNumberViewModel : ViewModel() {
     }
   }
 
+  fun togglePinKeyboardType() {
+    store.update { previousState ->
+      previousState.copy(pinKeyboardType = previousState.pinKeyboardType.other)
+    }
+  }
+
   fun incrementIncorrectCodeAttempts() {
     store.update {
       it.copy(incorrectCodeAttempts = it.incorrectCodeAttempts + 1)

@@ -22,6 +22,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
+import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 
 @RunWith(RobolectricTestRunner::class)
 @Config(application = Application::class)
@@ -364,6 +365,7 @@ class AccountSettingsScreenTest {
 
   private fun createState(
     hasPin: Boolean = true,
+    pinKeyboardType: PinKeyboardType = PinKeyboardType.NUMERIC,
     hasRestoredAep: Boolean = true,
     pinRemindersEnabled: Boolean = true,
     registrationLockEnabled: Boolean = true,
@@ -373,6 +375,7 @@ class AccountSettingsScreenTest {
   ): AccountSettingsState {
     return AccountSettingsState(
       hasPin = hasPin,
+      pinKeyboardType = pinKeyboardType,
       hasRestoredAep = hasRestoredAep,
       pinRemindersEnabled = pinRemindersEnabled,
       registrationLockEnabled = registrationLockEnabled,
