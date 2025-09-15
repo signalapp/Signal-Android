@@ -16,6 +16,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement.spacedBy
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -94,7 +95,6 @@ import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.RestoreState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState.RestoreStatus
-import org.thoughtcrime.securesms.backup.v2.BackupFrequency
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlert
 import org.thoughtcrime.securesms.backup.v2.ui.BackupAlertBottomSheet
@@ -894,6 +894,7 @@ private fun LazyListScope.appendBackupDetailsItems(
       LastBackupRow(
         lastBackupTimestamp = state.lastBackupTimestamp,
         enabled = !state.isOutOfStorageSpace,
+        onRowClick = contentCallbacks::onBackupFrequencyClick,
         onBackupNowClick = contentCallbacks::onBackupNowClick
       )
     }
@@ -931,26 +932,6 @@ private fun LazyListScope.appendBackupDetailsItems(
         }
       })
     }
-  }
-
-  item {
-    Rows.TextRow(
-      text = {
-        Column {
-          Text(
-            text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_frequency),
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurface
-          )
-          Text(
-            text = stringResource(id = R.string.RemoteBackupsSettingsFragment__daily),
-            style = MaterialTheme.typography.bodyMedium,
-            color = MaterialTheme.colorScheme.onSurfaceVariant
-          )
-        }
-      },
-      onClick = contentCallbacks::onBackupFrequencyClick
-    )
   }
 
   item {
@@ -1508,10 +1489,12 @@ private fun IncludeDebuglogRow(
 private fun LastBackupRow(
   lastBackupTimestamp: Long,
   enabled: Boolean,
+  onRowClick: () -> Unit,
   onBackupNowClick: () -> Unit
 ) {
   Row(
     modifier = Modifier
+      .clickable(onClick = onRowClick)
       .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
       .padding(top = 16.dp, bottom = 14.dp)
   ) {
@@ -1702,16 +1685,6 @@ private fun BackupReadyToDownloadRow(
       icon = painterResource(R.drawable.symbol_arrow_circle_down_24),
       onClick = onDownloadClick
     )
-  }
-}
-
-@Composable
-private fun getTextForFrequency(backupsFrequency: BackupFrequency): String {
-  return when (backupsFrequency) {
-    BackupFrequency.DAILY -> stringResource(id = R.string.RemoteBackupsSettingsFragment__daily)
-    BackupFrequency.WEEKLY -> stringResource(id = R.string.RemoteBackupsSettingsFragment__weekly)
-    BackupFrequency.MONTHLY -> stringResource(id = R.string.RemoteBackupsSettingsFragment__monthly)
-    BackupFrequency.MANUAL -> stringResource(id = R.string.RemoteBackupsSettingsFragment__manually_back_up)
   }
 }
 
@@ -1965,6 +1938,7 @@ private fun LastBackupRowPreview() {
     LastBackupRow(
       lastBackupTimestamp = -1,
       enabled = true,
+      onRowClick = {},
       onBackupNowClick = {}
     )
   }
