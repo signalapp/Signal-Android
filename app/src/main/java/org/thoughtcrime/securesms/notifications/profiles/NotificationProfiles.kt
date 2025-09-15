@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.notifications.profiles
 
 import android.content.Context
 import org.signal.core.util.concurrent.SignalExecutors
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.keyvalue.NotificationProfileValues
@@ -22,6 +23,8 @@ import java.time.ZoneId
  */
 object NotificationProfiles {
 
+  val TAG = Log.tag(NotificationProfiles::class.java)
+
   @JvmStatic
   @JvmOverloads
   fun getActiveProfile(profiles: List<NotificationProfile>, now: Long = System.currentTimeMillis(), zoneId: ZoneId = ZoneId.systemDefault()): NotificationProfile? {
@@ -39,6 +42,7 @@ object NotificationProfiles {
     }
 
     if (shouldClearManualOverride(manualProfile, scheduledProfile)) {
+      Log.i(TAG, "Clearing manual override")
       SignalExecutors.UNBOUNDED.execute {
         SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
         StorageSyncHelper.scheduleSyncForDataChange()
