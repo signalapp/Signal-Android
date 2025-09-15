@@ -545,9 +545,9 @@ private fun ActiveBackupsRow(
 private fun LastBackedUpText(lastBackupAt: Duration) {
   val context = LocalContext.current
 
-  var lastBackupString by remember { mutableStateOf(calculateLastBackupTimeString(context, lastBackupAt)) }
+  var lastBackupString by remember(lastBackupAt) { mutableStateOf(calculateLastBackupTimeString(context, lastBackupAt)) }
 
-  LaunchedEffect(Unit) {
+  LaunchedEffect(lastBackupAt) {
     while (true) {
       delay(1.minutes)
       lastBackupString = calculateLastBackupTimeString(context, lastBackupAt)
@@ -566,11 +566,20 @@ private fun LastBackedUpText(lastBackupAt: Duration) {
 
 private fun calculateLastBackupTimeString(context: Context, lastBackupAt: Duration): String {
   return if (lastBackupAt.inWholeMilliseconds > 0) {
-    DateUtils.getDatelessRelativeTimeSpanFormattedDate(
+    val relativeTime = DateUtils.getDatelessRelativeTimeSpanFormattedDate(
       context,
       Locale.getDefault(),
       lastBackupAt.inWholeMilliseconds
-    ).value
+    )
+
+    if (relativeTime.isRelative) {
+      relativeTime.value
+    } else {
+      val day = DateUtils.getDayPrecisionTimeString(context, Locale.getDefault(), lastBackupAt.inWholeMilliseconds)
+      val time = relativeTime.value
+
+      context.getString(R.string.RemoteBackupsSettingsFragment__s_at_s, day, time)
+    }
   } else {
     context.getString(R.string.RemoteBackupsSettingsFragment__never)
   }
