@@ -44,7 +44,9 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
     private val TAG = Log.tag(RegistrationLockFragment::class.java)
   }
 
-  private val binding: FragmentRegistrationLockBinding by ViewBinderDelegate(FragmentRegistrationLockBinding::bind)
+  private val binding: FragmentRegistrationLockBinding by ViewBinderDelegate(bindingFactory = { rootView ->
+    FragmentRegistrationLockBinding.bind(rootView.findViewById(R.id.registration_lock_content))
+  })
 
   private val viewModel by activityViewModels<ChangeNumberViewModel>()
 
