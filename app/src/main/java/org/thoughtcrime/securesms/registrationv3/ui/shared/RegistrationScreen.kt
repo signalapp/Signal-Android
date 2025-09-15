@@ -67,6 +67,7 @@ fun RegistrationScreen(
   mainContent: @Composable ColumnScope.() -> Unit
 ) {
   RegistrationScreen(
+    menu = null,
     topContent = { RegistrationScreenTitleSubtitle(title, subtitle) },
     bottomContent = bottomContent,
     mainContent = mainContent
@@ -101,6 +102,7 @@ fun RegistrationScreenTitleSubtitle(
  */
 @Composable
 fun RegistrationScreen(
+  menu: @Composable (ColumnScope.() -> Unit)?,
   topContent: @Composable ColumnScope.() -> Unit,
   bottomContent: @Composable BoxScope.() -> Unit,
   mainContent: @Composable ColumnScope.() -> Unit
@@ -121,9 +123,15 @@ fun RegistrationScreen(
         modifier = Modifier
           .verticalScroll(scrollState)
           .weight(weight = 1f, fill = false)
-          .padding(top = 40.dp, bottom = 16.dp)
+          .padding(bottom = 16.dp)
           .horizontalGutters()
       ) {
+        if (menu != null) {
+          menu()
+        } else {
+          Spacer(Modifier.height(40.dp))
+        }
+
         Column(
           modifier = Modifier
             .fillMaxWidth()
@@ -186,6 +194,7 @@ private fun RegistrationScreenPreview() {
 private fun RegistrationScreenNoTitlePreview() {
   Previews.Preview {
     RegistrationScreen(
+      menu = null,
       topContent = { Text("Top content") },
       bottomContent = {
         TextButton(onClick = {}) {
