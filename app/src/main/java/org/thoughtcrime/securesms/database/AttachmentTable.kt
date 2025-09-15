@@ -73,6 +73,7 @@ import org.thoughtcrime.securesms.attachments.DatabaseAttachment
 import org.thoughtcrime.securesms.attachments.LocalStickerAttachment
 import org.thoughtcrime.securesms.attachments.WallpaperAttachment
 import org.thoughtcrime.securesms.audio.AudioHash
+import org.thoughtcrime.securesms.backup.v2.ArchivedMediaObject
 import org.thoughtcrime.securesms.backup.v2.exporters.ChatItemArchiveExporter
 import org.thoughtcrime.securesms.backup.v2.proto.BackupDebugInfo
 import org.thoughtcrime.securesms.blurhash.BlurHash
@@ -3174,6 +3175,32 @@ class AttachmentTable(
     }
   }
 
+  fun getMediaObjectsThatCantBeFound(objects: Set<ArchivedMediaObject>): Set<ArchivedMediaObject> {
+    if (objects.isEmpty()) {
+      return emptySet()
+    }
+
+    val objectsByMediaId: MutableMap<String, ArchivedMediaObject> = objects.associateBy { it.mediaId }.toMutableMap()
+
+    readableDatabase
+      .select(*PROJECTION)
+      .from(TABLE_NAME)
+      .where("$REMOTE_KEY NOT NULL AND $DATA_HASH_END NOT NULL")
+      .groupBy("$DATA_HASH_END, $REMOTE_KEY")
+      .run()
+      .forEach { cursor ->
+        val remoteKey = Base64.decode(cursor.requireNonNullString(REMOTE_KEY))
+        val plaintextHash = Base64.decode(cursor.requireNonNullString(DATA_HASH_END))
+        val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+        val mediaIdThumbnail = MediaName.fromPlaintextHashAndRemoteKeyForThumbnail(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).encode()
+
+        objectsByMediaId.remove(mediaId)
+        objectsByMediaId.remove(mediaIdThumbnail)
+      }
+
+    return objectsByMediaId.values.toSet()
+  }
+
   /**
    * Important: This is an expensive query that involves iterating over every row in the table. Only call this for debug stuff!
    */
@@ -3189,7 +3216,6 @@ class AttachmentTable(
         .groupBy(DATA_HASH_END)
         .run()
         .forEach { cursor ->
-
           val remoteKey = Base64.decode(cursor.requireNonNullString(REMOTE_KEY))
           val plaintextHash = Base64.decode(cursor.requireNonNullString(DATA_HASH_END))
           val mediaId = MediaName.fromPlaintextHashAndRemoteKey(plaintextHash, remoteKey).toMediaId(SignalStore.backup.mediaRootBackupKey).value.toByteString()

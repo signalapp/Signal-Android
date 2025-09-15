@@ -11,6 +11,7 @@ import androidx.annotation.VisibleForTesting
 import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
+import org.signal.core.util.forEach
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
 import org.signal.core.util.readToSingleLong
@@ -214,6 +215,8 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
       return emptySet()
     }
 
+    val objectsByMediaId: MutableMap<String, ArchivedMediaObject> = objects.associateBy { it.mediaId }.toMutableMap()
+
     val queries: List<SqlUtil.Query> = SqlUtil.buildCollectionQuery(
       column = MEDIA_ID,
       values = objects.map { it.mediaId },
@@ -221,20 +224,19 @@ class BackupMediaSnapshotTable(context: Context, database: SignalDatabase) : Dat
       prefix = "$SNAPSHOT_VERSION = $MAX_VERSION AND "
     )
 
-    val foundObjects: MutableSet<String> = mutableSetOf()
-
     for (query in queries) {
-      foundObjects += readableDatabase
+      readableDatabase
         .select(MEDIA_ID, CDN)
         .from(TABLE_NAME)
         .where(query.where, query.whereArgs)
         .run()
-        .readToSet {
-          it.requireNonNullString(MEDIA_ID)
+        .forEach {
+          val mediaId = it.requireNonNullString(MEDIA_ID)
+          objectsByMediaId.remove(mediaId)
         }
     }
 
-    return objects.filterNot { foundObjects.contains(it.mediaId) }.toSet()
+    return objectsByMediaId.values.toSet()
   }
 
   fun getMediaEntriesForObjects(objects: List<ArchivedMediaObject>): Set<MediaEntry> {
