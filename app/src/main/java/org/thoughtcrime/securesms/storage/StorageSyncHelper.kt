@@ -312,10 +312,11 @@ object StorageSyncHelper {
           if (localProfile == null) {
             Log.w(TAG, "Unable to find local notification profile with given remote id")
           } else {
-            Log.i(TAG, "Setting manually enabled profile to ${localProfile.id}")
+            val disabledAt = System.currentTimeMillis()
+            Log.i(TAG, "Setting manually enabled profile to ${localProfile.id} ending at $remoteEndTime. Disabled at: $disabledAt")
             SignalStore.notificationProfile.manuallyEnabledProfile = localProfile.id
             SignalStore.notificationProfile.manuallyEnabledUntil = remoteEndTime
-            SignalStore.notificationProfile.manuallyDisabledAt = System.currentTimeMillis()
+            SignalStore.notificationProfile.manuallyDisabledAt = disabledAt
           }
         }
       } else if (update.new.proto.notificationProfileManualOverride!!.disabledAtTimestampMs != null) {

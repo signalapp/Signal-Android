@@ -42,7 +42,6 @@ object NotificationProfiles {
     }
 
     if (shouldClearManualOverride(manualProfile, scheduledProfile)) {
-      Log.i(TAG, "Clearing manual override")
       SignalExecutors.UNBOUNDED.execute {
         SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
         StorageSyncHelper.scheduleSyncForDataChange()
@@ -61,12 +60,14 @@ object NotificationProfiles {
     var shouldScheduleSync = false
 
     if (manualProfile == null && storeValues.manuallyEnabledProfile != 0L) {
+      Log.i(TAG, "Clearing override: ${storeValues.manuallyEnabledProfile} and ${storeValues.manuallyEnabledUntil}")
       storeValues.manuallyEnabledProfile = 0
       storeValues.manuallyEnabledUntil = 0
       shouldScheduleSync = true
     }
 
     if (scheduledProfile != null && storeValues.manuallyDisabledAt != 0L) {
+      Log.i(TAG, "Clearing override: ${storeValues.manuallyDisabledAt}")
       storeValues.manuallyDisabledAt = 0
       shouldScheduleSync = true
     }
