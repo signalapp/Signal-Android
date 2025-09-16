@@ -174,10 +174,9 @@ public class ApplicationDependencyProvider implements AppDependencies.Provider {
                                             keysApi,
                                             Optional.of(new SecurityEventListener(context)),
                                             SignalExecutors.newCachedBoundedExecutor("signal-messages", ThreadUtil.PRIORITY_IMPORTANT_BACKGROUND_THREAD, 1, 16, 30),
-                                            ByteUnit.KILOBYTES.toBytes(256),
+                                            RemoteConfig.maxEnvelopeSizeBytes(),
                                             RemoteConfig::useMessageSendRestFallback,
-                                            RemoteConfig.usePqRatchet(),
-                                            RemoteConfig.internalUser() ? Optional.of(ByteUnit.KILOBYTES.toBytes(96)) : Optional.empty());
+                                            RemoteConfig.usePqRatchet());
   }
 
   @Override

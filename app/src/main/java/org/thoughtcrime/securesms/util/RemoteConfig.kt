@@ -875,7 +875,7 @@ object RemoteConfig {
   @JvmStatic
   @get:JvmName("promptForDelayedNotificationLogs")
   val promptForDelayedNotificationLogs: String by remoteString(
-    key = RemoteConfig.PROMPT_FOR_NOTIFICATION_LOGS,
+    key = PROMPT_FOR_NOTIFICATION_LOGS,
     defaultValue = "*",
     hotSwappable = true
   )
@@ -1176,6 +1176,15 @@ object RemoteConfig {
   ) { value ->
     if (value.asBoolean(false)) UsePqRatchet.YES else UsePqRatchet.NO
   }
+
+  /** The maximum allowed envelope size for messages we send. */
+  @JvmStatic
+  @get:JvmName("maxEnvelopeSizeBytes")
+  val maxEnvelopeSizeBytes: Long by remoteLong(
+    key = "android.maxEnvelopeSizeBytes",
+    defaultValue = 256.kibiBytes.inWholeBytes,
+    hotSwappable = true
+  )
 
   // endregion
 }
