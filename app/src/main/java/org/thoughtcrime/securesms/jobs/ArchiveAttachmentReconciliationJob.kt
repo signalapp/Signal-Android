@@ -95,7 +95,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
     }
 
     if (SignalStore.backup.lastAttachmentReconciliationTime < 0) {
-      Log.w(TAG, "First ever time we're attempting a reconciliation. Setting the last sync time to now, so we'll run at the proper interval. Skipping this iteration.")
+      Log.w(TAG, "First ever time we're attempting a reconciliation. Setting the last sync time to now, so we'll run at the proper interval. Skipping this iteration.", true)
       SignalStore.backup.lastAttachmentReconciliationTime = System.currentTimeMillis()
       return Result.success()
     }
@@ -127,7 +127,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
   private fun syncDataFromCdn(snapshotVersion: Long): Result? {
     do {
       if (isCanceled) {
-        Log.w(TAG, "Job cancelled while syncing archived attachments from the CDN.")
+        Log.w(TAG, "Job cancelled while syncing archived attachments from the CDN.", true)
         return Result.failure()
       }
 
@@ -145,11 +145,11 @@ class ArchiveAttachmentReconciliationJob private constructor(
     } while (serverCursor != null)
 
     if (isCanceled) {
-      Log.w(TAG, "Job cancelled while syncing archived attachments from the CDN.")
+      Log.w(TAG, "Job cancelled while syncing archived attachments from the CDN.", true)
       return Result.failure()
     }
 
-    Log.d(TAG, "BEFORE:\n" + SignalDatabase.attachments.debugGetAttachmentStats().prettyString())
+    Log.d(TAG, "BEFORE:\n" + SignalDatabase.attachments.debugGetAttachmentStats().prettyString(), true)
 
     val mediaObjectsThatMayNeedReUpload = SignalDatabase.backupMediaSnapshots.getMediaObjectsLastSeenOnCdnBeforeSnapshotVersion(snapshotVersion)
     val mayNeedReUploadCount = mediaObjectsThatMayNeedReUpload.count
@@ -200,10 +200,10 @@ class ArchiveAttachmentReconciliationJob private constructor(
         Log.i(TAG, "None of the $mayNeedReUploadCount CDN mismatches were bookkeeping errors.", true)
       }
 
-      Log.d(TAG, "AFTER:\n" + SignalDatabase.attachments.debugGetAttachmentStats().prettyString())
+      Log.d(TAG, "AFTER:\n" + SignalDatabase.attachments.debugGetAttachmentStats().prettyString(), true)
 
       if (internalUser && mediaIdsThatNeedUpload.isNotEmpty()) {
-        Log.w(TAG, "Starting internal-only lookup of matching attachments. May take a while!")
+        Log.w(TAG, "Starting internal-only lookup of matching attachments. May take a while!", true)
 
         val matchingAttachments = SignalDatabase.attachments.debugGetAttachmentsForMediaIds(mediaIdsThatNeedUpload, limit = 10_000)
         Log.w(TAG, "Found ${matchingAttachments.size} out of the ${mediaIdsThatNeedUpload.size} attachments we looked up (capped lookups to 10k).", true)
@@ -212,9 +212,9 @@ class ArchiveAttachmentReconciliationJob private constructor(
           val (attachment, isThumbnail) = pair
           if (isThumbnail) {
             val thumbnailTransferState = SignalDatabase.attachments.getArchiveThumbnailTransferState(attachment.attachmentId)
-            Log.w(TAG, "[Thumbnail] Needed Upload: attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, contentType=${attachment.contentType}, quote=${attachment.quote}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, archiveThumbnailTransferState=$thumbnailTransferState, hasData=${attachment.hasData}")
+            Log.w(TAG, "[Thumbnail] Needed Upload: attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, contentType=${attachment.contentType}, quote=${attachment.quote}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, archiveThumbnailTransferState=$thumbnailTransferState, hasData=${attachment.hasData}", true)
           } else {
-            Log.w(TAG, "[Fullsize] Needed Upload: attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, contentType=${attachment.contentType}, quote=${attachment.quote}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}")
+            Log.w(TAG, "[Fullsize] Needed Upload: attachmentId=${attachment.attachmentId}, messageId=${attachment.mmsId}, contentType=${attachment.contentType}, quote=${attachment.quote}, transferState=${attachment.transferState}, archiveTransferState=${attachment.archiveTransferState}, hasData=${attachment.hasData}", true)
           }
         }
       }
@@ -234,7 +234,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
         }
       }
     } else {
-      Log.d(TAG, "No attachments need to be repaired.")
+      Log.d(TAG, "No attachments need to be repaired.", true)
     }
 
     SignalStore.backup.remoteStorageGarbageCollectionPending = false

@@ -45,10 +45,10 @@ class ArchiveThumbnailBackfillJob private constructor(parameters: Parameters) : 
       .map { attachmentId -> ArchiveThumbnailUploadJob(attachmentId) }
 
     if (!isCanceled) {
-      Log.i(TAG, "Adding ${jobs.size} jobs to backfill thumbnails.")
+      Log.i(TAG, "Adding ${jobs.size} jobs to backfill thumbnails.", true)
       AppDependencies.jobManager.addAll(jobs)
     } else {
-      Log.w(TAG, "Job was canceled. Not enqueuing backfill.")
+      Log.w(TAG, "Job was canceled. Not enqueuing backfill.", true)
     }
 
     return Result.success()
