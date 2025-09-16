@@ -8139,7 +8139,7 @@
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Зачестеност на правење резервни копии</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
-    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Your media and messages are backed up daily.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Секојдневно се прават резервни копии од твоите медиумски датотеки и пораки.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Правење резервна копија користејќи мобилен интернет</string>
     <!-- Row label for viewing recovery key -->

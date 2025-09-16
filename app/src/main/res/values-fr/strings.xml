@@ -8123,7 +8123,7 @@
     <!-- Displayed on the title bar -->
     <string name="RemoteBackupsSettingsFragment__signal_backups">Sauvegardes sécurisées Signal</string>
     <!-- Displayed as a label when remote backups are off -->
-    <string name="RemoteBackupsSettingsFragment__off">Désactivés</string>
+    <string name="RemoteBackupsSettingsFragment__off">Désactivées</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentification requise</string>
     <!-- Row label to launch payment history screen -->

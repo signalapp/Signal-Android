@@ -7962,7 +7962,7 @@
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">备份频率</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
-    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Your media and messages are backed up daily.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">您的媒体和消息会每天备份。</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">使用蜂窝网络备份</string>
     <!-- Row label for viewing recovery key -->

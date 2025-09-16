@@ -5355,7 +5355,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renueva tu suscripción a las copias de seguridad seguras de Signal</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renueva tu suscripción a las copias seguras de Signal</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Copia de seguridad incompleta</string>
     <!-- String alerting user that backup redemption -->
@@ -7720,7 +7720,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Rechazar todas</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Activar copias de seguridad seguras de Signal</string>
+    <string name="TurnOnSignalBackups__title">Activar copias seguras de Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">No perderás ningún mensaje si cambias de teléfono o vuelves a instalar Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7884,7 +7884,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">No se ha podido renovar tu suscripción con tu método de pago. Para continuar haciendo copias de seguridad de tus archivos, necesitas tener una suscripción activa.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Seguirás teniendo acceso al plan gratuito de copias de seguridad seguras de Signal.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Seguirás teniendo acceso al plan gratuito de copias seguras de Signal.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Copia de seguridad incompleta</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -8049,13 +8049,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Los archivos multimedia que no uses se eliminarán del dispositivo, pero podrás descargarlos desde tu copia de seguridad en cualquier momento.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de las copias de seguridad seguras de Signal. Tu suscripción a las copias de seguridad se está procesando y todavía no está activa. Inténtalo de nuevo más tarde.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de las copias seguras de Signal. Tu suscripción a las copias de seguridad se está procesando y todavía no está activa. Inténtalo de nuevo más tarde.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Actualiza tu plan para habilitar esta función</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de las copias de seguridad seguras de Signal. Actualiza tu plan de copias de seguridad para empezar a usar esta función.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de las copias seguras de Signal. Actualiza tu plan de copias de seguridad para empezar a usar esta función.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Suscribirme por %1$s/mes</string>
 
@@ -8074,7 +8074,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Este archivo ya no está disponible</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Para empezar a hacer una copia de seguridad de todos tus archivos multimedia, activa las copias de seguridad seguras de Signal y elige tu suscripción.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Para empezar a hacer una copia de seguridad de todos tus archivos multimedia, activa las copias seguras de Signal y elige tu suscripción.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Continuar</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8121,7 +8121,7 @@
     <!-- Displayed on the title bar for Signal Secure Backups -->
     <string name="RemoteBackupsSettingsFragment__secure_backups">Copias de seguridad seguras</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Copias de seguridad seguras de Signal</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Copias seguras de Signal</string>
     <!-- Displayed as a label when remote backups are off -->
     <string name="RemoteBackupsSettingsFragment__off">No</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8139,7 +8139,7 @@
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Frecuencia de la copia de seguridad</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
-    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Your media and messages are backed up daily.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Tus archivos multimedia y mensajes se guardan en tu copia de seguridad diariamente.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Copia de seguridad usando datos móviles</string>
     <!-- Row label for viewing recovery key -->
@@ -8239,11 +8239,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Dependiendo del tamaño de tu copia de seguridad, este proceso puede llevar bastante tiempo. Mientras se realiza la descarga, podrás seguir usando tu teléfono como de costumbre.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">No se ha encontrado tu suscripción en este dispositivo. Renuévala para seguir usando las copias de seguridad seguras de Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">No se ha encontrado tu suscripción en este dispositivo. Renuévala para seguir usando las copias seguras de Signal.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Tu suscripción en este dispositivo seguirá activa durante %1$d día más. Renuévala para seguir usando las copias de seguridad seguras de Signal.</item>
-        <item quantity="other">Tu suscripción en este dispositivo seguirá activa durante %1$d días más. Renuévala para seguir usando las copias de seguridad seguras de Signal.</item>
+        <item quantity="one">Tu suscripción en este dispositivo seguirá activa durante %1$d día más. Renuévala para seguir usando las copias seguras de Signal.</item>
+        <item quantity="other">Tu suscripción en este dispositivo seguirá activa durante %1$d días más. Renuévala para seguir usando las copias seguras de Signal.</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Volver a suscribirme</string>
@@ -8388,7 +8388,7 @@
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Guarda tu clave de recuperación solo en un gestor de contraseñas que sepas que es seguro. Signal no puede recomendarte cuál elegir.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Copias de seguridad seguras de Signal</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Copias seguras de Signal</string>
     <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Guardado en tu gestor de contraseñas</string>
     <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
@@ -8532,7 +8532,7 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Recupera tu cuenta e historial de mensajes de Signal en este dispositivo.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Desde tu copia de seguridad segura de Signal</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Desde tu copia segura de Signal</string>
     <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Tu plan gratuito o de pago de copias de seguridad de Signal</string>
     <!-- Option title for restoring via a local backup folder -->
@@ -8570,7 +8570,7 @@
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_title">Clave de recuperación incorrecta</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Asegúrate de registrarte con el mismo número de teléfono y la misma clave de recuperación de 64 caracteres que guardaste al activar las copias de seguridad seguras de Signal. Sin esta clave, no se pueden recuperar las copias de seguridad.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Asegúrate de registrarte con el mismo número de teléfono y la misma clave de recuperación de 64 caracteres que guardaste al activar las copias seguras de Signal. Sin esta clave, no se pueden recuperar las copias de seguridad.</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Reintentar</string>
     <!-- Dialog negative button text to get help with recovery key -->
@@ -8663,7 +8663,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">No hay copia de seguridad para restaurar</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Debido a que estás cambiando de iPhone a Android, la única forma de transferir tus mensajes y archivos multimedia es habilitando las copias de seguridad seguras de Signal en tu dispositivo anterior.</string>
+    <string name="NoBackupToRestore_subtitle">Debido a que estás cambiando de iPhone a Android, la única forma de transferir tus mensajes y archivos multimedia es habilitando las copias seguras de Signal en tu dispositivo anterior.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Abre Signal en tu dispositivo anterior</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
