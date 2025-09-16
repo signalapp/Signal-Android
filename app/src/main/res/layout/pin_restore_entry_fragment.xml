@@ -55,7 +55,7 @@
             app:layout_constraintTop_toBottomOf="@+id/pin_restore_pin_description"
             app:materialThemeOverlay="@style/Signal.ThemeOverlay.TextInputLayout">
 
-            <com.google.android.material.textfield.TextInputEditText
+            <org.thoughtcrime.securesms.components.NoAutofillEditText
                 android:id="@+id/pin_restore_pin_input"
                 style="@style/Widget.MaterialComponents.TextInputEditText.FilledBox"
                 android:layout_width="match_parent"

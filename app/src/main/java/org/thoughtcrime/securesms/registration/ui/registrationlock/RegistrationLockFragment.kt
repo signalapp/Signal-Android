@@ -185,7 +185,7 @@ class RegistrationLockFragment : LoggingFragment(R.layout.fragment_registration_
 
   private fun onIncorrectKbsRegistrationLockPin(svrTriesRemaining: Int) {
     binding.kbsLockPinConfirm.cancelSpinning()
-    binding.kbsLockPinInput.getText().clear()
+    binding.kbsLockPinInput.getText()?.clear()
     enableAndFocusPinEntry()
 
     if (svrTriesRemaining == 0) {

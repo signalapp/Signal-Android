@@ -205,7 +205,7 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
 
   private fun onIncorrectKbsRegistrationLockPin(svrTriesRemaining: Int) {
     binding.kbsLockPinConfirm.cancelSpinning()
-    binding.kbsLockPinInput.getText().clear()
+    binding.kbsLockPinInput.getText()?.clear()
     enableAndFocusPinEntry()
 
     if (svrTriesRemaining == 0) {

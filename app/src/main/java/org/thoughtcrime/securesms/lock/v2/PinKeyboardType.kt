@@ -29,7 +29,7 @@ enum class PinKeyboardType(val code: String) {
   private val inputType: Int by lazy {
     when (this) {
       NUMERIC -> InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
-      ALPHA_NUMERIC -> InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS or InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+      ALPHA_NUMERIC -> InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
     }
   }
 
