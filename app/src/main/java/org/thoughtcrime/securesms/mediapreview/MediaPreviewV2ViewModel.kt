@@ -34,7 +34,6 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.rx.RxStore
-import java.util.Optional
 
 class MediaPreviewV2ViewModel : ViewModel() {
 
@@ -191,18 +190,18 @@ fun MediaTable.MediaRecord.toMedia(): Media? {
   }
 
   return Media(
-    uri,
-    this.contentType,
-    this.date,
-    attachment.width,
-    attachment.height,
-    attachment.size,
-    0,
-    attachment.borderless,
-    attachment.videoGif,
-    Optional.empty(),
-    Optional.ofNullable(attachment.caption),
-    Optional.empty(),
-    Optional.empty()
+    uri = uri,
+    contentType = this.contentType,
+    date = this.date,
+    width = attachment.width,
+    height = attachment.height,
+    size = attachment.size,
+    duration = 0,
+    isBorderless = attachment.borderless,
+    isVideoGif = attachment.videoGif,
+    bucketId = null,
+    caption = attachment.caption,
+    transformProperties = null,
+    fileName = null
   )
 }

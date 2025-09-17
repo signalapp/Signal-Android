@@ -1329,19 +1329,19 @@ class ConversationFragment :
     } else {
       val mimeType = MediaUtil.getMimeType(requireContext(), uri) ?: mediaType.toFallbackMimeType()
       val media = Media(
-        uri,
-        mimeType,
-        0,
-        width,
-        height,
-        0,
-        0,
-        borderless,
-        videoGif,
-        Optional.empty(),
-        Optional.empty(),
-        Optional.of(AttachmentTable.TransformProperties.forSentMediaQuality(SignalStore.settings.sentMediaQuality.code)),
-        Optional.empty()
+        uri = uri,
+        contentType = mimeType,
+        date = 0,
+        width = width,
+        height = height,
+        size = 0,
+        duration = 0,
+        isBorderless = borderless,
+        isVideoGif = videoGif,
+        bucketId = null,
+        caption = null,
+        transformProperties = AttachmentTable.TransformProperties.forSentMediaQuality(SignalStore.settings.sentMediaQuality.code),
+        fileName = null
       )
       conversationActivityResultContracts.launchMediaEditor(listOf(media), recipientId, composeText.textTrimmed)
     }
@@ -3788,11 +3788,11 @@ class ConversationFragment :
 
       val slides: List<Slide> = result.nonUploadedMedia.mapNotNull {
         when {
-          MediaUtil.isVideoType(it.contentType) -> VideoSlide(requireContext(), it.uri, it.size, it.isVideoGif, it.width, it.height, it.caption.orNull(), it.transformProperties.orNull())
-          MediaUtil.isGif(it.contentType) -> GifSlide(requireContext(), it.uri, it.size, it.width, it.height, it.isBorderless, it.caption.orNull())
-          MediaUtil.isImageType(it.contentType) -> ImageSlide(requireContext(), it.uri, it.contentType, it.size, it.width, it.height, it.isBorderless, it.caption.orNull(), null, it.transformProperties.orNull())
+          MediaUtil.isVideoType(it.contentType) -> VideoSlide(requireContext(), it.uri, it.size, it.isVideoGif, it.width, it.height, it.caption, it.transformProperties)
+          MediaUtil.isGif(it.contentType) -> GifSlide(requireContext(), it.uri, it.size, it.width, it.height, it.isBorderless, it.caption)
+          MediaUtil.isImageType(it.contentType) -> ImageSlide(requireContext(), it.uri, it.contentType, it.size, it.width, it.height, it.isBorderless, it.caption, null, it.transformProperties)
           MediaUtil.isDocumentType(it.contentType) -> {
-            DocumentSlide(requireContext(), it.uri, it.contentType, it.size, it.fileName.orNull())
+            DocumentSlide(requireContext(), it.uri, it.contentType!!, it.size, it.fileName)
           }
 
           else -> {

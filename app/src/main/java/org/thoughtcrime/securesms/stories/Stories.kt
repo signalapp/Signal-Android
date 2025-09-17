@@ -12,6 +12,7 @@ import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import org.signal.core.util.ThreadUtil
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.contacts.HeaderAction
 import org.thoughtcrime.securesms.database.AttachmentTable
@@ -36,7 +37,6 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.util.BottomSheetUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.hasLinkPreview
-import java.util.Optional
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import kotlin.math.max
@@ -244,10 +244,10 @@ object Stories {
 
     private fun getContentDuration(media: Media): DurationResult {
       return if (MediaUtil.isVideo(media.contentType)) {
-        val mediaDuration = if (media.duration == 0L && media.transformProperties.map(TransformProperties::shouldSkipTransform).orElse(true)) {
+        val mediaDuration = if (media.duration == 0L && media.transformProperties?.shouldSkipTransform() ?: true) {
           getVideoDuration(media.uri)
-        } else if (media.transformProperties.map { it.videoTrim }.orElse(false)) {
-          TimeUnit.MICROSECONDS.toMillis(media.transformProperties.get().videoTrimEndTimeUs - media.transformProperties.get().videoTrimStartTimeUs)
+        } else if (media.transformProperties?.videoTrim ?: false) {
+          TimeUnit.MICROSECONDS.toMillis(media.transformProperties.videoTrimEndTimeUs - media.transformProperties.videoTrimStartTimeUs)
         } else {
           media.duration
         }
@@ -324,8 +324,8 @@ object Stories {
     @WorkerThread
     fun clipMediaToStoryDuration(media: Media): List<Media> {
       val storyDurationUs = TimeUnit.MILLISECONDS.toMicros(MAX_VIDEO_DURATION_MILLIS)
-      val startOffsetUs = media.transformProperties.map { it.videoTrimStartTimeUs }.orElse(0L)
-      val endOffsetUs = media.transformProperties.map { it.videoTrimEndTimeUs }.orElse(TimeUnit.MILLISECONDS.toMicros(getVideoDuration(media.uri)))
+      val startOffsetUs = media.transformProperties?.videoTrimStartTimeUs ?: 0L
+      val endOffsetUs = media.transformProperties?.videoTrimEndTimeUs ?: TimeUnit.MILLISECONDS.toMicros(getVideoDuration(media.uri))
       val durationUs = endOffsetUs - startOffsetUs
 
       if (durationUs <= 0L) {
@@ -348,19 +348,19 @@ object Stories {
     private fun transformMedia(media: Media, transformProperties: AttachmentTable.TransformProperties): Media {
       Log.d(TAG, "Transforming media clip: ${transformProperties.videoTrimStartTimeUs.microseconds.inWholeSeconds}s to ${transformProperties.videoTrimEndTimeUs.microseconds.inWholeSeconds}s")
       return Media(
-        media.uri,
-        media.contentType,
-        media.date,
-        media.width,
-        media.height,
-        media.size,
-        media.duration,
-        media.isBorderless,
-        media.isVideoGif,
-        media.bucketId,
-        media.caption,
-        Optional.of(transformProperties),
-        media.fileName
+        uri = media.uri,
+        contentType = media.contentType,
+        date = media.date,
+        width = media.width,
+        height = media.height,
+        size = media.size,
+        duration = media.duration,
+        isBorderless = media.isBorderless,
+        isVideoGif = media.isVideoGif,
+        bucketId = media.bucketId,
+        caption = media.caption,
+        transformProperties = transformProperties,
+        fileName = media.fileName
       )
     }
 
@@ -376,8 +376,8 @@ object Stories {
         media.isVideoGif,
         media.width,
         media.height,
-        media.caption.orElse(null),
-        media.transformProperties.orElse(null)
+        media.caption,
+        media.transformProperties
       )
     }
 
@@ -388,19 +388,19 @@ object Stories {
     @JvmStatic
     fun videoSlideToMedia(videoSlide: VideoSlide, duration: Long): Media {
       return Media(
-        videoSlide.uri!!,
-        videoSlide.contentType,
-        System.currentTimeMillis(),
-        0,
-        0,
-        videoSlide.fileSize,
-        duration,
-        videoSlide.isBorderless,
-        videoSlide.isVideoGif,
-        Optional.empty(),
-        videoSlide.caption,
-        Optional.empty(),
-        Optional.empty()
+        uri = videoSlide.uri!!,
+        contentType = videoSlide.contentType,
+        date = System.currentTimeMillis(),
+        width = 0,
+        height = 0,
+        size = videoSlide.fileSize,
+        duration = duration,
+        isBorderless = videoSlide.isBorderless,
+        isVideoGif = videoSlide.isVideoGif,
+        bucketId = null,
+        caption = videoSlide.caption.orNull(),
+        transformProperties = null,
+        fileName = null
       )
     }
   }

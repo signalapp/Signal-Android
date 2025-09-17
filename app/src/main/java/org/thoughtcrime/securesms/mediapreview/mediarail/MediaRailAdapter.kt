@@ -79,7 +79,7 @@ class MediaRailAdapter(
     override fun bind(model: MediaRailItem) {
       image.setImageResource(requestManager, model.media.uri, 0, 0, false, imageLoadingListener)
       image.setOnClickListener { onRailItemSelected(model.media) }
-      captionIndicator.visibility = if (model.media.caption.isPresent) View.VISIBLE else View.GONE
+      captionIndicator.visibility = if (model.media.caption != null) View.VISIBLE else View.GONE
 
       outline.visible = model.isSelected
       overlay.setImageResource(if (model.isSelected) R.drawable.mediapreview_rail_item_overlay_selected else R.drawable.mediapreview_rail_item_overlay_unselected)

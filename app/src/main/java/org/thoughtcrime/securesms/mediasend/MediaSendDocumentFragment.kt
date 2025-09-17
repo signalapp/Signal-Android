@@ -52,7 +52,6 @@ class MediaSendDocumentFragment : Fragment(R.layout.mediasend_document_fragment)
 
     val fileInfo: Pair<String?, Long>? = getFileInfo()
     if (fileInfo != null) {
-      media.setFileName(fileInfo.first)
       name.text = fileInfo.first ?: getString(R.string.DocumentView_unnamed_file)
       size.text = fileInfo.second.bytes.toUnitString()
 
@@ -126,7 +125,6 @@ class MediaSendDocumentFragment : Fragment(R.layout.mediasend_document_fragment)
       if (cursor != null && cursor.moveToFirst()) {
         val fileName = cursor.getString(cursor.getColumnIndexOrThrow(OpenableColumns.DISPLAY_NAME))
         val fileSize = cursor.getLong(cursor.getColumnIndexOrThrow(OpenableColumns.SIZE))
-        media.setFileName(fileName)
 
         return Pair(fileName, fileSize)
       }

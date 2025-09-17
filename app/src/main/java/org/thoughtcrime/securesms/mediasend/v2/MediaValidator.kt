@@ -30,8 +30,8 @@ object MediaValidator {
 
     val truncatedMedia = filteredMedia.take(maxSelection)
     val bucketId = if (truncatedMedia.isNotEmpty()) {
-      truncatedMedia.drop(1).fold(truncatedMedia.first().bucketId.orElse(Media.ALL_MEDIA_BUCKET_ID)) { acc, m ->
-        if (Util.equals(acc, m.bucketId.orElse(Media.ALL_MEDIA_BUCKET_ID))) {
+      truncatedMedia.drop(1).fold(truncatedMedia.first().bucketId ?: Media.ALL_MEDIA_BUCKET_ID) { acc, m ->
+        if (Util.equals(acc, m.bucketId ?: Media.ALL_MEDIA_BUCKET_ID)) {
           acc
         } else {
           Media.ALL_MEDIA_BUCKET_ID
@@ -51,9 +51,9 @@ object MediaValidator {
   @WorkerThread
   private fun filterForValidMedia(context: Context, media: List<Media>, mediaConstraints: MediaConstraints, isStory: Boolean): List<Media> {
     return media
-      .filter { m -> isSupportedMediaType(m.contentType) }
+      .filter { m -> isSupportedMediaType(m.contentType!!) }
       .filter { m ->
-        MediaUtil.isImageAndNotGif(m.contentType) || isValidGif(context, m, mediaConstraints) || isValidVideo(context, m, mediaConstraints) || isValidDocument(context, m, mediaConstraints)
+        MediaUtil.isImageAndNotGif(m.contentType!!) || isValidGif(context, m, mediaConstraints) || isValidVideo(context, m, mediaConstraints) || isValidDocument(context, m, mediaConstraints)
       }
       .filter { m ->
         !isStory || Stories.MediaTransform.getSendRequirements(m) != Stories.MediaTransform.SendRequirements.CAN_NOT_SEND

@@ -16,7 +16,6 @@ import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.AttachmentTable.TransformProperties
 import org.thoughtcrime.securesms.testutil.EmptyLogger
 import org.thoughtcrime.securesms.util.MediaUtil
-import java.util.Optional
 
 @RunWith(RobolectricTestRunner::class)
 @Config(manifest = Config.NONE, application = Application::class)
@@ -103,10 +102,10 @@ class MediaRepositoryTest {
     duration: Long = 0,
     borderless: Boolean = false,
     videoGif: Boolean = false,
-    bucketId: Optional<String> = Optional.empty(),
-    caption: Optional<String> = Optional.empty(),
-    transformProperties: Optional<TransformProperties> = Optional.empty(),
-    fileName: Optional<String> = Optional.empty()
+    bucketId: String? = null,
+    caption: String? = null,
+    transformProperties: TransformProperties? = null,
+    fileName: String? = null
   ): Media {
     return Media(
       uri,

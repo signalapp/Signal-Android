@@ -30,6 +30,7 @@ import com.bumptech.glide.Glide
 import com.fasterxml.jackson.annotation.JsonProperty
 import kotlinx.parcelize.IgnoredOnParcel
 import kotlinx.parcelize.Parcelize
+import kotlinx.serialization.Serializable
 import okio.ByteString
 import okio.ByteString.Companion.toByteString
 import org.json.JSONArray
@@ -3519,6 +3520,7 @@ class AttachmentTable(
     val random: ByteArray
   )
 
+  @Serializable
   @Parcelize
   data class TransformProperties(
     @JsonProperty("skipTransform")
