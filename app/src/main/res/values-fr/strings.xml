@@ -911,7 +911,7 @@
     <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Essayez la phrase secrète de sauvegarde pour vérifier qu\'elle est correcte</string>
     <string name="BackupsPreferenceFragment__turn_on">Activer</string>
     <string name="BackupsPreferenceFragment__turn_off">Désactiver</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Pour restaurer une sauvegarde, réinstallez Signal. Ouvrez l\'appli, touchez \"Restaurer la sauvegarde\", puis recherchez votre fichier de sauvegarde. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Pour restaurer une sauvegarde, réinstallez Signal, puis ouvrez l\'appli. Touchez \"Restaurer une sauvegarde\" et recherchez votre fichier de sauvegarde. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">En savoir plus</string>
     <string name="BackupsPreferenceFragment__in_progress">En cours…</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
@@ -1460,7 +1460,7 @@
     <!-- Section title for explaining what your backup includes -->
     <string name="RemoteRestoreActivity__your_backup_includes">Votre sauvegarde contient :</string>
     <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Restaurer la sauvegarde</string>
+    <string name="RemoteRestoreActivity__restore_backup">Restaurer une sauvegarde</string>
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
     <string name="RemoteRestoreActivity__backup_created_at">Dernière sauvegarde effectuée le %1$s à %2$s.</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
@@ -8139,7 +8139,7 @@
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Fréquence de sauvegarde :</string>
     <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
-    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Your media and messages are backed up daily.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Vos messages et médias sont sauvegardés chaque jour.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Sauvegarder via les données mobiles</string>
     <!-- Row label for viewing recovery key -->

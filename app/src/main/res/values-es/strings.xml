@@ -2667,9 +2667,9 @@
     <!-- Dialog title shown when re-registering and skip sms flow failed or was aborted and now need perform additional verification via sms and warn about carrier charges -->
     <string name="RegistrationActivity_additional_verification_required">Verificación adicional necesaria</string>
     <!-- Dialog message shown when we need to verify sms and carrier rates may apply. -->
-    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Se enviará un código de verificación a ese número. Es posible que tu operador aplique algún cargo.</string>
+    <string name="RegistrationActivity_a_verification_code_will_be_sent_to_this_number">Se enviará una clave de verificación a ese número. Es posible que tu operador aplique algún cargo.</string>
     <!-- Text explaining to users that they will be receiving a verification for their phone number and that carrier rates could apply -->
-    <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás un código de verificación SMS. Se aplican las tarifas de tu operador.</string>
+    <string name="RegistrationActivity_you_will_receive_a_verification_code">Recibirás una clave de verificación SMS. Se aplican las tarifas de tu operador.</string>
     <!-- Hint text to select a country -->
     <string name="RegistrationActivity_select_a_country">Selecciona un país</string>
     <!-- Hint text explaining that this is where the country code should go -->
@@ -2691,9 +2691,9 @@
     <!-- Dialog error message shown when attempting to register and the SMS provider fails to send an SMS -->
     <string name="RegistrationActivity_sms_provider_error">Signal no ha podido enviar un código SMS debido a problemas con el proveedor de SMS. Vuelve a intentarlo dentro de unas horas.</string>
     <!-- A description text for an alert dialog when the entered phone number is not eligible for a verification SMS. -->
-    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">No hemos podido enviarte el código de verificación por SMS. Puedes recibir tu código mediante llamada.</string>
+    <string name="RegistrationActivity_we_couldnt_send_you_a_verification_code">No hemos podido enviarte la clave de verificación por SMS. Puedes recibir tu clave mediante llamada.</string>
     <!-- Generic error when the app is unable to request an SMS code for an unknown reason. -->
-    <string name="RegistrationActivity_unable_to_request_verification_code">No se ha podido solicitar un código de verificación. Comprueba la conexión de red e inténtalo de nuevo.</string>
+    <string name="RegistrationActivity_unable_to_request_verification_code">No se ha podido solicitar una clave de verificación. Comprueba la conexión de red e inténtalo de nuevo.</string>
     <string name="RegistrationActivity_non_standard_number_format">Número en formato no estándar</string>
     <!-- Dialog message shown to confirm when entering phone number (first placeholder) is normalized and formatted differently by the app (second placeholder). -->
     <string name="RegistrationActivity_the_number_you_entered_appears_to_be_a_non_standard">Parece que el número que has introducido (%1$s) tiene un formato no estándar.\n\n ¿Es %2$s el número correcto?</string>
@@ -2703,7 +2703,7 @@
     <!--    Small "toast" notification to the user confirming that they have requested a new code via SMS.-->
     <string name="RegistrationActivity_sms_requested">SMS solicitado</string>
     <!--    Small "toast" notification to the user confirming that they have requested a new code (through an unspecified channel).-->
-    <string name="RegistrationActivity_code_requested">Código de verificación solicitado</string>
+    <string name="RegistrationActivity_code_requested">Clave de verificación solicitada</string>
     <plurals name="RegistrationActivity_debug_log_hint">
         <item quantity="one">Estás a %1$d paso de enviar un registro de depuración.</item>
         <item quantity="other">Estás a %1$d pasos de enviar un registro de depuración.</item>
@@ -2725,7 +2725,7 @@
     <string name="RegistrationActivity_phone_number_description">Número de teléfono</string>
     <string name="RegistrationActivity_country_code_description">Código de país</string>
     <string name="RegistrationActivity_call">Llamar</string>
-    <string name="RegistrationActivity_verification_code">Código de verificación</string>
+    <string name="RegistrationActivity_verification_code">Clave de verificación</string>
     <string name="RegistrationActivity_resend_code">Reenviar código</string>
     <!--    A title for a bottom sheet dialog offering to help a user having trouble entering their verification code.-->
     <string name="RegistrationActivity_support_bottom_sheet_title">¿Tienes problemas para registrarte?</string>
@@ -4604,7 +4604,7 @@
 
     <!-- KbsLockFragment -->
     <string name="RegistrationLockFragment__enter_your_pin">Introduce tu PIN</string>
-    <string name="RegistrationLockFragment__enter_the_pin_you_created">Introduce el PIN que has creado para tu cuenta de Signal. El PIN no es el código de verificación que se envía por SMS.</string>
+    <string name="RegistrationLockFragment__enter_the_pin_you_created">Introduce el PIN que has creado para tu cuenta de Signal. El PIN no es la clave de verificación que has recibido por SMS.</string>
     <!-- Info text shown above a pin entry text box describing what pin they should be entering. -->
     <string name="RegistrationLockFragment__enter_the_pin_you_created_for_your_account">Introduce el PIN que creaste para tu cuenta.</string>
     <!-- Button label to prompt the user to switch between an alphanumeric and numeric-only keyboards -->
@@ -4740,7 +4740,7 @@
     <!--    Countdown to when the user can request a new SMS code during registration.-->
     <string name="RegistrationActivity_resend_sms_available_in">Reenviar código (%1$02d:%2$02d)</string>
     <string name="RegistrationActivity_contact_signal_support">Contacta con el equipo de asistencia de Signal</string>
-    <string name="RegistrationActivity_code_support_subject">Registro de Signal: Código de verificación en Android</string>
+    <string name="RegistrationActivity_code_support_subject">Registro de Signal: Clave de verificación en Android</string>
     <string name="RegistrationActivity_incorrect_code">Código incorrecto</string>
     <string name="BackupUtil_never">Nunca</string>
     <!-- Subtext below last backup time when we do not know when the last backup was -->
@@ -5355,7 +5355,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renueva tu suscripción a las copias seguras de Signal</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Renueva tu suscripción a Copias Seguras de Signal</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Copia de seguridad incompleta</string>
     <!-- String alerting user that backup redemption -->
@@ -7720,7 +7720,7 @@
     <string name="PendingParticipantsBottomSheet__deny_all">Rechazar todas</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
-    <string name="TurnOnSignalBackups__title">Activar copias seguras de Signal</string>
+    <string name="TurnOnSignalBackups__title">Activar Copias Seguras de Signal</string>
     <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
     <string name="TurnOnSignalBackups__body">No perderás ningún mensaje si cambias de teléfono o vuelves a instalar Signal.</string>
     <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
@@ -7884,7 +7884,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">No se ha podido renovar tu suscripción con tu método de pago. Para continuar haciendo copias de seguridad de tus archivos, necesitas tener una suscripción activa.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Seguirás teniendo acceso al plan gratuito de copias seguras de Signal.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Seguirás teniendo acceso al plan gratuito de Copias Seguras de Signal.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Copia de seguridad incompleta</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -8049,13 +8049,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Los archivos multimedia que no uses se eliminarán del dispositivo, pero podrás descargarlos desde tu copia de seguridad en cualquier momento.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de las copias seguras de Signal. Tu suscripción a las copias de seguridad se está procesando y todavía no está activa. Inténtalo de nuevo más tarde.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de Copias Seguras de Signal. Tu suscripción a las copias de seguridad se está procesando y todavía no está activa. Inténtalo de nuevo más tarde.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Actualiza tu plan para habilitar esta función</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de las copias seguras de Signal. Actualiza tu plan de copias de seguridad para empezar a usar esta función.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">La optimización de almacenamiento solo se puede utilizar con el nivel de pago de Copias Seguras de Signal. Actualiza tu plan de copias de seguridad para empezar a usar esta función.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Suscribirme por %1$s/mes</string>
 
@@ -8074,7 +8074,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Este archivo ya no está disponible</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Para empezar a hacer una copia de seguridad de todos tus archivos multimedia, activa las copias seguras de Signal y elige tu suscripción.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Para empezar a hacer una copia de seguridad de todos tus archivos multimedia, activa Copias Seguras de Signal y elige tu suscripción.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Continuar</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8119,9 +8119,9 @@
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">Cancelar carga</string>
     <!-- Displayed on the title bar for Signal Secure Backups -->
-    <string name="RemoteBackupsSettingsFragment__secure_backups">Copias de seguridad seguras</string>
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Copias Seguras de Signal</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Copias seguras de Signal</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Copias Seguras de Signal</string>
     <!-- Displayed as a label when remote backups are off -->
     <string name="RemoteBackupsSettingsFragment__off">No</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
@@ -8239,11 +8239,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Dependiendo del tamaño de tu copia de seguridad, este proceso puede llevar bastante tiempo. Mientras se realiza la descarga, podrás seguir usando tu teléfono como de costumbre.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">No se ha encontrado tu suscripción en este dispositivo. Renuévala para seguir usando las copias seguras de Signal.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">No se ha encontrado tu suscripción en este dispositivo. Renuévala para seguir usando Copias Seguras de Signal.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Tu suscripción en este dispositivo seguirá activa durante %1$d día más. Renuévala para seguir usando las copias seguras de Signal.</item>
-        <item quantity="other">Tu suscripción en este dispositivo seguirá activa durante %1$d días más. Renuévala para seguir usando las copias seguras de Signal.</item>
+        <item quantity="one">Tu suscripción en este dispositivo seguirá activa durante %1$d día más. Renuévala para seguir usando Copias Seguras de Signal.</item>
+        <item quantity="other">Tu suscripción en este dispositivo seguirá activa durante %1$d días más. Renuévala para seguir usando Copias Seguras de Signal.</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Volver a suscribirme</string>
@@ -8388,7 +8388,7 @@
     <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Guarda tu clave de recuperación solo en un gestor de contraseñas que sepas que es seguro. Signal no puede recomendarte cuál elegir.</string>
     <!-- ID used when saving the recovery key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Copias seguras de Signal</string>
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Copias Seguras de Signal</string>
     <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Guardado en tu gestor de contraseñas</string>
     <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
@@ -8532,7 +8532,7 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Recupera tu cuenta e historial de mensajes de Signal en este dispositivo.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Desde tu copia segura de Signal</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Desde Copias Seguras de Signal</string>
     <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Tu plan gratuito o de pago de copias de seguridad de Signal</string>
     <!-- Option title for restoring via a local backup folder -->
@@ -8570,7 +8570,7 @@
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_title">Clave de recuperación incorrecta</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Asegúrate de registrarte con el mismo número de teléfono y la misma clave de recuperación de 64 caracteres que guardaste al activar las copias seguras de Signal. Sin esta clave, no se pueden recuperar las copias de seguridad.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Asegúrate de registrarte con el mismo número de teléfono y la misma clave de recuperación de 64 caracteres que guardaste al activar Copias Seguras de Signal. Sin esta clave, no se pueden recuperar las copias de seguridad.</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Reintentar</string>
     <!-- Dialog negative button text to get help with recovery key -->
@@ -8663,7 +8663,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">No hay copia de seguridad para restaurar</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Debido a que estás cambiando de iPhone a Android, la única forma de transferir tus mensajes y archivos multimedia es habilitando las copias seguras de Signal en tu dispositivo anterior.</string>
+    <string name="NoBackupToRestore_subtitle">Debido a que estás cambiando de iPhone a Android, la única forma de transferir tus mensajes y archivos multimedia es habilitando Copias Seguras de Signal en tu dispositivo anterior.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Abre Signal en tu dispositivo anterior</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
