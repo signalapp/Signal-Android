@@ -14,6 +14,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
+import org.signal.libsignal.net.ChatConnection
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.messages.EnvelopeResponse
 import org.whispersystems.signalservice.api.util.SleepTimer
@@ -168,6 +169,18 @@ sealed class SignalWebSocket(
     getWebSocket().sendResponse(response.websocketRequest.getWebSocketResponse())
   }
 
+  /**
+   * Executes the given callback with the underlying libsignal chat connection when available.
+   *
+   * This is only supported for LibSignal-based connections.
+   *
+   * @param callback The callback to execute with the connection. Should be very quick and
+   *                 non-blocking, because it may block other operations on that connection.
+   */
+  suspend fun <T> runWithChatConnection(callback: (org.signal.libsignal.net.ChatConnection) -> T): T {
+    return getWebSocket().runWithChatConnection(callback)
+  }
+
   @Synchronized
   @Throws(WebSocketUnavailableException::class)
   protected fun getWebSocket(): WebSocketConnection {
@@ -310,6 +323,10 @@ sealed class SignalWebSocket(
       } catch (e: IOException) {
         return Single.error(e)
       }
+    }
+
+    suspend fun <T> runWithUnauthChatConnection(callback: (org.signal.libsignal.net.UnauthenticatedChatConnection) -> T): T {
+      return getWebSocket().runWithChatConnection(callback as (ChatConnection) -> T)
     }
   }
 

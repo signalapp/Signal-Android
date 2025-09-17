@@ -8,6 +8,7 @@ import org.signal.core.util.Result
 import org.signal.core.util.Result.Companion.failure
 import org.signal.core.util.Result.Companion.success
 import org.signal.core.util.logging.Log
+import org.signal.libsignal.net.RequestResult
 import org.signal.libsignal.usernames.BaseUsernameException
 import org.signal.libsignal.usernames.Username
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.main.UsernameLinkResetResult
@@ -255,20 +256,18 @@ object UsernameRepository {
         }
 
         when (val result = SignalNetwork.username.getAciByUsername(username)) {
-          is NetworkResult.Success -> UsernameLinkConversionResult.Success(username, result.result)
-          is NetworkResult.StatusCodeError -> {
-            Log.w(TAG, "[convertLinkToUsername] Failed to lookup user.", result.exception)
-            when (result.code) {
-              404 -> UsernameLinkConversionResult.NotFound(username)
-              422 -> UsernameLinkConversionResult.Invalid
-              else -> UsernameLinkConversionResult.NetworkError
-            }
+          is RequestResult.Success -> {
+            result.result?.let {
+              UsernameLinkConversionResult.Success(username, it)
+            } ?: UsernameLinkConversionResult.NotFound(username)
           }
-          is NetworkResult.NetworkError -> {
-            Log.w(TAG, "[convertLinkToUsername] Failed to lookup user.", result.exception)
+          is RequestResult.RetryableNetworkError -> {
             UsernameLinkConversionResult.NetworkError
           }
-          is NetworkResult.ApplicationError -> throw result.throwable
+          is RequestResult.NonSuccess -> {
+            throw AssertionError()
+          }
+          is RequestResult.ApplicationError -> throw result.cause
         }
       }
       .subscribeOn(Schedulers.io())
@@ -284,21 +283,18 @@ object UsernameRepository {
     }
 
     return when (val result = SignalNetwork.username.getAciByUsername(username)) {
-      is NetworkResult.Success -> UsernameAciFetchResult.Success(result.result)
-      is NetworkResult.StatusCodeError -> {
-        Log.w(TAG, "[fetchAciFromUsername] Failed to get ACI for username hash", result.exception)
-        when (result.code) {
-          404 -> UsernameAciFetchResult.NotFound
-          else -> UsernameAciFetchResult.NetworkError
-        }
+      is RequestResult.Success -> {
+        result.result?.let {
+          UsernameAciFetchResult.Success(it)
+        } ?: UsernameAciFetchResult.NotFound
       }
-
-      is NetworkResult.NetworkError -> {
-        Log.w(TAG, "[fetchAciFromUsername] Hit network error while trying to resolve ACI from username", result.exception)
+      is RequestResult.NonSuccess -> {
+        throw AssertionError()
+      }
+      is RequestResult.RetryableNetworkError -> {
         UsernameAciFetchResult.NetworkError
       }
-
-      is NetworkResult.ApplicationError -> throw result.throwable
+      is RequestResult.ApplicationError -> throw result.cause
     }
   }
 
