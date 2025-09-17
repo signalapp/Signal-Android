@@ -14,14 +14,6 @@ import java.io.IOException
 
 private const val TAG = "LibSignalNetworkExtensions"
 
-fun Network.buildAndSetRemoteConfig(enforceMinTls: Boolean) {
-  val libsignalRemoteConfig: HashMap<String, String> = HashMap()
-  if (enforceMinTls) {
-    libsignalRemoteConfig["enforceMinimumTls"] = ""
-  }
-  this.setRemoteConfig(libsignalRemoteConfig)
-}
-
 /**
  * Helper method to apply settings from the SignalServiceConfiguration.
  */

@@ -60,6 +60,20 @@ object RemoteConfig {
   @VisibleForTesting
   val configsByKey: MutableMap<String, Config<*>> = mutableMapOf()
 
+  @JvmStatic
+  val libsignalConfigs: Map<String, String>
+    get() {
+      if (!initialized) {
+        Log.w(TAG, "Tried to read libsignalConfigs before initialization. Initializing now.")
+        initLock.withLock {
+          if (!initialized) {
+            init()
+          }
+        }
+      }
+      return computeLibsignalConfigs(REMOTE_VALUES)
+    }
+
   @GuardedBy("initLock")
   @Volatile
   @VisibleForTesting
@@ -161,7 +175,7 @@ object RemoteConfig {
     val allKeys: Set<String> = remote.keys + localDisk.keys + localMemory.keys
 
     allKeys
-      .filter { remoteCapable.contains(it) }
+      .filter { remoteCapable.contains(it) || it.startsWith("android.libsignal.") }
       .forEach { key: String ->
         val remoteValue = remote[key]
         val diskValue = localDisk[key]
@@ -200,8 +214,14 @@ object RemoteConfig {
         }
       }
 
+    // Libsignal does not support sticky flags and is okay with any flag that is not known to the server being
+    // forgotten about.
+    val libsignalConfigsKnownToServer = remote.keys.filter { it.startsWith("android.libsignal.") }.toSet()
+
     allKeys
-      .filterNot { remoteCapable.contains(it) }
+      .filterNot { key ->
+        remoteCapable.contains(key) || libsignalConfigsKnownToServer.contains(key)
+      }
       .filterNot { key -> sticky.contains(key) && localDisk[key] == java.lang.Boolean.TRUE }
       .forEach { key: String ->
         newDisk.remove(key)
@@ -274,6 +294,28 @@ object RemoteConfig {
         listener.onFlagChange(value)
       }
     }
+  }
+
+  private fun computeLibsignalConfigs(config: Map<String, Any?>): Map<String, String> {
+    return config
+      .filterKeys { it.startsWith("android.libsignal.") }
+      .mapNotNull { (key, value) ->
+        val newKey = key.removePrefix("android.libsignal.")
+        when (value) {
+          is String -> newKey to value
+          // The server is currently synthesizing "true" / "false" values
+          // for RemoteConfigs that are otherwise empty string values.
+          // Libsignal expects that disabled values are simply absent from the
+          // map, so we map true to "true" and otherwise omit disabled values.
+          is Boolean -> if (value) newKey to "true" else null
+          else -> {
+            val type = value?.let { value::class.simpleName }
+            Log.w(TAG, "[libsignal] Unexpected type for $newKey! Was a $type")
+            newKey to value.toString()
+          }
+        }
+      }
+      .toMap()
   }
 
   @VisibleForTesting
