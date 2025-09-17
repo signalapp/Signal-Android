@@ -24,6 +24,7 @@ import org.junit.runner.RunWith
 import org.signal.core.util.billing.BillingProduct
 import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.billing.BillingPurchaseState
+import org.signal.core.util.billing.BillingResponseCode
 import org.signal.core.util.money.FiatMoney
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.DeletionState
@@ -67,7 +68,7 @@ class BackupSubscriptionCheckJobTest {
     every { RemoteConfig.messageBackups } returns true
     every { RemoteConfig.internalUser } returns true
 
-    coEvery { AppDependencies.billingApi.isApiAvailable() } returns true
+    coEvery { AppDependencies.billingApi.getApiAvailability() } returns BillingResponseCode.OK
     coEvery { AppDependencies.billingApi.queryPurchases() } returns mockk()
     coEvery { AppDependencies.billingApi.queryProduct() } returns null
 
@@ -143,7 +144,7 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenBillingApiNotAvailable_whenIRun_thenIExpectSuccessAndEarlyExit() {
-    coEvery { AppDependencies.billingApi.isApiAvailable() } returns false
+    coEvery { AppDependencies.billingApi.getApiAvailability() } returns BillingResponseCode.BILLING_UNAVAILABLE
 
     val job = BackupSubscriptionCheckJob.create()
     val result = job.run()

@@ -268,14 +268,14 @@ internal class BillingApiImpl(
    * Returns whether or not subscriptions are supported by a user's device. Lack of subscription support is generally due
    * to out-of-date Google Play API
    */
-  override suspend fun isApiAvailable(): Boolean {
+  override suspend fun getApiAvailability(): org.signal.core.util.billing.BillingResponseCode {
     return try {
       doOnConnectionReady("isApiAvailable") {
-        billingClient.isFeatureSupported(BillingClient.FeatureType.SUBSCRIPTIONS).responseCode == BillingResponseCode.OK
+        org.signal.core.util.billing.BillingResponseCode.fromBillingLibraryResponseCode(billingClient.isFeatureSupported(BillingClient.FeatureType.SUBSCRIPTIONS).responseCode)
       }
     } catch (e: BillingError) {
       Log.e(TAG, "Failed to connect to Google Play Billing", e)
-      false
+      org.signal.core.util.billing.BillingResponseCode.fromBillingLibraryResponseCode(e.billingResponseCode)
     }
   }
 

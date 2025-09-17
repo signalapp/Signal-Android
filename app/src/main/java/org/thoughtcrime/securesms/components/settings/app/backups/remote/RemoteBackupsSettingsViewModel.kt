@@ -83,7 +83,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   init {
     viewModelScope.launch(Dispatchers.IO) {
-      val isBillingApiAvailable = AppDependencies.billingApi.isApiAvailable()
+      val isBillingApiAvailable = AppDependencies.billingApi.getApiAvailability().isSuccess
       if (isBillingApiAvailable) {
         _state.update {
           it.copy(isPaidTierPricingAvailable = true)

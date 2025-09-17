@@ -90,7 +90,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
-    if (!AppDependencies.billingApi.isApiAvailable()) {
+    if (!AppDependencies.billingApi.getApiAvailability().isSuccess) {
       Log.i(TAG, "Google Play Billing API is not available on this device. Clearing mismatch value and exiting.", true)
       SignalStore.backup.subscriptionStateMismatchDetected = false
       return Result.success()

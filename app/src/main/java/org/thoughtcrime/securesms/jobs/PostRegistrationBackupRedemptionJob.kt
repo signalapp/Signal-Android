@@ -103,7 +103,7 @@ class PostRegistrationBackupRedemptionJob : CoroutineJob {
     val emptyPrice = FiatMoney(BigDecimal.ZERO, Currency.getInstance(Locale.getDefault()))
     val price: FiatMoney = if (subscription != null) {
       FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency))
-    } else if (AppDependencies.billingApi.isApiAvailable()) {
+    } else if (AppDependencies.billingApi.getApiAvailability().isSuccess) {
       AppDependencies.billingApi.queryProduct()?.price ?: emptyPrice
     } else {
       emptyPrice

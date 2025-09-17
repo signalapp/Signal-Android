@@ -44,7 +44,7 @@ class LogSectionRemoteBackups : LogSection {
     output.append("\n -- Subscription State\n")
 
     val backupSubscriptionId = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
-    val hasGooglePlayBilling = runBlocking { AppDependencies.billingApi.isApiAvailable() }
+    val hasGooglePlayBilling = runBlocking { AppDependencies.billingApi.getApiAvailability().isSuccess }
     val inAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
 
     output.append("Has backup subscription id: ${backupSubscriptionId != null}\n")

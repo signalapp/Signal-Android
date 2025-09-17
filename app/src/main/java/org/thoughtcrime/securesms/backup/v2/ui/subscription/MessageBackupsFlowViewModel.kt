@@ -53,6 +53,7 @@ import kotlin.time.Duration.Companion.seconds
 
 class MessageBackupsFlowViewModel(
   private val initialTierSelection: MessageBackupTier?,
+  googlePlayApiAvailability: Int,
   startScreen: MessageBackupsStage = if (SignalStore.backup.backupTier == null) MessageBackupsStage.EDUCATION else MessageBackupsStage.TYPE_SELECTION
 ) : ViewModel(), BackupKeyCredentialManagerHandler {
 
@@ -64,6 +65,7 @@ class MessageBackupsFlowViewModel(
   private val internalStateFlow = MutableStateFlow(
     MessageBackupsFlowState(
       allBackupTypes = emptyList(),
+      googlePlayApiAvailability = GooglePlayServicesAvailability.fromCode(googlePlayApiAvailability),
       currentMessageBackupTier = SignalStore.backup.backupTier,
       selectedMessageBackupTier = resolveSelectedTier(initialTierSelection, SignalStore.backup.backupTier),
       startScreen = startScreen
@@ -105,7 +107,6 @@ class MessageBackupsFlowViewModel(
       internalStateFlow.update { state ->
         state.copy(
           allBackupTypes = allBackupTypes,
-          isBillingApiAvailable = AppDependencies.billingApi.isApiAvailable(),
           selectedMessageBackupTier = if (state.selectedMessageBackupTier in allBackupTypes.map { it.tier }) state.selectedMessageBackupTier else allBackupTypes.firstOrNull()?.tier
         )
       }
@@ -155,6 +156,12 @@ class MessageBackupsFlowViewModel(
           else -> goToPreviousStage()
         }
       }
+    }
+  }
+
+  fun setGooglePlayApiAvailability(googlePlayApiAvailability: Int) {
+    internalStateFlow.update {
+      it.copy(googlePlayApiAvailability = GooglePlayServicesAvailability.fromCode(googlePlayApiAvailability))
     }
   }
 

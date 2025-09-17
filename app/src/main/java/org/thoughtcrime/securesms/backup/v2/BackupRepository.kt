@@ -164,6 +164,7 @@ import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
+import java.math.BigDecimal
 import java.time.ZonedDateTime
 import java.util.Currency
 import java.util.Locale
@@ -1876,20 +1877,11 @@ object BackupRepository {
       RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()?.activeSubscription?.let {
         FiatMoney.fromSignalNetworkAmount(it.amount, Currency.getInstance(it.currency))
       }
-    } else if (AppDependencies.billingApi.isApiAvailable()) {
+    } else if (AppDependencies.billingApi.getApiAvailability().isSuccess) {
       Log.d(TAG, "Accessing price via billing api.")
       AppDependencies.billingApi.queryProduct()?.price
     } else {
-      Log.d(TAG, "Billing API is not available on this device. Accessing price via subscription configuration.")
-      val configurationResult = AppDependencies.donationsService.getDonationsConfiguration(Locale.getDefault()).toNetworkResult()
-      val currency = Currency.getInstance(Locale.getDefault())
-
-      when (configurationResult) {
-        is NetworkResult.Success -> configurationResult.result.currencies[currency.currencyCode.lowercase()]?.backupSubscription[SubscriptionsConfiguration.BACKUPS_LEVEL]?.let {
-          FiatMoney(it, currency)
-        }
-        else -> null
-      }
+      FiatMoney(BigDecimal.ZERO, Currency.getInstance(Locale.getDefault()))
     }
 
     if (productPrice == null) {

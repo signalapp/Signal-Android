@@ -19,6 +19,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.gms.common.GoogleApiAvailability
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.rx3.asFlowable
@@ -59,6 +60,7 @@ abstract class UpgradeToPaidTierBottomSheet : ComposeBottomSheetDialogFragment()
   private val viewModel: MessageBackupsFlowViewModel by viewModel {
     MessageBackupsFlowViewModel(
       initialTierSelection = MessageBackupTier.PAID,
+      googlePlayApiAvailability = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(requireContext()),
       startScreen = MessageBackupsStage.TYPE_SELECTION
     )
   }
@@ -91,6 +93,12 @@ abstract class UpgradeToPaidTierBottomSheet : ComposeBottomSheetDialogFragment()
         }
       }
     }
+  }
+
+  override fun onResume() {
+    super.onResume()
+    viewModel.refreshCurrentTier()
+    viewModel.setGooglePlayApiAvailability(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(requireContext()))
   }
 
   @Composable
