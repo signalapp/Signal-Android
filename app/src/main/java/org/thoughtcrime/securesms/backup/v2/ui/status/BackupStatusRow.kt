@@ -98,7 +98,7 @@ fun BackupStatusRow(
 
     if (backupStatusData.restoreStatus == RestoreStatus.NOT_ENOUGH_DISK_SPACE) {
       BackupAlertText(
-        text = stringResource(R.string.BackupStatusRow__not_enough_space, backupStatusData.remainingRestoreSize)
+        text = stringResource(R.string.BackupStatusRow__not_enough_space, backupStatusData.remainingRestoreSize.toUnitString())
       )
 
       Rows.TextRow(
