@@ -5,11 +5,14 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import android.Manifest
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import org.signal.core.util.EventTimer
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.Stopwatch
@@ -361,6 +364,10 @@ class ArchiveAttachmentReconciliationJob private constructor(
 
   private fun maybePostReconciliationFailureNotification() {
     if (!RemoteConfig.internalUser) {
+      return
+    }
+
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
       return
     }
 

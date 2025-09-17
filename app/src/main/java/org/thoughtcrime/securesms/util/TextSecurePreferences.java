@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.util;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.hardware.Camera.CameraInfo;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -900,6 +903,11 @@ public class TextSecurePreferences {
   }
 
   private static void notifyUnregisteredReceived(Context context) {
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "notifyUnregisteredReceived: Notification permission is not granted.");
+      return;
+    }
+
     PendingIntent reRegistrationIntent = PendingIntent.getActivity(context,
                                                                    0,
                                                                    RegistrationActivity.newIntentForReRegistration(context),

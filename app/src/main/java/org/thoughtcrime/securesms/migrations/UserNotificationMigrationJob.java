@@ -1,14 +1,17 @@
 package org.thoughtcrime.securesms.migrations;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.app.TaskStackBuilder;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.SetUtil;
 import org.signal.core.util.logging.Log;
@@ -92,6 +95,11 @@ public class UserNotificationMigrationJob extends MigrationJob {
 
     if (threadRecipients.containsAll(registeredSystemContacts)) {
       Log.w(TAG, "Threads already exist for all relevant contacts. Skipping.");
+      return;
+    }
+
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "Notification permission is not granted. Skipping.");
       return;
     }
 

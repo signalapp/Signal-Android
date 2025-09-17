@@ -12,6 +12,7 @@ plugins {
   alias(libs.plugins.jetbrains.kotlin.android)
   alias(libs.plugins.ktlint)
   alias(libs.plugins.compose.compiler)
+  alias(libs.plugins.kotlinx.serialization)
   id("androidx.navigation.safeargs")
   id("kotlin-parcelize")
   id("com.squareup.wire")
@@ -607,6 +608,7 @@ dependencies {
   implementation(libs.rxdogtag)
   implementation(libs.androidx.credentials)
   implementation(libs.androidx.credentials.compat)
+  implementation(libs.kotlinx.serialization.json)
 
   implementation(project(":billing"))
 

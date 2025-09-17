@@ -5,11 +5,14 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import android.Manifest
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.isNotNullOrBlank
@@ -437,6 +440,10 @@ class BackupMessagesJob private constructor(
 
   private fun maybePostRemoteKeyMissingNotification() {
     if (!RemoteConfig.internalUser || !SignalStore.backup.backsUpMedia) {
+      return
+    }
+
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
       return
     }
 

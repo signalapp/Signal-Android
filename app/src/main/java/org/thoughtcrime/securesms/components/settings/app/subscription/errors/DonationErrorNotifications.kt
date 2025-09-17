@@ -1,13 +1,17 @@
 package org.thoughtcrime.securesms.components.settings.app.subscription.errors
 
+import android.Manifest
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import org.signal.core.util.PendingIntentFlags
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.help.HelpFragment
@@ -18,7 +22,15 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
  * Donation-related push notifications.
  */
 object DonationErrorNotifications {
+
+  private val TAG = Log.tag(DonationErrorNotifications::class)
+
   fun displayErrorNotification(context: Context, donationError: DonationError) {
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "Permission to post notifications is not granted.")
+      return
+    }
+
     val parameters = DonationErrorParams.create(context, donationError, NotificationCallback)
     val notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
       .setSmallIcon(R.drawable.ic_notification)

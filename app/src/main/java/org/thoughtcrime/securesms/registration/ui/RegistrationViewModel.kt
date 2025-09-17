@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.registration.ui
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -123,6 +124,7 @@ class RegistrationViewModel : ViewModel() {
       }
     }
 
+  @SuppressLint("MissingPermission")
   fun maybePrefillE164(context: Context) {
     Log.v(TAG, "maybePrefillE164()")
     if (Permissions.hasAll(context, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_PHONE_NUMBERS)) {

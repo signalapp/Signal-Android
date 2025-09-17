@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.mediapreview
 
+import android.Manifest
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.ViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Completable
@@ -161,6 +164,11 @@ class MediaPreviewV2ViewModel : ViewModel() {
 
   private fun maybePostInvalidMacErrorNotification(context: Context) {
     if (!RemoteConfig.internalUser) {
+      return
+    }
+
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "maybePostInvalidMacErrorNotification: Notification permission is not granted.")
       return
     }
 

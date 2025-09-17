@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.service.webrtc
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
@@ -177,6 +178,7 @@ class ActiveCallManager(
     }
   }
 
+  @SuppressLint("MissingPermission")
   fun update(type: Int, recipientId: RecipientId, isVideoCall: Boolean) {
     Log.i(TAG, "update $type $recipientId $isVideoCall")
     previousNotificationDisposable.dispose()

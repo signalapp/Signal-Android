@@ -4,11 +4,14 @@
  */
 package org.thoughtcrime.securesms.jobs
 
+import android.Manifest
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.PendingIntentFlags
@@ -471,6 +474,11 @@ class RestoreAttachmentJob private constructor(
       return
     }
 
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "maybePostFailedToDownloadFromArchiveNotification: Notification permission is not granted.")
+      return
+    }
+
     val notification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().FAILURES)
       .setSmallIcon(R.drawable.ic_notification)
       .setContentTitle("[Internal-only] Failed to restore attachment from Archive CDN!")
@@ -483,6 +491,11 @@ class RestoreAttachmentJob private constructor(
 
   private fun maybePostFailedToDownloadFromArchiveAndTransitNotification() {
     if (!RemoteConfig.internalUser || !SignalStore.backup.backsUpMedia) {
+      return
+    }
+
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "maybePostFailedToDownloadFromArchiveAndTransitNotification: Notification permission is not granted.")
       return
     }
 

@@ -144,7 +144,7 @@ class CameraXVideoCaptureHelper implements CameraButtonView.VideoCaptureListener
                .execute();
   }
 
-  @SuppressLint("RestrictedApi")
+  @SuppressLint({"RestrictedApi", "MissingPermission"})
   private void beginCameraRecording() {
     cameraXModePolicy.setToVideo(cameraController);
     this.cameraController.setZoomRatio(getDefaultVideoZoomRatio());

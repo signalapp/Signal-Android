@@ -5,13 +5,16 @@
 
 package org.thoughtcrime.securesms.service
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
@@ -110,6 +113,11 @@ class BackupProgressService : SafeForegroundService() {
         BackupProgressService.title = title
         BackupProgressService.progress = progress
         BackupProgressService.indeterminate = indeterminate
+
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+          Log.w(TAG, "Cannot update notification due to missing permission.")
+          return@withLock
+        }
 
         if (NotificationManagerCompat.from(context).activeNotifications.any { n -> n.id == NotificationIds.BACKUP_PROGRESS }) {
           NotificationManagerCompat.from(context).notify(NotificationIds.BACKUP_PROGRESS, getForegroundNotification(context))
