@@ -256,7 +256,7 @@ public abstract class PushSendJob extends SendJob {
                              .map(Contact.Avatar::getAttachment).withoutNulls()
                              .toList());
 
-    return new HashSet<>(Stream.of(attachments).map(a -> {
+    HashSet<String> jobs = new HashSet<>(Stream.of(attachments).map(a -> {
                                  final AttachmentId attachmentId = ((DatabaseAttachment) a).attachmentId;
                                  Log.d(TAG, "Enqueueing job chain to upload " + attachmentId);
                                  AttachmentUploadJob attachmentUploadJob = new AttachmentUploadJob(attachmentId);
@@ -268,6 +268,17 @@ public abstract class PushSendJob extends SendJob {
                                  return attachmentUploadJob.getId();
                                })
                                .toList());
+
+    if (message.getOutgoingQuote() != null && message.getOutgoingQuote().getAttachment() != null) {
+      AttachmentId        attachmentId  = ((DatabaseAttachment) message.getOutgoingQuote().getAttachment()).attachmentId;
+      AttachmentUploadJob quoteUploadJob = new AttachmentUploadJob(attachmentId);
+
+      jobManager.add(quoteUploadJob);
+
+      jobs.add(quoteUploadJob.getId());
+    }
+
+    return jobs;
   }
 
   protected @NonNull List<SignalServiceAttachment> getAttachmentPointersFor(List<Attachment> attachments) {
