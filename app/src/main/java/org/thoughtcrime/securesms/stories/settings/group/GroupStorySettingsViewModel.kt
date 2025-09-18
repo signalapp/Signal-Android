@@ -7,7 +7,6 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.core.Single
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.LiveGroup
-import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.util.livedata.Store
 
 /**
@@ -38,9 +37,9 @@ class GroupStorySettingsViewModel(private val groupId: GroupId) : ViewModel() {
     return repository.getConversationData(groupId).observeOn(AndroidSchedulers.mainThread())
   }
 
-  class Factory(private val parcelableGroupId: ParcelableGroupId) : ViewModelProvider.Factory {
+  class Factory(private val groupId: GroupId) : ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-      return modelClass.cast(GroupStorySettingsViewModel(ParcelableGroupId.get(parcelableGroupId)!!)) as T
+      return modelClass.cast(GroupStorySettingsViewModel(groupId)) as T
     }
   }
 }

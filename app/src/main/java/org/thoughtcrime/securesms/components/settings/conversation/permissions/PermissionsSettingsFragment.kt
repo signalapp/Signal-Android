@@ -8,7 +8,7 @@ import org.thoughtcrime.securesms.components.settings.DSLConfiguration
 import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
 import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.configure
-import org.thoughtcrime.securesms.groups.ParcelableGroupId
+import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.groups.ui.GroupErrors
 import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 
@@ -23,7 +23,7 @@ class PermissionsSettingsFragment : DSLSettingsFragment(
   private val viewModel: PermissionsSettingsViewModel by viewModels(
     factoryProducer = {
       val args = PermissionsSettingsFragmentArgs.fromBundle(requireArguments())
-      val groupId = requireNotNull(ParcelableGroupId.get(args.groupId as ParcelableGroupId))
+      val groupId = requireNotNull(args.groupId as GroupId)
       val repository = PermissionsSettingsRepository(requireContext())
 
       PermissionsSettingsViewModel.Factory(groupId, repository)

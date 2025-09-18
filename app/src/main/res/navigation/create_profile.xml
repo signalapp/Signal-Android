@@ -20,7 +20,7 @@
             app:popExitAnim="@anim/nav_default_pop_exit_anim">
             <argument
                 android:name="group_id"
-                app:argType="org.thoughtcrime.securesms.groups.ParcelableGroupId"
+                app:argType="org.thoughtcrime.securesms.groups.GroupId"
                 app:nullable="true" />
 
             <argument

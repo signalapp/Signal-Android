@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.GroupRecord;
 import org.thoughtcrime.securesms.groups.GroupId;
-import org.thoughtcrime.securesms.groups.ParcelableGroupId;
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.util.BottomSheetUtil;
@@ -46,7 +45,7 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
     ShowAdminsBottomSheetDialog fragment = new ShowAdminsBottomSheetDialog();
 
     Bundle args = new Bundle();
-    args.putParcelable(KEY_GROUP_ID, ParcelableGroupId.from(groupId));
+    args.putParcelable(KEY_GROUP_ID, groupId);
     fragment.setArguments(args);
 
     fragment.show(manager, BottomSheetUtil.STANDARD_BOTTOM_SHEET_FRAGMENT_TAG);
@@ -94,7 +93,7 @@ public final class ShowAdminsBottomSheetDialog extends BottomSheetDialogFragment
   }
 
   private GroupId getGroupId() {
-    return ParcelableGroupId.get(requireArguments().getParcelable(KEY_GROUP_ID));
+    return requireArguments().getParcelable(KEY_GROUP_ID);
   }
 
   @WorkerThread

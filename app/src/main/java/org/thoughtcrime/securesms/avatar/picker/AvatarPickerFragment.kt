@@ -27,7 +27,6 @@ import org.thoughtcrime.securesms.avatar.text.TextAvatarCreationFragment
 import org.thoughtcrime.securesms.avatar.vector.VectorAvatarCreationFragment
 import org.thoughtcrime.securesms.components.ButtonStripItemView
 import org.thoughtcrime.securesms.components.recyclerview.GridDividerDecoration
-import org.thoughtcrime.securesms.groups.ParcelableGroupId
 import org.thoughtcrime.securesms.mediasend.AvatarSelectionActivity
 import org.thoughtcrime.securesms.mediasend.Media
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
@@ -57,9 +56,8 @@ class AvatarPickerFragment : Fragment(R.layout.avatar_picker_fragment) {
 
   private fun createFactory(): AvatarPickerViewModel.Factory {
     val args = AvatarPickerFragmentArgs.fromBundle(requireArguments())
-    val groupId = ParcelableGroupId.get(args.groupId)
 
-    return AvatarPickerViewModel.Factory(AvatarPickerRepository(requireContext()), groupId, args.isNewGroup, args.groupAvatarMedia)
+    return AvatarPickerViewModel.Factory(AvatarPickerRepository(requireContext()), args.groupId, args.isNewGroup, args.groupAvatarMedia)
   }
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

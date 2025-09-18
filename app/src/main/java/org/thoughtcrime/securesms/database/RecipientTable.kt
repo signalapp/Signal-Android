@@ -3747,7 +3747,7 @@ open class RecipientTable(context: Context, databaseHelper: SignalDatabase) : Da
       if (blockedGroupIds.isNotEmpty()) {
         val groupIds: List<GroupId.V1> = blockedGroupIds.filterNotNull().mapNotNull { raw ->
           try {
-            GroupId.v1(raw)
+            raw?.let { GroupId.v1(it) }
           } catch (e: BadGroupIdException) {
             Log.w(TAG, "[applyBlockedUpdate] Bad GV1 ID!")
             null
