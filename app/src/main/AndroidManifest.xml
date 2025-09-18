@@ -930,17 +930,7 @@
               android:theme="@style/TextSecure.DialogActivity"
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"/>
 
-    <activity android:name=".SmsSendtoActivity" android:exported="true">
-        <intent-filter>
-            <action android:name="android.intent.action.SENDTO" />
-            <action android:name="android.intent.action.VIEW" />
-            <category android:name="android.intent.category.DEFAULT" />
-            <category android:name="android.intent.category.BROWSABLE" />
-            <data android:scheme="sms" />
-            <data android:scheme="smsto" />
-            <data android:scheme="mms" />
-            <data android:scheme="mmsto" />
-        </intent-filter>
+    <activity android:name=".SystemContactsEntrypointActivity" android:exported="true">
         <intent-filter>
             <action android:name="android.intent.action.VIEW" />
             <category android:name="android.intent.category.DEFAULT" />

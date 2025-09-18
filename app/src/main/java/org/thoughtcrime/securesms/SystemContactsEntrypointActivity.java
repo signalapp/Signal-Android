@@ -18,9 +18,9 @@ import org.thoughtcrime.securesms.util.Rfc5724Uri;
 
 import java.net.URISyntaxException;
 
-public class SmsSendtoActivity extends Activity {
+public class SystemContactsEntrypointActivity extends Activity {
 
-  private static final String TAG = Log.tag(SmsSendtoActivity.class);
+  private static final String TAG = Log.tag(SystemContactsEntrypointActivity.class);
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +32,7 @@ public class SmsSendtoActivity extends Activity {
   private Intent getNextIntent(Intent original) {
     DestinationAndBody destination;
 
-    if (original.getAction().equals(Intent.ACTION_SENDTO)) {
-      destination = getDestinationForSendTo(original);
-    } else if (original.getData() != null && "content".equals(original.getData().getScheme())) {
+    if (original.getData() != null && "content".equals(original.getData().getScheme())) {
       destination = getDestinationForSyncAdapter(original);
     } else {
       destination = getDestinationForView(original);
@@ -62,11 +60,6 @@ public class SmsSendtoActivity extends Activity {
       }
     }
     return nextIntent;
-  }
-
-  private @NonNull DestinationAndBody getDestinationForSendTo(Intent intent) {
-    return new DestinationAndBody(intent.getData().getSchemeSpecificPart(),
-                                  intent.getStringExtra("sms_body"));
   }
 
   private @NonNull DestinationAndBody getDestinationForView(Intent intent) {
