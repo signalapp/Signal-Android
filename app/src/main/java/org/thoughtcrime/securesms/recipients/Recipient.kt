@@ -197,28 +197,28 @@ class Recipient(
   val isMmsGroup: Boolean
     get() {
       val groupId = resolved.groupIdValue
-      return groupId != null && groupId.isMms()
+      return groupId != null && groupId.isMms
     }
 
   /** Whether the recipient represents a Signal group. */
   val isPushGroup: Boolean
     get() {
       val groupId = resolved.groupIdValue
-      return groupId != null && groupId.isPush()
+      return groupId != null && groupId.isPush
     }
 
   /** Whether the recipient represents a V1 Signal group. These types of groups were deprecated in 2020. */
   val isPushV1Group: Boolean
     get() {
       val groupId = resolved.groupIdValue
-      return groupId != null && groupId.isV1()
+      return groupId != null && groupId.isV1
     }
 
   /** Whether the recipient represents a V2 Signal group. */
   val isPushV2Group: Boolean
     get() {
       val groupId = resolved.groupIdValue
-      return groupId != null && groupId.isV2()
+      return groupId != null && groupId.isV2
     }
 
   /** Whether the recipient represents a distribution list (a specific list of people to send a story to). */
