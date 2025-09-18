@@ -270,12 +270,13 @@ public abstract class PushSendJob extends SendJob {
                                .toList());
 
     if (message.getOutgoingQuote() != null && message.getOutgoingQuote().getAttachment() != null) {
-      AttachmentId        attachmentId  = ((DatabaseAttachment) message.getOutgoingQuote().getAttachment()).attachmentId;
-      AttachmentUploadJob quoteUploadJob = new AttachmentUploadJob(attachmentId);
+      AttachmentId attachmentId = ((DatabaseAttachment) message.getOutgoingQuote().getAttachment()).attachmentId;
 
-      jobManager.add(quoteUploadJob);
-
-      jobs.add(quoteUploadJob.getId());
+      if (SignalDatabase.attachments().hasData(attachmentId)) {
+        AttachmentUploadJob quoteUploadJob = new AttachmentUploadJob(attachmentId);
+        jobManager.add(quoteUploadJob);
+        jobs.add(quoteUploadJob.getId());
+      }
     }
 
     return jobs;
