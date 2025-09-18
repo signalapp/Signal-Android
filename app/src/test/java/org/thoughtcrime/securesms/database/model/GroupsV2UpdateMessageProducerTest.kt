@@ -5,7 +5,6 @@ import androidx.test.core.app.ApplicationProvider
 import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
-import io.mockk.mockkStatic
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
@@ -50,7 +49,7 @@ class GroupsV2UpdateMessageProducerTest {
 
   @Before
   fun setup() {
-    mockkStatic(RecipientId::class)
+    mockkObject(RecipientId.Companion)
     val aliceId = RecipientId.from(1)
     val bobId = RecipientId.from(2)
     every { RecipientId.from(alice) } returns aliceId
