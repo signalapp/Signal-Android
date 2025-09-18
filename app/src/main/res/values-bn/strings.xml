@@ -4804,7 +4804,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">তথ্য</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">This is a beta feature and will be improved over time.</string>
+    <string name="Beta__this_is_beta">এটি একটি বিটা ফিচার এবং সময়ের সাথে সাথে এটি উন্নত করা হবে।</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal আনলক করুন</string>
@@ -4973,9 +4973,9 @@
     <!-- Message for exit device transfer confirmation dialog -->
     <string name="OldDeviceTransferInstructions__confirm_exit_message">No data has been transferred to your new device.</string>
     <!-- Confirm button for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__stop_transfer">Stop transfer</string>
+    <string name="OldDeviceTransferInstructions__stop_transfer">স্থানান্তর বন্ধ করুন</string>
     <!-- Negative/cancel button for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__continue_transfer">Continue transfer</string>
+    <string name="OldDeviceTransferInstructions__continue_transfer">স্থানান্তর চালিয়ে যান</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">আপনার নতুন ডিভাইসে যান</string>
@@ -8053,13 +8053,13 @@
     <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
     <string name="GooglePlayServicesAvailability__service_update_required_message">To subscribe to Signal Secure Backups, update Google Play service on your phone.</string>
     <!-- Dialog button text to update Google Play services -->
-    <string name="GooglePlayServicesAvailability__update">Update</string>
+    <string name="GooglePlayServicesAvailability__update">আপডেট করুন</string>
     <!-- Dialog title when Google Play services are disabled -->
     <string name="GooglePlayServicesAvailability__service_disabled_title">Paid subscriptions require Google Play</string>
     <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
     <string name="GooglePlayServicesAvailability__service_disabled_message">To subscribe to Signal Secure Backups, enable Google Play services on your phone and sign into the Google Play store. </string>
     <!-- Dialog button text to learn more about enabling Google Play services -->
-    <string name="GooglePlayServicesAvailability__learn_more">Learn more</string>
+    <string name="GooglePlayServicesAvailability__learn_more">আরো জানুন</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
     <string name="GooglePlayServicesAvailability__service_invalid_message">You can\'t subscribe to Signal Secure backups because your phone does not support Google Play services. Contact the phone manufacturer for assistance.</string>
 
