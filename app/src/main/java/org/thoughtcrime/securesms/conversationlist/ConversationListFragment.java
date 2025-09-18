@@ -18,7 +18,6 @@ package org.thoughtcrime.securesms.conversationlist;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -115,7 +114,7 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState;
-import org.thoughtcrime.securesms.conversation.ConversationIntents;
+import org.thoughtcrime.securesms.conversation.ConversationArgs;
 import org.thoughtcrime.securesms.conversation.ConversationUpdateTick;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource;
@@ -417,10 +416,9 @@ public class ConversationListFragment extends MainFragment implements Conversati
       lifecycleDisposable.add(mainNavigationViewModel.getDetailLocationObservable()
                                                      .subscribeOn(AndroidSchedulers.mainThread())
                                                      .subscribe(location -> {
-                                                       if (location instanceof MainNavigationDetailLocation.Conversation) {
-                                                         Intent                   intent   = ((MainNavigationDetailLocation.Conversation) location).getIntent();
-                                                         ConversationIntents.Args args     = ConversationIntents.Args.from(Objects.requireNonNull(intent.getExtras()));
-                                                         long                     threadId = args.getThreadId();
+                                                       if (location instanceof MainNavigationDetailLocation.Chats.Conversation) {
+                                                         ConversationArgs args   = ((MainNavigationDetailLocation.Chats.Conversation) location).getConversationArgs();
+                                                         long             threadId = args.threadId;
 
                                                          defaultAdapter.setActiveThreadId(threadId);
                                                        }

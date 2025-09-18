@@ -154,6 +154,7 @@ import org.thoughtcrime.securesms.contactshare.SharedContactDetailsActivity
 import org.thoughtcrime.securesms.conversation.AttachmentKeyboardButton
 import org.thoughtcrime.securesms.conversation.BadDecryptLearnMoreDialog
 import org.thoughtcrime.securesms.conversation.ConversationAdapter
+import org.thoughtcrime.securesms.conversation.ConversationArgs
 import org.thoughtcrime.securesms.conversation.ConversationBottomSheetCallback
 import org.thoughtcrime.securesms.conversation.ConversationData
 import org.thoughtcrime.securesms.conversation.ConversationHeaderView
@@ -390,8 +391,8 @@ class ConversationFragment :
     private const val IS_SCROLLED_TO_BOTTOM_THRESHOLD: Int = 2
   }
 
-  private val args: ConversationIntents.Args by lazy {
-    ConversationIntents.Args.from(requireArguments())
+  private val args: ConversationArgs by lazy {
+    ConversationIntents.readArgsFromBundle(requireArguments())
   }
 
   private val conversationRecipientRepository: ConversationRecipientRepository by lazy {

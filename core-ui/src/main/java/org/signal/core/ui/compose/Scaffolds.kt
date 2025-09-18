@@ -42,8 +42,8 @@ object Scaffolds {
   fun Settings(
     title: String,
     onNavigationClick: () -> Unit,
-    navigationIcon: ImageVector,
     modifier: Modifier = Modifier,
+    navigationIcon: ImageVector? = null,
     navigationContentDescription: String? = null,
     titleContent: @Composable (Float, String) -> Unit = { _, title ->
       Text(text = title, style = MaterialTheme.typography.titleLarge)
@@ -80,7 +80,7 @@ object Scaffolds {
     title: String,
     titleContent: @Composable (Float, String) -> Unit,
     onNavigationClick: () -> Unit,
-    navigationIcon: ImageVector,
+    navigationIcon: ImageVector?,
     navigationContentDescription: String? = null,
     actions: @Composable RowScope.() -> Unit = {},
     scrollBehavior: TopAppBarScrollBehavior = TopAppBarDefaults.pinnedScrollBehavior()
@@ -90,14 +90,16 @@ object Scaffolds {
         titleContent(scrollBehavior.state.contentOffset, title)
       },
       navigationIcon = {
-        IconButton(
-          onClick = onNavigationClick,
-          Modifier.padding(end = 16.dp)
-        ) {
-          Icon(
-            imageVector = navigationIcon,
-            contentDescription = navigationContentDescription
-          )
+        if (navigationIcon != null) {
+          IconButton(
+            onClick = onNavigationClick,
+            Modifier.padding(end = 16.dp)
+          ) {
+            Icon(
+              imageVector = navigationIcon,
+              contentDescription = navigationContentDescription
+            )
+          }
         }
       },
       scrollBehavior = scrollBehavior,
@@ -117,6 +119,31 @@ private fun SettingsScaffoldPreview() {
       "Settings Scaffold",
       onNavigationClick = {},
       navigationIcon = Icons.Filled.Settings,
+      actions = {
+        IconButton(onClick = {}) {
+          Icon(Icons.Default.Settings, contentDescription = null)
+        }
+      }
+    ) { paddingValues ->
+      Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+          .padding(paddingValues)
+          .fillMaxSize()
+      ) {
+        Text("Content")
+      }
+    }
+  }
+}
+
+@Preview
+@Composable
+private fun SettingsScaffoldNoNavIconPreview() {
+  SignalTheme(isDarkMode = false) {
+    Scaffolds.Settings(
+      "Settings Scaffold",
+      onNavigationClick = {},
       actions = {
         IconButton(onClick = {}) {
           Icon(Icons.Default.Settings, contentDescription = null)

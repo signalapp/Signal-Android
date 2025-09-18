@@ -5,14 +5,19 @@
 
 package org.thoughtcrime.securesms.calls.links.details
 
-import androidx.compose.runtime.Immutable
 import org.thoughtcrime.securesms.database.CallLinkTable
 import org.thoughtcrime.securesms.service.webrtc.CallLinkPeekInfo
 
-@Immutable
 data class CallLinkDetailsState(
   val displayRevocationDialog: Boolean = false,
   val isLoadingAdminApprovalChange: Boolean = false,
   val callLink: CallLinkTable.CallLink? = null,
-  val peekInfo: CallLinkPeekInfo? = null
-)
+  val peekInfo: CallLinkPeekInfo? = null,
+  val failureSnackbar: FailureSnackbar? = null
+) {
+  enum class FailureSnackbar {
+    COULD_NOT_DELETE_CALL_LINK,
+    COULD_NOT_SAVE_CHANGES,
+    COULD_NOT_UPDATE_ADMIN_APPROVAL
+  }
+}

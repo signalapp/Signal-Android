@@ -45,8 +45,8 @@ public class MainNavigator {
     Disposable disposable = ConversationIntents.createBuilder(activity, recipientId, threadId)
                                                .map(builder -> builder.withDistributionType(distributionType)
                                                                       .withStartingPosition(startingPosition)
-                                                                      .build())
-                                               .subscribe(intent -> viewModel.goTo(new MainNavigationDetailLocation.Conversation(intent)));
+                                                                      .toConversationArgs())
+                                               .subscribe(args -> viewModel.goTo(new MainNavigationDetailLocation.Chats.Conversation(args)));
 
     lifecycleDisposable.add(disposable);
   }

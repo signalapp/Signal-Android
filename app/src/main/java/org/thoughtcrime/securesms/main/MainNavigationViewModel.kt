@@ -33,7 +33,7 @@ import org.thoughtcrime.securesms.stories.Stories
 class MainNavigationViewModel(
   initialListLocation: MainNavigationListLocation = MainNavigationListLocation.CHATS,
   initialDetailLocation: MainNavigationDetailLocation = MainNavigationDetailLocation.Empty
-) : ViewModel() {
+) : ViewModel(), MainNavigationRouter {
   private val megaphoneRepository = AppDependencies.megaphoneRepository
 
   private var navigator: ThreePaneScaffoldNavigator<Any>? = null
@@ -46,7 +46,8 @@ class MainNavigationViewModel(
   private val internalDetailLocation = MutableStateFlow(initialDetailLocation)
   val detailLocation: StateFlow<MainNavigationDetailLocation> = internalDetailLocation
   val detailLocationObservable: Observable<MainNavigationDetailLocation> = internalDetailLocation.asObservable()
-  var latestConversationLocation: MainNavigationDetailLocation.Conversation? = null
+  var latestConversationLocation: MainNavigationDetailLocation.Chats.Conversation? = null
+  var latestCallsLocation: MainNavigationDetailLocation.Calls? = null
 
   private val internalMegaphone = MutableStateFlow(Megaphone.NONE)
   val megaphone: StateFlow<Megaphone> = internalMegaphone
@@ -117,7 +118,7 @@ class MainNavigationViewModel(
    * Navigates to the requested location. If the navigator is not present, this functionally sets our
    * "default" location to that specified, and we will route the user there when the navigator is set.
    */
-  fun goTo(location: MainNavigationDetailLocation) {
+  override fun goTo(location: MainNavigationDetailLocation) {
     if (!SignalStore.internal.largeScreenUi) {
       goToLegacyDetailLocation?.invoke(location)
       return
@@ -137,8 +138,13 @@ class MainNavigationViewModel(
         ThreePaneScaffoldRole.Secondary
       }
 
-      is MainNavigationDetailLocation.Conversation -> {
+      is MainNavigationDetailLocation.Chats.Conversation -> {
         latestConversationLocation = location
+        ThreePaneScaffoldRole.Primary
+      }
+
+      is MainNavigationDetailLocation.Calls -> {
+        latestCallsLocation = location
         ThreePaneScaffoldRole.Primary
       }
     }
@@ -161,19 +167,28 @@ class MainNavigationViewModel(
     }
   }
 
-  fun goTo(location: MainNavigationListLocation) {
+  override fun goTo(location: MainNavigationListLocation) {
     if (navigator == null) {
       earlyNavigationListLocationRequested = location
       return
     }
 
-    if (location != MainNavigationListLocation.CHATS) {
-      internalDetailLocation.update {
-        MainNavigationDetailLocation.Empty
+    when (location) {
+      MainNavigationListLocation.CHATS -> {
+        internalDetailLocation.update {
+          latestConversationLocation ?: MainNavigationDetailLocation.Empty
+        }
       }
-    } else {
-      internalDetailLocation.update {
-        latestConversationLocation ?: MainNavigationDetailLocation.Empty
+      MainNavigationListLocation.ARCHIVE -> Unit
+      MainNavigationListLocation.CALLS -> {
+        internalDetailLocation.update {
+          latestCallsLocation ?: MainNavigationDetailLocation.Empty
+        }
+      }
+      MainNavigationListLocation.STORIES -> {
+        internalDetailLocation.update {
+          MainNavigationDetailLocation.Empty
+        }
       }
     }
 
