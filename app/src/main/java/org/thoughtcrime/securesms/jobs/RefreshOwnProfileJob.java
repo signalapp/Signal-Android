@@ -9,6 +9,7 @@ import org.signal.core.util.Base64;
 import org.signal.core.util.logging.Log;
 import org.signal.libsignal.usernames.BaseUsernameException;
 import org.signal.libsignal.usernames.Username;
+import org.signal.libsignal.zkgroup.VerificationFailedException;
 import org.signal.libsignal.zkgroup.profiles.ExpiringProfileKeyCredential;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.badges.BadgeRepository;
@@ -117,8 +118,17 @@ public class RefreshOwnProfileJob extends BaseJob {
       return;
     }
 
-    Recipient            self                 = Recipient.self();
-    ProfileAndCredential profileAndCredential = ProfileUtil.retrieveProfileSync(context, self, getRequestType(self), false);
+    Recipient self = Recipient.self();
+
+    ProfileAndCredential profileAndCredential;
+    try {
+      profileAndCredential = ProfileUtil.retrieveProfileSync(context, self, getRequestType(self), false);
+    } catch (IllegalStateException e) {
+      Log.w(TAG, "Unexpected exception result from profile fetch. Skipping.");
+      return;
+    }
+
+
     SignalServiceProfile profile              = profileAndCredential.getProfile();
 
     if (Util.isEmpty(profile.getName()) &&
