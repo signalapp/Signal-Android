@@ -294,7 +294,7 @@ public class EmojiTextView extends AppCompatTextView {
         int   desiredWidth      = (int) measuredTextWidth + getPaddingLeft() + getPaddingRight();
 
         if (widthSpecMode == MeasureSpec.AT_MOST && desiredWidth < widthSpecSize) {
-          return MeasureSpec.makeMeasureSpec(desiredWidth + 1, MeasureSpec.EXACTLY);
+          return MeasureSpec.makeMeasureSpec(desiredWidth + 3, MeasureSpec.EXACTLY);
         }
       }
     }
