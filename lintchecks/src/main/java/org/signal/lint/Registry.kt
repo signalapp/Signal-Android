@@ -22,7 +22,9 @@ class Registry : IssueRegistry() {
     RecipientIdDatabaseDetector.RECIPIENT_ID_DATABASE_REFERENCE_ISSUE,
     ThreadIdDatabaseDetector.THREAD_ID_DATABASE_REFERENCE_ISSUE,
     StartForegroundServiceDetector.START_FOREGROUND_SERVICE_ISSUE,
-    CardViewDetector.CARD_VIEW_USAGE
+    CardViewDetector.CARD_VIEW_USAGE,
+    SystemOutPrintLnDetector.SYSTEM_OUT_PRINTLN_USAGE,
+    SystemOutPrintLnDetector.KOTLIN_IO_PRINTLN_USAGE
   )
 
   override val api = CURRENT_API

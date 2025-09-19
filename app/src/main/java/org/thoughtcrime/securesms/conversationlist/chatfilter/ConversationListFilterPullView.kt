@@ -196,7 +196,6 @@ class ConversationListFilterPullView @JvmOverloads constructor(
   }
 
   fun openImmediate() {
-    println("openImmediate from $state")
     if (state == FilterPullState.CLOSED) {
       setState(FilterPullState.OPEN_APEX, source)
       setState(FilterPullState.OPENING, source)
