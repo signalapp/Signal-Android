@@ -23,11 +23,13 @@ import org.signal.libsignal.net.SvrBStoreResponse
 import org.signal.protos.resumableuploads.ResumableUpload
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.ArchiveUploadProgress
-import org.thoughtcrime.securesms.backup.v2.ArchiveMediaItemIterator
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.ArchiveValidator
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.ResumableMessagesBackupUploadSpec
+import org.thoughtcrime.securesms.backup.v2.util.ArchiveAttachmentInfo
+import org.thoughtcrime.securesms.backup.v2.util.getAllReferencedArchiveAttachmentInfos
+import org.thoughtcrime.securesms.database.BackupMediaSnapshotTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -42,8 +44,10 @@ import org.thoughtcrime.securesms.notifications.NotificationIds
 import org.thoughtcrime.securesms.providers.BlobProvider
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
+import org.whispersystems.signalservice.api.backup.MediaRootBackupKey
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.svr.SvrBApi
@@ -68,6 +72,7 @@ class BackupMessagesJob private constructor(
   companion object {
     private val TAG = Log.tag(BackupMessagesJob::class.java)
     private val FILE_REUSE_TIMEOUT = 1.hours
+    private const val ATTACHMENT_SNAPSHOT_BUFFER_SIZE = 10_000
 
     const val KEY = "BackupMessagesJob"
 
@@ -360,7 +365,10 @@ class BackupMessagesJob private constructor(
 
     val outputStream = FileOutputStream(tempBackupFile)
     val backupKey = SignalStore.backup.messageBackupKey
+    val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
     val currentTime = System.currentTimeMillis()
+
+    val attachmentInfoBuffer: MutableSet<ArchiveAttachmentInfo> = mutableSetOf()
 
     BackupRepository.exportForSignalBackup(
       outputStream = outputStream,
@@ -371,8 +379,19 @@ class BackupMessagesJob private constructor(
       append = { tempBackupFile.appendBytes(it) },
       cancellationSignal = { this.isCanceled },
       currentTime = currentTime
-    ) {
-      writeMediaCursorToTemporaryTable(it, mediaBackupEnabled = SignalStore.backup.backsUpMedia)
+    ) { frame ->
+      attachmentInfoBuffer += frame.getAllReferencedArchiveAttachmentInfos()
+      if (attachmentInfoBuffer.size > ATTACHMENT_SNAPSHOT_BUFFER_SIZE) {
+        SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(attachmentInfoBuffer.toFullSizeMediaEntries(mediaRootBackupKey))
+        SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(attachmentInfoBuffer.toThumbnailMediaEntries(mediaRootBackupKey))
+        attachmentInfoBuffer.clear()
+      }
+    }
+
+    if (attachmentInfoBuffer.isNotEmpty()) {
+      SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(attachmentInfoBuffer.toFullSizeMediaEntries(mediaRootBackupKey))
+      SignalDatabase.backupMediaSnapshots.writePendingMediaEntries(attachmentInfoBuffer.toThumbnailMediaEntries(mediaRootBackupKey))
+      attachmentInfoBuffer.clear()
     }
 
     if (isCanceled) {
@@ -422,22 +441,6 @@ class BackupMessagesJob private constructor(
     )
   }
 
-  private fun writeMediaCursorToTemporaryTable(db: SignalDatabase, mediaBackupEnabled: Boolean) {
-    if (mediaBackupEnabled) {
-      db.attachmentTable.getFullSizeAttachmentsThatWillBeIncludedInArchive().use {
-        SignalDatabase.backupMediaSnapshots.writeFullSizePendingMediaObjects(
-          mediaObjects = ArchiveMediaItemIterator(it).asSequence()
-        )
-      }
-
-      db.attachmentTable.getThumbnailAttachmentsThatWillBeIncludedInArchive().use {
-        SignalDatabase.backupMediaSnapshots.writeThumbnailPendingMediaObjects(
-          mediaObjects = ArchiveMediaItemIterator(it).asSequence()
-        )
-      }
-    }
-  }
-
   private fun maybePostRemoteKeyMissingNotification() {
     if (!RemoteConfig.internalUser || !SignalStore.backup.backsUpMedia) {
       return
@@ -455,6 +458,42 @@ class BackupMessagesJob private constructor(
       .build()
 
     NotificationManagerCompat.from(context).notify(NotificationIds.INTERNAL_ERROR, notification)
+  }
+
+  private fun Set<ArchiveAttachmentInfo>.toFullSizeMediaEntries(mediaRootBackupKey: MediaRootBackupKey): Set<BackupMediaSnapshotTable.MediaEntry> {
+    return this
+      .map {
+        BackupMediaSnapshotTable.MediaEntry(
+          mediaId = it.fullSizeMediaName.toMediaId(mediaRootBackupKey).encode(),
+          cdn = it.cdn,
+          plaintextHash = it.plaintextHash.toByteArray(),
+          remoteKey = it.remoteKey.toByteArray(),
+          isThumbnail = false
+        )
+      }
+      .toSet()
+  }
+
+  /**
+   * Note: we have to remove permanently failed thumbnails here because there's no way we can know from the backup frame whether or not the thumbnail
+   * failed permanently independently of the attachment itself. If the attachment itself fails permanently, it's not put in the backup, so we're covered
+   * for full-size stuff.
+   */
+  private fun Set<ArchiveAttachmentInfo>.toThumbnailMediaEntries(mediaRootBackupKey: MediaRootBackupKey): Set<BackupMediaSnapshotTable.MediaEntry> {
+    return this
+      .filter { MediaUtil.isImageOrVideoType(it.contentType) }
+      .filterNot { it.forQuote }
+      .map {
+        BackupMediaSnapshotTable.MediaEntry(
+          mediaId = it.thumbnailMediaName.toMediaId(mediaRootBackupKey).encode(),
+          cdn = it.cdn,
+          plaintextHash = it.plaintextHash.toByteArray(),
+          remoteKey = it.remoteKey.toByteArray(),
+          isThumbnail = true
+        )
+      }
+      .toSet()
+      .let { SignalDatabase.attachments.filterPermanentlyFailedThumbnails(it) }
   }
 
   class Factory : Job.Factory<BackupMessagesJob> {
