@@ -95,7 +95,7 @@ enum class WindowSizeClass(
   fun isPortrait(): Boolean = !isLandscape()
 
   fun isSplitPane(): Boolean {
-    return if (SignalStore.internal.largeScreenUi && SignalStore.internal.forceSplitPaneOnCompactLandscape) {
+    return if (RemoteConfig.largeScreenUi && SignalStore.internal.forceSplitPaneOnCompactLandscape) {
       this != COMPACT_PORTRAIT
     } else {
       this.navigation != Navigation.BAR
@@ -121,7 +121,7 @@ enum class WindowSizeClass(
     }
 
     fun isForcedCompact(): Boolean {
-      return !SignalStore.internal.largeScreenUi
+      return !RemoteConfig.largeScreenUi
     }
 
     @Composable

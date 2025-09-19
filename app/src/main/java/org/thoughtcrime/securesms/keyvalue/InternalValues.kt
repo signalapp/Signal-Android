@@ -46,12 +46,12 @@ class InternalValues internal constructor(store: KeyValueStore) : SignalStoreVal
   /**
    * Enable or disable the large screen UI.
    */
-  var largeScreenUi by booleanValue(LARGE_SCREEN_UI, false).defaultForExternalUsers()
+  var largeScreenUi by booleanValue(LARGE_SCREEN_UI, true).falseForExternalUsers()
 
   /**
    * Force split-pane mode on compact landscape
    */
-  var forceSplitPaneOnCompactLandscape by booleanValue(FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE, false).defaultForExternalUsers()
+  var forceSplitPaneOnCompactLandscape by booleanValue(FORCE_SPLIT_PANE_ON_COMPACT_LANDSCAPE, false).falseForExternalUsers()
 
   /**
    * Members will not be added directly to a GV2 even if they could be.

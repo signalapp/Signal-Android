@@ -28,6 +28,7 @@ import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.util.RemoteConfig
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 class MainNavigationViewModel(
@@ -119,7 +120,7 @@ class MainNavigationViewModel(
    * "default" location to that specified, and we will route the user there when the navigator is set.
    */
   override fun goTo(location: MainNavigationDetailLocation) {
-    if (!SignalStore.internal.largeScreenUi) {
+    if (!RemoteConfig.largeScreenUi) {
       goToLegacyDetailLocation?.invoke(location)
       return
     }

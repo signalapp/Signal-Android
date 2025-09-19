@@ -20,9 +20,13 @@ import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.util.RemoteConfig.Config
+import org.thoughtcrime.securesms.util.RemoteConfig.REMOTE_VALUES
+import org.thoughtcrime.securesms.util.RemoteConfig.asBoolean
+import org.thoughtcrime.securesms.util.RemoteConfig.asInteger
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteBoolean
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteValue
+import org.thoughtcrime.securesms.util.RemoteConfig.retryReceiptMaxCount
+import org.thoughtcrime.securesms.util.RemoteConfig.retryReceiptMaxCountResetAge
 import org.whispersystems.signalservice.api.NetworkResultUtil
 import java.io.IOException
 import java.util.TreeMap
@@ -1176,11 +1180,12 @@ object RemoteConfig {
   )
 
   /** Whether to allow different WindowSizeClasses to be used to determine screen layout */
-  val largeScreenUi: Boolean by remoteBoolean(
+  val largeScreenUi: Boolean by remoteValue(
     key = "android.largeScreenUI",
-    defaultValue = false,
     hotSwappable = false
-  )
+  ) { value ->
+    value.asBoolean(false) && SignalStore.internal.largeScreenUi
+  }
 
   @JvmStatic
   @get:JvmName("useMessageSendRestFallback")
