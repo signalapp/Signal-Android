@@ -87,7 +87,7 @@ object QuickRegistrationRepository {
               MessageBackupTier.FREE -> RegistrationProvisionMessage.Tier.FREE
               null -> null
             },
-            backupSizeBytes = SignalDatabase.attachments.getEstimatedArchiveMediaSize().takeIf { it > 0 },
+            backupSizeBytes = if (SignalStore.backup.backupTier == MessageBackupTier.PAID) SignalDatabase.attachments.getPaidEstimatedArchiveMediaSize().takeIf { it > 0 } else null,
             restoreMethodToken = restoreMethodToken,
             aciIdentityKeyPublic = SignalStore.account.aciIdentityKey.publicKey.serialize().toByteString(),
             aciIdentityKeyPrivate = SignalStore.account.aciIdentityKey.privateKey.serialize().toByteString(),

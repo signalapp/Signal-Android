@@ -166,7 +166,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
             Log.w(TAG, "[$attachmentId] Insufficient storage space! Can't upload!")
             val remoteStorageQuota = getServerQuota() ?: return Result.retry(defaultBackoff()).logW(TAG, "[$attachmentId] Failed to fetch server quota! Retrying.")
 
-            if (SignalDatabase.attachments.getEstimatedArchiveMediaSize() > remoteStorageQuota.inWholeBytes) {
+            if (SignalDatabase.attachments.getPaidEstimatedArchiveMediaSize() > remoteStorageQuota.inWholeBytes) {
               BackupRepository.markOutOfRemoteStorageSpaceError()
               return Result.failure()
             }

@@ -3009,28 +3009,40 @@ class AttachmentTable(
       .readToList { AttachmentId(it.requireLong(ID)) }
   }
 
-  fun getEstimatedArchiveMediaSize(): Long {
-    val estimatedThumbnailCount = readableDatabase
-      .select("COUNT(*)")
-      .from(
-        """
-        (
-          SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY
-          FROM $TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} AS m ON $TABLE_NAME.$MESSAGE_ID = m.${MessageTable.ID}
-          WHERE 
-            $DATA_FILE NOT NULL AND 
-            $DATA_HASH_END NOT NULL AND 
-            $REMOTE_KEY NOT NULL AND
-            $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
-            $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value} AND 
-            ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
-            $CONTENT_TYPE != 'image/svg+xml' AND
-            ${getMessageDoesNotExpireWithinTimeoutClause(tablePrefix = "m")}
+  fun getPaidEstimatedArchiveMediaSize(): Long {
+    return getEstimatedArchiveMediaSize()
+  }
+
+  fun getFreeEstimatedArchiveMediaSize(afterTimestamp: Long): Long {
+    return getEstimatedArchiveMediaSize(afterTimestamp)
+  }
+
+  private fun getEstimatedArchiveMediaSize(afterTimestamp: Long = 0L): Long {
+    val estimatedThumbnailCount = if (afterTimestamp == 0L) {
+      readableDatabase
+        .select("COUNT(*)")
+        .from(
+          """
+          (
+            SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY
+            FROM $TABLE_NAME INNER JOIN ${MessageTable.TABLE_NAME} AS m ON $TABLE_NAME.$MESSAGE_ID = m.${MessageTable.ID}
+            WHERE 
+              $DATA_FILE NOT NULL AND 
+              $DATA_HASH_END NOT NULL AND 
+              $REMOTE_KEY NOT NULL AND
+              $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
+              $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value} AND 
+              ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
+              $CONTENT_TYPE != 'image/svg+xml' AND
+              ${getMessageDoesNotExpireWithinTimeoutClause(tablePrefix = "m")}
+          )
+          """
         )
-        """
-      )
-      .run()
-      .readToSingleLong(0L)
+        .run()
+        .readToSingleLong(0L)
+    } else {
+      0
+    }
 
     val uploadedAttachmentBytes = readableDatabase
       .rawQuery(
@@ -3045,6 +3057,7 @@ class AttachmentTable(
               $REMOTE_KEY NOT NULL AND 
               $TRANSFER_STATE = $TRANSFER_PROGRESS_DONE AND
               $ARCHIVE_TRANSFER_STATE != ${ArchiveTransferState.PERMANENT_FAILURE.value} AND
+              ${if (afterTimestamp > 0) "m.${MessageTable.DATE_RECEIVED} >= $afterTimestamp AND" else ""}
               ${getMessageDoesNotExpireWithinTimeoutClause(tablePrefix = "m")}
           )
         """
