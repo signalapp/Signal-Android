@@ -1993,8 +1993,7 @@ object BackupRepository {
 
   private fun isPreRestoreDuringRegistration(): Boolean {
     return !SignalStore.registration.isRegistrationComplete &&
-      SignalStore.registration.restoreDecisionState.isDecisionPending &&
-      RemoteConfig.restoreAfterRegistration
+      SignalStore.registration.restoreDecisionState.isDecisionPending
   }
 
   private fun scheduleSyncForAccountChange() {

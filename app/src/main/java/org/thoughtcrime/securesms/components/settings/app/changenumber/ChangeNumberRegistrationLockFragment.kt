@@ -26,8 +26,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
-import org.thoughtcrime.securesms.registration.ui.registrationlock.RegistrationLockFragment
-import org.thoughtcrime.securesms.registration.ui.registrationlock.RegistrationLockFragmentArgs
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.SupportEmailUtil
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -41,7 +39,7 @@ import java.util.concurrent.TimeUnit
 class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_change_number_registration_lock) {
 
   companion object {
-    private val TAG = Log.tag(RegistrationLockFragment::class.java)
+    private val TAG = Log.tag(ChangeNumberRegistrationLockFragment::class.java)
   }
 
   private val binding: FragmentRegistrationLockBinding by ViewBinderDelegate(bindingFactory = { rootView ->
@@ -67,7 +65,7 @@ class ChangeNumberRegistrationLockFragment : LoggingFragment(R.layout.fragment_c
       }
     )
 
-    val args: RegistrationLockFragmentArgs = RegistrationLockFragmentArgs.fromBundle(requireArguments())
+    val args: ChangeNumberRegistrationLockFragmentArgs = ChangeNumberRegistrationLockFragmentArgs.fromBundle(requireArguments())
 
     timeRemaining = args.getTimeRemaining()
 

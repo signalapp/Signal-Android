@@ -33,7 +33,7 @@ class AccountSettingsViewModel : ViewModel() {
       registrationLockEnabled = SignalStore.svr.isRegistrationLockEnabled,
       userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
       clientDeprecated = SignalStore.misc.isClientDeprecated,
-      canTransferWhileUnregistered = RemoteConfig.restoreAfterRegistration
+      canTransferWhileUnregistered = true
     )
   }
 }

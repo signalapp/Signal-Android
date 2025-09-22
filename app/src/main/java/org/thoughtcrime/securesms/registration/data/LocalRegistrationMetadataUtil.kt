@@ -14,7 +14,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.LocalRegistratio
 import org.whispersystems.signalservice.api.account.PreKeyCollection
 
 /**
- * Takes the two sources of registration data ([RegistrationData], [RegistrationRepository.AccountRegistrationResult])
+ * Takes the two sources of registration data ([RegistrationData], [org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository.AccountRegistrationResult])
  * and combines them into a proto-backed class [LocalRegistrationMetadata] so they can be serialized & stored.
  */
 object LocalRegistrationMetadataUtil {

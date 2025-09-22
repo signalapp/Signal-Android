@@ -378,7 +378,7 @@ class IncomingMessageObserver(
 
       sleepTimer = if (!SignalStore.account.fcmEnabled || SignalStore.internal.isWebsocketModeForced) AlarmSleepTimer(context) else UptimeSleepTimer()
 
-      canProcessMessages = !(RemoteConfig.restoreAfterRegistration && SignalStore.registration.restoreDecisionState.isDecisionPending)
+      canProcessMessages = !SignalStore.registration.restoreDecisionState.isDecisionPending
     }
 
     override fun run() {

@@ -1099,17 +1099,6 @@ object RemoteConfig {
     hotSwappable = false
   )
 
-  /** Whether or not to launch the restore activity after registration is complete, rather than before.  */
-  @JvmStatic
-  @get:JvmName("restoreAfterRegistration")
-  val restoreAfterRegistration: Boolean by remoteValue(
-    key = "android.registration.restorePostRegistration",
-    hotSwappable = false,
-    active = false
-  ) { value ->
-    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || BuildConfig.LINK_DEVICE_UX_ENABLED || value.asBoolean(false)
-  }
-
   @JvmStatic
   val backgroundMessageProcessInterval: Long by remoteValue(
     key = "android.messageProcessor.alarmIntervalMins",

@@ -6,7 +6,7 @@
 package org.thoughtcrime.securesms.components.settings.app.changenumber
 
 import androidx.fragment.app.activityViewModels
-import org.thoughtcrime.securesms.registration.ui.captcha.CaptchaFragment
+import org.thoughtcrime.securesms.registrationv3.ui.captcha.CaptchaFragment
 
 /**
  * Screen visible to the user when they are to solve a captcha. @see [CaptchaFragment]

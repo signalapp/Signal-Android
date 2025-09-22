@@ -55,13 +55,13 @@ import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionR
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
-import org.thoughtcrime.securesms.registration.ui.countrycode.CountryCodeFragment
 import org.thoughtcrime.securesms.registration.ui.toE164
 import org.thoughtcrime.securesms.registration.util.CountryPrefix
 import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
 import org.thoughtcrime.securesms.registrationv3.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registrationv3.ui.RegistrationState
 import org.thoughtcrime.securesms.registrationv3.ui.RegistrationViewModel
+import org.thoughtcrime.securesms.registrationv3.ui.countrycode.CountryCodeFragment
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.Dialogs
 import org.thoughtcrime.securesms.util.PlayServicesUtil

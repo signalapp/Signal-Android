@@ -9,7 +9,7 @@
         android:id="@+id/welcomeFragment"
         android:name="org.thoughtcrime.securesms.registrationv3.ui.welcome.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_registration_welcome">
+        tools:layout="@layout/fragment_registration_welcome_v3">
 
         <action
             android:id="@+id/go_to_enterPhoneNumber"

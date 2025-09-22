@@ -848,13 +848,6 @@
         android:theme="@style/Theme.Signal.DayNight.NoActionBar"
         android:exported="false"/>
 
-    <activity android:name=".registration.ui.RegistrationActivity"
-              android:launchMode="singleTask"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:windowSoftInputMode="stateHidden"
-              android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
-              android:exported="false"/>
-
     <activity android:name=".registrationv3.ui.RegistrationActivity"
         android:launchMode="singleTask"
         android:theme="@style/Theme.Signal.DayNight.NoActionBar"

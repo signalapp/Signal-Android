@@ -29,7 +29,7 @@ import org.thoughtcrime.securesms.pin.PinRestoreActivity;
 import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity;
 import org.thoughtcrime.securesms.push.SignalServiceNetworkAccess;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
+import org.thoughtcrime.securesms.registrationv3.ui.RegistrationActivity;
 import org.thoughtcrime.securesms.restore.RestoreActivity;
 import org.thoughtcrime.securesms.service.KeyCachingService;
 import org.thoughtcrime.securesms.util.AppForegroundObserver;
@@ -189,7 +189,6 @@ public abstract class PassphraseRequiredActivity extends BaseActivity implements
 
   private boolean userCanTransferOrRestore() {
     return !SignalStore.registration().isRegistrationComplete() &&
-           RemoteConfig.restoreAfterRegistration() &&
            RestoreDecisionStateUtil.isDecisionPending(SignalStore.registration().getRestoreDecisionState());
   }
 
