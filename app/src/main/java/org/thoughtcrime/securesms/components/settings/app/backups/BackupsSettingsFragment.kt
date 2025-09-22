@@ -92,7 +92,7 @@ class BackupsSettingsFragment : ComposeFragment() {
       onNavigationClick = { requireActivity().onNavigateUp() },
       onBackupsRowClick = {
         when (state.backupState) {
-          is BackupState.Error, BackupState.NotAvailable -> Unit
+          is BackupState.Error -> Unit
 
           BackupState.None -> {
             checkoutLauncher.launch(null)
@@ -196,8 +196,6 @@ private fun BackupsSettingsContent(
 
             OtherWaysToBackUpHeading()
           }
-
-          BackupState.NotAvailable -> Unit
 
           BackupState.NotFound -> {
             NotFoundBackupRow(
@@ -624,19 +622,6 @@ private fun BackupsSettingsContentPreview() {
           renewalTime = 0.seconds,
           price = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD"))
         ),
-        lastBackupAt = 0.seconds
-      )
-    )
-  }
-}
-
-@SignalPreview
-@Composable
-private fun BackupsSettingsContentNotAvailablePreview() {
-  Previews.Preview {
-    BackupsSettingsContent(
-      backupsSettingsState = BackupsSettingsState(
-        backupState = BackupState.NotAvailable,
         lastBackupAt = 0.seconds
       )
     )

@@ -21,7 +21,6 @@ import org.thoughtcrime.securesms.jobs.protos.BackupDeleteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import kotlin.time.Duration.Companion.seconds
 
@@ -53,11 +52,6 @@ class BackupDeleteJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
-    if (!RemoteConfig.messageBackups) {
-      Log.w(TAG, "Message backups are not available on this device. Exiting without local cleanup.")
-      return Result.failure()
-    }
-
     if (!SignalStore.account.isRegistered) {
       Log.w(TAG, "User not registered. Exiting without local cleanup.")
       return Result.failure()

@@ -12,7 +12,6 @@ import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.libsignal.protocol.UsePqRatchet
-import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -1037,20 +1036,6 @@ object RemoteConfig {
   ) { value ->
     val inSeconds = value.asLong(30.days.inWholeSeconds)
     inSeconds.seconds.inWholeMilliseconds
-  }
-
-  /**
-   * Enable Message Backups UI
-   * Note: This feature is in active development and is not intended to currently function.
-   */
-  @JvmStatic
-  @get:JvmName("messageBackups")
-  val messageBackups: Boolean by remoteValue(
-    key = "android.messageBackups",
-    hotSwappable = false,
-    active = true
-  ) { value ->
-    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
   }
 
   val backupFallbackArchiveCdn: Int by remoteInt(

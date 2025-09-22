@@ -33,7 +33,6 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.util.InternetConnectionObserver
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import java.math.BigDecimal
@@ -80,16 +79,12 @@ class BackupStateObserver(
      * setting initial ViewModel state values.
      */
     fun getNonIOBackupState(): BackupState {
-      return if (RemoteConfig.messageBackups) {
-        val tier = SignalStore.backup.backupTier
+      val tier = SignalStore.backup.backupTier
 
-        if (tier != null) {
-          BackupState.LocalStore(tier)
-        } else {
-          BackupState.None
-        }
+      return if (tier != null) {
+        BackupState.LocalStore(tier)
       } else {
-        BackupState.NotAvailable
+        BackupState.None
       }
     }
   }
@@ -217,11 +212,6 @@ class BackupStateObserver(
   }
 
   private suspend fun performDatabaseBackupStateRefresh() {
-    if (!RemoteConfig.messageBackups) {
-      Log.d(TAG, "[performDatabaseBackupStateRefresh] Dropping refresh for disabled feature.")
-      return
-    }
-
     if (!SignalStore.account.isRegistered) {
       Log.d(TAG, "[performDatabaseBackupStateRefresh] Dropping refresh for unregistered user.")
       return
@@ -236,11 +226,6 @@ class BackupStateObserver(
   }
 
   private suspend fun performFullBackupStateRefresh() {
-    if (!RemoteConfig.messageBackups) {
-      Log.d(TAG, "[performFullBackupStateRefresh] Dropping refresh for disabled feature.")
-      return
-    }
-
     if (!SignalStore.account.isRegistered) {
       Log.d(TAG, "[performFullBackupStateRefresh] Dropping refresh for unregistered user.")
       return

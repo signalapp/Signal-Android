@@ -78,11 +78,6 @@ class BackupMessagesJob private constructor(
 
     private fun isBackupAllowed(): Boolean {
       return when {
-        !RemoteConfig.messageBackups -> {
-          Log.i(TAG, "Remote config for backups is disabled.", true)
-          false
-        }
-
         SignalStore.registration.restoreDecisionState.isDecisionPending -> {
           Log.i(TAG, "Backup not allowed: a restore decision is pending.", true)
           false

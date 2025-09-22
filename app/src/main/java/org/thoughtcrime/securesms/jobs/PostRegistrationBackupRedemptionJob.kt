@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.math.BigDecimal
 import java.util.Currency
@@ -58,11 +57,6 @@ class PostRegistrationBackupRedemptionJob : CoroutineJob {
   override suspend fun doRun(): Result {
     if (!SignalStore.account.isRegistered) {
       info("User is not registered. Exiting.")
-      return Result.success()
-    }
-
-    if (!RemoteConfig.messageBackups) {
-      info("Message backups feature is not available. Exiting.")
       return Result.success()
     }
 

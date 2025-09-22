@@ -38,7 +38,6 @@ class BackupDeleteJobTest {
   @Before
   fun setUp() {
     mockkObject(RemoteConfig)
-    every { RemoteConfig.messageBackups } returns true
     every { RemoteConfig.internalUser } returns true
     every { RemoteConfig.defaultMaxBackoff } returns 1000L
 
@@ -51,17 +50,6 @@ class BackupDeleteJobTest {
   @After
   fun tearDown() {
     unmockkAll()
-  }
-
-  @Test
-  fun givenBackupsNotEnabled_whenIRun_thenIExpectFailure() {
-    every { RemoteConfig.messageBackups } returns false
-
-    val job = BackupDeleteJob()
-
-    val result = job.run()
-
-    assertThat(result.isFailure).isTrue()
   }
 
   @Test

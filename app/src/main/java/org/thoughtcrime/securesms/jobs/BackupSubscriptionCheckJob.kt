@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.recipients.Recipient
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
@@ -61,10 +60,6 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
     @JvmStatic
     fun enqueueIfAble() {
-      if (!RemoteConfig.messageBackups) {
-        return
-      }
-
       val job = create()
 
       AppDependencies.jobManager.add(job)
@@ -80,12 +75,6 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
 
     if (SignalStore.account.isLinkedDevice) {
       Log.i(TAG, "Linked device. Clearing mismatch value and exiting.", true)
-      SignalStore.backup.subscriptionStateMismatchDetected = false
-      return Result.success()
-    }
-
-    if (!RemoteConfig.messageBackups) {
-      Log.i(TAG, "Message backups feature is not available. Clearing mismatch value and exiting.", true)
       SignalStore.backup.subscriptionStateMismatchDetected = false
       return Result.success()
     }

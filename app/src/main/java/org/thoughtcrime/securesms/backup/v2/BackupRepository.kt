@@ -621,7 +621,7 @@ object BackupRepository {
   }
 
   private fun shouldNotDisplayBackupFailedMessaging(): Boolean {
-    return !SignalStore.account.isRegistered || !RemoteConfig.messageBackups || !SignalStore.backup.areBackupsEnabled
+    return !SignalStore.account.isRegistered || !SignalStore.backup.areBackupsEnabled
   }
 
   /**
@@ -1933,9 +1933,7 @@ object BackupRepository {
    * prevents early initialization with incorrect keys before we have restored them.
    */
   private fun initBackupAndFetchAuth(): NetworkResult<ArchiveServiceAccessPair> {
-    return if (!RemoteConfig.messageBackups) {
-      NetworkResult.StatusCodeError(555, null, null, emptyMap(), NonSuccessfulResponseCodeException(555, "Backups disabled!"))
-    } else if (SignalStore.backup.backupsInitialized || SignalStore.account.isLinkedDevice) {
+    return if (SignalStore.backup.backupsInitialized || SignalStore.account.isLinkedDevice) {
       getArchiveServiceAccessPair()
         .runOnStatusCodeError(resetInitializedStateErrorAction)
         .runOnApplicationError(clearAuthCredentials)

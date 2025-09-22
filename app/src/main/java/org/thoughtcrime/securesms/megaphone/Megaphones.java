@@ -558,7 +558,7 @@ public final class Megaphones {
       return false;
     }
 
-    if (!RemoteConfig.messageBackups() || SignalStore.backup().getLatestBackupTier() != null) {
+    if (SignalStore.backup().getLatestBackupTier() != null) {
       return false;
     }
 

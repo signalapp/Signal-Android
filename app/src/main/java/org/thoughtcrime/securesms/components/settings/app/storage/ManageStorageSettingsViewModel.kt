@@ -42,18 +42,16 @@ class ManageStorageSettingsViewModel : ViewModel() {
   val state = store.asStateFlow()
 
   init {
-    if (RemoteConfig.messageBackups) {
-      viewModelScope.launch(Dispatchers.IO) {
-        InAppPaymentsRepository.observeLatestBackupPayment()
-          .collectLatest { payment ->
-            store.update { it.copy(isPaidTierPending = payment.state == InAppPaymentTable.State.PENDING) }
-          }
-      }
-
-      viewModelScope.launch {
-        store.update {
-          it.copy(onDeviceStorageOptimizationState = getOnDeviceStorageOptimizationState())
+    viewModelScope.launch(Dispatchers.IO) {
+      InAppPaymentsRepository.observeLatestBackupPayment()
+        .collectLatest { payment ->
+          store.update { it.copy(isPaidTierPending = payment.state == InAppPaymentTable.State.PENDING) }
         }
+    }
+
+    viewModelScope.launch {
+      store.update {
+        it.copy(onDeviceStorageOptimizationState = getOnDeviceStorageOptimizationState())
       }
     }
   }
@@ -135,7 +133,7 @@ class ManageStorageSettingsViewModel : ViewModel() {
 
   private suspend fun getOnDeviceStorageOptimizationState(): OnDeviceStorageOptimizationState {
     return when {
-      !RemoteConfig.messageBackups || !SignalStore.backup.areBackupsEnabled || !AppDependencies.billingApi.getApiAvailability().isSuccess || (!RemoteConfig.internalUser && !Environment.IS_STAGING) -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
+      !SignalStore.backup.areBackupsEnabled || !AppDependencies.billingApi.getApiAvailability().isSuccess || (!RemoteConfig.internalUser && !Environment.IS_STAGING) -> OnDeviceStorageOptimizationState.FEATURE_NOT_AVAILABLE
       SignalStore.backup.backupTier != MessageBackupTier.PAID -> OnDeviceStorageOptimizationState.REQUIRES_PAID_TIER
       SignalStore.backup.optimizeStorage -> OnDeviceStorageOptimizationState.ENABLED
       else -> OnDeviceStorageOptimizationState.DISABLED

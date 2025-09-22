@@ -519,8 +519,6 @@ private fun RemoteBackupsSettingsContent(
               isRenewEnabled = backupDeleteState.isIdle()
             )
           }
-
-          BackupState.NotAvailable -> error("This shouldn't happen on this screen.")
         }
       }
 
