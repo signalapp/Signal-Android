@@ -1180,12 +1180,11 @@ object RemoteConfig {
   )
 
   /** Whether to allow different WindowSizeClasses to be used to determine screen layout */
-  val largeScreenUi: Boolean by remoteValue(
+  val largeScreenUi: Boolean by remoteBoolean(
     key = "android.largeScreenUI",
-    hotSwappable = false
-  ) { value ->
-    value.asBoolean(false) && SignalStore.internal.largeScreenUi
-  }
+    hotSwappable = false,
+    defaultValue = false
+  )
 
   @JvmStatic
   @get:JvmName("useMessageSendRestFallback")

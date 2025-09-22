@@ -28,7 +28,7 @@ import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.stories.Stories
-import org.thoughtcrime.securesms.util.RemoteConfig
+import org.thoughtcrime.securesms.window.WindowSizeClass
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 class MainNavigationViewModel(
@@ -120,7 +120,7 @@ class MainNavigationViewModel(
    * "default" location to that specified, and we will route the user there when the navigator is set.
    */
   override fun goTo(location: MainNavigationDetailLocation) {
-    if (!RemoteConfig.largeScreenUi) {
+    if (!WindowSizeClass.isLargeScreenSupportEnabled()) {
       goToLegacyDetailLocation?.invoke(location)
       return
     }
