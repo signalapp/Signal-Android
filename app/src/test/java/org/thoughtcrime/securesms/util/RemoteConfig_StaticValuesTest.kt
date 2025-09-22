@@ -51,8 +51,7 @@ class RemoteConfig_StaticValuesTest {
       "PROMPT_BATTERY_SAVER",
       "PROMPT_FOR_NOTIFICATION_LOGS",
       "DEVICE_SPECIFIC_NOTIFICATION_CONFIG",
-      "messageBackups",
-      "restoreAfterRegistration"
+      "messageBackups"
     )
 
     val publicVals: List<KProperty1<*, *>> = RemoteConfig::class.memberProperties

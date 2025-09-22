@@ -19,9 +19,8 @@ import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.RestoreDirections
-import org.thoughtcrime.securesms.registrationv3.ui.restore.RemoteRestoreActivity
+import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**

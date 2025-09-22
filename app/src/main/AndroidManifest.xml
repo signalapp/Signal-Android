@@ -843,12 +843,12 @@
         android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
         android:exported="false"/>
 
-    <activity android:name=".registrationv3.olddevice.TransferAccountActivity"
+    <activity android:name=".registration.olddevice.TransferAccountActivity"
         android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
         android:theme="@style/Theme.Signal.DayNight.NoActionBar"
         android:exported="false"/>
 
-    <activity android:name=".registrationv3.ui.RegistrationActivity"
+    <activity android:name=".registration.ui.RegistrationActivity"
         android:launchMode="singleTask"
         android:theme="@style/Theme.Signal.DayNight.NoActionBar"
         android:windowSoftInputMode="stateHidden|adjustResize"
@@ -974,7 +974,7 @@
               android:windowSoftInputMode="stateVisible|adjustResize"
               android:exported="false"/>
 
-    <activity android:name=".registrationv3.ui.restore.RemoteRestoreActivity"
+    <activity android:name=".registration.ui.restore.RemoteRestoreActivity"
               android:theme="@style/Signal.DayNight.NoActionBar"
               android:exported="false"/>
 

@@ -16,8 +16,8 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobs.ReclaimUsernameAndLinkJob
 import org.thoughtcrime.securesms.keyvalue.Completed
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.registration.data.RegistrationRepository
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
-import org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository
 
 class NewDeviceTransferViewModel : ViewModel() {
   fun onRestoreComplete(context: Context, onComplete: () -> Unit) {

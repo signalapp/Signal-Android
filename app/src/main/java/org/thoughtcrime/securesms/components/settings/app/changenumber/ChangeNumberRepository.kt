@@ -61,7 +61,7 @@ import kotlin.time.Duration.Companion.seconds
 /**
  * Repository to perform data operations during change number.
  *
- * @see [org.thoughtcrime.securesms.registrationv3.data.RegistrationRepository]
+ * @see [org.thoughtcrime.securesms.registration.data.RegistrationRepository]
  */
 class ChangeNumberRepository(
   private val accountManager: SignalServiceAccountManager = AppDependencies.signalServiceAccountManager,

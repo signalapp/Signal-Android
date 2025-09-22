@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 /**
- * View model to support [org.thoughtcrime.securesms.registrationv3.ui.countrycode.CountryCodeFragment] and track the countries
+ * View model to support [CountryCodeFragment] and track the countries
  */
 class CountryCodeViewModel : ViewModel() {
 

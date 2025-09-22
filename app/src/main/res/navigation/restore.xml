@@ -70,7 +70,7 @@
 
     <activity
         android:id="@+id/remoteRestoreActivity"
-        android:name="org.thoughtcrime.securesms.registrationv3.ui.restore.RemoteRestoreActivity" />
+        android:name="org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity" />
 
     <fragment
         android:id="@+id/choose_local_backup_fragment"

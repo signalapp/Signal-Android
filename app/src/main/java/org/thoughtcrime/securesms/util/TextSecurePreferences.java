@@ -36,7 +36,7 @@ import org.thoughtcrime.securesms.notifications.NotificationChannels;
 import org.thoughtcrime.securesms.notifications.NotificationIds;
 import org.thoughtcrime.securesms.preferences.widgets.NotificationPrivacyPreference;
 import org.thoughtcrime.securesms.recipients.Recipient;
-import org.thoughtcrime.securesms.registrationv3.ui.RegistrationActivity;
+import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;

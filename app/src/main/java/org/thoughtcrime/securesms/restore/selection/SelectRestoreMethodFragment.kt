@@ -16,10 +16,10 @@ import kotlinx.coroutines.withContext
 import org.signal.core.ui.compose.Dialogs
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.compose.ComposeFragment
-import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
-import org.thoughtcrime.securesms.registrationv3.ui.restore.RemoteRestoreActivity
-import org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreMethod
-import org.thoughtcrime.securesms.registrationv3.ui.restore.SelectRestoreMethodScreen
+import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
+import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity
+import org.thoughtcrime.securesms.registration.ui.restore.RestoreMethod
+import org.thoughtcrime.securesms.registration.ui.restore.SelectRestoreMethodScreen
 import org.thoughtcrime.securesms.restore.RestoreViewModel
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.whispersystems.signalservice.api.provisioning.RestoreMethod as ApiRestoreMethod

@@ -23,8 +23,7 @@ import androidx.annotation.NonNull;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.thoughtcrime.securesms.R;
-import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.registrationv3.ui.RegistrationActivity;
+import org.thoughtcrime.securesms.registration.ui.RegistrationActivity;
 
 public class Dialogs {
   public static void showAlertDialog(Context context, String title, String message) {

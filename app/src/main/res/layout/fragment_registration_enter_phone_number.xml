@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context="org.thoughtcrime.securesms.registrationv3.ui.phonenumber.EnterPhoneNumberFragment">
+    tools:context="org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

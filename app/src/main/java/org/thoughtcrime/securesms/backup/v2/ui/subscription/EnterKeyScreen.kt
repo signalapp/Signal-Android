@@ -43,9 +43,9 @@ import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.fonts.MonoTypeface
-import org.thoughtcrime.securesms.registrationv3.ui.restore.BackupKeyVisualTransformation
-import org.thoughtcrime.securesms.registrationv3.ui.restore.attachBackupKeyAutoFillHelper
-import org.thoughtcrime.securesms.registrationv3.ui.restore.backupKeyAutoFillHelper
+import org.thoughtcrime.securesms.registration.ui.restore.BackupKeyVisualTransformation
+import org.thoughtcrime.securesms.registration.ui.restore.attachBackupKeyAutoFillHelper
+import org.thoughtcrime.securesms.registration.ui.restore.backupKeyAutoFillHelper
 import org.whispersystems.signalservice.api.AccountEntropyPool
 
 /**
