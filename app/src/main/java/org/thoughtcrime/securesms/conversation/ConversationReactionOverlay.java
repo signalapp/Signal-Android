@@ -41,6 +41,7 @@ import org.thoughtcrime.securesms.animation.AnimationCompleteListener;
 import org.thoughtcrime.securesms.components.emoji.EmojiImageView;
 import org.thoughtcrime.securesms.components.emoji.EmojiUtil;
 import org.thoughtcrime.securesms.components.menu.ActionItem;
+import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MessageRecord;
 import org.thoughtcrime.securesms.database.model.ReactionRecord;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
@@ -754,6 +755,14 @@ public final class ConversationReactionOverlay extends FrameLayout {
       items.add(new ActionItem(R.drawable.symbol_payment_24, getResources().getString(R.string.conversation_selection__menu_payment_details), () -> handleActionItemClicked(Action.PAYMENT_DETAILS)));
     }
 
+    if (menuState.shouldShowPinAction()) {
+      boolean isPinned = SignalDatabase.messages.isPinned(conversationMessage.getMessageRecord().getId());
+      String pinText = isPinned ? 
+        getResources().getString(R.string.conversation_selection__menu_unpin_message) : 
+        getResources().getString(R.string.conversation_selection__menu_pin_message);
+      items.add(new ActionItem(R.drawable.symbol_pin_24, pinText, () -> handleActionItemClicked(Action.PIN)));
+    }
+
     items.add(new ActionItem(R.drawable.symbol_check_circle_24, getResources().getString(R.string.conversation_selection__menu_multi_select), () -> handleActionItemClicked(Action.MULTISELECT)));
 
     if (menuState.shouldShowDetailsAction()) {
@@ -961,5 +970,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
     PAYMENT_DETAILS,
     VIEW_INFO,
     DELETE,
+    PIN
   }
 }

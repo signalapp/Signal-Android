@@ -26,6 +26,7 @@ public final class MenuState {
   private final boolean reactions;
   private final boolean paymentDetails;
   private final boolean edit;
+  private final boolean pin;
 
   private MenuState(@NonNull Builder builder) {
     forward        = builder.forward;
@@ -38,6 +39,7 @@ public final class MenuState {
     reactions      = builder.reactions;
     paymentDetails = builder.paymentDetails;
     edit           = builder.edit;
+    pin            = builder.pin;
   }
 
   public boolean shouldShowForwardAction() {
@@ -78,6 +80,10 @@ public final class MenuState {
 
   public boolean shouldShowEditAction() {
     return edit;
+  }
+
+  public boolean shouldShowPinAction() {
+    return pin;
   }
 
   public static MenuState getMenuState(@NonNull Recipient conversationRecipient,
@@ -189,6 +195,7 @@ public final class MenuState {
                   .shouldShowDeleteAction(!hasInMemory && onlyContainsCompleteMessages(selectedParts))
                   .shouldShowReactions(!conversationRecipient.isReleaseNotes())
                   .shouldShowPaymentDetails(hasPayment)
+                  .shouldShowPinAction(!actionMessage && !remoteDelete && !hasInMemory && selectedParts.size() == 1)
                   .build();
   }
 
@@ -233,6 +240,7 @@ public final class MenuState {
     private boolean reactions;
     private boolean paymentDetails;
     private boolean edit;
+    private boolean pin;
 
     @NonNull Builder shouldShowForwardAction(boolean forward) {
       this.forward = forward;
@@ -281,6 +289,11 @@ public final class MenuState {
 
     @NonNull Builder shouldShowEdit(boolean edit) {
       this.edit = edit;
+      return this;
+    }
+
+    @NonNull Builder shouldShowPinAction(boolean pin) {
+      this.pin = pin;
       return this;
     }
 
