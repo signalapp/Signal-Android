@@ -6,9 +6,11 @@
 package org.thoughtcrime.securesms.logsubmit
 
 import android.content.Context
+import com.google.android.gms.common.GoogleApiAvailability
 import kotlinx.coroutines.runBlocking
 import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
+import org.thoughtcrime.securesms.backup.v2.ui.subscription.GooglePlayServicesAvailability
 import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatMoney
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -44,11 +46,13 @@ class LogSectionRemoteBackups : LogSection {
     output.append("\n -- Subscription State\n")
 
     val backupSubscriptionId = InAppPaymentsRepository.getSubscriber(InAppPaymentSubscriberRecord.Type.BACKUP)
-    val hasGooglePlayBilling = runBlocking { AppDependencies.billingApi.getApiAvailability().isSuccess }
+    val googlePlayBillingAccess = runBlocking { AppDependencies.billingApi.getApiAvailability() }
+    val googlePlayServicesAvailability = GooglePlayServicesAvailability.fromCode(GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(context))
     val inAppPayment = SignalDatabase.inAppPayments.getLatestInAppPaymentByType(InAppPaymentType.RECURRING_BACKUP)
 
     output.append("Has backup subscription id: ${backupSubscriptionId != null}\n")
-    output.append("Has Google Play Billing:    $hasGooglePlayBilling\n\n")
+    output.append("Google Play Billing state:  $googlePlayBillingAccess\n")
+    output.append("Google Play Services state: $googlePlayServicesAvailability\n\n")
 
     if (inAppPayment != null) {
       output.append("IAP end of period (seconds):       ${inAppPayment.endOfPeriodSeconds}\n")

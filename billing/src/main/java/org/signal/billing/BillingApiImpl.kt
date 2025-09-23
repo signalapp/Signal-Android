@@ -134,7 +134,7 @@ internal class BillingApiImpl(
       }
 
       BillingResponseCode.ITEM_NOT_OWNED -> {
-        error("This shouldn't happen during the purchase process", true)
+        error("This shouldn't happen during the purchase process")
       }
 
       BillingResponseCode.ITEM_UNAVAILABLE -> {
@@ -204,7 +204,7 @@ internal class BillingApiImpl(
       .setProductType(ProductType.SUBS)
       .build()
 
-    val result = doOnConnectionReady("queryPurchases", true) {
+    val result = doOnConnectionReady("queryPurchases") {
       billingClient.queryPurchasesAsync(param)
     }
 
