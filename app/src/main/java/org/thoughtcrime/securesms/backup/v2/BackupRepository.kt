@@ -1754,7 +1754,7 @@ object BackupRepository {
         return RestoreTimestampResult.Success(SignalStore.backup.lastBackupTime)
       }
 
-      timestampResult is NetworkResult.StatusCodeError && timestampResult.code == 404 -> {
+      timestampResult is NetworkResult.StatusCodeError && (timestampResult.code == 401 || timestampResult.code == 404) -> {
         Log.i(TAG, "No backup file exists")
         SignalStore.backup.lastBackupTime = 0L
         SignalStore.backup.isBackupTimestampRestored = true

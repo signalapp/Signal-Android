@@ -155,13 +155,16 @@ class RestoreViaQrViewModel : ViewModel() {
 
       val result = socket.getProvisioningMessageDecryptResult()
 
+      Log.d(TAG, "Received provisioning message result", true)
+
       if (result is SecondaryProvisioningCipher.ProvisioningDecryptResult.Success) {
-        Log.i(TAG, "Saving restore method token: ***${result.message.restoreMethodToken.takeLast(4)}")
+        Log.i(TAG, "Success! Saving restore method token: ***${result.message.restoreMethodToken.takeLast(4)}", true)
         SignalStore.registration.restoreMethodToken = result.message.restoreMethodToken
         SignalStore.registration.restoreBackupMediaSize = result.message.backupSizeBytes ?: 0
         SignalStore.registration.isOtherDeviceAndroid = result.message.platform == RegistrationProvisionMessage.Platform.ANDROID
 
         SignalStore.backup.lastBackupTime = result.message.backupTimestampMs ?: 0
+        SignalStore.backup.isBackupTimestampRestored = true
         SignalStore.backup.backupTier = when (result.message.tier) {
           RegistrationProvisionMessage.Tier.FREE -> MessageBackupTier.FREE
           RegistrationProvisionMessage.Tier.PAID -> MessageBackupTier.PAID
