@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.main
 
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -24,8 +26,6 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.createGraph
-import org.signal.core.ui.compose.Animations.navHostSlideInTransition
-import org.signal.core.ui.compose.Animations.navHostSlideOutTransition
 import org.thoughtcrime.securesms.R
 
 @Composable
@@ -77,10 +77,10 @@ fun DetailsScreenNavHost(navHostController: NavHostController, contentLayoutData
   NavHost(
     navController = navHostController,
     graph = navHostController.graph,
-    enterTransition = { navHostSlideInTransition { it } },
-    exitTransition = { navHostSlideOutTransition { -it } },
-    popEnterTransition = { navHostSlideInTransition { -it } },
-    popExitTransition = { navHostSlideOutTransition { it } },
+    enterTransition = { EnterTransition.None },
+    exitTransition = { ExitTransition.None },
+    popEnterTransition = { EnterTransition.None },
+    popExitTransition = { ExitTransition.None },
     modifier = Modifier
       .padding(end = contentLayoutData.detailPaddingEnd)
       .clip(contentLayoutData.shape)
