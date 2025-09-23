@@ -496,6 +496,11 @@ private fun ActiveBackupsRow(
           is MessageBackupsType.Paid -> {
             val body = if (backupState is BackupState.Canceled) {
               stringResource(R.string.BackupsSettingsFragment__subscription_canceled)
+            } else if (type.pricePerMonth.amount == BigDecimal.ZERO) {
+              stringResource(
+                R.string.BackupsSettingsFragment_renews_s,
+                DateUtils.formatDateWithYear(Locale.getDefault(), backupState.renewalTime.inWholeMilliseconds)
+              )
             } else {
               stringResource(
                 R.string.BackupsSettingsFragment_s_month_renews_s,
@@ -683,6 +688,25 @@ private fun ActivePaidBackupsRowPreview() {
       backupState = BackupState.ActivePaid(
         messageBackupsType = MessageBackupsType.Paid(
           pricePerMonth = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD")),
+          storageAllowanceBytes = 1_000_000,
+          mediaTtl = 30.days
+        ),
+        renewalTime = 0.seconds,
+        price = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD"))
+      ),
+      lastBackupAt = 0.seconds
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun ActivePaidBackupsRowNoPricePreview() {
+  Previews.Preview {
+    ActiveBackupsRow(
+      backupState = BackupState.ActivePaid(
+        messageBackupsType = MessageBackupsType.Paid(
+          pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance("CAD")),
           storageAllowanceBytes = 1_000_000,
           mediaTtl = 30.days
         ),
