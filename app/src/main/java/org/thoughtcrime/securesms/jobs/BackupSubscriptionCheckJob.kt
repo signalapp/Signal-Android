@@ -103,6 +103,18 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       return Result.success()
     }
 
+    if (SignalDatabase.inAppPayments.hasPrePendingRecurringTransaction(InAppPaymentType.RECURRING_BACKUP)) {
+      Log.i(TAG, "A backup redemption is in the pre-pending state. Clearing mismatch and skipping check job.", true)
+      SignalStore.backup.subscriptionStateMismatchDetected = false
+      return Result.success()
+    }
+
+    if (SignalDatabase.inAppPayments.hasPendingBackupRedemption()) {
+      Log.i(TAG, "A backup redemption is pending. Clearing mismatch and skipping check job.", true)
+      SignalStore.backup.subscriptionStateMismatchDetected = false
+      return Result.success()
+    }
+
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()
     Log.i(TAG, "Retrieved purchase result from Billing api: $purchase", true)
 
