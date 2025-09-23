@@ -67,6 +67,7 @@ fun MessageBackupsKeyEducationScreen(
 
       Text(
         text = stringResource(R.string.MessageBackupsKeyEducationScreen__your_backup_key),
+        textAlign = TextAlign.Center,
         style = MaterialTheme.typography.headlineMedium,
         modifier = Modifier.padding(top = 16.dp)
       )
