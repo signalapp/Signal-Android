@@ -4430,6 +4430,9 @@
     <!-- Toast message shown when pin/unpin operation fails -->
     <string name="conversation_selection__pin_failed">Failed to pin/unpin message</string>
 
+    <!-- ConversationSettingsFragment -->
+    <string name="ConversationSettingsFragment__pinned_messages">Pinned messages</string>
+
     <!-- conversation_expiring_on -->
 
     <!-- conversation_insecure -->

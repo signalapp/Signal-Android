@@ -2561,6 +2561,9 @@ class ConversationFragment :
         
         Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
         
+        // Refresh conversation data to update UI
+        viewModel.refresh()
+        
       } catch (e: Exception) {
         Log.w(TAG, "Failed to pin/unpin message", e)
         Toast.makeText(requireContext(), getString(R.string.conversation_selection__pin_failed), Toast.LENGTH_SHORT).show()

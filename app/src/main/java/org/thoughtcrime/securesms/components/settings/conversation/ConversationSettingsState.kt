@@ -20,6 +20,7 @@ data class ConversationSettingsState(
   val canModifyBlockedState: Boolean = false,
   val sharedMedia: List<MediaTable.MediaRecord> = emptyList(),
   val sharedMediaIds: List<Long> = listOf(),
+  val pinnedMessages: List<org.thoughtcrime.securesms.database.model.MessageRecord> = emptyList(),
   val displayInternalRecipientDetails: Boolean = false,
   val calls: List<CallPreference.Model> = emptyList(),
   private val sharedMediaLoaded: Boolean = false,

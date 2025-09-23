@@ -63,6 +63,7 @@ import org.thoughtcrime.securesms.components.settings.conversation.preferences.G
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.InternalPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LargeIconClickPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.LegacyGroupPreference
+import org.thoughtcrime.securesms.components.settings.conversation.preferences.PinnedMessagesPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.RecipientPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.SharedMediaPreference
 import org.thoughtcrime.securesms.components.settings.conversation.preferences.Utils.formatMutedUntil
@@ -240,6 +241,7 @@ class ConversationSettingsFragment : DSLSettingsFragment(
     ButtonStripPreference.register(adapter)
     LargeIconClickPreference.register(adapter)
     SharedMediaPreference.register(adapter)
+    PinnedMessagesPreference.register(adapter)
     RecipientPreference.register(adapter)
     InternalPreference.register(adapter)
     GroupDescriptionPreference.register(adapter)
@@ -650,6 +652,31 @@ class ConversationSettingsFragment : DSLSettingsFragment(
           onClick = {
             startActivity(MediaOverviewActivity.forThread(requireContext(), state.threadId))
           }
+        )
+      }
+
+      if (state.pinnedMessages.isNotEmpty()) {
+        dividerPref()
+
+        sectionHeaderPref(R.string.ConversationSettingsFragment__pinned_messages)
+
+        customPref(
+          PinnedMessagesPreference.Model(
+            pinnedMessages = state.pinnedMessages,
+            recipient = state.recipient,
+            onPinnedMessageClick = { messageRecord ->
+              // Navigate to the message in conversation
+              lifecycleDisposable += ConversationIntents.createBuilder(requireContext(), state.recipient.id, state.threadId)
+                .subscribeBy { builder ->
+                  val intent = builder
+                    .withStartingPosition(messageRecord.getReceiveTime().toInt())
+                    .build()
+
+                  startActivity(intent)
+                  requireActivity().finish()
+                }
+            }
+          )
         )
       }
 
