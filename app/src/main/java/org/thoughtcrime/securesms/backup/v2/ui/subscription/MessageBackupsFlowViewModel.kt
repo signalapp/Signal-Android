@@ -76,6 +76,14 @@ class MessageBackupsFlowViewModel(
   val deletionState: Flow<DeletionState> = SignalStore.backup.deletionStateFlow
 
   init {
+    viewModelScope.launch(SignalDispatchers.IO) {
+      internalStateFlow.update {
+        it.copy(
+          googlePlayBillingAvailability = AppDependencies.billingApi.getApiAvailability()
+        )
+      }
+    }
+
     viewModelScope.launch {
       val result = withContext(SignalDispatchers.IO) {
         BackupRepository.triggerBackupIdReservation()
