@@ -15,6 +15,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
@@ -32,8 +33,7 @@ import org.thoughtcrime.securesms.window.WindowSizeClass
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 class MainNavigationViewModel(
-  initialListLocation: MainNavigationListLocation = MainNavigationListLocation.CHATS,
-  initialDetailLocation: MainNavigationDetailLocation = MainNavigationDetailLocation.Empty
+  initialListLocation: MainNavigationListLocation = MainNavigationListLocation.CHATS
 ) : ViewModel(), MainNavigationRouter {
   private val megaphoneRepository = AppDependencies.megaphoneRepository
 
@@ -44,11 +44,9 @@ class MainNavigationViewModel(
   /**
    * The latest detail location that has been requested, for consumption by other components.
    */
-  private val internalDetailLocation = MutableStateFlow(initialDetailLocation)
-  val detailLocation: StateFlow<MainNavigationDetailLocation> = internalDetailLocation
+  private val internalDetailLocation = MutableSharedFlow<MainNavigationDetailLocation>()
+  val detailLocation: SharedFlow<MainNavigationDetailLocation> = internalDetailLocation
   val detailLocationObservable: Observable<MainNavigationDetailLocation> = internalDetailLocation.asObservable()
-  var latestConversationLocation: MainNavigationDetailLocation.Chats.Conversation? = null
-  var latestCallsLocation: MainNavigationDetailLocation.Calls? = null
 
   private val internalMegaphone = MutableStateFlow(Megaphone.NONE)
   val megaphone: StateFlow<Megaphone> = internalMegaphone
@@ -71,7 +69,8 @@ class MainNavigationViewModel(
   val tabClickEvents: Observable<MainNavigationListLocation> = internalTabClickEvents.asObservable()
 
   private var earlyNavigationListLocationRequested: MainNavigationListLocation? = null
-  private var earlyNavigationDetailLocationRequested: MainNavigationDetailLocation? = null
+  var earlyNavigationDetailLocationRequested: MainNavigationDetailLocation? = null
+    private set
 
   init {
     performStoreUpdate(MainNavigationRepository.getNumberOfUnreadMessages()) { unreadChats, state ->
@@ -110,9 +109,11 @@ class MainNavigationViewModel(
       goTo(it)
     }
 
-    earlyNavigationDetailLocationRequested = null
-
     return threePaneScaffoldNavigator
+  }
+
+  fun clearEarlyDetailLocation() {
+    earlyNavigationDetailLocationRequested = null
   }
 
   /**
@@ -130,8 +131,8 @@ class MainNavigationViewModel(
       return
     }
 
-    internalDetailLocation.update {
-      location
+    viewModelScope.launch {
+      internalDetailLocation.emit(location)
     }
 
     val focusedPane = when (location) {
@@ -140,12 +141,10 @@ class MainNavigationViewModel(
       }
 
       is MainNavigationDetailLocation.Chats.Conversation -> {
-        latestConversationLocation = location
         ThreePaneScaffoldRole.Primary
       }
 
       is MainNavigationDetailLocation.Calls -> {
-        latestCallsLocation = location
         ThreePaneScaffoldRole.Primary
       }
     }
@@ -175,22 +174,10 @@ class MainNavigationViewModel(
     }
 
     when (location) {
-      MainNavigationListLocation.CHATS -> {
-        internalDetailLocation.update {
-          latestConversationLocation ?: MainNavigationDetailLocation.Empty
-        }
-      }
+      MainNavigationListLocation.CHATS -> Unit
       MainNavigationListLocation.ARCHIVE -> Unit
-      MainNavigationListLocation.CALLS -> {
-        internalDetailLocation.update {
-          latestCallsLocation ?: MainNavigationDetailLocation.Empty
-        }
-      }
-      MainNavigationListLocation.STORIES -> {
-        internalDetailLocation.update {
-          MainNavigationDetailLocation.Empty
-        }
-      }
+      MainNavigationListLocation.CALLS -> Unit
+      MainNavigationListLocation.STORIES -> Unit
     }
 
     internalMainNavigationState.update {
@@ -200,11 +187,6 @@ class MainNavigationViewModel(
     navigatorScope?.launch {
       val currentPane = navigator?.currentDestination?.pane ?: return@launch
       if (currentPane == ThreePaneScaffoldRole.Secondary) {
-        val multiPane = navigator?.scaffoldDirective?.maxHorizontalPartitions == 2
-        if (multiPane && location == MainNavigationListLocation.CHATS && latestConversationLocation != null) {
-          navigator?.navigateTo(ThreePaneScaffoldRole.Primary)
-        }
-
         return@launch
       } else {
         navigator?.navigateBack()

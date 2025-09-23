@@ -12,21 +12,26 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.createGraph
+import org.signal.core.ui.compose.Animations.navHostSlideInTransition
+import org.signal.core.ui.compose.Animations.navHostSlideOutTransition
 import org.thoughtcrime.securesms.R
 
 @Composable
-fun EmptyDetailScreen(
-  contentLayoutData: MainContentLayoutData
-) {
+fun EmptyDetailScreen() {
   Box(
     modifier = Modifier
-      .padding(end = contentLayoutData.detailPaddingEnd)
-      .clip(contentLayoutData.shape)
       .background(color = MaterialTheme.colorScheme.surface)
       .fillMaxSize()
   ) {
@@ -40,17 +45,46 @@ fun EmptyDetailScreen(
 }
 
 @Composable
-fun MainActivityDetailContainer(
-  contentLayoutData: MainContentLayoutData,
-  content: @Composable () -> Unit
-) {
-  Box(
+fun rememberDetailNavHostController(builder: NavGraphBuilder.(NavHostController) -> Unit): NavHostController {
+  val navHostController = rememberNavController()
+  val viewModelStore = LocalViewModelStoreOwner.current!!.viewModelStore
+
+  remember {
+    val graph = navHostController.createGraph(
+      startDestination = MainNavigationDetailLocation.Empty,
+      builder = { builder(navHostController) }
+    )
+
+    navHostController.setViewModelStore(viewModelStore)
+    navHostController.setGraph(graph, null)
+
+    graph
+  }
+
+  return navHostController
+}
+
+fun NavHostController.navigateToDetailLocation(location: MainNavigationDetailLocation) {
+  navigate(location) {
+    if (location.isContentRoot) {
+      popUpTo(graph.id) { inclusive = true }
+    }
+  }
+}
+
+@Composable
+fun DetailsScreenNavHost(navHostController: NavHostController, contentLayoutData: MainContentLayoutData) {
+  NavHost(
+    navController = navHostController,
+    graph = navHostController.graph,
+    enterTransition = { navHostSlideInTransition { it } },
+    exitTransition = { navHostSlideOutTransition { -it } },
+    popEnterTransition = { navHostSlideInTransition { -it } },
+    popExitTransition = { navHostSlideOutTransition { it } },
     modifier = Modifier
       .padding(end = contentLayoutData.detailPaddingEnd)
       .clip(contentLayoutData.shape)
       .background(color = MaterialTheme.colorScheme.surface)
       .fillMaxSize()
-  ) {
-    content()
-  }
+  )
 }

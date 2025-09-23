@@ -13,8 +13,10 @@ import androidx.core.view.WindowInsetsCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.main.InsetsViewModel
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
+import kotlin.math.roundToInt
 
 /**
  * A specialized [ConstraintLayout] that sets guidelines based on the window insets provided
@@ -64,6 +66,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   private var insets: WindowInsetsCompat? = null
   private var windowTypes: Int = InsetAwareConstraintLayout.windowTypes
+  private var verticalInsetOverride: InsetsViewModel.Insets = InsetsViewModel.Insets.Zero
 
   private val windowInsetsListener = androidx.core.view.OnApplyWindowInsetsListener { _, insets ->
     this.insets = insets
@@ -127,6 +130,22 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     }
   }
 
+  fun applyInsets(insets: InsetsViewModel.Insets) {
+    verticalInsetOverride = insets
+
+    if (this.insets != null) {
+      applyInsets(this.insets!!.getInsets(windowTypes), this.insets!!.getInsets(keyboardType))
+    }
+  }
+
+  fun clearVerticalInsetOverride() {
+    verticalInsetOverride = InsetsViewModel.Insets.Zero
+
+    if (this.insets != null) {
+      applyInsets(this.insets!!.getInsets(windowTypes), this.insets!!.getInsets(keyboardType))
+    }
+  }
+
   fun addKeyboardStateListener(listener: KeyboardStateListener) {
     keyboardStateListeners += listener
   }
@@ -146,8 +165,8 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private fun applyInsets(windowInsets: Insets, keyboardInsets: Insets) {
     val isLtr = ViewUtil.isLtr(this)
 
-    val statusBar = windowInsets.top
-    val navigationBar = windowInsets.bottom
+    val statusBar = if (verticalInsetOverride == InsetsViewModel.Insets.Zero) windowInsets.top else verticalInsetOverride.statusBar.roundToInt()
+    val navigationBar = if (verticalInsetOverride == InsetsViewModel.Insets.Zero) windowInsets.bottom else verticalInsetOverride.navBar.roundToInt()
     val parentStart = if (isLtr) windowInsets.left else windowInsets.right
     val parentEnd = if (isLtr) windowInsets.right else windowInsets.left
 
@@ -156,7 +175,9 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     parentStartGuideline?.setGuidelineBegin(parentStart)
     parentEndGuideline?.setGuidelineEnd(parentEnd)
 
-    windowInsetsListeners.forEach { it.onApplyWindowInsets(statusBar, navigationBar, parentStart, parentEnd) }
+    windowInsetsListeners.forEach {
+      it.onApplyWindowInsets(statusBar, navigationBar, parentStart, parentEnd)
+    }
 
     if (keyboardInsets.bottom > 0) {
       setKeyboardHeight(keyboardInsets.bottom)

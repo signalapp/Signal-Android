@@ -257,6 +257,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
+import org.thoughtcrime.securesms.main.InsetsViewModel
 import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
@@ -349,6 +350,7 @@ import org.thoughtcrime.securesms.util.visible
 import org.thoughtcrime.securesms.verify.VerifyIdentityActivity
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaper
 import org.thoughtcrime.securesms.wallpaper.ChatWallpaperDimLevelUtil
+import org.thoughtcrime.securesms.window.WindowSizeClass
 import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
 import java.time.Instant
 import java.time.LocalDateTime
@@ -483,6 +485,8 @@ class ConversationFragment :
 
   private val shareDataTimestampViewModel: ShareDataTimestampViewModel by activityViewModels()
 
+  private val insetsViewModel: InsetsViewModel by activityViewModels()
+
   private val inlineQueryController: InlineQueryResultsControllerV2 by lazy {
     InlineQueryResultsControllerV2(
       this,
@@ -595,8 +599,21 @@ class ConversationFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     binding.toolbar.isBackInvokedCallbackEnabled = false
 
-    binding.root.setApplyRootInsets(!resources.getWindowSizeClass().isSplitPane())
-    binding.root.setUseWindowTypes(!resources.getWindowSizeClass().isSplitPane())
+    if (WindowSizeClass.isLargeScreenSupportEnabled()) {
+      viewLifecycleOwner.lifecycleScope.launch {
+        repeatOnLifecycle(Lifecycle.State.RESUMED) {
+          binding.root.clearVerticalInsetOverride()
+          if (!resources.getWindowSizeClass().isSplitPane()) {
+            insetsViewModel.insets.collect {
+              binding.root.applyInsets(it)
+            }
+          }
+        }
+      }
+    }
+
+    binding.root.setApplyRootInsets(!WindowSizeClass.isLargeScreenSupportEnabled())
+    binding.root.setUseWindowTypes(!WindowSizeClass.isLargeScreenSupportEnabled())
 
     disposables.bindTo(viewLifecycleOwner)
 
@@ -1601,6 +1618,7 @@ class ConversationFragment :
         composeText.setDraftText(data.text)
         inputPanel.clickOnComposeInput()
       }
+
       is ShareOrDraftData.SetLocation -> attachmentManager.setLocation(data.location, MediaConstraints.getPushMediaConstraints())
       is ShareOrDraftData.SetEditMessage -> {
         composeText.setDraftText(data.draftText)
@@ -3219,9 +3237,13 @@ class ConversationFragment :
 
     override fun onItemLongClick(itemView: View, item: MultiselectPart) {
       Log.d(TAG, "onItemLongClick")
-      if (actionMode != null) { return }
+      if (actionMode != null) {
+        return
+      }
 
-      if (item.getMessageRecord().isInMemoryMessageRecord) { return }
+      if (item.getMessageRecord().isInMemoryMessageRecord) {
+        return
+      }
 
       val messageRecord = item.getMessageRecord()
       val recipient = viewModel.recipientSnapshot ?: return

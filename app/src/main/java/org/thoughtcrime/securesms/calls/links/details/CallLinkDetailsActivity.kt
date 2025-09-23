@@ -59,7 +59,7 @@ class CallLinkDetailsActivity : FragmentActivity() {
   private inner class Router : MainNavigationRouter {
     override fun goTo(location: MainNavigationDetailLocation) {
       when (location) {
-        is MainNavigationDetailLocation.Calls.EditCallLinkName -> {
+        is MainNavigationDetailLocation.Calls.CallLinks.EditCallLinkName -> {
           EditCallLinkNameDialogFragment().apply {
             arguments = bundleOf(EditCallLinkNameDialogFragment.ARG_NAME to viewModel.nameSnapshot)
           }.show(supportFragmentManager, null)

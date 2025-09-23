@@ -5,31 +5,11 @@
 
 package org.thoughtcrime.securesms.main
 
-import androidx.compose.runtime.Composable
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.NavHost
-import org.signal.core.ui.compose.Animations.navHostSlideInTransition
-import org.signal.core.ui.compose.Animations.navHostSlideOutTransition
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.composable
 
-/**
- * A navigation host for the stories detail pane of [org.thoughtcrime.securesms.MainActivity].
- *
- * @param currentDestination The current calls destination to navigate to, containing routing information
- * @param contentLayoutData Layout configuration data for responsive UI rendering
- */
-@Composable
-fun StoriesNavHost(
-  navHostController: NavHostController,
-  startDestination: MainNavigationDetailLocation.Stories,
-  contentLayoutData: MainContentLayoutData
-) {
-  NavHost(
-    navController = navHostController,
-    startDestination = startDestination,
-    enterTransition = { navHostSlideInTransition { it } },
-    exitTransition = { navHostSlideOutTransition { -it } },
-    popEnterTransition = { navHostSlideInTransition { -it } },
-    popExitTransition = { navHostSlideOutTransition { it } }
-  ) {
+fun NavGraphBuilder.storiesNavGraphBuilder() {
+  composable<MainNavigationDetailLocation.Empty> {
+    EmptyDetailScreen()
   }
 }

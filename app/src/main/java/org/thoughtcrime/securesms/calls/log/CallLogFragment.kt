@@ -320,7 +320,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
       viewModel.toggleSelected(callLogRow.id)
     } else {
-      mainNavigationViewModel.goTo(MainNavigationDetailLocation.Calls.CallLinkDetails(callLogRow.record.roomId))
+      mainNavigationViewModel.goTo(MainNavigationDetailLocation.Calls.CallLinks.CallLinkDetails(callLogRow.record.roomId))
     }
   }
 
