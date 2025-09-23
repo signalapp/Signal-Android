@@ -93,7 +93,7 @@ class ByteSize(val bytes: Long) {
       }
     }
 
-    return "${formatter.format(size)}${if (spaced) " " else ""}${unit.label}"
+    return BidiUtil.forceLtr("${formatter.format(size)}${if (spaced) " " else ""}${unit.label}")
   }
 
   operator fun compareTo(other: ByteSize): Int {
