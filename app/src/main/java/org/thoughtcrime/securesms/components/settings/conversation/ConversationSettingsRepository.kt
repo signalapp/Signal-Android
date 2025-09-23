@@ -67,6 +67,15 @@ class ConversationSettingsRepository(
     }
   }
 
+  @WorkerThread
+  fun getPinnedMessages(threadId: Long): List<MessageRecord> {
+    return if (threadId > 0) {
+      SignalDatabase.messages.getPinnedMessages(threadId)
+    } else {
+      emptyList()
+    }
+  }
+
   fun getStoryViewState(groupId: GroupId): Observable<StoryViewState> {
     return Observable.fromCallable {
       SignalDatabase.recipients.getByGroupId(groupId)

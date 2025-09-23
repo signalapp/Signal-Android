@@ -60,6 +60,7 @@ sealed class ConversationSettingsViewModel(
   protected val internalEvents: Subject<ConversationSettingsEvent> = PublishSubject.create()
 
   private val sharedMediaUpdateTrigger = MutableLiveData(Unit)
+  private val pinnedMessagesUpdateTrigger = MutableLiveData(Unit)
 
   val state: LiveData<ConversationSettingsState> = store.stateLiveData
   val events: Observable<ConversationSettingsEvent> = internalEvents.observeOn(AndroidSchedulers.mainThread())
@@ -74,6 +75,11 @@ sealed class ConversationSettingsViewModel(
       repository.getThreadMedia(threadId = tId, limit = 100)?.readToList { cursor ->
         MediaTable.MediaRecord.from(cursor)
       } ?: emptyList()
+    }
+
+    val pinnedMessagesUpdater: LiveData<Long> = LiveDataUtil.combineLatest(threadId, pinnedMessagesUpdateTrigger) { tId, _ -> tId }
+    val pinnedMessages: LiveData<List<org.thoughtcrime.securesms.database.model.MessageRecord>> = LiveDataUtil.mapAsync(SignalExecutors.BOUNDED, pinnedMessagesUpdater) { tId ->
+      repository.getPinnedMessages(threadId = tId)
     }
 
     store.update(repository.getCallEvents(callMessageIds).toObservable()) { callRecords, state ->
@@ -92,10 +98,22 @@ sealed class ConversationSettingsViewModel(
         state.copy(sharedMedia = emptyList())
       }
     }
+
+    store.update(pinnedMessages) { pinnedRecords, state ->
+      if (!cleared) {
+        state.copy(pinnedMessages = pinnedRecords)
+      } else {
+        state.copy(pinnedMessages = emptyList())
+      }
+    }
   }
 
   fun refreshSharedMedia() {
     sharedMediaUpdateTrigger.postValue(Unit)
+  }
+
+  fun refreshPinnedMessages() {
+    pinnedMessagesUpdateTrigger.postValue(Unit)
   }
 
   fun onReportSpam(): Maybe<Unit> {

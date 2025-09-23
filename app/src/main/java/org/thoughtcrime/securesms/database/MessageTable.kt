@@ -211,6 +211,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val ORIGINAL_MESSAGE_ID = "original_message_id"
     const val REVISION_NUMBER = "revision_number"
     const val MESSAGE_EXTRAS = "message_extras"
+    const val PINNED = "pinned"
 
     const val QUOTE_NOT_PRESENT_ID = 0L
     const val QUOTE_TARGET_MISSING_ID = -1L
@@ -273,7 +274,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $ORIGINAL_MESSAGE_ID INTEGER DEFAULT NULL REFERENCES $TABLE_NAME ($ID) ON DELETE CASCADE,
         $REVISION_NUMBER INTEGER DEFAULT 0,
         $MESSAGE_EXTRAS BLOB DEFAULT NULL,
-        $EXPIRE_TIMER_VERSION INTEGER DEFAULT 1 NOT NULL
+        $EXPIRE_TIMER_VERSION INTEGER DEFAULT 1 NOT NULL,
+        $PINNED INTEGER DEFAULT 0
       )
     """
 
@@ -4046,6 +4048,45 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       )
       .where("$REACTIONS_UNREAD != ?", 0)
       .run()
+  }
+
+  fun pinMessage(messageId: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(PINNED to 1)
+      .where("$ID = ?", messageId)
+      .run()
+  }
+
+  fun unpinMessage(messageId: Long) {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(PINNED to 0)
+      .where("$ID = ?", messageId)
+      .run()
+  }
+
+  fun isPinned(messageId: Long): Boolean {
+    return readableDatabase
+      .select(PINNED)
+      .from(TABLE_NAME)
+      .where("$ID = ?", messageId)
+      .run()
+      .readToSingleObject { cursor ->
+        cursor.requireBoolean(PINNED)
+      } ?: false
+  }
+
+  fun getPinnedMessages(threadId: Long): List<MessageRecord> {
+    return readableDatabase
+      .select()
+      .from(TABLE_NAME)
+      .where("$THREAD_ID = ? AND $PINNED = 1", threadId)
+      .orderBy("$DATE_RECEIVED DESC")
+      .run()
+      .readToList { cursor ->
+        getMediaMmsMessageRecord(cursor)
+      }
   }
 
   fun setNotifiedTimestamp(timestamp: Long, ids: List<Long>) {

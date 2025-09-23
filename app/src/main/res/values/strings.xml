@@ -4419,6 +4419,19 @@
     <string name="conversation_selection__menu_multi_select">Select</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Payment details</string>
+    <!-- Button to pin a message in the conversation; Action item -->
+    <string name="conversation_selection__menu_pin_message">Pin message</string>
+    <!-- Button to unpin a message in the conversation; Action item -->
+    <string name="conversation_selection__menu_unpin_message">Unpin message</string>
+    <!-- Toast message shown when a message is pinned -->
+    <string name="conversation_selection__message_pinned">Message pinned</string>
+    <!-- Toast message shown when a message is unpinned -->
+    <string name="conversation_selection__message_unpinned">Message unpinned</string>
+    <!-- Toast message shown when pin/unpin operation fails -->
+    <string name="conversation_selection__pin_failed">Failed to pin/unpin message</string>
+
+    <!-- ConversationSettingsFragment -->
+    <string name="ConversationSettingsFragment__pinned_messages">Pinned messages</string>
 
     <!-- conversation_expiring_on -->
 

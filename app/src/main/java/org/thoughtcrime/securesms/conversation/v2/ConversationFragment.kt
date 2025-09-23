@@ -213,6 +213,7 @@ import org.thoughtcrime.securesms.conversation.v2.items.InteractiveConversationE
 import org.thoughtcrime.securesms.conversation.v2.keyboard.AttachmentKeyboardFragment
 import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.DraftTable
+import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.IdentityRecord
 import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord
 import org.thoughtcrime.securesms.database.model.Mention
@@ -2535,6 +2536,41 @@ class ConversationFragment :
       }
   }
 
+  private fun handlePinMessage(conversationMessage: ConversationMessage) {
+    lifecycleScope.launch {
+      val messageId = conversationMessage.messageRecord.id
+      
+      try {
+        val isPinned = withContext(Dispatchers.IO) {
+          SignalDatabase.messages.isPinned(messageId)
+        }
+        
+        withContext(Dispatchers.IO) {
+          if (isPinned) {
+            SignalDatabase.messages.unpinMessage(messageId)
+          } else {
+            SignalDatabase.messages.pinMessage(messageId)
+          }
+        }
+        
+        val toastMessage = if (isPinned) {
+          getString(R.string.conversation_selection__message_unpinned)
+        } else {
+          getString(R.string.conversation_selection__message_pinned)
+        }
+        
+        Toast.makeText(requireContext(), toastMessage, Toast.LENGTH_SHORT).show()
+        
+        // Refresh conversation data to update UI
+        viewModel.refresh()
+        
+      } catch (e: Exception) {
+        Log.w(TAG, "Failed to pin/unpin message", e)
+        Toast.makeText(requireContext(), getString(R.string.conversation_selection__pin_failed), Toast.LENGTH_SHORT).show()
+      }
+    }
+  }
+
   private inner class SwipeAvailabilityProvider : ConversationItemSwipeCallback.SwipeAvailabilityProvider {
     override fun isSwipeAvailable(conversationMessage: ConversationMessage): Boolean {
       val recipient = viewModel.recipientSnapshot ?: return false
@@ -3720,6 +3756,7 @@ class ConversationFragment :
         ConversationReactionOverlay.Action.PAYMENT_DETAILS -> handleViewPaymentDetails(conversationMessage)
         ConversationReactionOverlay.Action.VIEW_INFO -> handleDisplayDetails(conversationMessage)
         ConversationReactionOverlay.Action.DELETE -> handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
+        ConversationReactionOverlay.Action.PIN -> handlePinMessage(conversationMessage)
       }
     }
   }
