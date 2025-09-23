@@ -4846,9 +4846,9 @@
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Chọn \"Chuyển từ thiết bị Android\" khi được hỏi và sau đó \"Tiếp tục\". Giữ cả hai thiết bị gần nhau."</string>
     <string name="OldDeviceTransferInstructions__continue">Tiếp tục</string>
     <!-- Title for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__confirm_exit_title">Stop device transfer?</string>
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">Dừng việc chuyển thiết bị?</string>
     <!-- Message for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__confirm_exit_message">No data has been transferred to your new device.</string>
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">Không có dữ liệu nào được chuyển đến thiết bị mới của bạn.</string>
     <!-- Confirm button for exit device transfer confirmation dialog -->
     <string name="OldDeviceTransferInstructions__stop_transfer">Dừng chuyển</string>
     <!-- Negative/cancel button for exit device transfer confirmation dialog -->
@@ -7865,29 +7865,29 @@
 
     <!-- GooglePlayServicesAvailability -->
     <!-- Dialog title when Google Play services are missing from the device -->
-    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play services missing</string>
+    <string name="GooglePlayServicesAvailability__service_missing_title">Thiếu các dịch vụ của Google Play</string>
     <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
-    <string name="GooglePlayServicesAvailability__service_missing_message">To subscribe to Signal Secure backups, you need to install Google Play services on your phone.</string>
+    <string name="GooglePlayServicesAvailability__service_missing_message">Để đăng ký Sao lưu bảo mật Signal, bạn cần cài đặt các dịch vụ của Google Play trên điện thoại của mình.</string>
     <!-- Dialog button text to install Google Play services -->
-    <string name="GooglePlayServicesAvailability__install_play_services">Install Play Services</string>
+    <string name="GooglePlayServicesAvailability__install_play_services">Cài đặt các dịch vụ của Play</string>
     <!-- Dialog title when Google Play services are currently updating -->
-    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play services are updating</string>
+    <string name="GooglePlayServicesAvailability__service_updating_title">Các dịch vụ của Google Play đang cập nhật</string>
     <!-- Dialog message asking user to wait while Google Play services finish updating -->
-    <string name="GooglePlayServicesAvailability__service_updating_message">To subscribe to Signal Secure backups please wait for Google Play services to finish updating.</string>
+    <string name="GooglePlayServicesAvailability__service_updating_message">Để đăng ký Sao lưu bảo mật Signal, vui lòng chờ các dịch vụ của Google Play hoàn tất cập nhật.</string>
     <!-- Dialog title when Google Play services need to be updated -->
-    <string name="GooglePlayServicesAvailability__service_update_required_title">Update Google Play services</string>
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Cập nhật các dịch vụ của Google Play</string>
     <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
-    <string name="GooglePlayServicesAvailability__service_update_required_message">To subscribe to Signal Secure Backups, update Google Play service on your phone.</string>
+    <string name="GooglePlayServicesAvailability__service_update_required_message">Để đăng ký Sao lưu bảo mật Signal, hãy cập nhật các dịch vụ của Google Play trên điện thoại của bạn.</string>
     <!-- Dialog button text to update Google Play services -->
     <string name="GooglePlayServicesAvailability__update">Cập nhật</string>
     <!-- Dialog title when Google Play services are disabled -->
-    <string name="GooglePlayServicesAvailability__service_disabled_title">Paid subscriptions require Google Play</string>
+    <string name="GooglePlayServicesAvailability__service_disabled_title">Các gói đăng ký trả phí cần có Google Play</string>
     <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
-    <string name="GooglePlayServicesAvailability__service_disabled_message">To subscribe to Signal Secure Backups, enable Google Play services on your phone and sign into the Google Play store. </string>
+    <string name="GooglePlayServicesAvailability__service_disabled_message">Để đăng ký Sao lưu bảo mật Signal, hãy bật dịch vụ Google Play trên điện thoại của bạn và đăng nhập vào cửa hàng Google Play. </string>
     <!-- Dialog button text to learn more about enabling Google Play services -->
     <string name="GooglePlayServicesAvailability__learn_more">Tìm hiểu thêm</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
-    <string name="GooglePlayServicesAvailability__service_invalid_message">You can\'t subscribe to Signal Secure backups because your phone does not support Google Play services. Contact the phone manufacturer for assistance.</string>
+    <string name="GooglePlayServicesAvailability__service_invalid_message">Bạn không thể đăng ký Sao lưu bảo mật Signal vì điện thoại của bạn không hỗ trợ các dịch vụ của Google Play. Hãy liên hệ với nhà sản xuất điện thoại để được hỗ trợ.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -8324,13 +8324,13 @@
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Đổi loại bản sao lưu</string>
     <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
-    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">More about this plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">Thông tin thêm về gói này</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Hủy Gói Ủng hộ</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Miễn phí</string>
     <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
-    <string name="MessageBackupsTypeSelectionScreen__paid">Paid</string>
+    <string name="MessageBackupsTypeSelectionScreen__paid">Trả phí</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/tháng</string>
     <!-- Title for free tier -->
@@ -8354,9 +8354,9 @@
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">Gói hiện tại</string>
     <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
-    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Can\'t upgrade plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Không thể nâng cấp gói</string>
     <!-- Dialog body text explaining Google Services requirement for backup subscription -->
-    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">To subscribe to Signal Secure Backups, you must have Google Services enabled on your phone and be signed into the Google Play Store.</string>
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Để đăng ký Sao lưu bảo mật Signal, bạn phải bật các dịch vụ của Google trên điện thoại của mình và đăng nhập vào Cửa hàng Google Play.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8506,9 +8506,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">Tiếp tục chuyển tài khoản trên thiết bị khác của bạn.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Finish on your other device</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">Hoàn tất trên thiết bị khác của bạn</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages are ready to restore on your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Tài khoản và tin nhắn Signal của bạn đã sẵn sàng để được khôi phục trên thiết bị khác của bạn. Signal hiện không còn hoạt động trên thiết bị này.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">Chuyển hoàn tất</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->

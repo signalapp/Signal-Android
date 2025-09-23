@@ -4804,7 +4804,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">ಮಾಹಿತಿ</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">This is a beta feature and will be improved over time.</string>
+    <string name="Beta__this_is_beta">ಇದು ಬೀಟಾ ಫೀಚರ್ ಆಗಿದೆ ಮತ್ತು ಕಾಲಾನಂತರದಲ್ಲಿ ಇದನ್ನು ಸುಧಾರಿಸಲಾಗುತ್ತದೆ.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal ಅನ್‌ಲಾಕ್ ಮಾಡಿ</string>
@@ -4969,9 +4969,9 @@
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"ಪ್ರಾಂಪ್ಟ್ ಮಾಡಿದಾಗ \"ಆಂಡ್ರಾಯ್ಡ್ ಸಾಧನದಿಂದ ವರ್ಗಾವಣೆ ಮಾಡಿ\" ಆಯ್ಕೆ ಮಾಡಿ ಮತ್ತು ನಂತರ \"ಮುಂದುವರಿಸಿ\" ಆಯ್ಕೆ ಮಾಡಿ. ಎರಡೂ ಸಾಧನಗಳನ್ನು ಹತ್ತಿರ ಇಡಿ."</string>
     <string name="OldDeviceTransferInstructions__continue">ಮುಂದುವರಿಸಿ</string>
     <!-- Title for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__confirm_exit_title">Stop device transfer?</string>
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">ಸಾಧನ ವರ್ಗಾವಣೆಯನ್ನು ನಿಲ್ಲಿಸಬೇಕೇ?</string>
     <!-- Message for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__confirm_exit_message">No data has been transferred to your new device.</string>
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">ನಿಮ್ಮ ಹೊಸ ಸಾಧನಕ್ಕೆ ಯಾವುದೇ ಡೇಟಾವನ್ನು ವರ್ಗಾಯಿಸಲಾಗಿಲ್ಲ.</string>
     <!-- Confirm button for exit device transfer confirmation dialog -->
     <string name="OldDeviceTransferInstructions__stop_transfer">ವರ್ಗಾವಣೆ ನಿಲ್ಲಿಸಿ</string>
     <!-- Negative/cancel button for exit device transfer confirmation dialog -->
@@ -8039,29 +8039,29 @@
 
     <!-- GooglePlayServicesAvailability -->
     <!-- Dialog title when Google Play services are missing from the device -->
-    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play services missing</string>
+    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play ಸೇವೆಗಳು ಕಾಣಿಸುತ್ತಿಲ್ಲ</string>
     <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
-    <string name="GooglePlayServicesAvailability__service_missing_message">To subscribe to Signal Secure backups, you need to install Google Play services on your phone.</string>
+    <string name="GooglePlayServicesAvailability__service_missing_message">Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳಿಗೆ ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಲು, ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ ನೀವು Google Play ಸೇವೆಗಳನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಬೇಕು.</string>
     <!-- Dialog button text to install Google Play services -->
-    <string name="GooglePlayServicesAvailability__install_play_services">Install Play Services</string>
+    <string name="GooglePlayServicesAvailability__install_play_services">Play ಸೇವೆಗಳನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ</string>
     <!-- Dialog title when Google Play services are currently updating -->
-    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play services are updating</string>
+    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play ಸೇವೆಗಳನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
     <!-- Dialog message asking user to wait while Google Play services finish updating -->
-    <string name="GooglePlayServicesAvailability__service_updating_message">To subscribe to Signal Secure backups please wait for Google Play services to finish updating.</string>
+    <string name="GooglePlayServicesAvailability__service_updating_message">Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳಿಗೆ ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಲು Google Play ಸೇವೆಗಳು ಅಪ್‌ಡೇಟ್ ಆಗುವುದನ್ನು ಪೂರ್ಣಗೊಳಿಸುವವರೆಗೂ ಕಾಯಿರಿ.</string>
     <!-- Dialog title when Google Play services need to be updated -->
-    <string name="GooglePlayServicesAvailability__service_update_required_title">Update Google Play services</string>
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Google Play ಸೇವೆಗಳನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಿ</string>
     <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
-    <string name="GooglePlayServicesAvailability__service_update_required_message">To subscribe to Signal Secure Backups, update Google Play service on your phone.</string>
+    <string name="GooglePlayServicesAvailability__service_update_required_message">Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳಿಗೆ ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಲು, ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ Google Play ಸೇವೆಯನ್ನು ಅಪ್‌ಡೇಟ್ ಮಾಡಿ.</string>
     <!-- Dialog button text to update Google Play services -->
     <string name="GooglePlayServicesAvailability__update">ನವೀಕರಿಸಿ</string>
     <!-- Dialog title when Google Play services are disabled -->
-    <string name="GooglePlayServicesAvailability__service_disabled_title">Paid subscriptions require Google Play</string>
+    <string name="GooglePlayServicesAvailability__service_disabled_title">ಪಾವತಿಸಿದ ಚಂದಾದಾರಿಕೆಗಳಿಗೆ Google Play ಅಗತ್ಯವಿದೆ</string>
     <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
-    <string name="GooglePlayServicesAvailability__service_disabled_message">To subscribe to Signal Secure Backups, enable Google Play services on your phone and sign into the Google Play store. </string>
+    <string name="GooglePlayServicesAvailability__service_disabled_message">Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳಿಗೆ ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಲು, ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ Google Play ಸೇವೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿ ಮತ್ತು Google Play ಸ್ಟೋರ್‌ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿ. </string>
     <!-- Dialog button text to learn more about enabling Google Play services -->
     <string name="GooglePlayServicesAvailability__learn_more">ಇನ್ನಷ್ಟು ತಿಳಿಯಿರಿ</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
-    <string name="GooglePlayServicesAvailability__service_invalid_message">You can\'t subscribe to Signal Secure backups because your phone does not support Google Play services. Contact the phone manufacturer for assistance.</string>
+    <string name="GooglePlayServicesAvailability__service_invalid_message">ನಿಮ್ಮ ಫೋನ್ Google Play ಸೇವೆಗಳನ್ನು ಬೆಂಬಲಿಸದ ಕಾರಣ ನೀವು Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳಿಗೆ ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ. ಸಹಾಯಕ್ಕಾಗಿ ಫೋನ್ ತಯಾರಕರನ್ನು ಸಂಪರ್ಕಿಸಿ.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -8504,13 +8504,13 @@
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">ಬ್ಯಾಕಪ್ ಪ್ರಕಾರವನ್ನು ಬದಲಾಯಿಸಿ</string>
     <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
-    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">More about this plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">ಈ ಪ್ಲ್ಯಾನ್ ಕುರಿತು ಇನ್ನಷ್ಟು</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">ಚಂದಾ ರದ್ದುಗೊಳಿಸಿ</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">ಉಚಿತ</string>
     <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
-    <string name="MessageBackupsTypeSelectionScreen__paid">Paid</string>
+    <string name="MessageBackupsTypeSelectionScreen__paid">ಪಾವತಿಸಿರುವುದು</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/ತಿಂಗಳು</string>
     <!-- Title for free tier -->
@@ -8536,9 +8536,9 @@
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">ಪ್ರಸ್ತುತ ಪ್ಲಾನ್</string>
     <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
-    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Can\'t upgrade plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">ಪ್ಲ್ಯಾನ್ ಅನ್ನು ಅಪ್‌ಗ್ರೇಡ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
     <!-- Dialog body text explaining Google Services requirement for backup subscription -->
-    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">To subscribe to Signal Secure Backups, you must have Google Services enabled on your phone and be signed into the Google Play Store.</string>
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳಿಗೆ ಸಬ್‌ಸ್ಕ್ರೈಬ್ ಮಾಡಲು, ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ ನೀವು Google ಸೇವೆಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಿರಬೇಕು ಮತ್ತು Google Play Store ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಿರಬೇಕು.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8688,9 +8688,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">ನಿಮ್ಮ ಇನ್ನೊಂದು ಸಾಧನದಲ್ಲಿ ನಿಮ್ಮ ಖಾತೆಯನ್ನು ವರ್ಗಾಯಿಸುವುದನ್ನು ಮುಂದುವರಿಸಿ.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Finish on your other device</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">ನಿಮ್ಮ ಇನ್ನೊಂದು ಸಾಧನದಲ್ಲಿ ಪೂರ್ಣಗೊಳಿಸಿ</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages are ready to restore on your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">ನಿಮ್ಮ Signal ಖಾತೆ ಮತ್ತು ಮೆಸೇಜ್‌ಗಳು ನಿಮ್ಮ ಇನ್ನೊಂದು ಸಾಧನದಲ್ಲಿ ರಿಸ್ಟೋರ್ ಆಗಲು ಸಿದ್ಧವಾಗಿವೆ. ಈ ಸಾಧನದಲ್ಲಿ Signal ಈಗ ನಿಷ್ಕ್ರಿಯವಾಗಿದೆ.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">ವರ್ಗಾವಣೆ ಪೂರ್ಣಗೊಂಡಿದೆ</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->

@@ -4804,7 +4804,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">ინფორმაცია</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">This is a beta feature and will be improved over time.</string>
+    <string name="Beta__this_is_beta">ეს ბეტა ფუნქციაა და დროთა განმავლობაში გაუმჯობესდება.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal-ის გახსნა</string>
@@ -4969,9 +4969,9 @@
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"მოთხოვნისას აირჩიე \"Android მოწყობილობიდან გადატანა\" და შემდეგ \"გაგრძელება\". ორივე მოწყობილობა ახლოს გეჭიროს."</string>
     <string name="OldDeviceTransferInstructions__continue">გაგრძელება</string>
     <!-- Title for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__confirm_exit_title">Stop device transfer?</string>
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">გსურს მოწყობილობის გადატანა შეწყვიტო?</string>
     <!-- Message for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__confirm_exit_message">No data has been transferred to your new device.</string>
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">შენს ახალ მოწყობილობაზე მონაცემები არ გადასულა.</string>
     <!-- Confirm button for exit device transfer confirmation dialog -->
     <string name="OldDeviceTransferInstructions__stop_transfer">გადატანის გაჩერება</string>
     <!-- Negative/cancel button for exit device transfer confirmation dialog -->
@@ -8039,29 +8039,29 @@
 
     <!-- GooglePlayServicesAvailability -->
     <!-- Dialog title when Google Play services are missing from the device -->
-    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play services missing</string>
+    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play-ის სერვისები აკლია</string>
     <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
-    <string name="GooglePlayServicesAvailability__service_missing_message">To subscribe to Signal Secure backups, you need to install Google Play services on your phone.</string>
+    <string name="GooglePlayServicesAvailability__service_missing_message">Signal-ის უსაფრთხო სათადარიგო ასლების გამოსაწერად შენს მობილურში Google Play-ის სერვისები უნდა დააყენო.</string>
     <!-- Dialog button text to install Google Play services -->
-    <string name="GooglePlayServicesAvailability__install_play_services">Install Play Services</string>
+    <string name="GooglePlayServicesAvailability__install_play_services">დააინსტალირე Play სერვისები</string>
     <!-- Dialog title when Google Play services are currently updating -->
-    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play services are updating</string>
+    <string name="GooglePlayServicesAvailability__service_updating_title">მიმდინარეობს Google Play-ის სერვისების განახლება</string>
     <!-- Dialog message asking user to wait while Google Play services finish updating -->
-    <string name="GooglePlayServicesAvailability__service_updating_message">To subscribe to Signal Secure backups please wait for Google Play services to finish updating.</string>
+    <string name="GooglePlayServicesAvailability__service_updating_message">გთხოვთ, Signal-ის უსაფრთხო სათადარიგო ასლების გამოსაწერად Google Play-ის სერვისების განახლების დასრულებას დაელოდო.</string>
     <!-- Dialog title when Google Play services need to be updated -->
-    <string name="GooglePlayServicesAvailability__service_update_required_title">Update Google Play services</string>
+    <string name="GooglePlayServicesAvailability__service_update_required_title">განაახლე Google Play-ის სერვისები</string>
     <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
-    <string name="GooglePlayServicesAvailability__service_update_required_message">To subscribe to Signal Secure Backups, update Google Play service on your phone.</string>
+    <string name="GooglePlayServicesAvailability__service_update_required_message">Signal-ის უსაფრთხო სათადარიგო ასლების გამოსაწერად განაახლე Google Play-ის სერვისები შენს მობილურში.</string>
     <!-- Dialog button text to update Google Play services -->
     <string name="GooglePlayServicesAvailability__update">განახლება</string>
     <!-- Dialog title when Google Play services are disabled -->
-    <string name="GooglePlayServicesAvailability__service_disabled_title">Paid subscriptions require Google Play</string>
+    <string name="GooglePlayServicesAvailability__service_disabled_title">ფასიანი გამოწერებისთვის საჭიროა Google Play</string>
     <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
-    <string name="GooglePlayServicesAvailability__service_disabled_message">To subscribe to Signal Secure Backups, enable Google Play services on your phone and sign into the Google Play store. </string>
+    <string name="GooglePlayServicesAvailability__service_disabled_message">Signal-ის უსაფრთხო სათადარიგო ასლების გამოსაწერად ჩართე Google Play-ის სერვისები შენს მობილურში და შედი Google Play Store-ის ანგარიშზე. </string>
     <!-- Dialog button text to learn more about enabling Google Play services -->
     <string name="GooglePlayServicesAvailability__learn_more">გაიგე მეტი</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
-    <string name="GooglePlayServicesAvailability__service_invalid_message">You can\'t subscribe to Signal Secure backups because your phone does not support Google Play services. Contact the phone manufacturer for assistance.</string>
+    <string name="GooglePlayServicesAvailability__service_invalid_message">Signal-ის უსაფრთხო სათადარიგო ასლების გამოწერას ვერ შეძლებ, რადგან შენს მობილურს Google Play-ის სერვისების მხარდაჭერა არ აქვს. დახმარებისთვის მიმართე მობილურის მწარმოებელს.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -8504,13 +8504,13 @@
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">სარეზერვო კოპირების ტიპის შეცვლა</string>
     <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
-    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">More about this plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">მეტი ამ გეგმის შესახებ</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">გამოწერის გაუქმება</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">უფასო</string>
     <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
-    <string name="MessageBackupsTypeSelectionScreen__paid">Paid</string>
+    <string name="MessageBackupsTypeSelectionScreen__paid">ფასიანი</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/თვეში</string>
     <!-- Title for free tier -->
@@ -8536,9 +8536,9 @@
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">ახლანდელი გამოწერა</string>
     <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
-    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Can\'t upgrade plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">გეგმის განახლება შეუძლებელია</string>
     <!-- Dialog body text explaining Google Services requirement for backup subscription -->
-    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">To subscribe to Signal Secure Backups, you must have Google Services enabled on your phone and be signed into the Google Play Store.</string>
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Signal-ის უსაფრთხო სათადარიგო ასლების გამოსაწერად შენს მობილურში Google-ის სერვისები უნდა გქონდეს ჩართული და Google Play Store-ში უნდა იყო შესული.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8688,9 +8688,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">განაგრძე შენი ანგარიშის გადატანა სხვა მოწყობილობაზე.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Finish on your other device</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">დაასრულე შენს სხვა მოწყობილობაზე</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages are ready to restore on your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">შენი სიგნალის ანგარიში და წერილები შენს სხვა მოწყობილობაზე აღსადგენად მზადაა. ამ მოწყობილობაზე Signal-ი აღარ არის აქტიური.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">გადატანა დასრულებულია</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->

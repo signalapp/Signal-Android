@@ -2026,7 +2026,7 @@
 
     <!-- GV2 title change -->
     <string name="MessageRecord_you_changed_the_group_name_to_s">Zmieniasz nazwę grupy na „%1$s”.</string>
-    <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s zmienia nazwę grupy na „%1$s”.</string>
+    <string name="MessageRecord_s_changed_the_group_name_to_s">%1$s zmienia nazwę grupy na „%2$s”.</string>
     <string name="MessageRecord_the_group_name_has_changed_to_s">Grupa ma nową nazwę: „%1$s”.</string>
 
     <!-- GV2 description change -->
@@ -3325,9 +3325,9 @@
     </plurals>
     <!-- Text shown in a system notification that is used to summary how many chats have new messages. -->
     <plurals name="MessageNotifier_d_chats">
-        <item quantity="one">%1$d czat</item>
-        <item quantity="few">%1$d czaty</item>
-        <item quantity="many">%1$d czatów</item>
+        <item quantity="one">%1$d czacie</item>
+        <item quantity="few">%1$d czatach</item>
+        <item quantity="many">%1$d czatach</item>
         <item quantity="other">%1$d czatu</item>
     </plurals>
     <!-- Shown in a notification when you receive multiple chat messages. %s is the contact name of the most recent message -->
@@ -5050,7 +5050,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">Informacje</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">To funkcja beta, która będzie udoskonalana z czasem.</string>
+    <string name="Beta__this_is_beta">Jest to funkcja w wersji beta – wciąż pracujemy nad jej ulepszeniem.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Odblokuj Signal</string>
@@ -5215,13 +5215,13 @@
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Wybierz opcję „Przenieś z urządzenia z Androidem”, a następnie „Kontynuuj”. Urządzenia powinny znajdować się blisko siebie"</string>
     <string name="OldDeviceTransferInstructions__continue">Kontynuuj</string>
     <!-- Title for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__confirm_exit_title">Stop device transfer?</string>
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">Anulować zmianę urządzenia?</string>
     <!-- Message for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__confirm_exit_message">No data has been transferred to your new device.</string>
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">Żadne dane nie zostały jeszcze przeniesione na nowe urządzenie.</string>
     <!-- Confirm button for exit device transfer confirmation dialog -->
     <string name="OldDeviceTransferInstructions__stop_transfer">Przerwij przenoszenie</string>
     <!-- Negative/cancel button for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__continue_transfer">Kontynuuj przywracanie</string>
+    <string name="OldDeviceTransferInstructions__continue_transfer">Kontynuuj przenoszenie</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Przejdź na nowe urządzenie</string>
@@ -5625,7 +5625,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Odnów subskrypcję usługi bezpiecznych kopii zapasowych Signal</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Odnów subskrypcję bezpiecznych kopii zapasowych Signal</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Nie udało się utworzyć kopii zapasowej</string>
     <!-- String alerting user that backup redemption -->
@@ -8238,7 +8238,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Nie udało się odnowić subskrypcji za pomocą wybranej metody płatności. Aby dalej tworzyć kopie zapasowe multimediów, potrzebujesz aktywnej subskrypcji.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Tymczasem możesz korzystać z bezpłatnej usługi tworzenia bezpiecznych kopii zapasowych Signal.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Tymczasem możesz korzystać z bezpłatnego trybu tworzenia bezpiecznych kopii zapasowych Signal.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Nie udało się ukończyć tworzenia kopii zapasowej</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -8387,29 +8387,29 @@
 
     <!-- GooglePlayServicesAvailability -->
     <!-- Dialog title when Google Play services are missing from the device -->
-    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play services missing</string>
+    <string name="GooglePlayServicesAvailability__service_missing_title">Brak usług Google Play</string>
     <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
-    <string name="GooglePlayServicesAvailability__service_missing_message">To subscribe to Signal Secure backups, you need to install Google Play services on your phone.</string>
+    <string name="GooglePlayServicesAvailability__service_missing_message">Aby subskrybować bezpieczne kopie zapasowe Signal, musisz zainstalować na swoim telefonie usługi Google Play.</string>
     <!-- Dialog button text to install Google Play services -->
-    <string name="GooglePlayServicesAvailability__install_play_services">Install Play Services</string>
+    <string name="GooglePlayServicesAvailability__install_play_services">Zainstaluj usługi Play</string>
     <!-- Dialog title when Google Play services are currently updating -->
-    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play services are updating</string>
+    <string name="GooglePlayServicesAvailability__service_updating_title">Usługi Google Play są aktualizowane</string>
     <!-- Dialog message asking user to wait while Google Play services finish updating -->
-    <string name="GooglePlayServicesAvailability__service_updating_message">To subscribe to Signal Secure backups please wait for Google Play services to finish updating.</string>
+    <string name="GooglePlayServicesAvailability__service_updating_message">Aby zasubskrybować bezpieczne kopie zapasowe Signal, poczekaj, aż usługi Google Play się zaktualizują.</string>
     <!-- Dialog title when Google Play services need to be updated -->
-    <string name="GooglePlayServicesAvailability__service_update_required_title">Update Google Play services</string>
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Zaktualizuj usługi Google Play</string>
     <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
-    <string name="GooglePlayServicesAvailability__service_update_required_message">To subscribe to Signal Secure Backups, update Google Play service on your phone.</string>
+    <string name="GooglePlayServicesAvailability__service_update_required_message">Aby subskrybować bezpieczne kopie zapasowe Signal, zaktualizuj usługi Google Play na swoim telefonie.</string>
     <!-- Dialog button text to update Google Play services -->
-    <string name="GooglePlayServicesAvailability__update">Zmień</string>
+    <string name="GooglePlayServicesAvailability__update">Zaktualizuj</string>
     <!-- Dialog title when Google Play services are disabled -->
-    <string name="GooglePlayServicesAvailability__service_disabled_title">Paid subscriptions require Google Play</string>
+    <string name="GooglePlayServicesAvailability__service_disabled_title">Płatne subskrypcje wymagają Google Play</string>
     <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
-    <string name="GooglePlayServicesAvailability__service_disabled_message">To subscribe to Signal Secure Backups, enable Google Play services on your phone and sign into the Google Play store. </string>
+    <string name="GooglePlayServicesAvailability__service_disabled_message">Aby subskrybować bezpieczne kopie zapasowe Signal, włącz usługi Google Play na swoim telefonie i zaloguj się do sklepu Google Play. </string>
     <!-- Dialog button text to learn more about enabling Google Play services -->
     <string name="GooglePlayServicesAvailability__learn_more">Dowiedz się więcej</string>
     <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
-    <string name="GooglePlayServicesAvailability__service_invalid_message">You can\'t subscribe to Signal Secure backups because your phone does not support Google Play services. Contact the phone manufacturer for assistance.</string>
+    <string name="GooglePlayServicesAvailability__service_invalid_message">Nie możesz subskrybować bezpiecznych kopii zapasowych Signal, ponieważ Twój telefon nie obsługuje usług Google Play. Aby otrzymać pomoc, skontaktuj się z producentem telefonu.</string>
 
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
@@ -8431,13 +8431,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nieużywane multimedia zostaną usunięte z urządzenia, ale w dowolnym momencie można je będzie pobrać z kopii zapasowej.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optymalizacja pamięci jest dostępna tylko w ramach płatnej usługi bezpiecznych kopii zapasowych Signal. Twoja usługa kopii zapasowych jest jeszcze przetwarzana i nieaktywna. Spróbuj ponownie później.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Optymalizacja pamięci jest dostępna tylko w płatnym trybie tworzenia bezpiecznych kopii zapasowych Signal. Twoja subskrypcja kopii zapasowych jest jeszcze przetwarzana i nieaktywna. Spróbuj ponownie później.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Ulepsz wersję, aby włączyć tę funkcję</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Optymalizacja pamięci jest dostępna tylko w ramach płatnej usługi bezpiecznych kopii zapasowych Signal. Aby korzystać z tej funkcji, wykup płatny tryb tworzenia kopii zapasowych.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Optymalizacja pamięci jest dostępna tylko w płatnym trybie tworzenia bezpiecznych kopii zapasowych Signal. Aby korzystać z tej funkcji, wykup płatny tryb tworzenia kopii zapasowych.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Subskrybuj usługę za %1$s/mies.</string>
 
@@ -8458,7 +8458,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Te multimedia nie są już dostępne.</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Aby rozpocząć tworzenie kopii zapasowych wszystkich multimediów, włącz usługę bezpiecznych kopii zapasowych Signal i wybierz płatny poziom usługi.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Aby utworzyć kopię zapasową wszystkich multimediów, włącz usługę bezpiecznych kopii zapasowych Signal i wybierz tryb płatny.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Kontynuuj</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8630,10 +8630,10 @@
     <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Subskrypcja jest nieaktywna na tym urządzeniu. Aby dalej korzystać z usługi bezpiecznych kopii zapasowych Signal, odnów subskrypcję.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Twoja subskrypcja na tym urządzeniu jest ważna jeszcze przez %1$d dzień. Aby dalej korzystać z usługi zapisywania bezpiecznych kopii zapasowych Signal, odnów subskrypcję.</item>
-        <item quantity="few">Twoja subskrypcja na tym urządzeniu jest ważna jeszcze przez %1$d dni. Aby dalej korzystać z usługi zapisywania bezpiecznych kopii zapasowych Signal, odnów subskrypcję.</item>
-        <item quantity="many">Twoja subskrypcja na tym urządzeniu jest ważna jeszcze przez %1$d dni. Aby dalej korzystać z usługi zapisywania bezpiecznych kopii zapasowych Signal, odnów subskrypcję.</item>
-        <item quantity="other">Twoja subskrypcja na tym urządzeniu jest ważna jeszcze przez %1$d dnia. Aby dalej korzystać z usługi zapisywania bezpiecznych kopii zapasowych Signal, odnów subskrypcję.</item>
+        <item quantity="one">Subskrypcja na tym urządzeniu jest ważna jeszcze przez %1$d dzień. Aby dalej korzystać z usługi bezpiecznych kopii zapasowych Signal, odnów subskrypcję.</item>
+        <item quantity="few">Subskrypcja na tym urządzeniu jest ważna jeszcze przez %1$d dni. Aby dalej korzystać z usługi bezpiecznych kopii zapasowych Signal, odnów subskrypcję.</item>
+        <item quantity="many">Subskrypcja na tym urządzeniu jest ważna jeszcze przez %1$d dni. Aby dalej korzystać z usługi bezpiecznych kopii zapasowych Signal, odnów subskrypcję.</item>
+        <item quantity="other">Subskrypcja na tym urządzeniu jest ważna jeszcze przez %1$d dnia. Aby dalej korzystać z usługi bezpiecznych kopii zapasowych Signal, odnów subskrypcję.</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Odnów subskrypcję</string>
@@ -8762,7 +8762,7 @@
     <!-- Screen headline -->
     <string name="MessageBackupsKeyEducationScreen__your_backup_key">Twój kod odzyskiwania</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Kod odzyskiwania, składający się z 64 znaków, umożliwi Ci przywrócenie kopii zapasowej po ponownej instalacji aplikacji Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Kod odzyskiwania, składający się z 64 znaków, umożliwi Ci przywrócenie kopii zapasowej, gdy ponownie zainstalujesz aplikację Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Jeśli go zapomnisz, stracisz możliwość przywrócenia kopii zapasowej. Signal nie będzie mógł pomóc w odzyskaniu kopii zapasowej.</string>
     <!-- Action button label -->
@@ -8770,7 +8770,7 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Potwierdź kod odzyskiwania</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Zapisz swój kod odzyskiwania</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Ten kod będzie potrzebny do odzyskania konta i danych. Przechowuj go w bezpiecznym miejscu. Jeśli go zgubisz, stracisz możliwość przywrócenia konta.</string>
     <!-- Copy to clipboard button label -->
@@ -8864,13 +8864,13 @@
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Zmień typ kopii zapasowej</string>
     <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
-    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">More about this plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">Więcej informacji o tym trybie</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Anuluj subskrypcję</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Za darmo</string>
     <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
-    <string name="MessageBackupsTypeSelectionScreen__paid">Paid</string>
+    <string name="MessageBackupsTypeSelectionScreen__paid">Usługa płatna</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s miesięcznie</string>
     <!-- Title for free tier -->
@@ -8900,9 +8900,9 @@
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">Aktualna usługa</string>
     <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
-    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Can\'t upgrade plan</string>
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Nie można rozpocząć subskrypcji</string>
     <!-- Dialog body text explaining Google Services requirement for backup subscription -->
-    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">To subscribe to Signal Secure Backups, you must have Google Services enabled on your phone and be signed into the Google Play Store.</string>
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Aby subskrybować bezpieczne kopie zapasowe Signal, musisz włączyć usługi Google Play na swoim telefonie i zalogować się do sklepu Google Play.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8934,7 +8934,7 @@
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Zyskaj dostęp do swojego konta Signal i historii wiadomości na tym urządzeniu.</string>
     <!-- Option title for restoring via signal secure backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Z bezpiecznych kopii zapasowych Signal</string>
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Z bezpiecznej kopii zapasowej Signal</string>
     <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Czyli bezpłatnej lub płatnej usługi kopii zapasowych Signal</string>
     <!-- Option title for restoring via a local backup folder -->
@@ -8962,9 +8962,9 @@
     <!-- Recovery key text field hint -->
     <string name="EnterBackupKey_backup_key">Kod odzyskiwania</string>
     <!-- Recovery key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Bez kodu odzyskiwania składającego się z 64 znaków nie odzyskasz kopii zapasowej. Jeśli nie pamiętasz kodu odzyskiwania, nie będziemy w stanie przywrócić kopii zapasowej Twojego konta Signal.</string>
+    <string name="EnterBackupKey_no_key_paragraph_1">Bez kodu odzyskiwania składającego się z 64 znaków nie odzyskasz kopii zapasowej. Jeśli nie masz swojego kodu, nie będziemy w stanie przywrócić kopii zapasowej Twojego konta Signal.</string>
     <!-- Recovery key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Jeśli masz dostęp do swojego starego urządzenia, kod odzyskiwania znajdziesz w sekcji Ustawienia &gt; Kopie zapasowe. Następnie wybierz opcję Wyświetl kod odzyskiwania.</string>
+    <string name="EnterBackupKey_no_key_paragraph_2">Jeśli masz dostęp do swojego starego urządzenia, kod odzyskiwania znajdziesz w sekcji Ustawienia &gt; Kopie zapasowe. Następnie wybierz opcję „Wyświetl kod odzyskiwania”.</string>
     <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Dowiedz się więcej</string>
     <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
@@ -8972,7 +8972,7 @@
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_title">Niepoprawny kod odzyskiwania</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Upewnij się, że rejestrujesz się przy użyciu tego samego numeru telefonu co wcześniej oraz kodu odzyskiwania złożonego z 64 znaków, otrzymanego podczas włączania usługi bezpiecznych kopii zapasowych Signal. Bez kodu nie odzyskasz swojej kopii zapasowej.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Upewnij się, że używasz tego samego numeru telefonu co wcześniej oraz kodu odzyskiwania złożonego z 64 znaków, otrzymanego podczas włączania usługi bezpiecznych kopii zapasowych Signal. Bez kodu nie odzyskasz swojej kopii zapasowej.</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Spróbuj ponownie</string>
     <!-- Dialog negative button text to get help with recovery key -->
@@ -9052,9 +9052,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">Aby kontynuować przenoszenie konta, użyj drugiego urządzenia.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Finish on your other device</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">Dokończ na drugim urządzeniu</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages are ready to restore on your other device. Signal is now inactive on this device.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Możesz teraz odtworzyć swoje konto Signal oraz wiadomości na drugim urządzeniu. Na tym urządzeniu Signal jest już nieaktywny.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">Przenoszenie zakończone</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
@@ -9065,7 +9065,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">Brak kopii zapasowej do przywrócenia</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Ponieważ przechodzisz z iPhone\'a na urządzenie z Androidem, jedynym sposobem na przeniesienie wiadomości i multimediów jest włączenie usługi bezpiecznych kopii zapasowych Signal na poprzednim urządzeniu.</string>
+    <string name="NoBackupToRestore_subtitle">Ponieważ przechodzisz z iPhone\'a na urządzenie z Androidem, jedynym sposobem na to, aby przenieść wiadomości i multimedia, jest włączenie usługi bezpiecznych kopii zapasowych Signal na poprzednim urządzeniu.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Otwórz Signal na swoim poprzednim urządzeniu</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
