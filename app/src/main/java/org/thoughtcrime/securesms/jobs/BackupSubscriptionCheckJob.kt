@@ -182,8 +182,14 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
             )
             SignalStore.backup.subscriptionStateMismatchDetected = false
             return Result.success()
+          } else if (hasActivePurchase && !hasActiveSignalSubscription && SignalStore.backup.backupTier == MessageBackupTier.FREE) {
+            Log.i(TAG, "Mismatched state but user has no Signal Service subscription and is on the free tier. Clearing flag.", true)
+
+            SignalStore.backup.subscriptionStateMismatchDetected = false
+            return Result.success()
           } else {
             Log.w(TAG, "State mismatch: (hasActivePaidBackupTier: $hasActivePaidBackupTier, hasActiveSignalSubscription: $hasActiveSignalSubscription, hasActivePurchase: $hasActivePurchase). Setting mismatch value and exiting.", true)
+
             SignalStore.backup.subscriptionStateMismatchDetected = true
             return Result.success()
           }

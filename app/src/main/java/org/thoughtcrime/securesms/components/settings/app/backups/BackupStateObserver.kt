@@ -300,6 +300,11 @@ class BackupStateObserver(
           SignalStore.backup.subscriptionStateMismatchDetected = false
         }
 
+        SignalStore.backup.backupTier == MessageBackupTier.FREE -> {
+          Log.i(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] User is on the free tier, has no signal subscription, and has a google play subscription. Clearing mismatch.")
+          SignalStore.backup.subscriptionStateMismatchDetected = false
+        }
+
         else -> {
           Log.w(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] Hit unexpected subscription mismatch state: signal:false, google:true")
           return BackupState.NotFound
