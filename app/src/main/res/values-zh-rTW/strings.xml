@@ -841,8 +841,10 @@
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__you_are_all_set">一切準備就緒。立即開始你的備份。</string>
-    <!-- Bottom sheet message -->
+    <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">視備份的大小而定，這可能需要一段較長的時間。備份期間，你可以如常使用手機。</string>
+    <!-- Bottom sheet free message -->
+    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">無法還原媒體</string>
@@ -7959,6 +7961,8 @@
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/月 · %2$s 續訂</string>
+    <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
+    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">上次備份 %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8007,6 +8011,12 @@
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">若要檢視你的金鑰，請確認是你本人</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">關閉並刪除備份</string>
+    <!-- Dialog title for explainer text to on how backup size works for free tier -->
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <!-- Dialog message for explainer text to on how backup size works for free tier -->
+    <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
+        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+    </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">已刪除並關閉備份。</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
@@ -8147,6 +8157,8 @@
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">發生網路錯誤。請檢查你的網路連線，然後重試。</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">正在上載：%2$s 中的 %1$s (%3$d%%)</string>
+    <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">細節</string>
     <!-- Text displayed when there was an error deleting backup -->

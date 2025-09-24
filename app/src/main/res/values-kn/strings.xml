@@ -861,8 +861,10 @@
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__you_are_all_set">ನೀವು ಸಿದ್ಧರಾಗಿದ್ದೀರಿ. ನಿಮ್ಮ ಬ್ಯಾಕಪ್ ಆರಂಭಿಸಿ.</string>
-    <!-- Bottom sheet message -->
+    <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">ನಿಮ್ಮ ಬ್ಯಾಕಪ್‌ನ ಗಾತ್ರವನ್ನು ಆಧರಿಸಿ, ಇದು ಬಹಳ ಸಮಯವನ್ನು ತೆಗೆದುಕೊಳ್ಳಬಹುದು. ಬ್ಯಾಕಪ್ ನಡೆಯುವಾಗ ನೀವು ಸಾಮಾನ್ಯವಾಗಿ ಬಳಸುವಂತೆಯೇ ನಿಮ್ಮ ಫೋನ್ ಅನ್ನು ನೀವು ಬಳಸಬಹುದು.</string>
+    <!-- Bottom sheet free message -->
+    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">ಮೀಡಿಯಾವನ್ನು ರಿಸ್ಟೋರ್ ಮಾಡಲು ಸಾಧ್ಯವಿಲ್ಲ</string>
@@ -8136,6 +8138,8 @@
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/ತಿಂಗಳು, ನವೀಕರಣಗೊಳ್ಳುತ್ತದೆ %2$s</string>
+    <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
+    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">ಕೊನೆಯ ಬ್ಯಾಕಪ್%1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8184,6 +8188,13 @@
     <string name="RemoteBackupsSettingsFragment__to_view_your_key">ನಿಮ್ಮ ಕೀಯನ್ನು ವೀಕ್ಷಿಸಲು, ಅದು ನೀವೇ ಎಂದು ದೃಢೀಕರಿಸಿ</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ಬ್ಯಾಕಪ್ ಆಫ್ ಮಾಡಿ ಮತ್ತು ಅಳಿಸಿ</string>
+    <!-- Dialog title for explainer text to on how backup size works for free tier -->
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <!-- Dialog message for explainer text to on how backup size works for free tier -->
+    <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
+        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+    </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">ಬ್ಯಾಕಪ್ ಅನ್ನು ಅಳಿಸಲಾಗಿದೆ ಮತ್ತು ಆಫ್ ಮಾಡಲಾಗಿದೆ.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
@@ -8327,6 +8338,8 @@
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">ನೆಟ್ ವರ್ಕ್ ದೋಷ ಕಾಣಿಸಿದೆ. ನಿಮ್ಮ ಇಂಟರ್ ನೆಟ್ ಸಂಪರ್ಕವನ್ನು ಪರಿಶೀಲಿಸಿ ಮತ್ತು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">ಅಪ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ: %2$s ರಲ್ಲಿ %1$s (%3$d%%)</string>
+    <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">ವಿವರಗಳು</string>
     <!-- Text displayed when there was an error deleting backup -->
