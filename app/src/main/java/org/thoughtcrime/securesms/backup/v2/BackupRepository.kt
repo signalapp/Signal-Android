@@ -1940,6 +1940,7 @@ object BackupRepository {
     } else if (isPreRestoreDuringRegistration()) {
       Log.w(TAG, "Requesting/using auth credentials in pre-restore state", Throwable())
       getArchiveServiceAccessPair()
+        .runOnApplicationError(clearAuthCredentials)
     } else {
       val messageBackupKey = SignalStore.backup.messageBackupKey
       val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
