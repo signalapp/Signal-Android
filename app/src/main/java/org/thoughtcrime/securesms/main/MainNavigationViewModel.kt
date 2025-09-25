@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.main
 
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
+import androidx.compose.material3.adaptive.navigation.BackNavigationBehavior
 import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -72,6 +73,15 @@ class MainNavigationViewModel(
   var earlyNavigationDetailLocationRequested: MainNavigationDetailLocation? = null
     private set
 
+  private var earlyFocusedPaneRequested: ThreePaneScaffoldRole? = null
+
+  /**
+   * Which pane we display to the user at a given time should be driven solely by user intention. There are cases
+   * where the user can change configurations (such as opening a foldable) and we will restore state and errantly
+   * take them back into a PRIMARY pane. This boolean helps avoid these cases.
+   */
+  private var lockPaneToSecondary = false
+
   init {
     performStoreUpdate(MainNavigationRepository.getNumberOfUnreadMessages()) { unreadChats, state ->
       state.copy(chatsCount = unreadChats.toInt())
@@ -97,7 +107,7 @@ class MainNavigationViewModel(
   fun wrapNavigator(composeScope: CoroutineScope, threePaneScaffoldNavigator: ThreePaneScaffoldNavigator<Any>, goToLegacyDetailLocation: (MainNavigationDetailLocation) -> Unit): ThreePaneScaffoldNavigator<Any> {
     this.goToLegacyDetailLocation = goToLegacyDetailLocation
     this.navigatorScope = composeScope
-    this.navigator = threePaneScaffoldNavigator
+    this.navigator = Nav(threePaneScaffoldNavigator)
 
     earlyNavigationListLocationRequested?.let {
       goTo(it)
@@ -105,22 +115,50 @@ class MainNavigationViewModel(
 
     earlyNavigationListLocationRequested = null
 
+    earlyFocusedPaneRequested?.let {
+      setFocusedPane(it)
+    }
+
+    earlyFocusedPaneRequested = null
+
     earlyNavigationDetailLocationRequested?.let {
       goTo(it)
     }
 
-    return threePaneScaffoldNavigator
+    return this.navigator!!
   }
 
   fun clearEarlyDetailLocation() {
     earlyNavigationDetailLocationRequested = null
   }
 
+  fun setFocusedPane(role: ThreePaneScaffoldRole) {
+    val roleToGoTo = if (lockPaneToSecondary) {
+      ThreePaneScaffoldRole.Secondary
+    } else {
+      role
+    }
+
+    if (navigator == null) {
+      earlyFocusedPaneRequested = roleToGoTo
+      return
+    }
+
+    navigatorScope?.launch {
+      navigator?.navigateTo(roleToGoTo)
+    }
+  }
+
   /**
    * Navigates to the requested location. If the navigator is not present, this functionally sets our
    * "default" location to that specified, and we will route the user there when the navigator is set.
+   *
+   * This does not update what panel is currently focused, so that we can perform actions (such as first
+   * render) *before* swapping panes. This helps to prevent flashing / duplicate loads.
    */
   override fun goTo(location: MainNavigationDetailLocation) {
+    lockPaneToSecondary = false
+
     if (!WindowSizeClass.isLargeScreenSupportEnabled()) {
       goToLegacyDetailLocation?.invoke(location)
       return
@@ -134,66 +172,18 @@ class MainNavigationViewModel(
     viewModelScope.launch {
       internalDetailLocation.emit(location)
     }
-
-    val focusedPane = when (location) {
-      is MainNavigationDetailLocation.Empty -> {
-        ThreePaneScaffoldRole.Secondary
-      }
-
-      is MainNavigationDetailLocation.Chats.Conversation -> {
-        ThreePaneScaffoldRole.Primary
-      }
-
-      is MainNavigationDetailLocation.Calls -> {
-        ThreePaneScaffoldRole.Primary
-      }
-    }
-
-    navigatorScope?.launch {
-      val currentPane: ThreePaneScaffoldRole = navigator?.currentDestination?.pane ?: return@launch
-
-      if (currentPane == focusedPane) {
-        return@launch
-      }
-
-      if (currentPane == ThreePaneScaffoldRole.Secondary) {
-        navigator?.navigateTo(focusedPane)
-      } else {
-        navigator?.navigateBack()
-        if (navigator?.currentDestination == null) {
-          navigator?.navigateTo(ThreePaneScaffoldRole.Secondary)
-        }
-      }
-    }
   }
 
   override fun goTo(location: MainNavigationListLocation) {
+    lockPaneToSecondary = true
+
     if (navigator == null) {
       earlyNavigationListLocationRequested = location
       return
     }
 
-    when (location) {
-      MainNavigationListLocation.CHATS -> Unit
-      MainNavigationListLocation.ARCHIVE -> Unit
-      MainNavigationListLocation.CALLS -> Unit
-      MainNavigationListLocation.STORIES -> Unit
-    }
-
     internalMainNavigationState.update {
       it.copy(currentListLocation = location)
-    }
-
-    navigatorScope?.launch {
-      val currentPane = navigator?.currentDestination?.pane ?: return@launch
-      if (currentPane == ThreePaneScaffoldRole.Secondary) {
-        return@launch
-      } else {
-        navigator?.navigateBack()
-        if (navigator?.currentDestination == null) {
-          navigator?.navigateTo(ThreePaneScaffoldRole.Secondary)
-        }
-      }
     }
   }
 
@@ -257,6 +247,7 @@ class MainNavigationViewModel(
       if (currentTab == destination) {
         internalTabClickEvents.emit(destination)
       } else {
+        setFocusedPane(ThreePaneScaffoldRole.Secondary)
         goTo(destination)
       }
     }
@@ -272,5 +263,19 @@ class MainNavigationViewModel(
 
   enum class NavigationEvent {
     STORY_CAMERA_FIRST
+  }
+
+  /**
+   * Ensures that when the user navigates back from the PRIMARY to SECONDARY pane, we lock our pane until they choose another primary
+   * piece of content via [goTo].
+   */
+  private inner class Nav<T>(private val delegate: ThreePaneScaffoldNavigator<T>) : ThreePaneScaffoldNavigator<T> by delegate {
+    override suspend fun seekBack(backNavigationBehavior: BackNavigationBehavior, fraction: Float) {
+      delegate.seekBack(backNavigationBehavior, fraction)
+
+      if (fraction == 0f) {
+        lockPaneToSecondary = true
+      }
+    }
   }
 }

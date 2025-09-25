@@ -13,8 +13,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldRole
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.State
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -24,6 +30,7 @@ import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.createGraph
 import org.thoughtcrime.securesms.R
@@ -44,8 +51,64 @@ fun EmptyDetailScreen() {
   }
 }
 
+/**
+ * Emits [MainNavigationDetailLocation] whenever a change occurs, and persists the latest value.
+ *
+ * In order to ensure proper behaviour when moving from the inner to outer screen, and to ensure we don't accidentally end up
+ * back on an unexpected Empty screen, we utilize a LaunchedEffect that subscribes to our detailLocation Flow instead of directly
+ * utilizing collectAsStateWithLifecycle. Then the latest value is remembered as a saveable using the default [MainNavigationDetailLocation.Saver]
+ */
 @Composable
-fun rememberDetailNavHostController(builder: NavGraphBuilder.(NavHostController) -> Unit): NavHostController {
+fun rememberMainNavigationDetailLocation(
+  mainNavigationViewModel: MainNavigationViewModel
+): State<MainNavigationDetailLocation> {
+  val state = rememberSaveable(
+    stateSaver = MainNavigationDetailLocation.Saver()
+  ) {
+    mutableStateOf(mainNavigationViewModel.earlyNavigationDetailLocationRequested ?: MainNavigationDetailLocation.Empty)
+  }
+
+  LaunchedEffect(Unit) {
+    mainNavigationViewModel.detailLocation.collect {
+      if (state.value == it) {
+        mainNavigationViewModel.setFocusedPane(
+          if (it == MainNavigationDetailLocation.Empty) {
+            ThreePaneScaffoldRole.Secondary
+          } else {
+            ThreePaneScaffoldRole.Primary
+          }
+        )
+      }
+
+      state.value = it
+    }
+  }
+
+  return state
+}
+
+@Composable
+fun rememberFocusRequester(
+  mainNavigationViewModel: MainNavigationViewModel,
+  currentListLocation: MainNavigationListLocation,
+  isTargetListLocation: (MainNavigationListLocation) -> Boolean
+): (ThreePaneScaffoldRole) -> Unit {
+  return remember(currentListLocation, isTargetListLocation, mainNavigationViewModel) {
+    if (isTargetListLocation(currentListLocation)) {
+      {
+        mainNavigationViewModel.setFocusedPane(it)
+      }
+    } else {
+      {}
+    }
+  }
+}
+
+@Composable
+fun rememberDetailNavHostController(
+  onRequestFocus: (ThreePaneScaffoldRole) -> Unit,
+  builder: NavGraphBuilder.(NavHostController) -> Unit
+): NavHostController {
   val navHostController = rememberNavController()
   val viewModelStore = LocalViewModelStoreOwner.current!!.viewModelStore
 
@@ -57,8 +120,16 @@ fun rememberDetailNavHostController(builder: NavGraphBuilder.(NavHostController)
 
     navHostController.setViewModelStore(viewModelStore)
     navHostController.setGraph(graph, null)
-
     graph
+  }
+
+  val entry by navHostController.currentBackStackEntryAsState()
+  LaunchedEffect(entry) {
+    if (entry != null && entry?.destination?.route != MainNavigationDetailLocation.Empty::class.qualifiedName) {
+      onRequestFocus(ThreePaneScaffoldRole.Primary)
+    } else {
+      onRequestFocus(ThreePaneScaffoldRole.Secondary)
+    }
   }
 
   return navHostController

@@ -126,6 +126,8 @@ import org.thoughtcrime.securesms.main.callNavGraphBuilder
 import org.thoughtcrime.securesms.main.chatNavGraphBuilder
 import org.thoughtcrime.securesms.main.navigateToDetailLocation
 import org.thoughtcrime.securesms.main.rememberDetailNavHostController
+import org.thoughtcrime.securesms.main.rememberFocusRequester
+import org.thoughtcrime.securesms.main.rememberMainNavigationDetailLocation
 import org.thoughtcrime.securesms.main.storiesNavGraphBuilder
 import org.thoughtcrime.securesms.mediasend.camerax.CameraXUtil
 import org.thoughtcrime.securesms.mediasend.v2.MediaSelectionActivity
@@ -320,6 +322,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       val isBackHandlerEnabled = mainToolbarState.destination != MainNavigationListLocation.CHATS
 
       BackHandler(enabled = isBackHandlerEnabled) {
+        mainNavigationViewModel.setFocusedPane(ThreePaneScaffoldRole.Secondary)
         mainNavigationViewModel.goTo(MainNavigationListLocation.CHATS)
       }
 
@@ -353,17 +356,33 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         )
 
         val mutableInteractionSource = remember { MutableInteractionSource() }
-        val mainNavigationDetailLocation by mainNavigationViewModel.detailLocation.collectAsStateWithLifecycle(mainNavigationViewModel.earlyNavigationDetailLocationRequested ?: MainNavigationDetailLocation.Empty)
+        val mainNavigationDetailLocation by rememberMainNavigationDetailLocation(mainNavigationViewModel)
 
-        val chatsNavHostController = rememberDetailNavHostController {
+        val chatsNavHostController = rememberDetailNavHostController(
+          onRequestFocus = rememberFocusRequester(
+            mainNavigationViewModel = mainNavigationViewModel,
+            currentListLocation = mainNavigationState.currentListLocation,
+            isTargetListLocation = { it in listOf(MainNavigationListLocation.CHATS, MainNavigationListLocation.ARCHIVE) }
+          )
+        ) {
           chatNavGraphBuilder()
         }
 
-        val callsNavHostController = rememberDetailNavHostController {
+        val callsNavHostController = rememberDetailNavHostController(
+          onRequestFocus = rememberFocusRequester(
+            mainNavigationViewModel = mainNavigationViewModel,
+            currentListLocation = mainNavigationState.currentListLocation
+          ) { it == MainNavigationListLocation.CALLS }
+        ) {
           callNavGraphBuilder(it)
         }
 
-        val storiesNavHostController = rememberDetailNavHostController {
+        val storiesNavHostController = rememberDetailNavHostController(
+          onRequestFocus = rememberFocusRequester(
+            mainNavigationViewModel = mainNavigationViewModel,
+            currentListLocation = mainNavigationState.currentListLocation
+          ) { it == MainNavigationListLocation.STORIES }
+        ) {
           storiesNavGraphBuilder()
         }
 
@@ -377,6 +396,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
                 MainNavigationListLocation.STORIES -> storiesNavHostController
               }.navigateToDetailLocation(mainNavigationDetailLocation)
             }
+
             is MainNavigationDetailLocation.Chats -> chatsNavHostController.navigateToDetailLocation(mainNavigationDetailLocation)
             is MainNavigationDetailLocation.Calls -> callsNavHostController.navigateToDetailLocation(mainNavigationDetailLocation)
             is MainNavigationDetailLocation.Stories -> storiesNavHostController.navigateToDetailLocation(mainNavigationDetailLocation)
