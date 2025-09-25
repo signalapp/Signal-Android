@@ -227,6 +227,7 @@ class SvrValues internal constructor(store: KeyValueStore) : SignalStoreValues(s
       .putBoolean(OPTED_OUT, true)
       .remove(LOCK_LOCAL_PIN_HASH)
       .remove(PIN)
+      .remove(REGISTRATION_LOCK_ENABLED)
       .putLong(LAST_CREATE_FAILED_TIMESTAMP, -1)
       .commit()
   }

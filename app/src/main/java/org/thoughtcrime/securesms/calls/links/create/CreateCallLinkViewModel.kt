@@ -31,12 +31,12 @@ class CreateCallLinkViewModel(
   private val repository: CreateCallLinkRepository = CreateCallLinkRepository(),
   private val mutationRepository: UpdateCallLinkRepository = UpdateCallLinkRepository()
 ) : ViewModel() {
-  private val credentials = CallLinkCredentials.generate()
+  private val initialCredentials = CallLinkCredentials.generate()
   private val _callLink: MutableState<CallLinkTable.CallLink> = mutableStateOf(
     CallLinkTable.CallLink(
       recipientId = RecipientId.UNKNOWN,
-      roomId = credentials.roomId,
-      credentials = credentials,
+      roomId = initialCredentials.roomId,
+      credentials = initialCredentials,
       state = SignalCallLinkState(
         name = "",
         restrictions = Restrictions.ADMIN_APPROVAL,
@@ -48,7 +48,12 @@ class CreateCallLinkViewModel(
   )
 
   val callLink: State<CallLinkTable.CallLink> = _callLink
-  val linkKeyBytes: ByteArray = credentials.linkKeyBytes
+
+  val linkKeyBytes: ByteArray
+    get() = callLink.value.credentials!!.linkKeyBytes
+
+  val epochBytes: ByteArray?
+    get() = callLink.value.credentials!!.epochBytes
 
   private val internalShowAlreadyInACall = MutableStateFlow(false)
   val showAlreadyInACall: StateFlow<Boolean> = internalShowAlreadyInACall
@@ -59,7 +64,7 @@ class CreateCallLinkViewModel(
   private val disposables = CompositeDisposable()
 
   init {
-    disposables += CallLinks.watchCallLink(credentials.roomId)
+    disposables += CallLinks.watchCallLink(initialCredentials.roomId)
       .subscribeBy {
         _callLink.value = it
       }
@@ -75,7 +80,7 @@ class CreateCallLinkViewModel(
   }
 
   fun commitCallLink(): Single<EnsureCallLinkCreatedResult> {
-    return repository.ensureCallLinkCreated(credentials)
+    return repository.ensureCallLinkCreated(initialCredentials)
       .observeOn(AndroidSchedulers.mainThread())
   }
 
@@ -84,7 +89,7 @@ class CreateCallLinkViewModel(
       .flatMap {
         when (it) {
           is EnsureCallLinkCreatedResult.Success -> mutationRepository.setCallRestrictions(
-            credentials,
+            callLink.value.credentials!!,
             if (approveAllMembers) Restrictions.ADMIN_APPROVAL else Restrictions.NONE
           )
           is EnsureCallLinkCreatedResult.Failure -> Single.just(UpdateCallLinkResult.Failure(it.failure.status))
@@ -104,7 +109,7 @@ class CreateCallLinkViewModel(
       .flatMap {
         when (it) {
           is EnsureCallLinkCreatedResult.Success -> mutationRepository.setCallName(
-            credentials,
+            callLink.value.credentials!!,
             callName
           )
           is EnsureCallLinkCreatedResult.Failure -> Single.just(UpdateCallLinkResult.Failure(it.failure.status))

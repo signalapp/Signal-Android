@@ -23,7 +23,6 @@ import org.thoughtcrime.securesms.mms.PartAuthority
 import org.thoughtcrime.securesms.sharing.MultiShareArgs
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.util.hasSharedContact
-import java.util.Optional
 import java.util.function.Consumer
 
 /**
@@ -188,19 +187,19 @@ data class MultiselectForwardFragmentArgs @JvmOverloads constructor(
       val uri = this.uri ?: return null
 
       return Media(
-        uri,
-        contentType,
-        System.currentTimeMillis(),
-        width,
-        height,
-        size,
-        0,
-        borderless,
-        videoGif,
-        Optional.empty(),
-        Optional.ofNullable(caption),
-        Optional.ofNullable(transformProperties),
-        Optional.ofNullable(fileName)
+        uri = uri,
+        contentType = contentType,
+        date = System.currentTimeMillis(),
+        width = width,
+        height = height,
+        size = size,
+        duration = 0,
+        isBorderless = borderless,
+        isVideoGif = videoGif,
+        bucketId = null,
+        caption = caption,
+        transformProperties = transformProperties,
+        fileName = fileName
       )
     }
   }

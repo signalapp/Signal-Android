@@ -265,7 +265,7 @@ fun SupportSQLiteStatement.bindValue(index: Int, value: Any?) {
     is Boolean -> this.bindLong(index, value.toInt().toLong())
     is ByteArray -> this.bindBlob(index, value)
     is Number -> {
-      if (value.toLong() == value) {
+      if (value.toLong() == value || value.toInt() == value || value.toShort() == value || value.toByte() == value) {
         this.bindLong(index, value.toLong())
       } else {
         this.bindDouble(index, value.toDouble())
@@ -338,6 +338,10 @@ class SelectBuilderPart3(
     return SelectBuilderPart4b(db, columns, tableName, where, whereArgs, "$offset,$limit")
   }
 
+  fun groupBy(groupBy: String): SelectBuilderPart4c {
+    return SelectBuilderPart4c(db, columns, tableName, where, whereArgs, groupBy)
+  }
+
   fun run(): Cursor {
     return db.query(
       SupportSQLiteQueryBuilder
@@ -400,6 +404,27 @@ class SelectBuilderPart4b(
         .columns(columns)
         .selection(where, whereArgs)
         .limit(limit)
+        .create()
+    )
+  }
+}
+
+class SelectBuilderPart4c(
+  private val db: SupportSQLiteDatabase,
+  private val columns: Array<String>,
+  private val tableName: String,
+  private val where: String,
+  private val whereArgs: Array<String>,
+  private val groupBy: String
+) {
+
+  fun run(): Cursor {
+    return db.query(
+      SupportSQLiteQueryBuilder
+        .builder(tableName)
+        .columns(columns)
+        .selection(where, whereArgs)
+        .groupBy(groupBy)
         .create()
     )
   }

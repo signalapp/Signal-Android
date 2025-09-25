@@ -25,15 +25,23 @@ class BackupKeyVisualTransformation(private val chunkSize: Int) : VisualTransfor
       }
     }
 
+    val transformed = output.trimEnd()
+
     return TransformedText(
-      text = AnnotatedString(output),
-      offsetMapping = BackupKeyVisualTransformation(chunkSize)
+      text = AnnotatedString(transformed),
+      offsetMapping = BackupKeyVisualTransformation(chunkSize, text.length)
     )
   }
 
-  private class BackupKeyVisualTransformation(private val chunkSize: Int) : OffsetMapping {
+  private class BackupKeyVisualTransformation(private val chunkSize: Int, private val inputSize: Int) : OffsetMapping {
     override fun originalToTransformed(offset: Int): Int {
-      return offset + (offset / chunkSize)
+      val transformed = offset + (offset / chunkSize)
+
+      return when {
+        inputSize == 0 -> 0
+        offset == inputSize && offset >= chunkSize && offset % chunkSize == 0 -> transformed - 1
+        else -> transformed
+      }
     }
 
     override fun transformedToOriginal(offset: Int): Int {

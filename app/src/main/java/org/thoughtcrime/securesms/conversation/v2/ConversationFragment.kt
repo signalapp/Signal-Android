@@ -92,6 +92,7 @@ import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import org.signal.core.util.ByteLimitInputFilter
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.Result
 import org.signal.core.util.ThreadUtil
@@ -103,6 +104,7 @@ import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
 import org.signal.core.util.setActionItemTint
 import org.signal.donations.InAppPaymentType
+import org.signal.ringrtc.CallLinkEpoch
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.BlockUnblockDialog
 import org.thoughtcrime.securesms.GroupMembersDialog
@@ -319,6 +321,7 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil.getEditMessageThresholdHours
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil.isValidEditMessageSend
+import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.PlayStoreUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
@@ -406,7 +409,7 @@ class ConversationFragment :
   }
 
   private val disposables = LifecycleDisposable()
-  private val binding by ViewBinderDelegate(V2ConversationFragmentBinding::bind) { _binding ->
+  private val binding by ViewBinderDelegate(bindingFactory = V2ConversationFragmentBinding::bind, onBindingWillBeDestroyed = { _binding ->
     _binding.conversationInputPanel.embeddedTextEditor.apply {
       setOnEditorActionListener(null)
       setCursorPositionChangedListener(null)
@@ -429,7 +432,7 @@ class ConversationFragment :
     _binding.conversationItemRecycler.adapter = null
 
     textDraftSaveDebouncer.clear()
-  }
+  })
 
   private val viewModel: ConversationViewModel by viewModel {
     ConversationViewModel(
@@ -593,6 +596,7 @@ class ConversationFragment :
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     binding.toolbar.isBackInvokedCallbackEnabled = false
 
+    binding.root.setApplyRootInsets(!resources.getWindowSizeClass().isSplitPane())
     binding.root.setUseWindowTypes(!resources.getWindowSizeClass().isSplitPane())
 
     disposables.bindTo(viewLifecycleOwner)
@@ -1022,6 +1026,7 @@ class ConversationFragment :
       setStylingChangedListener(composeTextEventsListener)
       setOnClickListener(composeTextEventsListener)
       onFocusChangeListener = composeTextEventsListener
+      filters += ByteLimitInputFilter(MessageUtil.MAX_TOTAL_BODY_SIZE_BYTES)
     }
 
     sendButton.apply {
@@ -1334,19 +1339,19 @@ class ConversationFragment :
     } else {
       val mimeType = MediaUtil.getMimeType(requireContext(), uri) ?: mediaType.toFallbackMimeType()
       val media = Media(
-        uri,
-        mimeType,
-        0,
-        width,
-        height,
-        0,
-        0,
-        borderless,
-        videoGif,
-        Optional.empty(),
-        Optional.empty(),
-        Optional.of(AttachmentTable.TransformProperties.forSentMediaQuality(SignalStore.settings.sentMediaQuality.code)),
-        Optional.empty()
+        uri = uri,
+        contentType = mimeType,
+        date = 0,
+        width = width,
+        height = height,
+        size = 0,
+        duration = 0,
+        isBorderless = borderless,
+        isVideoGif = videoGif,
+        bucketId = null,
+        caption = null,
+        transformProperties = AttachmentTable.TransformProperties.forSentMediaQuality(SignalStore.settings.sentMediaQuality.code),
+        fileName = null
       )
       conversationActivityResultContracts.launchMediaEditor(listOf(media), recipientId, composeText.textTrimmed)
     }
@@ -1654,11 +1659,6 @@ class ConversationFragment :
     if (!inputPanel.inEditMessageMode()) {
       Log.w(TAG, "Not in edit message mode, unknown state, forcing re-exit")
       inputPanel.exitEditMessageMode()
-      return
-    }
-
-    if (SignalStore.uiHints.hasNotSeenEditMessageBetaAlert()) {
-      Dialogs.showEditMessageBetaDialog(requireContext()) { handleSendEditMessage() }
       return
     }
 
@@ -1970,13 +1970,6 @@ class ConversationFragment :
       return
     }
 
-    if (SignalStore.uiHints.hasNotSeenTextFormattingAlert() && bodyRanges != null && bodyRanges.ranges.isNotEmpty()) {
-      Dialogs.showFormattedTextDialog(requireContext()) {
-        sendMessage(body, mentions, bodyRanges, messageToEdit, quote, scheduledDate, slideDeck, contacts, clearCompose, linkPreviews, preUploadResults, bypassPreSendSafetyNumberCheck, isViewOnce, afterSendComplete)
-      }
-      return
-    }
-
     if (inputPanel.isRecordingInLockedMode) {
       inputPanel.releaseRecordingLockAndSend()
       return
@@ -2028,6 +2021,7 @@ class ConversationFragment :
     disposables += send
       .doOnSubscribe {
         if (clearCompose) {
+          AppDependencies.typingStatusSender.onTypingStopped(args.threadId)
           composeTextEventsListener?.typingStatusEnabled = false
           composeText.setText("")
           composeTextEventsListener?.typingStatusEnabled = true
@@ -3044,6 +3038,10 @@ class ConversationFragment :
       UnverifiedProfileNameBottomSheet.show(parentFragmentManager, forGroup)
     }
 
+    override fun onUpdateSignalClicked() {
+      PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
+    }
+
     override fun onJoinGroupCallClicked() {
       val activity = activity ?: return
       val recipient = viewModel.recipientSnapshot ?: return
@@ -3374,8 +3372,8 @@ class ConversationFragment :
       GroupDescriptionDialog.show(childFragmentManager, groupName, description, shouldLinkifyWebLinks)
     }
 
-    override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) {
-      CommunicationActions.startVideoCall(this@ConversationFragment, callLinkRootKey) {
+    override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey, callLinkEpoch: CallLinkEpoch?) {
+      CommunicationActions.startVideoCall(this@ConversationFragment, callLinkRootKey, callLinkEpoch) {
         YouAreAlreadyInACallSnackbar.show(requireView())
       }
     }
@@ -3800,11 +3798,11 @@ class ConversationFragment :
 
       val slides: List<Slide> = result.nonUploadedMedia.mapNotNull {
         when {
-          MediaUtil.isVideoType(it.contentType) -> VideoSlide(requireContext(), it.uri, it.size, it.isVideoGif, it.width, it.height, it.caption.orNull(), it.transformProperties.orNull())
-          MediaUtil.isGif(it.contentType) -> GifSlide(requireContext(), it.uri, it.size, it.width, it.height, it.isBorderless, it.caption.orNull())
-          MediaUtil.isImageType(it.contentType) -> ImageSlide(requireContext(), it.uri, it.contentType, it.size, it.width, it.height, it.isBorderless, it.caption.orNull(), null, it.transformProperties.orNull())
+          MediaUtil.isVideoType(it.contentType) -> VideoSlide(requireContext(), it.uri, it.size, it.isVideoGif, it.width, it.height, it.caption, it.transformProperties)
+          MediaUtil.isGif(it.contentType) -> GifSlide(requireContext(), it.uri, it.size, it.width, it.height, it.isBorderless, it.caption)
+          MediaUtil.isImageType(it.contentType) -> ImageSlide(requireContext(), it.uri, it.contentType, it.size, it.width, it.height, it.isBorderless, it.caption, null, it.transformProperties)
           MediaUtil.isDocumentType(it.contentType) -> {
-            DocumentSlide(requireContext(), it.uri, it.contentType, it.size, it.fileName.orNull())
+            DocumentSlide(requireContext(), it.uri, it.contentType!!, it.size, it.fileName)
           }
 
           else -> {

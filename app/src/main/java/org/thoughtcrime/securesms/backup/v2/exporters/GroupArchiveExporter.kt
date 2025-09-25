@@ -29,7 +29,6 @@ import org.thoughtcrime.securesms.conversation.colors.AvatarColor
 import org.thoughtcrime.securesms.database.GroupTable
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.RecipientTableCursorUtil
-import org.thoughtcrime.securesms.groups.v2.processing.GroupsV2StateProcessor
 import org.whispersystems.signalservice.api.push.ServiceId
 import java.io.Closeable
 
@@ -82,10 +81,6 @@ private fun GroupTable.ShowAsStoryState.toRemote(): Group.StorySendMode {
 }
 
 private fun DecryptedGroup.toRemote(isActive: Boolean, selfAci: ServiceId.ACI): Group.GroupSnapshot? {
-  if (this.revision == GroupsV2StateProcessor.RESTORE_PLACEHOLDER_REVISION || this.revision == GroupsV2StateProcessor.PLACEHOLDER_REVISION) {
-    return null
-  }
-
   val selfAciBytes = selfAci.toByteString()
   val memberFilter = { m: DecryptedMember -> isActive || m.aciBytes != selfAciBytes }
 

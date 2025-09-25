@@ -17,7 +17,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.core.util.Base64;
 
@@ -59,7 +58,7 @@ public class PreKeyEntity {
     @Override
     public ECPublicKey deserialize(JsonParser p, DeserializationContext ctxt) throws IOException {
       try {
-        return Curve.decodePoint(Base64.decode(p.getValueAsString()), 0);
+        return new ECPublicKey(Base64.decode(p.getValueAsString()));
       } catch (InvalidKeyException e) {
         throw new IOException(e);
       }

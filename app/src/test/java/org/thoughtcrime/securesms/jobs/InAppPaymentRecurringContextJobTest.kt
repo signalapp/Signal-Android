@@ -10,7 +10,9 @@ import io.mockk.every
 import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.mockkStatic
+import io.mockk.unmockkAll
 import io.mockk.verify
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -20,6 +22,8 @@ import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
 import org.signal.donations.InAppPaymentType
 import org.signal.donations.PaymentSourceType
+import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toInAppPaymentDataChargeFailure
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsTestRule
@@ -35,6 +39,7 @@ import org.thoughtcrime.securesms.storage.StorageSyncHelper
 import org.thoughtcrime.securesms.testutil.MockAppDependenciesRule
 import org.thoughtcrime.securesms.testutil.MockSignalStoreRule
 import org.thoughtcrime.securesms.testutil.SystemOutLogger
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
@@ -62,6 +67,7 @@ class InAppPaymentRecurringContextJobTest {
     Log.initialize(SystemOutLogger())
 
     every { mockSignalStore.account.isRegistered } returns true
+    every { mockSignalStore.account.isLinkedDevice } returns false
     every { mockSignalStore.inAppPayments.setLastEndOfPeriod(any()) } returns Unit
 
     recipientTable = mockk(relaxed = true)
@@ -90,6 +96,11 @@ class InAppPaymentRecurringContextJobTest {
       every { receiptLevel } returns 2000
       every { receiptExpirationTime } returns actualMinimumTime
     }
+  }
+
+  @After
+  fun tearDown() {
+    unmockkAll()
   }
 
   @Test
@@ -438,6 +449,10 @@ class InAppPaymentRecurringContextJobTest {
         backup = WhoAmIResponse.BackupEntitlement(201L, Long.MAX_VALUE)
       )
     }
+
+    mockkObject(BackupRepository)
+    every { BackupRepository.getBackupTier() } returns NetworkResult.Success(MessageBackupTier.PAID)
+    every { BackupRepository.resetInitializedStateAndAuthCredentials() } returns Unit
 
     val iap = insertInAppPayment(
       type = InAppPaymentType.RECURRING_BACKUP

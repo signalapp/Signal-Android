@@ -124,13 +124,8 @@ class StorageForcePushJob private constructor(parameters: Parameters) : BaseJob(
     inserts.addAll(newNotificationProfileInserts)
     allNewStorageIds.addAll(newNotificationProfileStorageIds.values)
 
-    val recordIkm: RecordIkm? = if (Recipient.self().storageServiceEncryptionV2Capability.isSupported) {
-      Log.i(TAG, "Generating and including a new recordIkm.")
-      RecordIkm.generate()
-    } else {
-      Log.i(TAG, "SSRE2 not yet supported. Not including recordIkm.")
-      null
-    }
+    Log.i(TAG, "Generating and including a new recordIkm.")
+    val recordIkm: RecordIkm = RecordIkm.generate()
 
     val manifest = SignalStorageManifest(newVersion, SignalStore.account.deviceId, recordIkm, allNewStorageIds)
     StorageSyncValidations.validateForcePush(manifest, inserts, Recipient.self().fresh())

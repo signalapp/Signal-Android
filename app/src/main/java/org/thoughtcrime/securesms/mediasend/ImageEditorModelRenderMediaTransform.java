@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.util.MediaUtil;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.util.Optional;
 
 public final class ImageEditorModelRenderMediaTransform implements MediaTransform {
 
@@ -50,7 +49,7 @@ public final class ImageEditorModelRenderMediaTransform implements MediaTransfor
                             .withMimeType(MediaUtil.IMAGE_JPEG)
                             .createForSingleSessionOnDisk(context);
 
-      return new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), 0, false, false, media.getBucketId(), media.getCaption(), Optional.empty(), Optional.empty());
+      return new Media(uri, MediaUtil.IMAGE_JPEG, media.getDate(), bitmap.getWidth(), bitmap.getHeight(), outputStream.size(), 0, false, false, media.getBucketId(), media.getCaption(), null, null);
     } catch (IOException e) {
       Log.w(TAG, "Failed to render image. Using base image.");
       return media;

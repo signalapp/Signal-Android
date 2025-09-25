@@ -10,6 +10,7 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.SqlUtil
+import org.signal.core.util.asList
 import org.signal.core.util.forEach
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
@@ -40,6 +41,7 @@ import org.thoughtcrime.securesms.backup.v2.proto.Sticker
 import org.thoughtcrime.securesms.backup.v2.proto.ViewOnceMessage
 import org.thoughtcrime.securesms.backup.v2.util.toLocalAttachment
 import org.thoughtcrime.securesms.contactshare.Contact
+import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.CallTable
 import org.thoughtcrime.securesms.database.GroupReceiptTable
 import org.thoughtcrime.securesms.database.MessageTable
@@ -63,6 +65,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.PaymentTombstone
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.payments.CryptoValueUtil
 import org.thoughtcrime.securesms.payments.Direction
@@ -73,7 +76,7 @@ import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
 import org.thoughtcrime.securesms.util.JsonUtils
-import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.MessageUtil
 import org.whispersystems.signalservice.api.payments.Money
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -128,6 +131,7 @@ class ChatItemArchiveImporter(
       MessageTable.MESSAGE_EXTRAS,
       MessageTable.ORIGINAL_MESSAGE_ID,
       MessageTable.LATEST_REVISION_ID,
+      MessageTable.REVISION_NUMBER,
       MessageTable.PARENT_STORY_ID,
       MessageTable.NOTIFIED
     )
@@ -189,14 +193,18 @@ class ChatItemArchiveImporter(
       val latestRevisionId = originalId + chatItem.revisions.size
       val sortedRevisions = chatItem.revisions.sortedBy { it.dateSent }.map { it.toMessageInsert(fromLocalRecipientId, chatLocalRecipientId, localThreadId) }
       for (revision in sortedRevisions) {
-        revision.contentValues.put(MessageTable.ORIGINAL_MESSAGE_ID, originalId)
+        val revisionNumber = messageId - originalId
+        if (revisionNumber > 0) {
+          revision.contentValues.put(MessageTable.ORIGINAL_MESSAGE_ID, originalId)
+        }
         revision.contentValues.put(MessageTable.LATEST_REVISION_ID, latestRevisionId)
-        revision.contentValues.put(MessageTable.REVISION_NUMBER, (messageId - originalId))
+        revision.contentValues.put(MessageTable.REVISION_NUMBER, revisionNumber)
         buffer.messages += revision
         messageId++
       }
 
       messageInsert.contentValues.put(MessageTable.ORIGINAL_MESSAGE_ID, originalId)
+      messageInsert.contentValues.put(MessageTable.REVISION_NUMBER, (messageId - originalId))
     }
     buffer.messages += messageInsert
     buffer.reactions += chatItem.toReactionContentValues(messageId)
@@ -346,7 +354,7 @@ class ChatItemArchiveImporter(
               address.country
             )
           },
-          Contact.Avatar(null, backupContact.avatar.toLocalAttachment(importState = importState, voiceNote = false, borderless = false, gif = false, wasDownloaded = true), true)
+          Contact.Avatar(null, backupContact.avatar.toLocalAttachment(voiceNote = false, borderless = false, gif = false, wasDownloaded = true), true)
         )
       }
 
@@ -371,14 +379,17 @@ class ChatItemArchiveImporter(
     }
 
     if (this.directStoryReplyMessage != null) {
-      val longTextAttachment: Attachment? = this.directStoryReplyMessage.textReply?.longText?.toLocalAttachment(
-        importState = importState,
-        contentType = "text/x-signal-plain"
-      )
+      val (trimmedBodyText, longTextAttachment) = this.directStoryReplyMessage.parseBodyText(importState)
+      if (trimmedBodyText != null) {
+        contentValues.put(MessageTable.BODY, trimmedBodyText)
+      }
 
       if (longTextAttachment != null) {
         followUps += { messageRowId ->
-          SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, listOf(longTextAttachment), emptyList())
+          val ids = SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, listOf(longTextAttachment), emptyList())
+          ids.values.firstOrNull()?.let { attachmentId ->
+            SignalDatabase.attachments.setTransferState(messageRowId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE)
+          }
         }
       }
     }
@@ -396,21 +407,27 @@ class ChatItemArchiveImporter(
         attachment.toLocalAttachment()
       }
 
-      val longTextAttachments: List<Attachment> = this.standardMessage.longText?.toLocalAttachment(
-        importState = importState,
-        contentType = "text/x-signal-plain"
-      )?.let { listOf(it) } ?: emptyList()
+      val (trimmedBodyText, longTextAttachment) = this.standardMessage.parseBodyText(importState)
+      if (trimmedBodyText != null) {
+        contentValues.put(MessageTable.BODY, trimmedBodyText)
+      }
 
       val quoteAttachments: List<Attachment> = this.standardMessage.quote?.toLocalAttachments() ?: emptyList()
 
-      val hasAttachments = attachments.isNotEmpty() || linkPreviewAttachments.isNotEmpty() || quoteAttachments.isNotEmpty() || longTextAttachments.isNotEmpty()
+      val hasAttachments = attachments.isNotEmpty() || linkPreviewAttachments.isNotEmpty() || quoteAttachments.isNotEmpty() || longTextAttachment != null
 
       if (hasAttachments || linkPreviews.isNotEmpty()) {
         followUps += { messageRowId ->
           val attachmentMap = if (hasAttachments) {
-            SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments + linkPreviewAttachments + longTextAttachments, quoteAttachments)
+            SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, attachments + linkPreviewAttachments + longTextAttachment.asList(), quoteAttachments)
           } else {
             emptyMap()
+          }
+
+          if (longTextAttachment != null) {
+            attachmentMap[longTextAttachment]?.let { attachmentId ->
+              SignalDatabase.attachments.setTransferState(messageRowId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_DONE)
+            }
           }
 
           if (linkPreviews.isNotEmpty()) {
@@ -453,6 +470,54 @@ class ChatItemArchiveImporter(
     return MessageInsert(contentValues, followUp)
   }
 
+  /**
+   * Text that we import from the [StandardMessage.text] field may be too long to put in a database column, needing to instead be broken into a separate
+   * attachment. This handles looking at the state of the frame and giving back the components we need to insert.
+   *
+   * @return If the returned String is non-null, then that means you should replace what we currently have stored as the body with this new, trimmed string.
+   *   If the attachment is non-null, then you should store it along with the message, as it contains the long text.
+   */
+  private fun StandardMessage.parseBodyText(importState: ImportState): Pair<String?, Attachment?> {
+    if (this.longText != null) {
+      return null to this.longText.toLocalAttachment(contentType = "text/x-signal-plain")
+    }
+
+    if (this.text?.body == null) {
+      return null to null
+    }
+
+    val splitResult = MessageUtil.getSplitMessage(AppDependencies.application, this.text.body)
+    if (splitResult.textSlide.isPresent) {
+      return splitResult.body to splitResult.textSlide.get().asAttachment()
+    }
+
+    return null to null
+  }
+
+  /**
+   * Text that we import from the [DirectStoryReplyMessage.textReply] field may be too long to put in a database column, needing to instead be broken into a separate
+   * attachment. This handles looking at the state of the frame and giving back the components we need to insert.
+   *
+   * @return If the returned String is non-null, then that means you should replace what we currently have stored as the body with this new, trimmed string.
+   *   If the attachment is non-null, then you should store it along with the message, as it contains the long text.
+   */
+  private fun DirectStoryReplyMessage.parseBodyText(importState: ImportState): Pair<String?, Attachment?> {
+    if (this.textReply?.longText != null) {
+      return null to this.textReply.longText.toLocalAttachment(contentType = "text/x-signal-plain")
+    }
+
+    if (this.textReply?.text == null) {
+      return null to null
+    }
+
+    val splitResult = MessageUtil.getSplitMessage(AppDependencies.application, this.textReply.text.body)
+    if (splitResult.textSlide.isPresent) {
+      return splitResult.body to splitResult.textSlide.get().asAttachment()
+    }
+
+    return null to null
+  }
+
   private fun ChatItem.toMessageContentValues(fromRecipientId: RecipientId, chatRecipientId: RecipientId, threadId: Long): ContentValues {
     val contentValues = ContentValues()
 
@@ -464,7 +529,7 @@ class ChatItemArchiveImporter(
     contentValues.put(MessageTable.FROM_RECIPIENT_ID, fromRecipientId.serialize())
     contentValues.put(MessageTable.TO_RECIPIENT_ID, toRecipientId.serialize())
     contentValues.put(MessageTable.THREAD_ID, threadId)
-    contentValues.put(MessageTable.DATE_RECEIVED, this.incoming?.dateReceived ?: this.dateSent)
+    contentValues.put(MessageTable.DATE_RECEIVED, this.incoming?.dateReceived ?: this.outgoing?.dateReceived?.takeUnless { it == 0L } ?: this.dateSent)
     contentValues.put(MessageTable.RECEIPT_TIMESTAMP, this.outgoing?.sendStatus?.maxOfOrNull { it.timestamp } ?: 0)
     contentValues.putNull(MessageTable.LATEST_REVISION_ID)
     contentValues.putNull(MessageTable.ORIGINAL_MESSAGE_ID)
@@ -993,8 +1058,8 @@ class ChatItemArchiveImporter(
               else -> null
             }
           },
-          start = bodyRange.start ?: 0,
-          length = bodyRange.length ?: 0
+          start = bodyRange.start,
+          length = bodyRange.length
         )
       }
     )
@@ -1008,7 +1073,7 @@ class ChatItemArchiveImporter(
       this.read != null -> GroupReceiptTable.STATUS_READ
       this.viewed != null -> GroupReceiptTable.STATUS_VIEWED
       this.skipped != null -> GroupReceiptTable.STATUS_SKIPPED
-      this.failed != null -> GroupReceiptTable.STATUS_UNKNOWN
+      this.failed != null -> GroupReceiptTable.STATUS_FAILED
       else -> GroupReceiptTable.STATUS_UNKNOWN
     }
   }
@@ -1024,11 +1089,11 @@ class ChatItemArchiveImporter(
 
   private fun Quote.toLocalAttachments(): List<Attachment> {
     if (this.type == Quote.Type.VIEW_ONCE) {
-      return listOf(TombstoneAttachment(contentType = MediaUtil.VIEW_ONCE, quote = true))
+      return listOf(TombstoneAttachment.forQuote())
     }
 
-    return attachments.mapNotNull { attachment ->
-      val thumbnail = attachment.thumbnail?.toLocalAttachment(quote = true)
+    return this.attachments.mapNotNull { attachment ->
+      val thumbnail = attachment.thumbnail?.toLocalAttachment(quote = true, quoteTargetContentType = attachment.contentType)
 
       if (thumbnail != null) {
         return@mapNotNull thumbnail
@@ -1052,10 +1117,9 @@ class ChatItemArchiveImporter(
     if (this == null) return null
 
     return data_.toLocalAttachment(
-      importState = importState,
       voiceNote = false,
-      gif = false,
       borderless = false,
+      gif = false,
       wasDownloaded = true,
       stickerLocator = StickerLocator(
         packId = Hex.toStringCondensed(packId.toByteArray()),
@@ -1072,21 +1136,21 @@ class ChatItemArchiveImporter(
       this.title ?: "",
       this.description ?: "",
       this.date ?: 0,
-      Optional.ofNullable(this.image?.toLocalAttachment(importState = importState, voiceNote = false, borderless = false, gif = false, wasDownloaded = true))
+      Optional.ofNullable(this.image?.toLocalAttachment(voiceNote = false, borderless = false, gif = false, wasDownloaded = true))
     )
   }
 
-  private fun MessageAttachment.toLocalAttachment(quote: Boolean = false, contentType: String? = pointer?.contentType): Attachment? {
+  private fun MessageAttachment.toLocalAttachment(quote: Boolean = false, quoteTargetContentType: String? = null, contentType: String? = pointer?.contentType): Attachment? {
     return pointer?.toLocalAttachment(
-      importState = importState,
       voiceNote = flag == MessageAttachment.Flag.VOICE_MESSAGE,
-      gif = flag == MessageAttachment.Flag.GIF,
       borderless = flag == MessageAttachment.Flag.BORDERLESS,
+      gif = flag == MessageAttachment.Flag.GIF,
       wasDownloaded = wasDownloaded,
       contentType = contentType,
       fileName = pointer.fileName,
       uuid = clientUuid,
-      quote = quote
+      quote = quote,
+      quoteTargetContentType = quoteTargetContentType
     )
   }
 

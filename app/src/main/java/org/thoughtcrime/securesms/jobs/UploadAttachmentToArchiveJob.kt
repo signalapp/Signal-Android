@@ -26,6 +26,8 @@ import org.thoughtcrime.securesms.jobs.protos.UploadAttachmentToArchiveJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.service.AttachmentProgressService
+import org.thoughtcrime.securesms.util.MediaUtil
+import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveMediaUploadFormStatusCodes
 import org.whispersystems.signalservice.api.attachment.AttachmentUploadResult
@@ -34,7 +36,6 @@ import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import java.io.FileNotFoundException
 import java.io.IOException
 import java.net.ProtocolException
-import kotlin.random.Random
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -52,17 +53,22 @@ class UploadAttachmentToArchiveJob private constructor(
   companion object {
     private val TAG = Log.tag(UploadAttachmentToArchiveJob::class)
     const val KEY = "UploadAttachmentToArchiveJob"
-    private const val MAX_JOB_QUEUES = 2
 
-    /**
-     * This randomly selects between one of [MAX_JOB_QUEUES] queues. It's a fun way of limiting the concurrency of the upload jobs to
-     * take up at most two job runners.
-     */
-    fun buildQueueKey(
-      queue: Int = Random.nextInt(0, MAX_JOB_QUEUES)
-    ) = "ArchiveAttachmentJobs_$queue"
-
-    fun getAllQueueKeys() = (0 until MAX_JOB_QUEUES).map { buildQueueKey(queue = it) }
+    /** A set of possible queues this job may use. The number of queues determines the parallelism. */
+    val QUEUES = setOf(
+      "ArchiveAttachmentJobs_01",
+      "ArchiveAttachmentJobs_02",
+      "ArchiveAttachmentJobs_03",
+      "ArchiveAttachmentJobs_04",
+      "ArchiveAttachmentJobs_05",
+      "ArchiveAttachmentJobs_06",
+      "ArchiveAttachmentJobs_07",
+      "ArchiveAttachmentJobs_08",
+      "ArchiveAttachmentJobs_09",
+      "ArchiveAttachmentJobs_10",
+      "ArchiveAttachmentJobs_11",
+      "ArchiveAttachmentJobs_12"
+    )
   }
 
   constructor(attachmentId: AttachmentId, canReuseUpload: Boolean = true) : this(
@@ -73,7 +79,8 @@ class UploadAttachmentToArchiveJob private constructor(
       .addConstraint(NetworkConstraint.KEY)
       .setLifespan(30.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
-      .setQueue(buildQueueKey())
+      .setQueue(QUEUES.random())
+      .setGlobalPriority(Parameters.PRIORITY_LOW)
       .build()
   )
 
@@ -95,6 +102,12 @@ class UploadAttachmentToArchiveJob private constructor(
   }
 
   override fun run(): Result {
+    if (SignalStore.account.isLinkedDevice) {
+      Log.w(TAG, "[$attachmentId] Linked devices don't backup media. Skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
     if (!SignalStore.backup.backsUpMedia) {
       Log.w(TAG, "[$attachmentId] This user does not back up media. Skipping.")
       SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
@@ -105,6 +118,11 @@ class UploadAttachmentToArchiveJob private constructor(
 
     if (attachment == null) {
       Log.w(TAG, "[$attachmentId] Attachment no longer exists! Skipping.")
+      return Result.failure()
+    }
+
+    if (attachment.uri == null) {
+      Log.w(TAG, "[$attachmentId] Attachment has no uri! Cannot upload.")
       return Result.failure()
     }
 
@@ -124,8 +142,32 @@ class UploadAttachmentToArchiveJob private constructor(
       return Result.success()
     }
 
-    if (attachment.remoteKey == null || attachment.remoteIv == null) {
-      Log.w(TAG, "[$attachmentId] Attachment is missing remote key or IV! Cannot upload.")
+    if (SignalDatabase.messages.isStory(attachment.mmsId)) {
+      Log.i(TAG, "[$attachmentId] Attachment is a story. Resetting transfer state to none and skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
+    if (SignalDatabase.messages.isViewOnce(attachment.mmsId)) {
+      Log.i(TAG, "[$attachmentId] Attachment is a view-once. Resetting transfer state to none and skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
+    if (SignalDatabase.messages.willMessageExpireBeforeCutoff(attachment.mmsId)) {
+      Log.i(TAG, "[$attachmentId] Message will expire within 24 hours. Resetting transfer state to none and skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
+    if (attachment.contentType == MediaUtil.LONG_TEXT) {
+      Log.i(TAG, "[$attachmentId] Attachment is long text. Resetting transfer state to none and skipping.")
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)
+      return Result.success()
+    }
+
+    if (attachment.remoteKey == null || attachment.remoteKey.isBlank()) {
+      Log.w(TAG, "[$attachmentId] Attachment is missing remote key! Cannot upload.")
       return Result.failure()
     }
 
@@ -144,7 +186,7 @@ class UploadAttachmentToArchiveJob private constructor(
     if (uploadSpec == null) {
       Log.d(TAG, "[$attachmentId] Need an upload spec. Fetching...")
 
-      val (spec, result) = fetchResumableUploadSpec(key = Base64.decode(attachment.remoteKey), iv = attachment.remoteIv)
+      val (spec, result) = fetchResumableUploadSpec(key = Base64.decode(attachment.remoteKey), iv = Util.getSecretBytes(16))
       if (result != null) {
         return result
       }
@@ -159,6 +201,8 @@ class UploadAttachmentToArchiveJob private constructor(
     } else {
       null
     }
+
+    ArchiveUploadProgress.onAttachmentStarted(attachmentId, attachment.size)
 
     val attachmentStream = try {
       AttachmentUploadUtil.buildSignalServiceAttachmentStream(
@@ -211,6 +255,12 @@ class UploadAttachmentToArchiveJob private constructor(
 
           is NetworkResult.StatusCodeError -> {
             Log.w(TAG, "[$attachmentId] Failed to upload due to status code error. Code: ${result.code}", result.exception)
+            when (result.code) {
+              400 -> {
+                Log.w(TAG, "[$attachmentId] 400 likely means bad resumable state. Clearing upload spec before retrying.")
+                uploadSpec = null
+              }
+            }
             return Result.retry(defaultBackoff())
           }
         }

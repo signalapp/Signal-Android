@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.components.settings.app.changenumber
 
+import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.registration.data.network.Challenge
 import org.thoughtcrime.securesms.registration.data.network.VerificationCodeRequestResult
 import org.thoughtcrime.securesms.registration.ui.countrycode.Country
@@ -19,6 +21,7 @@ data class ChangeNumberState(
   val number: NumberViewState = NumberViewState.INITIAL,
   val enteredCode: String? = null,
   val enteredPin: String = "",
+  val pinKeyboardType: PinKeyboardType = SignalStore.pin.keyboardType,
   val oldPhoneNumber: NumberViewState = NumberViewState.INITIAL,
   val sessionId: String? = null,
   val changeNumberOutcome: ChangeNumberOutcome? = null,
@@ -35,10 +38,9 @@ data class ChangeNumberState(
   val challengesPresented: Set<Challenge> = emptySet(),
   val allowedToRequestCode: Boolean = false,
   val oldCountry: Country? = null,
-  val newCountry: Country? = null
-) {
-  val challengesRemaining: List<Challenge> = challengesRequested.filterNot { it in challengesPresented }
-}
+  val newCountry: Country? = null,
+  val challengeInProgress: Boolean = false
+)
 
 sealed interface ChangeNumberOutcome {
   data object RecoveryPasswordWorked : ChangeNumberOutcome

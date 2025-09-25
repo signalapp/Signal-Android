@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.jobs
 
 import androidx.annotation.VisibleForTesting
+import kotlinx.collections.immutable.toImmutableSet
 import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.database.JobDatabase
@@ -12,6 +13,7 @@ import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobmanager.persistence.JobStorage
 import org.thoughtcrime.securesms.util.LRUCache
 import java.util.TreeSet
+import java.util.concurrent.atomic.AtomicInteger
 import java.util.function.Predicate
 
 class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
@@ -27,9 +29,9 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   /**
    * We keep a set of job specs in memory to facilitate fast retrieval. This is important because the most common job storage pattern is
-   * [getNextEligibleJob], which needs to return full specs.
+   * [getNextEligibleJob], which needs to return full specs. Memory-only jobs are protected from eviction since they don't exist in the database.
    */
-  private val jobSpecCache: LRUCache<String, JobSpec> = LRUCache(JOB_CACHE_LIMIT)
+  private val jobSpecCache: JobSpecCache = JobSpecCache(JOB_CACHE_LIMIT)
 
   /**
    * We keep a set of constraints in memory, seeded by the same jobs in the [jobSpecCache]. It doesn't need to necessarily stay in sync with that cache, though.
@@ -50,6 +52,9 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   /** We need a fast way to know what the "most eligible job" is for a given queue. This serves as a lookup table that speeds up the maintenance of [eligibleJobs]. */
   private val mostEligibleJobForQueue: MutableMap<String, MinimalJobSpec> = hashMapOf()
 
+  /** Quick lookup of job counts per factory for all jobs */
+  private val factoryCountIndex: MutableMap<String, AtomicInteger> = hashMapOf()
+
   @Synchronized
   override fun init() {
     val stopwatch = Stopwatch("init", decimalPlaces = 2)
@@ -62,6 +67,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       } else {
         placeJobInEligibleList(job)
       }
+      factoryCountIndex.getOrPut(job.factoryKey) { AtomicInteger(0) }.incrementAndGet()
     }
     stopwatch.split("sort-min-jobs")
 
@@ -105,9 +111,12 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       } else {
         placeJobInEligibleList(minimalJobSpec)
       }
+      factoryCountIndex.getOrPut(minimalJobSpec.factoryKey) { AtomicInteger(0) }.incrementAndGet()
 
       constraintsByJobId[fullSpec.jobSpec.id] = fullSpec.constraintSpecs.toMutableList()
-      dependenciesByJobId[fullSpec.jobSpec.id] = fullSpec.dependencySpecs.toMutableList()
+      if (fullSpec.dependencySpecs.isNotEmpty()) {
+        dependenciesByJobId[fullSpec.jobSpec.id] = fullSpec.dependencySpecs.toMutableList()
+      }
     }
     stopwatch?.split("cache")
     stopwatch?.stop(TAG)
@@ -149,17 +158,36 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   }
 
   @Synchronized
+  override fun getEligibleJobCount(currentTime: Long): Int {
+    val migrationJob: MinimalJobSpec? = migrationJobs.firstOrNull()
+
+    return if (migrationJob != null && !migrationJob.isRunning && migrationJob.hasEligibleRunTime(currentTime)) {
+      1
+    } else if (migrationJob != null) {
+      0
+    } else {
+      eligibleJobs
+        .asSequence()
+        .filter { job ->
+          // Filter out all jobs with unmet dependencies
+          dependenciesByJobId[job.id].isNullOrEmpty()
+        }
+        .filterNot { it.isRunning }
+        .filter { job -> job.hasEligibleRunTime(currentTime) }
+        .count()
+    }
+  }
+
+  @Synchronized
   override fun getJobsInQueue(queue: String): List<JobSpec> {
     return minimalJobs
       .filter { it.queueKey == queue }
-      .mapNotNull { it.toJobSpec() }
+      .map { it.toJobSpec() }
   }
 
   @Synchronized
   override fun getJobCountForFactory(factoryKey: String): Int {
-    return minimalJobs
-      .filter { it.factoryKey == factoryKey }
-      .size
+    return factoryCountIndex[factoryKey]?.get() ?: 0
   }
 
   @Synchronized
@@ -172,6 +200,11 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
   @Synchronized
   override fun areQueuesEmpty(queueKeys: Set<String>): Boolean {
     return minimalJobs.none { it.queueKey != null && queueKeys.contains(it.queueKey) }
+  }
+
+  @Synchronized
+  override fun areFactoriesEmpty(factoryKeys: Set<String>): Boolean {
+    return factoryKeys.all { (factoryCountIndex[it]?.get() ?: 0) == 0 }
   }
 
   @Synchronized
@@ -280,6 +313,13 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       if (updatedJob != null) {
         iterator.set(updatedJob.toMinimalJobSpec())
         replaceJobInEligibleList(current, updatedJob.toMinimalJobSpec())
+
+        if (current.factoryKey != updatedJob.factoryKey) {
+          if (factoryCountIndex[current.factoryKey]?.decrementAndGet() == 0) {
+            factoryCountIndex.remove(current.factoryKey)
+          }
+          factoryCountIndex.getOrPut(updatedJob.factoryKey) { AtomicInteger(0) }.incrementAndGet()
+        }
       }
     }
   }
@@ -309,7 +349,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
     val deleteIds: Set<String> = ids.toSet()
     minimalJobs.removeIf { deleteIds.contains(it.id) }
-    jobSpecCache.keys.removeAll(deleteIds)
+    deleteIds.forEach { jobSpecCache.remove(it) }
     eligibleJobs.removeIf { deleteIds.contains(it.id) }
     migrationJobs.removeIf { deleteIds.contains(it.id) }
 
@@ -334,6 +374,12 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
             iter.remove()
           }
         }
+      }
+    }
+
+    for (job in jobsToDelete) {
+      if (factoryCountIndex[job.factoryKey]?.decrementAndGet() == 0) {
+        factoryCountIndex.remove(job.factoryKey)
       }
     }
   }
@@ -377,6 +423,25 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     return dependenciesByJobId.values.flatten()
   }
 
+  @Synchronized
+  override fun debugAdditionalDetails(): String {
+    val nonEmptyDependencies = dependenciesByJobId.filterValues { it.isNotEmpty() }
+
+    return buildString {
+      appendLine("minimalJobs: Size(${minimalJobs.size}), Items(${minimalJobs.joinToString(", ") { it.toLogString() }})")
+      appendLine("jobSpecCache: Size(${jobSpecCache.size}), Items(${jobSpecCache.keys.joinToString(", ") { it.toLogString() }})")
+      appendLine("eligibleJobs: Size(${eligibleJobs.size}), Items(${eligibleJobs.joinToString(", ") { it.toLogString() }})")
+      appendLine("migrationJobs: Size(${migrationJobs.size}), Items(${migrationJobs.joinToString(", ") { it.toLogString() }})")
+      appendLine("mostEligibleForQueue: Size(${mostEligibleJobForQueue.size}), Items(${mostEligibleJobForQueue.entries.joinToString(", ") { "[${it.key} => ${it.value.toLogString()}]" }})")
+      appendLine("constraintsByJobId: Size(${constraintsByJobId.size}), Items(${constraintsByJobId.entries.joinToString(", ") { "[${it.key.toLogString()} => ${it.value.joinToString(", ") { c -> c.toLogString() }}]" }})")
+      appendLine("dependenciesByJobId: Size(${nonEmptyDependencies.size}), Items(${nonEmptyDependencies.entries.joinToString(", ") { "[${it.key.toLogString()} => ${it.value.map { d -> d.toLogString() }}]" }})")
+    }
+  }
+
+  private fun String.toLogString(): String {
+    return "JOB::$this"
+  }
+
   private fun updateCachedJobSpecs(filter: (MinimalJobSpec) -> Boolean, transformer: (MinimalJobSpec) -> MinimalJobSpec, singleUpdate: Boolean = false) {
     val iterator = minimalJobs.listIterator()
 
@@ -387,6 +452,13 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
         val updated = transformer(current)
         iterator.set(updated)
         replaceJobInEligibleList(current, updated)
+
+        if (current.factoryKey != updated.factoryKey) {
+          if (factoryCountIndex[current.factoryKey]?.decrementAndGet() == 0) {
+            factoryCountIndex.remove(current.factoryKey)
+          }
+          factoryCountIndex.getOrPut(updated.factoryKey) { AtomicInteger(0) }.incrementAndGet()
+        }
 
         jobSpecCache.remove(current.id)?.let { currentJobSpec ->
           val updatedJobSpec = currentJobSpec.copy(
@@ -469,11 +541,12 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
 
   /**
    * Note that this is currently only checking a specific kind of circular dependency -- ones that are
-   * created between dependencies and queues.
+   * created between dependencies, queues, and priorities.
    *
    * More specifically, dependencies where one job depends on another job in the same queue that was
-   * scheduled *after* it. These dependencies will never resolve. Under normal circumstances these
-   * won't occur, but *could* occur if the user changed their clock (either purposefully or automatically).
+   * scheduled *after* it, or if it depends on a job with a lower priority. These dependencies will
+   * never resolve. Under normal circumstances these won't occur, but *could* occur if the user changed
+   * their clock (either purposefully or automatically).
    *
    * Rather than go through and delete them from the database, removing them from memory at load time
    * serves the same effect and doesn't require new write methods. This should also be very rare.
@@ -494,7 +567,7 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
       return false
     }
 
-    return dependsOnJob.createTime > job.createTime
+    return dependsOnJob.createTime > job.createTime || dependsOnJob.globalPriority < job.globalPriority || dependsOnJob.queuePriority < job.queuePriority
   }
 
   /**
@@ -524,10 +597,19 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
    * Converts a [MinimalJobSpec] to a [JobSpec]. We prefer using the cache, but if it's not found, we'll hit the database.
    * We consider this a "recent access" and will cache it for future use.
    */
-  private fun MinimalJobSpec.toJobSpec(): JobSpec? {
-    return jobSpecCache.getOrPut(this.id) {
-      jobDatabase.getJobSpec(this.id) ?: return null
+  private fun MinimalJobSpec.toJobSpec(): JobSpec {
+    val cachedJob = jobSpecCache[this.id]
+    if (cachedJob != null) {
+      return cachedJob
     }
+
+    val dbJob = jobDatabase.getJobSpec(this.id)
+    if (dbJob != null) {
+      jobSpecCache[dbJob.id] = dbJob
+      return dbJob
+    }
+
+    error("Failed to get a full JobSpec for ${this.id}")
   }
 
   private object EligibleMinJobComparator : Comparator<MinimalJobSpec> {
@@ -548,23 +630,32 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     }
   }
 
-  /**
-   * Identical to [EligibleMinJobComparator], but for full jobs.
-   */
-  private object EligibleFullJobComparator : Comparator<JobSpec> {
-    override fun compare(o1: JobSpec, o2: JobSpec): Int {
-      return when {
-        o1.globalPriority > o2.globalPriority -> -1
-        o1.globalPriority < o2.globalPriority -> 1
-        o1.createTime < o2.createTime -> -1
-        o1.createTime > o2.createTime -> 1
-        else -> o1.id.compareTo(o2.id)
-      }
+  private fun debugStopwatch(label: String): Stopwatch? {
+    return if (DEBUG) Stopwatch(label, decimalPlaces = 2) else null
+  }
+
+  private fun MinimalJobSpec.toLogString(): String {
+    return if (this.isMemoryOnly) {
+      "😶‍🌫️$this"
+    } else {
+      "$this"
     }
   }
 
-  private fun debugStopwatch(label: String): Stopwatch? {
-    return if (DEBUG) Stopwatch(label, decimalPlaces = 2) else null
+  private fun ConstraintSpec.toLogString(): String {
+    return if (this.isMemoryOnly) {
+      "😶‍🌫️$this"
+    } else {
+      "$this"
+    }
+  }
+
+  private fun DependencySpec.toLogString(): String {
+    return if (this.isMemoryOnly) {
+      "😶‍🌫️$this"
+    } else {
+      "$this"
+    }
   }
 }
 
@@ -586,4 +677,36 @@ fun JobSpec.toMinimalJobSpec(): MinimalJobSpec {
     isMemoryOnly = this.isMemoryOnly,
     initialDelay = this.initialDelay
   )
+}
+
+/**
+ * A cache over top of LRUCache to protect memory-only jobs from eviction.
+ * Memory-only jobs are stored separately and never evicted since they don't exist in the database.
+ */
+private class JobSpecCache(capacity: Int) {
+
+  private val durableJobCache = LRUCache<String, JobSpec>(capacity)
+  private val memoryOnlyJobs = mutableMapOf<String, JobSpec>()
+
+  operator fun get(key: String): JobSpec? {
+    return memoryOnlyJobs[key] ?: durableJobCache[key]
+  }
+
+  operator fun set(key: String, value: JobSpec) {
+    if (value.isMemoryOnly) {
+      memoryOnlyJobs[key] = value
+    } else {
+      durableJobCache[key] = value
+    }
+  }
+
+  fun remove(key: String): JobSpec? {
+    return memoryOnlyJobs.remove(key) ?: durableJobCache.remove(key)
+  }
+
+  val keys: Set<String>
+    get() = (durableJobCache.keys + memoryOnlyJobs.keys).toImmutableSet()
+
+  val size: Int
+    get() = durableJobCache.size + memoryOnlyJobs.size
 }

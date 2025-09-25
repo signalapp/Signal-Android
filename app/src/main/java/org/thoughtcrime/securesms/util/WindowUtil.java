@@ -82,6 +82,10 @@ public final class WindowUtil {
     setSystemUiFlags(window, View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
   }
 
+  public static void clearTranslucentStatusBar(@NonNull Window window) {
+    window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+  }
+
   public static void setStatusBarColor(@NonNull Window window, @ColorInt int color) {
     window.setStatusBarColor(color);
   }

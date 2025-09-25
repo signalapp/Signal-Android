@@ -77,7 +77,7 @@ class ReviewCardRepository {
 
       if (resolved.isGroup()) throw new AssertionError();
 
-      if (SignalStore.account().hasLinkedDevices()) {
+      if (SignalStore.account().isMultiDevice()) {
         AppDependencies.getJobManager().add(MultiDeviceMessageRequestResponseJob.forDelete(recipientId));
       }
 

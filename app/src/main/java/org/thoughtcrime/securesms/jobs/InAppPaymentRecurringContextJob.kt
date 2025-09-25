@@ -14,6 +14,7 @@ import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialPresentation
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialRequestContext
 import org.signal.libsignal.zkgroup.receipts.ReceiptCredentialResponse
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
+import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.requireSubscriberType
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toInAppPaymentDataChargeFailure
@@ -27,11 +28,13 @@ import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.JobManager.Chain
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.push.exceptions.NonSuccessfulResponseCodeException
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.Subscription
 import org.whispersystems.signalservice.internal.ServiceResponse
+import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
 import java.io.IOException
 import java.util.Currency
 import kotlin.concurrent.withLock
@@ -58,7 +61,7 @@ class InAppPaymentRecurringContextJob private constructor(
         parameters = Parameters.Builder()
           .addConstraint(NetworkConstraint.KEY)
           .setQueue(InAppPaymentsRepository.resolveJobQueueKey(inAppPayment))
-          .setLifespan(InAppPaymentsRepository.resolveContextJobLifespan(inAppPayment).inWholeMilliseconds)
+          .setLifespan(InAppPaymentsRepository.resolveContextJobLifespanMillis(inAppPayment))
           .setMaxAttempts(Parameters.UNLIMITED)
           .build()
       )
@@ -103,7 +106,7 @@ class InAppPaymentRecurringContextJob private constructor(
     warning("A permanent failure occurred.")
 
     val inAppPayment = SignalDatabase.inAppPayments.getById(inAppPaymentId)
-    val isRedeemed = inAppPayment?.state == InAppPaymentTable.State.END && inAppPayment.data.redemption?.stage != InAppPaymentData.RedemptionState.Stage.REDEEMED
+    val isRedeemed = inAppPayment?.state == InAppPaymentTable.State.END && inAppPayment.data.redemption?.stage == InAppPaymentData.RedemptionState.Stage.REDEEMED
     if (isRedeemed) {
       info("Already redeemed. Exiting quietly.")
       return
@@ -113,11 +116,11 @@ class InAppPaymentRecurringContextJob private constructor(
         inAppPayment.copy(
           notified = false,
           state = InAppPaymentTable.State.END,
-          data = inAppPayment.data.copy(
+          data = inAppPayment.data.newBuilder().error(
             error = InAppPaymentData.Error(
               type = InAppPaymentData.Error.Type.REDEMPTION
             )
-          )
+          ).build()
         )
       )
     }
@@ -149,6 +152,11 @@ class InAppPaymentRecurringContextJob private constructor(
     if (!SignalStore.account.isRegistered) {
       warning("User is not registered. Failing.")
       throw Exception("Unregistered users cannot perform this job.")
+    }
+
+    if (SignalStore.account.isLinkedDevice) {
+      warning("Linked device. Failing.")
+      throw Exception("Linked devices cannot not perform this job")
     }
 
     val (inAppPayment, requestContext) = getAndValidateInAppPayment()
@@ -190,9 +198,10 @@ class InAppPaymentRecurringContextJob private constructor(
     }
 
     if (hasEntitlementAlready(updatedInAppPayment, subscription.endOfCurrentPeriod)) {
-      info("Already have entitlement for this badge. Marking complete.")
+      info("Already have entitlement for this InAppPayment of type ${updatedInAppPayment.type}. Marking complete.")
       markInAppPaymentCompleted(updatedInAppPayment, subscription)
     } else {
+      info("No entitlement for InAppPayment of type ${updatedInAppPayment.type}. Submitting and validating credentials.")
       submitAndValidateCredentials(updatedInAppPayment, subscription, requestContext)
     }
   }
@@ -219,6 +228,26 @@ class InAppPaymentRecurringContextJob private constructor(
 
     return when (inAppPayment.type) {
       InAppPaymentType.RECURRING_BACKUP -> {
+        val whoAmIEntitlementLevel = whoAmIResponse.entitlements?.backup?.backupLevel
+        if (whoAmIEntitlementLevel != SubscriptionsConfiguration.BACKUPS_LEVEL.toLong()) {
+          info("WhoAmI entitlement level ($whoAmIEntitlementLevel) does not match expected paid backups level (${SubscriptionsConfiguration.BACKUPS_LEVEL.toLong()}). Forcing a redemption.")
+          return false
+        }
+
+        val tier = when (val result = BackupRepository.getBackupTier()) {
+          is NetworkResult.Success -> result.result
+          else -> {
+            warning("Failed to get backup tier via zk check.")
+            MessageBackupTier.FREE
+          }
+        }
+
+        if (tier != MessageBackupTier.PAID) {
+          warning("ZK credential does not align with entitlement. Clearing backup credentials and forcing a redemption.")
+          BackupRepository.resetInitializedStateAndAuthCredentials()
+          return false
+        }
+
         val backupExpirationSeconds = whoAmIResponse.entitlements?.backup?.expirationSeconds ?: return false
 
         backupExpirationSeconds >= endOfCurrentSubscriptionPeriod
@@ -515,7 +544,9 @@ class InAppPaymentRecurringContextJob private constructor(
       409 -> {
         warning("Already redeemed this token during new subscription. Failing.", applicationError)
 
-        if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+        // During keep-alive processing, we don't alert the user about redemption failures.
+        if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP && inAppPayment.data.redemption?.keepAlive != true) {
+          info("Displaying redemption failure for non-keep-alive processing.")
           SignalStore.backup.hasBackupAlreadyRedeemedError = true
         }
 
@@ -604,12 +635,14 @@ class InAppPaymentRecurringContextJob private constructor(
     SignalDatabase.inAppPayments.update(
       inAppPayment = inAppPayment.copy(
         state = InAppPaymentTable.State.END,
-        data = inAppPayment.data.copy(
-          error = InAppPaymentData.Error(
-            type = InAppPaymentData.Error.Type.REDEMPTION,
-            data_ = "409"
+        data = inAppPayment.data.newBuilder()
+          .error(
+            InAppPaymentData.Error(
+              type = InAppPaymentData.Error.Type.REDEMPTION,
+              data_ = "409"
+            )
           )
-        )
+          .build()
       )
     )
   }

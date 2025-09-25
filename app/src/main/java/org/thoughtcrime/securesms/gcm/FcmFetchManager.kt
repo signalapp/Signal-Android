@@ -1,12 +1,15 @@
 package org.thoughtcrime.securesms.gcm
 
+import android.Manifest
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Build
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import org.signal.core.util.PendingIntentFlags.mutable
 import org.signal.core.util.concurrent.SignalExecutors
 import org.signal.core.util.logging.Log
@@ -83,6 +86,11 @@ object FcmFetchManager {
       return
     }
 
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "Missing permission to post notifications.")
+      return
+    }
+
     Log.w(TAG, "Notifying the user that they may have new messages.")
 
     val mayHaveMessagesNotification: Notification = NotificationCompat.Builder(context, NotificationChannels.getInstance().ADDITIONAL_MESSAGE_NOTIFICATIONS)
@@ -98,7 +106,8 @@ object FcmFetchManager {
       .notify(NotificationIds.MAY_HAVE_MESSAGES_NOTIFICATION_ID, mayHaveMessagesNotification)
   }
 
-  private fun cancelMayHaveMessagesNotification(context: Context) {
+  @JvmStatic
+  fun cancelMayHaveMessagesNotification(context: Context) {
     NotificationManagerCompat.from(context).cancel(NotificationIds.MAY_HAVE_MESSAGES_NOTIFICATION_ID)
   }
 

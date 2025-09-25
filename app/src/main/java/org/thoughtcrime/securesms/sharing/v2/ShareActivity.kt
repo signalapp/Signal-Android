@@ -43,7 +43,6 @@ import org.thoughtcrime.securesms.sharing.interstitial.ShareInterstitialActivity
 import org.thoughtcrime.securesms.util.ConversationUtil
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 import org.thoughtcrime.securesms.util.visible
-import java.util.Optional
 import java.util.concurrent.TimeUnit
 
 class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.Callback {
@@ -294,19 +293,19 @@ class ShareActivity : PassphraseRequiredActivity(), MultiselectForwardFragment.C
     if (media.isEmpty() && multiShareArgs.dataUri != null) {
       media.add(
         Media(
-          multiShareArgs.dataUri,
-          multiShareArgs.dataType,
-          0,
-          0,
-          0,
-          0,
-          0,
-          false,
-          false,
-          Optional.empty(),
-          Optional.empty(),
-          Optional.empty(),
-          Optional.empty()
+          uri = multiShareArgs.dataUri,
+          contentType = multiShareArgs.dataType,
+          date = 0,
+          width = 0,
+          height = 0,
+          size = 0,
+          duration = 0,
+          isBorderless = false,
+          isVideoGif = false,
+          bucketId = null,
+          caption = null,
+          transformProperties = null,
+          fileName = null
         )
       )
     }

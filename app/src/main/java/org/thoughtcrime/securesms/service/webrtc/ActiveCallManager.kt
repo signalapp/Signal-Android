@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.service.webrtc
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.BroadcastReceiver
@@ -155,7 +156,7 @@ class ActiveCallManager(
     AppDependencies.unauthWebSocket.registerKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
   }
 
-  fun shutdown() {
+  fun shutdown(fromTimeout: Boolean = false) {
     Log.v(TAG, "shutdown")
 
     previousNotificationDisposable.dispose()
@@ -172,11 +173,12 @@ class ActiveCallManager(
     AppDependencies.authWebSocket.removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
     AppDependencies.unauthWebSocket.removeKeepAliveToken(WEBSOCKET_KEEP_ALIVE_TOKEN)
 
-    if (!ActiveCallForegroundService.stop(application) && previousNotificationId != -1) {
+    if (!ActiveCallForegroundService.stop(application, fromTimeout) && previousNotificationId != -1) {
       NotificationManagerCompat.from(application).cancel(previousNotificationId)
     }
   }
 
+  @SuppressLint("MissingPermission")
   fun update(type: Int, recipientId: RecipientId, isVideoCall: Boolean) {
     Log.i(TAG, "update $type $recipientId $isVideoCall")
     previousNotificationDisposable.dispose()
@@ -290,8 +292,8 @@ class ActiveCallManager(
         }
       }
 
-      fun stop(context: Context): Boolean {
-        return SafeForegroundService.stop(context, ActiveCallForegroundService::class.java)
+      fun stop(context: Context, fromTimeout: Boolean = false): Boolean {
+        return SafeForegroundService.stop(context, ActiveCallForegroundService::class.java, fromTimeout)
       }
     }
 
@@ -346,6 +348,15 @@ class ActiveCallManager(
 
     override fun onServiceStopCommandReceived(intent: Intent) {
       notificationDisposable.dispose()
+    }
+
+    override fun onTimeout(startId: Int, fgsType: Int) {
+      Log.w(TAG, "ActiveCallForegroundService has timed out. Hanging up. startId: $startId, foregroundServiceType: $fgsType")
+      AppDependencies.signalCallManager.localHangup()
+      activeCallManagerLock.withLock {
+        activeCallManager?.shutdown(fromTimeout = true)
+        activeCallManager = null
+      }
     }
 
     override fun onDestroy() {

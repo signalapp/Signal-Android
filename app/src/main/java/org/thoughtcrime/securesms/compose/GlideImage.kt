@@ -114,7 +114,8 @@ private fun <T> GlideImage(
   val density = LocalDensity.current
   val context = LocalContext.current
   DisposableEffect(model, fallback, error, diskCacheStrategy, density, imageSize) {
-    val builder = Glide.with(context)
+    val requestManager = Glide.with(context)
+    val builder = requestManager
       .load(model)
       .fallback(fallback)
       .error(error)
@@ -134,7 +135,7 @@ private fun <T> GlideImage(
 
     object : DisposableEffectResult {
       override fun dispose() {
-        Glide.with(context).clear(target)
+        requestManager.clear(target)
         drawable = null
       }
     }

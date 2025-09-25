@@ -9,6 +9,10 @@ android {
   buildFeatures {
     buildConfig = true
   }
+
+  defaultConfig {
+    vectorDrawables.useSupportLibrary = true
+  }
 }
 
 dependencies {

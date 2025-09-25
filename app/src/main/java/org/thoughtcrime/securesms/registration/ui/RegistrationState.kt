@@ -10,6 +10,7 @@ import com.google.i18n.phonenumbers.PhoneNumberUtil
 import com.google.i18n.phonenumbers.Phonenumber
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.registration.data.network.Challenge
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.data.network.RegistrationSessionResult
@@ -41,7 +42,6 @@ data class RegistrationState(
   val isAllowedToRequestCode: Boolean = false,
   val fcmToken: String? = null,
   val challengesRequested: List<Challenge> = emptyList(),
-  val challengesPresented: Set<Challenge> = emptySet(),
   val captchaToken: String? = null,
   val allowedToRequestCode: Boolean = false,
   val nextSmsTimestamp: Duration = 0.seconds,
@@ -49,14 +49,14 @@ data class RegistrationState(
   val nextVerificationAttempt: Duration = 0.seconds,
   val verified: Boolean = false,
   val smsListenerTimeout: Long = 0L,
+  val pinKeyboardType: PinKeyboardType = SignalStore.pin.keyboardType,
   val registrationCheckpoint: RegistrationCheckpoint = RegistrationCheckpoint.INITIALIZATION,
   val networkError: Throwable? = null,
   val sessionCreationError: RegistrationSessionResult? = null,
   val sessionStateError: VerificationCodeRequestResult? = null,
-  val registerAccountError: RegisterAccountResult? = null
+  val registerAccountError: RegisterAccountResult? = null,
+  val challengeInProgress: Boolean = false
 ) {
-  val challengesRemaining: List<Challenge> = challengesRequested.filterNot { it in challengesPresented }
-
   companion object {
     private val TAG = Log.tag(RegistrationState::class)
 

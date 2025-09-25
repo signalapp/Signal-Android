@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.MessageTable
 import org.thoughtcrime.securesms.database.MessageTable.Companion.DATE_RECEIVED
 import org.thoughtcrime.securesms.database.MessageTable.Companion.EXPIRES_IN
 import org.thoughtcrime.securesms.database.MessageTable.Companion.PARENT_STORY_ID
+import org.thoughtcrime.securesms.database.MessageTable.Companion.SCHEDULED_DATE
 import org.thoughtcrime.securesms.database.MessageTable.Companion.STORY_TYPE
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -23,7 +24,7 @@ import kotlin.time.Duration.Companion.days
 
 private val TAG = "MessageTableArchiveExtensions"
 
-fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, mediaBackupEnabled: Boolean, selfRecipientId: RecipientId, exportState: ExportState): ChatItemArchiveExporter {
+fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, selfRecipientId: RecipientId, exportState: ExportState): ChatItemArchiveExporter {
   // We create a covering index for the query to drastically speed up perf here.
   // Remember that we're working on a temporary snapshot of the database, so we can create an index and not worry about cleaning it up.
   val startTime = System.currentTimeMillis()
@@ -66,7 +67,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
       ${MessageTable.MESSAGE_EXTRAS},
       ${MessageTable.VIEW_ONCE}
     )
-    WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0
+    WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1
     """.trimMargin()
   )
   Log.d(TAG, "Creating index took ${System.currentTimeMillis() - startTime} ms")
@@ -88,11 +89,10 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
 
   return ChatItemArchiveExporter(
     db = db,
-    backupStartTime = backupTime,
-    batchSize = 10_000,
-    mediaArchiveEnabled = mediaBackupEnabled,
     selfRecipientId = selfRecipientId,
     noteToSelfThreadId = db.threadTable.getThreadIdFor(selfRecipientId) ?: -1L,
+    backupStartTime = backupTime,
+    batchSize = 10_000,
     exportState = exportState,
     cursorGenerator = { lastSeenReceivedTime, count ->
       readableDatabase
@@ -134,7 +134,7 @@ fun MessageTable.getMessagesForBackup(db: SignalDatabase, backupTime: Long, medi
           PARENT_STORY_ID
         )
         .from("${MessageTable.TABLE_NAME} INDEXED BY $dateReceivedIndex")
-        .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime")
+        .where("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND ($EXPIRES_IN == 0 OR $EXPIRES_IN > ${1.days.inWholeMilliseconds}) AND $DATE_RECEIVED >= $lastSeenReceivedTime")
         .limit(count)
         .orderBy("$DATE_RECEIVED ASC")
         .run()

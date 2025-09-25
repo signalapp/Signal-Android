@@ -13,6 +13,7 @@ import assertk.assertions.hasSize
 import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import io.mockk.every
+import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.mockkStatic
 import io.mockk.unmockkAll
@@ -27,6 +28,7 @@ import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log.initialize
 import org.thoughtcrime.securesms.database.model.databaseprotos.RestoreDecisionState
 import org.thoughtcrime.securesms.keyvalue.PhoneNumberPrivacyValues
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.keyvalue.Start
 import org.thoughtcrime.securesms.profiles.ProfileName
@@ -54,6 +56,16 @@ class RegistrationUtilTest {
 
     logRecorder = LogRecorder()
     initialize(logRecorder)
+
+    every { SignalStore.backup.backupTier } returns null
+    every { SignalStore.backup.backupsInitialized = any() } answers { }
+    every { SignalStore.backup.cachedMediaCdnPath = any() } answers { }
+    every { SignalStore.backup.mediaCredentials } returns mockk {
+      every { clearAll() } answers {}
+    }
+    every { SignalStore.backup.messageCredentials } returns mockk {
+      every { clearAll() } answers {}
+    }
   }
 
   @After

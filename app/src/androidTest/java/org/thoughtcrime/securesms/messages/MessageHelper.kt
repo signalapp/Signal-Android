@@ -91,7 +91,7 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
     ).let { updateMessage?.invoke(it) ?: it }
 
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(threadRecipient)
-    val messageId = SignalDatabase.messages.insertMessageOutbox(message, threadId, false, null)
+    val messageId = SignalDatabase.messages.insertMessageOutbox(message, threadId, false, null).messageId
 
     if (successfulSend) {
       SignalDatabase.messages.markAsSent(messageId, true)
@@ -114,7 +114,7 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
     ).apply { updateMessage() }
 
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(threadRecipient)
-    val messageId = SignalDatabase.messages.insertMessageOutbox(message, threadId, false, null)
+    val messageId = SignalDatabase.messages.insertMessageOutbox(message, threadId, false, null).messageId
 
     return messageData.copy(messageId = messageId)
   }
@@ -151,7 +151,7 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
     val outgoingMessage = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, startTime)
 
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
-    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, null)
+    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, null).messageId
     SignalDatabase.messages.markAsSent(messageId, true)
 
     return messageData.copy(messageId = messageId)

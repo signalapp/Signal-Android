@@ -39,7 +39,7 @@ import org.thoughtcrime.securesms.components.settings.app.privacy.expire.ExpireT
 import org.thoughtcrime.securesms.groups.ui.GroupMemberListView;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
 import org.thoughtcrime.securesms.mediasend.Media;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.profiles.AvatarHelper;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -137,11 +137,11 @@ public class AddGroupDetailsFragment extends LoggingFragment {
         avatar.setImageDrawable(new InsetDrawable(avatarPlaceholder, ViewUtil.dpToPx(AVATAR_PLACEHOLDER_INSET_DP)));
       } else {
         Glide.with(this)
-                .load(avatarBytes)
-                .circleCrop()
-                .skipMemoryCache(true)
-                .diskCacheStrategy(DiskCacheStrategy.NONE)
-                .into(avatar);
+             .load(avatarBytes)
+             .circleCrop()
+             .skipMemoryCache(true)
+             .diskCacheStrategy(DiskCacheStrategy.NONE)
+             .into(avatar);
       }
     });
 
@@ -173,28 +173,28 @@ public class AddGroupDetailsFragment extends LoggingFragment {
       return;
     }
 
-    final Media result                                             = data.getParcelable(AvatarPickerFragment.SELECT_AVATAR_MEDIA);
-    final DecryptableStreamUriLoader.DecryptableUri decryptableUri = new DecryptableStreamUriLoader.DecryptableUri(result.getUri());
+    final Media          result         = data.getParcelable(AvatarPickerFragment.SELECT_AVATAR_MEDIA);
+    final DecryptableUri decryptableUri = new DecryptableUri(result.getUri());
 
     viewModel.setAvatarMedia(result);
 
     Glide.with(this)
-            .asBitmap()
-            .load(decryptableUri)
-            .skipMemoryCache(true)
-            .diskCacheStrategy(DiskCacheStrategy.NONE)
-            .centerCrop()
-            .override(AvatarHelper.AVATAR_DIMENSIONS, AvatarHelper.AVATAR_DIMENSIONS)
-            .into(new CustomTarget<Bitmap>() {
-              @Override
-              public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> transition) {
-                viewModel.setAvatar(Objects.requireNonNull(BitmapUtil.toByteArray(resource)));
-              }
+         .asBitmap()
+         .load(decryptableUri)
+         .skipMemoryCache(true)
+         .diskCacheStrategy(DiskCacheStrategy.NONE)
+         .centerCrop()
+         .override(AvatarHelper.AVATAR_DIMENSIONS, AvatarHelper.AVATAR_DIMENSIONS)
+         .into(new CustomTarget<Bitmap>() {
+           @Override
+           public void onResourceReady(@NonNull Bitmap resource, Transition<? super Bitmap> transition) {
+             viewModel.setAvatar(Objects.requireNonNull(BitmapUtil.toByteArray(resource)));
+           }
 
-              @Override
-              public void onLoadCleared(@Nullable Drawable placeholder) {
-              }
-            });
+           @Override
+           public void onLoadCleared(@Nullable Drawable placeholder) {
+           }
+         });
   }
 
   private void initializeViewModel() {

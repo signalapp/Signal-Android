@@ -18,6 +18,7 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.logging.Log
+import org.signal.ringrtc.CallLinkEpoch
 import org.signal.ringrtc.CallLinkRootKey
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
@@ -292,7 +293,7 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
       Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
     }
 
-    override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey) {
+    override fun onJoinCallLink(callLinkRootKey: CallLinkRootKey, callLinkEpoch: CallLinkEpoch?) {
       Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
     }
 
@@ -329,6 +330,10 @@ class InternalConversationTestFragment : Fragment(R.layout.conversation_test_fra
     }
 
     override fun onShowUnverifiedProfileSheet(forGroup: Boolean) {
+      Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onUpdateSignalClicked() {
       Toast.makeText(requireContext(), "Can't touch this.", Toast.LENGTH_SHORT).show()
     }
   }

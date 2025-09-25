@@ -18,7 +18,6 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.IOException
-import java.util.Optional
 
 /**
  * Renders Avatar objects into Media objects. This can involve creating a Bitmap, depending on the
@@ -132,6 +131,20 @@ object AvatarRenderer {
   }
 
   private fun createMedia(uri: Uri, size: Long): Media {
-    return Media(uri, MediaUtil.IMAGE_JPEG, System.currentTimeMillis(), DIMENSIONS, DIMENSIONS, size, 0, false, false, Optional.empty(), Optional.empty(), Optional.empty(), Optional.empty())
+    return Media(
+      uri = uri,
+      contentType = MediaUtil.IMAGE_JPEG,
+      date = System.currentTimeMillis(),
+      width = DIMENSIONS,
+      height = DIMENSIONS,
+      size = size,
+      duration = 0,
+      isBorderless = false,
+      isVideoGif = false,
+      bucketId = null,
+      caption = null,
+      transformProperties = null,
+      fileName = null
+    )
   }
 }

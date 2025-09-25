@@ -1,39 +1,41 @@
 package org.thoughtcrime.securesms.components.settings.app.appearance
 
 import android.os.Build
-import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.Navigation
-import org.signal.core.util.concurrent.observe
+import android.os.Bundle
+import android.view.View
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.integerArrayResource
+import androidx.compose.ui.res.stringArrayResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.navigation.fragment.findNavController
+import org.signal.core.ui.compose.Previews
+import org.signal.core.ui.compose.Rows
+import org.signal.core.ui.compose.Scaffolds
+import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.components.settings.DSLConfiguration
-import org.thoughtcrime.securesms.components.settings.DSLSettingsFragment
-import org.thoughtcrime.securesms.components.settings.DSLSettingsText
 import org.thoughtcrime.securesms.components.settings.app.appearance.navbar.ChooseNavigationBarStyleFragment
-import org.thoughtcrime.securesms.components.settings.configure
+import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
 import org.thoughtcrime.securesms.keyvalue.SettingsValues
-import org.thoughtcrime.securesms.util.adapter.mapping.MappingAdapter
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
-class AppearanceSettingsFragment : DSLSettingsFragment(R.string.preferences__appearance) {
+/**
+ * Allows the user to change language, theme, etc. from application settings.
+ */
+class AppearanceSettingsFragment : ComposeFragment() {
 
-  private lateinit var viewModel: AppearanceSettingsViewModel
+  private val viewModel: AppearanceSettingsViewModel by viewModels()
 
-  private val themeLabels by lazy { resources.getStringArray(R.array.pref_theme_entries) }
-  private val themeValues by lazy { resources.getStringArray(R.array.pref_theme_values) }
-
-  private val messageFontSizeLabels by lazy { resources.getStringArray(R.array.pref_message_font_size_entries) }
-  private val messageFontSizeValues by lazy { resources.getIntArray(R.array.pref_message_font_size_values) }
-
-  private val languageLabels by lazy { resources.getStringArray(R.array.language_entries) }
-  private val languageValues by lazy { resources.getStringArray(R.array.language_values) }
-
-  override fun bindAdapter(adapter: MappingAdapter) {
-    viewModel = ViewModelProvider(this)[AppearanceSettingsViewModel::class.java]
-
-    viewModel.state.observe(viewLifecycleOwner) { state ->
-      adapter.submitList(getConfiguration(state).toMappingModelList())
-    }
-
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     childFragmentManager.setFragmentResultListener(ChooseNavigationBarStyleFragment.REQUEST_KEY, viewLifecycleOwner) { key, bundle ->
       if (bundle.getBoolean(key, false)) {
         viewModel.refreshState()
@@ -41,64 +43,150 @@ class AppearanceSettingsFragment : DSLSettingsFragment(R.string.preferences__app
     }
   }
 
-  private fun getConfiguration(state: AppearanceSettingsState): DSLConfiguration {
-    return configure {
-      radioListPref(
-        title = DSLSettingsText.from(R.string.preferences__language),
-        listItems = languageLabels,
-        selected = languageValues.indexOf(state.language),
-        onSelected = {
-          viewModel.setLanguage(languageValues[it])
-        }
-      )
+  @Composable
+  override fun FragmentContent() {
+    val callbacks = remember { Callbacks() }
+    val state by viewModel.state.collectAsStateWithLifecycle()
 
-      radioListPref(
-        title = DSLSettingsText.from(R.string.preferences__theme),
-        listItems = themeLabels,
-        selected = themeValues.indexOf(state.theme.serialize()),
-        onSelected = {
-          viewModel.setTheme(activity, SettingsValues.Theme.deserialize(themeValues[it]))
-        }
-      )
+    AppearanceSettingsScreen(
+      state = state,
+      callbacks = callbacks
+    )
+  }
 
-      clickPref(
-        title = DSLSettingsText.from(R.string.preferences__chat_color_and_wallpaper),
-        onClick = {
-          Navigation.findNavController(requireView()).safeNavigate(R.id.action_appearanceSettings_to_wallpaperActivity)
-        }
-      )
+  private inner class Callbacks : AppearanceSettingsCallbacks {
+    override fun onNavigationClick() {
+      requireActivity().onBackPressedDispatcher.onBackPressed()
+    }
 
-      if (Build.VERSION.SDK_INT >= 26) {
-        clickPref(
-          title = DSLSettingsText.from(R.string.preferences__app_icon),
-          onClick = {
-            Navigation.findNavController(requireView()).safeNavigate(R.id.action_appearanceSettings_to_appIconActivity)
-          }
+    override fun onLanguageSelected(selection: String) {
+      viewModel.setLanguage(selection)
+    }
+
+    override fun onThemeSelected(selection: String) {
+      viewModel.setTheme(activity, SettingsValues.Theme.deserialize(selection))
+    }
+
+    override fun onChatColorAndWallpaperClick() {
+      findNavController().safeNavigate(R.id.action_appearanceSettings_to_wallpaperActivity)
+    }
+
+    override fun onAppIconClick() {
+      findNavController().safeNavigate(R.id.action_appearanceSettings_to_appIconActivity)
+    }
+
+    override fun onMessageFontSizeSelected(selection: String) {
+      viewModel.setMessageFontSize(selection.toInt())
+    }
+
+    override fun onNavigationBarSizeClick() {
+      ChooseNavigationBarStyleFragment().show(childFragmentManager, null)
+    }
+  }
+}
+
+interface AppearanceSettingsCallbacks {
+  fun onNavigationClick() = Unit
+  fun onLanguageSelected(selection: String) = Unit
+  fun onThemeSelected(selection: String) = Unit
+  fun onChatColorAndWallpaperClick() = Unit
+  fun onAppIconClick() = Unit
+  fun onMessageFontSizeSelected(selection: String) = Unit
+  fun onNavigationBarSizeClick() = Unit
+
+  object Empty : AppearanceSettingsCallbacks
+}
+
+@Composable
+private fun AppearanceSettingsScreen(
+  state: AppearanceSettingsState,
+  callbacks: AppearanceSettingsCallbacks
+) {
+  Scaffolds.Settings(
+    title = stringResource(R.string.preferences__appearance),
+    onNavigationClick = callbacks::onNavigationClick,
+    navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24)
+  ) { paddingValues ->
+    LazyColumn(
+      modifier = Modifier
+        .padding(paddingValues)
+        .then(rememberStatusBarColorNestedScrollModifier())
+    ) {
+      item {
+        Rows.RadioListRow(
+          text = stringResource(R.string.preferences__language),
+          labels = stringArrayResource(R.array.language_entries),
+          values = stringArrayResource(R.array.language_values),
+          selectedValue = state.language,
+          onSelected = callbacks::onLanguageSelected
         )
       }
 
-      radioListPref(
-        title = DSLSettingsText.from(R.string.preferences_chats__message_text_size),
-        listItems = messageFontSizeLabels,
-        selected = messageFontSizeValues.indexOf(state.messageFontSize),
-        onSelected = {
-          viewModel.setMessageFontSize(messageFontSizeValues[it].toInt())
-        }
-      )
+      item {
+        Rows.RadioListRow(
+          text = stringResource(R.string.preferences__theme),
+          labels = stringArrayResource(R.array.pref_theme_entries),
+          values = stringArrayResource(R.array.pref_theme_values),
+          selectedValue = state.theme.serialize(),
+          onSelected = callbacks::onThemeSelected
+        )
+      }
 
-      clickPref(
-        title = DSLSettingsText.from(R.string.preferences_navigation_bar_size),
-        summary = DSLSettingsText.from(
-          if (state.isCompactNavigationBar) {
-            R.string.preferences_compact
-          } else {
-            R.string.preferences_normal
-          }
-        ),
-        onClick = {
-          ChooseNavigationBarStyleFragment().show(childFragmentManager, null)
+      item {
+        Rows.TextRow(
+          text = stringResource(R.string.preferences__chat_color_and_wallpaper),
+          onClick = callbacks::onChatColorAndWallpaperClick
+        )
+      }
+
+      if (Build.VERSION.SDK_INT >= 26) {
+        item {
+          Rows.TextRow(
+            text = stringResource(R.string.preferences__app_icon),
+            onClick = callbacks::onAppIconClick
+          )
         }
-      )
+      }
+
+      item {
+        Rows.RadioListRow(
+          text = stringResource(R.string.preferences_chats__message_text_size),
+          labels = stringArrayResource(R.array.pref_message_font_size_entries),
+          values = integerArrayResource(R.array.pref_message_font_size_values).map { it.toString() }.toTypedArray(),
+          selectedValue = state.messageFontSize.toString(),
+          onSelected = callbacks::onMessageFontSizeSelected
+        )
+      }
+
+      item {
+        val label = if (state.isCompactNavigationBar) {
+          R.string.preferences_compact
+        } else {
+          R.string.preferences_normal
+        }
+
+        Rows.TextRow(
+          text = stringResource(R.string.preferences_navigation_bar_size),
+          label = stringResource(label),
+          onClick = callbacks::onNavigationBarSizeClick
+        )
+      }
     }
+  }
+}
+
+@SignalPreview
+@Composable
+private fun AppearanceSettingsScreenPreview() {
+  Previews.Preview {
+    AppearanceSettingsScreen(
+      state = AppearanceSettingsState(
+        theme = SettingsValues.Theme.SYSTEM,
+        messageFontSize = 0,
+        language = "en-US",
+        isCompactNavigationBar = false
+      ),
+      callbacks = AppearanceSettingsCallbacks.Empty
+    )
   }
 }

@@ -66,6 +66,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
       }
 
       finish()
+      return
     }
 
     enableSavedStateHandles()

@@ -446,7 +446,7 @@ open class MessageContentProcessor(private val context: Context) {
       }
 
       content.syncMessage != null -> {
-        SignalStore.account.hasLinkedDevices = true
+        SignalStore.account.isMultiDevice = true
 
         SyncMessageProcessor.process(
           context,

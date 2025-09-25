@@ -68,6 +68,7 @@ import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.BiometricDeviceLockContract
+import org.thoughtcrime.securesms.DevicePinAuthEducationSheet
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.linkdevice.LinkDeviceSettingsState.DialogState
@@ -161,7 +162,7 @@ class LinkDeviceFragment : ComposeFragment() {
           Toast.makeText(context, context.getString(R.string.DeviceListActivity_network_failed), Toast.LENGTH_LONG).show()
         }
         LinkDeviceSettingsState.OneTimeEvent.LaunchQrCodeScanner -> {
-          navController.navigateToQrScannerIfAuthed(state.seenBioAuthEducationSheet)
+          navController.navigateToQrScannerIfAuthed()
         }
         LinkDeviceSettingsState.OneTimeEvent.ShowFinishedSheet -> {
           navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceFinishedSheet)
@@ -185,15 +186,6 @@ class LinkDeviceFragment : ComposeFragment() {
       }
     }
 
-    LaunchedEffect(state.seenBioAuthEducationSheet) {
-      if (state.seenBioAuthEducationSheet) {
-        if (!biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link)) }) {
-          navController.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
-        }
-        viewModel.markBioAuthEducationSheetSeen(false)
-      }
-    }
-
     Scaffolds.Settings(
       title = stringResource(id = R.string.preferences__linked_devices),
       onNavigationClick = { navController.popOrFinish() },
@@ -206,7 +198,7 @@ class LinkDeviceFragment : ComposeFragment() {
         onLearnMoreClicked = { navController.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceLearnMoreBottomSheet) },
         onLinkNewDeviceClicked = {
           viewModel.stopExistingPolling()
-          navController.navigateToQrScannerIfAuthed(!state.needsBioAuthEducationSheet)
+          navController.navigateToQrScannerIfAuthed()
         },
         onDeviceSelectedForRemoval = { device -> viewModel.setDeviceToRemove(device) },
         onDeviceRemovalConfirmed = { device -> viewModel.removeDevice(device) },
@@ -236,14 +228,15 @@ class LinkDeviceFragment : ComposeFragment() {
     return SupportEmailUtil.generateSupportEmailBody(requireContext(), filter, prefix.toString(), null)
   }
 
-  private fun NavController.navigateToQrScannerIfAuthed(seenEducation: Boolean) {
-    if (seenEducation && biometricAuth.canAuthenticate(requireContext())) {
-      if (!biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link)) }) {
-        this.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
+  private fun NavController.navigateToQrScannerIfAuthed() {
+    if (biometricAuth.shouldShowEducationSheet(requireContext())) {
+      DevicePinAuthEducationSheet.show(getString(R.string.LinkDeviceFragment__before_linking), parentFragmentManager)
+      parentFragmentManager.setFragmentResultListener(DevicePinAuthEducationSheet.REQUEST_KEY, viewLifecycleOwner) { _, _ ->
+        if (!biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link)) }) {
+          this.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
+        }
       }
-    } else if (biometricAuth.canAuthenticate(requireContext())) {
-      this.safeNavigate(R.id.action_linkDeviceFragment_to_linkDeviceEducationSheet)
-    } else {
+    } else if (!biometricAuth.authenticate(requireContext(), true) { biometricDeviceLockLauncher.launch(getString(R.string.LinkDeviceFragment__unlock_to_link)) }) {
       this.safeNavigate(R.id.action_linkDeviceFragment_to_addLinkDeviceFragment)
     }
   }
@@ -502,7 +495,7 @@ fun DeviceListScreen(
 @Composable
 fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit, onEditDevice: (Device) -> Unit) {
   val titleString = if (device.name.isNullOrEmpty()) stringResource(R.string.DeviceListItem_unnamed_device) else device.name
-  val linkedDate = DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.createdMillis)
+  val linkedDate = device.createdMillis?.let { DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.createdMillis) }
   val lastActive = DateUtils.getDayPrecisionTimeSpanString(LocalContext.current, Locale.getDefault(), device.lastSeenMillis)
   val menuController = remember { DropdownMenus.MenuController() }
   Row(
@@ -531,7 +524,9 @@ fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit, onEditDevice:
         .weight(1f)
     ) {
       Text(text = titleString, style = MaterialTheme.typography.bodyLarge)
-      Text(stringResource(R.string.DeviceListItem_linked_s, linkedDate), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+      if (linkedDate != null) {
+        Text(stringResource(R.string.DeviceListItem_linked_s, linkedDate), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
+      }
       Text(stringResource(R.string.DeviceListItem_last_active_s, lastActive), style = MaterialTheme.typography.bodyMedium, color = MaterialTheme.colorScheme.onSurfaceVariant)
     }
 
@@ -606,11 +601,10 @@ private fun DeviceListScreenPreview() {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
         devices = listOf(
-          Device(1, "Sam's Macbook Pro", 1715793982000, 1716053182000),
-          Device(1, "Sam's iPad", 1715793182000, 1716053122000)
+          Device(1, "Sam's Macbook Pro", 1715793982000, 1716053182000, 0),
+          Device(1, "Sam's iPad", 1715793182000, 1716053122000, 0)
         ),
-        seenQrEducationSheet = true,
-        seenBioAuthEducationSheet = true
+        seenQrEducationSheet = true
       )
     )
   }
@@ -623,8 +617,7 @@ private fun DeviceListScreenLoadingPreview() {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
         deviceListLoading = true,
-        seenQrEducationSheet = true,
-        seenBioAuthEducationSheet = true
+        seenQrEducationSheet = true
       )
     )
   }
@@ -637,8 +630,7 @@ private fun DeviceListScreenLinkingPreview() {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
         dialogState = DialogState.Linking,
-        seenQrEducationSheet = true,
-        seenBioAuthEducationSheet = true
+        seenQrEducationSheet = true
       )
     )
   }
@@ -651,8 +643,7 @@ private fun DeviceListScreenUnlinkingPreview() {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
         dialogState = DialogState.Unlinking,
-        seenQrEducationSheet = true,
-        seenBioAuthEducationSheet = true
+        seenQrEducationSheet = true
       )
     )
   }
@@ -664,9 +655,8 @@ private fun DeviceListScreenSyncingMessagesPreview() {
   Previews.Preview {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
-        dialogState = DialogState.SyncingMessages(1, 1),
-        seenQrEducationSheet = true,
-        seenBioAuthEducationSheet = true
+        dialogState = DialogState.SyncingMessages(1),
+        seenQrEducationSheet = true
       )
     )
   }
@@ -679,8 +669,7 @@ private fun DeviceListScreenSyncingFailedRetryPreview() {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
         dialogState = DialogState.SyncingTimedOut,
-        seenQrEducationSheet = true,
-        seenBioAuthEducationSheet = true
+        seenQrEducationSheet = true
       )
     )
   }
@@ -694,11 +683,10 @@ private fun DeviceListScreenSyncingFailedPreview() {
       state = LinkDeviceSettingsState(
         dialogState = DialogState.SyncingFailed(
           deviceId = 1,
-          deviceCreatedAt = 1,
+          deviceRegistrationId = 1,
           syncFailType = LinkDeviceSettingsState.SyncFailType.NOT_RETRYABLE
         ),
-        seenQrEducationSheet = true,
-        seenBioAuthEducationSheet = true
+        seenQrEducationSheet = true
       )
     )
   }
@@ -711,8 +699,7 @@ private fun DeviceListScreenContactSupportPreview() {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
         dialogState = DialogState.ContactSupport,
-        seenQrEducationSheet = true,
-        seenBioAuthEducationSheet = true
+        seenQrEducationSheet = true
       )
     )
   }
@@ -725,7 +712,6 @@ private fun DeviceListScreenDeviceUnlinkedPreview() {
     DeviceListScreen(
       state = LinkDeviceSettingsState(
         dialogState = DialogState.DeviceUnlinked(1736454440342),
-        seenBioAuthEducationSheet = true,
         seenQrEducationSheet = true
       )
     )
@@ -740,11 +726,10 @@ private fun DeviceListScreenNotEnoughStoragePreview() {
       state = LinkDeviceSettingsState(
         dialogState = DialogState.SyncingFailed(
           deviceId = 1,
-          deviceCreatedAt = 1,
+          deviceRegistrationId = 1,
           syncFailType = LinkDeviceSettingsState.SyncFailType.NOT_ENOUGH_SPACE
         ),
-        seenQrEducationSheet = true,
-        seenBioAuthEducationSheet = true
+        seenQrEducationSheet = true
       )
     )
   }

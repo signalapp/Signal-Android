@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.registration.ui
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
@@ -74,7 +75,6 @@ import java.io.IOException
 import java.nio.charset.StandardCharsets
 import java.util.concurrent.TimeUnit
 import kotlin.jvm.optionals.getOrNull
-import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.minutes
 
 /**
@@ -124,6 +124,7 @@ class RegistrationViewModel : ViewModel() {
       }
     }
 
+  @SuppressLint("MissingPermission")
   fun maybePrefillE164(context: Context) {
     Log.v(TAG, "maybePrefillE164()")
     if (Permissions.hasAll(context, Manifest.permission.READ_PHONE_STATE, Manifest.permission.READ_PHONE_NUMBERS)) {
@@ -164,7 +165,6 @@ class RegistrationViewModel : ViewModel() {
   fun setCaptchaResponse(token: String) {
     store.update {
       it.copy(
-        registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_COMPLETED,
         captchaToken = token
       )
     }
@@ -194,18 +194,6 @@ class RegistrationViewModel : ViewModel() {
     }
   }
 
-  fun addPresentedChallenge(challenge: Challenge) {
-    store.update {
-      it.copy(challengesPresented = it.challengesPresented.plus(challenge))
-    }
-  }
-
-  fun removePresentedChallenge(challenge: Challenge) {
-    store.update {
-      it.copy(challengesPresented = it.challengesPresented.minus(challenge))
-    }
-  }
-
   fun fetchFcmToken(context: Context) {
     viewModelScope.launch(context = coroutineExceptionHandler) {
       val fcmToken = RegistrationRepository.getFcmToken(context)
@@ -223,6 +211,12 @@ class RegistrationViewModel : ViewModel() {
     }
     Log.d(TAG, "FCM token fetched.")
     return fcmToken
+  }
+
+  fun togglePinKeyboardType() {
+    store.update { previousState ->
+      previousState.copy(pinKeyboardType = previousState.pinKeyboardType.other)
+    }
   }
 
   fun onBackupSuccessfullyRestored() {
@@ -290,14 +284,8 @@ class RegistrationViewModel : ViewModel() {
       }
 
       if (!validSession.allowedToRequestCode) {
-        if (System.currentTimeMillis().milliseconds > validSession.nextVerificationAttempt) {
-          store.update {
-            it.copy(registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED)
-          }
-        } else {
-          Log.i(TAG, "Not allowed to request code! Remaining challenges: ${validSession.challengesRequested.joinToString()}")
-          handleSessionStateResult(context, ChallengeRequired(validSession.challengesRequested))
-        }
+        Log.i(TAG, "Not allowed to request code! Remaining challenges: ${validSession.challengesRequested.joinToString()}")
+        handleSessionStateResult(context, ChallengeRequired(validSession.challengesRequested))
         return@launch
       }
 
@@ -383,6 +371,8 @@ class RegistrationViewModel : ViewModel() {
           registrationCheckpoint = RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED
         )
       }
+    } else {
+      Log.i(TAG, "SMS code request failed: ${codeRequestResponse::class.simpleName}")
     }
   }
 
@@ -400,6 +390,7 @@ class RegistrationViewModel : ViewModel() {
       mcc = mccMncProducer.mcc,
       mnc = mccMncProducer.mnc,
       successListener = { sessionData ->
+        Log.i(TAG, "[getOrCreateValidSession] Challenges requested: ${sessionData.challengesRequested}", true)
         store.update {
           it.copy(
             sessionId = sessionData.sessionId,
@@ -429,7 +420,7 @@ class RegistrationViewModel : ViewModel() {
     val captchaToken = store.value.captchaToken ?: throw IllegalStateException("Can't submit captcha token if no captcha token is set!")
 
     store.update {
-      it.copy(captchaToken = null)
+      it.copy(captchaToken = null, challengeInProgress = true, inProgress = true)
     }
 
     viewModelScope.launch {
@@ -439,13 +430,19 @@ class RegistrationViewModel : ViewModel() {
       Log.d(TAG, "Captcha token submitted.")
 
       handleSessionStateResult(context, captchaSubmissionResult)
+
+      store.update { it.copy(challengeInProgress = false) }
+
+      if (captchaSubmissionResult is Success) {
+        requestSmsCode(context)
+      } else {
+        setInProgress(false)
+      }
     }
   }
 
   fun requestAndSubmitPushToken(context: Context) {
     Log.v(TAG, "validatePushToken()")
-
-    addPresentedChallenge(Challenge.PUSH)
 
     val e164 = getCurrentE164() ?: throw IllegalStateException("Can't submit captcha token if no phone number is set!")
 
@@ -493,7 +490,6 @@ class RegistrationViewModel : ViewModel() {
         Log.d(TAG, "[${sessionResult.challenges.joinToString()}] registration challenges received.")
         store.update {
           it.copy(
-            registrationCheckpoint = RegistrationCheckpoint.CHALLENGE_RECEIVED,
             challengesRequested = sessionResult.challenges
           )
         }
@@ -735,6 +731,8 @@ class RegistrationViewModel : ViewModel() {
 
   fun verifyCodeAndRegisterAccountWithRegistrationLock(context: Context, pin: String) {
     Log.v(TAG, "verifyCodeAndRegisterAccountWithRegistrationLock()")
+    SignalStore.pin.keyboardType = store.value.pinKeyboardType
+
     store.update {
       it.copy(
         inProgress = true,
@@ -878,7 +876,7 @@ class RegistrationViewModel : ViewModel() {
       stopwatch.split("account-restore")
 
       AppDependencies.jobManager
-        .startChain(StorageSyncJob.forRemoteChange())
+        .startChain(StorageSyncJob.forAccountRestore())
         .then(ReclaimUsernameAndLinkJob())
         .enqueueAndBlockUntilCompletion(TimeUnit.SECONDS.toMillis(10))
       stopwatch.split("storage-sync")

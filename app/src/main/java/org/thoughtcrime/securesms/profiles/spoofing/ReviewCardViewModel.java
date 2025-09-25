@@ -87,6 +87,7 @@ public class ReviewCardViewModel extends ViewModel {
   @WorkerThread
   private @NonNull List<ReviewCard> transformReviewRecipients(boolean isSelfGroupAdmin, @NonNull List<ReviewRecipient> reviewRecipients) {
     return Stream.of(reviewRecipients)
+                 .filter(r -> repository.loadGroupsInCommonCount(r) > 0)
                  .map(r -> new ReviewCard(r,
                                           repository.loadGroupsInCommonCount(r) - (isGroupThread ? 1 : 0),
                                           getCardType(r),

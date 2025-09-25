@@ -30,8 +30,13 @@ internal class AepMigrationJob(
       return
     }
 
+    if (SignalStore.account.isLinkedDevice) {
+      Log.i(TAG, "Not primary, skipping.")
+      return
+    }
+
     AppDependencies.jobManager.add(Svr2MirrorJob())
-    if (SignalStore.account.hasLinkedDevices) {
+    if (SignalStore.account.isMultiDevice) {
       AppDependencies.jobManager.add(MultiDeviceKeysUpdateJob())
     }
     AppDependencies.jobManager.add(StorageForcePushJob())

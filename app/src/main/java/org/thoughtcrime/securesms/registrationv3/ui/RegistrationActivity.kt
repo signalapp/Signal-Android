@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.registration.sms.SmsRetrieverReceiver
+import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
 
 /**
@@ -46,6 +47,7 @@ class RegistrationActivity : BaseActivity() {
 
     sharedViewModel.checkpoint.observe(this) {
       if (it >= RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE) {
+        RegistrationUtil.maybeMarkRegistrationComplete()
         handleSuccessfulVerify()
       }
     }
@@ -57,7 +59,7 @@ class RegistrationActivity : BaseActivity() {
   }
 
   private fun handleSuccessfulVerify() {
-    if (SignalStore.account.hasLinkedDevices) {
+    if (SignalStore.account.isPrimaryDevice && SignalStore.account.isMultiDevice) {
       SignalStore.misc.shouldShowLinkedDevicesReminder = sharedViewModel.isReregister
     }
 

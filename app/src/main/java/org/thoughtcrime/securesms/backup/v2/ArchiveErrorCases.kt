@@ -119,6 +119,10 @@ object ExportSkips {
     return log(sentTimestamp, "Failed to parse thread merge event.")
   }
 
+  fun individualChatUpdateInWrongTypeOfChat(sentTimestamp: Long): String {
+    return log(sentTimestamp, "A chat update that only makes sense for individual chats was found in a different kind of chat.")
+  }
+
   private fun log(sentTimestamp: Long, message: String): String {
     return "[SKIP][$sentTimestamp] $message"
   }
@@ -168,6 +172,22 @@ object ExportOddities {
 
   fun invalidE164InSessionSwitchover(sentTimestamp: Long): String {
     return log(sentTimestamp, "Invalid e164 in sessions switchover event. Exporting an empty event.")
+  }
+
+  fun undownloadedLongTextAttachment(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Long text attachment was not yet downloaded. Falling back to the known body with an attachment pointer.")
+  }
+
+  fun unreadableLongTextAttachment(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Long text attachment was unreadable. Dropping the pointer.")
+  }
+
+  fun unopenableLongTextAttachment(sentTimestamp: Long): String {
+    return log(sentTimestamp, "Long text attachment failed to open. Falling back to the known body with an attachment pointer.")
+  }
+
+  fun bodyGreaterThanMaxLength(sentTimestamp: Long, length: Int): String {
+    return log(sentTimestamp, "The body length was greater than the max allowed ($length bytes). Trimming to fit.")
   }
 
   private fun log(sentTimestamp: Long, message: String): String {

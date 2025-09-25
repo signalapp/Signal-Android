@@ -14,6 +14,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
 import org.signal.core.util.logging.Log
 import org.signal.core.util.orNull
+import org.signal.libsignal.net.ChatConnection
 import org.whispersystems.signalservice.api.crypto.SealedSenderAccess
 import org.whispersystems.signalservice.api.messages.EnvelopeResponse
 import org.whispersystems.signalservice.api.util.SleepTimer
@@ -23,9 +24,12 @@ import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessa
 import org.whispersystems.signalservice.internal.websocket.WebSocketResponseMessage
 import org.whispersystems.signalservice.internal.websocket.WebsocketResponse
 import java.io.IOException
+import java.util.concurrent.CopyOnWriteArraySet
 import java.util.concurrent.TimeoutException
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+
+private typealias Listener = () -> Unit
 
 /**
  * Base wrapper around a [WebSocketConnection] to provide a more developer friend interface to websocket
@@ -53,8 +57,8 @@ sealed class SignalWebSocket(
   private val _state: BehaviorSubject<WebSocketConnectionState> = BehaviorSubject.createDefault(WebSocketConnectionState.DISCONNECTED)
   protected var disposable: CompositeDisposable = CompositeDisposable()
 
-  private val keepAliveTokens: MutableSet<String> = mutableSetOf()
-  var keepAliveChangedListener: (() -> Unit)? = null
+  private val keepAliveTokens: MutableSet<String> = CopyOnWriteArraySet()
+  private val keepAliveChangeListeners: MutableSet<Listener> = CopyOnWriteArraySet()
 
   private var delayedDisconnectThread: DelayedDisconnectThread? = null
 
@@ -97,43 +101,49 @@ sealed class SignalWebSocket(
     }
   }
 
-  @Synchronized
   fun shouldSendKeepAlives(): Boolean {
     return keepAliveTokens.isNotEmpty()
   }
 
-  @Synchronized
   fun registerKeepAliveToken(token: String) {
-    delayedDisconnectThread?.abort()
-    delayedDisconnectThread = null
-
     val changed = keepAliveTokens.add(token)
     if (changed) {
       Log.v(TAG, "$connectionName Adding keepAliveToken: $token, current: $keepAliveTokens")
     }
 
-    if (canConnect.canConnect()) {
-      try {
-        connect()
-      } catch (e: WebSocketUnavailableException) {
-        Log.w(TAG, "$connectionName Keep alive requested, but connection not available", e)
+    synchronized(this) {
+      delayedDisconnectThread?.abort()
+      delayedDisconnectThread = null
+
+      if (canConnect.canConnect()) {
+        try {
+          connect()
+        } catch (e: WebSocketUnavailableException) {
+          Log.w(TAG, "$connectionName Keep alive requested, but connection not available", e)
+        }
+      } else {
+        Log.w(TAG, "$connectionName Keep alive requested, but connection not available")
       }
-    } else {
-      Log.w(TAG, "$connectionName Keep alive requested, but connection not available")
     }
 
     if (changed) {
-      keepAliveChangedListener?.invoke()
+      keepAliveChangeListeners.forEach { it() }
     }
   }
 
-  @Synchronized
   fun removeKeepAliveToken(token: String) {
     if (keepAliveTokens.remove(token)) {
       Log.v(TAG, "$connectionName Removing keepAliveToken: $token, remaining: $keepAliveTokens")
-      startDelayedDisconnectIfNecessary()
-      keepAliveChangedListener?.invoke()
+      synchronized(this) {
+        startDelayedDisconnectIfNecessary()
+      }
     }
+
+    keepAliveChangeListeners.forEach { it() }
+  }
+
+  fun addKeepAliveChangeListener(listener: Listener) {
+    keepAliveChangeListeners.add(listener)
   }
 
   fun request(request: WebSocketRequestMessage): Single<WebsocketResponse> {
@@ -157,6 +167,18 @@ sealed class SignalWebSocket(
   @Throws(IOException::class)
   fun sendAck(response: EnvelopeResponse) {
     getWebSocket().sendResponse(response.websocketRequest.getWebSocketResponse())
+  }
+
+  /**
+   * Executes the given callback with the underlying libsignal chat connection when available.
+   *
+   * This is only supported for LibSignal-based connections.
+   *
+   * @param callback The callback to execute with the connection. Should be very quick and
+   *                 non-blocking, because it may block other operations on that connection.
+   */
+  suspend fun <T> runWithChatConnection(callback: (org.signal.libsignal.net.ChatConnection) -> T): T {
+    return getWebSocket().runWithChatConnection(callback)
   }
 
   @Synchronized
@@ -278,7 +300,9 @@ sealed class SignalWebSocket(
   class UnauthenticatedWebSocket(connectionFactory: WebSocketFactory, canConnect: CanConnect, sleepTimer: SleepTimer, disconnectTimeoutMs: Long) : SignalWebSocket(connectionFactory, canConnect, sleepTimer, disconnectTimeoutMs.milliseconds) {
     fun request(requestMessage: WebSocketRequestMessage, sealedSenderAccess: SealedSenderAccess): Single<WebsocketResponse> {
       val headers: MutableList<String> = requestMessage.headers.toMutableList()
-      headers.add(sealedSenderAccess.header)
+      if (sealedSenderAccess.applyHeader()) {
+        headers.add(sealedSenderAccess.header)
+      }
 
       val message = requestMessage
         .newBuilder()
@@ -299,6 +323,10 @@ sealed class SignalWebSocket(
       } catch (e: IOException) {
         return Single.error(e)
       }
+    }
+
+    suspend fun <T> runWithUnauthChatConnection(callback: (org.signal.libsignal.net.UnauthenticatedChatConnection) -> T): T {
+      return getWebSocket().runWithChatConnection(callback as (ChatConnection) -> T)
     }
   }
 

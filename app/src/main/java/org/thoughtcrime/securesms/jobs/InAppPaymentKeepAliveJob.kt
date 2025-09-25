@@ -5,16 +5,17 @@
 
 package org.thoughtcrime.securesms.jobs
 
+import androidx.annotation.VisibleForTesting
 import okio.ByteString.Companion.toByteString
 import org.signal.core.util.logging.Log
+import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.badges.Badges
-import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toDecimalValue
+import org.thoughtcrime.securesms.components.settings.app.subscription.DonationSerializationHelper.toFiatValue
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository
 import org.thoughtcrime.securesms.components.settings.app.subscription.InAppPaymentsRepository.toPaymentSourceType
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
-import org.thoughtcrime.securesms.database.model.databaseprotos.FiatValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
@@ -24,6 +25,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.internal.EmptyResponse
 import org.whispersystems.signalservice.internal.ServiceResponse
+import java.util.Currency
 import java.util.Locale
 import kotlin.concurrent.withLock
 import kotlin.jvm.optionals.getOrNull
@@ -50,6 +52,7 @@ class InAppPaymentKeepAliveJob private constructor(
     const val KEEP_ALIVE = "keep-alive"
     private const val DATA_TYPE = "type"
 
+    @VisibleForTesting
     fun create(type: InAppPaymentSubscriberRecord.Type): Job {
       return InAppPaymentKeepAliveJob(
         parameters = Parameters.Builder()
@@ -65,6 +68,11 @@ class InAppPaymentKeepAliveJob private constructor(
 
     @JvmStatic
     fun enqueueAndTrackTimeIfNecessary() {
+      if (SignalStore.account.isLinkedDevice) {
+        Log.i(TAG, "Linked device. Skipping.")
+        return
+      }
+
       // TODO -- This should only be enqueued if we are completely drained of old subscription jobs. (No pending, no runnning)
       val lastKeepAliveTime = SignalStore.inAppPayments.getLastKeepAliveLaunchTime().milliseconds
       val now = System.currentTimeMillis().milliseconds
@@ -82,6 +90,11 @@ class InAppPaymentKeepAliveJob private constructor(
 
     @JvmStatic
     fun enqueueAndTrackTime(now: Duration) {
+      if (SignalStore.account.isLinkedDevice) {
+        Log.i(TAG, "Linked device. Skipping.")
+        return
+      }
+
       AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.DONATION))
       AppDependencies.jobManager.add(create(InAppPaymentSubscriberRecord.Type.BACKUP))
       SignalStore.inAppPayments.setLastKeepAliveLaunchTime(now.inWholeMilliseconds)
@@ -99,6 +112,13 @@ class InAppPaymentKeepAliveJob private constructor(
       warn(type, "User is not registered. Skipping.")
       return
     }
+
+    if (SignalStore.account.isLinkedDevice) {
+      info(type, "Not primary, skipping")
+      return
+    }
+
+    clearOldPendingPaymentsIfRequired()
 
     if (SignalDatabase.inAppPayments.hasPrePendingRecurringTransaction(type.inAppPaymentType)) {
       info(type, "We are currently processing a transaction for this type. Skipping.")
@@ -209,6 +229,40 @@ class InAppPaymentKeepAliveJob private constructor(
     }
   }
 
+  /**
+   * If we have a pending payment that is at least 24 hours old AND we have no jobs
+   * enqueued that are associated with it, then something weird has happened. We should
+   * fail the job and let the keep-alive check create a new one as necessary.
+   */
+  private fun clearOldPendingPaymentsIfRequired() {
+    info(type, "Clearing out old pending payments as required.")
+
+    val inAppPayments = SignalDatabase.inAppPayments.getOldPendingPayments(type.inAppPaymentType)
+
+    inAppPayments.forEach { inAppPayment ->
+      val queue = InAppPaymentsRepository.resolveJobQueueKey(inAppPayment)
+
+      if (AppDependencies.jobManager.isQueueEmpty(queue)) {
+        Log.i(TAG, "User has an aged-out pending in-app payment [${inAppPayment.id}][${inAppPayment.type}]. Marking failed and proceeding with check.")
+        SignalDatabase.inAppPayments.update(
+          inAppPayment = inAppPayment.copy(
+            notified = true,
+            endOfPeriod = 0.seconds,
+            subscriberId = null,
+            state = InAppPaymentTable.State.END,
+            data = inAppPayment.data.newBuilder()
+              .error(
+                InAppPaymentData.Error(
+                  type = InAppPaymentData.Error.Type.REDEMPTION
+                )
+              )
+              .build()
+          )
+        )
+      }
+    }
+  }
+
   private fun getActiveInAppPayment(
     subscriber: InAppPaymentSubscriberRecord,
     subscription: ActiveSubscription.Subscription
@@ -279,10 +333,7 @@ class InAppPaymentKeepAliveJob private constructor(
         inAppPaymentData = InAppPaymentData(
           paymentMethodType = newInAppPaymentMethodType,
           badge = badge,
-          amount = FiatValue(
-            currencyCode = subscription.currency,
-            amount = subscription.amount.toDecimalValue()
-          ),
+          amount = FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency)).toFiatValue(),
           error = null,
           level = subscription.level.toLong(),
           cancellation = null,

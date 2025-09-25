@@ -44,30 +44,6 @@ public class Dialogs {
         .show();
   }
 
-  public static void showFormattedTextDialog(@NonNull Context context, @NonNull Runnable onSendAnyway) {
-    new MaterialAlertDialogBuilder(context)
-        .setTitle(R.string.SendingFormattingTextDialog_title)
-        .setMessage(R.string.SendingFormattingTextDialog_message)
-        .setNegativeButton(R.string.SendingFormattingTextDialog_cancel_send_button, null)
-        .setPositiveButton(R.string.SendingFormattingTextDialog_send_anyway_button, (d, w) -> {
-          SignalStore.uiHints().markHasSeenTextFormattingAlert();
-          onSendAnyway.run();
-        })
-        .show();
-  }
-
-  public static void showEditMessageBetaDialog(@NonNull Context context, @NonNull Runnable onSendAnyway) {
-    new MaterialAlertDialogBuilder(context)
-        .setTitle(R.string.SendingEditMessageBetaOnlyDialog_title)
-        .setMessage(R.string.SendingEditMessageBetaOnlyDialog_body)
-        .setNegativeButton(R.string.SendingEditMessageBetaOnlyDialog_cancel, null)
-        .setPositiveButton(R.string.SendingEditMessageBetaOnlyDialog_send, (d, w) -> {
-          SignalStore.uiHints().markHasSeenEditMessageBetaAlert();
-          onSendAnyway.run();
-        })
-        .show();
-  }
-
   public static void showUpgradeSignalDialog(@NonNull Context context) {
     new MaterialAlertDialogBuilder(context)
         .setTitle(R.string.UpdateSignalExpiredDialog__title)

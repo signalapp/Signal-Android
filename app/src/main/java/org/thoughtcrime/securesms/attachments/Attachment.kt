@@ -39,8 +39,6 @@ abstract class Attachment(
   @JvmField
   val remoteKey: String?,
   @JvmField
-  val remoteIv: ByteArray?,
-  @JvmField
   val remoteDigest: ByteArray?,
   @JvmField
   val incrementalDigest: ByteArray?,
@@ -60,6 +58,8 @@ abstract class Attachment(
   val incrementalMacChunkSize: Int,
   @JvmField
   val quote: Boolean,
+  @JvmField
+  val quoteTargetContentType: String?,
   @JvmField
   val uploadTimestamp: Long,
   @JvmField
@@ -90,7 +90,6 @@ abstract class Attachment(
     cdn = Cdn.deserialize(parcel.readInt()),
     remoteLocation = parcel.readString(),
     remoteKey = parcel.readString(),
-    remoteIv = ParcelUtil.readByteArray(parcel),
     remoteDigest = ParcelUtil.readByteArray(parcel),
     incrementalDigest = ParcelUtil.readByteArray(parcel),
     fastPreflightId = parcel.readString(),
@@ -101,6 +100,7 @@ abstract class Attachment(
     height = parcel.readInt(),
     incrementalMacChunkSize = parcel.readInt(),
     quote = ParcelUtil.readBoolean(parcel),
+    quoteTargetContentType = parcel.readString(),
     uploadTimestamp = parcel.readLong(),
     caption = parcel.readString(),
     stickerLocator = ParcelCompat.readParcelable(parcel, StickerLocator::class.java.classLoader, StickerLocator::class.java),
@@ -129,6 +129,7 @@ abstract class Attachment(
     dest.writeInt(height)
     dest.writeInt(incrementalMacChunkSize)
     ParcelUtil.writeBoolean(dest, quote)
+    dest.writeString(quoteTargetContentType)
     dest.writeLong(uploadTimestamp)
     dest.writeString(caption)
     dest.writeParcelable(stickerLocator, 0)

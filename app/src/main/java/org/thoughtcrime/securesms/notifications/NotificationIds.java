@@ -21,6 +21,7 @@ public final class NotificationIds {
   public static final int THREAD                            = 50000;
   public static final int MAX_THREAD                        = THREAD + 100_000;
   public static final int INTERNAL_ERROR                    = 258069;
+  public static final int RECONCILIATION_ERROR              = 258070;
   public static final int LEGACY_SQLCIPHER_MIGRATION        = 494949;
   public static final int USER_NOTIFICATION_MIGRATION       = 525600;
   public static final int DEVICE_TRANSFER                   = 625420;
@@ -35,6 +36,8 @@ public final class NotificationIds {
   public static final int UNREGISTERED_NOTIFICATION_ID      = 20230102;
   public static final int NEW_LINKED_DEVICE                 = 120400;
   public static final int OUT_OF_REMOTE_STORAGE             = 120500;
+  public static final int INITIAL_BACKUP_FAILED             = 120501;
+  public static final int MANUAL_BACKUP_NOT_CREATED         = 120502;
 
   private NotificationIds() { }
 

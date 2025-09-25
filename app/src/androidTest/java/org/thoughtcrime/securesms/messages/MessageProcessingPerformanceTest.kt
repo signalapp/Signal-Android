@@ -13,7 +13,6 @@ import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.logging.Log
-import org.signal.libsignal.protocol.ecc.Curve
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.thoughtcrime.securesms.crypto.SealedSenderAccessUtil
@@ -51,7 +50,7 @@ class MessageProcessingPerformanceTest {
   @get:Rule
   val harness = SignalActivityRule()
 
-  private val trustRoot: ECKeyPair = Curve.generateKeyPair()
+  private val trustRoot: ECKeyPair = ECKeyPair.generate()
 
   @Before
   fun setup() {

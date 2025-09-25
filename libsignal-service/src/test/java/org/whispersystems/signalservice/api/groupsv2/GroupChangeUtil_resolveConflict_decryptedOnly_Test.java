@@ -54,7 +54,7 @@ public final class GroupChangeUtil_resolveConflict_decryptedOnly_Test {
    */
   @Test
   public void ensure_resolveConflict_knows_about_all_fields_of_DecryptedGroup() {
-    int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class);
+    int maxFieldFound = getMaxDeclaredFieldNumber(DecryptedGroup.class, ProtobufTestUtils.IGNORED_DECRYPTED_GROUP_TAGS);
 
     assertEquals("GroupChangeUtil#resolveConflict and its tests need updating to account for new fields on " + DecryptedGroup.class.getName(),
                  13, maxFieldFound);

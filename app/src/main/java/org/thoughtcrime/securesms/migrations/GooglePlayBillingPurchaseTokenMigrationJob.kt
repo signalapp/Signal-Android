@@ -54,7 +54,7 @@ internal class GooglePlayBillingPurchaseTokenMigrationJob private constructor(
 
     if (backupSubscriber.iapSubscriptionId?.purchaseToken == "-") {
       val purchaseResult: BillingPurchaseResult.Success? = runBlocking {
-        if (AppDependencies.billingApi.isApiAvailable()) {
+        if (AppDependencies.billingApi.getApiAvailability().isSuccess) {
           val purchase = AppDependencies.billingApi.queryPurchases()
 
           if (purchase is BillingPurchaseResult.Success) {

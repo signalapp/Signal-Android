@@ -15,7 +15,9 @@ import org.thoughtcrime.securesms.backup.BackupPassphrase
 import org.thoughtcrime.securesms.backup.FullBackupImporter
 import org.thoughtcrime.securesms.crypto.AttachmentSecretProvider
 import org.thoughtcrime.securesms.database.SignalDatabase
+import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.impl.DataRestoreConstraint
+import org.thoughtcrime.securesms.jobs.E164FormattingJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.notifications.NotificationChannels
 import org.thoughtcrime.securesms.service.LocalBackupListener
@@ -68,6 +70,7 @@ object RestoreRepository {
 
       SignalDatabase.runPostBackupRestoreTasks(database)
       NotificationChannels.getInstance().restoreContactNotificationChannels()
+      AppDependencies.jobManager.add(E164FormattingJob())
 
       if (BackupUtil.canUserAccessBackupDirectory(context)) {
         LocalBackupListener.setNextBackupTimeToIntervalFromNow(context)

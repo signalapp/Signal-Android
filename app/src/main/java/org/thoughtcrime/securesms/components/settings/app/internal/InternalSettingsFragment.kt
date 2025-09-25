@@ -218,6 +218,14 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
         }
       )
 
+      clickPref(
+        title = DSLSettingsText.from("Data Seeding Playground"),
+        summary = DSLSettingsText.from("Seed conversations with media files from a folder."),
+        onClick = {
+          findNavController().safeNavigate(InternalSettingsFragmentDirections.actionInternalSettingsFragmentToDataSeedingPlaygroundFragment())
+        }
+      )
+
       dividerPref()
 
       sectionHeaderPref(DSLSettingsText.from("Miscellaneous"))

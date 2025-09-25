@@ -5,8 +5,10 @@
  */
 package org.whispersystems.signalservice.api.crypto
 
+import org.signal.core.util.Base64
 import org.signal.core.util.readNBytesOrThrow
 import org.signal.core.util.stream.LimitedInputStream
+import org.signal.core.util.stream.TrimmingInputStream
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
 import org.signal.libsignal.protocol.incrementalmac.IncrementalMacInputStream
@@ -51,19 +53,18 @@ object AttachmentCipherInputStream {
     file: File,
     plaintextLength: Long,
     combinedKeyMaterial: ByteArray,
-    digest: ByteArray,
+    integrityCheck: IntegrityCheck,
     incrementalDigest: ByteArray?,
     incrementalMacChunkSize: Int
-  ): LimitedInputStream {
+  ): InputStream {
     return create(
       streamSupplier = { FileInputStream(file) },
       streamLength = file.length(),
       plaintextLength = plaintextLength,
       combinedKeyMaterial = combinedKeyMaterial,
-      digest = digest,
+      integrityCheck = integrityCheck,
       incrementalDigest = incrementalDigest,
-      incrementalMacChunkSize = incrementalMacChunkSize,
-      ignoreDigest = false
+      incrementalMacChunkSize = incrementalMacChunkSize
     )
   }
 
@@ -80,70 +81,19 @@ object AttachmentCipherInputStream {
     streamLength: Long,
     plaintextLength: Long,
     combinedKeyMaterial: ByteArray,
-    digest: ByteArray,
+    integrityCheck: IntegrityCheck,
     incrementalDigest: ByteArray?,
     incrementalMacChunkSize: Int
-  ): LimitedInputStream {
+  ): InputStream {
     return create(
       streamSupplier = streamSupplier,
       streamLength = streamLength,
       plaintextLength = plaintextLength,
       combinedKeyMaterial = combinedKeyMaterial,
-      digest = digest,
+      integrityCheck = integrityCheck,
       incrementalDigest = incrementalDigest,
-      incrementalMacChunkSize = incrementalMacChunkSize,
-      ignoreDigest = false
+      incrementalMacChunkSize = incrementalMacChunkSize
     )
-  }
-
-  /**
-   * After removing the server layer of encryption using [createForArchivedMediaOuterLayer], use this to decrypt the inner layer of the attachment.
-   * Thumbnails have a special path because we don't do any additional digest/hash validation on them.
-   */
-  @JvmStatic
-  @Throws(InvalidMessageException::class, IOException::class)
-  fun createForArchiveThumbnailInnerLayer(
-    file: File,
-    plaintextLength: Long,
-    combinedKeyMaterial: ByteArray
-  ): LimitedInputStream {
-    return create(
-      streamSupplier = { FileInputStream(file) },
-      streamLength = file.length(),
-      plaintextLength = plaintextLength,
-      combinedKeyMaterial = combinedKeyMaterial,
-      digest = null,
-      incrementalDigest = null,
-      incrementalMacChunkSize = 0,
-      ignoreDigest = true
-    )
-  }
-
-  /**
-   * When you archive an attachment, you give the server an encrypted attachment, and the server wraps it in *another* layer of encryption.
-   * This will return a stream that unwraps the server's layer of encryption, giving you a stream that contains a "normally-encrypted" attachment.
-   *
-   * Because we're validating the encryptedDigest/plaintextHash of the inner layer, there's no additional out-of-band validation of this outer layer.
-   */
-  @JvmStatic
-  @Throws(InvalidMessageException::class, IOException::class)
-  fun createForArchivedMediaOuterLayer(archivedMediaKeyMaterial: MediaKeyMaterial, file: File, originalCipherTextLength: Long): LimitedInputStream {
-    val mac = initMac(archivedMediaKeyMaterial.macKey)
-
-    if (file.length() <= BLOCK_SIZE + mac.macLength) {
-      throw InvalidMessageException("Message shorter than crypto overhead!")
-    }
-
-    FileInputStream(file).use { macVerificationStream ->
-      verifyMac(macVerificationStream, file.length(), mac, null)
-    }
-
-    val encryptedStream = FileInputStream(file)
-    val encryptedStreamExcludingMac = LimitedInputStream(encryptedStream, file.length() - mac.macLength)
-    val cipher = createCipher(encryptedStreamExcludingMac, archivedMediaKeyMaterial.aesKey)
-    val inputStream: InputStream = BetterCipherInputStream(encryptedStreamExcludingMac, cipher)
-
-    return LimitedInputStream(inputStream, originalCipherTextLength)
   }
 
   /**
@@ -156,16 +106,16 @@ object AttachmentCipherInputStream {
    */
   @JvmStatic
   @Throws(InvalidMessageException::class, IOException::class)
-  fun createForArchivedMediaOuterAndInnerLayers(
+  fun createForArchivedMedia(
     archivedMediaKeyMaterial: MediaKeyMaterial,
     file: File,
     originalCipherTextLength: Long,
     plaintextLength: Long,
     combinedKeyMaterial: ByteArray,
-    digest: ByteArray,
+    plaintextHash: ByteArray,
     incrementalDigest: ByteArray?,
     incrementalMacChunkSize: Int
-  ): LimitedInputStream {
+  ): InputStream {
     val keyMaterial = CombinedKeyMaterial.from(combinedKeyMaterial)
     val mac = initMac(keyMaterial.macKey)
 
@@ -178,11 +128,52 @@ object AttachmentCipherInputStream {
       streamLength = originalCipherTextLength,
       plaintextLength = plaintextLength,
       combinedKeyMaterial = combinedKeyMaterial,
-      digest = digest,
+      integrityCheck = IntegrityCheck(plaintextHash = plaintextHash, encryptedDigest = null),
       incrementalDigest = incrementalDigest,
-      incrementalMacChunkSize = incrementalMacChunkSize,
-      ignoreDigest = false
+      incrementalMacChunkSize = incrementalMacChunkSize
     )
+  }
+
+  /**
+   * When you archive an attachment thumbnail, you give the server an encrypted attachment, and the server wraps it in *another* layer of encryption.
+   *
+   * This creates a stream decrypt both the inner and outer layers of an archived attachment at the same time by basically double-decrypting it.
+   *
+   * Archive thumbnails are also special in that we:
+   * - don't know how long they are (meaning you'll get them back with padding at the end, image viewers are ok with this)
+   * - don't care about external integrity checks (we still validate the MACs)
+   *
+   * So there's some code duplication here just to avoid mucking up the reusable functions with special cases.
+   */
+  @JvmStatic
+  @Throws(InvalidMessageException::class, IOException::class)
+  fun createForArchivedThumbnail(
+    archivedMediaKeyMaterial: MediaKeyMaterial,
+    file: File,
+    innerCombinedKeyMaterial: ByteArray
+  ): InputStream {
+    val outerMac = initMac(archivedMediaKeyMaterial.macKey)
+
+    if (file.length() <= BLOCK_SIZE + outerMac.macLength) {
+      throw InvalidMessageException("Message shorter than crypto overhead! Expected at least ${BLOCK_SIZE + outerMac.macLength} bytes, got ${file.length()}")
+    }
+
+    FileInputStream(file).use { macVerificationStream ->
+      verifyMacAndMaybeEncryptedDigest(macVerificationStream, file.length(), outerMac, null)
+    }
+
+    val outerEncryptedStreamExcludingMac = LimitedInputStream(FileInputStream(file), maxBytes = file.length() - outerMac.macLength)
+    val outerCipher = createCipher(outerEncryptedStreamExcludingMac, archivedMediaKeyMaterial.aesKey)
+    val innerEncryptedStream = BetterCipherInputStream(outerEncryptedStreamExcludingMac, outerCipher)
+
+    val innerKeyMaterial = CombinedKeyMaterial.from(innerCombinedKeyMaterial)
+    val innerMac = initMac(innerKeyMaterial.macKey)
+
+    val innerEncryptedStreamWithMac = MacValidatingInputStream(innerEncryptedStream, innerMac)
+    val innerEncryptedStreamExcludingMac = TrimmingInputStream(innerEncryptedStreamWithMac, trimSize = innerMac.macLength, drain = true)
+    val innerCipher = createCipher(innerEncryptedStreamExcludingMac, innerKeyMaterial.aesKey)
+
+    return BetterCipherInputStream(innerEncryptedStreamExcludingMac, innerCipher)
   }
 
   /**
@@ -199,7 +190,7 @@ object AttachmentCipherInputStream {
     }
 
     ByteArrayInputStream(data).use { inputStream ->
-      verifyMac(inputStream, data.size.toLong(), mac, null)
+      verifyMacAndMaybeEncryptedDigest(inputStream, data.size.toLong(), mac, null)
     }
 
     val encryptedStream = ByteArrayInputStream(data)
@@ -209,6 +200,37 @@ object AttachmentCipherInputStream {
     return BetterCipherInputStream(encryptedStreamExcludingMac, cipher)
   }
 
+  /**
+   * When you archive an attachment, you give the server an encrypted attachment, and the server wraps it in *another* layer of encryption.
+   * This will return a stream that unwraps the server's layer of encryption, giving you a stream that contains a "normally-encrypted" attachment.
+   *
+   * Because we're validating the encryptedDigest/plaintextHash of the inner layer, there's no additional out-of-band validation of this outer layer.
+   */
+  @JvmStatic
+  @Throws(InvalidMessageException::class, IOException::class)
+  private fun createForArchivedMediaOuterLayer(archivedMediaKeyMaterial: MediaKeyMaterial, file: File, originalCipherTextLength: Long): LimitedInputStream {
+    val mac = initMac(archivedMediaKeyMaterial.macKey)
+
+    if (file.length() <= BLOCK_SIZE + mac.macLength) {
+      throw InvalidMessageException("Message shorter than crypto overhead! Expected at least ${BLOCK_SIZE + mac.macLength} bytes, got ${file.length()}")
+    }
+
+    FileInputStream(file).use { macVerificationStream ->
+      verifyMacAndMaybeEncryptedDigest(macVerificationStream, file.length(), mac, null)
+    }
+
+    val encryptedStream = FileInputStream(file)
+    val encryptedStreamExcludingMac = LimitedInputStream(encryptedStream, file.length() - mac.macLength)
+    val cipher = createCipher(encryptedStreamExcludingMac, archivedMediaKeyMaterial.aesKey)
+    val inputStream: InputStream = BetterCipherInputStream(encryptedStreamExcludingMac, cipher)
+
+    return LimitedInputStream(inputStream, originalCipherTextLength)
+  }
+
+  /**
+   * @param integrityCheck If null, no integrity check is performed! This is a private method, so it's assumed that care has been taken to ensure that this is
+   *   the correct course of action. Public methods should properly enforce when integrity checks are required.
+   */
   @JvmStatic
   @Throws(InvalidMessageException::class, IOException::class)
   private fun create(
@@ -216,11 +238,10 @@ object AttachmentCipherInputStream {
     streamLength: Long,
     plaintextLength: Long,
     combinedKeyMaterial: ByteArray,
-    digest: ByteArray?,
+    integrityCheck: IntegrityCheck?,
     incrementalDigest: ByteArray?,
-    incrementalMacChunkSize: Int,
-    ignoreDigest: Boolean
-  ): LimitedInputStream {
+    incrementalMacChunkSize: Int
+  ): InputStream {
     val keyMaterial = CombinedKeyMaterial.from(combinedKeyMaterial)
     val mac = initMac(keyMaterial.macKey)
 
@@ -228,41 +249,51 @@ object AttachmentCipherInputStream {
       throw InvalidMessageException("Message shorter than crypto overhead! length: $streamLength")
     }
 
-    if (!ignoreDigest && digest == null) {
-      throw InvalidMessageException("Missing digest!")
-    }
-
     val wrappedStream: InputStream
     val hasIncrementalMac = incrementalDigest != null && incrementalDigest.isNotEmpty() && incrementalMacChunkSize > 0
 
-    if (!hasIncrementalMac) {
-      streamSupplier.openStream().use { macVerificationStream ->
-        verifyMac(macVerificationStream, streamLength, mac, digest)
+    if (hasIncrementalMac) {
+      if (integrityCheck == null) {
+        throw InvalidMessageException("Missing integrityCheck for incremental mac validation!")
       }
-      wrappedStream = streamSupplier.openStream()
-    } else {
-      if (digest == null) {
-        throw InvalidMessageException("Missing digest for incremental mac validation!")
+
+      val digestValidatingStream = if (integrityCheck.encryptedDigest != null) {
+        DigestValidatingInputStream(streamSupplier.openStream(), sha256Digest(), integrityCheck.encryptedDigest)
+      } else {
+        streamSupplier.openStream()
       }
 
       wrappedStream = IncrementalMacInputStream(
         IncrementalMacAdditionalValidationsInputStream(
-          wrapped = streamSupplier.openStream(),
+          wrapped = digestValidatingStream,
           fileLength = streamLength,
-          mac = mac,
-          theirDigest = digest
+          mac = mac
         ),
         keyMaterial.macKey,
         ChunkSizeChoice.everyNthByte(incrementalMacChunkSize),
         incrementalDigest
       )
+    } else {
+      streamSupplier.openStream().use { macVerificationStream ->
+        verifyMacAndMaybeEncryptedDigest(macVerificationStream, streamLength, mac, integrityCheck?.encryptedDigest)
+      }
+      wrappedStream = streamSupplier.openStream()
     }
 
     val encryptedStreamExcludingMac = LimitedInputStream(wrappedStream, streamLength - mac.macLength)
     val cipher = createCipher(encryptedStreamExcludingMac, keyMaterial.aesKey)
     val decryptingStream: InputStream = BetterCipherInputStream(encryptedStreamExcludingMac, cipher)
+    val paddinglessDecryptingStream = LimitedInputStream(decryptingStream, plaintextLength)
 
-    return LimitedInputStream(decryptingStream, plaintextLength)
+    return if (integrityCheck?.plaintextHash != null) {
+      if (integrityCheck.plaintextHash.size != MessageDigest.getInstance("SHA-256").digestLength) {
+        throw InvalidMessageException("Invalid plaintext hash size: ${integrityCheck.plaintextHash.size}")
+      }
+
+      DigestValidatingInputStream(paddinglessDecryptingStream, sha256Digest(), integrityCheck.plaintextHash)
+    } else {
+      paddinglessDecryptingStream
+    }
   }
 
   private fun createCipher(inputStream: InputStream, aesKey: ByteArray): Cipher {
@@ -270,6 +301,14 @@ object AttachmentCipherInputStream {
 
     return Cipher.getInstance("AES/CBC/PKCS5Padding").apply {
       init(Cipher.DECRYPT_MODE, SecretKeySpec(aesKey, "AES"), IvParameterSpec(iv))
+    }
+  }
+
+  private fun sha256Digest(): MessageDigest {
+    try {
+      return MessageDigest.getInstance("SHA-256")
+    } catch (e: NoSuchAlgorithmException) {
+      throw AssertionError(e)
     }
   }
 
@@ -286,7 +325,7 @@ object AttachmentCipherInputStream {
   }
 
   @Throws(InvalidMessageException::class)
-  private fun verifyMac(@Nonnull inputStream: InputStream, length: Long, @Nonnull mac: Mac, theirDigest: ByteArray?) {
+  private fun verifyMacAndMaybeEncryptedDigest(@Nonnull inputStream: InputStream, length: Long, @Nonnull mac: Mac, theirDigest: ByteArray?) {
     try {
       val digest = MessageDigest.getInstance("SHA256")
       var remainingData = Util.toIntExact(length) - mac.macLength
@@ -334,5 +373,34 @@ object AttachmentCipherInputStream {
     @Nonnull
     @Throws(IOException::class)
     fun openStream(): InputStream
+  }
+
+  class IntegrityCheck(
+    val encryptedDigest: ByteArray?,
+    val plaintextHash: ByteArray?
+  ) {
+    init {
+      if (encryptedDigest == null && plaintextHash == null) {
+        throw IllegalArgumentException("At least one of encryptedDigest or plaintextHash must be provided")
+      }
+    }
+
+    companion object {
+      @JvmStatic
+      fun forEncryptedDigest(encryptedDigest: ByteArray): IntegrityCheck {
+        return IntegrityCheck(encryptedDigest, null)
+      }
+
+      @JvmStatic
+      fun forPlaintextHash(plaintextHash: ByteArray): IntegrityCheck {
+        return IntegrityCheck(null, plaintextHash)
+      }
+
+      @JvmStatic
+      fun forEncryptedDigestAndPlaintextHash(encryptedDigest: ByteArray?, plaintextHash: String?): IntegrityCheck {
+        val plaintextHashBytes = plaintextHash?.let { Base64.decode(it) }
+        return IntegrityCheck(encryptedDigest, plaintextHashBytes)
+      }
+    }
   }
 }

@@ -5,13 +5,16 @@
 
 package org.thoughtcrime.securesms.service
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Notification
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
+import androidx.core.content.ContextCompat
 import org.signal.core.util.PendingIntentFlags
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.MainActivity
@@ -24,6 +27,9 @@ import kotlin.concurrent.withLock
 
 /**
  * Foreground service to provide "long" run support to backup jobs.
+ *
+ * For the restoration of backup media, see [BackupMediaRestoreService] instead
+ *
  */
 class BackupProgressService : SafeForegroundService() {
 
@@ -57,8 +63,8 @@ class BackupProgressService : SafeForegroundService() {
       }
     }
 
-    private fun stop(context: Context) {
-      SafeForegroundService.stop(context, BackupProgressService::class.java)
+    private fun stop(context: Context, fromTimeout: Boolean = false) {
+      SafeForegroundService.stop(context, BackupProgressService::class.java, fromTimeout)
       controllerLock.withLock {
         controller = null
       }
@@ -82,6 +88,11 @@ class BackupProgressService : SafeForegroundService() {
     return getForegroundNotification(this)
   }
 
+  override fun onTimeout(startId: Int, fgsType: Int) {
+    Log.w(TAG, "BackupProgressService has timed out. startId: $startId, foregroundServiceType: $fgsType")
+    stop(context = this, fromTimeout = true)
+  }
+
   /**
    * Use to update notification progress/state.
    */
@@ -102,6 +113,11 @@ class BackupProgressService : SafeForegroundService() {
         BackupProgressService.title = title
         BackupProgressService.progress = progress
         BackupProgressService.indeterminate = indeterminate
+
+        if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+          Log.w(TAG, "Cannot update notification due to missing permission.")
+          return@withLock
+        }
 
         if (NotificationManagerCompat.from(context).activeNotifications.any { n -> n.id == NotificationIds.BACKUP_PROGRESS }) {
           NotificationManagerCompat.from(context).notify(NotificationIds.BACKUP_PROGRESS, getForegroundNotification(context))

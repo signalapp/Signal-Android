@@ -9,7 +9,7 @@ import com.bumptech.glide.request.transition.Transition
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.attachments.Attachment
 import org.thoughtcrime.securesms.database.AttachmentTable
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.util.MediaUtil
 
 /**
@@ -44,7 +44,7 @@ class StoryCache(
     val newMappings: Map<Uri, StoryCacheValue> = prefetchableAttachments.associateWith { attachment ->
       val imageTarget = if (MediaUtil.isImage(attachment)) {
         requestManager
-          .load(DecryptableStreamUriLoader.DecryptableUri(attachment.uri!!))
+          .load(DecryptableUri(attachment.uri!!))
           .priority(Priority.HIGH)
           .centerInside()
           .into(StoryCacheTarget(attachment.uri!!, storySize))

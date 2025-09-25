@@ -45,7 +45,7 @@ class EnterBackupKeyFragment : ComposeFragment() {
 
   private val sharedViewModel by activityViewModels<RegistrationViewModel>()
   private val viewModel by viewModels<EnterBackupKeyViewModel>()
-  private val contactSupportViewModel: ContactSupportViewModel by viewModels()
+  private val contactSupportViewModel: ContactSupportViewModel<Unit> by viewModels()
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
@@ -67,9 +67,9 @@ class EnterBackupKeyFragment : ComposeFragment() {
       viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
         sharedViewModel
           .state
-          .filter { it.registrationCheckpoint == RegistrationCheckpoint.BACKUP_TIER_NOT_RESTORED }
+          .filter { it.registrationCheckpoint == RegistrationCheckpoint.BACKUP_TIMESTAMP_NOT_RESTORED }
           .collect {
-            viewModel.handleBackupTierNotRestored()
+            viewModel.handleBackupTimestampNotRestored()
           }
       }
     }
@@ -79,17 +79,18 @@ class EnterBackupKeyFragment : ComposeFragment() {
   override fun FragmentContent() {
     val state by viewModel.state.collectAsStateWithLifecycle()
     val sharedState by sharedViewModel.state.collectAsStateWithLifecycle()
-    val contactSupportState: ContactSupportViewModel.ContactSupportState by contactSupportViewModel.state.collectAsStateWithLifecycle()
+    val contactSupportState: ContactSupportViewModel.ContactSupportState<Unit> by contactSupportViewModel.state.collectAsStateWithLifecycle()
 
     SendSupportEmailEffect(
       contactSupportState = contactSupportState,
-      subjectRes = R.string.EnterBackupKey_network_failure_support_email,
-      filterRes = R.string.EnterBackupKey_network_failure_support_email_filter
+      subjectRes = { R.string.EnterBackupKey_network_failure_support_email },
+      filterRes = { R.string.EnterBackupKey_network_failure_support_email_filter }
     ) {
       contactSupportViewModel.hideContactSupport()
     }
 
     EnterBackupKeyScreen(
+      isDisplayedDuringManualRestore = true,
       backupKey = viewModel.backupKey,
       inProgress = sharedState.inProgress,
       isBackupKeyValid = state.backupKeyValid,
@@ -123,7 +124,7 @@ class EnterBackupKeyFragment : ComposeFragment() {
             state = state,
             onBackupTierRetry = {
               viewModel.incrementBackupTierRetry()
-              sharedViewModel.restoreBackupTier()
+              sharedViewModel.checkForBackupFile()
             },
             onAbandonRemoteRestoreAfterRegistration = {
               viewLifecycleOwner.lifecycleScope.launch {

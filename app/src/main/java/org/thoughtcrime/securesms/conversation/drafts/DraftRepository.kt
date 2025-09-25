@@ -115,7 +115,7 @@ class DraftRepository(
     }
 
     if (shareMediaList.isNotEmpty()) {
-      return ShareOrDraftData.StartSendMedia(shareMediaList, shareText) to null
+      return ShareOrDraftData.StartSendMedia(shareMediaList.filterNotNull(), shareText) to null
     }
 
     if (shareMedia != null && shareMediaType != null) {

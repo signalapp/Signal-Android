@@ -143,7 +143,7 @@
 
     <!-- UploadAttachmentToArchiveJob -->
     <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
-    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Medien werden gesichert…</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Prüfen auf Nachrichten …</string>
@@ -552,15 +552,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">Du kannst während eines Anrufs keine Sprachnachricht aufnehmen.</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Formatierten Text senden</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Einige Leute benutzen möglicherweise eine Version von Signal, die keinen formatierten Text unterstützt. Sie können die Formatierungen, die du an deiner Nachricht vorgenommen hast, nicht sehen.</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">Trotzdem versenden</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">Abbrechen</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%1$d ungelesene Nachricht</item>
@@ -848,47 +839,43 @@
     <string name="WhoCanSeeMyPhoneNumberFragment__nobody_will_be_able">Niemand kann sehen, dass du auf Signal bist, es sei denn, du schreibst eine Nachricht oder hast mit der Person einen bereits bestehenden Chat.</string>
 
     <!-- ChooseBackupFragment -->
-    <string name="ChooseBackupFragment__restore_from_backup">Aus Sicherung wiederherstellen?</string>
-    <string name="ChooseBackupFragment__restore_your_messages_and_media">Stelle deine Nachrichten und Medieninhalte aus einer lokalen Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
-    <string name="ChooseBackupFragment__icon_content_description">»Aus Sicherung wiederherstellen«-Symbol</string>
-    <string name="ChooseBackupFragment__choose_backup">Datensicherung wählen</string>
+    <string name="ChooseBackupFragment__restore_from_backup">Aus Backup wiederherstellen?</string>
+    <string name="ChooseBackupFragment__restore_your_messages_and_media">Stelle deine Nachrichten und Medieninhalte aus einem Backup wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
+    <string name="ChooseBackupFragment__icon_content_description">»Aus Backup wiederherstellen«-Symbol</string>
+    <string name="ChooseBackupFragment__choose_backup">Backup wählen</string>
     <string name="ChooseBackupFragment__learn_more">Mehr erfahren</string>
     <string name="ChooseBackupFragment__no_file_browser_available">Kein Dateimanager verfügbar</string>
 
     <!-- RestoreBackupFragment -->
     <string name="RestoreBackupFragment__restore_complete">Wiederherstellung abgeschlossen</string>
-    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Um weiterhin Datensicherungen zu verwenden, wähle bitte einen Ordner. Neue Sicherungen werden dort gespeichert.</string>
+    <string name="RestoreBackupFragment__to_continue_using_backups_please_choose_a_folder">Um weiterhin Backups zu verwenden, wähle bitte einen Ordner. Neue Backups werden dort gespeichert.</string>
     <string name="RestoreBackupFragment__choose_folder">Ordner wählen</string>
     <string name="RestoreBackupFragment__not_now">Jetzt nicht</string>
     <!-- Couldn\'t find the selected backup -->
-    <string name="RestoreBackupFragment__backup_not_found">Datensicherung nicht gefunden.</string>
+    <string name="RestoreBackupFragment__backup_not_found">Backup nicht gefunden.</string>
     <!-- Couldn\'t read the selected backup -->
-    <string name="RestoreBackupFragment__backup_could_not_be_read">Datensicherung konnte nicht gelesen werden.</string>
+    <string name="RestoreBackupFragment__backup_could_not_be_read">Backup konnte nicht gelesen werden.</string>
     <!-- Backup has an unsupported file extension -->
-    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Datensicherung besitzt eine falsche Dateiendung.</string>
+    <string name="RestoreBackupFragment__backup_has_a_bad_extension">Backup besitzt eine falsche Dateiendung.</string>
 
     <!-- CreateBackupBottomSheet -->
     <!-- Bottom sheet title -->
-    <string name="CreateBackupBottomSheet__you_are_all_set">Du kannst loslegen. Beginne jetzt deine Datensicherung.</string>
+    <string name="CreateBackupBottomSheet__you_are_all_set">Du kannst loslegen. Starte jetzt dein Backup.</string>
     <!-- Bottom sheet message -->
-    <string name="CreateBackupBottomSheet__depending_on_the_size">Je nach Größe deiner Datensicherung könnte diese etwas dauern. Während der Datensicherung kannst du dein Mobiltelefon weiterhin ganz normal nutzen.</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Später sichern</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">Jetzt sichern</string>
+    <string name="CreateBackupBottomSheet__depending_on_the_size">Je nach Größe deines Backup könnte dies etwas dauern. Während des Backups kannst du dein Mobiltelefon weiterhin ganz normal nutzen.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Medien können nicht wiederhergestellt werden</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed while the app is calculating the amount of disk space required. -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Dein Gerät hat nicht genug Speicherplatz. Du musst Speicherplatz freigeben, um deine Medien wiederherzustellen.\n\nWenn du »Wiederherstellen überspringen« wählst, werden die Medien in der Datensicherung gelöscht, wenn dein Gerät das nächste Mal eine neue Datensicherung durchführt.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space_placeholder">Dein Gerät hat nicht genug Speicherplatz. Du musst Speicherplatz freigeben, um deine Medien wiederherzustellen.\n\nWenn du »Wiederherstellen überspringen« wählst, werden die Medien in dem Backup gelöscht, wenn dein Gerät das nächste Mal ein neues Backup durchführt.</string>
     <!-- Help text for a bottom sheet dialog shown when the restoration of the media backup fails, displayed once the app knows how much disk space is required. The placeholder is a filesize, such as "1.23 GB." -->
-    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Dein Gerät hat nicht genug Speicherplatz. Du musst %1$s freigeben, um deine Medien wiederherzustellen.\n\nWenn du »Wiederherstellen überspringen« wählst, werden die Medien in der Datensicherung gelöscht, wenn dein Gerät das nächste Mal eine neue Datensicherung durchführt.</string>
+    <string name="RestoreMediaFailedBottomSheet__Your_device_does_not_have_enough_free_space">Dein Gerät hat nicht genug Speicherplatz. Du musst %1$s freigeben, um deine Medien wiederherzustellen.\n\nWenn du »Wiederherstellen überspringen« wählst, werden die Medien in dem Backup gelöscht, wenn dein Gerät das nächste Mal ein neues Backup durchführt.</string>
     <!-- Confirmation button to dismiss bottom sheet dialog without aborting the restoration process. -->
     <string name="RestoreMediaFailedBottomSheet__Okay">OK</string>
     <!-- Negative button on a bottom sheet dialog shown when the restoration of the media backup fails. This aborts the restoration process. -->
     <string name="RestoreMediaFailedBottomSheet__Skip_restore">Wiederherstellen überspringen</string>
     <!-- Accessibility content description for the "Backup Error" icon -->
-    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Datensicherungsfehler-Icon</string>
+    <string name="RestoreMediaFailedBottomSheet__Backup_error_icon_content_description">Backup-Fehler-Icon</string>
 
     <!-- Banner text that is displayed at the top of the app when trying to restore more media than the device\'s memory has space for. -->
     <string name="RestoreMediaErrorBanner__Free_up_storage_space">Du musst Speicherplatz freigeben, um deine Medien wiederherzustellen.</string>
@@ -913,29 +900,29 @@
     <string name="RestoreMediaReminder__Skip_restore">Wiederherstellen überspringen</string>
 
     <!-- BackupsPreferenceFragment -->
-    <string name="BackupsPreferenceFragment__chat_backups">Chat-Sicherungen</string>
-    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Datensicherungen sind mit einer Passphrase verschlüsselt und auf deinem Gerät gespeichert.</string>
-    <string name="BackupsPreferenceFragment__create_backup">Sicherung erstellen</string>
-    <string name="BackupsPreferenceFragment__last_backup">Letzte Sicherung: %1$s</string>
-    <string name="BackupsPreferenceFragment__backup_folder">Ordner für Datensicherung</string>
+    <string name="BackupsPreferenceFragment__chat_backups">Chat-Backups</string>
+    <string name="BackupsPreferenceFragment__backups_are_encrypted_with_a_passphrase">Backups sind mit einer Passphrase verschlüsselt und auf deinem Gerät gespeichert.</string>
+    <string name="BackupsPreferenceFragment__create_backup">Backup erstellen</string>
+    <string name="BackupsPreferenceFragment__last_backup">Letztes Backup: %1$s</string>
+    <string name="BackupsPreferenceFragment__backup_folder">Ordner für Backups</string>
     <!-- Title for a preference item allowing the user to selected the hour of the day when their chats are backed up. -->
-    <string name="BackupsPreferenceFragment__backup_time">Datensicherungszeit</string>
-    <string name="BackupsPreferenceFragment__verify_backup_passphrase">Sicherungspassphrase überprüfen</string>
-    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Teste die Passphrase deiner Datensicherung und vergewissere dich, dass du sie öffnen kannst</string>
+    <string name="BackupsPreferenceFragment__backup_time">Backup-Zeit</string>
+    <string name="BackupsPreferenceFragment__verify_backup_passphrase">Backup-Passphrase überprüfen</string>
+    <string name="BackupsPreferenceFragment__test_your_backup_passphrase">Teste die Passphrase deines Backup und vergewissere dich, dass du es öffnen kannst</string>
     <string name="BackupsPreferenceFragment__turn_on">Einschalten</string>
     <string name="BackupsPreferenceFragment__turn_off">Ausschalten</string>
-    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Um eine Datensicherung wiederherzustellen, installiere Signal neu. Öffne die App, tippe auf »Sicherung wiederherstellen« und wähle dann eine Sicherungsdatei. %1$s"</string>
+    <string name="BackupsPreferenceFragment__to_restore_a_backup">"Installiere Signal neu, um ein Backup wiederherzustellen. Öffne die App, tippe auf »Backup wiederherstellen« und wähle dann eine Backup-Datei. %1$s"</string>
     <string name="BackupsPreferenceFragment__learn_more">Mehr erfahren</string>
     <string name="BackupsPreferenceFragment__in_progress">In Bearbeitung …</string>
     <!-- Status text shown in backup preferences when verifying a backup -->
-    <string name="BackupsPreferenceFragment__verifying_backup">Datensicherung wird überprüft…</string>
+    <string name="BackupsPreferenceFragment__verifying_backup">Backup wird überprüft…</string>
     <!-- Progress of backup where %d is the number of files completed so far -->
     <string name="BackupsPreferenceFragment__d_so_far">%1$d bisher …</string>
     <!-- Show percentage of completion of backup -->
     <string name="BackupsPreferenceFragment__s_so_far">%1$s%% bisher …</string>
-    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal benötigt zum Erstellen von Datensicherungen die Berechtigung »Speicher«, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
+    <string name="BackupsPreferenceFragment_signal_requires_external_storage_permission_in_order_to_create_backups">Signal benötigt zum Erstellen von Backups die Berechtigung »Speicher«, diese wurde jedoch dauerhaft abgelehnt. Bitte öffne die App-Einstellungen, wähle »Berechtigungen« und aktiviere »Speicher«.</string>
     <!-- Title of dialog shown when picking the time to perform a chat backup -->
-    <string name="BackupsPreferenceFragment__set_backup_time">Datensicherungszeit festlegen</string>
+    <string name="BackupsPreferenceFragment__set_backup_time">Backup-Zeit festlegen</string>
 
 
     <!-- CustomDefaultPreference -->
@@ -1097,7 +1084,7 @@
     <!-- Dialog title shown when you don\'t have enough storage space -->
     <string name="LinkDeviceFragment__not_enough_storage_space">Nicht genug Speicherplatz</string>
     <!-- Dialog message body explaining that you need to free storage space or transfer without sending over message -->
-    <string name="LinkDeviceFragment__you_dont_have_enough">Es ist nicht genug Speicherplatz auf deinem Gerät, um deine Nachrichten zu übertragen. Schaffe etwas Speicherplatz und versuche es erneut oder koppele dein Gerät, ohne deine Nachrichten zu übertragen.</string>
+    <string name="LinkDeviceFragment__you_dont_have_enough">Es ist nicht genug Speicherplatz auf deinem Gerät, um deine Nachrichten zu übertragen. Schaffe freien Speicherplatz und versuche es erneut oder koppele dein Gerät, ohne deine Nachrichten zu übertragen.</string>
 
     <!-- EditDeviceNameFragment -->
     <!-- App bar title when editing the name of a device -->
@@ -1138,6 +1125,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">Nachrichtenverlauf übertragen</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Übertrage alle deine Nachrichten und die Medien der letzten 45 Tage</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Übertrage deine Textnachrichten und Medien</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Nicht übertragen</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1177,9 +1166,9 @@
     <string name="ExpiredBuildReminder_update_now">Jetzt aktualisieren</string>
 
     <!-- Title of notification telling users to update Signal -->
-    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <string name="DeprecatedNotificationJob_update_signal">Signal aktualisieren</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
-    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">Diese Signal-Version ist abgelaufen. Antippen, um Signal zu aktualisieren und um Nachrichten senden und empfangen zu können.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1451,7 +1440,7 @@
 
     <!-- RemoteRestoreActivity -->
     <!-- Progress dialog label when downloading a backup -->
-    <string name="RemoteRestoreActivity__downloading_backup">Sicherungsdaten werden heruntergeladen …</string>
+    <string name="RemoteRestoreActivity__downloading_backup">Backup-Daten werden heruntergeladen …</string>
     <!-- Progress dialog label when restoring a backup -->
     <string name="RemoteRestoreActivity__restoring_messages">Nachrichten wiederherstellen …</string>
     <!-- Progress dialog label when finishing a backup restore -->
@@ -1467,31 +1456,39 @@
     <!-- Feature list message label for free and paid tier -->
     <string name="RemoteRestoreActivity__all_of_your_messages">Alle deine Nachrichten</string>
     <!-- Screen title for restoring from backup -->
-    <string name="RemoteRestoreActivity__restore_from_backup">Aus Sicherung wiederherstellen</string>
+    <string name="RemoteRestoreActivity__restore_from_backup">Aus Backup wiederherstellen</string>
     <!-- Section title for explaining what your backup includes -->
-    <string name="RemoteRestoreActivity__your_backup_includes">Deine Datensicherung umfasst:</string>
+    <string name="RemoteRestoreActivity__your_backup_includes">Dein Backup umfasst:</string>
     <!-- Primary action button copy for starting restoration -->
-    <string name="RemoteRestoreActivity__restore_backup">Sicherung wiederherstellen</string>
+    <string name="RemoteRestoreActivity__restore_backup">Backup wiederherstellen</string>
     <!-- Displayed at restore time to tell the user when their last backup was made. %1$s is replaced with the date (e.g. March 5, 2024) and %2$s is replaced with the time (e.g. 9:00am) -->
-    <string name="RemoteRestoreActivity__backup_created_at">Deine letzte Datensicherung wurde am %1$s um %2$s durchgeführt.</string>
+    <string name="RemoteRestoreActivity__backup_created_at">Dein letztes Backup wurde am %1$s um %2$s durchgeführt.</string>
     <!-- Displayed at restore time to tell the user when their last backup was made and size. %1$s is replaced with the date (e.g. March 5, 2024), %2$s is replaced with the time (e.g. 9:00am), %3$1 is replaced with size (e.g., 1.2GB) -->
-    <string name="RemoteRestoreActivity__backup_created_at_with_size">Deine letzte Datensicherung wurde am %1$s um %2$s durchgeführt. Die Größe deiner Datensicherung beträgt %3$s.</string>
+    <string name="RemoteRestoreActivity__backup_created_at_with_size">Dein letztes Backup wurde am %1$s um %2$s durchgeführt. Die Größe deines Backups beträgt %3$s.</string>
     <!-- Progress dialog label while fetching backup info if we don\'t already have it -->
     <string name="RemoteRestoreActivity__fetching_backup_details">Backup-Details abrufen…</string>
     <!-- Text label button to skip restore from remote -->
     <string name="RemoteRestoreActivity__skip_restore">Wiederherstellen überspringen</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Übertragung konnte nicht abgeschlossen werden</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Backup kann nicht wiederhergestellt werden</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Beim Wiederherstellen deines Backups ist ein Fehler aufgetreten. Dein Backup lässt sich nicht wiederherstellen. Bitte kontaktiere den Support, falls du Hilfe benötigst.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Support kontaktieren</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Es ist ein Fehler aufgetreten und dein Konto konnte nicht übertragen werden. Versuche es erneut, indem du deine Übertragungsmethode auswählst.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
     <string name="RemoteRestoreActivity__couldnt_restore">Dieses Backup konnte nicht wiederhergestellt werden</string>
     <!-- Dialog message explaining that an update to Signal is required to restore the backup. -->
-    <string name="RemoteRestoreActivity__update_latest">Diese Signal-Version kann deine Datensicherung nicht wiederherstellen. Aktualisiere auf die neueste Version und versuche es erneut.</string>
+    <string name="RemoteRestoreActivity__update_latest">Diese Signal-Version kann dein Backup nicht wiederherstellen. Aktualisiere auf die neueste Version und versuche es erneut.</string>
     <!-- Text on button that when pressed will redirect them to update Signal -->
     <string name="RemoteRestoreActivity__update_signal">Signal aktualisieren</string>
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Jetzt nicht</string>
+    <!-- Text shown on restore screen as information on what will happen if you skip -->
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Deine Medien werden im Hintergrund wiederhergestellt. Falls du jetzt nicht wiederherstellst, wirst du dies später nicht nachholen können.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Mich bei Erwähnungen benachrichtigen</string>
@@ -1596,7 +1593,7 @@
     <!-- Title shown when there was an known issue getting group information from a group link -->
     <string name="GroupJoinBottomSheetDialogFragment_cant_join_group">Gruppenbeitritt nicht möglich</string>
     <!-- Message shown when you try to get information for a group via link but an admin has removed you -->
-    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kannst dieser Gruppe nicht über den Gruppen-Link beitreten, da ein Admin dich entfernt hat. Kontaktiere einen Admin, um der Gruppe erneut hinzugefügt zu werden.</string>
+    <string name="GroupJoinBottomSheetDialogFragment_you_cant_join_this_group_via_the_group_link_because_an_admin_removed_you">Du kannst dieser Gruppe nicht über den Gruppen-Link beitreten, da ein Admin dich entfernt hat. Kontaktiere einen Gruppen-Admin, um der Gruppe erneut hinzugefügt zu werden.</string>
     <!-- Message shown when you try to get information for a group via link but the link is no longer valid -->
     <string name="GroupJoinBottomSheetDialogFragment_this_group_link_is_no_longer_valid">Dieser Gruppen-Link ist nicht mehr gültig.</string>
     <!-- Title shown when there was an unknown issue getting group information from a group link -->
@@ -2106,6 +2103,8 @@
     <string name="MessageRecord_you_blocked_this_group">Du hast diese Gruppe blockiert</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">Du hast diese Gruppe freigegeben</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s hat dir eine Nachricht gesendet, die nicht verarbeitet oder angezeigt werden kann, da sie ein neues Signal-Feature nutzt.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Annehmen</string>
@@ -2279,7 +2278,7 @@
 
     <!-- PinOptOutDialog -->
     <string name="PinOptOutDialog_warning">Warnung</string>
-    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Falls du deine PIN deaktivierst, verlierst du bei erneutem Registrieren bei Signal alle Daten, sofern du sie nicht manuell per Datensicherung sicherst und wiederherstellst. Bei deaktivierter PIN kannst du die Registrierungssperre nicht einschalten.</string>
+    <string name="PinOptOutDialog_if_you_disable_the_pin_you_will_lose_all_data">Falls du deine PIN deaktivierst, verlierst du bei erneutem Registrieren bei Signal alle Daten, sofern du sie nicht manuell per Backup sicherst und wiederherstellst. Bei deaktivierter PIN kannst du die Registrierungssperre nicht einschalten.</string>
     <string name="PinOptOutDialog_disable_pin">PIN deaktivieren</string>
 
     <!-- RatingManager -->
@@ -2916,6 +2915,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Dieses Diagnoseprotokoll wird online gestellt, sodass Mitwirkende es einsehen können. Bevor du das Protokoll hochlädst, kannst du es noch einmal überprüfen.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Wenn du auf »Übermitteln« klickst, wird dein Diagnoseprotokoll unter einer eindeutigen, unveröffentlichten Internetadresse für 30 Tage online gestellt. Du kannst es aber auch erst lokal speichern.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -3184,7 +3190,7 @@
     <string name="NotificationChannel_calls">Anrufe</string>
     <!-- Notification channel name for notifications involving failures of some sort (eg donations, message sends, etc.) -->
     <string name="NotificationChannel_failures">Fehler</string>
-    <string name="NotificationChannel_backups">Datensicherungen</string>
+    <string name="NotificationChannel_backups">Backups</string>
     <string name="NotificationChannel_locked_status">Sperrstatus</string>
     <string name="NotificationChannel_app_updates">App-Aktualisierungen</string>
     <string name="NotificationChannel_other">Sonstige</string>
@@ -3232,7 +3238,7 @@
     </plurals>
 
     <!-- Dialog title asking to save media to your phone\'s storage -->
-    <string name="AttachmentSaver__save_to_phone">Auf dem Telefon sichern?</string>
+    <string name="AttachmentSaver__save_to_phone">Auf dem Telefon speichern?</string>
 
     <!-- Dialog message explaining that media will be saved to your phone and can potentially be accessed by other phones. -->
     <plurals name="AttachmentSaver__this_media_will_be_saved">
@@ -3985,7 +3991,7 @@
     <string name="preferences__graphic_illustrating_where_the_replacement_app_icon_will_be_visible">Grafik, die zeigt, wo das neue App-Symbol zu sehen sein wird.</string>
     <string name="preferences__disable_pin">PIN deaktivieren</string>
     <string name="preferences__enable_pin">PIN aktivieren</string>
-    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Falls du deine PIN deaktivierst, wirst du bei erneutem Registrieren von Signal alle Daten verlieren, sofern du sie nicht manuell per Datensicherung sicherst und wiederherstellst. Bei deaktivierter PIN kannst du die Registrierungssperre nicht einschalten.</string>
+    <string name="preferences__if_you_disable_the_pin_you_will_lose_all_data">Falls du deine PIN deaktivierst, wirst du bei erneutem Registrieren von Signal alle Daten verlieren, sofern du sie nicht manuell per Backup sicherst und wiederherstellst. Bei deaktivierter PIN kannst du die Registrierungssperre nicht einschalten.</string>
     <string name="preferences__pins_keep_information_stored_with_signal_encrypted_so_only_you_can_access_it">PINs halten bei Signal gespeicherte Informationen verschlüsselt, sodass nur du auf sie zugreifen kannst. Wenn du Signal erneut installierst, werden so dein Profil und deine Einstellungen und Kontakte wiederhergestellt. Für das Öffnen der App wirst du deine PIN nicht benötigen.</string>
     <string name="preferences__system_default">System</string>
     <string name="preferences__language">Sprache</string>
@@ -4566,6 +4572,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">PIN erstellt.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Wiederhole deine PIN</string>
     <string name="ConfirmKbsPinFragment__creating_pin">PIN wird erstellt …</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal-PIN</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Neu: PINs</string>
@@ -4669,12 +4677,12 @@
     <string name="Permissions_continue">Weiter</string>
     <string name="Permissions_not_now">Jetzt nicht</string>
     <string name="SQLCipherMigrationHelper_migrating_signal_database">Signal-Datenbank wird migriert …</string>
-    <string name="enter_backup_passphrase_dialog__backup_passphrase">Sicherungspassphrase</string>
-    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Datensicherungen werden im Gerätespeicher gespeichert und mit der unten genannten Passphrase verschlüsselt. Die Passphrase ist notwendig, um die Sicherung später wiederherzustellen.</string>
-    <string name="backup_enable_dialog__you_must_have_this_passphrase">Du brauchst diese Passphrase, um eine Sicherung wiederherzustellen.</string>
+    <string name="enter_backup_passphrase_dialog__backup_passphrase">Backup-Passphrase</string>
+    <string name="backup_enable_dialog__backups_will_be_saved_to_external_storage_and_encrypted_with_the_passphrase_below_you_must_have_this_passphrase_in_order_to_restore_a_backup">Backups werden im Gerätespeicher gespeichert und mit der unten genannten Passphrase verschlüsselt. Die Passphrase ist notwendig, um das Backup später wiederherzustellen.</string>
+    <string name="backup_enable_dialog__you_must_have_this_passphrase">Du brauchst diese Passphrase, um ein Backup wiederherzustellen.</string>
     <string name="backup_enable_dialog__folder">Ordner</string>
-    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ich habe mir diese Passphrase notiert. Ohne sie können keine Sicherungen wiederhergestellt werden.</string>
-    <string name="registration_activity__restore_backup">Sicherung wiederherstellen</string>
+    <string name="backup_enable_dialog__i_have_written_down_this_passphrase">Ich habe mir diese Passphrase notiert. Ohne sie können keine Backups wiederhergestellt werden.</string>
+    <string name="registration_activity__restore_backup">Backup wiederherstellen</string>
     <string name="registration_activity__transfer_or_restore_account">Konto übertragen oder wiederherstellen</string>
     <!-- Screen title for restoring or transfering account -->
     <string name="registration_activity__restore_or_transfer">Wiederherstellen oder übertragen</string>
@@ -4682,50 +4690,50 @@
     <string name="registration_activity__skip">Überspringen</string>
     <!-- Text label button to skip restoring -->
     <string name="registration_activity__skip_restore">Wiederherstellen überspringen</string>
-    <string name="preferences_chats__chat_backups">Chat-Sicherungen</string>
+    <string name="preferences_chats__chat_backups">Chat-Backups</string>
     <string name="preferences_chats__transfer_account">Konto übertragen</string>
     <string name="preferences_chats__transfer_account_to_a_new_android_device">Konto auf ein neues Android-Gerät übertragen</string>
     <!-- Title for dialog to enter in the backup passphrase -->
-    <string name="RegistrationActivity_enter_backup_passphrase">Sicherungspassphrase eingeben</string>
+    <string name="RegistrationActivity_enter_backup_passphrase">Backup-Passphrase eingeben</string>
     <string name="RegistrationActivity_restore">Wiederherstellen</string>
-    <string name="RegistrationActivity_backup_failure_downgrade">Import von Datensicherungen neuerer Signal-Versionen nicht möglich</string>
+    <string name="RegistrationActivity_backup_failure_downgrade">Import von Backups neuerer Signal-Versionen nicht möglich</string>
     <!-- Error message indicating that we could not restore the user\'s backup. Displayed in a toast at the bottom of the screen. -->
-    <string name="RegistrationActivity_backup_failure_foreign_key">Datensicherung enthält fehlerhafte Daten</string>
-    <string name="RegistrationActivity_incorrect_backup_passphrase">Falsche Sicherungspassphrase</string>
+    <string name="RegistrationActivity_backup_failure_foreign_key">Backup enthält fehlerhafte Daten</string>
+    <string name="RegistrationActivity_incorrect_backup_passphrase">Falsche Backup-Passphrase</string>
     <string name="RegistrationActivity_checking">Wird überprüft …</string>
     <string name="RegistrationActivity_d_messages_so_far">%1$d Nachrichten bisher …</string>
-    <string name="RegistrationActivity_restore_from_backup">Aus Sicherung wiederherstellen?</string>
-    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Stelle deine Nachrichten und Medieninhalte aus einer lokalen Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
-    <string name="RegistrationActivity_backup_size_s">Sicherungsgröße: %1$s</string>
-    <string name="RegistrationActivity_backup_timestamp_s">Zeitpunkt der Sicherung: %1$s</string>
-    <string name="BackupDialog_enable_local_backups">Lokale Sicherungen aktivieren?</string>
-    <string name="BackupDialog_enable_backups">Sicherungen aktivieren</string>
+    <string name="RegistrationActivity_restore_from_backup">Aus Backup wiederherstellen?</string>
+    <string name="RegistrationActivity_restore_your_messages_and_media_from_a_local_backup">Stelle deine Nachrichten und Medieninhalte aus einem Backup wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
+    <string name="RegistrationActivity_backup_size_s">Backup-Größe: %1$s</string>
+    <string name="RegistrationActivity_backup_timestamp_s">Zeitpunkt des Backups: %1$s</string>
+    <string name="BackupDialog_enable_local_backups">Lokale Backups aktivieren?</string>
+    <string name="BackupDialog_enable_backups">Backups aktivieren</string>
     <string name="BackupDialog_please_acknowledge_your_understanding_by_marking_the_confirmation_check_box">Bitte bestätige durch Markieren des Kästchens, dass du alles verstanden hast.</string>
-    <string name="BackupDialog_delete_backups">Sicherungen löschen?</string>
-    <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktivieren und alle lokalen Sicherungen löschen?</string>
-    <string name="BackupDialog_delete_backups_statement">Sicherungen löschen</string>
-    <string name="BackupDialog_to_enable_backups_choose_a_folder">Um Datensicherungen zu aktivieren, wähle einen Ordner. Sicherungen werden dort gespeichert.</string>
+    <string name="BackupDialog_delete_backups">Backups löschen?</string>
+    <string name="BackupDialog_disable_and_delete_all_local_backups">Deaktivieren und alle lokalen Backups löschen?</string>
+    <string name="BackupDialog_delete_backups_statement">Backups löschen</string>
+    <string name="BackupDialog_to_enable_backups_choose_a_folder">Um Backups zu aktivieren, wähle einen Ordner. Backups werden dort gespeichert.</string>
     <!-- Button shown in dialog to choose a folder for backups -->
     <string name="BackupDialog_choose_folder">Ordner wählen</string>
     <string name="BackupDialog_copied_to_clipboard">In Zwischenablage kopiert</string>
     <string name="BackupDialog_no_file_picker_available">Kein Dateimanager verfügbar.</string>
-    <string name="BackupDialog_enter_backup_passphrase_to_verify">Gib deine Sicherungspassphrase ein</string>
+    <string name="BackupDialog_enter_backup_passphrase_to_verify">Gib deine Backup-Passphrase ein</string>
     <!-- Confirmation button text on an alert dialog to verify whether the entered backup phrase was correct -->
     <string name="BackupDialog_verify">Bestätigen</string>
-    <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du hast deine Sicherungspassphrase richtig eingegeben</string>
-    <string name="BackupDialog_passphrase_was_not_correct">Sicherungspassphrase war falsch</string>
-    <string name="LocalBackupJob_creating_signal_backup">Signal-Sicherung wird erstellt …</string>
+    <string name="BackupDialog_you_successfully_entered_your_backup_passphrase">Du hast deine Backup-Passphrase richtig eingegeben</string>
+    <string name="BackupDialog_passphrase_was_not_correct">Backup-Passphrase war falsch</string>
+    <string name="LocalBackupJob_creating_signal_backup">Signal Backup wird erstellt …</string>
     <!-- Title for progress notification shown in a system notification while verifying a recent backup. -->
-    <string name="LocalBackupJob_verifying_signal_backup">Signal-Sicherung wird überprüft…</string>
-    <string name="LocalBackupJobApi29_backup_failed">Datensicherung gescheitert</string>
-    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Dein Verzeichnis für die Datensicherung wurde gelöscht oder verschoben.</string>
-    <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Deine Sicherungsdatei ist zu groß, um auf diesem Datenträger gespeichert zu werden.</string>
-    <string name="LocalBackupJobApi29_there_is_not_enough_space">Es ist nicht genug Speicherplatz verfügbar, um deine Datensicherung zu speichern.</string>
+    <string name="LocalBackupJob_verifying_signal_backup">Signal Backup wird überprüft…</string>
+    <string name="LocalBackupJobApi29_backup_failed">Backup gescheitert</string>
+    <string name="LocalBackupJobApi29_your_backup_directory_has_been_deleted_or_moved">Dein Verzeichnis für das Backup wurde gelöscht oder verschoben.</string>
+    <string name="LocalBackupJobApi29_your_backup_file_is_too_large">Deine Backup-Datei ist zu groß, um auf diesem Datenträger gespeichert zu werden.</string>
+    <string name="LocalBackupJobApi29_there_is_not_enough_space">Es ist nicht genug Speicherplatz verfügbar, um dein Backup zu speichern.</string>
     <!-- Error message shown if a newly created backup could not be verified as accurate -->
-    <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Deine letzte Datensicherung konnte nicht erstellt und überprüft werden. Bitte erstelle eine neue Datensicherung.</string>
+    <string name="LocalBackupJobApi29_your_backup_could_not_be_verified">Dein letztes Backup konnte nicht erstellt und überprüft werden. Bitte erstelle ein neues Backup.</string>
     <!-- Error message shown if a very large attachment is encountered during the backup creation and causes the backup to fail -->
-    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Deine Datensicherung enthält eine sehr große Datei, die nicht gesichert werden kann. Bitte lösche sie und erstelle eine neue Datensicherung.</string>
-    <string name="LocalBackupJobApi29_tap_to_manage_backups">Antippen zum Verwalten von Datensicherungen.</string>
+    <string name="LocalBackupJobApi29_your_backup_contains_a_very_large_file">Dein Backup enthält eine sehr große Datei, die nicht gesichert werden kann. Bitte lösche sie und erstelle ein neues Backup.</string>
+    <string name="LocalBackupJobApi29_tap_to_manage_backups">Antippen zum Verwalten von Backups.</string>
     <string name="RegistrationActivity_wrong_number">Falsche Telefonnummer?</string>
     <!--    Countdown to when the user can request a new code via phone call during registration.-->
     <string name="RegistrationActivity_call_me_instead_available_in">Ruf mich an (%1$02d:%2$02d)</string>
@@ -4789,14 +4797,14 @@
     <string name="RegistrationActivity_you_have_made_too_many_incorrect_registration_lock_pin_attempts_please_try_again_in_a_day">Du hast deine PIN für die Registrierungssperre zu oft falsch eingegeben. Bitte versuche es in einem Tag wieder.</string>
     <string name="RegistrationActivity_you_have_made_too_many_attempts_please_try_again_later">Du hast zu viele Versuche benötigt. Bitte versuche es später erneut.</string>
     <string name="RegistrationActivity_error_connecting_to_service">Fehler beim Verbinden mit Dienst</string>
-    <string name="preferences_chats__backups">Datensicherungen</string>
+    <string name="preferences_chats__backups">Backups</string>
 
     <!-- Button label to indicate that a feature is in beta mode -->
     <string name="Beta__beta_title">Beta</string>
     <!-- Content description for info icon -->
     <string name="Beta__info">Info</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Das ist eine Beta-Funktion, die wir nach und nach verbessern werden.</string>
+    <string name="Beta__this_is_beta">Dies ist eine Beta-Funktion, die nach und nach verbessert wird.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal entsperren</string>
@@ -4860,11 +4868,10 @@
     <string name="TransferOrRestoreFragment__transfer_from_android_device">Von Android-Gerät übertragen</string>
     <string name="TransferOrRestoreFragment__transfer_your_account_and_messages_from_your_old_android_device">Übertrage dein Konto und deinen Nachrichtenverlauf von deinem alten Android-Gerät. Du benötigst Zugriff auf dein altes Gerät.</string>
     <string name="TransferOrRestoreFragment__you_need_access_to_your_old_device">Du benötigst Zugriff auf dein altes Gerät.</string>
-    <string name="TransferOrRestoreFragment__restore_from_backup">Aus Sicherung wiederherstellen</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Stelle deine Nachrichten aus einer lokalen Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
-    <string name="TransferOrRestoreFragment__restore_from_local_backup">Lokale Datensicherung wiederherstellen</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal Datensicherung wiederherstellen</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Stelle all deine Textnachrichten und Medien der letzten 30 Tage wieder her</string>
+    <string name="TransferOrRestoreFragment__restore_from_backup">Aus Backup wiederherstellen</string>
+    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Stelle deine Nachrichten aus einem lokalen Backup wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
+    <string name="TransferOrRestoreFragment__restore_from_local_backup">Lokales Backup wiederherstellen</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal Backup wiederherstellen</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Weitere Optionen</string>
 
@@ -4889,8 +4896,8 @@
     <string name="NewDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_old_device">Signal benötigt die Berechtigung »Standort«, um dein altes Android-Gerät zu erkennen und zu verbinden.</string>
     <string name="NewDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_old_device">Signal benötigt aktivierte Standortdienste, um dein altes Android-Gerät zu erkennen und zu verbinden.</string>
     <string name="NewDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_old_device">Signal benötigt eingeschaltetes WLAN, um dein altes Android-Gerät zu erkennen und zu verbinden. WLAN muss zwar eingeschaltet, aber nicht mit einem WLAN-Netzwerk verbunden sein.</string>
-    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Leider scheint dieses Gerät »Wi-Fi Direct« nicht zu unterstützen. Signal verwendet »Wi-Fi Direct«, um dein altes Android-Gerät zu erkennen und zu verbinden. Du kannst jedoch stattdessen eine Datensicherung wiederherstellen, um das Konto deines alten Android-Geräts zu verwenden.</string>
-    <string name="NewDeviceTransferSetup__restore_a_backup">Eine Datensicherung wiederherstellen</string>
+    <string name="NewDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Leider scheint dieses Gerät »Wi-Fi Direct« nicht zu unterstützen. Signal verwendet »Wi-Fi Direct«, um dein altes Android-Gerät zu erkennen und zu verbinden. Du kannst jedoch stattdessen ein Backup wiederherstellen, um das Konto deines alten Android-Geräts zu verwenden.</string>
+    <string name="NewDeviceTransferSetup__restore_a_backup">Ein Backup wiederherstellen</string>
     <string name="NewDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Beim Versuch, eine Verbindung zu deinem alten Android-Gerät herzustellen, ist ein unerwarteter Fehler aufgetreten.</string>
 
     <!-- OldDeviceTransferSetupFragment -->
@@ -4898,8 +4905,8 @@
     <string name="OldDeviceTransferSetup__signal_needs_the_location_permission_to_discover_and_connect_with_your_new_device">Signal benötigt die Berechtigung »Standort«, um dein neues Android-Gerät zu erkennen und zu verbinden.</string>
     <string name="OldDeviceTransferSetup__signal_needs_location_services_enabled_to_discover_and_connect_with_your_new_device">Signal benötigt aktivierte Standortdienste, um dein neues Android-Gerät zu erkennen und zu verbinden.</string>
     <string name="OldDeviceTransferSetup__signal_needs_wifi_on_to_discover_and_connect_with_your_new_device">Signal benötigt eingeschaltetes WLAN, um dein neues Android-Gerät zu erkennen und zu verbinden. WLAN muss zwar eingeschaltet, aber nicht mit einem WLAN-Netzwerk verbunden sein.</string>
-    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Leider scheint dieses Gerät »Wi-Fi Direct« nicht zu unterstützen. Signal verwendet »Wi-Fi Direct«, um dein neues Android-Gerät zu erkennen und zu verbinden. Du kannst jedoch stattdessen eine Datensicherung erstellen, um dein Konto auf deinem neuen Android-Gerät zu verwenden.</string>
-    <string name="OldDeviceTransferSetup__create_a_backup">Eine Datensicherung erstellen</string>
+    <string name="OldDeviceTransferSetup__sorry_it_appears_your_device_does_not_support_wifi_direct">Leider scheint dieses Gerät »Wi-Fi Direct« nicht zu unterstützen. Signal verwendet »Wi-Fi Direct«, um dein neues Android-Gerät zu erkennen und zu verbinden. Du kannst jedoch stattdessen ein Backup erstellen, um dein Konto auf deinem neuen Android-Gerät zu verwenden.</string>
+    <string name="OldDeviceTransferSetup__create_a_backup">Ein Backup erstellen</string>
     <string name="OldDeviceTransferSetup__an_unexpected_error_occurred_while_attempting_to_connect_to_your_old_device">Beim Versuch, eine Verbindung zu deinem neuen Android-Gerät herzustellen, ist ein unerwarteter Fehler aufgetreten.</string>
 
     <!-- DeviceTransferSetupFragment -->
@@ -4961,6 +4968,14 @@
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Tippe auf »Von Android-Gerät übertragen« und dann auf »Weiter«. Positioniere beide Geräte nahe beieinander."</string>
     <string name="OldDeviceTransferInstructions__continue">Fortfahren</string>
+    <!-- Title for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">Stop device transfer?</string>
+    <!-- Message for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">No data has been transferred to your new device.</string>
+    <!-- Confirm button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__stop_transfer">Übertragung abbrechen</string>
+    <!-- Negative/cancel button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__continue_transfer">Übertragung fortsetzen</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Wechsle zu deinem neuen Gerät</string>
@@ -5348,13 +5363,13 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Erneuere dein Signal Backup-Abo</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Erneuere dein Signal Secure Backup-Abo</string>
     <!-- String alerting user that backup failed -->
-    <string name="AppSettingsFragment__couldnt_complete_backup">Die Datensicherung konnte nicht abgeschlossen werden</string>
+    <string name="AppSettingsFragment__couldnt_complete_backup">Das Backup konnte nicht abgeschlossen werden</string>
     <!-- String alerting user that backup redemption -->
     <string name="AppSettingsFragment__couldnt_redeem_your_backups_subscription">Dein Backup-Abo konnte nicht eingelöst werden</string>
     <!-- String alerting user that backup storage limit has been reached -->
-    <string name="AppSettingsFragment__backup_storage_limit_reached">Speicherplatz für Datensicherung voll</string>
+    <string name="AppSettingsFragment__backup_storage_limit_reached">Speicherplatz für Backups voll</string>
     <!-- String displayed telling user to invite their friends to Signal -->
     <string name="AppSettingsFragment__invite_your_friends">Kontakte einladen</string>
     <!-- String displayed in a toast when we successfully copy the donations subscriber id to the clipboard -->
@@ -7121,7 +7136,7 @@
     <!-- The text on a button in an alert window that, when clicked, will take the user to a screen to re-enable backups -->
     <string name="BackupSchedulePermissionMegaphone__not_now">Jetzt nicht</string>
     <!-- Re-enable backup permission bottom sheet title -->
-    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">So aktivierst du die Datensicherung erneut:</string>
+    <string name="BackupSchedulePermissionMegaphone__to_reenable_backups">So aktivierst du Backups erneut:</string>
     <!-- Re-enable backups permission bottom sheet instruction 1 text -->
     <string name="BackupSchedulePermissionMegaphone__tap_the_go_to_settings_button_below">Tippe unten auf die Schaltfläche »Zu den Einstellungen«.</string>
     <!-- Re-enable backups permission bottom sheet instruction 2 text -->
@@ -7231,7 +7246,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Gib deinen Namen und deine E-Mail-Adresse ein. Stripe verwendet diese E-Mail-Adresse, um dir Updates zu deiner Spende zu schicken. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Gib deine Bankverbindung ein. Deine persönlichen Daten werden von Signal nicht erfasst oder gespeichert. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7597,15 +7612,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Bearbeitungsverlauf</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Nachricht bearbeiten</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Wenn du eine Nachricht bearbeitest, ist sie nur für Personen sichtbar, die die neuesten Versionen von Signal verwenden. Sie können dann sehen, dass du eine Nachricht bearbeitet hast.</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Abbrechen</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Senden</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -7721,6 +7727,28 @@
     <!-- Button text to deny all participants from joining the call -->
     <string name="PendingParticipantsBottomSheet__deny_all">Alle ablehnen</string>
 
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__title">Aktiviere Signal Secure Backups</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__body">Verliere keine alten Nachrichten, wenn du ein neues Mobiltelefon hast oder Signal erneut installierst.</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
+    <string name="TurnOnSignalBackups__turn_on">Einschalten</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
+    <string name="TurnOnSignalBackups__not_now">Jetzt nicht</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">Bestätige deinen Wiederherstellungsschlüssel</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">Wir werden dich ab und zu bitten, deinen Schlüssel zu verifizieren, um sicherzugehen, dass du ihn noch weißt</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
+    <string name="VerifyBackupKey__verify">Bestätigen</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
+    <string name="VerifyBackupKey__not_now">Jetzt nicht</string>
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">Wiederherstellungsschlüssel korrekt. Verwahre deinen Schlüssel sicher auf.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
+    <string name="VerifyBackupKey__we_will_ask_again">Wir fragen dich in einer Woche erneut.</string>
+
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Vollbildbenachrichtigungen aktivieren?</string>
     <!-- Body of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
@@ -7829,9 +7857,9 @@
 
     <!-- BackupProgressService -->
     <!-- Notification title shown while backup restore job is running -->
-    <string name="BackupProgressService_title">Datensicherung wiederherstellen…</string>
+    <string name="BackupProgressService_title">Backup wiederherstellen…</string>
     <!-- Notification title shown while downloading backup restore data -->
-    <string name="BackupProgressService_title_downloading">Sicherungsdaten werden heruntergeladen…</string>
+    <string name="BackupProgressService_title_downloading">Backup-Daten werden heruntergeladen…</string>
 
     <!-- BackupAlertBottomSheet -->
     <!-- Sheet title when media backups have been disabled -->
@@ -7842,13 +7870,13 @@
         <item quantity="other">Dein Backup-Abo ist abgelaufen, da es mit deiner aktuellen Zahlungsmethode nicht verlängert werden konnte. Nach %1$d Tagen werden die Medien in deinem Backup gelöscht.</item>
     </plurals>
     <!-- Sheet body part 2 when media backups have been disabled. -->
-    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Um weiterhin all deine Medien zu sichern, kannst du jederzeit wieder für die Datensicherungen bezahlen. </string>
+    <string name="BackupAlertBottomSheet__you_can_begin_paying_for_backups_again">Um weiterhin all deine Medien zu sichern, kannst du jederzeit wieder für Backups bezahlen. </string>
     <!-- Sheet title when user\'s media will be deleted today -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Deine Sicherungsdaten jetzt herunterladen</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data_today">Deine Backupdaten jetzt herunterladen</string>
     <!-- Sheet title when user\'s media will be deleted at the end of their grace period -->
-    <string name="BackupAlertBottomSheet__download_your_backup_data">Lade deine Sicherungsdaten herunter</string>
+    <string name="BackupAlertBottomSheet__download_your_backup_data">Lade deine Backupdaten herunter</string>
     <!-- Sheet body part 1 when user\'s media will be deleted after grace period lapses -->
-    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">Du hast %1$s Medien, die nicht auf diesem Gerät gespeichert sind. Die in deiner Datensicherung gespeicherten Medien und Anhänge werden ohne kostenpflichtiges Abo dauerhaft gelöscht.</string>
+    <string name="BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device">Du hast %1$s Medien, die nicht auf diesem Gerät gespeichert sind. Die in deinem Backup gespeicherten Medien und Anhänge werden ohne kostenpflichtiges Abo dauerhaft gelöscht.</string>
     <!-- Sheet title when user does not have enough space to download their backup. Placeholder is formatted byte size, for example 12GB. -->
     <string name="BackupAlertBottomSheet__free_up_s_on_this_device">Gib auf diesem Gerät %1$s frei.</string>
     <!-- Sheet body part 1 when user does not have enough space to download their backup. Placeholder is the amount of space needed. -->
@@ -7864,16 +7892,18 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Dein Abo konnte mit deiner Zahlungsmethode nicht verlängert werden. Um deine Medien weiterhin sichern zu können, brauchst du ein aktives Abo.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Du kannst den kostenlosen Signal Backup-Plan weiterhin nutzen.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">Du kannst die kostenlose Signal Secure Backup-Option weiterhin nutzen.</string>
     <!-- Sheet title for generic backup error -->
-    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Die Datensicherung konnte nicht abgeschlossen werden</string>
+    <string name="BackupAlertBottomSheet__couldnt_complete_backup">Backup konnte nicht abgeschlossen werden</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
     <plurals name="BackupAlertBottomSheet__your_device_hasnt">
-        <item quantity="one">Dein Gerät hat seit %1$d Tag keine Datensicherung mehr durchgeführt. Stelle sicher, dass dein Gerät mit dem WLAN verbunden ist, und tippe auf »Jetzt sichern«. </item>
-        <item quantity="other">Dein Gerät hat seit %1$d Tagen keine Datensicherung mehr durchgeführt. Stelle sicher, dass dein Gerät mit dem WLAN verbunden ist, und tippe auf »Jetzt sichern«.</item>
+        <item quantity="one">Dein Gerät hat seit %1$d Tag kein Backup mehr durchgeführt. Stelle sicher, dass dein Gerät mit dem WLAN verbunden ist, und tippe auf »Jetzt sichern«. </item>
+        <item quantity="other">Dein Gerät hat seit %1$d Tagen kein Backup mehr durchgeführt. Stelle sicher, dass dein Gerät mit dem WLAN verbunden ist, und tippe auf »Jetzt sichern«.</item>
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Mehr erfahren</string>
+    <!-- Clickable text to enter contact support flow -->
+    <string name="BackupAlertBottomSheet__contact_support">Support kontaktieren</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">Wiederherstellen überspringen</string>
     <!-- Primary action button to open backups management screen -->
@@ -7887,9 +7917,9 @@
     <!-- Primary action button text prompting user to subscriber. Placeholder is formatted price -->
     <string name="BackupAlertBottomSheet__subscribe_for_s_month">Abonniere für %1$s/Monat</string>
     <!-- Primary action button text prompting user to download their media -->
-    <string name="BackupAlertBottomSheet__download_backup_now">Sicherungsdaten jetzt herunterladen</string>
+    <string name="BackupAlertBottomSheet__download_backup_now">Backupdaten jetzt herunterladen</string>
     <!-- Secondary action button text to dismiss sheet, skipping media download -->
-    <string name="BackupAlertBottomSheet__dont_download_backup">Sicherungsdaten nicht herunterladen</string>
+    <string name="BackupAlertBottomSheet__dont_download_backup">Backupdaten nicht herunterladen</string>
     <!-- Secondary generic action button to dismiss sheet without performing an action -->
     <string name="BackupAlertBottomSheet__not_now">Jetzt nicht</string>
     <!-- Secondary action button to dismiss could not complete backup sheet -->
@@ -7897,7 +7927,7 @@
     <!-- Dialog title for last chance to download backup -->
     <string name="BackupAlertBottomSheet__media_will_be_deleted">Medien werden gelöscht</string>
     <!-- Dialog message for last chance to download backup -->
-    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Die in deiner Datensicherung gespeicherten Medien werden heute endgültig gelöscht. Das ist deine letzte Chance zum Herunterladen.</string>
+    <string name="BackupAlertBottomSheet__the_media_stored_in_your_backup">Die in deinem Backup gespeicherten Medien werden heute endgültig gelöscht. Das ist deine letzte Chance zum Herunterladen.</string>
     <!-- Dialog action to download now -->
     <string name="BackupAlertBottomSheet__download">Herunterladen</string>
     <!-- Dialog action to not download now -->
@@ -7909,11 +7939,13 @@
     <!-- Dialog text for skipping media restore -->
     <string name="BackupAlertBottomSheet__if_you_skip_restore_the">Wenn du »Wiederherstellen« überspringst, kannst du die verbleibenden Medien und Anhänge in deinem Backup zu einem späteren Zeitpunkt herunterladen, sobald wieder Speicherplatz verfügbar ist.</string>
     <!-- Dialog title when a backup fails to be created -->
-    <string name="BackupAlertBottomSheet__backup_failed">Datensicherung gescheitert</string>
+    <string name="BackupAlertBottomSheet__backup_failed">Backup gescheitert</string>
     <!-- Dialog title when a backup redemption fails -->
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Dein Backup-Abo konnte nicht eingelöst werden</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
-    <string name="BackupAlertBottomSheet__an_error_occurred">Aufgrund eines Fehlers konnte deine letzte Datensicherung nicht abgeschlossen werden. Vergewissere dich, dass du die neueste Version von Signal verwendest, und versuche es erneut. Falls das Problem weiterhin besteht, kontaktiere bitte den Support.</string>
+    <string name="BackupAlertBottomSheet__an_error_occurred">Aufgrund eines Fehlers konnte dein letztes Backup nicht abgeschlossen werden. Vergewissere dich, dass du die neueste Version von Signal verwendest, und versuche es erneut. Falls das Problem weiterhin besteht, kontaktiere bitte den Support.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Aufgrund eines Fehlers konnte dein letztes Backup nicht abgeschlossen werden. Falls das Problem weiterhin besteht, kontaktiere bitte den Support.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Nach Updates suchen</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -7928,6 +7960,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Du musst %1$s freigeben, um deine Medien wiederherzustellen.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Medien werden wiederhergestellt</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">Medienwiederherstellung abbrechen</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">Medienwiederherstellung angehalten</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -7942,7 +7976,7 @@
     <!-- Status subtitle for banner when restoring media pauses for internet in general -->
     <string name="BackupStatus__status_no_internet">Kein Internet …</string>
     <!-- Status subtitle for banner when restoring media pauses for low battery -->
-    <string name="BackupStatus__status_device_has_low_battery">Der Akku des Geräts ist schwach</string>
+    <string name="BackupStatus__status_device_has_low_battery">Akkustand des Geräts ist niedrig</string>
     <!-- Status subtitle for banner when restoring media. Placeholders are size already restored and total size to restore. e.g., 4.5MB of 100MB -->
     <string name="BackupStatus__status_size_of_size">%1$s von %2$s</string>
 
@@ -7956,7 +7990,7 @@
     <!-- Text displayed under progress bar when restoring media pauses for internet -->
     <string name="BackupStatusRow__restore_no_internet">Wiederherstellung angehalten: Kein Internet …</string>
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
-    <string name="BackupStatusRow__restore_device_has_low_battery">Wiederherstellung angehalten: Der Akku des Geräts ist schwach</string>
+    <string name="BackupStatusRow__restore_device_has_low_battery">Wiederherstellung angehalten: Akkustand des Geräts ist niedrig</string>
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
     <string name="BackupStatusRow__downloading_s_of_s_s">%1$s von %2$s (%3$s%%) werden heruntergeladen</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
@@ -7964,15 +7998,15 @@
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
     <string name="BackupStatusRow__download_no_internet">Download angehalten: Keine Internetverbindung …</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for low battery -->
-    <string name="BackupStatusRow__download_device_has_low_battery">Download angehalten: Akku des Geräts ist schwach</string>
+    <string name="BackupStatusRow__download_device_has_low_battery">Download angehalten: Akkustand des Geräts ist niedrig</string>
     <!-- Notice that there is not enough free space to continue restore. Placeholder is required space, for example 1.6GB -->
-    <string name="BackupStatusRow__not_enough_space">Nicht genug Speicherplatz, um deine Datensicherung zu speichern. Gib %1$s Speicherplatz frei, um fortzufahren.</string>
+    <string name="BackupStatusRow__not_enough_space">Nicht genug Speicherplatz, um dein Backup zu speichern. Gib %1$s Speicherplatz frei, um fortzufahren.</string>
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">Download überspringen</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">Deine letzte Datensicherung konnte nicht abgeschlossen werden. Stelle sicher, dass dein Smartphone mit dem WLAN verbunden ist, und tippe auf »Jetzt sichern«, um es erneut zu versuchen.</string>
+    <string name="BackupStatusRow__your_last_backup">Dein letztes Backup konnte nicht abgeschlossen werden. Stelle sicher, dass dein Smartphone mit dem WLAN verbunden ist, und tippe auf »Jetzt sichern«, um es erneut zu versuchen.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
-    <string name="BackupStatusRow__your_last_backup_latest_version">Deine letzte Datensicherung konnte nicht abgeschlossen werden. Vergewissere dich, dass du die neueste Version von Signal verwendest, und versuche es erneut.</string>
+    <string name="BackupStatusRow__your_last_backup_latest_version">Dein letztes Backup konnte nicht abgeschlossen werden. Vergewissere dich, dass du die neueste Version von Signal verwendest, und versuche es erneut.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
     <string name="BackupStatusRow__learn_more">Mehr erfahren</string>
 
@@ -8003,6 +8037,32 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Backup-Abo ändern oder kündigen</string>
 
+    <!-- GooglePlayServicesAvailability -->
+    <!-- Dialog title when Google Play services are missing from the device -->
+    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play services missing</string>
+    <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
+    <string name="GooglePlayServicesAvailability__service_missing_message">To subscribe to Signal Secure backups, you need to install Google Play services on your phone.</string>
+    <!-- Dialog button text to install Google Play services -->
+    <string name="GooglePlayServicesAvailability__install_play_services">Install Play Services</string>
+    <!-- Dialog title when Google Play services are currently updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play services are updating</string>
+    <!-- Dialog message asking user to wait while Google Play services finish updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_message">To subscribe to Signal Secure backups please wait for Google Play services to finish updating.</string>
+    <!-- Dialog title when Google Play services need to be updated -->
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Update Google Play services</string>
+    <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
+    <string name="GooglePlayServicesAvailability__service_update_required_message">To subscribe to Signal Secure Backups, update Google Play service on your phone.</string>
+    <!-- Dialog button text to update Google Play services -->
+    <string name="GooglePlayServicesAvailability__update">Aktualisieren</string>
+    <!-- Dialog title when Google Play services are disabled -->
+    <string name="GooglePlayServicesAvailability__service_disabled_title">Paid subscriptions require Google Play</string>
+    <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
+    <string name="GooglePlayServicesAvailability__service_disabled_message">To subscribe to Signal Secure Backups, enable Google Play services on your phone and sign into the Google Play store. </string>
+    <!-- Dialog button text to learn more about enabling Google Play services -->
+    <string name="GooglePlayServicesAvailability__learn_more">Mehr erfahren</string>
+    <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
+    <string name="GooglePlayServicesAvailability__service_invalid_message">You can\'t subscribe to Signal Secure backups because your phone does not support Google Play services. Contact the phone manufacturer for assistance.</string>
+
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">Chat-Beschränkungen</string>
@@ -8021,15 +8081,15 @@
     <!-- Setting row title for storage optimization -->
     <string name="ManageStorageSettingsFragment__optimize_on_device_storage">Gerätespeicher optimieren</string>
     <!-- Setting row explanation for storage optimization -->
-    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nicht verwendete Medien werden zwar entfernt, sie können aber jederzeit aus deiner Datensicherung heruntergeladen werden.</string>
+    <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Nicht verwendete Medien werden zwar ausgelagert, sie können aber jederzeit aus deinem Backup heruntergeladen werden.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Die Speicheroptimierung kann nur mit der kostenpflichtigen Option für Signal Backups genutzt werden. Dein Backup-Abo wird momentan noch bearbeitet und ist daher noch nicht aktiv. Bitte versuche es später noch einmal.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Die Speicheroptimierung kann nur mit der kostenpflichtigen Option von Signal Secure Backups genutzt werden. Dein Backup-Abo wird momentan noch bearbeitet und ist daher noch nicht aktiv. Bitte versuche es später erneut.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Upgraden um diese Funktion zu aktivieren</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Die Speicheroptimierung kann nur mit der kostenpflichtigen Option für Signal Backups genutzt werden. Upgrade deine Backup-Option, um diese Funktion zu nutzen.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Die Speicheroptimierung kann nur mit der kostenpflichtigen Option von Signal Secure Backups genutzt werden. Führe ein Upgrade deiner Backup-Option durch, um diese Funktion zu nutzen.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Abonniere für %1$s/Monat</string>
 
@@ -8038,8 +8098,8 @@
     <string name="UpgradeToStartMediaBackupSheet__this_media_is_no_longer_available">Diese Medien sind nicht länger verfügbar</string>
     <!-- Subtitle of bottom sheet detailing that with their current plan, there is a limitation to how many days media is stored for. Placeholder is number of days. -->
     <plurals name="UpgradeToStartMediaBackupSheet__your_current_signal_backup_plan_includes">
-        <item quantity="one">Dein aktuelles Signal Backup-Abo  umfasst die aktuellsten Medien des letzten Tages. Führe jetzt ein Upgrade durch, um mit der Sicherung alle Medien zu beginnen.</item>
-        <item quantity="other">Dein aktuelles Signal Backup-Abo umfasst die aktuellsten Medien der letzten %1$d Tage. Führe jetzt ein Upgrade durch, um mit der Sicherung aller Medien zu beginnen.</item>
+        <item quantity="one">Dein aktuelles Signal Backup-Abo  umfasst die aktuellsten Medien des letzten Tages. Führe jetzt ein Upgrade durch, um mit dem Backup aller Medien zu beginnen.</item>
+        <item quantity="other">Dein aktuelles Signal Backup-Abo umfasst die aktuellsten Medien der letzten %1$d Tage. Führe jetzt ein Upgrade durch, um mit dem Backup aller Medien zu beginnen.</item>
     </plurals>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToStartMediaBackupSheet__subscribe_for_s_month">Abonniere für %1$s/Monat</string>
@@ -8048,7 +8108,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Diese Medien sind nicht länger verfügbar</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Aktiviere Signal Backup und wähle die kostenpflichtige Variante, um mit der Sicherung deiner Medien zu beginnen.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Aktiviere Signal Secure Backups und wähle die kostenpflichtige Variante, um mit der Sicherung deiner Medien zu beginnen.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Fortfahren</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8061,45 +8121,71 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
+    <!-- NoManualBackupBottomSheet -->
+    <!-- Title for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
+        <item quantity="one">Kein Backup seit %1$d Tag</item>
+        <item quantity="other">Kein Backup seit %1$d Tagen</item>
+    </plurals>
+    <!-- Body for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
+        <item quantity="one">Du hast seit %1$d Tag kein Backup mehr durchgeführt. Mach lieber gleich ein Backup, damit deine Nachrichten und Medien sicher sind.</item>
+        <item quantity="other">Du hast seit %1$d Tagen kein Backup mehr durchgeführt. Mach lieber gleich ein Backup, damit deine Nachrichten und Medien sicher sind.</item>
+    </plurals>
+
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/Monat, verlängert sich am %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
-    <string name="BackupsSettingsFragment_last_backup_s">Letzte Datensicherung: %1$s</string>
+    <string name="BackupsSettingsFragment_last_backup_s">Letztes Backup: %1$s</string>
+    <!-- Subtitle for row for canceled backup -->
+    <string name="BackupsSettingsFragment__subscription_canceled">Abo gekündigt</string>
     <!-- Subtitle for row for no backup ever created -->
-    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatische Datensicherungen mit Signals sicherem Ende-zu-Ende-verschlüsselten Speicherservice.</string>
+    <string name="BackupsSettingsFragment_automatic_backups_with_signals">Automatische Backups mit Signals sicherem Ende-zu-Ende-verschlüsselten Speicherservice.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
-    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Kein Abo auf diesem Gerät gefunden."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Einrichten</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">Einstellungen anzeigen</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">Upload abbrechen</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Secure Backups</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal-Datensicherungen</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal Secure Backups</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">Aus</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Authentifizierung erforderlich</string>
     <!-- Row label to launch payment history screen -->
     <string name="RemoteBackupsSettingsFragment__payment_history">Zahlungsverlauf</string>
     <!-- Section header for backup information -->
-    <string name="RemoteBackupsSettingsFragment__backup_details">Details zur Datensicherung</string>
+    <string name="RemoteBackupsSettingsFragment__backup_details">Backup-Details</string>
     <!-- Row label to allow the restoration of a backup to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__resume_download">Download fortsetzen</string>
     <!-- Row label for backup size -->
-    <string name="RemoteBackupsSettingsFragment__backup_size">Größe der Datensicherung</string>
+    <string name="RemoteBackupsSettingsFragment__backup_size">Größe des Backups</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__calculating">Wird berechnet …</string>
     <!-- Row label for backup frequency -->
-    <string name="RemoteBackupsSettingsFragment__backup_frequency">Häufigkeit der Datensicherung</string>
+    <string name="RemoteBackupsSettingsFragment__backup_frequency">Häufigkeit von Backups</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Deine Medien und Nachrichten werden täglich gesichert.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
-    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Datensicherung über das Mobilfunknetz</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">Datensicherungsschlüssel anzeigen</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Entsperren, um Datensicherungsschlüssel anzuzeigen</string>
+    <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Backup über das Mobilfunknetz</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Wiederherstellungsschlüssel anzeigen</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Entsperren, um den Wiederherstellungsschlüssel anzuzeigen</string>
+    <!-- Title of bottom sheet explaining that authentication is required to view your key -->
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">Bestätige, dass du es bist, um deinen Schlüssel anzuzeigen</string>
     <!-- Row label for cancelling and deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Datensicherung ausschalten und löschen</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Backup ausschalten und löschen</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Datensicherung gelöscht und ausgeschaltet.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Backup gelöscht und ausgeschaltet.</string>
     <!-- Snackbar text displayed when backup type is downgraded -->
     <string name="RemoteBackupsSettingsFragment__backup_type_changed_and_subcription_deleted">Backup-Art geändert und Abo storniert</string>
     <!-- Snackbar text displayed when backup subscription is cancelled -->
@@ -8107,15 +8193,17 @@
     <!-- Snackbar text displayed when backup is successfully downloaded -->
     <string name="RemoteBackupsSettingsFragment__download_complete">Download abgeschlossen</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
-    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Datensicherung wird über Nacht erstellt.</string>
+    <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Backup wird über Nacht erstellt.</string>
+    <!-- Snackbar text displayed when user rotates AEP -->
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Neuer Wiederherstellungsschlüssel erstellt</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Abo inaktiv</string>
     <!-- Text displayed in card when free tier is inactive -->
-    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">Du hast Datensicherungen ausgeschaltet</string>
+    <string name="RemoteBackupsSettingsFragment__you_turned_off_backups">Du hast Backups ausgeschaltet</string>
     <!-- Title text in row detailing selected backup type -->
     <string name="RemoteBackupsSettingsFragment__backup_plan">Backup-Abo</string>
     <!-- Subtitle text in row detailing selected backup type displayed when backups are disabled -->
-    <string name="RemoteBackupsSettingsFragment__backups_disabled">Datensicherung deaktiviert</string>
+    <string name="RemoteBackupsSettingsFragment__backups_disabled">Backup deaktiviert</string>
     <!-- Format string for backup and cost. First placeholder is cost per month. -->
     <string name="RemoteBackupsSettingsFragment__s_per_month">%1$s/Monat</string>
     <!-- Displayed in card at top of screen while payment processing is pending -->
@@ -8133,11 +8221,11 @@
     <!-- Displayed at the top of the screen when no backup is currently enabled -->
     <string name="RemoteBackupsSettingsFragment__back_up_your_message_history">Sichere deinen Nachrichtenverlauf und verliere keine alten Nachrichten, wenn du ein neues Mobiltelefon hast bzw. Signal erneut installierst.</string>
     <!-- Section header for other ways to back up -->
-    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Weitere Möglichkeiten zur Datensicherung</string>
+    <string name="RemoteBackupsSettingsFragment__other_ways_to_backup">Weitere Möglichkeiten zum Backup</string>
     <!-- Row title for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__on_device_backups">Datensicherungen auf dem Gerät</string>
+    <string name="RemoteBackupsSettingsFragment__on_device_backups">Backups auf dem Gerät</string>
     <!-- Row label for performing on-device backup -->
-    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Speichere deine Datensicherungen in einem Ordner auf diesem Gerät</string>
+    <string name="RemoteBackupsSettingsFragment__save_your_backups_to">Speichere deine Backups in einem Ordner auf diesem Gerät</string>
     <!-- Button label to manage or cancel backups -->
     <string name="RemoteBackupsSettingsFragment__manage_or_cancel">Verwalten oder abbrechen</string>
     <!-- button label to upgrade backups -->
@@ -8145,7 +8233,7 @@
     <!-- Progress indicator subtext displayed when a backup is in progress -->
     <string name="RemoteBackupsSettingsFragment__d_slash_d">%1$d/%2$d</string>
     <!-- Title text in row detailing last backup -->
-    <string name="RemoteBackupsSettingsFragment__last_backup">Letzte Datensicherung</string>
+    <string name="RemoteBackupsSettingsFragment__last_backup">Letztes Backup</string>
     <!-- Subtext describing when a backup took place. First placeholder is the day, second is time. -->
     <string name="RemoteBackupsSettingsFragment__s_at_s">%1$s um %2$s</string>
     <!-- Subtext describing when a backup has never taken place. -->
@@ -8153,17 +8241,17 @@
     <!-- Button label to perform a backup immediately -->
     <string name="RemoteBackupsSettingsFragment__back_up_now">Jetzt sichern</string>
     <!-- Dialog title when confirming whether to turn off and deleting backups -->
-    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Datensicherungen ausschalten und löschen?</string>
+    <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backups">Backups ausschalten und löschen?</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Deine Datensicherung wird gelöscht und es werden keine neuen Datensicherungen erstellt. Medien in deiner Datensicherung werden jetzt auf dein Smartphone heruntergeladen.</string>
+    <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Dein Backup wird gelöscht und es werden keine neuen Backups erstellt. Medien in deinem Backup werden jetzt auf dein Smartphone heruntergeladen.</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Dein Abo wird storniert und es fallen keine weiteren Kosten an. Dein Backup wird ebenfalls gelöscht und es werden keine neuen Backups erstellt. Medien in deinem Backup werden jetzt auf dein Smartphone heruntergeladen.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Ausschalten und löschen</string>
     <!-- Text on dialog while user backup is being deleted -->
-    <string name="RemoteBackupsSettingsFragment__deleting_backup">Datensicherung wird gelöscht…</string>
+    <string name="RemoteBackupsSettingsFragment__deleting_backup">Backup wird gelöscht…</string>
     <!-- Text on dialog when user backup is deleted -->
-    <string name="RemoteBackupsSettingsFragment__backup_deleted">Datensicherung gelöscht</string>
+    <string name="RemoteBackupsSettingsFragment__backup_deleted">Backup gelöscht</string>
     <!-- Subtitle for frequency option MANUAL for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__by_tapping_back_up_now">"Indem du auf »Jetzt sichern« tippst"</string>
     <!-- Title for frequency option DAILY for backup frequency -->
@@ -8177,19 +8265,19 @@
     <!-- The body of an alert dialog shown when we detect the user may be confused by the lock screen -->
     <string name="PassphrasePromptActivity_help_prompt_body">Bitte gib deine Geräte-Pin, dein Passwort oder dein Sperrmuster ein.</string>
     <!-- Button label to re-enable backups (launches into checkout flow) -->
-    <string name="RemoteBackupsSettingsFragment__reenable_backups">Datensicherungen erneut aktivieren</string>
+    <string name="RemoteBackupsSettingsFragment__reenable_backups">Backups erneut aktivieren</string>
     <!-- Notice displayed when backups have been disabled and deleted -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Die Datensicherungen wurden deaktiviert und deine Daten wurden aus dem sicheren Speicherservice von Signal gelöscht.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off">Backups wurden deaktiviert und deine Daten wurden aus dem sicheren Speicherservice von Signal gelöscht.</string>
     <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Deine Datensicherung wird heruntergeladen</string>
+    <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Dein Backup wird heruntergeladen</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Je nach Größe deiner Datensicherung könnte dies etwas dauern. Während die Datensicherung heruntergeladen wird, kannst du dein Mobiltelefon weiterhin ganz normal nutzen.</string>
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Je nach Größe deines Backups könnte dies etwas dauern. Während das Backup heruntergeladen wird, kannst du dein Mobiltelefon weiterhin ganz normal nutzen.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Dein Abo wurde auf diesem Gerät nicht gefunden. Jetzt erneuern, um Signal Backups weiterhin verwenden zu können.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Dein Abo wurde auf diesem Gerät nicht gefunden. Jetzt erneuern, um Signal Secure Backups weiterhin verwenden zu können.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Dein Backup-Abo auf diesem Gerät ist für den nächsten %1$d Tag gültig. Erneuere dein Abo, um Signal Backup weiterhin nutzen zu können.</item>
-        <item quantity="other">Dein Backup-Abo auf diesem Gerät ist für die nächsten %1$d Tage gültig. Erneuere dein Abo, um Signal Backup weiterhin nutzen zu können.</item>
+        <item quantity="one">Dein Backups-Abo auf diesem Gerät ist für den nächsten %1$d Tag gültig. Erneuere dein Abo, um Signal Secure Backups weiterhin nutzen zu können.</item>
+        <item quantity="other">Dein Backups-Abo auf diesem Gerät ist für die nächsten %1$d Tage gültig. Erneuere dein Abo, um Signal Secure Backups weiterhin nutzen zu können.</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Erneut abonnieren</string>
@@ -8198,16 +8286,20 @@
     <!-- Button label to learn more about why subscription disappeared -->
     <string name="RemoteBackupsSettingsFragment__learn_more">Mehr erfahren</string>
     <!-- Linear progress dialog text shown when creating a backup -->
-    <string name="RemoteBackupsSettingsFragment__processing_backup">Datensicherung wird bearbeitet…</string>
+    <string name="RemoteBackupsSettingsFragment__processing_backup">Backup wird bearbeitet…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
-    <string name="RemoteBackupsSettingsFragment__preparing_backup">Datensicherung wird vorbereitet …</string>
+    <string name="RemoteBackupsSettingsFragment__preparing_backup">Backup wird vorbereitet …</string>
+    <!-- Linear progress dialog text shown when backup is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">Warten auf WLAN …</string>
+    <!-- Linear progress dialog text shown when backup is paused because internet is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">Warten auf Internet …</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
         <item quantity="one">%1$s von %2$s Nachricht wird verarbeitet (%3$d%%)</item>
         <item quantity="other">%1$s von %2$s Nachrichten werden verarbeitet (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
-    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Du hast %1$s Backup-Daten, die nicht auf diesem Gerät gespeichert sind. Ohne kostenpflichtiges Abo können Medien nicht heruntergeladen werden.</string>
+    <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">Du hast %1$s Backup-Daten, die nicht auf diesem Gerät gespeichert sind. Ohne kostenpflichtiges Abo können Medien nicht ausgelagert werden.</string>
     <!-- Display in a row when backup is available for download but the user has canceled the restore. Place holder is data size e.g. 12MB -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data_not_on_device">Du hast %1$s Backup-Daten, die nicht auf diesem Gerät gespeichert sind. </string>
     <!-- Displayed in row when backup is available for download to let user start download -->
@@ -8216,11 +8308,11 @@
     <string name="RemoteBackupsSettingsFragment__skip_download_question">Download überspringen?</string>
     <!-- Dialog body for skipping download of backed up media -->
     <plurals name="RemoteBackupsSettingsFragment__if_you_skip_downloading">
-        <item quantity="one">Wenn du »Download überspringen« wählst, werden die restlichen Medien und Anhänge in deiner Datensicherung in %1$d Tag gelöscht.</item>
-        <item quantity="other">Wenn du »Download überspringen« wählst, werden die restlichen Medien und Anhänge in deiner Datensicherung in %1$d Tagen gelöscht.</item>
+        <item quantity="one">Wenn du »Download überspringen« wählst, werden die restlichen Medien und Anhänge in deinem Backup in %1$d Tag gelöscht.</item>
+        <item quantity="other">Wenn du »Download überspringen« wählst, werden die restlichen Medien und Anhänge in deinem Backup in %1$d Tagen gelöscht.</item>
     </plurals>
     <!-- Dialog body for skipping download of backed up media during deletion -->
-    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Wenn du »Download überspringen« wählst, werden die restlichen Medien und Anhänge in deiner Datensicherung dauerhaft gelöscht. Diese Daten können nicht wiederhergestellt werden.</string>
+    <string name="RemoteBackupsSettingsFragment__if_you_skip_downloading_the_remaining">Wenn du den Download überspringst, werden die verbliebenen Medien und Anhänge in deinem Backup dauerhaft gelöscht. Diese Daten können nicht wiederhergestellt werden.</string>
     <!-- Dialog title for skipping download of in progress initial restore of backed up media -->
     <string name="RemoteBackupsSettingsFragment__skip_restore_question">Wiederherstellen überspringen?</string>
     <!-- Dialog message for skipping download of in progress initial restore of backed up media -->
@@ -8230,7 +8322,7 @@
     <!-- Positive dialog action to skip download during deletion -->
     <string name="RemoteBackupsSettingsFragment__skip_and_delete_permanently">Überspringen und dauerhaft löschen</string>
     <!-- Dialog title for network error while trying to disable backups -->
-    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Datensicherungen konnten nicht ausgeschaltet und gelöscht werden.</string>
+    <string name="RemoteBackupsSettingsFragment__couldnt_turn_off_and_delete_backups">Backups konnten nicht ausgeschaltet und gelöscht werden.</string>
     <!-- Dialog body for network error while trying to disable backups -->
     <string name="RemoteBackupsSettingsFragment__a_network_error_occurred">Ein Netzwerkfehler ist aufgetreten. Bitte überprüfe deine Internetverbindung und versuche es erneut.</string>
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
@@ -8238,15 +8330,15 @@
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Details</string>
     <!-- Text displayed when there was an error deleting backup -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups wurde deaktiviert und ist ein Fehler beim Löschen deiner Daten aus dem sicheren Speicherservice von Signal aufgetreten.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_but_there_was_an_error">Backups wurde deaktiviert, aber beim Löschen deiner Daten aus dem sicheren Speicherservice von Signal ist ein Fehler aufgetreten.</string>
     <!-- Text displayed as the title in a card when backup fails to delete -->
-    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Das Backup konnte nicht gelöscht werden</string>
+    <string name="RemoteBackupsSettingsFragment__failed_to_delete_backup">Backup konnte nicht gelöscht werden</string>
     <!-- Text displayed as the body in a card when backup fails to delete -->
     <string name="RemoteBackupsSettingsFragment__an_error_occurred_please_contact_support">Es ist ein Fehler aufgetreten. Bitte kontaktiere den Support.</string>
     <!-- Text displayed while we are processing a backup delete but are or need to download optimized media -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_your_data_will_be">Backups wurde deaktiviert und deine Daten werden auf dein Gerät heruntergeladen und aus dem sicheren Speicherservice von Signal gelöscht.</string>
     <!-- Text displayed while we are processing a backup delete -->
-    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups wurde deaktiviert und deine Daten werden aus dem sicheren Speicherservice von Signal gelöscht.</string>
+    <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data">Backups wurden deaktiviert und deine Daten werden aus dem sicheren Speicherservice von Signal gelöscht.</string>
     <!-- Text displayed after we have deleted a user\'s backup -->
     <string name="RemoteBackupsSettingsFragment__backups_have_been_turned_off_and_your_data_has_been_deleted">Backups wurden deaktiviert und deine Daten wurden aus dem sicheren Speicherservice von Signal gelöscht.</string>
     <!-- Text displayed while downloading backup during deletion. First placeholder is amount downloaded, second is amount remaining, last is percentage. -->
@@ -8258,7 +8350,7 @@
 
     <!-- DownloadYourBackupTodayDialog -->
     <!-- Dialog title -->
-    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Lade deine Sicherungsdaten heute herunter</string>
+    <string name="DownloadYourBackupTodayDialog__download_your_backup_today">Lade deine Backupdaten heute herunter</string>
     <!-- Dialog body. Placeholder is human readable byte count, for example 2.3 MB -->
     <string name="DownloadYourBackupTodayDialog__you_have_s_of_backup_data">Du hast %1$s Backup-Daten, die nicht auf diesem Gerät gespeichert sind. Deine Medien und Anhänge werden ohne kostenpflichtiges Abo dauerhaft gelöscht.</string>
     <!-- Dialog positive action label -->
@@ -8300,84 +8392,125 @@
     <!-- Backups feature label for informing the user that this feature is completely optional -->
     <string name="MessageBackupsEducationScreen__optional_always">Optional, immer</string>
     <!-- Backups feature label for informing the user that they can delete their backup at any time -->
-    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Datensicherung jederzeit löschen</string>
+    <string name="MessageBackupsEducationScreen__delete_your_backup_anytime">Backup jederzeit löschen</string>
     <!-- Action button label to proceed with backups activation -->
-    <string name="MessageBackupsEducationScreen__enable_backups">Sicherungen aktivieren</string>
+    <string name="MessageBackupsEducationScreen__enable_backups">Backups aktivieren</string>
     <!-- Action button label to learn more -->
     <string name="MessageBackupsEducationScreen__learn_more">Mehr erfahren</string>
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Dein Datensicherungsschlüssel</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Dein Wiederherstellungsschlüssel</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Dein Datensicherungsschlüssel ist ein 64-stelliger Code, mit dem du deine Datensicherung wiederherstellen kannst, wenn du Signal neu installierst.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Dein Wiederherstellungsschlüssel ist ein 64-stelliger Code, mit dem du dein Backup wiederherstellen kannst, wenn du Signal neu installierst.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ohne Schlüssel kannst du deine Datensicherung nicht wiederherstellen. Signal kann dir nicht helfen, deine Datensicherung wiederherzustellen.</string>
+    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ohne Schlüssel kannst du dein Backup nicht wiederherstellen. Signal kann dir nicht helfen, dein Backup wiederherzustellen.</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyEducationScreen__next">Weiter</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Sichere deinen Datensicherungsschlüssel</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Speichere deinen Wiederherstellungsschlüssel</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Dieser Schlüssel wird benötigt, um dein Konto und deine Daten wiederherzustellen. Bewahre diesen Schlüssel sicher auf. Wenn du ihn verlierst, kannst du dein Konto nicht wiederherstellen.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">In Zwischenablage kopieren</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Im Passwortmanager speichern</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Im Passwortmanager speichern?</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Speichere deinen Datensicherungsschlüssel nur in einem sicheren Passwortmanager. Signal empfiehlt dir keinen passenden Passwortmanager.</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Speichere deinen Wiederherstellungsschlüssel nur in einem sicheren Passwortmanager. Signal gibt keine Empfehlung ab, welcher der passende Passwortmanager für dich ist.</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal Secure Backups</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">In deinem Passwortmanager gespeichert</string>
-    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Kann nicht im Passwortmanager gespeichert werden</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Kann nicht im Passwortmanager gespeichert werden</string>
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Du hast keinen Passwortmanager eingerichtet, oder dein Passwortmanager wird nicht unterstützt.</string>
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Du hast vorher ausgewählt, dass Passwörter für Signal nicht im Google Passwortmanager gespeichert werden sollen. Entferne Signal in den Einstellungen deines Google Passwortmanagers aus »Abgelehnte Websites und Apps« und versuche es noch mal.</string>
+    <!-- Label for a button that navigates to the device settings -->
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Zu Einstellungen</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Weiter</string>
     <!-- Bottom sheet title -->
     <string name="MessageBackupsKeyRecordScreen__keep_your_key_safe">Verwahre deinen Schlüssel sicher auf</string>
     <!-- Bottom sheet subtitle -->
-    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal kann dir nicht helfen, deine Datensicherung wiederherzustellen, wenn du deinen Schlüssel verlierst. Bewahre ihn an einem sicheren Ort auf und gib ihn nicht an andere weiter.</string>
+    <string name="MessageBackupsKeyRecordScreen__signal_will_not">Signal kann dir nicht helfen, dein Backup wiederherzustellen, wenn du deinen Schlüssel verlierst. Bewahre ihn an einem sicheren Ort auf und gib ihn nicht an andere weiter.</string>
     <!-- Checkbox label -->
     <string name="MessageBackupsKeyRecordScreen__ive_recorded_my_key">Ich habe meinen Schlüssel aufgezeichnet</string>
     <!-- Sheet action button label -->
     <string name="MessageBackupsKeyRecordScreen__continue">Fortfahren</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Schlüssel erneut anzeigen</string>
+    <!-- Action label to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">Neuen Schlüssel erstellen</string>
+    <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__download_media">Medien herunterladen</string>
+    <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Du musst »Speicher optimieren« erst deaktivieren und warten, bis deine Medien heruntergeladen wurden, um einen neuen Wiederherstellungsschlüssel zu erstellen. Sobald der Download abgeschlossen ist, kannst du einen neuen Schlüssel erstellen.</string>
+    <!-- Action label to turn off optimized storage and download media -->
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Ausschalten und herunterladen</string>
+    <!-- Bottom Sheet title for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Neuen Wiederherstellungsschlüssel erstellen</string>
+    <!-- Bottom Sheet body for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Das Erstellen eines neuen Schlüssels ist nur erforderlich, wenn jemand anderes ihn kennt. Du musst dein Backup erneut hochladen, einschließlich Medien. Wenn du „Speicher optimieren“ nutzt, musst du ausgelagerte Medien erst herunterladen.</string>
+
+    <!-- BackupKeyDisplayFragment -->
+    <!-- Dialog title when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Schlüsselerstellung abbrechen?</string>
+    <!-- Dialog body when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Dein neuer Wiederherstellungsschlüssel wird erst erstellt, wenn du ihn bestätigst.</string>
+    <!-- Dialog button to continue confirming new recovery key-->
+    <string name="BackupKeyDisplayFragment__confirm_key">Schlüssel bestätigen</string>
+    <!-- Dialog button to cancel new key creation -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">Schlüsselerstellung abbrechen</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Bestätige deinen Datensicherungsschlüssel</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Bestätige deinen Wiederherstellungsschlüssel</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Gib den Datensicherungsschlüssel ein, den du eben aufgezeichnet hast</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Gib den Wiederherstellungsschlüssel ein, den du eben gespeichert hast</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Datensicherungsschlüssel</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Wiederherstellungsschlüssel</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Falscher Backup-Schlüssel</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Wiederherstellungsschlüssel nicht korrekt</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Schlüssel erneut anzeigen</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Weiter</string>
 
+    <!-- Verify your key title -->
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Gib deinen Wiederherstellungsschlüssel ein</string>
+    <!-- Verify your key subtitle -->
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Gib den 64-stelligen Code ein, den du beim Aktivieren deiner Backups aufgezeichnet hast.</string>
+    <!-- Button text when you forget your recovery key -->
+    <string name="VerifyBackupPinScreen__forgot_key">Schlüssel vergessen?</string>
+
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
     <string name="MessagesBackupsTypeSelectionScreen__choose_your_backup_plan">Wie möchtest du deine Daten sichern?</string>
     <!-- Screen subhead -->
-    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Alle Datensicherungen sind immer Ende-zu-Ende verschlüsselt. Signal ist eine gemeinnützige Organisation – indem du für Datensicherungen bezahlst, unterstützt du unsere Arbeit.</string>
+    <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Alle Backups sind immer Ende-zu-Ende verschlüsselt. Signal ist eine gemeinnützige Organisation – indem du für Backups bezahlst, unterstützt du unsere Arbeit.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Mehr erfahren</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Abonnieren</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Kostenloses Backup-Abo wählen</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Abonniere für %1$s/Monat</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
-    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Datensicherungsart ändern</string>
+    <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Backup-Art ändern</string>
+    <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">More about this plan</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Abo kündigen</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Kostenlos</string>
+    <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
+    <string name="MessageBackupsTypeSelectionScreen__paid">Paid</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/Monat</string>
     <!-- Title for free tier -->
@@ -8402,12 +8535,16 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">Aktuelles Abo</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Can\'t upgrade plan</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">To subscribe to Signal Secure Backups, you must have Google Services enabled on your phone and be signed into the Google Play Store.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
     <string name="ConfirmBackupCancellationDialog__confirm_cancellation">Kündigung bestätigen</string>
     <!-- Dialog body -->
-    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Es wird nichts mehr abgebucht. Die Datensicherungen werden am Ende deines Abrechnungszeitraums deaktiviert. Nach diesem Datum hast du 30 Tage Zeit, um die Medien herunterzuladen, die du gesichert hast.</string>
+    <string name="ConfirmBackupCancellationDialog__you_wont_be_charged_again">Es wird nichts mehr abgebucht. Backups werden am Ende deines Abrechnungszeitraums deaktiviert. Nach diesem Datum hast du 30 Tage Zeit, um die Medien herunterzuladen, die du gesichert hast.</string>
     <!-- Action button label to cancel subscription and download now -->
     <string name="ConfirmBackupCancellationDialog__confirm_and_download_now">Jetzt bestätigen und herunterladen</string>
     <!-- Action button label to cancel subscription and download later -->
@@ -8432,10 +8569,10 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Konto wiederherstellen oder übertragen</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Hol dir dein Signal-Konto und deinen Nachrichtenverlauf auf dieses Gerät.</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Von Signal Backups</string>
-    <!-- Option subtitle for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Dein kostenloses oder bezahltes Signal Backup-Abo</string>
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Von Signal Secure Backups</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Dein kostenloses oder kostenpflichtiges Signal Backup-Abo</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">Von einem Backup-Ordner</string>
     <!-- Option title for restoring via a local backup file -->
@@ -8448,44 +8585,44 @@
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Direkt von deinem alten Android-Telefon übertragen</string>
 
     <!-- Screen title for restore via local backup -->
-    <string name="RestoreLocalBackup_title">Lokale Datensicherung wiederherstellen</string>
+    <string name="RestoreLocalBackup_title">Lokales Backup wiederherstellen</string>
     <!-- Screen subtitle for restore via local backup -->
-    <string name="RestoreLocalBackup_subtitle">Stelle deine Nachrichten mithilfe einer auf deinem Gerät gespeicherten Datensicherung wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
+    <string name="RestoreLocalBackup_subtitle">Stelle deine Nachrichten mithilfe einem auf deinem Gerät gespeicherten Backup wieder her. Falls du sie jetzt nicht wiederherstellst, wirst du dies später nicht mehr nachholen können.</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Gib deinen Datensicherungsschlüssel ein</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Dein Datensicherungsschlüssel ist ein 64-stelliger Code, den du benötigst, um dein Konto und deine Daten wiederherzustellen.</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Kein Datensicherungsschlüssel?</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Datensicherungsschlüssel</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Datensicherungen können ohne den 64-stelligen Code nicht wiederhergestellt werden. Wenn du deinen Datensicherungsschlüssel verloren hast, kann dir Signal nicht helfen, dein Backup wiederherzustellen.</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Auf deinem alten Gerät kannst du deinen Datensicherungsschlüssel in Einstellungen &gt; Backups sehen. Tippe dann auf »Datensicherungsschlüssel anzeigen«.</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">Gib deinen Wiederherstellungsschlüssel ein</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">Dein Wiederherstellungsschlüssel ist ein 64-stelliger Code, den du benötigst, um dein Konto und deine Daten wiederherzustellen.</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">Kein Wiederherstellungsschlüssel?</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">Wiederherstellungsschlüssel</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">Backups können ohne den 64-stelligen Code nicht wiederhergestellt werden. Wenn du deinen Wiederherstellungsschlüssel verloren hast, kann dir Signal nicht helfen, dein Backup wiederherzustellen.</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">Auf deinem alten Gerät kannst du deinen Wiederherstellungsschlüssel in Einstellungen &gt; Backups sehen. Tippe anschließend auf »Wiederherstellungsschlüssel anzeigen«.</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Mehr erfahren</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Überspringen und nicht wiederherstellen</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Falscher Backup-Schlüssel</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Wiederherstellungsschlüssel nicht korrekt</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Registriere dich unbedingt mit derselben Telefonnummer und demselben 64-stelligen Datensicherungsschlüssel, den du beim Aktivieren von Signal Backups gespeichert hast. Datensicherungen können ohne diesen Schlüssel nicht wiederhergestellt werden.</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Registriere dich unbedingt mit derselben Telefonnummer und demselben 64-stelligen Wiederherstellungsschlüssel, den du beim Aktivieren von Signal Secure Backups gespeichert hast. Backups können ohne diesen Schlüssel nicht wiederhergestellt werden.</string>
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Erneut versuchen</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">Backup-Schlüssel – Hilfe</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Falscher Backup-Schlüssel</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">Hilfe</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">Wiederherstellungsschlüssel nicht korrekt</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">Zu lang (%1$d/%2$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Ungültiger Backup-Schlüssel</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">Wiederherstellungsschlüssel ungültig</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Backup nicht gefunden</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Der von dir eingegebene Datensicherungsschlüssel ist korrekt, diesem ist aber kein Back-up zugeordnet. Falls du dein altes Telefon noch hast, stelle sicher, dass Datensicherungen aktiviert sind und dass eine Datensicherung abgeschlossen wurde. Versuche es dann erneut.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Der von dir eingegebene Wiederherstellungsschlüssel ist korrekt, diesem ist aber kein Backup zugeordnet. Falls du dein altes Telefon noch hast, stelle sicher, dass Backups aktiviert ist und dass ein Backup abgeschlossen wurde. Versuche es dann erneut.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Wiederherstellen überspringen</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8497,7 +8634,15 @@
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android Backup-Wiederherstellung: Netzwerk-Problem</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Dauerhafter Fehler bei Signal Android Backup-Wiederherstellung</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
+
+    <!-- Email subject when contacting support on a create backup failure -->
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android Backup-Export: Netzwerk-Problem</string>
+    <!-- Email filter when contacting support on a create backup failure -->
+  <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
     <string name="ContactSupportDialog_submit_debug_log">Diagnoseprotokoll übermitteln?</string>
@@ -8543,9 +8688,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">Fahre damit fort, dein Konto auf dein anderes Gerät zu übertragen.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Wiederherstellung abgeschlossen</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">Finish on your other device</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Die Übertragung deines Signal-Kontos und deiner Nachrichten auf dein anderes Gerät hat begonnen. Signal ist jetzt auf diesem Gerät inaktiv.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages are ready to restore on your other device. Signal is now inactive on this device.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">Übertragung vollständig</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
@@ -8556,7 +8701,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">Kein Backup zum Wiederherstellen</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Da du von iPhone auf Android umsteigst, kannst du deine Nachrichten und Medien nur übertragen, wenn du auf deinem alten Gerät Signal Backups aktivierst.</string>
+    <string name="NoBackupToRestore_subtitle">Da du von iPhone auf Android umsteigst, kannst du deine Nachrichten und Medien nur übertragen, wenn du auf deinem alten Gerät Signal Secure Backups aktivierst.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Öffne Signal auf deinem alten Gerät</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
@@ -8588,9 +8733,23 @@
     <string name="SignalCheckbox_accessibility_unchecked_description">Nicht markiert</string>
 
     <!-- Notification title for when user is out of remote storage -->
-    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <string name="Notification_backup_storage_full">Backup-Speicherplatz voll</string>
     <!-- Notification body for when user is out of remote storage -->
-    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
+    <string name="Notification_youve_reached_your_backup_storage_limit">Dein Speicherplatz für Backups ist aufgebraucht. Mach Platz in Signal, um Chats und Medien weiterhin sichern zu können.</string>
+    <!-- Notification title for when initial backup failed -->
+    <string name="Notification_backup_failed">Backup gescheitert</string>
+    <!-- Notification body for when initial backup failed -->
+    <string name="Notification_an_error_occurred_and_your_backup">Aufgrund eines Fehlers konnte dein letztes Backup nicht abgeschlossen werden. Für Details antippen.</string>
+    <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_no_backup_for_d_days">
+        <item quantity="one">Kein Backup seit %1$d Tag</item>
+        <item quantity="other">Kein Backup seit %1$d Tagen</item>
+    </plurals>
+    <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_you_have_not_completed_a_backup">
+        <item quantity="one">Du hast seit %1$d Tag kein Backup mehr durchgeführt. Erstelle jetzt ein Backup.</item>
+        <item quantity="other">Du hast seit %1$d Tagen kein Backup mehr durchgeführt. Erstelle jetzt ein Backup.</item>
+    </plurals>
 
     <!-- EOF -->
 </resources>

@@ -1,7 +1,5 @@
 package org.thoughtcrime.securesms.jobmanager
 
-import android.text.TextUtils
-
 /**
  * Provides utilities to create consistent logging for jobs.
  */
@@ -15,7 +13,7 @@ object JobLogger {
   @JvmStatic
   fun format(job: Job, extraTag: String, event: String): String {
     val id = job.id
-    val tag = if (TextUtils.isEmpty(extraTag)) "" else "[$extraTag]"
+    val tag = if (extraTag.isBlank()) "" else "[$extraTag]"
     val timeSinceSubmission = System.currentTimeMillis() - job.parameters.createTime
     val runAttempt = job.runAttempt + 1
     val maxAttempts = if (job.parameters.maxAttempts == Job.Parameters.UNLIMITED) "Unlimited" else job.parameters.maxAttempts.toString()

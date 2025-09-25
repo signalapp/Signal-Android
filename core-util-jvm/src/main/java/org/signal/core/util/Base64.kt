@@ -130,4 +130,24 @@ object Base64 {
   private fun String.stripPadding(): String {
     return this.replace("=", "")
   }
+
+  fun String.decodeBase64OrThrow(): ByteArray {
+    return try {
+      decode(this)
+    } catch (e: IOException) {
+      throw AssertionError("Invalid Base64 string: $this", e)
+    }
+  }
+
+  fun String?.decodeBase64(): ByteArray? {
+    if (this == null) {
+      return null
+    }
+
+    return try {
+      decode(this)
+    } catch (e: IOException) {
+      return null
+    }
+  }
 }

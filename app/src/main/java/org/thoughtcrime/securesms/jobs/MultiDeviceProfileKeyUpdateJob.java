@@ -66,14 +66,13 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    if (!SignalStore.account().hasLinkedDevices()) {
+    if (!SignalStore.account().isMultiDevice()) {
       Log.i(TAG, "Not multi device...");
       return;
     }
 
-    Optional<ProfileKey>  profileKey = Optional.of(ProfileKeyUtil.getSelfProfileKey());
-    ByteArrayOutputStream baos       = new ByteArrayOutputStream();
-    DeviceContactsOutputStream out        = new DeviceContactsOutputStream(baos);
+    ByteArrayOutputStream      baos = new ByteArrayOutputStream();
+    DeviceContactsOutputStream out  = new DeviceContactsOutputStream(baos);
 
     out.write(new DeviceContact(Optional.ofNullable(SignalStore.account().getAci()),
                                 Optional.ofNullable(SignalStore.account().getE164()),
@@ -93,7 +92,7 @@ public class MultiDeviceProfileKeyUpdateJob extends BaseJob {
                                                                             .withResumableUploadSpec(messageSender.getResumableUploadSpec())
                                                                             .build();
 
-    SignalServiceSyncMessage      syncMessage      = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));
+    SignalServiceSyncMessage syncMessage = SignalServiceSyncMessage.forContacts(new ContactsMessage(attachmentStream, false));
 
     messageSender.sendSyncMessage(syncMessage);
   }

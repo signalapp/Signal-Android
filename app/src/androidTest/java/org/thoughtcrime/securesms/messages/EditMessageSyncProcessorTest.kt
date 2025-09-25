@@ -124,7 +124,7 @@ class EditMessageSyncProcessorTest {
         bodyRanges = content.dataMessage?.bodyRanges.toBodyRangeList()
       )
       val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(toRecipient)
-      val originalMessageId = SignalDatabase.messages.insertMessageOutbox(originalTextMessage, threadId, false, null)
+      val originalMessageId = SignalDatabase.messages.insertMessageOutbox(originalTextMessage, threadId, false, null).messageId
       SignalDatabase.messages.markAsSent(originalMessageId, true)
       if ((content.dataMessage?.expireTimer ?: 0) > 0) {
         SignalDatabase.messages.markExpireStarted(originalMessageId, originalTimestamp)
@@ -141,7 +141,7 @@ class EditMessageSyncProcessorTest {
         messageToEdit = originalMessageId
       )
 
-      val editMessageId = SignalDatabase.messages.insertMessageOutbox(editMessage, threadId, false, null)
+      val editMessageId = SignalDatabase.messages.insertMessageOutbox(editMessage, threadId, false, null).messageId
       SignalDatabase.messages.markAsSent(editMessageId, true)
 
       if ((content.dataMessage?.expireTimer ?: 0) > 0) {

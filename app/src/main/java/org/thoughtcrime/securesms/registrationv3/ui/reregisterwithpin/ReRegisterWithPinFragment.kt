@@ -6,7 +6,6 @@
 package org.thoughtcrime.securesms.registrationv3.ui.reregisterwithpin
 
 import android.os.Bundle
-import android.text.InputType
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
@@ -19,7 +18,6 @@ import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
 import org.thoughtcrime.securesms.databinding.FragmentRegistrationPinRestoreEntryV2Binding
-import org.thoughtcrime.securesms.lock.v2.PinKeyboardType
 import org.thoughtcrime.securesms.lock.v2.SvrConstants
 import org.thoughtcrime.securesms.registration.data.network.RegisterAccountResult
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate
@@ -70,13 +68,7 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
       handlePinEntry()
     }
 
-    binding.pinRestoreKeyboardToggle.setOnClickListener {
-      val currentKeyboardType: PinKeyboardType = getPinEntryKeyboardType()
-      updateKeyboard(currentKeyboardType.other)
-      binding.pinRestoreKeyboardToggle.setIconResource(currentKeyboardType.iconResource)
-    }
-
-    binding.pinRestoreKeyboardToggle.setIconResource(getPinEntryKeyboardType().other.iconResource)
+    binding.pinRestoreKeyboardToggle.setOnClickListener { reRegisterViewModel.toggleKeyboardType() }
 
     LiveDataUtil
       .combineLatest(registrationViewModel.uiState, reRegisterViewModel.uiState) { reg, rereg -> reg to rereg }
@@ -97,6 +89,11 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
       presentProgress(state.inProgress)
       presentTriesRemaining(reRegisterState, state.svrTriesRemaining)
     }
+
+    reRegisterState.pinKeyboardType.applyTo(
+      pinEditText = binding.pinRestorePinInput,
+      toggleTypeButton = binding.pinRestoreKeyboardToggle
+    )
 
     state.registerAccountError?.let { error ->
       registrationErrorHandler(error)
@@ -193,17 +190,6 @@ class ReRegisterWithPinFragment : LoggingFragment(R.layout.fragment_registration
     binding.pinRestorePinInput.isEnabled = true
     binding.pinRestorePinInput.isFocusable = true
     ViewUtil.focusAndShowKeyboard(binding.pinRestorePinInput)
-  }
-
-  private fun getPinEntryKeyboardType(): PinKeyboardType {
-    val isNumeric = binding.pinRestorePinInput.inputType and InputType.TYPE_MASK_CLASS == InputType.TYPE_CLASS_NUMBER
-    return if (isNumeric) PinKeyboardType.NUMERIC else PinKeyboardType.ALPHA_NUMERIC
-  }
-
-  private fun updateKeyboard(keyboard: PinKeyboardType) {
-    val isAlphaNumeric = keyboard == PinKeyboardType.ALPHA_NUMERIC
-    binding.pinRestorePinInput.inputType = if (isAlphaNumeric) InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD else InputType.TYPE_CLASS_NUMBER or InputType.TYPE_NUMBER_VARIATION_PASSWORD
-    binding.pinRestorePinInput.text?.clear()
   }
 
   private fun onNeedHelpClicked() {

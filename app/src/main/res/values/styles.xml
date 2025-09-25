@@ -205,7 +205,6 @@
         <item name="android:padding">2dp</item>
         <item name="android:background">@null</item>
         <item name="android:maxLines">5</item>
-        <item name="android:maxLength">65536</item>
         <item name="android:textColor">@color/signal_text_primary</item>
         <item name="android:textColorHint">@color/signal_colorOnSurfaceVariant</item>
         <item name="android:capitalize">sentences</item>

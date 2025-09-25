@@ -170,8 +170,10 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       .observe(viewLifecycleOwner) { sharedState ->
         if (sharedState.challengesRequested.contains(Challenge.CAPTCHA) && sharedState.captchaToken.isNotNullOrBlank()) {
           sharedViewModel.submitCaptchaToken(requireContext())
-        } else if (sharedState.challengesRemaining.isNotEmpty()) {
-          handleChallenges(sharedState.challengesRemaining)
+        } else if (sharedState.challengesRequested.isNotEmpty()) {
+          if (!sharedState.challengeInProgress) {
+            handleChallenges(sharedState.challengesRequested)
+          }
         } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
           moveToEnterPinScreen()
         } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {

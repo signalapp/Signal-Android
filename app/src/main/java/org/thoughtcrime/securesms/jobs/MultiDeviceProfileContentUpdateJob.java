@@ -51,7 +51,7 @@ public class MultiDeviceProfileContentUpdateJob extends BaseJob {
       throw new NotPushRegisteredException();
     }
 
-    if (!SignalStore.account().hasLinkedDevices()) {
+    if (!SignalStore.account().isMultiDevice()) {
       Log.i(TAG, "Not multi device, aborting...");
       return;
     }

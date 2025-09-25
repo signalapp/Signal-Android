@@ -5,143 +5,53 @@
 
 package org.thoughtcrime.securesms.banner.banners
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
-import android.content.IntentFilter
-import android.net.ConnectivityManager
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.runtime.Composable
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.flatMapLatest
-import kotlinx.coroutines.flow.flowOf
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
-import org.signal.core.util.bytes
-import org.signal.core.util.throttleLatest
+import kotlinx.coroutines.flow.filter
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgressState.RestoreStatus
 import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusBanner
-import org.thoughtcrime.securesms.backup.v2.ui.status.BackupStatusData
 import org.thoughtcrime.securesms.banner.Banner
-import org.thoughtcrime.securesms.database.DatabaseObserver
-import org.thoughtcrime.securesms.database.SignalDatabase
-import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.jobmanager.impl.BatteryNotLowConstraint
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
-import org.thoughtcrime.securesms.jobmanager.impl.WifiConstraint
-import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.safeUnregisterReceiver
-import kotlin.time.Duration.Companion.seconds
 
 @OptIn(ExperimentalCoroutinesApi::class)
-class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerListener = EmptyListener) : Banner<BackupStatusData>() {
-
-  private var totalRestoredSize: Long = 0
+class MediaRestoreProgressBanner(private val listener: RestoreProgressBannerListener = EmptyListener) : Banner<ArchiveRestoreProgressState>() {
 
   override val enabled: Boolean
-    get() = SignalStore.backup.isMediaRestoreInProgress || totalRestoredSize > 0
+    get() = ArchiveRestoreProgress.state.let { it.restoreState.isMediaRestoreOperation || it.restoreStatus == RestoreStatus.FINISHED }
 
-  override val dataFlow: Flow<BackupStatusData> by lazy {
-    SignalStore
-      .backup
-      .totalRestorableAttachmentSizeFlow
-      .flatMapLatest { size ->
-        when {
-          size > 0 -> {
-            totalRestoredSize = size
-            getActiveRestoreFlow()
-          }
-
-          totalRestoredSize > 0 -> {
-            flowOf(
-              BackupStatusData.RestoringMedia(
-                bytesTotal = totalRestoredSize.bytes,
-                restoreStatus = BackupStatusData.RestoreStatus.FINISHED
-              )
-            )
-          }
-
-          else -> flowOf(BackupStatusData.RestoringMedia())
-        }
+  override val dataFlow: Flow<ArchiveRestoreProgressState> by lazy {
+    ArchiveRestoreProgress
+      .stateFlow
+      .filter {
+        it.restoreStatus != RestoreStatus.NONE && (it.restoreState.isMediaRestoreOperation || it.restoreStatus == RestoreStatus.FINISHED)
       }
   }
 
   @Composable
-  override fun DisplayBanner(model: BackupStatusData, contentPadding: PaddingValues) {
+  override fun DisplayBanner(model: ArchiveRestoreProgressState, contentPadding: PaddingValues) {
     BackupStatusBanner(
       data = model,
       onBannerClick = listener::onBannerClick,
       onActionClick = listener::onActionClick,
       onDismissClick = {
-        totalRestoredSize = 0
+        ArchiveRestoreProgress.clearFinishedStatus()
         listener.onDismissComplete()
       }
     )
   }
 
-  private fun getActiveRestoreFlow(): Flow<BackupStatusData> {
-    val flow: Flow<Unit> = callbackFlow {
-      val onChange = { trySend(Unit) }
-
-      val observer = DatabaseObserver.Observer {
-        onChange()
-      }
-
-      val receiver = object : BroadcastReceiver() {
-        override fun onReceive(context: Context, intent: Intent) {
-          onChange()
-        }
-      }
-
-      onChange()
-
-      AppDependencies.databaseObserver.registerAttachmentUpdatedObserver(observer)
-      AppDependencies.application.registerReceiver(receiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
-      AppDependencies.application.registerReceiver(receiver, IntentFilter(Intent.ACTION_BATTERY_CHANGED))
-
-      awaitClose {
-        AppDependencies.databaseObserver.unregisterObserver(observer)
-        AppDependencies.application.safeUnregisterReceiver(receiver)
-      }
-    }
-
-    return flow
-      .throttleLatest(1.seconds)
-      .map {
-        val totalRestoreSize = SignalStore.backup.totalRestorableAttachmentSize
-        val remainingAttachmentSize = SignalDatabase.attachments.getRemainingRestorableAttachmentSize()
-        val completedBytes = totalRestoreSize - remainingAttachmentSize
-
-        when {
-          !WifiConstraint.isMet(AppDependencies.application) && !SignalStore.backup.restoreWithCellular -> BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes, BackupStatusData.RestoreStatus.WAITING_FOR_WIFI)
-          !NetworkConstraint.isMet(AppDependencies.application) -> BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes, BackupStatusData.RestoreStatus.WAITING_FOR_INTERNET)
-          !BatteryNotLowConstraint.isMet() -> BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes, BackupStatusData.RestoreStatus.LOW_BATTERY)
-          else -> {
-            val availableBytes = SignalStore.backup.spaceAvailableOnDiskBytes
-
-            if (availableBytes > -1L && remainingAttachmentSize > availableBytes) {
-              BackupStatusData.NotEnoughFreeSpace(requiredSpace = remainingAttachmentSize.bytes)
-            } else {
-              BackupStatusData.RestoringMedia(completedBytes.bytes, totalRestoreSize.bytes)
-            }
-          }
-        }
-      }
-      .flowOn(Dispatchers.IO)
-  }
-
   interface RestoreProgressBannerListener {
     fun onBannerClick()
-    fun onActionClick(data: BackupStatusData)
+    fun onActionClick(data: ArchiveRestoreProgressState)
     fun onDismissComplete()
   }
 
   private object EmptyListener : RestoreProgressBannerListener {
     override fun onBannerClick() = Unit
-    override fun onActionClick(data: BackupStatusData) = Unit
+    override fun onActionClick(data: ArchiveRestoreProgressState) = Unit
     override fun onDismissComplete() = Unit
   }
 }

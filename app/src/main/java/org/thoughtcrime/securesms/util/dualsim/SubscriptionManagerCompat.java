@@ -1,6 +1,8 @@
 package org.thoughtcrime.securesms.util.dualsim;
 
+import android.Manifest;
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.telephony.SubscriptionInfo;
 import android.telephony.SubscriptionManager;
@@ -8,6 +10,7 @@ import android.telephony.TelephonyManager;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
@@ -96,6 +99,11 @@ public final class SubscriptionManagerCompat {
 
     if (subscriptionManager == null) {
       Log.w(TAG, "Missing SubscriptionManager.");
+      return Collections.emptyList();
+    }
+
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "Missing READ_PHONE_STATE permission.");
       return Collections.emptyList();
     }
 

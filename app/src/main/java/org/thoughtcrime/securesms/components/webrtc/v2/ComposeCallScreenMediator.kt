@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.components.webrtc.v2
 
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
@@ -24,6 +25,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.rememberIsInPipMode
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.components.webrtc.CallParticipantListUpdate
@@ -39,6 +41,7 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.reactions.any.ReactWithAnyEmojiBottomSheetDialogFragment
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.state.WebRtcEphemeralState
+import org.thoughtcrime.securesms.util.WindowUtil
 import org.thoughtcrime.securesms.webrtc.CallParticipantsViewState
 import kotlin.time.Duration.Companion.seconds
 
@@ -60,6 +63,11 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
   private val pendingParticipantsViewListener = MutableStateFlow<PendingParticipantsListener>(PendingParticipantsListener.Empty)
 
   init {
+    WindowUtil.clearTranslucentNavigationBar(activity.window)
+    WindowUtil.clearTranslucentStatusBar(activity.window)
+
+    activity.enableEdgeToEdge()
+
     activity.setContent {
       val recipient by viewModel.getRecipientFlow().collectAsStateWithLifecycle(Recipient.UNKNOWN)
       val webRtcCallState by callScreenViewModel.callState.collectAsStateWithLifecycle()
@@ -108,7 +116,9 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
 
       val callScreenController = CallScreenController.rememberCallScreenController(
         skipHiddenState = callControlsState.skipHiddenState,
-        onControlsToggled = onControlsToggled
+        onControlsToggled = onControlsToggled,
+        callControlsState = callControlsState,
+        callControlsListener = callScreenControlsListener
       )
 
       LaunchedEffect(callScreenController) {
@@ -122,6 +132,7 @@ class ComposeCallScreenMediator(private val activity: WebRtcCallActivity, viewMo
           callRecipient = recipient,
           webRtcCallState = webRtcCallState,
           isRemoteVideoOffer = viewModel.isAnswerWithVideoAvailable(),
+          isInPipMode = rememberIsInPipMode(),
           callScreenState = callScreenState,
           callControlsState = callControlsState,
           callScreenController = callScreenController,

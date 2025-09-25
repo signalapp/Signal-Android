@@ -1,8 +1,10 @@
 package org.thoughtcrime.securesms.util;
 
+import android.Manifest;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.hardware.Camera.CameraInfo;
 import android.net.Uri;
 import android.os.Build;
@@ -13,6 +15,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 import androidx.preference.PreferenceManager;
 
 import org.greenrobot.eventbus.EventBus;
@@ -421,15 +424,6 @@ public class TextSecurePreferences {
 
   public static void setTypingIndicatorsEnabled(Context context, boolean enabled) {
     setBooleanPreference(context, TYPING_INDICATORS, enabled);
-  }
-
-  /**
-   * Only kept so that we can avoid showing the megaphone for the new link previews setting
-   * ({@link SettingsValues#isLinkPreviewsEnabled()}) when users upgrade. This can be removed after
-   * we stop showing the link previews megaphone.
-   */
-  public static boolean wereLinkPreviewsEnabled(Context context) {
-    return getBooleanPreference(context, LINK_PREVIEWS, true);
   }
 
   public static int getNotificationPriority(Context context) {
@@ -909,6 +903,11 @@ public class TextSecurePreferences {
   }
 
   private static void notifyUnregisteredReceived(Context context) {
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "notifyUnregisteredReceived: Notification permission is not granted.");
+      return;
+    }
+
     PendingIntent reRegistrationIntent = PendingIntent.getActivity(context,
                                                                    0,
                                                                    RegistrationActivity.newIntentForReRegistration(context),

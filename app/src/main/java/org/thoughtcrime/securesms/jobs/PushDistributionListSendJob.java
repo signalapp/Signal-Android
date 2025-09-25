@@ -105,6 +105,11 @@ public final class PushDistributionListSendJob extends PushSendJob {
       }
 
       if (!message.getStoryType().isTextStory()) {
+        if (message.getAttachments().isEmpty()) {
+          Log.w(TAG, "No attachments found for message " + messageId + ". Ignoring.");
+          return;
+        }
+        
         DatabaseAttachment storyAttachment = (DatabaseAttachment) message.getAttachments().get(0);
         SignalDatabase.attachments().updateAttachmentCaption(storyAttachment.attachmentId, message.getBody());
       }

@@ -13,7 +13,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.resource.bitmap.DownsampleStrategy
 import kotlinx.parcelize.Parcelize
 import org.thoughtcrime.securesms.R
-import org.thoughtcrime.securesms.badges.glide.BadgeSpriteTransformation
+import org.thoughtcrime.securesms.badges.load.BadgeSpriteTransformation
 import org.thoughtcrime.securesms.components.settings.PreferenceModel
 import org.thoughtcrime.securesms.util.ThemeUtil
 import org.thoughtcrime.securesms.util.adapter.mapping.LayoutFactory

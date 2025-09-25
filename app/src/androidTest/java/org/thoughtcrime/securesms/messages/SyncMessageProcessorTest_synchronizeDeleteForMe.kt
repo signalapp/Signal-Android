@@ -684,7 +684,6 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
       cdn = this.cdn,
       location = this.remoteLocation,
       key = this.remoteKey,
-      iv = this.remoteIv,
       digest = digest,
       incrementalDigest = this.incrementalDigest,
       incrementalMacChunkSize = this.incrementalMacChunkSize,
@@ -706,7 +705,8 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
       archiveCdn = this.archiveCdn,
       thumbnailRestoreState = this.thumbnailRestoreState,
       archiveTransferState = this.archiveTransferState,
-      uuid = uuid
+      uuid = uuid,
+      quoteTargetContentType = this.quoteTargetContentType
     )
   }
 
@@ -718,7 +718,6 @@ class SyncMessageProcessorTest_synchronizeDeleteForMe {
       remoteId = SignalServiceAttachmentRemoteId.V4(this.remoteLocation ?: "some-location"),
       cdnNumber = this.cdn.cdnNumber,
       key = this.remoteKey?.let { Base64.decode(it) } ?: Util.getSecretBytes(64),
-      iv = this.remoteIv ?: Util.getSecretBytes(16),
       digest = digest,
       incrementalDigest = this.incrementalDigest,
       incrementalDigestChunkSize = this.incrementalMacChunkSize,

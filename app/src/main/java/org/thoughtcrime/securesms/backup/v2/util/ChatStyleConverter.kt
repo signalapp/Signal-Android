@@ -251,7 +251,7 @@ private fun Wallpaper.LinearGradient.toRemoteWallpaperPreset(): ChatStyle.Wallpa
 private fun Wallpaper.File.toFilePointer(db: SignalDatabase): FilePointer? {
   val attachmentId: AttachmentId = UriUtil.parseOrNull(this.uri)?.let { PartUriParser(it).partId } ?: return null
   val attachment = db.attachmentTable.getAttachment(attachmentId)
-  return attachment?.toRemoteFilePointer(mediaArchiveEnabled = true)
+  return attachment?.toRemoteFilePointer()
 }
 
 private fun ChatStyle.Builder.hasBubbleColorSet(): Boolean {

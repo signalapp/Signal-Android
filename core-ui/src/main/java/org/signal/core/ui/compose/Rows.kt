@@ -21,6 +21,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.text.InlineTextContent
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -49,6 +50,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.R
 import org.signal.core.ui.compose.Rows.TextAndLabel
+import org.signal.core.ui.compose.Rows.TextRow
 
 object Rows {
 
@@ -143,6 +145,106 @@ object Rows {
     }
   }
 
+  @Composable
+  fun RadioListRow(
+    text: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selectedValue: String,
+    onSelected: (String) -> Unit,
+    enabled: Boolean = true
+  ) {
+    RadioListRow(
+      text = { selectedIndex ->
+        val selectedLabel = if (selectedIndex in labels.indices) {
+          labels[selectedIndex]
+        } else {
+          null
+        }
+
+        TextAndLabel(
+          text = text,
+          label = selectedLabel
+        )
+      },
+      dialogTitle = text,
+      labels = labels,
+      values = values,
+      selectedValue = selectedValue,
+      onSelected = onSelected,
+      enabled = enabled
+    )
+  }
+
+  @Composable
+  fun RadioListRow(
+    text: @Composable RowScope.(Int) -> Unit,
+    dialogTitle: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selectedValue: String,
+    onSelected: (String) -> Unit,
+    enabled: Boolean = true
+  ) {
+    val selectedIndex = values.indexOf(selectedValue)
+    var displayDialog by remember { mutableStateOf(false) }
+
+    TextRow(
+      text = { text(selectedIndex) },
+      enabled = enabled,
+      onClick = {
+        displayDialog = true
+      }
+    )
+
+    if (displayDialog) {
+      Dialogs.RadioListDialog(
+        onDismissRequest = { displayDialog = false },
+        labels = labels,
+        values = values,
+        selectedIndex = selectedIndex,
+        title = dialogTitle,
+        onSelected = {
+          onSelected(values[it])
+        }
+      )
+    }
+  }
+
+  @Composable
+  fun MultiSelectRow(
+    text: String,
+    labels: Array<String>,
+    values: Array<String>,
+    selection: Array<String>,
+    onSelectionChanged: (Array<String>) -> Unit
+  ) {
+    var displayDialog by remember { mutableStateOf(false) }
+
+    TextRow(
+      text = text,
+      label = selection.joinToString(", ") {
+        val index = values.indexOf(it)
+        if (index == -1) error("not found: $it in ${values.joinToString(", ")}")
+        labels[index]
+      },
+      onClick = {
+        displayDialog = true
+      }
+    )
+
+    if (displayDialog) {
+      Dialogs.MultiSelectListDialog(
+        onDismissRequest = { displayDialog = false },
+        labels = labels,
+        values = values,
+        selection = selection,
+        title = text,
+        onSelectionChanged = onSelectionChanged
+      )
+    }
+  }
+
   /**
    * Row that positions [text] and optional [label] in a [TextAndLabel] to the side of a [Switch].
    *
@@ -156,29 +258,73 @@ object Rows {
     onCheckChanged: (Boolean) -> Unit,
     modifier: Modifier = Modifier,
     label: String? = null,
+    icon: ImageVector? = null,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
+    enabled: Boolean = true,
     isLoading: Boolean = false
   ) {
-    val enabled = !isLoading
+    ToggleRow(
+      checked = checked,
+      text = AnnotatedString(text),
+      onCheckChanged = onCheckChanged,
+      modifier = modifier,
+      label = label?.let { AnnotatedString(it) },
+      icon = icon,
+      textColor = textColor,
+      enabled = enabled,
+      isLoading = isLoading
+    )
+  }
+
+  /**
+   * Row that positions [text] and optional [label] in a [TextAndLabel] to the side of a [Switch].
+   *
+   * Can display a circular loading indicator by setting isLoaded to true. Setting isLoading to true
+   * will disable the control by default.
+   */
+  @Composable
+  fun ToggleRow(
+    checked: Boolean,
+    text: AnnotatedString,
+    onCheckChanged: (Boolean) -> Unit,
+    modifier: Modifier = Modifier,
+    label: AnnotatedString? = null,
+    icon: ImageVector? = null,
+    textColor: Color = MaterialTheme.colorScheme.onSurface,
+    enabled: Boolean = true,
+    isLoading: Boolean = false,
+    inlineContent: Map<String, InlineTextContent> = mapOf()
+  ) {
+    val isEnabled = enabled && !isLoading
 
     Row(
       modifier = modifier
         .fillMaxWidth()
-        .clickable(enabled = enabled) { onCheckChanged(!checked) }
+        .clickable(enabled = isEnabled) { onCheckChanged(!checked) }
         .padding(defaultPadding()),
       verticalAlignment = CenterVertically
     ) {
+      if (icon != null) {
+        Icon(
+          imageVector = icon,
+          contentDescription = null
+        )
+
+        Spacer(modifier = Modifier.width(24.dp))
+      }
+
       TextAndLabel(
         text = text,
         label = label,
         textColor = textColor,
-        enabled = enabled,
-        modifier = Modifier.padding(end = 16.dp)
+        enabled = isEnabled,
+        modifier = Modifier.padding(end = 16.dp),
+        inlineContent = inlineContent
       )
 
       val loadingContent by rememberDelayedState(isLoading)
-      val toggleState = remember(checked, loadingContent, enabled, onCheckChanged) {
-        ToggleState(checked, loadingContent, enabled, onCheckChanged)
+      val toggleState = remember(checked, loadingContent, isEnabled, onCheckChanged) {
+        ToggleState(checked, loadingContent, isEnabled, onCheckChanged)
       }
 
       AnimatedContent(
@@ -404,7 +550,8 @@ object Rows {
     label: AnnotatedString? = null,
     enabled: Boolean = true,
     textColor: Color = MaterialTheme.colorScheme.onSurface,
-    textStyle: TextStyle = MaterialTheme.typography.bodyLarge
+    textStyle: TextStyle = MaterialTheme.typography.bodyLarge,
+    inlineContent: Map<String, InlineTextContent> = mapOf()
   ) {
     Column(
       modifier = modifier
@@ -415,7 +562,8 @@ object Rows {
         Text(
           text = text,
           style = textStyle,
-          color = textColor
+          color = textColor,
+          inlineContent = inlineContent
         )
       }
 
@@ -516,5 +664,41 @@ private fun TextAndLabelPreview() {
         enabled = false
       )
     }
+  }
+}
+
+@SignalPreview
+@Composable
+private fun RadioListRowPreview() {
+  var selectedValue by remember { mutableStateOf("b") }
+
+  Previews.Preview {
+    Rows.RadioListRow(
+      text = "Radio List",
+      labels = arrayOf("A", "B", "C"),
+      values = arrayOf("a", "b", "c"),
+      selectedValue = selectedValue,
+      onSelected = {
+        selectedValue = it
+      }
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun MultiSelectRowPreview() {
+  var selectedValues by remember { mutableStateOf(arrayOf("b")) }
+
+  Previews.Preview {
+    Rows.MultiSelectRow(
+      text = "MultiSelect List",
+      labels = arrayOf("A", "B", "C"),
+      values = arrayOf("a", "b", "c"),
+      selection = selectedValues,
+      onSelectionChanged = {
+        selectedValues = it
+      }
+    )
   }
 }

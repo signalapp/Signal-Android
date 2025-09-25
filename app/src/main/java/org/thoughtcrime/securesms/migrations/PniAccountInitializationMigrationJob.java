@@ -57,6 +57,11 @@ public class PniAccountInitializationMigrationJob extends MigrationJob {
 
   @Override
   public void performMigration() throws IOException {
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Linked device, skipping");
+      return;
+    }
+
     PNI pni = SignalStore.account().getPni();
 
     if (pni == null || SignalStore.account().getAci() == null || !Recipient.self().isRegistered()) {

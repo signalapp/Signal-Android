@@ -455,7 +455,7 @@ private fun CreateFolderPreview() {
   Previews.Preview {
     CreateFolderScreen(
       state = ChatFoldersSettingsState(currentFolder = previewFolder),
-      focusRequester = FocusRequester(),
+      focusRequester = remember { FocusRequester() },
       isNewFolder = true
     )
   }
@@ -469,7 +469,7 @@ private fun EditFolderPreview() {
   Previews.Preview {
     CreateFolderScreen(
       state = ChatFoldersSettingsState(originalFolder = previewFolder),
-      focusRequester = FocusRequester(),
+      focusRequester = remember { FocusRequester() },
       isNewFolder = false
     )
   }

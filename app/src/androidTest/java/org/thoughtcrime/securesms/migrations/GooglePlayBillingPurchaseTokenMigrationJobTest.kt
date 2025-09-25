@@ -12,6 +12,7 @@ import org.junit.Test
 import org.junit.runner.RunWith
 import org.signal.core.util.billing.BillingPurchaseResult
 import org.signal.core.util.billing.BillingPurchaseState
+import org.signal.core.util.billing.BillingResponseCode
 import org.signal.core.util.deleteAll
 import org.thoughtcrime.securesms.database.InAppPaymentSubscriberTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -94,7 +95,7 @@ class GooglePlayBillingPurchaseTokenMigrationJobTest {
       )
     )
 
-    coEvery { AppDependencies.billingApi.isApiAvailable() } returns false
+    coEvery { AppDependencies.billingApi.getApiAvailability() } returns BillingResponseCode.BILLING_UNAVAILABLE
 
     val job = GooglePlayBillingPurchaseTokenMigrationJob()
 
@@ -118,7 +119,7 @@ class GooglePlayBillingPurchaseTokenMigrationJobTest {
       )
     )
 
-    coEvery { AppDependencies.billingApi.isApiAvailable() } returns true
+    coEvery { AppDependencies.billingApi.getApiAvailability() } returns BillingResponseCode.OK
     coEvery { AppDependencies.billingApi.queryPurchases() } returns BillingPurchaseResult.None
 
     val job = GooglePlayBillingPurchaseTokenMigrationJob()
@@ -143,7 +144,7 @@ class GooglePlayBillingPurchaseTokenMigrationJobTest {
       )
     )
 
-    coEvery { AppDependencies.billingApi.isApiAvailable() } returns true
+    coEvery { AppDependencies.billingApi.getApiAvailability() } returns BillingResponseCode.OK
     coEvery { AppDependencies.billingApi.queryPurchases() } returns BillingPurchaseResult.Success(
       purchaseState = BillingPurchaseState.PURCHASED,
       purchaseToken = "purchaseToken",

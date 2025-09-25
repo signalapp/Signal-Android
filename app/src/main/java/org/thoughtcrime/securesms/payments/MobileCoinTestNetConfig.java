@@ -59,20 +59,20 @@ final class MobileCoinTestNetConfig extends MobileCoinConfig {
     try {
       Set<X509Certificate> trustRoots = getTrustRoots(R.raw.signal_mobilecoin_authority);
       ClientConfig         config     = new ClientConfig();
-      VerifierFactory verifierFactory = new VerifierFactory(// ~May 30, 2023
-                                                            new ServiceConfig(
-                                                                "5341c6702a3312243c0f049f87259352ff32aa80f0f6426351c3dd063d817d7a",
-                                                                "248356aa0d3431abc45da1773cfd6191a4f2989a4a99da31f450bd7c461e312b",
-                                                                "b61188a6c946557f32e612eff5615908abd1b72ec11d8b7070595a92d4abbbf1",
-                                                                "ac292a1ad27c0338a5159d5fab2bed3917ea144536cb13b5c1226d09a2fbc648",
-                                                                new String[] { "INTEL-SA-00334", "INTEL-SA-00615", "INTEL-SA-00657" }
-                                                            ),
-                                                            // ~May 9, 2024
+      VerifierFactory verifierFactory = new VerifierFactory(// ~May 9, 2024
                                                             new ServiceConfig(
                                                                 "ae7930646f37e026806087d2a3725d3f6d75a8e989fb320e6ecb258eb829057a",
                                                                 "4a5daa23db5efa4b18071291cfa24a808f58fb0cedce7da5de804b011e87cfde",
                                                                 "065b1e17e95f2c356d4d071d434cea7eb6b95bc797f94954146736efd47057a7",
                                                                 "44de03c2ba34c303e6417480644f9796161eacbe5af4f2092e413b4ebf5ccf6a",
+                                                                new String[] { "INTEL-SA-00334", "INTEL-SA-00615", "INTEL-SA-00657" }
+                                                            ),
+                                                            // ~July 8, 2025
+                                                            new ServiceConfig(
+                                                                "b31e1d01939df31d51855317eed5ab7be4e7c77bf13d51230e38c3f5cb9af332",
+                                                                "0578f62dd30d92e31cb8d2df8e84ca216aaf12a5ffdea011042282b53a9e9a7a",
+                                                                "3892a844d9ed7dd0f41027a43910935429bd36d82cc8dc1db2aba98ba7929dd1",
+                                                                "57f5ba050d15d3e9c1cf19222e44a370fb64d8a683c9b33f3d433699ca2d58f2",
                                                                 new String[] { "INTEL-SA-00334", "INTEL-SA-00615", "INTEL-SA-00657" }
                                                             )
                                                             );

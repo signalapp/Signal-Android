@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -121,16 +120,7 @@ private fun CreateBackupBottomSheetContent(
       modifier = Modifier.widthIn(min = 220.dp)
     ) {
       Text(
-        text = stringResource(id = R.string.CreateBackupBottomSheet__back_up_now)
-      )
-    }
-
-    TextButton(
-      onClick = onBackupLaterClick,
-      modifier = Modifier.widthIn(min = 220.dp).padding(top = 16.dp)
-    ) {
-      Text(
-        text = stringResource(id = R.string.CreateBackupBottomSheet__back_up_later)
+        text = stringResource(id = android.R.string.ok)
       )
     }
   }

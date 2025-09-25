@@ -7,8 +7,7 @@
 
     <fragment
         android:id="@+id/changePhoneNumberFragment"
-        android:name="org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberFragment"
-        tools:layout="@layout/fragment_change_phone_number">
+        android:name="org.thoughtcrime.securesms.components.settings.app.changenumber.ChangeNumberFragment">
 
         <action
             android:id="@+id/action_changePhoneNumberFragment_to_enterPhoneNumberChangeFragment"

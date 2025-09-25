@@ -33,6 +33,8 @@ object E164Util {
   /** A set of country codes representing countries where we'd like to use the (555) 555-5555 number format for pretty printing. */
   private val NATIONAL_FORMAT_COUNTRY_CODES = setOf(COUNTRY_CODE_US_INT, COUNTRY_CODE_UK_INT)
 
+  private val INVALID_CHARACTERS_REGEX = "[a-zA-Z]".toRegex()
+
   /**
    * Creates a formatter based on the provided local number. This is largely an improvement in performance/convenience
    * over parsing out the various number attributes themselves and caching them manually.
@@ -253,6 +255,10 @@ object E164Util {
      * a phone number.
      */
     fun formatAsE164(input: String): String? {
+      if (INVALID_CHARACTERS_REGEX.containsMatchIn(input)) {
+        return null
+      }
+
       val formatted = formatAsE164WithRegionCode(
         localNumber = localNumber,
         localAreaCode = localAreaCode,

@@ -15,7 +15,7 @@ public class LogSectionCurrentThreadDump implements LogSection {
 
   @Override
   public @NonNull String getTitle() {
-    return "LAST THREAD DUMP";
+    return "CURRENT THREAD DUMP";
   }
 
   @Override

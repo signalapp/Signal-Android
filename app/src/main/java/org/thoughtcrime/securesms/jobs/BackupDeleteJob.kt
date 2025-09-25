@@ -15,12 +15,15 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
+import org.thoughtcrime.securesms.jobmanager.impl.DeletionNotAwaitingMediaDownloadConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.jobs.protos.BackupDeleteJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
+import kotlin.time.Duration.Companion.seconds
 
 /**
  * Handles deleting user backup and unsubscribing them from backups.
@@ -39,7 +42,9 @@ class BackupDeleteJob private constructor(
     backupDeleteJobData,
     Parameters.Builder()
       .addConstraint(NetworkConstraint.KEY)
+      .addConstraint(DeletionNotAwaitingMediaDownloadConstraint.KEY)
       .setMaxInstancesForFactory(1)
+      .setMaxAttempts(Parameters.UNLIMITED)
       .build()
   )
 
@@ -48,9 +53,40 @@ class BackupDeleteJob private constructor(
   override fun getFactoryKey(): String = KEY
 
   override fun run(): Result {
-    if (SignalStore.backup.deletionState == DeletionState.NONE || SignalStore.backup.deletionState == DeletionState.FAILED || SignalStore.backup.deletionState == DeletionState.COMPLETE) {
-      Log.w(TAG, "Invalid state ${SignalStore.backup.deletionState}. Exiting.")
+    if (!RemoteConfig.messageBackups) {
+      Log.w(TAG, "Message backups are not available on this device. Exiting without local cleanup.")
       return Result.failure()
+    }
+
+    if (!SignalStore.account.isRegistered) {
+      Log.w(TAG, "User not registered. Exiting without local cleanup.")
+      return Result.failure()
+    }
+
+    if (SignalStore.account.isLinkedDevice) {
+      Log.w(TAG, "User is on a linked device. Exiting without local cleanup.")
+      return Result.failure()
+    }
+
+    if (SignalStore.backup.deletionState.isIdle()) {
+      Log.w(TAG, "Invalid state ${SignalStore.backup.deletionState}. Exiting without local cleanup.")
+      return Result.failure()
+    }
+
+    val result = doRun()
+
+    if (result.isFailure) {
+      clearLocalBackupStateOnFailure()
+      BackupRepository.resetInitializedStateAndAuthCredentials()
+    }
+
+    return result
+  }
+
+  private fun doRun(): Result {
+    if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
+      Log.i(TAG, "Awaiting media download. Scheduling retry.")
+      return Result.retry(5.seconds.inWholeMilliseconds)
     }
 
     val clearLocalStateResult = if (SignalStore.backup.deletionState == DeletionState.CLEAR_LOCAL_STATE) {
@@ -70,13 +106,14 @@ class BackupDeleteJob private constructor(
     }
 
     if (isMediaRestoreRequired()) {
-      Log.i(TAG, "Moving to AWAITING_MEDIA_DOWNLOAD state")
+      Log.i(TAG, "Moving to AWAITING_MEDIA_DOWNLOAD state and scheduling retry.")
       SignalStore.backup.deletionState = DeletionState.AWAITING_MEDIA_DOWNLOAD
       AppDependencies.jobManager
-        .startChain(RestoreOptimizedMediaJob())
-        .then(BackupDeleteJob(backupDeleteJobData))
+        .startChain(BackupRestoreMediaJob())
+        .then(RestoreOptimizedMediaJob())
+        .enqueue()
 
-      return Result.failure()
+      return Result.retry(5.seconds.inWholeMilliseconds)
     }
 
     Log.i(TAG, "Moving to DELETE_BACKUPS state")
@@ -90,6 +127,7 @@ class BackupDeleteJob private constructor(
     val result = checkResults(results)
     if (result.isSuccess) {
       Log.i(TAG, "Backup deletion was successful.")
+      BackupRepository.resetInitializedStateAndAuthCredentials()
       SignalStore.backup.deletionState = DeletionState.COMPLETE
     }
 
@@ -97,7 +135,9 @@ class BackupDeleteJob private constructor(
   }
 
   override fun onFailure() {
-    if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
+    if (SignalStore.backup.deletionState.isIdle()) {
+      Log.w(TAG, "Backup is idle. Not marking a deletion.")
+    } else if (SignalStore.backup.deletionState == DeletionState.AWAITING_MEDIA_DOWNLOAD) {
       Log.w(TAG, "BackupDeleteFailure occurred while awaiting media download, ignoring.")
     } else {
       SignalStore.backup.deletionState = DeletionState.FAILED
@@ -125,8 +165,15 @@ class BackupDeleteJob private constructor(
   }
 
   private fun isMediaRestoreRequired(): Boolean {
+    if (backupDeleteJobData.tier != BackupDeleteJobData.Tier.PAID) {
+      Log.i(TAG, "User is not on the PAID tier so there's nothing we can download.")
+      return false
+    }
+
     val requiresMediaRestore = SignalDatabase.attachments.getRemainingRestorableAttachmentSize() > 0L
-    if (requiresMediaRestore && SignalStore.backup.userManuallySkippedMediaRestore) {
+    val hasOffloadedMedia = SignalDatabase.attachments.getOptimizedMediaAttachmentSize() > 0L
+
+    if ((requiresMediaRestore || hasOffloadedMedia) && !SignalStore.backup.userManuallySkippedMediaRestore) {
       Log.i(TAG, "User has undownloaded media. Enqueuing download now.")
       return true
     } else {
@@ -200,7 +247,7 @@ class BackupDeleteJob private constructor(
 
   private fun deleteLocalState(): Result {
     if (backupDeleteJobData.completed.contains(BackupDeleteJobData.Stage.CLEAR_LOCAL_STATE)) {
-      Log.d(TAG, "Already deleted messages.")
+      Log.d(TAG, "Already cleared local backup state.")
       return Result.success()
     }
 
@@ -220,12 +267,27 @@ class BackupDeleteJob private constructor(
     ).build()
 
     Log.d(TAG, "Clearing local backup state.")
+    clearLocalBackupState()
+    addStageToCompletions(BackupDeleteJobData.Stage.CLEAR_LOCAL_STATE)
+    return Result.success()
+  }
+
+  private fun clearLocalBackupStateOnFailure() {
+    if (backupDeleteJobData.completed.contains(BackupDeleteJobData.Stage.CLEAR_LOCAL_STATE)) {
+      Log.d(TAG, "[onFailure] Already cleared local backup state.")
+      return
+    }
+
+    Log.d(TAG, "[onFailure] Clearing local backup state.")
+    clearLocalBackupState()
+  }
+
+  private fun clearLocalBackupState() {
     SignalStore.backup.disableBackups()
     SignalDatabase.recipients.markNeedsSync(Recipient.self().id)
     StorageSyncHelper.scheduleSyncForDataChange()
     SignalDatabase.attachments.clearAllArchiveData()
-    addStageToCompletions(BackupDeleteJobData.Stage.CLEAR_LOCAL_STATE)
-    return Result.success()
+    SignalStore.backup.optimizeStorage = false
   }
 
   private fun addStageToCompletions(stage: BackupDeleteJobData.Stage) {
@@ -236,6 +298,11 @@ class BackupDeleteJob private constructor(
 
   private fun <T> handleNetworkError(networkResult: NetworkResult<T>): Result {
     Log.d(TAG, "An error occurred.", networkResult.getCause())
+
+    if (networkResult.getCause() is org.signal.libsignal.zkgroup.VerificationFailedException) {
+      Log.i(TAG, "ZK Verification failed. Retrying.")
+      return Result.retry(defaultBackoff())
+    }
 
     return when (networkResult) {
       is NetworkResult.ApplicationError<*> -> (networkResult.getCause() as? RuntimeException)?.let { Result.fatalFailure(it) } ?: Result.failure()

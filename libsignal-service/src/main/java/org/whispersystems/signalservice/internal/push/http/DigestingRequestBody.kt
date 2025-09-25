@@ -4,6 +4,7 @@ import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.RequestBody
 import okio.BufferedSink
+import org.signal.core.util.stream.NonClosingOutputStream
 import org.signal.libsignal.protocol.incrementalmac.ChunkSizeChoice
 import org.signal.libsignal.protocol.logging.Log
 import org.whispersystems.signalservice.api.crypto.DigestingOutputStream
@@ -42,7 +43,7 @@ class DigestingRequestBody(
   @Throws(IOException::class)
   override fun writeTo(sink: BufferedSink) {
     val digestStream = ByteArrayOutputStream()
-    val inner = SkippingOutputStream(contentStart, sink.outputStream())
+    val inner = SkippingOutputStream(contentStart, NonClosingOutputStream(sink.outputStream()))
     val isIncremental = incremental && outputStreamFactory is AttachmentCipherOutputStreamFactory
     val sizeChoice: ChunkSizeChoice = ChunkSizeChoice.inferChunkSize(contentLength.toInt())
     val outputStream: DigestingOutputStream = if (isIncremental) {

@@ -47,7 +47,7 @@ class StoryDirectReplyRepository(context: Context) {
           expiresIn = TimeUnit.SECONDS.toMillis(recipient.expiresInSeconds.toLong()),
           parentStoryId = ParentStoryId.DirectReply(storyId),
           isStoryReaction = isReaction,
-          outgoingQuote = QuoteModel(message.dateSent, quoteAuthor.id, message.body, false, message.slideDeck.asAttachments(), null, QuoteModel.Type.NORMAL, message.messageRanges),
+          outgoingQuote = QuoteModel(message.dateSent, quoteAuthor.id, message.body, false, message.slideDeck.asAttachments().firstOrNull(), null, QuoteModel.Type.NORMAL, message.messageRanges),
           bodyRanges = bodyRangeList,
           isSecure = true
         ),

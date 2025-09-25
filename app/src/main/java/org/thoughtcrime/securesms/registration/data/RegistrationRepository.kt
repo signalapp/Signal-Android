@@ -219,7 +219,7 @@ object RegistrationRepository {
       NotificationManagerCompat.from(context).cancel(NotificationIds.UNREGISTERED_NOTIFICATION_ID)
 
       val masterKey = if (data.masterKey != null) MasterKey(data.masterKey.toByteArray()) else null
-      SvrRepository.onRegistrationComplete(masterKey, data.pin, hasPin, data.reglockEnabled)
+      SvrRepository.onRegistrationComplete(masterKey, data.pin, hasPin, data.reglockEnabled, false)
 
       AppDependencies.resetNetwork()
       AppDependencies.startNetwork()
@@ -444,7 +444,8 @@ object RegistrationRepository {
             masterKey = masterKey,
             pin = pin,
             aciPreKeyCollection = aciPreKeyCollection,
-            pniPreKeyCollection = pniPreKeyCollection
+            pniPreKeyCollection = pniPreKeyCollection,
+            reRegistration = accountRegistrationResponse.reregistration
           )
         }
 

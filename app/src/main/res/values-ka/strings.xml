@@ -143,7 +143,7 @@
 
     <!-- UploadAttachmentToArchiveJob -->
     <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
-    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+    <string name="UploadAttachmentToArchiveJob_uploading_media">მიმდინარეობს მედია ფაილების სათადარიგო ასლების შექმნა…</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">ვამოწმებთ შეტყობინებებს…</string>
@@ -552,15 +552,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">ზარის დროს ხმოვანი შეტყობინების ჩაწერა შეუძლებელია.</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">ფორმატირებული ტექსტის გაგზავნა</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">ზოგი ადამიანი შეიძლება Signal-ის ისეთ ვერსიას იყენებდეს, რომელსაც ფორმატირებული ტექსტის მხარდაჭერა არ აქვს. ისინი ვერ ნახავენ ფორმატირების ცვლილებებს, რომლებიც შენს შეტყობინებაში შეიტანე.</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">მაინც გაგზავნა</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">გაუქმება</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">%1$d წაუკითხავი შეტყობინება</item>
@@ -872,10 +863,6 @@
     <string name="CreateBackupBottomSheet__you_are_all_set">ყველაფერი მზადაა. დაიწყე სათადარიგო ასლების შექმნა ახლა.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">შენი სარეზერვო კოპიების ზომიდან გამომდინარე, ამას შეიძლება დიდი დრო დასჭირდეს. სანამ სარეზერვო კოპიები იქმნება, შეგიძლია შენი მობილური ჩვეულებისამებრ გამოიყენო.</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">სარეზერვო კოპიების მოგვიანებით შექმნა</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">სარეზერვო კოპიის ახლავე შექმნა</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">მედია ფაილების აღდგენა ვერ მოხერხდა</string>
@@ -1138,6 +1125,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">მიმოწერის ისტორიის გადატანა</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">გადაიტანე შენი შეტყობინებები და ბოლო 45 დღის მედია ფაილები</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">გადაიტანე შენი წერილები და მედია ფაილები</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">არ გადაიტანო</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1177,9 +1166,9 @@
     <string name="ExpiredBuildReminder_update_now">განაახლე ახლავე</string>
 
     <!-- Title of notification telling users to update Signal -->
-    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <string name="DeprecatedNotificationJob_update_signal">Signal-ის განახლება</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
-    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">Signal-ის ამ ვერსიას ვადა გაუვიდა. დააჭირე და განაახლე, რომ წერილები გაგზავნო და მიიღო.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1482,6 +1471,12 @@
     <string name="RemoteRestoreActivity__skip_restore">აღდგენის გამოტოვება</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">გადატანის დასრულება ვერ მოხერხდა</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">სათადარიგო ასლის აღდგენა შეუძლებელია</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">სარეზერვო ასლის აღდგენისას შეცდომა დაფიქსირდა. შენი სარეზერვო ასლის აღდგენა შეუძლებელია. გთხოვთ, დახმარებისთვის მხარდაჭერის გუნდს მიმართე.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">მხარდაჭერის გუნდთან დაკავშირება</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">შეცდომა დაფიქსირდა და შენი მონაცემების გადატანა ვერ მოხერხდა. აირჩიე გადატანის მეთოდი, რომ თავიდან სცადო.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -1492,6 +1487,8 @@
     <string name="RemoteRestoreActivity__update_signal">Signal-ის განახლება</string>
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">ახლა არა</string>
+    <!-- Text shown on restore screen as information on what will happen if you skip -->
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">შენი მედია ფაილები უკანა ფონზე აღდგება. თუ ახლა არ აღადგენ, მოგვიანებით აღდგენას ვეღარ შეძლებ.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">შემატყობინეთ, როცა მომნიშნავენ</string>
@@ -2106,6 +2103,8 @@
     <string name="MessageRecord_you_blocked_this_group">ეს ჯგუფი დაბლოკე</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">ეს ჯგუფი განბლოკე</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s -მა გამოგიგზავნა შეტყობინება, რომლის დამუშავება ან ჩვენება შეუძლებელია, რადგან ის Signal-ის ახალ ფუნქციას იყენებს.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">დასტური</string>
@@ -2916,6 +2915,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">ეს რეესტრი საჯაროდ გამოქვეყნდება ინტერნეტში, რომ კონტრიბუტორებმა ნახონ. მისი შემოწმება ატვირთვამდე შეგიძლია.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">როცა \"გაგზავნა\"-ზე დააწკაპუნებ, შენი რეესტრი ინტერნეტში გამოქვეყნდება 30 დღით უნიკალურ, გამოუქვეყნებელ URL-ზე. შეგიძლია ის ჯერ ადგილობრივად შეინახო.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -4566,6 +4572,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">პინ-კოდი შეიქმნა.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">თავიდან შეიყვანე შენი პინ-კოდი</string>
     <string name="ConfirmKbsPinFragment__creating_pin">ვქმნით პინ-კოდს…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal-ის პინ-კოდი</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">წარმოგიდგენთ პინ-კოდებს</string>
@@ -4796,7 +4804,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">ინფორმაცია</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">ეს ბეტა ფუნქციაა, რომელსაც ფუნქციონალები მუდმივად დაემატება.</string>
+    <string name="Beta__this_is_beta">This is a beta feature and will be improved over time.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Signal-ის გახსნა</string>
@@ -4864,7 +4872,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">აღადგინე შენი შეტყობინებები ადგილობრივი სარეზერვო კოპიიდან. თუ ახლა არ აღადგენ, მოგვიანებით აღდგენას ვეღარ შეძლებ.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">ადგილობრივი სარეზერვო კოპიების აღდგენა</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Signal-ის სარეზერვო კოპიების აღდგენა</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">აღადგინე შენი ყველა შეტყობინება + ბოლო 30 დღის მედია ფაილები</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">მეტი ოფცია</string>
 
@@ -4961,6 +4968,14 @@
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"მოთხოვნისას აირჩიე \"Android მოწყობილობიდან გადატანა\" და შემდეგ \"გაგრძელება\". ორივე მოწყობილობა ახლოს გეჭიროს."</string>
     <string name="OldDeviceTransferInstructions__continue">გაგრძელება</string>
+    <!-- Title for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">Stop device transfer?</string>
+    <!-- Message for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">No data has been transferred to your new device.</string>
+    <!-- Confirm button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__stop_transfer">გადატანის გაჩერება</string>
+    <!-- Negative/cancel button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__continue_transfer">გადატანის გაგრძელება</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">შედი შენს ახალ მოწყობილობაში</string>
@@ -5348,7 +5363,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">განაახლე შენი Signal-ის სათადარიგო ასლების გამოწერა</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">განაახლე შენი Signal-ის უსაფრთხო სათადარიგო ასლების გამოწერა</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">სარეზერვო კოპირება ვერ მოხერხდა</string>
     <!-- String alerting user that backup redemption -->
@@ -7231,7 +7246,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">შეიყვანე შენი სახელი და ელ-ფოსტა. Stripe-ი ამას შენი დონაციის შესახებ განახლებების გამოსაგზავნად გამოიყენებს. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">შეიყვანე შენი საბანკო დეტალები. Signal-ი არ აგროვებს და არ ინახავს შენს პერსონალურ მონაცემებს. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7597,15 +7612,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">რედაქტირების ისტორია</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">შეტყობინების რედაქტირება</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">თუ ამ შეტყობინებას დაარედაქტირებ, მას მხოლოდ Signal-ის უახლესი ვერსიის მომხმარებლები ნახავენ. იმათ შესაძლებლობა ექნებათ ნახონ, რომ შეტყობინება დაარედაქტირე.</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">გაუქმება</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">გაგზავნა</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -7720,6 +7726,28 @@
     <string name="PendingParticipantsBottomSheet__approve_all">ყველას დადასტურება</string>
     <!-- Button text to deny all participants from joining the call -->
     <string name="PendingParticipantsBottomSheet__deny_all">ყველას უარყოფა</string>
+
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__title">ჩართე Signal-ის უსაფრთხო სათადარიგო ასლები</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__body">არასდროს დაკარგო შეტყობინებები, როდესაც ახალ მობილურს იყიდი ან Signal-ს თავიდან დააყენებ.</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
+    <string name="TurnOnSignalBackups__turn_on">ჩართვა</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
+    <string name="TurnOnSignalBackups__not_now">ახლა არა</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">დაადასტურე შენი აღდგენის გასაღები</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">პერიოდულად შენი გასაღების დადასტურებას მოგთხოვთ, რათა დავრწმუნდეთ, რომ ის კვლავ გახსოვს</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
+    <string name="VerifyBackupKey__verify">დადასტურება</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
+    <string name="VerifyBackupKey__not_now">ახლა არა</string>
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">აღდგენის გასაღები სწორია. უსაფრთხოდ შეინახე შენი გასაღები.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
+    <string name="VerifyBackupKey__we_will_ask_again">ერთ კვირაში ისევ შეგახსენებთ.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">გსურს შეტყობინებები სრულ ეკრანზე ჩართო?</string>
@@ -7874,6 +7902,8 @@
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">გაიგე მეტი</string>
+    <!-- Clickable text to enter contact support flow -->
+    <string name="BackupAlertBottomSheet__contact_support">მხარდაჭერის გუნდთან დაკავშირება</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">აღდგენის გამოტოვება</string>
     <!-- Primary action button to open backups management screen -->
@@ -7914,6 +7944,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">შენი სათადარიგო ასლების გამოწერის გააქტიურება ვერ მოხერხდა</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">შეცდომა მოხდა და შენი სათადარიგო ასლის შექმნა ვერ მოხერხდა. დარწმუნდი, რომ Signal-ის უახლეს ვერსიაზე ხარ და თავიდან სცადე. თუ პრობლემა არ მოგვარდა, მხარდაჭერის გუნდს დაუკავშირდი.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">შეცდომა მოხდა და შენი სათადარიგო ასლის შექმნა ვერ მოხერხდა. თუ პრობლემა არ მოგვარდა, მხარდაჭერის გუნდს დაუკავშირდი.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">შეამოწმე ახალი ვერსია</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -7928,6 +7960,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">გაათავისუფლე %1$s ადგილი, რათა შენი მედია ფაილები აღადგინო.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">მედია ფაილების აღდგენა</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">მედია ფაილების აღდგენის გაუქმება</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">მედია ფაილების აღდგენა შეჩერებულია</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8003,6 +8037,32 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">გამოწერის შეცვლა ან გაუქმება</string>
 
+    <!-- GooglePlayServicesAvailability -->
+    <!-- Dialog title when Google Play services are missing from the device -->
+    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play services missing</string>
+    <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
+    <string name="GooglePlayServicesAvailability__service_missing_message">To subscribe to Signal Secure backups, you need to install Google Play services on your phone.</string>
+    <!-- Dialog button text to install Google Play services -->
+    <string name="GooglePlayServicesAvailability__install_play_services">Install Play Services</string>
+    <!-- Dialog title when Google Play services are currently updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play services are updating</string>
+    <!-- Dialog message asking user to wait while Google Play services finish updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_message">To subscribe to Signal Secure backups please wait for Google Play services to finish updating.</string>
+    <!-- Dialog title when Google Play services need to be updated -->
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Update Google Play services</string>
+    <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
+    <string name="GooglePlayServicesAvailability__service_update_required_message">To subscribe to Signal Secure Backups, update Google Play service on your phone.</string>
+    <!-- Dialog button text to update Google Play services -->
+    <string name="GooglePlayServicesAvailability__update">განახლება</string>
+    <!-- Dialog title when Google Play services are disabled -->
+    <string name="GooglePlayServicesAvailability__service_disabled_title">Paid subscriptions require Google Play</string>
+    <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
+    <string name="GooglePlayServicesAvailability__service_disabled_message">To subscribe to Signal Secure Backups, enable Google Play services on your phone and sign into the Google Play store. </string>
+    <!-- Dialog button text to learn more about enabling Google Play services -->
+    <string name="GooglePlayServicesAvailability__learn_more">გაიგე მეტი</string>
+    <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
+    <string name="GooglePlayServicesAvailability__service_invalid_message">You can\'t subscribe to Signal Secure backups because your phone does not support Google Play services. Contact the phone manufacturer for assistance.</string>
+
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">მიმოწერის სიგრძის ლიმიტები</string>
@@ -8023,13 +8083,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">გამოუყენებელი მედია ფაილები გაქრება, მაგრამ მათი სარეზერვო კოპიების გადმოწერა ნებისმიერ დროს შეგიძლია.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">მეხსიერების ოპტიმიზაციის გამოყენება მხოლოდ Signal-ის სათადარიგო ასლების ფასიან დონეზე შეიძლება. შენი სათადარიგო ასლების გამოწერა ჯერ კიდევ მუშავდება და ჯერ აქტიური არაა. გთხოვთ, მოგვიანებით სცადო.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">მეხსიერების ოპტიმიზაციის გამოყენება მხოლოდ Signal-ის სათადარიგო ასლების ფასიან ვერსიაზე შეიძლება. შენი სათადარიგო ასლების გამოწერა ჯერ კიდევ მუშავდება და აქტიური არაა. გთხოვთ, მოგვიანებით სცადე.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">ამ ფუნქციის გასააქტიურებლად შეცვალე სატარიფო გეგმა</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">მეხსიერების ოპტიმიზაციის გამოყენება მხოლოდ Signal-ის სარეზერვო კოპირების ფასიან დონეზე შეიძლება. ამ ფუნქციის გასააქტიურებლად შეცვალე სარეზერვო კოპირების სატარიფო გეგმა.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">მეხსიერების ოპტიმიზაციის გამოყენება მხოლოდ Signal-ის სათადარიგო ასლების ფასიან ვერსიაზე შეიძლება. ამ ფუნქციის გასააქტიურებლად განაახლე სათადარიგო ასლების გეგმა.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">გამოიწერე თვეში %1$s-ად</string>
 
@@ -8048,7 +8108,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">ეს მედია ფაილი ხელმისაწვდომი აღარ არის</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">შენი ყველა მედია ფაილის სათადარიგო ასლის შესაქმნელად, ჩართე Signal-ის სათადარიგო ასლები და აირჩიე ფასიანი ვარიანტი.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">შენი ყველა მედია ფაილის სათადარიგო ასლის შესაქმნელად, ჩართე Signal-ის სათადარიგო ასლები და აირჩიე ფასიანი ვერსია.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">გაგრძელება</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8061,23 +8121,43 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">OK</string>
 
+    <!-- NoManualBackupBottomSheet -->
+    <!-- Title for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
+        <item quantity="one">%1$d დღე სათადარიგო ასლების გარეშე</item>
+        <item quantity="other">%1$d დღე სათადარიგო ასლების გარეშე</item>
+    </plurals>
+    <!-- Body for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
+        <item quantity="one">%1$d დღეა სათადარიგო ასლი არ შეგიქმნია. შექმენი სათადარიგო ასლი ახლა და დარწმუნდი, რომ შენი წერილები და მედია ფაილები საიმედოდ შეინახება.</item>
+        <item quantity="other">%1$d დღეა სათადარიგო ასლი არ შეგიქმნია. შექმენი სათადარიგო ასლი ახლა და დარწმუნდი, რომ შენი წერილები და მედია ფაილები საიმედოდ შეინახება.</item>
+    </plurals>
+
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/თვეში, განახლდების თარიღი %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">ბოლო სათადარიგო ასლის შექმნის თარიღი: %1$s</string>
+    <!-- Subtitle for row for canceled backup -->
+    <string name="BackupsSettingsFragment__subscription_canceled">გამოწერა გაუქმებულია</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">შექმენი სათადარიგო ასლები Signal-ის დაშიფრული შენახვის სერვისით.</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
-    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"ამ მოწყობილობაზე გამოწერა ვერ მოიძებნა."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">დაყენება</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">პარამეტრების ნახვა</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">ატვირთვის გაუქმება</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">უსაფრთხო სათადარიგო ასლები</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal-ის სარეზერვო კოპიები</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Signal-ის უსაფრთხო სათადარიგო ასლები</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">გამორთული</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">საჭიროა ავთენტიფიკაცია</string>
     <!-- Row label to launch payment history screen -->
@@ -8088,14 +8168,20 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">ჩამოტვირთვის განახლება</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">სარეზერვო კოპიების ზომა</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__calculating">მიმდინარეობს გამოთვლა…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">სარეზერვო კოპიების შექმნის სიხშირე</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">შენი მედია ფაილებისა და წერილების სათადარიგო ასლები ყოველდღიურად იქმნება.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">სარეზერვო კოპიების შექმნა მობილური ინტერნეტის გამოყენებით</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">სათადარიგო ასლების გასაღების ნახვა</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">სათადარიგო ასლების გასაღების სანახავად მოხსენი ბლოკი</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">აღდგენის გასაღების ნახვა</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">განბლოკე, რომ აღდგენის გასაღები ნახო</string>
+    <!-- Title of bottom sheet explaining that authentication is required to view your key -->
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">შენი გასაღების სანახავად, დაადასტურე, რომ ეს შენ ხარ</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">გამორთვა და სარეზერვო კოპიების წაშლა</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8108,6 +8194,8 @@
     <string name="RemoteBackupsSettingsFragment__download_complete">ჩამოტვირთვა დასრულებულია</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">სარეზერვო კოპიები ღამით შეიქმნება.</string>
+    <!-- Snackbar text displayed when user rotates AEP -->
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">შეიქმნა ახალი აღდგენის გასაღები</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">გამოწერა არ არის გააქტიურებული</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8157,7 +8245,7 @@
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">თქვენი სათადარიგო ასლები წაიშლება და ახალი სათადარიგო ასლები არ შეიქმნება. ნებისმიერი მედია ფაილები, რომელიც თქვენს სათადარიგო ასლებშია შენახული, ახლავე ჩამოიტვირთება თქვენს ტელეფონში.</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">შენი გამოწერა გაუქმდება და თანხა აღარ ჩამოგეჭრება. შენი სათადარიგო ასლები წაიშლება და ახალი სათადარიგო ასლები არ შეიქმნება. ნებისმიერი მედია ფაილი, რომელიც შენს სათადარიგო ასლებშია შენახული, ახლავე ჩამოიტვირთება შენს მობილურში.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">გამორთვა და წაშლა</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8185,11 +8273,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">შენი სათადარიგო ასლების ზომიდან გამომდინარე, ამას შეიძლება დიდი დრო დასჭირდეს. სანამ ჩაიტვირთება, შენი ტელეფონის გამოყენებას ჩვეულებრივად შეძლებ.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">ამ მოწყობილობაზე შენი გამოწერა ვერ მოიძებნა. განაახლე Signal-ის სათადარიგო ასლების გამოყენების გასაგრძელებლად.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">ამ მოწყობილობაზე შენი გამოწერა ვერ მოიძებნა. განაახლე, რომ Signal-ის უსაფრთხო სათადარიგო ასლების გამოყენება განაგრძო.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">ამ მოწყობილობაზე შენი გამოწერა მოქმედებს მომდევნო %1$d დღე. Signal-ის სათადარიგო ასლების გამოყენება რომ განაგრძო, განააწლე გამოწერა</item>
-        <item quantity="other">ამ მოწყობილობაზე შენი გამოწერა მოქმედებს მომდევნო %1$d დღე. Signal-ის სათადარიგო ასლების გამოყენება რომ განაგრძო, განააწლე გამოწერა</item>
+        <item quantity="one">ამ მოწყობილობაზე შენი გამოწერა მოქმედებს მომდევნო %1$d დღე. Signal-ის სათადარიგო ასლების გამოყენება რომ განაგრძო, განაახლე გამოწერა</item>
+        <item quantity="other">ამ მოწყობილობაზე შენი გამოწერა მოქმედებს მომდევნო %1$d დღე. Signal-ის სათადარიგო ასლების გამოყენება რომ განაგრძო, განაახლე გამოწერა</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">ხელახლა გამოწერა</string>
@@ -8201,6 +8289,10 @@
     <string name="RemoteBackupsSettingsFragment__processing_backup">მიმდინარეობს სათადარიგო ასლების დამუშავება…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">მზადდება სათადარიგო ასლები…</string>
+    <!-- Linear progress dialog text shown when backup is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">ველოდებით WiFi-ს…</string>
+    <!-- Linear progress dialog text shown when backup is paused because internet is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">ველოდებით ინტერნეტ კავშირს…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
         <item quantity="one">მუშავდება %2$s შეტყობინებიდან %1$s (%3$d%%)</item>
@@ -8308,9 +8400,9 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">შენი სათადარიგო გასაღები</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">შენი აღდგენის გასაღები</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">შენი სათადარიგო ასლების გასაღები 64-რიცხვიანი კოდია, რომელიც საშუალებას გაძლევს, შენი ჩანაწერები აღადგინო, თუ Signal-ს თავიდან გადმოიწერ.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">შენი სათადარიგო ასლების გასაღები 64-სიმბოლოიანი კოდია, რომელიც საშუალებას გაძლევს, შენი ჩანაწერები აღადგინო, თუ Signal-ს თავიდან გადმოიწერ.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">თუ შენი პინ-კოდი დაგავიწყდება, სათადარიგო ჩანაწერების აღდგენას ვეღარ შეძლებ. Signal-ი შენი სათადარიგო ჩანაწერების აღდგენაში ვერ დაგეხმარება.</string>
     <!-- Action button label -->
@@ -8318,23 +8410,29 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">ჩაიწერე შენი სათადარიგო ჩანაწერების გასაღები</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">ჩაიწერე შენი აღდგენის გასაღები</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">ეს გასაღები საჭიროა შენი ანგარიშისა და მონაცემების აღსადგენად. შეინახე გასაღები უსაფრთხო ადგილას. თუ მას დაკარგავ, შენი ანგარიშის აღდგენას ვეღარ შეძლებ.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">ბუფერში ჩაკოპირება</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">პაროლების მენეჯერში შენახვა</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">გსურს პაროლების მენეჯერში დამახსოვრება?</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">სათადარიგო ასლების გასაღები შეინახეთ პაროლების მენეჯერში, რომლის უსაფრთხოებასაც ენდობით. Signal არ იძლევა რეკომენდაციას, თუ რომელი პაროლების მენეჯერია თქვენთვის შესაფერისი.</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">სათადარიგო ასლების გასაღები შეინახე პაროლების მენეჯერში, რომლის უსაფრთხოებასაც ენდობი. Signal-ი არ იძლევა რეკომენდაციას, თუ რომელი პაროლების მენეჯერია შენთვის შესაფერისი.</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Signal-ის უსაფრთხო სათადარიგო ასლები</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">დამახსოვრებულია შენს პაროლების მენეჯერში</string>
-    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">ვერ ხერხდება პაროლების მენეჯერში შენახვა</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">ვერ ხერხდება პაროლების მენეჯერში შენახვა</string>
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">თქვენ არ გაქვთ დაყენებული პაროლების მენეჯერი, ან პაროლების მენეჯერი, რომელსაც იყენებთ, არ არის მხარდაჭერილი.</string>
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">ადრე აირჩიე, რომ Signal-ის პაროლები Google Password Manager-ში არ შენახულიყო. წაშალე Signal შენი Google Password Manager-ის პარამეტრებში \"უარყოფილი საიტებისა და აპების\" სიიდან და თავიდან სცადე.</string>
+    <!-- Label for a button that navigates to the device settings -->
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">შედი პარამეტრებში</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">შემდეგი</string>
     <!-- Bottom sheet title -->
@@ -8347,19 +8445,48 @@
     <string name="MessageBackupsKeyRecordScreen__continue">გაგრძელება</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">გასაღების თავიდან ნახვა</string>
+    <!-- Action label to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">შექმენი ახალი გასაღები</string>
+    <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__download_media">მედია ფაილის გადმოწერა</string>
+    <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">გასაღების ახალი სათადარიგო ასლის შესაქმნელად \"მეხსიერების ოპტიმიზაცია\" უნდა გამორთო და დაელოდო, რომ შენი მედია ფაილი გადმოიწეროს. შეგიძლია, ჩამოტვირთვის დასრულების შემდეგ ახალი გასაღები შექმნა.</string>
+    <!-- Action label to turn off optimized storage and download media -->
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">გამორთვა და გადმოწერა</string>
+    <!-- Bottom Sheet title for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">შექმენი ახალი აღდგენის გასაღები</string>
+    <!-- Bottom Sheet body for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">ახალი გასაღების შექმნა მხოლოდ იმ შემთხვევაშია საჭირო, თუ სხვამ იცის შენი გასაღების შესახებ. მოგიწევს შენი სათადარიგო ასლი თავიდან ატვირთო, მედია ფაილის ჩათვლით. თუ \"მეხსიერების ოპტიმიზაციას\" იყენებ, მოგიწევს, ჯერ გადატვირთული მედია ფაილი გადმოიწერო.</string>
+
+    <!-- BackupKeyDisplayFragment -->
+    <!-- Dialog title when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">გსურს, გასაღების შექმნა გააუქმო?</string>
+    <!-- Dialog body when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">შენი ახალი აღდგენის გასაღები იქამდე არ შეიქმნება, სანამ მას არ დაადასტურებ.</string>
+    <!-- Dialog button to continue confirming new recovery key-->
+    <string name="BackupKeyDisplayFragment__confirm_key">გასაღების დადასტურება</string>
+    <!-- Dialog button to cancel new key creation -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">გასაღების შექმნის გაუქმება</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">დაადასტურე შენი სათადარიგო ასლების გასაღები</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">დაადასტურე შენი აღდგენის გასაღები</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">შეიყვანე სათადარიგო ასლების გასაღები, რომელიც ახლახანს ჩაიწერე</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">შეიყვანე შენ მიერ ახლახან ჩაწერილი აღდგენის გასაღები</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">სათადარიგო ასლების გასაღები</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">აღდგენის გასაღები</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">არასწორი სათადარიგო ასლების გასაღები</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">აღდგენის გასაღები არასწორია</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">გასაღების თავიდან ნახვა</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">შემდეგი</string>
+
+    <!-- Verify your key title -->
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">შეიყვანე შენი აღდგენის გასაღები</string>
+    <!-- Verify your key subtitle -->
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">შეიყვანე 64-ნიშნა კოდი, რომელიც სათადარიგო ასლების ჩართვისას ჩაწერე.</string>
+    <!-- Button text when you forget your recovery key -->
+    <string name="VerifyBackupPinScreen__forgot_key">გასაღები დაგავიწყდა?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8368,16 +8495,22 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">ყველა სარეზერვო კოპია ბოლომდე დაშიფრულია. Signal-ი არაკომერციულია—სარეზერვო კოპირებაში თანხის გადახდა ჩვენი მისიის მხარდაჭერაში გვეხმარება.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">გაიგე მეტი</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">გამოწერა</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">აირჩიე უფასო გეგმა</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">გამოიწერე თვეში %1$s-ად</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">სარეზერვო კოპირების ტიპის შეცვლა</string>
+    <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">More about this plan</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">გამოწერის გაუქმება</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">უფასო</string>
+    <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
+    <string name="MessageBackupsTypeSelectionScreen__paid">Paid</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s/თვეში</string>
     <!-- Title for free tier -->
@@ -8402,6 +8535,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">ახლანდელი გამოწერა</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Can\'t upgrade plan</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">To subscribe to Signal Secure Backups, you must have Google Services enabled on your phone and be signed into the Google Play Store.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8432,9 +8569,9 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">აღდგენა ან ანგარიშის გადატანა</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">გადმოიტანე შენი Signal-ის ანგარიში და შეტყობინებების ისტორია ამ მოწყობილობაზე.</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal-ის სათადარიგო ასლებიდან</string>
-    <!-- Option subtitle for restoring via signal backups -->
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Signal-ის უსაფრთხო სათადარიგო ასლებიდან</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">შენი უფასო ან ფასიანი Signal-ის სათადარიგო ასლების გამოწერა</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">სათადარიგო ასლების საქაღალდიდან</string>
@@ -8452,40 +8589,40 @@
     <!-- Screen subtitle for restore via local backup -->
     <string name="RestoreLocalBackup_subtitle">აღადგინე შენი შეტყობინებები შენს მოწყობილობაში შენახული სათადარიგო ასლიდან. თუ ახლა არ აღადგენ, მოგვიანებით აღდგენას ვეღარ შეძლებ.</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">შეიყვანე შენი სათადარიგო ასლების გასაღები</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">შენი სათადარიგო ასლების გასაღები 64 ციფრიანი კოდია, რომელიც შენი ანგარიშისა და მონაცემების აღსადგენადაა საჭირო.</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">არ გაქვს სათადარიგო ასლების გასაღები?</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">სათადარიგო ასლების გასაღები</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">სათადარიგო ასლების აღდგენა მათი აღდგენის 64 ციფრიანი კოდის გარეშე შეუძლებელია. თუ შენი სათადარიგო ასლების გასაღები დაკარგე, Signal შენი სათადარიგო ასლების აღდგენაში დახმარებას ვერ შეძლებს.</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">თუ ძველი მოწყობილობა გაქვს, შეგიძლია, შენი სათადარიგო ასლების გასაღები აქ ნახო: პარამეტრები &gt; სათადარიგო ასლები. შემდეგ სათადარიგო ასლების გასაღების ნახვას დააჭირე.</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">შეიყვანე შენი აღდგენის გასაღები</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">შენი სათადარიგო ასლების გასაღები 64-სიმბოლოიანი კოდია, რომელიც შენი ანგარიშისა და მონაცემების აღსადგენადაა საჭირო.</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">არ გაქვს აღდგენის გასაღები?</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">აღდგენის გასაღები</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">სათადარიგო ასლების აღდგენა 64-სიმბოლოიანი კოდის გარეშე შეუძლებელია. თუ შენი სათადარიგო ასლების გასაღები დაკარგე, Signal-ი შენი სათადარიგო ასლების აღდგენაში დახმარებას ვერ შეძლებს.</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">თუ ძველი მოწყობილობა გაქვს, შეგიძლია, შენი სათადარიგო ასლების გასაღები აქ ნახო: პარამეტრები &gt; სათადარიგო ასლები. შემდეგ აღდგენის გასაღების ნახვას დააჭირე.</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">გაიგე მეტი</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">გამოტოვე და არ აღადგინო</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">არასწორი სათადარიგო ასლების გასაღები</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">აღდგენის გასაღები არასწორია</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_message">დარწმუნდი, რომ იმავე მობილურის ნომრითა და 64-სიმბოლოიანი სათადარიგო ასლების გასაღებით რეგისტრირდები, რომელიც Signal-ის სათადარიგო ასლების ჩართვისას შეინახე. ამ გასაღების გარეშე სათადარიგო ასლებს ვერ აღადგენ.</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">ახლიდან სცადე</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">სათადარიგო ასლების გასაღებზე დახმარება</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">არასწორი სათადარიგო ასლების გასაღები</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">დახმარება აღდგენის გასაღებთან დაკავშირებით</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">აღდგენის გასაღები არასწორია</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">ზედმეტად გრძელია (%1$d/%2$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">არასწორი სათადარიგო ასლების გასაღები</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">აღდგენის გასაღები არასწორია</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">სათადარიგო ასლების მოძებნა ვერ მოხერხდა</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">შენ მიერ შეყვანილი სათადარიგო ასლების გასაღები სწორია, მაგრამ მასთან ასოცირებული სათადარიგო ასლები ვერ მოიძებნა. თუ შენი ძველი მობილური ისევ გაქვს, დარწმუნდი, რომ სათადარიგო ასლები ჩართულია, სათადარიგო ასლის შექმნა დასრულებულია და თავიდან სცადე.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">შენ მიერ შეყვანილი სათადარიგო ასლების გასაღები სწორია, მაგრამ მასთან ასოცირებული სათადარიგო ასლები ვერ მოიძებნა. თუ შენი ძველი მობილური ისევ გაქვს, დარწმუნდი, რომ სათადარიგო ასლები ჩართულია და სათადარიგო ასლის შექმნა დასრულებულია, შემდეგ კი თავიდან სცადე.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">აღდგენის გამოტოვება</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8497,7 +8634,15 @@
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Signal Android-ის სათადარიგო ასლის აღდგენის ხარვეზი</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Signal Android-ის სარეზერვო ასლის აღდგენის ხარვეზი</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
+
+    <!-- Email subject when contacting support on a create backup failure -->
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Signal Android-ის სათადარიგო ასლის აღდგენის ხარვეზი</string>
+    <!-- Email filter when contacting support on a create backup failure -->
+  <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
     <string name="ContactSupportDialog_submit_debug_log">გსურს გაუმართაობის რეესტრის ატვირთვა?</string>
@@ -8543,9 +8688,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">განაგრძე შენი ანგარიშის გადატანა სხვა მოწყობილობაზე.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">აღდგენა დასრულებულია</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">Finish on your other device</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">შენი Signal-ის ანგარიში და შეტყობინებები შენს სხვა მოწყობილობაზეა გადატანილი. ამ მოწყობილობაზე Signal აღარ არის აქტიური.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages are ready to restore on your other device. Signal is now inactive on this device.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">გადატანა დასრულებულია</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
@@ -8556,7 +8701,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">აღსადგენი სათადარიგო ფაილები ვერ მოიძებნა</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">იმის გამო, რომ iPhone-დან Android-ზე გადადიხარ, შენი შეტყობინებების და მედია ფაილების გადასატანად ერთადერთი გზა შენს ძველ მოწყობილობაზე Signal-ის სათადარიგო ასლების ჩართვაა.</string>
+    <string name="NoBackupToRestore_subtitle">იმის გამო, რომ iPhone-დან Android-ზე გადადიხარ, შენი მესიჯებისა და მედია ფაილების გადასატანად ერთადერთი გზა შენს ძველ მოწყობილობაზე Signal-ის სათადარიგო ასლების ჩართვაა.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">გახსენი Signal-ი შენს ძველ მობილურში</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
@@ -8588,9 +8733,23 @@
     <string name="SignalCheckbox_accessibility_unchecked_description">აღარაა მონიშნული</string>
 
     <!-- Notification title for when user is out of remote storage -->
-    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <string name="Notification_backup_storage_full">სათადარიგო ასლების მეხსიერება სავსეა</string>
     <!-- Notification body for when user is out of remote storage -->
-    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
+    <string name="Notification_youve_reached_your_backup_storage_limit">შენი სათადარიგო ასლების მეხსიერების ლიმიტს მიაღწიე. გაათავისუფლე ადგილი Signal-ში, რათა ჩატებისა და მედია ფაილების სათადარიგო ასლების შექმნა გააგრძელო.</string>
+    <!-- Notification title for when initial backup failed -->
+    <string name="Notification_backup_failed">სარეზერვო კოპიების შენახვა ვერ მოხერხდა</string>
+    <!-- Notification body for when initial backup failed -->
+    <string name="Notification_an_error_occurred_and_your_backup">შეცდომა მოხდა და შენი სათადარიგო ასლის შექმნა ვერ მოხერხდა. დააჭირე დეტალების სანახავად.</string>
+    <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_no_backup_for_d_days">
+        <item quantity="one">%1$d დღე სათადარიგო ასლების გარეშე</item>
+        <item quantity="other">%1$d დღე სათადარიგო ასლების გარეშე</item>
+    </plurals>
+    <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_you_have_not_completed_a_backup">
+        <item quantity="one">%1$d დღეა სათადარიგო ასლი არ შეგიქმნია. შექმენი ახლა.</item>
+        <item quantity="other">%1$d დღეა სათადარიგო ასლი არ შეგიქმნია. შექმენი ახლა.</item>
+    </plurals>
 
     <!-- EOF -->
 </resources>

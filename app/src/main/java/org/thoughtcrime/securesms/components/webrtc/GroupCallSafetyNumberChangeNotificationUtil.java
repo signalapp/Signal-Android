@@ -1,15 +1,19 @@
 package org.thoughtcrime.securesms.components.webrtc;
 
+import android.Manifest;
 import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.content.ContextCompat;
 
 import org.signal.core.util.PendingIntentFlags;
+import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.components.webrtc.v2.CallIntent;
 import org.thoughtcrime.securesms.notifications.NotificationChannels;
@@ -20,12 +24,18 @@ import org.thoughtcrime.securesms.recipients.Recipient;
  */
 public final class GroupCallSafetyNumberChangeNotificationUtil {
 
+  public static final String TAG = Log.tag(GroupCallSafetyNumberChangeNotificationUtil.class);
   public static final String GROUP_CALLING_NOTIFICATION_TAG = "group_calling";
 
   private GroupCallSafetyNumberChangeNotificationUtil() {
   }
 
   public static void showNotification(@NonNull Context context, @NonNull Recipient recipient) {
+    if (ContextCompat.checkSelfPermission(context, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+      Log.w(TAG, "showNotification: Notification permission is not granted.");
+      return;
+    }
+
     Intent contentIntent = new Intent(context, CallIntent.getActivityClass());
     contentIntent.setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
 

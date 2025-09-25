@@ -6,6 +6,8 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.thoughtcrime.securesms.attachments.AttachmentId;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -495,6 +497,40 @@ public final class SignalLocalMetrics {
         LocalMetrics.getInstance().cancel(groupMetricId);
         LocalMetrics.getInstance().end(individualMetricId);
       }
+    }
+  }
+
+  /**
+   * Tracks how long it took to upload an attachment to the archive CDN.
+   */
+  public static final class ArchiveAttachmentUpload {
+    private static final String NAME = "archive-attachment-upload";
+
+    /** When the attachment begins uploading. */
+    public static void start(AttachmentId id) {
+      LocalMetrics.getInstance().start(NAME, NAME + id);
+    }
+
+    /** When the attachment finishes uploading. */
+    public static void end(AttachmentId id) {
+      LocalMetrics.getInstance().end(NAME + id);
+    }
+  }
+
+  /**
+   * Tracks how long it took to restore an attachment.
+   */
+  public static final class ArchiveAttachmentRestore {
+    private static final String NAME = "archive-attachment-restore";
+
+    /** When the attachment begins uploading. */
+    public static void start(AttachmentId id) {
+      LocalMetrics.getInstance().start(NAME, NAME + id);
+    }
+
+    /** When the attachment finishes uploading. */
+    public static void end(AttachmentId id) {
+      LocalMetrics.getInstance().end(NAME + id);
     }
   }
 }

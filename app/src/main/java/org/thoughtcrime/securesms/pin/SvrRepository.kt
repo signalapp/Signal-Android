@@ -44,6 +44,7 @@ object SvrRepository {
 
   val TAG = Log.tag(SvrRepository::class.java)
 
+  private val svr2LegacyLegacy: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE_LEGACY_LEGACY)
   private val svr2Legacy: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE_LEGACY)
   private val svr2: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV2(BuildConfig.SVR2_MRENCLAVE)
   private val svr3: SecureValueRecovery = AppDependencies.signalServiceAccountManager.getSecureValueRecoveryV3(AppDependencies.libsignalNetwork)
@@ -52,7 +53,7 @@ object SvrRepository {
   private val readImplementations: List<SecureValueRecovery> = if (Svr3Migration.shouldReadFromSvr3) {
     listOf(svr3, svr2)
   } else {
-    listOf(svr2, svr2Legacy)
+    listOf(svr2, svr2Legacy, svr2LegacyLegacy)
   }
 
   /** An ordered list of SVR implementations to write to. They should be in priority order, with the most important one listed first. */
@@ -65,6 +66,7 @@ object SvrRepository {
       if (Svr3Migration.shouldWriteToSvr2) {
         implementations += svr2
         implementations += svr2Legacy
+        implementations += svr2LegacyLegacy
       }
       return implementations
     }
@@ -102,7 +104,8 @@ object SvrRepository {
       } else {
         listOf(
           svr2 to { restoreMasterKeyPreRegistrationFromV2(svr2, credentials.svr2, userPin) },
-          svr2Legacy to { restoreMasterKeyPreRegistrationFromV2(svr2Legacy, credentials.svr2, userPin) }
+          svr2Legacy to { restoreMasterKeyPreRegistrationFromV2(svr2Legacy, credentials.svr2, userPin) },
+          svr2LegacyLegacy to { restoreMasterKeyPreRegistrationFromV2(svr2LegacyLegacy, credentials.svr2, userPin) }
         )
       }
 
@@ -296,7 +299,8 @@ object SvrRepository {
     masterKey: MasterKey?,
     userPin: String?,
     hasPinToRestore: Boolean,
-    setRegistrationLockEnabled: Boolean
+    setRegistrationLockEnabled: Boolean,
+    restoredAEP: Boolean
   ) {
     Log.i(TAG, "[onRegistrationComplete] Starting", true)
     operationLock.withLock {
@@ -318,8 +322,12 @@ object SvrRepository {
 
         AppDependencies.jobManager.add(ResetSvrGuessCountJob())
       } else if (masterKey != null) {
-        Log.i(TAG, "[onRegistrationComplete] ReRegistered with key without pin")
+        Log.i(TAG, "[onRegistrationComplete] ReRegistered with key without pin", true)
         SignalStore.svr.masterKeyForInitialDataRestore = masterKey
+        if (restoredAEP && setRegistrationLockEnabled) {
+          Log.i(TAG, "[onRegistrationComplete] Registration Lock", true)
+          SignalStore.svr.isRegistrationLockEnabled = true
+        }
       } else if (hasPinToRestore) {
         Log.i(TAG, "[onRegistrationComplete] Has a PIN to restore.", true)
         SignalStore.svr.clearRegistrationLockAndPin()

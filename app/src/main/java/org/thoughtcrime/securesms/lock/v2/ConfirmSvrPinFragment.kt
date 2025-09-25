@@ -3,9 +3,7 @@ package org.thoughtcrime.securesms.lock.v2
 import android.app.Activity
 import android.content.DialogInterface
 import android.view.View
-import androidx.autofill.HintConstants
 import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
 import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.thoughtcrime.securesms.R
@@ -25,7 +23,6 @@ internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel
     } else {
       initializeViewStatesForPinCreate()
     }
-    ViewCompat.setAutofillHints(input, HintConstants.AUTOFILL_HINT_NEW_PASSWORD)
   }
 
   override fun initializeViewModel(): ConfirmSvrPinViewModel {
@@ -64,6 +61,7 @@ internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel
         label.setText(R.string.ConfirmKbsPinFragment__creating_pin)
         input.isEnabled = false
       }
+
       ConfirmSvrPinViewModel.LabelState.RE_ENTER_PIN -> label.setText(R.string.ConfirmKbsPinFragment__re_enter_your_pin)
       ConfirmSvrPinViewModel.LabelState.PIN_DOES_NOT_MATCH -> {
         label.text = SpanUtil.color(
@@ -86,6 +84,7 @@ internal class ConfirmSvrPinFragment : BaseSvrPinFragment<ConfirmSvrPinViewModel
         RegistrationUtil.maybeMarkRegistrationComplete()
         StorageSyncHelper.scheduleSyncForDataChange()
       }
+
       SaveAnimation.FAILURE -> {
         confirm.cancelSpinning()
         RegistrationUtil.maybeMarkRegistrationComplete()

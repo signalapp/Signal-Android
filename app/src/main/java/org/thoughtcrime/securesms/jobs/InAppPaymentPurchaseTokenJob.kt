@@ -87,7 +87,7 @@ class InAppPaymentPurchaseTokenJob private constructor(
   }
 
   private suspend fun linkPurchaseToken(): Result {
-    if (!AppDependencies.billingApi.isApiAvailable()) {
+    if (!AppDependencies.billingApi.getApiAvailability().isSuccess) {
       warning("Billing API is not available on this device. Exiting.")
       return Result.failure()
     }

@@ -7,12 +7,16 @@ package org.thoughtcrime.securesms.backup
 
 import org.signal.core.util.LongSerializer
 
-enum class RestoreState(val id: Int, val inProgress: Boolean) {
-  FAILED(-1, false),
+enum class RestoreState(private val id: Int, val inProgress: Boolean) {
   NONE(0, false),
   PENDING(1, true),
   RESTORING_DB(2, true),
-  RESTORING_MEDIA(3, true);
+  CALCULATING_MEDIA(4, true),
+  RESTORING_MEDIA(3, true),
+  CANCELING_MEDIA(5, true);
+
+  val isMediaRestoreOperation: Boolean
+    get() = this == CALCULATING_MEDIA || this == RESTORING_MEDIA || this == CANCELING_MEDIA
 
   companion object {
     val serializer: LongSerializer<RestoreState> = Serializer()
@@ -23,14 +27,8 @@ enum class RestoreState(val id: Int, val inProgress: Boolean) {
       return data.id.toLong()
     }
 
-    override fun deserialize(data: Long): RestoreState {
-      return when (data.toInt()) {
-        FAILED.id -> FAILED
-        PENDING.id -> PENDING
-        RESTORING_DB.id -> RESTORING_DB
-        RESTORING_MEDIA.id -> RESTORING_MEDIA
-        else -> NONE
-      }
+    override fun deserialize(input: Long): RestoreState {
+      return entries.firstOrNull { it.id == input.toInt() } ?: throw IllegalStateException()
     }
   }
 }

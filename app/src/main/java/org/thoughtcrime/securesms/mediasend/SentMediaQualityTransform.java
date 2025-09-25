@@ -37,7 +37,7 @@ public final class SentMediaQualityTransform implements MediaTransform {
                      media.isVideoGif(),
                      media.getBucketId(),
                      media.getCaption(),
-                     Optional.of(AttachmentTable.TransformProperties.forSentMediaQuality(media.getTransformProperties(), sentMediaQuality)),
+                     AttachmentTable.TransformProperties.forSentMediaQuality(Optional.ofNullable(media.getTransformProperties()), sentMediaQuality),
                      media.getFileName());
   }
 }

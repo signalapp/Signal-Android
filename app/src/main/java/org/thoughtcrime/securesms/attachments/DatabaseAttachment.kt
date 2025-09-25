@@ -54,7 +54,6 @@ class DatabaseAttachment : Attachment {
     cdn: Cdn,
     location: String?,
     key: String?,
-    iv: ByteArray?,
     digest: ByteArray?,
     incrementalDigest: ByteArray?,
     incrementalMacChunkSize: Int,
@@ -76,7 +75,8 @@ class DatabaseAttachment : Attachment {
     archiveCdn: Int?,
     thumbnailRestoreState: AttachmentTable.ThumbnailRestoreState,
     archiveTransferState: AttachmentTable.ArchiveTransferState,
-    uuid: UUID?
+    uuid: UUID?,
+    quoteTargetContentType: String?
   ) : super(
     contentType = contentType,
     transferState = transferProgress,
@@ -85,7 +85,6 @@ class DatabaseAttachment : Attachment {
     cdn = cdn,
     remoteLocation = location,
     remoteKey = key,
-    remoteIv = iv,
     remoteDigest = digest,
     incrementalDigest = incrementalDigest,
     fastPreflightId = fastPreflightId,
@@ -95,6 +94,7 @@ class DatabaseAttachment : Attachment {
     height = height,
     incrementalMacChunkSize = incrementalMacChunkSize,
     quote = quote,
+    quoteTargetContentType = quoteTargetContentType,
     uploadTimestamp = uploadTimestamp,
     caption = caption,
     stickerLocator = stickerLocator,

@@ -1,6 +1,7 @@
 package org.thoughtcrime.securesms.util
 
 import android.content.Context
+import org.signal.core.util.kibiBytes
 import org.signal.core.util.splitByByteLength
 import org.thoughtcrime.securesms.mms.TextSlide
 import org.thoughtcrime.securesms.providers.BlobProvider
@@ -10,7 +11,13 @@ import java.util.Locale
 import java.util.Optional
 
 object MessageUtil {
-  const val MAX_MESSAGE_SIZE_BYTES: Int = 2000 // Technically 2048, but we'll play it a little safe
+  /** The maximum size of an inlined text body we'll allow in a proto. Anything larger than this will need to be a long-text attachment. */
+  @JvmField
+  val MAX_INLINE_BODY_SIZE_BYTES: Int = 2.kibiBytes.bytes.toInt()
+
+  /** The maximum total message size we'll allow ourselves to send, even as a long text attachment. */
+  @JvmField
+  val MAX_TOTAL_BODY_SIZE_BYTES = 64.kibiBytes.bytes.toInt()
 
   /**
    * @return If the message is longer than the allowed text size, this will return trimmed text with
@@ -18,7 +25,7 @@ object MessageUtil {
    */
   @JvmStatic
   fun getSplitMessage(context: Context, rawText: String): SplitResult {
-    val (trimmed, remainder) = rawText.splitByByteLength(MAX_MESSAGE_SIZE_BYTES)
+    val (trimmed, remainder) = rawText.splitByByteLength(MAX_INLINE_BODY_SIZE_BYTES)
 
     return if (remainder != null) {
       val textData = rawText.toByteArray()

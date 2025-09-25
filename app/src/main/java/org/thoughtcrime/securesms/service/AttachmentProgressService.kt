@@ -85,8 +85,8 @@ class AttachmentProgressService : SafeForegroundService() {
       }
     }
 
-    private fun stop(context: Context) {
-      stop(context, AttachmentProgressService::class.java)
+    private fun stop(context: Context, fromTimeout: Boolean = false) {
+      stop(context, AttachmentProgressService::class.java, fromTimeout)
     }
 
     private fun onControllersChanged(context: Context) {
@@ -139,6 +139,17 @@ class AttachmentProgressService : SafeForegroundService() {
     listeners -= listener
   }
 
+  override fun onTimeout(startId: Int, fgsType: Int) {
+    Log.w(TAG, "AttachmentProgressService has timed out. Removing all controllers. startId: $startId, foregroundServiceType: $fgsType")
+
+    controllerLock.withLock {
+      controllers.forEach { it.closeFromTimeout() }
+      stop(context = this, fromTimeout = true)
+    }
+
+    listeners -= listener
+  }
+
   class Controller(private val context: Context, title: String) : AutoCloseable {
     private val coroutineScope = CoroutineScope(Dispatchers.IO)
     private val progressFlow = MutableSharedFlow<Float>(replay = 0, extraBufferCapacity = 1)
@@ -176,6 +187,13 @@ class AttachmentProgressService : SafeForegroundService() {
 
     fun updateProgress(progress: Float) {
       progressFlow.tryEmit(progress)
+    }
+
+    fun closeFromTimeout() {
+      controllerLock.withLock {
+        coroutineScope.cancel()
+        controllers.remove(this)
+      }
     }
 
     override fun close() {

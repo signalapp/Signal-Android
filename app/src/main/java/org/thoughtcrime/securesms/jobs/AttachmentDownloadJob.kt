@@ -11,7 +11,6 @@ import org.greenrobot.eventbus.EventBus
 import org.signal.core.util.Base64
 import org.signal.core.util.Hex
 import org.signal.core.util.logging.Log
-import org.signal.core.util.stream.LimitedInputStream
 import org.signal.libsignal.protocol.InvalidMacException
 import org.signal.libsignal.protocol.InvalidMessageException
 import org.thoughtcrime.securesms.attachments.Attachment
@@ -36,6 +35,7 @@ import org.thoughtcrime.securesms.transport.RetryLaterException
 import org.thoughtcrime.securesms.util.AttachmentUtil
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.Util
+import org.whispersystems.signalservice.api.crypto.AttachmentCipherInputStream.IntegrityCheck
 import org.whispersystems.signalservice.api.messages.AttachmentTransferProgress
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachment
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
@@ -91,14 +91,14 @@ class AttachmentDownloadJob private constructor(
 
         AttachmentTable.TRANSFER_RESTORE_IN_PROGRESS,
         AttachmentTable.TRANSFER_RESTORE_OFFLOADED,
-        AttachmentTable.TRANSFER_NEEDS_RESTORE -> RestoreAttachmentJob.restoreAttachment(databaseAttachment)
+        AttachmentTable.TRANSFER_NEEDS_RESTORE -> RestoreAttachmentJob.forManualRestore(databaseAttachment)
 
         AttachmentTable.TRANSFER_PROGRESS_PENDING,
         AttachmentTable.TRANSFER_PROGRESS_FAILED -> {
-          if (SignalStore.backup.backsUpMedia && databaseAttachment.remoteLocation == null) {
+          if (SignalStore.backup.backsUpMedia && (databaseAttachment.remoteLocation == null || databaseAttachment.remoteDigest == null)) {
             if (databaseAttachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED) {
               Log.i(TAG, "Trying to restore attachment from archive cdn")
-              RestoreAttachmentJob.restoreAttachment(databaseAttachment)
+              RestoreAttachmentJob.forManualRestore(databaseAttachment)
             } else {
               Log.w(TAG, "No remote location, and the archive transfer state is unfinished. Can't download.")
               null
@@ -206,7 +206,7 @@ class AttachmentDownloadJob private constructor(
       }
 
       Log.i(TAG, "Trying to restore attachment from archive cdn instead")
-      RestoreAttachmentJob.restoreAttachment(attachment)
+      RestoreAttachmentJob.forManualRestore(attachment)
 
       return
     }
@@ -214,31 +214,37 @@ class AttachmentDownloadJob private constructor(
     Log.i(TAG, "Downloading push part $attachmentId")
     SignalDatabase.attachments.setTransferState(messageId, attachmentId, AttachmentTable.TRANSFER_PROGRESS_STARTED)
 
-    val digestChanged = when (attachment.cdn) {
-      Cdn.S3 -> {
-        retrieveAttachmentForReleaseChannel(messageId, attachmentId, attachment)
-        false
-      }
-
-      else -> {
-        retrieveAttachment(messageId, attachmentId, attachment)
-      }
+    when (attachment.cdn) {
+      Cdn.S3 -> retrieveAttachmentForReleaseChannel(messageId, attachmentId, attachment)
+      else -> retrieveAttachment(messageId, attachmentId, attachment)
     }
 
     if (SignalStore.backup.backsUpMedia) {
+      val isStory = SignalDatabase.messages.isStory(messageId)
       when {
         attachment.archiveTransferState == AttachmentTable.ArchiveTransferState.FINISHED -> {
           Log.i(TAG, "[$attachmentId] Already archived. Skipping.")
         }
 
-        digestChanged -> {
-          Log.i(TAG, "[$attachmentId] Digest for attachment changed after download. Re-uploading to archive.")
-          AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId))
-        }
-
         attachment.cdn !in CopyAttachmentToArchiveJob.ALLOWED_SOURCE_CDNS -> {
           Log.i(TAG, "[$attachmentId] Attachment CDN doesn't support copying to archive. Re-uploading to archive.")
           AppDependencies.jobManager.add(UploadAttachmentToArchiveJob(attachmentId))
+        }
+
+        isStory -> {
+          Log.i(TAG, "[$attachmentId] Attachment is a story. Skipping.")
+        }
+
+        SignalDatabase.messages.isViewOnce(messageId) -> {
+          Log.i(TAG, "[$attachmentId] View-once. Skipping.")
+        }
+
+        SignalDatabase.messages.willMessageExpireBeforeCutoff(messageId) -> {
+          Log.i(TAG, "[$attachmentId] Message will expire within 24hrs. Skipping.")
+        }
+
+        SignalStore.account.isLinkedDevice -> {
+          Log.i(TAG, "[$attachmentId] Linked device. Skipping.")
         }
 
         else -> {
@@ -268,13 +274,13 @@ class AttachmentDownloadJob private constructor(
     messageId: Long,
     attachmentId: AttachmentId,
     attachment: DatabaseAttachment
-  ): Boolean {
+  ) {
     val maxReceiveSize: Long = RemoteConfig.maxAttachmentReceiveSizeBytes
     val attachmentFile: File = SignalDatabase.attachments.getOrCreateTransferFile(attachmentId)
 
     try {
       if (attachment.size > maxReceiveSize) {
-        throw MmsException("Attachment too large, failing download")
+        throw MmsException("[$attachmentId] Attachment too large, failing download")
       }
 
       val pointer = createAttachmentPointer(attachment)
@@ -289,53 +295,63 @@ class AttachmentDownloadJob private constructor(
         }
       }
 
-      val downloadResult = AppDependencies
+      if (attachment.remoteDigest == null && attachment.dataHash == null) {
+        Log.w(TAG, "[$attachmentId] Attachment has no integrity check!")
+        throw InvalidAttachmentException("Attachment has no integrity check!")
+      }
+
+      val decryptingStream = AppDependencies
         .signalServiceMessageReceiver
         .retrieveAttachment(
           pointer,
           attachmentFile,
           maxReceiveSize,
+          IntegrityCheck.forEncryptedDigestAndPlaintextHash(attachment.remoteDigest, attachment.dataHash),
           progressListener
         )
 
-      return SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, downloadResult.dataStream, downloadResult.iv)
+      decryptingStream.use { input ->
+        SignalDatabase.attachments.finalizeAttachmentAfterDownload(messageId, attachmentId, input)
+      }
     } catch (e: RangeException) {
-      Log.w(TAG, "Range exception, file size " + attachmentFile.length(), e)
+      Log.w(TAG, "[$attachmentId] Range exception, file size " + attachmentFile.length(), e)
       if (attachmentFile.delete()) {
-        Log.i(TAG, "Deleted temp download file to recover")
+        Log.i(TAG, "[$attachmentId] Deleted temp download file to recover")
         throw RetryLaterException(e)
       } else {
-        throw IOException("Failed to delete temp download file following range exception")
+        throw IOException("[$attachmentId] Failed to delete temp download file following range exception")
       }
     } catch (e: InvalidAttachmentException) {
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     } catch (e: NonSuccessfulResponseCodeException) {
       if (SignalStore.backup.backsUpMedia && e.code == 404 && attachment.archiveTransferState === AttachmentTable.ArchiveTransferState.FINISHED) {
-        Log.i(TAG, "Retrying download from archive CDN")
-        RestoreAttachmentJob.restoreAttachment(attachment)
-        return false
+        Log.i(TAG, "[$attachmentId] Retrying download from archive CDN")
+        RestoreAttachmentJob.forManualRestore(attachment)
+        return
       }
 
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     } catch (e: MmsException) {
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     } catch (e: MissingConfigurationException) {
-      Log.w(TAG, "Experienced exception while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced exception while trying to download an attachment.", e)
       markFailed(messageId, attachmentId)
     } catch (e: InvalidMessageException) {
-      Log.w(TAG, "Experienced an InvalidMessageException while trying to download an attachment.", e)
+      Log.w(TAG, "[$attachmentId] Experienced an InvalidMessageException while trying to download an attachment.", e)
       if (e.cause is InvalidMacException) {
-        Log.w(TAG, "Detected an invalid mac. Treating as a permanent failure.")
+        Log.w(TAG, "[$attachmentId] Detected an invalid mac. Treating as a permanent failure.")
         markPermanentlyFailed(messageId, attachmentId)
       } else {
         markFailed(messageId, attachmentId)
       }
+    } catch (e: org.signal.libsignal.protocol.incrementalmac.InvalidMacException) {
+      Log.w(TAG, "[$attachmentId] Detected an invalid incremental mac. Clearing and marking as a temporary failure, requiring the user to manually try again.")
+      SignalDatabase.attachments.clearIncrementalMacsForAttachmentAndAnyDuplicates(attachmentId, attachment.remoteKey, attachment.dataHash)
+      markFailed(messageId, attachmentId)
     }
-
-    return false
   }
 
   @Throws(InvalidAttachmentException::class)
@@ -399,21 +415,17 @@ class AttachmentDownloadJob private constructor(
     try {
       S3.getObject(attachment.fileName!!).use { response ->
         val body = response.body
-        if (body != null) {
-          if (body.contentLength() > RemoteConfig.maxAttachmentReceiveSizeBytes) {
-            throw MmsException("Attachment too large, failing download")
-          }
-
-          SignalDatabase.attachments.createKeyIvIfNecessary(attachmentId)
-          val updatedAttachment = SignalDatabase.attachments.getAttachment(attachmentId)!!
-
-          SignalDatabase.attachments.finalizeAttachmentAfterDownload(
-            messageId,
-            attachmentId,
-            LimitedInputStream.withoutLimits((body.source() as Source).buffer().inputStream()),
-            iv = updatedAttachment.remoteIv!!
-          )
+        if (body.contentLength() > RemoteConfig.maxAttachmentReceiveSizeBytes) {
+          throw MmsException("Attachment too large, failing download")
         }
+
+        SignalDatabase.attachments.createRemoteKeyIfNecessary(attachmentId)
+
+        SignalDatabase.attachments.finalizeAttachmentAfterDownload(
+          messageId,
+          attachmentId,
+          (body.source() as Source).buffer().inputStream()
+        )
       }
     } catch (e: MmsException) {
       Log.w(TAG, "Experienced exception while trying to download an attachment.", e)

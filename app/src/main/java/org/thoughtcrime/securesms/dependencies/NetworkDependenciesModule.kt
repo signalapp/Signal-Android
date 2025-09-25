@@ -48,6 +48,7 @@ import org.whispersystems.signalservice.api.remoteconfig.RemoteConfigApi
 import org.whispersystems.signalservice.api.services.DonationsService
 import org.whispersystems.signalservice.api.services.ProfileService
 import org.whispersystems.signalservice.api.storage.StorageServiceApi
+import org.whispersystems.signalservice.api.svr.SvrBApi
 import org.whispersystems.signalservice.api.username.UsernameApi
 import org.whispersystems.signalservice.api.util.Tls12SocketFactory
 import org.whispersystems.signalservice.api.websocket.SignalWebSocket
@@ -211,11 +212,15 @@ class NetworkDependenciesModule(
   }
 
   val remoteConfigApi: RemoteConfigApi by lazy {
-    provider.provideRemoteConfigApi(authWebSocket)
+    provider.provideRemoteConfigApi(authWebSocket, pushServiceSocket)
   }
 
   val donationsApi: DonationsApi by lazy {
     provider.provideDonationsApi(authWebSocket, unauthWebSocket)
+  }
+
+  val svrBApi: SvrBApi by lazy {
+    provider.provideSvrBApi(libsignalNetwork)
   }
 
   val okHttpClient: OkHttpClient by lazy {

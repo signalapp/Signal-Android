@@ -34,7 +34,7 @@ import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.mediasend.Media;
 import org.thoughtcrime.securesms.mms.AudioSlide;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader.DecryptableUri;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.mms.DocumentSlide;
 import org.thoughtcrime.securesms.mms.GifSlide;
 import org.thoughtcrime.securesms.mms.ImageSlide;
@@ -349,6 +349,10 @@ public class MediaUtil {
 
   public static boolean isWebpType(String contentType) {
     return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_WEBP);
+  }
+
+  public static boolean isPngType(String contentType) {
+    return !TextUtils.isEmpty(contentType) && contentType.trim().equals(IMAGE_PNG);
   }
 
   public static boolean isFile(Attachment attachment) {

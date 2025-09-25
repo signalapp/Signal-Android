@@ -54,7 +54,7 @@ public class SignalServiceAccountDataStoreImpl implements SignalServiceAccountDa
 
   @Override
   public boolean isMultiDevice() {
-    return SignalStore.account().hasLinkedDevices();
+    return SignalStore.account().isMultiDevice();
   }
 
   @Override

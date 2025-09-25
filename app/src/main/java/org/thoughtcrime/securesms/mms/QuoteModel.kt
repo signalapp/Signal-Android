@@ -12,7 +12,7 @@ class QuoteModel(
   val author: RecipientId,
   val text: String,
   val isOriginalMissing: Boolean,
-  val attachments: List<Attachment>,
+  val attachment: Attachment?,
   mentions: List<Mention>?,
   val type: Type,
   val bodyRanges: BodyRangeList?

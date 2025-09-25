@@ -13,7 +13,6 @@ import org.signal.libsignal.metadata.certificate.CertificateValidator;
 import org.signal.libsignal.metadata.certificate.InvalidCertificateException;
 import org.signal.libsignal.metadata.certificate.SenderCertificate;
 import org.signal.libsignal.protocol.InvalidKeyException;
-import org.signal.libsignal.protocol.ecc.Curve;
 import org.signal.libsignal.protocol.ecc.ECPublicKey;
 import org.signal.libsignal.zkgroup.profiles.ProfileKey;
 import org.thoughtcrime.securesms.BuildConfig;
@@ -25,6 +24,7 @@ import org.whispersystems.signalservice.api.crypto.SealedSenderAccess;
 import org.whispersystems.signalservice.api.crypto.UnidentifiedAccess;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -186,8 +186,15 @@ public class SealedSenderAccessUtil {
 
     private static CertificateValidator buildCertificateValidator() {
       try {
-        ECPublicKey unidentifiedSenderTrustRoot = Curve.decodePoint(Base64.decode(BuildConfig.UNIDENTIFIED_SENDER_TRUST_ROOT), 0);
-        return new CertificateValidator(unidentifiedSenderTrustRoot);
+        String[]               base64Strings = BuildConfig.UNIDENTIFIED_SENDER_TRUST_ROOTS;
+        ArrayList<ECPublicKey> roots         = new ArrayList<>(base64Strings.length);
+
+        for (String base64String: base64Strings) {
+          ECPublicKey unidentifiedSenderTrustRoot = new ECPublicKey(Base64.decode(base64String));
+          roots.add(unidentifiedSenderTrustRoot);
+        }
+
+        return new CertificateValidator(roots);
       } catch (InvalidKeyException | IOException e) {
         throw new AssertionError(e);
       }

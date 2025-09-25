@@ -218,6 +218,9 @@ class KeysApi(
           signedPreKey = device.getSignedPreKey().publicKey
           signedPreKeyId = device.getSignedPreKey().keyId
           signedPreKeySignature = device.getSignedPreKey().signature
+        } else {
+          Log.w(TAG, "No signed prekey for device ${device.deviceId}! Skipping.")
+          continue
         }
 
         if (device.getPreKey() != null) {
@@ -229,6 +232,9 @@ class KeysApi(
           kyberPreKey = device.getKyberPreKey().publicKey
           kyberPreKeyId = device.getKyberPreKey().keyId
           kyberPreKeySignature = device.getKyberPreKey().signature
+        } else {
+          Log.w(TAG, "No kyber prekey for device ${device.deviceId}! Skipping.")
+          continue
         }
 
         bundles.add(

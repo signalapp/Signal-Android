@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="44sp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginTop="2sp"
     android:layout_marginBottom="2sp"
     android:background="@drawable/donate_with_google_pay_rounded_background"
@@ -18,13 +19,13 @@
         android:orientation="vertical"
         android:weightSum="2">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:duplicateParentState="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/donate_with_googlepay_button_content" />
+            app:srcCompat="@drawable/donate_with_googlepay_button_content" />
     </LinearLayout>
 
     <ImageView

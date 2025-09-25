@@ -30,7 +30,7 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.fonts.TextFont
 import org.thoughtcrime.securesms.fonts.TextToScript
 import org.thoughtcrime.securesms.fonts.TypefaceCache
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader
+import org.thoughtcrime.securesms.mms.DecryptableUri
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.ParcelUtil
 import java.io.IOException
@@ -150,7 +150,7 @@ data class StoryTextPostModel(
       val drawable = if (linkPreview != null && linkPreview.thumbnail.isPresent) {
         Glide
           .with(view)
-          .load(DecryptableStreamUriLoader.DecryptableUri(linkPreview.thumbnail.get().uri!!))
+          .load(DecryptableUri(linkPreview.thumbnail.get().uri!!))
           .centerCrop()
           .submit(view.getLinkPreviewThumbnailWidth(useLargeThumbnail), view.getLinkPreviewThumbnailHeight(useLargeThumbnail))
           .get()

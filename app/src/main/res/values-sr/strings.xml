@@ -143,7 +143,7 @@
 
     <!-- UploadAttachmentToArchiveJob -->
     <!-- Notification message displayed when uploading large backup attachments to the archive CDN. -->
-    <string name="UploadAttachmentToArchiveJob_uploading_media">Backing up media…</string>
+    <string name="UploadAttachmentToArchiveJob_uploading_media">Креирају се резервне копије медија…</string>
 
     <!-- BackgroundMessageRetriever -->
     <string name="BackgroundMessageRetriever_checking_for_messages">Проверавамо да ли има порука…</string>
@@ -552,15 +552,6 @@
     <!-- Toast message shown when trying to record a voice message during an ongoing call -->
     <string name="ConversationFragment_cannot_record_voice_message_during_call">Није могуће снимати гласовну поруку током позива.</string>
 
-    <!-- Title for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_title">Шаљемо форматирани текст</string>
-    <!-- Message for dialog shown when first sending formatted text -->
-    <string name="SendingFormattingTextDialog_message">Неки људи можда користе верзију Signal-а која не подржава форматирани текст. Они неће моћи да виде промене форматирања које сте направили у својој поруци.</string>
-    <!-- Button text for confirming they\'d like to send the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_send_anyway_button">Свеједно пошаљи</string>
-    <!-- Button text for canceling sending the message with formatting after seeing warning. -->
-    <string name="SendingFormattingTextDialog_cancel_send_button">Откажи</string>
-
     <!-- ConversationAdapter -->
     <plurals name="ConversationAdapter_n_unread_messages">
         <item quantity="one">Непрочитаних порука: %1$d</item>
@@ -872,10 +863,6 @@
     <string name="CreateBackupBottomSheet__you_are_all_set">Све је спремно. Покрените креирање резервне копије.</string>
     <!-- Bottom sheet message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">У зависности од величине ваше резервне копије, ово може дуже потрајати. Можете нормално да користите телефон док се прави резервна копија.</string>
-    <!-- Action button to dismiss sheet and back up later -->
-    <string name="CreateBackupBottomSheet__back_up_later">Касније направи резервну копију</string>
-    <!-- Action button to dismiss sheet and back up now -->
-    <string name="CreateBackupBottomSheet__back_up_now">Направи резервну копију</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Враћање медија није успело</string>
@@ -1138,6 +1125,8 @@
     <string name="LinkDeviceSyncBottomSheet_transfer">Пренеси историју порука</string>
     <!-- Description in bottom sheet of what transferring message history will do -->
     <string name="LinkDeviceSyncBottomSheet_transfer_your_text">Пренесите текстуалне поруке и последњих 45 дана медија</string>
+    <!-- Description in bottom sheet of what transferring message history will do -->
+    <string name="LinkDeviceSyncBottomSheet_transfer_your_text_and_all_media">Пренесите текстуалне поруке и медије</string>
     <!-- Option in bottom sheet to not transfer message history -->
     <string name="LinkDeviceSyncBottomSheet_dont_transfer">Немој да пренесеш</string>
     <!-- Description in bottom sheet of what not transferring history will do -->
@@ -1177,9 +1166,9 @@
     <string name="ExpiredBuildReminder_update_now">Ажурирајте сада</string>
 
     <!-- Title of notification telling users to update Signal -->
-    <string name="DeprecatedNotificationJob_update_signal">Update Signal</string>
+    <string name="DeprecatedNotificationJob_update_signal">Ажурирајте Signal</string>
     <!-- Message body of notification telling users that this current version of Signal has expired. If pressed, we will direct them to the website APK or PlayStore page -->
-    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">This version of Signal has expired. Tap to update to send and receive messages.</string>
+    <string name="DeprecatedNotificationJob_this_version_of_signal_has_expired">Ова верзија Signal-а је истекла. Додирните да ажурирате апликацију да бисте слали и примали поруке.</string>
 
     <!-- PendingGroupJoinRequestsReminder -->
     <plurals name="PendingGroupJoinRequestsReminder_d_pending_member_requests">
@@ -1482,6 +1471,12 @@
     <string name="RemoteRestoreActivity__skip_restore">Прескочи враћање</string>
     <!-- Dialog title displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__couldnt_transfer">Пренос није завршен</string>
+    <!-- Dialog title displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_title">Враћање резервне копије није успело</string>
+    <!-- Dialog body displayed when remote restore failed and we want them to contact support -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_body">Дошло је до грешке приликом враћања резервне копије. Ваша резервна копија се не може вратити. Обратите се подршци ако вам је потребна помоћ.</string>
+    <!-- Dialog action button that will link users to a flow to contact support, displayed when remote restore failed -->
+    <string name="RemoteRestoreActivity__failure_with_log_prompt_contact_button">Обратите се подршци</string>
     <!-- Dialog message displayed when remote restore failed -->
     <string name="RemoteRestoreActivity__error_occurred">Дошло је до грешке и ваш налог није пренесен. Пробајте поново тако што ћете изабрати начин преноса.</string>
     <!-- Dialog title displayed when remote restore failed because of an outdated backup version. -->
@@ -1492,6 +1487,8 @@
     <string name="RemoteRestoreActivity__update_signal">Ажурирајте Signal</string>
     <!-- Text label button to dismiss the dialog -->
     <string name="RemoteRestoreActivity__not_now">Не сада</string>
+    <!-- Text shown on restore screen as information on what will happen if you skip -->
+    <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Поступак враћања медија ће бити обављен у позадини. Ако их не вратите сада, нећете моћи да их вратите касније.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Обавести ме за помињања</string>
@@ -2106,6 +2103,8 @@
     <string name="MessageRecord_you_blocked_this_group">Блокирали сте ову групу</string>
     <!-- Update message shown in chat after you unblock a group -->
     <string name="MessageRecord_you_unblocked_this_group">Одблокирали сте ову групу</string>
+    <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
+    <string name="MessageRecord_unsupported_feature">%1$s вам је послао/ла поруку која не може бити обрађена нити приказана јер користи нову функционалност Signal-а.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Прихватам</string>
@@ -2916,6 +2915,13 @@
     <string name="SubmitDebugLogActivity_this_log_will_be_posted_publicly_online_for_contributors">Овај извештај ће бити јавно објављен и видљив сарадницима. Можете га прегледати пре отпремања.</string>
     <!-- Banner message shown while submitting debug log -->
     <string name="SubmitDebugLogActivity_your_log_will_be_posted_online">Када кликнете на „Пошаљи“, ваш извештај ће бити постављен онлајн 30 дана на јединственој, необјављеној URL адреси. Можете га прво сачувати локално.</string>
+    <!-- Debug log level names to filter by levels. -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_signal_uncaught_exception" translatable="false">Uncaught</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_verbose" translatable="false">Verbose</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_debug" translatable="false">Debug</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_info" translatable="false">Info</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_warning" translatable="false">Warn</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="SubmitDebugLogActivity_error" translatable="false">Error</string> -->
 
     <!-- SupportEmailUtil -->
   <!-- Removed by excludeNonTranslatables <string name="SupportEmailUtil_support_email" translatable="false">support@signal.org</string> -->
@@ -4566,6 +4572,8 @@
     <string name="ConfirmKbsPinFragment__pin_created">PIN је креиран.</string>
     <string name="ConfirmKbsPinFragment__re_enter_your_pin">Поново унесите PIN</string>
     <string name="ConfirmKbsPinFragment__creating_pin">Креирање PIN-а…</string>
+    <!-- ID used when saving the PIN to the device password manager. -->
+    <string name="ConfirmKbsPinFragment__pin_password_manager_id">Signal PIN</string>
 
     <!-- KbsSplashFragment -->
     <string name="KbsSplashFragment__introducing_pins">Представљамо PIN-ове</string>
@@ -4796,7 +4804,7 @@
     <!-- Content description for info icon -->
     <string name="Beta__info">Информације</string>
     <!-- Text in header describing that the feature is a beta feature and prone to frequent changes -->
-    <string name="Beta__this_is_beta">Ово је бета функција којој ћемо континуирано додавати функционалности.</string>
+    <string name="Beta__this_is_beta">Ово је бета функционалност и временом ће се побољшавати.</string>
 
     <!-- Title text shown when Signal is locked and needs to be unlocked -->
     <string name="prompt_passphrase_activity__unlock_signal">Откључајте Signal</string>
@@ -4864,7 +4872,6 @@
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Вратите своје поруке из локалне резервне копије. Ако их не вратите сада, нећете моћи да их вратите касније.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Врати локалну резервну копију</string>
     <string name="TransferOrRestoreFragment__restore_from_signal_backup">Врати резервну копију Signal-а</string>
-    <string name="TransferOrRestoreFragment__restore_your_messages_from_a_signal_backup">Вратите све текстуалне поруке и медије од последњих 30 дана</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Више опција</string>
 
@@ -4961,6 +4968,14 @@
     <string name="OldDeviceTransferInstructions__third_bullet">3.</string>
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Изаберите „Пренесите податке са Android уређаја“ па „Настави“. Држите оба уређаја у близини."</string>
     <string name="OldDeviceTransferInstructions__continue">Настави</string>
+    <!-- Title for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">Stop device transfer?</string>
+    <!-- Message for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__confirm_exit_message">No data has been transferred to your new device.</string>
+    <!-- Confirm button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__stop_transfer">Заустави пренос</string>
+    <!-- Negative/cancel button for exit device transfer confirmation dialog -->
+    <string name="OldDeviceTransferInstructions__continue_transfer">Настави пренос</string>
 
     <!-- OldDeviceTransferComplete -->
     <string name="OldDeviceTransferComplete__go_to_your_new_device">Идите на свој нови уређај</string>
@@ -5348,7 +5363,7 @@
 
     <!-- AppSettingsFragment -->
     <!-- String alerting user that something is wrong with their backups subscription -->
-    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Обновите претплату на резервне копије на Signal-у</string>
+    <string name="AppSettingsFragment__renew_your_signal_backups_subscription">Обновите претплату на безбедне резервне копије Signal-а</string>
     <!-- String alerting user that backup failed -->
     <string name="AppSettingsFragment__couldnt_complete_backup">Прављење резервне копије није успело</string>
     <!-- String alerting user that backup redemption -->
@@ -7231,7 +7246,7 @@
     <!-- Title of the screen, displayed in the toolbar -->
     <string name="IdealTransferDetailsFragment__ideal">iDEAL</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
-    <string name="IdealTransferDetailsFragment__enter_your_bank">Enter your name and email. Stripe uses this email to send you updates about your donation. %1$s</string>
+    <string name="IdealTransferDetailsFragment__enter_your_bank">Унесите име и презиме и имејл. Stripe користи тај имејл да вам шаље информације о вашој донацији. %1$s</string>
     <!-- Subtitle of the screen, displayed below the toolbar. Placeholder is for \'learn more\' -->
     <string name="IdealTransferDetailsFragment__enter_your_bank_details_one_time">Унесите податке о банци. Signal не прикупља нити чува ваше податке о личности. %1$s</string>
     <!-- Subtitle learn-more button displayed inline with the subtitle text -->
@@ -7597,15 +7612,6 @@
 
     <!-- Title shown at top of bottom sheet dialog for displaying a message\'s edit history -->
     <string name="EditMessageHistoryDialog_title">Историја измена</string>
-    <!-- Title of dialog shown alerting user that edit message is in beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_title">Измените поруку</string>
-    <!-- Body of dialog shown alerting user that edit message is in beta only and only sent to beta users. -->
-    <string name="SendingEditMessageBetaOnlyDialog_body">Ако измените поруку, она ће бити видљива само људима који су на најновијим верзијама Signal-а. Они ће моћи да виде да сте изменили поруку.</string>
-    <!-- Button to cancel sending edit message as it is beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_cancel">Откажи</string>
-    <!-- Button to continue sending edit message despite it being beta only -->
-    <string name="SendingEditMessageBetaOnlyDialog_send">Пошаљи</string>
-
 
     <!-- CallLinkDetailsFragment -->
     <!-- Displayed in action bar at the top of the fragment -->
@@ -7720,6 +7726,28 @@
     <string name="PendingParticipantsBottomSheet__approve_all">Прихвати све</string>
     <!-- Button text to deny all participants from joining the call -->
     <string name="PendingParticipantsBottomSheet__deny_all">Одбиј све</string>
+
+    <!-- Title of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__title">Укључите безбедне резервне копије Signal-а</string>
+    <!-- Body of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups -->
+    <string name="TurnOnSignalBackups__body">Нека вам се сачувају поруке када набављате нови телефон или поново инсталирате Signal.</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will take the user to the flow to enable backups -->
+    <string name="TurnOnSignalBackups__turn_on">Укључи</string>
+    <!-- Button of a megaphone shown at the bottom of the chat list to prompt the user to enable message backups that will simply dismiss the megaphone -->
+    <string name="TurnOnSignalBackups__not_now">Не сада</string>
+
+    <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__title">Провера кључа за опоравак</string>
+    <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
+    <string name="VerifyBackupKey__body">Повремено ћемо вам тражити да потврдите кључ како бисте били сигурни да га и даље знате</string>
+    <!-- Button of a megaphone that will take users to the verify recovery key screen -->
+    <string name="VerifyBackupKey__verify">Верификуј</string>
+    <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
+    <string name="VerifyBackupKey__not_now">Не сада</string>
+    <!-- Snackbar text shown when the recovery key entered is correct. -->
+    <string name="VerifyBackupKey__backup_key_correct">Кључ за опоравак је исправан. Чувајте кључ на сигурном.</string>
+    <!-- Snackbar text shown when the user chooses to snooze the recovery key reminder. -->
+    <string name="VerifyBackupKey__we_will_ask_again">Питаћемо вас поново за недељу дана.</string>
 
     <!-- Title of a megaphone shown at the bottom of the chat list when a user has disable the system setting for showing full screen notifications used showing incoming calls -->
     <string name="GrantFullScreenIntentPermission_megaphone_title">Желите ли да укључите обавештења преко целог екрана?</string>
@@ -7864,7 +7892,7 @@
     <!-- Sheet body part 1 for when user falls out of grace period -->
     <string name="BackupAlertBottomSheet__your_subscription_couldnt_be_renewed">Нисмо успели да обновимо вашу претплату уз ваш тренутни начин плаћања. Да бисте наставили са прављењем резервних копија медија, потребна вам је активна претплата.</string>
     <!-- Sheet body part 2 for when user falls out of grace period -->
-    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">И даље ћете имати приступ бесплатном пакету за резервне копије Signal-а.</string>
+    <string name="BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free">И даље ћете имати приступ бесплатном пакету за безбедне резервне копије Signal-а.</string>
     <!-- Sheet title for generic backup error -->
     <string name="BackupAlertBottomSheet__couldnt_complete_backup">Прављење резервне копије није успело</string>
     <!-- Sheet body for generic backup error. Placeholder is days since last backup. -->
@@ -7874,6 +7902,8 @@
     </plurals>
     <!-- Clickable text to learn more about the content of this bottom sheet -->
     <string name="BackupAlertBottomSheet__learn_more">Сазнајте више</string>
+    <!-- Clickable text to enter contact support flow -->
+    <string name="BackupAlertBottomSheet__contact_support">Обратите се подршци</string>
     <!-- Secondary action button text when user does not have enough free space to download their backup. -->
     <string name="BackupAlertBottomSheet__skip_restore">Прескочи враћање</string>
     <!-- Primary action button to open backups management screen -->
@@ -7914,6 +7944,8 @@
     <string name="BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription">Нисмо успели да вратимо вашу претплату на резервне копије</string>
     <!-- Dialog text for when a backup fails to be created and ways to fix it -->
     <string name="BackupAlertBottomSheet__an_error_occurred">Дошло је до грешке и ваша резервна копија није направљена. Проверите да ли користите најновију верзију Signal-а и пробајте поново. Ако се проблем и даље буде појављивао, обратите се подршци.</string>
+    <!-- Dialog text for when a backup fails to be created and ways to fix it. Used for out of remote storage space error. -->
+    <string name="BackupAlertBottomSheet__an_error_occurred_and">Дошло је до грешке и ваша резервна копија није креирана. Ако се проблем и даље буде појављивао, обратите се подршци.</string>
     <!-- Dialog action button that will allow you to check for any Signal version updates -->
     <string name="BackupAlertBottomSheet__check_for_update">Ажурирај на нову верзију</string>
     <!-- Backup redemption error sheet text line 1 -->
@@ -7928,6 +7960,8 @@
     <string name="BackupStatus__free_up_s_of_space_to_download_your_media">Ослободите %1$s меморијског простора да бисте вратили медије.</string>
     <!-- Status title for banner when user is actively restoring media from a backup -->
     <string name="BackupStatus__restoring_media">Враћање медија</string>
+    <!-- Status title for banner when user is canceling restore media from a backup -->
+    <string name="BackupStatus__cancel_restore_media">Отказивање враћања медија</string>
     <!-- Status title for banner when user has paused restore media from a backup -->
     <string name="BackupStatus__restore_paused">Враћање медија је паузирано</string>
     <!-- Status title for banner when user has completed restoring restore media from a backup -->
@@ -8003,6 +8037,32 @@
     <!-- Row title to change or cancel subscription -->
     <string name="BackupsTypeSettingsFragment__change_or_cancel_subscription">Промените или откажите претплату</string>
 
+    <!-- GooglePlayServicesAvailability -->
+    <!-- Dialog title when Google Play services are missing from the device -->
+    <string name="GooglePlayServicesAvailability__service_missing_title">Google Play services missing</string>
+    <!-- Dialog message explaining that Google Play services are required for Signal Secure backups subscription -->
+    <string name="GooglePlayServicesAvailability__service_missing_message">To subscribe to Signal Secure backups, you need to install Google Play services on your phone.</string>
+    <!-- Dialog button text to install Google Play services -->
+    <string name="GooglePlayServicesAvailability__install_play_services">Install Play Services</string>
+    <!-- Dialog title when Google Play services are currently updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_title">Google Play services are updating</string>
+    <!-- Dialog message asking user to wait while Google Play services finish updating -->
+    <string name="GooglePlayServicesAvailability__service_updating_message">To subscribe to Signal Secure backups please wait for Google Play services to finish updating.</string>
+    <!-- Dialog title when Google Play services need to be updated -->
+    <string name="GooglePlayServicesAvailability__service_update_required_title">Update Google Play services</string>
+    <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
+    <string name="GooglePlayServicesAvailability__service_update_required_message">To subscribe to Signal Secure Backups, update Google Play service on your phone.</string>
+    <!-- Dialog button text to update Google Play services -->
+    <string name="GooglePlayServicesAvailability__update">Ажурирај</string>
+    <!-- Dialog title when Google Play services are disabled -->
+    <string name="GooglePlayServicesAvailability__service_disabled_title">Paid subscriptions require Google Play</string>
+    <!-- Dialog message explaining that Google Play services must be enabled for subscriptions -->
+    <string name="GooglePlayServicesAvailability__service_disabled_message">To subscribe to Signal Secure Backups, enable Google Play services on your phone and sign into the Google Play store. </string>
+    <!-- Dialog button text to learn more about enabling Google Play services -->
+    <string name="GooglePlayServicesAvailability__learn_more">Сазнајте више</string>
+    <!-- Dialog message shown when Google Play services is invalid and subscriptions are not available -->
+    <string name="GooglePlayServicesAvailability__service_invalid_message">You can\'t subscribe to Signal Secure backups because your phone does not support Google Play services. Contact the phone manufacturer for assistance.</string>
+
     <!-- ManageStorageSettingsFragment -->
     <!-- Settings section title header show above manage settings options for automatic chat history management (deleting) -->
     <string name="ManageStorageSettingsFragment_chat_limit">Ограничења броја ћаскања</string>
@@ -8023,13 +8083,13 @@
     <!-- Setting row explanation for storage optimization -->
     <string name="ManageStorageSettingsFragment__unused_media_will_be_offloaded">Неискоришћени медији ће бити уклоњени, али се могу преузети из резервне копије у било ком тренутку.</string>
     <!-- Dialog message for paid tier pending dialog -->
-    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Оптимизација меморијског простора се може користити само ако имате плаћени пакет резервних копија Signal-а. Ваша претплата на резервне копије се још увек обрађује и још није активна. Пробајте поново касније.</string>
+    <string name="ManageStorageSettingsFragment__storage_optimization_can_only_be_used">Оптимизација меморијског простора се може користити само ако имате плаћени пакет безбедних резервних копија Signal-а. Ваша претплата на резервне копије се још увек обрађује и још није активна. Пробајте поново касније.</string>
 
     <!-- UpgradeToEnableOptimizedStorageSheet -->
     <!-- Title on a bottom sheet, detailing that the user must upgrade to enable storage optimization -->
     <string name="UpgradeToEnableOptimizedStorageSheet__upgrade_to_enable_this_feature">Надоградите се да бисте активирали ову функционалност</string>
     <!-- Subtitle of bottom sheet detailing that the user must upgrade to enable storage optimization -->
-    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Оптимизација меморијског простора се може користити само ако имате плаћени пакет резервних копија на Signal-у. Надоградите пакет резервних копија да бисте могли да користите ову функционалност.</string>
+    <string name="UpgradeToEnableOptimizedStorageSheet__storage_optimization_can_only_be_used">Оптимизација меморијског простора се може користити само ако имате плаћени пакет безбедних резервних копија Signal-а. Надоградите пакет резервних копија да бисте могли да користите ову функционалност.</string>
     <!-- Primary action to launch upgrade flow. Placeholder is formatted price. -->
     <string name="UpgradeToEnableOptimizedStorageSheet__subscribe_for_s_month">Претплатите се за %1$s месечно</string>
 
@@ -8048,7 +8108,7 @@
     <!-- Title on a bottom sheet explaining that the given media is no longer available. -->
     <string name="MediaNoLongerAvailableSheet__this_media_is_no_longer_available">Овај медиј више није доступан</string>
     <!-- Body on a bottom sheet explaining that the user can enable backups -->
-    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Да бисте могли да креирате резервне копије свих медија, омогућите резервне копије на Signal-у и изаберите плаћени пакет.</string>
+    <string name="MediaNoLongerAvailableSheet__to_start_backing_up_all_your_media">Да бисте могли да креирате резервне копије свих медија, активирајте безбедне резервне копије Signal-а и изаберите плаћени пакет.</string>
     <!-- Primary action button on bottom sheet -->
     <string name="MediaNoLongerAvailableSheet__continue">Настави</string>
     <!-- Secondary action button on bottom sheet -->
@@ -8061,23 +8121,43 @@
     <!-- Educational bottom sheet confirm/dismiss button text shown to notify about delete syncs causing deletes to happen across all devices -->
     <string name="DeleteSyncEducation_acknowledge_button">У реду</string>
 
+    <!-- NoManualBackupBottomSheet -->
+    <!-- Title for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__no_backup_for_d_days">
+        <item quantity="one">Није било резервних копија %1$d дан(а)</item>
+        <item quantity="other">Није било резервних копија %1$d дан(а)</item>
+    </plurals>
+    <!-- Body for bottom sheet, placeholder is number of days. -->
+    <plurals name="NoManualBackupBottomSheet__you_have_not_completed_a_backup">
+        <item quantity="one">Нисте креирали резервну копију %1$d дан(а). Да бисте сачували поруке и медије, креирајте резервну копију сада.</item>
+        <item quantity="other">Нисте креирали резервну копију %1$d дан(а). Да бисте сачували поруке и медије, креирајте резервну копију сада.</item>
+    </plurals>
+
     <!-- BackupsSettingsFragment -->
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s месечно, обнавља се %2$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">Последња резервна копија: %1$s</string>
+    <!-- Subtitle for row for canceled backup -->
+    <string name="BackupsSettingsFragment__subscription_canceled">Претплата је отказана</string>
     <!-- Subtitle for row for no backup ever created -->
     <string name="BackupsSettingsFragment_automatic_backups_with_signals">Аутоматске резервне копије уз помоћ Signal-ове безбедне потпуно шифроване услуге складиштења</string>
     <!-- Subtitle for row for backups that are active but subscription not found -->
-    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Subscription not found on this device."</string>
+    <string name="BackupsSettingsFragment_subscription_not_found_on_this_device">"Није пронађена претплата на овом уређају."</string>
     <!-- Action button label to set up backups -->
     <string name="BackupsSettingsFragment_set_up">Подесите</string>
+    <!-- Action button label to open remote backup settings -->
+    <string name="BackupsSettingsFragment_view_settings">Прикажи подешавања</string>
 
     <!-- RemoteBackupsSettingsFragment -->
     <!-- Content description for canceling backup upload -->
     <string name="RemoteBackupsSettingsFragment__cancel_upload">Откажи отпремање</string>
+    <!-- Displayed on the title bar for Signal Secure Backups -->
+    <string name="RemoteBackupsSettingsFragment__secure_backups">Безбедне резервне копије</string>
     <!-- Displayed on the title bar -->
-    <string name="RemoteBackupsSettingsFragment__signal_backups">Резервне поруке Signal-а</string>
+    <string name="RemoteBackupsSettingsFragment__signal_backups">Безбедне резервне копије Signal-а</string>
+    <!-- Displayed as a label when remote backups are off -->
+    <string name="RemoteBackupsSettingsFragment__off">Искључено</string>
     <!-- Text shown in a popup indicating that the user needs to enter their screen lock -->
     <string name="RemoteBackupsSettingsFragment__authenticatino_required">Потребна је потврда идентитета</string>
     <!-- Row label to launch payment history screen -->
@@ -8088,14 +8168,20 @@
     <string name="RemoteBackupsSettingsFragment__resume_download">Настави преузимање</string>
     <!-- Row label for backup size -->
     <string name="RemoteBackupsSettingsFragment__backup_size">Величина резервне копије</string>
+    <!-- Row description for backup size when waiting for it to load in from the database -->
+    <string name="RemoteBackupsSettingsFragment__calculating">Израчунавање…</string>
     <!-- Row label for backup frequency -->
     <string name="RemoteBackupsSettingsFragment__backup_frequency">Учесталост резервних копија</string>
+    <!-- The body of a pop-up dialog explaining that backups are performed every day. -->
+    <string name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">Свакодневно се креирају резервне копије ваших медија и порука.</string>
     <!-- Toggle row label for allowing backups to occur while on cellular connection -->
     <string name="RemoteBackupsSettingsFragment__back_up_using_cellular">Резервне копије преко мобилне мреже</string>
-    <!-- Row label for viewing backup key -->
-    <string name="RemoteBackupsSettingsFragment__view_backup_key">Прикажи кључ за резервне копије</string>
-    <!-- Prompt title for unlocking device to view backup key -->
-    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Откључајте да видите кључ за резервне копије</string>
+    <!-- Row label for viewing recovery key -->
+    <string name="RemoteBackupsSettingsFragment__view_backup_key">Прикажи кључ за опоравак</string>
+    <!-- Prompt title for unlocking device to view recovery key -->
+    <string name="RemoteBackupsSettingsFragment__unlock_to_view_backup_key">Откључајте да видите кључ за опоравак</string>
+    <!-- Title of bottom sheet explaining that authentication is required to view your key -->
+    <string name="RemoteBackupsSettingsFragment__to_view_your_key">Да бисте видели свој кључ, потврдите да сте то ви</string>
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">Искључи и избриши резервне копије</string>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
@@ -8108,6 +8194,8 @@
     <string name="RemoteBackupsSettingsFragment__download_complete">Преузимање је завршено</string>
     <!-- Snackbar text displayed when backup will be created overnight -->
     <string name="RemoteBackupsSettingsFragment__backup_will_be_created_overnight">Резервна копија ће бити направљена преко ноћи.</string>
+    <!-- Snackbar text displayed when user rotates AEP -->
+    <string name="RemoteBackupsSettingsFragment__new_backup_key_created">Креиран је нови кључ за опоравак</string>
     <!-- Text displayed in card when subscription is inactive -->
     <string name="RemoteBackupsSettingsFragment__subscription_inactive">Претплата је неактивна</string>
     <!-- Text displayed in card when free tier is inactive -->
@@ -8157,7 +8245,7 @@
     <!-- Dialog message when confirming whether to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__your_backup_will_be_deleted_and_no_new_backups_will_be_created">Ваша резервна копија ће бити избрисана и неће се креирати нове резервне копије. Сви медији који се налазе у резервној копији сада ће бити преузети на ваш телефон.</string>
     <!-- Dialog message when confirming whether to turn off and delete backups -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Your subscription will be canceled and you won\'t be charged again. Your backup will also be deleted and no new backups will be created. Any media stored in your backup will be downloaded to your phone now.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_will_be_canceled">Претплата ће бити отказана и неће вам се поново наплатити. Такође, ваша резервна копија ће бити избрисана и неће се креирати нове резервне копије. Сви медији који се налазе у резервној копији сада ће бити преузети на ваш телефон.</string>
     <!-- Confirmation action on dialog to turn off and delete backups -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete">Искључи и избриши</string>
     <!-- Text on dialog while user backup is being deleted -->
@@ -8185,11 +8273,11 @@
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__depending_on_the_size">У зависности од величине ваше резервне копије, преузимање може дуже потрајати. Можете нормално да користите телефон док траје преузимање.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
-    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Претплата није пронађена на овом уређају. Обновите је да бисте наставили да користите резервне копије Signal-а.</string>
+    <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">Претплата није пронађена на овом уређају. Обновите је да бисте наставили да користите безбедне резервне копије Signal-а.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
     <plurals name="RemoteBackupsSettingsFragment__your_subscription_on_this_device_is_valid">
-        <item quantity="one">Ваша претплата на овом уређају важи наредни %1$d дан. Обновите претплату да бисте наставили да користите резервне копије на Signal-у</item>
-        <item quantity="other">Ваша претплата на овом уређају важи наредних %1$d дан(а). Обновите претплату да бисте наставили да користите резервне копије на Signal-у</item>
+        <item quantity="one">Претплата на овом уређају важи још %1$d дан. Обновите је да бисте наставили да користите безбедне резервне копије Signal-а</item>
+        <item quantity="other">Претплата на овом уређају важи још %1$d дан(а). Обновите је да бисте наставили да користите безбедне резервне копије Signal-а</item>
     </plurals>
     <!-- Button label to start subscription resubscribe after cancellation -->
     <string name="RemoteBackupsSettingsFragment__resubscribe">Поново се претплатите</string>
@@ -8201,6 +8289,10 @@
     <string name="RemoteBackupsSettingsFragment__processing_backup">Обрада резервне копије…</string>
     <!-- Linear progress dialog text shown when preparing a backup -->
     <string name="RemoteBackupsSettingsFragment__preparing_backup">Припрема резервне копије…</string>
+    <!-- Linear progress dialog text shown when backup is paused because unmetered connectivity, such as WiFi, is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_Wifi">Чека се WiFi…</string>
+    <!-- Linear progress dialog text shown when backup is paused because internet is unavailable. -->
+    <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">Чека се веза са интернетом…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
         <item quantity="one">Обрађују се поруке, %1$s од %2$s (%3$d%%)</item>
@@ -8308,9 +8400,9 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Ваш кључ за резервне копије</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Ваш кључ за опоравак</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Кључ за резервне копије је шифра од 64 знака која вам омогућава да вратите резервну копију када поново инсталирате Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Кључ за опоравак је шифра од 64 знака која вам омогућава да вратите резервну копију када поново инсталирате Signal.</string>
     <!-- Screen body part 2 -->
     <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">Ако заборавите кључ, нећете моћи да вратите резервну копију. Signal вам не може помоћи да повратите резервну копију.</string>
     <!-- Action button label -->
@@ -8318,23 +8410,29 @@
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Сачувајте кључ за резервне копије</string>
+    <string name="MessageBackupsKeyRecordScreen__record_your_backup_key">Снимите кључ за опоравак</string>
     <!-- Screen subhead -->
     <string name="MessageBackupsKeyRecordScreen__this_key_is_required_to_recover">Овај кључ је потребан за враћање вашег налога и података. Чувајте овај кључ негде на сигурном. Ако га изгубите, нећете моћи да повратите свој налог.</string>
     <!-- Copy to clipboard button label -->
     <string name="MessageBackupsKeyRecordScreen__copy_to_clipboard">Копирај</string>
-    <!-- Label for the button to save a backup key to the device password manager. -->
+    <!-- Label for the button to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager">Сачувај у менаџер лозинки</string>
-    <!-- Dialog title confirming that the user wants to save a backup key to the device password manager. -->
+    <!-- Dialog title confirming that the user wants to save a recovery key to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_title">Желите ли да сачувате у менаџер лозинки?</string>
-    <!-- Dialog message confirming that the user wants to save a backup key to the device password manager. -->
-    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Чувајте резервни кључ само у менаџеру лозинки у који имате поверења да је сигуран. Signal не даје препоруку о томе који менаџер лозинки је одговарајући за вас.</string>
-    <!-- Message shown after the backup key is successfully saved to the device password manager. -->
+    <!-- Dialog message confirming that the user wants to save a recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__confirm_save_to_password_manager_body">Чувајте кључ за опоравак само у менаџеру лозинки у чију сигурност имате поверења. Signal не даје препоруку о томе који менаџер лозинки је одговарајући за вас.</string>
+    <!-- ID used when saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__backup_key_password_manager_id">Безбедне резервне копије Signal-а</string>
+    <!-- Message shown after the recovery key is successfully saved to the device password manager. -->
     <string name="MessageBackupsKeyRecordScreen__save_to_password_manager_success">Сачувано је у менаџеру за лозинке</string>
-    <!-- Dialog title shown when there is an error saving the backup key because no compatible password manager was detected. -->
-    <string name="MessageBackupsKeyRecordScreen__missing_password_manager_title">Чување у менаџер лозинки није успело</string>
-    <!-- Dialog message shown when there is an error saving the backup key because no compatible password manager was detected. -->
+    <!-- Dialog title shown when there is an error saving the recovery key to the device password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__cant_save_to_password_manager_title">Чување у менаџер лозинки није успело</string>
+    <!-- Dialog message shown when there is an error saving the recovery key because no compatible password manager was detected. -->
     <string name="MessageBackupsKeyRecordScreen__missing_password_manager_message">Немате подешен менаџер лозинки или менаџер лозинки који имате није подржан.</string>
+    <!-- Dialog message shown when there is an error saving the recovery key because the user previously chose not to save Signal passwords to their password manager. -->
+    <string name="MessageBackupsKeyRecordScreen__password_save_prompt_disabled_message">Претходно сте изабрали да не чувате лозинке за Signal у Google менаџеру лозинки. У подешавањима Google менаџера лозинки уклоните Signal из опције „Одбијени сајтови и апликације” и пробајте поново.</string>
+    <!-- Label for a button that navigates to the device settings -->
+    <string name="MessageBackupsKeyRecordScreen__go_to_settings">Иди на подешавања</string>
     <!-- Action button label -->
     <string name="MessageBackupsKeyRecordScreen__next">Следеће</string>
     <!-- Bottom sheet title -->
@@ -8347,19 +8445,48 @@
     <string name="MessageBackupsKeyRecordScreen__continue">Настави</string>
     <!-- Sheet secondary action button label -->
     <string name="MessageBackupsKeyRecordScreen__see_key_again">Види кључ поново</string>
+    <!-- Action label to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_new_key">Креирај нови кључ</string>
+    <!-- Dialog title for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__download_media">Преузмите медије</string>
+    <!-- Dialog body for confirming you need to disable optimized storage and download media to rotate AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__to_create_a_new_backup_key">Да бисте креирали нови кључ за опоравак, морате да искључите оптимизацију чувања и сачекате док се медији не преузму. Када се преузимање заврши, можете креирати нови кључ.</string>
+    <!-- Action label to turn off optimized storage and download media -->
+    <string name="MessageBackupsKeyRecordScreen__turn_off_and_download">Искључи и преузми</string>
+    <!-- Bottom Sheet title for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__create_a_new_backup_key">Креирајте нови кључ за опоравак</string>
+    <!-- Bottom Sheet body for creating a new AEP key -->
+    <string name="MessageBackupsKeyRecordScreen__creating_a_new_key_is_only_necessary">Креирање новог кључа је потребно само ако неко други зна ваш кључ. Мораћете поново да отпремите резервну копију, укључујући медије. Ако користите оптимизацију чувања мораћете прво да преузмете уклоњене медије.</string>
+
+    <!-- BackupKeyDisplayFragment -->
+    <!-- Dialog title when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation_question">Желите ли да откажете креирање кључа?</string>
+    <!-- Dialog body when exiting before confirming new key -->
+    <string name="BackupKeyDisplayFragment__your_new_backup_key">Нови кључ за опоравак неће бити креиран ако га не потврдите.</string>
+    <!-- Dialog button to continue confirming new recovery key-->
+    <string name="BackupKeyDisplayFragment__confirm_key">Потврди кључ</string>
+    <!-- Dialog button to cancel new key creation -->
+    <string name="BackupKeyDisplayFragment__cancel_key_creation">Откажи креирање кључа</string>
 
     <!-- Confirm key title -->
-    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Потврдите кључ за резервне копије</string>
+    <string name="MessageBackupsKeyVerifyScreen__confirm_your_backup_key">Потврдите кључ за опоравак</string>
     <!-- Confirm your key subtitle -->
-    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Унесите кључ за резервне копије који сте управо забележили</string>
+    <string name="MessageBackupsKeyVerifyScreen__enter_the_backup_key_that_you_just_recorded">Унесите кључ за опоравак који сте управо забележили</string>
     <!-- Confirm your key text entry hint text -->
-    <string name="MessageBackupsKeyVerifyScreen__backup_key">Кључ за резервне копије</string>
+    <string name="MessageBackupsKeyVerifyScreen__backup_key">Кључ за опоравак</string>
     <!-- Confirm your key text entry error text -->
-    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Нетачан кључ за резервне копије</string>
+    <string name="MessageBackupsKeyVerifyScreen__incorrect_backup_key">Погрешан кључ за опоравак</string>
     <!-- Confirm your key button text to return to record key screen. -->
     <string name="MessageBackupsKeyVerifyScreen__see_key_again">Види кључ поново</string>
     <!-- Confirm your key button text to move onto next screen in flow -->
     <string name="MessageBackupsKeyVerifyScreen__next">Следеће</string>
+
+    <!-- Verify your key title -->
+    <string name="VerifyBackupPinScreen__enter_your_backup_key">Унесите кључ за опоравак</string>
+    <!-- Verify your key subtitle -->
+    <string name="VerifyBackupPinScreen__enter_the_backup_key_that_you_recorded">Унесите 64-цифрени код који сте снимили када сте активирали резервне копије.</string>
+    <!-- Button text when you forget your recovery key -->
+    <string name="VerifyBackupPinScreen__forgot_key">Заборавили сте кључ?</string>
 
     <!-- MessagesBackupsTypeSelectionScreen -->
     <!-- Screen headline -->
@@ -8368,16 +8495,22 @@
     <string name="MessageBackupsTypeSelectionScreen__all_backups_are_end_to_end_encrypted">Све резервне копије су потпуно шифроване. Signal је непрофитна организација, а ви плаћањем резервних копија подржавате нашу мисију.</string>
     <!-- Screen subhead highlighted read-more button -->
     <string name="MessageBackupsTypeSelectionScreen__learn_more">Сазнајте више</string>
-    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <!-- Primary action button label without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe">Претплатите се</string>
+    <!-- Primary action button label when selecting the free backup tier without a current selection -->
+    <string name="MessageBackupsTypeSelectionScreen__choose_free_plan">Изаберите бесплатан пакет</string>
     <!-- Primary action button label when selecting the paid backup tier without a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__subscribe_for_x_month">Претплатите се за %1$s месечно</string>
     <!-- Primary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__change_backup_type">Промени тип резервне копије</string>
+    <!-- Primary action button label when selecting paid tier when Google Play API isn\'t available -->
+    <string name="MessageBackupsTypeSelectionScreen__more_about_this_plan">More about this plan</string>
     <!-- Secondary action button label when selecting a backup tier with a current selection -->
     <string name="MessageBackupsTypeSelectionScreen__cancel_subscription">Откажи претплату</string>
     <!-- MessageBackupsType block amount for free tier -->
     <string name="MessageBackupsTypeSelectionScreen__free">Бесплатно</string>
+    <!-- MessageBackupsType block amount for paid tier when no pricing is available -->
+    <string name="MessageBackupsTypeSelectionScreen__paid">Paid</string>
     <!-- MessageBackupsType block amount for paid tier. Placeholder is formatted currency amount. -->
     <string name="MessageBackupsTypeSelectionScreen__s_month">%1$s месечно</string>
     <!-- Title for free tier -->
@@ -8402,6 +8535,10 @@
     </plurals>
     <!-- Text designating that an option is your current plan -->
     <string name="MessageBackupsTypeSelectionScreen__current_plan">Тренутни пакет</string>
+    <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
+    <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">Can\'t upgrade plan</string>
+    <!-- Dialog body text explaining Google Services requirement for backup subscription -->
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">To subscribe to Signal Secure Backups, you must have Google Services enabled on your phone and be signed into the Google Play Store.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8432,9 +8569,9 @@
     <string name="SelectRestoreMethodFragment__restore_or_transfer_account">Враћање или пренос налога</string>
     <!-- Screen subtitle for selecting which restore method to use during registration -->
     <string name="SelectRestoreMethodFragment__get_your_signal_account">Пребаците налог и историју порука на овај уређај.</string>
-    <!-- Option title for restoring via signal backups -->
-    <string name="SelectRestoreMethodFragment__from_signal_backups">Из резервних копија Signal-а</string>
-    <!-- Option subtitle for restoring via signal backups -->
+    <!-- Option title for restoring via signal secure backups -->
+    <string name="SelectRestoreMethodFragment__from_signal_backups">Из безбедних резервних копија Signal-а</string>
+    <!-- Option subtitle for restoring via signal secure backups -->
     <string name="SelectRestoreMethodFragment__your_free_or_paid_signal_backup_plan">Ваш бесплатни или плаћени пакет за резервне копије Signal-а</string>
     <!-- Option title for restoring via a local backup folder -->
     <string name="SelectRestoreMethodFragment__from_a_backup_folder">Из фолдера за резервне копије</string>
@@ -8452,40 +8589,40 @@
     <!-- Screen subtitle for restore via local backup -->
     <string name="RestoreLocalBackup_subtitle">Вратите поруке из резервне копије коју сте сачували на свом уређају. Ако их не вратите сада, нећете моћи да их вратите касније.</string>
 
-    <!-- Screen title for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_title">Унесите кључ за резервне копије</string>
-    <!-- Screen subtitle for manual entry of backup key material for restoring via signal backups -->
-    <string name="EnterBackupKey_subtitle">Кључ за резервне копије је шифра од 64 знака потребна за враћање вашег налога и података.</string>
-    <!-- Button to skip entering backup key and resuming normal registration flow -->
-    <string name="EnterBackupKey_no_backup_key">Немате кључ за резервне копије?</string>
-    <!-- Backup key text field hint -->
-    <string name="EnterBackupKey_backup_key">Кључ за резервне копије</string>
-    <!-- Backup key not known bottom sheet info paragraph 1 -->
-    <string name="EnterBackupKey_no_key_paragraph_1">Резервне копије се не могу вратити без њихове шифре за опоравак од 64 знака. Ако сте изгубили кључ за резервне копије, Signal не може да вам помогне да вратите резервну копију.</string>
-    <!-- Backup key not known bottom sheet info paragraph 2 -->
-    <string name="EnterBackupKey_no_key_paragraph_2">Ако имате свој стари уређај, можете да видите резервни кључ ако одете у Подешавања &gt; Резервне копије. Затим додирните „Прикажи кључ за резервне копије“.</string>
-    <!-- Backup key not known bottom sheet button to learn more about it -->
+    <!-- Screen title for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_title">Унесите кључ за опоравак</string>
+    <!-- Screen subtitle for manual entry of recovery key material for restoring via signal secure backups -->
+    <string name="EnterBackupKey_subtitle">Кључ за опоравак је шифра од 64 знака потребна за враћање вашег налога и података.</string>
+    <!-- Button to skip entering recovery key and resuming normal registration flow -->
+    <string name="EnterBackupKey_no_backup_key">Немате кључ за опоравак?</string>
+    <!-- Recovery key text field hint -->
+    <string name="EnterBackupKey_backup_key">Кључ за опоравак</string>
+    <!-- Recovery key not known bottom sheet info paragraph 1 -->
+    <string name="EnterBackupKey_no_key_paragraph_1">Резервне копије се не могу вратити без њихове шифре за опоравак од 64 знака. Ако сте изгубили кључ за опоравак, Signal не може да вам помогне да вратите резервну копију.</string>
+    <!-- Recovery key not known bottom sheet info paragraph 2 -->
+    <string name="EnterBackupKey_no_key_paragraph_2">Ако имате свој стари уређај, можете да видите кључ за опоравак ако одете у Подешавања &gt; Резервне копије. Затим додирните „Прикажи кључ за опоравак“.</string>
+    <!-- Recovery key not known bottom sheet button to learn more about it -->
     <string name="EnterBackupKey_learn_more">Сазнајте више</string>
-    <!-- Backup key not known bottom sheet button to skip backup key entry and resume normal reregistration -->
+    <!-- Recovery key not known bottom sheet button to skip recovery key entry and resume normal reregistration -->
     <string name="EnterBackupKey_skip_and_dont_restore">Прескочи и не враћај</string>
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_title">Нетачан кључ за резервне копије</string>
+    <string name="EnterBackupKey_incorrect_backup_key_title">Погрешан кључ за опоравак</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Проверите да ли се региструјете помоћу истог броја телефона и резервног кључа од 64 карактера који сте сачували приликом активирања резервних копија на Signal-у. Резервне копије се не могу вратити без тог кључа.</string>
-    <!-- Dialog positive button text to try entering their backup key again -->
+    <string name="EnterBackupKey_incorrect_backup_key_message">Проверите да ли се региструјете помоћу истог броја телефона и кључа за опоравак од 64 карактера који сте сачували приликом активирања резервних копија на Signal-у. Резервне копије се не могу вратити без тог кључа.</string>
+    <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Пробајте поново</string>
-    <!-- Dialog negative button text to get help with backup key -->
-    <string name="EnterBackupKey_backup_key_help">Помоћ у вези са кључем за резервне копије</string>
-    <!-- Text field error text when the backup key provided has been confirmed invalid -->
-    <string name="EnterBackupKey_incorrect_backup_key_error">Нетачан кључ за резервне копије</string>
-    <!-- Text field error text when the backup key is too long -->
+    <!-- Dialog negative button text to get help with recovery key -->
+    <string name="EnterBackupKey_backup_key_help">Помоћ за кључ за опоравак</string>
+    <!-- Text field error text when the recovery key provided has been confirmed invalid -->
+    <string name="EnterBackupKey_incorrect_backup_key_error">Погрешан кључ за опоравак</string>
+    <!-- Text field error text when the recovery key is too long -->
     <string name="EnterBackupKey_too_long_error">Предугачко (%1$d/%2$d)</string>
-    <!-- Text field error when the backup key is invalid -->
-    <string name="EnterBackupKey_invalid_backup_key_error">Неважећи кључ за резервне копије</string>
+    <!-- Text field error when the recovery key is invalid -->
+    <string name="EnterBackupKey_invalid_backup_key_error">Неважећи кључ за опоравак</string>
     <!-- Dialog title shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_not_found">Резервна копија није пронађена.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Кључ за резервне копије који сте унели је исправан, али нема резервне копије. Ако и даље имате свој стари телефон, проверите да ли је креирање резервне копије омогућено, потом да ли је довршено, и покушајте поново.</string>
+    <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Кључ за опоравак који сте унели је исправан, али нема резервне копије повезане с њим. Ако и даље имате свој стари телефон, проверите да ли је креирање резервних копија активирано и да ли је резервна копија креирана, а затим пробајте поново.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Прескочи враћање</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8497,7 +8634,15 @@
 
     <!-- Email subject when contacting support on a restore backup network issue -->
     <string name="EnterBackupKey_network_failure_support_email">Грешка у мрежи приликом враћања резервне копије за Signal Android</string>
-  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Signal Android Backup restore network error</string> -->
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_network_failure_support_email_filter" translatable="false">Android SignalBackups Import Failed</string> -->
+    <!-- Email subject when contacting support on a permanent backup import failure -->
+    <string name="EnterBackupKey_permanent_failure_support_email">Трајна немогућност враћања резервне копије Signal-а на Android-у</string>
+  <!-- Removed by excludeNonTranslatables <string name="EnterBackupKey_permanent_failure_support_email_filter" translatable="false">Android SignalBackups Import Permanent Failure</string> -->
+
+    <!-- Email subject when contacting support on a create backup failure -->
+    <string name="BackupAlertBottomSheet_network_failure_support_email">Грешка у мрежи приликом експортовања резервне копије за Signal Android</string>
+    <!-- Email filter when contacting support on a create backup failure -->
+  <!-- Removed by excludeNonTranslatables <string name="BackupAlertBottomSheet_export_failure_filter" translatable="false">Android SignalBackups Export Failed</string> -->
 
     <!-- Title of dialog asking to submit debuglogs -->
     <string name="ContactSupportDialog_submit_debug_log">Желите ли да пошаљете извештај о грешкама?</string>
@@ -8543,9 +8688,9 @@
     <string name="TransferAccount_continue_on_your_other_device_details">Наставите са преносом налога на другом уређају.</string>
 
     <!-- Restore Complete bottom sheet dialog title -->
-    <string name="RestoreCompleteBottomSheet_restore_complete">Враћање је завршено</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete">Finish on your other device</string>
     <!-- Restore Complete bottom sheet dialog message -->
-    <string name="RestoreCompleteBottomSheet_restore_complete_message">Ваш налог на Signal-у и поруке почели су да се преносе на ваш други уређај. Signal је сада неактиван на овом уређају.</string>
+    <string name="RestoreCompleteBottomSheet_restore_complete_message">Your Signal account and messages are ready to restore on your other device. Signal is now inactive on this device.</string>
     <!-- Restore Complete bottom sheet dialog title after device transfer -->
     <string name="RestoreCompleteBottomSheet_transfer_complete">Пренос је завршен</string>
     <!-- Restore Complete bottom sheet dialog message after device transfer -->
@@ -8556,7 +8701,7 @@
     <!-- No Backup to Restore screen title -->
     <string name="NoBackupToRestore_title">Нема резервне копије за враћање</string>
     <!-- No Backup to Restore screen subtitle -->
-    <string name="NoBackupToRestore_subtitle">Пошто прелазите са iPhone-а на Android, једини начин да пренесете своје поруке и медије је активирање резервне копије Signal-а на старом уређају.</string>
+    <string name="NoBackupToRestore_subtitle">Пошто прелазите са iPhone-а на Android, једини начин да пренесете своје поруке и медије је активирање безбедних резервних копија Signal-а на старом уређају.</string>
     <!-- No Backup to Restore step 1 to enable backups on old device -->
     <string name="NoBackupToRestore_step1">Отворите Signal на старом уређају</string>
     <!-- No Backup to Restore step 2 to enable backups on old device -->
@@ -8588,9 +8733,23 @@
     <string name="SignalCheckbox_accessibility_unchecked_description">Неозначено</string>
 
     <!-- Notification title for when user is out of remote storage -->
-    <string name="Notification_backup_storage_full">Backup storage full</string>
+    <string name="Notification_backup_storage_full">Простор за резервну копију је пун</string>
     <!-- Notification body for when user is out of remote storage -->
-    <string name="Notification_youve_reached_your_backup_storage_limit">You\'ve reached your backup storage limit. Free up space in Signal to continue backing up chats and media.</string>
+    <string name="Notification_youve_reached_your_backup_storage_limit">Достигли сте ограничење простора за резервну копију. Ослободите простор у Signal-у да бисте наставили са прављењем резервних копија ћаскања и медија.</string>
+    <!-- Notification title for when initial backup failed -->
+    <string name="Notification_backup_failed">Креирање резервне копије није успело</string>
+    <!-- Notification body for when initial backup failed -->
+    <string name="Notification_an_error_occurred_and_your_backup">Дошло је до грешке и ваша резервна копија није креирана. Додирните да видите детаље.</string>
+    <!-- Notification title for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_no_backup_for_d_days">
+        <item quantity="one">Није било резервних копија %1$d дан(а)</item>
+        <item quantity="other">Није било резервних копија %1$d дан(а)</item>
+    </plurals>
+    <!-- Notification body for when manual backup hasn\'t been created within threshold. Placeholder is number of days. -->
+    <plurals name="Notification_you_have_not_completed_a_backup">
+        <item quantity="one">Нисте креирали резервну копију %1$d дан(а). Креирајте резервну копију сада.</item>
+        <item quantity="other">Нисте креирали резервну копију %1$d дан(а). Креирајте резервну копију сада.</item>
+    </plurals>
 
     <!-- EOF -->
 </resources>

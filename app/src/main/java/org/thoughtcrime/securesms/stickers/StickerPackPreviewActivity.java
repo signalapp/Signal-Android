@@ -26,7 +26,7 @@ import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragment;
 import org.thoughtcrime.securesms.conversation.mutiselect.forward.MultiselectForwardFragmentArgs;
 import org.thoughtcrime.securesms.glide.cache.ApngOptions;
-import org.thoughtcrime.securesms.mms.DecryptableStreamUriLoader;
+import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.sharing.MultiShareArgs;
 import org.thoughtcrime.securesms.stickers.StickerManifest.Sticker;
 import org.thoughtcrime.securesms.util.DeviceProperties;
@@ -202,7 +202,7 @@ public final class StickerPackPreviewActivity extends PassphraseRequiredActivity
     Sticker cover = OptionalUtil.or(manifest.getCover(), Optional.ofNullable(first)).orElse(null);
 
     if (cover != null) {
-      Object model = cover.getUri().isPresent() ? new DecryptableStreamUriLoader.DecryptableUri(cover.getUri().get())
+      Object model = cover.getUri().isPresent() ? new DecryptableUri(cover.getUri().get())
                                                 : new StickerRemoteUri(cover.getPackId(), cover.getPackKey(), cover.getId());
       Glide.with(this).load(model)
               .transition(DrawableTransitionOptions.withCrossFade())

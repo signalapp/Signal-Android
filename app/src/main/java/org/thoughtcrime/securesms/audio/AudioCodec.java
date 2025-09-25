@@ -1,5 +1,6 @@
 package org.thoughtcrime.securesms.audio;
 
+import android.annotation.SuppressLint;
 import android.media.AudioFormat;
 import android.media.AudioRecord;
 import android.media.MediaCodec;
@@ -191,6 +192,7 @@ public class AudioCodec implements Recorder {
     return adtsHeader;
   }
 
+  @SuppressLint("MissingPermission")
   private AudioRecord createAudioRecord(int bufferSize) {
     return new AudioRecord(MediaRecorder.AudioSource.MIC, SAMPLE_RATE,
                            AudioFormat.CHANNEL_IN_MONO,

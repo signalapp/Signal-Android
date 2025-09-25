@@ -24,6 +24,7 @@ import org.whispersystems.signalservice.internal.delete
 import org.whispersystems.signalservice.internal.get
 import org.whispersystems.signalservice.internal.post
 import org.whispersystems.signalservice.internal.push.AttachmentUploadForm
+import org.whispersystems.signalservice.internal.push.AuthCredentials
 import org.whispersystems.signalservice.internal.push.PushServiceSocket
 import org.whispersystems.signalservice.internal.put
 import org.whispersystems.signalservice.internal.websocket.WebSocketRequestMessage
@@ -143,13 +144,14 @@ class ArchiveApi(
    * - 200: Success
    * - 400: Bad args, or made on an authenticated channel
    * - 403: Insufficient permissions
+   * - 413: The backup is too large
    * - 429: Rate-limited
    */
-  fun getMessageBackupUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<AttachmentUploadForm> {
+  fun getMessageBackupUploadForm(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>, backupFileSize: Long): NetworkResult<AttachmentUploadForm> {
     return getCredentialPresentation(aci, archiveServiceAccess)
       .map { it.toArchiveCredentialPresentation().toHeaders() }
       .then { headers ->
-        val request = WebSocketRequestMessage.get("/v1/archives/upload/form", headers)
+        val request = WebSocketRequestMessage.get("/v1/archives/upload/form?uploadLength=$backupFileSize", headers)
         NetworkResult.fromWebSocketRequest(unauthWebSocket, request, AttachmentUploadForm::class)
       }
   }
@@ -265,7 +267,7 @@ class ArchiveApi(
 
       var cursor: String? = null
       do {
-        val response: ArchiveGetMediaItemsResponse = getArchiveMediaItemsPage(aci, archiveServiceAccess, 512, cursor).successOrThrow()
+        val response: ArchiveGetMediaItemsResponse = getArchiveMediaItemsPage(aci, archiveServiceAccess, 10_000, cursor).successOrThrow()
         mediaObjects += response.storedMediaObjects
         cursor = response.cursor
       } while (cursor != null)
@@ -361,6 +363,24 @@ class ArchiveApi(
       }
   }
 
+  /**
+   * Retrieves auth credentials that can be used to perform SVRB operations.
+   *
+   * GET /v1/archives/auth/svrb
+   * - 200: Success
+   * - 400: Bad arguments, or made on an authenticated channel
+   * - 401: Bad presentation, invalid public key signature, no matching backupId on the server, or the credential was of the wrong type (messages/media)
+   * - 403: Forbidden
+   */
+  fun getSvrBAuthorization(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<MessageBackupKey>): NetworkResult<AuthCredentials> {
+    return getCredentialPresentation(aci, archiveServiceAccess)
+      .map { it.toArchiveCredentialPresentation().toHeaders() }
+      .then { headers ->
+        val request = WebSocketRequestMessage.get("/v1/archives/auth/svrb", headers)
+        NetworkResult.fromWebSocketRequest(unauthWebSocket, request, AuthCredentials::class)
+      }
+  }
+
   private fun getCredentialPresentation(aci: ACI, archiveServiceAccess: ArchiveServiceAccess<*>): NetworkResult<CredentialPresentationData> {
     return NetworkResult.fromLocal {
       val zkCredential = getZkCredential(aci, archiveServiceAccess)
@@ -384,7 +404,7 @@ class ArchiveApi(
     val presentation: ByteArray,
     val signedPresentation: ByteArray
   ) {
-    val publicKey: ECPublicKey = privateKey.publicKey()
+    val publicKey: ECPublicKey = privateKey.getPublicKey()
 
     companion object {
       fun from(backupKey: BackupKey, aci: ACI, credential: BackupAuthCredential, backupServerPublicParams: GenericServerPublicParams): CredentialPresentationData {

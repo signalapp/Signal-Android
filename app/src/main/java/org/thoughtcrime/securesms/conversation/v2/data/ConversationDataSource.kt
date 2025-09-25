@@ -10,6 +10,7 @@ import org.signal.core.util.Stopwatch
 import org.signal.core.util.logging.Log
 import org.signal.core.util.toInt
 import org.signal.paging.PagedDataSource
+import org.thoughtcrime.securesms.backup.v2.ArchiveRestoreProgress
 import org.thoughtcrime.securesms.backup.v2.BackupRestoreManager
 import org.thoughtcrime.securesms.conversation.ConversationData
 import org.thoughtcrime.securesms.conversation.ConversationMessage
@@ -21,7 +22,6 @@ import org.thoughtcrime.securesms.database.model.InMemoryMessageRecord.Universal
 import org.thoughtcrime.securesms.database.model.MessageRecord
 import org.thoughtcrime.securesms.database.model.MmsMessageRecord
 import org.thoughtcrime.securesms.dependencies.AppDependencies
-import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messagerequests.MessageRequestRepository
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.util.RemoteConfig
@@ -125,7 +125,7 @@ class ConversationDataSource(
     records = MessageDataFetcher.updateModelsWithData(records, extraData).toMutableList()
     stopwatch.split("models")
 
-    if (RemoteConfig.messageBackups && SignalStore.backup.restoreState.inProgress) {
+    if (RemoteConfig.messageBackups && ArchiveRestoreProgress.state.activelyRestoring()) {
       BackupRestoreManager.prioritizeAttachmentsIfNeeded(records)
       stopwatch.split("restore")
     }

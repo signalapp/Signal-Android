@@ -8,36 +8,28 @@ package org.thoughtcrime.securesms.backup.v2.ui
 import android.content.DialogInterface
 import android.os.Parcelable
 import androidx.appcompat.app.AlertDialog
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.defaultMinSize
 import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.remember
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.dimensionResource
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.LinkAnnotation
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.withLink
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.core.os.BundleCompat
@@ -45,21 +37,19 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.DialogFragment
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.parcelize.Parcelize
-import org.signal.core.ui.compose.BottomSheets
-import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.billing.launchManageBackupsSubscription
+import org.thoughtcrime.securesms.components.contactsupport.ContactSupportDialogFragment
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.jobs.BackupMessagesJob
 import org.thoughtcrime.securesms.keyvalue.protos.BackupDownloadNotifierState
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.PlayStoreUtil
-import org.signal.core.ui.R as CoreUiR
 
 /**
  * Notifies the user of an issue with their backup.
@@ -89,14 +79,10 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
 
   @Composable
   override fun SheetContent() {
-    val performPrimaryAction = remember(backupAlert) {
-      createPrimaryAction()
-    }
-
-    BackupAlertSheetContent(
+    AlertContainer(
       backupAlert = backupAlert,
-      onPrimaryActionClick = performPrimaryAction,
-      onSecondaryActionClick = this::performSecondaryAction
+      primaryActionButtonState = rememberPrimaryAction(backupAlert, remember(backupAlert) { createPrimaryAction() }),
+      secondaryActionButtonState = rememberSecondaryAction(backupAlert) { performSecondaryAction() }
     )
   }
 
@@ -139,7 +125,14 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
       is BackupAlert.DiskFull -> {
         displaySkipRestoreDialog()
       }
-      BackupAlert.BackupFailed -> CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.backup_failed_support_url))
+
+      BackupAlert.BackupFailed -> {
+        ContactSupportDialogFragment.create(
+          subject = R.string.BackupAlertBottomSheet_network_failure_support_email,
+          filter = R.string.BackupAlertBottomSheet_export_failure_filter
+        ).show(parentFragmentManager, null)
+      }
+
       BackupAlert.CouldNotRedeemBackup -> CommunicationActions.openBrowserLink(requireContext(), requireContext().getString(R.string.backup_support_url)) // TODO [backups] final url
     }
 
@@ -180,105 +173,56 @@ class BackupAlertBottomSheet : ComposeBottomSheetDialogFragment() {
 }
 
 @Composable
-fun BackupAlertSheetContent(
+private fun AlertContainer(
   backupAlert: BackupAlert,
-  onPrimaryActionClick: () -> Unit = {},
-  onSecondaryActionClick: () -> Unit = {}
+  primaryActionButtonState: BackupAlertActionButtonState,
+  secondaryActionButtonState: BackupAlertActionButtonState? = null
 ) {
-  Column(
-    horizontalAlignment = Alignment.CenterHorizontally,
-    modifier = Modifier
-      .fillMaxWidth()
-      .padding(horizontal = dimensionResource(id = CoreUiR.dimen.gutter))
-  ) {
-    BottomSheets.Handle()
+  BackupAlertBottomSheetContainer(
+    icon = { AlertIcon(backupAlert) },
+    title = titleString(backupAlert),
+    primaryActionButtonState = primaryActionButtonState,
+    secondaryActionButtonState = secondaryActionButtonState,
+    content = { Body(backupAlert) }
+  )
+}
 
-    Spacer(modifier = Modifier.size(26.dp))
-
-    when (backupAlert) {
-      is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
-      BackupAlert.FailedToRenew, BackupAlert.ExpiredAndDowngraded -> {
-        Box {
-          Image(
-            imageVector = ImageVector.vectorResource(id = R.drawable.image_signal_backups),
-            contentDescription = null,
-            modifier = Modifier
-              .size(80.dp)
-              .padding(2.dp)
-          )
-          Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.symbol_error_circle_fill_24),
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.error,
-            modifier = Modifier.align(Alignment.TopEnd)
-          )
-        }
-      }
-
-      else -> {
-        val iconColors = rememberBackupsIconColors(backupAlert = backupAlert)
-        Icon(
-          imageVector = ImageVector.vectorResource(id = R.drawable.symbol_backup_light),
-          contentDescription = null,
-          tint = iconColors.foreground,
-          modifier = Modifier
-            .size(80.dp)
-            .background(color = iconColors.background, shape = CircleShape)
-            .padding(20.dp)
-        )
-      }
+@Composable
+private fun AlertIcon(backupAlert: BackupAlert) {
+  when (backupAlert) {
+    is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
+    BackupAlert.FailedToRenew, BackupAlert.ExpiredAndDowngraded -> {
+      BackupAlertImage()
     }
 
-    Text(
-      text = titleString(backupAlert = backupAlert),
-      style = MaterialTheme.typography.titleLarge,
-      textAlign = TextAlign.Center,
-      modifier = Modifier.padding(top = 16.dp, bottom = 6.dp)
-    )
-
-    when (backupAlert) {
-      is BackupAlert.CouldNotCompleteBackup -> CouldNotCompleteBackup(
-        daysSinceLastBackup = backupAlert.daysSinceLastBackup
-      )
-
-      BackupAlert.FailedToRenew -> PaymentProcessingBody()
-      is BackupAlert.DownloadYourBackupData -> DownloadYourBackupData(backupAlert.formattedSize)
-      is BackupAlert.DiskFull -> DiskFullBody(requiredSpace = backupAlert.requiredSpace)
-      BackupAlert.BackupFailed -> BackupFailedBody()
-      BackupAlert.CouldNotRedeemBackup -> CouldNotRedeemBackup()
-      is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
-      BackupAlert.ExpiredAndDowngraded -> SubscriptionExpired()
-    }
-
-    val secondaryActionResource = rememberSecondaryActionResource(backupAlert = backupAlert)
-    val padBottom = if (secondaryActionResource > 0) 16.dp else 56.dp
-
-    Buttons.LargeTonal(
-      onClick = onPrimaryActionClick,
-      modifier = Modifier
-        .defaultMinSize(minWidth = 220.dp)
-        .padding(bottom = padBottom)
-    ) {
-      Text(text = primaryActionString(backupAlert = backupAlert))
-    }
-
-    if (secondaryActionResource > 0) {
-      TextButton(
-        onClick = onSecondaryActionClick,
-        modifier = Modifier.padding(bottom = 32.dp)
-      ) {
-        Text(text = stringResource(id = secondaryActionResource))
-      }
+    else -> {
+      val iconColors = rememberBackupsIconColors(backupAlert = backupAlert)
+      BackupAlertIcon(iconColors = iconColors)
     }
   }
 }
 
 @Composable
+private fun Body(backupAlert: BackupAlert) {
+  when (val alert = backupAlert) {
+    is BackupAlert.CouldNotCompleteBackup -> CouldNotCompleteBackup(
+      daysSinceLastBackup = alert.daysSinceLastBackup
+    )
+
+    BackupAlert.FailedToRenew -> PaymentProcessingBody()
+    is BackupAlert.DownloadYourBackupData -> DownloadYourBackupData(alert.formattedSize)
+    is BackupAlert.DiskFull -> DiskFullBody(requiredSpace = alert.requiredSpace)
+    BackupAlert.BackupFailed -> BackupFailedBody()
+    BackupAlert.CouldNotRedeemBackup -> CouldNotRedeemBackup()
+    is BackupAlert.MediaBackupsAreOff -> error("Use MediaBackupsAreOffBottomSheet instead.")
+    BackupAlert.ExpiredAndDowngraded -> SubscriptionExpired()
+  }
+}
+
+@Composable
 private fun CouldNotRedeemBackup() {
-  Text(
+  BackupAlertText(
     text = stringResource(R.string.BackupAlertBottomSheet__too_many_devices_have_tried),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 16.dp)
   )
 
@@ -326,17 +270,13 @@ private fun CouldNotRedeemBackup() {
 
 @Composable
 private fun SubscriptionExpired() {
-  Text(
+  BackupAlertText(
     text = stringResource(id = R.string.BackupAlertBottomSheet__your_subscription_couldnt_be_renewed),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 24.dp)
   )
 
-  Text(
+  BackupAlertText(
     text = stringResource(id = R.string.BackupAlertBottomSheet__youll_continue_to_have_access_to_the_free),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 36.dp)
   )
 }
@@ -345,64 +285,66 @@ private fun SubscriptionExpired() {
 private fun CouldNotCompleteBackup(
   daysSinceLastBackup: Int
 ) {
-  Text(
+  BackupAlertText(
     text = pluralStringResource(id = R.plurals.BackupAlertBottomSheet__your_device_hasnt, daysSinceLastBackup, daysSinceLastBackup),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 60.dp)
   )
 }
 
 @Composable
 private fun PaymentProcessingBody() {
-  Text(
+  BackupAlertText(
     text = stringResource(id = R.string.BackupAlertBottomSheet__check_to_make_sure_your_payment_method),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 60.dp)
   )
 }
 
 @Composable
 private fun DownloadYourBackupData(formattedSize: String) {
-  Text(
+  BackupAlertText(
     text = stringResource(id = R.string.BackupAlertBottomSheet__you_have_s_of_media_thats_not_on_this_device, formattedSize),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 24.dp)
   )
 
-  Text(
+  BackupAlertText(
     text = stringResource(id = R.string.BackupAlertBottomSheet__you_can_begin_paying_for_backups_again),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 36.dp)
   )
 }
 
 @Composable
 private fun DiskFullBody(requiredSpace: String) {
-  Text(
+  BackupAlertText(
     text = stringResource(id = R.string.BackupAlertBottomSheet__to_finish_downloading_your_signal_backup, requiredSpace),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 24.dp)
   )
 
-  Text(
+  BackupAlertText(
     text = stringResource(R.string.BackupAlertBottomSheet__to_free_up_space_offload),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
     modifier = Modifier.padding(bottom = 36.dp)
   )
 }
 
 @Composable
 private fun BackupFailedBody() {
-  Text(
-    text = stringResource(id = R.string.BackupAlertBottomSheet__an_error_occurred),
-    textAlign = TextAlign.Center,
-    color = MaterialTheme.colorScheme.onSurfaceVariant,
+  val context = LocalContext.current
+  val text = buildAnnotatedString {
+    append(stringResource(id = R.string.BackupAlertBottomSheet__an_error_occurred))
+    append(" ")
+
+    withLink(
+      LinkAnnotation.Clickable(tag = "learn-more") {
+        CommunicationActions.openBrowserLink(context, context.getString(R.string.backup_failed_support_url))
+      }
+    ) {
+      withStyle(SpanStyle(color = MaterialTheme.colorScheme.primary)) {
+        append(stringResource(id = R.string.BackupAlertBottomSheet__learn_more))
+      }
+    }
+  }
+
+  BackupAlertText(
+    text = text,
     modifier = Modifier.padding(bottom = 36.dp)
   )
 }
@@ -431,6 +373,7 @@ private fun titleString(backupAlert: BackupAlert): String {
         stringResource(R.string.BackupAlertBottomSheet__download_your_backup_data)
       }
     }
+
     is BackupAlert.DiskFull -> stringResource(R.string.BackupAlertBottomSheet__free_up_s_on_this_device, backupAlert.requiredSpace)
     BackupAlert.BackupFailed -> stringResource(R.string.BackupAlertBottomSheet__backup_failed)
     BackupAlert.CouldNotRedeemBackup -> stringResource(R.string.BackupAlertBottomSheet__couldnt_redeem_your_backups_subscription)
@@ -439,10 +382,11 @@ private fun titleString(backupAlert: BackupAlert): String {
 }
 
 @Composable
-private fun primaryActionString(
-  backupAlert: BackupAlert
-): String {
-  return when (backupAlert) {
+private fun rememberPrimaryAction(
+  backupAlert: BackupAlert,
+  callback: () -> Unit
+): BackupAlertActionButtonState {
+  val label = when (backupAlert) {
     is BackupAlert.CouldNotCompleteBackup -> stringResource(R.string.BackupAlertBottomSheet__back_up_now)
     BackupAlert.FailedToRenew -> stringResource(R.string.BackupAlertBottomSheet__manage_subscription)
     is BackupAlert.MediaBackupsAreOff -> error("Not supported.")
@@ -452,20 +396,41 @@ private fun primaryActionString(
     BackupAlert.CouldNotRedeemBackup -> stringResource(R.string.BackupAlertBottomSheet__got_it)
     BackupAlert.ExpiredAndDowngraded -> stringResource(R.string.BackupAlertBottomSheet__manage_backups)
   }
+
+  return remember(backupAlert, callback) {
+    BackupAlertActionButtonState(
+      label = label,
+      callback = callback
+    )
+  }
 }
 
 @Composable
-private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
-  return remember(backupAlert) {
-    when (backupAlert) {
-      is BackupAlert.CouldNotCompleteBackup -> R.string.BackupAlertBottomSheet__try_later
-      BackupAlert.FailedToRenew, BackupAlert.ExpiredAndDowngraded -> R.string.BackupAlertBottomSheet__not_now
-      is BackupAlert.MediaBackupsAreOff -> error("Not supported.")
-      is BackupAlert.DownloadYourBackupData -> R.string.BackupAlertBottomSheet__dont_download_backup
-      is BackupAlert.DiskFull -> R.string.BackupAlertBottomSheet__skip_restore
-      is BackupAlert.BackupFailed -> R.string.BackupAlertBottomSheet__learn_more
-      BackupAlert.CouldNotRedeemBackup -> R.string.BackupAlertBottomSheet__learn_more
-    }
+private fun rememberSecondaryAction(
+  backupAlert: BackupAlert,
+  callback: () -> Unit
+): BackupAlertActionButtonState? {
+  val labelResource = when (backupAlert) {
+    is BackupAlert.CouldNotCompleteBackup -> R.string.BackupAlertBottomSheet__try_later
+    BackupAlert.FailedToRenew, BackupAlert.ExpiredAndDowngraded -> R.string.BackupAlertBottomSheet__not_now
+    is BackupAlert.MediaBackupsAreOff -> error("Not supported.")
+    is BackupAlert.DownloadYourBackupData -> R.string.BackupAlertBottomSheet__dont_download_backup
+    is BackupAlert.DiskFull -> R.string.BackupAlertBottomSheet__skip_restore
+    is BackupAlert.BackupFailed -> R.string.BackupAlertBottomSheet__contact_support
+    BackupAlert.CouldNotRedeemBackup -> R.string.BackupAlertBottomSheet__learn_more
+  }
+
+  if (labelResource <= 0) {
+    return null
+  }
+
+  val label = stringResource(labelResource)
+
+  return remember(backupAlert, callback) {
+    BackupAlertActionButtonState(
+      label = label,
+      callback = callback
+    )
   }
 }
 
@@ -473,9 +438,11 @@ private fun rememberSecondaryActionResource(backupAlert: BackupAlert): Int {
 @Composable
 private fun BackupAlertSheetContentPreviewGeneric() {
   Previews.BottomSheetPreview {
-    BackupAlertSheetContent(
-      backupAlert = BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = 7)
-    )
+    val backupAlert = BackupAlert.CouldNotCompleteBackup(daysSinceLastBackup = 7)
+    val primaryActionButtonState = rememberPrimaryAction(backupAlert) { }
+    val secondaryActionButtonState = rememberSecondaryAction(backupAlert) { }
+
+    AlertContainer(backupAlert, primaryActionButtonState, secondaryActionButtonState)
   }
 }
 
@@ -483,9 +450,11 @@ private fun BackupAlertSheetContentPreviewGeneric() {
 @Composable
 private fun BackupAlertSheetContentPreviewPayment() {
   Previews.BottomSheetPreview {
-    BackupAlertSheetContent(
-      backupAlert = BackupAlert.FailedToRenew
-    )
+    val backupAlert = BackupAlert.FailedToRenew
+    val primaryActionButtonState = rememberPrimaryAction(backupAlert) { }
+    val secondaryActionButtonState = rememberSecondaryAction(backupAlert) { }
+
+    AlertContainer(backupAlert, primaryActionButtonState, secondaryActionButtonState)
   }
 }
 
@@ -493,12 +462,14 @@ private fun BackupAlertSheetContentPreviewPayment() {
 @Composable
 private fun BackupAlertSheetContentPreviewDelete() {
   Previews.BottomSheetPreview {
-    BackupAlertSheetContent(
-      backupAlert = BackupAlert.DownloadYourBackupData(
-        isLastDay = false,
-        formattedSize = "2.3MB"
-      )
+    val backupAlert = BackupAlert.DownloadYourBackupData(
+      isLastDay = false,
+      formattedSize = "2.3MB"
     )
+    val primaryActionButtonState = rememberPrimaryAction(backupAlert) { }
+    val secondaryActionButtonState = rememberSecondaryAction(backupAlert) { }
+
+    AlertContainer(backupAlert, primaryActionButtonState, secondaryActionButtonState)
   }
 }
 
@@ -506,9 +477,11 @@ private fun BackupAlertSheetContentPreviewDelete() {
 @Composable
 private fun BackupAlertSheetContentPreviewDiskFull() {
   Previews.BottomSheetPreview {
-    BackupAlertSheetContent(
-      backupAlert = BackupAlert.DiskFull(requiredSpace = "12GB")
-    )
+    val backupAlert = BackupAlert.DiskFull(requiredSpace = "12GB")
+    val primaryActionButtonState = rememberPrimaryAction(backupAlert) { }
+    val secondaryActionButtonState = rememberSecondaryAction(backupAlert) { }
+
+    AlertContainer(backupAlert, primaryActionButtonState, secondaryActionButtonState)
   }
 }
 
@@ -516,9 +489,11 @@ private fun BackupAlertSheetContentPreviewDiskFull() {
 @Composable
 private fun BackupAlertSheetContentPreviewBackupFailed() {
   Previews.BottomSheetPreview {
-    BackupAlertSheetContent(
-      backupAlert = BackupAlert.BackupFailed
-    )
+    val backupAlert = BackupAlert.BackupFailed
+    val primaryActionButtonState = rememberPrimaryAction(backupAlert) { }
+    val secondaryActionButtonState = rememberSecondaryAction(backupAlert) { }
+
+    AlertContainer(backupAlert, primaryActionButtonState, secondaryActionButtonState)
   }
 }
 
@@ -526,9 +501,11 @@ private fun BackupAlertSheetContentPreviewBackupFailed() {
 @Composable
 private fun BackupAlertSheetContentPreviewCouldNotRedeemBackup() {
   Previews.BottomSheetPreview {
-    BackupAlertSheetContent(
-      backupAlert = BackupAlert.CouldNotRedeemBackup
-    )
+    val backupAlert = BackupAlert.CouldNotRedeemBackup
+    val primaryActionButtonState = rememberPrimaryAction(backupAlert) { }
+    val secondaryActionButtonState = rememberSecondaryAction(backupAlert) { }
+
+    AlertContainer(backupAlert, primaryActionButtonState, secondaryActionButtonState)
   }
 }
 
@@ -536,9 +513,11 @@ private fun BackupAlertSheetContentPreviewCouldNotRedeemBackup() {
 @Composable
 private fun BackupAlertSheetContentPreviewSubscriptionExpired() {
   Previews.BottomSheetPreview {
-    BackupAlertSheetContent(
-      backupAlert = BackupAlert.ExpiredAndDowngraded
-    )
+    val backupAlert = BackupAlert.ExpiredAndDowngraded
+    val primaryActionButtonState = rememberPrimaryAction(backupAlert) { }
+    val secondaryActionButtonState = rememberSecondaryAction(backupAlert) { }
+
+    AlertContainer(backupAlert, primaryActionButtonState, secondaryActionButtonState)
   }
 }
 

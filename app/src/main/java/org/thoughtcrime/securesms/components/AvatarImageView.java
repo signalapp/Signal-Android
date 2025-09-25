@@ -167,6 +167,10 @@ public final class AvatarImageView extends AppCompatImageView {
   }
 
   private void setAvatar(@NonNull RequestManager requestManager, @Nullable Recipient recipient, @NonNull AvatarOptions avatarOptions) {
+    if (isInEditMode()) {
+      return;
+    }
+
     if (recipient != null) {
       RecipientContactPhoto photo = (recipient.isSelf() && avatarOptions.useSelfProfileAvatar) ? new RecipientContactPhoto(recipient,
                                                                                                                            new ProfileContactPhoto(Recipient.self()))

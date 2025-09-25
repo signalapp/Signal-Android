@@ -203,7 +203,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
       byte[] remoteIdentityKey = WebRtcUtil.getPublicKeyBytes(receivedAnswerMetadata.getRemoteIdentityKey());
       byte[] localIdentityKey  = WebRtcUtil.getPublicKeyBytes(SignalStore.account().getAciIdentityKey().getPublicKey().serialize());
 
-      webRtcInteractor.getCallManager().receivedAnswer(callMetadata.getCallId(), callMetadata.getRemoteDevice(), answerMetadata.getOpaque(), remoteIdentityKey, localIdentityKey);
+      webRtcInteractor.getCallManager().receivedAnswer(callMetadata.getCallId(), callMetadata.getRemotePeer(), callMetadata.getRemoteDevice(), answerMetadata.getOpaque(), remoteIdentityKey, localIdentityKey);
     } catch (CallException | InvalidKeyException e) {
       return callFailure(currentState, "receivedAnswer() failed: ", e);
     }
@@ -216,7 +216,7 @@ public class OutgoingCallActionProcessor extends DeviceAwareActionProcessor {
     Log.i(TAG, "handleReceivedBusy(): id: " + callMetadata.getCallId().format(callMetadata.getRemoteDevice()));
 
     try {
-      webRtcInteractor.getCallManager().receivedBusy(callMetadata.getCallId(), callMetadata.getRemoteDevice());
+      webRtcInteractor.getCallManager().receivedBusy(callMetadata.getCallId(), callMetadata.getRemotePeer(), callMetadata.getRemoteDevice());
     } catch (CallException e) {
       return callFailure(currentState, "receivedBusy() failed: ", e);
     }

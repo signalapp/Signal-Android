@@ -79,7 +79,6 @@ object FakeMessageRecords {
       cdn = Cdn.fromCdnNumber(cdnNumber),
       location = location,
       key = key,
-      iv = iv,
       digest = digest,
       incrementalDigest = incrementalDigest,
       incrementalMacChunkSize = incrementalMacChunkSize,
@@ -101,7 +100,8 @@ object FakeMessageRecords {
       archiveCdn = archiveCdn,
       thumbnailRestoreState = thumbnailRestoreState,
       archiveTransferState = archiveTransferState,
-      uuid = null
+      uuid = null,
+      quoteTargetContentType = null
     )
   }
 

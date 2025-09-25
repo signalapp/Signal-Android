@@ -19,6 +19,7 @@ import org.signal.core.util.SetUtil;
 import org.signal.core.util.TranslationDetection;
 import org.signal.core.util.logging.Log;
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.backup.v2.ui.verify.VerifyBackupKeyActivity;
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.model.MegaphoneRecord;
@@ -40,8 +41,11 @@ import org.thoughtcrime.securesms.profiles.username.NewWaysToConnectDialogFragme
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.storage.StorageSyncHelper;
 import org.thoughtcrime.securesms.util.DateUtils;
+import org.thoughtcrime.securesms.util.Environment;
 import org.thoughtcrime.securesms.util.RemoteConfig;
 import org.thoughtcrime.securesms.util.ServiceUtil;
+import org.thoughtcrime.securesms.util.TextSecurePreferences;
+import org.thoughtcrime.securesms.util.VersionTracker;
 import org.thoughtcrime.securesms.util.dynamiclanguage.DynamicLanguageContextWrapper;
 
 import java.util.LinkedHashMap;
@@ -110,7 +114,6 @@ public final class Megaphones {
   private static Map<Event, MegaphoneSchedule> buildDisplayOrder(@NonNull Context context, @NonNull Map<Event, MegaphoneRecord> records) {
     return new LinkedHashMap<>() {{
       put(Event.PINS_FOR_ALL, new PinsForAllSchedule());
-      put(Event.UPDATE_PIN_AFTER_AEP_REGISTRATION, new UpdatePinAfterAepRegistrationSchedule());
       put(Event.CLIENT_DEPRECATED, SignalStore.misc().isClientDeprecated() ? ALWAYS : NEVER);
       put(Event.NEW_LINKED_DEVICE, shouldShowNewLinkedDeviceMegaphone() ? ALWAYS: NEVER);
       put(Event.NOTIFICATIONS, shouldShowNotificationsMegaphone(context) ? RecurringSchedule.every(TimeUnit.DAYS.toMillis(30)) : NEVER);
@@ -126,6 +129,8 @@ public final class Megaphones {
       // Feature-introduction megaphones should *probably* be added below this divider
       put(Event.ADD_A_PROFILE_PHOTO, shouldShowAddAProfilePhotoMegaphone(context) ? ALWAYS : NEVER);
       put(Event.PNP_LAUNCH, shouldShowPnpLaunchMegaphone() ? ALWAYS : NEVER);
+      put(Event.TURN_ON_SIGNAL_BACKUPS, shouldShowTurnOnBackupsMegaphone(context) ? new RecurringSchedule(TimeUnit.DAYS.toMillis(30), TimeUnit.DAYS.toMillis(90)) : NEVER);
+      put(Event.VERIFY_BACKUP_KEY, new VerifyBackupKeyReminderSchedule());
     }};
   }
 
@@ -171,8 +176,10 @@ public final class Megaphones {
         return buildPnpLaunchMegaphone();
       case NEW_LINKED_DEVICE:
         return buildNewLinkedDeviceMegaphone(context);
-      case UPDATE_PIN_AFTER_AEP_REGISTRATION:
-        return buildUpdatePinAfterAepRegistrationMegaphone();
+      case TURN_ON_SIGNAL_BACKUPS:
+        return buildTurnOnSignalBackupsMegaphone();
+      case VERIFY_BACKUP_KEY:
+        return buildVerifyBackupKeyMegaphone();
       default:
         throw new IllegalArgumentException("Event not handled!");
     }
@@ -440,17 +447,43 @@ public final class Megaphones {
         .build();
   }
 
-  public static @NonNull Megaphone buildUpdatePinAfterAepRegistrationMegaphone() {
-    return new Megaphone.Builder(Event.UPDATE_PIN_AFTER_AEP_REGISTRATION, Megaphone.Style.BASIC)
-        .setImage(R.drawable.kbs_pin_megaphone)
-        .setTitle(R.string.UpdatePinMegaphone__update_signal_pin)
-        .setBody(R.string.UpdatePinMegaphone__message)
-        .setActionButton(R.string.UpdatePinMegaphone__update_pin, (megaphone, listener) -> {
-          Intent intent = CreateSvrPinActivity.getIntentForPinCreate(AppDependencies.getApplication());
+  public static @NonNull Megaphone buildTurnOnSignalBackupsMegaphone() {
+    return new Megaphone.Builder(Event.TURN_ON_SIGNAL_BACKUPS, Megaphone.Style.BASIC)
+        .setImage(R.drawable.backups_megaphone_image)
+        .setTitle(R.string.TurnOnSignalBackups__title)
+        .setBody(R.string.TurnOnSignalBackups__body)
+        .setActionButton(R.string.TurnOnSignalBackups__turn_on, (megaphone, controller) -> {
+          Intent intent = AppSettingsActivity.remoteBackups(controller.getMegaphoneActivity());
 
-          listener.onMegaphoneNavigationRequested(intent, CreateSvrPinActivity.REQUEST_NEW_PIN);
+          controller.onMegaphoneNavigationRequested(intent);
+          controller.onMegaphoneSnooze(Event.TURN_ON_SIGNAL_BACKUPS);
+        })
+        .setSecondaryButton(R.string.TurnOnSignalBackups__not_now, (megaphone, controller) -> {
+          controller.onMegaphoneSnooze(Event.TURN_ON_SIGNAL_BACKUPS);
         })
         .build();
+  }
+
+  public static @NonNull Megaphone buildVerifyBackupKeyMegaphone() {
+    Megaphone.Builder builder = new Megaphone.Builder(Event.VERIFY_BACKUP_KEY, Megaphone.Style.BASIC)
+        .setImage(R.drawable.image_signal_backups_key)
+        .setTitle(R.string.VerifyBackupKey__title)
+        .setBody(R.string.VerifyBackupKey__body)
+        .setActionButton(R.string.VerifyBackupKey__verify, (megaphone, controller) -> {
+          Intent intent = VerifyBackupKeyActivity.createIntent(controller.getMegaphoneActivity());
+
+          controller.onMegaphoneNavigationRequested(intent, VerifyBackupKeyActivity.REQUEST_CODE);
+        });
+
+    if (!SignalStore.backup().getHasSnoozedVerified()) {
+      builder.setSecondaryButton(R.string.VerifyBackupKey__not_now, (megaphone, controller) -> {
+        SignalStore.backup().setHasSnoozedVerified(true);
+        controller.onMegaphoneToastRequested(controller.getMegaphoneActivity().getString(R.string.VerifyBackupKey__we_will_ask_again));
+        controller.onMegaphoneSnooze(Event.VERIFY_BACKUP_KEY);
+      });
+    }
+
+    return builder.build();
   }
 
   private static boolean shouldShowOnboardingMegaphone(@NonNull Context context) {
@@ -520,6 +553,22 @@ public final class Megaphones {
     return TextUtils.isEmpty(SignalStore.account().getUsername()) && !SignalStore.uiHints().hasCompletedUsernameOnboarding();
   }
 
+  private static boolean shouldShowTurnOnBackupsMegaphone(@NonNull Context context) {
+    if (!Environment.IS_STAGING) {
+      return false;
+    }
+
+    if (!RemoteConfig.messageBackups() || SignalStore.backup().getLatestBackupTier() != null) {
+      return false;
+    }
+
+    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context)) {
+      return false;
+    }
+
+    return VersionTracker.getDaysSinceFirstInstalled(context) > 7;
+  }
+
   private static boolean shouldShowGrantFullScreenIntentPermission(@NonNull Context context) {
     return Build.VERSION.SDK_INT >= 34 && !NotificationManagerCompat.from(context).canUseFullScreenIntent();
   }
@@ -569,7 +618,8 @@ public final class Megaphones {
     PNP_LAUNCH("pnp_launch"),
     GRANT_FULL_SCREEN_INTENT("grant_full_screen_intent"),
     NEW_LINKED_DEVICE("new_linked_device"),
-    UPDATE_PIN_AFTER_AEP_REGISTRATION("update_pin_after_registration");
+    TURN_ON_SIGNAL_BACKUPS("turn_on_signal_backups"),
+    VERIFY_BACKUP_KEY("verify_backup_key");
 
     private final String key;
 

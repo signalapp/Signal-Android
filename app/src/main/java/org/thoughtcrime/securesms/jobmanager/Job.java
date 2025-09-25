@@ -279,11 +279,13 @@ public abstract class Job {
     public static final int    UNLIMITED           = -1;
 
     @Retention(SOURCE)
-    @IntDef({ PRIORITY_DEFAULT, PRIORITY_LOW, PRIORITY_HIGH})
+    @IntDef({ PRIORITY_DEFAULT, PRIORITY_LOW, PRIORITY_LOWER, PRIORITY_HIGH})
     public @interface Priority{}
     public static final int PRIORITY_DEFAULT = 0;
     public static final int PRIORITY_HIGH = 1;
     public static final int PRIORITY_LOW = -1;
+    /** One step lower than {@link #PRIORITY_LOW} */
+    public static final int PRIORITY_LOWER = -2;
 
     private final String       id;
     private final long         createTime;

@@ -131,7 +131,7 @@ class AudioDeviceConfigTest {
 
   @After
   fun tearDown() {
-    mockkStatic(AppDependencies::class)
+    unmockkStatic(AppDependencies::class)
     unmockkStatic(PackageManager::class)
     unmockkObject(RemoteConfig)
     unmockkStatic(AcousticEchoCanceler::class)

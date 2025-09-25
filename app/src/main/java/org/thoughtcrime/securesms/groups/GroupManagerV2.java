@@ -1021,15 +1021,16 @@ final class GroupManagerV2 {
     /**
      * Creates a local group from what we know before joining.
      * <p>
-     * Creates as a {@link GroupsV2StateProcessor#PLACEHOLDER_REVISION} so that we know not do do a
-     * full diff against this group once we learn more about this group as that would create a large
-     * update message.
+     * Creates as a placeholder group so that we know not do do a full diff against this group once we learn more about this
+     * group as that would create a large update message.
      */
     private DecryptedGroup createPlaceholderGroup(@NonNull DecryptedGroupJoinInfo joinInfo, boolean requestToJoin) {
       DecryptedGroup.Builder group = new DecryptedGroup.Builder()
                                                        .title(joinInfo.title)
                                                        .avatar(joinInfo.avatar)
-                                                       .revision(GroupsV2StateProcessor.PLACEHOLDER_REVISION);
+                                                       .description(joinInfo.description)
+                                                       .revision(joinInfo.revision)
+                                                       .isPlaceholderGroup(true);
 
       Recipient  self         = Recipient.self();
       ByteString selfAciBytes = selfAci.toByteString();
@@ -1290,7 +1291,7 @@ final class GroupManagerV2 {
         } else {
           long threadId = SignalDatabase.threads().getOrCreateValidThreadId(outgoingMessage.getThreadRecipient(), -1, outgoingMessage.getDistributionType());
           try {
-            long messageId = SignalDatabase.messages().insertMessageOutbox(outgoingMessage, threadId, false, null);
+            long messageId = SignalDatabase.messages().insertMessageOutbox(outgoingMessage, threadId, false, null).getMessageId();
             SignalDatabase.messages().markAsSent(messageId, true);
             SignalDatabase.threads().update(threadId, true, true);
           } catch (MmsException e) {

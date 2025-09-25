@@ -25,7 +25,7 @@ class ArchiveAttachmentBackfillJob private constructor(parameters: Parameters) :
 
   constructor() : this(
     parameters = Parameters.Builder()
-      .setQueue("ArchiveAttachmentBackfillJob")
+      .setQueue(ArchiveCommitAttachmentDeletesJob.ARCHIVE_ATTACHMENT_QUEUE)
       .setMaxInstancesForQueue(2)
       .setLifespan(30.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
@@ -45,15 +45,15 @@ class ArchiveAttachmentBackfillJob private constructor(parameters: Parameters) :
     val jobs = SignalDatabase.attachments.getAttachmentsThatNeedArchiveUpload()
       .map { attachmentId -> UploadAttachmentToArchiveJob(attachmentId) }
 
-    SignalDatabase.attachments.createKeyIvDigestForAttachmentsThatNeedArchiveUpload()
+    SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload()
 
-    ArchiveUploadProgress.onAttachmentsStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
+    ArchiveUploadProgress.onAttachmentSectionStarted(SignalDatabase.attachments.getPendingArchiveUploadBytes())
 
     if (!isCanceled) {
-      Log.i(TAG, "Adding ${jobs.size} jobs to backfill attachments.")
+      Log.i(TAG, "Adding ${jobs.size} jobs to backfill attachments.", true)
       AppDependencies.jobManager.addAll(jobs)
     } else {
-      Log.w(TAG, "Job was canceled. Not enqueuing backfill.")
+      Log.w(TAG, "Job was canceled. Not enqueuing backfill.", true)
     }
 
     return Result.success()

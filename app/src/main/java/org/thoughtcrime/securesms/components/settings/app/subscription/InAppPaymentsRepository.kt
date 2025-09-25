@@ -44,6 +44,7 @@ import org.thoughtcrime.securesms.database.model.InAppPaymentSubscriberRecord
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.database.model.databaseprotos.PendingOneTimeDonation
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
@@ -223,10 +224,14 @@ object InAppPaymentsRepository {
    * Returns a duration to utilize for jobs tied to different payment methods. For long running bank transfers, we need to
    * allow extra time for completion.
    */
-  fun resolveContextJobLifespan(inAppPayment: InAppPaymentTable.InAppPayment): Duration {
-    return when (inAppPayment.data.paymentMethodType) {
-      InAppPaymentData.PaymentMethodType.SEPA_DEBIT, InAppPaymentData.PaymentMethodType.IDEAL -> 30.days
-      else -> 1.days
+  fun resolveContextJobLifespanMillis(inAppPayment: InAppPaymentTable.InAppPayment): Long {
+    return if (inAppPayment.type == InAppPaymentType.RECURRING_BACKUP) {
+      Job.Parameters.IMMORTAL
+    } else {
+      when (inAppPayment.data.paymentMethodType) {
+        InAppPaymentData.PaymentMethodType.SEPA_DEBIT, InAppPaymentData.PaymentMethodType.IDEAL -> 30.days.inWholeMilliseconds
+        else -> 1.days.inWholeMilliseconds
+      }
     }
   }
 
