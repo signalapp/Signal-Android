@@ -7,6 +7,7 @@ package org.thoughtcrime.securesms.components.webrtc.v2
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.DefaultTooltipCaretShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.PlainTooltip
 import androidx.compose.material3.Text
@@ -42,7 +43,7 @@ fun CallScreenTooltipBox(
     state = state,
     tooltip = {
       PlainTooltip(
-        caretSize = TooltipDefaults.caretSize,
+        caretShape = DefaultTooltipCaretShape(),
         shape = TooltipDefaults.plainTooltipContainerShape,
         containerColor = colorResource(R.color.signal_light_colorPrimary),
         contentColor = colorResource(R.color.signal_light_colorOnPrimary)

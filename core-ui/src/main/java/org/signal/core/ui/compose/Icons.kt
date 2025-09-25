@@ -5,7 +5,6 @@
 
 package org.signal.core.ui.compose
 
-import android.R
 import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -50,7 +49,7 @@ object Icons {
 private fun BrushedForegroundPreview() {
   Previews.Preview {
     Icons.BrushedForeground(
-      painter = painterResource(id = R.drawable.ic_menu_camera),
+      painter = painterResource(id = android.R.drawable.ic_menu_camera),
       contentDescription = null,
       foregroundBrush = Brush.linearGradient(listOf(Color.Red, Color.Blue))
     )
