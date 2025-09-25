@@ -21,7 +21,7 @@ class AttachmentKeyboardButtonList @JvmOverloads constructor(
   defStyleAttr: Int = 0) : HorizontalScrollView(context, attrs, defStyleAttr) {
 
   private val inner: LinearLayout
-  private var onButtonClicked: Consumer<AttachmentKeyboardButton>? = null
+  var onButtonClicked: Consumer<AttachmentKeyboardButton> = Consumer { _ -> }
 
   init {
     inflate(context, R.layout.attachment_keyboard_button_list, this)
@@ -30,20 +30,14 @@ class AttachmentKeyboardButtonList @JvmOverloads constructor(
 
   fun setButtons(newButtons: List<AttachmentKeyboardButton>) {
     inner.removeAllViews()
-    newButtons.forEach { inner.addView(buttonToView(it)) }
+    newButtons.asSequence().map { buttonToView(it) }.forEach { inner.addView(it) }
     AttachmentButtonCenterHelper.recenter(inner)
   }
 
   private fun buttonToView(button: AttachmentKeyboardButton): View {
     return (LayoutInflater.from(context).inflate(R.layout.attachment_keyboard_button_item, inner, false) as ButtonStripItemView).apply {
       fillFromButton(button)
-      setOnClickListener { onButtonClicked?.accept(button) }
+      setOnClickListener { onButtonClicked.accept(button) }
     }
   }
-
-  /** Sets a callback that will be invoked when a button is clicked. */
-  fun setOnButtonClickedCallback(callback: Consumer<AttachmentKeyboardButton>) {
-    onButtonClicked = callback
-  }
-
 }

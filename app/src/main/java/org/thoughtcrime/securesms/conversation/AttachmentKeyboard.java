@@ -75,7 +75,7 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
     });
 
     buttonList = findViewById(R.id.attachment_keyboard_button_list);
-    buttonList.setOnButtonClickedCallback(button -> {
+    buttonList.setOnButtonClicked(button -> {
       if (callback != null) {
         callback.onAttachmentSelectorClicked(button);
       }
