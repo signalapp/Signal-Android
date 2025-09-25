@@ -856,7 +856,7 @@ class AttachmentTable(
       .where(
         """
         $ARCHIVE_TRANSFER_STATE = ${ArchiveTransferState.FINISHED.value} AND 
-        $ARCHIVE_THUMBNAIL_TRANSFER_STATE = ${ArchiveTransferState.NONE.value} AND
+        $ARCHIVE_THUMBNAIL_TRANSFER_STATE IN (${ArchiveTransferState.NONE.value}, ${ArchiveTransferState.TEMPORARY_FAILURE.value}) AND
         $QUOTE = 0 AND
         ($CONTENT_TYPE LIKE 'image/%' OR $CONTENT_TYPE LIKE 'video/%') AND
         $CONTENT_TYPE != 'image/svg+xml'

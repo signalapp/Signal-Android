@@ -21,7 +21,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraint
 import org.thoughtcrime.securesms.jobs.protos.UploadAttachmentToArchiveJobData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.net.SignalNetwork
@@ -76,7 +76,7 @@ class UploadAttachmentToArchiveJob private constructor(
     uploadSpec = null,
     canReuseUpload = canReuseUpload,
     parameters = Parameters.Builder()
-      .addConstraint(NetworkConstraint.KEY)
+      .addConstraint(BackupMessagesConstraint.KEY)
       .setLifespan(30.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
       .setQueue(QUEUES.random())
@@ -102,6 +102,11 @@ class UploadAttachmentToArchiveJob private constructor(
   }
 
   override fun run(): Result {
+    // TODO [cody] Remove after a few releases as we migrate to the correct constraint
+    if (!BackupMessagesConstraint.isMet(context)) {
+      return Result.failure()
+    }
+
     if (SignalStore.account.isLinkedDevice) {
       Log.w(TAG, "[$attachmentId] Linked devices don't backup media. Skipping.")
       SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.NONE)

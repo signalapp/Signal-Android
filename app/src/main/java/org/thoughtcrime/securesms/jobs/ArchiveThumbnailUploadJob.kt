@@ -18,7 +18,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
-import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
+import org.thoughtcrime.securesms.jobmanager.impl.BackupMessagesConstraint
 import org.thoughtcrime.securesms.jobmanager.impl.NoRemoteArchiveGarbageCollectionPendingConstraint
 import org.thoughtcrime.securesms.jobmanager.persistence.JobSpec
 import org.thoughtcrime.securesms.jobs.protos.ArchiveThumbnailUploadJobData
@@ -79,7 +79,7 @@ class ArchiveThumbnailUploadJob private constructor(
   constructor(attachmentId: AttachmentId) : this(
     Parameters.Builder()
       .setQueue(QUEUES.random())
-      .addConstraint(NetworkConstraint.KEY)
+      .addConstraint(BackupMessagesConstraint.KEY)
       .addConstraint(NoRemoteArchiveGarbageCollectionPendingConstraint.KEY)
       .setLifespan(1.days.inWholeMilliseconds)
       .setMaxAttempts(Parameters.UNLIMITED)
@@ -105,6 +105,11 @@ class ArchiveThumbnailUploadJob private constructor(
   }
 
   override fun run(): Result {
+    // TODO [cody] Remove after a few releases as we migrate to the correct constraint
+    if (!BackupMessagesConstraint.isMet(context)) {
+      return Result.failure()
+    }
+
     val attachment = SignalDatabase.attachments.getAttachment(attachmentId)
     if (attachment == null) {
       Log.w(TAG, "$attachmentId not found, assuming this job is no longer necessary.")
