@@ -3848,7 +3848,7 @@ class ConversationFragment :
         body = result.body,
         mentions = result.mentions,
         bodyRanges = result.bodyRanges,
-        messageToEdit = null,
+        messageToEdit = inputPanel.editMessageId,
         quote = if (result.isViewOnce) null else inputPanel.quote.orNull(),
         scheduledDate = result.scheduledTime,
         slideDeck = null,
