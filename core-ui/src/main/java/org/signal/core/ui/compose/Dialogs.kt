@@ -202,21 +202,24 @@ object Dialogs {
   fun IndeterminateProgressDialog(
     onDismissRequest: () -> Unit = {}
   ) {
-    BaseAlertDialog(
-      onDismissRequest = onDismissRequest,
-      confirmButton = {},
-      dismissButton = {},
-      text = {
+    Dialog(
+      onDismissRequest = onDismissRequest
+    ) {
+      Surface(
+        modifier = Modifier.size(100.dp),
+        shape = Defaults.shape,
+        color = Defaults.containerColor,
+        tonalElevation = Defaults.TonalElevation
+      ) {
         CircularProgressIndicator(
           modifier = Modifier
             .fillMaxWidth()
             .fillMaxHeight()
+            .padding(24.dp)
             .testTag("dialog-circular-progress-indicator")
         )
-      },
-      modifier = Modifier
-        .size(100.dp)
-    )
+      }
+    }
   }
 
   /**
@@ -513,7 +516,9 @@ object Dialogs {
 
           FlowRow(
             horizontalArrangement = Arrangement.End,
-            modifier = Modifier.fillMaxWidth().padding(bottom = 16.dp)
+            modifier = Modifier
+              .fillMaxWidth()
+              .padding(bottom = 16.dp)
           ) {
             TextButton(onClick = onDismissRequest) {
               Text(text = stringResource(R.string.cancel))
