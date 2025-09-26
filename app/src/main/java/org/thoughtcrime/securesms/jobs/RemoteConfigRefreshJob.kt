@@ -60,7 +60,7 @@ class RemoteConfigRefreshJob private constructor(parameters: Parameters) : Job(p
         if (result.code == 304) {
           Log.i(TAG, "Remote config has not changed since last pull.")
           SignalStore.remoteConfig.lastFetchTime = System.currentTimeMillis()
-          SignalStore.misc.setLastKnownServerTime(result.headers[SignalWebSocket.SERVER_DELIVERED_TIMESTAMP_HEADER]?.toLongOrNull() ?: System.currentTimeMillis(), System.currentTimeMillis())
+          SignalStore.misc.setLastKnownServerTime(result.header(SignalWebSocket.SERVER_DELIVERED_TIMESTAMP_HEADER)?.toLongOrNull() ?: System.currentTimeMillis(), System.currentTimeMillis())
           Result.success()
         } else {
           Result.retry(defaultBackoff())

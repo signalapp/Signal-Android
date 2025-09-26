@@ -201,8 +201,9 @@ sealed class NetworkResult<T>(
   data class NetworkError<T>(val exception: IOException) : NetworkResult<T>()
 
   /** Indicates we got a response, but it was a non-2xx response. */
-  data class StatusCodeError<T>(val code: Int, val stringBody: String?, val binaryBody: ByteArray?, val headers: Map<String, String>, val exception: NonSuccessfulResponseCodeException) : NetworkResult<T>() {
+  data class StatusCodeError<T>(val code: Int, val stringBody: String?, val binaryBody: ByteArray?, private val headers: Map<String, String>, val exception: NonSuccessfulResponseCodeException) : NetworkResult<T>() {
     constructor(e: NonSuccessfulResponseCodeException) : this(e.code, e.stringBody, e.binaryBody, e.headers, e)
+    constructor(result: StatusCodeError<*>) : this(result.code, result.stringBody, result.binaryBody, result.headers, result.exception)
 
     inline fun <reified T> parseJsonBody(): T? {
       return try {
@@ -282,7 +283,7 @@ sealed class NetworkResult<T>(
 
       is NetworkError -> NetworkError<R>(exception)
       is ApplicationError -> ApplicationError<R>(throwable)
-      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception)
+      is StatusCodeError -> StatusCodeError<R>(this)
     }
 
     return map.runOnStatusCodeError(statusCodeErrorActions).runOnApplicationError(applicationErrorActions)
@@ -334,7 +335,7 @@ sealed class NetworkResult<T>(
       is Success -> result(this.result)
       is NetworkError -> NetworkError<R>(exception)
       is ApplicationError -> ApplicationError<R>(throwable)
-      is StatusCodeError -> StatusCodeError<R>(code, stringBody, binaryBody, headers, exception)
+      is StatusCodeError -> StatusCodeError<R>(this)
     }
 
     return then.runOnStatusCodeError(statusCodeErrorActions).runOnApplicationError(applicationErrorActions)
