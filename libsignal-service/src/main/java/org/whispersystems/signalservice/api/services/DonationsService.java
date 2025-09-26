@@ -387,7 +387,7 @@ public class DonationsService {
       return ServiceResponse.forResult(responseAndCode.first(), responseAndCode.second(), null);
     } catch (NonSuccessfulResponseCodeException e) {
       Log.w(TAG, "Bad response code from server.", e);
-      return ServiceResponse.forApplicationError(e, e.code, e.getMessage());
+      return ServiceResponse.forApplicationError(e, e.code, e.getStringBody());
     } catch (IOException e) {
       Log.w(TAG, "An unknown error occurred.", e);
       return ServiceResponse.forUnknownError(e);
