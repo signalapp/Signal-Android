@@ -6,7 +6,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 
 class AccountSettingsViewModel : ViewModel() {
@@ -33,7 +32,7 @@ class AccountSettingsViewModel : ViewModel() {
       registrationLockEnabled = SignalStore.svr.isRegistrationLockEnabled,
       userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application),
       clientDeprecated = SignalStore.misc.isClientDeprecated,
-      canTransferWhileUnregistered = RemoteConfig.restoreAfterRegistration
+      canTransferWhileUnregistered = true
     )
   }
 }

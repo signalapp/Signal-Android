@@ -182,7 +182,6 @@ class EnterCodeFragment : LoggingFragment(R.layout.fragment_registration_enter_c
     if (!result.isSuccess()) {
       Log.i(TAG, "[sessionCreateError] Handling error response of ${result.javaClass.name}", result.getCause())
     }
-
     when (result) {
       is RegistrationSessionCheckResult.Success,
       is RegistrationSessionCreationResult.Success -> throw IllegalStateException("Session error handler called on successful response!")

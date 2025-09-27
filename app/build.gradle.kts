@@ -22,8 +22,8 @@ plugins {
 
 apply(from = "static-ips.gradle.kts")
 
-val canonicalVersionCode = 1590
-val canonicalVersionName = "7.57.1"
+val canonicalVersionCode = 1592
+val canonicalVersionName = "7.58.0"
 val currentHotfixVersion = 0
 val maxHotfixVersions = 100
 
@@ -238,7 +238,6 @@ android {
     buildConfigField("String", "STRIPE_BASE_URL", "\"https://api.stripe.com/v1\"")
     buildConfigField("String", "STRIPE_PUBLISHABLE_KEY", "\"pk_live_6cmGZopuTsV8novGgJJW9JpC00vLIgtQ1D\"")
     buildConfigField("boolean", "TRACING_ENABLED", "false")
-    buildConfigField("boolean", "MESSAGE_BACKUP_RESTORE_ENABLED", "true")
     buildConfigField("boolean", "LINK_DEVICE_UX_ENABLED", "false")
 
     ndk {
@@ -379,7 +378,6 @@ android {
       buildConfigField("boolean", "MANAGES_APP_UPDATES", "true")
       buildConfigField("String", "APK_UPDATE_MANIFEST_URL", "\"${apkUpdateManifestUrl}\"")
       buildConfigField("String", "BUILD_DISTRIBUTION_TYPE", "\"nightly\"")
-      buildConfigField("boolean", "MESSAGE_BACKUP_RESTORE_ENABLED", "true")
     }
 
     create("prod") {
@@ -418,7 +416,6 @@ android {
 
       buildConfigField("String", "BUILD_ENVIRONMENT_TYPE", "\"Staging\"")
       buildConfigField("String", "STRIPE_PUBLISHABLE_KEY", "\"pk_test_sngOd8FnXNkpce9nPXawKrJD00kIDngZkD\"")
-      buildConfigField("boolean", "MESSAGE_BACKUP_RESTORE_ENABLED", "true")
     }
 
     create("backup") {
@@ -430,7 +427,6 @@ android {
 
       buildConfigField("boolean", "MANAGES_APP_UPDATES", "true")
       buildConfigField("String", "BUILD_ENVIRONMENT_TYPE", "\"Backup\"")
-      buildConfigField("boolean", "MESSAGE_BACKUP_RESTORE_ENABLED", "true")
     }
   }
 

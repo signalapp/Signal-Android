@@ -40,12 +40,7 @@ final class OldDeviceClientTask implements ClientTask {
 
     EventBus.getDefault().register(this);
     try {
-      String passphrase;
-      if (RemoteConfig.restoreAfterRegistration()) {
-        passphrase = SignalStore.account().getAccountEntropyPool().getValue();
-      } else {
-        passphrase = "deadbeef";
-      }
+      String passphrase = SignalStore.account().getAccountEntropyPool().getValue();
 
       FullBackupExporter.transfer(context,
                                   AttachmentSecretProvider.getInstance(context).getOrCreateAttachmentSecret(),

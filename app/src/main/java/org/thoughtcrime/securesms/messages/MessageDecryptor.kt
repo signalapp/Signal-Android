@@ -130,6 +130,12 @@ object MessageDecryptor {
       return Result.Ignore(envelope, serverDeliveredTimestamp, emptyList())
     }
 
+    val sourceServiceId = ServiceId.parseOrNull(envelope.sourceServiceId)
+    if (sourceServiceId is PNI && envelope.type != Envelope.Type.SERVER_DELIVERY_RECEIPT) {
+      Log.w(TAG, "${logPrefix(envelope)} Got a message from a PNI that was not a SERVER_DELIVERY_RECEIPT.")
+      return Result.Ignore(envelope, serverDeliveredTimestamp, emptyList())
+    }
+
     val followUpOperations: MutableList<FollowUpOperation> = mutableListOf()
 
     if (envelope.type == Envelope.Type.PREKEY_BUNDLE) {
@@ -150,6 +156,11 @@ object MessageDecryptor {
 
       if (cipherResult == null) {
         Log.w(TAG, "${logPrefix(envelope)} Decryption resulted in a null result!", true)
+        return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
+      }
+
+      if (cipherResult.metadata.sourceServiceId is PNI && envelope.sourceServiceId == null) {
+        Log.w(TAG, "${logPrefix(envelope)} Invalid message! Sealed sender used for a PNI.")
         return Result.Ignore(envelope, serverDeliveredTimestamp, followUpOperations.toUnmodifiableList())
       }
 

@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Signal Messenger, LLC
+ * Copyright 2025 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
@@ -30,6 +30,7 @@ data class RegistrationState(
   val nationalNumber: String = "",
   val inProgress: Boolean = false,
   val isReRegister: Boolean = false,
+  val recoveryPassword: String? = null,
   val canSkipSms: Boolean = false,
   val svr2AuthCredentials: AuthCredentials? = null,
   val svr3AuthCredentials: Svr3Credentials? = null,
@@ -74,4 +75,20 @@ data class RegistrationState(
       }
     }
   }
+
+  fun toNavigationStateOnly(): NavigationState {
+    return NavigationState(challengesRequested, captchaToken, registrationCheckpoint, canSkipSms, challengeInProgress)
+  }
+
+  /**
+   * Subset of [RegistrationState] useful for deciding on navigation. Prevents other properties updating from re-triggering
+   * navigation decisions.
+   */
+  data class NavigationState(
+    val challengesRequested: List<Challenge>,
+    val captchaToken: String? = null,
+    val registrationCheckpoint: RegistrationCheckpoint,
+    val canSkipSms: Boolean,
+    val challengeInProgress: Boolean
+  )
 }

@@ -299,10 +299,8 @@ public class ApplicationContext extends Application implements AppForegroundObse
   }
 
   public void checkFreeDiskSpace() {
-    if (RemoteConfig.messageBackups()) {
-      long availableBytes = BackupRepository.INSTANCE.getFreeStorageSpace().getBytes();
-      SignalStore.backup().setSpaceAvailableOnDiskBytes(availableBytes);
-    }
+    long availableBytes = BackupRepository.INSTANCE.getFreeStorageSpace().getBytes();
+    SignalStore.backup().setSpaceAvailableOnDiskBytes(availableBytes);
   }
 
   /**

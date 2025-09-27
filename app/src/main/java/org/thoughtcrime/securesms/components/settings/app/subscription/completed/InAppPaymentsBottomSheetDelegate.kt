@@ -26,7 +26,6 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.databaseprotos.DonationErrorValue
 import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Handles displaying bottom sheets for in-app payments. The current policy is to "fire and forget".
@@ -58,10 +57,7 @@ class InAppPaymentsBottomSheetDelegate(
     handleLegacyTerminalDonationSheets()
     handleLegacyVerifiedMonthlyDonationSheets()
     handleInAppPaymentDonationSheets()
-
-    if (RemoteConfig.messageBackups) {
-      handleInAppPaymentBackupsSheets()
-    }
+    handleInAppPaymentBackupsSheets()
   }
 
   /**

@@ -8,10 +8,13 @@ package org.thoughtcrime.securesms.backup.v2.ui.subscription
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -39,6 +42,8 @@ fun MessageBackupsKeyEducationScreen(
   onNavigationClick: () -> Unit = {},
   onNextClick: () -> Unit = {}
 ) {
+  val scrollState = rememberScrollState()
+
   Scaffolds.Settings(
     title = "",
     navigationIcon = ImageVector.vectorResource(R.drawable.symbol_arrow_start_24),
@@ -48,7 +53,8 @@ fun MessageBackupsKeyEducationScreen(
       modifier = Modifier
         .padding(it)
         .padding(horizontal = dimensionResource(CoreUiR.dimen.gutter))
-        .fillMaxSize(),
+        .fillMaxSize()
+        .verticalScroll(scrollState),
       horizontalAlignment = Alignment.CenterHorizontally
     ) {
       Image(
@@ -61,6 +67,7 @@ fun MessageBackupsKeyEducationScreen(
 
       Text(
         text = stringResource(R.string.MessageBackupsKeyEducationScreen__your_backup_key),
+        textAlign = TextAlign.Center,
         style = MaterialTheme.typography.headlineMedium,
         modifier = Modifier.padding(top = 16.dp)
       )
@@ -81,11 +88,16 @@ fun MessageBackupsKeyEducationScreen(
         modifier = Modifier.padding(top = 16.dp)
       )
 
-      Box(
+      Spacer(
         modifier = Modifier
           .fillMaxWidth()
           .weight(1f)
-          .padding(bottom = 24.dp)
+      )
+
+      Box(
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(top = 16.dp, bottom = 24.dp)
       ) {
         Buttons.LargeTonal(
           onClick = onNextClick,

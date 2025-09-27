@@ -165,7 +165,6 @@ fun MessageBackupsTypeSelectionScreen(
         }
       }
 
-      val hasCurrentBackupTier = currentBackupTier != null
       val paidTierNotAvailableDialogState = remember { PaidTierNotAvailableDialogState() }
       val onSubscribeButtonClick = remember(googlePlayServicesAvailability, googlePlayBillingAvailability, selectedBackupTier) {
         {
@@ -193,7 +192,7 @@ fun MessageBackupsTypeSelectionScreen(
         modifier = Modifier
           .testTag("subscribe-button")
           .fillMaxWidth()
-          .padding(vertical = if (hasCurrentBackupTier) 10.dp else 16.dp)
+          .padding(vertical = 16.dp)
       ) {
         val text: String = if (currentBackupTier == null) {
           if (selectedBackupTier == MessageBackupTier.PAID && (googlePlayServicesAvailability != GooglePlayServicesAvailability.SUCCESS || !googlePlayBillingAvailability.isSuccess)) {

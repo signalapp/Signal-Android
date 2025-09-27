@@ -12,7 +12,6 @@ import org.signal.core.util.kibiBytes
 import org.signal.core.util.logging.Log
 import org.signal.core.util.mebiBytes
 import org.signal.libsignal.protocol.UsePqRatchet
-import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.jobs.RemoteConfigRefreshJob
@@ -20,9 +19,13 @@ import org.thoughtcrime.securesms.jobs.Svr3MirrorJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.messageprocessingalarm.RoutineMessageFetchReceiver
 import org.thoughtcrime.securesms.net.SignalNetwork
-import org.thoughtcrime.securesms.util.RemoteConfig.Config
+import org.thoughtcrime.securesms.util.RemoteConfig.REMOTE_VALUES
+import org.thoughtcrime.securesms.util.RemoteConfig.asBoolean
+import org.thoughtcrime.securesms.util.RemoteConfig.asInteger
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteBoolean
 import org.thoughtcrime.securesms.util.RemoteConfig.remoteValue
+import org.thoughtcrime.securesms.util.RemoteConfig.retryReceiptMaxCount
+import org.thoughtcrime.securesms.util.RemoteConfig.retryReceiptMaxCountResetAge
 import org.whispersystems.signalservice.api.NetworkResultUtil
 import java.io.IOException
 import java.util.TreeMap
@@ -1035,20 +1038,6 @@ object RemoteConfig {
     inSeconds.seconds.inWholeMilliseconds
   }
 
-  /**
-   * Enable Message Backups UI
-   * Note: This feature is in active development and is not intended to currently function.
-   */
-  @JvmStatic
-  @get:JvmName("messageBackups")
-  val messageBackups: Boolean by remoteValue(
-    key = "android.messageBackups",
-    hotSwappable = false,
-    active = true
-  ) { value ->
-    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || value.asBoolean(false)
-  }
-
   val backupFallbackArchiveCdn: Int by remoteInt(
     key = "global.backups.mediaTierFallbackCdnNumber",
     hotSwappable = true,
@@ -1094,17 +1083,6 @@ object RemoteConfig {
     defaultValue = false,
     hotSwappable = false
   )
-
-  /** Whether or not to launch the restore activity after registration is complete, rather than before.  */
-  @JvmStatic
-  @get:JvmName("restoreAfterRegistration")
-  val restoreAfterRegistration: Boolean by remoteValue(
-    key = "android.registration.restorePostRegistration",
-    hotSwappable = false,
-    active = false
-  ) { value ->
-    BuildConfig.MESSAGE_BACKUP_RESTORE_ENABLED || BuildConfig.LINK_DEVICE_UX_ENABLED || value.asBoolean(false)
-  }
 
   @JvmStatic
   val backgroundMessageProcessInterval: Long by remoteValue(
@@ -1178,8 +1156,8 @@ object RemoteConfig {
   /** Whether to allow different WindowSizeClasses to be used to determine screen layout */
   val largeScreenUi: Boolean by remoteBoolean(
     key = "android.largeScreenUI",
-    defaultValue = false,
-    hotSwappable = false
+    hotSwappable = false,
+    defaultValue = false
   )
 
   @JvmStatic

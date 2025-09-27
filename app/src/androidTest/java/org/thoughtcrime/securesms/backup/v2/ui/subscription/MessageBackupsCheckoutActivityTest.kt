@@ -21,7 +21,6 @@ import assertk.assertions.isEqualTo
 import assertk.assertions.isNull
 import io.mockk.coEvery
 import io.mockk.every
-import io.mockk.mockkStatic
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.test.StandardTestDispatcher
@@ -43,7 +42,6 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.testing.CoroutineDispatcherRule
 import org.thoughtcrime.securesms.testing.InAppPaymentsRule
 import org.thoughtcrime.securesms.testing.SignalActivityRule
-import org.thoughtcrime.securesms.util.RemoteConfig
 import java.math.BigDecimal
 import java.util.Currency
 
@@ -67,9 +65,6 @@ class MessageBackupsCheckoutActivityTest {
     every { AppDependencies.billingApi.getBillingPurchaseResults() } returns purchaseResults
     coEvery { AppDependencies.billingApi.queryProduct() } returns BillingProduct(price = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")))
     coEvery { AppDependencies.billingApi.launchBillingFlow(any()) } returns Unit
-
-    mockkStatic(RemoteConfig::class)
-    every { RemoteConfig.messageBackups } returns true
   }
 
   @Test

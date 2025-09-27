@@ -11,7 +11,6 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.jobmanager.impl.NetworkConstraint
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
@@ -57,11 +56,6 @@ class BackupRefreshJob private constructor(
     private fun canExecuteJob(): Boolean {
       if (!SignalStore.account.isRegistered) {
         Log.i(TAG, "Account not registered. Exiting.")
-        return false
-      }
-
-      if (!RemoteConfig.messageBackups) {
-        Log.i(TAG, "Backups are not enabled in remote config. Exiting.")
         return false
       }
 

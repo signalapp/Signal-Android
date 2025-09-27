@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:clipChildren="false"
     app:animateKeyboardChanges="true"
-    app:applyRootInsets="true">
+    app:applyRootInsets="false">
 
     <include layout="@layout/system_ui_guidelines" />
 

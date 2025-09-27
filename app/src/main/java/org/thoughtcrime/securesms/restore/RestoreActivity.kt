@@ -19,9 +19,8 @@ import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.RestoreDirections
-import org.thoughtcrime.securesms.registrationv3.ui.restore.RemoteRestoreActivity
+import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -60,20 +59,17 @@ class RestoreActivity : BaseActivity() {
       sharedViewModel.setNextIntent(it)
     }
 
-    val navTarget = NavTarget.deserialize(intent.getIntExtra(EXTRA_NAV_TARGET, NavTarget.LEGACY_LANDING.value))
+    val navTarget = NavTarget.deserialize(intent.getIntExtra(EXTRA_NAV_TARGET, NavTarget.NEW_LANDING.value))
 
     when (navTarget) {
       NavTarget.NEW_LANDING -> {
-        if (sharedViewModel.hasMultipleRestoreMethods()) {
-          navController.safeNavigate(RestoreDirections.goDirectlyToNewLanding())
-        } else {
+        if (!sharedViewModel.hasMultipleRestoreMethods()) {
           startActivity(RemoteRestoreActivity.getIntent(this, isOnlyOption = true))
           finish()
         }
       }
       NavTarget.LOCAL_RESTORE -> navController.safeNavigate(RestoreDirections.goDirectlyToChooseLocalBackup())
       NavTarget.TRANSFER -> navController.safeNavigate(RestoreDirections.goDirectlyToDeviceTransfer())
-      else -> Unit
     }
 
     onBackPressedDispatcher.addCallback(
@@ -115,26 +111,18 @@ class RestoreActivity : BaseActivity() {
     private val TAG = Log.tag(RestoreActivity::class)
 
     enum class NavTarget(val value: Int) {
-      LEGACY_LANDING(0),
       NEW_LANDING(1),
       TRANSFER(2),
       LOCAL_RESTORE(3);
 
       companion object {
         fun deserialize(value: Int): NavTarget {
-          return entries.firstOrNull { it.value == value } ?: LEGACY_LANDING
+          return entries.firstOrNull { it.value == value } ?: NEW_LANDING
         }
       }
     }
 
     private const val EXTRA_NAV_TARGET = "nav_target"
-
-    @JvmStatic
-    fun getDeviceTransferIntent(context: Context): Intent {
-      return Intent(context, RestoreActivity::class.java).apply {
-        putExtra(EXTRA_NAV_TARGET, NavTarget.TRANSFER.value)
-      }
-    }
 
     @JvmStatic
     fun getLocalRestoreIntent(context: Context): Intent {
@@ -145,11 +133,7 @@ class RestoreActivity : BaseActivity() {
 
     @JvmStatic
     fun getRestoreIntent(context: Context): Intent {
-      return Intent(context, RestoreActivity::class.java).apply {
-        if (RemoteConfig.restoreAfterRegistration) {
-          putExtra(EXTRA_NAV_TARGET, NavTarget.NEW_LANDING.value)
-        }
-      }
+      return Intent(context, RestoreActivity::class.java)
     }
   }
 }

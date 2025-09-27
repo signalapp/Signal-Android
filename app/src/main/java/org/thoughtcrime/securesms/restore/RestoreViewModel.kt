@@ -22,9 +22,9 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.Skipped
 import org.thoughtcrime.securesms.keyvalue.includeDeviceToDeviceTransfer
 import org.thoughtcrime.securesms.keyvalue.skippedRestoreChoice
-import org.thoughtcrime.securesms.registrationv3.data.QuickRegistrationRepository
-import org.thoughtcrime.securesms.registrationv3.ui.restore.RestoreMethod
-import org.thoughtcrime.securesms.registrationv3.ui.restore.StorageServiceRestore
+import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
+import org.thoughtcrime.securesms.registration.ui.restore.RestoreMethod
+import org.thoughtcrime.securesms.registration.ui.restore.StorageServiceRestore
 import org.thoughtcrime.securesms.restore.transferorrestore.BackupRestorationType
 import org.whispersystems.signalservice.api.provisioning.RestoreMethod as ApiRestoreMethod
 

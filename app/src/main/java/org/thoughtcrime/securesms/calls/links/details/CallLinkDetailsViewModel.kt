@@ -7,16 +7,16 @@ package org.thoughtcrime.securesms.calls.links.details
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
-import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.kotlin.plusAssign
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import io.reactivex.rxjava3.subjects.BehaviorSubject
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
+import org.signal.core.util.logging.Log
 import org.signal.ringrtc.CallLinkState
 import org.thoughtcrime.securesms.calls.links.CallLinks
 import org.thoughtcrime.securesms.calls.links.UpdateCallLinkRepository
@@ -24,12 +24,20 @@ import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 import org.thoughtcrime.securesms.service.webrtc.links.UpdateCallLinkResult
+import kotlin.coroutines.resume
+import kotlin.coroutines.suspendCoroutine
 
+@OptIn(ExperimentalCoroutinesApi::class)
 class CallLinkDetailsViewModel(
   callLinkRoomId: CallLinkRoomId,
   repository: CallLinkDetailsRepository = CallLinkDetailsRepository(),
   private val mutationRepository: UpdateCallLinkRepository = UpdateCallLinkRepository()
 ) : ViewModel() {
+
+  companion object {
+    private val TAG = Log.tag(CallLinkDetailsViewModel::class)
+  }
+
   private val disposables = CompositeDisposable()
 
   private val _state: MutableStateFlow<CallLinkDetailsState> = MutableStateFlow(CallLinkDetailsState())
@@ -54,7 +62,6 @@ class CallLinkDetailsViewModel(
     disposables += repository.refreshCallLinkState(callLinkRoomId)
     disposables += CallLinks.watchCallLink(callLinkRoomId)
       .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy { callLink ->
         _state.update { it.copy(callLink = callLink) }
       }
@@ -75,7 +82,6 @@ class CallLinkDetailsViewModel(
           .toObservable()
       }
       .subscribeOn(Schedulers.io())
-      .observeOn(AndroidSchedulers.mainThread())
       .subscribeBy { callLinkPeekInfo ->
         _state.update { it.copy(peekInfo = callLinkPeekInfo) }
       }
@@ -94,26 +100,102 @@ class CallLinkDetailsViewModel(
     _state.update { it.copy(displayRevocationDialog = displayRevocationDialog) }
   }
 
-  fun setApproveAllMembers(approveAllMembers: Boolean): Single<UpdateCallLinkResult> {
-    val credentials = _state.value.callLink?.credentials ?: error("User cannot change the name of this call.")
-    return mutationRepository
-      .setCallRestrictions(credentials, if (approveAllMembers) CallLinkState.Restrictions.ADMIN_APPROVAL else CallLinkState.Restrictions.NONE)
-      .doOnSubscribe {
-        _state.update { it.copy(isLoadingAdminApprovalChange = true) }
+  suspend fun setApproveAllMembers(approveAllMembers: Boolean) {
+    val result = suspendCoroutine { continuation ->
+      val credentials = _state.value.callLink?.credentials ?: error("User cannot change the name of this call.")
+      disposables += mutationRepository
+        .setCallRestrictions(credentials, if (approveAllMembers) CallLinkState.Restrictions.ADMIN_APPROVAL else CallLinkState.Restrictions.NONE)
+        .doOnSubscribe {
+          _state.update { it.copy(isLoadingAdminApprovalChange = true) }
+        }
+        .doFinally {
+          _state.update { it.copy(isLoadingAdminApprovalChange = false) }
+        }
+        .subscribeBy(
+          onSuccess = { continuation.resume(Result.success(it)) },
+          onError = { continuation.resume(Result.failure(it)) }
+        )
+    }.getOrNull()
+
+    if (result == null) {
+      handleError("setApproveAllMembers")
+      return
+    }
+
+    if (result is UpdateCallLinkResult.Failure) {
+      Log.w(TAG, "Failed to change restrictions. $result")
+
+      if (result.status == 409.toShort()) {
+        toastCallLinkInUse()
+      } else {
+        toastFailure()
       }
-      .doFinally {
-        _state.update { it.copy(isLoadingAdminApprovalChange = false) }
-      }
+    }
   }
 
-  fun setName(name: String): Single<UpdateCallLinkResult> {
-    val credentials = _state.value.callLink?.credentials ?: error("User cannot change the name of this call.")
-    return mutationRepository.setCallName(credentials, name)
+  suspend fun setName(name: String) {
+    val result = suspendCoroutine { continuation ->
+      val credentials = _state.value.callLink?.credentials ?: error("User cannot change the name of this call.")
+      disposables += mutationRepository.setCallName(credentials, name)
+        .subscribeBy(
+          onSuccess = { continuation.resume(Result.success(it)) },
+          onError = { continuation.resume(Result.failure(it)) }
+        )
+    }.getOrNull()
+
+    if (result == null) {
+      handleError("setName")
+    } else {
+      if (result !is UpdateCallLinkResult.Update) {
+        Log.w(TAG, "Failed to set name. $name")
+        toastFailure()
+      }
+    }
   }
 
-  fun delete(): Single<UpdateCallLinkResult> {
-    val credentials = _state.value.callLink?.credentials ?: error("User cannot change the name of this call.")
-    return mutationRepository.deleteCallLink(credentials)
+  suspend fun delete(): Boolean {
+    val result = suspendCoroutine { continuation ->
+      val credentials = _state.value.callLink?.credentials ?: error("User cannot change the name of this call.")
+      disposables += mutationRepository.deleteCallLink(credentials)
+        .subscribeBy(
+          onSuccess = { continuation.resume(Result.success(it)) },
+          onError = { continuation.resume(Result.failure(it)) }
+        )
+    }.getOrNull()
+
+    when (result) {
+      null -> handleError("delete")
+      is UpdateCallLinkResult.Delete -> return true
+      is UpdateCallLinkResult.CallLinkIsInUse -> {
+        Log.w(TAG, "Failed to delete in-use call link.")
+        toastCouldNotDeleteCallLink()
+      }
+      else -> {
+        Log.w(TAG, "Failed to delete call link. $result")
+        toastFailure()
+      }
+    }
+
+    return false
+  }
+
+  private fun handleError(method: String): (throwable: Throwable) -> Unit {
+    return {
+      Log.w(TAG, "Failure during $method", it)
+      toastFailure()
+    }
+  }
+
+  private fun toastCallLinkInUse() {
+    _state.update { it.copy(failureSnackbar = CallLinkDetailsState.FailureSnackbar.COULD_NOT_UPDATE_ADMIN_APPROVAL) }
+  }
+
+  private fun toastFailure() {
+    _state.update { it.copy(failureSnackbar = CallLinkDetailsState.FailureSnackbar.COULD_NOT_SAVE_CHANGES) }
+  }
+
+  private fun toastCouldNotDeleteCallLink() {
+    _state.update { it.copy(failureSnackbar = CallLinkDetailsState.FailureSnackbar.COULD_NOT_DELETE_CALL_LINK) }
   }
 
   class Factory(private val callLinkRoomId: CallLinkRoomId) : ViewModelProvider.Factory {

@@ -5,91 +5,157 @@
 
 package org.thoughtcrime.securesms.registration.ui.welcome
 
-import android.app.Activity
 import android.content.pm.PackageManager
 import android.os.Bundle
 import android.view.View
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import org.signal.core.util.getSerializableCompat
 import org.signal.core.util.logging.Log
+import org.thoughtcrime.securesms.BuildConfig
 import org.thoughtcrime.securesms.LoggingFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ViewBinderDelegate
-import org.thoughtcrime.securesms.databinding.FragmentRegistrationWelcomeBinding
+import org.thoughtcrime.securesms.databinding.FragmentRegistrationWelcomeV3Binding
 import org.thoughtcrime.securesms.permissions.Permissions
 import org.thoughtcrime.securesms.registration.fragments.RegistrationViewDelegate.setDebugLogSubmitMultiTapView
 import org.thoughtcrime.securesms.registration.fragments.WelcomePermissions
 import org.thoughtcrime.securesms.registration.ui.RegistrationCheckpoint
 import org.thoughtcrime.securesms.registration.ui.RegistrationViewModel
-import org.thoughtcrime.securesms.registration.ui.grantpermissions.GrantPermissionsFragment
-import org.thoughtcrime.securesms.restore.RestoreActivity
+import org.thoughtcrime.securesms.registration.ui.permissions.GrantPermissionsFragment
+import org.thoughtcrime.securesms.registration.ui.phonenumber.EnterPhoneNumberMode
 import org.thoughtcrime.securesms.util.BackupUtil
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
+import org.thoughtcrime.securesms.util.visible
 
 /**
  * First screen that is displayed on the very first app launch.
  */
-class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome) {
-  private val sharedViewModel by activityViewModels<RegistrationViewModel>()
-  private val binding: FragmentRegistrationWelcomeBinding by ViewBinderDelegate(FragmentRegistrationWelcomeBinding::bind)
-
-  private val launchRestoreActivity = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
-    when (val resultCode = result.resultCode) {
-      Activity.RESULT_OK -> {
-        sharedViewModel.onBackupSuccessfullyRestored()
-        findNavController().safeNavigate(WelcomeFragmentDirections.actionGoToRegistration())
-      }
-      Activity.RESULT_CANCELED -> {
-        Log.w(TAG, "Backup restoration canceled.")
-      }
-      else -> Log.w(TAG, "Backup restoration activity ended with unknown result code: $resultCode")
-    }
+class WelcomeFragment : LoggingFragment(R.layout.fragment_registration_welcome_v3) {
+  companion object {
+    private val TAG = Log.tag(WelcomeFragment::class.java)
+    private const val TERMS_AND_CONDITIONS_URL = "https://signal.org/legal"
   }
+
+  private val sharedViewModel by activityViewModels<RegistrationViewModel>()
+  private val binding: FragmentRegistrationWelcomeV3Binding by ViewBinderDelegate(FragmentRegistrationWelcomeV3Binding::bind)
 
   override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
     super.onViewCreated(view, savedInstanceState)
+
     setDebugLogSubmitMultiTapView(binding.image)
     setDebugLogSubmitMultiTapView(binding.title)
+
     binding.welcomeContinueButton.setOnClickListener { onContinueClicked() }
     binding.welcomeTermsButton.setOnClickListener { onTermsClicked() }
-    binding.welcomeTransferOrRestore.setOnClickListener { onTransferOrRestoreClicked() }
+    binding.welcomeTransferOrRestore.setOnClickListener { onRestoreOrTransferClicked() }
+    binding.welcomeTransferOrRestore.visible = !sharedViewModel.isReregister
+
+    if (BuildConfig.LINK_DEVICE_UX_ENABLED) {
+      binding.image.setOnLongClickListener {
+        MaterialAlertDialogBuilder(requireContext())
+          .setMessage("Link device?")
+          .setPositiveButton("Link", { _, _ -> onLinkDeviceClicked() })
+          .setNegativeButton(android.R.string.cancel, null)
+          .show()
+        true
+      }
+    }
+
+    childFragmentManager.setFragmentResultListener(RestoreWelcomeBottomSheet.REQUEST_KEY, viewLifecycleOwner) { requestKey, bundle ->
+      if (requestKey == RestoreWelcomeBottomSheet.REQUEST_KEY) {
+        when (val userSelection = bundle.getSerializableCompat(RestoreWelcomeBottomSheet.REQUEST_KEY, WelcomeUserSelection::class.java)) {
+          WelcomeUserSelection.RESTORE_WITH_OLD_PHONE,
+          WelcomeUserSelection.RESTORE_WITH_NO_PHONE -> afterRestoreOrTransferClicked(userSelection)
+          else -> Unit
+        }
+      }
+    }
+
+    if (Permissions.isRuntimePermissionsRequired()) {
+      parentFragmentManager.setFragmentResultListener(GrantPermissionsFragment.REQUEST_KEY, viewLifecycleOwner) { requestKey, bundle ->
+        if (requestKey == GrantPermissionsFragment.REQUEST_KEY) {
+          when (val userSelection = bundle.getSerializableCompat(GrantPermissionsFragment.REQUEST_KEY, WelcomeUserSelection::class.java)) {
+            WelcomeUserSelection.RESTORE_WITH_OLD_PHONE,
+            WelcomeUserSelection.RESTORE_WITH_NO_PHONE -> navigateToNextScreenViaRestore(userSelection)
+            WelcomeUserSelection.CONTINUE -> navigateToNextScreenViaContinue()
+            WelcomeUserSelection.LINK -> navigateToLinkDevice()
+            null -> Unit
+          }
+        }
+      }
+    }
+  }
+
+  private fun onLinkDeviceClicked() {
+    if (Permissions.isRuntimePermissionsRequired() && !hasAllPermissions()) {
+      findNavController().safeNavigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(WelcomeUserSelection.LINK))
+    } else {
+      navigateToLinkDevice()
+    }
+  }
+
+  private fun navigateToLinkDevice() {
+    findNavController().safeNavigate(WelcomeFragmentDirections.goToLinkViaQr())
+  }
+
+  override fun onResume() {
+    super.onResume()
+    sharedViewModel.resetRestoreDecision()
   }
 
   private fun onContinueClicked() {
     if (Permissions.isRuntimePermissionsRequired() && !hasAllPermissions()) {
-      findNavController().safeNavigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(GrantPermissionsFragment.WelcomeAction.CONTINUE))
+      findNavController().safeNavigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(WelcomeUserSelection.CONTINUE))
     } else {
-      sharedViewModel.maybePrefillE164(requireContext())
-      findNavController().safeNavigate(WelcomeFragmentDirections.actionSkipRestore())
+      navigateToNextScreenViaContinue()
     }
   }
 
-  private fun hasAllPermissions(): Boolean {
-    val isUserSelectionRequired = BackupUtil.isUserSelectionRequired(requireContext())
-    return WelcomePermissions.getWelcomePermissions(isUserSelectionRequired).all { ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED }
+  private fun navigateToNextScreenViaContinue() {
+    sharedViewModel.maybePrefillE164(requireContext())
+    findNavController().safeNavigate(WelcomeFragmentDirections.goToEnterPhoneNumber(EnterPhoneNumberMode.NORMAL))
   }
 
   private fun onTermsClicked() {
     CommunicationActions.openBrowserLink(requireContext(), TERMS_AND_CONDITIONS_URL)
   }
 
-  private fun onTransferOrRestoreClicked() {
-    if (Permissions.isRuntimePermissionsRequired() && !hasAllPermissions()) {
-      findNavController().safeNavigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(GrantPermissionsFragment.WelcomeAction.RESTORE_BACKUP))
-    } else {
-      sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PERMISSIONS_GRANTED)
+  private fun onRestoreOrTransferClicked() {
+    RestoreWelcomeBottomSheet().show(childFragmentManager, null)
+  }
 
-      val restoreIntent = RestoreActivity.getRestoreIntent(requireActivity())
-      launchRestoreActivity.launch(restoreIntent)
+  private fun afterRestoreOrTransferClicked(userSelection: WelcomeUserSelection) {
+    if (Permissions.isRuntimePermissionsRequired() && !hasAllPermissions()) {
+      findNavController().safeNavigate(WelcomeFragmentDirections.actionWelcomeFragmentToGrantPermissionsFragment(userSelection))
+    } else {
+      navigateToNextScreenViaRestore(userSelection)
     }
   }
 
-  companion object {
-    private val TAG = Log.tag(WelcomeFragment::class.java)
-    private const val TERMS_AND_CONDITIONS_URL = "https://signal.org/legal"
+  private fun navigateToNextScreenViaRestore(userSelection: WelcomeUserSelection) {
+    sharedViewModel.maybePrefillE164(requireContext())
+    sharedViewModel.setRegistrationCheckpoint(RegistrationCheckpoint.PERMISSIONS_GRANTED)
+
+    when (userSelection) {
+      WelcomeUserSelection.LINK,
+      WelcomeUserSelection.CONTINUE -> throw IllegalArgumentException()
+      WelcomeUserSelection.RESTORE_WITH_OLD_PHONE -> {
+        sharedViewModel.intendToRestore(hasOldDevice = true, fromRemote = true)
+        findNavController().safeNavigate(WelcomeFragmentDirections.goToRestoreViaQr())
+      }
+      WelcomeUserSelection.RESTORE_WITH_NO_PHONE -> {
+        sharedViewModel.intendToRestore(hasOldDevice = false, fromRemote = true)
+        findNavController().safeNavigate(WelcomeFragmentDirections.goToSelectRestoreMethod(userSelection))
+      }
+    }
+  }
+
+  private fun hasAllPermissions(): Boolean {
+    val isUserSelectionRequired = BackupUtil.isUserSelectionRequired(requireContext())
+    return WelcomePermissions.getWelcomePermissions(isUserSelectionRequired).all { ContextCompat.checkSelfPermission(requireContext(), it) == PackageManager.PERMISSION_GRANTED }
   }
 }

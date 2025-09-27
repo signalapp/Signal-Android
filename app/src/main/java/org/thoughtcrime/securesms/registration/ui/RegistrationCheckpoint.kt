@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Signal Messenger, LLC
+ * Copyright 2025 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
@@ -21,5 +21,6 @@ enum class RegistrationCheckpoint {
   PIN_ENTERED,
   VERIFICATION_CODE_VALIDATED,
   SERVICE_REGISTRATION_COMPLETED,
+  BACKUP_TIMESTAMP_NOT_RESTORED,
   LOCAL_REGISTRATION_COMPLETE
 }

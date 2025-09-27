@@ -371,7 +371,7 @@ private fun AppSettingsContent(
             onClick = {
               callbacks.navigate(AppSettingsRoute.ChatsRoute.Chats)
             },
-            enabled = state.legacyLocalBackupsEnabled || isRegisteredAndUpToDate
+            enabled = isRegisteredAndUpToDate
           )
         }
 
@@ -408,31 +408,29 @@ private fun AppSettingsContent(
           )
         }
 
-        if (state.showBackups) {
-          item {
-            Rows.TextRow(
-              text = {
-                TextWithBetaLabel(
-                  text = stringResource(R.string.preferences_chats__backups),
-                  textStyle = MaterialTheme.typography.bodyLarge
-                )
-              },
-              icon = {
-                Icon(
-                  imageVector = ImageVector.vectorResource(R.drawable.symbol_backup_24),
-                  contentDescription = stringResource(R.string.preferences_chats__backups),
-                  tint = MaterialTheme.colorScheme.onSurface
-                )
-              },
-              onClick = {
-                callbacks.navigate(AppSettingsRoute.BackupsRoute.Backups)
-              },
-              onLongClick = {
-                callbacks.copyRemoteBackupsSubscriberIdToClipboard()
-              },
-              enabled = isRegisteredAndUpToDate
-            )
-          }
+        item {
+          Rows.TextRow(
+            text = {
+              TextWithBetaLabel(
+                text = stringResource(R.string.preferences_chats__backups),
+                textStyle = MaterialTheme.typography.bodyLarge
+              )
+            },
+            icon = {
+              Icon(
+                imageVector = ImageVector.vectorResource(R.drawable.symbol_backup_24),
+                contentDescription = stringResource(R.string.preferences_chats__backups),
+                tint = MaterialTheme.colorScheme.onSurface
+              )
+            },
+            onClick = {
+              callbacks.navigate(AppSettingsRoute.BackupsRoute.Backups)
+            },
+            onLongClick = {
+              callbacks.copyRemoteBackupsSubscriberIdToClipboard()
+            },
+            enabled = isRegisteredAndUpToDate
+          )
         }
 
         item {
@@ -702,9 +700,7 @@ private fun AppSettingsContentPreview() {
         showInternalPreferences = true,
         showPayments = true,
         showAppUpdates = true,
-        showBackups = true,
-        backupFailureState = BackupFailureState.OUT_OF_STORAGE_SPACE,
-        legacyLocalBackupsEnabled = false
+        backupFailureState = BackupFailureState.OUT_OF_STORAGE_SPACE
       ),
       bannerManager = BannerManager(
         banners = listOf(TestBanner())

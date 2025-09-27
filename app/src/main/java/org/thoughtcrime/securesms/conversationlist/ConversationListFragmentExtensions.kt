@@ -37,8 +37,9 @@ fun Fragment.listenToEventBusWhileResumed(
       .collectLatest {
         if (resources.getWindowSizeClass().isCompact()) {
           when (it) {
-            is MainNavigationDetailLocation.Conversation -> unsubscribe()
+            is MainNavigationDetailLocation.Chats.Conversation -> unsubscribe()
             MainNavigationDetailLocation.Empty -> subscribe()
+            else -> Unit
           }
         } else {
           subscribe()

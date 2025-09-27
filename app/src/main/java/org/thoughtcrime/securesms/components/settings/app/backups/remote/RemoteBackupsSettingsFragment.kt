@@ -113,6 +113,7 @@ import org.thoughtcrime.securesms.help.HelpFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.keyvalue.protos.ArchiveUploadProgressState
 import org.thoughtcrime.securesms.payments.FiatMoneyUtil
+import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 import org.thoughtcrime.securesms.util.viewModel
@@ -285,6 +286,14 @@ class RemoteBackupsSettingsFragment : ComposeFragment() {
     override fun onIncludeDebuglogClick(newState: Boolean) {
       viewModel.setIncludeDebuglog(newState)
     }
+
+    override fun onMediaBackupSizeClick() {
+      viewModel.requestDialog(RemoteBackupsSettingsState.Dialog.FREE_TIER_MEDIA_EXPLAINER)
+    }
+
+    override fun onFreeTierBackupSizeLearnMore() {
+      CommunicationActions.openBrowserLink(requireContext(), "https://support.signal.org/hc/articles/9708267671322")
+    }
   }
 
   private fun displayBackupKey() {
@@ -387,6 +396,8 @@ private interface ContentCallbacks {
   fun onDisplayDownloadingBackupDialog() = Unit
   fun onManageStorageClick() = Unit
   fun onIncludeDebuglogClick(newState: Boolean) = Unit
+  fun onMediaBackupSizeClick() = Unit
+  fun onFreeTierBackupSizeLearnMore() = Unit
 
   object Empty : ContentCallbacks
 }
@@ -508,8 +519,6 @@ private fun RemoteBackupsSettingsContent(
               isRenewEnabled = backupDeleteState.isIdle()
             )
           }
-
-          BackupState.NotAvailable -> error("This shouldn't happen on this screen.")
         }
       }
 
@@ -632,6 +641,18 @@ private fun RemoteBackupsSettingsContent(
       ResumeRestoreOverCellularDialog(
         onDismiss = contentCallbacks::onDialogDismissed,
         onResumeOverCellularClick = contentCallbacks::onRestoreUsingCellularClick
+      )
+    }
+
+    RemoteBackupsSettingsState.Dialog.FREE_TIER_MEDIA_EXPLAINER -> {
+      Dialogs.SimpleAlertDialog(
+        title = stringResource(R.string.RemoteBackupsSettingsFragment__free_tier_storage_title),
+        body = pluralStringResource(R.plurals.RemoteBackupsSettingsFragment__backup_frequency_dialog_body, state.freeTierMediaRetentionDays, state.freeTierMediaRetentionDays),
+        confirm = stringResource(android.R.string.ok),
+        dismiss = stringResource(R.string.RemoteBackupsSettingsFragment__learn_more),
+        onConfirm = {},
+        onDismiss = contentCallbacks::onDialogDismissed,
+        onDeny = contentCallbacks::onFreeTierBackupSizeLearnMore
       )
     }
   }
@@ -902,6 +923,7 @@ private fun LazyListScope.appendBackupDetailsItems(
     item {
       InProgressBackupRow(
         archiveUploadProgressState = backupProgress,
+        isPaidTier = state.tier == MessageBackupTier.PAID,
         canBackupMessagesRun = state.canBackupMessagesJobRun,
         canBackupUsingCellular = state.canBackUpUsingCellular,
         cancelArchiveUpload = contentCallbacks::onCancelUploadClick
@@ -909,15 +931,15 @@ private fun LazyListScope.appendBackupDetailsItems(
     }
   }
 
-  if (state.backupState.isLikelyPaidTier()) {
-    item {
-      val sizeText = if (state.backupMediaSize < 0L) {
-        stringResource(R.string.RemoteBackupsSettingsFragment__calculating)
-      } else {
-        state.backupMediaSize.bytes.toUnitString()
-      }
+  item {
+    val sizeText = if (state.backupMediaSize < 0L) {
+      stringResource(R.string.RemoteBackupsSettingsFragment__calculating)
+    } else {
+      state.backupMediaSize.bytes.toUnitString()
+    }
 
-      Rows.TextRow(text = {
+    Rows.TextRow(
+      text = {
         Column {
           Text(
             text = stringResource(id = R.string.RemoteBackupsSettingsFragment__backup_size),
@@ -930,8 +952,13 @@ private fun LazyListScope.appendBackupDetailsItems(
             color = MaterialTheme.colorScheme.onSurfaceVariant
           )
         }
-      })
-    }
+      },
+      onClick = if (state.backupMediaSize >= 0L && state.tier == MessageBackupTier.FREE) {
+        { contentCallbacks.onMediaBackupSizeClick() }
+      } else {
+        null
+      }
+    )
   }
 
   item {
@@ -1353,6 +1380,7 @@ private fun SubscriptionMismatchMissingGooglePlayCard(
 @Composable
 private fun InProgressBackupRow(
   archiveUploadProgressState: ArchiveUploadProgressState,
+  isPaidTier: Boolean,
   canBackupMessagesRun: Boolean = true,
   canBackupUsingCellular: Boolean = true,
   cancelArchiveUpload: () -> Unit = {}
@@ -1390,7 +1418,7 @@ private fun InProgressBackupRow(
       }
 
       Text(
-        text = getProgressStateMessage(archiveUploadProgressState, canBackupMessagesRun, canBackupUsingCellular),
+        text = getProgressStateMessage(archiveUploadProgressState, isPaidTier, canBackupMessagesRun, canBackupUsingCellular),
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant
       )
@@ -1428,11 +1456,11 @@ private fun ArchiveProgressIndicator(
 }
 
 @Composable
-private fun getProgressStateMessage(archiveUploadProgressState: ArchiveUploadProgressState, canBackupMessagesRun: Boolean, canBackupUsingCellular: Boolean): String {
+private fun getProgressStateMessage(archiveUploadProgressState: ArchiveUploadProgressState, isPaidTier: Boolean, canBackupMessagesRun: Boolean, canBackupUsingCellular: Boolean): String {
   return when (archiveUploadProgressState.state) {
     ArchiveUploadProgressState.State.None, ArchiveUploadProgressState.State.UserCanceled -> stringResource(R.string.RemoteBackupsSettingsFragment__processing_backup)
     ArchiveUploadProgressState.State.Export -> getBackupExportPhaseProgressString(archiveUploadProgressState, canBackupMessagesRun, canBackupUsingCellular)
-    ArchiveUploadProgressState.State.UploadBackupFile, ArchiveUploadProgressState.State.UploadMedia -> getBackupUploadPhaseProgressString(archiveUploadProgressState)
+    ArchiveUploadProgressState.State.UploadBackupFile, ArchiveUploadProgressState.State.UploadMedia -> getBackupUploadPhaseProgressString(archiveUploadProgressState, isPaidTier)
   }
 }
 
@@ -1464,12 +1492,16 @@ private fun getBackupExportPhaseProgressString(state: ArchiveUploadProgressState
 }
 
 @Composable
-private fun getBackupUploadPhaseProgressString(state: ArchiveUploadProgressState): String {
+private fun getBackupUploadPhaseProgressString(state: ArchiveUploadProgressState, isPaidTier: Boolean): String {
   val formattedTotalBytes = state.uploadBytesTotal.bytes.toUnitString()
   val formattedUploadedBytes = state.uploadBytesUploaded.bytes.toUnitString()
   val percent = (state.uploadProgress() * 100).toInt()
 
-  return stringResource(R.string.RemoteBackupsSettingsFragment__uploading_s_of_s_d, formattedUploadedBytes, formattedTotalBytes, percent)
+  return if (isPaidTier) {
+    stringResource(R.string.RemoteBackupsSettingsFragment__uploading_s_of_s_d, formattedUploadedBytes, formattedTotalBytes, percent)
+  } else {
+    stringResource(R.string.RemoteBackupsSettingsFragment__uploading_d, percent)
+  }
 }
 
 @Composable
@@ -1949,18 +1981,20 @@ private fun LastBackupRowPreview() {
 private fun InProgressRowPreview() {
   Previews.Preview {
     Column {
-      InProgressBackupRow(archiveUploadProgressState = ArchiveUploadProgressState())
+      InProgressBackupRow(archiveUploadProgressState = ArchiveUploadProgressState(), isPaidTier = true)
       InProgressBackupRow(
         archiveUploadProgressState = ArchiveUploadProgressState(
           state = ArchiveUploadProgressState.State.Export,
           backupPhase = ArchiveUploadProgressState.BackupPhase.BackupPhaseNone
-        )
+        ),
+        isPaidTier = true
       )
       InProgressBackupRow(
         archiveUploadProgressState = ArchiveUploadProgressState(
           state = ArchiveUploadProgressState.State.Export,
           backupPhase = ArchiveUploadProgressState.BackupPhase.Account
-        )
+        ),
+        isPaidTier = true
       )
       InProgressBackupRow(
         archiveUploadProgressState = ArchiveUploadProgressState(
@@ -1968,7 +2002,8 @@ private fun InProgressRowPreview() {
           backupPhase = ArchiveUploadProgressState.BackupPhase.Message,
           frameExportCount = 1,
           frameTotalCount = 1
-        )
+        ),
+        isPaidTier = true
       )
       InProgressBackupRow(
         archiveUploadProgressState = ArchiveUploadProgressState(
@@ -1976,7 +2011,8 @@ private fun InProgressRowPreview() {
           backupPhase = ArchiveUploadProgressState.BackupPhase.Message,
           frameExportCount = 1000,
           frameTotalCount = 100_000
-        )
+        ),
+        isPaidTier = true
       )
       InProgressBackupRow(
         archiveUploadProgressState = ArchiveUploadProgressState(
@@ -1984,7 +2020,8 @@ private fun InProgressRowPreview() {
           backupPhase = ArchiveUploadProgressState.BackupPhase.Message,
           frameExportCount = 1_000_000,
           frameTotalCount = 100_000
-        )
+        ),
+        isPaidTier = true
       )
       InProgressBackupRow(
         archiveUploadProgressState = ArchiveUploadProgressState(
@@ -1994,7 +2031,19 @@ private fun InProgressRowPreview() {
           backupFileTotalBytes = 50.mebiBytes.inWholeBytes,
           mediaUploadedBytes = 0,
           mediaTotalBytes = 0
-        )
+        ),
+        isPaidTier = true
+      )
+      InProgressBackupRow(
+        archiveUploadProgressState = ArchiveUploadProgressState(
+          state = ArchiveUploadProgressState.State.UploadBackupFile,
+          backupPhase = ArchiveUploadProgressState.BackupPhase.BackupPhaseNone,
+          backupFileUploadedBytes = 10.mebiBytes.inWholeBytes,
+          backupFileTotalBytes = 50.mebiBytes.inWholeBytes,
+          mediaUploadedBytes = 0,
+          mediaTotalBytes = 0
+        ),
+        isPaidTier = false
       )
       InProgressBackupRow(
         archiveUploadProgressState = ArchiveUploadProgressState(
@@ -2004,7 +2053,8 @@ private fun InProgressRowPreview() {
           backupFileTotalBytes = 50.mebiBytes.inWholeBytes,
           mediaUploadedBytes = 100.mebiBytes.inWholeBytes,
           mediaTotalBytes = 1.gibiBytes.inWholeBytes
-        )
+        ),
+        isPaidTier = true
       )
     }
   }

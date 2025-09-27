@@ -65,7 +65,6 @@ class BackupSubscriptionCheckJobTest {
   @Before
   fun setUp() {
     mockkObject(RemoteConfig)
-    every { RemoteConfig.messageBackups } returns true
     every { RemoteConfig.internalUser } returns true
 
     coEvery { AppDependencies.billingApi.getApiAvailability() } returns BillingResponseCode.OK

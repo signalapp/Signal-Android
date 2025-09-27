@@ -26,7 +26,7 @@
 
             <argument
                 android:name="group_id"
-                app:argType="org.thoughtcrime.securesms.groups.ParcelableGroupId"
+                app:argType="org.thoughtcrime.securesms.groups.GroupId"
                 app:nullable="true" />
 
             <argument

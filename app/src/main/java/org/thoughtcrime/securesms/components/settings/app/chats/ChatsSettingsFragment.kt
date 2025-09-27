@@ -22,7 +22,6 @@ import org.signal.core.ui.compose.Texts
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.compose.rememberStatusBarColorNestedScrollModifier
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
 
 /**
@@ -45,8 +44,7 @@ class ChatsSettingsFragment : ComposeFragment() {
 
     ChatsSettingsScreen(
       state = state,
-      callbacks = callbacks,
-      isRemoteBackupsAvailable = RemoteConfig.messageBackups
+      callbacks = callbacks
     )
   }
 
@@ -105,7 +103,6 @@ private interface ChatsSettingsCallbacks {
 
 @Composable
 private fun ChatsSettingsScreen(
-  isRemoteBackupsAvailable: Boolean,
   state: ChatsSettingsState,
   callbacks: ChatsSettingsCallbacks
 ) {
@@ -201,25 +198,6 @@ private fun ChatsSettingsScreen(
           onCheckChanged = callbacks::onEnterKeySendsChanged
         )
       }
-
-      if (!isRemoteBackupsAvailable) {
-        item {
-          Dividers.Default()
-        }
-
-        item {
-          Texts.SectionHeader(stringResource(R.string.preferences_chats__backups))
-        }
-
-        item {
-          Rows.TextRow(
-            text = stringResource(R.string.preferences_chats__chat_backups),
-            label = stringResource(if (state.localBackupsEnabled) R.string.arrays__enabled else R.string.arrays__disabled),
-            enabled = state.localBackupsEnabled || state.isRegisteredAndUpToDate(),
-            onClick = callbacks::onChatBackupsClick
-          )
-        }
-      }
     }
   }
 }
@@ -240,8 +218,7 @@ private fun ChatsSettingsScreenPreview() {
         userUnregistered = false,
         clientDeprecated = false
       ),
-      callbacks = ChatsSettingsCallbacks.Empty,
-      isRemoteBackupsAvailable = false
+      callbacks = ChatsSettingsCallbacks.Empty
     )
   }
 }

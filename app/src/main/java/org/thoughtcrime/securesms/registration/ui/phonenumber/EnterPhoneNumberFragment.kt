@@ -28,6 +28,7 @@ import androidx.lifecycle.distinctUntilChanged
 import androidx.lifecycle.map
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -81,7 +82,11 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
   private val TAG = Log.tag(EnterPhoneNumberFragment::class.java)
   private val sharedViewModel by activityViewModels<RegistrationViewModel>()
   private val fragmentViewModel by viewModels<EnterPhoneNumberViewModel>()
+  private val args by navArgs<EnterPhoneNumberFragmentArgs>()
   private val binding: FragmentRegistrationEnterPhoneNumberBinding by ViewBinderDelegate(FragmentRegistrationEnterPhoneNumberBinding::bind)
+
+  private val enterPhoneNumberMode: EnterPhoneNumberMode by lazy { args.enterPhoneNumberMode }
+  private var processedResumeMode: Boolean = false
 
   private val skipToNextScreen: DialogInterface.OnClickListener = DialogInterface.OnClickListener { _: DialogInterface?, _: Int -> moveToVerificationEntryScreen() }
 
@@ -156,19 +161,25 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
         handleRegistrationErrorResponse(it)
         sharedViewModel.registerAccountErrorShown()
       }
-
-      if (sharedState.challengesRequested.contains(Challenge.CAPTCHA) && sharedState.captchaToken.isNotNullOrBlank()) {
-        sharedViewModel.submitCaptchaToken(requireContext())
-      } else if (sharedState.challengesRequested.isNotEmpty()) {
-        if (!sharedState.challengeInProgress) {
-          handleChallenges(sharedState.challengesRequested)
-        }
-      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
-        moveToEnterPinScreen()
-      } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
-        moveToVerificationEntryScreen()
-      }
     }
+
+    sharedViewModel
+      .uiState
+      .map { it.toNavigationStateOnly() }
+      .distinctUntilChanged()
+      .observe(viewLifecycleOwner) { sharedState ->
+        if (sharedState.challengesRequested.contains(Challenge.CAPTCHA) && sharedState.captchaToken.isNotNullOrBlank()) {
+          sharedViewModel.submitCaptchaToken(requireContext())
+        } else if (sharedState.challengesRequested.isNotEmpty()) {
+          if (!sharedState.challengeInProgress) {
+            handleChallenges(sharedState.challengesRequested)
+          }
+        } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.PHONE_NUMBER_CONFIRMED && sharedState.canSkipSms) {
+          moveToEnterPinScreen()
+        } else if (sharedState.registrationCheckpoint >= RegistrationCheckpoint.VERIFICATION_CODE_REQUESTED) {
+          moveToVerificationEntryScreen()
+        }
+      }
 
     fragmentViewModel
       .uiState
@@ -212,7 +223,12 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       phoneNumberInputLayout.setText(existingNationalNumber)
     }
 
-    ViewUtil.focusAndShowKeyboard(phoneNumberInputLayout)
+    if (enterPhoneNumberMode == EnterPhoneNumberMode.RESTART_AFTER_COLLECTION && (savedInstanceState == null && !processedResumeMode)) {
+      processedResumeMode = true
+      startNormalRegistration()
+    } else {
+      ViewUtil.focusAndShowKeyboard(phoneNumberInputLayout)
+    }
   }
 
   private fun updateCountrySelection(country: Country?) {
@@ -422,7 +438,7 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       }
 
       is VerificationCodeRequestResult.SubmitVerificationCodeRateLimited -> presentGenericError(result)
-      is VerificationCodeRequestResult.NonNormalizedNumber -> handleNonNormalizedNumberError(result.originalNumber, result.normalizedNumber, fragmentViewModel.mode)
+      is VerificationCodeRequestResult.NonNormalizedNumber -> handleNonNormalizedNumberError(result.originalNumber, result.normalizedNumber, fragmentViewModel.e164VerificationMode)
       is VerificationCodeRequestResult.RateLimited -> {
         val timeRemaining = result.timeRemaining?.milliseconds
         Log.i(TAG, "Session patch rate limited! Next attempt: $timeRemaining")
@@ -541,6 +557,15 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
   }
 
   private fun onRegistrationButtonClicked() {
+    when (enterPhoneNumberMode) {
+      EnterPhoneNumberMode.NORMAL,
+      EnterPhoneNumberMode.RESTART_AFTER_COLLECTION -> startNormalRegistration()
+
+      EnterPhoneNumberMode.COLLECT_FOR_MANUAL_SIGNAL_BACKUPS_RESTORE -> findNavController().safeNavigate(EnterPhoneNumberFragmentDirections.goToEnterBackupKey())
+    }
+  }
+
+  private fun startNormalRegistration() {
     ViewUtil.hideKeyboard(requireContext(), phoneNumberInputLayout)
     sharedViewModel.setInProgress(true)
     val hasFcm = validateFcmStatus(requireContext())
@@ -699,13 +724,11 @@ class EnterPhoneNumberFragment : LoggingFragment(R.layout.fragment_registration_
       menuInflater.inflate(R.menu.enter_phone_number, menu)
     }
 
-    override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
-      return if (menuItem.itemId == R.id.phone_menu_use_proxy) {
-        NavHostFragment.findNavController(this@EnterPhoneNumberFragment).safeNavigate(EnterPhoneNumberFragmentDirections.actionEditProxy())
-        true
-      } else {
-        false
-      }
+    override fun onMenuItemSelected(menuItem: MenuItem): Boolean = if (menuItem.itemId == R.id.phone_menu_use_proxy) {
+      NavHostFragment.findNavController(this@EnterPhoneNumberFragment).safeNavigate(EnterPhoneNumberFragmentDirections.actionEditProxy())
+      true
+    } else {
+      false
     }
   }
 }

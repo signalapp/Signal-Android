@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.megaphone
 
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.util.RemoteConfig
 import kotlin.time.Duration.Companion.days
 
 /**
@@ -13,10 +12,6 @@ import kotlin.time.Duration.Companion.days
 class VerifyBackupKeyReminderSchedule : MegaphoneSchedule {
 
   override fun shouldDisplay(seenCount: Int, lastSeen: Long, firstVisible: Long, currentTime: Long): Boolean {
-    if (!RemoteConfig.messageBackups) {
-      return false
-    }
-
     if (!SignalStore.backup.areBackupsEnabled) {
       return false
     }

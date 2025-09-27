@@ -1,5 +1,5 @@
 /*
- * Copyright 2024 Signal Messenger, LLC
+ * Copyright 2025 Signal Messenger, LLC
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
@@ -17,16 +17,9 @@ import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.MainActivity
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.keyvalue.isDecisionPending
-import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
-import org.thoughtcrime.securesms.pin.PinRestoreActivity
-import org.thoughtcrime.securesms.profiles.AvatarHelper
-import org.thoughtcrime.securesms.profiles.edit.CreateProfileActivity
-import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.registration.sms.SmsRetrieverReceiver
-import org.thoughtcrime.securesms.registrationv3.ui.restore.RemoteRestoreActivity
+import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.util.DynamicNoActionBarTheme
-import org.thoughtcrime.securesms.util.RemoteConfig
 
 /**
  * Activity to hold the entire registration process.
@@ -48,12 +41,13 @@ class RegistrationActivity : BaseActivity() {
     dynamicTheme.onCreate(this)
 
     super.onCreate(savedInstanceState)
-    setContentView(R.layout.activity_registration_navigation_v2)
+    setContentView(R.layout.activity_registration_navigation_v3)
 
     sharedViewModel.isReregister = intent.getBooleanExtra(RE_REGISTRATION_EXTRA, false)
 
     sharedViewModel.checkpoint.observe(this) {
       if (it >= RegistrationCheckpoint.LOCAL_REGISTRATION_COMPLETE) {
+        RegistrationUtil.maybeMarkRegistrationComplete()
         handleSuccessfulVerify()
       }
     }
@@ -69,37 +63,9 @@ class RegistrationActivity : BaseActivity() {
       SignalStore.misc.shouldShowLinkedDevicesReminder = sharedViewModel.isReregister
     }
 
-    if (SignalStore.storageService.needsAccountRestore) {
-      Log.i(TAG, "Performing pin restore.")
-      startActivity(Intent(this, PinRestoreActivity::class.java))
-      finish()
-    } else {
-      val isProfileNameEmpty = Recipient.self().profileName.isEmpty
-      val isAvatarEmpty = !AvatarHelper.hasAvatar(this, Recipient.self().id)
-      val needsProfile = isProfileNameEmpty || isAvatarEmpty
-      val needsPin = !sharedViewModel.hasPin()
-
-      Log.i(TAG, "Pin restore flow not required. Profile name: $isProfileNameEmpty | Profile avatar: $isAvatarEmpty | Needs PIN: $needsPin")
-
-      if (!needsProfile && !needsPin) {
-        sharedViewModel.completeRegistration()
-      }
-
-      val startIntent = MainActivity.clearTop(this).apply {
-        if (needsPin) {
-          putExtra("next_intent", CreateSvrPinActivity.getIntentForPinCreate(this@RegistrationActivity))
-        } else if (SignalStore.registration.restoreDecisionState.isDecisionPending && RemoteConfig.messageBackups) {
-          putExtra("next_intent", RemoteRestoreActivity.getIntent(this@RegistrationActivity))
-        } else if (needsProfile) {
-          putExtra("next_intent", CreateProfileActivity.getIntentForUserProfile(this@RegistrationActivity))
-        }
-      }
-
-      Log.d(TAG, "Launching ${startIntent.component}")
-      startActivity(startIntent)
-      finish()
-      ActivityNavigator.applyPopAnimationsToPendingTransition(this)
-    }
+    startActivity(MainActivity.clearTop(this))
+    finish()
+    ActivityNavigator.applyPopAnimationsToPendingTransition(this)
   }
 
   private inner class SmsRetrieverObserver : DefaultLifecycleObserver {
@@ -119,7 +85,7 @@ class RegistrationActivity : BaseActivity() {
 
     @JvmStatic
     fun newIntentForNewRegistration(context: Context, originalIntent: Intent): Intent {
-      return Intent(context, getRegistrationClass()).apply {
+      return Intent(context, RegistrationActivity::class.java).apply {
         putExtra(RE_REGISTRATION_EXTRA, false)
         setData(originalIntent.data)
       }
@@ -127,13 +93,9 @@ class RegistrationActivity : BaseActivity() {
 
     @JvmStatic
     fun newIntentForReRegistration(context: Context): Intent {
-      return Intent(context, getRegistrationClass()).apply {
+      return Intent(context, RegistrationActivity::class.java).apply {
         putExtra(RE_REGISTRATION_EXTRA, true)
       }
-    }
-
-    private fun getRegistrationClass(): Class<*> {
-      return if (RemoteConfig.restoreAfterRegistration) org.thoughtcrime.securesms.registrationv3.ui.RegistrationActivity::class.java else RegistrationActivity::class.java
     }
   }
 }

@@ -11,12 +11,10 @@ import android.view.View
 import androidx.activity.result.ActivityResultLauncher
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxHeight
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
@@ -94,7 +92,7 @@ class BackupsSettingsFragment : ComposeFragment() {
       onNavigationClick = { requireActivity().onNavigateUp() },
       onBackupsRowClick = {
         when (state.backupState) {
-          is BackupState.Error, BackupState.NotAvailable -> Unit
+          is BackupState.Error -> Unit
 
           BackupState.None -> {
             checkoutLauncher.launch(null)
@@ -199,8 +197,6 @@ private fun BackupsSettingsContent(
             OtherWaysToBackUpHeading()
           }
 
-          BackupState.NotAvailable -> Unit
-
           BackupState.NotFound -> {
             NotFoundBackupRow(
               onBackupsRowClick = onBackupsRowClick
@@ -253,12 +249,12 @@ private fun NeverEnabledBackupsRow(
   onBackupsRowClick: () -> Unit = {}
 ) {
   Rows.TextRow(
-    modifier = Modifier.height(IntrinsicSize.Min),
+    modifier = Modifier.wrapContentHeight(),
     icon = {
       Box(
         modifier = Modifier
-          .fillMaxHeight()
           .padding(top = 12.dp)
+          .align(Alignment.Top)
       ) {
         Icon(
           painter = painterResource(R.drawable.symbol_backup_24),
@@ -331,7 +327,10 @@ private fun InactiveBackupsRow(
       Icon(
         imageVector = ImageVector.vectorResource(R.drawable.symbol_backup_24),
         contentDescription = stringResource(R.string.preferences_chats__backups),
-        tint = MaterialTheme.colorScheme.onSurface
+        tint = MaterialTheme.colorScheme.onSurface,
+        modifier = Modifier
+          .padding(top = 12.dp)
+          .align(Alignment.Top)
       )
     }
   )
@@ -342,13 +341,12 @@ private fun NotFoundBackupRow(
   onBackupsRowClick: () -> Unit = {}
 ) {
   Rows.TextRow(
-    modifier = Modifier.height(IntrinsicSize.Min),
+    modifier = Modifier.wrapContentHeight(),
     icon = {
       Box(
-        contentAlignment = Alignment.TopCenter,
         modifier = Modifier
-          .fillMaxHeight()
           .padding(top = 12.dp)
+          .align(Alignment.Top)
       ) {
         Icon(
           painter = painterResource(R.drawable.symbol_backup_24),
@@ -379,13 +377,12 @@ private fun PendingBackupRow(
   onBackupsRowClick: () -> Unit = {}
 ) {
   Rows.TextRow(
-    modifier = Modifier.height(IntrinsicSize.Min),
+    modifier = Modifier.wrapContentHeight(),
     icon = {
       Box(
-        contentAlignment = Alignment.TopCenter,
         modifier = Modifier
-          .fillMaxHeight()
           .padding(top = 12.dp)
+          .align(Alignment.Top)
       ) {
         CircularProgressIndicator(
           modifier = Modifier.size(24.dp)
@@ -430,13 +427,12 @@ private fun LocalStoreBackupRow(
   onBackupsRowClick: () -> Unit
 ) {
   Rows.TextRow(
-    modifier = Modifier.height(IntrinsicSize.Min),
+    modifier = Modifier.wrapContentHeight(),
     icon = {
       Box(
-        contentAlignment = Alignment.TopCenter,
         modifier = Modifier
-          .fillMaxHeight()
           .padding(top = 12.dp)
+          .align(Alignment.Top)
       ) {
         Icon(
           painter = painterResource(R.drawable.symbol_backup_24),
@@ -476,13 +472,12 @@ private fun ActiveBackupsRow(
   onBackupsRowClick: () -> Unit = {}
 ) {
   Rows.TextRow(
-    modifier = Modifier.height(IntrinsicSize.Min),
+    modifier = Modifier.wrapContentHeight(),
     icon = {
       Box(
-        contentAlignment = Alignment.TopCenter,
         modifier = Modifier
-          .fillMaxHeight()
           .padding(top = 12.dp)
+          .align(Alignment.Top)
       ) {
         Icon(
           painter = painterResource(R.drawable.symbol_backup_24),
@@ -501,6 +496,11 @@ private fun ActiveBackupsRow(
           is MessageBackupsType.Paid -> {
             val body = if (backupState is BackupState.Canceled) {
               stringResource(R.string.BackupsSettingsFragment__subscription_canceled)
+            } else if (type.pricePerMonth.amount == BigDecimal.ZERO) {
+              stringResource(
+                R.string.BackupsSettingsFragment_renews_s,
+                DateUtils.formatDateWithYear(Locale.getDefault(), backupState.renewalTime.inWholeMilliseconds)
+              )
             } else {
               stringResource(
                 R.string.BackupsSettingsFragment_s_month_renews_s,
@@ -635,19 +635,6 @@ private fun BackupsSettingsContentPreview() {
 
 @SignalPreview
 @Composable
-private fun BackupsSettingsContentNotAvailablePreview() {
-  Previews.Preview {
-    BackupsSettingsContent(
-      backupsSettingsState = BackupsSettingsState(
-        backupState = BackupState.NotAvailable,
-        lastBackupAt = 0.seconds
-      )
-    )
-  }
-}
-
-@SignalPreview
-@Composable
 private fun BackupsSettingsContentBackupTierInternalOverridePreview() {
   Previews.Preview {
     BackupsSettingsContent(
@@ -701,6 +688,25 @@ private fun ActivePaidBackupsRowPreview() {
       backupState = BackupState.ActivePaid(
         messageBackupsType = MessageBackupsType.Paid(
           pricePerMonth = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD")),
+          storageAllowanceBytes = 1_000_000,
+          mediaTtl = 30.days
+        ),
+        renewalTime = 0.seconds,
+        price = FiatMoney(BigDecimal.valueOf(4), Currency.getInstance("CAD"))
+      ),
+      lastBackupAt = 0.seconds
+    )
+  }
+}
+
+@SignalPreview
+@Composable
+private fun ActivePaidBackupsRowNoPricePreview() {
+  Previews.Preview {
+    ActiveBackupsRow(
+      backupState = BackupState.ActivePaid(
+        messageBackupsType = MessageBackupsType.Paid(
+          pricePerMonth = FiatMoney(BigDecimal.ZERO, Currency.getInstance("CAD")),
           storageAllowanceBytes = 1_000_000,
           mediaTtl = 30.days
         ),

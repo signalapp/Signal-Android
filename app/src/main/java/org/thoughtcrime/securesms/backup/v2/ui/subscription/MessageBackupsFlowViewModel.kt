@@ -45,7 +45,6 @@ import org.thoughtcrime.securesms.jobs.InAppPaymentPurchaseTokenJob
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.storage.StorageSyncHelper
-import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.next
 import org.whispersystems.signalservice.api.storage.IAPSubscriptionId
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
@@ -76,6 +75,14 @@ class MessageBackupsFlowViewModel(
   val deletionState: Flow<DeletionState> = SignalStore.backup.deletionStateFlow
 
   init {
+    viewModelScope.launch(SignalDispatchers.IO) {
+      internalStateFlow.update {
+        it.copy(
+          googlePlayBillingAvailability = AppDependencies.billingApi.getApiAvailability()
+        )
+      }
+    }
+
     viewModelScope.launch {
       val result = withContext(SignalDispatchers.IO) {
         BackupRepository.triggerBackupIdReservation()
@@ -96,7 +103,7 @@ class MessageBackupsFlowViewModel(
       val allBackupTypes: List<MessageBackupsType> = try {
         withContext(SignalDispatchers.IO) {
           BackupRepository.getBackupTypes(
-            if (!RemoteConfig.messageBackups) emptyList() else listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)
+            listOf(MessageBackupTier.FREE, MessageBackupTier.PAID)
           )
         }
       } catch (e: Exception) {

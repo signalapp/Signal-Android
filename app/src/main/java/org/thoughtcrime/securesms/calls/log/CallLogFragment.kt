@@ -11,12 +11,16 @@ import androidx.compose.material3.SnackbarDuration
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.kotlin.Flowables
 import io.reactivex.rxjava3.kotlin.subscribeBy
+import kotlinx.coroutines.launch
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
@@ -41,6 +45,7 @@ import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterLerp
 import org.thoughtcrime.securesms.conversationlist.chatfilter.FilterPullState
 import org.thoughtcrime.securesms.databinding.CallLogFragmentBinding
 import org.thoughtcrime.securesms.dependencies.AppDependencies
+import org.thoughtcrime.securesms.main.MainNavigationDetailLocation
 import org.thoughtcrime.securesms.main.MainNavigationListLocation
 import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.MainToolbarMode
@@ -78,6 +83,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   private lateinit var callLogActionMode: CallLogActionMode
   private val conversationUpdateTick: ConversationUpdateTick = ConversationUpdateTick(this::onTimestampTick)
   private var callLogAdapter: CallLogAdapter? = null
+  private val backPressedCallback = OnBackPressed()
 
   private lateinit var signalBottomActionBarController: SignalBottomActionBarController
 
@@ -165,16 +171,14 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     initializePullToFilter(scrollToPositionDelegate)
     initializeTapToScrollToTop(scrollToPositionDelegate)
 
-    requireActivity().onBackPressedDispatcher.addCallback(
-      viewLifecycleOwner,
-      object : OnBackPressedCallback(true) {
-        override fun handleOnBackPressed() {
-          if (!closeSearchIfOpen()) {
-            mainNavigationViewModel.onChatsSelected()
-          }
+    requireActivity().onBackPressedDispatcher.addCallback(backPressedCallback)
+    viewLifecycleOwner.lifecycleScope.launch {
+      repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        mainToolbarViewModel.state.collect {
+          backPressedCallback.isEnabled = it.mode == MainToolbarMode.SEARCH
         }
       }
-    )
+    }
 
     if (resources.getWindowSizeClass().isCompact()) {
       ViewUtil.setBottomMargin(binding.bottomActionBar, ViewUtil.getNavigationBarHeight(binding.bottomActionBar))
@@ -316,7 +320,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     if (viewModel.selectionStateSnapshot.isNotEmpty(binding.recycler.adapter!!.itemCount)) {
       viewModel.toggleSelected(callLogRow.id)
     } else {
-      startActivity(CallLinkDetailsActivity.createIntent(requireContext(), callLogRow.record.roomId))
+      mainNavigationViewModel.goTo(MainNavigationDetailLocation.Calls.CallLinks.CallLinkDetails(callLogRow.record.roomId))
     }
   }
 
@@ -479,6 +483,12 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     override fun getResources(): Resources = resources
     override fun onResetSelectionState() {
       viewModel.clearSelected()
+    }
+  }
+
+  private inner class OnBackPressed : OnBackPressedCallback(enabled = false) {
+    override fun handleOnBackPressed() {
+      closeSearchIfOpen()
     }
   }
 

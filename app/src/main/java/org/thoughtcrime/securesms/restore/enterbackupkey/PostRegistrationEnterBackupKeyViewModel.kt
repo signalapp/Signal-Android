@@ -19,8 +19,8 @@ import kotlinx.coroutines.withContext
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.registrationv3.ui.restore.AccountEntropyPoolVerification
-import org.thoughtcrime.securesms.registrationv3.ui.restore.AccountEntropyPoolVerification.AEPValidationError
+import org.thoughtcrime.securesms.registration.ui.restore.AccountEntropyPoolVerification
+import org.thoughtcrime.securesms.registration.ui.restore.AccountEntropyPoolVerification.AEPValidationError
 import org.whispersystems.signalservice.api.AccountEntropyPool
 
 class PostRegistrationEnterBackupKeyViewModel : ViewModel() {
