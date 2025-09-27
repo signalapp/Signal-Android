@@ -10,5 +10,5 @@
 
     <integer name="text_entry_exit_duration">150</integer>
 
-    <integer name="fake_keyboard_hide_duration">300</integer>
+    <integer name="fake_keyboard_hide_duration">200</integer>
 </resources>
