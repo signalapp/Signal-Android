@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
+import androidx.core.view.plusAssign
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ButtonStripItemView
 import java.util.function.Consumer
@@ -47,7 +48,7 @@ class AttachmentKeyboardButtonList @JvmOverloads constructor(
 
   fun setButtons(newButtons: List<AttachmentKeyboardButton>) {
     inner.removeAllViews()
-    newButtons.asSequence().map { buttonToView(it) }.forEach { inner.addView(it) }
+    newButtons.forEach { inner += buttonToView(it) }
     AttachmentButtonCenterHelper.recenter(inner, this)
   }
 
