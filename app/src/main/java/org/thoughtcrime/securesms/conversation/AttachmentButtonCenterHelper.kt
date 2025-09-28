@@ -1,7 +1,6 @@
 package org.thoughtcrime.securesms.conversation
 
 import android.view.View
-import androidx.core.view.doOnLayout
 import org.signal.core.util.DimensionUnit
 import org.signal.core.util.logging.Log
 
@@ -14,21 +13,18 @@ import org.signal.core.util.logging.Log
  */
 object AttachmentButtonCenterHelper {
 
+  private val TAG = Log.tag(AttachmentButtonCenterHelper::class)
   private val DEFAULT_PADDING = DimensionUnit.DP.toPixels(16f).toInt()
 
   fun recenter(buttonHolder: View, wrapper: View) {
-    buttonHolder.let {
-      it.post {
-        it.setPadding(DEFAULT_PADDING, it.paddingTop, DEFAULT_PADDING, it.paddingBottom)
-      }
-      it.post {
-        val extraSpace = wrapper.measuredWidth - it.measuredWidth
-        val horizontalPadding = when {
-          extraSpace > 0 -> (extraSpace / 2f).toInt()
-          else -> DEFAULT_PADDING
-        }
-        it.setPadding(horizontalPadding, it.paddingTop, horizontalPadding, it.paddingBottom)
-      }
-    }
+    // The core width of the list of buttons not include any padding.
+    val buttonHolderCoreWidth = buttonHolder.run { width - (paddingLeft + paddingRight) }
+    val extraSpace = wrapper.width - buttonHolderCoreWidth
+    val horizontalPadding = if (extraSpace >= 0)
+      (extraSpace / 2f).toInt()
+    else
+      DEFAULT_PADDING
+    Log.i(TAG, "will add $horizontalPadding px on either side")
+    buttonHolder.apply { setPadding(horizontalPadding, paddingTop, horizontalPadding, paddingBottom) }
   }
 }
