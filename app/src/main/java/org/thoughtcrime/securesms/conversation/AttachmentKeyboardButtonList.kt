@@ -11,15 +11,16 @@ import android.view.LayoutInflater
 import android.widget.HorizontalScrollView
 import android.widget.LinearLayout
 import androidx.core.view.plusAssign
+import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ButtonStripItemView
-import org.signal.core.util.logging.Log
 import java.util.function.Consumer
 
 class AttachmentKeyboardButtonList @JvmOverloads constructor(
   context: Context,
   attrs: AttributeSet? = null,
-  defStyleAttr: Int = 0) : HorizontalScrollView(context, attrs, defStyleAttr) {
+  defStyleAttr: Int = 0
+) : HorizontalScrollView(context, attrs, defStyleAttr) {
 
   companion object {
     val TAG = Log.tag(AttachmentKeyboardButtonList::class)
@@ -55,7 +56,7 @@ class AttachmentKeyboardButtonList @JvmOverloads constructor(
   fun setButtons(newButtons: List<AttachmentKeyboardButton>) {
     if (currentButtons == newButtons)
       return
-    Log.i(TAG, "setButtons: $currentButtons -> $newButtons")
+    Log.d(TAG, "setButtons: $currentButtons -> $newButtons")
     currentButtons = newButtons
     inner.removeAllViews()
     newButtons.forEach { inner += inflateButton(it) }

@@ -10,7 +10,6 @@ import android.util.AttributeSet
 import android.widget.EditText
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -130,7 +129,7 @@ class InputAwareConstraintLayout @JvmOverloads constructor(
   }
 
   private fun hideInput(resetKeyboardGuideline: Boolean) {
-    Log.d(TAG, "hideInput: ${input.toString()}, resetKeyboardGuideline=$resetKeyboardGuideline")
+    Log.d(TAG, "hideInput: $input, resetKeyboardGuideline=$resetKeyboardGuideline")
     val inputHidden = input != null
     input?.let {
       (input as? InputFragment)?.hide()

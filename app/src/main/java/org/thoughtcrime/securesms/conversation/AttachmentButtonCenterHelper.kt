@@ -24,7 +24,7 @@ object AttachmentButtonCenterHelper {
       (extraSpace / 2f).toInt()
     else
       DEFAULT_PADDING
-    Log.i(TAG, "will add $horizontalPadding px on either side")
+    Log.d(TAG, "will add $horizontalPadding px on either side")
     buttonHolder.apply { setPadding(horizontalPadding, paddingTop, horizontalPadding, paddingBottom) }
   }
 }

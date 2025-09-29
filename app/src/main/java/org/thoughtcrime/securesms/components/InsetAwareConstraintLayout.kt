@@ -192,7 +192,6 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
         if (!keyboardAnimator.animating) {
           keyboardGuideline?.setGuidelineEnd(keyboardInsets.bottom)
           Log.d(TAG, "applyInsets (keyboardInsets): setting guideline=${keyboardInsets.bottom}")
-          //animateKeyboardGuidelineTo(windowInsets.bottom)
         } else {
           Log.d(TAG, "applyInsets (keyboardInsets/else): ${keyboardInsets.bottom}")
           keyboardAnimator.endingGuidelineEnd = keyboardInsets.bottom
@@ -202,7 +201,6 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
       if (!keyboardAnimator.animating) {
         keyboardGuideline?.setGuidelineEnd(windowInsets.bottom)
         Log.d(TAG, "applyInsets (windowInsets): setting guideline=${windowInsets.bottom}")
-        //animateKeyboardGuidelineTo(windowInsets.bottom)
       } else {
         Log.d(TAG, "applyInsets (windowInsets/else): ${windowInsets.bottom}")
         keyboardAnimator.endingGuidelineEnd = windowInsets.bottom
@@ -224,7 +222,6 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   protected fun overrideKeyboardGuidelineWithPreviousHeight() {
     overridingKeyboard = true
-    // keyboardGuideline?.setGuidelineEnd(getKeyboardHeight())
     animateKeyboardGuidelineTo(getKeyboardHeight())
   }
 
@@ -234,7 +231,6 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   protected fun resetKeyboardGuideline() {
     clearKeyboardGuidelineOverride()
-    // keyboardGuideline?.setGuidelineEnd(navigationBarGuideline.guidelineEnd)
     keyboardAnimator.endingGuidelineEnd = navigationBarGuideline.guidelineEnd
     animateKeyboardGuidelineTo(navigationBarGuideline.guidelineEnd)
   }

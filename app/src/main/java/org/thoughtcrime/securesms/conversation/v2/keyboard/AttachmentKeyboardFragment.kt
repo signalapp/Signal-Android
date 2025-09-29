@@ -142,10 +142,10 @@ class AttachmentKeyboardFragment : LoggingFragment(R.layout.attachment_keyboard_
   }
 
   override fun show() {
-    findListener<AttachmentKeyboard.AttachmentKeyboardListener>()?.onAttachmentKeyboardShown();
+    findListener<AttachmentKeyboard.AttachmentKeyboardListener>()?.onAttachmentKeyboardShown()
   }
 
   override fun hide() {
-    findListener<AttachmentKeyboard.AttachmentKeyboardListener>()?.onAttachmentKeyboardHidden();
+    findListener<AttachmentKeyboard.AttachmentKeyboardListener>()?.onAttachmentKeyboardHidden()
   }
 }
