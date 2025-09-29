@@ -41,7 +41,6 @@ androidx-benchmark-gradle-plugin = "androidx.benchmark:benchmark-gradle-plugin:1
 
 # Compose
 androidx-compose-bom = "androidx.compose:compose-bom:2025.09.01"
-androidx-compose-material-icons-core = { module = "androidx.compose.material:material-icons-core" }
 androidx-compose-material3 = { module = "androidx.compose.material3:material3" }
 androidx-compose-material3-adaptive = { module = "androidx.compose.material3.adaptive:adaptive"}
 androidx-compose-material3-adaptive-layout = { module = "androidx.compose.material3.adaptive:adaptive-layout"}

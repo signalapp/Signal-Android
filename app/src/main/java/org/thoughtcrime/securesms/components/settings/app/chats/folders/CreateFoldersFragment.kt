@@ -21,8 +21,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -490,7 +488,7 @@ fun ChatRow(
   ) {
     if (LocalInspectionMode.current) {
       Icon(
-        imageVector = Icons.Default.Person,
+        imageVector = ImageVector.vectorResource(R.drawable.symbol_person_fill_24),
         contentDescription = null,
         modifier = Modifier
           .padding(start = 24.dp, end = 16.dp)

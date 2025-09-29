@@ -16,8 +16,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -322,7 +320,7 @@ private fun CircularIconButton(
 private fun PendingParticipantAvatar(recipient: Recipient) {
   if (LocalInspectionMode.current) {
     Icon(
-      imageVector = Icons.Default.Person,
+      imageVector = ImageVector.vectorResource(R.drawable.symbol_person_fill_24),
       contentDescription = null,
       modifier = Modifier
         .size(40.dp)
