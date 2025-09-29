@@ -36,7 +36,6 @@ import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
 import org.whispersystems.signalservice.api.archive.ArchiveGetMediaItemsResponse
 import org.whispersystems.signalservice.api.backup.MediaId
-import java.lang.RuntimeException
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.hours
 
@@ -66,6 +65,20 @@ class ArchiveAttachmentReconciliationJob private constructor(
 
     private const val CDN_FETCH_LIMIT = 10_000
     private const val DELETE_BATCH_SIZE = 10_000
+
+    /**
+     * Enqueues a reconciliation job if the retry limit hasn't been exceeded.
+     *
+     * @param forced If true, forces the job run to bypass any sync interval constraints.
+     */
+    fun enqueueIfRetryAllowed(forced: Boolean) {
+      if (SignalStore.backup.archiveAttachmentReconciliationAttempts < 3) {
+        SignalStore.backup.archiveAttachmentReconciliationAttempts++
+        AppDependencies.jobManager.add(ArchiveAttachmentReconciliationJob(forced = forced))
+      } else {
+        Log.i(TAG, "Skip enqueueing reconciliation job: attempt limit exceeded.")
+      }
+    }
   }
 
   constructor(forced: Boolean = false) : this(
@@ -327,6 +340,7 @@ class ArchiveAttachmentReconciliationJob private constructor(
           return null to Result.failure()
         }
       }
+
       is NetworkResult.ApplicationError -> {
         Log.w(TAG, "Failed to list remote media objects due to a crash.", result.getCause())
         return null to Result.fatalFailure(RuntimeException(result.getCause()))
