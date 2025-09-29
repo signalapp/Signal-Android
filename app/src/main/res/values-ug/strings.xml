@@ -844,7 +844,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">زاپاسلايدىغان مەلۇماتلارنىڭ ھەجىمى سەۋەبىدىن ، بۇنىڭغا ئۇزۇن ۋاقىت كېتىشى مۇمكىن. زاپاسلاش ئېلىپ بېرىلۋاتقاندىمۇ تېلېفونىڭىزنى ئادەتتىكىدەكلا ئىشلىتەلەيسىز.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">مېدىيا، ئۇچۇرلارنى ئەۋەتسىڭىز ۋە تاپشۇرۇۋالسىڭىز زاپاسلاشقا قوشۇلۇپ ماڭىدۇ.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">مېدىيانى ئەسلىگە كەلتۈرگىلى بولمىدى</string>
@@ -7962,7 +7962,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/ ئايلىقى ، %2$s يېڭىلىنىدۇ</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">يېڭىلىنىش ۋاقتى %1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">ئاخىرقى زاپاسلغان ۋاقىت %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8012,10 +8012,10 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">ئېتىپ زاپاسلانمىنى ئۆچۈرۈش</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">زاپاسلانما چوڭلۇقى</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="other">زاپاسلاش، سىزنىڭ بارلىق قىسقا ئۇچۇرلىرىڭىزنى ۋە ئەڭ ئاخىرقى %1$d كۈنلۈك مېدىيانى ئۆز ئىچىگە ئالىدۇ. يېڭى تاراتقۇلارنىڭ قوبۇل قىلىنىشى ۋە كونا تاراتقۇلارنىڭ ۋاقتىنىڭ توشىشىغا ئەگىشىپ ھەجىمى ئۆزگىرىدۇ.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">زاپاسلانما ئ‍ۆچۈرۈلدى ۋە ئېتىلدى.</string>
@@ -8158,7 +8158,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">يۈكلەش: %2$s نىڭ %1$s تى (%%%3$d)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">يۈكلىنىۋاتىدۇ:%%%1$d</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">تەپسىلاتى</string>
     <!-- Text displayed when there was an error deleting backup -->

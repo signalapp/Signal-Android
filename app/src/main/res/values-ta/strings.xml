@@ -864,7 +864,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">உங்கள் காப்புப்பிரதியின் அளவைப் பொறுத்து, இதற்கு நீண்ட நேரம் ஆகலாம். காப்புப்பிரதி எடுக்கப்படும்போது நீங்கள் வழக்கம் போல் உங்கள் தொலைபேசியைப் பயன்படுத்தலாம்.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">நீங்கள் மெசேஜ்களை அனுப்பிப் பெறும்போது உங்கள் காப்புப்பிரதியில் ஊடகம் சேர்க்கப்படுகிறது.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">மீடியாவை மீட்டமைக்க முடியவில்லை</string>
@@ -8139,7 +8139,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/மாதம், %2$s புதுப்பிக்கிறது</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">%1$s அன்று புதுப்பிக்கப்படும்</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">கடைசி காப்புப்பிரதி %1$s அன்று நடந்தது</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8189,11 +8189,11 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">அணைத்துவிட்டு, காப்புப்பிரதியை அழித்தல்</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">காப்புப்பிரதி அளவு</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="one">உங்கள் காப்புப்பிரதியானது உங்கள் உரை செய்திகள் அனைத்தையும் கடைசி %1$d நாளின் ஊடகங்களையும் உள்ளடக்கியதாகும். புதிய ஊடகங்கள் பெறப்படுவதால் பழைய ஊடகங்கள் காலாவதியாகும்போது அளவு மாறும்.</item>
+        <item quantity="other">உங்கள் காப்புப்பிரதியானது உங்கள் உரை செய்திகள் அனைத்தையும் கடைசி %1$d நாளின் ஊடகங்களையும் உள்ளடக்கியதாகும். புதிய ஊடகங்கள் பெறப்படுவதால் பழைய ஊடகங்கள் காலாவதியாகும்போது அளவு மாறும்.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">காப்புப்பிரதி அழிக்கப்பட்டு, அணைக்கப்பட்டது.</string>
@@ -8339,7 +8339,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">பதிவேற்றுகிறது: %2$s இல் %1$s(%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">பதிவேற்றுகிறது: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">விவரங்கள்</string>
     <!-- Text displayed when there was an error deleting backup -->

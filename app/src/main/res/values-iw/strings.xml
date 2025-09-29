@@ -904,7 +904,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">בהתאם לגודל הגיבוי שלך, זה עשוי להימשך זמן רב. אפשר להשתמש בטלפון שלך כרגיל בזמן שהגיבוי מתבצע.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">מדיה מתווספת לגיבוי שלך בעת שליחת וקבלת הודעות.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">לא ניתן לשחזר מדיה</string>
@@ -8493,7 +8493,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/חודש, מתחדש ב–%2$s</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">מתחדש ב–%1$s</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">גיבוי אחרון %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8543,13 +8543,13 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">כיבוי ומחיקת גיבויים</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">נפח גיבוי</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="two">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="many">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="one">הגיבוי שלך כולל את כל הודעות הטקסט שלך ואת המדיה מהיום האחרון. הגודל ישתנה ככל שתתקבל מדיה חדשה ותפוג מדיה ישנה.</item>
+        <item quantity="two">הגיבוי שלך כולל את כל הודעות הטקסט שלך ואת המדיה מהיומיים האחרונים. הגודל ישתנה ככל שתתקבל מדיה חדשה ותפוג מדיה ישנה.</item>
+        <item quantity="many">הגיבוי שלך כולל את כל הודעות הטקסט שלך ואת המדיה מ-%1$d הימים האחרונים. הגודל ישתנה ככל שתתקבל מדיה חדשה ותפוג מדיה ישנה.</item>
+        <item quantity="other">הגיבוי שלך כולל את כל הודעות הטקסט שלך ואת המדיה מ-%1$d הימים האחרונים. הגודל ישתנה ככל שתתקבל מדיה חדשה ותפוג מדיה ישנה.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">הגיבוי נמחק וכובה.</string>
@@ -8665,9 +8665,9 @@
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
         <item quantity="one">מעבדים %1$s מתוך הודעה %2$s (%3$d%%)</item>
-        <item quantity="two">מעבדים %1$s מתוך ~%2$s הודעות (%3$d%%)</item>
-        <item quantity="many">מעבדים %1$s מתוך ~%2$s הודעות (%3$d%%)</item>
-        <item quantity="other">מעבדים %1$s מתוך ~%2$s הודעות (%3$d%%)</item>
+        <item quantity="two">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
+        <item quantity="many">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
+        <item quantity="other">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">יש לך %1$s של נתוני גיבוי שאינם נמצאים במכשיר זה. בלי מנוי בתשלום, לא ניתן להוריד מדיה.</string>
@@ -8701,7 +8701,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">מעלים: %1$s מתוך %2$s (%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">בהעלאה: %%%1$d</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">פרטים</string>
     <!-- Text displayed when there was an error deleting backup -->

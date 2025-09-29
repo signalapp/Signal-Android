@@ -864,7 +864,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">તમારા બેકઅપની સાઇઝના આધારે, આમાં લાંબો સમય લાગી શકે છે. જ્યારે બેકઅપ લેવામાં આવે ત્યારે તમે સામાન્ય રીતે કરતાં હોવ તેમ તમે તમારા ફોનનો ઉપયોગ કરી શકો છો.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">જેમ જેમ તમે મેસેજ મોકલો અને પ્રાપ્ત કરો છો તેમ તેમ તમારા બેકઅપમાં મીડિયા ઉમેરવામાં આવે છે.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">મીડિયા રિસ્ટોર કરી શકતા નથી</string>
@@ -8139,7 +8139,7 @@
     <!-- Subtitle for row for active backup, first placeholder is formatted amount, second is renewal date -->
     <string name="BackupsSettingsFragment_s_month_renews_s">%1$s/મહિને, %2$sના રોજ રિન્યૂ થશે</string>
     <!-- Subtitle for row for active backup when price is not available, first placeholder is renewal date -->
-    <string name="BackupsSettingsFragment_renews_s">Renews %1$s</string>
+    <string name="BackupsSettingsFragment_renews_s">%1$sના રોજ રિન્યૂ થશે</string>
     <!-- Subtitle for row for active backup, placeholder is last date of backup -->
     <string name="BackupsSettingsFragment_last_backup_s">છેલ્લું બેકઅપ %1$s</string>
     <!-- Subtitle for row for canceled backup -->
@@ -8189,11 +8189,11 @@
     <!-- Row label for cancelling and deleting backup -->
     <string name="RemoteBackupsSettingsFragment__turn_off_and_delete_backup">બેકઅપ બંધ કરો અને ડિલીટ કરો</string>
     <!-- Dialog title for explainer text to on how backup size works for free tier -->
-    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Backup size</string>
+    <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">બેકઅપની સાઇઝ</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="one">તમારા બેકઅપમાં તમારા બધા ટેક્સ્ટ મેસેજ અને તમારા છેલ્લા %1$d દિવસના મીડિયાનો સમાવેશ થાય છે. નવા મીડિયા પ્રાપ્ત થાય અને જૂના મીડિયાની સમયસીમા સમાપ્ત થાય તેમ સાઇઝ બદલાશે.</item>
+        <item quantity="other">તમારા બેકઅપમાં તમારા બધા ટેક્સ્ટ મેસેજ અને તમારા છેલ્લા %1$d દિવસના મીડિયાનો સમાવેશ થાય છે. નવા મીડિયા પ્રાપ્ત થાય અને જૂના મીડિયાની સમયસીમા સમાપ્ત થાય તેમ સાઇઝ બદલાશે.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">બેકઅપ ડિલીટ કર્યું અને બંધ કર્યું.</string>
@@ -8339,7 +8339,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">%2$sમાંથી %1$s (%3$d%%) અપલોડ થાય છે</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">અપલોડ થાય છે: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">વિગતો</string>
     <!-- Text displayed when there was an error deleting backup -->
