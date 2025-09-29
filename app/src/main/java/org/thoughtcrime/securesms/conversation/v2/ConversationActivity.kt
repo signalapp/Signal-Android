@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.MotionEvent
 import android.view.Window
 import androidx.activity.viewModels
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.enableSavedStateHandles
 import io.reactivex.rxjava3.subjects.PublishSubject
 import io.reactivex.rxjava3.subjects.Subject
@@ -53,7 +54,7 @@ open class ConversationActivity : PassphraseRequiredActivity(), VoiceNoteMediaCo
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
-    if (WindowSizeClass.isLargeScreenSupportEnabled()) {
+    if (!ActivityCompat.isLaunchedFromBubble(this) && WindowSizeClass.isLargeScreenSupportEnabled()) {
       startActivity(
         MainActivity.clearTop(this).apply {
           action = ConversationIntents.ACTION
