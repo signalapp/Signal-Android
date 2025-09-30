@@ -216,7 +216,8 @@ private fun BackupsSettingsContent(
           is BackupState.SubscriptionMismatchMissingGooglePlay -> {
             ActiveBackupsRow(
               backupState = backupsSettingsState.backupState,
-              lastBackupAt = backupsSettingsState.lastBackupAt
+              lastBackupAt = backupsSettingsState.lastBackupAt,
+              onBackupsRowClick = onBackupsRowClick
             )
 
             OtherWaysToBackUpHeading()
