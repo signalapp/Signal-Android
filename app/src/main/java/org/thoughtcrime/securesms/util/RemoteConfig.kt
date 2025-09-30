@@ -1054,28 +1054,6 @@ object RemoteConfig {
     value.asLong(8.kibiBytes.inWholeBytes).bytes
   }
 
-  /** Whether the chat web socket is backed by libsignal for direct connections  */
-  @JvmStatic
-  @get:JvmName("libSignalWebSocketEnabled")
-  val libSignalWebSocketEnabled: Boolean by remoteValue(
-    key = "android.libsignalWebSocketEnabled.8",
-    hotSwappable = false
-  ) { value ->
-    value.asBoolean(false) || Environment.IS_NIGHTLY
-  }
-
-  /** Whether the chat web socket is backed by libsignal for all connections, including proxied connections.
-   *  Note, this does *not* gate HTTP proxies, which are treated as direct connections.
-   *  This only has an effect if libSignalWebSocketEnabled is also enabled. */
-  @JvmStatic
-  @get:JvmName("libSignalWebSocketEnabledForProxies")
-  val libSignalWebSocketEnabledForProxies: Boolean by remoteValue(
-    key = "android.libSignalWebSocketEnabledForProxies.8",
-    hotSwappable = false
-  ) { value ->
-    value.asBoolean(false) || Environment.IS_NIGHTLY
-  }
-
   @JvmStatic
   @get:JvmName("libsignalEnforceMinTlsVersion")
   val libsignalEnforceMinTlsVersion by remoteBoolean(
