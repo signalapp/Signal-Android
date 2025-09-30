@@ -19,7 +19,7 @@
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:statusBarColor">@color/signal_colorBackground</item>
         <item name="android:navigationBarColor">@color/signal_colorBackground</item>
-        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="TextSecure.DarkRegistrationTheme" parent="TextSecure.DarkNoActionBar">
