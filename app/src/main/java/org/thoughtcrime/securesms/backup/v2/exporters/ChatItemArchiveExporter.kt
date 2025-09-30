@@ -549,7 +549,7 @@ private fun BackupMessageRecord.toBasicChatItemBuilder(selfRecipientId: Recipien
           dateReceived = dateReceived
         )
 
-        if (expiresInMs != null && outgoing?.sendStatus?.all { it.pending == null && it.failed == null } == true) {
+        if (expiresInMs != null && outgoing?.sendStatus?.all { it.pending == null && it.failed == null } == true && expireStartDate == null) {
           Log.w(TAG, ExportOddities.outgoingMessageWasSentButTimerNotStarted(record.dateSent))
           expireStartDate = record.dateReceived
         }
