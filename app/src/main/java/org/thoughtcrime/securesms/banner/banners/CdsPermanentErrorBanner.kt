@@ -11,8 +11,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentManager
 import kotlinx.coroutines.flow.flowOf
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.banner.Banner
 import org.thoughtcrime.securesms.banner.ui.compose.Action
@@ -65,7 +65,7 @@ private fun Banner(contentPadding: PaddingValues, onLearnMoreClicked: () -> Unit
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BannerPreview() {
   Previews.Preview {

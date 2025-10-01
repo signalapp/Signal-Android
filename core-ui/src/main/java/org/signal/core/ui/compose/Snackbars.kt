@@ -5,7 +5,6 @@
 
 package org.signal.core.ui.compose
 
-import android.content.res.Configuration
 import androidx.compose.material3.Snackbar
 import androidx.compose.material3.SnackbarData
 import androidx.compose.material3.SnackbarDuration
@@ -14,7 +13,6 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.SnackbarVisuals
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import org.signal.core.ui.compose.theme.LocalSnackbarColors
 import org.signal.core.ui.compose.theme.SignalTheme
 
@@ -45,17 +43,9 @@ object Snackbars {
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
-private fun SnackbarLightPreview() {
-  SignalTheme {
-    Snackbars.Default(snackbarData = SampleSnackbarData)
-  }
-}
-
-@Preview(uiMode = Configuration.UI_MODE_NIGHT_YES)
-@Composable
-private fun SnackbarDarkPreview() {
+private fun SnackbarPreview() {
   SignalTheme {
     Snackbars.Default(snackbarData = SampleSnackbarData)
   }

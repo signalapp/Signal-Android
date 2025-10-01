@@ -36,8 +36,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.window.Navigation
@@ -242,7 +242,7 @@ private fun MainFloatingActionButton(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MainFloatingActionButtonsNavigationRailPreview() {
   var currentDestination by remember { mutableStateOf(MainNavigationListLocation.CHATS) }
@@ -271,7 +271,7 @@ private fun MainFloatingActionButtonsNavigationRailPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MainFloatingActionButtonsNavigationBarPreview() {
   var currentDestination by remember { mutableStateOf(MainNavigationListLocation.CHATS) }

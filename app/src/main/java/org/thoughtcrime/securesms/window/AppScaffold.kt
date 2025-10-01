@@ -51,6 +51,7 @@ import androidx.compose.ui.zIndex
 import androidx.window.core.ExperimentalWindowCoreApi
 import androidx.window.core.layout.WindowHeightSizeClass
 import androidx.window.core.layout.WindowWidthSizeClass
+import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.main.MainFloatingActionButtonsCallback
@@ -361,12 +362,7 @@ private fun ListAndNavigation(
 }
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
-@Preview(device = "spec:width=360dp,height=640dp,orientation=portrait")
-@Preview(device = "spec:width=640dp,height=360dp,orientation=landscape")
-@Preview(device = "spec:width=600dp,height=1024dp,orientation=portrait")
-@Preview(device = "spec:width=1024dp,height=600dp,orientation=landscape")
-@Preview(device = "spec:width=840dp,height=1280dp,orientation=portrait")
-@Preview(device = "spec:width=1280dp,height=840dp,orientation=landscape")
+@AllDevicePreviews
 @Composable
 private fun AppScaffoldPreview() {
   Previews.Preview {

@@ -28,9 +28,9 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.signal.core.ui.R as CoreUiR
 
@@ -112,7 +112,7 @@ fun MessageBackupsKeyEducationScreen(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MessageBackupsKeyEducationScreenPreview() {
   Previews.Preview {

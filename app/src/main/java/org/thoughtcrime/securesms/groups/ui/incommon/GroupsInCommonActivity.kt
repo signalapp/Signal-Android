@@ -41,9 +41,9 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableExtraCompat
 import org.thoughtcrime.securesms.PassphraseRequiredActivity
@@ -196,7 +196,7 @@ private fun GroupRow(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun GroupsInCommonContentPreview() {
   Previews.Preview {

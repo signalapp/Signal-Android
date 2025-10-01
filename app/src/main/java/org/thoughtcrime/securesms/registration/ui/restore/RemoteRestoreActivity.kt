@@ -55,9 +55,9 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.BaseActivity
@@ -405,7 +405,7 @@ private fun BackupAvailableContent(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RestoreFromBackupContentPreview() {
   Previews.Preview {
@@ -421,7 +421,7 @@ private fun RestoreFromBackupContentPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RestoreFromBackupUnknownTierPreview() {
   Previews.Preview {
@@ -438,7 +438,7 @@ private fun RestoreFromBackupUnknownTierPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RestoreFromBackupContentLoadingPreview() {
   Previews.Preview {
@@ -549,7 +549,7 @@ private fun RestoreProgressDialog(restoreProgress: RestoreV2Event?) {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ProgressDialogPreview() {
   Previews.Preview {
@@ -648,7 +648,7 @@ fun TierRestoreFailedDialog(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RestoreFailedDialogPreview() {
   Previews.Preview {
@@ -656,7 +656,7 @@ private fun RestoreFailedDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RestoreFailedWithLogPromptDialogPreview() {
   Previews.Preview {
@@ -679,7 +679,7 @@ fun InvalidBackupVersionDialog(
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun InvalidBackupVersionDialogPreview() {
   Previews.Preview {

@@ -21,9 +21,9 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.mebiBytes
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.RestoreState
@@ -221,7 +221,7 @@ private fun progressColor(backupStatusData: ArchiveRestoreProgressState): Color 
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowNormalPreview() {
   Previews.Preview {
@@ -232,7 +232,7 @@ fun BackupStatusRowNormalPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowWaitingForWifiPreview() {
   Previews.Preview {
@@ -242,7 +242,7 @@ fun BackupStatusRowWaitingForWifiPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowWaitingForInternetPreview() {
   Previews.Preview {
@@ -252,7 +252,7 @@ fun BackupStatusRowWaitingForInternetPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowLowBatteryPreview() {
   Previews.Preview {
@@ -262,7 +262,7 @@ fun BackupStatusRowLowBatteryPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowFinishedPreview() {
   Previews.Preview {
@@ -273,7 +273,7 @@ fun BackupStatusRowFinishedPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowNotEnoughFreeSpacePreview() {
   Previews.Preview {

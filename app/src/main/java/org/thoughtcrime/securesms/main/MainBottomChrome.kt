@@ -21,6 +21,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import org.signal.core.ui.compose.AllDevicePreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Snackbars
@@ -152,12 +153,7 @@ private fun MainSnackbar(
   }
 }
 
-@Preview(device = "spec:width=360dp,height=640dp,orientation=portrait")
-@Preview(device = "spec:width=640dp,height=360dp,orientation=landscape")
-@Preview(device = "spec:width=600dp,height=1024dp,orientation=portrait")
-@Preview(device = "spec:width=1024dp,height=600dp,orientation=landscape")
-@Preview(device = "spec:width=840dp,height=1280dp,orientation=portrait")
-@Preview(device = "spec:width=1280dp,height=840dp,orientation=landscape")
+@AllDevicePreviews
 @Composable
 fun MainBottomChromePreview() {
   Previews.Preview {

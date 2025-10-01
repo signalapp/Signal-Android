@@ -40,7 +40,7 @@ import androidx.compose.ui.viewinterop.AndroidView
 import androidx.core.os.bundleOf
 import androidx.core.widget.TextViewCompat
 import org.signal.core.ui.compose.BottomSheets
-import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.getParcelableCompat
 import org.signal.core.util.isNotNullOrBlank
@@ -583,7 +583,7 @@ private fun ContentPreviewNotAConnection() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ContentPreviewNotAConnectionNoGroups() {
   SignalTheme {

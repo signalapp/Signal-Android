@@ -27,9 +27,9 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.thoughtcrime.securesms.R
@@ -61,7 +61,7 @@ class NewWaysToConnectDialogFragment : ComposeDialogFragment() {
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun PreviewNewWaysToConnectDialogContent() {
   Previews.Preview {
@@ -152,7 +152,7 @@ private fun NewWaysToConnectDialogContent(
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun PreviewNewWaysToConnectRowItem() {
   Previews.Preview {

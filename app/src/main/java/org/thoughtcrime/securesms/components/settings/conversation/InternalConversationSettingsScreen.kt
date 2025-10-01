@@ -18,11 +18,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.AnnotatedString
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.Hex.fromStringCondensed
 import org.signal.libsignal.zkgroup.groups.GroupMasterKey
@@ -412,7 +412,7 @@ private fun AreYouSureDialog(
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun InternalConversationSettingsScreenPreview() {
   Previews.Preview {
@@ -423,7 +423,7 @@ fun InternalConversationSettingsScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun InternalConversationSettingsScreenGroupPreview() {
   Previews.Preview {

@@ -31,7 +31,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
@@ -197,7 +197,7 @@ fun CallScreenTopAppBar(
   )
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 fun CallScreenTopBarPreview() {
   Previews.Preview {
@@ -208,7 +208,7 @@ fun CallScreenTopBarPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 fun CallScreenPreJoinOverlayPreview() {
   Previews.Preview {

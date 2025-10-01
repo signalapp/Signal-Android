@@ -32,13 +32,13 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.Placeholder
 import androidx.compose.ui.text.PlaceholderVerticalAlign
 import androidx.compose.ui.text.buildAnnotatedString
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.core.os.BundleCompat
 import androidx.core.os.bundleOf
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
@@ -115,10 +115,10 @@ class TurnOnNotificationsBottomSheet private constructor() : ComposeBottomSheetD
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun TurnOnNotificationsSheetContentPreview() {
-  SignalTheme(isDarkMode = false) {
+  SignalTheme {
     Surface {
       TurnOnNotificationsSheetContent(
         titleRes = R.string.TurnOnNotificationsBottomSheet__turn_on_notifications,

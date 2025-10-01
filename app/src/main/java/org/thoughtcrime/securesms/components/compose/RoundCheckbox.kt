@@ -35,7 +35,7 @@ import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.SignalPreview
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 
@@ -98,13 +98,13 @@ fun RoundCheckbox(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RoundCheckboxCheckedPreview() = SignalTheme {
   RoundCheckbox(checked = true, onCheckedChange = {})
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RoundCheckboxUncheckedPreview() = SignalTheme {
   RoundCheckbox(checked = false, onCheckedChange = {})

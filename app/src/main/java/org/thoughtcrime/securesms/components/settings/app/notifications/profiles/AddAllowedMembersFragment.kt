@@ -27,10 +27,10 @@ import com.google.android.material.snackbar.Snackbar
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.rx3.asFlow
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
@@ -256,7 +256,7 @@ private fun AddAllowedMembersContent(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AddAllowedMembersContentPreview() {
   Previews.Preview {

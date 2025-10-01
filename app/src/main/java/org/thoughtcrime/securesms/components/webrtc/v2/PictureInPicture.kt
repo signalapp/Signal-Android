@@ -37,7 +37,7 @@ import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -185,7 +185,7 @@ private fun distance(a: IntOffset, b: IntOffset): Float {
   return sqrt((b.x - a.x).toDouble().pow(2) + (b.y - a.y).toDouble().pow(2)).toFloat()
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 fun PictureInPicturePreview() {
   Previews.Preview {

@@ -31,9 +31,9 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.nullIfBlank
 import org.thoughtcrime.securesms.R
@@ -277,7 +277,7 @@ private fun StickerPackInfo(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun StickerPackSectionHeaderPreview() = SignalTheme {
   StickerPackSectionHeader(
@@ -285,7 +285,7 @@ private fun StickerPackSectionHeaderPreview() = SignalTheme {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AvailableStickerPackRowPreviewBlessed() = SignalTheme {
   AvailableStickerPackRow(
@@ -298,7 +298,7 @@ private fun AvailableStickerPackRowPreviewBlessed() = SignalTheme {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AvailableStickerPackRowPreviewNotBlessed() = SignalTheme {
   AvailableStickerPackRow(
@@ -312,7 +312,7 @@ private fun AvailableStickerPackRowPreviewNotBlessed() = SignalTheme {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AvailableStickerPackRowPreviewDownloading() = SignalTheme {
   AvailableStickerPackRow(
@@ -326,7 +326,7 @@ private fun AvailableStickerPackRowPreviewDownloading() = SignalTheme {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AvailableStickerPackRowPreviewDownloaded() = SignalTheme {
   AvailableStickerPackRow(
@@ -340,7 +340,7 @@ private fun AvailableStickerPackRowPreviewDownloaded() = SignalTheme {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun InstalledStickerPackRowPreview() = SignalTheme {
   InstalledStickerPackRow(
@@ -354,7 +354,7 @@ private fun InstalledStickerPackRowPreview() = SignalTheme {
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun InstalledStickerPackRowSelectModePreview() = SignalTheme {
   InstalledStickerPackRow(
@@ -398,7 +398,7 @@ private fun MenuItem(
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MenuItemPreview() = Previews.Preview {
   MenuItem(

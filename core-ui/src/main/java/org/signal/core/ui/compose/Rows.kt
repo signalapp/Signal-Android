@@ -50,7 +50,6 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.R
 import org.signal.core.ui.compose.Rows.TextAndLabel
-import org.signal.core.ui.compose.Rows.TextRow
 
 object Rows {
 
@@ -585,7 +584,7 @@ private data class ToggleState(
   val onCheckChanged: (Boolean) -> Unit
 )
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RadioRowPreview() {
   Previews.Preview {
@@ -602,7 +601,7 @@ private fun RadioRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ToggleRowPreview() {
   Previews.Preview {
@@ -619,7 +618,7 @@ private fun ToggleRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ToggleLoadingRowPreview() {
   Previews.Preview {
@@ -637,7 +636,7 @@ private fun ToggleLoadingRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun TextRowPreview() {
   Previews.Preview {
@@ -649,7 +648,7 @@ private fun TextRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun TextAndLabelPreview() {
   Previews.Preview {
@@ -667,7 +666,7 @@ private fun TextAndLabelPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RadioListRowPreview() {
   var selectedValue by remember { mutableStateOf("b") }
@@ -685,7 +684,7 @@ private fun RadioListRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MultiSelectRowPreview() {
   var selectedValues by remember { mutableStateOf(arrayOf("b")) }

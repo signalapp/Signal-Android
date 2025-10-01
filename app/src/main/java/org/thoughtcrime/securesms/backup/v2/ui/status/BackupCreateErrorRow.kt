@@ -29,8 +29,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.signal.core.ui.R as CoreUiR
 
@@ -112,7 +112,7 @@ private fun BackupAlertText(text: AnnotatedString, inlineContent: Map<String, In
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowCouldNotCompleteBackupPreview() {
   Previews.Preview {
@@ -120,7 +120,7 @@ fun BackupStatusRowCouldNotCompleteBackupPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BackupStatusRowBackupFailedPreview() {
   Previews.Preview {

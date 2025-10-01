@@ -71,12 +71,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
@@ -1720,7 +1720,7 @@ private fun BackupReadyToDownloadRow(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RemoteBackupsSettingsContentPreview() {
   Previews.Preview {
@@ -1748,7 +1748,7 @@ private fun RemoteBackupsSettingsContentPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RemoteBackupsSettingsInternalUserContentPreview() {
   Previews.Preview {
@@ -1777,7 +1777,7 @@ private fun RemoteBackupsSettingsInternalUserContentPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RedemptionErrorAlertPreview() {
   Previews.Preview {
@@ -1785,7 +1785,7 @@ private fun RedemptionErrorAlertPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun LoadingCardPreview() {
   Previews.Preview {
@@ -1793,7 +1793,7 @@ private fun LoadingCardPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ErrorCardPreview() {
   Previews.Preview {
@@ -1801,7 +1801,7 @@ private fun ErrorCardPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun PendingCardPreview() {
   Previews.Preview {
@@ -1811,7 +1811,7 @@ private fun PendingCardPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SubscriptionNotFoundCardPreview() {
   Previews.Preview {
@@ -1822,7 +1822,7 @@ private fun SubscriptionNotFoundCardPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SubscriptionMismatchMissingGooglePlayCardPreview() {
   Previews.Preview {
@@ -1840,7 +1840,7 @@ private fun SubscriptionMismatchMissingGooglePlayCardPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupCardPreview() {
   Previews.Preview {
@@ -1934,7 +1934,7 @@ private fun BackupCardPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupReadyToDownloadPreview() {
   Previews.Preview {
@@ -1945,7 +1945,7 @@ private fun BackupReadyToDownloadPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupReadyToDownloadAfterCancelPreview() {
   Previews.Preview {
@@ -1963,7 +1963,7 @@ private fun BackupReadyToDownloadAfterCancelPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun LastBackupRowPreview() {
   Previews.Preview {
@@ -1976,7 +1976,7 @@ private fun LastBackupRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun InProgressRowPreview() {
   Previews.Preview {
@@ -2060,7 +2060,7 @@ private fun InProgressRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun FailedToTurnOffBackupDialogPreview() {
   Previews.Preview {
@@ -2070,7 +2070,7 @@ private fun FailedToTurnOffBackupDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun TurnOffAndDeleteBackupsDialogPreview() {
   Previews.Preview {
@@ -2082,7 +2082,7 @@ private fun TurnOffAndDeleteBackupsDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DownloadingYourBackupDialogPreview() {
   Previews.Preview {
@@ -2092,7 +2092,7 @@ private fun DownloadingYourBackupDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SkipDownloadDuringDeleteDialogPreview() {
   Previews.Preview {
@@ -2100,7 +2100,7 @@ private fun SkipDownloadDuringDeleteDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SkipDownloadDialogPreview() {
   Previews.Preview {
@@ -2110,7 +2110,7 @@ private fun SkipDownloadDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupDeletionCardPreview() {
   Previews.Preview {

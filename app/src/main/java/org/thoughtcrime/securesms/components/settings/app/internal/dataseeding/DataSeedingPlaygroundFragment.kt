@@ -50,9 +50,9 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.database.model.ThreadRecord
@@ -321,7 +321,7 @@ private fun ThreadSelectionRow(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun PreviewScreen() {
   Previews.Preview {
@@ -336,7 +336,7 @@ fun PreviewScreen() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun PreviewScreenWithData() {
   Previews.Preview {

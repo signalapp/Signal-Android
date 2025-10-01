@@ -25,8 +25,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
@@ -115,7 +115,7 @@ private fun MediaNoLongerAvailableBottomSheetContent(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MediaNoLongerAvailableBottomSheetContentPreview() {
   Previews.BottomSheetPreview {

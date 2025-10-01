@@ -36,8 +36,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.conversation.colors.AvatarColorPair
 import org.thoughtcrime.securesms.database.CallLinkTable
@@ -49,7 +49,7 @@ import org.thoughtcrime.securesms.service.webrtc.links.SignalCallLinkState
 import java.time.Instant
 import org.signal.core.ui.R as CoreUiR
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SignalCallRowPreview() {
   val callLink = remember {

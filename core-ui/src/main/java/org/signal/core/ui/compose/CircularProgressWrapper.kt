@@ -95,7 +95,7 @@ fun CircularProgressWrapper(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun CircularProgressWrapperPreview() {
   var isLoading by remember {

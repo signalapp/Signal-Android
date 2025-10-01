@@ -44,9 +44,9 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
@@ -176,7 +176,7 @@ private fun OnboardingMegaphoneListItem(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun OnboardingMegaphonePreview() {
   Previews.Preview {
@@ -187,7 +187,7 @@ private fun OnboardingMegaphonePreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun OnboardingMegaphoneListItemPreview() {
   Previews.Preview {

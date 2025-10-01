@@ -45,11 +45,11 @@ import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.withStyle
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.logging.Log
@@ -306,20 +306,10 @@ fun CaveatWarning(onClick: () -> Unit, modifier: Modifier = Modifier) {
   )
 }
 
-@Preview(name = "Light Theme")
+@DayNightPreviews
 @Composable
-private fun MainScreenPreviewLight() {
-  SignalTheme(isDarkMode = false) {
-    Surface {
-      IconSelectionScreen(AppIconPreset.DEFAULT, onItemConfirmed = {}, onWarningClick = {})
-    }
-  }
-}
-
-@Preview(name = "Dark Theme")
-@Composable
-private fun MainScreenPreviewDark() {
-  SignalTheme(isDarkMode = true) {
+private fun MainScreenPreview() {
+  SignalTheme {
     Surface {
       IconSelectionScreen(AppIconPreset.DEFAULT, onItemConfirmed = {}, onWarningClick = {})
     }

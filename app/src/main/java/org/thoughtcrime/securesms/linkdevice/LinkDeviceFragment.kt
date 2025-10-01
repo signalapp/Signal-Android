@@ -59,12 +59,12 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.BiometricDeviceAuthentication
 import org.thoughtcrime.securesms.BiometricDeviceLockContract
@@ -594,7 +594,7 @@ fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit, onEditDevice:
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DeviceListScreenPreview() {
   Previews.Preview {
@@ -610,7 +610,7 @@ private fun DeviceListScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DeviceListScreenLoadingPreview() {
   Previews.Preview {
@@ -623,7 +623,7 @@ private fun DeviceListScreenLoadingPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DeviceListScreenLinkingPreview() {
   Previews.Preview {
@@ -636,7 +636,7 @@ private fun DeviceListScreenLinkingPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DeviceListScreenUnlinkingPreview() {
   Previews.Preview {
@@ -649,7 +649,7 @@ private fun DeviceListScreenUnlinkingPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DeviceListScreenSyncingMessagesPreview() {
   Previews.Preview {
@@ -662,7 +662,7 @@ private fun DeviceListScreenSyncingMessagesPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DeviceListScreenSyncingFailedRetryPreview() {
   Previews.Preview {
@@ -675,7 +675,7 @@ private fun DeviceListScreenSyncingFailedRetryPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DeviceListScreenSyncingFailedPreview() {
   Previews.Preview {
@@ -692,7 +692,7 @@ private fun DeviceListScreenSyncingFailedPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DeviceListScreenContactSupportPreview() {
   Previews.Preview {
@@ -705,7 +705,7 @@ private fun DeviceListScreenContactSupportPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DeviceListScreenDeviceUnlinkedPreview() {
   Previews.Preview {
@@ -718,7 +718,7 @@ private fun DeviceListScreenDeviceUnlinkedPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DeviceListScreenNotEnoughStoragePreview() {
   Previews.Preview {

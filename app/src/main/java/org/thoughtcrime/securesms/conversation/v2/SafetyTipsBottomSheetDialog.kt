@@ -47,6 +47,7 @@ import androidx.fragment.app.FragmentManager
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
@@ -95,7 +96,7 @@ private val tips = listOf(
   SafetyTipData(heroImage = R.drawable.safety_tip4, titleText = R.string.SafetyTips_tip4_title, messageText = R.string.SafetyTips_tip4_message)
 )
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun SafetyTipsContentPreview() {
   SignalTheme {

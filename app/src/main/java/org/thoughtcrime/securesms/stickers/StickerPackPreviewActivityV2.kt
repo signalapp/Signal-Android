@@ -48,9 +48,9 @@ import com.bumptech.glide.load.Key
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.orNull
 import org.signal.core.util.toOptional
@@ -382,7 +382,7 @@ private fun StickerImage(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun HasDataPreview() {
   Previews.Preview {

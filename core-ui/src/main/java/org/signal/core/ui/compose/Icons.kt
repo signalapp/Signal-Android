@@ -16,7 +16,6 @@ import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 
 object Icons {
   /**
@@ -44,7 +43,7 @@ object Icons {
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun BrushedForegroundPreview() {
   Previews.Preview {

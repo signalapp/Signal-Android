@@ -54,13 +54,13 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.navArgument
 import org.signal.core.ui.compose.Animations
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Rows.TextAndLabel
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.bytes
@@ -550,7 +550,7 @@ private fun SetCustomLengthLimitDialog(
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ManageStorageSettingsScreenPreview() {
   Previews.Preview {
@@ -565,7 +565,7 @@ private fun ManageStorageSettingsScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SetKeepMessagesScreenPreview() {
   Previews.Preview {
@@ -573,7 +573,7 @@ private fun SetKeepMessagesScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SetChatLengthLimitScreenPreview() {
   Previews.Preview {
@@ -583,7 +583,7 @@ private fun SetChatLengthLimitScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SetCustomLengthLimitDialogPreview() {
   Previews.Preview {

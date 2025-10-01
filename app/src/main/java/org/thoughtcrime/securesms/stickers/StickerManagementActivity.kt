@@ -69,12 +69,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
 import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
@@ -663,7 +663,7 @@ private fun EmptyView(
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun StickerManagementScreenEmptyStatePreview() {
   Previews.Preview {
@@ -673,7 +673,7 @@ private fun StickerManagementScreenEmptyStatePreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AvailableStickersContentPreview() {
   Previews.Preview {
@@ -703,7 +703,7 @@ private fun AvailableStickersContentPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun InstalledStickersContentPreview() {
   Previews.Preview {

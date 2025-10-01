@@ -12,8 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.fragment.app.DialogFragment
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.MegaphoneActionController
 import org.thoughtcrime.securesms.megaphone.MegaphoneComponent
@@ -65,7 +65,7 @@ fun MainMegaphoneContainer(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MainMegaphoneContainerPreview() {
   Previews.Preview {

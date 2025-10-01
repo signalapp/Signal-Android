@@ -34,8 +34,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.logsubmit.SubmitDebugLogActivity
@@ -170,7 +170,7 @@ fun RegistrationScreen(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RegistrationScreenPreview() {
   Previews.Preview {
@@ -188,7 +188,7 @@ private fun RegistrationScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RegistrationScreenNoTitlePreview() {
   Previews.Preview {

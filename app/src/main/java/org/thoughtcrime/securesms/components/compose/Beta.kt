@@ -21,8 +21,8 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
@@ -88,7 +88,7 @@ fun BetaHeader(modifier: Modifier = Modifier) {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BetaLabelPreview() {
   Previews.Preview {
@@ -113,7 +113,7 @@ fun LongTextBetaLabelPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun BetaHeaderPreview() {
   Previews.Preview {

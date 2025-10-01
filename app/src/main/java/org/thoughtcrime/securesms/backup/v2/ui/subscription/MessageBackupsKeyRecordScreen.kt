@@ -47,10 +47,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -421,7 +421,7 @@ private suspend fun saveKeyToCredentialManager(
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MessageBackupsKeyRecordScreenPreview() {
   Previews.Preview {
@@ -438,7 +438,7 @@ private fun MessageBackupsKeyRecordScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun SaveKeyConfirmationDialogPreview() {
   Previews.Preview {
@@ -452,7 +452,7 @@ private fun SaveKeyConfirmationDialogPreview() {
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun CreateNewBackupKeySheetContentPreview() {
   Previews.BottomSheetPreview {
@@ -462,7 +462,7 @@ private fun CreateNewBackupKeySheetContentPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DownloadMediaDialogPreview() {
   Previews.Preview {

@@ -41,11 +41,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.fragment.findNavController
 import kotlinx.coroutines.delay
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Texts
 import org.signal.core.util.money.FiatMoney
 import org.thoughtcrime.securesms.R
@@ -613,7 +613,7 @@ private fun InternalBackupOverrideRow(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupsSettingsContentPreview() {
   Previews.Preview {
@@ -634,7 +634,7 @@ private fun BackupsSettingsContentPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BackupsSettingsContentBackupTierInternalOverridePreview() {
   Previews.Preview {
@@ -649,7 +649,7 @@ private fun BackupsSettingsContentBackupTierInternalOverridePreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun WaitingForNetworkRowPreview() {
   Previews.Preview {
@@ -657,7 +657,7 @@ private fun WaitingForNetworkRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun InactiveBackupsRowPreview() {
   Previews.Preview {
@@ -665,7 +665,7 @@ private fun InactiveBackupsRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun NotFoundBackupRowPreview() {
   Previews.Preview {
@@ -673,7 +673,7 @@ private fun NotFoundBackupRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun PendingBackupRowPreview() {
   Previews.Preview {
@@ -681,7 +681,7 @@ private fun PendingBackupRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ActivePaidBackupsRowPreview() {
   Previews.Preview {
@@ -700,7 +700,7 @@ private fun ActivePaidBackupsRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ActivePaidBackupsRowNoPricePreview() {
   Previews.Preview {
@@ -719,7 +719,7 @@ private fun ActivePaidBackupsRowNoPricePreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ActiveFreeBackupsRowPreview() {
   Previews.Preview {
@@ -735,7 +735,7 @@ private fun ActiveFreeBackupsRowPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun NeverEnabledBackupsRowPreview() {
   Previews.Preview {

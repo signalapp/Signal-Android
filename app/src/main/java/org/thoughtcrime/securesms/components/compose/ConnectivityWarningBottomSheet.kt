@@ -26,8 +26,8 @@ import androidx.compose.ui.unit.dp
 import androidx.fragment.app.FragmentManager
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeBottomSheetDialogFragment
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -102,7 +102,7 @@ private fun Sheet(onDismiss: () -> Unit = {}) {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ConnectivityWarningSheetPreview() {
   Previews.BottomSheetPreview {

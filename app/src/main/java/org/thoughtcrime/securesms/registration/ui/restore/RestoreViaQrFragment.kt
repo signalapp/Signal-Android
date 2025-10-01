@@ -62,10 +62,10 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.registration.proto.RegistrationProvisionMessage
@@ -335,7 +335,7 @@ private fun RestoreViaQrScreen(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RestoreViaQrScreenPreview() {
   Previews.Preview {
@@ -349,7 +349,7 @@ private fun RestoreViaQrScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RestoreViaQrScreenLoadingPreview() {
   Previews.Preview {
@@ -359,7 +359,7 @@ private fun RestoreViaQrScreenLoadingPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RestoreViaQrScreenFailurePreview() {
   Previews.Preview {
@@ -369,7 +369,7 @@ private fun RestoreViaQrScreenFailurePreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RestoreViaQrScreenScannedPreview() {
   Previews.Preview {
@@ -379,7 +379,7 @@ private fun RestoreViaQrScreenScannedPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RestoreViaQrScreenRegisteringPreview() {
   Previews.Preview {
@@ -389,7 +389,7 @@ private fun RestoreViaQrScreenRegisteringPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RestoreViaQrScreenRegistrationFailedPreview() {
   Previews.Preview {
@@ -424,7 +424,7 @@ private fun InstructionRow(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun InstructionRowPreview() {
   Previews.Preview {

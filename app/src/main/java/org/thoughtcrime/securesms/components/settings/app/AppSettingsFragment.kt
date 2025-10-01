@@ -47,12 +47,12 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.IconButtons
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
@@ -674,7 +674,7 @@ private fun BioRow(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AppSettingsContentPreview() {
   Previews.Preview {
@@ -710,7 +710,7 @@ private fun AppSettingsContentPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun BioRowPreview() {
   Previews.Preview {

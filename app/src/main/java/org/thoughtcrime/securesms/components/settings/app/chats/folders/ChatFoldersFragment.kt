@@ -46,12 +46,12 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.DropdownMenus
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.copied.androidx.compose.DragAndDropEvent
 import org.signal.core.ui.compose.copied.androidx.compose.DraggableItem
 import org.signal.core.ui.compose.copied.androidx.compose.dragContainer
@@ -402,7 +402,7 @@ fun FolderRow(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ChatFolderPreview() {
   val previewFolders = listOf(

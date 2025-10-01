@@ -35,7 +35,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
@@ -67,7 +67,8 @@ fun IncomingCallScreen(
 
     GlideImage(
       model = callRecipient.contactPhoto,
-      modifier = Modifier.fillMaxSize()
+      modifier = Modifier
+        .fillMaxSize()
         .blur(
           radiusX = 25.dp,
           radiusY = 25.dp,
@@ -279,7 +280,7 @@ private fun AnswerCallButtonAndLabel(
   }
 }
 
-@DarkPreview
+@NightPreview
 @Preview(device = "spec:parent=pixel_5,orientation=landscape", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun IncomingVideoCallScreenPreview() {
@@ -295,7 +296,7 @@ fun IncomingVideoCallScreenPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Preview(device = "spec:parent=pixel_5,orientation=landscape", uiMode = Configuration.UI_MODE_NIGHT_YES)
 @Composable
 fun IncomingAudioCallScreenPreview() {

@@ -604,7 +604,7 @@ object Dialogs {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun PermissionRationaleDialogPreview() {
   Previews.Preview {
@@ -619,7 +619,7 @@ private fun PermissionRationaleDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AlertDialogPreview() {
   Previews.Preview {
@@ -634,7 +634,7 @@ private fun AlertDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun AdvancedAlertDialogPreview() {
   Previews.Preview {
@@ -651,7 +651,7 @@ private fun AdvancedAlertDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MessageDialogPreview() {
   Previews.Preview {
@@ -663,7 +663,7 @@ private fun MessageDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun IndeterminateProgressDialogPreview() {
   Previews.Preview {
@@ -671,7 +671,7 @@ private fun IndeterminateProgressDialogPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun IndeterminateProgressDialogMessagePreview() {
   Previews.Preview {
@@ -679,7 +679,7 @@ private fun IndeterminateProgressDialogMessagePreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun IndeterminateProgressDialogCancellablePreview() {
   Previews.Preview {
@@ -687,7 +687,7 @@ private fun IndeterminateProgressDialogCancellablePreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun RadioListDialogPreview() {
   Previews.Preview {

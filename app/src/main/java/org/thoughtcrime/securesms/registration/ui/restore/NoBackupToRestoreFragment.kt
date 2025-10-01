@@ -25,8 +25,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreen
@@ -109,7 +109,7 @@ private fun StepRow(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun NoBackupToRestoreContentPreview() {
   Previews.Preview {

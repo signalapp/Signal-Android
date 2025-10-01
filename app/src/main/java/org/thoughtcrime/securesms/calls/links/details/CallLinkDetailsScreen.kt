@@ -23,7 +23,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.core.app.ShareCompat
 import androidx.fragment.app.FragmentActivity
@@ -31,6 +30,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.launch
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Rows
@@ -320,7 +320,7 @@ private fun FailureSnackbar(
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun CallLinkDetailsScreenPreview() {
   val callLink = remember {
@@ -343,7 +343,7 @@ private fun CallLinkDetailsScreenPreview() {
     )
   }
 
-  SignalTheme(false) {
+  SignalTheme {
     CallLinkDetailsScreen(
       CallLinkDetailsState(
         false,

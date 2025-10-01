@@ -50,11 +50,11 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.avatar.AvatarImage
 import org.thoughtcrime.securesms.compose.ComposeFragment
@@ -445,7 +445,7 @@ private fun ShowMutedSection(state: ChatFoldersSettingsState, onToggleShowMuted:
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun CreateFolderPreview() {
   val previewFolder = ChatFolder(ChatFolderRecord(id = 1, name = "WIP"))
@@ -459,7 +459,7 @@ private fun CreateFolderPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun EditFolderPreview() {
   val previewFolder = ChatFolder(ChatFolderRecord(id = 1, name = "Work"))

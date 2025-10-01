@@ -59,10 +59,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Snackbars
 import org.signal.core.ui.compose.TextFields.TextField
 import org.signal.core.util.Base64
@@ -639,7 +639,7 @@ private fun ImportCredentialsDialog(onSubmit: (aci: String, backupKey: String) -
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun PreviewScreen() {
   Previews.Preview {
@@ -647,7 +647,7 @@ fun PreviewScreen() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun PreviewScreenExportInProgress() {
   Previews.Preview {
@@ -655,7 +655,7 @@ fun PreviewScreenExportInProgress() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun PreviewImportCredentialDialog() {
   Previews.Preview {

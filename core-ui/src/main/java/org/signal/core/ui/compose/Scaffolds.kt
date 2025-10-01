@@ -26,7 +26,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.theme.SignalTheme
 
@@ -111,10 +110,10 @@ object Scaffolds {
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun SettingsScaffoldPreview() {
-  SignalTheme(isDarkMode = false) {
+  SignalTheme {
     val vector = remember {
       ImageVector.Builder(
         defaultWidth = 24.dp,
@@ -146,10 +145,10 @@ private fun SettingsScaffoldPreview() {
   }
 }
 
-@Preview
+@DayNightPreviews
 @Composable
 private fun SettingsScaffoldNoNavIconPreview() {
-  SignalTheme(isDarkMode = false) {
+  SignalTheme {
     Scaffolds.Settings(
       "Settings Scaffold",
       onNavigationClick = {},

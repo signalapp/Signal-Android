@@ -34,9 +34,9 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.util.isNotNullOrBlank
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
@@ -143,7 +143,7 @@ private fun EditNameScreen(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun DeviceListScreenLinkingPreview() {
   Previews.Preview {

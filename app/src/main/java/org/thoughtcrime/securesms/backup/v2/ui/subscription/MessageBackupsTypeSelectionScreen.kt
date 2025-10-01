@@ -48,10 +48,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import kotlinx.collections.immutable.persistentListOf
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.signal.core.util.billing.BillingResponseCode
 import org.signal.core.util.bytes
@@ -277,7 +277,7 @@ private fun UserNotSignedInDialog(
   )
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MessageBackupsTypeSelectionScreenPreview() {
   var selectedBackupsType by remember { mutableStateOf(MessageBackupTier.FREE) }
@@ -302,7 +302,7 @@ private fun MessageBackupsTypeSelectionScreenPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MessageBackupsTypeSelectionScreenWithCurrentTierPreview() {
   var selectedBackupsType by remember { mutableStateOf(MessageBackupTier.FREE) }

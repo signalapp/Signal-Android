@@ -47,9 +47,9 @@ import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.launch
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.Texts
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -302,7 +302,7 @@ fun TransferToNewDevice(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun TransferToNewDevicePreview() {
   Previews.Preview {
@@ -369,7 +369,7 @@ fun ContinueOnOtherDevice() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun ContinueOnOtherDevicePreview() {
   Previews.Preview {

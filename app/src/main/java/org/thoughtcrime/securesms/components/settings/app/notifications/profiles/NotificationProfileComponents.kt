@@ -27,9 +27,9 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.horizontalGutters
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
@@ -122,7 +122,7 @@ fun NotificationProfileRecipient(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun NotificationProfileAddMembersPreview() {
   Previews.Preview {
@@ -132,7 +132,7 @@ fun NotificationProfileAddMembersPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 fun NotificationProfileRecipientPreview() {
   Previews.Preview {

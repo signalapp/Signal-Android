@@ -19,8 +19,8 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withLink
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.components.contactsupport.ContactSupportDialogFragment
@@ -108,7 +108,7 @@ private fun NoRemoteStorageSpaceAvailableBottomSheetContent(
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun NoRemoteStorageSpaceAvailableBottomSheetContentPreview() {
   Previews.BottomSheetPreview {

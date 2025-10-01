@@ -41,7 +41,7 @@ import androidx.fragment.app.setFragmentResult
 import kotlinx.coroutines.flow.map
 import org.signal.core.ui.compose.BottomSheets
 import org.signal.core.ui.compose.Buttons
-import org.signal.core.ui.compose.DarkPreview
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.AvatarImageView
@@ -132,7 +132,7 @@ class PendingParticipantsBottomSheet : ComposeBottomSheetDialogFragment() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun PendingParticipantsSheetPreview() {
   Previews.BottomSheetPreview {

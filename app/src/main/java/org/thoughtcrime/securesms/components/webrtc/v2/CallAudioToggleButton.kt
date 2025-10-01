@@ -33,8 +33,8 @@ import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.signal.core.ui.compose.DarkPreview
 import org.signal.core.ui.compose.IconButtons
+import org.signal.core.ui.compose.NightPreview
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Rows
 import org.thoughtcrime.securesms.R
@@ -263,7 +263,7 @@ private fun LegacyAudioPickerContent(
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun CallAudioPickerSheetContentPreview() {
   Previews.BottomSheetPreview {
@@ -280,7 +280,7 @@ private fun CallAudioPickerSheetContentPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun TwoDeviceCallAudioToggleButtonPreview() {
   val outputState = remember {
@@ -303,7 +303,7 @@ private fun TwoDeviceCallAudioToggleButtonPreview() {
   }
 }
 
-@DarkPreview
+@NightPreview
 @Composable
 private fun ThreeDeviceCallAudioToggleButtonPreview() {
   val outputState = remember {

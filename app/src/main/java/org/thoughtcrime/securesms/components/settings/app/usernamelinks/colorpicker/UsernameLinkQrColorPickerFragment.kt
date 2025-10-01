@@ -36,7 +36,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
@@ -44,6 +43,7 @@ import androidx.navigation.fragment.findNavController
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.toImmutableList
 import org.signal.core.ui.compose.Buttons
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.settings.app.usernamelinks.QrCodeBadge
@@ -134,7 +134,9 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
   @Composable
   private fun ColorPicker(colors: ImmutableList<UsernameQrCodeColorScheme>, selected: UsernameQrCodeColorScheme, onSelectionChanged: (UsernameQrCodeColorScheme) -> Unit) {
     LazyVerticalGrid(
-      modifier = Modifier.padding(horizontal = 30.dp).heightIn(max = 880.dp),
+      modifier = Modifier
+        .padding(horizontal = 30.dp)
+        .heightIn(max = 880.dp),
       columns = GridCells.Adaptive(minSize = 88.dp)
     ) {
       colors.forEach { color ->
@@ -181,10 +183,10 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
     }
   }
 
-  @Preview
+  @DayNightPreviews
   @Composable
   private fun PreviewColorPickerItem() {
-    SignalTheme(isDarkMode = false) {
+    SignalTheme {
       Surface {
         Row(verticalAlignment = Alignment.CenterVertically) {
           ColorPickerItem(color = UsernameQrCodeColorScheme.Blue, selected = false, onClick = {})
@@ -194,10 +196,10 @@ class UsernameLinkQrColorPickerFragment : ComposeFragment() {
     }
   }
 
-  @Preview
+  @DayNightPreviews
   @Composable
   private fun PreviewColorPicker() {
-    SignalTheme(isDarkMode = false) {
+    SignalTheme {
       Surface {
         ColorPicker(
           colors = UsernameQrCodeColorScheme.entries.toImmutableList(),

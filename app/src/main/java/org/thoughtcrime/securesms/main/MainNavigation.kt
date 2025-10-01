@@ -52,8 +52,8 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.airbnb.lottie.compose.rememberLottieDynamicProperties
 import com.airbnb.lottie.compose.rememberLottieDynamicProperty
+import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
-import org.signal.core.ui.compose.SignalPreview
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 
@@ -335,7 +335,7 @@ private fun formatCount(count: Int): String {
   return count.toString()
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MainNavigationRailPreview() {
   Previews.Preview {
@@ -354,7 +354,7 @@ private fun MainNavigationRailPreview() {
   }
 }
 
-@SignalPreview
+@DayNightPreviews
 @Composable
 private fun MainNavigationBarPreview() {
   Previews.Preview {
