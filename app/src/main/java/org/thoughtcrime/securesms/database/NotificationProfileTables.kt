@@ -185,10 +185,6 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
   }
 
   fun updateProfile(profileId: Long, name: String, emoji: String): NotificationProfileChangeResult {
-    if (isDuplicateName(name, profileId)) {
-      return NotificationProfileChangeResult.DuplicateName
-    }
-
     val profileValues = ContentValues().apply {
       put(NotificationProfileTable.NAME, name)
       put(NotificationProfileTable.EMOJI, emoji)
@@ -205,10 +201,6 @@ class NotificationProfileTables(context: Context, databaseHelper: SignalDatabase
   }
 
   fun updateProfile(profile: NotificationProfile): NotificationProfileChangeResult {
-    if (isDuplicateName(profile.name, profile.id)) {
-      return NotificationProfileChangeResult.DuplicateName
-    }
-
     val db = writableDatabase
 
     db.beginTransaction()
