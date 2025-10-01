@@ -547,8 +547,38 @@ object BackupRepository {
     }
 
     val isRegistered = SignalStore.account.isRegistered && !TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application)
+    if (!isRegistered) {
+      Log.d(TAG, "[shouldDisplayCouldNotCompleteBackupSheet] Not displaying sheet for unregistered user.")
+      return false
+    }
 
-    return SignalStore.backup.hasBackupBeenUploaded && System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime && isRegistered
+    if (SignalStore.backup.lastBackupTime <= 0) {
+      Log.d(TAG, "[shouldDisplayCouldNotCompleteBackupSheet] Not displaying sheet as the last backup time is unset.")
+      return false
+    }
+
+    if (!SignalStore.backup.hasBackupBeenUploaded) {
+      Log.d(TAG, "[shouldDisplayCouldNotCompleteBackupSheet] Not displaying sheet as a backup has never been uploaded.")
+      return false
+    }
+
+    val now = System.currentTimeMillis().milliseconds
+    val lastBackupTime = SignalStore.backup.lastBackupTime.milliseconds
+    val nextSnoozeTime = SignalStore.backup.nextBackupFailureSnoozeTime
+
+    val isLastBackupTimeAtLeastAWeekAgo = now - 7.days > lastBackupTime
+    if (!isLastBackupTimeAtLeastAWeekAgo) {
+      Log.d(TAG, "[shouldDisplayCouldNotCompleteBackupSheet] Not displaying sheet as the last backup time is less than a week ago.")
+      return false
+    }
+
+    val isNextSnoozeTimeBeforeNow = nextSnoozeTime < now
+    if (!isNextSnoozeTimeBeforeNow) {
+      Log.d(TAG, "[shouldDisplayCouldNotCompleteBackupSheet] Not displaying sheet as the next snooze time is in the future.")
+      return false
+    }
+
+    return true
   }
 
   fun snoozeDownloadYourBackupData() {
