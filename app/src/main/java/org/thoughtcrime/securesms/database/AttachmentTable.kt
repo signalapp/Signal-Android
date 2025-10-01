@@ -687,11 +687,24 @@ class AttachmentTable(
 
   fun getRemainingRestorableAttachmentSize(): Long {
     return readableDatabase
-      .select("SUM($DATA_SIZE)")
-      .from(TABLE_NAME)
-      .where("$TRANSFER_STATE = ? OR $TRANSFER_STATE = ?", TRANSFER_NEEDS_RESTORE, TRANSFER_RESTORE_IN_PROGRESS)
-      .run()
-      .readToSingleLong()
+      .rawQuery(
+        """
+          SELECT $DATA_SIZE
+          FROM (
+            SELECT DISTINCT $DATA_HASH_END, $REMOTE_KEY, $DATA_SIZE
+            FROM $TABLE_NAME
+            WHERE ($TRANSFER_STATE = $TRANSFER_NEEDS_RESTORE OR $TRANSFER_STATE = $TRANSFER_RESTORE_IN_PROGRESS)
+          )
+        """
+      )
+      .readToList { it.requireLong(DATA_SIZE) }
+      .sumOf {
+        val paddedSize = PaddingInputStream.getPaddedSize(it)
+        val clientEncryptedSize = AttachmentCipherStreamUtil.getCiphertextLength(paddedSize)
+        val serverEncryptedSize = AttachmentCipherStreamUtil.getCiphertextLength(clientEncryptedSize)
+
+        serverEncryptedSize
+      }
   }
 
   fun getOptimizedMediaAttachmentSize(): Long {
@@ -706,7 +719,7 @@ class AttachmentTable(
   private fun getMessageDoesNotExpireWithinTimeoutClause(tablePrefix: String = MessageTable.TABLE_NAME): String {
     val messageHasExpiration = "$tablePrefix.${MessageTable.EXPIRES_IN} > 0"
     val messageExpiresInOneDayAfterViewing = "$messageHasExpiration AND  $tablePrefix.${MessageTable.EXPIRES_IN} < ${1.days.inWholeMilliseconds}"
-    return "NOT $messageExpiresInOneDayAfterViewing"
+    return "NOT ($messageExpiresInOneDayAfterViewing)"
   }
 
   /**
