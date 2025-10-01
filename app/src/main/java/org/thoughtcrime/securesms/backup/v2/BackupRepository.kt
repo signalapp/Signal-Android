@@ -109,11 +109,14 @@ import org.thoughtcrime.securesms.jobs.BackupRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CancelRestoreMediaJob
 import org.thoughtcrime.securesms.jobs.CreateReleaseChannelJob
 import org.thoughtcrime.securesms.jobs.LocalBackupJob
+import org.thoughtcrime.securesms.jobs.MultiDeviceKeysUpdateJob
 import org.thoughtcrime.securesms.jobs.RequestGroupV2InfoJob
 import org.thoughtcrime.securesms.jobs.ResetSvrGuessCountJob
 import org.thoughtcrime.securesms.jobs.RestoreOptimizedMediaJob
 import org.thoughtcrime.securesms.jobs.RetrieveProfileJob
 import org.thoughtcrime.securesms.jobs.StickerPackDownloadJob
+import org.thoughtcrime.securesms.jobs.StorageForcePushJob
+import org.thoughtcrime.securesms.jobs.Svr2MirrorJob
 import org.thoughtcrime.securesms.jobs.UploadAttachmentToArchiveJob
 import org.thoughtcrime.securesms.keyvalue.BackupValues.ArchiveServiceCredentials
 import org.thoughtcrime.securesms.keyvalue.KeyValueStore
@@ -241,7 +244,20 @@ object BackupRepository {
     resetInitializedStateAndAuthCredentials()
     SignalStore.account.rotateAccountEntropyPool(stagedKeyRotations.aep)
     SignalStore.backup.mediaRootBackupKey = stagedKeyRotations.mediaRootBackupKey
+    refreshMasterKeyDependents()
     BackupMessagesJob.enqueue()
+  }
+
+  private fun refreshMasterKeyDependents() {
+    val jobs = buildList {
+      add(Svr2MirrorJob())
+      if (SignalStore.account.isMultiDevice) {
+        add(MultiDeviceKeysUpdateJob())
+      }
+      add(StorageForcePushJob())
+    }
+
+    AppDependencies.jobManager.addAll(jobs)
   }
 
   fun resetInitializedStateAndAuthCredentials() {
