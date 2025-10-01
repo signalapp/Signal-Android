@@ -252,7 +252,10 @@ class BackupStateObserver(
     if (SignalStore.backup.subscriptionStateMismatchDetected) {
       Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] A mismatch was detected.")
 
-      val hasActiveGooglePlayBillingSubscription = when (val purchaseResult = AppDependencies.billingApi.queryPurchases()) {
+      val purchaseResult = AppDependencies.billingApi.queryPurchases()
+      Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] queryPurchase result: $purchaseResult")
+
+      val hasActiveGooglePlayBillingSubscription = when (purchaseResult) {
         is BillingPurchaseResult.Success -> {
           Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Found a purchase: $purchaseResult")
           purchaseResult.isAcknowledged && purchaseResult.isAutoRenewing

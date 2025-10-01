@@ -118,6 +118,12 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
     val purchase: BillingPurchaseResult = AppDependencies.billingApi.queryPurchases()
     Log.i(TAG, "Retrieved purchase result from Billing api: $purchase", true)
 
+    if (purchase !is BillingPurchaseResult.Success && purchase !is BillingPurchaseResult.None) {
+      Log.w(TAG, "Possible error when grabbing purchase from billing API. Clearing mismatch and exiting.")
+      SignalStore.backup.subscriptionStateMismatchDetected = false
+      return Result.success()
+    }
+
     val hasActivePurchase = purchase is BillingPurchaseResult.Success && purchase.isAcknowledged
     val product: BillingProduct? = AppDependencies.billingApi.queryProduct()
 
