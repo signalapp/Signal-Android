@@ -994,6 +994,7 @@ class InternalSettingsFragment : DSLSettingsFragment(R.string.preferences__inter
   private fun refreshRemoteValues() {
     Toast.makeText(context, "Running remote config refresh, app will restart after completion.", Toast.LENGTH_LONG).show()
     SignalExecutors.BOUNDED.execute {
+      SignalStore.remoteConfig.eTag = ""
       val result: Optional<JobTracker.JobState> = AppDependencies.jobManager.runSynchronously(RemoteConfigRefreshJob(), TimeUnit.SECONDS.toMillis(10))
 
       if (result.isPresent && result.get() == JobTracker.JobState.SUCCESS) {
