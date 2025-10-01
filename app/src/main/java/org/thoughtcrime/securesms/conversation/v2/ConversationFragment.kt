@@ -184,6 +184,7 @@ import org.thoughtcrime.securesms.conversation.ScheduledMessagesBottomSheet
 import org.thoughtcrime.securesms.conversation.ScheduledMessagesRepository
 import org.thoughtcrime.securesms.conversation.SelectedConversationModel
 import org.thoughtcrime.securesms.conversation.ShowAdminsBottomSheetDialog
+import org.thoughtcrime.securesms.conversation.clicklisteners.PollVotesFragment
 import org.thoughtcrime.securesms.conversation.colors.ChatColors
 import org.thoughtcrime.securesms.conversation.colors.Colorizer
 import org.thoughtcrime.securesms.conversation.colors.RecyclerViewColorizer
@@ -282,6 +283,9 @@ import org.thoughtcrime.securesms.nicknames.NicknameActivity
 import org.thoughtcrime.securesms.notifications.v2.ConversationId
 import org.thoughtcrime.securesms.payments.preferences.PaymentsActivity
 import org.thoughtcrime.securesms.permissions.Permissions
+import org.thoughtcrime.securesms.polls.Poll
+import org.thoughtcrime.securesms.polls.PollOption
+import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.profiles.manage.EditProfileActivity
 import org.thoughtcrime.securesms.profiles.spoofing.ReviewCardDialogFragment
 import org.thoughtcrime.securesms.providers.BlobProvider
@@ -333,6 +337,7 @@ import org.thoughtcrime.securesms.util.atMidnight
 import org.thoughtcrime.securesms.util.atUTC
 import org.thoughtcrime.securesms.util.doAfterNextLayout
 import org.thoughtcrime.securesms.util.fragments.requireListener
+import org.thoughtcrime.securesms.util.getPoll
 import org.thoughtcrime.securesms.util.getQuote
 import org.thoughtcrime.securesms.util.getRecordQuoteType
 import org.thoughtcrime.securesms.util.hasAudio
@@ -1951,6 +1956,16 @@ class ConversationFragment :
     )
   }
 
+  private fun sendPoll(recipient: Recipient, poll: Poll) {
+    val send = viewModel.sendPoll(recipient, poll)
+
+    disposables += send
+      .subscribeBy(
+        onComplete = { onSendComplete() },
+        onError = { Log.w(TAG, "Error received during poll send!", it) }
+      )
+  }
+
   private fun sendMessage(
     body: String = composeText.editableText.toString().trim(),
     mentions: List<Mention> = composeText.mentions,
@@ -2554,6 +2569,21 @@ class ConversationFragment :
       }
   }
 
+  private fun handleEndPoll(pollId: Long?) {
+    if (pollId == null) {
+      Log.w(TAG, "Unable to find poll to end $pollId")
+      return
+    }
+
+    val endPoll = viewModel.endPoll(pollId)
+
+    disposables += endPoll
+      .subscribeBy(
+        // TODO(michelle): Error state when poll terminate fails
+        onError = { Log.w(TAG, "Error received during poll send!", it) }
+      )
+  }
+
   private inner class SwipeAvailabilityProvider : ConversationItemSwipeCallback.SwipeAvailabilityProvider {
     override fun isSwipeAvailable(conversationMessage: ConversationMessage): Boolean {
       val recipient = viewModel.recipientSnapshot ?: return false
@@ -3049,6 +3079,32 @@ class ConversationFragment :
 
     override fun onUpdateSignalClicked() {
       PlayStoreUtil.openPlayStoreOrOurApkDownloadPage(requireContext())
+    }
+
+    override fun onViewResultsClicked(pollId: Long) {
+      if (parentFragmentManager.findFragmentByTag(PollVotesFragment.POLL_VOTES_FRAGMENT_TAG) == null) {
+        PollVotesFragment.create(pollId, parentFragmentManager)
+
+        parentFragmentManager.setFragmentResultListener(PollVotesFragment.RESULT_KEY, requireActivity()) { _, bundle ->
+          val shouldEndPoll = bundle.getBoolean(PollVotesFragment.RESULT_KEY, false)
+          if (shouldEndPoll) {
+            handleEndPoll(pollId)
+          }
+        }
+      }
+    }
+
+    override fun onViewPollClicked(messageId: Long) {
+      disposables += viewModel
+        .moveToMessage(messageId)
+        .subscribeBy(
+          onSuccess = { moveToPosition(it) },
+          onError = { Toast.makeText(requireContext(), R.string.Poll__unable_poll, Toast.LENGTH_LONG).show() }
+        )
+    }
+
+    override fun onToggleVote(poll: PollRecord, pollOption: PollOption, isChecked: Boolean) {
+      viewModel.toggleVote(poll, pollOption, isChecked)
     }
 
     override fun onJoinGroupCallClicked() {
@@ -3743,6 +3799,7 @@ class ConversationFragment :
         ConversationReactionOverlay.Action.PAYMENT_DETAILS -> handleViewPaymentDetails(conversationMessage)
         ConversationReactionOverlay.Action.VIEW_INFO -> handleDisplayDetails(conversationMessage)
         ConversationReactionOverlay.Action.DELETE -> handleDeleteMessages(conversationMessage.multiselectCollection.toSet())
+        ConversationReactionOverlay.Action.END_POLL -> handleEndPoll(conversationMessage.messageRecord.getPoll()?.id)
       }
     }
   }
@@ -4383,6 +4440,12 @@ class ConversationFragment :
           AttachmentKeyboardButton.FILE -> {
             if (!conversationActivityResultContracts.launchSelectFile()) {
               toast(R.string.AttachmentManager_cant_open_media_selection, Toast.LENGTH_LONG)
+            }
+          }
+          AttachmentKeyboardButton.POLL -> {
+            CreatePollFragment.show(childFragmentManager)
+            childFragmentManager.setFragmentResultListener(CreatePollFragment.REQUEST_KEY, requireActivity()) { _, bundle ->
+              sendPoll(recipient, Poll.fromBundle(bundle))
             }
           }
         }

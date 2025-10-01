@@ -260,4 +260,8 @@ public abstract class DisplayRecord {
   public boolean isUnsupported() {
     return MessageTypes.isUnsupportedMessageType(type);
   }
+
+  public boolean isPollTerminate() {
+    return MessageTypes.isPollTerminate(type);
+  }
 }

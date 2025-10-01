@@ -37,6 +37,7 @@ import org.thoughtcrime.securesms.messages.StorySendUtil;
 import org.thoughtcrime.securesms.mms.MessageGroupContext;
 import org.thoughtcrime.securesms.mms.MmsException;
 import org.thoughtcrime.securesms.mms.OutgoingMessage;
+import org.thoughtcrime.securesms.polls.Poll;
 import org.thoughtcrime.securesms.ratelimit.ProofRequiredExceptionHandler;
 import org.thoughtcrime.securesms.recipients.Recipient;
 import org.thoughtcrime.securesms.recipients.RecipientId;
@@ -275,15 +276,17 @@ public final class PushGroupSendJob extends PushSendJob {
     try {
       rotateSenderCertificateIfNecessary();
 
-      GroupId.Push                               groupId            = groupRecipient.requireGroupId().requirePush();
-      Optional<byte[]>                           profileKey         = getProfileKey(groupRecipient);
-      Optional<SignalServiceDataMessage.Sticker> sticker            = getStickerFor(message);
-      List<SharedContact>                        sharedContacts     = getSharedContactsFor(message);
-      List<SignalServicePreview>                 previews           = getPreviewsFor(message);
-      List<SignalServiceDataMessage.Mention>     mentions           = getMentionsFor(message.getMentions());
-      List<BodyRange>                            bodyRanges         = getBodyRanges(message);
-      List<Attachment>                           attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
-      List<SignalServiceAttachment>              attachmentPointers = getAttachmentPointersFor(attachments);
+      GroupId.Push                                     groupId            = groupRecipient.requireGroupId().requirePush();
+      Optional<byte[]>                                 profileKey         = getProfileKey(groupRecipient);
+      Optional<SignalServiceDataMessage.Sticker>       sticker            = getStickerFor(message);
+      List<SharedContact>                              sharedContacts     = getSharedContactsFor(message);
+      List<SignalServicePreview>                       previews           = getPreviewsFor(message);
+      List<SignalServiceDataMessage.Mention>           mentions           = getMentionsFor(message.getMentions());
+      List<BodyRange>                                  bodyRanges         = getBodyRanges(message);
+      Optional<SignalServiceDataMessage.PollCreate>    pollCreate         = getPollCreate(message);
+      Optional<SignalServiceDataMessage.PollTerminate> pollTerminate      = getPollTerminate(message);
+      List<Attachment>                                 attachments        = Stream.of(message.getAttachments()).filterNot(Attachment::isSticker).toList();
+      List<SignalServiceAttachment>                    attachmentPointers = getAttachmentPointersFor(attachments);
       boolean isRecipientUpdate = Stream.of(SignalDatabase.groupReceipts().getGroupReceiptInfo(messageId))
                                         .anyMatch(info -> info.getStatus() > GroupReceiptTable.STATUS_UNDELIVERED);
 
@@ -362,7 +365,9 @@ public final class PushGroupSendJob extends PushSendJob {
                                                                       .withSharedContacts(sharedContacts)
                                                                       .withPreviews(previews)
                                                                       .withMentions(mentions)
-                                                                      .withBodyRanges(bodyRanges);
+                                                                      .withBodyRanges(bodyRanges)
+                                                                      .withPollCreate(pollCreate.orElse(null))
+                                                                      .withPollTerminate(pollTerminate.orElse(null));
 
         if (message.getParentStoryId() != null) {
           try {
@@ -405,6 +410,23 @@ public final class PushGroupSendJob extends PushSendJob {
     } catch (ServerRejectedException e) {
       throw new UndeliverableMessageException(e);
     }
+  }
+
+  private Optional<SignalServiceDataMessage.PollCreate> getPollCreate(OutgoingMessage message) {
+    Poll poll = message.getPoll();
+    if (poll == null) {
+      return Optional.empty();
+    }
+
+    return Optional.of(new SignalServiceDataMessage.PollCreate(poll.getQuestion(), poll.getAllowMultipleVotes(), poll.getPollOptions()));
+  }
+
+  private Optional<SignalServiceDataMessage.PollTerminate> getPollTerminate(OutgoingMessage message) {
+    if (message.getMessageExtras() == null || message.getMessageExtras().pollTerminate == null) {
+      return Optional.empty();
+    }
+
+    return Optional.of(new SignalServiceDataMessage.PollTerminate(message.getMessageExtras().pollTerminate.targetTimestamp));
   }
 
   public static long getMessageId(@Nullable byte[] serializedData) {

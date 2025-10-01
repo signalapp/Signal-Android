@@ -80,6 +80,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groupReceipt
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.groups
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.mentions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.messages
+import org.thoughtcrime.securesms.database.SignalDatabase.Companion.polls
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.reactions
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.recipients
 import org.thoughtcrime.securesms.database.SignalDatabase.Companion.storySends
@@ -110,6 +111,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.GroupCallUpdateDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExportState
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
+import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
@@ -127,6 +129,8 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.SlideDeck
 import org.thoughtcrime.securesms.notifications.v2.DefaultMessageNotifier.StickyThread
+import org.thoughtcrime.securesms.polls.Poll
+import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.revealable.ViewOnceExpirationInfo
@@ -211,6 +215,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     const val ORIGINAL_MESSAGE_ID = "original_message_id"
     const val REVISION_NUMBER = "revision_number"
     const val MESSAGE_EXTRAS = "message_extras"
+    const val VOTES_UNREAD = "votes_unread"
+    const val VOTES_LAST_SEEN = "votes_last_seen"
 
     const val QUOTE_NOT_PRESENT_ID = 0L
     const val QUOTE_TARGET_MISSING_ID = -1L
@@ -273,7 +279,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $ORIGINAL_MESSAGE_ID INTEGER DEFAULT NULL REFERENCES $TABLE_NAME ($ID) ON DELETE CASCADE,
         $REVISION_NUMBER INTEGER DEFAULT 0,
         $MESSAGE_EXTRAS BLOB DEFAULT NULL,
-        $EXPIRE_TIMER_VERSION INTEGER DEFAULT 1 NOT NULL
+        $EXPIRE_TIMER_VERSION INTEGER DEFAULT 1 NOT NULL,
+        $VOTES_UNREAD INTEGER DEFAULT 0,
+        $VOTES_LAST_SEEN INTEGER DEFAULT 0
       )
     """
 
@@ -303,7 +311,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       // This index is created specifically for getting the number of messages in a thread and therefore needs to be kept in sync with that query
       "CREATE INDEX IF NOT EXISTS $INDEX_THREAD_COUNT ON $TABLE_NAME ($THREAD_ID) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $LATEST_REVISION_ID IS NULL",
       // This index is created specifically for getting the number of unread messages in a thread and therefore needs to be kept in sync with that query
-      "CREATE INDEX IF NOT EXISTS $INDEX_THREAD_UNREAD_COUNT ON $TABLE_NAME ($THREAD_ID) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $ORIGINAL_MESSAGE_ID IS NULL AND $READ = 0"
+      "CREATE INDEX IF NOT EXISTS $INDEX_THREAD_UNREAD_COUNT ON $TABLE_NAME ($THREAD_ID) WHERE $STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND $SCHEDULED_DATE = -1 AND $ORIGINAL_MESSAGE_ID IS NULL AND $READ = 0",
+      "CREATE INDEX IF NOT EXISTS message_votes_unread_index ON $TABLE_NAME ($VOTES_UNREAD)"
     )
 
     private val MMS_PROJECTION_BASE = arrayOf(
@@ -356,7 +365,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       LATEST_REVISION_ID,
       ORIGINAL_MESSAGE_ID,
       REVISION_NUMBER,
-      MESSAGE_EXTRAS
+      MESSAGE_EXTRAS,
+      VOTES_UNREAD,
+      VOTES_LAST_SEEN
     )
 
     private val MMS_PROJECTION: Array<String> = MMS_PROJECTION_BASE + "NULL AS ${AttachmentTable.ATTACHMENT_JSON_ALIAS}"
@@ -2211,9 +2222,11 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       reactions.deleteReactions(MessageId(messageId))
       deleteGroupStoryReplies(messageId)
       disassociateStoryQuotes(messageId)
+      disassociatePollFromPollTerminate(polls.getPollTerminateMessageId(messageId))
 
       val threadId = getThreadIdForMessage(messageId)
       threads.update(threadId, false)
+      notifyConversationListeners(threadId)
     }
 
     OptimizeMessageSearchIndexJob.enqueue()
@@ -2303,7 +2316,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       .update(TABLE_NAME)
       .values(
         NOTIFIED to 1,
-        REACTIONS_LAST_SEEN to System.currentTimeMillis()
+        REACTIONS_LAST_SEEN to System.currentTimeMillis(),
+        VOTES_LAST_SEEN to System.currentTimeMillis()
       )
       .where("$ID = ? OR $ORIGINAL_MESSAGE_ID = ? OR $LATEST_REVISION_ID = ?", id, id, id)
       .run()
@@ -2350,6 +2364,10 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         $READ = 0 OR 
         (
           $REACTIONS_UNREAD = 1 AND 
+          ($outgoingTypeClause)
+        ) OR
+        (
+          $VOTES_UNREAD = 1 AND 
           ($outgoingTypeClause)
         )
       )
@@ -2424,7 +2442,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   }
 
   fun setAllMessagesRead(): List<MarkedMessageInfo> {
-    return setMessagesRead("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND ($READ = 0 OR ($REACTIONS_UNREAD = 1 AND ($outgoingTypeClause)))", null)
+    return setMessagesRead("$STORY_TYPE = 0 AND $PARENT_STORY_ID <= 0 AND ($READ = 0 OR ($REACTIONS_UNREAD = 1 AND ($outgoingTypeClause)) OR ($VOTES_UNREAD = 1 AND ($outgoingTypeClause)))", null)
   }
 
   private fun setMessagesRead(where: String, arguments: Array<String>?): List<MarkedMessageInfo> {
@@ -2432,7 +2450,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     return writableDatabase.rawQuery(
       """
           UPDATE $TABLE_NAME INDEXED BY $INDEX_THREAD_STORY_SCHEDULED_DATE_LATEST_REVISION_ID
-          SET $READ = 1, $REACTIONS_UNREAD = 0, $REACTIONS_LAST_SEEN = ${System.currentTimeMillis()}
+          SET $READ = 1, $REACTIONS_UNREAD = 0, $REACTIONS_LAST_SEEN = ${System.currentTimeMillis()}, $VOTES_UNREAD = 0, $VOTES_LAST_SEEN = ${System.currentTimeMillis()}
           WHERE $where
           RETURNING $ID, $FROM_RECIPIENT_ID, $DATE_SENT, $DATE_RECEIVED, $TYPE, $EXPIRES_IN, $EXPIRE_STARTED, $THREAD_ID, $STORY_TYPE
         """,
@@ -2526,6 +2544,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
   fun getOutgoingMessage(messageId: Long): OutgoingMessage {
     return rawQueryWithAttachments(RAW_ID_WHERE, arrayOf(messageId.toString())).readToSingleObject { cursor ->
       val associatedAttachments = attachments.getAttachmentsForMessage(messageId)
+      val associatedPoll = polls.getPollForOutgoingMessage(messageId)
       val mentions = mentions.getMentionsForMessage(messageId)
       val outboxType = cursor.requireLong(TYPE)
       val body = cursor.requireString(BODY)
@@ -2654,6 +2673,20 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           threadRecipient = threadRecipient,
           sentTimeMillis = timestamp,
           expiresIn = expiresIn
+        )
+      } else if (associatedPoll != null) {
+        OutgoingMessage.pollMessage(
+          threadRecipient = threadRecipient,
+          sentTimeMillis = timestamp,
+          expiresIn = expiresIn,
+          poll = associatedPoll
+        )
+      } else if (MessageTypes.isPollTerminate(outboxType) && messageExtras != null) {
+        OutgoingMessage.pollTerminateMessage(
+          threadRecipient = threadRecipient,
+          sentTimeMillis = timestamp,
+          expiresIn = expiresIn,
+          messageExtras = messageExtras
         )
       } else {
         val giftBadge: GiftBadge? = if (body != null && MessageTypes.isGiftBadge(outboxType)) {
@@ -2806,7 +2839,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       contentValues = contentValues,
       insertListener = null,
       updateThread = retrieved.storyType === StoryType.NONE && !silent,
-      unarchive = true
+      unarchive = true,
+      poll = retrieved.poll,
+      pollTerminate = retrieved.messageExtras?.pollTerminate
     )
 
     if (messageId < 0) {
@@ -3128,6 +3163,14 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       hasSpecialType = true
     }
 
+    if (message.messageExtras?.pollTerminate != null) {
+      if (hasSpecialType) {
+        throw MmsException("Cannot insert message with multiple special types.")
+      }
+      type = type or MessageTypes.SPECIAL_TYPE_POLL_TERMINATE
+      hasSpecialType = true
+    }
+
     val earlyDeliveryReceipts: Map<RecipientId, Receipt> = earlyDeliveryReceiptCache.remove(message.sentTimeMillis)
 
     if (earlyDeliveryReceipts.isNotEmpty()) {
@@ -3241,7 +3284,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       contentValues = contentValues,
       insertListener = insertListener,
       updateThread = false,
-      unarchive = false
+      unarchive = false,
+      poll = message.poll,
+      pollTerminate = message.messageExtras?.pollTerminate
     )
 
     if (messageId < 0) {
@@ -3348,7 +3393,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     contentValues: ContentValues,
     insertListener: InsertListener?,
     updateThread: Boolean,
-    unarchive: Boolean
+    unarchive: Boolean,
+    poll: Poll? = null,
+    pollTerminate: PollTerminate? = null
   ): kotlin.Pair<Long, Map<Attachment, AttachmentId>?> {
     val mentionsSelf = mentions.any { Recipient.resolved(it.recipientId).isSelf }
     val allAttachments: MutableList<Attachment> = mutableListOf()
@@ -3398,6 +3445,19 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
 
         if (rows <= 0) {
           Log.w(TAG, "Failed to update message with link preview data.")
+        }
+      }
+
+      if (poll != null) {
+        polls.insertPoll(poll.question, poll.allowMultipleVotes, poll.pollOptions, poll.authorId, messageId)
+      }
+
+      if (pollTerminate != null) {
+        val pollId = polls.getPollId(pollTerminate.messageId)
+        if (pollId == null) {
+          Log.w(TAG, "Unable to find corresponding poll.")
+        } else {
+          polls.endPoll(pollId, messageId)
         }
       }
 
@@ -3486,6 +3546,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     attachments.deleteAttachmentsForMessage(messageId)
     groupReceipts.deleteRowsForMessage(messageId)
     mentions.deleteMentionsForMessage(messageId)
+    disassociatePollFromPollTerminate(polls.getPollTerminateMessageId(messageId))
 
     writableDatabase
       .delete(TABLE_NAME)
@@ -3547,6 +3608,36 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       val scheduledMessages = getScheduledMessagesInThread(threadId)
       for (record in scheduledMessages) {
         deleteScheduledMessage(record.id)
+      }
+    }
+  }
+
+  /**
+   * When a poll gets deleted, remove the poll reference from its corresponding terminate message by setting it to -1.
+   */
+  fun disassociatePollFromPollTerminate(messageId: Long) {
+    if (messageId == -1L) {
+      return
+    }
+
+    writableDatabase.withinTransaction { db ->
+      val messageExtras = db
+        .select(MESSAGE_EXTRAS)
+        .from(TABLE_NAME)
+        .where("$ID = ?", messageId)
+        .run()
+        .readToSingleObject { cursor ->
+          val messageExtraBytes = cursor.requireBlob(MESSAGE_EXTRAS)
+          messageExtraBytes?.let { MessageExtras.ADAPTER.decode(it) }
+        }
+
+      if (messageExtras?.pollTerminate != null) {
+        val updatedMessageExtras = messageExtras.newBuilder().pollTerminate(pollTerminate = messageExtras.pollTerminate.copy(messageId = -1)).build()
+        db
+          .update(TABLE_NAME)
+          .values(MESSAGE_EXTRAS to updatedMessageExtras.encode())
+          .where("$ID = ?", messageId)
+          .run()
       }
     }
   }
@@ -4045,6 +4136,34 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         REACTIONS_LAST_SEEN to System.currentTimeMillis()
       )
       .where("$REACTIONS_UNREAD != ?", 0)
+      .run()
+  }
+
+  fun setVoteSeen(threadId: Long, sinceTimestamp: Long) {
+    val where = if (sinceTimestamp > -1) {
+      "$THREAD_ID = ? AND $VOTES_UNREAD = ? AND $DATE_RECEIVED <= $sinceTimestamp"
+    } else {
+      "$THREAD_ID = ? AND $VOTES_UNREAD = ?"
+    }
+
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        VOTES_UNREAD to 0,
+        VOTES_LAST_SEEN to System.currentTimeMillis()
+      )
+      .where(where, threadId, 1)
+      .run()
+  }
+
+  fun setAllVotesSeen() {
+    writableDatabase
+      .update(TABLE_NAME)
+      .values(
+        VOTES_UNREAD to 0,
+        VOTES_LAST_SEEN to System.currentTimeMillis()
+      )
+      .where("$VOTES_UNREAD != ?", 0)
       .run()
   }
 
@@ -4830,7 +4949,9 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         val values = contentValuesOf(
           READ to 1,
           REACTIONS_UNREAD to 0,
-          REACTIONS_LAST_SEEN to System.currentTimeMillis()
+          REACTIONS_LAST_SEEN to System.currentTimeMillis(),
+          VOTES_UNREAD to 0,
+          VOTES_LAST_SEEN to System.currentTimeMillis()
         )
 
         if (expiresIn > 0) {
@@ -4975,7 +5096,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
           ($READ = 0 AND ($ORIGINAL_MESSAGE_ID IS NULL OR EXISTS (SELECT 1 FROM $TABLE_NAME AS m WHERE m.$ID = $TABLE_NAME.$ORIGINAL_MESSAGE_ID AND m.$READ = 0)))
           OR $REACTIONS_UNREAD = 1 
           ${if (stickyQuery.isNotEmpty()) "OR ($stickyQuery)" else ""}
-          OR ($IS_MISSED_CALL_TYPE_CLAUSE AND EXISTS (SELECT 1 FROM ${CallTable.TABLE_NAME} WHERE ${CallTable.MESSAGE_ID} = $TABLE_NAME.$ID AND ${CallTable.EVENT} = ${CallTable.Event.serialize(CallTable.Event.MISSED)} AND ${CallTable.READ} = 0)) 
+          OR ($IS_MISSED_CALL_TYPE_CLAUSE AND EXISTS (SELECT 1 FROM ${CallTable.TABLE_NAME} WHERE ${CallTable.MESSAGE_ID} = $TABLE_NAME.$ID AND ${CallTable.EVENT} = ${CallTable.Event.serialize(CallTable.Event.MISSED)} AND ${CallTable.READ} = 0))
+          OR $VOTES_UNREAD = 1
         )
         """.trimIndent()
       )
@@ -5125,6 +5247,32 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       }
 
       if (isOutgoing && hasReactions) {
+        values.put(NOTIFIED, 0)
+      }
+
+      if (values.size() > 0) {
+        db.update(TABLE_NAME)
+          .values(values)
+          .where("$ID = ?", messageId)
+          .run()
+      }
+    } catch (e: NoSuchMessageException) {
+      Log.w(TAG, "Failed to find message $messageId")
+    }
+  }
+
+  fun updateVotesUnread(db: SQLiteDatabase, messageId: Long, hasVotes: Boolean, isRemoval: Boolean) {
+    try {
+      val isOutgoing = getMessageRecord(messageId).isOutgoing
+      val values = ContentValues()
+
+      if (!hasVotes) {
+        values.put(VOTES_UNREAD, 0)
+      } else if (!isRemoval) {
+        values.put(VOTES_UNREAD, 1)
+      }
+
+      if (isOutgoing && hasVotes) {
         values.put(NOTIFIED, 0)
       }
 
@@ -5295,6 +5443,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
       MessageType.IDENTITY_VERIFIED -> MessageTypes.KEY_EXCHANGE_IDENTITY_VERIFIED_BIT or MessageTypes.BASE_INBOX_TYPE
       MessageType.IDENTITY_DEFAULT -> MessageTypes.KEY_EXCHANGE_IDENTITY_DEFAULT_BIT or MessageTypes.BASE_INBOX_TYPE
       MessageType.END_SESSION -> MessageTypes.END_SESSION_BIT or MessageTypes.BASE_INBOX_TYPE
+      MessageType.POLL_TERMINATE -> MessageTypes.SPECIAL_TYPE_POLL_TERMINATE or MessageTypes.BASE_INBOX_TYPE
       MessageType.GROUP_UPDATE -> {
         val isOnlyGroupLeave = this.groupContext?.let { GroupV2UpdateMessageUtil.isJustAGroupLeave(it) } ?: false
 
@@ -5635,6 +5784,8 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         null
       }
 
+      val poll: PollRecord? = polls.getPoll(id)
+
       val giftBadge: GiftBadge? = if (body != null && MessageTypes.isGiftBadge(box)) {
         try {
           GiftBadge.ADAPTER.decode(Base64.decode(body))
@@ -5683,6 +5834,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         giftBadge,
         null,
         null,
+        poll,
         scheduledDate,
         latestRevisionId,
         originalMessageId,

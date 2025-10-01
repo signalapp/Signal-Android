@@ -532,6 +532,7 @@ message MessageExtras {
         signalservice.GroupContext gv1Context = 2;
         ProfileChangeDetails profileChangeDetails = 3;
         PaymentTombstone paymentTombstone = 4;
+        PollTerminate pollTerminate = 5;
     }
 }
 
@@ -544,6 +545,12 @@ message PaymentTombstone {
     optional string note = 1;
     CryptoValue amount = 2;
     CryptoValue fee = 3;
+}
+
+message PollTerminate {
+    string question = 1;
+    uint64 messageId = 2;
+    uint64 targetTimestamp = 3;
 }
 
 message LocalRegistrationMetadata {

@@ -70,6 +70,7 @@ import org.thoughtcrime.securesms.util.JsonUtils
 import org.thoughtcrime.securesms.util.JsonUtils.SaneJSONObject
 import org.thoughtcrime.securesms.util.LRUCache
 import org.thoughtcrime.securesms.util.TextSecurePreferences
+import org.thoughtcrime.securesms.util.isPoll
 import org.thoughtcrime.securesms.util.isScheduled
 import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.storage.SignalAccountRecord
@@ -496,6 +497,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     }
 
     messages.setAllReactionsSeen()
+    messages.setAllVotesSeen()
     notifyConversationListListeners()
 
     return messageRecords
@@ -557,6 +559,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         messageRecords += messages.setMessagesReadSince(threadId, sinceTimestamp)
 
         messages.setReactionsSeen(threadId, sinceTimestamp)
+        messages.setVoteSeen(threadId, sinceTimestamp)
 
         val unreadCount = messages.getUnreadCount(threadId)
         val unreadMentionsCount = messages.getUnreadMentionCount(threadId)
@@ -2097,6 +2100,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
       Extra.forSticker(slide.emoji, authorId)
     } else if (record.isMms && (record as MmsMessageRecord).slideDeck.slides.size > 1) {
       Extra.forAlbum(authorId)
+    } else if (record.isPoll()) {
+      Extra.forPoll(authorId)
     } else if (threadRecipient != null && threadRecipient.isGroup) {
       Extra.forDefault(authorId)
     } else {
@@ -2280,7 +2285,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
             individualRecipientId = jsonObject.getString("individualRecipientId")!!,
             bodyRanges = jsonObject.getString("bodyRanges"),
             isScheduled = jsonObject.getBoolean("isScheduled"),
-            isRecipientHidden = jsonObject.getBoolean("isRecipientHidden")
+            isRecipientHidden = jsonObject.getBoolean("isRecipientHidden"),
+            isPoll = jsonObject.getBoolean("isPoll")
           )
         } catch (exception: Exception) {
           null
@@ -2291,7 +2297,7 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       return ThreadRecord.Builder(cursor.requireLong(ID))
         .setRecipient(recipient)
-        .setType(cursor.requireInt(SNIPPET_TYPE).toLong())
+        .setType(cursor.requireLong(SNIPPET_TYPE))
         .setDistributionType(cursor.requireInt(TYPE))
         .setBody(cursor.requireString(SNIPPET) ?: "")
         .setDate(cursor.requireLong(DATE))
@@ -2367,7 +2373,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     val isScheduled: Boolean = false,
     @field:JsonProperty
     @param:JsonProperty("isRecipientHidden")
-    val isRecipientHidden: Boolean = false
+    val isRecipientHidden: Boolean = false,
+    @field:JsonProperty
+    @param:JsonProperty("isPoll")
+    val isPoll: Boolean = false
   ) {
 
     fun getIndividualRecipientId(): String {
@@ -2413,6 +2422,10 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
 
       fun forScheduledMessage(individualRecipient: RecipientId): Extra {
         return Extra(individualRecipientId = individualRecipient.serialize(), isScheduled = true)
+      }
+
+      fun forPoll(individualRecipient: RecipientId): Extra {
+        return Extra(individualRecipientId = individualRecipient.serialize(), isPoll = true)
       }
     }
   }

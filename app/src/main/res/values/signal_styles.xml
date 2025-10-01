@@ -215,6 +215,10 @@
         <item name="android:windowAnimationStyle">@style/TextSecure.Animation.FullScreenDialog</item>
     </style>
 
+    <style name="Signal.DayNight.Dialog.FullScreen.Poll" parent="Signal.DayNight">
+        <item name="android:windowAnimationStyle">@style/TextSecure.Animation.FullScreenDialogPoll</item>
+    </style>
+
     <style name="Signal.DayNight.Dialog.FullScreen.Donate">
     </style>
     

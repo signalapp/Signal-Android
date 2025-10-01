@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.model.Quote
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.mms.TextSlide
+import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.stickers.StickerUrl
 
 const val MAX_BODY_DISPLAY_LENGTH = 1000
@@ -100,6 +101,12 @@ fun MessageRecord.hasTextSlide(): Boolean =
 fun MessageRecord.requireTextSlide(): TextSlide =
   requireNotNull((this as MmsMessageRecord).slideDeck.textSlide)
 
+fun MessageRecord.hasPoll(): Boolean = isMms && (this as MmsMessageRecord).poll != null
+
+fun MessageRecord.getPoll(): PollRecord? = if (isMms) (this as MmsMessageRecord).poll else null
+
+fun MessageRecord.hasPollTerminate(): Boolean = this.isPollTerminate && this.messageExtras != null && this.messageExtras!!.pollTerminate != null
+
 fun MessageRecord.hasBigImageLinkPreview(context: Context): Boolean {
   if (!hasLinkPreview()) {
     return false
@@ -124,6 +131,10 @@ fun MessageRecord.requireGiftBadge(): GiftBadge {
   return (this as MmsMessageRecord).giftBadge!!
 }
 
+fun MessageRecord.isPoll(): Boolean {
+  return (this as? MmsMessageRecord)?.poll != null
+}
+
 fun MessageRecord.isTextOnly(context: Context): Boolean {
   return !isMms ||
     (
@@ -140,7 +151,8 @@ fun MessageRecord.isTextOnly(context: Context): Boolean {
         !isCaptionlessMms(context) &&
         !hasGiftBadge() &&
         !isPaymentNotification &&
-        !isPaymentTombstone
+        !isPaymentTombstone &&
+        !isPoll()
       )
 }
 

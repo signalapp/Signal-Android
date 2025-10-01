@@ -13,6 +13,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescrip
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.linkpreview.LinkPreview
+import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.sms.GroupV2UpdateMessageUtil
 import kotlin.time.Duration.Companion.seconds
@@ -58,6 +59,7 @@ data class OutgoingMessage(
   val isMessageRequestAccept: Boolean = false,
   val isBlocked: Boolean = false,
   val isUnblocked: Boolean = false,
+  val poll: Poll? = null,
   val messageExtras: MessageExtras? = null
 ) {
 
@@ -466,6 +468,31 @@ data class OutgoingMessage(
         isGroup = threadRecipient.isPushV2Group,
         isUnblocked = true,
         isUrgent = false,
+        isSecure = true
+      )
+    }
+
+    @JvmStatic
+    fun pollMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long, poll: Poll, question: String = ""): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        poll = poll,
+        body = question,
+        isUrgent = true,
+        isSecure = true
+      )
+    }
+
+    @JvmStatic
+    fun pollTerminateMessage(threadRecipient: Recipient, sentTimeMillis: Long, expiresIn: Long, messageExtras: MessageExtras): OutgoingMessage {
+      return OutgoingMessage(
+        threadRecipient = threadRecipient,
+        sentTimeMillis = sentTimeMillis,
+        expiresIn = expiresIn,
+        messageExtras = messageExtras,
+        isUrgent = true,
         isSecure = true
       )
     }

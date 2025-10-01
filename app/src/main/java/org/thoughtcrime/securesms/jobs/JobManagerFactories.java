@@ -226,6 +226,7 @@ public final class JobManagerFactories {
       put(PaymentNotificationSendJobV2.KEY,            new PaymentNotificationSendJobV2.Factory());
       put(PaymentSendJob.KEY,                          new PaymentSendJob.Factory());
       put(PaymentTransactionCheckJob.KEY,              new PaymentTransactionCheckJob.Factory());
+      put(PollVoteJob.KEY,                             new PollVoteJob.Factory());
       put(PreKeysSyncJob.KEY,                          new PreKeysSyncJob.Factory());
       put(ProfileKeySendJob.KEY,                       new ProfileKeySendJob.Factory());
       put(ProfileUploadJob.KEY,                        new ProfileUploadJob.Factory());

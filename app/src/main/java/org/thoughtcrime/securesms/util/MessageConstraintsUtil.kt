@@ -70,7 +70,8 @@ object MessageConstraintsUtil {
       !targetMessage.isViewOnceMessage() &&
       !targetMessage.hasAudio() &&
       !targetMessage.hasSharedContact() &&
-      !targetMessage.hasSticker()
+      !targetMessage.hasSticker() &&
+      !targetMessage.hasPoll()
   }
 
   /**

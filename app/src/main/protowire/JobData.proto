@@ -243,3 +243,11 @@ message BackupDeleteJobData {
 message SecondRoundFixupSendJobData {
   uint64 messageId = 1;
 }
+
+message PollVoteJobData {
+  uint64 messageId = 1;
+  repeated uint64 recipients = 2;
+  uint32 initialRecipientCount = 3;
+  uint32 voteCount = 4;
+  bool isRemoval = 5;
+}

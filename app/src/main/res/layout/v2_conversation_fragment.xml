@@ -330,6 +330,14 @@
         app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
         app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/polls_create"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@id/keyboard_guideline"
+        app:layout_constraintEnd_toEndOf="@id/parent_end_guideline"
+        app:layout_constraintStart_toStartOf="@id/parent_start_guideline" />
+
     <FrameLayout
         android:id="@+id/reactions_shade"
         android:layout_width="match_parent"

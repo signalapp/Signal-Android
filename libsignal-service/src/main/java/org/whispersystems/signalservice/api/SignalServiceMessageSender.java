@@ -1231,6 +1231,32 @@ public class SignalServiceMessageSender {
       builder.bodyRanges(bodyRanges);
     }
 
+    if (message.getPollCreate().isPresent()) {
+      SignalServiceDataMessage.PollCreate pollCreate = message.getPollCreate().get();
+
+      builder.pollCreate(new DataMessage.PollCreate.Builder()
+                                                   .question(pollCreate.getQuestion())
+                                                   .allowMultiple(pollCreate.getAllowMultiple())
+                                                   .options(pollCreate.getOptions()).build());
+    }
+
+    if (message.getPollVote().isPresent()) {
+      SignalServiceDataMessage.PollVote pollVote = message.getPollVote().get();
+      builder.pollVote(new DataMessage.PollVote.Builder()
+                                               .targetSentTimestamp(pollVote.getTargetSentTimestamp())
+                                               .targetAuthorAciBinary(pollVote.getTargetAuthor().toByteString())
+                                               .voteCount(pollVote.getVoteCount())
+                                               .optionIndexes(pollVote.getOptionIndexes())
+                                               .build());
+    }
+
+    if (message.getPollTerminate().isPresent()) {
+      SignalServiceDataMessage.PollTerminate pollTerminate = message.getPollTerminate().get();
+      builder.pollTerminate(new DataMessage.PollTerminate.Builder()
+                                                         .targetSentTimestamp(pollTerminate.getTargetSentTimestamp())
+                                                         .build());
+    }
+
     builder.timestamp(message.getTimestamp());
 
     return builder;

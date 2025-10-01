@@ -57,6 +57,7 @@ import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_MESSAGE_REQ
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATED
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_PAYMENTS_ACTIVATE_REQUEST
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_PAYMENTS_NOTIFICATION
+import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_POLL_TERMINATE
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_REPORTED_SPAM
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_STORY_REACTION
 import org.thoughtcrime.securesms.database.MessageTypes.SPECIAL_TYPE_UNBLOCKED
@@ -139,6 +140,7 @@ object MessageBitmaskColumnTransformer : ColumnTransformer {
       isMessageRequestAccepted:${type and SPECIAL_TYPES_MASK == SPECIAL_TYPE_MESSAGE_REQUEST_ACCEPTED}
       isBlockedType:${type and SPECIAL_TYPES_MASK == SPECIAL_TYPE_BLOCKED}
       isUnblockedType:${type and SPECIAL_TYPES_MASK == SPECIAL_TYPE_UNBLOCKED}
+      isPollEnd:${type and SPECIAL_TYPES_MASK == SPECIAL_TYPE_POLL_TERMINATE}
     """.trimIndent()
 
     return "$type<br><br>" + describe.replace(Regex("is[A-Z][A-Za-z0-9]*:false\n?"), "").replace("\n", "<br>")

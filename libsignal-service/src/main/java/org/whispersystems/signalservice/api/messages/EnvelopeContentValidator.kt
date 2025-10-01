@@ -28,6 +28,9 @@ import org.whispersystems.signalservice.internal.push.TypingMessage
  */
 object EnvelopeContentValidator {
 
+  private const val MAX_POLL_CHARACTER_LENGTH = 100
+  private const val MIN_POLL_OPTIONS = 2
+
   fun validate(envelope: Envelope, content: Content, localAci: ACI): Result {
     if (envelope.type == Envelope.Type.PLAINTEXT_CONTENT) {
       validatePlaintextContent(content)?.let { return it }
@@ -138,7 +141,27 @@ object EnvelopeContentValidator {
       validateGroupContextV2(dataMessage.groupV2, "[DataMessage]")?.let { return it }
     }
 
+    if (dataMessage.pollCreate != null && (dataMessage.pollCreate.hasInvalidPollQuestion() || dataMessage.pollCreate.hasInvalidPollOptions() || dataMessage.pollCreate.allowMultiple == null)) {
+      return Result.Invalid("[DataMessage] Invalid poll create!")
+    }
+
+    if (dataMessage.pollTerminate != null && dataMessage.pollTerminate.targetSentTimestamp == null) {
+      return Result.Invalid("[DataMessage] Invalid poll terminate!")
+    }
+
+    if (dataMessage.pollVote != null && (dataMessage.pollVote.targetAuthorAciBinary.isNullOrInvalidAci() || dataMessage.pollVote.targetSentTimestamp == null || dataMessage.pollVote.voteCount == null)) {
+      return Result.Invalid("[DataMessage] Invalid poll vote!")
+    }
+
     return Result.Valid
+  }
+
+  private fun DataMessage.PollCreate.hasInvalidPollQuestion(): Boolean {
+    return this.question.isNullOrBlank() || this.question.length > MAX_POLL_CHARACTER_LENGTH
+  }
+
+  private fun DataMessage.PollCreate.hasInvalidPollOptions(): Boolean {
+    return this.options.size < MIN_POLL_OPTIONS || this.options.any { option -> option.length > MAX_POLL_CHARACTER_LENGTH }
   }
 
   private fun validateSyncMessage(envelope: Envelope, syncMessage: SyncMessage, localAci: ACI): Result {
@@ -346,6 +369,11 @@ object EnvelopeContentValidator {
 
   private fun String?.isNullOrInvalidAci(): Boolean {
     val parsed = ACI.parseOrNull(this)
+    return parsed == null || parsed.isUnknown
+  }
+
+  private fun ByteString?.isNullOrInvalidAci(): Boolean {
+    val parsed = this?.let { ACI.parseOrNull(this) }
     return parsed == null || parsed.isUnknown
   }
 

@@ -35,6 +35,7 @@ public class AttachmentKeyboard extends FrameLayout implements InputAwareLayout.
   private static final List<AttachmentKeyboardButton> DEFAULT_BUTTONS     = Arrays.asList(
       AttachmentKeyboardButton.GALLERY,
       AttachmentKeyboardButton.FILE,
+      AttachmentKeyboardButton.POLL,
       AttachmentKeyboardButton.CONTACT,
       AttachmentKeyboardButton.LOCATION,
       AttachmentKeyboardButton.PAYMENT

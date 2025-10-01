@@ -170,7 +170,7 @@ fun InstalledStickerPackRow(
       RoundCheckbox(
         checked = selected,
         onCheckedChange = { onSelectionToggle(pack) },
-        modifier = Modifier.padding(end = 8.dp)
+        modifier = Modifier.padding(start = 12.dp, end = 20.dp, top = 12.dp, bottom = 12.dp)
       )
     }
 

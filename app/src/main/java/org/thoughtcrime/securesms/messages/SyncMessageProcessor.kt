@@ -41,6 +41,8 @@ import org.thoughtcrime.securesms.database.model.StickerPackId
 import org.thoughtcrime.securesms.database.model.StoryType
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
+import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
+import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.database.model.toBodyRangeList
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.groups.BadGroupIdException
@@ -87,6 +89,7 @@ import org.thoughtcrime.securesms.mms.OutgoingMessage
 import org.thoughtcrime.securesms.mms.QuoteModel
 import org.thoughtcrime.securesms.notifications.MarkReadReceiver
 import org.thoughtcrime.securesms.payments.MobileCoinPublicAddress
+import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.ratelimit.RateLimitUtil
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -241,6 +244,12 @@ object SyncMessageProcessor {
         }
         dataMessage.hasRemoteDelete -> DataMessageProcessor.handleRemoteDelete(context, envelope, dataMessage, senderRecipient.id, earlyMessageCacheEntry)
         dataMessage.isMediaMessage -> threadId = handleSynchronizeSentMediaMessage(context, sent, envelope.timestamp!!, senderRecipient, threadRecipient)
+        dataMessage.pollCreate != null -> threadId = handleSynchronizedPollCreate(envelope, dataMessage, sent, senderRecipient)
+        dataMessage.pollVote != null -> {
+          DataMessageProcessor.handlePollVote(context, envelope, dataMessage, senderRecipient, earlyMessageCacheEntry)
+          threadId = SignalDatabase.threads.getOrCreateThreadIdFor(getSyncMessageDestination(sent))
+        }
+        dataMessage.pollTerminate != null -> threadId = handleSynchronizedPollEnd(envelope, dataMessage, sent, senderRecipient, earlyMessageCacheEntry)
         else -> threadId = handleSynchronizeSentTextMessage(sent, envelope.timestamp!!)
       }
 
@@ -1723,6 +1732,120 @@ object SyncMessageProcessor {
 
     // Enqueueing an update immediately to tell the requesting device that the primary is online.
     MultiDeviceAttachmentBackfillUpdateJob.enqueue(request.targetMessage!!, request.targetConversation!!, messageId)
+  }
+
+  private fun handleSynchronizedPollCreate(
+    envelope: Envelope,
+    message: DataMessage,
+    sent: Sent,
+    senderRecipient: Recipient
+  ): Long {
+    log(envelope.timestamp!!, "Synchronize sent poll creation message.")
+
+    val recipient = getSyncMessageDestination(sent)
+    if (!recipient.isGroup) {
+      warn(envelope.timestamp!!, "Poll creation messages should only be synced in groups. Dropping.")
+      return -1
+    }
+
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+
+    val expiresInMillis = message.expireTimerDuration.inWholeMilliseconds
+    if (recipient.expiresInSeconds != message.expireTimerDuration.inWholeSeconds.toInt() || ((message.expireTimerVersion ?: -1) > recipient.expireTimerVersion)) {
+      handleSynchronizeSentExpirationUpdate(sent, sideEffect = true)
+    }
+
+    val poll: DataMessage.PollCreate = message.pollCreate!!
+    val outgoingMessage = OutgoingMessage.pollMessage(
+      threadRecipient = recipient,
+      sentTimeMillis = sent.timestamp!!,
+      expiresIn = recipient.expiresInSeconds.seconds.inWholeMilliseconds,
+      poll = Poll(
+        question = poll.question!!,
+        allowMultipleVotes = poll.allowMultiple!!,
+        pollOptions = poll.options,
+        authorId = senderRecipient.id.toLong()
+      ),
+      question = poll.question!!
+    )
+
+    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null).messageId
+    updateGroupReceiptStatus(sent, messageId, recipient.requireGroupId())
+
+    log(envelope.timestamp!!, "Inserted sync poll create message as messageId $messageId")
+
+    SignalDatabase.messages.markAsSent(messageId, true)
+
+    if (expiresInMillis > 0) {
+      SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
+      AppDependencies.expiringMessageManager.scheduleDeletion(messageId, recipient.isGroup, sent.expirationStartTimestamp ?: 0, expiresInMillis)
+    }
+
+    return threadId
+  }
+
+  private fun handleSynchronizedPollEnd(
+    envelope: Envelope,
+    message: DataMessage,
+    sent: Sent,
+    senderRecipient: Recipient,
+    earlyMessageCacheEntry: EarlyMessageCacheEntry?
+  ): Long {
+    log(envelope.timestamp!!, "Synchronize sent poll terminate message")
+
+    val recipient = getSyncMessageDestination(sent)
+    if (!recipient.isGroup) {
+      warn(envelope.timestamp!!, "Poll termination messages should only be synced in groups. Dropping.")
+      return -1
+    }
+
+    val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
+
+    val expiresInMillis = message.expireTimerDuration.inWholeMilliseconds
+    if (recipient.expiresInSeconds != message.expireTimerDuration.inWholeSeconds.toInt() || ((message.expireTimerVersion ?: -1) > recipient.expireTimerVersion)) {
+      handleSynchronizeSentExpirationUpdate(sent, sideEffect = true)
+    }
+
+    val pollTerminate = message.pollTerminate!!
+    val targetMessage = SignalDatabase.messages.getMessageFor(pollTerminate.targetSentTimestamp!!, Recipient.self().id)
+    if (targetMessage == null) {
+      warn(envelope.timestamp!!, "Unable to find target message for poll termination. Putting in early message cache.")
+      if (earlyMessageCacheEntry != null) {
+        AppDependencies.earlyMessageCache.store(senderRecipient.id, pollTerminate.targetSentTimestamp!!, earlyMessageCacheEntry)
+        PushProcessEarlyMessagesJob.enqueue()
+      }
+      return -1
+    }
+    val poll = SignalDatabase.polls.getPoll(targetMessage.id)
+    if (poll == null) {
+      warn(envelope.timestamp!!, "Unable to find poll for poll termination. Dropping.")
+      return -1
+    }
+
+    val outgoingMessage = OutgoingMessage.pollTerminateMessage(
+      threadRecipient = recipient,
+      sentTimeMillis = sent.timestamp!!,
+      expiresIn = recipient.expiresInSeconds.seconds.inWholeMilliseconds,
+      messageExtras = MessageExtras(
+        pollTerminate = PollTerminate(
+          question = poll.question,
+          messageId = poll.messageId,
+          targetTimestamp = pollTerminate.targetSentTimestamp!!
+        )
+      )
+    )
+
+    val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, GroupReceiptTable.STATUS_UNKNOWN, null).messageId
+    SignalDatabase.messages.markAsSent(messageId, true)
+
+    log(envelope.timestamp!!, "Inserted sync poll end message as messageId $messageId")
+
+    if (expiresInMillis > 0) {
+      SignalDatabase.messages.markExpireStarted(messageId, sent.expirationStartTimestamp ?: 0)
+      AppDependencies.expiringMessageManager.scheduleDeletion(messageId, recipient.isGroup, sent.expirationStartTimestamp ?: 0, expiresInMillis)
+    }
+
+    return threadId
   }
 
   private fun ConversationIdentifier.toRecipientId(): RecipientId? {

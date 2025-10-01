@@ -51,7 +51,10 @@ object SignalServiceProtoUtil {
         bodyRanges.isNotEmpty() ||
         sticker != null ||
         reaction != null ||
-        hasRemoteDelete
+        hasRemoteDelete ||
+        pollCreate != null ||
+        pollVote != null ||
+        pollTerminate != null
     }
 
   val DataMessage.hasDisallowedAnnouncementOnlyContent: Boolean

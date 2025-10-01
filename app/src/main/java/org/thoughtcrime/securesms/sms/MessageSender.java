@@ -33,12 +33,11 @@ import org.thoughtcrime.securesms.attachments.AttachmentId;
 import org.thoughtcrime.securesms.attachments.DatabaseAttachment;
 import org.thoughtcrime.securesms.backup.v2.BackupRepository;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
-import org.thoughtcrime.securesms.contactshare.Contact;
 import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.MessageTable.InsertResult;
-import org.thoughtcrime.securesms.database.MessageTable.SyncMessageId;
 import org.thoughtcrime.securesms.database.NoSuchMessageException;
+import org.thoughtcrime.securesms.database.PollTables;
 import org.thoughtcrime.securesms.database.RecipientTable;
 import org.thoughtcrime.securesms.database.SignalDatabase;
 import org.thoughtcrime.securesms.database.ThreadTable;
@@ -245,6 +244,37 @@ public class MessageSender {
       sendMessageInternal(context, recipient, sendType, messageId, insertResult.getQuoteAttachmentId(), Collections.emptyList());
       onMessageSent();
       threadTable.update(allocatedThreadId, true, true);
+
+      return allocatedThreadId;
+    } catch (MmsException e) {
+      Log.w(TAG, e);
+      return threadId;
+    }
+  }
+
+  public static long sendPollAction(final Context context,
+                              final OutgoingMessage message,
+                              final long threadId,
+                              @NonNull SendType sendType,
+                              @Nullable final String metricId,
+                              @Nullable final MessageTable.InsertListener insertListener)
+  {
+    try {
+      Recipient    recipient         = message.getThreadRecipient();
+      long         allocatedThreadId = SignalDatabase.threads().getOrCreateValidThreadId(recipient, threadId, message.getDistributionType());
+      InsertResult insertResult      = SignalDatabase.messages().insertMessageOutbox(applyUniversalExpireTimerIfNecessary(context, recipient, message, allocatedThreadId), allocatedThreadId, sendType != SendType.SIGNAL, insertListener);
+      long         messageId         = insertResult.getMessageId();
+
+      if (!recipient.isPushV2Group()) {
+        Log.w(TAG, "Can only send polls to groups.");
+        return threadId;
+      }
+
+      SignalLocalMetrics.GroupMessageSend.onInsertedIntoDatabase(messageId, metricId);
+
+      sendMessageInternal(context, recipient, sendType, messageId, insertResult.getQuoteAttachmentId(), Collections.emptyList());
+      onMessageSent();
+      SignalDatabase.threads().update(allocatedThreadId, true, true);
 
       return allocatedThreadId;
     } catch (MmsException e) {

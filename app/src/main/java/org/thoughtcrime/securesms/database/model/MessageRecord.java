@@ -65,6 +65,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId;
 import org.thoughtcrime.securesms.util.DateUtils;
 import org.thoughtcrime.securesms.util.ExpirationUtil;
 import org.thoughtcrime.securesms.util.GroupUtil;
+import org.thoughtcrime.securesms.util.MessageRecordUtil;
 import org.thoughtcrime.securesms.util.SignalE164Util;
 import org.thoughtcrime.securesms.util.Util;
 import org.whispersystems.signalservice.api.groupsv2.DecryptedGroupUtil;
@@ -293,6 +294,9 @@ public abstract class MessageRecord extends DisplayRecord {
       return staticUpdateDescription(context.getString(isGroupV2() ? R.string.MessageRecord_you_unblocked_this_group : R.string.MessageRecord_you_unblocked_this_person) , Glyph.THREAD);
     } else if (isUnsupported()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_unsupported_feature, getFromRecipient().getDisplayName(context)), Glyph.ERROR);
+    } else if (MessageRecordUtil.hasPollTerminate(this)) {
+      String creator = isOutgoing() ? context.getString(R.string.MessageRecord_you) : getFromRecipient().getDisplayName(context);
+      return staticUpdateDescriptionWithExpiration(context.getString(R.string.MessageRecord_ended_the_poll, creator, messageExtras.pollTerminate.question), Glyph.POLL);
     }
 
     return null;
@@ -474,6 +478,10 @@ public abstract class MessageRecord extends DisplayRecord {
                                                                       Glyph glyph)
   {
     return UpdateDescription.staticDescription(string, glyph);
+  }
+
+  protected static @NonNull UpdateDescription staticUpdateDescriptionWithExpiration(@NonNull String string, Glyph glyph) {
+    return UpdateDescription.staticDescriptionWithExpiration(string, glyph);
   }
 
   protected static @NonNull UpdateDescription staticUpdateDescription(@NonNull String string,
@@ -732,7 +740,7 @@ public abstract class MessageRecord extends DisplayRecord {
            isProfileChange() || isGroupV1MigrationEvent() || isChatSessionRefresh() || isBadDecryptType() ||
            isChangeNumber() || isReleaseChannelDonationRequest() || isThreadMergeEventType() || isSmsExportType() || isSessionSwitchoverEventType() ||
            isPaymentsRequestToActivate() || isPaymentsActivated() || isReportedSpam() || isMessageRequestAccepted() ||
-           isBlocked() || isUnblocked() || isUnsupported();
+           isBlocked() || isUnblocked() || isUnsupported() || isPollTerminate();
   }
 
   public boolean isMediaPending() {

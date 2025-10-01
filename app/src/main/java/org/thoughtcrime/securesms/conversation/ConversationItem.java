@@ -56,6 +56,7 @@ import androidx.annotation.ColorInt;
 import androidx.annotation.DimenRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.compose.ui.platform.ComposeView;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.media3.common.MediaItem;
@@ -73,7 +74,6 @@ import org.signal.core.util.BidiUtil;
 import org.signal.core.util.DimensionUnit;
 import org.signal.core.util.StringUtil;
 import org.signal.core.util.logging.Log;
-import org.signal.ringrtc.CallLinkRootKey;
 import org.thoughtcrime.securesms.BindableConversationItem;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.attachments.Attachment;
@@ -130,6 +130,7 @@ import org.thoughtcrime.securesms.mms.SlideDeck;
 import org.thoughtcrime.securesms.mms.SlidesClickedListener;
 import org.thoughtcrime.securesms.mms.TextSlide;
 import org.thoughtcrime.securesms.mms.VideoSlide;
+import org.thoughtcrime.securesms.polls.PollRecord;
 import org.thoughtcrime.securesms.reactions.ReactionsConversationView;
 import org.thoughtcrime.securesms.recipients.LiveRecipient;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -236,6 +237,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
   private                Stub<Button>                            callToActionStub;
   private                Stub<GiftMessageView>                   giftViewStub;
   private                Stub<PaymentMessageView>                paymentViewStub;
+  private                Stub<ComposeView>                       pollView;
   private @Nullable      EventListener                           eventListener;
   private @Nullable      GestureDetector                         gestureDetector;
 
@@ -352,6 +354,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     this.quotedIndicator           = findViewById(R.id.quoted_indicator);
     this.paymentViewStub           = new Stub<>(findViewById(R.id.payment_view_stub));
     this.scheduledIndicator        = findViewById(R.id.scheduled_indicator);
+    this.pollView                  = new Stub<>(findViewById(R.id.poll));
 
     setOnClickListener(new ClickListener(null));
 
@@ -417,6 +420,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setStoryReactionLabel(messageRecord);
     setHasBeenQuoted(conversationMessage);
     setHasBeenScheduled(conversationMessage);
+    setPoll(messageRecord);
 
     if (audioViewStub.resolved()) {
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
@@ -561,6 +565,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         conversationMessage.getBottomButton() == null &&
         !BidiUtil.hasMixedTextDirection(bodyText.getText()) &&
         !messageRecord.isRemoteDelete() &&
+        !MessageRecordUtil.hasPoll(messageRecord) &&
         bodyText.getLastLineWidth() > 0)
     {
       View dateView           = footer.getDateView();
@@ -1001,6 +1006,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     return MessageRecordUtil.hasQuote(messageRecord);
   }
 
+  private boolean hasPoll(MessageRecord messageRecord) {
+    return MessageRecordUtil.hasPoll(messageRecord);
+  }
+
   private boolean hasSharedContact(MessageRecord messageRecord) {
     return MessageRecordUtil.hasSharedContact(messageRecord);
   }
@@ -1053,6 +1062,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       Spannable styledText = conversationMessage.getDisplayBody(getContext());
       if (messageRequestAccepted) {
         linkifyMessageBody(styledText, batchSelected.isEmpty());
+      }
+      if (MessageRecordUtil.hasPoll(messageRecord)) {
+        styledText.setSpan(new StyleSpan(Typeface.BOLD), 0, styledText.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        bodyText.setMaxWidth(readDimen(R.dimen.media_bubble_default_dimens));
       }
       styledText = SearchUtil.getHighlightedSpan(locale, STYLE_FACTORY, styledText, searchQuery, SearchUtil.STRICT);
 
@@ -1624,6 +1637,31 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
       alertView.setBackgroundResource(R.drawable.wallpaper_message_decoration_background);
     } else {
       alertView.setBackground(null);
+    }
+  }
+
+  private void setPoll(@NonNull MessageRecord messageRecord) {
+    if (hasPoll(messageRecord) && !messageRecord.isRemoteDelete()) {
+      PollRecord poll = MessageRecordUtil.getPoll(messageRecord);
+      PollComponentKt.setContent(pollView.get(), poll, isOutgoing(), () -> {
+        if (eventListener != null && batchSelected.isEmpty()) {
+          eventListener.onViewResultsClicked(poll.getId());
+        } else {
+          passthroughClickListener.onClick(pollView.get());
+        }
+        return null;
+      }, (option, isChecked) -> {
+        if (eventListener != null && batchSelected.isEmpty()) {
+          eventListener.onToggleVote(poll, option, isChecked);
+        } else {
+          passthroughClickListener.onClick(pollView.get());
+        }
+        return null;
+      });
+
+      pollView.setVisibility(View.VISIBLE);
+    } else if (pollView != null && pollView.resolved()) {
+      pollView.setVisibility(View.GONE);
     }
   }
 

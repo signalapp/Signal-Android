@@ -66,6 +66,11 @@
         <item name="android:windowExitAnimation">@anim/fade_scale_out</item>
     </style>
 
+    <style name="TextSecure.Animation.FullScreenDialogPoll" parent="@android:style/Animation.Activity">
+        <item name="android:windowEnterAnimation">@anim/slide_from_bottom</item>
+        <item name="android:windowExitAnimation">@anim/slide_to_bottom</item>
+    </style>
+
     <style name="TextSecure.Animation.AddMessageDialog" parent="@android:style/Animation.Activity">
         <item name="android:windowEnterAnimation">@anim/slide_from_bottom</item>
         <item name="android:windowExitAnimation">@anim/slide_to_bottom</item>
