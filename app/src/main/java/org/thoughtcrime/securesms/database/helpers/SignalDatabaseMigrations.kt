@@ -147,6 +147,7 @@ import org.thoughtcrime.securesms.database.helpers.migration.V289_AddQuoteTarget
 import org.thoughtcrime.securesms.database.helpers.migration.V290_AddArchiveThumbnailTransferStateColumn
 import org.thoughtcrime.securesms.database.helpers.migration.V291_NullOutRemoteKeyIfEmpty
 import org.thoughtcrime.securesms.database.helpers.migration.V292_AddPollTables
+import org.thoughtcrime.securesms.database.helpers.migration.V293_LastResortKeyTupleTableMigration
 import org.thoughtcrime.securesms.database.SQLiteDatabase as SignalSqliteDatabase
 
 /**
@@ -299,10 +300,11 @@ object SignalDatabaseMigrations {
     289 to V289_AddQuoteTargetContentTypeColumn,
     290 to V290_AddArchiveThumbnailTransferStateColumn,
     291 to V291_NullOutRemoteKeyIfEmpty,
-    292 to V292_AddPollTables
+    292 to V292_AddPollTables,
+    293 to V293_LastResortKeyTupleTableMigration
   )
 
-  const val DATABASE_VERSION = 292
+  const val DATABASE_VERSION = 293
 
   @JvmStatic
   fun migrate(context: Application, db: SignalSqliteDatabase, oldVersion: Int, newVersion: Int) {

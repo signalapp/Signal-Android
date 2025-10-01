@@ -7,12 +7,15 @@ import org.signal.core.util.exists
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
+import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleObject
 import org.signal.core.util.requireBoolean
 import org.signal.core.util.requireNonNullBlob
 import org.signal.core.util.select
 import org.signal.core.util.toInt
 import org.signal.core.util.update
+import org.signal.core.util.withinTransaction
+import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.whispersystems.signalservice.api.push.ServiceId
 
@@ -116,11 +119,33 @@ class KyberPreKeyTable(context: Context, databaseHelper: SignalDatabase) : Datab
       .run(SQLiteDatabase.CONFLICT_REPLACE)
   }
 
-  fun deleteIfNotLastResort(serviceId: ServiceId, keyId: Int) {
-    writableDatabase
-      .delete("$TABLE_NAME INDEXED BY $INDEX_ACCOUNT_KEY")
-      .where("$ACCOUNT_ID = ? AND $KEY_ID = ? AND $LAST_RESORT = ?", serviceId.toAccountId(), keyId, 0)
-      .run()
+  /**
+   * When we mark Kyber pre-keys used, we want to keep a record of last resort tuples, which are deleted when they key
+   * itself is deleted from this table via a cascading delete.
+   *
+   * For non-last-resort keys, this method just deletes them like normal.
+   */
+  fun handleMarkKyberPreKeyUsed(serviceId: ServiceId, kyberPreKeyId: Int, signedPreKeyId: Int, baseKey: ECPublicKey) {
+    writableDatabase.withinTransaction { db ->
+      val lastResortRowId = db
+        .select(ID)
+        .from(TABLE_NAME)
+        .where("$ACCOUNT_ID = ? AND $KEY_ID = ? AND $LAST_RESORT = ?", serviceId.toAccountId(), kyberPreKeyId, 1)
+        .run()
+        .readToSingleInt(-1)
+
+      if (lastResortRowId < 0) {
+        db.delete("$TABLE_NAME INDEXED BY $INDEX_ACCOUNT_KEY")
+          .where("$ACCOUNT_ID = ? AND $KEY_ID = ? AND $LAST_RESORT = ?", serviceId.toAccountId(), kyberPreKeyId, 0)
+          .run()
+      } else {
+        SignalDatabase.lastResortKeyTuples.insert(
+          kyberPreKeyRowId = lastResortRowId,
+          signedKeyId = signedPreKeyId,
+          publicKey = baseKey
+        )
+      }
+    }
   }
 
   fun delete(serviceId: ServiceId, keyId: Int) {

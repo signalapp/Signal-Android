@@ -6,6 +6,7 @@
 package org.thoughtcrime.securesms.crypto.storage
 
 import org.signal.libsignal.protocol.InvalidKeyIdException
+import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.state.KyberPreKeyRecord
 import org.signal.libsignal.protocol.state.KyberPreKeyStore
 import org.thoughtcrime.securesms.crypto.ReentrantSessionLock
@@ -56,9 +57,9 @@ class SignalKyberPreKeyStore(private val selfServiceId: ServiceId) : SignalServi
     }
   }
 
-  override fun markKyberPreKeyUsed(kyberPreKeyId: Int) {
+  override fun markKyberPreKeyUsed(kyberPreKeyId: Int, signedPreKeyId: Int, baseKey: ECPublicKey) {
     ReentrantSessionLock.INSTANCE.acquire().use {
-      SignalDatabase.kyberPreKeys.deleteIfNotLastResort(selfServiceId, kyberPreKeyId)
+      SignalDatabase.kyberPreKeys.handleMarkKyberPreKeyUsed(selfServiceId, kyberPreKeyId, signedPreKeyId, baseKey)
     }
   }
 
