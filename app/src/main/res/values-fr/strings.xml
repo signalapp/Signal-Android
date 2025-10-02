@@ -864,7 +864,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Selon la taille de la sauvegarde, l\'opération peut prendre un certain temps. Vous pouvez continuer d\'utiliser votre téléphone pendant que nous sauvegardons vos données.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">Les médias sont ajoutés à votre sauvegarde à mesure que vous échangez des messages.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Impossible de restaurer les médias</string>
@@ -1422,10 +1422,10 @@
     <string name="ManageGroupActivity_you_dont_have_the_rights_to_do_this">Vous n’avez pas les droits pour ce faire</string>
     <string name="ManageGroupActivity_not_capable">Un des membres que vous avez ajoutés ne peut utiliser les Nouveaux groupes et doit installer la dernière version de Signal.</string>
     <string name="ManageGroupActivity_not_announcement_capable">Un des membres que vous avez ajoutés ne peut utiliser les groupes de diffusion et doit installer la dernière version de Signal.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group">Échec de la mise à jour du groupe.</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group">Échec de la mise à jour du groupe</string>
     <string name="ManageGroupActivity_youre_not_a_member_of_the_group">Vous ne faites pas partie de ce groupe</string>
     <string name="ManageGroupActivity_failed_to_update_the_group_please_retry_later">Échec de la mise à jour du groupe. Veuillez réessayer plus tard.</string>
-    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Échec de la mise à jour du groupe en raison d’une erreur réseau. Veuillez réessayer plus tard.</string>
+    <string name="ManageGroupActivity_failed_to_update_the_group_due_to_a_network_error_please_retry_later">Une erreur réseau nous empêche de mettre à jour le groupe. Veuillez réessayer plus tard.</string>
 
     <string name="ManageGroupActivity_edit_name_and_picture">Changer d\'image et renommer</string>
     <string name="ManageGroupActivity_legacy_group">Groupe hérité</string>
@@ -4873,7 +4873,7 @@
     <string name="TransferOrRestoreFragment__restore_from_backup">Restaurer depuis une sauvegarde</string>
     <string name="TransferOrRestoreFragment__restore_your_messages_from_a_local_backup">Restaurez vos messages depuis une sauvegarde locale. Si vous ne les restaurez pas maintenant, vous ne pourrez pas le faire plus tard.</string>
     <string name="TransferOrRestoreFragment__restore_from_local_backup">Récupérer une sauvegarde locale</string>
-    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Récupérer une sauvegarde Signal</string>
+    <string name="TransferOrRestoreFragment__restore_from_signal_backup">Restaurer une sauvegarde Signal</string>
     <!-- Button label for more options -->
     <string name="TransferOrRestoreFragment__more_options">Plus d’options</string>
 
@@ -8192,8 +8192,8 @@
     <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Taille de la sauvegarde :</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="one">Votre sauvegarde contient tous vos messages texte, ainsi que vos médias des dernières 24 heures. La taille de votre sauvegarde varie en fonction des nouveaux médias reçus et des anciens médias supprimés une fois passé ce délai.</item>
+        <item quantity="other">Votre sauvegarde contient tous vos messages texte, ainsi que vos médias des %1$d derniers jours. La taille de votre sauvegarde varie en fonction des nouveaux médias reçus et des anciens médias supprimés une fois passé ce délai.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Sauvegarde supprimée et désactivée.</string>
@@ -8339,7 +8339,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Importation : %1$s sur %2$s (%3$d %%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Importation : %1$d %%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Informations</string>
     <!-- Text displayed when there was an error deleting backup -->

@@ -884,7 +884,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">În funcție de dimensiunea copiei tale de rezervă, acest lucru poate dura mult timp. Poți utiliza telefonul așa cum o faci în mod normal în timp ce are loc backup-ul.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">Fișierele media sunt adăugate la backup pe măsură ce trimiți și primești mesaje.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Nu se pot restaura fișierele media</string>
@@ -8369,9 +8369,9 @@
     <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Dimensiunea backup-ului</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="few">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="one">Backup-ul include toate mesajele text și fișierele media din ultima zi. Dimensiunea se va schimba pe măsură ce primești fișiere media noi și pe măsură ce expiră fișierele media vechi.</item>
+        <item quantity="few">Backup-ul include toate mesajele text și fișierele media din ultimele %1$d zile. Dimensiunea se va schimba pe măsură ce primești fișiere media noi și pe măsură ce expiră fișierele media vechi.</item>
+        <item quantity="other">Backup-ul include toate mesajele text și fișierele media din ultimele %1$d de zile. Dimensiunea se va schimba pe măsură ce primești fișiere media noi și pe măsură ce expiră fișierele media vechi.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Backup eliminat și dezactivat.</string>
@@ -8520,7 +8520,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Se încarcă: %1$s din %2$s (%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Se încarcă: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Detalii</string>
     <!-- Text displayed when there was an error deleting backup -->

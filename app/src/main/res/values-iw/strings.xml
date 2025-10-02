@@ -8334,7 +8334,7 @@
     <!-- Content description for x icon at the end of the linear progress indicator -->
     <string name="BackupStatusRow__cancel_download">ביטול הורדה</string>
     <!-- Backup progress. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__restoring_s_of_s_s">משחזרים: %1$s מתוך %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__restoring_s_of_s_s">משחזרים: %1$s מתוך %2$s (%%%3$s)</string>
     <!-- Text displayed under progress bar when restoring media pauses for Wi-Fi -->
     <string name="BackupStatusRow__restore_waiting_for_wifi">השחזור מושהה: בהמתנה ל–Wi–Fi…</string>
     <!-- Text displayed under progress bar when restoring media pauses for internet -->
@@ -8342,7 +8342,7 @@
     <!-- Text displayed under progress bar when restoring media pauses for low battery -->
     <string name="BackupStatusRow__restore_device_has_low_battery">השחזור מושהה: למכשיר יש סוללה חלשה</string>
     <!-- Backup progress during deletion download. Placeholders are size restored, size to restore, and percent, i.e. 50MB of 100MB (50%) -->
-    <string name="BackupStatusRow__downloading_s_of_s_s">מורידים: %1$s מתוך %2$s (%3$s%%)</string>
+    <string name="BackupStatusRow__downloading_s_of_s_s">מורידים: %1$s מתוך %2$s (%%%3$s)</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for Wi-Fi -->
     <string name="BackupStatusRow__download_waiting_for_wifi">ההורדה מושהית: ממתין לחיבור –Wi–Fi…</string>
     <!-- Text displayed under progress bar when restoring media during deletion download pauses for internet -->
@@ -8664,10 +8664,10 @@
     <string name="RemoteBackupsSettingsFragment__Waiting_for_internet_connection">ממתינים לחיבור אינטרנט…</string>
     <!-- Linear progress dialog text shown when processing messages for backup. First placeholder is completed count, second is approximate total count, third is percent completed. -->
     <plurals name="RemoteBackupsSettingsFragment__processing_messages_progress_text">
-        <item quantity="one">מעבדים %1$s מתוך הודעה %2$s (%3$d%%)</item>
-        <item quantity="two">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
-        <item quantity="many">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
-        <item quantity="other">מעבדים %1$s מתוך %2$s~ הודעות (%3$d%%)</item>
+        <item quantity="one">מעבדים %1$s מתוך הודעה %2$s (%%%3$d)</item>
+        <item quantity="two">מעבדים %1$s מתוך %2$s~ הודעות (%%%3$d)</item>
+        <item quantity="many">מעבדים %1$s מתוך %2$s~ הודעות (%%%3$d)</item>
+        <item quantity="other">מעבדים %1$s מתוך %2$s~ הודעות (%%%3$d)</item>
     </plurals>
     <!-- Displayed in row when backup is available for download and users subscription has expired. First placeholder is data size e.g. 12MB, second is days before expiration -->
     <string name="RemoteBackupsSettingsFragment__you_have_s_of_backup_data">יש לך %1$s של נתוני גיבוי שאינם נמצאים במכשיר זה. בלי מנוי בתשלום, לא ניתן להוריד מדיה.</string>

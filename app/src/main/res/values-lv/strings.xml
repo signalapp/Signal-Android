@@ -884,7 +884,7 @@
     <!-- Bottom sheet paid message -->
     <string name="CreateBackupBottomSheet__depending_on_the_size">Atkarībā no jūsu rezerves kopijas izmēra, process var aizņemt ilgu laiku. Kamēr notiek rezerves kopijas izveide, varat izmantot savu tālruni kā parasti.</string>
     <!-- Bottom sheet free message -->
-    <string name="CreateBackupBottomSheet__free_tier">Media is added to your backup as you send and receive messages.</string>
+    <string name="CreateBackupBottomSheet__free_tier">Rezerves kopija tiek papildināta ar multivides failiem brīdī, kad jūs sūtāt un saņemat ziņas.</string>
 
     <!-- Headline text for a bottom sheet dialog shown when the restoration of the media backup fails. -->
     <string name="RestoreMediaFailedBottomSheet__Cant_restore_media">Nevar atjaunot multividi</string>
@@ -8369,9 +8369,9 @@
     <string name="RemoteBackupsSettingsFragment__free_tier_storage_title">Rezerves kopijas izmērs</string>
     <!-- Dialog message for explainer text to on how backup size works for free tier -->
     <plurals name="RemoteBackupsSettingsFragment__backup_frequency_dialog_body">
-        <item quantity="zero">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="one">Your backup includes all of your text messages and your last %1$d day of media. The size will change as new media is received and old media expires.</item>
-        <item quantity="other">Your backup includes all of your text messages and your last %1$d days of media. The size will change as new media is received and old media expires.</item>
+        <item quantity="zero">Rezerves kopijā ir iekļautas visas teksta ziņas un pēdējo %1$d dienu multivide. Tās izmērs mainīsies, kad saņemsiet jaunu multividi un vecās multivides glabāšanas laiks beigsies.</item>
+        <item quantity="one">Rezerves kopijā ir iekļautas visas teksta ziņas un pēdējās %1$d dienas multivide. Tās izmērs mainīsies, kad saņemsiet jaunu multividi un vecās multivides glabāšanas laiks beigsies.</item>
+        <item quantity="other">Rezerves kopijā ir iekļautas visas teksta ziņas un pēdējo %1$d dienu multivide. Tās izmērs mainīsies, kad saņemsiet jaunu multividi un vecās multivides glabāšanas laiks beigsies.</item>
     </plurals>
     <!-- Snackbar text displayed when backup has been deleted and turned off -->
     <string name="RemoteBackupsSettingsFragment__backup_deleted_and_turned_off">Rezerves kopija dzēsta, un tās izveide izslēgta.</string>
@@ -8520,7 +8520,7 @@
     <!-- Progress message when backup file is being uploaded. First placeholder and second placeholder are formatted byte sizes (2 MB) and third is percent completion. -->
     <string name="RemoteBackupsSettingsFragment__uploading_s_of_s_d">Notiek augšupielāde: %1$s no %2$s (%3$d%%)</string>
     <!-- Progress message when backup file is being uploaded. Placeholder is percent completion. -->
-    <string name="RemoteBackupsSettingsFragment__uploading_d">Uploading: %1$d%%</string>
+    <string name="RemoteBackupsSettingsFragment__uploading_d">Notiek augšupielāde: %1$d%%</string>
     <!-- Button label to see more details about redemption error -->
     <string name="RemoteBackupsSettingsFragment__details">Rekvizīti</string>
     <!-- Text displayed when there was an error deleting backup -->

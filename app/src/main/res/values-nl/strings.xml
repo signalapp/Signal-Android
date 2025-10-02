@@ -8006,7 +8006,7 @@
     <!-- Text row label to skip download -->
     <string name="BackupStatusRow__skip_download">Downloaden overslaan</string>
     <!-- Text displayed when a backup could not be completed -->
-    <string name="BackupStatusRow__your_last_backup">De laatste back-up kon niet worden voltooid. Zorg ervoor dat je telefoon is verbonden met wifi, tik op ‘Nu back-up maken’ en probeer het opnieuw.</string>
+    <string name="BackupStatusRow__your_last_backup">De laatste back-up kon niet worden voltooid. Zorg ervoor dat je telefoon is verbonden met wifi en tik op ‘Nu back-up maken’ om het opnieuw te proberen.</string>
     <!-- Text displayed when a backup could not be completed and to check that they are on the latest version of Signal -->
     <string name="BackupStatusRow__your_last_backup_latest_version">De laatste back-up kon niet worden voltooid. Zorg ervoor dat je de nieuwste versie van Signal hebt geïnstalleerd en probeer het opnieuw.</string>
     <!-- Text displayed in a row to learn more about why a backup failed -->
