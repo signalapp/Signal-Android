@@ -88,6 +88,8 @@
     <string name="AttachmentKeyboard_file">فایل</string>
     <string name="AttachmentKeyboard_contact">مخاطب</string>
     <string name="AttachmentKeyboard_location">مکان</string>
+    <!-- Text for a button that will allow users to create a poll -->
+    <string name="AttachmentKeyboard_poll">Poll</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">سیگنال برای نشان دادن عکس‌ها و ویدیوهایتان به مجوز نیاز دارد</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">اجازۀ دسترسی بدهید</string>
@@ -2107,6 +2109,8 @@
     <string name="MessageRecord_you_unblocked_this_group">شما این گروه را رفع مسدودیت کردید</string>
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">پیامی را برای شما ارسال کرد که پردازش یا نمایش داده نمی شود زیرا از ویژگی جدید سیگنال استفاده می کند.%1$s</string>
+    <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
+    <string name="MessageRecord_ended_the_poll">%1$s ended the poll: \"%2$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">پذیرفتن</string>
@@ -3172,6 +3176,8 @@
     <string name="MessageNotifier_reacted_s_to_your_payment">با %1$s به پرداخت شما واکنش نشان داد.</string>
     <string name="MessageNotifier_reacted_s_to_your_sticker">با %1$s به استیکر شما واکنش نشان داد.</string>
     <string name="MessageNotifier_this_message_was_deleted">این پیام پاک شده بود.</string>
+    <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s voted in the poll \"%3$s\"</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">می‌خواهید اعلان‌های پیوستن مخاطبان به سیگنال را خاموش کنید؟ می‌توانید آن‌ها را دوباره در سیگنال &gt; تنظیمات &gt; اعلان‌ها فعال کنید.</string>
 
@@ -4417,6 +4423,8 @@
     <string name="conversation_selection__menu_multi_select">انتخاب</string>
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">جزئیات پرداخت</string>
+    <!-- Button to end a poll -->
+    <string name="conversation_selection__menu_end_poll">End poll</string>
 
     <!-- conversation_expiring_on -->
 
@@ -8763,6 +8771,65 @@
         <item quantity="one">‏%1$d روز است که نسخه پشتیبان نگرفته‌اید. همین حالا نسخه پشتیبان ایجاد کنید.</item>
         <item quantity="other">‏%1$d روز است که نسخه پشتیبان نگرفته‌اید. همین حالا نسخه پشتیبان ایجاد کنید.</item>
     </plurals>
+
+    <!-- Polls -->
+    <!-- Caption in poll message to select an option  -->
+    <string name="Poll__select_one">Poll · Select One</string>
+    <!-- Caption in poll message to select one or more options  -->
+    <string name="Poll__select_multiple">Poll · Select one or more</string>
+    <!-- Caption in poll message once a poll has ended  -->
+    <string name="Poll__final_results">Poll · Final results</string>
+    <!-- Caption in poll message that no votes have been cast  -->
+    <string name="Poll__no_votes">No votes</string>
+    <!-- Button in poll message to view current votes for a poll -->
+    <string name="Poll__view_votes">View votes</string>
+    <!-- Button in poll message to view the poll after it has ended -->
+    <string name="Poll__view_poll">View poll</string>
+    <!-- Toast message shown if we cannot find the poll -->
+    <string name="Poll__unable_poll">Poll not found</string>
+    <!-- Button in poll message to view results for a poll after it ends -->
+    <string name="Poll__view_results">View results</string>
+    <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
+    <string name="Poll__poll_question">Poll: %1$s</string>
+    <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
+    <string name="Poll__poll_end">%1$s ended the poll: \"%2$s\"</string>
+    <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
+    <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
+    <!-- Option in settings to configure notifications for polls -->
+    <string name="Poll__poll">Polls</string>
+    <!-- Title of screen that shows the poll results of a poll -->
+    <string name="Poll__poll_results">Poll results</string>
+    <!-- Header text displaying the question of the poll -->
+    <string name="Poll__question">Question</string>
+    <!-- Text displaying how many votes, %1$d, an option has gotten -->
+    <plurals name="Poll__num_votes">
+        <item quantity="one">%1$d vote</item>
+        <item quantity="other">%1$d votes</item>
+    </plurals>
+    <!-- Text that when pressed will end the poll   -->
+    <string name="Poll__end_poll">End poll</string>
+    <!-- Button that once pressed will show all of the voters for a poll -->
+    <string name="Poll__see_all">See all</string>
+    <!-- Header when creating a new poll -->
+    <string name="CreatePollFragment__new_poll">New poll</string>
+    <!-- Section text to enter in a question for a poll  -->
+    <string name="CreatePollFragment__question">Question</string>
+    <!-- Hint text for question field when creating a poll  -->
+    <string name="CreatePollFragment__ask_a_question">Ask a question</string>
+    <!-- Section text to enter in options for a poll -->
+    <string name="CreatePollFragment__options">Options</string>
+    <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
+    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
+    <string name="CreatePollFragment__drag_handle">Drag and drop handle</string>
+    <!-- Text next to button to allow the poll to allow for multiple votes -->
+    <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
+    <!-- Snackbar text to add a question and two options before creating a poll -->
+    <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
+    <!-- Snackbar text to add two options before creating a poll -->
+    <string name="CreatePollFragment__add_option">Add at least 2 options</string>
+    <!-- Snackbar text to add a question before creating a poll -->
+    <string name="CreatePollFragment__add_question">Add a question</string>
 
     <!-- EOF -->
 </resources>
