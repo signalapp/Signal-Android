@@ -420,7 +420,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     setStoryReactionLabel(messageRecord);
     setHasBeenQuoted(conversationMessage);
     setHasBeenScheduled(conversationMessage);
-    setPoll(messageRecord);
+    setPoll(messageRecord, messageRecord.getToRecipient().getChatColors().asSingleColor());
 
     if (audioViewStub.resolved()) {
       audioViewStub.get().setOnLongClickListener(passthroughClickListener);
@@ -1640,10 +1640,10 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
     }
   }
 
-  private void setPoll(@NonNull MessageRecord messageRecord) {
+  private void setPoll(@NonNull MessageRecord messageRecord, int chatColor) {
     if (hasPoll(messageRecord) && !messageRecord.isRemoteDelete()) {
       PollRecord poll = MessageRecordUtil.getPoll(messageRecord);
-      PollComponentKt.setContent(pollView.get(), poll, isOutgoing(), () -> {
+      PollComponentKt.setContent(pollView.get(), poll, isOutgoing(), chatColor, () -> {
         if (eventListener != null && batchSelected.isEmpty()) {
           eventListener.onViewResultsClicked(poll.getId());
         } else {

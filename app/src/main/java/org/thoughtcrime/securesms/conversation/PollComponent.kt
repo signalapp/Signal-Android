@@ -60,6 +60,7 @@ fun setContent(
   composeView: ComposeView,
   poll: PollRecord,
   isOutgoing: Boolean,
+  chatColor: Int,
   onViewVotes: () -> Unit,
   onToggleVote: (PollOption, Boolean) -> Unit = { _, _ -> }
 ) {
@@ -71,7 +72,7 @@ fun setContent(
         poll = poll,
         onViewVotes = onViewVotes,
         onToggleVote = onToggleVote,
-        pollColors = if (isOutgoing) PollColorsType.Outgoing.getColors() else PollColorsType.Incoming.getColors()
+        pollColors = if (isOutgoing) PollColorsType.Outgoing.getColors(chatColor) else PollColorsType.Incoming.getColors(-1)
       )
     }
   }
@@ -82,7 +83,7 @@ private fun Poll(
   poll: PollRecord,
   onViewVotes: () -> Unit = {},
   onToggleVote: (PollOption, Boolean) -> Unit = { _, _ -> },
-  pollColors: PollColors = PollColorsType.Incoming.getColors()
+  pollColors: PollColors = PollColorsType.Incoming.getColors(-1)
 ) {
   val totalVotes = remember(poll.pollOptions) { poll.pollOptions.sumOf { it.voterIds.size } }
   val caption = when {
@@ -244,11 +245,11 @@ class PollColors(
 
 private sealed interface PollColorsType {
   @Composable
-  fun getColors(): PollColors
+  fun getColors(chatColor: Int): PollColors
 
   data object Outgoing : PollColorsType {
     @Composable
-    override fun getColors(): PollColors {
+    override fun getColors(chatColor: Int): PollColors {
       return PollColors(
         text = colorResource(R.color.conversation_item_sent_text_primary_color),
         caption = colorResource(R.color.conversation_item_sent_text_secondary_color),
@@ -256,7 +257,7 @@ private sealed interface PollColorsType {
         progressBackground = SignalTheme.colors.colorTransparent3,
         checkbox = colorResource(R.color.conversation_item_sent_text_secondary_color),
         checkboxBackground = colorResource(R.color.conversation_item_sent_text_primary_color),
-        button = MaterialTheme.colorScheme.primary,
+        button = Color(chatColor),
         buttonBackground = colorResource(R.color.conversation_item_sent_text_primary_color)
       )
     }
@@ -264,7 +265,8 @@ private sealed interface PollColorsType {
 
   data object Incoming : PollColorsType {
     @Composable
-    override fun getColors(): PollColors {
+    override fun getColors(chatColor: Int): PollColors {
+      // TODO(michelle): Get updated button color
       return PollColors(
         text = MaterialTheme.colorScheme.onSurface,
         caption = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -272,8 +274,8 @@ private sealed interface PollColorsType {
         progressBackground = SignalTheme.colors.colorTransparentInverse3,
         checkbox = MaterialTheme.colorScheme.outline,
         checkboxBackground = MaterialTheme.colorScheme.primary,
-        button = MaterialTheme.colorScheme.onSurface,
-        buttonBackground = MaterialTheme.colorScheme.surface
+        button = if (DynamicTheme.isDarkTheme(LocalContext.current)) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface,
+        buttonBackground = if (DynamicTheme.isDarkTheme(LocalContext.current)) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surface
       )
     }
   }
