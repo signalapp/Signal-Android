@@ -2580,7 +2580,7 @@ class ConversationFragment :
     disposables += endPoll
       .subscribeBy(
         // TODO(michelle): Error state when poll terminate fails
-        onError = { Log.w(TAG, "Error received during poll send!", it) }
+        onError = { Log.w(TAG, "Error received during poll end!", it) }
       )
   }
 

@@ -8790,7 +8790,7 @@
     <!-- Button in poll message to view the poll after it has ended -->
     <string name="Poll__view_poll">View poll</string>
     <!-- Toast message shown if we cannot find the poll -->
-    <string name="Poll__unable_poll">Unable to find poll</string>
+    <string name="Poll__unable_poll">Poll not found</string>
     <!-- Button in poll message to view results for a poll after it ends -->
     <string name="Poll__view_results">View results</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->

@@ -3,6 +3,7 @@ package org.thoughtcrime.securesms.conversation.v2
 import android.app.Dialog
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -21,6 +22,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -73,6 +75,7 @@ class CreatePollFragment : ComposeDialogFragment() {
     const val MAX_CHARACTER_LENGTH = 100
     const val MAX_OPTIONS = 10
     const val MIN_OPTIONS = 2
+    const val CHARACTER_COUNTDOWN_THRESHOLD = 20
     const val REQUEST_KEY = "CreatePollFragment"
 
     fun show(fragmentManager: FragmentManager) {
@@ -198,7 +201,7 @@ private fun CreatePollScreen(
             style = MaterialTheme.typography.titleSmall
           )
 
-          TextField(
+          TextFieldWithCountdown(
             value = question,
             label = { Text(text = stringResource(R.string.CreatePollFragment__ask_a_question)) },
             onValueChange = { question = it.substring(0, minOf(it.length, CreatePollFragment.MAX_CHARACTER_LENGTH)) },
@@ -209,8 +212,8 @@ private fun CreatePollScreen(
             ),
             modifier = Modifier
               .fillMaxWidth()
-              .padding(horizontal = 24.dp)
-              .onFocusChanged { focusState -> if (focusState.isFocused) focusedOption = -1 }
+              .onFocusChanged { focusState -> if (focusState.isFocused) focusedOption = -1 },
+            countdownThreshold = CreatePollFragment.CHARACTER_COUNTDOWN_THRESHOLD
           )
 
           Spacer(modifier = Modifier.size(32.dp))
@@ -225,28 +228,27 @@ private fun CreatePollScreen(
 
       itemsIndexed(options) { index, option ->
         DraggableItem(dragDropState, 1 + index) {
-          Box(modifier = Modifier.padding(start = 24.dp, end = 24.dp, bottom = 16.dp)) {
-            TextField(
-              value = option,
-              label = { Text(text = stringResource(R.string.CreatePollFragment__option_n, index + 1)) },
-              onValueChange = { options[index] = it.substring(0, minOf(it.length, CreatePollFragment.MAX_CHARACTER_LENGTH)) },
-              keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
-              colors = TextFieldDefaults.colors(
-                unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
-                focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
-              ),
-              modifier = Modifier
-                .fillMaxWidth()
-                .onFocusChanged { focusState -> if (focusState.isFocused) focusedOption = index },
-              trailingIcon = {
-                Icon(
-                  imageVector = ImageVector.vectorResource(R.drawable.drag_handle),
-                  contentDescription = stringResource(R.string.CreatePollFragment__drag_handle),
-                  tint = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-              }
-            )
-          }
+          TextFieldWithCountdown(
+            value = option,
+            label = { Text(text = stringResource(R.string.CreatePollFragment__option_n, index + 1)) },
+            onValueChange = { options[index] = it.substring(0, minOf(it.length, CreatePollFragment.MAX_CHARACTER_LENGTH)) },
+            keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences),
+            colors = TextFieldDefaults.colors(
+              unfocusedContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+              focusedContainerColor = MaterialTheme.colorScheme.surfaceVariant
+            ),
+            modifier = Modifier
+              .fillMaxWidth()
+              .onFocusChanged { focusState -> if (focusState.isFocused) focusedOption = index },
+            trailingIcon = {
+              Icon(
+                imageVector = ImageVector.vectorResource(R.drawable.drag_handle),
+                contentDescription = stringResource(R.string.CreatePollFragment__drag_handle),
+                tint = MaterialTheme.colorScheme.onSurfaceVariant
+              )
+            },
+            countdownThreshold = CreatePollFragment.CHARACTER_COUNTDOWN_THRESHOLD
+          )
         }
       }
 
@@ -278,6 +280,50 @@ private fun CreatePollScreen(
         .imePadding()
     ) {
       Text(text = stringResource(R.string.conversation_activity__send))
+    }
+  }
+}
+
+/**
+ * Text field with a character countdown. Once [charactersRemaining] has hit [countdownThreshold],
+ * the remaining character count will show within the text field.
+ */
+@Composable
+private fun TextFieldWithCountdown(
+  value: String,
+  label: @Composable () -> Unit,
+  onValueChange: (String) -> Unit,
+  keyboardOptions: KeyboardOptions,
+  colors: TextFieldColors,
+  modifier: Modifier,
+  trailingIcon: @Composable () -> Unit = {},
+  countdownThreshold: Int
+) {
+  val charactersRemaining = CreatePollFragment.MAX_CHARACTER_LENGTH - value.length
+  val displayCountdown = charactersRemaining <= countdownThreshold
+
+  Box(modifier = Modifier.padding(start = 24.dp, end = 24.dp, bottom = 16.dp)) {
+    TextField(
+      value = value,
+      label = label,
+      onValueChange = onValueChange,
+      keyboardOptions = keyboardOptions,
+      colors = colors,
+      modifier = modifier,
+      trailingIcon = trailingIcon
+    )
+
+    AnimatedVisibility(
+      visible = displayCountdown,
+      modifier = Modifier
+        .align(Alignment.BottomEnd)
+        .padding(bottom = 6.dp, end = 12.dp)
+    ) {
+      Text(
+        text = "$charactersRemaining",
+        style = MaterialTheme.typography.bodySmall,
+        color = if (charactersRemaining <= 5) MaterialTheme.colorScheme.error else MaterialTheme.colorScheme.outline
+      )
     }
   }
 }
