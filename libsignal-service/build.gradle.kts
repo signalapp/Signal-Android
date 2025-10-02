@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-only
  */
 
+import org.gradle.api.tasks.SourceSetContainer
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
@@ -39,6 +40,20 @@ tasks.withType<KotlinCompile>().configureEach {
       suppressWarnings = true
     }
   }
+}
+
+val sourceSets = extensions.getByName("sourceSets") as SourceSetContainer
+sourceSets.named("main") {
+  output.dir(
+    mapOf("builtBy" to tasks.named("compileKotlin")),
+    "$buildDir/classes/kotlin/main"
+  )
+}
+sourceSets.named("test") {
+  output.dir(
+    mapOf("builtBy" to tasks.named("compileTestKotlin")),
+    "$buildDir/classes/kotlin/test"
+  )
 }
 
 afterEvaluate {
