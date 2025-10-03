@@ -70,7 +70,7 @@ class PostRegistrationEnterBackupKeyViewModel : ViewModel() {
         store.update { it.copy(restoreBackupTierSuccessful = true) }
       } else {
         Log.w(TAG, "Unable to validate AEP against currently registered account")
-        store.update { it.copy(showBackupTierNotRestoreError = true) }
+        store.update { it.copy(aepValidationError = AEPValidationError.Incorrect, showBackupTierNotRestoreError = true) }
       }
     }
   }

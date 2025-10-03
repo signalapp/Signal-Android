@@ -24,6 +24,7 @@ import org.signal.core.ui.compose.Dialogs
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
+import org.thoughtcrime.securesms.registration.ui.restore.AccountEntropyPoolVerification
 import org.thoughtcrime.securesms.registration.ui.restore.EnterBackupKeyScreen
 import org.thoughtcrime.securesms.util.CommunicationActions
 import org.thoughtcrime.securesms.util.navigation.safeNavigate
@@ -79,8 +80,8 @@ class PostRegistrationEnterBackupKeyFragment : ComposeFragment() {
     ) {
       ErrorContent(
         showBackupTierNotRestoreError = state.showBackupTierNotRestoreError,
-        onBackupTierRetry = { viewModel.restoreBackupTier() },
-        onCancel = { findNavController().popBackStack() },
+        aepError = state.aepValidationError,
+        onBackupKeyHelp = { CommunicationActions.openBrowserLink(requireContext(), LEARN_MORE_URL) },
         onBackupTierNotRestoredDismiss = viewModel::hideRestoreBackupTierFailed
       )
     }
@@ -90,18 +91,18 @@ class PostRegistrationEnterBackupKeyFragment : ComposeFragment() {
 @Composable
 private fun ErrorContent(
   showBackupTierNotRestoreError: Boolean,
-  onBackupTierRetry: () -> Unit = {},
-  onCancel: () -> Unit = {},
+  aepError: AccountEntropyPoolVerification.AEPValidationError?,
+  onBackupKeyHelp: () -> Unit = {},
   onBackupTierNotRestoredDismiss: () -> Unit = {}
 ) {
-  if (showBackupTierNotRestoreError) {
+  if (aepError == AccountEntropyPoolVerification.AEPValidationError.Incorrect && showBackupTierNotRestoreError) {
     Dialogs.SimpleAlertDialog(
-      title = stringResource(R.string.EnterBackupKey_backup_not_found),
-      body = stringResource(R.string.EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup),
+      title = stringResource(R.string.EnterBackupKey_incorrect_backup_key_title),
+      body = stringResource(R.string.EnterBackupKey_incorrect_backup_key_message),
       confirm = stringResource(R.string.EnterBackupKey_try_again),
-      dismiss = stringResource(R.string.EnterBackupKey_skip_restore),
-      onConfirm = onBackupTierRetry,
-      onDeny = onCancel,
+      dismiss = stringResource(R.string.EnterBackupKey_backup_key_help),
+      onConfirm = {},
+      onDeny = onBackupKeyHelp,
       onDismiss = onBackupTierNotRestoredDismiss
     )
   }
