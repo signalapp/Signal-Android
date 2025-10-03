@@ -247,6 +247,16 @@ sealed class NetworkResult<T>(
   }
 
   /**
+   * Returns the result if successful, otherwise null.
+   */
+  fun successOrNull(): T? {
+    return when (this) {
+      is Success -> result
+      else -> null
+    }
+  }
+
+  /**
    * Returns the [Throwable] associated with the result, or null if the result is successful.
    */
   fun getCause(): Throwable? {

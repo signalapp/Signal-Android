@@ -1938,7 +1938,7 @@ object BackupRepository {
   suspend fun getPaidType(): NetworkResult<MessageBackupsType.Paid> {
     val productPrice: FiatMoney? = if (SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID) {
       Log.d(TAG, "Accessing price via mock subscription.")
-      RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()?.activeSubscription?.let {
+      RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).successOrNull()?.activeSubscription?.let {
         FiatMoney.fromSignalNetworkAmount(it.amount, Currency.getInstance(it.currency))
       }
     } else if (AppDependencies.billingApi.getApiAvailability().isSuccess) {

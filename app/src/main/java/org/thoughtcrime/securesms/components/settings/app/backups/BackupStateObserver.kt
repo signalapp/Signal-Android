@@ -269,8 +269,27 @@ class BackupStateObserver(
 
       Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] hasActiveGooglePlayBillingSubscription: $hasActiveGooglePlayBillingSubscription")
 
-      val activeSubscription = withContext(Dispatchers.IO) {
-        RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP).getOrNull()
+      val activeSubscriptionResult = withContext(Dispatchers.IO) {
+        RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
+      }
+
+      val activeSubscription: ActiveSubscription? = when (activeSubscriptionResult) {
+        is NetworkResult.ApplicationError<ActiveSubscription> -> {
+          Log.w(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Failed to load active subscription due to an application error.", activeSubscriptionResult.getCause(), true)
+          return getStateOnError()
+        }
+        is NetworkResult.NetworkError<ActiveSubscription> -> {
+          Log.w(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Failed to load active subscription due to a network error.", activeSubscriptionResult.getCause(), true)
+          return getStateOnError()
+        }
+        is NetworkResult.StatusCodeError<ActiveSubscription> -> {
+          Log.i(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Failed to load active subscription due to a status code error.", activeSubscriptionResult.getCause(), true)
+          null
+        }
+        is NetworkResult.Success<ActiveSubscription> -> {
+          Log.i(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Successfully loaded active subscription.", true)
+          activeSubscriptionResult.result
+        }
       }
 
       val hasActiveSignalSubscription = activeSubscription?.isActive == true
@@ -358,10 +377,10 @@ class BackupStateObserver(
       RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
     }
 
-    return if (activeSubscription.isSuccess) {
+    return if (activeSubscription is NetworkResult.Success) {
       Log.d(TAG, "[getPaidBackupState] Retrieved subscription details.")
 
-      val subscription = activeSubscription.getOrThrow().activeSubscription
+      val subscription = activeSubscription.successOrThrow().activeSubscription
       if (subscription != null) {
         Log.d(TAG, "[getPaidBackupState] Subscription found. Updating UI state with subscription details. Status: ${subscription.status}")
 

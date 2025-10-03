@@ -12,10 +12,10 @@ import assertk.assertions.isTrue
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.every
-import io.mockk.mockk
 import io.mockk.mockkObject
 import io.mockk.unmockkAll
 import io.mockk.verify
+import okio.IOException
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -30,6 +30,7 @@ import org.signal.donations.InAppPaymentType
 import org.thoughtcrime.securesms.backup.DeletionState
 import org.thoughtcrime.securesms.backup.v2.BackupRepository
 import org.thoughtcrime.securesms.backup.v2.MessageBackupTier
+import org.thoughtcrime.securesms.components.settings.app.backups.BackupStateObserver
 import org.thoughtcrime.securesms.components.settings.app.subscription.RecurringInAppPaymentRepository
 import org.thoughtcrime.securesms.database.InAppPaymentTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -38,6 +39,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.InAppPaymentData
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.jobmanager.Job
 import org.thoughtcrime.securesms.keyvalue.SignalStore
+import org.thoughtcrime.securesms.net.SignalNetwork
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 import org.thoughtcrime.securesms.util.RemoteConfig
 import org.whispersystems.signalservice.api.NetworkResult
@@ -47,6 +49,7 @@ import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription
 import org.whispersystems.signalservice.api.subscriptions.ActiveSubscription.ChargeFailure
 import org.whispersystems.signalservice.api.subscriptions.SubscriberId
 import org.whispersystems.signalservice.internal.push.SubscriptionsConfiguration
+import org.whispersystems.signalservice.internal.push.WhoAmIResponse
 import java.math.BigDecimal
 import java.util.Currency
 import kotlin.time.Duration.Companion.days
@@ -68,13 +71,21 @@ class BackupSubscriptionCheckJobTest {
     every { RemoteConfig.internalUser } returns true
 
     coEvery { AppDependencies.billingApi.getApiAvailability() } returns BillingResponseCode.OK
-    coEvery { AppDependencies.billingApi.queryPurchases() } returns mockk()
-    coEvery { AppDependencies.billingApi.queryProduct() } returns null
+
+    coEvery { AppDependencies.billingApi.queryPurchases() } returns BillingPurchaseResult.Success(
+      purchaseState = BillingPurchaseState.PURCHASED,
+      purchaseToken = "test-token",
+      isAcknowledged = true,
+      isAutoRenewing = true,
+      purchaseTime = System.currentTimeMillis()
+    )
+
+    coEvery { AppDependencies.billingApi.queryProduct() } returns BillingProduct(price = FiatMoney(BigDecimal.ONE, Currency.getInstance("USD")))
 
     SignalStore.backup.backupTier = MessageBackupTier.PAID
 
     mockkObject(RecurringInAppPaymentRepository)
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription()
     )
 
@@ -96,6 +107,18 @@ class BackupSubscriptionCheckJobTest {
         NetworkResult.StatusCodeError(NonSuccessfulResponseCodeException(404))
       }
     }
+
+    every { BackupRepository.resetInitializedStateAndAuthCredentials() } returns Unit
+
+    mockkObject(BackupStateObserver)
+    every { BackupStateObserver.notifyBackupStateChanged() } returns Unit
+
+    mockkObject(SignalNetwork)
+    every { AppDependencies.accountApi.whoAmI() } returns NetworkResult.Success(
+      WhoAmIResponse(
+        number = "+1234567890"
+      )
+    )
 
     every { AppDependencies.donationsApi.putSubscription(any()) } returns NetworkResult.Success(Unit)
 
@@ -174,8 +197,17 @@ class BackupSubscriptionCheckJobTest {
   }
 
   @Test
+  fun givenPrePendingRecurringTransaction_whenIRun_thenIExpectSuccessAndEarlyExit() {
+    insertPrePendingInAppPayment()
+
+    val job = BackupSubscriptionCheckJob.create()
+    val result = job.run()
+
+    assertEarlyExit(result)
+  }
+
+  @Test
   fun givenAPendingPayment_whenIRun_thenIExpectSuccessAndEarlyExit() {
-    mockProduct()
     insertPendingInAppPayment()
 
     val job = BackupSubscriptionCheckJob.create()
@@ -187,9 +219,7 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenInactiveSubscription_whenIRun_thenIExpectStateMismatchDetected() {
-    mockProduct()
-
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = false)
     )
 
@@ -201,9 +231,9 @@ class BackupSubscriptionCheckJobTest {
   }
 
   @Test
-  fun givenRepositoryFailure_whenIRun_thenIExpectFailureResult() {
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.failure(
-      RuntimeException("Network error")
+  fun givenAnApplicationErrorWhenAccessingTheActiveSubscription_whenIRun_thenIExpectAFailure() {
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.ApplicationError(
+      RuntimeException("Application Error")
     )
 
     val job = BackupSubscriptionCheckJob.create()
@@ -213,8 +243,10 @@ class BackupSubscriptionCheckJobTest {
   }
 
   @Test
-  fun givenBillingApiReturnsAFailure_whenIRun_thenIExpectFailureResult() {
-    coEvery { AppDependencies.billingApi.queryPurchases() } returns BillingPurchaseResult.BillingUnavailable
+  fun givenANetworkErrorWhenAccessingTheActiveSubscription_whenIRun_thenIExpectAFailure() {
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.NetworkError(
+      IOException()
+    )
 
     val job = BackupSubscriptionCheckJob.create()
     val result = job.run()
@@ -223,10 +255,32 @@ class BackupSubscriptionCheckJobTest {
   }
 
   @Test
-  fun givenPastDueSubscription_whenIRun_thenIExpectStateMismatchDetected() {
-    mockProduct()
+  fun givenAStatusCodeErrorWhenAccessingTheActiveSubscription_whenIRun_thenIExpectAMismatch() {
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.StatusCodeError(
+      NonSuccessfulResponseCodeException(404)
+    )
 
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    val job = BackupSubscriptionCheckJob.create()
+    val result = job.run()
+
+    assertThat(result.isSuccess).isTrue()
+    assertThat(SignalStore.backup.subscriptionStateMismatchDetected).isTrue()
+  }
+
+  @Test
+  fun givenBillingApiReturnsAFailure_whenIRun_thenIExpectSuccessAndEarlyExit() {
+    coEvery { AppDependencies.billingApi.queryPurchases() } returns BillingPurchaseResult.BillingUnavailable
+
+    val job = BackupSubscriptionCheckJob.create()
+    val result = job.run()
+
+    assertThat(result.isSuccess).isTrue()
+    assertThat(SignalStore.backup.subscriptionStateMismatchDetected).isFalse()
+  }
+
+  @Test
+  fun givenPastDueSubscription_whenIRun_thenIExpectStateMismatchDetected() {
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(
         isActive = false,
         billingPeriodEndSeconds = System.currentTimeMillis().milliseconds.inWholeSeconds - 1.days.inWholeSeconds,
@@ -243,9 +297,7 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenCancelledSubscription_whenIRun_thenIExpectStateMismatchDetected() {
-    mockProduct()
-
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(
         isActive = false,
         status = "canceled",
@@ -262,9 +314,7 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenFreeBackupTier_whenIRun_thenIExpectSuccessAndEarlyExit() {
-    mockProduct()
-
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       ActiveSubscription.EMPTY
     )
 
@@ -278,24 +328,11 @@ class BackupSubscriptionCheckJobTest {
   }
 
   @Test
-  fun givenFailedInAppPayment_whenIRun_thenIExpectStateMismatchDetected() {
-    mockProduct()
-    insertFailedInAppPayment()
-
-    val job = BackupSubscriptionCheckJob.create()
-    val result = job.run()
-
-    assertThat(result.isSuccess).isTrue()
-    assertThat(SignalStore.backup.subscriptionStateMismatchDetected).isTrue()
-  }
-
-  @Test
   fun givenActiveSignalSubscriptionWithTokenMismatch_whenIRun_thenIExpectTokenRedemption() {
-    mockProduct()
     mockActivePurchase()
     insertSubscriber("mismatch")
 
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = true)
     )
 
@@ -315,10 +352,9 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenActiveSubscriptionAndPurchaseWithoutEntitlement_whenIRun_thenIExpectRedemption() {
-    mockProduct()
     mockActivePurchase()
 
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = true)
     )
 
@@ -342,10 +378,9 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenValidActiveState_whenIRun_thenIExpectSuccessAndNoMismatch() {
-    mockProduct()
     mockActivePurchase()
 
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = true)
     )
 
@@ -360,10 +395,9 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenValidInactiveState_whenIRun_thenIExpectSuccessAndNoMismatch() {
-    mockProduct()
     mockInactivePurchase()
 
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = false)
     )
 
@@ -379,10 +413,9 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenGooglePlayBillingCanceledWithoutActiveSignalSubscription_whenIRun_thenIExpectValidCancelState() {
-    mockProduct()
     mockCanceledPurchase()
 
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = false)
     )
 
@@ -395,10 +428,9 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenGooglePlayBillingCanceledWithFailedSignalSubscription_whenIRun_thenIExpectValidCancelState() {
-    mockProduct()
     mockCanceledPurchase()
 
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = true, status = "past_due", chargeFailure = ChargeFailure("test", "", "", "", ""))
     )
 
@@ -411,11 +443,10 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenInvalidStateConfiguration_whenIRun_thenIExpectStateMismatchDetected() {
-    mockProduct()
     mockActivePurchase()
 
     // Create invalid state: active purchase but no active subscription, with paid tier
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = false)
     )
 
@@ -430,10 +461,9 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenActiveSubscriptionWithMismatchedZkCredentials_whenIRun_thenIExpectCredentialRefresh() {
-    mockProduct()
     mockActivePurchase()
 
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = true)
     )
 
@@ -452,10 +482,9 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenActiveSubscriptionWithSyncedZkCredentials_whenIRun_thenIExpectNoCredentialRefresh() {
-    mockProduct()
     mockActivePurchase()
 
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = true)
     )
 
@@ -472,10 +501,9 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenActiveSubscriptionWithZkCredentialFailure_whenIRun_thenIExpectCredentialRefresh() {
-    mockProduct()
     mockActivePurchase()
 
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = true)
     )
 
@@ -493,11 +521,10 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenSubscriptionWillCancelAtPeriodEnd_whenIRun_thenIExpectValidCancelState() {
-    mockProduct()
     mockCanceledPurchase()
 
     // Create subscription that will cancel at period end
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = true, cancelled = true) // cancelled = true means willCancelAtPeriodEnd
     )
 
@@ -510,11 +537,10 @@ class BackupSubscriptionCheckJobTest {
 
   @Test
   fun givenActiveSubscriptionNotWillCancelAtPeriodEnd_whenIRun_thenIExpectZkSynchronization() {
-    mockProduct()
     mockActivePurchase()
 
     // Create active subscription that won't cancel at period end
-    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns Result.success(
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
       createActiveSubscription(isActive = true, cancelled = false)
     )
 
@@ -526,6 +552,37 @@ class BackupSubscriptionCheckJobTest {
     assertThat(result.isSuccess).isTrue()
     // Should call ZK synchronization since subscription is active and not canceling
     verify { BackupRepository.getBackupTierWithoutDowngrade() }
+  }
+
+  @Test
+  fun givenSubscriptionWillCancelWithValidEntitlement_whenIRun_thenIExpectBackupStateNotification() {
+    mockCanceledPurchase()
+
+    every { AppDependencies.accountApi.whoAmI() } returns NetworkResult.Success(
+      WhoAmIResponse(
+        number = "+1234567890",
+        entitlements = WhoAmIResponse.Entitlements(
+          backup = WhoAmIResponse.BackupEntitlement(
+            backupLevel = 201,
+            expirationSeconds = System.currentTimeMillis() / 1000 + 3600 // 1 hour from now
+          )
+        )
+      )
+    )
+
+    every { RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP) } returns NetworkResult.Success(
+      createActiveSubscription(
+        isActive = true,
+        cancelled = true,
+        chargeFailure = ChargeFailure("test", "", "", "", "")
+      )
+    )
+
+    val job = BackupSubscriptionCheckJob.create()
+    val result = job.run()
+
+    assertThat(result.isSuccess).isTrue()
+    verify { BackupStateObserver.notifyBackupStateChanged() }
   }
 
   private fun createActiveSubscription(
@@ -553,15 +610,6 @@ class BackupSubscriptionCheckJobTest {
     )
   }
 
-  private fun mockProduct() {
-    coEvery { AppDependencies.billingApi.queryProduct() } returns BillingProduct(
-      price = FiatMoney(
-        BigDecimal.ONE,
-        Currency.getInstance("USD")
-      )
-    )
-  }
-
   private fun insertSubscriber(token: String = IAP_TOKEN) {
     SignalDatabase.inAppPaymentSubscribers.insertOrReplace(
       InAppPaymentSubscriberRecord(
@@ -572,6 +620,16 @@ class BackupSubscriptionCheckJobTest {
         currency = null,
         subscriberId = SubscriberId.generate()
       )
+    )
+  }
+
+  private fun insertPrePendingInAppPayment() {
+    SignalDatabase.inAppPayments.insert(
+      type = InAppPaymentType.RECURRING_BACKUP,
+      state = InAppPaymentTable.State.TRANSACTING,
+      subscriberId = null,
+      endOfPeriod = null,
+      inAppPaymentData = InAppPaymentData()
     )
   }
 
@@ -591,20 +649,6 @@ class BackupSubscriptionCheckJobTest {
     coVerify(atLeast = 0, atMost = 0) {
       AppDependencies.billingApi.queryPurchases()
     }
-  }
-
-  private fun insertFailedInAppPayment() {
-    SignalDatabase.inAppPayments.insert(
-      type = InAppPaymentType.RECURRING_BACKUP,
-      state = InAppPaymentTable.State.END,
-      subscriberId = null,
-      endOfPeriod = null,
-      inAppPaymentData = InAppPaymentData(
-        error = InAppPaymentData.Error(
-          type = InAppPaymentData.Error.Type.PAYMENT_SETUP
-        )
-      )
-    )
   }
 
   private fun mockActivePurchase() {

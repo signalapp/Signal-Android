@@ -26,6 +26,7 @@ import org.thoughtcrime.securesms.testing.runSync
 import org.thoughtcrime.securesms.testing.success
 import org.whispersystems.signalservice.api.SignalServiceDataStore
 import org.whispersystems.signalservice.api.SignalServiceMessageSender
+import org.whispersystems.signalservice.api.account.AccountApi
 import org.whispersystems.signalservice.api.archive.ArchiveApi
 import org.whispersystems.signalservice.api.attachment.AttachmentApi
 import org.whispersystems.signalservice.api.donations.DonationsApi
@@ -56,6 +57,7 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
   private val recipientCache: LiveRecipientCache
   private var signalServiceMessageSender: SignalServiceMessageSender? = null
   private var billingApi: BillingApi = mockk()
+  private var accountApi: AccountApi = mockk()
 
   init {
     runSync {
@@ -117,6 +119,8 @@ class InstrumentationApplicationDependencyProvider(val application: Application,
   }
 
   override fun provideBillingApi(): BillingApi = billingApi
+
+  override fun provideAccountApi(authWebSocket: SignalWebSocket.AuthenticatedWebSocket): AccountApi = accountApi
 
   override fun provideSignalServiceNetworkAccess(): SignalServiceNetworkAccess {
     return serviceNetworkAccessMock

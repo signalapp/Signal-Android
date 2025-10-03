@@ -181,7 +181,7 @@ class MessageBackupsFlowViewModel(
           RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
         }
 
-        activeSubscription.onSuccess { subscription ->
+        activeSubscription.runIfSuccessful { subscription ->
           if (subscription.willCancelAtPeriodEnd()) {
             Log.d(TAG, "Active subscription is cancelled. Clearing tier.")
             internalStateFlow.update {
