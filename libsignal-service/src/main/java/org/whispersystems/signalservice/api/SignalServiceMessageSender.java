@@ -14,7 +14,6 @@ import org.signal.libsignal.protocol.InvalidRegistrationIdException;
 import org.signal.libsignal.protocol.NoSessionException;
 import org.signal.libsignal.protocol.SessionBuilder;
 import org.signal.libsignal.protocol.SignalProtocolAddress;
-import org.signal.libsignal.protocol.UsePqRatchet;
 import org.signal.libsignal.protocol.groups.GroupSessionBuilder;
 import org.signal.libsignal.protocol.logging.Log;
 import org.signal.libsignal.protocol.message.DecryptionErrorMessage;
@@ -185,7 +184,6 @@ public class SignalServiceMessageSender {
   private final Scheduler       scheduler;
   private final long            maxEnvelopeSize;
   private final BooleanSupplier useRestFallback;
-  private final UsePqRatchet    usePqRatchet;
 
   public SignalServiceMessageSender(PushServiceSocket pushServiceSocket,
                                     SignalServiceDataStore store,
@@ -196,8 +194,7 @@ public class SignalServiceMessageSender {
                                     Optional<EventListener> eventListener,
                                     ExecutorService executor,
                                     long maxEnvelopeSize,
-                                    BooleanSupplier useRestFallback,
-                                    UsePqRatchet usePqRatchet)
+                                    BooleanSupplier useRestFallback)
   {
     CredentialsProvider credentialsProvider = pushServiceSocket.getCredentialsProvider();
 
@@ -215,7 +212,6 @@ public class SignalServiceMessageSender {
     this.scheduler        = Schedulers.from(executor, false, false);
     this.keysApi          = keysApi;
     this.useRestFallback  = useRestFallback;
-    this.usePqRatchet     = usePqRatchet;
   }
 
   /**
@@ -2738,7 +2734,7 @@ public class SignalServiceMessageSender {
           try {
             SignalProtocolAddress preKeyAddress  = new SignalProtocolAddress(recipient.getIdentifier(), preKey.getDeviceId());
             SignalSessionBuilder  sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(aciStore, preKeyAddress));
-            sessionBuilder.process(preKey, usePqRatchet);
+            sessionBuilder.process(preKey);
           } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
             throw new UntrustedIdentityException("Untrusted identity key!", recipient.getIdentifier(), preKey.getIdentityKey());
           }
@@ -2790,7 +2786,7 @@ public class SignalServiceMessageSender {
 
         try {
           SignalSessionBuilder sessionBuilder = new SignalSessionBuilder(sessionLock, new SessionBuilder(aciStore, new SignalProtocolAddress(recipient.getIdentifier(), missingDeviceId)));
-          sessionBuilder.process(preKey, usePqRatchet);
+          sessionBuilder.process(preKey);
         } catch (org.signal.libsignal.protocol.UntrustedIdentityException e) {
           throw new UntrustedIdentityException("Untrusted identity key!", recipient.getIdentifier(), preKey.getIdentityKey());
         }

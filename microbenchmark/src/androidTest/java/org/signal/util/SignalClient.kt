@@ -7,7 +7,6 @@ import org.signal.libsignal.metadata.certificate.SenderCertificate
 import org.signal.libsignal.metadata.certificate.ServerCertificate
 import org.signal.libsignal.protocol.SessionBuilder
 import org.signal.libsignal.protocol.SignalProtocolAddress
-import org.signal.libsignal.protocol.UsePqRatchet
 import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.ecc.ECPublicKey
 import org.signal.libsignal.protocol.groups.GroupSessionBuilder
@@ -74,7 +73,7 @@ class SignalClient {
    */
   fun initializeSession(to: SignalClient) {
     val address = SignalProtocolAddress(to.aci.toString(), 1)
-    SessionBuilder(store, address).process(to.createPreKeyBundle(), UsePqRatchet.NO)
+    SessionBuilder(store, address).process(to.createPreKeyBundle())
   }
 
   fun initializedGroupSession(distributionId: DistributionId): SenderKeyDistributionMessage {
@@ -161,7 +160,7 @@ class SignalClient {
   }
 
   fun decryptMessage(envelope: Envelope) {
-    cipher.decrypt(envelope, System.currentTimeMillis(), UsePqRatchet.NO)
+    cipher.decrypt(envelope, System.currentTimeMillis())
   }
 
   private fun createPreKeyBundle(): PreKeyBundle {
