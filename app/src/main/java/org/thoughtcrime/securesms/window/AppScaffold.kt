@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LocalMinimumInteractiveComponentSize
@@ -26,26 +25,19 @@ import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
 import androidx.compose.material3.adaptive.layout.AnimatedPane
 import androidx.compose.material3.adaptive.layout.PaneExpansionState
 import androidx.compose.material3.adaptive.layout.ThreePaneScaffoldScope
-import androidx.compose.material3.adaptive.layout.calculatePaneScaffoldDirective
 import androidx.compose.material3.adaptive.layout.defaultDragHandleSemantics
 import androidx.compose.material3.adaptive.layout.rememberPaneExpansionState
 import androidx.compose.material3.adaptive.navigation.NavigableListDetailPaneScaffold
-import androidx.compose.material3.adaptive.navigation.ThreePaneScaffoldNavigator
-import androidx.compose.material3.adaptive.navigation.rememberListDetailPaneScaffoldNavigator
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.window.core.ExperimentalWindowCoreApi
@@ -208,12 +200,13 @@ enum class WindowSizeClass(
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun AppScaffold(
-  navigator: ThreePaneScaffoldNavigator<Any> = rememberListDetailPaneScaffoldNavigator<Any>(),
+  navigator: AppScaffoldNavigator<Any>,
   detailContent: @Composable () -> Unit = {},
   navRailContent: @Composable () -> Unit = {},
   bottomNavContent: @Composable () -> Unit = {},
   paneExpansionState: PaneExpansionState = rememberPaneExpansionState(),
   paneExpansionDragHandle: (@Composable ThreePaneScaffoldScope.(PaneExpansionState) -> Unit)? = null,
+  animatorFactory: AppScaffoldAnimationStateFactory = AppScaffoldAnimationStateFactory.Default,
   listContent: @Composable () -> Unit
 ) {
   val isForcedCompact = WindowSizeClass.checkForcedCompact()
@@ -231,32 +224,25 @@ fun AppScaffold(
   }
 
   val minPaneWidth = navigator.scaffoldDirective.defaultPanePreferredWidth
+  val navigationState = navigator.state
 
   NavigableListDetailPaneScaffold(
     navigator = navigator,
     listPane = {
-      val offset by animateDp(
-        targetWhenHiding = {
-          (-48).dp
-        },
-        targetWhenShowing = {
-          0.dp
-        }
-      )
-
-      val alpha by animateFloat {
-        1f
+      val animationState = with(animatorFactory) {
+        this@NavigableListDetailPaneScaffold.getListAnimationState(navigationState)
       }
 
       AnimatedPane(
         enterTransition = EnterTransition.None,
         exitTransition = ExitTransition.None,
-        modifier = Modifier.zIndex(0f)
+        modifier = Modifier
+          .zIndex(0f)
+          .then(animationState.parentModifier)
       ) {
         Box(
           modifier = Modifier
-            .alpha(alpha)
-            .offset(x = offset)
+            .then(animationState.toModifier())
             .clipToBounds()
             .layout { measurable, constraints ->
               val width = max(minPaneWidth.roundToPx(), constraints.maxWidth)
@@ -284,28 +270,20 @@ fun AppScaffold(
       }
     },
     detailPane = {
-      val offset by animateDp(
-        targetWhenHiding = {
-          48.dp
-        },
-        targetWhenShowing = {
-          0.dp
-        }
-      )
-
-      val alpha by animateFloat {
-        1f
+      val animationState = with(animatorFactory) {
+        this@NavigableListDetailPaneScaffold.getDetailAnimationState(navigationState)
       }
 
       AnimatedPane(
         enterTransition = EnterTransition.None,
         exitTransition = ExitTransition.None,
-        modifier = Modifier.zIndex(1f)
+        modifier = Modifier
+          .zIndex(1f)
+          .then(animationState.parentModifier)
       ) {
         Box(
           modifier = Modifier
-            .alpha(alpha)
-            .offset(x = offset)
+            .then(animationState.toModifier())
             .clipToBounds()
             .layout { measurable, constraints ->
               val width = max(minPaneWidth.roundToPx(), constraints.maxWidth)
@@ -446,22 +424,4 @@ fun ThreePaneScaffoldScope.AppPaneDragHandle(
         .background(color = Color(0xFF605F5D), RoundedCornerShape(percent = 50))
     )
   }
-}
-
-@OptIn(ExperimentalMaterial3AdaptiveApi::class)
-@Composable
-fun rememberAppScaffoldNavigator(
-  isSplitPane: Boolean,
-  horizontalPartitionSpacerSize: Dp,
-  defaultPanePreferredWidth: Dp
-): ThreePaneScaffoldNavigator<Any> {
-  return rememberListDetailPaneScaffoldNavigator<Any>(
-    scaffoldDirective = calculatePaneScaffoldDirective(
-      currentWindowAdaptiveInfo()
-    ).copy(
-      maxHorizontalPartitions = if (isSplitPane) 2 else 1,
-      horizontalPartitionSpacerSize = horizontalPartitionSpacerSize,
-      defaultPanePreferredWidth = defaultPanePreferredWidth
-    )
-  )
 }

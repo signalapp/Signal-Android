@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.megaphone.Megaphone
 import org.thoughtcrime.securesms.megaphone.Megaphones
 import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.stories.Stories
+import org.thoughtcrime.securesms.window.AppScaffoldNavigator
 import org.thoughtcrime.securesms.window.WindowSizeClass
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
@@ -38,7 +39,7 @@ class MainNavigationViewModel(
 ) : ViewModel(), MainNavigationRouter {
   private val megaphoneRepository = AppDependencies.megaphoneRepository
 
-  private var navigator: ThreePaneScaffoldNavigator<Any>? = null
+  private var navigator: AppScaffoldNavigator<Any>? = null
   private var navigatorScope: CoroutineScope? = null
   private var goToLegacyDetailLocation: ((MainNavigationDetailLocation) -> Unit)? = null
 
@@ -104,7 +105,7 @@ class MainNavigationViewModel(
    * Sets the navigator on the view-model. This wraps the given navigator in our own delegating implementation
    * such that we can react to navigateTo/Back signals and maintain proper state for internalDetailLocation.
    */
-  fun wrapNavigator(composeScope: CoroutineScope, threePaneScaffoldNavigator: ThreePaneScaffoldNavigator<Any>, goToLegacyDetailLocation: (MainNavigationDetailLocation) -> Unit): ThreePaneScaffoldNavigator<Any> {
+  fun wrapNavigator(composeScope: CoroutineScope, threePaneScaffoldNavigator: ThreePaneScaffoldNavigator<Any>, goToLegacyDetailLocation: (MainNavigationDetailLocation) -> Unit): AppScaffoldNavigator<Any> {
     this.goToLegacyDetailLocation = goToLegacyDetailLocation
     this.navigatorScope = composeScope
     this.navigator = Nav(threePaneScaffoldNavigator)
@@ -269,9 +270,9 @@ class MainNavigationViewModel(
    * Ensures that when the user navigates back from the PRIMARY to SECONDARY pane, we lock our pane until they choose another primary
    * piece of content via [goTo].
    */
-  private inner class Nav<T>(private val delegate: ThreePaneScaffoldNavigator<T>) : ThreePaneScaffoldNavigator<T> by delegate {
+  private inner class Nav<T>(delegate: ThreePaneScaffoldNavigator<T>) : AppScaffoldNavigator<T>(delegate) {
     override suspend fun seekBack(backNavigationBehavior: BackNavigationBehavior, fraction: Float) {
-      delegate.seekBack(backNavigationBehavior, fraction)
+      super.seekBack(backNavigationBehavior, fraction)
 
       if (fraction == 0f) {
         lockPaneToSecondary = true
