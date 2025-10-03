@@ -33,7 +33,7 @@ class LastResortKeyTupleTable(context: Context, databaseHelper: SignalDatabase) 
     const val CREATE_TABLE = """
       CREATE TABLE $TABLE_NAME (
         $ID INTEGER PRIMARY KEY,
-        $KYBER_PREKEY INTEGER NOT NULL UNIQUE REFERENCES ${KyberPreKeyTable.TABLE_NAME} (${KyberPreKeyTable.ID}) ON DELETE CASCADE,
+        $KYBER_PREKEY INTEGER NOT NULL REFERENCES ${KyberPreKeyTable.TABLE_NAME} (${KyberPreKeyTable.ID}) ON DELETE CASCADE,
         $SIGNED_KEY_ID INTEGER NOT NULL,
         $PUBLIC_KEY BLOB NOT NULL,
         UNIQUE($KYBER_PREKEY, $SIGNED_KEY_ID, $PUBLIC_KEY)
