@@ -89,7 +89,7 @@
     <string name="AttachmentKeyboard_contact">Teagmhálaí</string>
     <string name="AttachmentKeyboard_location">Suíomh</string>
     <!-- Text for a button that will allow users to create a poll -->
-    <string name="AttachmentKeyboard_poll">Poll</string>
+    <string name="AttachmentKeyboard_poll">Suirbhé</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Teastaíonn cead ó Signal chun do ghrianghraif agus físeáin a thaispeáint</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Ceadaigh Rochtain</string>
@@ -4769,7 +4769,7 @@
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Sonraí na híocaíochta</string>
     <!-- Button to end a poll -->
-    <string name="conversation_selection__menu_end_poll">End poll</string>
+    <string name="conversation_selection__menu_end_poll">Cuir deireadh leis an suirbhé</string>
 
     <!-- conversation_expiring_on -->
 
@@ -9153,6 +9153,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Ó do sheanghuthán</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Aistrigh go díreach ó do sheanghléas Android</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Skip restore?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Skip restore</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Aischur cúltaca logánta</string>
@@ -9335,15 +9341,15 @@
     <!-- Caption in poll message once a poll has ended  -->
     <string name="Poll__final_results">Poll · Final results</string>
     <!-- Caption in poll message that no votes have been cast  -->
-    <string name="Poll__no_votes">No votes</string>
+    <string name="Poll__no_votes">Níl Aon Vótaí Ann</string>
     <!-- Button in poll message to view current votes for a poll -->
-    <string name="Poll__view_votes">View votes</string>
+    <string name="Poll__view_votes">Féach ar na vótaí</string>
     <!-- Button in poll message to view the poll after it has ended -->
     <string name="Poll__view_poll">View poll</string>
     <!-- Toast message shown if we cannot find the poll -->
     <string name="Poll__unable_poll">Poll not found</string>
     <!-- Button in poll message to view results for a poll after it ends -->
-    <string name="Poll__view_results">View results</string>
+    <string name="Poll__view_results">Féach ar na torthaí</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
     <string name="Poll__poll_question">Poll: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
@@ -9355,33 +9361,33 @@
     <!-- Title of screen that shows the poll results of a poll -->
     <string name="Poll__poll_results">Poll results</string>
     <!-- Header text displaying the question of the poll -->
-    <string name="Poll__question">Question</string>
+    <string name="Poll__question">Ceist</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
-        <item quantity="one">%1$d vote</item>
-        <item quantity="two">%1$d votes</item>
-        <item quantity="few">%1$d votes</item>
-        <item quantity="many">%1$d votes</item>
-        <item quantity="other">%1$d votes</item>
+        <item quantity="one">%1$d Vóta</item>
+        <item quantity="two">%1$d Vóta</item>
+        <item quantity="few">%1$d Vóta</item>
+        <item quantity="many">%1$d Vóta</item>
+        <item quantity="other">%1$d Vóta</item>
     </plurals>
     <!-- Text that when pressed will end the poll   -->
-    <string name="Poll__end_poll">End poll</string>
+    <string name="Poll__end_poll">Cuir deireadh leis an suirbhé</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
-    <string name="Poll__see_all">See all</string>
+    <string name="Poll__see_all">Féach ar gach rud</string>
     <!-- Header when creating a new poll -->
-    <string name="CreatePollFragment__new_poll">New poll</string>
+    <string name="CreatePollFragment__new_poll">Suirbhé Nua</string>
     <!-- Section text to enter in a question for a poll  -->
-    <string name="CreatePollFragment__question">Question</string>
+    <string name="CreatePollFragment__question">Ceist</string>
     <!-- Hint text for question field when creating a poll  -->
-    <string name="CreatePollFragment__ask_a_question">Ask a question</string>
+    <string name="CreatePollFragment__ask_a_question">Cuir Ceist</string>
     <!-- Section text to enter in options for a poll -->
-    <string name="CreatePollFragment__options">Options</string>
+    <string name="CreatePollFragment__options">Roghanna</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
     <string name="CreatePollFragment__option_n">Option %1$d</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
-    <string name="CreatePollFragment__drag_handle">Drag and drop handle</string>
+    <string name="CreatePollFragment__drag_handle">Hanla tarraingthe agus scaoilte</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
-    <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
+    <string name="CreatePollFragment__allow_multiple_votes">Ceadaigh Iliomad Vótaí</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
     <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
     <!-- Snackbar text to add two options before creating a poll -->

@@ -89,7 +89,7 @@
     <string name="AttachmentKeyboard_contact">ئالاقەداش</string>
     <string name="AttachmentKeyboard_location">ئورنى</string>
     <!-- Text for a button that will allow users to create a poll -->
-    <string name="AttachmentKeyboard_poll">Poll</string>
+    <string name="AttachmentKeyboard_poll">ئشلەتكۈچىلەرنىڭ رايىنى سىناش</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">رەسىم ۋە ۋىدېيولىرىڭىزنى كۆرسىتىش ئۈچۈن Signal ئىجازىتىڭىزگە ئېھتىياجلىق</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">ئىشلىتىشكە رۇخسەت</string>
@@ -2050,7 +2050,7 @@
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s سىزگە ئەۋەتكەن ئۇچۇردا Signal نىڭ بىر يېڭى ئىقتىدارى قوللىنىلغاچقا، ئۇنى بىر تەرەپ قىلالمىدى ياكى كۆرسىتەلمىدى.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
-    <string name="MessageRecord_ended_the_poll">%1$s ended the poll: \"%2$s\"</string>
+    <string name="MessageRecord_ended_the_poll">%1$s بېلەت تاشلاشنى ئاخىرلاشتۇردى: «%2$s»</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">قوبۇل قىل</string>
@@ -3081,7 +3081,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">چاپلىقىڭىزغا قايتۇرغان ئىنكاس %1$s.</string>
     <string name="MessageNotifier_this_message_was_deleted">بۇ ئۇچۇر ئۆچۈرۈلگەن</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
-    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s voted in the poll \"%3$s\"</string>
+    <string name="MessageNotifier_s_voted_in_poll">«%3$s»غا %2$s%1$s بېلەت تاشلىدى</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">ئالاقەداشلار Signal غا قوشۇلغانلىق ئۇقتۇرۇشىنى تاقامسىز؟ سىز Signal &gt; تەڭشەكلەر&gt;ئۇقتۇرۇشتىن قايتا قوزغىتالايسىز.</string>
 
@@ -4309,7 +4309,7 @@
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">پۇل تۆلەش تەپسىلاتلىرى</string>
     <!-- Button to end a poll -->
-    <string name="conversation_selection__menu_end_poll">End poll</string>
+    <string name="conversation_selection__menu_end_poll">راي سىناشنى توختىتىش</string>
 
     <!-- conversation_expiring_on -->
 
@@ -8421,6 +8421,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">كونا تېلېفونىڭىزدىن</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">كونا ئاندىرويىد ئۈسكۈنىڭىزدىن بىۋاسىتە يۆتكەڭ</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Skip restore?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Skip restore</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">يەرلىك زاپاسلاشنى ئەسلىگە كەلتۈرۈش</string>
@@ -8589,61 +8595,61 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select One</string>
+    <string name="Poll__select_one">راي سىناش · بىرنى تاللاڭ</string>
     <!-- Caption in poll message to select one or more options  -->
-    <string name="Poll__select_multiple">Poll · Select one or more</string>
+    <string name="Poll__select_multiple">راي سىناش · بىر ياكى بىرقانچىنى تاللاڭ</string>
     <!-- Caption in poll message once a poll has ended  -->
-    <string name="Poll__final_results">Poll · Final results</string>
+    <string name="Poll__final_results">راي سىناش · ئاخىرقى نەتىجىلەر</string>
     <!-- Caption in poll message that no votes have been cast  -->
-    <string name="Poll__no_votes">No votes</string>
+    <string name="Poll__no_votes">بېلەت تاشلانمىدى</string>
     <!-- Button in poll message to view current votes for a poll -->
-    <string name="Poll__view_votes">View votes</string>
+    <string name="Poll__view_votes">بېلەتلەرنى كۆرۈش</string>
     <!-- Button in poll message to view the poll after it has ended -->
-    <string name="Poll__view_poll">View poll</string>
+    <string name="Poll__view_poll">راي سىناشنى كۆرۈش</string>
     <!-- Toast message shown if we cannot find the poll -->
-    <string name="Poll__unable_poll">Poll not found</string>
+    <string name="Poll__unable_poll">راي سىناش تېپىلمىدى</string>
     <!-- Button in poll message to view results for a poll after it ends -->
-    <string name="Poll__view_results">View results</string>
+    <string name="Poll__view_results">نەتىجىلەرنى كۆرۈش</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
-    <string name="Poll__poll_question">Poll: %1$s</string>
+    <string name="Poll__poll_question">راي سىناش: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
-    <string name="Poll__poll_end">%1$s ended the poll: \"%2$s\"</string>
+    <string name="Poll__poll_end">%1$s بېلەت تاشلاشنى ئاخىرلاشتۇردى: «%2$s»</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
+    <string name="Poll__poll_voted">«%2$s»غا: %1$s بېلەت تاشلىدى</string>
     <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Polls</string>
+    <string name="Poll__poll">راي سىناقلىرى</string>
     <!-- Title of screen that shows the poll results of a poll -->
-    <string name="Poll__poll_results">Poll results</string>
+    <string name="Poll__poll_results">راي سىناش نەتىجىللىرى</string>
     <!-- Header text displaying the question of the poll -->
-    <string name="Poll__question">Question</string>
+    <string name="Poll__question">سوئال</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
-        <item quantity="other">%1$d votes</item>
+        <item quantity="other">%1$d بېلەتلەر</item>
     </plurals>
     <!-- Text that when pressed will end the poll   -->
-    <string name="Poll__end_poll">End poll</string>
+    <string name="Poll__end_poll">راي سىناشنى توختىتىش</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
-    <string name="Poll__see_all">See all</string>
+    <string name="Poll__see_all">ھەممىنى كۆرسەت</string>
     <!-- Header when creating a new poll -->
-    <string name="CreatePollFragment__new_poll">New poll</string>
+    <string name="CreatePollFragment__new_poll">يېڭى راي سىناش</string>
     <!-- Section text to enter in a question for a poll  -->
-    <string name="CreatePollFragment__question">Question</string>
+    <string name="CreatePollFragment__question">سوئال</string>
     <!-- Hint text for question field when creating a poll  -->
-    <string name="CreatePollFragment__ask_a_question">Ask a question</string>
+    <string name="CreatePollFragment__ask_a_question">سۇئال سوراڭ</string>
     <!-- Section text to enter in options for a poll -->
-    <string name="CreatePollFragment__options">Options</string>
+    <string name="CreatePollFragment__options">تاللاش</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
-    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <string name="CreatePollFragment__option_n">تاللاش %1$d</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
-    <string name="CreatePollFragment__drag_handle">Drag and drop handle</string>
+    <string name="CreatePollFragment__drag_handle">سۆرەش ۋە تاشلاش تۇتقۇچى</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
-    <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
+    <string name="CreatePollFragment__allow_multiple_votes">كۆپ بېلەت چۈشۈشكە يول قويۇش</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
-    <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
+    <string name="CreatePollFragment__add_question_option">بىر سۇئال ۋە كەم دېگەندە 2 تاللاش قوشۇش</string>
     <!-- Snackbar text to add two options before creating a poll -->
-    <string name="CreatePollFragment__add_option">Add at least 2 options</string>
+    <string name="CreatePollFragment__add_option">كەم دېگەندە 2 تاللاش قوشۇش</string>
     <!-- Snackbar text to add a question before creating a poll -->
-    <string name="CreatePollFragment__add_question">Add a question</string>
+    <string name="CreatePollFragment__add_question">بىر سۇئال قوشۇش</string>
 
     <!-- EOF -->
 </resources>

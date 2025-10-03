@@ -89,7 +89,7 @@
     <string name="AttachmentKeyboard_contact">संपर्क</string>
     <string name="AttachmentKeyboard_location">स्थान</string>
     <!-- Text for a button that will allow users to create a poll -->
-    <string name="AttachmentKeyboard_poll">Poll</string>
+    <string name="AttachmentKeyboard_poll">पोल</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">आपले फोटो आणि व्हिडिओ दाखवण्यासाठी Signal ला परवानगी आवश्यक आहे</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">अॅक्सेस अनुमती द्या</string>
@@ -2110,7 +2110,7 @@
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s ने आपल्याला एक संदेश पाठविला आहे जो प्रक्रिया केला किंवा दाखविला जाऊ शकत नाही कारण तो एक नवीन Signal वैशिष्ट्य वापरतो.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
-    <string name="MessageRecord_ended_the_poll">%1$s ended the poll: \"%2$s\"</string>
+    <string name="MessageRecord_ended_the_poll">%1$s ने पोल समाप्त केला : \"%2$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">स्वीकारा</string>
@@ -3177,7 +3177,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s अशी प्रतिक्रिया तुमच्या स्टिकरवर दिली.</string>
     <string name="MessageNotifier_this_message_was_deleted">हा संदेश हटवला गेला.</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
-    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s voted in the poll \"%3$s\"</string>
+    <string name="MessageNotifier_s_voted_in_poll">\"%3$s\" मध्ये %1$s %2$sने मत दिले</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">संपर्क Signal मध्ये सामील झाला सूचना बंद करायच्या? आपण त्यांना पुन्हा Signal &gt; सेटिंग &gt; सूचना मधून सक्षम करू शकता.</string>
 
@@ -4424,7 +4424,7 @@
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">पेमेंट तपशील</string>
     <!-- Button to end a poll -->
-    <string name="conversation_selection__menu_end_poll">End poll</string>
+    <string name="conversation_selection__menu_end_poll">पोल समाप्त करा</string>
 
     <!-- conversation_expiring_on -->
 
@@ -8604,6 +8604,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">आपल्या जुन्या फोनमधून</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">आपल्या जुन्या ॲन्ड्राइड वरून थेट हस्तांतरण करा</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Skip restore?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Skip restore</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">स्थानिक बॅकअप पुर्नस्थापित करा</string>
@@ -8774,62 +8780,62 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select One</string>
+    <string name="Poll__select_one">पोल · एक निवडा</string>
     <!-- Caption in poll message to select one or more options  -->
-    <string name="Poll__select_multiple">Poll · Select one or more</string>
+    <string name="Poll__select_multiple">पोल · एक किंवा अधिक निवडा</string>
     <!-- Caption in poll message once a poll has ended  -->
-    <string name="Poll__final_results">Poll · Final results</string>
+    <string name="Poll__final_results">पोल · अंतिम निकाल</string>
     <!-- Caption in poll message that no votes have been cast  -->
-    <string name="Poll__no_votes">No votes</string>
+    <string name="Poll__no_votes">शून्य मते</string>
     <!-- Button in poll message to view current votes for a poll -->
-    <string name="Poll__view_votes">View votes</string>
+    <string name="Poll__view_votes">मते पहा</string>
     <!-- Button in poll message to view the poll after it has ended -->
-    <string name="Poll__view_poll">View poll</string>
+    <string name="Poll__view_poll">पोल पाहा</string>
     <!-- Toast message shown if we cannot find the poll -->
-    <string name="Poll__unable_poll">Poll not found</string>
+    <string name="Poll__unable_poll">पोल सापडला नाही</string>
     <!-- Button in poll message to view results for a poll after it ends -->
-    <string name="Poll__view_results">View results</string>
+    <string name="Poll__view_results">निष्कर्ष पहा</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
-    <string name="Poll__poll_question">Poll: %1$s</string>
+    <string name="Poll__poll_question">पोल : %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
-    <string name="Poll__poll_end">%1$s ended the poll: \"%2$s\"</string>
+    <string name="Poll__poll_end">%1$s ने पोल समाप्त केला : \"%2$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
+    <string name="Poll__poll_voted">%1$sने पोलमध्ये मत दिले : \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Polls</string>
+    <string name="Poll__poll">पोल्स</string>
     <!-- Title of screen that shows the poll results of a poll -->
-    <string name="Poll__poll_results">Poll results</string>
+    <string name="Poll__poll_results">पोलचे निकाल</string>
     <!-- Header text displaying the question of the poll -->
-    <string name="Poll__question">Question</string>
+    <string name="Poll__question">प्रश्न</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
-        <item quantity="one">%1$d vote</item>
-        <item quantity="other">%1$d votes</item>
+        <item quantity="one">%1$d मत</item>
+        <item quantity="other">%1$d मते</item>
     </plurals>
     <!-- Text that when pressed will end the poll   -->
-    <string name="Poll__end_poll">End poll</string>
+    <string name="Poll__end_poll">पोल समाप्त करा</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
-    <string name="Poll__see_all">See all</string>
+    <string name="Poll__see_all">सर्व पहा</string>
     <!-- Header when creating a new poll -->
-    <string name="CreatePollFragment__new_poll">New poll</string>
+    <string name="CreatePollFragment__new_poll">नवीन पोल</string>
     <!-- Section text to enter in a question for a poll  -->
-    <string name="CreatePollFragment__question">Question</string>
+    <string name="CreatePollFragment__question">प्रश्न</string>
     <!-- Hint text for question field when creating a poll  -->
-    <string name="CreatePollFragment__ask_a_question">Ask a question</string>
+    <string name="CreatePollFragment__ask_a_question">एक प्रश्न विचारा</string>
     <!-- Section text to enter in options for a poll -->
-    <string name="CreatePollFragment__options">Options</string>
+    <string name="CreatePollFragment__options">पर्याय</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
-    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <string name="CreatePollFragment__option_n">पर्याय %1$d</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
-    <string name="CreatePollFragment__drag_handle">Drag and drop handle</string>
+    <string name="CreatePollFragment__drag_handle">ड्रॅग आणि ड्रॉप हँडल</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
-    <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
+    <string name="CreatePollFragment__allow_multiple_votes">अनेक मते देण्यास परवानगी द्या</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
-    <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
+    <string name="CreatePollFragment__add_question_option">एक प्रश्न आणि किमान २ पर्याय समाविष्ट करा</string>
     <!-- Snackbar text to add two options before creating a poll -->
-    <string name="CreatePollFragment__add_option">Add at least 2 options</string>
+    <string name="CreatePollFragment__add_option">किमान २ पर्याय समाविष्ट करा</string>
     <!-- Snackbar text to add a question before creating a poll -->
-    <string name="CreatePollFragment__add_question">Add a question</string>
+    <string name="CreatePollFragment__add_question">एक प्रश्न समाविष्ट करा</string>
 
     <!-- EOF -->
 </resources>

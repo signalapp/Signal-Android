@@ -8604,6 +8604,12 @@
     <string name="SelectRestoreMethodFragment__from_your_old_phone">Telefono zaharretik</string>
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Transferitu zuzenean Android zaharretik</string>
+    <!-- Dialog title shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Skip restore?</string>
+    <!-- Dialog message shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
+    <string name="SelectRestoreMethodFragment__skip_restore">Skip restore</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Leheneratu babeskopia lokala</string>
@@ -8800,7 +8806,7 @@
     <!-- Title of screen that shows the poll results of a poll -->
     <string name="Poll__poll_results">Poll results</string>
     <!-- Header text displaying the question of the poll -->
-    <string name="Poll__question">Question</string>
+    <string name="Poll__question">Galdera</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
         <item quantity="one">%1$d vote</item>
@@ -8809,19 +8815,19 @@
     <!-- Text that when pressed will end the poll   -->
     <string name="Poll__end_poll">End poll</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
-    <string name="Poll__see_all">See all</string>
+    <string name="Poll__see_all">Ikusi denak</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">New poll</string>
     <!-- Section text to enter in a question for a poll  -->
-    <string name="CreatePollFragment__question">Question</string>
+    <string name="CreatePollFragment__question">Galdera</string>
     <!-- Hint text for question field when creating a poll  -->
     <string name="CreatePollFragment__ask_a_question">Ask a question</string>
     <!-- Section text to enter in options for a poll -->
-    <string name="CreatePollFragment__options">Options</string>
+    <string name="CreatePollFragment__options">Aukerak</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
     <string name="CreatePollFragment__option_n">Option %1$d</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
-    <string name="CreatePollFragment__drag_handle">Drag and drop handle</string>
+    <string name="CreatePollFragment__drag_handle">Arrastatu eta jaregiteko heldulekua</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
     <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
