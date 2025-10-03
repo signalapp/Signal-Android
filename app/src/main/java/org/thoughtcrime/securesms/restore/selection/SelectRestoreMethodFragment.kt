@@ -5,7 +5,13 @@
 
 package org.thoughtcrime.securesms.restore.selection
 
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -15,6 +21,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.ui.compose.Dialogs
 import org.thoughtcrime.securesms.MainActivity
+import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.compose.ComposeFragment
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
 import org.thoughtcrime.securesms.registration.ui.restore.RemoteRestoreActivity
@@ -33,25 +40,37 @@ class SelectRestoreMethodFragment : ComposeFragment() {
 
   @Composable
   override fun FragmentContent() {
+    var showSkipRestoreWarning by remember { mutableStateOf(false) }
+
     SelectRestoreMethodScreen(
       restoreMethods = viewModel.getAvailableRestoreMethods(),
       onRestoreMethodClicked = this::startRestoreMethod,
-      onSkip = {
-        viewLifecycleOwner.lifecycleScope.launch {
-          viewModel.skipRestore()
-          viewModel.performStorageServiceAccountRestoreIfNeeded()
-
-          if (isActive) {
-            withContext(Dispatchers.Main) {
-              startActivity(MainActivity.clearTop(requireContext()))
-              activity?.finish()
-            }
-          }
-        }
-      }
+      onSkip = { showSkipRestoreWarning = true }
     ) {
       if (viewModel.showStorageAccountRestoreProgress) {
         Dialogs.IndeterminateProgressDialog()
+      } else if (showSkipRestoreWarning) {
+        Dialogs.SimpleAlertDialog(
+          title = stringResource(R.string.SelectRestoreMethodFragment__skip_restore_title),
+          body = stringResource(R.string.SelectRestoreMethodFragment__skip_restore_warning),
+          confirm = stringResource(R.string.SelectRestoreMethodFragment__skip_restore),
+          dismiss = stringResource(android.R.string.cancel),
+          onConfirm = {
+            lifecycleScope.launch {
+              viewModel.skipRestore()
+              viewModel.performStorageServiceAccountRestoreIfNeeded()
+
+              if (isActive) {
+                withContext(Dispatchers.Main) {
+                  startActivity(MainActivity.clearTop(requireContext()))
+                  activity?.finish()
+                }
+              }
+            }
+          },
+          onDismiss = { showSkipRestoreWarning = false },
+          confirmColor = MaterialTheme.colorScheme.error
+        )
       }
     }
   }

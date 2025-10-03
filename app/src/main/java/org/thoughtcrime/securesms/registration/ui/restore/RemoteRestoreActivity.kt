@@ -32,6 +32,9 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
@@ -150,6 +153,7 @@ class RemoteRestoreActivity : BaseActivity() {
     setContent {
       val state: RemoteRestoreViewModel.ScreenState by viewModel.state.collectAsStateWithLifecycle()
       val contactSupportState: ContactSupportViewModel.ContactSupportState<ContactSupportReason> by contactSupportViewModel.state.collectAsStateWithLifecycle()
+      var showSkipRestoreWarning by remember { mutableStateOf(false) }
 
       SendSupportEmailEffect(
         contactSupportState = contactSupportState,
@@ -178,13 +182,9 @@ class RemoteRestoreActivity : BaseActivity() {
             onRetryRestoreTier = { viewModel.reload() },
             onContactSupport = { contactSupportViewModel.showContactSupport() },
             onCancelClick = {
-              lifecycleScope.launch {
-                if (state.isRemoteRestoreOnlyOption) {
-                  viewModel.skipRestore()
-                  viewModel.performStorageServiceAccountRestoreIfNeeded()
-                  startActivity(MainActivity.clearTop(this@RemoteRestoreActivity))
-                }
-
+              if (state.isRemoteRestoreOnlyOption) {
+                showSkipRestoreWarning = true
+              } else {
                 finish()
               }
             },
@@ -194,6 +194,25 @@ class RemoteRestoreActivity : BaseActivity() {
             },
             contactSupportCallbacks = contactSupportViewModel
           )
+
+          if (showSkipRestoreWarning) {
+            Dialogs.SimpleAlertDialog(
+              title = stringResource(R.string.SelectRestoreMethodFragment__skip_restore_title),
+              body = stringResource(R.string.SelectRestoreMethodFragment__skip_restore_warning),
+              confirm = stringResource(R.string.SelectRestoreMethodFragment__skip_restore),
+              dismiss = stringResource(android.R.string.cancel),
+              onConfirm = {
+                lifecycleScope.launch {
+                  viewModel.skipRestore()
+                  viewModel.performStorageServiceAccountRestoreIfNeeded()
+                  startActivity(MainActivity.clearTop(this@RemoteRestoreActivity))
+                  finish()
+                }
+              },
+              onDismiss = { showSkipRestoreWarning = false },
+              confirmColor = MaterialTheme.colorScheme.error
+            )
+          }
         }
       }
     }

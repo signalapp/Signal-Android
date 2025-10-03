@@ -134,10 +134,6 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
     store.update { it.copy(restoreProgress = restoreEvent) }
   }
 
-  fun cancel() {
-    SignalStore.registration.restoreDecisionState = RestoreDecisionState.Skipped
-  }
-
   fun clearError() {
     store.update { it.copy(importState = ImportState.None, restoreProgress = null) }
   }
