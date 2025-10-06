@@ -6,13 +6,16 @@
 package org.thoughtcrime.securesms.main
 
 import androidx.annotation.Px
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.statusBars
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Density
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -48,20 +51,47 @@ fun InsetsViewModelUpdater(
   val navigationBarPadding = navigationBarInsets.asPaddingValues()
   val density = LocalDensity.current
 
-  LaunchedEffect(statusBarPadding, navigationBarPadding, density) {
-    val statusBarPx = with(density) {
-      (statusBarPadding.calculateTopPadding() + statusBarPadding.calculateBottomPadding()).toPx()
-    }
-
-    val navBarPx = with(density) {
-      (navigationBarPadding.calculateTopPadding() + navigationBarPadding.calculateBottomPadding()).toPx()
-    }
-
-    insetsViewModel.updateInsets(
-      InsetsViewModel.Insets(
-        statusBar = statusBarPx,
-        navBar = navBarPx
-      )
+  LaunchedEffect(
+    statusBarPadding,
+    navigationBarPadding,
+    density
+  ) {
+    calculateAndUpdateInsets(
+      density,
+      insetsViewModel,
+      statusBarPadding,
+      navigationBarPadding
     )
   }
+
+  SideEffect {
+    calculateAndUpdateInsets(
+      density,
+      insetsViewModel,
+      statusBarPadding,
+      navigationBarPadding
+    )
+  }
+}
+
+private fun calculateAndUpdateInsets(
+  density: Density,
+  insetsViewModel: InsetsViewModel,
+  statusBarPadding: PaddingValues,
+  navigationBarPadding: PaddingValues
+) {
+  val statusBarPx = with(density) {
+    (statusBarPadding.calculateTopPadding() + statusBarPadding.calculateBottomPadding()).toPx()
+  }
+
+  val navBarPx = with(density) {
+    (navigationBarPadding.calculateTopPadding() + navigationBarPadding.calculateBottomPadding()).toPx()
+  }
+
+  insetsViewModel.updateInsets(
+    InsetsViewModel.Insets(
+      statusBar = statusBarPx,
+      navBar = navBarPx
+    )
+  )
 }
