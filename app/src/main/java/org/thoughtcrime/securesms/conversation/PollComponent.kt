@@ -266,7 +266,6 @@ private sealed interface PollColorsType {
   data object Incoming : PollColorsType {
     @Composable
     override fun getColors(chatColor: Int): PollColors {
-      // TODO(michelle): Get updated button color
       return PollColors(
         text = MaterialTheme.colorScheme.onSurface,
         caption = MaterialTheme.colorScheme.onSurfaceVariant,
@@ -274,8 +273,8 @@ private sealed interface PollColorsType {
         progressBackground = SignalTheme.colors.colorTransparentInverse3,
         checkbox = MaterialTheme.colorScheme.outline,
         checkboxBackground = MaterialTheme.colorScheme.primary,
-        button = if (DynamicTheme.isDarkTheme(LocalContext.current)) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurface,
-        buttonBackground = if (DynamicTheme.isDarkTheme(LocalContext.current)) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surface
+        button = MaterialTheme.colorScheme.onPrimaryContainer,
+        buttonBackground = MaterialTheme.colorScheme.primaryContainer
       )
     }
   }
