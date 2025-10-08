@@ -1453,6 +1453,10 @@
     <string name="RemoteRestoreActivity__not_now">ھازىر ئەمەس</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">مېدىيا ئارقا سۇپىدا ئەسلىگە كېلىدۇ. ئەگەر ھازىر ئەسلىگە كەلتۈرمەسلىكنى تاللىسىڭىز ، كېيىن ئەسلىگە كەلتۈرەلمەيسىز.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">ئاتالسام ئەسكەرتسۇن</string>
@@ -5779,8 +5783,8 @@
         <item quantity="other">%1$s سىگنال ئىشلەتكۈچىسى ئەمەس</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">ئسمى ياكى نۇمۇرىنى ئىزدەڭ</string>
+    <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
+    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">‏· %1$s</string>
@@ -8467,6 +8471,10 @@
     <string name="EnterBackupKey_backup_not_found">زاپاسلاش تېپىلمىدى</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">سىز كىرگۈزگەن ئەسلىگە كەلتۈرۈش ئاچقۇچى توغرا، ئەمما ئۇنىڭدا زاپاسلاشقا ئائىت مەلۇماتلار يوق. ئەگەر كونا تېلېفونىڭىز يەنىلا بولسا، زاپاسلاشنىڭ قوزغىتىلغانلىقىنى ۋە بىر قېتىملىق زاپاسلاشنىڭ تاماملانغانلىقىنى جەزملەشتۈرۈڭ ھەمدە قايتا سىناڭ.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">ئەسلىگە كەلتۈرۈشتى ئاتلاڭ</string>
     <!-- Dialog title text when encountering backup restore network error -->

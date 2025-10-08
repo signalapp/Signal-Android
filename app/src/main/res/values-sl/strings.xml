@@ -89,7 +89,7 @@
     <string name="AttachmentKeyboard_contact">Stik</string>
     <string name="AttachmentKeyboard_location">Lokacija</string>
     <!-- Text for a button that will allow users to create a poll -->
-    <string name="AttachmentKeyboard_poll">Poll</string>
+    <string name="AttachmentKeyboard_poll">Anketa</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal potrebuje dovoljenje za prikaz vaših fotografij in videoposnetkov</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">Dovoli dostop</string>
@@ -1573,6 +1573,10 @@
     <string name="RemoteRestoreActivity__not_now">Ne zdaj</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Mediji se bodo obnovili v ozadju. Če se ne odločite za obnovitev zdaj, jih ne boste mogli obnoviti pozneje.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obveščaj me o omembah</string>
@@ -2230,7 +2234,7 @@
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">Uporabnik %1$s vam je poslal sporočilo, ki ne more biti procesirano oziroma prikazano, ker vsebuje novo funkcijo aplikacije Signal.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
-    <string name="MessageRecord_ended_the_poll">%1$s ended the poll: \"%2$s\"</string>
+    <string name="MessageRecord_ended_the_poll">%1$s je zaključil/-a anketo »%2$s«</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">Sprejmi</string>
@@ -3369,7 +3373,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">%1$s je odziv na vašo nalepko.</string>
     <string name="MessageNotifier_this_message_was_deleted">Sporočilo je bilo izbrisano</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
-    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s voted in the poll \"%3$s\"</string>
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s je glasoval/-a v anketi »%3$s«</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">Želite izklopiti obvestila o novih članih Signalove skupine? Kasneje jih lahko spet vklopite v Signal &gt; Nastavitve &gt; Obvestila.</string>
 
@@ -4654,7 +4658,7 @@
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">Podatki o plačilu</string>
     <!-- Button to end a poll -->
-    <string name="conversation_selection__menu_end_poll">End poll</string>
+    <string name="conversation_selection__menu_end_poll">Zaključi anketo</string>
 
     <!-- conversation_expiring_on -->
 
@@ -6196,8 +6200,8 @@
         <item quantity="other">%1$s niso uporabniki Signala</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">Iskanje po imenu ali številki</string>
+    <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
+    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -9016,6 +9020,10 @@
     <string name="EnterBackupKey_backup_not_found">Varnostna kopija ni bila najdena</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Obnovitveni ključ, ki ste ga vnesli, je pravilen, vendar z njim ni povezana nobena varnostna kopija. Če še vedno uporabljate stari telefon, preverite, da je varnostno kopiranje omogočeno in da je bila varnostna kopija dokončana, ter poskusite znova.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Preskoči obnovitev</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -9150,64 +9158,64 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select One</string>
+    <string name="Poll__select_one">Anketa · Izberite eno</string>
     <!-- Caption in poll message to select one or more options  -->
-    <string name="Poll__select_multiple">Poll · Select one or more</string>
+    <string name="Poll__select_multiple">Anketa · Izberite eno ali več</string>
     <!-- Caption in poll message once a poll has ended  -->
-    <string name="Poll__final_results">Poll · Final results</string>
+    <string name="Poll__final_results">Anketa · Končni rezultati</string>
     <!-- Caption in poll message that no votes have been cast  -->
-    <string name="Poll__no_votes">No votes</string>
+    <string name="Poll__no_votes">Brez glasov</string>
     <!-- Button in poll message to view current votes for a poll -->
-    <string name="Poll__view_votes">View votes</string>
+    <string name="Poll__view_votes">Ogled glasov</string>
     <!-- Button in poll message to view the poll after it has ended -->
-    <string name="Poll__view_poll">View poll</string>
+    <string name="Poll__view_poll">Ogled ankete</string>
     <!-- Toast message shown if we cannot find the poll -->
-    <string name="Poll__unable_poll">Poll not found</string>
+    <string name="Poll__unable_poll">Anketa ni bila najdena</string>
     <!-- Button in poll message to view results for a poll after it ends -->
-    <string name="Poll__view_results">View results</string>
+    <string name="Poll__view_results">Ogled rezultatov</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
-    <string name="Poll__poll_question">Poll: %1$s</string>
+    <string name="Poll__poll_question">Anketa: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
-    <string name="Poll__poll_end">%1$s ended the poll: \"%2$s\"</string>
+    <string name="Poll__poll_end">%1$s je zaključil/-a anketo »%2$s«</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
+    <string name="Poll__poll_voted">%1$s je glasoval/-a v anketi »%2$s«</string>
     <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Polls</string>
+    <string name="Poll__poll">Ankete</string>
     <!-- Title of screen that shows the poll results of a poll -->
-    <string name="Poll__poll_results">Poll results</string>
+    <string name="Poll__poll_results">Rezultati ankete</string>
     <!-- Header text displaying the question of the poll -->
     <string name="Poll__question">Vprašanje</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
-        <item quantity="one">%1$d vote</item>
-        <item quantity="two">%1$d votes</item>
-        <item quantity="few">%1$d votes</item>
-        <item quantity="other">%1$d votes</item>
+        <item quantity="one">%1$d glas</item>
+        <item quantity="two">%1$d glasova</item>
+        <item quantity="few">%1$d glasovi</item>
+        <item quantity="other">%1$d glasov</item>
     </plurals>
     <!-- Text that when pressed will end the poll   -->
-    <string name="Poll__end_poll">End poll</string>
+    <string name="Poll__end_poll">Zaključi anketo</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
     <string name="Poll__see_all">Prikaz vseh</string>
     <!-- Header when creating a new poll -->
-    <string name="CreatePollFragment__new_poll">New poll</string>
+    <string name="CreatePollFragment__new_poll">Nova anketa</string>
     <!-- Section text to enter in a question for a poll  -->
     <string name="CreatePollFragment__question">Vprašanje</string>
     <!-- Hint text for question field when creating a poll  -->
-    <string name="CreatePollFragment__ask_a_question">Ask a question</string>
+    <string name="CreatePollFragment__ask_a_question">Postavite vprašanje</string>
     <!-- Section text to enter in options for a poll -->
     <string name="CreatePollFragment__options">Možnosti</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
-    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <string name="CreatePollFragment__option_n">Možnost %1$d</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
     <string name="CreatePollFragment__drag_handle">Povlecite in spustite</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
-    <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
+    <string name="CreatePollFragment__allow_multiple_votes">Dovoli več glasov</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
-    <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
+    <string name="CreatePollFragment__add_question_option">Dodajte vprašanje in vsaj 2 možnosti</string>
     <!-- Snackbar text to add two options before creating a poll -->
-    <string name="CreatePollFragment__add_option">Add at least 2 options</string>
+    <string name="CreatePollFragment__add_option">Dodajte vsaj 2 možnosti</string>
     <!-- Snackbar text to add a question before creating a poll -->
-    <string name="CreatePollFragment__add_question">Add a question</string>
+    <string name="CreatePollFragment__add_question">Dodajte vprašanje</string>
 
     <!-- EOF -->
 </resources>

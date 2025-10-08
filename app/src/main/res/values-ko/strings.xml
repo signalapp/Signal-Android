@@ -89,7 +89,7 @@
     <string name="AttachmentKeyboard_contact">연락처</string>
     <string name="AttachmentKeyboard_location">위치</string>
     <!-- Text for a button that will allow users to create a poll -->
-    <string name="AttachmentKeyboard_poll">투표</string>
+    <string name="AttachmentKeyboard_poll">설문조사</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">사진과 동영상을 표시하려면 Signal에 권한이 필요합니다.</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">권한 허용</string>
@@ -1453,6 +1453,10 @@
     <string name="RemoteRestoreActivity__not_now">나중에</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">미디어가 백그라운드에서 복원됩니다. 지금 복원하지 않도록 선택하면 나중에 복원할 수 없습니다.</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">멘션 알림</string>
@@ -2050,7 +2054,7 @@
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s 님이 처리하거나 표시할 수 없는 메시지를 보냈습니다. 이는 메시지에서 새로운 Signal 기능을 사용하기 때문입니다.</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
-    <string name="MessageRecord_ended_the_poll">%1$s ended the poll: \"%2$s\"</string>
+    <string name="MessageRecord_ended_the_poll">%1$s 님이 \"%2$s\" 설문조사를 종료했습니다.</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">수락</string>
@@ -3081,7 +3085,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">내 스티커에 %1$s 이모지로 반응했습니다.</string>
     <string name="MessageNotifier_this_message_was_deleted">이 메시지는 삭제되었습니다.</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
-    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s voted in the poll \"%3$s\"</string>
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s 님이 \"%3$s\" 설문조사에 투표했습니다.</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">연락처 인물이 Signal에 가입했다는 알림을 끄시겠습니까? Signal &gt; 설정 &gt; 알림에서 다시 활성화할 수 있습니다.</string>
 
@@ -4309,7 +4313,7 @@
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">결제 세부 정보</string>
     <!-- Button to end a poll -->
-    <string name="conversation_selection__menu_end_poll">투표 종료</string>
+    <string name="conversation_selection__menu_end_poll">설문조사 종료</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5779,8 +5783,8 @@
         <item quantity="other">%1$s번은 Signal 사용자가 아닙니다</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">이름 또는 번호 검색</string>
+    <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
+    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8467,6 +8471,10 @@
     <string name="EnterBackupKey_backup_not_found">백업을 찾을 수 없음</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">올바른 복구 키를 입력했지만, 이와 연결된 백업이 없습니다. 아직 이전 휴대폰을 가지고 있다면 백업이 활성화 상태이고 백업이 완료됐는지 확인한 후 다시 시도하세요.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">복원 건너뛰기</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8595,31 +8603,31 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select One</string>
+    <string name="Poll__select_one">설문조사 · 하나 선택</string>
     <!-- Caption in poll message to select one or more options  -->
-    <string name="Poll__select_multiple">Poll · Select one or more</string>
+    <string name="Poll__select_multiple">설문조사 · 하나 이상 선택</string>
     <!-- Caption in poll message once a poll has ended  -->
-    <string name="Poll__final_results">Poll · Final results</string>
+    <string name="Poll__final_results">설문조사 · 최종 결과</string>
     <!-- Caption in poll message that no votes have been cast  -->
     <string name="Poll__no_votes">투표 없음</string>
     <!-- Button in poll message to view current votes for a poll -->
     <string name="Poll__view_votes">투표 결과 보기</string>
     <!-- Button in poll message to view the poll after it has ended -->
-    <string name="Poll__view_poll">View poll</string>
+    <string name="Poll__view_poll">설문조사 보기</string>
     <!-- Toast message shown if we cannot find the poll -->
-    <string name="Poll__unable_poll">Poll not found</string>
+    <string name="Poll__unable_poll">설문조사를 찾을 수 없습니다.</string>
     <!-- Button in poll message to view results for a poll after it ends -->
     <string name="Poll__view_results">결과 보기</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
-    <string name="Poll__poll_question">Poll: %1$s</string>
+    <string name="Poll__poll_question">설문조사: %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
-    <string name="Poll__poll_end">%1$s ended the poll: \"%2$s\"</string>
+    <string name="Poll__poll_end">%1$s 님이 \"%2$s\" 설문조사를 종료했습니다.</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
+    <string name="Poll__poll_voted">%1$s 님이 \"%2$s\" 설문조사에 투표했습니다.</string>
     <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Polls</string>
+    <string name="Poll__poll">설문조사</string>
     <!-- Title of screen that shows the poll results of a poll -->
-    <string name="Poll__poll_results">Poll results</string>
+    <string name="Poll__poll_results">설문조사 결과</string>
     <!-- Header text displaying the question of the poll -->
     <string name="Poll__question">질문</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
@@ -8627,11 +8635,11 @@
         <item quantity="other">%1$d표</item>
     </plurals>
     <!-- Text that when pressed will end the poll   -->
-    <string name="Poll__end_poll">투표 종료</string>
+    <string name="Poll__end_poll">설문조사 종료</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
     <string name="Poll__see_all">모두 보기</string>
     <!-- Header when creating a new poll -->
-    <string name="CreatePollFragment__new_poll">새 투표</string>
+    <string name="CreatePollFragment__new_poll">새 설문조사</string>
     <!-- Section text to enter in a question for a poll  -->
     <string name="CreatePollFragment__question">질문</string>
     <!-- Hint text for question field when creating a poll  -->
@@ -8639,17 +8647,17 @@
     <!-- Section text to enter in options for a poll -->
     <string name="CreatePollFragment__options">옵션</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
-    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <string name="CreatePollFragment__option_n">옵션 %1$d</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
     <string name="CreatePollFragment__drag_handle">끌어다 놓기 핸들</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
     <string name="CreatePollFragment__allow_multiple_votes">복수 투표 허용</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
-    <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
+    <string name="CreatePollFragment__add_question_option">질문과 옵션을 2개 이상 추가하세요.</string>
     <!-- Snackbar text to add two options before creating a poll -->
-    <string name="CreatePollFragment__add_option">Add at least 2 options</string>
+    <string name="CreatePollFragment__add_option">옵션을 2개 이상 추가하세요.</string>
     <!-- Snackbar text to add a question before creating a poll -->
-    <string name="CreatePollFragment__add_question">Add a question</string>
+    <string name="CreatePollFragment__add_question">질문을 추가하세요</string>
 
     <!-- EOF -->
 </resources>

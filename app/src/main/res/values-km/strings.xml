@@ -89,7 +89,7 @@
     <string name="AttachmentKeyboard_contact">ទំនាក់ទំនង</string>
     <string name="AttachmentKeyboard_location">ទីតាំង</string>
     <!-- Text for a button that will allow users to create a poll -->
-    <string name="AttachmentKeyboard_poll">Poll</string>
+    <string name="AttachmentKeyboard_poll">ការស្ទង់មតិ</string>
     <string name="AttachmentKeyboard_Signal_needs_permission_to_show_your_photos_and_videos">Signal ត្រូវការការអនុញ្ញាតដើម្បីបង្ហាញរូបថត និងវីដេអូរបស់អ្នក</string>
     <!-- Text for a button prompting users to allow Signal access to their gallery storage -->
     <string name="AttachmentKeyboard_allow_access">អនុញ្ញាតចូលប្រើប្រាស់</string>
@@ -1453,6 +1453,10 @@
     <string name="RemoteRestoreActivity__not_now">ឥឡូវកុំទាន់</string>
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">មេឌៀរបស់អ្នកនឹងស្ដារនៅផ្ទៃខាងក្រោយ។ ប្រសិនបើអ្នកជ្រើសរើសមិនស្តារឥឡូវនេះទេ អ្នកនឹងមិនអាចស្តារនៅពេលក្រោយបានឡើយ។</string>
+    <!-- Dialog title -->
+    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <!-- Dialog message -->
+    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">ជូនដំណឹងខ្ញុំសម្រាប់ការហៅឈ្មោះ</string>
@@ -2050,7 +2054,7 @@
     <!-- Update message shown when you receive a message that cannot be processed because your Signal version is too old. %1$s is the sender\'s name -->
     <string name="MessageRecord_unsupported_feature">%1$s បានផ្ញើសារមួយ ដែលមិនអាចដំណើរការ ឬបង្ហាញបាន ព្រោះវាប្រើប្រាស់មុខងារថ្មីរបស់ Signal។</string>
     <!-- Update message shown when someone ends the poll. %1$s is the person who ended the poll and %2$s is the poll question. -->
-    <string name="MessageRecord_ended_the_poll">%1$s ended the poll: \"%2$s\"</string>
+    <string name="MessageRecord_ended_the_poll">%1$s បានបញ្ចប់ការស្ទង់មតិ៖ \"%2$s\"</string>
 
     <!-- MessageRequestBottomView -->
     <string name="MessageRequestBottomView_accept">យល់ព្រម</string>
@@ -3081,7 +3085,7 @@
     <string name="MessageNotifier_reacted_s_to_your_sticker">បានប្រតិកម្ម %1$s ទៅនឹងស្ទីគ័ររបស់អ្នក។</string>
     <string name="MessageNotifier_this_message_was_deleted">សារនេះត្រូវបានលុប។</string>
     <!-- Body of a notification when someone votes in a poll. First placeholder is the poll emoji, second placeholder is the name of the voter and third is the poll question -->
-    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s voted in the poll \"%3$s\"</string>
+    <string name="MessageNotifier_s_voted_in_poll">%1$s %2$s បានបោះឆ្នោតនៅក្នុងការស្ទង់មតិ \"%3$s\"</string>
 
     <string name="TurnOffContactJoinedNotificationsActivity__turn_off_contact_joined_signal">បិទសារជូនដំណឹងលេខទំនាក់ទំនងចូលរួម Signal? អ្នកអាចបើកវាម្តងទៀតក្នុង Signal &gt; ការកំណត់ &gt; សារជូនដំណឹង។</string>
 
@@ -4309,7 +4313,7 @@
     <!-- Button to view a in-chat payment message\'s full payment details; Action item with hyphenation. Translation can use soft hyphen - Unicode U+00AD  -->
     <string name="conversation_selection__menu_payment_details">ព័ត៌មានលម្អិតអំពីការបង់ប្រាក់</string>
     <!-- Button to end a poll -->
-    <string name="conversation_selection__menu_end_poll">End poll</string>
+    <string name="conversation_selection__menu_end_poll">បញ្ចប់ការស្ទង់មតិ</string>
 
     <!-- conversation_expiring_on -->
 
@@ -5779,8 +5783,8 @@
         <item quantity="other">%1$s មិនមែនជាអ្នកប្រើ Signal ទេ</item>
     </plurals>
 
-    <!-- ContactFilterView -->
-    <string name="ContactFilterView__search_name_or_number">ស្វែងរកឈ្មោះ ឬលេខទូរស័ព្ទ</string>
+    <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
+    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8467,6 +8471,10 @@
     <string name="EnterBackupKey_backup_not_found">រកមិនឃើញការបម្រុងទុកទេ</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">សោស្តារដែលអ្នកបានបញ្ចូលគឺត្រឹមត្រូវហើយ ប៉ុន្តែមិនមានការបម្រុងទុកដែលពាក់ព័ន្ធនឹងវាទេ។ ប្រសិនបើអ្នកនៅតែមានទូរសព្ទចាស់របស់អ្នក សូមប្រាកដថាការបម្រុងទុកត្រូវបានបើក ហើយថាការបម្រុងទុកត្រូវបានបញ្ចប់សព្វគ្រប់ រួចព្យាយាមម្តងទៀត។</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <!-- Dialog message shown during registration and trying to restore a remote backup -->
+    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">រំលងការស្តារឡើងវិញ</string>
     <!-- Dialog title text when encountering backup restore network error -->
@@ -8595,61 +8603,61 @@
 
     <!-- Polls -->
     <!-- Caption in poll message to select an option  -->
-    <string name="Poll__select_one">Poll · Select One</string>
+    <string name="Poll__select_one">ការស្ទង់មតិ · ជ្រើសរើសមួយ</string>
     <!-- Caption in poll message to select one or more options  -->
-    <string name="Poll__select_multiple">Poll · Select one or more</string>
+    <string name="Poll__select_multiple">ការស្ទង់មតិ · ជ្រើសរើសមួយ ឬច្រើន</string>
     <!-- Caption in poll message once a poll has ended  -->
-    <string name="Poll__final_results">Poll · Final results</string>
+    <string name="Poll__final_results">ការស្ទង់មតិ · លទ្ធផលចុងក្រោយ</string>
     <!-- Caption in poll message that no votes have been cast  -->
-    <string name="Poll__no_votes">No votes</string>
+    <string name="Poll__no_votes">គ្មានការបោះឆ្នោតទេ</string>
     <!-- Button in poll message to view current votes for a poll -->
-    <string name="Poll__view_votes">View votes</string>
+    <string name="Poll__view_votes">មើលការបោះឆ្នោត</string>
     <!-- Button in poll message to view the poll after it has ended -->
-    <string name="Poll__view_poll">View poll</string>
+    <string name="Poll__view_poll">មើលការស្ទង់មតិ</string>
     <!-- Toast message shown if we cannot find the poll -->
-    <string name="Poll__unable_poll">Poll not found</string>
+    <string name="Poll__unable_poll">រកមិនឃើញការស្ទង់មតិទេ</string>
     <!-- Button in poll message to view results for a poll after it ends -->
-    <string name="Poll__view_results">View results</string>
+    <string name="Poll__view_results">មើលលទ្ធផល</string>
     <!-- Quote preview when replying to a poll. %1$s is the question of the poll -->
-    <string name="Poll__poll_question">Poll: %1$s</string>
+    <string name="Poll__poll_question">ការស្ទង់មតិ៖ %1$s</string>
     <!-- Notification message sent when a poll ends. %1$s is the creator. %2$s is the question of the poll -->
-    <string name="Poll__poll_end">%1$s ended the poll: \"%2$s\"</string>
+    <string name="Poll__poll_end">%1$s បានបញ្ចប់ការស្ទង់មតិ៖ \"%2$s\"</string>
     <!-- Notification message sent when someone votes in the poll. %1$s is the voter. %2$s is the question of the poll -->
-    <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
+    <string name="Poll__poll_voted">%1$s បានបោះឆ្នោតនៅក្នុងការស្ទង់មតិ៖ \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->
-    <string name="Poll__poll">Polls</string>
+    <string name="Poll__poll">ការស្ទង់មតិ</string>
     <!-- Title of screen that shows the poll results of a poll -->
-    <string name="Poll__poll_results">Poll results</string>
+    <string name="Poll__poll_results">លទ្ធផលស្ទង់មតិ</string>
     <!-- Header text displaying the question of the poll -->
     <string name="Poll__question">សំណួរ</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
     <plurals name="Poll__num_votes">
-        <item quantity="other">%1$d votes</item>
+        <item quantity="other">%1$d សំឡេង</item>
     </plurals>
     <!-- Text that when pressed will end the poll   -->
-    <string name="Poll__end_poll">End poll</string>
+    <string name="Poll__end_poll">បញ្ចប់ការស្ទង់មតិ</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
     <string name="Poll__see_all">មើលទាំងអស់</string>
     <!-- Header when creating a new poll -->
-    <string name="CreatePollFragment__new_poll">New poll</string>
+    <string name="CreatePollFragment__new_poll">ការស្ទង់មតិថ្មី</string>
     <!-- Section text to enter in a question for a poll  -->
     <string name="CreatePollFragment__question">សំណួរ</string>
     <!-- Hint text for question field when creating a poll  -->
-    <string name="CreatePollFragment__ask_a_question">Ask a question</string>
+    <string name="CreatePollFragment__ask_a_question">សួរសំណួរ</string>
     <!-- Section text to enter in options for a poll -->
     <string name="CreatePollFragment__options">ជម្រើស</string>
     <!-- Hint text for the option field, where %1$d is the option number (max 10) -->
-    <string name="CreatePollFragment__option_n">Option %1$d</string>
+    <string name="CreatePollFragment__option_n">ជម្រើស %1$d</string>
     <!-- Accessibility label for the polls drag and drop handle used to reorder the list. -->
     <string name="CreatePollFragment__drag_handle">មុខងារទាញរៀបលំដាប់លំដោយ</string>
     <!-- Text next to button to allow the poll to allow for multiple votes -->
-    <string name="CreatePollFragment__allow_multiple_votes">Allow multiple votes</string>
+    <string name="CreatePollFragment__allow_multiple_votes">អនុញ្ញាតការបោះឆ្នោតជាច្រើន</string>
     <!-- Snackbar text to add a question and two options before creating a poll -->
-    <string name="CreatePollFragment__add_question_option">Add a question and at least 2 options</string>
+    <string name="CreatePollFragment__add_question_option">បញ្ចូលសំណួរ និងជម្រើសយ៉ាងហោចណាស់ 2</string>
     <!-- Snackbar text to add two options before creating a poll -->
-    <string name="CreatePollFragment__add_option">Add at least 2 options</string>
+    <string name="CreatePollFragment__add_option">បញ្ចូលជម្រើសយ៉ាងហោចណាស់ 2</string>
     <!-- Snackbar text to add a question before creating a poll -->
-    <string name="CreatePollFragment__add_question">Add a question</string>
+    <string name="CreatePollFragment__add_question">បញ្ចូលសំណួរ</string>
 
     <!-- EOF -->
 </resources>
