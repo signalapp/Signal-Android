@@ -48,11 +48,14 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import kotlinx.collections.immutable.ImmutableList
 import kotlinx.collections.immutable.persistentListOf
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.filterIsInstance
 import kotlinx.coroutines.flow.firstOrNull
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -62,6 +65,8 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Dialogs
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.theme.SignalTheme
+import org.signal.core.util.AppUtil
+import org.signal.core.util.ThreadUtil
 import org.signal.core.util.bytes
 import org.thoughtcrime.securesms.BaseActivity
 import org.thoughtcrime.securesms.MainActivity
@@ -81,6 +86,7 @@ import org.thoughtcrime.securesms.registration.ui.shared.RegistrationScreenTitle
 import org.thoughtcrime.securesms.registration.util.RegistrationUtil
 import org.thoughtcrime.securesms.util.DateUtils
 import org.thoughtcrime.securesms.util.PlayStoreUtil
+import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.viewModel
 import java.util.Locale
 import kotlin.time.Duration
@@ -147,6 +153,18 @@ class RemoteRestoreActivity : BaseActivity() {
               }
             }
           }
+      }
+    }
+
+    lifecycleScope.launch {
+      lifecycle.repeatOnLifecycle(Lifecycle.State.RESUMED) {
+        while (isActive) {
+          if (TextSecurePreferences.isUnauthorizedReceived(this@RemoteRestoreActivity)) {
+            ThreadUtil.runOnMain { showUnregisteredDialog() }
+            break
+          }
+          delay(1000)
+        }
       }
     }
 
@@ -223,6 +241,15 @@ class RemoteRestoreActivity : BaseActivity() {
   @Subscribe(threadMode = ThreadMode.MAIN)
   fun onEvent(restoreEvent: RestoreV2Event) {
     viewModel.updateRestoreProgress(restoreEvent)
+  }
+
+  private fun showUnregisteredDialog() {
+    MaterialAlertDialogBuilder(this)
+      .setTitle(R.string.RestoreActivity__no_longer_registered_title)
+      .setMessage(R.string.RestoreActivity__no_longer_registered_message)
+      .setCancelable(false)
+      .setPositiveButton(android.R.string.ok) { _, _ -> AppUtil.clearData(this) }
+      .show()
   }
 
   enum class ContactSupportReason {
