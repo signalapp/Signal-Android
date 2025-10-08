@@ -165,6 +165,7 @@ class AccountValues internal constructor(store: KeyValueStore, context: Context)
 
   fun restoreAccountEntropyPool(aep: AccountEntropyPool) {
     AEP_LOCK.withLock {
+      Log.i(TAG, "Restoring AEP from registration source", Throwable())
       store
         .beginWrite()
         .putString(KEY_ACCOUNT_ENTROPY_POOL, aep.value)

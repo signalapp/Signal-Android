@@ -165,6 +165,7 @@ class RestoreViaQrViewModel : ViewModel() {
 
         SignalStore.backup.lastBackupTime = result.message.backupTimestampMs ?: 0
         SignalStore.backup.isBackupTimestampRestored = true
+        SignalStore.backup.restoringViaQr = true
         SignalStore.backup.backupTier = when (result.message.tier) {
           RegistrationProvisionMessage.Tier.FREE -> MessageBackupTier.FREE
           RegistrationProvisionMessage.Tier.PAID -> MessageBackupTier.PAID

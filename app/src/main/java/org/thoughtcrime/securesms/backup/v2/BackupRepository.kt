@@ -177,6 +177,7 @@ import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicLong
 import kotlin.jvm.optionals.getOrNull
+import kotlin.time.Duration
 import kotlin.time.Duration.Companion.days
 import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
@@ -285,6 +286,19 @@ object BackupRepository {
     val messageBackupKey = SignalStore.backup.messageBackupKey
     val mediaRootBackupKey = SignalStore.backup.mediaRootBackupKey
     return SignalNetwork.archive.triggerBackupIdReservation(messageBackupKey, mediaRootBackupKey, SignalStore.account.requireAci())
+      .runIfSuccessful {
+        SignalStore.backup.messageCredentials.clearAll()
+        SignalStore.backup.mediaCredentials.clearAll()
+      }
+  }
+
+  @WorkerThread
+  fun triggerBackupIdReservationForRestore(): NetworkResult<Unit> {
+    val messageBackupKey = SignalStore.backup.messageBackupKey
+    return SignalNetwork.archive.triggerBackupIdReservation(messageBackupKey, null, SignalStore.account.requireAci())
+      .runIfSuccessful {
+        SignalStore.backup.messageCredentials.clearAll()
+      }
   }
 
   /**
@@ -1818,11 +1832,23 @@ object BackupRepository {
         return RestoreTimestampResult.Success(SignalStore.backup.lastBackupTime)
       }
 
-      timestampResult is NetworkResult.StatusCodeError && (timestampResult.code == 401 || timestampResult.code == 404) -> {
+      timestampResult is NetworkResult.StatusCodeError && timestampResult.code == 404 -> {
         Log.i(TAG, "No backup file exists")
         SignalStore.backup.lastBackupTime = 0L
         SignalStore.backup.isBackupTimestampRestored = true
         return RestoreTimestampResult.NotFound
+      }
+
+      timestampResult is NetworkResult.StatusCodeError && timestampResult.code == 401 -> {
+        Log.i(TAG, "Backups not enabled")
+        SignalStore.backup.lastBackupTime = 0L
+        SignalStore.backup.isBackupTimestampRestored = true
+        return RestoreTimestampResult.BackupsNotEnabled
+      }
+
+      timestampResult is NetworkResult.ApplicationError && timestampResult.getCause() is VerificationFailedException -> {
+        Log.w(TAG, "Entered AEP fails zk verification", timestampResult.getCause())
+        return RestoreTimestampResult.VerificationFailure
       }
 
       else -> {
@@ -1832,11 +1858,40 @@ object BackupRepository {
     }
   }
 
-  fun verifyBackupKeyAssociatedWithAccount(aci: ACI, aep: AccountEntropyPool): MessageBackupTier? {
+  fun verifyBackupKeyAssociatedWithAccount(aci: ACI, aep: AccountEntropyPool): RestoreTimestampResult {
+    Log.i(TAG, "Verifying enter aep is associated with account")
+    var result: RestoreTimestampResult = getBackupTimestampToVerifyAepAssociatedWithAccountAndHasBackup(aci, aep)
+
+    if (result is RestoreTimestampResult.VerificationFailure) {
+      Log.w(TAG, "Resetting backup id reservation due to zk verification failure")
+      val triggerResult = SignalNetwork.archive.triggerBackupIdReservation(aep.deriveMessageBackupKey(), null, aci)
+      result = when {
+        triggerResult is NetworkResult.Success -> {
+          Log.i(TAG, "Reset successful, retrying aep verification")
+          SignalStore.backup.messageCredentials.clearAll()
+          getBackupTimestampToVerifyAepAssociatedWithAccountAndHasBackup(aci, aep)
+        }
+
+        triggerResult is NetworkResult.StatusCodeError && triggerResult.code == 429 -> {
+          Log.w(TAG, "Rate limited when resetting backup id, failing operation $triggerResult")
+          RestoreTimestampResult.RateLimited(triggerResult.retryAfter())
+        }
+
+        else -> {
+          Log.w(TAG, "Reset backup id failed, failing operation", triggerResult.getCause())
+          result
+        }
+      }
+    }
+
+    return result
+  }
+
+  private fun getBackupTimestampToVerifyAepAssociatedWithAccountAndHasBackup(aci: ACI, aep: AccountEntropyPool): RestoreTimestampResult {
     val currentTime = System.currentTimeMillis()
     val messageBackupKey = aep.deriveMessageBackupKey()
 
-    val result: NetworkResult<MessageBackupTier> = SignalNetwork.archive.getServiceCredentials(currentTime)
+    val result: NetworkResult<ZonedDateTime> = SignalNetwork.archive.getServiceCredentials(currentTime)
       .then { result ->
         val credential: ArchiveServiceCredential? = ArchiveServiceCredentials(result.messageCredentials.associateBy { it.redemptionTime }).getForCurrentTime(currentTime.milliseconds)
 
@@ -1851,20 +1906,41 @@ object BackupRepository {
           )
         }
       }
-      .map { messageAccess ->
-        val zkCredential = SignalNetwork.archive.getZkCredential(aci, messageAccess)
-        if (zkCredential.backupLevel == BackupLevel.PAID) {
-          MessageBackupTier.PAID
-        } else {
-          MessageBackupTier.FREE
-        }
+      .then { messageAccess ->
+        SignalNetwork.archive.getBackupInfo(SignalStore.account.requireAci(), messageAccess)
+          .then { info -> SignalNetwork.archive.getCdnReadCredentials(info.cdn ?: RemoteConfig.backupFallbackArchiveCdn, aci, messageAccess).map { it.headers to info } }
+          .then { pair ->
+            val (cdnCredentials, info) = pair
+            NetworkResult.fromFetch {
+              AppDependencies.signalServiceMessageReceiver.getCdnLastModifiedTime(info.cdn!!, cdnCredentials, "backups/${info.backupDir}/${info.backupName}")
+            }
+          }
       }
 
-    return if (result is NetworkResult.Success) {
-      result.result
-    } else {
-      Log.i(TAG, "Unable to verify backup key", result.getCause())
-      null
+    return when {
+      result is NetworkResult.Success -> {
+        RestoreTimestampResult.Success(result.result.toMillis())
+      }
+
+      result is NetworkResult.StatusCodeError && result.code == 404 -> {
+        Log.i(TAG, "No backup file exists")
+        RestoreTimestampResult.NotFound
+      }
+
+      result is NetworkResult.StatusCodeError && result.code == 401 -> {
+        Log.i(TAG, "Backups not enabled")
+        RestoreTimestampResult.BackupsNotEnabled
+      }
+
+      result is NetworkResult.ApplicationError && result.getCause() is VerificationFailedException -> {
+        Log.w(TAG, "Entered AEP fails zk verification", result.getCause())
+        RestoreTimestampResult.VerificationFailure
+      }
+
+      else -> {
+        Log.w(TAG, "Could not check for backup file.", result.getCause())
+        RestoreTimestampResult.Failure
+      }
     }
   }
 
@@ -1993,7 +2069,11 @@ object BackupRepository {
 
       return SignalNetwork.archive
         .triggerBackupIdReservation(messageBackupKey, mediaRootBackupKey, SignalStore.account.requireAci())
-        .then { getArchiveServiceAccessPair() }
+        .then {
+          SignalStore.backup.messageCredentials.clearAll()
+          SignalStore.backup.mediaCredentials.clearAll()
+          getArchiveServiceAccessPair()
+        }
         .then { credential -> SignalNetwork.archive.setPublicKey(SignalStore.account.requireAci(), credential.messageBackupAccess).map { credential } }
         .then { credential -> SignalNetwork.archive.setPublicKey(SignalStore.account.requireAci(), credential.mediaBackupAccess).map { credential } }
         .runIfSuccessful { SignalStore.backup.backupsInitialized = true }
@@ -2145,20 +2225,24 @@ object BackupRepository {
         SignalStore.backup.nextBackupSecretData = result.data.nextBackupSecretData
         result.data.forwardSecrecyToken
       }
+
       is SvrBApi.RestoreResult.NetworkError -> {
         Log.w(TAG, "[remoteRestore] Network error during SVRB.", result.exception)
         return RemoteRestoreResult.NetworkError
       }
+
       is SvrBApi.RestoreResult.RestoreFailedError,
       SvrBApi.RestoreResult.InvalidDataError -> {
         Log.w(TAG, "[remoteRestore] Permanent SVRB error! $result")
         return RemoteRestoreResult.PermanentSvrBFailure
       }
+
       SvrBApi.RestoreResult.DataMissingError,
       is SvrBApi.RestoreResult.SvrError -> {
         Log.w(TAG, "[remoteRestore] Failed to fetch SVRB data: $result")
         return RemoteRestoreResult.Failure
       }
+
       is SvrBApi.RestoreResult.UnknownError -> {
         Log.e(TAG, "[remoteRestore] Unknown SVRB result! Crashing.", result.throwable)
         throw result.throwable
@@ -2383,6 +2467,9 @@ sealed interface RemoteRestoreResult {
 sealed interface RestoreTimestampResult {
   data class Success(val timestamp: Long) : RestoreTimestampResult
   data object NotFound : RestoreTimestampResult
+  data object BackupsNotEnabled : RestoreTimestampResult
+  data object VerificationFailure : RestoreTimestampResult
+  data class RateLimited(val retryAfter: Duration?) : RestoreTimestampResult
   data object Failure : RestoreTimestampResult
 }
 

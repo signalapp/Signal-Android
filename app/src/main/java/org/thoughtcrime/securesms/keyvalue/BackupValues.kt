@@ -92,6 +92,8 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
     private const val KEY_NEXT_BACKUP_SECRET_DATA = "backup.next_backup_secret_data"
 
+    private const val KEY_RESTORING_VIA_QR = "backup.restore_via_qr"
+
     private val cachedCdnCredentialsExpiresIn: Duration = 12.hours
 
     private val lock = ReentrantLock()
@@ -386,6 +388,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   /** The value from the last successful SVRB operation that must be passed to the next SVRB operation. */
   var nextBackupSecretData by nullableBlobValue(KEY_NEXT_BACKUP_SECRET_DATA, null)
+
+  /** True if attempting to restore backup from quick restore/QR code */
+  var restoringViaQr by booleanValue(KEY_RESTORING_VIA_QR, false)
 
   /**
    * If true, it means we have been told that remote storage is full, but we have not yet run any of our "garbage collection" tasks, like committing deletes

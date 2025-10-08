@@ -25,7 +25,6 @@ import org.thoughtcrime.securesms.keyvalue.skippedRestoreChoice
 import org.thoughtcrime.securesms.registration.data.QuickRegistrationRepository
 import org.thoughtcrime.securesms.registration.ui.restore.RestoreMethod
 import org.thoughtcrime.securesms.registration.ui.restore.StorageServiceRestore
-import org.thoughtcrime.securesms.restore.transferorrestore.BackupRestorationType
 import org.whispersystems.signalservice.api.provisioning.RestoreMethod as ApiRestoreMethod
 
 /**
@@ -44,22 +43,6 @@ class RestoreViewModel : ViewModel() {
     }
   }
 
-  fun onTransferFromAndroidDeviceSelected() {
-    store.update {
-      it.copy(restorationType = BackupRestorationType.DEVICE_TRANSFER)
-    }
-  }
-
-  fun onRestoreFromLocalBackupSelected() {
-    store.update {
-      it.copy(restorationType = BackupRestorationType.LOCAL_BACKUP)
-    }
-  }
-
-  fun getBackupRestorationType(): BackupRestorationType {
-    return store.value.restorationType
-  }
-
   fun setBackupFileUri(backupFileUri: Uri) {
     store.update {
       it.copy(backupFile = backupFileUri)
@@ -75,17 +58,17 @@ class RestoreViewModel : ViewModel() {
   }
 
   fun getAvailableRestoreMethods(): List<RestoreMethod> {
-    if (SignalStore.registration.isOtherDeviceAndroid || SignalStore.registration.restoreDecisionState.skippedRestoreChoice || !SignalStore.backup.isBackupTimestampRestored) {
+    if (SignalStore.registration.isOtherDeviceAndroid || SignalStore.registration.restoreDecisionState.skippedRestoreChoice) {
       val methods = mutableListOf(RestoreMethod.FROM_LOCAL_BACKUP_V1)
 
-      if (SignalStore.registration.restoreDecisionState.includeDeviceToDeviceTransfer) {
+      if (SignalStore.registration.isOtherDeviceAndroid && SignalStore.registration.restoreDecisionState.includeDeviceToDeviceTransfer) {
         methods.add(0, RestoreMethod.FROM_OLD_DEVICE)
       }
 
       when (SignalStore.backup.backupTier) {
         MessageBackupTier.FREE -> methods.add(1, RestoreMethod.FROM_SIGNAL_BACKUPS)
         MessageBackupTier.PAID -> methods.add(0, RestoreMethod.FROM_SIGNAL_BACKUPS)
-        null -> if (!SignalStore.backup.isBackupTimestampRestored) {
+        null -> if (!SignalStore.backup.restoringViaQr) {
           methods.add(1, RestoreMethod.FROM_SIGNAL_BACKUPS)
         }
       }
@@ -93,7 +76,7 @@ class RestoreViewModel : ViewModel() {
       return methods
     }
 
-    if (SignalStore.backup.backupTier != null || !SignalStore.backup.isBackupTimestampRestored) {
+    if (SignalStore.backup.restoringViaQr && SignalStore.backup.backupTier != null) {
       return listOf(RestoreMethod.FROM_SIGNAL_BACKUPS)
     }
 
@@ -102,6 +85,10 @@ class RestoreViewModel : ViewModel() {
 
   fun hasRestoredAccountEntropyPool(): Boolean {
     return SignalStore.account.restoredAccountEntropyPool
+  }
+
+  fun hasRestoredBackupDataFromQr(): Boolean {
+    return SignalStore.backup.restoringViaQr && SignalStore.backup.backupTier != null
   }
 
   fun skipRestore() {

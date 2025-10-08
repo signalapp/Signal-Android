@@ -56,7 +56,23 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
   fun reload() {
     viewModelScope.launch(Dispatchers.IO) {
       store.update { it.copy(loadState = ScreenState.LoadState.LOADING, loadAttempts = it.loadAttempts + 1) }
-      val result = BackupRepository.restoreBackupFileTimestamp()
+      Log.i(TAG, "Fetching remote backup information")
+      var result: RestoreTimestampResult = BackupRepository.restoreBackupFileTimestamp()
+
+      if (result is RestoreTimestampResult.VerificationFailure && SignalStore.account.restoredAccountEntropyPool) {
+        Log.w(TAG, "Resetting backup id reservation due to zk verification failure with restored AEP")
+        result = when (val triggerResult = BackupRepository.triggerBackupIdReservationForRestore()) {
+          is NetworkResult.Success -> {
+            Log.i(TAG, "Reset successful, trying to restore timestamp")
+            BackupRepository.restoreBackupFileTimestamp()
+          }
+          else -> {
+            Log.w(TAG, "Reset unsuccessful, failing", triggerResult.getCause())
+            result
+          }
+        }
+      }
+
       store.update {
         when (result) {
           is RestoreTimestampResult.Success -> {
@@ -68,6 +84,7 @@ class RemoteRestoreViewModel(isOnlyRestoreOption: Boolean) : ViewModel() {
             )
           }
 
+          is RestoreTimestampResult.BackupsNotEnabled,
           is RestoreTimestampResult.NotFound -> {
             it.copy(loadState = ScreenState.LoadState.NOT_FOUND)
           }

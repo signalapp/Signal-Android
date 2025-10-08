@@ -88,7 +88,7 @@ class SelectRestoreMethodFragment : ComposeFragment() {
 
     when (method) {
       RestoreMethod.FROM_SIGNAL_BACKUPS -> {
-        if (viewModel.hasRestoredAccountEntropyPool()) {
+        if (viewModel.hasRestoredBackupDataFromQr()) {
           startActivity(RemoteRestoreActivity.getIntent(requireContext()))
         } else {
           findNavController().safeNavigate(SelectRestoreMethodFragmentDirections.goToPostRestoreEnterBackupKey())
