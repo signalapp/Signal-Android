@@ -211,20 +211,20 @@ enum class WindowSizeClass(
 @Composable
 fun AppScaffold(
   navigator: AppScaffoldNavigator<Any>,
-  detailContent: @Composable () -> Unit = {},
+  primaryContent: @Composable () -> Unit = {},
   navRailContent: @Composable () -> Unit = {},
   bottomNavContent: @Composable () -> Unit = {},
   paneExpansionState: PaneExpansionState = rememberPaneExpansionState(),
   paneExpansionDragHandle: (@Composable ThreePaneScaffoldScope.(PaneExpansionState) -> Unit)? = null,
   animatorFactory: AppScaffoldAnimationStateFactory = AppScaffoldAnimationStateFactory.Default,
-  listContent: @Composable () -> Unit
+  secondaryContent: @Composable () -> Unit
 ) {
   val isForcedCompact = WindowSizeClass.checkForcedCompact()
   val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
 
   if (isForcedCompact) {
     ListAndNavigation(
-      listContent = listContent,
+      listContent = secondaryContent,
       navRailContent = navRailContent,
       bottomNavContent = bottomNavContent,
       windowSizeClass = windowSizeClass
@@ -271,7 +271,7 @@ fun AppScaffold(
             }
         ) {
           ListAndNavigation(
-            listContent = listContent,
+            listContent = secondaryContent,
             navRailContent = navRailContent,
             bottomNavContent = bottomNavContent,
             windowSizeClass = windowSizeClass
@@ -312,7 +312,7 @@ fun AppScaffold(
               }
             }
         ) {
-          detailContent()
+          primaryContent()
         }
       }
     },
@@ -362,7 +362,7 @@ private fun AppScaffoldPreview() {
         defaultPanePreferredWidth = 416.dp,
         horizontalPartitionSpacerSize = 16.dp
       ),
-      listContent = {
+      secondaryContent = {
         Box(
           contentAlignment = Alignment.Center,
           modifier = Modifier
@@ -375,7 +375,7 @@ private fun AppScaffoldPreview() {
           )
         }
       },
-      detailContent = {
+      primaryContent = {
         Box(
           contentAlignment = Alignment.Center,
           modifier = Modifier

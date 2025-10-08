@@ -41,13 +41,13 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 fun AppScaffoldWithTopBar(
   navigator: AppScaffoldNavigator<Any> = rememberAppScaffoldNavigator(),
   topBarContent: @Composable () -> Unit = {},
-  detailContent: @Composable () -> Unit = {},
+  primaryContent: @Composable () -> Unit = {},
   navRailContent: @Composable () -> Unit = {},
   bottomNavContent: @Composable () -> Unit = {},
   paneExpansionState: PaneExpansionState = rememberPaneExpansionState(),
   paneExpansionDragHandle: (@Composable ThreePaneScaffoldScope.(PaneExpansionState) -> Unit)? = null,
   animatorFactory: AppScaffoldAnimationStateFactory = AppScaffoldAnimationStateFactory.Default,
-  listContent: @Composable () -> Unit
+  secondaryContent: @Composable () -> Unit
 ) {
   val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
   val isSplitPane = windowSizeClass.isSplitPane(
@@ -60,28 +60,28 @@ fun AppScaffoldWithTopBar(
 
       AppScaffold(
         navigator = navigator,
-        detailContent = detailContent,
+        primaryContent = primaryContent,
         navRailContent = navRailContent,
         bottomNavContent = bottomNavContent,
         paneExpansionState = paneExpansionState,
         paneExpansionDragHandle = paneExpansionDragHandle,
         animatorFactory = animatorFactory,
-        listContent = listContent
+        secondaryContent = secondaryContent
       )
     }
   } else {
     AppScaffold(
       navigator = navigator,
-      detailContent = detailContent,
+      primaryContent = primaryContent,
       navRailContent = navRailContent,
       bottomNavContent = bottomNavContent,
       paneExpansionState = paneExpansionState,
       paneExpansionDragHandle = paneExpansionDragHandle,
       animatorFactory = animatorFactory,
-      listContent = {
+      secondaryContent = {
         Scaffold(topBar = topBarContent) { paddingValues ->
           Box(modifier = Modifier.padding(paddingValues)) {
-            listContent()
+            secondaryContent()
           }
         }
       }
@@ -110,7 +110,7 @@ private fun AppScaffoldWithTopBarPreview() {
         )
       },
 
-      listContent = {
+      secondaryContent = {
         Box(
           contentAlignment = Alignment.Center,
           modifier = Modifier
@@ -124,7 +124,7 @@ private fun AppScaffoldWithTopBarPreview() {
         }
       },
 
-      detailContent = {
+      primaryContent = {
         Box(
           contentAlignment = Alignment.Center,
           modifier = Modifier

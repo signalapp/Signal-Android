@@ -88,23 +88,23 @@ private fun NewConversationScreen(
         onNavigationClick = callbacks::onBackPressed
       )
     },
-    listContent = {
+    secondaryContent = {
       if (isSplitPane) {
         ScreenTitlePane(
           title = stringResource(R.string.NewConversationActivity__new_message),
           modifier = Modifier.fillMaxSize()
         )
       } else {
-        DetailPaneContent()
+        RecipientPicker()
       }
     },
 
-    detailContent = {
+    primaryContent = {
       Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
       ) {
-        DetailPaneContent(
+        RecipientPicker(
           modifier = Modifier
             .widthIn(max = windowSizeClass.detailPaneMaxContentWidth)
         )
@@ -126,7 +126,7 @@ private interface Callbacks {
 }
 
 @Composable
-private fun DetailPaneContent(
+private fun RecipientPicker(
   modifier: Modifier = Modifier
 ) {
   RecipientPicker(

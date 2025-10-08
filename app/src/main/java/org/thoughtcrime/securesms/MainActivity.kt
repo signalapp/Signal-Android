@@ -447,7 +447,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
               )
             }
           },
-          listContent = {
+          secondaryContent = {
             val listContainerColor = if (windowSizeClass.isMedium()) {
               SignalTheme.colors.colorSurface1
             } else {
@@ -516,7 +516,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
               }
             }
           },
-          detailContent = {
+          primaryContent = {
             when (mainNavigationState.currentListLocation) {
               MainNavigationListLocation.CHATS, MainNavigationListLocation.ARCHIVE -> {
                 DetailsScreenNavHost(
