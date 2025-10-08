@@ -88,6 +88,11 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
       return;
     }
 
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Linked device, skipping");
+      return;
+    }
+
     byte[] rawProfileKey = Recipient.self().getProfileKey();
 
     if (rawProfileKey == null) {
@@ -160,6 +165,11 @@ public final class GroupV2UpdateSelfProfileKeyJob extends BaseJob {
   public void onRun()
       throws IOException, GroupNotAMemberException, GroupChangeFailedException, GroupInsufficientRightsException, GroupChangeBusyException
   {
+    if (SignalStore.account().isLinkedDevice()) {
+      Log.i(TAG, "Linked device, skipping");
+      return;
+    }
+
     Log.i(TAG, "Ensuring profile key up to date on group " + groupId);
     GroupManager.updateSelfProfileKeyInGroup(context, groupId);
   }

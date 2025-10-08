@@ -21,6 +21,7 @@ class AppSettingsViewModel : ViewModel() {
 
   private val store = Store(
     AppSettingsState(
+      isPrimaryDevice = SignalStore.account.isPrimaryDevice,
       unreadPaymentsCount = 0,
       hasExpiredGiftBadge = SignalStore.inAppPayments.getExpiredGiftBadge() != null,
       allowUserToGoToDonationManagementScreen = SignalStore.inAppPayments.isLikelyASustainer() || InAppDonations.hasAtLeastOnePaymentMethodAvailable(),

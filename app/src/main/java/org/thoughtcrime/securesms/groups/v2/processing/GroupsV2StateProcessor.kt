@@ -672,7 +672,7 @@ class GroupsV2StateProcessor private constructor(
       )
 
       val updateDescription = GroupProtoUtil.createOutgoingGroupV2UpdateDescription(masterKey, GroupMutation(decryptedGroup, simulatedGroupChange, simulatedGroupState), null)
-      val leaveMessage = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, System.currentTimeMillis())
+      val leaveMessage = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, System.currentTimeMillis(), isSelfGroupAdd = false)
 
       try {
         val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
@@ -728,10 +728,17 @@ class GroupsV2StateProcessor private constructor(
       )
 
       if (outgoing) {
+        val isSelfGroupAdd = updateDescription
+          .groupChangeUpdate!!
+          .updates
+          .asSequence()
+          .mapNotNull { it.groupMemberJoinedUpdate }
+          .any { serviceIds.matches(it.newMemberAci) }
+
         try {
           val recipientId = SignalDatabase.recipients.getOrInsertFromGroupId(groupId)
           val recipient = Recipient.resolved(recipientId)
-          val outgoingMessage = OutgoingMessage.groupUpdateMessage(recipient, updateDescription, timestamp)
+          val outgoingMessage = OutgoingMessage.groupUpdateMessage(recipient, updateDescription, timestamp, isSelfGroupAdd)
           val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(recipient)
           val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, null).messageId
 

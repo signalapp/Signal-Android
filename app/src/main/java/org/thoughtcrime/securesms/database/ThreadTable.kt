@@ -1582,20 +1582,20 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalContactRecord) {
-    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread, isGroup = false)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV1Record) {
-    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread, isGroup = true)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalGroupV2Record) {
-    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread)
+    applyStorageSyncUpdate(recipientId, record.proto.archived, record.proto.markedUnread, isGroup = true)
   }
 
   fun applyStorageSyncUpdate(recipientId: RecipientId, record: SignalAccountRecord) {
     writableDatabase.withinTransaction { db ->
-      applyStorageSyncUpdate(recipientId, record.proto.noteToSelfArchived, record.proto.noteToSelfMarkedUnread)
+      applyStorageSyncUpdate(recipientId, record.proto.noteToSelfArchived, record.proto.noteToSelfMarkedUnread, isGroup = false)
 
       db.updateAll(TABLE_NAME)
         .values(PINNED_ORDER to null)
@@ -1631,6 +1631,8 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
         }
 
         if (pinnedRecipient != null) {
+          getOrCreateThreadIdFor(pinnedRecipient)
+
           db.update(TABLE_NAME)
             .values(PINNED_ORDER to pinnedPosition, ACTIVE to 1)
             .where("$RECIPIENT_ID = ?", pinnedRecipient.id)
@@ -1644,11 +1646,11 @@ class ThreadTable(context: Context, databaseHelper: SignalDatabase) : DatabaseTa
     notifyConversationListListeners()
   }
 
-  private fun applyStorageSyncUpdate(recipientId: RecipientId, archived: Boolean, forcedUnread: Boolean) {
+  private fun applyStorageSyncUpdate(recipientId: RecipientId, archived: Boolean, forcedUnread: Boolean, isGroup: Boolean) {
     val values = ContentValues()
     values.put(ARCHIVED, if (archived) 1 else 0)
 
-    val threadId: Long? = getThreadIdFor(recipientId)
+    val threadId: Long? = if (archived) getOrCreateThreadIdFor(recipientId, isGroup) else getThreadIdFor(recipientId)
 
     if (forcedUnread) {
       values.put(READ, ReadStatus.FORCED_UNREAD.serialize())

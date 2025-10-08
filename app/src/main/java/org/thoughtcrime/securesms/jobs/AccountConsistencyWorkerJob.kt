@@ -24,7 +24,7 @@ class AccountConsistencyWorkerJob private constructor(parameters: Parameters) : 
 
     @JvmStatic
     fun enqueueIfNecessary() {
-      if (System.currentTimeMillis() - SignalStore.misc.lastConsistencyCheckTime > 3.days.inWholeMilliseconds) {
+      if (SignalStore.account.isPrimaryDevice && System.currentTimeMillis() - SignalStore.misc.lastConsistencyCheckTime > 3.days.inWholeMilliseconds) {
         AppDependencies.jobManager.add(AccountConsistencyWorkerJob())
       }
     }
@@ -53,6 +53,11 @@ class AccountConsistencyWorkerJob private constructor(parameters: Parameters) : 
 
     if (!SignalStore.account.isRegistered || SignalStore.account.aci == null) {
       Log.i(TAG, "Not yet registered, skipping.")
+      return
+    }
+
+    if (SignalStore.account.isLinkedDevice) {
+      Log.i(TAG, "Linked device, skipping.")
       return
     }
 

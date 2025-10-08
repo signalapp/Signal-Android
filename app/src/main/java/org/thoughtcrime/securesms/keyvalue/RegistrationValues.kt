@@ -15,6 +15,7 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
     private const val REGISTRATION_COMPLETE = "registration.complete"
     private const val PIN_REQUIRED = "registration.pin_required"
     private const val HAS_UPLOADED_PROFILE = "registration.has_uploaded_profile"
+    private const val HAS_DOWNLOADED_PROFILE = "registration.has_downloaded_profile"
     private const val SESSION_E164 = "registration.session_e164"
     private const val SESSION_ID = "registration.session_id"
     private const val LOCAL_REGISTRATION_DATA = "registration.local_registration_data"
@@ -32,6 +33,7 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
     store
       .beginWrite()
       .putBoolean(HAS_UPLOADED_PROFILE, false)
+      .putBoolean(HAS_DOWNLOADED_PROFILE, false)
       .putBoolean(REGISTRATION_COMPLETE, false)
       .putBoolean(PIN_REQUIRED, true)
       .putBlob(RESTORE_DECISION_STATE, RestoreDecisionState.Start.encode())
@@ -67,6 +69,10 @@ class RegistrationValues internal constructor(store: KeyValueStore) : SignalStor
 
   @get:JvmName("hasUploadedProfile")
   var hasUploadedProfile: Boolean by booleanValue(HAS_UPLOADED_PROFILE, true)
+
+  @get:JvmName("hasDownloadedProfile")
+  var hasDownloadedProfile: Boolean by booleanValue(HAS_DOWNLOADED_PROFILE, true)
+
   var sessionId: String? by stringValue(SESSION_ID, null)
   var sessionE164: String? by stringValue(SESSION_E164, null)
 

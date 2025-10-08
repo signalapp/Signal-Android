@@ -2889,7 +2889,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     ) {
       val incrementUnreadMentions = retrieved.mentions.isNotEmpty() && retrieved.mentions.any { it.recipientId == Recipient.self().id }
       threads.incrementUnread(threadId, 1, if (incrementUnreadMentions) 1 else 0)
-      ThreadUpdateJob.enqueue(threadId)
+      ThreadUpdateJob.enqueue(threadId, true)
     }
 
     if (notifyObservers) {
@@ -3362,7 +3362,7 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
     }
 
     if (!message.isIdentityVerified && !message.isIdentityDefault) {
-      ThreadUpdateJob.enqueue(threadId)
+      ThreadUpdateJob.enqueue(threadId, !message.isSelfGroupAdd)
     }
 
     TrimThreadJob.enqueueAsync(threadId)

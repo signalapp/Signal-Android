@@ -44,7 +44,7 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
   init {
     val threadIdSlot = slot<Long>()
     mockkStatic(ThreadUpdateJob::class)
-    every { ThreadUpdateJob.enqueue(capture(threadIdSlot)) } answers {
+    every { ThreadUpdateJob.enqueue(capture(threadIdSlot), any()) } answers {
       SignalDatabase.threads.update(threadIdSlot.captured, false)
     }
   }
@@ -148,7 +148,7 @@ class MessageHelper(private val harness: SignalActivityRule, var startTime: Long
       .groupChangeUpdate(GroupsV2UpdateMessageConverter.translateDecryptedChange(SignalStore.account.getServiceIds(), decryptedGroupV2Context))
       .build()
 
-    val outgoingMessage = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, startTime)
+    val outgoingMessage = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, startTime, false)
 
     val threadId = SignalDatabase.threads.getOrCreateThreadIdFor(groupRecipient)
     val messageId = SignalDatabase.messages.insertMessageOutbox(outgoingMessage, threadId, false, null).messageId

@@ -1272,7 +1272,7 @@ final class GroupManagerV2 {
       GroupId.V2           groupId           = GroupId.v2(masterKey);
       Recipient            groupRecipient    = Recipient.externalGroupExact(groupId);
       GV2UpdateDescription updateDescription = GroupProtoUtil.createOutgoingGroupV2UpdateDescription(masterKey, groupMutation, signedGroupChange);
-      OutgoingMessage      outgoingMessage   = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, System.currentTimeMillis());
+      OutgoingMessage      outgoingMessage   = OutgoingMessage.groupUpdateMessage(groupRecipient, updateDescription, System.currentTimeMillis(), false);
 
 
       DecryptedGroupChange plainGroupChange = groupMutation.getGroupChange();

@@ -135,6 +135,10 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowLinkedDeviceInactiveMegaphone() {
+    if (SignalStore.account().isLinkedDevice()) {
+      return false;
+    }
+
     LeastActiveLinkedDevice device = SignalStore.misc().getLeastActiveLinkedDevice();
     if (device == null) {
       return false;
@@ -487,11 +491,11 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowOnboardingMegaphone(@NonNull Context context) {
-    return SignalStore.onboarding().hasOnboarding(context);
+    return SignalStore.account().isPrimaryDevice() && SignalStore.onboarding().hasOnboarding(context);
   }
 
   private static boolean shouldShowNewLinkedDeviceMegaphone() {
-    return SignalStore.misc().getNewLinkedDeviceId() > 0 && !NotificationChannels.getInstance().areNotificationsEnabled();
+    return SignalStore.account().isPrimaryDevice() && SignalStore.misc().getNewLinkedDeviceId() > 0 && !NotificationChannels.getInstance().areNotificationsEnabled();
   }
 
   private static boolean shouldShowTurnOffCircumventionMegaphone() {
@@ -542,7 +546,8 @@ public final class Megaphones {
     long                           phoneNumberDiscoveryDisabledAt = SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityModeTimestamp();
     PhoneNumberDiscoverabilityMode listingMode                    = SignalStore.phoneNumberPrivacy().getPhoneNumberDiscoverabilityMode();
 
-    return !hasUsername &&
+    return SignalStore.account().isPrimaryDevice() &&
+           !hasUsername &&
            listingMode == PhoneNumberDiscoverabilityMode.NOT_DISCOVERABLE &&
            !hasCompleted &&
            phoneNumberDiscoveryDisabledAt > 0 &&
@@ -550,7 +555,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowPnpLaunchMegaphone() {
-    return TextUtils.isEmpty(SignalStore.account().getUsername()) && !SignalStore.uiHints().hasCompletedUsernameOnboarding();
+    return SignalStore.account().isPrimaryDevice() && TextUtils.isEmpty(SignalStore.account().getUsername()) && !SignalStore.uiHints().hasCompletedUsernameOnboarding();
   }
 
   private static boolean shouldShowTurnOnBackupsMegaphone(@NonNull Context context) {
@@ -562,7 +567,7 @@ public final class Megaphones {
       return false;
     }
 
-    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context)) {
+    if (!SignalStore.account().isRegistered() || TextSecurePreferences.isUnauthorizedReceived(context) || SignalStore.account().isLinkedDevice()) {
       return false;
     }
 
@@ -580,7 +585,7 @@ public final class Megaphones {
   }
 
   private static boolean shouldShowBackupSchedulePermissionMegaphone(@NonNull Context context) {
-    return Build.VERSION.SDK_INT >= 31 && SignalStore.settings().isBackupEnabled() && !ServiceUtil.getAlarmManager(context).canScheduleExactAlarms();
+    return SignalStore.account().isPrimaryDevice() && Build.VERSION.SDK_INT >= 31 && SignalStore.settings().isBackupEnabled() && !ServiceUtil.getAlarmManager(context).canScheduleExactAlarms();
   }
 
   /**
