@@ -19,7 +19,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.unit.Dp
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 
 /**
  * AppScaffoldNavigator wraps a delegate navigator (such as the value returned by [rememberThreePaneScaffoldNavigatorDelegate]
@@ -85,9 +87,12 @@ open class AppScaffoldNavigator<T> @RememberInComposition constructor(private va
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun rememberAppScaffoldNavigator(
-  isSplitPane: Boolean,
-  horizontalPartitionSpacerSize: Dp,
-  defaultPanePreferredWidth: Dp
+  windowSizeClass: WindowSizeClass = WindowSizeClass.rememberWindowSizeClass(),
+  isSplitPane: Boolean = windowSizeClass.isSplitPane(
+    forceSplitPaneOnCompactLandscape = if (LocalInspectionMode.current) false else SignalStore.internal.forceSplitPaneOnCompactLandscape
+  ),
+  horizontalPartitionSpacerSize: Dp = windowSizeClass.horizontalPartitionDefaultSpacerSize,
+  defaultPanePreferredWidth: Dp = windowSizeClass.listPaneDefaultPreferredWidth
 ): AppScaffoldNavigator<Any> {
   val delegate = rememberThreePaneScaffoldNavigatorDelegate(
     isSplitPane,

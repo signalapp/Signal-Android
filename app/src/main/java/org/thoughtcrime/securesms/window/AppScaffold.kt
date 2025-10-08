@@ -38,6 +38,7 @@ import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import androidx.window.core.ExperimentalWindowCoreApi
@@ -86,6 +87,12 @@ enum class WindowSizeClass(
   EXTENDED_PORTRAIT(Navigation.RAIL),
   EXTENDED_LANDSCAPE(Navigation.RAIL);
 
+  val listPaneDefaultPreferredWidth: Dp
+    get() = if (isExtended()) 416.dp else 316.dp
+
+  val detailPaneMaxContentWidth: Dp = 624.dp
+  val horizontalPartitionDefaultSpacerSize: Dp = 12.dp
+
   fun isCompact(): Boolean = this == COMPACT_PORTRAIT || this == COMPACT_LANDSCAPE
   fun isMedium(): Boolean = this == MEDIUM_PORTRAIT || this == MEDIUM_LANDSCAPE
   fun isExtended(): Boolean = this == EXTENDED_PORTRAIT || this == EXTENDED_LANDSCAPE
@@ -93,8 +100,11 @@ enum class WindowSizeClass(
   fun isLandscape(): Boolean = this == COMPACT_LANDSCAPE || this == MEDIUM_LANDSCAPE || this == EXTENDED_LANDSCAPE
   fun isPortrait(): Boolean = !isLandscape()
 
-  fun isSplitPane(): Boolean {
-    return if (isLargeScreenSupportEnabled() && SignalStore.internal.forceSplitPaneOnCompactLandscape) {
+  @JvmOverloads
+  fun isSplitPane(
+    forceSplitPaneOnCompactLandscape: Boolean = SignalStore.internal.forceSplitPaneOnCompactLandscape
+  ): Boolean {
+    return if (isLargeScreenSupportEnabled() && forceSplitPaneOnCompactLandscape) {
       this != COMPACT_PORTRAIT
     } else {
       this.navigation != Navigation.BAR
