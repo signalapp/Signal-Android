@@ -264,7 +264,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
   private fun refreshBackupMediaSizeState() {
     _state.update {
-      val (mediaSize, mediaRetentionDays) = getBackupMediaSize(it.tier, (it.backupState as? BackupState.WithTypeAndRenewalTime)?.messageBackupsType)
+      val (mediaSize, mediaRetentionDays) = getBackupSize(it.tier, (it.backupState as? BackupState.WithTypeAndRenewalTime)?.messageBackupsType)
       it.copy(
         backupMediaSize = mediaSize,
         freeTierMediaRetentionDays = mediaRetentionDays,
@@ -295,7 +295,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
       if (paidType is NetworkResult.Success) {
         val remoteStorageAllowance = paidType.result.storageAllowanceBytes.bytes
-        val estimatedSize = getBackupMediaSize(paidType.result.tier, paidType.result).first.bytes
+        val estimatedSize = getBackupSize(paidType.result.tier, paidType.result).first.bytes
 
         if (estimatedSize + 300.mebiBytes <= remoteStorageAllowance) {
           BackupRepository.clearOutOfRemoteStorageSpaceError()
@@ -311,7 +311,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
       }
     }
 
-    val (mediaSize, mediaRetentionDays) = getBackupMediaSize(_state.value.tier, (_state.value.backupState as? BackupState.WithTypeAndRenewalTime)?.messageBackupsType)
+    val (mediaSize, mediaRetentionDays) = getBackupSize(_state.value.tier, (_state.value.backupState as? BackupState.WithTypeAndRenewalTime)?.messageBackupsType)
 
     _state.update {
       it.copy(
@@ -331,7 +331,7 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
     }
   }
 
-  private fun getBackupMediaSize(tier: MessageBackupTier?, messageBackupsType: MessageBackupsType?): Pair<Long, Int> {
+  private fun getBackupSize(tier: MessageBackupTier?, messageBackupsType: MessageBackupsType?): Pair<Long, Int> {
     if (tier == null) {
       return -1L to 0
     }
@@ -353,10 +353,10 @@ class RemoteBackupsSettingsViewModel : ViewModel() {
 
     return if (SignalStore.backup.hasBackupBeenUploaded || SignalStore.backup.lastBackupTime > 0L) {
       when (tier) {
-        MessageBackupTier.PAID -> SignalDatabase.attachments.getPaidEstimatedArchiveMediaSize() to -1
+        MessageBackupTier.PAID -> (SignalStore.backup.lastBackupProtoSize + SignalDatabase.attachments.getPaidEstimatedArchiveMediaSize()) to -1
         MessageBackupTier.FREE -> {
           if (mediaRetentionDays > 0) {
-            SignalDatabase.attachments.getFreeEstimatedArchiveMediaSize(System.currentTimeMillis() - mediaRetentionDays.days.inWholeMilliseconds) to mediaRetentionDays
+            (SignalStore.backup.lastBackupProtoSize + SignalDatabase.attachments.getFreeEstimatedArchiveMediaSize(System.currentTimeMillis() - mediaRetentionDays.days.inWholeMilliseconds)) to mediaRetentionDays
           } else {
             -1L to -1
           }
