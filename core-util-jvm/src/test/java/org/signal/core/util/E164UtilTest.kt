@@ -155,4 +155,25 @@ class E164UtilTest {
     val formatter: E164Util.Formatter = E164Util.createFormatterForRegionCode("US")
     Assert.assertEquals("+14151111122", formatter.formatAsE164("(415) 111-1122"))
   }
+
+  @Test
+  fun `isValidShortNumber - multiple regions`() {
+    // India
+    var formatter: E164Util.Formatter = E164Util.createFormatterForE164("+911234567890")
+    Assert.assertTrue(formatter.isValidShortNumber("543212601"))
+    Assert.assertTrue(formatter.isValidShortNumber("+543212601"))
+    Assert.assertFalse(formatter.isValidShortNumber("1234567890"))
+
+    // Australia
+    formatter = E164Util.createFormatterForE164("+61111111111")
+    Assert.assertTrue(formatter.isValidShortNumber("1258881"))
+    Assert.assertTrue(formatter.isValidShortNumber("+1258881"))
+    Assert.assertFalse(formatter.isValidShortNumber("+111111111"))
+
+    // US
+    formatter = E164Util.createFormatterForE164("+15555555555")
+    Assert.assertTrue(formatter.isValidShortNumber("125811"))
+    Assert.assertTrue(formatter.isValidShortNumber("+121581"))
+    Assert.assertFalse(formatter.isValidShortNumber("+15555555555"))
+  }
 }

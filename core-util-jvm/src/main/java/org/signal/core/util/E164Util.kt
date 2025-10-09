@@ -174,6 +174,37 @@ object E164Util {
   }
 
   /**
+   * Strictly checks if a given number is a valid short code for a given region. Short code length varies by region and some
+   * require specific prefixes.
+   *
+   * This will check the input with and without a leading '+' sign.
+   *
+   * If the number cannot be parsed or is otherwise invalid, false is returned.
+   */
+  private fun isValidShortNumber(regionCode: String, input: String): Boolean {
+    try {
+      val correctedInput = input.e164CharsOnly().stripLeadingZerosFromInput()
+      val correctedWithoutLeading = correctedInput.trimStart('+', '0')
+
+      var parsedNumber: PhoneNumber = PhoneNumberUtil.getInstance().parse(correctedInput, regionCode)
+
+      val isShortCode = ShortNumberInfo.getInstance().isValidShortNumberForRegion(parsedNumber, regionCode) || correctedWithoutLeading.length <= 6
+      if (isShortCode) {
+        return true
+      }
+
+      if (correctedInput != correctedWithoutLeading) {
+        parsedNumber = PhoneNumberUtil.getInstance().parse(correctedInput.trimStart('+', '0'), regionCode)
+        return ShortNumberInfo.getInstance().isValidShortNumberForRegion(parsedNumber, regionCode) || correctedInput.length <= 6
+      }
+
+      return false
+    } catch (_: NumberParseException) {
+      return false
+    }
+  }
+
+  /**
    * Attempts to parse the area code out of an e164-formatted number provided that it's in one of the supported countries.
    */
   private fun parseAreaCode(e164Number: String, countryCode: Int): String? {
@@ -271,6 +302,10 @@ object E164Util {
       } else {
         formatted
       }
+    }
+
+    fun isValidShortNumber(input: String): Boolean {
+      return isValidShortNumber(localRegionCode, input)
     }
 
     /**
