@@ -5,8 +5,7 @@ import okio.ByteString.Companion.toByteString
 import org.signal.libsignal.protocol.ServiceId.InvalidServiceIdException
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.signal.libsignal.protocol.logging.Log
-import org.whispersystems.signalservice.api.push.ServiceId.ACI
-import org.whispersystems.signalservice.api.push.ServiceId.PNI
+import org.whispersystems.signalservice.api.push.ServiceId.Companion.parseOrThrow
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.api.util.toByteArray
 import java.util.UUID

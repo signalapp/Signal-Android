@@ -1459,7 +1459,7 @@ public class SignalServiceMessageSender {
         readMessages.stream()
                     .map(readMessage -> new SyncMessage.Read.Builder()
                                                             .timestamp(readMessage.getTimestamp())
-                                                            .senderAci(readMessage.getSender().toString())
+                                                            .senderAci(readMessage.getSenderAci().toString())
                                                             .build())
                     .collect(Collectors.toList())
     );
