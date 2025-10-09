@@ -10,7 +10,6 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -19,7 +18,6 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -331,11 +329,7 @@ private fun TopAppBar(
         DropdownMenus.Menu(
           controller = menuController,
           offsetX = 24.dp,
-          offsetY = 0.dp,
-          modifier = Modifier
-            .padding(horizontal = 16.dp)
-            .widthIn(min = 200.dp)
-            .background(SignalTheme.colors.colorSurface2)
+          offsetY = 0.dp
         ) {
           DropdownMenus.Item(
             text = {
