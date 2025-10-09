@@ -102,6 +102,7 @@ import org.thoughtcrime.securesms.util.EarlyMessageCacheEntry
 import org.thoughtcrime.securesms.util.IdentityUtil
 import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageConstraintsUtil
+import org.thoughtcrime.securesms.util.RemoteConfig
 import org.thoughtcrime.securesms.util.SignalE164Util
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.Util
@@ -1740,6 +1741,10 @@ object SyncMessageProcessor {
     sent: Sent,
     senderRecipient: Recipient
   ): Long {
+    if (!RemoteConfig.receivePolls) {
+      log(envelope.timestamp!!, "Sync poll create not allowed due to remote config.")
+    }
+
     log(envelope.timestamp!!, "Synchronize sent poll creation message.")
 
     val recipient = getSyncMessageDestination(sent)
@@ -1791,6 +1796,10 @@ object SyncMessageProcessor {
     senderRecipient: Recipient,
     earlyMessageCacheEntry: EarlyMessageCacheEntry?
   ): Long {
+    if (!RemoteConfig.receivePolls) {
+      log(envelope.timestamp!!, "Sync poll end not allowed due to remote config.")
+    }
+
     log(envelope.timestamp!!, "Synchronize sent poll terminate message")
 
     val recipient = getSyncMessageDestination(sent)
