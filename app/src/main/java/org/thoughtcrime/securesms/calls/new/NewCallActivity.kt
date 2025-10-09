@@ -18,6 +18,7 @@ import org.thoughtcrime.securesms.calls.YouAreAlreadyInACallSnackbar
 import org.thoughtcrime.securesms.components.settings.app.AppSettingsActivity
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.contacts.paged.ChatType
+import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -100,7 +101,7 @@ class NewCallActivity : ContactSelectionActivity(), ContactSelectionListFragment
     fun createIntent(context: Context): Intent {
       return Intent(context, NewCallActivity::class.java)
         .putExtra(
-          ContactSelectionListFragment.DISPLAY_MODE,
+          ContactSelectionArguments.DISPLAY_MODE,
           ContactSelectionDisplayMode.none()
             .withPush()
             .withActiveGroups()

@@ -27,6 +27,7 @@ import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Fragments
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.components.ContactFilterView
+import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
 import org.thoughtcrime.securesms.recipients.RecipientId
 
 /**
@@ -34,7 +35,8 @@ import org.thoughtcrime.securesms.recipients.RecipientId
  */
 @Composable
 fun RecipientPicker(
-  showFindByUsernameAndPhoneOptions: Boolean,
+  enableFindByUsername: Boolean,
+  enableFindByPhoneNumber: Boolean,
   callbacks: RecipientPickerCallbacks,
   modifier: Modifier = Modifier
 ) {
@@ -54,7 +56,8 @@ fun RecipientPicker(
 
     RecipientSearchResultsList(
       searchQuery = searchQuery,
-      showFindByUsernameAndPhoneOptions = showFindByUsernameAndPhoneOptions,
+      enableFindByUsername = enableFindByUsername,
+      enableFindByPhoneNumber = enableFindByPhoneNumber,
       callbacks = callbacks,
       modifier = Modifier
         .fillMaxSize()
@@ -97,25 +100,30 @@ private fun RecipientSearchField(
 @Composable
 private fun RecipientSearchResultsList(
   searchQuery: String,
-  showFindByUsernameAndPhoneOptions: Boolean,
+  enableFindByUsername: Boolean,
+  enableFindByPhoneNumber: Boolean,
   callbacks: RecipientPickerCallbacks,
   modifier: Modifier = Modifier
 ) {
+  val fragmentArgs = ContactSelectionArguments(
+    enableFindByUsername = enableFindByUsername,
+    enableFindByPhoneNumber = enableFindByPhoneNumber
+  ).toArgumentBundle()
+
   val fragmentState = rememberFragmentState()
   var currentFragment by remember { mutableStateOf<ContactSelectionListFragment?>(null) }
 
   Fragments.Fragment<ContactSelectionListFragment>(
+    arguments = fragmentArgs,
     fragmentState = fragmentState,
     onUpdate = { fragment ->
       currentFragment = fragment
       currentFragment?.view?.setPadding(0, 0, 0, 0)
 
-      if (showFindByUsernameAndPhoneOptions) {
-        fragment.showFindByUsernameAndPhoneOptions(object : ContactSelectionListFragment.FindByCallback {
-          override fun onFindByUsername() = callbacks.onFindByUsernameClicked()
-          override fun onFindByPhoneNumber() = callbacks.onFindByPhoneNumberClicked()
-        })
-      }
+      fragment.setFindByCallback(object : ContactSelectionListFragment.FindByCallback {
+        override fun onFindByUsername() = callbacks.onFindByUsername()
+        override fun onFindByPhoneNumber() = callbacks.onFindByPhoneNumber()
+      })
     },
     modifier = modifier
   )
@@ -137,19 +145,20 @@ private fun RecipientSearchResultsList(
 @Composable
 private fun RecipientPickerPreview() {
   RecipientPicker(
-    showFindByUsernameAndPhoneOptions = true,
+    enableFindByUsername = true,
+    enableFindByPhoneNumber = true,
     callbacks = RecipientPickerCallbacks.Empty
   )
 }
 
 interface RecipientPickerCallbacks {
-  fun onFindByUsernameClicked()
-  fun onFindByPhoneNumberClicked()
-  fun onRecipientClicked(id: RecipientId)
+  fun onFindByUsername()
+  fun onFindByPhoneNumber()
+  fun onRecipientClick(id: RecipientId)
 
   object Empty : RecipientPickerCallbacks {
-    override fun onFindByUsernameClicked() = Unit
-    override fun onFindByPhoneNumberClicked() = Unit
-    override fun onRecipientClicked(id: RecipientId) = Unit
+    override fun onFindByUsername() = Unit
+    override fun onFindByPhoneNumber() = Unit
+    override fun onRecipientClick(id: RecipientId) = Unit
   }
 }

@@ -130,7 +130,8 @@ private fun RecipientPicker(
   modifier: Modifier = Modifier
 ) {
   RecipientPicker(
-    showFindByUsernameAndPhoneOptions = true,
+    enableFindByUsername = true,
+    enableFindByPhoneNumber = true,
     callbacks = RecipientPickerCallbacks.Empty, // TODO(jeffrey) implement callbacks
     modifier = modifier
       .fillMaxSize()

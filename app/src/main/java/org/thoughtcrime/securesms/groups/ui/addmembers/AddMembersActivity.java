@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.PushContactSelectionActivity;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.paged.ChatType;
+import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments;
 import org.thoughtcrime.securesms.groups.GroupId;
 import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -55,11 +56,11 @@ public class AddMembersActivity extends PushContactSelectionActivity implements 
 
     intent.putExtra(GROUP_ID, groupId.toString());
     intent.putExtra(ANNOUNCEMENT_GROUP, isAnnouncementGroup);
-    intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayModeFlags);
-    intent.putExtra(ContactSelectionListFragment.SELECTION_LIMITS, new SelectionLimits(selectionWarning, selectionLimit));
-    intent.putParcelableArrayListExtra(ContactSelectionListFragment.CURRENT_SELECTION, new ArrayList<>(membersWithoutSelf));
-    intent.putExtra(ContactSelectionListFragment.RV_PADDING_BOTTOM, (int) DimensionUnit.DP.toPixels(64f));
-    intent.putExtra(ContactSelectionListFragment.RV_CLIP, false);
+    intent.putExtra(ContactSelectionArguments.DISPLAY_MODE, displayModeFlags);
+    intent.putExtra(ContactSelectionArguments.SELECTION_LIMITS, new SelectionLimits(selectionWarning, selectionLimit));
+    intent.putParcelableArrayListExtra(ContactSelectionArguments.CURRENT_SELECTION, new ArrayList<>(membersWithoutSelf));
+    intent.putExtra(ContactSelectionArguments.RV_PADDING_BOTTOM, (int) DimensionUnit.DP.toPixels(64f));
+    intent.putExtra(ContactSelectionArguments.RV_CLIP, false);
 
     return intent;
   }

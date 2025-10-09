@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
 import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.contacts.paged.ChatType
+import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
 import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.util.ViewUtil
@@ -41,19 +42,18 @@ class ChooseChatsFragment : LoggingFragment(), ContactSelectionListFragment.OnCo
     }
 
     childFragmentManager.addFragmentOnAttachListener { _, fragment ->
-      fragment.arguments = Bundle().apply {
-        putInt(ContactSelectionListFragment.DISPLAY_MODE, getDefaultDisplayMode())
-        putBoolean(ContactSelectionListFragment.REFRESHABLE, false)
-        putBoolean(ContactSelectionListFragment.RECENTS, true)
-        putParcelable(ContactSelectionListFragment.SELECTION_LIMITS, SelectionLimits.NO_LIMITS)
-        putParcelableArrayList(ContactSelectionListFragment.CURRENT_SELECTION, ArrayList<RecipientId>(currentSelection))
-        putBoolean(ContactSelectionListFragment.INCLUDE_CHAT_TYPES, includeChatsMode)
-        putBoolean(ContactSelectionListFragment.HIDE_COUNT, true)
-        putBoolean(ContactSelectionListFragment.DISPLAY_CHIPS, true)
-        putBoolean(ContactSelectionListFragment.CAN_SELECT_SELF, true)
-        putBoolean(ContactSelectionListFragment.RV_CLIP, false)
-        putInt(ContactSelectionListFragment.RV_PADDING_BOTTOM, ViewUtil.dpToPx(60))
-      }
+      fragment.arguments = ContactSelectionArguments(
+        displayMode = getDefaultDisplayMode(),
+        isRefreshable = false,
+        includeRecents = true,
+        selectionLimits = SelectionLimits.NO_LIMITS,
+        currentSelection = currentSelection,
+        includeChatTypes = includeChatsMode,
+        displayChips = true,
+        canSelectSelf = true,
+        recyclerChildClipping = false,
+        recyclerPadBottom = ViewUtil.dpToPx(60)
+      ).toArgumentBundle()
     }
 
     return inflater.inflate(R.layout.choose_chats_fragment, container, false)

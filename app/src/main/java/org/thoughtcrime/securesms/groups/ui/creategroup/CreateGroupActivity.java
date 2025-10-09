@@ -24,6 +24,7 @@ import org.thoughtcrime.securesms.ContactSelectionListFragment;
 import org.thoughtcrime.securesms.R;
 import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode;
 import org.thoughtcrime.securesms.contacts.paged.ChatType;
+import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments;
 import org.thoughtcrime.securesms.contacts.sync.ContactDiscovery;
 import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity;
 import org.thoughtcrime.securesms.recipients.Recipient;
@@ -56,15 +57,15 @@ public class CreateGroupActivity extends ContactSelectionActivity implements Con
   public static Intent newIntent(@NonNull Context context) {
     Intent intent = new Intent(context, CreateGroupActivity.class);
 
-    intent.putExtra(ContactSelectionListFragment.REFRESHABLE, false);
+    intent.putExtra(ContactSelectionArguments.REFRESHABLE, false);
     intent.putExtra(ContactSelectionActivity.EXTRA_LAYOUT_RES_ID, R.layout.create_group_activity);
 
     int displayMode = ContactSelectionDisplayMode.FLAG_PUSH;
 
-    intent.putExtra(ContactSelectionListFragment.DISPLAY_MODE, displayMode);
-    intent.putExtra(ContactSelectionListFragment.SELECTION_LIMITS, RemoteConfig.groupLimits().excludingSelf());
-    intent.putExtra(ContactSelectionListFragment.RV_PADDING_BOTTOM, (int) DimensionUnit.DP.toPixels(64f));
-    intent.putExtra(ContactSelectionListFragment.RV_CLIP, false);
+    intent.putExtra(ContactSelectionArguments.DISPLAY_MODE, displayMode);
+    intent.putExtra(ContactSelectionArguments.SELECTION_LIMITS, RemoteConfig.groupLimits().excludingSelf());
+    intent.putExtra(ContactSelectionArguments.RV_PADDING_BOTTOM, (int) DimensionUnit.DP.toPixels(64f));
+    intent.putExtra(ContactSelectionArguments.RV_CLIP, false);
 
     return intent;
   }
