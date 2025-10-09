@@ -1089,7 +1089,7 @@ public final class ConversationItem extends RelativeLayout implements BindableCo
         bodyText.setMaxLines(Integer.MAX_VALUE);
       }
 
-      bodyText.setText(StringUtil.trim(styledText));
+      bodyText.setTextAsync(StringUtil.trim(styledText));
       bodyText.setVisibility(View.VISIBLE);
 
       if (conversationMessage.getBottomButton() != null) {
