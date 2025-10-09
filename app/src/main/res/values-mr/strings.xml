@@ -8609,11 +8609,11 @@
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">आपल्या जुन्या ॲन्ड्राइड वरून थेट हस्तांतरण करा</string>
     <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Skip restore?</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_title">परत मिळवण्याची क्रिया वगळायची?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Skip restore</string>
+    <string name="SelectRestoreMethodFragment__skip_restore">पुर्नस्थापित करणे वगळा</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">स्थानिक बॅकअप पुर्नस्थापित करा</string>

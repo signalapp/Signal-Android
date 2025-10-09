@@ -8609,11 +8609,11 @@
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Ескі Android құрылғыңыздан тікелей тасымалдау</string>
     <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Skip restore?</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Қалпына келтіруді өткізіп жіберу керек пе?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore">Skip restore</string>
+    <string name="SelectRestoreMethodFragment__skip_restore">Қалпына келтіру функциясын өткізіп жіберу</string>
 
     <!-- Screen title for restore via local backup -->
     <string name="RestoreLocalBackup_title">Жергілікті резервтік көшірмені қалпына келтіру</string>
