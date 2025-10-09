@@ -13,7 +13,7 @@ import androidx.core.view.WindowInsetsCompat
 import org.signal.core.util.logging.Log
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.keyvalue.SignalStore
-import org.thoughtcrime.securesms.main.InsetsViewModel
+import org.thoughtcrime.securesms.main.VerticalInsets
 import org.thoughtcrime.securesms.util.ViewUtil
 import org.thoughtcrime.securesms.window.WindowSizeClass.Companion.getWindowSizeClass
 import kotlin.math.roundToInt
@@ -66,7 +66,7 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
 
   private var insets: WindowInsetsCompat? = null
   private var windowTypes: Int = InsetAwareConstraintLayout.windowTypes
-  private var verticalInsetOverride: InsetsViewModel.Insets = InsetsViewModel.Insets.Zero
+  private var verticalInsetOverride: VerticalInsets = VerticalInsets.Zero
 
   private val windowInsetsListener = androidx.core.view.OnApplyWindowInsetsListener { _, insets ->
     this.insets = insets
@@ -130,16 +130,8 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
     }
   }
 
-  fun applyInsets(insets: InsetsViewModel.Insets) {
+  fun applyInsets(insets: VerticalInsets) {
     verticalInsetOverride = insets
-
-    if (this.insets != null) {
-      applyInsets(this.insets!!.getInsets(windowTypes), this.insets!!.getInsets(keyboardType))
-    }
-  }
-
-  fun clearVerticalInsetOverride() {
-    verticalInsetOverride = InsetsViewModel.Insets.Zero
 
     if (this.insets != null) {
       applyInsets(this.insets!!.getInsets(windowTypes), this.insets!!.getInsets(keyboardType))
@@ -165,8 +157,8 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
   private fun applyInsets(windowInsets: Insets, keyboardInsets: Insets) {
     val isLtr = ViewUtil.isLtr(this)
 
-    val statusBar = if (verticalInsetOverride == InsetsViewModel.Insets.Zero) windowInsets.top else verticalInsetOverride.statusBar.roundToInt()
-    val navigationBar = if (verticalInsetOverride == InsetsViewModel.Insets.Zero) windowInsets.bottom else verticalInsetOverride.navBar.roundToInt()
+    val statusBar = if (verticalInsetOverride == VerticalInsets.Zero) windowInsets.top else verticalInsetOverride.statusBar.roundToInt()
+    val navigationBar = if (verticalInsetOverride == VerticalInsets.Zero) windowInsets.bottom else verticalInsetOverride.navBar.roundToInt()
     val parentStart = if (isLtr) windowInsets.left else windowInsets.right
     val parentEnd = if (isLtr) windowInsets.right else windowInsets.left
 

@@ -102,7 +102,6 @@ import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
 import org.thoughtcrime.securesms.main.DetailsScreenNavHost
-import org.thoughtcrime.securesms.main.InsetsViewModelUpdater
 import org.thoughtcrime.securesms.main.MainBottomChrome
 import org.thoughtcrime.securesms.main.MainBottomChromeCallback
 import org.thoughtcrime.securesms.main.MainBottomChromeState
@@ -414,8 +413,6 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
             paneExpansionState.animateTo(listOnlyAnchor)
           }
         }
-
-        InsetsViewModelUpdater()
 
         AppScaffold(
           navigator = wrappedNavigator,
