@@ -129,6 +129,10 @@
     <meta-data android:name="firebase_messaging_auto_init_enabled" android:value="false" />
     <meta-data android:name="android.webkit.WebView.MetricsOptOut" android:value="true" />
 
+    <meta-data
+        android:name="android.telephony.PROPERTY_SATELLITE_DATA_OPTIMIZED"
+        android:value="org.thoughtcrime.securesms" />
+
     <activity android:name=".components.webrtc.v2.WebRtcCallActivity"
               android:theme="@style/TextSecure.DarkTheme.WebRTCCall"
               android:excludeFromRecents="true"
