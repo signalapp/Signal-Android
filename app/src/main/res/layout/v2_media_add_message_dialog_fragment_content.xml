@@ -116,13 +116,12 @@
         android:layout_height="48dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="2dp"
-        android:contentDescription="@string/MediaReviewFragment__finish_adding_a_message_accessibility_label"
         android:padding="6dp"
+        android:contentDescription="@string/MediaReviewFragment__finish_adding_a_message_accessibility_label"
         app:layout_constraintBottom_toTopOf="@id/emoji_drawer_stub"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/input_barrier"
         app:srcCompat="@drawable/v2_media_add_a_message_check" />
-
 
     <ViewStub
         android:id="@+id/emoji_drawer_stub"
