@@ -8,7 +8,7 @@ import assertk.assertions.isInstanceOf
 import okio.ByteString
 import org.junit.Before
 import org.junit.Test
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.thoughtcrime.securesms.util.Util
 import org.whispersystems.signalservice.test.LibSignalLibraryUtil
 
@@ -20,7 +20,7 @@ class MobileCoinPublicAddressProfileUtilTest {
 
   @Test
   fun can_verify_an_address() {
-    val identityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
+    val identityKeyPair = IdentityKeyPair.generate()
     val address = Util.getSecretBytes(100)
     val signedPaymentAddress = MobileCoinPublicAddressProfileUtil.signPaymentsAddress(address, identityKeyPair)
 
@@ -31,8 +31,8 @@ class MobileCoinPublicAddressProfileUtilTest {
 
   @Test
   fun can_not_verify_an_address_with_the_wrong_key() {
-    val identityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
-    val wrongPublicKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey
+    val identityKeyPair = IdentityKeyPair.generate()
+    val wrongPublicKey = IdentityKeyPair.generate().publicKey
     val address = Util.getSecretBytes(100)
     val signedPaymentAddress = MobileCoinPublicAddressProfileUtil.signPaymentsAddress(address, identityKeyPair)
 
@@ -43,7 +43,7 @@ class MobileCoinPublicAddressProfileUtilTest {
 
   @Test
   fun can_not_verify_a_tampered_signature() {
-    val identityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
+    val identityKeyPair = IdentityKeyPair.generate()
     val address = Util.getSecretBytes(100)
     val signedPaymentAddress = MobileCoinPublicAddressProfileUtil.signPaymentsAddress(address, identityKeyPair)
     val mobileCoinAddress = signedPaymentAddress.mobileCoin!!
@@ -66,7 +66,7 @@ class MobileCoinPublicAddressProfileUtilTest {
 
   @Test
   fun can_not_verify_a_tampered_address() {
-    val identityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
+    val identityKeyPair = IdentityKeyPair.generate()
     val addressBytes = Util.getSecretBytes(100)
     val signedPaymentAddress = MobileCoinPublicAddressProfileUtil.signPaymentsAddress(addressBytes, identityKeyPair)
     val mobileCoinAddress = signedPaymentAddress.mobileCoin!!
@@ -89,7 +89,7 @@ class MobileCoinPublicAddressProfileUtilTest {
 
   @Test
   fun can_not_verify_a_missing_signature() {
-    val identityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
+    val identityKeyPair = IdentityKeyPair.generate()
     val address = Util.getSecretBytes(100)
     val signedPaymentAddress = MobileCoinPublicAddressProfileUtil.signPaymentsAddress(address, identityKeyPair)
 
@@ -109,7 +109,7 @@ class MobileCoinPublicAddressProfileUtilTest {
 
   @Test
   fun can_not_verify_a_missing_address() {
-    val identityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
+    val identityKeyPair = IdentityKeyPair.generate()
     val address = Util.getSecretBytes(100)
     val signedPaymentAddress = MobileCoinPublicAddressProfileUtil.signPaymentsAddress(address, identityKeyPair)
 

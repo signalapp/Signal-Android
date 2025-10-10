@@ -12,7 +12,6 @@ import okio.ByteString
 import org.junit.Test
 import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
-import org.signal.libsignal.protocol.ecc.ECKeyPair
 import org.signal.libsignal.protocol.ecc.ECPrivateKey
 import org.signal.libsignal.zkgroup.profiles.ProfileKey
 import org.whispersystems.signalservice.api.util.UuidUtil
@@ -25,9 +24,9 @@ import kotlin.random.Random
 class SecondaryProvisioningCipherTest {
   @Test
   fun decrypt() {
-    val provisioningCipher = SecondaryProvisioningCipher.generate(generateIdentityKeyPair())
+    val provisioningCipher = SecondaryProvisioningCipher.generate(IdentityKeyPair.generate())
 
-    val primaryIdentityKeyPair = generateIdentityKeyPair()
+    val primaryIdentityKeyPair = IdentityKeyPair.generate()
     val primaryProfileKey = generateProfileKey()
     val primaryProvisioningCipher = PrimaryProvisioningCipher(provisioningCipher.secondaryDevicePublicKey.publicKey)
 
@@ -60,14 +59,6 @@ class SecondaryProvisioningCipherTest {
   }
 
   companion object {
-    fun generateIdentityKeyPair(): IdentityKeyPair {
-      val djbKeyPair = ECKeyPair.generate()
-      val djbIdentityKey = IdentityKey(djbKeyPair.publicKey)
-      val djbPrivateKey = djbKeyPair.privateKey
-
-      return IdentityKeyPair(djbIdentityKey, djbPrivateKey)
-    }
-
     fun generateProfileKey(): ProfileKey {
       return ProfileKey(Random.nextBytes(32))
     }

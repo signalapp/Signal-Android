@@ -17,7 +17,7 @@ import org.junit.runner.RunWith
 import org.robolectric.RobolectricTestRunner
 import org.robolectric.annotation.Config
 import org.signal.core.util.logging.Log
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
+import org.signal.libsignal.protocol.IdentityKeyPair
 import org.thoughtcrime.securesms.crypto.storage.SignalIdentityKeyStore
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.RecipientDatabaseTestUtils
@@ -79,7 +79,7 @@ class SafetyNumberRepositoryTest {
 
       val record = IdentityRecord(
         recipientId = recipient.id,
-        identityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey,
+        identityKey = IdentityKeyPair.generate().publicKey,
         verifiedStatus = IdentityTable.VerifiedStatus.DEFAULT,
         firstUse = false,
         timestamp = 0,
@@ -141,7 +141,7 @@ class SafetyNumberRepositoryTest {
   fun batchSafetyNumberCheckSync_batchOf1_oneChange() {
     val other = recipientPool[1]
     val otherAci = other.requireAci()
-    val otherNewIdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey
+    val otherNewIdentityKey = IdentityKeyPair.generate().publicKey
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false))
 
     every {
@@ -175,7 +175,7 @@ class SafetyNumberRepositoryTest {
     val other = recipientPool[1]
     val secondOther = recipientPool[2]
     val otherAci = other.requireAci()
-    val otherNewIdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey
+    val otherNewIdentityKey = IdentityKeyPair.generate().publicKey
     val keys = listOf(ContactSearchKey.RecipientSearchKey(other.id, false), ContactSearchKey.RecipientSearchKey(secondOther.id, false))
 
     every {

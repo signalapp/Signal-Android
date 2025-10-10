@@ -15,7 +15,6 @@ import org.signal.libsignal.protocol.IdentityKey
 import org.signal.libsignal.protocol.IdentityKeyPair
 import org.signal.libsignal.protocol.SignalProtocolAddress
 import org.thoughtcrime.securesms.SignalInstrumentationApplicationContext
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.MasterSecretUtil
 import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.IdentityTable
@@ -148,7 +147,7 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
       SignalDatabase.recipients.setCapabilities(recipientId, SignalServiceProfile.Capabilities(true, true))
       SignalDatabase.recipients.setProfileSharing(recipientId, true)
       SignalDatabase.recipients.markRegistered(recipientId, aci)
-      val otherIdentity = IdentityKeyUtil.generateIdentityKeyPair()
+      val otherIdentity = IdentityKeyPair.generate()
       AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(aci.toString(), 1), otherIdentity.publicKey)
       others += recipientId
       othersKeys += otherIdentity
@@ -161,7 +160,7 @@ class SignalActivityRule(private val othersCount: Int = 4, private val createGro
     return androidx.test.core.app.launchActivity(Intent(context, T::class.java).apply(initIntent))
   }
 
-  fun changeIdentityKey(recipient: Recipient, identityKey: IdentityKey = IdentityKeyUtil.generateIdentityKeyPair().publicKey) {
+  fun changeIdentityKey(recipient: Recipient, identityKey: IdentityKey = IdentityKeyPair.generate().publicKey) {
     AppDependencies.protocolStore.aci().saveIdentity(SignalProtocolAddress(recipient.requireServiceId().toString(), 0), identityKey)
   }
 

@@ -19,7 +19,6 @@ import org.signal.libsignal.protocol.state.SignalProtocolStore
 import org.signal.libsignal.protocol.state.SignedPreKeyRecord
 import org.signal.libsignal.protocol.util.KeyHelper
 import org.signal.libsignal.protocol.util.Medium
-import org.thoughtcrime.securesms.crypto.IdentityKeyUtil
 import org.thoughtcrime.securesms.crypto.PreKeyUtil
 import org.thoughtcrime.securesms.database.IdentityTable
 import org.thoughtcrime.securesms.database.SignalDatabase
@@ -303,7 +302,7 @@ class ChangeNumberRepository(
     val selfIdentifier: String = SignalStore.account.requireAci().toString()
     val aciProtocolStore: SignalProtocolStore = AppDependencies.protocolStore.aci()
 
-    val pniIdentity: IdentityKeyPair = IdentityKeyUtil.generateIdentityKeyPair()
+    val pniIdentity: IdentityKeyPair = IdentityKeyPair.generate()
     val deviceMessages = mutableListOf<OutgoingPushMessage>()
     val devicePniSignedPreKeys = mutableMapOf<Int, SignedPreKeyEntity>()
     val devicePniLastResortKyberPreKeys = mutableMapOf<Int, KyberPreKeyEntity>()
