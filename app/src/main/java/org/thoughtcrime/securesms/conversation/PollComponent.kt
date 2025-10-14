@@ -50,6 +50,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.RoundCheckbox
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
+import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.VibrateUtil
 
@@ -85,7 +86,7 @@ private fun Poll(
   onToggleVote: (PollOption, Boolean) -> Unit = { _, _ -> },
   pollColors: PollColors = PollColorsType.Incoming.getColors(-1)
 ) {
-  val totalVotes = remember(poll.pollOptions) { poll.pollOptions.sumOf { it.voterIds.size } }
+  val totalVotes = remember(poll.pollOptions) { poll.pollOptions.sumOf { it.voters.size } }
   val caption = when {
     poll.hasEnded -> R.string.Poll__final_results
     poll.allowMultipleVotes -> R.string.Poll__select_multiple
@@ -139,8 +140,8 @@ private fun PollOption(
 ) {
   val context = LocalContext.current
   val haptics = LocalHapticFeedback.current
-  val progress = remember(option.voterIds.size, totalVotes) {
-    if (totalVotes > 0) (option.voterIds.size.toFloat() / totalVotes.toFloat()) else 0f
+  val progress = remember(option.voters.size, totalVotes) {
+    if (totalVotes > 0) (option.voters.size.toFloat() / totalVotes.toFloat()) else 0f
   }
   val progressValue by animateFloatAsState(targetValue = progress, animationSpec = tween(durationMillis = 250))
 
@@ -201,7 +202,7 @@ private fun PollOption(
         }
 
         AnimatedContent(
-          targetState = option.voterIds.size
+          targetState = option.voters.size
         ) { size ->
           Text(
             text = size.toString(),
@@ -289,9 +290,9 @@ private fun PollPreview() {
         id = 1,
         question = "How do you feel about compose previews?",
         pollOptions = listOf(
-          PollOption(1, "yay", listOf(1), isSelected = true),
-          PollOption(2, "ok", listOf(1, 2)),
-          PollOption(3, "nay", listOf(2, 3, 4))
+          PollOption(1, "yay", listOf(Voter(1, 1)), isSelected = true),
+          PollOption(2, "ok", listOf(Voter(1, 1), Voter(2, 1))),
+          PollOption(3, "nay", listOf(Voter(1, 1), Voter(2, 1), Voter(3, 1)))
         ),
         allowMultipleVotes = false,
         hasEnded = false,
@@ -333,7 +334,7 @@ private fun FinishedPollPreview() {
         id = 1,
         question = "How do you feel about finished compose previews?",
         pollOptions = listOf(
-          PollOption(1, "yay", listOf(1)),
+          PollOption(1, "yay", listOf(Voter(1, 1))),
           PollOption(2, "ok", emptyList(), isSelected = true),
           PollOption(3, "nay", emptyList())
         ),

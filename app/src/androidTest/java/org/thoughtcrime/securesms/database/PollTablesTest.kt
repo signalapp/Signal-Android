@@ -11,6 +11,7 @@ import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.mms.IncomingMessage
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
+import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.testing.SignalActivityRule
 
@@ -28,7 +29,7 @@ class PollTablesTest {
       id = 1,
       question = "how do you feel about unit testing?",
       pollOptions = listOf(
-        PollOption(1, "yay", listOf(1)),
+        PollOption(1, "yay", listOf(Voter(1, 1))),
         PollOption(2, "ok", emptyList()),
         PollOption(3, "nay", emptyList())
       ),
@@ -79,7 +80,7 @@ class PollTablesTest {
     SignalDatabase.polls.insertVotes(pollId = 1, pollOptionIds = listOf(3), voterId = 1, voteCount = 2, messageId = MessageId(1))
     SignalDatabase.polls.insertVotes(pollId = 1, pollOptionIds = listOf(1), voterId = 1, voteCount = 3, messageId = MessageId(1))
 
-    assertEquals(poll1, SignalDatabase.polls.getPoll(1))
+    assertEquals(listOf(Voter(1, 3)), SignalDatabase.polls.getPoll(1)!!.pollOptions[0].voters)
   }
 
   @Test

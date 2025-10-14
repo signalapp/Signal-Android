@@ -428,6 +428,7 @@ message ChatItem {
     GiftBadge giftBadge = 17;
     ViewOnceMessage viewOnceMessage = 18;
     DirectStoryReplyMessage directStoryReplyMessage = 19; // group story reply messages are not backed up
+    Poll poll = 20;
   }
 }
 
@@ -805,6 +806,25 @@ message Reaction {
   uint64 sortOrder = 4;
 }
 
+message Poll {
+
+  message PollOption {
+
+    message PollVote {
+      uint64 voterId = 1; // A direct reference to Recipient proto id. Must be self or contact.
+      uint32 voteCount = 2; // Tracks how many times you voted.
+    }
+
+    string option = 1; // Between 1-100 characters
+    repeated PollVote votes = 2;
+  }
+
+  string question = 1; // Between 1-100 characters
+  bool allowMultiple = 2;
+  repeated PollOption options = 3; // At least two
+  bool hasEnded = 4;
+}
+
 message ChatUpdateMessage {
   // If unset, importers should ignore the update message without throwing an error.
   oneof update {
@@ -817,6 +837,7 @@ message ChatUpdateMessage {
     IndividualCall individualCall = 7;
     GroupCall groupCall = 8;
     LearnedProfileChatUpdate learnedProfileChange = 9;
+    PollTerminateUpdate pollTerminate = 10;
   }
 }
 
@@ -1180,6 +1201,11 @@ message GroupV2MigrationDroppedMembersUpdate {
 message GroupExpirationTimerUpdate {
   uint64 expiresInMs = 1; // 0 means the expiration timer was disabled
   optional bytes updaterAci = 2;
+}
+
+message PollTerminateUpdate {
+  uint64 targetSentTimestamp = 1;
+  string question = 2; // Between 1-100 characters
 }
 
 message StickerPack {

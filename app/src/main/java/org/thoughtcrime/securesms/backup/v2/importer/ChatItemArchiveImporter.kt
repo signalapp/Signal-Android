@@ -62,6 +62,7 @@ import org.thoughtcrime.securesms.database.model.databaseprotos.GV2UpdateDescrip
 import org.thoughtcrime.securesms.database.model.databaseprotos.GiftBadge
 import org.thoughtcrime.securesms.database.model.databaseprotos.MessageExtras
 import org.thoughtcrime.securesms.database.model.databaseprotos.PaymentTombstone
+import org.thoughtcrime.securesms.database.model.databaseprotos.PollTerminate
 import org.thoughtcrime.securesms.database.model.databaseprotos.ProfileChangeDetails
 import org.thoughtcrime.securesms.database.model.databaseprotos.SessionSwitchoverEvent
 import org.thoughtcrime.securesms.database.model.databaseprotos.ThreadMergeEvent
@@ -72,6 +73,7 @@ import org.thoughtcrime.securesms.payments.Direction
 import org.thoughtcrime.securesms.payments.FailureReason
 import org.thoughtcrime.securesms.payments.State
 import org.thoughtcrime.securesms.payments.proto.PaymentMetaData
+import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.stickers.StickerLocator
@@ -304,6 +306,21 @@ class ChatItemArchiveImporter(
           )
           db.insert(CallTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, values)
         }
+      } else if (this.updateMessage.pollTerminate != null) {
+        followUps += { endPollMessageId ->
+          val pollMessageId = SignalDatabase.messages.getMessageFor(updateMessage.pollTerminate.targetSentTimestamp, fromRecipientId)?.id ?: -1
+          val pollId = SignalDatabase.polls.getPollId(pollMessageId)
+
+          val messageExtras = MessageExtras(pollTerminate = PollTerminate(question = updateMessage.pollTerminate.question, messageId = pollMessageId, targetTimestamp = updateMessage.pollTerminate.targetSentTimestamp))
+          db.update(MessageTable.TABLE_NAME)
+            .values(MessageTable.MESSAGE_EXTRAS to messageExtras.encode())
+            .where("${MessageTable.ID} = ?", endPollMessageId)
+            .run()
+
+          if (pollId != null) {
+            SignalDatabase.polls.endPoll(pollId = pollId, endingMessageId = endPollMessageId)
+          }
+        }
       }
     }
 
@@ -455,6 +472,35 @@ class ChatItemArchiveImporter(
       if (attachment != null) {
         followUps += { messageRowId ->
           SignalDatabase.attachments.insertAttachmentsForMessage(messageRowId, listOf(attachment), emptyList())
+        }
+      }
+    }
+
+    if (this.poll != null) {
+      contentValues.put(MessageTable.BODY, poll.question)
+      contentValues.put(MessageTable.VOTES_LAST_SEEN, System.currentTimeMillis())
+
+      followUps += { messageRowId ->
+        val pollId = SignalDatabase.polls.insertPoll(
+          question = poll.question,
+          allowMultipleVotes = poll.allowMultiple,
+          options = poll.options.map { it.option },
+          authorId = fromRecipientId.toLong(),
+          messageId = messageRowId
+        )
+
+        val localOptionIds = SignalDatabase.polls.getPollOptionIds(pollId)
+        poll.options.forEachIndexed { index, option ->
+          val localVoterIds = option.votes.map { importState.remoteToLocalRecipientId[it.voterId]?.toLong() }
+          val voteCounts = option.votes.map { it.voteCount }
+          val localVoters = localVoterIds.mapIndexedNotNull { index, id -> id?.let { Voter(id = id, voteCount = voteCounts[index]) } }
+          SignalDatabase.polls.addPollVotes(pollId = pollId, optionId = localOptionIds[index], voters = localVoters)
+        }
+
+        if (poll.hasEnded) {
+          // At this point, we don't know what message ended the poll. Instead, we set it to -1 to indicate that it
+          // is ended and will update endingMessageId when we process the poll terminate message (if it exists).
+          SignalDatabase.polls.endPoll(pollId = pollId, endingMessageId = -1)
         }
       }
     }
@@ -773,6 +819,9 @@ class ChatItemArchiveImporter(
         val profileChangeDetails = ProfileChangeDetails(learnedProfileName = ProfileChangeDetails.LearnedProfileName(e164 = updateMessage.learnedProfileChange.e164?.toString(), username = updateMessage.learnedProfileChange.username))
         val messageExtras = MessageExtras(profileChangeDetails = profileChangeDetails).encode()
         put(MessageTable.MESSAGE_EXTRAS, messageExtras)
+      }
+      updateMessage.pollTerminate != null -> {
+        typeFlags = MessageTypes.SPECIAL_TYPE_POLL_TERMINATE or (getAsLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK.inv())
       }
       updateMessage.sessionSwitchover != null -> {
         typeFlags = MessageTypes.SESSION_SWITCHOVER_TYPE or (getAsLong(MessageTable.TYPE) and MessageTypes.BASE_TYPE_MASK.inv())

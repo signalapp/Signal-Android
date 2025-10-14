@@ -48,6 +48,7 @@ import org.thoughtcrime.securesms.compose.ComposeDialogFragment
 import org.thoughtcrime.securesms.conversation.clicklisteners.PollVotesFragment.Companion.MAX_INITIAL_VOTER_COUNT
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
+import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.util.viewModel
 
 /**
@@ -218,8 +219,8 @@ private fun PollResultsScreenPreview() {
           id = 1,
           question = "How do you feel about finished compose previews?",
           pollOptions = listOf(
-            PollOption(1, "Yay", listOf(1, 12, 3)),
-            PollOption(2, "Ok", listOf(2, 4), isSelected = true),
+            PollOption(1, "Yay", listOf(Voter(1, 1), Voter(12, 1), Voter(3, 1))),
+            PollOption(2, "Ok", listOf(Voter(2, 1), Voter(4, 1)), isSelected = true),
             PollOption(3, "Nay", emptyList())
           ),
           allowMultipleVotes = false,

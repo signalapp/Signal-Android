@@ -16,6 +16,7 @@ import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.MessageId
 import org.thoughtcrime.securesms.groups.GroupId
 import org.thoughtcrime.securesms.mms.IncomingMessage
+import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.testing.GroupTestingUtils
@@ -187,7 +188,7 @@ class DataMessageProcessorTest_polls {
     assertThat(messageId!!.id).isEqualTo(1)
     val poll = SignalDatabase.polls.getPoll(messageId.id)
     assert(poll != null)
-    assertThat(poll!!.pollOptions[0].voterIds).isEqualTo(listOf(bob.id.toLong()))
+    assertThat(poll!!.pollOptions[0].voters).isEqualTo(listOf(Voter(bob.id.toLong(), 1)))
   }
 
   @Test
@@ -207,9 +208,9 @@ class DataMessageProcessorTest_polls {
     assert(messageId != null)
     val poll = SignalDatabase.polls.getPoll(messageId!!.id)
     assert(poll != null)
-    assertThat(poll!!.pollOptions[0].voterIds).isEqualTo(listOf(bob.id.toLong()))
-    assertThat(poll.pollOptions[1].voterIds).isEqualTo(listOf(bob.id.toLong()))
-    assertThat(poll.pollOptions[2].voterIds).isEqualTo(listOf(bob.id.toLong()))
+    assertThat(poll!!.pollOptions[0].voters).isEqualTo(listOf(Voter(bob.id.toLong(), 1)))
+    assertThat(poll.pollOptions[1].voters).isEqualTo(listOf(Voter(bob.id.toLong(), 1)))
+    assertThat(poll.pollOptions[2].voters).isEqualTo(listOf(Voter(bob.id.toLong(), 1)))
   }
 
   @Test

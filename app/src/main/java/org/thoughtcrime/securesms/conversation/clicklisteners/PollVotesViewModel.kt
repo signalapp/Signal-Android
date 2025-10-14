@@ -39,7 +39,7 @@ class PollVotesViewModel(pollId: Long) : ViewModel() {
           pollOptions = poll.pollOptions.map { option ->
             PollOptionModel(
               pollOption = option,
-              voters = Recipient.resolvedList(option.voterIds.map { voter -> RecipientId.from(voter) })
+              voters = Recipient.resolvedList(option.voters.map { voter -> RecipientId.from(voter.id) })
             )
           },
           isAuthor = poll.authorId == Recipient.self().id.toLong()

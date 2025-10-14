@@ -295,7 +295,7 @@ public abstract class MessageRecord extends DisplayRecord {
     } else if (isUnsupported()) {
       return staticUpdateDescription(context.getString(R.string.MessageRecord_unsupported_feature, getFromRecipient().getDisplayName(context)), Glyph.ERROR);
     } else if (MessageRecordUtil.hasPollTerminate(this)) {
-      String creator = isOutgoing() ? context.getString(R.string.MessageRecord_you) : getFromRecipient().getDisplayName(context);
+      String creator = getFromRecipient().isSelf() ? context.getString(R.string.MessageRecord_you) : getFromRecipient().getDisplayName(context);
       return staticUpdateDescriptionWithExpiration(context.getString(R.string.MessageRecord_ended_the_poll, creator, messageExtras.pollTerminate.question), Glyph.POLL);
     }
 

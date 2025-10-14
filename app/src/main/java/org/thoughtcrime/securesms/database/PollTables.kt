@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.polls.PollVote
+import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
 
@@ -171,10 +172,10 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   /**
-   * Inserts a newly created poll with its options
+   * Inserts a newly created poll with its options. Returns the newly created row id
    */
-  fun insertPoll(question: String, allowMultipleVotes: Boolean, options: List<String>, authorId: Long, messageId: Long) {
-    writableDatabase.withinTransaction { db ->
+  fun insertPoll(question: String, allowMultipleVotes: Boolean, options: List<String>, authorId: Long, messageId: Long): Long {
+    return writableDatabase.withinTransaction { db ->
       val pollId = db.insertInto(PollTable.TABLE_NAME)
         .values(
           contentValuesOf(
@@ -190,6 +191,30 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         PollOptionTable.TABLE_NAME,
         arrayOf(PollOptionTable.POLL_ID, PollOptionTable.OPTION_TEXT, PollOptionTable.OPTION_ORDER),
         options.toPollContentValues(pollId)
+      ).forEach {
+        db.execSQL(it.where, it.whereArgs)
+      }
+      pollId
+    }
+  }
+
+  /**
+   * Inserts a poll option and voters for that option. Called when restoring polls from backups.
+   */
+  fun addPollVotes(pollId: Long, optionId: Long, voters: List<Voter>) {
+    writableDatabase.withinTransaction { db ->
+      SqlUtil.buildBulkInsert(
+        PollVoteTable.TABLE_NAME,
+        arrayOf(PollVoteTable.POLL_ID, PollVoteTable.POLL_OPTION_ID, PollVoteTable.VOTER_ID, PollVoteTable.VOTE_COUNT, PollVoteTable.DATE_RECEIVED, PollVoteTable.VOTE_STATE),
+        voters.map { voter ->
+          contentValuesOf(
+            PollVoteTable.POLL_ID to pollId,
+            PollVoteTable.POLL_OPTION_ID to optionId,
+            PollVoteTable.VOTER_ID to voter.id,
+            PollVoteTable.VOTE_COUNT to voter.voteCount,
+            PollVoteTable.VOTE_STATE to VoteState.ADDED.value
+          )
+        }
       ).forEach {
         db.execSQL(it.where, it.whereArgs)
       }
@@ -504,31 +529,30 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
     val self = Recipient.self().id.toLong()
     val query = SqlUtil.buildFastCollectionQuery(PollTable.MESSAGE_ID, messageIds)
-    return readableDatabase.withinTransaction { db ->
-      db.select(PollTable.ID, PollTable.MESSAGE_ID, PollTable.QUESTION, PollTable.ALLOW_MULTIPLE_VOTES, PollTable.END_MESSAGE_ID, PollTable.AUTHOR_ID, PollTable.MESSAGE_ID)
-        .from(PollTable.TABLE_NAME)
-        .where(query.where, query.whereArgs)
-        .run()
-        .readToMap { cursor ->
-          val pollId = cursor.requireLong(PollTable.ID)
-          val pollVotes = getPollVotes(pollId)
-          val pendingVotes = getPendingVotes(pollId)
-          val pollOptions = getPollOptions(pollId).map { option ->
-            val voterIds = pollVotes[option.key] ?: emptyList()
-            PollOption(id = option.key, text = option.value, voterIds = voterIds, isSelected = voterIds.contains(self), isPending = pendingVotes.contains(option.key))
-          }
-          val poll = PollRecord(
-            id = pollId,
-            question = cursor.requireNonNullString(PollTable.QUESTION),
-            pollOptions = pollOptions,
-            allowMultipleVotes = cursor.requireBoolean(PollTable.ALLOW_MULTIPLE_VOTES),
-            hasEnded = cursor.requireBoolean(PollTable.END_MESSAGE_ID),
-            authorId = cursor.requireLong(PollTable.AUTHOR_ID),
-            messageId = cursor.requireLong(PollTable.MESSAGE_ID)
-          )
-          cursor.requireLong(PollTable.MESSAGE_ID) to poll
+    return readableDatabase
+      .select(PollTable.ID, PollTable.MESSAGE_ID, PollTable.QUESTION, PollTable.ALLOW_MULTIPLE_VOTES, PollTable.END_MESSAGE_ID, PollTable.AUTHOR_ID, PollTable.MESSAGE_ID)
+      .from(PollTable.TABLE_NAME)
+      .where(query.where, query.whereArgs)
+      .run()
+      .readToMap { cursor ->
+        val pollId = cursor.requireLong(PollTable.ID)
+        val pollVotes = getPollVotes(pollId)
+        val pendingVotes = getPendingVotes(pollId)
+        val pollOptions = getPollOptions(pollId).map { option ->
+          val voters = pollVotes[option.key] ?: emptyList()
+          PollOption(id = option.key, text = option.value, voters = voters, isSelected = voters.any { it.id == self }, isPending = pendingVotes.contains(option.key))
         }
-    }
+        val poll = PollRecord(
+          id = pollId,
+          question = cursor.requireNonNullString(PollTable.QUESTION),
+          pollOptions = pollOptions,
+          allowMultipleVotes = cursor.requireBoolean(PollTable.ALLOW_MULTIPLE_VOTES),
+          hasEnded = cursor.requireBoolean(PollTable.END_MESSAGE_ID),
+          authorId = cursor.requireLong(PollTable.AUTHOR_ID),
+          messageId = cursor.requireLong(PollTable.MESSAGE_ID)
+        )
+        cursor.requireLong(PollTable.MESSAGE_ID) to poll
+      }
   }
 
   /**
@@ -593,14 +617,14 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       }
   }
 
-  private fun getPollVotes(pollId: Long): Map<Long, List<Long>> {
+  private fun getPollVotes(pollId: Long): Map<Long, List<Voter>> {
     return readableDatabase
-      .select(PollVoteTable.POLL_OPTION_ID, PollVoteTable.VOTER_ID)
+      .select(PollVoteTable.POLL_OPTION_ID, PollVoteTable.VOTER_ID, PollVoteTable.VOTE_COUNT)
       .from(PollVoteTable.TABLE_NAME)
       .where("${PollVoteTable.POLL_ID} = ? AND (${PollVoteTable.VOTE_STATE} = ${VoteState.ADDED.value} OR ${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_REMOVE.value})", pollId)
       .run()
       .groupBy { cursor ->
-        cursor.requireLong(PollVoteTable.POLL_OPTION_ID) to cursor.requireLong(PollVoteTable.VOTER_ID)
+        cursor.requireLong(PollVoteTable.POLL_OPTION_ID) to Voter(id = cursor.requireLong(PollVoteTable.VOTER_ID), voteCount = cursor.requireInt(PollVoteTable.VOTE_COUNT))
       }
   }
 
