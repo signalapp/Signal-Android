@@ -332,12 +332,7 @@ private fun TopAppBar(
           offsetY = 0.dp
         ) {
           DropdownMenus.Item(
-            text = {
-              Text(
-                text = stringResource(R.string.StickerManagement_menu_select_packs),
-                style = MaterialTheme.typography.bodyLarge
-              )
-            },
+            text = { Text(text = stringResource(R.string.StickerManagement_menu_select_packs)) },
             onClick = {
               onSetMultiSelectModeEnabled(true)
               menuController.hide()

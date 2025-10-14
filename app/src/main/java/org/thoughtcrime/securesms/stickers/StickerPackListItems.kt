@@ -388,7 +388,6 @@ private fun MenuItem(
         )
         Text(
           text = text,
-          style = MaterialTheme.typography.bodyLarge,
           modifier = Modifier.padding(horizontal = 16.dp)
         )
       }

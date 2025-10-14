@@ -554,8 +554,7 @@ fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit, onEditDevice:
               )
               Text(
                 text = stringResource(R.string.LinkDeviceFragment__unlink),
-                modifier = Modifier.padding(horizontal = 16.dp),
-                style = MaterialTheme.typography.bodyLarge
+                modifier = Modifier.padding(horizontal = 16.dp)
               )
             }
           },
@@ -579,8 +578,7 @@ fun DeviceRow(device: Device, setDeviceToRemove: (Device) -> Unit, onEditDevice:
               )
               Text(
                 text = stringResource(R.string.LinkDeviceFragment__edit_name),
-                modifier = Modifier.padding(horizontal = 16.dp),
-                style = MaterialTheme.typography.bodyLarge
+                modifier = Modifier.padding(horizontal = 16.dp)
               )
             }
           },

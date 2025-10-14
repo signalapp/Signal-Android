@@ -11,8 +11,10 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -69,7 +71,11 @@ object DropdownMenus {
   ) {
     DropdownMenuItem(
       contentPadding = contentPadding,
-      text = text,
+      text = {
+        CompositionLocalProvider(LocalTextStyle provides MaterialTheme.typography.bodyLarge) {
+          text()
+        }
+      },
       onClick = onClick,
       modifier = modifier
     )
