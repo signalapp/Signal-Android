@@ -498,7 +498,7 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
    * Maps message ids to its associated poll (if it exists)
    */
   fun getPollsForMessages(messageIds: Collection<Long>): Map<Long, PollRecord> {
-    if (messageIds.isEmpty()) {
+    if (messageIds.isEmpty() || !Recipient.isSelfSet) {
       return emptyMap()
     }
 
