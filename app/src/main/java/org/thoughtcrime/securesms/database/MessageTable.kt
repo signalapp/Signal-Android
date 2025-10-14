@@ -45,6 +45,7 @@ import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
 import org.signal.core.util.readToList
 import org.signal.core.util.readToSet
+import org.signal.core.util.readToSingleBoolean
 import org.signal.core.util.readToSingleInt
 import org.signal.core.util.readToSingleLong
 import org.signal.core.util.readToSingleLongOrNull
@@ -5517,6 +5518,246 @@ open class MessageTable(context: Context?, databaseHelper: SignalDatabase) : Dat
         MmsReader(it).toSet()
       }
   }
+
+  /**
+   * Remove duplicate messages that were imported from a backup without the same sql constraint on the this table.
+   *
+   * Heavily lifted from [org.thoughtcrime.securesms.database.helpers.migration.V191_UniqueMessageMigrationV2].
+   */
+  fun removeDuplicatesPostBackupRestore() {
+    writableDatabase.execSQL("CREATE INDEX IF NOT EXISTS tmp_message_date_sent_from_to_thread_index ON $TABLE_NAME ($DATE_SENT, $FROM_RECIPIENT_ID, $TO_RECIPIENT_ID, $THREAD_ID)")
+
+    // First, we define a temp table "needs_update", representing all the messages that need to be updated.
+    // A message should be updated if it's an expiration or bad-decrypt message and there is more than one message with the same (date_sent, from_recipient_id, thread_id) values.
+    // Then we shift all of the date_sent times back 1 ms.
+    writableDatabase.execSQL(
+      """
+      WITH needs_update AS (
+        SELECT
+          $ID
+        FROM
+          $TABLE_NAME M
+        WHERE
+          (
+            $TYPE & ${MessageTypes.EXPIRATION_TIMER_UPDATE_BIT} != 0
+            OR $TYPE & ${MessageTypes.ENCRYPTION_REMOTE_FAILED_BIT} != 0
+            OR $TYPE = ${MessageTypes.BAD_DECRYPT_TYPE}
+          )
+          AND (
+            SELECT
+              COUNT(*)
+            FROM
+              $TABLE_NAME INDEXED BY tmp_message_date_sent_from_to_thread_index
+            WHERE
+              $DATE_SENT = M.$DATE_SENT
+              AND $FROM_RECIPIENT_ID = M.$FROM_RECIPIENT_ID
+              AND $THREAD_ID = M.$THREAD_ID
+          ) > 1
+      )
+      UPDATE
+        $TABLE_NAME
+      SET
+        $DATE_SENT = $DATE_SENT - 1
+      WHERE
+        $ID IN needs_update
+      """
+    )
+
+    // Now that we've corrected data that we know we want to preserve, the rest should all be duplicates that we can safely delete.
+    // First we define a temp table "needs_delete", representing all the messages that need to be deleted.
+    // A message should be deleted if it has an _id that's greater than the smallest _id with the same (date_sent, from_recipient_id, thread_id, body) values.
+    // Note that we coerce null bodies to empty string because I saw examples of duplicate timer events where one had a null body and one had an empty string.
+    // Also, there's a known situation where duplicate group update events were found that had differing bodies despite being duplicates in effect, so those
+    // are also accounted for.
+    // Then we delete all the messages from that temp table.
+    writableDatabase.execSQL(
+      """
+      WITH needs_delete AS (
+        SELECT
+          $ID
+        FROM
+          $TABLE_NAME M
+        WHERE
+          $ID > (
+            SELECT
+              min($ID)
+            FROM
+              $TABLE_NAME INDEXED BY tmp_message_date_sent_from_to_thread_index
+            WHERE
+              $DATE_SENT = M.$DATE_SENT
+              AND $FROM_RECIPIENT_ID = M.$FROM_RECIPIENT_ID
+              AND $THREAD_ID = M.$THREAD_ID
+              AND (
+                COALESCE($BODY, '') = COALESCE(M.$BODY, '')
+                OR $TYPE & $${MessageTypes.GROUP_UPDATE_BIT} != 0
+              )
+          )
+      )
+      DELETE FROM
+        $TABLE_NAME
+      WHERE
+        $ID IN needs_delete
+      """
+    )
+
+    val remainingDupes: List<Duplicate> = findRemainingDuplicates(writableDatabase)
+
+    if (remainingDupes.isNotEmpty()) {
+      val uniqueTimestamps = remainingDupes.distinctBy { it.dateSent }
+      val uniqueTypes = remainingDupes.map { it.type }.toSet()
+
+      Log.w(TAG, "[removeDuplicatesPostBackupRestore] Still had ${remainingDupes.size} remaining duplicates! There are ${uniqueTimestamps.size} unique timestamp(s) and ${uniqueTypes.size} unique type(s): $uniqueTypes")
+
+      // Group each dupe by its (date_sent, thread_id) pair and fix each set
+      remainingDupes
+        .groupBy { UniqueId(it.dateSent, it.fromRecipientId, it.threadId) }
+        .forEach { entry -> fixDuplicate(writableDatabase, entry.value) }
+    }
+
+    writableDatabase.execSQL("DELETE FROM ${ReactionTable.TABLE_NAME} WHERE ${ReactionTable.MESSAGE_ID} NOT IN (SELECT $ID FROM $TABLE_NAME)")
+    writableDatabase.execSQL("DELETE FROM ${StorySendTable.TABLE_NAME} WHERE ${StorySendTable.MESSAGE_ID} NOT IN (SELECT $ID FROM $TABLE_NAME)")
+    writableDatabase.execSQL("DELETE FROM ${CallTable.TABLE_NAME} WHERE ${CallTable.MESSAGE_ID} NOT NULL AND ${CallTable.MESSAGE_ID} NOT IN (SELECT $ID FROM $TABLE_NAME)")
+
+    writableDatabase.execSQL("DELETE FROM ${PollTables.PollTable.TABLE_NAME} WHERE ${PollTables.PollTable.MESSAGE_ID} NOT IN (SELECT $ID FROM $TABLE_NAME)")
+    writableDatabase.execSQL("DELETE FROM ${PollTables.PollOptionTable.TABLE_NAME} WHERE ${PollTables.PollOptionTable.POLL_ID} NOT IN (SELECT ${PollTables.PollTable.ID} FROM ${PollTables.PollTable.TABLE_NAME})")
+    writableDatabase.execSQL("DELETE FROM ${PollTables.PollVoteTable.TABLE_NAME} WHERE ${PollTables.PollVoteTable.POLL_ID} NOT IN (SELECT ${PollTables.PollTable.ID} FROM ${PollTables.PollTable.TABLE_NAME})")
+
+    writableDatabase.execSQL("DROP INDEX IF EXISTS tmp_message_date_sent_from_to_thread_index")
+  }
+
+  /**
+   * Can only be called from [removeDuplicatesPostBackupRestore].
+   */
+  private fun findRemainingDuplicates(db: SQLiteDatabase): List<Duplicate> {
+    return db.rawQuery(
+      """
+      WITH dupes AS (
+        SELECT
+          $ID,
+          $DATE_SENT,
+          $FROM_RECIPIENT_ID,
+          $THREAD_ID,
+          $TYPE
+        FROM
+          $TABLE_NAME M
+        WHERE
+          (
+            SELECT
+              COUNT(*)
+            FROM
+              $TABLE_NAME INDEXED BY tmp_message_date_sent_from_to_thread_index
+            WHERE
+              $DATE_SENT = M.$DATE_SENT
+              AND $FROM_RECIPIENT_ID = M.$FROM_RECIPIENT_ID
+              AND $THREAD_ID = M.$THREAD_ID
+          ) > 1
+      )
+      SELECT
+        $ID,
+        $DATE_SENT,
+        $FROM_RECIPIENT_ID,
+        $THREAD_ID,
+        $TYPE
+      FROM
+        $TABLE_NAME
+      WHERE
+        $ID IN (SELECT $ID FROM dupes)
+      ORDER BY
+        $DATE_SENT ASC,
+        $ID ASC
+      """,
+      null
+    ).readToList { cursor ->
+      Duplicate(
+        id = cursor.requireLong(ID),
+        dateSent = cursor.requireLong(DATE_SENT),
+        fromRecipientId = cursor.requireLong(FROM_RECIPIENT_ID),
+        threadId = cursor.requireLong(THREAD_ID),
+        type = cursor.requireLong(TYPE)
+      )
+    }
+  }
+
+  /**
+   * Fixes a single set of dupes that all have the same date_sent. The process for fixing them is as follows:
+   *
+   * Remember that all of the messages passed in have the same date_sent and thread_id.
+   * What we want to do is shift messages back so that they can all have unique date_sent's within the thread.
+   *
+   * So if we had data like this:
+   *
+   * _id | date_sent
+   * 98  | 1000
+   * 99  | 1000
+   * 100 | 1000
+   *
+   * We'd want to turn it into this:
+   *
+   * _id | date_sent
+   * 98  | 998
+   * 99  | 999
+   * 100 | 1000
+   *
+   * However, we don't want to create new duplicates along the way, so we have to make sure the the date we move
+   * to is actually free, and therefore have to do a little extra peeking and bookkeeping along the way.
+   */
+  private fun fixDuplicate(db: SQLiteDatabase, duplicates: List<Duplicate>) {
+    var candidateDateSent = duplicates[0].dateSent - 1
+
+    // Moving from highest-to-lowest _id (skipping the highest, since it can keep the original date_sent), we find the next
+    // available date_sent in the table and move it there.
+    duplicates
+      .sortedByDescending { it.id }
+      .drop(1)
+      .forEach { duplicate ->
+        while (isDateTaken(db, candidateDateSent, duplicate.fromRecipientId, duplicate.threadId)) {
+          candidateDateSent--
+        }
+
+        db.execSQL(
+          """
+            UPDATE $TABLE_NAME
+            SET $DATE_SENT = $candidateDateSent
+            WHERE $ID = ${duplicate.id}
+          """
+        )
+
+        candidateDateSent--
+      }
+  }
+
+  /**
+   * True if there already exists a message with the provided tuple, otherwise false.
+   * Can only be called from [removeDuplicatesPostBackupRestore].
+   */
+  private fun isDateTaken(db: SQLiteDatabase, dateSent: Long, fromRecipientId: Long, threadId: Long): Boolean {
+    return db.rawQuery(
+      """
+      SELECT EXISTS (
+        SELECT 1
+        FROM $TABLE_NAME INDEXED BY tmp_message_date_sent_from_to_thread_index
+        WHERE $DATE_SENT = ? AND $FROM_RECIPIENT_ID = ? AND $THREAD_ID = ?
+      )
+      """,
+      dateSent,
+      fromRecipientId,
+      threadId
+    ).readToSingleBoolean()
+  }
+
+  data class UniqueId(
+    val dateSent: Long,
+    val fromRecipientId: Long,
+    val threadId: Long
+  )
+
+  data class Duplicate(
+    val id: Long,
+    val dateSent: Long,
+    val fromRecipientId: Long,
+    val threadId: Long,
+    val type: Long
+  )
 
   protected enum class ReceiptType(val columnName: String, val groupStatus: Int) {
     READ(HAS_READ_RECEIPT, GroupReceiptTable.STATUS_READ),

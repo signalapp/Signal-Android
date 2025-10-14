@@ -1381,6 +1381,9 @@ object BackupRepository {
 
       stopwatch.split("frames")
 
+      Log.d(TAG, "[import] Remove duplicate messages...")
+      SignalDatabase.messages.removeDuplicatesPostBackupRestore()
+
       Log.d(TAG, "[import] Rebuilding FTS index...")
       SignalDatabase.messageSearch.rebuildIndex()
 
