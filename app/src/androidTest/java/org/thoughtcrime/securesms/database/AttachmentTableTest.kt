@@ -19,6 +19,7 @@ import org.junit.Ignore
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.signal.core.util.Base64
 import org.signal.core.util.Base64.decodeBase64OrThrow
 import org.signal.core.util.copyTo
 import org.signal.core.util.stream.NullOutputStream
@@ -37,6 +38,7 @@ import org.whispersystems.signalservice.api.crypto.AttachmentCipherOutputStream
 import org.whispersystems.signalservice.api.crypto.NoCipherOutputStream
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentPointer
 import org.whispersystems.signalservice.api.messages.SignalServiceAttachmentRemoteId
+import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.util.Optional
@@ -326,6 +328,92 @@ class AttachmentTableTest {
     assertThat(attachments).isEmpty()
   }
 
+  /**
+   * There's a race condition where the following was happening:
+   *
+   * 1. Receive attachment A
+   * 2. Download attachment A
+   * 3. Enqueue copy to archive job for A (old media name)
+   * 4. Receive attachment B that is identical to A
+   * 5. Dedupe B with A's data file but update A to match B's "newer" remote key
+   * 6. Enqueue copy to archive job for B (new media name)
+   * 7. Copy to archive for A succeeds for old media name, updating A and B to FINISHED
+   * 8. Copy to archive for B for new media name early aborts because B is already marked FINISHED
+   *
+   * THe problem is Step 7 because it's marking attachments as archived but under the old media and not the new media name.
+   *
+   * This tests recreates the flow but ensures Step 7 doesn't mark A and B as finished so that Step 8 will not early abort and copy
+   * B over with the new media name.
+   */
+  @Test
+  fun givenAnDuplicateAttachmentPriorToCopyToArchive_whenICopyFirstAttachmentToArchive_thenIDoNotExpectBothAttachmentsToChangeArchiveStateToFinished() {
+    val data = byteArrayOf(1, 2, 3, 4, 5)
+
+    val attachment1 = createAttachmentPointer("remote-key-1".toByteArray(), data.size)
+    val attachment2 = createAttachmentPointer("remote-key-2".toByteArray(), data.size)
+
+    // Insert Message 1
+    val message1Result = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = 0.days, attachment = attachment1)).get()
+    val message1Id = message1Result.messageId
+    val attachment1Id = message1Result.insertedAttachments!![attachment1]!!
+    // AttachmentDownloadJob#onAdded
+    SignalDatabase.attachments.setTransferState(message1Id, attachment1Id, AttachmentTable.TRANSFER_PROGRESS_STARTED)
+
+    // Insert Message 2
+    val message2Result = SignalDatabase.messages.insertMessageInbox(createIncomingMessage(serverTime = 1.days, attachment = attachment2)).get()
+    val message2Id = message2Result.messageId
+    val attachment2Id = message2Result.insertedAttachments!![attachment2]!!
+    // AttachmentDownloadJob#onAdded
+    SignalDatabase.attachments.setTransferState(message2Id, attachment2Id, AttachmentTable.TRANSFER_PROGRESS_STARTED)
+
+    // Finalize Attachment 1 download
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(message1Id, attachment1Id, ByteArrayInputStream(data))
+    // CopyAttachmentToArchiveJob#onAdded
+    SignalDatabase.attachments.setArchiveTransferState(attachment1Id, AttachmentTable.ArchiveTransferState.COPY_PENDING)
+
+    // Verify Attachment 1 data matches original Attachment 1 data from insert
+    var dbAttachment1 = SignalDatabase.attachments.getAttachment(attachment1Id)!!
+    assertThat(dbAttachment1.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.COPY_PENDING)
+    assertThat(dbAttachment1.remoteKey).isEqualTo(Base64.encodeWithPadding("remote-key-1".toByteArray()))
+
+    val attachment1InitialRemoteKey = dbAttachment1.remoteKey!!
+    val attachment1InitialPlaintextHash = dbAttachment1.dataHash!!
+
+    // Finalize Attachment 2
+    SignalDatabase.attachments.finalizeAttachmentAfterDownload(message2Id, attachment2Id, ByteArrayInputStream(data))
+
+    // Verify Attachment 1 data matches Attachment 2 data from insert and dedupe in finalize
+    dbAttachment1 = SignalDatabase.attachments.getAttachment(attachment1Id)!!
+    var dbAttachment2 = SignalDatabase.attachments.getAttachment(attachment2Id)!!
+    assertThat(dbAttachment1.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
+    assertThat(dbAttachment2.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
+    assertThat(dbAttachment1.remoteKey).isEqualTo(dbAttachment2.remoteKey)
+    assertThat(dbAttachment1.dataHash).isEqualTo(dbAttachment2.dataHash)
+
+    val attachment2InitialRemoteKey = dbAttachment2.remoteKey!!
+    val attachment2InitialPlaintextHash = dbAttachment2.dataHash!!
+
+    // "Finish" Copy to Archive for Attachment 1
+    SignalDatabase.attachments.setArchiveTransferState(attachment1Id, attachment1InitialRemoteKey, attachment1InitialPlaintextHash, AttachmentTable.ArchiveTransferState.FINISHED)
+
+    dbAttachment1 = SignalDatabase.attachments.getAttachment(attachment1Id)!!
+    dbAttachment2 = SignalDatabase.attachments.getAttachment(attachment2Id)!!
+
+    // Verify Attachment 1 and 2 are not updated as FINISHED since Attachment 1's media name parts have changed
+    assertThat(dbAttachment1.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
+    assertThat(dbAttachment2.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.NONE)
+
+    // "Finish" Copy to Archive for Attachment 2
+    SignalDatabase.attachments.setArchiveTransferState(attachment2Id, attachment2InitialRemoteKey, attachment2InitialPlaintextHash, AttachmentTable.ArchiveTransferState.FINISHED)
+
+    dbAttachment1 = SignalDatabase.attachments.getAttachment(attachment1Id)!!
+    dbAttachment2 = SignalDatabase.attachments.getAttachment(attachment2Id)!!
+
+    // Verify Attachment 1 and 2 are updated as FINISHED
+    assertThat(dbAttachment1.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.FINISHED)
+    assertThat(dbAttachment2.archiveTransferState).isEqualTo(AttachmentTable.ArchiveTransferState.FINISHED)
+  }
+
   private fun createIncomingMessage(
     serverTime: Duration,
     attachment: Attachment,
@@ -343,7 +431,7 @@ class AttachmentTableTest {
     )
   }
 
-  private fun createAttachmentPointer(key: ByteArray, digest: ByteArray, size: Int): Attachment {
+  private fun createAttachmentPointer(key: ByteArray, size: Int): Attachment {
     return PointerAttachment.forPointer(
       pointer = Optional.of(
         SignalServiceAttachmentPointer(
@@ -355,7 +443,7 @@ class AttachmentTableTest {
           preview = Optional.empty(),
           width = 2,
           height = 2,
-          digest = Optional.of(digest),
+          digest = Optional.of(byteArrayOf()),
           incrementalDigest = Optional.empty(),
           incrementalMacChunkSize = 0,
           fileName = Optional.of("file.jpg"),

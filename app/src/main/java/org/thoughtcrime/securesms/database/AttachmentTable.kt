@@ -944,6 +944,31 @@ class AttachmentTable(
     AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
   }
 
+  /**
+   * Sets the archive transfer state for the given attachment id, remote key, and plain text hash tuple and all other attachments that
+   * share the same data file.
+   */
+  fun setArchiveTransferState(id: AttachmentId, remoteKey: String, plaintextHash: String, state: ArchiveTransferState): Boolean {
+    writableDatabase.withinTransaction {
+      val dataFile: String = readableDatabase
+        .select(DATA_FILE)
+        .from(TABLE_NAME)
+        .where("$ID = ? AND $REMOTE_KEY = ? AND $DATA_HASH_END = ?", id.id, remoteKey, plaintextHash)
+        .run()
+        .readToSingleObject { it.requireString(DATA_FILE) } ?: return false
+
+      writableDatabase
+        .update(TABLE_NAME)
+        .values(ARCHIVE_TRANSFER_STATE to state.value)
+        .where("$DATA_FILE = ?", dataFile)
+        .run()
+    }
+
+    AppDependencies.databaseObserver.notifyAttachmentUpdatedObservers()
+
+    return true
+  }
+
   fun setArchiveThumbnailTransferState(id: AttachmentId, state: ArchiveTransferState) {
     check(state != ArchiveTransferState.COPY_PENDING) { "COPY_PENDING is not a valid transfer state for a thumbnail!" }
 

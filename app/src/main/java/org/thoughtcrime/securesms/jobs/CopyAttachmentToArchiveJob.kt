@@ -197,7 +197,7 @@ class CopyAttachmentToArchiveJob private constructor(private val attachmentId: A
 
     if (result.isSuccess) {
       Log.d(TAG, "[$attachmentId] Updating archive transfer state to ${AttachmentTable.ArchiveTransferState.FINISHED}")
-      SignalDatabase.attachments.setArchiveTransferState(attachmentId, AttachmentTable.ArchiveTransferState.FINISHED)
+      SignalDatabase.attachments.setArchiveTransferState(attachmentId, attachment.remoteKey!!, attachment.dataHash!!, AttachmentTable.ArchiveTransferState.FINISHED)
 
       if (!isCanceled && !attachment.quote) {
         ArchiveThumbnailUploadJob.enqueueIfNecessary(attachmentId)
