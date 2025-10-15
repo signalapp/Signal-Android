@@ -293,6 +293,7 @@ android {
       manifestPlaceholders["mapsKey"] = getMapsKey()
 
       buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Debug\"")
+      buildConfigField("boolean", "LINK_DEVICE_UX_ENABLED", "true")
     }
 
     getByName("release") {
@@ -318,7 +319,6 @@ android {
       isMinifyEnabled = false
       matchingFallbacks += "debug"
       buildConfigField("String", "BUILD_VARIANT_TYPE", "\"Spinner\"")
-      buildConfigField("boolean", "LINK_DEVICE_UX_ENABLED", "true")
     }
 
     create("perf") {
@@ -378,6 +378,7 @@ android {
       buildConfigField("boolean", "MANAGES_APP_UPDATES", "true")
       buildConfigField("String", "APK_UPDATE_MANIFEST_URL", "\"${apkUpdateManifestUrl}\"")
       buildConfigField("String", "BUILD_DISTRIBUTION_TYPE", "\"nightly\"")
+      buildConfigField("boolean", "LINK_DEVICE_UX_ENABLED", "true")
     }
 
     create("prod") {
