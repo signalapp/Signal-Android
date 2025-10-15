@@ -14,6 +14,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 data class ContactSelectionArguments(
   val displayMode: Int = Defaults.DISPLAY_MODE,
   val isRefreshable: Boolean = Defaults.IS_REFRESHABLE,
+  val enableCreateNewGroup: Boolean = Defaults.ENABLE_CREATE_NEW_GROUP,
   val enableFindByUsername: Boolean = Defaults.ENABLE_FIND_BY_USERNAME,
   val enableFindByPhoneNumber: Boolean = Defaults.ENABLE_FIND_BY_PHONE_NUMBER,
   val includeRecents: Boolean = Defaults.INCLUDE_RECENTS,
@@ -30,6 +31,7 @@ data class ContactSelectionArguments(
     return Bundle().apply {
       putInt(DISPLAY_MODE, displayMode)
       putBoolean(REFRESHABLE, isRefreshable)
+      putBoolean(ENABLE_CREATE_NEW_GROUP, enableCreateNewGroup)
       putBoolean(ENABLE_FIND_BY_USERNAME, enableFindByUsername)
       putBoolean(ENABLE_FIND_BY_PHONE_NUMBER, enableFindByPhoneNumber)
       putBoolean(RECENTS, includeRecents)
@@ -46,6 +48,7 @@ data class ContactSelectionArguments(
   companion object {
     const val DISPLAY_MODE = "display_mode"
     const val REFRESHABLE = "refreshable"
+    const val ENABLE_CREATE_NEW_GROUP = "enable_create_new_group"
     const val ENABLE_FIND_BY_USERNAME = "enable_find_by_username"
     const val ENABLE_FIND_BY_PHONE_NUMBER = "enable_find_by_phone"
     const val RECENTS = "recents"
@@ -69,6 +72,7 @@ data class ContactSelectionArguments(
       return ContactSelectionArguments(
         displayMode = bundle.getInt(DISPLAY_MODE, intent.getIntExtra(DISPLAY_MODE, Defaults.DISPLAY_MODE)),
         isRefreshable = bundle.getBoolean(REFRESHABLE, intent.getBooleanExtra(REFRESHABLE, Defaults.IS_REFRESHABLE)),
+        enableCreateNewGroup = bundle.getBoolean(ENABLE_CREATE_NEW_GROUP, intent.getBooleanExtra(ENABLE_CREATE_NEW_GROUP, Defaults.ENABLE_CREATE_NEW_GROUP)),
         enableFindByUsername = bundle.getBoolean(ENABLE_FIND_BY_USERNAME, intent.getBooleanExtra(ENABLE_FIND_BY_USERNAME, Defaults.ENABLE_FIND_BY_USERNAME)),
         enableFindByPhoneNumber = bundle.getBoolean(ENABLE_FIND_BY_PHONE_NUMBER, intent.getBooleanExtra(ENABLE_FIND_BY_PHONE_NUMBER, Defaults.ENABLE_FIND_BY_PHONE_NUMBER)),
         includeRecents = bundle.getBoolean(RECENTS, intent.getBooleanExtra(RECENTS, Defaults.INCLUDE_RECENTS)),
@@ -87,6 +91,7 @@ data class ContactSelectionArguments(
 private object Defaults {
   const val DISPLAY_MODE = ContactSelectionDisplayMode.FLAG_ALL
   const val IS_REFRESHABLE = true
+  const val ENABLE_CREATE_NEW_GROUP = false
   const val ENABLE_FIND_BY_USERNAME = false
   const val ENABLE_FIND_BY_PHONE_NUMBER = false
   const val INCLUDE_RECENTS = false

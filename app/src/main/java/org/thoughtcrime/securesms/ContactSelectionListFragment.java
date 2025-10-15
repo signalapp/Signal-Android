@@ -146,7 +146,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     super.onAttach(context);
 
     if (context instanceof NewConversationCallback) {
-      newConversationCallback = (NewConversationCallback) context;
+      setNewConversationCallback((NewConversationCallback) context);
     }
 
     if (context instanceof FindByCallback) {
@@ -196,6 +196,10 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     if (getParentFragment() instanceof OnItemLongClickListener) {
       onItemLongClickListener = (OnItemLongClickListener) getParentFragment();
     }
+  }
+
+  public void setNewConversationCallback(@Nullable NewConversationCallback callback) {
+    this.newConversationCallback = callback;
   }
 
   public void setFindByCallback(@Nullable FindByCallback callback) {
@@ -903,7 +907,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
         builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.FIND_CONTACTS_BANNER.getCode());
       }
 
-      if (newConversationCallback != null && !hasQuery) {
+      if (fragmentArgs.getEnableCreateNewGroup() && !hasQuery) {
         builder.arbitrary(ContactSelectionListAdapter.ArbitraryRepository.ArbitraryRow.NEW_GROUP.getCode());
       }
 
