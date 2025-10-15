@@ -33,6 +33,7 @@ import org.thoughtcrime.securesms.database.EmojiSearchTable;
 import org.thoughtcrime.securesms.database.GroupReceiptTable;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.KyberPreKeyTable;
+import org.thoughtcrime.securesms.database.LastResortKeyTupleTable;
 import org.thoughtcrime.securesms.database.MentionTable;
 import org.thoughtcrime.securesms.database.MessageTable;
 import org.thoughtcrime.securesms.database.OneTimePreKeyTable;
@@ -90,6 +91,7 @@ public class FullBackupExporter extends FullBackupBase {
       SignedPreKeyTable.TABLE_NAME,
       OneTimePreKeyTable.TABLE_NAME,
       KyberPreKeyTable.TABLE_NAME,
+      LastResortKeyTupleTable.TABLE_NAME,
       SessionTable.TABLE_NAME,
       SearchTable.FTS_TABLE_NAME,
       EmojiSearchTable.TABLE_NAME,

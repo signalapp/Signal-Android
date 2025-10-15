@@ -30,6 +30,7 @@ import org.thoughtcrime.securesms.database.AttachmentTable;
 import org.thoughtcrime.securesms.database.EmojiSearchTable;
 import org.thoughtcrime.securesms.database.KeyValueDatabase;
 import org.thoughtcrime.securesms.database.KyberPreKeyTable;
+import org.thoughtcrime.securesms.database.LastResortKeyTupleTable;
 import org.thoughtcrime.securesms.database.OneTimePreKeyTable;
 import org.thoughtcrime.securesms.database.SearchTable;
 import org.thoughtcrime.securesms.database.SignedPreKeyTable;
@@ -70,7 +71,7 @@ public class FullBackupImporter extends FullBackupBase {
   @SuppressWarnings("unused")
   private static final String TAG = Log.tag(FullBackupImporter.class);
 
-  private static final Set<String> KEY_TABLES = SetsKt.setOf(KyberPreKeyTable.TABLE_NAME, OneTimePreKeyTable.TABLE_NAME, SignedPreKeyTable.TABLE_NAME);
+  private static final Set<String> KEY_TABLES = SetsKt.setOf(KyberPreKeyTable.TABLE_NAME, LastResortKeyTupleTable.TABLE_NAME, OneTimePreKeyTable.TABLE_NAME, SignedPreKeyTable.TABLE_NAME);
 
   public static boolean validatePassphrase(@NonNull Context context,
                                            @NonNull Uri uri,

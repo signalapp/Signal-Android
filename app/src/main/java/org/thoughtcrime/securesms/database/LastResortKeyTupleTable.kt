@@ -23,7 +23,7 @@ class LastResortKeyTupleTable(context: Context, databaseHelper: SignalDatabase) 
   companion object {
     private val TAG = Log.tag(LastResortKeyTupleTable::class)
 
-    private const val TABLE_NAME = "last_resort_key_tuple"
+    const val TABLE_NAME = "last_resort_key_tuple"
 
     private const val ID = "_id"
     private const val KYBER_PREKEY = "kyber_prekey_id"
