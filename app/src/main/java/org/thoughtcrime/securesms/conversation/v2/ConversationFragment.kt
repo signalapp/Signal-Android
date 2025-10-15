@@ -747,7 +747,7 @@ class ConversationFragment :
   override fun onConfigurationChanged(newConfig: Configuration) {
     super.onConfigurationChanged(newConfig)
     ToolbarDependentMarginListener(binding.toolbar)
-    inlineQueryController.onOrientationChange(newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE)
+    inlineQueryController.onWindowSizeClassChanged(resources.getWindowSizeClass())
   }
 
   override fun onDestroyView() {
@@ -1218,7 +1218,7 @@ class ConversationFragment :
   }
 
   private fun initializeInlineSearch() {
-    inlineQueryController.onOrientationChange(resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE)
+    inlineQueryController.onWindowSizeClassChanged(resources.getWindowSizeClass())
 
     composeText.apply {
       setInlineQueryChangedListener(object : InlineQueryChangedListener {

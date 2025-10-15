@@ -15,6 +15,7 @@ import org.thoughtcrime.securesms.components.ComposeText
 import org.thoughtcrime.securesms.conversation.ui.mentions.MentionsPickerFragmentV2
 import org.thoughtcrime.securesms.util.adapter.mapping.AnyMappingModel
 import org.thoughtcrime.securesms.util.doOnEachLayout
+import org.thoughtcrime.securesms.window.WindowSizeClass
 
 /**
  * Controller for inline search results.
@@ -36,7 +37,7 @@ class InlineQueryResultsControllerV2(
   private var mentionFragment: MentionsPickerFragmentV2? = null
   private var previousResults: InlineQueryViewModelV2.Results? = null
   private var canShow: Boolean = false
-  private var isLandscape: Boolean = false
+  private var shouldHideForWindowSizeClass: Boolean = false
 
   init {
     lifecycleDisposable.bindTo(parentFragment.viewLifecycleOwner)
@@ -69,10 +70,10 @@ class InlineQueryResultsControllerV2(
     emojiPopup = null
   }
 
-  fun onOrientationChange(isLandscape: Boolean) {
-    this.isLandscape = isLandscape
+  fun onWindowSizeClassChanged(windowSizeClass: WindowSizeClass) {
+    this.shouldHideForWindowSizeClass = windowSizeClass == WindowSizeClass.COMPACT_LANDSCAPE
 
-    if (isLandscape) {
+    if (shouldHideForWindowSizeClass) {
       dismiss()
     } else {
       updateList(previousResults ?: InlineQueryViewModelV2.None)
@@ -81,7 +82,7 @@ class InlineQueryResultsControllerV2(
 
   private fun updateList(results: InlineQueryViewModelV2.Results) {
     previousResults = results
-    if (results is InlineQueryViewModelV2.None || !canShow || isLandscape) {
+    if (results is InlineQueryViewModelV2.None || !canShow || shouldHideForWindowSizeClass) {
       dismiss()
     } else if (results is InlineQueryViewModelV2.EmojiResults) {
       showEmojiPopup(results)
