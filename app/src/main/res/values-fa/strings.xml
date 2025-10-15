@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">رسانه شما در پس‍‌زمینه بازیابی خواهد شد. اگر انتخابتان این باشد که اکنون بازیابی نکنید، بعداً قادر به بازیابی نخواهید بود.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">این دستگاه دیگر ثبت‌شده نیست</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">دلیلش احتمالاً این است که حساب سیگنال خود را در دستگاه دیگری ثبت کرده‌اید.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">برای اشاره‌ها من را آگاه کن</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">نام ، نام کاربری یا شماره</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">%1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">بازیابی رد شود؟</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">اگر اکنون رد شوید، بعداً نمی‌توانید بازیابی کنید. اگر بعد از رد کردن بازیابی، پشتیبان‌گیری را دوباره فعال کنید، نسخه پشتیبان فعلی‌تان با تاریخچه پیام جدیدتان جایگزین خواهد شد.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">رد کردن بازیابی</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">رمز بازیابی واردشده صحیح است، اما هیچ نسخه پشتیبان مرتبط با آن وجود ندارد. اگر هنوز تلفن قدیمی خود را دارید، مطمئن شوید که پشتیبان‌گیری فعال است و پشتیبان‌گیری تکمیل شده است، سپس دوباره امتحان کنید.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">ممکن است رمز بازیابی را نادرست وارد کرده باشید، یا حداقل یک نسخه پشتیبان را در دستگاه قدیمی‌تان تکمیل نکرده‌اید.\n\nمطمئن شوید که با همان شماره تلفن و رمز بازیابی در حال ثبت‌نام هستید که هنگام فعال کردن «پشتیبان‌گیری امن سیگنال» ذخیره کرده بودید، و تأیید کنید که دستگاه قدیمی‌تان پشتیبان‌گیری را تکمیل کرده است.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">به سقف تعداد تلاش‌های مجاز برای وارد کردن رمز بازیابی رسیده‌اید. برای امنیت خودتان، تعداد تلاش‌هایی که می‌توانید انجام دهید محدود است. یک ساعت صبر کنید و دوباره امتحان کنید.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">رد کردن بازیابی</string>
     <!-- Dialog title text when encountering backup restore network error -->

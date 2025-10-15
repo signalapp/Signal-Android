@@ -1454,9 +1454,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Media anda akan dipulihkan di latar belakang. Jika anda memilih untuk tidak memulihkan sekarang, anda tidak akan dapat memulihkannya kemudian.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Peranti tidak lagi didaftarkan</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Ini mungkin kerana anda mendaftarkan akaun Signal anda pada peranti lain.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Maklumkan saya untuk Sebutan</string>
@@ -5784,7 +5784,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Nama, nama pengguna, atau nombor</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8428,7 +8428,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Langkau pemulihan?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Jika anda melangkau pemulihan sekarang, anda tidak akan dapat memulihkan kemudian. Jika anda mendayakan semula sandaran selepas melangkau pemulihan, sandaran semasa anda akan digantikan dengan sejarah pemesejan baharu anda.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Langkau pemulihan</string>
 
@@ -8472,9 +8472,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Kunci pemulihan yang anda masukkan adalah betul, tetapi tiada sandaran yang dikaitkan dengannya. Jika anda masih mempunyai telefon lama anda, pastikan sandaran diaktifkan dan satu telah selesai dibuat, kemudian cuba lagi.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Anda mungkin telah memasukkan kunci pemulihan anda dengan salah atau anda belum melengkapkan sekurang-kurangnya satu sandaran pada peranti lama anda.\n\nPastikan anda mendaftar dengan nombor telefon dan kunci pemulihan yang sama yang anda simpan semasa mendayakan Sandaran Selamat Signal dan sahkan bahawa peranti lama anda telah melengkapkan sandaran.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Anda telah kehabisan percubaan kunci pemulihan. Untuk keselamatan anda, bilangan percubaan yang boleh anda lakukan adalah terhad. Tunggu satu jam dan cuba lagi.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Langkau pemulihan</string>
     <!-- Dialog title text when encountering backup restore network error -->

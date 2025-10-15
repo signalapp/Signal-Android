@@ -350,7 +350,7 @@
     <string name="CommunicationActions_cancel">Cancelar</string>
     <string name="CommunicationActions_call">Llamar</string>
     <string name="CommunicationActions_insecure_call">Llamada no segura</string>
-    <string name="CommunicationActions_carrier_charges_may_apply">Es posible que se apliquen cargos del operador móvil. El número al que llamas no está registrado en Signal. Esta llamada se realizará por la red de tu operador móvil, no por Internet.</string>
+    <string name="CommunicationActions_carrier_charges_may_apply">Es posible que se apliquen cargos del operador móvil. El número al que llamas no está registrado en Signal. Esta llamada se hará por la red de tu operador móvil, no por Internet.</string>
     <string name="CommunicationActions_cant_join_call">No es posible unirse a la llamada</string>
     <string name="CommunicationActions_this_call_link_is_no_longer_valid">Este enlace de llamada ya no es válido.</string>
     <!-- Title on dialog when call link url cannot be parsed -->
@@ -470,7 +470,7 @@
     <string name="ConversationActivity_invalid_recipient">Destinatario no válido</string>
     <string name="ConversationActivity_added_to_home_screen">Se ha añadido a la pantalla de inicio</string>
     <string name="ConversationActivity_calls_not_supported">Llamadas no disponibles</string>
-    <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo no es compatible con la función de realizar llamadas.</string>
+    <string name="ConversationActivity_this_device_does_not_appear_to_support_dial_actions">Este dispositivo no es compatible con la función de hacer llamadas.</string>
     <string name="ConversationActivity_transport_insecure_sms">SMS no seguro</string>
     <!-- A title for the option to send an SMS with a placeholder to put the name of their SIM card -->
     <string name="ConversationActivity_transport_insecure_sms_with_sim">SMS no seguro (%1$s)</string>
@@ -864,7 +864,7 @@
     <!-- Bottom sheet title -->
     <string name="CreateBackupBottomSheet__you_are_all_set">¡Todo listo! Ya puedes iniciar tu copia de seguridad.</string>
     <!-- Bottom sheet paid message -->
-    <string name="CreateBackupBottomSheet__depending_on_the_size">Dependiendo del tamaño de tu copia de seguridad, este proceso puede llevar bastante tiempo. Mientras se realiza la copia de seguridad, podrás seguir usando tu teléfono como de costumbre.</string>
+    <string name="CreateBackupBottomSheet__depending_on_the_size">Dependiendo del tamaño de tu copia de seguridad, este proceso puede llevar bastante tiempo. Mientras se genera la copia de seguridad, podrás seguir usando tu teléfono como de costumbre.</string>
     <!-- Bottom sheet free message -->
     <string name="CreateBackupBottomSheet__free_tier">Los archivos multimedia se guardan en tu copia de seguridad a medida que envías y recibes mensajes.</string>
 
@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Tus archivos multimedia se restaurarán en segundo plano. Si decides no restaurarlos ahora, no podrás hacerlo más tarde.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Este dispositivo ya no está registrado</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Probablemente se deba a que has registrado tu cuenta de Signal en un dispositivo diferente.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Notificarme cuando alguien me mencione</string>
@@ -4860,7 +4860,7 @@
     <string name="Recipient_deleted_account">Cuenta eliminada</string>
 
     <!-- Option in settings that will take use to re-register if they are no longer registered -->
-    <string name="preferences_account_reregister">Volver a registrar tu cuenta</string>
+    <string name="preferences_account_reregister">Volver a registrar cuenta</string>
     <!-- Option in settings that will take user to our website or playstore to update their expired build -->
     <string name="preferences_account_update_signal">Actualizar Signal</string>
     <!-- Option in settings shown when user is no longer registered or expired client that will WIPE ALL THEIR DATA -->
@@ -4970,8 +4970,8 @@
     <string name="DeviceTransfer__try_again">Reintentar</string>
     <string name="DeviceTransfer__stop_transfer">Detener transferencia</string>
     <string name="DeviceTransfer__all_transfer_progress_will_be_lost">Se perderá todo el progreso de la transferencia.</string>
-    <string name="DeviceTransfer__transfer_failed">No se ha podido realizar la transferencia</string>
-    <string name="DeviceTransfer__unable_to_transfer">No se puede realizar la transferencia</string>
+    <string name="DeviceTransfer__transfer_failed">No se ha podido completar la transferencia</string>
+    <string name="DeviceTransfer__unable_to_transfer">No se puede completar la transferencia</string>
 
     <!-- OldDeviceTransferInstructionsFragment -->
     <string name="OldDeviceTransferInstructions__transfer_account">Transferir cuenta</string>
@@ -4983,7 +4983,7 @@
     <string name="OldDeviceTransferInstructions__select_transfer_from_android_device_when_prompted_and_then_continue">"Selecciona \"Transferir desde dispositivo Android\" y luego \"Continuar\". Mantén ambos dispositivos cerca."</string>
     <string name="OldDeviceTransferInstructions__continue">Continuar</string>
     <!-- Title for exit device transfer confirmation dialog -->
-    <string name="OldDeviceTransferInstructions__confirm_exit_title">¿Detener la transferencia de dispositivos?</string>
+    <string name="OldDeviceTransferInstructions__confirm_exit_title">¿Detener la transferencia entre dispositivos?</string>
     <!-- Message for exit device transfer confirmation dialog -->
     <string name="OldDeviceTransferInstructions__confirm_exit_message">No se han transferido datos a tu nuevo dispositivo.</string>
     <!-- Confirm button for exit device transfer confirmation dialog -->
@@ -4997,7 +4997,7 @@
     <string name="OldDeviceTransferComplete__close">Cerrar</string>
 
     <!-- NewDeviceTransferComplete -->
-    <string name="NewDeviceTransferComplete__transfer_successful">Transferencia realizada correctamente</string>
+    <string name="NewDeviceTransferComplete__transfer_successful">Transferencia completada correctamente</string>
     <string name="NewDeviceTransferComplete__transfer_complete">Transferencia completada</string>
     <string name="NewDeviceTransferComplete__to_complete_the_transfer_process_you_must_continue_registration">Para completar la transferencia, debes continuar con el proceso de registro.</string>
     <string name="NewDeviceTransferComplete__continue_registration">Continuar con el registro</string>
@@ -5086,13 +5086,13 @@
     <string name="ReviewCardDialogFragment__review_request">Revisar solicitud</string>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__d_group_members_have_the_same_name">
-        <item quantity="one">%1$d participante del grupo tiene el mismo nombre. Revisa la siguiente lista de participantes y selecciona la opción que desees.</item>
-        <item quantity="other">%1$d participantes del grupo tienen el mismo nombre. Revisa la siguiente lista de participantes y selecciona la opción que desees.</item>
+        <item quantity="one">%1$d participante del grupo tiene el mismo nombre. Revisa la siguiente lista de participantes y selecciona la opción que quieras.</item>
+        <item quantity="other">%1$d participantes del grupo tienen el mismo nombre. Revisa la siguiente lista de participantes y selecciona la opción que quieras.</item>
     </plurals>
     <!-- Message of a screen where the user will be prompted to review a message request matching the name of someone they already know -->
     <plurals name="ReviewCardDialogFragment__if_youre_not_sure">
-        <item quantity="one">Si no sabes quién ha enviado esta solicitud, revisa el siguiente contacto y selecciona la opción que desees.</item>
-        <item quantity="other">Si no sabes quién ha enviado esta solicitud, revisa la siguiente lista de contactos y selecciona la opción que desees.</item>
+        <item quantity="one">Si no sabes quién ha enviado esta solicitud, revisa el siguiente contacto y selecciona la opción que quieras.</item>
+        <item quantity="other">Si no sabes quién ha enviado esta solicitud, revisa la siguiente lista de contactos y selecciona la opción que quieras.</item>
     </plurals>
     <string name="ReviewCardDialogFragment__no_other_groups_in_common">No tienes otros grupos en común.</string>
     <string name="ReviewCardDialogFragment__no_groups_in_common">No tienes grupos en común.</string>
@@ -5556,7 +5556,7 @@
     <!-- Option in context menu to edit the folder -->
     <string name="ChatFoldersFragment__edit_folder">Editar carpeta</string>
     <!-- Option in context menu to mute all chats in the folder -->
-    <string name="ChatFoldersFragment__mute_all">Silenciar todos</string>
+    <string name="ChatFoldersFragment__mute_all">Silenciar notificaciones</string>
     <!-- Option in context menu to unmute all chats in the folder -->
     <string name="ChatFoldersFragment__unmute_all">Reactivar notificaciones</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Nombre, alias o número</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -6203,7 +6203,7 @@
     <!-- Message of dialog telling user they need to re-register signal as it is no longer registered -->
     <string name="ReregisterSignalDialog__message">Este dispositivo ya no está registrado. Vuelve a registrarte para seguir usando Signal en este dispositivo.</string>
     <!-- Button text of re-registration dialog to re-register the device.  -->
-    <string name="ReregisterSignalDialog__reregister_action">Volver a registrarme</string>
+    <string name="ReregisterSignalDialog__reregister_action">Volver a registrar</string>
     <!-- Button text of re-registration dialog to cancel the dialog.  -->
     <string name="ReregisterSignalDialog__cancel_action">Cancelar</string>
 
@@ -6279,7 +6279,7 @@
     <!-- Displayed when badge credential couldn\'t be verified -->
     <string name="DonationsErrors__could_not_validate">No se ha podido validar la respuesta del servidor. Contacta con el equipo de asistencia.</string>
     <!-- Displayed as title when some generic error happens during sending donation on behalf of another user -->
-    <string name="DonationsErrors__donation_failed">No se ha podido realizar la donación</string>
+    <string name="DonationsErrors__donation_failed">No se ha podido hacer la donación</string>
     <!-- Displayed as message when some generic error happens during sending donation on behalf of another user -->
     <string name="DonationsErrors__your_payment_was_processed_but">Tu donación se ha procesado, pero Signal no ha podido enviar tu mensaje de donación. Contacta con el equipo de asistencia.</string>
     <string name="DonationsErrors__your_badge_could_not">No se ha podido añadir la insignia a tu perfil, pero es posible que se haya realizado el cargo. Contacta con el equipo de asistencia.</string>
@@ -7170,11 +7170,11 @@
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_monthly">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en procesarse. Espera hasta que se complete este pago antes de actualizar tu suscripción.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en procesarse. Espera hasta que se complete este pago antes de realizar otra donación.</string>
+    <string name="DonateToSignalFragment__bank_transfers_usually_take_1_business_day_to_process_onetime">Las transferencias bancarias pueden tardar entre 1 y 14 días hábiles en procesarse. Espera hasta que se complete este pago antes de hacer otra donación.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending monthly donation. -->
     <string name="DonateToSignalFragment__your_payment_is_still_being_processed_monthly">Tu donación aún se está procesando. Puede llevar unos minutos dependiendo de tu conexión. Espera hasta que se complete este pago antes de actualizar tu suscripción.</string>
     <!-- Dialog body when a user tries to donate while they already have a pending one time donation. -->
-    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Tu donación aún se está procesando. Puede llevar unos minutos dependiendo de tu conexión. Espera hasta que se complete este pago antes de realizar otra donación.</string>
+    <string name="DonateToSignalFragment__your_payment_is_still_being_processed_onetime">Tu donación aún se está procesando. Puede llevar unos minutos dependiendo de tu conexión. Espera hasta que se complete este pago antes de hacer otra donación.</string>
     <!-- Dialog body when a user opens the manage donations main screen and they have a pending iDEAL donation -->
     <string name="DonateToSignalFragment__your_ideal_payment_is_still_processing">Tu donación a través de iDEAL aún se está procesando. Consulta la aplicación de tu banco para aprobar el pago antes de hacer otra donación.</string>
     <!-- Dialog title shown when a user tries to donate an amount higher than is allowed for a given payment method. -->
@@ -7386,7 +7386,7 @@
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__introducing_phone_number_privacy">Protege la privacidad de tu número de teléfono, elige un alias opcional y descubre los enlaces de Signal.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
-    <string name="SetUpYourUsername__dismiss">Ignorar</string>
+    <string name="SetUpYourUsername__dismiss">Cerrar</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username -->
     <string name="SetUpYourUsername__learn_more">Más información</string>
 
@@ -7395,7 +7395,7 @@
     <!-- Displayed as a description on a megaphone which prompts user to set up a username -->
     <string name="PnpLaunchMegaphone_body">Protege la privacidad de tu número de teléfono, elige un alias opcional y descubre los enlaces de Signal.</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will dismiss the megaphone. -->
-    <string name="PnpLaunchMegaphone_dismiss">Ignorar</string>
+    <string name="PnpLaunchMegaphone_dismiss">Cerrar</string>
     <!-- Displayed as an action on a megaphone which prompts user to set up a username. Clicking it will open a link. -->
     <string name="PnpLaunchMegaphone_learn_more">Más información</string>
 
@@ -8061,7 +8061,7 @@
     <!-- Dialog title when Google Play services are currently updating -->
     <string name="GooglePlayServicesAvailability__service_updating_title">Los servicios de Google Play se están actualizando</string>
     <!-- Dialog message asking user to wait while Google Play services finish updating -->
-    <string name="GooglePlayServicesAvailability__service_updating_message">Para suscribirte a las Copias Seguras de Signal, espera a que los servicios de Google Play terminen de actualizarse.</string>
+    <string name="GooglePlayServicesAvailability__service_updating_message">Para suscribirte a las Copias Seguras de Signal, espera a que se terminen de actualizar los servicios de Google Play.</string>
     <!-- Dialog title when Google Play services need to be updated -->
     <string name="GooglePlayServicesAvailability__service_update_required_title">Actualiza los servicios de Google Play</string>
     <!-- Dialog message explaining that Google Play services need to be updated for Signal Secure backups -->
@@ -8294,7 +8294,7 @@
     <!-- Dialog title for dialog which alerts user their optimized media will be downloaded -->
     <string name="RemoteBackupsSettingsFragment__downloading_your_backup">Descargando tu copia de seguridad</string>
     <!-- Dialog message for dialog which alerts user their optimized media will be downloaded -->
-    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Dependiendo del tamaño de tu copia de seguridad, este proceso puede llevar bastante tiempo. Mientras se realiza la descarga, podrás seguir usando tu teléfono como de costumbre.</string>
+    <string name="RemoteBackupsSettingsFragment__depending_on_the_size">Dependiendo del tamaño de tu copia de seguridad, este proceso puede llevar bastante tiempo. Mientras se completa la descarga, podrás seguir usando tu teléfono como de costumbre.</string>
     <!-- Displayed in card when user has backups enabled but there is otherwise no subscription available. This can happen for example after a device transfer. -->
     <string name="RemoteBackupsSettingsFragment__your_subscription_was_not_found">No se ha encontrado tu suscripción en este dispositivo. Renuévala para seguir usando Copias Seguras de Signal.</string>
     <!-- Displayed in card when user has a signal subscription but the device doesn\'t see a google play billing subscription. Placeholder is days until subscription expiration. -->
@@ -8563,7 +8563,7 @@
     <!-- Dialog title when user can\'t upgrade plan due to missing Google Services -->
     <string name="MessageBackupsTypeSelectionScreen__cant_upgrade_plan">No se puede actualizar el plan</string>
     <!-- Dialog body text explaining Google Services requirement for backup subscription -->
-    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Para suscribirte a las Copias Seguras de Signal, debes tener habilitados los servicios de Google en tu teléfono e iniciar sesión en Google Play Store.</string>
+    <string name="MessageBackupsTypeSelectionScreen__to_subscribe_to_signal_secure_backups">Para suscribirte a las Copias Seguras de Signal, debes tener habilitados los servicios de Google Play en tu teléfono e iniciar sesión en Google Play Store.</string>
 
     <!-- ConfirmBackupCancellationDialog -->
     <!-- Dialog title -->
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">¿Omitir restauración?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Si omites la restauración ahora, no podrás hacerlo más tarde. Si vuelves a habilitar las copias de seguridad después de omitir la restauración, tu copia de seguridad actual se reemplazará por tu nuevo historial de mensajes.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Omitir restauración</string>
 
@@ -8639,7 +8639,7 @@
     <!-- Dialog title shown when entered AEP doesn\'t work to register with provided e164 -->
     <string name="EnterBackupKey_incorrect_backup_key_title">Clave de recuperación incorrecta</string>
     <!-- Dialog message shown when entered AEP doesn\'t work to register with provided e164 -->
-    <string name="EnterBackupKey_incorrect_backup_key_message">Asegúrate de registrarte con el mismo número de teléfono y la misma clave de recuperación de 64 caracteres que guardaste al activar Copias Seguras de Signal. Sin esta clave, no se pueden recuperar las copias de seguridad.</string>
+    <string name="EnterBackupKey_incorrect_backup_key_message">Asegúrate de registrarte con el mismo número de teléfono y la misma clave de recuperación de 64 caracteres que guardaste al activar Copias Seguras de Signal. Sin esta clave, no es posible recuperar las copias de seguridad.</string>
     <!-- Dialog positive button text to try entering their recovery key again -->
     <string name="EnterBackupKey_try_again">Reintentar</string>
     <!-- Dialog negative button text to get help with recovery key -->
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">La clave de recuperación que has introducido es correcta, pero no hay ninguna copia de seguridad asociada a ella. Si aún tienes tu teléfono anterior, comprueba que las copias de seguridad estén habilitadas y que se haya completado una copia de seguridad, e inténtalo de nuevo.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Es posible que hayas introducido tu clave de recuperación de forma incorrecta o que no hayas completado al menos una copia de seguridad en tu dispositivo anterior.\n\nAsegúrate de registrarte con el mismo número de teléfono y clave de recuperación que guardaste al habilitar las Copias Seguras de Signal, y confirma que se haya completado una copia de seguridad en tu dispositivo anterior.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Has agotado los intentos para confirmar tu clave de recuperación. Por tu seguridad, tienes un número limitado de intentos. Espera una hora y vuelve a intentarlo.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Omitir restauración</string>
     <!-- Dialog title text when encountering backup restore network error -->

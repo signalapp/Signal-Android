@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">உங்கள் ஊடகமானது பின்னணியில் மீட்டெடுக்கப்படும். இப்போது மீட்டெடுக்க வேண்டாம் என்பதை நீங்கள் தேர்வுசெய்தால், பின்னர் நீங்கள் மீட்டெடுக்கவே முடியாது.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">இந்தச் சாதனம் இனி பதிவுசெய்யப்பட்டிருக்காது</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">உங்கள் சிக்னல் கணக்கை வேறு சாதனத்தில் பதிவு செய்ததால் இவ்வாறு நிகழலாம்.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">என் பெயர் குறிப்புகளை எனக்கு அறிவி</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">பெயர், பயனர் பெயர் அல்லது எண்</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">மீட்டமைப்பதைத் தவிர்ப்பதா?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">நீங்கள் இப்போது மீட்டெடுக்கவில்லை எனில், பின்னர் மீட்டெடுக்க முடியாது. மீட்டெடுப்பதைத் தவிர்த்த பிறகு நீங்கள் காப்புப்பிரதிகளை மீண்டும் செயல்படுத்தினால், உங்கள் தற்போதைய காப்புப்பிரதி உங்கள் புதிய செய்தி வரலாற்றுடன் மாற்றப்படும்.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">மீட்டமைப்பதைத் தவிர்</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">நீங்கள் உள்ளீடு செய்த மீட்பு குறியீடு சரியானது, ஆனால் அதனுடன் தொடர்புடைய காப்புப் பிரதி எதுவும் இல்லை. நீங்கள் பழைய தொலைபேசியை இன்னும் வைத்திருந்தால், காப்புப் பிரதிகள் இயக்கப்பட்டிருப்பதை உறுதிசெய்து, காப்புப் பிரதி நிறைவு செய்யப்பட்டது என்பதை உறுதிப்படுத்தி, மீண்டும் முயலுங்கள்.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">நீங்கள் மீட்புக் குறியீட்டைத் தவறாக உள்ளிட்டிருக்கலாம், அல்லது உங்கள் பழைய சாதனத்தில் குறைந்தது ஒரு காப்புப்பிரதியை முடிக்காமல் இருக்கலாம்.\n\nசிக்னல் பாதுகாப்பு காப்புப்பிரதிகளைச் செயல்படுததும்போது நீங்கள் சேமித்த அதே பேசி எண் மற்றும் மீட்புக் குறியீட்டுடன் நீங்கள் பதிவு செய்கிறீர்கள் என்பதை உறுதிப்படுத்திக் கொள்ளவும், மேலும் உங்கள் பழைய சாதனம் காப்புப்பிரதியை முடித்துவிட்டது என்பதை உறுதிப்படுத்துங்கள்.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">மீட்புக் குறியீட்டிற்கான முயற்சிகளின் வரம்பு முடிந்துவிட்டது. உங்கள் பாதுகாப்புக்காக, நீங்கள் செய்யக்கூடிய முயற்சிகளுக்கான எண்ணிக்கை குறைவாகவே உள்ளது. ஒரு மணி நேரம் காத்திருந்து, மீண்டும் முயலுங்கள்.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">மீட்டமைப்பதைத் தவிர்</string>
     <!-- Dialog title text when encountering backup restore network error -->

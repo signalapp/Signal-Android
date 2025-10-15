@@ -1574,9 +1574,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Jūsų įrašai bus atkuriami fone. Jei pasirinksite neatkurti dabar, vėliau to padaryti nebegalėsite.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Šis įrenginys nebėra registruotas.</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Taip gali būti dėl to, kad užregistravote savo „Signal“ paskyrą kitame įrenginyje.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Pranešti apie paminėjimus</string>
@@ -6201,7 +6201,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Vardas, naudotojo vardas ar numeris</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8977,7 +8977,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Praleisti atkūrimą?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Jeigu praleisite atkurti dabar, vėliau to padaryti nebegalėsite. Jei praleidę atkūrimo veiksmą vėl įjungsite atsargines kopijas, nauja žinučių istorija pakeis dabartinę atsarginę kopiją.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Praleisti atkūrimą</string>
 
@@ -9021,9 +9021,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Įvestas atkūrimo raktas yra teisingas, tačiau su juo nesusieta jokia atsarginė kopija. Jei vis dar turite senąjį telefoną, įsitikinkite, kad atsarginės kopijos yra įjungtos ir atsarginė kopija buvo sukurta – tada bandykite dar kartą.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Galbūt neteisingai įvedėte atkūrimo raktą arba nesukūrėte bent vienos atsarginės kopijos senajame įrenginyje.\n\nĮsitikinkite, kad registruojatės naudodami tą patį telefono numerį ir atkūrimo raktą, kurį išsaugojote įjungdami „Signal“ saugiąsias atsargines kopijas, ir patikrinkite, ar senajame įrenginyje užbaigta atsarginė kopija.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Nebeliko bandymų įvesti atkūrimo raktą. Dėl jūsų saugumo bandymų skaičius yra ribotas. Palaukite valandą ir bandykite dar kartą.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Praleisti atkūrimą</string>
     <!-- Dialog title text when encountering backup restore network error -->

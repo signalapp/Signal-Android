@@ -1534,9 +1534,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Fișierele media se vor restaura în fundal. Dacă alegi să nu restaurezi acum, nu vei putea restaura mai târziu.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Acest dispozitiv nu mai este înregistrat</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Probabil acest lucru se datorează faptului că ți-ai înregistrat contul Signal pe un alt dispozitiv.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Anunță-mă pentru Mențiuni</string>
@@ -6062,7 +6062,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Nume, nume de utilizator sau număr de telefon</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8794,7 +8794,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Sari peste restaurare?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Dacă nu restaurezi acum, nu vei putea restabili mai târziu. Dacă reactivezi copiile de rezervă după ce omiți restaurarea, backupul curent va fi înlocuit cu noul istoric de mesaje.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Sari peste restaurare</string>
 
@@ -8838,9 +8838,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Codul de rezervă pe care l-ai introdus este corect, dar nu este niciun backup asociat cu acesta. Dacă ai încă vechiul telefon, asigură-te că backup-urile sunt activate și că a fost finalizată o copie de rezervă și încearcă din nou.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Este posibil să fi introdus greșit codul de recuperare sau să nu fi efectuat cel puțin un backup pe vechiul dispozitiv.\n\nAsigură-te că te înregistrezi cu același număr de telefon și același cod de recuperare pe care le-ai salvat la activarea funcțiilor Backup-uri securizate Signal și confirmă că vechiul dispozitiv a efectuat o copie de rezervă.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Ai epuizat numărul de încercări pentru codul de recuperare. Pentru siguranța ta, numărul de încercări pe care le poți face este limitat. Așteaptă o oră și încearcă din nou.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Sari peste restaurare</string>
     <!-- Dialog title text when encountering backup restore network error -->

@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">A médiafájlok visszaállítása a háttérben történik. Ha úgy döntesz, hogy most nem állítod vissza, később nem fogod tudni visszaállítani.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Ez az eszköz már nincs regisztrálva.</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Ez valószínűleg azért van, mert egy másik eszközön regisztráltad a Signal fiókodat.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Értesítsen említés esetén</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Név, felhasználónév vagy szám</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Visszaállítás kihagyása?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Ha most kihagyod a visszaállítást, később nem fogod tudni visszaállítani. Ha a visszaállítás kihagyása után újra engedélyezed a biztonsági mentéseket, a jelenlegi biztonsági mentést az új üzenetküldési előzmények felülírják.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Visszaállítás kihagyása</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">A megadott helyreállítási kulcs helyes, de nincs hozzá társítva biztonsági másolat. Ha még mindig megvan a régi telefonod, ellenőrizd, hogy a biztonsági mentések engedélyezve vannak-e, és hogy a biztonsági mentés befejeződött-e, majd próbálja újra.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Lehetséges, hogy helytelenül adtad meg a helyreállítási kulcsot, vagy nem készítettél legalább egy biztonsági mentést a régi eszközödről.\n\nGyőződj meg róla, hogy ugyanazzal a telefonszámmal és helyreállítási kulccsal regisztrálsz, amelyet a Signal biztonsági mentés engedélyezésekor elmentettél, és ellenőrizd, hogy a régi eszköz biztonsági mentése megtörtént-e.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Elfogytak a helyreállítási kulcs megadásának lehetőségei. Biztonságod érdekében a próbálkozások száma korlátozott. Várj egy órát, és próbáld újra!</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Visszaállítás kihagyása</string>
     <!-- Dialog title text when encountering backup restore network error -->

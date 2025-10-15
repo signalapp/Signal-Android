@@ -1574,9 +1574,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Vaš medijski sadržaj će se vratiti u pozadini. Ako odlučite da sada ne želite vratiti podatke, nećete ih moći vratiti kasnije.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Ovaj uređaj više nije registriran</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Vjerovatno je da ste registrovali svoj Signal račun na drugom uređaju.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Obavijesti me kad me neko spomene</string>
@@ -6201,7 +6201,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Ime, korisničko ime ili broj</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8977,7 +8977,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Preskočiti vraćanje?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Ako sada preskočite vraćanje, nećete moći vratiti podatke kasnije. Ako ponovo omogućite sigurnosne kopije nakon preskakanja vraćanja, vaša trenutna sigurnosna kopija bit će zamijenjena vašom novom istorijom poruka.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Preskoči obnovu</string>
 
@@ -9021,9 +9021,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Vaš ključ za oporavak koji ste unijeli je ispravan, ali s njim nije povezana rezervna kopija. Ako još uvijek imate svoj stari telefon, uvjerite se da su sigurnosne kopije omogućene i da je sigurnosna kopija završena i pokušajte ponovo.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Moguće je da ste pogrešno unijeli ključ za oporavak ili niste napravili barem jednu sigurnosnu kopiju na starom uređaju.\n\nProvjerite da li se registrujete s istim brojem telefona i ključem za oporavak koji ste sačuvali prilikom omogućavanja zaštićene kopije podataka Signala i potvrdite da je vaš stari uređaj dovršio sigurnosno kopiranje.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Iskoristili ste maksimalan broj pokušaja unosa ključa za oporavak. Radi vaše sigurnosti, broj pokušaja koje možete napraviti je ograničen. Sačekajte sat vremena i pokušajte ponovo.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Preskoči obnovu</string>
     <!-- Dialog title text when encountering backup restore network error -->

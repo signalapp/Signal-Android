@@ -1454,9 +1454,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">미디어가 백그라운드에서 복원됩니다. 지금 복원하지 않도록 선택하면 나중에 복원할 수 없습니다.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">이 기기는 더 이상 등록된 상태가 아님</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">이 문제는 다른 기기에 Signal 계정을 등록했기 때문일 가능성이 높습니다.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">멘션 알림</string>
@@ -5784,7 +5784,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">이름, 사용자 이름 또는 전화번호</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8428,7 +8428,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">복원을 건너뛰시겠어요?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">지금 복원을 건너뛰면 나중에 복원할 수 없습니다. 복원을 건너뛴 후 백업을 다시 활성화하면, 현재 백업이 새 메시지 기록으로 바뀝니다.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">복원 건너뛰기</string>
 
@@ -8472,9 +8472,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">올바른 복구 키를 입력했지만, 이와 연결된 백업이 없습니다. 아직 이전 휴대폰을 가지고 있다면 백업이 활성화 상태이고 백업이 완료됐는지 확인한 후 다시 시도하세요.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">복구 키를 잘못 입력했거나 이전 기기에서 백업을 한 번 이상 완료하지 않았을 수 있습니다.\n\nSignal 안전 백업을 활성화할 때 저장한 것과 동일한 휴대폰 번호와 복구 키로 등록하고 있는지 확인하고, 이전 기기의 백업이 완료되었는지 확인하세요.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">복구 키 시도 횟수를 초과했습니다. 보안을 위해 시도할 수 있는 횟수는 제한되어 있습니다. 1시간 동안 기다렸다가 다시 시도해 주세요.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">복원 건너뛰기</string>
     <!-- Dialog title text when encountering backup restore network error -->

@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Si vous décidez de ne pas les restaurer maintenant, vous ne pourrez pas le faire plus tard. Vos médias seront restaurés en arrière-plan.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Cet appareil n\'est plus enregistré</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Vous avez probablement créé votre compte Signal depuis un autre appareil.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Me prévenir quand on me mentionne</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Nom, nom d\'utilisateur ou numéro</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Ignorer la restauration ?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Si vous ne restaurez pas votre sauvegarde maintenant, vous ne pourrez pas le faire plus tard. Si vous décidez d\'ignorer la restauration et que vous réactivez les sauvegardes plus tard, Signal supprimera votre sauvegarde actuelle et en créera une nouvelle, qui ne contiendra pas vos anciens messages.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Ignorer la restauration</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Vous avez saisi la bonne clé de récupération, mais aucune sauvegarde ne lui est associée. Si vous avez toujours accès à votre ancien téléphone, vérifiez que vous avez bien activé les sauvegardes et qu\'il en existe bien une, puis réessayez.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Peut-être avez-vous mal saisi votre clé de récupération ou n\'avez-vous effectué aucune sauvegarde sur votre ancien appareil.\n\nVérifiez que vous utilisez bien le même numéro de téléphone, ainsi que la clé de récupération que vous avez enregistrée au moment d\'activer les sauvegardes sécurisées Signal. Vérifiez aussi que vous avez bien effectué au moins une sauvegarde avec votre ancien appareil.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Vous avez dépassé le nombre de tentatives autorisées pour saisir votre clé de récupération. Pour des raisons de sécurité, ce nombre est limité. Veuillez patienter une heure avant de réessayer.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Ignorer la restauration</string>
     <!-- Dialog title text when encountering backup restore network error -->

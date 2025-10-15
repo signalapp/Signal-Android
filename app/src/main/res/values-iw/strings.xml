@@ -1574,9 +1574,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">המדיה שלך תשוחזר ברקע. אם לא תשחזר/י עכשיו, לא תהיה לך אפשרות לשחזר מאוחר יותר.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">המכשיר הזה כבר לא רשום</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">זה כנראה בגלל שנרשמת עם חשבון Signal שלך במכשיר אחר.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">יידע אותי לגבי אזכורים</string>
@@ -6201,7 +6201,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">שם, שם משתמש או מספר</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8977,7 +8977,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">לדלג על שחזור?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">אם תדלג/י על השחזור כעת, לא תהיה לך אפשרות לשחזר מאוחר יותר. אם תפעיל/י מחדש גיבויים לאחר דילוג על שחזור, הגיבוי הנוכחי שלך יוחלף עם היסטוריית ההודעות החדשה שלך.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">דילוג על שחזור</string>
 
@@ -9021,9 +9021,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">מפתח השחזור שהזנת נכון, אך אין גיבוי שמשויך אליו. אם הטלפון הישן שלך עדיין ברשותך, כדאי לוודא שהגיבויים מופעלים ושהושלם גיבוי, ולנסות שוב.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">יתכן שהזנת את מפתח השחזור שלך באופן שגוי, או שלא השלמת לפחות גיבוי אחד במכשיר הישן שלך.\n\nחשוב לוודא שההרשמה מתבצעת עם אותו מספר טלפון ואותו מפתח שחזור ששמרת בעת הפעלת גיבויי Signal מאובטחים, וכן שהושלם גיבוי במכשיר הישן שלך.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">נגמרו לך ניסיונות מפתח השחזור. למען ביטחונך, מספר הניסיונות שאפשר לבצע מוגבל. יש להמתין שעה ולנסות שוב.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">דילוג על שחזור</string>
     <!-- Dialog title text when encountering backup restore network error -->

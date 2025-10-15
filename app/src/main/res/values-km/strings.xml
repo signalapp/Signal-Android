@@ -1454,9 +1454,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">មេឌៀរបស់អ្នកនឹងស្ដារនៅផ្ទៃខាងក្រោយ។ ប្រសិនបើអ្នកជ្រើសរើសមិនស្តារឥឡូវនេះទេ អ្នកនឹងមិនអាចស្តារនៅពេលក្រោយបានឡើយ។</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">ឧបករណ៍នេះមិនត្រូវបានចុះឈ្មោះទៀតទេ</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">នេះទំនងជាដោយសារតែអ្នកបានចុះឈ្មោះគណនី Signal របស់អ្នកនៅលើឧបករណ៍ផ្សេង។</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">ជូនដំណឹងខ្ញុំសម្រាប់ការហៅឈ្មោះ</string>
@@ -5784,7 +5784,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">ឈ្មោះ ឈ្មោះអ្នកប្រើ ឬលេខ</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8428,7 +8428,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">រំលងការស្តារឡើងវិញ?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">ប្រសិនបើអ្នករំលងការស្ដារឥឡូវនេះ អ្នកនឹងមិនអាចស្ដារនៅពេលក្រោយបានទេ។ ប្រសិនបើអ្នកបើកការបម្រុងទុកឡើងវិញបន្ទាប់ពីរំលងការស្ដារ ការបម្រុងទុកបច្ចុប្បន្នរបស់អ្នកនឹងត្រូវបានជំនួសដោយប្រវត្តិសារថ្មីរបស់អ្នក។</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">រំលងការស្តារឡើងវិញ</string>
 
@@ -8472,9 +8472,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">សោស្តារដែលអ្នកបានបញ្ចូលគឺត្រឹមត្រូវហើយ ប៉ុន្តែមិនមានការបម្រុងទុកដែលពាក់ព័ន្ធនឹងវាទេ។ ប្រសិនបើអ្នកនៅតែមានទូរសព្ទចាស់របស់អ្នក សូមប្រាកដថាការបម្រុងទុកត្រូវបានបើក ហើយថាការបម្រុងទុកត្រូវបានបញ្ចប់សព្វគ្រប់ រួចព្យាយាមម្តងទៀត។</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">អ្នកប្រហែលជាបានបញ្ចូលសោស្តាររបស់អ្នកដោយមិនត្រឹមត្រូវ ឬអ្នកមិនទាន់បានបញ្ចប់ការបម្រុងទុកយ៉ាងហោចណាស់មួយនៅលើឧបករណ៍ចាស់របស់អ្នក។\n\nត្រូវប្រាកដថាអ្នកកំពុងចុះឈ្មោះដោយប្រើលេខទូរសព្ទដូចគ្នា និងសោស្តារដែលអ្នកបានរក្សាទុកនៅពេលបើកការបម្រុងទុកសុវត្ថិភាព Signal ហើយបញ្ជាក់ថាឧបករណ៍ចាស់របស់អ្នកបានបញ្ចប់ការបម្រុងទុក។</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">ការព្យាយាមចំពោះសោស្តាររបស់អ្នកបានអស់ហើយ។ ដើម្បីសុវត្ថិភាពរបស់អ្នក ចំនួននៃការព្យាយាមដែលអ្នកអាចធ្វើបានមានកំណត់។ សូមរង់ចាំមួយម៉ោង ហើយព្យាយាមម្តងទៀត។</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">រំលងការស្តារឡើងវិញ</string>
     <!-- Dialog title text when encountering backup restore network error -->

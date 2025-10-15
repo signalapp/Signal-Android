@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Ire-restore ang iyong media sa background. Kung hindi ka mag-restore ngayon, hindi mo na ito magagawa sa susunod.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Hindi na registered ang device na ito</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Maaaring dahil ibang device ang ginamit mo sa pag-register ng iyong Signal account.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">I-notify ako sa Mentions</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Pangalan, username, o numero</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">I-skip ang pag-restore?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Kung hindi ka mag-restore ngayon, hindi mo na ito magagawa mamaya. Kung i-enable mo ulit ang backups pagkatapos mong laktawan ang pag-restore, ang current backup mo ay mapapalitan ng bagong messaging history mo.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">I-skip ang restore</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Tama ang backup key na inilagay mo, pero walang backup na nauugnay dito. Kung nasa \'yo pa rin ang lumang phone mo, siguraduhing naka-enable ang backups at nakumpleto na ang pag-back up, at subukan ulit.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Maaaring maling recovery key ang nailagay mo, o hindi ka pa nakapag-back up sa lumang device mo.\n\nSiguraduhing nagre-register ka gamit ang parehong phone number at recovery key na sinave mo noong in-enable mo ang Signal Secure Backups, at kumpirmahing nakapag-backup ka na sa lumang device mo.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Naubusan ka na ng recovery key attempts. Para sa iyong seguridad, limitado ang attempts na maaari mong gawin. Maghintay ng isang oras at subukan ulit.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">I-skip ang restore</string>
     <!-- Dialog title text when encountering backup restore network error -->

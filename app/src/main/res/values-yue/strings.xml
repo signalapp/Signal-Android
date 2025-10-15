@@ -1454,9 +1454,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">媒體會喺背景還原。 如果而家揀唔還原嘅話，遲啲就冇得再還原㗎喇。</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">呢部裝置嘅註冊已經失效</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">原因好可能係你喺另一部裝置度註冊咗你嘅 Signal 帳戶。</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">點名講起我嘅時候通知</string>
@@ -5784,7 +5784,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">名稱、用戶名稱或電話冧把</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8428,7 +8428,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">係咪要跳過還原？</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">如果而家跳過還原嘅話，遲啲就冇得再搞㗎喇。如果你喺跳過還原之後再重新啟用備份功能，新嘅訊息紀錄就會取代你而家嘅備份內容。</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">跳過還原</string>
 
@@ -8472,9 +8472,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">你輸入嘅恢復金鑰正確，但系統冇相關嘅備份。如果你部舊手機仲喺手，請確保你啟用咗備份，同埋備份已經完成咗，然後再試一次。</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">你可能輸入咗唔啱嘅恢復金鑰，或者仲未試過喺舊裝置度備份至少一次。\n\n請確保你係用緊當初註冊嘅電話冧把，同埋用返啟用「Signal 安全備份」嘅時候記低嘅恢復金鑰，仲有確認舊裝置已經做過備份。</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">你已經用哂恢復金鑰嘅嘗試次數。為安全計，你可以嘗試嘅次數係有限嘅。請等一個鐘之後再試過。</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">跳過還原</string>
     <!-- Dialog title text when encountering backup restore network error -->

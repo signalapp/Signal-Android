@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">আপনার মিডিয়া ব্যাকগ্রাউন্ডে পুনর্বহাল করা হবে। আপনি যদি এখন পুনর্বহাল করতে না চান, তবে পরে পুনর্বহাল করতে পারবেন না।</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">এই ডিভাইসটি আর নিবন্ধিত নয়</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">এর সম্ভাব্য কারণ আপনি আপনার Signal অ্যাকাউন্টটি অন্য কোনো ডিভাইসে নিবন্ধন করেছেন।</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">মেনশন করা হলে আমাকে অবহিত করুন</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">নাম, ব্যবহারকারীর নাম বা নম্বর</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">পুনর্বহাল এড়িয়ে যাবেন?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">আপনি যদি এখন পুনর্বহাল করা এড়িয়ে যান তবে পরে পুনর্বহাল করতে পারবেন না। পুনর্বহাল এড়িয়ে যাওয়ার পর যদি আপনি ব্যাকআপ পুনরায় সচল করেন, তাহলে আপনার বর্তমান ব্যাকআপটির জায়গায় আপনার নতুন মেসেজের ইতিহাস প্রতিস্থাপিত হবে।</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">পুনরুদ্ধার এড়িয়ে যান</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">আপনার দেওয়া পুনরুদ্ধার \'কি\'-টি সঠিক, কিন্তু এর সাথে কোনো ব্যাকআপ যুক্ত নেই। আপনার পুরনো ফোনটি যদি এখনো থেকে থাকে, তাহলে নিশ্চিত করুন যে ব্যাকআপগুলো সচল করা আছে এবং সেই ব্যাকআপটি সম্পন্ন হয়েছে ও তারপর আবারো চেষ্টা করুন।</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">আপনি হয়তো আপনার পুনরুদ্ধার \'কি\' ভুল লিখেছেন, অথবা আপনার পুরনো ডিভাইসে অন্তত একটি ব্যাকআপ সম্পন্ন করেননি।\n\nSignal নিরাপদ ব্যাকআপ সচল করার সময় আপনি যে ফোন নম্বর ও পুনরুদ্ধার \'কি\'-টি সেভ করেছিলেন, নিশ্চিত করুন যে আপনি সেগুলো দিয়েই রেজিস্ট্রেশন করছেন এবং এটিও নিশ্চিত করুন যে আপনার পুরানো ডিভাইসটি একটি ব্যাকআপ সম্পন্ন করেছে।</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">আপনার পুনরুদ্ধার \'কি\' দিয়ে ঢোকার প্রচেষ্টার সর্বোচ্চ সংখ্যা ফুরিয়ে গেছে। আপনার নিরাপত্তার জন্য, আপনি যতবার ঢোকার চেষ্টা করতে পারবেন তার সংখ্যা সীমিত। এক ঘন্টা অপেক্ষা করুন এবং আবার চেষ্টা করুন।</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">পুনরুদ্ধার এড়িয়ে যান</string>
     <!-- Dialog title text when encountering backup restore network error -->

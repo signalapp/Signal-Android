@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Медиумските датотеки ќе се враќаат во позадински процес. Ако одлучите да не ги вратите сега, нема да можете да го направите тоа подоцна.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Уредот повеќе не е регистриран</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Ова е најверојатно поради тоа што сте ја регистрирале вашата корисничка сметка на Signal на друг уред.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Извести кога некој ќе ме спомне</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Име, корисничко име, или број</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Да се прескокне враќањето?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Ако сега го прескокнете враќањето нема да можете да го направите тоа подоцна. Ако повторно ги овозможите резервните копии откако ќе го прескокнете враќањето, вашата тековна резервна копија ќе биде заменета со вашата нова историја на пораки.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Прескокни враќање</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Клучот за враќање резервни копии што го имате внесено е точен, но нема резервна копија поврзана со него. Ако сè уште го имате стариот телефон, проверете дали се овозможени резервните копии и дaли е направена резервна копија и обидете се повторно.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Можно е да сте го внеле погрешно клучот за враќање резервни копии, или немате направено барем една резервна копија на вашиот стар уред.\n\nПроверете дали се регистрирате со истиот телефонски број и клучот за враќање резервни копии што го зачувавте кога овозможивте Безбедни резервни копии на Signal и потврдете дека вашиот стар уред има направено резервна копија.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Немате веќе обиди за внесување на клуч за враќање резервни копии. За ваша безбедност, бројот на обиди е ограничен. Почекаjте еден час и обидете се повторно.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Прескокни враќање</string>
     <!-- Dialog title text when encountering backup restore network error -->

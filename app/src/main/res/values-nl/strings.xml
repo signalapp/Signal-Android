@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Je media worden op de achtergrond hersteld. Als je er nu voor kiest om niet te herstellen, dan is dat op een later moment niet meer mogelijk.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Dit apparaat is niet meer geregistreerd</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Dit komt waarschijnlijk omdat je je Signal-account op een ander apparaat hebt geregistreerd.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Meldingen bij vermeldingen</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Naam, gebruikersnaam of telefoonnummer</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -7753,7 +7753,7 @@
     <!-- Title of a megaphone shown to prompt the user to verify their recovery key -->
     <string name="VerifyBackupKey__title">Verifieer je herstelsleutel</string>
     <!-- Body of a megaphone shown to prompt the user to verify their recovery key -->
-    <string name="VerifyBackupKey__body">We vragen je af en toe om je sleutel te verifiëren om te bevestigen dat je die nog steeds weet</string>
+    <string name="VerifyBackupKey__body">We vragen je af en toe om je herstelsleutel te verifiëren om te bevestigen dat je die nog steeds weet</string>
     <!-- Button of a megaphone that will take users to the verify recovery key screen -->
     <string name="VerifyBackupKey__verify">Verifiëren</string>
     <!-- Button of a megaphone that will snooze the reminder to verify their recovery key -->
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Herstel overslaan?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Als je herstellen nu overslaat, is dat op een later moment niet meer mogelijk. Als je back-ups opnieuw inschakelt nadat je herstel hebt overgeslagen, wordt je huidige back-up vervangen door je nieuwe chatgeschiedenis.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Herstel overslaan</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">De herstelsleutel die je hebt ingevoerd is juist, maar er is geen back-up aan gekoppeld. Als je je oude telefoon nog hebt, zorg er dan voor dat back-ups zijn ingeschakeld en dat er een back-up is gemaakt. Probeer het dan opnieuw.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Mogelijk heb je je herstelsleutel onjuist ingevoerd of heb je geen enkele back-up voltooid op je oude apparaat.\n\nZorg ervoor dat je je registreert met hetzelfde telefoonnummer en dezelfde herstelsleutel die je hebt opgeslagen bij het inschakelen van Signal Secure Backups en controleer of je oude apparaat een back-up heeft gemaakt.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Je hebt te vaak geprobeerd de herstelsleutel in te voeren. Voor je veiligheid is het aantal pogingen beperkt. Wacht een uur en probeer het opnieuw.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Herstel overslaan</string>
     <!-- Dialog title text when encountering backup restore network error -->

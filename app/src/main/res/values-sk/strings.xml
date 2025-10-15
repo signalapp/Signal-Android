@@ -1574,9 +1574,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Vaše médiá sa obnovia na pozadí. Ak sa rozhodnete nevykonať obnovu teraz, neskôr to nebude možné.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Toto zariadenie už nie je registrované</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Dôvodom je pravdepodobne to, že ste svoj účet Signal zaregistrovali na inom zariadení.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Upozorni ma na Spomenutia</string>
@@ -6201,7 +6201,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Meno, používateľské meno alebo číslo</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8977,7 +8977,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Preskočiť obnovenie?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Ak nevykonáte obnovu teraz, neskôr to nebude možné. Ak po preskočení obnovy znova povolíte zálohovanie, vaša aktuálna záloha bude nahradená novou históriou správ.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Preskočiť obnovenie</string>
 
@@ -9021,9 +9021,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Zadaný kľúč na obnovenie je správny, ale nie je s ním spojená žiadna záloha. Ak ešte máte svoj starý telefón, uistite sa, že bolo povolené a dokončené zálohovanie. Potom to skúste znova.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Možno ste zadali nesprávny kľúč na obnovenie alebo ste nevytvorili aspoň jednu zálohu na starom zariadení.\n\nUistite sa, že sa registrujete pomocou rovnakého telefónneho čísla a kľúča na obnovenie, ktorý ste si uložili pri povolení bezpečných záloh Signal, a overte si, či sa na vašom starom zariadení dokončila záloha.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Vyčerpali ste počet pokusov o zadanie kľúča na obnovenie. Z bezpečnostných dôvodov je počet pokusov, ktoré môžete vykonať, obmedzený. Skúste to znova o hodinu.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Preskočiť obnovenie</string>
     <!-- Dialog title text when encountering backup restore network error -->

@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">તમારા મીડિયા બેકગ્રાઉન્ડમાં રિસ્ટોર થશે. જો તમે હમણાં રિસ્ટોર ન કરવાનું પસંદ કરો છો, તો તમે પછીથી રિસ્ટોર કરી શકશો નહીં.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">આ ડિવાઇસ હવે રજીસ્ટર થયેલું નથી</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">આ કદાચ એટલા માટે છે કારણ કે તમે તમારું Signal એકાઉન્ટ કોઈ અલગ ડિવાઇસ પર રજીસ્ટર કરાવ્યું છે.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">મને ઉલ્લેખો માટે સૂચિત કરો</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">નામ, યુઝરનેમ અથવા નંબર</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">રિસ્ટોર કરવાનું સ્કિપ કરવું છે?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">જો તમે હમણાં રિસ્ટોર કરવાનું સ્કિપ કરો છો, તો તમે પછીથી રિસ્ટોર કરી શકશો નહીં. જો તમે રિસ્ટોર છોડી દીધા પછી બેકઅપ ફરીથી સક્ષમ કરો છો, તો તમારા વર્તમાન બેકઅપને તમારા નવી મેસેજિંગ હિસ્ટ્રીથી બદલવામાં આવશે.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">તમે દાખલ કરેલી રિકવરી કી સાચી છે, પરંતુ તેની સાથે કોઈ બેકઅપ સંકળાયેલ નથી. જો તમારી પાસે હજી પણ તમારો જૂનો ફોન હોય, તો ખાતરી કરો કે બેકઅપ સક્ષમ કરેલ છે અને બેકઅપ પૂર્ણ થઈ ગયું છે પછી ફરી પ્રયાસ કરો.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">તમે તમારી રિકવરી કી ખોટી રીતે દાખલ કરી હશે અથવા તમે તમારા જૂના ડિવાઇસ પર ઓછામાં ઓછું એક બેકઅપ પૂર્ણ કર્યું નથી.\n\nખાતરી કરો કે તમે Signal સુરક્ષિત બેકઅપ સક્ષમ કરતી વખતે સેવ કરેલા ફોન નંબર અને રિકવરી કી સાથે જ રજીસ્ટર કરાવી રહ્યા છો, અને ખાતરી કરો કે તમારા જૂના ડિવાઇસે બેકઅપ પૂર્ણ કરી લીધું છે.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">તમારા રિકવરી કી પ્રયાસો પૂરા થઈ ગયા છે. તમારી સુરક્ષા માટે, તમે કરી શકો તે પ્રયાસોની સંખ્યા મર્યાદિત છે. એક કલાક રાહ જુઓ અને ફરી પ્રયાસ કરો.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">રિસ્ટોર કરવાનું સ્કિપ કરો</string>
     <!-- Dialog title text when encountering backup restore network error -->

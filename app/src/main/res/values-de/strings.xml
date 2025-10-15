@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Deine Medien werden im Hintergrund wiederhergestellt. Falls du jetzt nicht wiederherstellst, wirst du dies später nicht nachholen können.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Dieses Gerät ist nicht mehr registriert</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Das liegt wahrscheinlich daran, dass du dein Signal-Konto auf einem anderen Gerät registriert hast.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Mich bei Erwähnungen benachrichtigen</string>
@@ -4515,7 +4515,7 @@
     <string name="text_secure_normal__menu_new_group">Neue Gruppe</string>
     <string name="text_secure_normal__menu_settings">Einstellungen</string>
     <string name="text_secure_normal__menu_clear_passphrase">Signal sperren</string>
-    <string name="text_secure_normal__mark_all_as_read">Alle gelesen</string>
+    <string name="text_secure_normal__mark_all_as_read">Alle als  gelesen markieren</string>
     <string name="text_secure_normal__invite_friends">Kontakte einladen</string>
     <!-- Overflow menu entry to filter unread chats -->
     <string name="text_secure_normal__filter_unread_chats">Ungelesene Chats filtern</string>
@@ -5560,7 +5560,7 @@
     <!-- Option in context menu to unmute all chats in the folder -->
     <string name="ChatFoldersFragment__unmute_all">Stummschaltung aufheben</string>
     <!-- Option in context menu to mark all of the chats in a folder as read -->
-    <string name="ChatFoldersFragment__mark_all_read">Alle gelesen</string>
+    <string name="ChatFoldersFragment__mark_all_read">Alle als  gelesen markieren</string>
     <!-- Text describing the number of chat types in a folder -->
     <plurals name="ChatFoldersFragment__d_chat_types">
         <item quantity="one">%1$d Chat-Art</item>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Name, Nutzername oder Nummer</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Wiederherstellen überspringen?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Falls du die Wiederherstellung jetzt überspringst, kannst du sie später nicht mehr durchführen. Wenn du Backups wieder aktivierst, nachdem du die Wiederherstellung übersprungen hast, wird dein aktuelles Backup durch deinen neuen Nachrichtenverlauf ersetzt.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Wiederherstellen überspringen</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Der von dir eingegebene Wiederherstellungsschlüssel ist korrekt, diesem ist aber kein Backup zugeordnet. Falls du dein altes Telefon noch hast, stelle sicher, dass Backups aktiviert ist und dass ein Backup abgeschlossen wurde. Versuche es dann erneut.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Du hast vielleicht deinen Wiederherstellungsschlüssel falsch eingegeben oder mindestens ein Backup auf deinem alten Gerät nicht abgeschlossen.\n\nRegistriere dich unbedingt mit derselben Telefonnummer und demselben Wiederherstellungsschlüssel, den du beim Aktivieren von Signal Secure Backups gespeichert hast, und vergewissere dich, dass dein altes Gerät ein Backup abgeschlossen hat.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Du kannst keine neuen Wiederherstellungsschlüssel mehr ausprobieren. Zu deiner Sicherheit ist die Anzahl von Versuchen begrenzt. Warte eine Stunde und versuche es dann erneut.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Wiederherstellen überspringen</string>
     <!-- Dialog title text when encountering backup restore network error -->

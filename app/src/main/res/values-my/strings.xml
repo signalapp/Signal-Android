@@ -1454,9 +1454,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">သင့်မီဒီယာ ပြန်လည်ရယူခြင်းကို နောက်ခံတွင် လုပ်ဆောင်ပါမည်။ ယခု ပြန်လည်ရယူရန် မရွေးချယ်ပါက နောက်မှပြန်လည်မရယူနိုင်တော့ပါ။</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">ဤစက်ကို မှတ်ပုံတင်ထားခြင်း မရှိတော့ပါ</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">ဤသို့ ဖြစ်ရခြင်းမှာ သင်၏ Signal အကောင့်ကို အခြားစက်တစ်ခုတွင် မှတ်ပုံတင်ခဲ့ခြင်းကြောင့် ဖြစ်နိုင်သည်။</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">မန်းရှင်းများရှိလျှင် ကျွန်ုပ်ကိုအသိပေးပါ</string>
@@ -5784,7 +5784,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">အမည်၊ သုံးစွဲသူအမည် သို့မဟုတ် နံပါတ်</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8428,7 +8428,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">ပြန်လည်ရယူခြင်းကို ကျော်လိုပါသလား။</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">ယခု ပြန်လည်ရယူရန် မရွေးချယ်ပါက နောက်မှ ပြန်လည်ရယူနိုင်မည် မဟုတ်ပါ။ ပြန်လည်ရယူခြင်းကို ကျော်လိုက်ပြီးနောက် ဘက်ခ်အပ်ကူးယူခြင်းကို ပြန်ဖွင့်ပါက သင်၏ လက်ရှိဘက်ခ်အပ်ကို သင်၏မက်ဆေ့ချ်မှတ်တမ်းအသစ်ဖြင့် အစားထိုးမည်ဖြစ်သည်။</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
 
@@ -8472,9 +8472,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">သင်ထည့်လိုက်သော ပြန်လည်ရယူရေးကီးသည် မှန်ကန်သော်လည်း ၎င်းနှင့် ဆက်စပ်နေသည့် ဘက်ခ်အပ်မရှိပါ။ သင့်တွင် ဖုန်းအဟောင်းရှိနေသေးပါက ဘက်ခ်အပ်ကိုဖွင့်ထားပြီး ဘက်ခ်အပ်ကူးယူမှုပြီးသွားကြောင်း သေချာစေကာ ထပ်စမ်းကြည့်ပါ။</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">သင်သည် ပြန်လည်ရယူရေးကီးကို မှားယွင်းစွာ ထည့်သွင်းခဲ့ခြင်းသော်လည်းကောင်း၊ သင့်စက်အဟောင်းတွင် အနည်းဆုံး ဘက်ခ်အပ်တစ်ခေါက် မပြီးမြောက်ခဲ့ခြင်းသော်လည်းကောင်း ဖြစ်နိုင်ပါသည်။\n\nSignal လုံခြုံရေးဘက်ခ်အပ်ကိုဖွင့်စဉ်က သင်သိမ်းဆည်းထားသည့် တူညီသောဖုန်းနံပါတ်နှင့် ပြန်လည်ရယူရေးကီးတို့ဖြင့် စာရင်းသွင်းဝင်ရောက်ကြောင်း သေချာစေပြီး သင့်စက်အဟောင်းသည် ဘက်ခ်အပ်လုပ်ခြင်းပြီးမြောက်ကြောင်း အတည်ပြုပါ။</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">ပြန်လည်ရယူရေးကီးကို ရယူရန်ကြိုးပမ်းမှု အကြိမ်ရေပြည့်သွားပါပြီ။ သင့်လုံခြုံရေးအတွက် သင်ကြိုးစားနိုင်သည့် အကြိမ်အရေအတွက်ကို ကန့်သတ်ထားသည်။ တစ်နာရီစောင့်ပြီး ထပ်စမ်းကြည့်ပါ။</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">ပြန်လည်ရယူခြင်းကို ကျော်မည်</string>
     <!-- Dialog title text when encountering backup restore network error -->

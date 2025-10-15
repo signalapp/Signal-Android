@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">നിങ്ങളുടെ മീഡിയ പശ്ചാത്തലത്തിൽ പുനഃസ്ഥാപിക്കും. ഇപ്പോൾ പുനഃസ്ഥാപിക്കേണ്ടതില്ലെന്ന് നിങ്ങൾ തിരഞ്ഞെടുക്കുകയാണെങ്കിൽ, പിന്നീട് നിങ്ങൾക്ക് പുനഃസ്ഥാപിക്കാനാകില്ല.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">ഈ ഉപകരണം ഇപ്പോൾ രജിസ്റ്റർ ചെയ്തിട്ടില്ല</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">നിങ്ങളുടെ Signal അക്കൗണ്ട് മറ്റൊരു ഉപകരണത്തിൽ രജിസ്റ്റർ ചെയ്തതിനാലാകാം ഇത്.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">സൂചനകൾ എന്നെ അറിയിക്കുക</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">പേര്, ഉപയോക്തൃനാമം അല്ലെങ്കിൽ നമ്പർ</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">. %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കണോ?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">ഇപ്പോൾ പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കിയാൽ പിന്നീട് പുനഃസ്ഥാപിക്കാൻ കഴിയില്ല. പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കിയതിന് ശേഷം നിങ്ങൾ ബാക്കപ്പുകൾ വീണ്ടും പ്രവർത്തനക്ഷമമാക്കുകയാണെങ്കിൽ, നിങ്ങളുടെ നിലവിലെ ബാക്കപ്പ് പുതിയ സന്ദേശമയയ്ക്കൽ ചരിത്രം ഉപയോഗിച്ച് മാറ്റിസ്ഥാപിക്കപ്പെടും.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">നിങ്ങൾ നൽകിയ വീണ്ടെടുക്കൽ കീ ശരിയാണ്, പക്ഷേ അതുമായി ബന്ധപ്പെട്ട ഒരു ബാക്കപ്പും ഇല്ല. പഴയ ഫോൺ ഇപ്പോഴും നിങ്ങളുടെ കയ്യിലുണ്ടെങ്കിൽ, ബാക്കപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കിയിട്ടുണ്ടെന്നും ബാക്കപ്പ് പൂർത്തിയായിട്ടുണ്ടെന്നും ഉറപ്പാക്കി വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ തെറ്റായി നൽകിയിരിക്കാം, അല്ലെങ്കിൽ നിങ്ങളുടെ പഴയ ഉപകരണത്തിൽ കുറഞ്ഞത് ഒരു ബാക്കപ്പ് പോലും പൂർത്തിയാക്കിയിട്ടില്ലായിരിക്കാം.\n\nSignal സുരക്ഷിത ബാക്കപ്പുകൾ പ്രവർത്തനക്ഷമമാക്കുമ്പോൾ നിങ്ങൾ സേവ് ചെയ്ത അതേ ഫോൺ നമ്പറും വീണ്ടെടുക്കൽ കീയും ഉപയോഗിച്ചാണ് രജിസ്റ്റർ ചെയ്യുന്നതെന്ന് ഉറപ്പാക്കുക, കൂടാതെ നിങ്ങളുടെ പഴയ ഉപകരണം ഒരു ബാക്കപ്പ് പൂർത്തിയാക്കിയിട്ടുണ്ടെന്ന് ഉറപ്പാക്കുക.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">നിങ്ങളുടെ വീണ്ടെടുക്കൽ കീ ശ്രമങ്ങൾ കഴിഞ്ഞു. നിങ്ങളുടെ സുരക്ഷയ്ക്കായി, നിങ്ങൾക്ക് ചെയ്യാൻ കഴിയുന്ന ശ്രമങ്ങളുടെ എണ്ണം പരിമിതമാണ്. ഒരു മണിക്കൂർ കാത്തിരുന്ന് വീണ്ടും ശ്രമിക്കുക.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">പുനഃസ്ഥാപിക്കൽ ഒഴിവാക്കുക</string>
     <!-- Dialog title text when encountering backup restore network error -->

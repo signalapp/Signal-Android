@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">ನಿಮ್ಮ ಮೀಡಿಯಾ ಹಿನ್ನೆಲೆಯಲ್ಲಿ ರಿಸ್ಟೋರ್ ಆಗುತ್ತದೆ. ನೀವು ಈಗ ರಿಸ್ಟೋರ್ ಮಾಡದಿರುವುದನ್ನು ಆಯ್ಕೆ ಮಾಡಿಕೊಂಡಲ್ಲಿ, ನಂತರದಲ್ಲಿ ನಿಮಗೆ ರಿಸ್ಟೋರ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">ಈ ಸಾಧನವು ಇನ್ನು ಮುಂದೆ ನೋಂದಣಿಯಾಗಿರುವುದಿಲ್ಲ</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">ನಿಮ್ಮ Signal ಖಾತೆಯನ್ನು ನೀವು ಬೇರೆ ಸಾಧನದಲ್ಲಿ ನೋಂದಾಯಿಸಿರುವುದರಿಂದ ಇದು ಸಂಭವಿಸಿರಬಹುದು.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">\@ಉಲ್ಲೇಖಗಳು ಬಂದರೆ ಎಚ್ಚರಿಸು</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">ಹೆಸರು, ಯೂಸರ್‌ನೇಮ್ ಅಥವಾ ಸಂಖ್ಯೆ</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">ರಿಸ್ಟೋರ್ ಸ್ಕಿಪ್ ಮಾಡಬೇಕೇ?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">ನೀವು ಈಗ ರಿಸ್ಟೋರ್ ಮಾಡುವುದನ್ನು ಸ್ಕಿಪ್ ಮಾಡಿದರೆ ನಂತರ ರಿಸ್ಟೋರ್ ಮಾಡಲು ನಿಮಗೆ ಸಾಧ್ಯವಾಗುವುದಿಲ್ಲ. ರಿಸ್ಟೋರ್ ಮಾಡುವುದನ್ನು ಸ್ಕಿಪ್ ಮಾಡಿದ ನಂತರ ನೀವು ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಮರುಸಕ್ರಿಯಗೊಳಿಸಿದರೆ, ನಿಮ್ಮ ಪ್ರಸ್ತುತ ಬ್ಯಾಕಪ್ ಅನ್ನು ನಿಮ್ಮ ಹೊಸ ಸಂದೇಶ ಇತಿಹಾಸದೊಂದಿಗೆ ಬದಲಾಯಿಸಲಾಗುತ್ತದೆ.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">ರಿಸ್ಟೋರ್ ಸ್ಕಿಪ್ ಮಾಡಿ</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">ನೀವು ನಮೂದಿಸಿದ ರಿಕವರಿ ಕೀ ಸರಿಯಾಗಿದೆ, ಆದರೆ ಅದರೊಂದಿಗೆ ಯಾವುದೇ ಬ್ಯಾಕಪ್ ಸಂಯೋಜನೆಗೊಂಡಿಲ್ಲ. ನಿಮ್ಮ ಬಳಿ ಇನ್ನೂ ಹಳೆಯ ಫೋನ್ ಇದ್ದರೆ, ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ ಮತ್ತು ಬ್ಯಾಕಪ್ ಪೂರ್ಣಗೊಂಡಿದೆ ಎಂಬುದನ್ನು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ ಹಾಗೂ ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">ನಿಮ್ಮ ರಿಕವರಿ ಕೀ ಅನ್ನು ನೀವು ತಪ್ಪಾಗಿ ನಮೂದಿಸಿರಬಹುದು ಅಥವಾ ನಿಮ್ಮ ಹಳೆಯ ಸಾಧನದಲ್ಲಿ ಕನಿಷ್ಠ ಒಂದು ಬ್ಯಾಕಪ್ ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಿಲ್ಲದಿರಬಹುದು.\n\nನೀವು Signal ಸುರಕ್ಷಿತ ಬ್ಯಾಕಪ್‌ಗಳನ್ನು ಸಕ್ರಿಯಗೊಳಿಸುವಾಗ ನೀವು ಉಳಿಸಿದ ಅದೇ ಫೋನ್ ಸಂಖ್ಯೆ ಮತ್ತು ರಿಕವರಿ ಕೀ ಬಳಸಿ ನೋಂದಾಯಿಸುತ್ತಿದ್ದೀರಿ ಮತ್ತು ನಿಮ್ಮ ಹಳೆಯ ಸಾಧನವು ಬ್ಯಾಕಪ್ ಅನ್ನು ಪೂರ್ಣಗೊಳಿಸಿದೆ ಎಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">ನಿಮ್ಮ ಎಲ್ಲಾ ರಿಕವರಿ ಕೀ ಪ್ರಯತ್ನಗಳು ಮುಗಿದಿವೆ. ನಿಮ್ಮ ಸುರಕ್ಷತೆಗಾಗಿ, ನೀವು ಮಾಡಬಹುದಾದ ಪ್ರಯತ್ನಗಳ ಸಂಖ್ಯೆ ಸೀಮಿತವಾಗಿದೆ. ಒಂದು ಗಂಟೆ ಕಾಲ ನಿರೀಕ್ಷಿಸಿ ಮತ್ತು ಪುನಃ ಪ್ರಯತ್ನಿಸಿ.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">ರಿಸ್ಟೋರ್ ಸ್ಕಿಪ್ ಮಾಡಿ</string>
     <!-- Dialog title text when encountering backup restore network error -->

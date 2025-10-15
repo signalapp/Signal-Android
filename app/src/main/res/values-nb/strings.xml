@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Mediefilene vil bli gjenopprettet i bakgrunnen. Du får ikke mulighet til å gjenopprette dem senere.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Denne enheten er ikke lenger registrert</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Dette skyldes sannsynligvis at du registrerte Signal-kontoen din på en annen enhet.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Varsle meg om omtaler</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Navn, brukernavn, eller telefonnummer</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8609,9 +8609,9 @@
     <!-- Option subtitle for restoring via device transfer -->
     <string name="SelectRestoreMethodFragment__transfer_directly_from_old">Overfør direkte fra den gamle Android-enheten din</string>
     <!-- Dialog title shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_title">Vil du hoppe over gjenoppretting?</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_title">Vil du hoppe over gjenopprettingen?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Du får ikke mulighet til å gjenopprette dette senere. Hvis du reaktiverer sikkerhetskopiering etter at du hopper over gjenopprettingen, erstattes sikkerhetskopien din av den nye meldingsloggen din.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Hopp over gjenoppretting</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Sikkerhetskoden er riktig, men vi fant ingen sikkerhetskopier knyttet til den. Hvis du fremdeles har den gamle telefonen din, må du sørge for at sikkerhetskopiering er aktivert og at du har fullført en sikkerhetskopi før du prøver på nytt.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Du kan ta tastet inn feil sikkerhetskode, eller så kan det hende at du ikke har fullført noen sikkerhetskopier på den gamle enheten din.\n\nSørg for at du registrerer deg med det samme telefonnummeret og den samme sikkerhetskoden som du brukte da du aktiverte Sikre sikkerhetskopier. Du må også ha fullført en sikkerhetskopi på den gamle enheten din.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Du har brukt for mange forsøk på å skrive inn sikkerhetskoden. Av sikkerhetsmessige årsaker har vi satt en grense for hvor mange forsøk du har. Vent en time før du prøver på nytt.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Hopp over gjenoppretting</string>
     <!-- Dialog title text when encountering backup restore network error -->

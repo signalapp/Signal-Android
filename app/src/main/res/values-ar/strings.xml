@@ -1654,9 +1654,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">سَتتم استعادة ملفات وسائطك في الخلفية. إذا اخترتَ عدم الاستعادة الآن، فلن تتمكَّن من الاستعادة لاحقًا.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">هذا الجهاز لم يَعُد مُسجلًا.</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">على الأغلب هذا بسبب قيامك بتسجيل حساب سيجنال الخاص بك على جهاز آخر.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">نبّهني عندما يذكر أحدهم اسمي</string>
@@ -6479,7 +6479,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">الاسم، أو اسم المُستخدِم، أو الرقم</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -9343,7 +9343,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">هل ترغبُ بتخطِّي الاستعادة؟</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">إذا قُمتَ بتخطي الاستعادة الآن، فلن تتمكّن من الاستعادة لاحقًا. إذا فعّلتَ النسخ الاحتياطية من جديد لاحقًا بعد تخطي الاستعادة، فسيتم استبدال نسختك الاحتياطية الحالية بسجل الرسائل الخاص بك الجديد.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">تخطِّي الاستعادة</string>
 
@@ -9387,9 +9387,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">مفتاح الاستعادة الذي أدخلته صحيح، لكن لا توجد أي نسخة احتياطية مرتبطة به. إذا كُنتَ لا تزال تحتفظ بهاتفك القديم، تأكَّد من أن النسخ الاحتياطية مُفعَّلة وأن عملية نسخ احتياطي قد اكتملت بالفعل، وحاوِل مرّة أخرى.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">قد تكون أدخلتَ مفتاح الاستعادة الخاص بك بشكل خاطئ، أو لم تكمل نسخة احتياطية واحدة على الأقل على جهازك القديم.\n\nتأكَّد من تسجيل الدخول باستخدام رقم الهاتف ومفتاح الاستعادة نفسيهما اللذين حفظتهما عند تفعيل النسخ الاحتياطية الآمنة في سيجنال، وتحقَّق من أن جهازك القديم قد أكملَ النسخ الاحتياطي.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">نفدَت محاولات إدخال مفتاح الاستعادة. من أجل أمانك، فإن عدد المحاولات التي يمكنك القيام بها محدود. حاوِل مُجدَّدًا بعد ساعة.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">تخطِّي الاستعادة</string>
     <!-- Dialog title text when encountering backup restore network error -->

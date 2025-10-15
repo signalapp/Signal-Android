@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Media do të rikthehet në sfond. Nëse zgjedh të mos e rikthesh tani, nuk do të jesh në gjendje ta rikthesh më vonë.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Pajisja nuk është më e regjistruar</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Kjo ndoshta ka ndodhur pasi e ke regjistruar llogarinë e Signal në një pajisje tjetër.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Njoftomë për Përmendje</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Emër, emër përdoruesi ose numër</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Të kapërcehet rikthimi?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Nëse e kapërcen rikthimin tani, nuk do të jesh në gjendje ta rikthesh më vonë. Nëse i riaktivizon kopjeruajtjet pasi ke kapërcyer rikthimin, kopjeruajtja aktuale do të zëvendësohet me historikun e ri të mesazheve.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Kapërce rikthimin</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Kodi i rikuperimit që vendose është i saktë, por nuk ka kopjeruajtje të lidhur me të. Nëse e ke ende telefonin e vjetër, sigurohu që kopjeruajtjet të jenë aktive dhe të jetë kryer një kopjeruajtje e pastaj provo përsëri.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Mund të kesh vendosur gabim kodin e rikthimit ose nuk ke përfunduar të paktën një kopjeruajtje në pajisjen e vjetër.\n\nSigurohu që po regjistrohesh me të njëjtin numër telefoni dhe kod rikthimi që ke ruajtur kur aktivizove \"Kopjeruajtjet e sigurta\" dhe konfirmo që të kesh përfunduar kopjeruajtje në pajisjen e vjetër.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Të kanë mbaruar përpjekjet për kodin e rikthimit. Për sigurinë tënde, numri i përpjekjeve që mund të bësh është i kufizuar. Prit një orë dhe provo përsëri.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Kapërce rikthimin</string>
     <!-- Dialog title text when encountering backup restore network error -->

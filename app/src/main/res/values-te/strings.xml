@@ -1494,9 +1494,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">మీ మీడియా నేపథ్యంలో పునరుద్ధరించబడుతుంది. ఒకవేళ మీరు ఇప్పుడు పునరుద్ధరించకూడదని ఎంచుకుంటే, మీరు తర్వాత పునరుద్ధరించలేరు.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">ఈ పరికరం ఇకపై నమోదు చేయబడదు</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">మీరు మీ Signal ఖాతాను వేరొక పరికరంలో నమోదు చేసుకున్నందున ఇది జరిగి ఉండవచ్చు.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">నాకు ప్రస్తావనల తెలియజేయండి</string>
@@ -5923,7 +5923,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">పేరు, యూజర్‌నేమ్ లేదా నంబర్</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8611,7 +8611,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">పునరుద్ధరించడాన్ని దాటవేసేదా?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">ఒకవేళ మీరు ఇప్పుడు పునరుద్ధరించడాన్ని దాటవేస్తే, మీరు తరువాత పునరుద్ధరించలేరు. ఒకవేళ మీరు పునరుద్ధరణను దాటవేసిన తర్వాత బ్యాకప్‌లను మళ్ళీ ప్రారంభిస్తే, మీ ప్రస్తుత బ్యాకప్ మీ కొత్త సందేశ చరిత్రతో భర్తీ చేయబడుతుంది.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
 
@@ -8655,9 +8655,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">మీరు ఎంటర్ చేసిన రికవరీ కీ సరైనది, కానీ దానితో అనుబంధించబడిన బ్యాకప్ ఏదీ లేదు. ఒకవేళ మీ పాత ఫోన్ ఇంకా మీ దగ్గర ఉంటే, బ్యాకప్‌లు ప్రారంభించబడ్డాయని మరియు బ్యాకప్ పూర్తి చేయబడిందని నిర్ధారించుకుని, మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">మీరు మీ రికవరీ కీని తప్పుగా ఎంటర్ చేసి ఉండవచ్చు లేదా మీరు మీ పాత పరికరంలో కనీసం ఒక బ్యాకప్‌ను పూర్తి చేసి ఉండకపోవచ్చు.\n\nSignal సురక్షిత బ్యాకప్‌లను ప్రారంభించేటప్పుడు మీరు సేవ్ చేసిన అదే ఫోన్ నంబర్ మరియు రికవరీ కీతో మీరు నమోదు అవుతున్నారని నిర్ధారించుకోండి మరియు మీ పాత పరికరం బ్యాకప్‌ను పూర్తి చేసిందని నిర్ధారించుకోండి.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">మీరు రికవరీ కీ ప్రయత్నాలను పూర్తి చేసుకున్నారు. మీ భద్రత కోసం, మీరు చేయగల ప్రయత్నాల సంఖ్య పరిమితం చేయబడింది. ఒక గంటసేపు ఆగి, మళ్ళీ ప్రయత్నించండి.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">పునరుద్ధరించడాన్ని దాటవేయండి</string>
     <!-- Dialog title text when encountering backup restore network error -->

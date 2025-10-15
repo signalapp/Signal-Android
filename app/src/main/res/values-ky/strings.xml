@@ -1454,9 +1454,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Медиа файлдар фондо калыбына келет. Азыр калыбына келтирбесеңиз, кийин калыбына келтире албай каласыз.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Бул түзмөк катталбай калды</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Signal аккаунтун башка түзмөккө каттаган окшойсуз.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Мени айтып өткөндөр тууралуу билип турайын</string>
@@ -5784,7 +5784,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Ысым, колдонуучу аты же номер</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">· %1$s</string>
@@ -8428,7 +8428,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Калыбына келтирүү өткөрүп жиберилсинби?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Азыр өткөрүп жиберсеңиз, кийин калыбына келтире албай каласыз. Калыбына келтирүү процессин өткөрүп жибергенден кийин камдык көчүрмөлөрдү кайра иштетсеңиз, учурдагы камдык көчүрмөлөр жаңы билдирүүлөр таржымалынан башталат.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Өткөрүп жиберүү</string>
 
@@ -8472,9 +8472,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Ачкычты туура киргиздиңиз, бирок ага байланышкан камдык көчүрмө жок. Эски телефонуңуз жаныңызда болсо, камдык көчүрмөлөрдүн күйгүзүлүп, аяктаганын текшерип, кайталап көрүңүз.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Калыбына келтирүү ачкычын туура эмес киргизген окшойсуз же эски түзмөгүңүздө кеминде бир камдык көчүрмөнү аягына чыгарган жоксуз.\n\nSignal\'дын Коопсуз камдык көчүрмөлөр кызматын иштетип жатканда каттаган телефон номериңизди жана калыбына келтирүүчү ачкычты колдонуп, эски түзмөгүңүздөгү камдык көчүрмөнү аягына чыгарыңыз.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Калыбына келтирүү ачкычын көп жолу туура эмес киргиздиңиз. Коопсуздук максатында, белгилүү бир санда гана аракет кыла аласыз. Бир саат күтүп туруп, кайталап көрүңүз.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Өткөрүп жиберүү</string>
     <!-- Dialog title text when encountering backup restore network error -->

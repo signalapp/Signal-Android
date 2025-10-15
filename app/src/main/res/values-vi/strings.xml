@@ -1454,9 +1454,9 @@
     <!-- Text shown on restore screen as information on what will happen if you skip -->
     <string name="RemoteRestoreActivity__your_media_will_restore_in_the_background">Tập tin đa phương tiện sẽ khôi phục ở chế độ nền. Nếu bạn chọn không khôi phục bây giờ, bạn sẽ không khôi phục được sau này.</string>
     <!-- Dialog title -->
-    <string name="RestoreActivity__no_longer_registered_title">This device is no longer registered</string>
+    <string name="RestoreActivity__no_longer_registered_title">Thiết bị này không còn được đăng ký</string>
     <!-- Dialog message -->
-    <string name="RestoreActivity__no_longer_registered_message">This is likely because you registered your Signal account on a different device.</string>
+    <string name="RestoreActivity__no_longer_registered_message">Nguyên nhân có thể là do bạn đăng ký tài khoản Signal của mình trên một thiết bị khác.</string>
 
     <!-- GroupMentionSettingDialog -->
     <string name="GroupMentionSettingDialog_notify_me_for_mentions">Thông báo khi tôi được nhắc tên</string>
@@ -5784,7 +5784,7 @@
     </plurals>
 
     <!-- Hint text that shows in the recipient search box when no text is entered yet. -->
-    <string name="ContactFilterView__search_name_or_number">Name, username or number</string>
+    <string name="ContactFilterView__search_name_or_number">Tên, tên người dùng hoặc số điện thoại</string>
 
     <!-- VoiceNotePlayerView -->
     <string name="VoiceNotePlayerView__dot_s">. %1$s</string>
@@ -8428,7 +8428,7 @@
     <!-- Dialog title shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore_title">Bỏ qua khôi phục?</string>
     <!-- Dialog message shown as a warning when skipping restore during registration -->
-    <string name="SelectRestoreMethodFragment__skip_restore_warning">If you skip restore now you will not be able to restore later. If you re-enable backups after skipping restore, your current backup will be replaced with your new messaging history.</string>
+    <string name="SelectRestoreMethodFragment__skip_restore_warning">Nếu bạn bỏ qua việc khôi phục bây giờ, bạn sẽ không thể khôi phục sau này. Nếu bạn bật lại tính năng sao lưu sau khi bỏ qua việc khôi phục, bản sao lưu hiện tại sẽ được thay thế bởi lịch sử tin nhắn mới.</string>
     <!-- Dialog confirm text shown as a warning when skipping restore during registration -->
     <string name="SelectRestoreMethodFragment__skip_restore">Bỏ qua</string>
 
@@ -8472,9 +8472,9 @@
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
     <string name="EnterBackupKey_backup_key_you_entered_is_correct_but_no_backup">Mã khóa khôi phục bạn nhập đúng nhưng không có bản sao lưu đi kèm. Nếu bạn còn giữ điện thoại cũ, đảm bảo đã bật sao lưu và đã hoàn tất sao lưu rồi thử lại.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">You may have entered your recovery key incorrectly, or you have not completed at least one backup on your old device.\n\nMake sure you’re registering with the same phone number and recovery key you saved when enabling Signal Secure Backups, and confirm that your old device has completed a backup.</string>
+    <string name="EnterBackupKey_backup_key_incorrect_or_backups_not_enabled">Có thể bạn đã nhập sai mã khóa khôi phục hoặc chưa hoàn tất ít nhất một lần sao lưu trên thiết bị cũ.\n\nHãy đảm bảo rằng bạn đang đăng ký bằng cùng số điện thoại và mã khóa khôi phục bạn đã lưu khi bật Sao lưu bảo mật Signal và xác nhận rằng thiết bị cũ của bạn đã hoàn tất quá trình sao lưu.</string>
     <!-- Dialog message shown during registration and trying to restore a remote backup -->
-    <string name="EnterBackupKey_backup_key_check_rate_limited">You have run out of recovery key attempts. For your security, the number of attempts you can make is limited. Wait one hour and try again.</string>
+    <string name="EnterBackupKey_backup_key_check_rate_limited">Bạn đã hết số lượt thử mã khóa khôi phục. Vì lý do bảo mật, bạn chỉ có thể nhập mã khóa với số lượt nhất định. Hãy chờ một tiếng và thử lại.</string>
     <!-- Dialog button shown during registration and trying to restore a remote backup to instead skip said backup process -->
     <string name="EnterBackupKey_skip_restore">Bỏ qua</string>
     <!-- Dialog title text when encountering backup restore network error -->
