@@ -136,8 +136,7 @@ object EditMessageProcessor {
     } else {
       null
     }
-    val attachments = message.attachments.toPointersWithinLimit()
-    attachments.filter {
+    val attachments = message.attachments.toPointersWithinLimit().filter {
       MediaUtil.SlideType.LONG_TEXT == MediaUtil.getSlideTypeFromContentType(it.contentType)
     }
     val mediaMessage = IncomingMessage(
