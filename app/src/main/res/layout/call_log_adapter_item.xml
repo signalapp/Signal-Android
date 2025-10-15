@@ -7,7 +7,7 @@
     android:layout_marginHorizontal="12dp"
     android:layout_marginVertical="2dp"
     android:animateLayoutChanges="true"
-    android:background="@drawable/selectable_list_item_background"
+    android:background="@drawable/conversation_list_item_background"
     android:minHeight="68dp">
 
     <androidx.appcompat.widget.AppCompatCheckBox

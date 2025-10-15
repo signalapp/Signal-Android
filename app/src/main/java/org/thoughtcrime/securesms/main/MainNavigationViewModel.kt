@@ -19,10 +19,12 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.reactive.asFlow
 import kotlinx.coroutines.rx3.asObservable
+import org.thoughtcrime.securesms.calls.log.CallLogRow
 import org.thoughtcrime.securesms.components.settings.app.notifications.profiles.NotificationProfilesRepository
 import org.thoughtcrime.securesms.dependencies.AppDependencies
 import org.thoughtcrime.securesms.keyvalue.SignalStore
@@ -32,6 +34,7 @@ import org.thoughtcrime.securesms.notifications.profiles.NotificationProfile
 import org.thoughtcrime.securesms.stories.Stories
 import org.thoughtcrime.securesms.window.AppScaffoldNavigator
 import org.thoughtcrime.securesms.window.WindowSizeClass
+import java.util.Optional
 
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 class MainNavigationViewModel(
@@ -48,7 +51,12 @@ class MainNavigationViewModel(
    */
   private val internalDetailLocation = MutableSharedFlow<MainNavigationDetailLocation>()
   val detailLocation: SharedFlow<MainNavigationDetailLocation> = internalDetailLocation
-  val detailLocationObservable: Observable<MainNavigationDetailLocation> = internalDetailLocation.asObservable()
+
+  private val internalActiveChatThreadId = MutableStateFlow(-1L)
+  val observableActiveChatThreadId: Observable<Long> = internalActiveChatThreadId.asObservable()
+
+  private val internalActiveCallId = MutableStateFlow<CallLogRow.Id?>(null)
+  val observableActiveCallId: Observable<Optional<CallLogRow.Id>> = internalActiveCallId.map { Optional.ofNullable(it) }.asObservable()
 
   private val internalMegaphone = MutableStateFlow(Megaphone.NONE)
   val megaphone: StateFlow<Megaphone> = internalMegaphone
@@ -98,6 +106,20 @@ class MainNavigationViewModel(
 
     performStoreUpdate(MainNavigationRepository.getHasFailedOutgoingStories()) { hasFailedStories, state ->
       state.copy(storyFailure = hasFailedStories)
+    }
+
+    viewModelScope.launch {
+      internalDetailLocation.collect { location ->
+        when (location) {
+          is MainNavigationDetailLocation.Chats.Conversation -> {
+            internalActiveChatThreadId.update { location.conversationArgs.threadId }
+          }
+          is MainNavigationDetailLocation.Calls -> {
+            internalActiveCallId.update { location.controllerKey }
+          }
+          else -> Unit
+        }
+      }
     }
   }
 

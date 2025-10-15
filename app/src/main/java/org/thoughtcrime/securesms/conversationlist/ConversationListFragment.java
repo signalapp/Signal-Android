@@ -114,7 +114,6 @@ import org.thoughtcrime.securesms.contacts.paged.ContactSearchData;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchMediator;
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchState;
-import org.thoughtcrime.securesms.conversation.ConversationArgs;
 import org.thoughtcrime.securesms.conversation.ConversationUpdateTick;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterRequest;
 import org.thoughtcrime.securesms.conversationlist.chatfilter.ConversationFilterSource;
@@ -131,7 +130,6 @@ import org.thoughtcrime.securesms.groups.SelectionLimits;
 import org.thoughtcrime.securesms.jobs.RefreshOwnProfileJob;
 import org.thoughtcrime.securesms.keyvalue.AccountValues;
 import org.thoughtcrime.securesms.keyvalue.SignalStore;
-import org.thoughtcrime.securesms.main.MainNavigationDetailLocation;
 import org.thoughtcrime.securesms.main.MainNavigationListLocation;
 import org.thoughtcrime.securesms.main.MainNavigationViewModel;
 import org.thoughtcrime.securesms.main.MainToolbarMode;
@@ -413,16 +411,9 @@ public class ConversationListFragment extends MainFragment implements Conversati
                                                    }));
 
     if (WindowSizeClass.Companion.getWindowSizeClass(getResources()).isSplitPane()) {
-      lifecycleDisposable.add(mainNavigationViewModel.getDetailLocationObservable()
+      lifecycleDisposable.add(mainNavigationViewModel.getObservableActiveChatThreadId()
                                                      .subscribeOn(AndroidSchedulers.mainThread())
-                                                     .subscribe(location -> {
-                                                       if (location instanceof MainNavigationDetailLocation.Chats.Conversation) {
-                                                         ConversationArgs args   = ((MainNavigationDetailLocation.Chats.Conversation) location).getConversationArgs();
-                                                         long             threadId = args.threadId;
-
-                                                         defaultAdapter.setActiveThreadId(threadId);
-                                                       }
-                                                     }));
+                                                     .subscribe(defaultAdapter::setActiveThreadId));
     } else {
       defaultAdapter.setActiveThreadId(0);
     }

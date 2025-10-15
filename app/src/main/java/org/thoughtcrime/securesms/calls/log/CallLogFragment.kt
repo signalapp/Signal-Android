@@ -18,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.kotlin.Flowables
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import kotlinx.coroutines.launch
@@ -25,6 +26,7 @@ import org.signal.core.util.DimensionUnit
 import org.signal.core.util.concurrent.LifecycleDisposable
 import org.signal.core.util.concurrent.addTo
 import org.signal.core.util.logging.Log
+import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.MainNavigator
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.calls.links.create.CreateCallLinkBottomSheetDialogFragment
@@ -122,12 +124,13 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
     )
 
     disposables += scrollToPositionDelegate
-    disposables += Flowables.combineLatest(viewModel.data, viewModel.selected)
+    disposables += Flowables.combineLatest(viewModel.data, viewModel.selected, mainNavigationViewModel.observableActiveCallId.toFlowable(BackpressureStrategy.LATEST))
       .observeOn(AndroidSchedulers.mainThread())
-      .subscribe { (data, selected) ->
+      .subscribe { (data, selected, activeRowId) ->
         val filteredCount = callLogAdapter.submitCallRows(
           data,
           selected,
+          activeCallLogRowId = activeRowId.orNull().takeIf { resources.getWindowSizeClass().isSplitPane() },
           viewModel.callLogPeekHelper.localDeviceCallRecipientId,
           scrollToPositionDelegate::notifyListCommitted
         )
