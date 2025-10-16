@@ -23,8 +23,8 @@ plugins {
 apply(from = "static-ips.gradle.kts")
 
 val canonicalVersionCode = 1599
-val canonicalVersionName = "7.60.2"
-val currentHotfixVersion = 0
+val canonicalVersionName = "7.60.3"
+val currentHotfixVersion = 1
 val maxHotfixVersions = 100
 
 val keystores: Map<String, Properties?> = mapOf("debug" to loadKeystoreProperties("keystore.debug.properties"))
