@@ -7,6 +7,7 @@ import org.signal.core.util.isNotEmpty
 import org.signal.core.util.logging.Log
 import org.signal.core.util.nullIfBlank
 import org.signal.core.util.nullIfEmpty
+import org.thoughtcrime.securesms.crypto.ProfileKeyUtil
 import org.thoughtcrime.securesms.database.RecipientTable
 import org.thoughtcrime.securesms.database.SignalDatabase
 import org.thoughtcrime.securesms.database.model.RecipientRecord
@@ -215,7 +216,7 @@ class ContactRecordProcessor(
       pni = mergedPni?.toStringWithoutPrefix() ?: ""
       givenName = mergedProfileGivenName
       familyName = mergedProfileFamilyName
-      profileKey = remote.proto.profileKey.nullIfEmpty() ?: local.proto.profileKey
+      profileKey = remote.proto.profileKey.nullIfEmpty()?.takeIf { ProfileKeyUtil.profileKeyOrNull(it.toByteArray()) != null } ?: local.proto.profileKey
       username = remote.proto.username.nullIfBlank() ?: local.proto.username
       identityState = mergedIdentityState
       identityKey = mergedIdentityKey?.toByteString() ?: ByteString.EMPTY
