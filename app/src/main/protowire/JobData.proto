@@ -250,4 +250,5 @@ message PollVoteJobData {
   uint32 initialRecipientCount = 3;
   uint32 voteCount = 4;
   bool isRemoval = 5;
+  uint64 optionId = 6;
 }

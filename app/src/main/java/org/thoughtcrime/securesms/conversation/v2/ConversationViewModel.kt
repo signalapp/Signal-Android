@@ -659,7 +659,8 @@ class ConversationViewModel(
       val pollVoteJob = PollVoteJob.create(
         messageId = poll.messageId,
         voteCount = voteCount,
-        isRemoval = !isChecked
+        isRemoval = !isChecked,
+        optionId = pollOption.id
       )
 
       if (pollVoteJob != null) {

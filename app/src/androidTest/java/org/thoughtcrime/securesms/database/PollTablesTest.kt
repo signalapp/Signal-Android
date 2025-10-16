@@ -2,6 +2,7 @@ package org.thoughtcrime.securesms.database
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -100,7 +101,7 @@ class PollTablesTest {
     val voteCount = SignalDatabase.polls.insertVote(poll, pollOption)
 
     assertEquals(1, voteCount)
-    assertEquals(listOf(0), SignalDatabase.polls.getVotes(poll.id, false))
+    assertEquals(listOf(0), SignalDatabase.polls.getVotes(poll.id, false, voteCount))
   }
 
   @Test
@@ -110,23 +111,25 @@ class PollTablesTest {
     val pollOption = poll.pollOptions.first()
 
     val voteCount = SignalDatabase.polls.removeVote(poll, pollOption)
-    SignalDatabase.polls.markPendingAsRemoved(poll.id, Recipient.self().id.toLong(), voteCount, 1)
+    SignalDatabase.polls.markPendingAsRemoved(poll.id, Recipient.self().id.toLong(), voteCount, 1, pollOption.id)
 
     assertEquals(1, voteCount)
-    val status = SignalDatabase.polls.getPollVoteStateForGivenVote(poll.id, voteCount)
-    assertEquals(PollTables.VoteState.REMOVED, status)
+    val votes = SignalDatabase.polls.getVotes(poll.id, false, voteCount)
+    assertTrue(votes.isEmpty())
   }
 
   @Test
-  fun givenAVote_whenISetPollOptionId_thenOptionIdIsUpdated() {
-    SignalDatabase.polls.insertPoll("how do you feel about unit testing?", false, listOf("yay", "ok", "nay"), 1, 1)
+  fun givenAPendingVote_whenIRevertThatVote_thenItGoesToMostRecentResolvedState() {
+    SignalDatabase.polls.insertPoll("how do you feel about unit testing?", true, listOf("yay", "ok", "nay"), 1, 1)
     val poll = SignalDatabase.polls.getPoll(1)!!
     val option = poll.pollOptions.first()
 
     SignalDatabase.polls.insertVotes(poll.id, listOf(option.id), Recipient.self().id.toLong(), 5, MessageId(1))
-    SignalDatabase.polls.setPollVoteStateForGivenVote(poll.id, Recipient.self().id.toLong(), 5, 1, true)
-    val status = SignalDatabase.polls.getPollVoteStateForGivenVote(poll.id, 5)
+    SignalDatabase.polls.markPendingAsAdded(poll.id, Recipient.self().id.toLong(), 5, 1, option.id)
+    SignalDatabase.polls.removeVote(poll, option)
 
-    assertEquals(PollTables.VoteState.ADDED, status)
+    SignalDatabase.polls.removePendingVote(poll.id, option.id, 6, 1)
+    val votes = SignalDatabase.polls.getVotes(1, true, 6)
+    assertEquals(listOf(0), votes)
   }
 }

@@ -220,7 +220,7 @@ private fun PollResultsScreenPreview() {
           question = "How do you feel about finished compose previews?",
           pollOptions = listOf(
             PollOption(1, "Yay", listOf(Voter(1, 1), Voter(12, 1), Voter(3, 1))),
-            PollOption(2, "Ok", listOf(Voter(2, 1), Voter(4, 1)), isSelected = true),
+            PollOption(2, "Ok", listOf(Voter(2, 1), Voter(4, 1))),
             PollOption(3, "Nay", emptyList())
           ),
           allowMultipleVotes = false,

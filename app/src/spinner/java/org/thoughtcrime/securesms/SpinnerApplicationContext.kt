@@ -20,6 +20,7 @@ import org.thoughtcrime.securesms.database.LogDatabase
 import org.thoughtcrime.securesms.database.MegaphoneDatabase
 import org.thoughtcrime.securesms.database.MessageBitmaskColumnTransformer
 import org.thoughtcrime.securesms.database.MessageRangesTransformer
+import org.thoughtcrime.securesms.database.PollTransformer
 import org.thoughtcrime.securesms.database.ProfileKeyCredentialTransformer
 import org.thoughtcrime.securesms.database.QueryMonitor
 import org.thoughtcrime.securesms.database.RecipientTransformer
@@ -70,7 +71,8 @@ class SpinnerApplicationContext : ApplicationContext() {
             MessageRangesTransformer,
             KyberKeyTransformer,
             RecipientTransformer,
-            AttachmentTransformer
+            AttachmentTransformer,
+            PollTransformer
           )
         ),
         "jobmanager" to DatabaseConfig(db = { JobDatabase.getInstance(this).sqlCipherDatabase }, columnTransformers = listOf(TimestampTransformer)),

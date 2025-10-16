@@ -6,6 +6,7 @@ import androidx.core.content.contentValuesOf
 import org.signal.core.util.SqlUtil
 import org.signal.core.util.delete
 import org.signal.core.util.exists
+import org.signal.core.util.forEach
 import org.signal.core.util.groupBy
 import org.signal.core.util.insertInto
 import org.signal.core.util.logging.Log
@@ -30,6 +31,7 @@ import org.thoughtcrime.securesms.polls.Poll
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.polls.PollVote
+import org.thoughtcrime.securesms.polls.VoteState
 import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -143,8 +145,7 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         $VOTER_ID INTEGER NOT NULL REFERENCES ${RecipientTable.TABLE_NAME} (${RecipientTable.ID}) ON DELETE CASCADE,
         $VOTE_COUNT INTEGER,
         $DATE_RECEIVED INTEGER DEFAULT 0,
-        $VOTE_STATE INTEGER DEFAULT 0,
-        UNIQUE($POLL_ID, $VOTER_ID, $POLL_OPTION_ID) ON CONFLICT REPLACE
+        $VOTE_STATE INTEGER DEFAULT 0
       )
     """
 
@@ -224,6 +225,8 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   /**
    * Inserts a vote in a poll and increases the vote count by 1.
    * Status is marked as [VoteState.PENDING_ADD] here and then once it successfully sends, it will get updated to [VoteState.ADDED] in [markPendingAsAdded]
+   * If the latest state is already pending for this vote, it will just update the pending state.
+   * However, if there is a resolved state eg [VoteState.ADDED], we add a new entry so that if the pending entry fails, we can revert back to a known state.
    */
   fun insertVote(poll: PollRecord, pollOption: PollOption): Int {
     val self = Recipient.self().id.toLong()
@@ -231,17 +234,36 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
     writableDatabase.withinTransaction { db ->
       voteCount = getCurrentPollVoteCount(poll.id, self) + 1
-      val contentValues = ContentValues().apply {
-        put(PollVoteTable.POLL_ID, poll.id)
-        put(PollVoteTable.POLL_OPTION_ID, pollOption.id)
-        put(PollVoteTable.VOTER_ID, self)
-        put(PollVoteTable.VOTE_COUNT, voteCount)
-        put(PollVoteTable.VOTE_STATE, VoteState.PENDING_ADD.value)
-      }
 
-      db.insertInto(PollVoteTable.TABLE_NAME)
-        .values(contentValues)
-        .run(SQLiteDatabase.CONFLICT_REPLACE)
+      if (isPending(poll.id, pollOption.id, self)) {
+        db.update(PollVoteTable.TABLE_NAME)
+          .values(
+            PollVoteTable.VOTE_STATE to VoteState.PENDING_ADD.value,
+            PollVoteTable.VOTE_COUNT to voteCount
+          )
+          .where(
+            """  
+            ${PollVoteTable.POLL_ID} = ? AND 
+            ${PollVoteTable.POLL_OPTION_ID} = ? AND 
+            ${PollVoteTable.VOTER_ID} = ? AND 
+            (${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_ADD.value} OR ${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_REMOVE.value})
+            """.trimIndent(),
+            poll.id,
+            pollOption.id,
+            self
+          )
+          .run()
+      } else {
+        db.insertInto(PollVoteTable.TABLE_NAME)
+          .values(
+            PollVoteTable.POLL_ID to poll.id,
+            PollVoteTable.POLL_OPTION_ID to pollOption.id,
+            PollVoteTable.VOTER_ID to self,
+            PollVoteTable.VOTE_COUNT to voteCount,
+            PollVoteTable.VOTE_STATE to VoteState.PENDING_ADD.value
+          )
+          .run(SQLiteDatabase.CONFLICT_REPLACE)
+      }
     }
 
     AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(poll.messageId))
@@ -252,25 +274,43 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
    * Once a vote is sent to at least one person, we can update the [VoteState.PENDING_ADD] state to [VoteState.ADDED].
    * If the poll only allows one vote, it also clears out any old votes.
    */
-  fun markPendingAsAdded(pollId: Long, voterId: Long, voteCount: Int, messageId: Long) {
+  fun markPendingAsAdded(pollId: Long, voterId: Long, voteCount: Int, messageId: Long, optionId: Long) {
     val poll = SignalDatabase.polls.getPollFromId(pollId)
     if (poll == null) {
       Log.w(TAG, "Cannot find poll anymore $pollId")
       return
     }
 
-    writableDatabase.updateWithOnConflict(
-      PollVoteTable.TABLE_NAME,
-      contentValuesOf(PollVoteTable.VOTE_STATE to VoteState.ADDED.value),
-      "${PollVoteTable.POLL_ID} = ? AND ${PollVoteTable.VOTER_ID} = ? AND ${PollVoteTable.VOTE_COUNT} = ? AND ${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_ADD.value}",
-      SqlUtil.buildArgs(pollId, voterId, voteCount),
-      SQLiteDatabase.CONFLICT_REPLACE
-    )
-
-    if (!poll.allowMultipleVotes) {
-      writableDatabase.delete(PollVoteTable.TABLE_NAME)
-        .where("${PollVoteTable.POLL_ID} = ? AND ${PollVoteTable.VOTER_ID} = ? AND ${PollVoteTable.VOTE_COUNT} < ?", poll.id, Recipient.self().id, voteCount)
+    writableDatabase.withinTransaction { db ->
+      // Clear out any old voting history for this specific voter option combination
+      db.delete(PollVoteTable.TABLE_NAME)
+        .where(
+          """
+            ${PollVoteTable.POLL_ID} = ? AND 
+            ${PollVoteTable.POLL_OPTION_ID} = ? AND 
+            ${PollVoteTable.VOTER_ID} = ? AND 
+            ${PollVoteTable.VOTE_COUNT} < ?
+          """.trimIndent(),
+          pollId,
+          optionId,
+          voterId,
+          voteCount
+        )
         .run()
+
+      db.updateWithOnConflict(
+        PollVoteTable.TABLE_NAME,
+        contentValuesOf(PollVoteTable.VOTE_STATE to VoteState.ADDED.value),
+        "${PollVoteTable.POLL_ID} = ? AND ${PollVoteTable.VOTER_ID} = ? AND ${PollVoteTable.VOTE_COUNT} = ? AND ${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_ADD.value}",
+        SqlUtil.buildArgs(pollId, voterId, voteCount),
+        SQLiteDatabase.CONFLICT_REPLACE
+      )
+
+      if (!poll.allowMultipleVotes) {
+        db.delete(PollVoteTable.TABLE_NAME)
+          .where("${PollVoteTable.POLL_ID} = ? AND ${PollVoteTable.VOTER_ID} = ? AND ${PollVoteTable.VOTE_COUNT} < ?", poll.id, Recipient.self().id, voteCount)
+          .run()
+      }
     }
     AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
   }
@@ -278,6 +318,8 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   /**
    * Removes vote from a poll. This also increases the vote count because removal of a vote, is technically a type of vote.
    * Status is marked as [VoteState.PENDING_REMOVE] here and then once it successfully sends, it will get updated to [VoteState.REMOVED] in [markPendingAsRemoved]
+   * If the latest state is already a pending state for this vote, it will just update the pending state.
+   * However, if there is a resolved state eg [VoteState.REMOVED], we add a new entry so that if the pending entry fails, we can revert back to a known state.
    */
   fun removeVote(poll: PollRecord, pollOption: PollOption): Int {
     val self = Recipient.self().id.toLong()
@@ -285,15 +327,30 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
 
     writableDatabase.withinTransaction { db ->
       voteCount = getCurrentPollVoteCount(poll.id, self) + 1
-      db.insertInto(PollVoteTable.TABLE_NAME)
-        .values(
-          PollVoteTable.POLL_ID to poll.id,
-          PollVoteTable.POLL_OPTION_ID to pollOption.id,
-          PollVoteTable.VOTER_ID to self,
-          PollVoteTable.VOTE_COUNT to voteCount,
-          PollVoteTable.VOTE_STATE to VoteState.PENDING_REMOVE.value
-        )
-        .run(SQLiteDatabase.CONFLICT_REPLACE)
+      if (isPending(poll.id, pollOption.id, self)) {
+        db.update(PollVoteTable.TABLE_NAME)
+          .values(
+            PollVoteTable.VOTE_STATE to VoteState.PENDING_REMOVE.value,
+            PollVoteTable.VOTE_COUNT to voteCount
+          )
+          .where(
+            "${PollVoteTable.POLL_ID} = ? AND ${PollVoteTable.POLL_OPTION_ID} = ? AND ${PollVoteTable.VOTER_ID} = ? AND (${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_ADD.value} OR ${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_REMOVE.value})",
+            poll.id,
+            pollOption.id,
+            self
+          )
+          .run()
+      } else {
+        db.insertInto(PollVoteTable.TABLE_NAME)
+          .values(
+            PollVoteTable.POLL_ID to poll.id,
+            PollVoteTable.POLL_OPTION_ID to pollOption.id,
+            PollVoteTable.VOTER_ID to self,
+            PollVoteTable.VOTE_COUNT to voteCount,
+            PollVoteTable.VOTE_STATE to VoteState.PENDING_REMOVE.value
+          )
+          .run()
+      }
     }
 
     AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(poll.messageId))
@@ -303,8 +360,24 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   /**
    * Once a vote is sent to at least one person, we can update the [VoteState.PENDING_REMOVE] state to [VoteState.REMOVED].
    */
-  fun markPendingAsRemoved(pollId: Long, voterId: Long, voteCount: Int, messageId: Long) {
+  fun markPendingAsRemoved(pollId: Long, voterId: Long, voteCount: Int, messageId: Long, optionId: Long) {
     writableDatabase.withinTransaction { db ->
+      // Clear out any old voting history for this specific voter option combination
+      db.delete(PollVoteTable.TABLE_NAME)
+        .where(
+          """
+            ${PollVoteTable.POLL_ID} = ? AND 
+            ${PollVoteTable.VOTER_ID} = ? AND 
+            ${PollVoteTable.POLL_OPTION_ID} = ? AND 
+            ${PollVoteTable.VOTE_COUNT} < ?
+          """.trimIndent(),
+          pollId,
+          voterId,
+          optionId,
+          voteCount
+        )
+        .run()
+
       db.updateWithOnConflict(
         PollVoteTable.TABLE_NAME,
         contentValuesOf(PollVoteTable.VOTE_STATE to VoteState.REMOVED.value),
@@ -317,17 +390,21 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   /**
-   * For a given poll, returns the option indexes that the person has voted for
+   * For a given poll, returns the option indexes that the person has voted for.
+   * Because we store both pending and resolved states of votes, we need to make
+   * sure that when getting votes, we only get the latest vote. We do this by
+   * sorting our query by vote count (higher vote counts are the more recent) and
+   * then for each option, only getting the latest such vote if applicable.
    */
-  fun getVotes(pollId: Long, allowMultipleVotes: Boolean): List<Int> {
+  fun getVotes(pollId: Long, allowMultipleVotes: Boolean, voteCount: Int): List<Int> {
     val voteQuery = if (allowMultipleVotes) {
-      "(${PollVoteTable.VOTE_STATE} = ${VoteState.ADDED.value} OR ${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_ADD.value})"
+      "${PollVoteTable.VOTE_COUNT} <= ?"
     } else {
-      "${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_ADD.value}"
+      "${PollVoteTable.VOTE_COUNT} = ?"
     }
 
-    return readableDatabase
-      .select(PollOptionTable.OPTION_ORDER)
+    val votesStates = readableDatabase
+      .select(PollOptionTable.OPTION_ORDER, PollVoteTable.VOTE_STATE)
       .from("${PollVoteTable.TABLE_NAME} LEFT JOIN ${PollOptionTable.TABLE_NAME} ON ${PollVoteTable.TABLE_NAME}.${PollVoteTable.POLL_OPTION_ID} = ${PollOptionTable.TABLE_NAME}.${PollOptionTable.ID}")
       .where(
         """
@@ -337,10 +414,24 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         $voteQuery
         """,
         pollId,
-        Recipient.self().id.toLong()
+        Recipient.self().id.toLong(),
+        voteCount
       )
+      .orderBy("${PollVoteTable.VOTE_COUNT} DESC")
       .run()
-      .readToList { cursor -> cursor.requireInt(PollOptionTable.OPTION_ORDER) }
+      .groupBy { cursor ->
+        cursor.requireInt(PollOptionTable.OPTION_ORDER) to cursor.requireInt(PollVoteTable.VOTE_STATE)
+      }
+
+    val votes = votesStates.filter {
+      if (allowMultipleVotes) {
+        it.value.first() == VoteState.PENDING_ADD.value || it.value.first() == VoteState.ADDED.value
+      } else {
+        it.value.first() == VoteState.PENDING_ADD.value
+      }
+    }
+
+    return votes.keys.toList()
   }
 
   /**
@@ -365,33 +456,27 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
   }
 
   /**
-   * Returns the [VoteState] for a given voting session (as indicated by voteCount)
+   * When a vote job fails, delete the pending vote so that it falls back to the most recently resolved (not pending)
+   * [VoteState] prior to this voting session. If the pending vote was the only entry, its deletion is equal to having not voted.
    */
-  fun getPollVoteStateForGivenVote(pollId: Long, voteCount: Int): VoteState {
-    val value = readableDatabase
-      .select(PollVoteTable.VOTE_STATE)
-      .from(PollVoteTable.TABLE_NAME)
-      .where("${PollVoteTable.POLL_ID} = ? AND ${PollVoteTable.VOTER_ID} = ? AND ${PollVoteTable.VOTE_COUNT} = ?", pollId, Recipient.self().id.toLong(), voteCount)
-      .run()
-      .readToSingleInt()
-    return VoteState.fromValue(value)
-  }
+  fun removePendingVote(pollId: Long, optionId: Long, voteCount: Int, messageId: Long) {
+    Log.w(TAG, "Pending vote failed, reverting vote at $voteCount")
 
-  /**
-   * Sets the [VoteState] for a given voting session (as indicated by voteCount)
-   */
-  fun setPollVoteStateForGivenVote(pollId: Long, voterId: Long, voteCount: Int, messageId: Long, undoRemoval: Boolean) {
-    val state = if (undoRemoval) VoteState.ADDED.value else VoteState.REMOVED.value
     writableDatabase.withinTransaction { db ->
-      db.updateWithOnConflict(
-        PollVoteTable.TABLE_NAME,
-        contentValuesOf(
-          PollVoteTable.VOTE_STATE to state
-        ),
-        "${PollVoteTable.POLL_ID} = ? AND ${PollVoteTable.VOTER_ID} = ? AND ${PollVoteTable.VOTE_COUNT} = ?",
-        SqlUtil.buildArgs(pollId, voterId, voteCount),
-        SQLiteDatabase.CONFLICT_REPLACE
-      )
+      db.delete(PollVoteTable.TABLE_NAME)
+        .where(
+          """
+          ${PollVoteTable.POLL_ID} = ? AND 
+          ${PollVoteTable.POLL_OPTION_ID} = ? AND 
+          ${PollVoteTable.VOTER_ID} = ? AND 
+          ${PollVoteTable.VOTE_COUNT} = ?  
+          """.trimIndent(),
+          pollId,
+          optionId,
+          Recipient.self().id.toLong(),
+          voteCount
+        )
+        .run()
     }
     AppDependencies.databaseObserver.notifyMessageUpdateObservers(MessageId(messageId))
   }
@@ -537,10 +622,19 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       .readToMap { cursor ->
         val pollId = cursor.requireLong(PollTable.ID)
         val pollVotes = getPollVotes(pollId)
-        val pendingVotes = getPendingVotes(pollId)
+        val (pendingAdds, pendingRemoves) = getPendingVotes(pollId)
         val pollOptions = getPollOptions(pollId).map { option ->
           val voters = pollVotes[option.key] ?: emptyList()
-          PollOption(id = option.key, text = option.value, voters = voters, isSelected = voters.any { it.id == self }, isPending = pendingVotes.contains(option.key))
+          val voteState = if (pendingAdds.contains(option.key)) {
+            VoteState.PENDING_ADD
+          } else if (pendingRemoves.contains(option.key)) {
+            VoteState.PENDING_REMOVE
+          } else if (voters.any { it.id == self }) {
+            VoteState.ADDED
+          } else {
+            VoteState.NONE
+          }
+          PollOption(id = option.key, text = option.value, voters = voters, voteState = voteState)
         }
         val poll = PollRecord(
           id = pollId,
@@ -606,6 +700,23 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
       .readToSingleBoolean()
   }
 
+  private fun isPending(pollId: Long, optionId: Long, voterId: Long): Boolean {
+    return readableDatabase
+      .exists(PollVoteTable.TABLE_NAME)
+      .where(
+        """
+         ${PollVoteTable.POLL_ID} = ? AND
+         ${PollVoteTable.POLL_OPTION_ID} = ? AND 
+         ${PollVoteTable.VOTER_ID} = ? AND 
+         (${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_ADD.value} OR ${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_REMOVE.value})
+         """,
+        pollId,
+        optionId,
+        voterId
+      )
+      .run()
+  }
+
   private fun getPollOptions(pollId: Long): Map<Long, String> {
     return readableDatabase
       .select(PollOptionTable.ID, PollOptionTable.OPTION_TEXT)
@@ -621,22 +732,33 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
     return readableDatabase
       .select(PollVoteTable.POLL_OPTION_ID, PollVoteTable.VOTER_ID, PollVoteTable.VOTE_COUNT)
       .from(PollVoteTable.TABLE_NAME)
-      .where("${PollVoteTable.POLL_ID} = ? AND (${PollVoteTable.VOTE_STATE} = ${VoteState.ADDED.value} OR ${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_REMOVE.value})", pollId)
+      .where("${PollVoteTable.POLL_ID} = ? AND ${PollVoteTable.VOTE_STATE} = ${VoteState.ADDED.value}", pollId)
       .run()
       .groupBy { cursor ->
         cursor.requireLong(PollVoteTable.POLL_OPTION_ID) to Voter(id = cursor.requireLong(PollVoteTable.VOTER_ID), voteCount = cursor.requireInt(PollVoteTable.VOTE_COUNT))
       }
   }
 
-  private fun getPendingVotes(pollId: Long): List<Long> {
-    return readableDatabase
-      .select(PollVoteTable.POLL_OPTION_ID)
+  private fun getPendingVotes(pollId: Long): Pair<List<Long>, List<Long>> {
+    val pendingAdds = mutableListOf<Long>()
+    val pendingRemoves = mutableListOf<Long>()
+    readableDatabase
+      .select(PollVoteTable.POLL_OPTION_ID, PollVoteTable.VOTE_STATE)
       .from(PollVoteTable.TABLE_NAME)
-      .where("${PollVoteTable.POLL_ID} = ? AND ${PollVoteTable.VOTER_ID} = ? AND (${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_ADD.value} OR ${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_REMOVE.value})", pollId, Recipient.self().id)
+      .where(
+        "${PollVoteTable.POLL_ID} = ? AND ${PollVoteTable.VOTER_ID} = ? AND (${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_ADD.value} OR ${PollVoteTable.VOTE_STATE} = ${VoteState.PENDING_REMOVE.value})",
+        pollId,
+        Recipient.self().id
+      )
       .run()
-      .readToList { cursor ->
-        cursor.requireLong(PollVoteTable.POLL_OPTION_ID)
+      .forEach { cursor ->
+        if (cursor.requireInt(PollVoteTable.VOTE_STATE) == VoteState.PENDING_ADD.value) {
+          pendingAdds += cursor.requireLong(PollVoteTable.POLL_OPTION_ID)
+        } else {
+          pendingRemoves += cursor.requireLong(PollVoteTable.POLL_OPTION_ID)
+        }
       }
+    return Pair(pendingAdds, pendingRemoves)
   }
 
   private fun getPollOptionText(pollId: Long): List<String> {
@@ -668,27 +790,6 @@ class PollTables(context: Context?, databaseHelper: SignalDatabase?) : DatabaseT
         PollVoteTable.DATE_RECEIVED to System.currentTimeMillis(),
         PollVoteTable.VOTE_STATE to VoteState.ADDED.value
       )
-    }
-  }
-
-  enum class VoteState(val value: Int) {
-    /** We have no information on the vote state */
-    NONE(0),
-
-    /** Vote is in the process of being removed */
-    PENDING_REMOVE(1),
-
-    /** Vote is in the process of being added */
-    PENDING_ADD(2),
-
-    /** Vote was removed */
-    REMOVED(3),
-
-    /** Vote was added */
-    ADDED(4);
-
-    companion object {
-      fun fromValue(value: Int) = VoteState.entries.first { it.value == value }
     }
   }
 }

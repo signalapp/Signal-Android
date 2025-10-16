@@ -13,6 +13,8 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,6 +28,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -34,12 +37,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import org.signal.core.ui.compose.Buttons
@@ -50,6 +55,7 @@ import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.RoundCheckbox
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
+import org.thoughtcrime.securesms.polls.VoteState
 import org.thoughtcrime.securesms.polls.Voter
 import org.thoughtcrime.securesms.util.DynamicTheme
 import org.thoughtcrime.securesms.util.VibrateUtil
@@ -150,33 +156,80 @@ private fun PollOption(
   ) {
     if (!hasEnded) {
       AnimatedContent(
-        targetState = option.isPending,
+        targetState = option.voteState,
         transitionSpec = {
-          val enterTransition = fadeIn(tween(delayMillis = 500, durationMillis = 500))
+          val delayMs = if (option.voteState == VoteState.PENDING_REMOVE || option.voteState == VoteState.PENDING_ADD) 500 else 0
+          val enterTransition = fadeIn(tween(delayMillis = delayMs, durationMillis = 500))
           val exitTransition = fadeOut(tween(durationMillis = 500))
           enterTransition.togetherWith(exitTransition)
             .using(SizeTransform(clip = false))
         }
-      ) { inProgress ->
-        if (inProgress) {
-          CircularProgressIndicator(
-            modifier = Modifier.padding(top = 4.dp, end = 8.dp).size(24.dp),
-            strokeWidth = 1.5.dp,
-            color = pollColors.checkbox
-          )
-        } else {
-          RoundCheckbox(
-            checked = option.isSelected,
-            onCheckedChange = { checked ->
-              if (VibrateUtil.isHapticFeedbackEnabled(context)) {
-                haptics.performHapticFeedback(if (checked) HapticFeedbackType.ToggleOn else HapticFeedbackType.ToggleOff)
-              }
-              onToggleVote(option, checked)
-            },
-            modifier = Modifier.padding(top = 4.dp, end = 8.dp).height(24.dp),
-            outlineColor = pollColors.checkbox,
-            checkedColor = pollColors.checkboxBackground
-          )
+      ) { voteState ->
+        when (voteState) {
+          VoteState.PENDING_ADD -> {
+            Box(
+              modifier = Modifier
+                .clickable(
+                  onClick = {
+                    if (VibrateUtil.isHapticFeedbackEnabled(context)) {
+                      haptics.performHapticFeedback(HapticFeedbackType.ToggleOff)
+                    }
+                    onToggleVote(option, false)
+                  },
+                  interactionSource = remember { MutableInteractionSource() },
+                  indication = null,
+                  onClickLabel = stringResource(R.string.SignalCheckbox_accessibility_on_click_label),
+                  enabled = true
+                )
+            ) {
+              CircularProgressIndicator(
+                modifier = Modifier.padding(top = 4.dp, end = 8.dp).size(24.dp),
+                strokeWidth = 1.5.dp,
+                color = pollColors.checkbox
+              )
+              Icon(
+                imageVector = ImageVector.vectorResource(R.drawable.symbol_check_compact_bold_16),
+                contentDescription = stringResource(R.string.SignalCheckbox_accessibility_unchecked_description),
+                tint = pollColors.checkbox,
+                modifier = Modifier.padding(top = 4.dp, end = 8.dp).align(Alignment.Center)
+              )
+            }
+          }
+          VoteState.PENDING_REMOVE -> {
+            CircularProgressIndicator(
+              modifier = Modifier.padding(top = 4.dp, end = 8.dp).size(24.dp)
+                .clickable(
+                  onClick = {
+                    if (VibrateUtil.isHapticFeedbackEnabled(context)) {
+                      haptics.performHapticFeedback(HapticFeedbackType.ToggleOn)
+                    }
+                    onToggleVote(option, true)
+                  },
+                  interactionSource = remember { MutableInteractionSource() },
+                  indication = null,
+                  onClickLabel = stringResource(R.string.SignalCheckbox_accessibility_on_click_label),
+                  enabled = true
+                ),
+              strokeWidth = 1.5.dp,
+              color = pollColors.checkbox
+            )
+          }
+          VoteState.ADDED,
+          VoteState.REMOVED,
+          VoteState.NONE -> {
+            RoundCheckbox(
+              checked = voteState == VoteState.ADDED,
+              onCheckedChange = { checked ->
+                if (VibrateUtil.isHapticFeedbackEnabled(context)) {
+                  haptics.performHapticFeedback(if (checked) HapticFeedbackType.ToggleOn else HapticFeedbackType.ToggleOff)
+                }
+                onToggleVote(option, checked)
+              },
+              modifier = Modifier.padding(top = 4.dp, end = 8.dp).height(24.dp),
+              outlineColor = pollColors.checkbox,
+              checkedColor = pollColors.checkboxBackground
+            )
+          }
         }
       }
     }
@@ -190,7 +243,7 @@ private fun PollOption(
           color = pollColors.text
         )
 
-        if (hasEnded && option.isSelected) {
+        if (hasEnded && option.voteState == VoteState.ADDED) {
           RoundCheckbox(
             checked = true,
             onCheckedChange = {},
@@ -290,7 +343,7 @@ private fun PollPreview() {
         id = 1,
         question = "How do you feel about compose previews?",
         pollOptions = listOf(
-          PollOption(1, "yay", listOf(Voter(1, 1)), isSelected = true),
+          PollOption(1, "yay", listOf(Voter(1, 1)), voteState = VoteState.ADDED),
           PollOption(2, "ok", listOf(Voter(1, 1), Voter(2, 1))),
           PollOption(3, "nay", listOf(Voter(1, 1), Voter(2, 1), Voter(3, 1)))
         ),
@@ -313,8 +366,8 @@ private fun EmptyPollPreview() {
         question = "How do you feel about multiple compose previews?",
         pollOptions = listOf(
           PollOption(1, "yay", emptyList()),
-          PollOption(2, "ok", emptyList(), isSelected = true),
-          PollOption(3, "nay", emptyList(), isSelected = true)
+          PollOption(2, "ok", emptyList()),
+          PollOption(3, "nay", emptyList())
         ),
         allowMultipleVotes = true,
         hasEnded = false,
@@ -335,7 +388,7 @@ private fun FinishedPollPreview() {
         question = "How do you feel about finished compose previews?",
         pollOptions = listOf(
           PollOption(1, "yay", listOf(Voter(1, 1))),
-          PollOption(2, "ok", emptyList(), isSelected = true),
+          PollOption(2, "ok", emptyList()),
           PollOption(3, "nay", emptyList())
         ),
         allowMultipleVotes = false,

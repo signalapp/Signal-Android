@@ -11,6 +11,5 @@ data class PollOption(
   val id: Long,
   val text: String,
   val voters: List<Voter>,
-  val isSelected: Boolean = false,
-  val isPending: Boolean = false
+  val voteState: VoteState = VoteState.NONE
 ) : Parcelable
