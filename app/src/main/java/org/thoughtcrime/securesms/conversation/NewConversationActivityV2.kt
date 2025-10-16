@@ -50,7 +50,7 @@ import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByMode
-import org.thoughtcrime.securesms.window.AppScaffoldWithTopBar
+import org.thoughtcrime.securesms.window.AppScaffold
 import org.thoughtcrime.securesms.window.WindowSizeClass
 import org.thoughtcrime.securesms.window.rememberAppScaffoldNavigator
 
@@ -168,7 +168,7 @@ private fun NewConversationScreenUi(
   val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
   val isSplitPane = windowSizeClass.isSplitPane(forceSplitPaneOnCompactLandscape = uiState.forceSplitPaneOnCompactLandscape)
 
-  AppScaffoldWithTopBar(
+  AppScaffold(
     topBarContent = {
       Scaffolds.DefaultTopAppBar(
         title = if (!isSplitPane) stringResource(R.string.NewConversationActivity__new_message) else "",
