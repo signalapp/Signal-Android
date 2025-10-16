@@ -98,7 +98,7 @@ object RecipientArchiveProcessor {
   }
 
   fun import(recipient: ArchiveRecipient, importState: ImportState) {
-    val newId = when {
+    val newId: RecipientId? = when {
       recipient.contact != null -> ContactArchiveImporter.import(recipient.contact)
       recipient.group != null -> GroupArchiveImporter.import(recipient.group)
       recipient.distributionList != null -> DistributionListArchiveImporter.import(recipient.distributionList, importState)

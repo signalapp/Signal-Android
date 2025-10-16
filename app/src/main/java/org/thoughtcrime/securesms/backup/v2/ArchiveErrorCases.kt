@@ -203,6 +203,10 @@ object ExportOddities {
  * These represent situations where we will skip importing a data frame due to the data being invalid.
  */
 object ImportSkips {
+  fun recipientWithoutId(): String {
+    return log(0, " No aci, pni, or e164 available for recipient")
+  }
+
   fun fromRecipientNotFound(sentTimestamp: Long): String {
     return log(sentTimestamp, "Failed to find the fromRecipient for the message.")
   }
