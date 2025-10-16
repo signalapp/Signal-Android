@@ -25,7 +25,7 @@ object V294_RemoveLastResortKeyTupleColumnConstraintMigration : SignalDatabaseMi
         public_key BLOB NOT NULL,
         UNIQUE(kyber_prekey_id, signed_key_id, public_key)
       )
-      """.trimIndent()
+      """
     )
   }
 }

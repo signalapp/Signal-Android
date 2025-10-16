@@ -23,7 +23,7 @@ object V295_AddLastRestoreKeyTypeTableIfMissingMigration : SignalDatabaseMigrati
         public_key BLOB NOT NULL,
         UNIQUE(kyber_prekey_id, signed_key_id, public_key)
       )
-      """.trimIndent()
+      """
     )
   }
 }
