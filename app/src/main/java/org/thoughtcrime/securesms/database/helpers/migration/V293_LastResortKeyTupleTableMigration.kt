@@ -23,7 +23,7 @@ object V293_LastResortKeyTupleTableMigration : SignalDatabaseMigration {
         public_key BLOB NOT NULL,
         UNIQUE(kyber_prekey_id, signed_key_id, public_key)
       )
-      """.trimIndent()
+      """
     )
   }
 }
