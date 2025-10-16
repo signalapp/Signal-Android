@@ -4,6 +4,7 @@ package org.thoughtcrime.securesms.components;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
@@ -32,6 +33,7 @@ import org.thoughtcrime.securesms.components.quotes.QuoteViewColorTheme;
 import org.thoughtcrime.securesms.conversation.MessageStyler;
 import org.thoughtcrime.securesms.database.model.Mention;
 import org.thoughtcrime.securesms.database.model.databaseprotos.BodyRangeList;
+import org.thoughtcrime.securesms.fonts.SignalSymbols;
 import org.thoughtcrime.securesms.mms.DecryptableUri;
 import org.thoughtcrime.securesms.mms.QuoteModel;
 import org.thoughtcrime.securesms.mms.Slide;
@@ -43,6 +45,7 @@ import org.thoughtcrime.securesms.stories.StoryTextPostModel;
 import org.thoughtcrime.securesms.util.MediaUtil;
 import org.thoughtcrime.securesms.util.Projection;
 import org.thoughtcrime.securesms.util.Util;
+import org.thoughtcrime.securesms.util.ViewUtil;
 import org.thoughtcrime.securesms.util.views.Stub;
 
 import java.io.IOException;
@@ -231,7 +234,14 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
   }
 
   private @Nullable CharSequence resolveBody(@Nullable CharSequence body, @NonNull QuoteModel.Type quoteType) {
-    return quoteType == QuoteModel.Type.GIFT_BADGE ? getContext().getString(R.string.QuoteView__donation_for_a_friend) : body;
+    switch (quoteType) {
+      case GIFT_BADGE:
+        return getContext().getString(R.string.QuoteView__donation_for_a_friend);
+      case POLL:
+        return getContext().getString(R.string.Poll__poll_question, body);
+      default:
+        return body;
+    }
   }
 
   public void setTopCornerSizes(boolean topLeftLarge, boolean topRightLarge) {
@@ -317,6 +327,14 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
           Log.w(TAG, "Could not parse body of text post.", e);
           bodyView.setText("");
         }
+      } else if (quoteType == QuoteModel.Type.POLL) {
+        CharSequence           glyph   = SignalSymbols.getSpannedString(getContext(), SignalSymbols.Weight.REGULAR, SignalSymbols.Glyph.POLL, -1);
+        // TODO(michelle): Update with RTL poll icon
+        SpannableStringBuilder builder = new SpannableStringBuilder()
+                                            .append(glyph)
+                                            .append(" ")
+                                            .append(body);
+        bodyView.setText(body == null ? "" : builder);
       } else {
         bodyView.setText(body == null ? "" : body);
       }

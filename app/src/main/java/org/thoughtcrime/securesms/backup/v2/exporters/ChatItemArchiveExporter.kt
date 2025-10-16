@@ -1117,6 +1117,7 @@ private fun BackupMessageRecord.toRemoteQuote(exportState: ExportState, attachme
       }
     }
     QuoteModel.Type.GIFT_BADGE -> Quote.Type.GIFT_BADGE
+    QuoteModel.Type.POLL -> Quote.Type.POLL
   }
 
   val bodyRanges = this.quoteBodyRanges?.toRemoteBodyRanges(dateSent) ?: emptyList()

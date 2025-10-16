@@ -1053,6 +1053,7 @@ class ChatItemArchiveImporter(
       Quote.Type.NORMAL -> QuoteModel.Type.NORMAL.code
       Quote.Type.GIFT_BADGE -> QuoteModel.Type.GIFT_BADGE.code
       Quote.Type.VIEW_ONCE -> QuoteModel.Type.NORMAL.code
+      Quote.Type.POLL -> QuoteModel.Type.POLL.code
     }
   }
 

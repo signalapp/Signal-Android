@@ -177,6 +177,7 @@ message DataMessage {
     enum Type {
       NORMAL = 0;
       GIFT_BADGE = 1;
+      POLL = 2;
     }
 
     message QuotedAttachment {

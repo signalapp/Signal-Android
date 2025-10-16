@@ -85,11 +85,9 @@ import org.thoughtcrime.securesms.util.MediaUtil
 import org.thoughtcrime.securesms.util.MessageUtil
 import org.thoughtcrime.securesms.util.SignalLocalMetrics
 import org.thoughtcrime.securesms.util.Util
-import org.thoughtcrime.securesms.util.getPoll
 import org.thoughtcrime.securesms.util.hasLinkPreview
 import org.thoughtcrime.securesms.util.hasSharedContact
 import org.thoughtcrime.securesms.util.hasTextSlide
-import org.thoughtcrime.securesms.util.isPoll
 import org.thoughtcrime.securesms.util.isViewOnceMessage
 import org.thoughtcrime.securesms.util.requireTextSlide
 import java.io.IOException
@@ -562,11 +560,6 @@ class ConversationRepository(
       }
 
       slideDeck to conversationMessage.getDisplayBody(context)
-    } else if (messageRecord.isPoll()) {
-      val poll = messageRecord.getPoll()!!
-      val slideDeck = SlideDeck()
-
-      slideDeck to SpannableStringBuilder().append(context.getString(R.string.Poll__poll_question, poll.question))
     } else {
       var slideDeck = if (messageRecord.isMms) {
         (messageRecord as MmsMessageRecord).slideDeck

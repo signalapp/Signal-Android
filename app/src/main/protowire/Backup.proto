@@ -760,6 +760,7 @@ message Quote {
     NORMAL = 1;
     GIFT_BADGE = 2;
     VIEW_ONCE = 3;
+    POLL = 4;
   }
 
   message QuotedAttachment {

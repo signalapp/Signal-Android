@@ -164,7 +164,13 @@ fun MessageRecord.isScheduled(): Boolean {
  * Returns the QuoteType for this record, as if it was being quoted.
  */
 fun MessageRecord.getRecordQuoteType(): QuoteModel.Type {
-  return if (hasGiftBadge()) QuoteModel.Type.GIFT_BADGE else QuoteModel.Type.NORMAL
+  return if (hasGiftBadge()) {
+    QuoteModel.Type.GIFT_BADGE
+  } else if (hasPoll()) {
+    QuoteModel.Type.POLL
+  } else {
+    QuoteModel.Type.NORMAL
+  }
 }
 
 fun MessageRecord.isEditMessage(): Boolean {

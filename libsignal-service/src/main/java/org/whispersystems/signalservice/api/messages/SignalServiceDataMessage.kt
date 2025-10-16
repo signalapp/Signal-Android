@@ -291,7 +291,8 @@ class SignalServiceDataMessage private constructor(
   ) {
     enum class Type(val protoType: QuoteProto.Type) {
       NORMAL(QuoteProto.Type.NORMAL),
-      GIFT_BADGE(QuoteProto.Type.GIFT_BADGE);
+      GIFT_BADGE(QuoteProto.Type.GIFT_BADGE),
+      POLL(QuoteProto.Type.POLL);
 
       companion object {
         @JvmStatic
