@@ -68,13 +68,16 @@ import org.thoughtcrime.securesms.window.rememberAppScaffoldNavigator
 
 /**
  * Allows the user to start a new conversation by selecting a recipient.
- *
- * A modernized compose-based replacement for [org.thoughtcrime.securesms.NewConversationActivity].
  */
-class NewConversationActivityV2 : PassphraseRequiredActivity() {
+class NewConversationActivity : PassphraseRequiredActivity() {
   companion object {
+    @JvmOverloads
     @JvmStatic
-    fun createIntent(context: Context): Intent = Intent(context, NewConversationActivityV2::class.java)
+    fun createIntent(context: Context, draftMessage: String? = null): Intent {
+      return Intent(context, NewConversationActivity::class.java).apply {
+        putExtra(Intent.EXTRA_TEXT, draftMessage)
+      }
+    }
   }
 
   override fun onCreate(savedInstanceState: Bundle?, ready: Boolean) {
@@ -121,7 +124,7 @@ private fun NewConversationScreen(
 
   val coroutineScope = rememberCoroutineScope()
   val callbacks = remember {
-    object : Callbacks {
+    object : UiCallbacks {
       override fun onCreateNewGroup() = createGroupLauncher.launch(CreateGroupActivity.newIntent(context))
       override fun onFindByUsername() = findByLauncher.launch(FindByMode.USERNAME)
       override fun onFindByPhoneNumber() = findByLauncher.launch(FindByMode.PHONE_NUMBER)
@@ -191,7 +194,7 @@ private suspend fun openConversation(
 @Composable
 private fun NewConversationScreenUi(
   uiState: NewConversationUiState,
-  callbacks: Callbacks
+  callbacks: UiCallbacks
 ) {
   val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
   val isSplitPane = windowSizeClass.isSplitPane(forceSplitPaneOnCompactLandscape = uiState.forceSplitPaneOnCompactLandscape)
@@ -259,7 +262,7 @@ private fun NewConversationScreenUi(
 }
 
 @Composable
-private fun TopAppBarActions(callbacks: Callbacks) {
+private fun TopAppBarActions(callbacks: UiCallbacks) {
   val menuController = remember { DropdownMenus.MenuController() }
   IconButton(
     onClick = { menuController.show() },
@@ -303,13 +306,13 @@ private fun TopAppBarActions(callbacks: Callbacks) {
   }
 }
 
-private interface Callbacks : RecipientPickerCallbacks {
+private interface UiCallbacks : RecipientPickerCallbacks {
   fun onRemoveConfirmed(recipient: Recipient)
   fun onBlockConfirmed(recipient: Recipient)
   fun onUserMessageDismissed(userMessage: UserMessage)
   fun onBackPressed()
 
-  object Empty : Callbacks {
+  object Empty : UiCallbacks {
     override fun onCreateNewGroup() = Unit
     override fun onFindByUsername() = Unit
     override fun onFindByPhoneNumber() = Unit
@@ -333,7 +336,7 @@ private interface Callbacks : RecipientPickerCallbacks {
 @Composable
 private fun NewConversationRecipientPicker(
   uiState: NewConversationUiState,
-  callbacks: Callbacks,
+  callbacks: UiCallbacks,
   modifier: Modifier = Modifier
 ) {
   RecipientPicker(
@@ -423,7 +426,7 @@ private fun NewConversationScreenPreview() {
       uiState = NewConversationUiState(
         forceSplitPaneOnCompactLandscape = false
       ),
-      callbacks = Callbacks.Empty
+      callbacks = UiCallbacks.Empty
     )
   }
 }

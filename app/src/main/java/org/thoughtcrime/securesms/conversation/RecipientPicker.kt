@@ -113,7 +113,7 @@ private fun RecipientSearchField(
     }
   }
 
-  // TODO(jeff) This causes the keyboard to re-open on rotation, which doesn't match the existing behavior of ContactFilterView. To fix this,
+  // TODO [jeff] This causes the keyboard to re-open on rotation, which doesn't match the existing behavior of ContactFilterView. To fix this,
   //  RecipientSearchField needs to be converted to compose so we can use FocusRequestor.
   LaunchedEffect(focusAndShowKeyboard) {
     if (focusAndShowKeyboard) {
@@ -298,7 +298,7 @@ private suspend fun showItemContextMenu(anchorView: View, contactSearchKey: Cont
 
     if (!recipient.isSelf && !recipient.isGroup) {
       val removeItem = ActionItem(
-        iconRes = R.drawable.ic_minus_circle_20, // TODO [alex] -- correct asset
+        iconRes = R.drawable.ic_minus_circle_20,
         title = context.getString(R.string.NewConversationActivity__remove),
         tintRes = R.color.signal_colorOnSurface,
         action = { callbacks.onRemove(recipient) }

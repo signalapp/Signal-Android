@@ -92,6 +92,7 @@ import org.thoughtcrime.securesms.components.settings.app.notifications.manual.N
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaController
 import org.thoughtcrime.securesms.components.voice.VoiceNoteMediaControllerOwner
 import org.thoughtcrime.securesms.conversation.ConversationIntents
+import org.thoughtcrime.securesms.conversation.NewConversationActivity
 import org.thoughtcrime.securesms.conversation.v2.MotionEventRelay
 import org.thoughtcrime.securesms.conversation.v2.ShareDataTimestampViewModel
 import org.thoughtcrime.securesms.conversationlist.ConversationListArchiveFragment
@@ -1005,7 +1006,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
 
   inner class BottomChromeCallback : MainBottomChromeCallback {
     override fun onNewChatClick() {
-      startActivity(Intent(this@MainActivity, NewConversationActivity::class.java))
+      startActivity(NewConversationActivity.createIntent(this@MainActivity))
     }
 
     override fun onNewCallClick() {
