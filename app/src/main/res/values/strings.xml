@@ -8822,6 +8822,10 @@
     <string name="Poll__end_poll">End poll</string>
     <!-- Button that once pressed will show all of the voters for a poll -->
     <string name="Poll__see_all">See all</string>
+    <!-- Dialog title when a poll fails to end -->
+    <string name="Poll__couldnt_end_poll">Couldn\'t end poll</string>
+    <!-- Dialog body when a poll fails to end and to try again -->
+    <string name="Poll__check_connection">Check your connection and try again.</string>
     <!-- Header when creating a new poll -->
     <string name="CreatePollFragment__new_poll">New poll</string>
     <!-- Section text to enter in a question for a poll  -->

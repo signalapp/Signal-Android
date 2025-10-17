@@ -12,6 +12,7 @@ import android.app.PendingIntent
 import android.content.ActivityNotFoundException
 import android.content.BroadcastReceiver
 import android.content.Context
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.IntentFilter
 import android.content.res.Configuration
@@ -2568,8 +2569,14 @@ class ConversationFragment :
 
     disposables += endPoll
       .subscribeBy(
-        // TODO(michelle): Error state when poll terminate fails
-        onError = { Log.w(TAG, "Error received during poll end!", it) }
+        onError = {
+          Log.w(TAG, "Error received during poll end!", it)
+          MaterialAlertDialogBuilder(requireContext())
+            .setTitle(R.string.Poll__couldnt_end_poll)
+            .setMessage(getString(R.string.Poll__check_connection))
+            .setPositiveButton(android.R.string.ok) { dialog: DialogInterface?, which: Int -> dialog!!.dismiss() }
+            .show()
+        }
       )
   }
 

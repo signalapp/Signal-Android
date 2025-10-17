@@ -24,7 +24,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -45,14 +44,15 @@ import androidx.compose.ui.platform.LocalHapticFeedback
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import org.signal.core.ui.compose.Buttons
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.theme.SignalTheme
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.compose.RoundCheckbox
+import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.polls.PollOption
 import org.thoughtcrime.securesms.polls.PollRecord
 import org.thoughtcrime.securesms.polls.VoteState
@@ -79,7 +79,8 @@ fun setContent(
         poll = poll,
         onViewVotes = onViewVotes,
         onToggleVote = onToggleVote,
-        pollColors = if (isOutgoing) PollColorsType.Outgoing.getColors(chatColor) else PollColorsType.Incoming.getColors(-1)
+        pollColors = if (isOutgoing) PollColorsType.Outgoing.getColors(chatColor) else PollColorsType.Incoming.getColors(-1),
+        fontSize = SignalStore.settings.messageFontSize
       )
     }
   }
@@ -90,7 +91,8 @@ private fun Poll(
   poll: PollRecord,
   onViewVotes: () -> Unit = {},
   onToggleVote: (PollOption, Boolean) -> Unit = { _, _ -> },
-  pollColors: PollColors = PollColorsType.Incoming.getColors(-1)
+  pollColors: PollColors = PollColorsType.Incoming.getColors(-1),
+  fontSize: Int = 16
 ) {
   val totalVotes = remember(poll.pollOptions) { poll.pollOptions.sumOf { it.voters.size } }
   val caption = when {
@@ -105,32 +107,38 @@ private fun Poll(
     Text(
       text = stringResource(caption),
       color = pollColors.caption,
-      style = MaterialTheme.typography.bodySmall,
+      style = MaterialTheme.typography.bodySmall.copy(fontSize = (fontSize * .8).sp),
       modifier = Modifier.padding(start = 12.dp, bottom = 4.dp)
     )
 
     poll.pollOptions.forEach {
-      PollOption(it, totalVotes, poll.hasEnded, onToggleVote, pollColors)
+      PollOption(it, totalVotes, poll.hasEnded, onToggleVote, pollColors, fontSize)
     }
 
     Spacer(Modifier.size(16.dp))
 
-    if (totalVotes == 0) {
+    val hasVotes = totalVotes > 0
+    Buttons.MediumTonal(
+      colors = ButtonDefaults.buttonColors(
+        containerColor = pollColors.buttonBackground,
+        contentColor = pollColors.button,
+        disabledContainerColor = Color.Transparent,
+        disabledContentColor = pollColors.text
+      ),
+      onClick = onViewVotes,
+      enabled = hasVotes,
+      modifier = Modifier.align(Alignment.CenterHorizontally)
+    ) {
       Text(
-        text = stringResource(R.string.Poll__no_votes),
-        style = MaterialTheme.typography.labelLarge,
-        modifier = Modifier.align(Alignment.CenterHorizontally).height(40.dp).wrapContentHeight(align = Alignment.CenterVertically),
-        textAlign = TextAlign.Center,
-        color = pollColors.text
+        text = if (!hasVotes) {
+          stringResource(R.string.Poll__no_votes)
+        } else if (poll.hasEnded) {
+          stringResource(R.string.Poll__view_results)
+        } else {
+          stringResource(R.string.Poll__view_votes)
+        },
+        style = MaterialTheme.typography.labelLarge.copy(fontSize = (fontSize * .8).sp)
       )
-    } else {
-      Buttons.MediumTonal(
-        colors = ButtonDefaults.buttonColors(containerColor = pollColors.buttonBackground, contentColor = pollColors.button),
-        onClick = onViewVotes,
-        modifier = Modifier.align(Alignment.CenterHorizontally).height(40.dp)
-      ) {
-        Text(stringResource(if (poll.hasEnded) R.string.Poll__view_results else R.string.Poll__view_votes))
-      }
     }
     Spacer(Modifier.size(4.dp))
   }
@@ -142,7 +150,8 @@ private fun PollOption(
   totalVotes: Int,
   hasEnded: Boolean,
   onToggleVote: (PollOption, Boolean) -> Unit = { _, _ -> },
-  pollColors: PollColors
+  pollColors: PollColors,
+  fontSize: Int
 ) {
   val context = LocalContext.current
   val haptics = LocalHapticFeedback.current
@@ -238,7 +247,7 @@ private fun PollOption(
       Row(verticalAlignment = Alignment.Bottom) {
         Text(
           text = option.text,
-          style = MaterialTheme.typography.bodyLarge,
+          style = MaterialTheme.typography.bodyLarge.copy(fontSize = fontSize.sp),
           modifier = Modifier.padding(end = 24.dp).weight(1f),
           color = pollColors.text
         )
@@ -260,13 +269,13 @@ private fun PollOption(
           Text(
             text = size.toString(),
             color = pollColors.text,
-            style = MaterialTheme.typography.bodyMedium
+            style = MaterialTheme.typography.bodyMedium.copy(fontSize = (fontSize * .8).sp)
           )
         }
       }
 
       Box(
-        modifier = Modifier.height(8.dp).padding(top = 4.dp).fillMaxWidth()
+        modifier = Modifier.padding(top = 4.dp).height(8.dp).fillMaxWidth()
           .background(
             color = pollColors.progressBackground,
             shape = RoundedCornerShape(18.dp)

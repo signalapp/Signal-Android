@@ -92,6 +92,7 @@ import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.sms.MessageSender
 import org.thoughtcrime.securesms.util.BubbleUtil
 import org.thoughtcrime.securesms.util.ConversationUtil
+import org.thoughtcrime.securesms.util.NetworkUtil
 import org.thoughtcrime.securesms.util.TextSecurePreferences
 import org.thoughtcrime.securesms.util.hasGiftBadge
 import org.thoughtcrime.securesms.util.rx.RxStore
@@ -516,9 +517,13 @@ class ConversationViewModel(
   }
 
   fun endPoll(pollId: Long): Completable {
-    return repository
-      .endPoll(pollId)
-      .observeOn(AndroidSchedulers.mainThread())
+    return if (!NetworkUtil.isConnected(AppDependencies.application)) {
+      Completable.error(Exception("Connection required to end poll"))
+    } else {
+      repository
+        .endPoll(pollId)
+        .observeOn(AndroidSchedulers.mainThread())
+    }
   }
 
   fun sendMessage(
