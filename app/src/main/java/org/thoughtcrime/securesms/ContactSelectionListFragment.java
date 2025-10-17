@@ -158,11 +158,11 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     }
 
     if (getParentFragment() instanceof ScrollCallback) {
-      scrollCallback = (ScrollCallback) getParentFragment();
+      setScrollCallback((ScrollCallback) getParentFragment());
     }
 
     if (context instanceof ScrollCallback) {
-      scrollCallback = (ScrollCallback) context;
+      setScrollCallback((ScrollCallback) context);
     }
 
     if (getParentFragment() instanceof OnContactSelectedListener) {
@@ -190,11 +190,11 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     }
 
     if (context instanceof OnItemLongClickListener) {
-      onItemLongClickListener = (OnItemLongClickListener) context;
+      setOnItemLongClickListener((OnItemLongClickListener) context);
     }
 
     if (getParentFragment() instanceof OnItemLongClickListener) {
-      onItemLongClickListener = (OnItemLongClickListener) getParentFragment();
+      setOnItemLongClickListener((OnItemLongClickListener) getParentFragment());
     }
   }
 
@@ -206,8 +206,16 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     this.findByCallback = callback;
   }
 
+  public void setScrollCallback(@Nullable ScrollCallback callback) {
+    this.scrollCallback = callback;
+  }
+
   public void setOnContactSelectedListener(@Nullable OnContactSelectedListener listener) {
     this.onContactSelectedListener = listener;
+  }
+
+  public void setOnItemLongClickListener(@Nullable OnItemLongClickListener listener) {
+    this.onItemLongClickListener = listener;
   }
 
   @Override
