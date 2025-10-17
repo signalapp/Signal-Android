@@ -564,7 +564,7 @@ object BackupRepository {
       return false
     }
 
-    return !SignalStore.backup.hasBackupBeenUploaded && SignalStore.backup.hasBackupFailure && System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime
+    return (!SignalStore.backup.hasBackupBeenUploaded || SignalStore.backup.hasValidationError) && SignalStore.backup.hasBackupFailure && System.currentTimeMillis().milliseconds > SignalStore.backup.nextBackupFailureSheetSnoozeTime
   }
 
   /**

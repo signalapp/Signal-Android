@@ -77,6 +77,7 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
     private const val KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE = "backup.not.enough.remote.storage.space"
     private const val KEY_NOT_ENOUGH_REMOTE_STORAGE_SPACE_DISPLAY_SHEET = "backup.not.enough.remote.storage.space.display.sheet"
     private const val KEY_MANUAL_NO_BACKUP_NOTIFIED = "backup.manual.no.backup.notified"
+    private const val KEY_VALIDATION_ERROR = "backup.validation.error"
 
     private const val KEY_USER_MANUALLY_SKIPPED_MEDIA_RESTORE = "backup.user.manually.skipped.media.restore"
     private const val KEY_BACKUP_EXPIRED_AND_DOWNGRADED = "backup.expired.and.downgraded"
@@ -299,6 +300,9 @@ class BackupValues(store: KeyValueStore) : SignalStoreValues(store) {
 
   /** True if we believe we have successfully uploaded a backup, otherwise false. */
   var hasBackupBeenUploaded: Boolean by booleanValue(KEY_BACKUP_UPLOADED, false)
+
+  /** Set when we fail to validate a user's backup during the export process */
+  var hasValidationError: Boolean by booleanValue(KEY_VALIDATION_ERROR, false)
 
   val hasBackupFailure: Boolean get() = getBoolean(KEY_BACKUP_FAIL, false)
   val nextBackupFailureSnoozeTime: Duration get() = getLong(KEY_BACKUP_FAIL_ACKNOWLEDGED_SNOOZE_TIME, 0L).milliseconds

@@ -397,6 +397,7 @@ class BackupMessagesJob private constructor(
 
     when (val result = ArchiveValidator.validateSignalBackup(tempBackupFile, backupKey, forwardSecrecyToken)) {
       ArchiveValidator.ValidationResult.Success -> {
+        SignalStore.backup.hasValidationError = false
         Log.d(TAG, "Successfully passed validation.", true)
       }
 
@@ -407,6 +408,7 @@ class BackupMessagesJob private constructor(
 
       is ArchiveValidator.ValidationResult.MessageValidationError -> {
         Log.w(TAG, "The backup file fails validation! Message: ${result.exception.message}, Details: ${result.messageDetails}", true)
+        SignalStore.backup.hasValidationError = true
         ArchiveUploadProgress.onValidationFailure()
         return BackupFileResult.Failure
       }
@@ -414,6 +416,7 @@ class BackupMessagesJob private constructor(
       is ArchiveValidator.ValidationResult.RecipientDuplicateE164Error -> {
         Log.w(TAG, "The backup file fails validation with a duplicate recipient! Message: ${result.exception.message}, Details: ${result.details}", true)
         AppDependencies.jobManager.add(E164FormattingJob())
+        SignalStore.backup.hasValidationError = true
         ArchiveUploadProgress.onValidationFailure()
         return BackupFileResult.Failure
       }
