@@ -33,13 +33,15 @@ class PollVotesViewModel(pollId: Long) : ViewModel() {
   private fun loadPollInfo(pollId: Long) {
     viewModelScope.launch(SignalDispatchers.IO) {
       val poll = SignalDatabase.polls.getPollFromId(pollId)!!
+      val mostVotes = poll.pollOptions.maxByOrNull { option -> option.voters.size }?.voters?.size
       _state.update {
         it.copy(
           poll = poll,
           pollOptions = poll.pollOptions.map { option ->
             PollOptionModel(
               pollOption = option,
-              voters = Recipient.resolvedList(option.voters.map { voter -> RecipientId.from(voter.id) })
+              voters = Recipient.resolvedList(option.voters.map { voter -> RecipientId.from(voter.id) }),
+              hasMostVotes = option.voters.size == mostVotes
             )
           },
           isAuthor = poll.authorId == Recipient.self().id.toLong()
@@ -57,5 +59,6 @@ data class PollVotesState(
 
 data class PollOptionModel(
   val pollOption: PollOption,
-  val voters: List<Recipient> = emptyList()
+  val voters: List<Recipient> = emptyList(),
+  val hasMostVotes: Boolean
 )

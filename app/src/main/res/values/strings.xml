@@ -8809,8 +8809,10 @@
     <string name="Poll__poll_voted">%1$s voted in the poll: \"%2$s\"</string>
     <!-- Option in settings to configure notifications for polls -->
     <string name="Poll__poll">Polls</string>
-    <!-- Title of screen that shows the poll results of a poll -->
+    <!-- Title of screen that shows the poll results of a poll after it has ended-->
     <string name="Poll__poll_results">Poll results</string>
+    <!-- Title of screen that shows the poll details of a poll -->
+    <string name="Poll__poll_details">Poll details</string>
     <!-- Header text displaying the question of the poll -->
     <string name="Poll__question">Question</string>
     <!-- Text displaying how many votes, %1$d, an option has gotten -->
@@ -8818,6 +8820,8 @@
         <item quantity="one">%1$d vote</item>
         <item quantity="other">%1$d votes</item>
     </plurals>
+    <!-- Content description to describe the icon that is shown next to the winning option when the poll ends -->
+    <string name="Poll__poll_winner">Winner</string>
     <!-- Text that when pressed will end the poll   -->
     <string name="Poll__end_poll">End poll</string>
     <!-- Button that once pressed will show all of the voters for a poll -->

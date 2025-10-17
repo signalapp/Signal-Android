@@ -11,8 +11,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -26,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalContext
@@ -38,6 +40,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.setFragmentResult
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.signal.core.ui.compose.DayNightPreviews
+import org.signal.core.ui.compose.Dividers
 import org.signal.core.ui.compose.Previews
 import org.signal.core.ui.compose.Scaffolds
 import org.signal.core.ui.compose.horizontalGutters
@@ -85,7 +88,7 @@ class PollVotesFragment : ComposeDialogFragment() {
     val state by viewModel.state.collectAsStateWithLifecycle()
 
     Scaffolds.Settings(
-      title = stringResource(id = R.string.Poll__poll_results),
+      title = stringResource(if (state.poll?.hasEnded == true) R.string.Poll__poll_results else R.string.Poll__poll_details),
       onNavigationClick = this::dismissAllowingStateLoss,
       navigationIcon = ImageVector.vectorResource(id = R.drawable.symbol_x_24),
       navigationContentDescription = stringResource(id = R.string.Material3SearchToolbar__close)
@@ -117,27 +120,34 @@ private fun PollResultsScreen(
   LazyColumn(
     modifier = modifier
       .fillMaxWidth()
-      .horizontalGutters(24.dp)
   ) {
     item {
       Spacer(Modifier.size(16.dp))
       Text(
         text = stringResource(R.string.Poll__question),
-        style = MaterialTheme.typography.titleSmall
+        style = MaterialTheme.typography.titleSmall,
+        modifier = Modifier.horizontalGutters()
       )
       TextField(
         value = state.poll!!.question,
         onValueChange = {},
-        modifier = Modifier.padding(top = 12.dp, bottom = 24.dp).fillMaxWidth(),
+        modifier = Modifier.padding(top = 12.dp, bottom = 24.dp).horizontalGutters().fillMaxWidth(),
         colors = TextFieldDefaults.colors(
           disabledTextColor = MaterialTheme.colorScheme.onSurface,
-          disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant
+          disabledContainerColor = MaterialTheme.colorScheme.surfaceVariant,
+          disabledIndicatorColor = Color.Transparent
         ),
+        shape = RoundedCornerShape(8.dp),
         enabled = false
       )
     }
 
-    items(state.pollOptions) { PollOptionSection(it) }
+    itemsIndexed(state.pollOptions) { index, option ->
+      PollOptionSection(option, state.poll!!.hasEnded)
+      if (index != state.pollOptions.lastIndex) {
+        Dividers.Default()
+      }
+    }
 
     if (state.isAuthor && !state.poll!!.hasEnded) {
       item {
@@ -146,9 +156,10 @@ private fun PollResultsScreen(
             .fillMaxWidth()
             .clickable(onClick = onEndPoll)
             .padding(vertical = 16.dp)
+            .horizontalGutters()
         ) {
           Icon(
-            imageVector = ImageVector.vectorResource(id = R.drawable.symbol_trash_24),
+            imageVector = ImageVector.vectorResource(id = R.drawable.symbol_stop_24),
             contentDescription = stringResource(R.string.Poll__end_poll),
             tint = MaterialTheme.colorScheme.onSurface
           )
@@ -161,22 +172,40 @@ private fun PollResultsScreen(
 
 @Composable
 private fun PollOptionSection(
-  option: PollOptionModel
+  option: PollOptionModel,
+  hasEnded: Boolean
 ) {
   var expand by remember { mutableStateOf(false) }
   val context = LocalContext.current
   Row(
-    modifier = Modifier.padding(vertical = 12.dp)
+    modifier = Modifier.padding(vertical = 12.dp).horizontalGutters(),
+    verticalAlignment = Alignment.CenterVertically
   ) {
     Text(text = option.pollOption.text, modifier = Modifier.weight(1f), style = MaterialTheme.typography.titleSmall)
-    Text(text = pluralStringResource(R.plurals.Poll__num_votes, option.voters.size, option.voters.size), style = MaterialTheme.typography.bodyLarge)
+    if (option.hasMostVotes && hasEnded) {
+      Icon(
+        imageVector = ImageVector.vectorResource(R.drawable.symbol_favorite_fill_16),
+        contentDescription = stringResource(R.string.Poll__poll_winner),
+        modifier = Modifier.padding(2.dp)
+      )
+    }
+    if (option.voters.isNotEmpty()) {
+      Text(text = pluralStringResource(R.plurals.Poll__num_votes, option.voters.size, option.voters.size), style = MaterialTheme.typography.bodyLarge)
+    }
   }
 
-  if (!expand && option.voters.size > MAX_INITIAL_VOTER_COUNT) {
+  if (option.voters.isEmpty()) {
+    Text(
+      text = stringResource(R.string.Poll__no_votes),
+      style = MaterialTheme.typography.bodyLarge,
+      color = MaterialTheme.colorScheme.onSurfaceVariant,
+      modifier = Modifier.horizontalGutters()
+    )
+  } else if (!expand && option.voters.size > MAX_INITIAL_VOTER_COUNT) {
     option.voters.subList(0, MAX_INITIAL_VOTER_COUNT).forEach { recipient ->
       Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(vertical = 12.dp)
+        modifier = Modifier.padding(vertical = 12.dp).horizontalGutters()
       ) {
         AvatarImage(recipient = recipient, modifier = Modifier.padding(end = 16.dp).size(40.dp))
         Text(text = if (recipient.isSelf) stringResource(id = R.string.Recipient_you) else recipient.getShortDisplayName(context))
@@ -185,7 +214,7 @@ private fun PollOptionSection(
 
     Row(
       verticalAlignment = Alignment.CenterVertically,
-      modifier = Modifier.padding(vertical = 12.dp).clickable { expand = true }
+      modifier = Modifier.padding(vertical = 12.dp).horizontalGutters().clickable { expand = true }
     ) {
       Image(
         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
@@ -199,7 +228,7 @@ private fun PollOptionSection(
     option.voters.forEach { recipient ->
       Row(
         verticalAlignment = Alignment.CenterVertically,
-        modifier = Modifier.padding(vertical = 12.dp)
+        modifier = Modifier.padding(vertical = 12.dp).horizontalGutters()
       ) {
         AvatarImage(recipient = recipient, modifier = Modifier.padding(end = 16.dp).size(40.dp))
         Text(text = if (recipient.isSelf) stringResource(id = R.string.Recipient_you) else recipient.getShortDisplayName(context))
