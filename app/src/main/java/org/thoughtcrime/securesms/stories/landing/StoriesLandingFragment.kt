@@ -159,7 +159,7 @@ class StoriesLandingFragment : DSLSettingsFragment(layoutId = R.layout.stories_l
       }
     )
 
-    lifecycleDisposable += mainNavigationViewModel.tabClickEvents
+    lifecycleDisposable += mainNavigationViewModel.tabClickEventsObservable
       .filter { it == MainNavigationListLocation.STORIES }
       .subscribeBy(onNext = {
         val layoutManager = recyclerView?.layoutManager as? LinearLayoutManager ?: return@subscribeBy

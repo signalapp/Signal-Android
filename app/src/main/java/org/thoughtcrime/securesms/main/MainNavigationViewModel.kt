@@ -46,9 +46,6 @@ class MainNavigationViewModel(
   private var navigatorScope: CoroutineScope? = null
   private var goToLegacyDetailLocation: ((MainNavigationDetailLocation) -> Unit)? = null
 
-  /**
-   * The latest detail location that has been requested, for consumption by other components.
-   */
   private val internalDetailLocation = MutableSharedFlow<MainNavigationDetailLocation>()
   val detailLocation: SharedFlow<MainNavigationDetailLocation> = internalDetailLocation
 
@@ -76,7 +73,8 @@ class MainNavigationViewModel(
    * This is Rx because these are still accessed from Java.
    */
   private val internalTabClickEvents: MutableSharedFlow<MainNavigationListLocation> = MutableSharedFlow()
-  val tabClickEvents: Observable<MainNavigationListLocation> = internalTabClickEvents.asObservable()
+  val tabClickEvents: SharedFlow<MainNavigationListLocation> = internalTabClickEvents
+  val tabClickEventsObservable: Observable<MainNavigationListLocation> = internalTabClickEvents.asObservable()
 
   private var earlyNavigationListLocationRequested: MainNavigationListLocation? = null
   var earlyNavigationDetailLocationRequested: MainNavigationDetailLocation? = null

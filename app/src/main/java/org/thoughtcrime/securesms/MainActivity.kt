@@ -66,6 +66,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChangedBy
 import kotlinx.coroutines.flow.filter
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.merge
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.signal.core.ui.compose.theme.SignalTheme
@@ -403,15 +405,22 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           }
         }
 
-        LaunchedEffect(mainNavigationDetailLocation) {
-          if (paneExpansionState.currentAnchor == listOnlyAnchor && wrappedNavigator.currentDestination?.pane == ThreePaneScaffoldRole.Primary) {
-            paneExpansionState.animateTo(detailOnlyAnchor)
+        LaunchedEffect(paneExpansionState, detailOnlyAnchor, listOnlyAnchor, wrappedNavigator) {
+          mainNavigationViewModel.detailLocation.collect {
+            if (paneExpansionState.currentAnchor == listOnlyAnchor) {
+              paneExpansionState.animateTo(detailOnlyAnchor)
+            }
           }
         }
 
-        LaunchedEffect(mainNavigationState.currentListLocation) {
-          if (paneExpansionState.currentAnchor == detailOnlyAnchor && wrappedNavigator.currentDestination?.pane == ThreePaneScaffoldRole.Secondary) {
-            paneExpansionState.animateTo(listOnlyAnchor)
+        LaunchedEffect(paneExpansionState, detailOnlyAnchor, listOnlyAnchor, wrappedNavigator) {
+          val a = mainNavigationViewModel.mainNavigationState.map { it.currentListLocation }
+          val b = mainNavigationViewModel.tabClickEvents
+
+          merge(a, b).collect {
+            if (paneExpansionState.currentAnchor == detailOnlyAnchor) {
+              paneExpansionState.animateTo(listOnlyAnchor)
+            }
           }
         }
 

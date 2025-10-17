@@ -206,7 +206,7 @@ class CallLogFragment : Fragment(R.layout.call_log_fragment), CallLogAdapter.Cal
   }
 
   private fun initializeTapToScrollToTop(scrollToPositionDelegate: ScrollToPositionDelegate) {
-    disposables += mainNavigationViewModel.tabClickEvents
+    disposables += mainNavigationViewModel.tabClickEventsObservable
       .filter { it == MainNavigationListLocation.CALLS }
       .subscribeBy(onNext = {
         scrollToPositionDelegate.resetScrollPosition()
