@@ -261,6 +261,7 @@ import org.thoughtcrime.securesms.linkpreview.LinkPreview
 import org.thoughtcrime.securesms.linkpreview.LinkPreviewViewModelV2
 import org.thoughtcrime.securesms.longmessage.LongMessageFragment
 import org.thoughtcrime.securesms.main.MainNavigationListLocation
+import org.thoughtcrime.securesms.main.MainNavigationViewModel
 import org.thoughtcrime.securesms.main.VerticalInsets
 import org.thoughtcrime.securesms.mediaoverview.MediaOverviewActivity
 import org.thoughtcrime.securesms.mediapreview.MediaIntentFactory
@@ -490,6 +491,8 @@ class ConversationFragment :
   }
 
   private val shareDataTimestampViewModel: ShareDataTimestampViewModel by activityViewModels()
+
+  private val mainNavigationViewModel: MainNavigationViewModel by activityViewModels()
 
   private val inlineQueryController: InlineQueryResultsControllerV2 by lazy {
     InlineQueryResultsControllerV2(
@@ -1401,16 +1404,37 @@ class ConversationFragment :
   }
 
   private fun presentNavigationIconForNormal() {
-    if (!resources.getWindowSizeClass().isSplitPane()) {
+    if (WindowSizeClass.isLargeScreenSupportEnabled()) {
+      lifecycleScope.launch {
+        repeatOnLifecycle(Lifecycle.State.RESUMED) {
+          mainNavigationViewModel.isFullScreenPane.collect { isFullScreenPane ->
+            updateNavigationIconForNormal(isFullScreenPane)
+          }
+        }
+      }
+    } else {
+      updateNavigationIconForNormal(true)
+    }
+  }
+
+  private fun updateNavigationIconForNormal(isFullScreenPane: Boolean) {
+    if (!resources.getWindowSizeClass().isSplitPane() || isFullScreenPane) {
       binding.toolbar.setNavigationIcon(R.drawable.symbol_arrow_start_24)
       binding.toolbar.setNavigationContentDescription(R.string.ConversationFragment__content_description_back_button)
       binding.toolbar.setNavigationOnClickListener {
         binding.root.hideKeyboard(composeText)
         requireActivity().onBackPressedDispatcher.onBackPressed()
       }
+      binding.toolbar.setContentInsetsRelative(
+        46.dp,
+        binding.toolbar.contentInsetEnd
+      )
     } else {
       binding.toolbar.navigationIcon = null
-      binding.toolbar.contentInsetStartWithNavigation = 0
+      binding.toolbar.setContentInsetsRelative(
+        24.dp,
+        binding.toolbar.contentInsetEnd
+      )
     }
   }
 

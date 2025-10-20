@@ -415,6 +415,26 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           }
         }
 
+        val scope = rememberCoroutineScope()
+        BackHandler(paneExpansionState.currentAnchor == detailOnlyAnchor) {
+          scope.launch {
+            paneExpansionState.animateTo(listOnlyAnchor)
+          }
+        }
+
+        LaunchedEffect(paneExpansionState.currentAnchor, detailOnlyAnchor, listOnlyAnchor, detailAndListAnchor) {
+          val isFullScreenPane = when (paneExpansionState.currentAnchor) {
+            listOnlyAnchor, detailOnlyAnchor -> {
+              true
+            }
+            else -> {
+              false
+            }
+          }
+
+          mainNavigationViewModel.onPaneAnchorChanged(isFullScreenPane)
+        }
+
         LaunchedEffect(paneExpansionState, detailOnlyAnchor, listOnlyAnchor, wrappedNavigator) {
           mainNavigationViewModel.detailLocation.collect {
             if (paneExpansionState.currentAnchor == listOnlyAnchor) {

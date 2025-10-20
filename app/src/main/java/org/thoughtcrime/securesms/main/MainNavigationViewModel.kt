@@ -69,6 +69,9 @@ class MainNavigationViewModel(
   private val internalMainNavigationState = MutableStateFlow(MainNavigationState(currentListLocation = initialListLocation))
   val mainNavigationState: StateFlow<MainNavigationState> = internalMainNavigationState
 
+  private val internalIsFullScreenPane = MutableStateFlow(false)
+  val isFullScreenPane: StateFlow<Boolean> = internalIsFullScreenPane
+
   /**
    * This is Rx because these are still accessed from Java.
    */
@@ -119,6 +122,10 @@ class MainNavigationViewModel(
         }
       }
     }
+  }
+
+  fun onPaneAnchorChanged(isFullScreenPane: Boolean) {
+    internalIsFullScreenPane.update { isFullScreenPane }
   }
 
   /**
