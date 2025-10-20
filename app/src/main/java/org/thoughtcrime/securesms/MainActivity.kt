@@ -321,7 +321,8 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         }
       }
 
-      val isNavigationVisible = mainToolbarState.mode == MainToolbarMode.FULL
+      val isNavigationRailVisible = mainToolbarState.mode != MainToolbarMode.SEARCH
+      val isNavigationBarVisible = mainToolbarState.mode == MainToolbarMode.FULL
       val isBackHandlerEnabled = mainToolbarState.destination != MainNavigationListLocation.CHATS
 
       BackHandler(enabled = isBackHandlerEnabled) {
@@ -430,7 +431,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           paneExpansionState = paneExpansionState,
           contentWindowInsets = WindowInsets(),
           bottomNavContent = {
-            if (isNavigationVisible) {
+            if (isNavigationBarVisible) {
               Column(
                 modifier = Modifier
                   .clip(contentLayoutData.navigationBarShape)
@@ -448,7 +449,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
             }
           },
           navRailContent = {
-            if (isNavigationVisible) {
+            if (isNavigationRailVisible) {
               MainNavigationRail(
                 state = mainNavigationState,
                 mainFloatingActionButtonsCallback = mainBottomChromeCallback,

@@ -877,6 +877,7 @@ public class ConversationListFragment extends MainFragment implements Conversati
           if (conversations.isEmpty()) {
             endActionModeIfActive();
           } else {
+            startActionModeIfNotActive();
             updateMultiSelectState();
           }
         })
@@ -1135,6 +1136,12 @@ public class ConversationListFragment extends MainFragment implements Conversati
     }, (nothing) -> {
       getNavigator().goToConversation(recipient.getId(), threadId, distributionType, -1);
     });
+  }
+
+  private void startActionModeIfNotActive() {
+    if (!mainToolbarViewModel.isInActionMode()) {
+      startActionMode();
+    }
   }
 
   private void startActionMode() {

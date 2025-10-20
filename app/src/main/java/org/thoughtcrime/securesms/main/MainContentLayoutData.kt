@@ -87,9 +87,8 @@ data class MainContentLayoutData(
             else -> 13.dp
           },
           listPaddingStart = when {
-            !windowSizeClass.isSplitPane() -> 0.dp
             windowSizeClass.isExtended() -> 16.dp
-            else -> 12.dp
+            else -> 0.dp
           },
           detailPaddingEnd = when {
             !windowSizeClass.isSplitPane() -> 0.dp
