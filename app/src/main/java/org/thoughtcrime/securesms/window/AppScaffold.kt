@@ -328,8 +328,7 @@ fun AppScaffold(
                 )
                 layout(constraints.maxWidth, placeable.height) {
                   placeable.placeRelative(
-                    x = constraints.maxWidth -
-                      max(constraints.maxWidth, placeable.width),
+                    x = 0,
                     y = 0
                   )
                 }
