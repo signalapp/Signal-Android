@@ -230,8 +230,14 @@ fun MainNavigationRail(
       }
     }
 
+    val selectedDestination = if (state.currentListLocation == MainNavigationListLocation.ARCHIVE) {
+      MainNavigationListLocation.CHATS
+    } else {
+      state.currentListLocation
+    }
+
     entries.forEachIndexed { idx, destination ->
-      val selected = state.currentListLocation == destination
+      val selected = selectedDestination == destination
 
       Box {
         NavigationRailItem(
