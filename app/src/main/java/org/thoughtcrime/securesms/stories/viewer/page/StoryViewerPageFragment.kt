@@ -33,6 +33,7 @@ import androidx.core.os.bundleOf
 import androidx.core.text.util.LinkifyCompat
 import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.animation.PathInterpolatorCompat
+import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -968,12 +969,14 @@ class StoryViewerPageFragment :
     caption.text = displayBody
     caption.setMaxLength(SMALL_CAPTION_TEXT_MAX_LENGTH)
 
-    if (displayBody.length <= SMALL_CAPTION_TEXT_MAX_LENGTH) {
-      caption.setOnClickListener(null)
-      caption.isClickable = false
-    } else {
-      caption.setOnClickListener {
-        onShowCaptionOverlay(caption, largeCaption, largeCaptionOverlay)
+    caption.doOnNextLayout {
+      if (displayBody.length <= SMALL_CAPTION_TEXT_MAX_LENGTH && caption.lineCount <= SMALL_CAPTION_TEXT_MAX_LINES) {
+        caption.setOnClickListener(null)
+        caption.isClickable = false
+      } else {
+        caption.setOnClickListener {
+          onShowCaptionOverlay(caption, largeCaption, largeCaptionOverlay)
+        }
       }
     }
   }
@@ -1299,6 +1302,7 @@ class StoryViewerPageFragment :
     private val DEFAULT_DURATION = TimeUnit.SECONDS.toMillis(5)
     private val ONBOARDING_DURATION = TimeUnit.SECONDS.toMillis(10)
     private const val SMALL_CAPTION_TEXT_MAX_LENGTH = 280
+    private const val SMALL_CAPTION_TEXT_MAX_LINES = 5
     private const val CAPTION_LINK_PATTERN = Linkify.WEB_URLS or Linkify.EMAIL_ADDRESSES or Linkify.PHONE_NUMBERS
 
     private const val ARGS = "args"
