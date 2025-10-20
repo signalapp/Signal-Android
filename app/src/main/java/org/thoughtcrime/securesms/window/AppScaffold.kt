@@ -186,17 +186,10 @@ enum class WindowSizeClass(
         }
 
         Configuration.ORIENTATION_LANDSCAPE -> {
-          when (windowSizeClass.windowWidthSizeClass) {
-            WindowWidthSizeClass.COMPACT -> COMPACT_LANDSCAPE
-            WindowWidthSizeClass.MEDIUM -> {
-              if (windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT) {
-                COMPACT_LANDSCAPE
-              } else {
-                MEDIUM_LANDSCAPE
-              }
-            }
-
-            WindowWidthSizeClass.EXPANDED -> EXTENDED_LANDSCAPE
+          when (windowSizeClass.windowHeightSizeClass) {
+            WindowHeightSizeClass.COMPACT -> COMPACT_LANDSCAPE
+            WindowHeightSizeClass.MEDIUM -> MEDIUM_LANDSCAPE
+            WindowHeightSizeClass.EXPANDED -> EXTENDED_LANDSCAPE
             else -> error("Unsupported.")
           }
         }
