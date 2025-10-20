@@ -50,6 +50,8 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.fragment.app.DialogFragment
@@ -328,6 +330,13 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
       BackHandler(enabled = isBackHandlerEnabled) {
         mainNavigationViewModel.setFocusedPane(ThreePaneScaffoldRole.Secondary)
         mainNavigationViewModel.goTo(MainNavigationListLocation.CHATS)
+      }
+
+      val focusManager = LocalFocusManager.current
+      LaunchedEffect(mainToolbarState.mode) {
+        if (mainToolbarState.mode == MainToolbarMode.ACTION_MODE) {
+          focusManager.clearFocus()
+        }
       }
 
       val mainBottomChromeState = remember(mainToolbarState.destination, snackbar, mainToolbarState.mode, megaphone) {
