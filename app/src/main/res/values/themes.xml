@@ -476,8 +476,8 @@
 
     <style name="ShapeAppearanceOverlay.Signal.BottomSheet.Rounded" parent="">
         <item name="cornerFamily">rounded</item>
-        <item name="cornerSizeTopRight">18dp</item>
-        <item name="cornerSizeTopLeft">18dp</item>
+        <item name="cornerSizeTopRight">@dimen/bottom_sheet_corner_size</item>
+        <item name="cornerSizeTopLeft">@dimen/bottom_sheet_corner_size</item>
         <item name="cornerSizeBottomLeft">0dp</item>
         <item name="cornerSizeBottomRight">0dp</item>
     </style>
