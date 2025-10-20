@@ -221,7 +221,7 @@
 
     <style name="Signal.DayNight.Dialog.FullScreen.Donate">
     </style>
-    
+
     <style name="ThemeOverlay.Signal.MaterialAlertDialog" parent="@style/ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="alertDialogStyle">@style/Signal.MaterialAlertDialog</item>
         <item name="android:background">@color/signal_colorSurface1</item>
