@@ -359,7 +359,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         val listPaneWidth = contentLayoutData.rememberDefaultPanePreferredWidth(maxWidth)
         val halfPartitionWidth = contentLayoutData.partitionWidth / 2
 
-        val detailOffset = if (mainToolbarState.mode == MainToolbarMode.SEARCH || mainToolbarState.mode == MainToolbarMode.ACTION_MODE) 0.dp else 72.dp
+        val detailOffset = if (mainToolbarState.mode == MainToolbarMode.SEARCH || mainToolbarState.mode == MainToolbarMode.ACTION_MODE) 0.dp else 80.dp
         val detailOnlyAnchor = PaneExpansionAnchor.Offset.fromStart(detailOffset + contentLayoutData.listPaddingStart + halfPartitionWidth)
         val detailAndListAnchor = PaneExpansionAnchor.Offset.fromStart(listPaneWidth + halfPartitionWidth)
         val listOnlyAnchor = PaneExpansionAnchor.Offset.fromEnd(contentLayoutData.detailPaddingEnd - halfPartitionWidth)
