@@ -203,7 +203,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
     setVisibility(View.INVISIBLE);
 
     this.activity = activity;
-    updateSystemUiOnShow(activity);
 
     ViewKt.doOnLayout(this, v -> {
       showAfterLayout(activity, conversationMessage, lastSeenDownPoint, isMessageOnLeft);
@@ -421,22 +420,6 @@ public final class ConversationReactionOverlay extends FrameLayout {
       return getRootWindowInsets().getSystemGestureInsets().bottom == 0 && isLandscape;
     } else {
       return isLandscape;
-    }
-  }
-
-  private void updateSystemUiOnShow(@NonNull Activity activity) {
-    Window window   = activity.getWindow();
-    int    barColor = ContextCompat.getColor(getContext(), R.color.conversation_item_selected_system_ui);
-
-    originalStatusBarColor = window.getStatusBarColor();
-    WindowUtil.setStatusBarColor(window, barColor);
-
-    originalNavigationBarColor = window.getNavigationBarColor();
-    WindowUtil.setNavigationBarColor(activity, barColor);
-
-    if (!ThemeUtil.isDarkTheme(getContext())) {
-      WindowUtil.clearLightStatusBar(window);
-      WindowUtil.clearLightNavigationBar(window);
     }
   }
 
