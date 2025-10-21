@@ -8425,13 +8425,15 @@
 
     <!-- MessageBackupsKeyEducationScreen -->
     <!-- Screen headline -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Your recovery key</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key">Recovery key</string>
     <!-- Screen body part 1 -->
-    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that lets you restore your backup when you re-install Signal.</string>
+    <string name="MessageBackupsKeyEducationScreen__your_backup_key_is_a">Your recovery key is a 64-character code that you will need to restore your backup.</string>
     <!-- Screen body part 2 -->
-    <string name="MessageBackupsKeyEducationScreen__if_you_forget_your_key">If you forget your key, you will not be able to restore your backup. Signal cannot help you recover your backup.</string>
+    <string name="MessageBackupsKeyEducationScreen__store_your_recovery">Store your recovery key somewhere safe like a secure password manager, and don’t share it with anyone.</string>
+    <!-- Screen body part 3 -->
+    <string name="MessageBackupsKeyEducationScreen__if_you_lose_it">If you lose it, you won’t be able to recover your messages.</string>
     <!-- Action button label -->
-    <string name="MessageBackupsKeyEducationScreen__next">Next</string>
+    <string name="MessageBackupsKeyEducationScreen__view_recovery_key">View recovery key</string>
 
     <!-- MessageBackupsKeyRecordScreen -->
     <!-- Screen headline -->
