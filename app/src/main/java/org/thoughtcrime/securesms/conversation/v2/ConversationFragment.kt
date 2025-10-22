@@ -87,9 +87,12 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.kotlin.subscribeBy
 import io.reactivex.rxjava3.schedulers.Schedulers
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -596,6 +599,9 @@ class ConversationFragment :
 
   private lateinit var voiceMessageRecordingDelegate: VoiceMessageRecordingDelegate
 
+  private val internalDidFirstFrameRender = MutableStateFlow(false)
+  val didFirstFrameRender: StateFlow<Boolean> = internalDidFirstFrameRender
+
   //region Android Lifecycle
 
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -980,6 +986,7 @@ class ConversationFragment :
     }
 
     activity?.supportStartPostponedEnterTransition()
+    internalDidFirstFrameRender.update { true }
 
     val backPressedDelegate = BackPressedDelegate()
     requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, backPressedDelegate)

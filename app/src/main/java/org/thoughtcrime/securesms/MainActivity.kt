@@ -106,6 +106,7 @@ import org.thoughtcrime.securesms.devicetransfer.olddevice.OldDeviceExitActivity
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupActivity
 import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.thoughtcrime.securesms.lock.v2.CreateSvrPinActivity
+import org.thoughtcrime.securesms.main.ChatNavGraphState
 import org.thoughtcrime.securesms.main.DetailsScreenNavHost
 import org.thoughtcrime.securesms.main.MainBottomChrome
 import org.thoughtcrime.securesms.main.MainBottomChromeCallback
@@ -162,6 +163,7 @@ import org.thoughtcrime.securesms.util.Util
 import org.thoughtcrime.securesms.util.viewModel
 import org.thoughtcrime.securesms.window.AppPaneDragHandle
 import org.thoughtcrime.securesms.window.AppScaffold
+import org.thoughtcrime.securesms.window.AppScaffoldAnimationStateFactory
 import org.thoughtcrime.securesms.window.AppScaffoldNavigator
 import org.thoughtcrime.securesms.window.WindowSizeClass
 import org.thoughtcrime.securesms.window.rememberThreePaneScaffoldNavigatorDelegate
@@ -367,8 +369,9 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           anchors = listOf(detailOnlyAnchor, detailAndListAnchor, listOnlyAnchor)
         )
 
+        val chatNavGraphState = ChatNavGraphState.remember(windowSizeClass)
         val mutableInteractionSource = remember { MutableInteractionSource() }
-        val mainNavigationDetailLocation by rememberMainNavigationDetailLocation(mainNavigationViewModel)
+        val mainNavigationDetailLocation by rememberMainNavigationDetailLocation(mainNavigationViewModel, chatNavGraphState::writeGraphicsLayerToBitmap)
 
         val chatsNavHostController = rememberDetailNavHostController(
           onRequestFocus = rememberFocusRequester(
@@ -377,7 +380,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
             isTargetListLocation = { it in listOf(MainNavigationListLocation.CHATS, MainNavigationListLocation.ARCHIVE) }
           )
         ) {
-          chatNavGraphBuilder()
+          chatNavGraphBuilder(chatNavGraphState)
         }
 
         val callsNavHostController = rememberDetailNavHostController(
@@ -409,7 +412,11 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
               }.navigateToDetailLocation(mainNavigationDetailLocation)
             }
 
-            is MainNavigationDetailLocation.Chats -> chatsNavHostController.navigateToDetailLocation(mainNavigationDetailLocation)
+            is MainNavigationDetailLocation.Chats -> {
+              chatNavGraphState.writeGraphicsLayerToBitmap()
+              chatsNavHostController.navigateToDetailLocation(mainNavigationDetailLocation)
+            }
+
             is MainNavigationDetailLocation.Calls -> callsNavHostController.navigateToDetailLocation(mainNavigationDetailLocation)
             is MainNavigationDetailLocation.Stories -> storiesNavHostController.navigateToDetailLocation(mainNavigationDetailLocation)
           }
@@ -427,6 +434,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
             listOnlyAnchor, detailOnlyAnchor -> {
               true
             }
+
             else -> {
               false
             }
@@ -454,8 +462,17 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           }
         }
 
+        val noEnterTransitionFactory = remember {
+          AppScaffoldAnimationStateFactory(
+            enabledStates = AppScaffoldNavigator.NavigationState.entries.filterNot {
+              it == AppScaffoldNavigator.NavigationState.ENTER
+            }.toSet()
+          )
+        }
+
         AppScaffold(
           navigator = wrappedNavigator,
+          modifier = chatNavGraphState.writeContentToGraphicsLayer(),
           paneExpansionState = paneExpansionState,
           contentWindowInsets = WindowInsets(),
           bottomNavContent = {
@@ -585,7 +602,14 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
                 mutableInteractionSource = mutableInteractionSource
               )
             }
-          } else null
+          } else {
+            null
+          },
+          animatorFactory = if (mainNavigationState.currentListLocation == MainNavigationListLocation.CHATS || mainNavigationState.currentListLocation == MainNavigationListLocation.ARCHIVE) {
+            noEnterTransitionFactory
+          } else {
+            AppScaffoldAnimationStateFactory.Default
+          }
         )
       }
     }

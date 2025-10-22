@@ -221,6 +221,7 @@ enum class WindowSizeClass(
 @Composable
 fun AppScaffold(
   navigator: AppScaffoldNavigator<Any>,
+  modifier: Modifier = Modifier,
   topBarContent: @Composable () -> Unit = {},
   primaryContent: @Composable () -> Unit = {},
   secondaryContent: @Composable () -> Unit,
@@ -242,7 +243,8 @@ fun AppScaffold(
       navRailContent = navRailContent,
       bottomNavContent = bottomNavContent,
       windowSizeClass = windowSizeClass,
-      contentWindowInsets = contentWindowInsets
+      contentWindowInsets = contentWindowInsets,
+      modifier = modifier
     )
 
     return
@@ -255,7 +257,8 @@ fun AppScaffold(
     containerColor = Color.Transparent,
     contentWindowInsets = contentWindowInsets,
     topBar = topBarContent,
-    snackbarHost = snackbarHost
+    snackbarHost = snackbarHost,
+    modifier = modifier
   ) { paddingValues ->
     NavigableListDetailPaneScaffold(
       navigator = navigator,
@@ -353,13 +356,15 @@ private fun ListAndNavigation(
   bottomNavContent: @Composable () -> Unit,
   snackbarHost: @Composable () -> Unit = {},
   windowSizeClass: WindowSizeClass,
-  contentWindowInsets: WindowInsets
+  contentWindowInsets: WindowInsets,
+  modifier: Modifier = Modifier
 ) {
   Scaffold(
     containerColor = Color.Transparent,
     topBar = topBarContent,
     contentWindowInsets = contentWindowInsets,
-    snackbarHost = snackbarHost
+    snackbarHost = snackbarHost,
+    modifier = modifier
   ) { paddingValues ->
     Row(
       modifier = Modifier

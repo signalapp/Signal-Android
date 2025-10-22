@@ -5,6 +5,8 @@
 
 package org.thoughtcrime.securesms.window
 
+import androidx.compose.animation.core.CubicBezierEasing
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
@@ -17,6 +19,16 @@ import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+
+/**
+ * Default animation settings for app-scaffold animations.
+ */
+object AppScaffoldAnimationDefaults {
+  val TweenEasing = CubicBezierEasing(0.4f, 0.0f, 0.2f, 1f)
+  val InitAnimationOffset = 48.dp
+
+  fun <T> tween() = tween<T>(durationMillis = 200, easing = TweenEasing)
+}
 
 /**
  * Produces modifier that can be composed into another modifier chain.
@@ -47,17 +59,31 @@ data class AppScaffoldAnimationState(
  * Allows for the customization of the AppScaffold Animators.
  */
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
-abstract class AppScaffoldAnimationStateFactory {
+class AppScaffoldAnimationStateFactory(
+  val enabledStates: Set<AppScaffoldNavigator.NavigationState> = AppScaffoldNavigator.NavigationState.entries.toSet()
+) {
 
-  object Default : AppScaffoldAnimationStateFactory()
+  companion object {
+    val Default = AppScaffoldAnimationStateFactory()
 
-  protected var latestListSeekState: AppScaffoldAnimationState = AppScaffoldAnimationState(AppScaffoldNavigator.NavigationState.SEEK)
-  protected var latestDetailSeekState: AppScaffoldAnimationState = AppScaffoldAnimationState(AppScaffoldNavigator.NavigationState.SEEK)
+    private val EMPTY_STATE = AppScaffoldAnimationState(
+      navigationState = AppScaffoldNavigator.NavigationState.ENTER,
+      alpha = 1f
+    )
+  }
+
+  private var latestListSeekState: AppScaffoldAnimationState = AppScaffoldAnimationState(AppScaffoldNavigator.NavigationState.SEEK)
+  private var latestDetailSeekState: AppScaffoldAnimationState = AppScaffoldAnimationState(AppScaffoldNavigator.NavigationState.SEEK)
 
   @Composable
   fun ThreePaneScaffoldPaneScope.getListAnimationState(navigationState: AppScaffoldNavigator.NavigationState): AppScaffoldAnimationState {
+    if (navigationState !in enabledStates) {
+      return EMPTY_STATE
+    }
+
     return when (navigationState) {
-      AppScaffoldNavigator.NavigationState.INIT -> defaultListInitAnimationState()
+      AppScaffoldNavigator.NavigationState.ENTER -> defaultListInitAnimationState()
+      AppScaffoldNavigator.NavigationState.EXIT -> defaultListInitAnimationState()
       AppScaffoldNavigator.NavigationState.SEEK -> defaultListSeekAnimationState().also {
         latestListSeekState = it
       }
@@ -67,8 +93,13 @@ abstract class AppScaffoldAnimationStateFactory {
 
   @Composable
   fun ThreePaneScaffoldPaneScope.getDetailAnimationState(navigationState: AppScaffoldNavigator.NavigationState): AppScaffoldAnimationState {
+    if (navigationState !in enabledStates) {
+      return EMPTY_STATE
+    }
+
     return when (navigationState) {
-      AppScaffoldNavigator.NavigationState.INIT -> defaultDetailInitAnimationState()
+      AppScaffoldNavigator.NavigationState.ENTER -> defaultDetailInitAnimationState()
+      AppScaffoldNavigator.NavigationState.EXIT -> defaultDetailInitAnimationState()
       AppScaffoldNavigator.NavigationState.SEEK -> defaultDetailSeekAnimationState().also {
         latestDetailSeekState = it
       }

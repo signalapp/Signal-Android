@@ -60,7 +60,8 @@ fun EmptyDetailScreen() {
  */
 @Composable
 fun rememberMainNavigationDetailLocation(
-  mainNavigationViewModel: MainNavigationViewModel
+  mainNavigationViewModel: MainNavigationViewModel,
+  onWillFocusPrimary: suspend () -> Unit = {}
 ): State<MainNavigationDetailLocation> {
   val state = rememberSaveable(
     stateSaver = MainNavigationDetailLocation.Saver()
@@ -75,6 +76,7 @@ fun rememberMainNavigationDetailLocation(
           if (it == MainNavigationDetailLocation.Empty) {
             ThreePaneScaffoldRole.Secondary
           } else {
+            onWillFocusPrimary()
             ThreePaneScaffoldRole.Primary
           }
         )

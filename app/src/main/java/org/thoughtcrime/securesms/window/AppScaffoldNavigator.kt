@@ -31,17 +31,21 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 open class AppScaffoldNavigator<T> @RememberInComposition constructor(private val delegate: ThreePaneScaffoldNavigator<T>) : ThreePaneScaffoldNavigator<T> by delegate {
 
-  var state: NavigationState by mutableStateOf(NavigationState.INIT)
+  var state: NavigationState by mutableStateOf(NavigationState.ENTER)
     private set
 
   override suspend fun navigateTo(pane: ThreePaneScaffoldRole, contentKey: T?) {
-    state = NavigationState.INIT
+    state = NavigationState.ENTER
     return delegate.navigateTo(pane, contentKey)
   }
 
   override suspend fun navigateBack(backNavigationBehavior: BackNavigationBehavior): Boolean {
     if (state == NavigationState.SEEK) {
       state = NavigationState.RELEASE
+    }
+
+    if (state == NavigationState.ENTER) {
+      state = NavigationState.EXIT
     }
 
     return delegate.navigateBack(backNavigationBehavior)
@@ -60,11 +64,14 @@ open class AppScaffoldNavigator<T> @RememberInComposition constructor(private va
    */
   enum class NavigationState {
     /**
-     * We've navigated to a new pane. This animation is used for both immediate
-     * pane entry and exit (such as tapping a back button instead of using a
-     * gesture)
+     * We've navigated to a new pane.
      */
-    INIT,
+    ENTER,
+
+    /**
+     * We've navigated back from a pane without using seek.
+     */
+    EXIT,
 
     /**
      * The user is performing a back gesture seek action.

@@ -5,14 +5,12 @@
 
 package org.thoughtcrime.securesms.window
 
-import androidx.compose.animation.core.CubicBezierEasing
 import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.core.Spring
 import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.animateDp
 import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.layout.PaneAdaptedValue
@@ -38,12 +36,10 @@ fun <T> appScaffoldSeekSpring(): FiniteAnimationSpec<T> = spring(
   stiffness = SEEK_STIFFNESS
 )
 
-private val easing = CubicBezierEasing(0.4f, 0.0f, 0.2f, 1f)
-
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.animateDp(
-  transitionSpec: @Composable Transition.Segment<*>.() -> FiniteAnimationSpec<Dp> = { tween(durationMillis = 200, easing = easing) },
+  transitionSpec: @Composable Transition.Segment<*>.() -> FiniteAnimationSpec<Dp> = { AppScaffoldAnimationDefaults.tween() },
   targetWhenHiding: () -> Dp = { 0.dp },
   targetWhenShowing: () -> Dp
 ): State<Dp> {
@@ -63,7 +59,7 @@ fun ThreePaneScaffoldPaneScope.animateDp(
 @OptIn(ExperimentalMaterial3AdaptiveApi::class)
 @Composable
 fun ThreePaneScaffoldPaneScope.animateFloat(
-  transitionSpec: @Composable Transition.Segment<*>.() -> FiniteAnimationSpec<Float> = { tween(durationMillis = 200, easing = easing) },
+  transitionSpec: @Composable Transition.Segment<*>.() -> FiniteAnimationSpec<Float> = { AppScaffoldAnimationDefaults.tween() },
   targetWhenHiding: () -> Float = { 0f },
   targetWhenShowing: () -> Float
 ): State<Float> {
@@ -85,7 +81,7 @@ fun ThreePaneScaffoldPaneScope.animateFloat(
 fun ThreePaneScaffoldPaneScope.defaultListInitAnimationState(): AppScaffoldAnimationState {
   val offset by animateDp(
     targetWhenHiding = {
-      (-48).dp
+      -AppScaffoldAnimationDefaults.InitAnimationOffset
     },
     targetWhenShowing = {
       0.dp
@@ -97,7 +93,7 @@ fun ThreePaneScaffoldPaneScope.defaultListInitAnimationState(): AppScaffoldAnima
   }
 
   return AppScaffoldAnimationState(
-    AppScaffoldNavigator.NavigationState.INIT,
+    AppScaffoldNavigator.NavigationState.ENTER,
     alpha = alpha,
     offset = offset
   )
@@ -169,7 +165,7 @@ fun ThreePaneScaffoldPaneScope.defaultListReleaseAnimationState(from: AppScaffol
 fun ThreePaneScaffoldPaneScope.defaultDetailInitAnimationState(): AppScaffoldAnimationState {
   val offset by animateDp(
     targetWhenHiding = {
-      48.dp
+      AppScaffoldAnimationDefaults.InitAnimationOffset
     },
     targetWhenShowing = {
       0.dp
@@ -181,7 +177,7 @@ fun ThreePaneScaffoldPaneScope.defaultDetailInitAnimationState(): AppScaffoldAni
   }
 
   return AppScaffoldAnimationState(
-    navigationState = AppScaffoldNavigator.NavigationState.INIT,
+    navigationState = AppScaffoldNavigator.NavigationState.ENTER,
     alpha = alpha,
     offset = offset
   )
