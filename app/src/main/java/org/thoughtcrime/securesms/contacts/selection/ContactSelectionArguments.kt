@@ -86,21 +86,21 @@ data class ContactSelectionArguments(
       )
     }
   }
-}
 
-private object Defaults {
-  const val DISPLAY_MODE = ContactSelectionDisplayMode.FLAG_ALL
-  const val IS_REFRESHABLE = true
-  const val ENABLE_CREATE_NEW_GROUP = false
-  const val ENABLE_FIND_BY_USERNAME = false
-  const val ENABLE_FIND_BY_PHONE_NUMBER = false
-  const val INCLUDE_RECENTS = false
-  const val INCLUDE_CHAT_TYPES = false
-  val SELECTION_LIMITS: SelectionLimits? = null
-  val CURRENT_SELECTION: Set<RecipientId> = emptySet()
-  const val DISPLAY_CHIPS = true
-  const val RECYCLER_PADDING_BOTTOM = -1
-  const val RECYCLER_CHILD_CLIPPING = true
+  object Defaults {
+    const val DISPLAY_MODE = ContactSelectionDisplayMode.FLAG_ALL
+    const val IS_REFRESHABLE = true
+    const val ENABLE_CREATE_NEW_GROUP = false
+    const val ENABLE_FIND_BY_USERNAME = false
+    const val ENABLE_FIND_BY_PHONE_NUMBER = false
+    const val INCLUDE_RECENTS = false
+    const val INCLUDE_CHAT_TYPES = false
+    val SELECTION_LIMITS: SelectionLimits? = null
+    val CURRENT_SELECTION: Set<RecipientId> = emptySet()
+    const val DISPLAY_CHIPS = true
+    const val RECYCLER_PADDING_BOTTOM = -1
+    const val RECYCLER_CHILD_CLIPPING = true
 
-  fun canSelectSelf(selectionLimits: SelectionLimits?): Boolean = selectionLimits == null
+    fun canSelectSelf(selectionLimits: SelectionLimits?): Boolean = selectionLimits == null
+  }
 }

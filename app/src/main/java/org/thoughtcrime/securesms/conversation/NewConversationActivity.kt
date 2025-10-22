@@ -117,7 +117,7 @@ private fun NewConversationScreen(
     contract = FindByActivity.Contract(),
     onResult = { recipientId ->
       if (recipientId != null) {
-        viewModel.onMessage(recipientId)
+        viewModel.openConversation(recipientId)
       }
     }
   )
@@ -125,14 +125,16 @@ private fun NewConversationScreen(
   val coroutineScope = rememberCoroutineScope()
   val callbacks = remember {
     object : UiCallbacks {
+      override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
       override fun onCreateNewGroup() = createGroupLauncher.launch(CreateGroupActivity.newIntent(context))
       override fun onFindByUsername() = findByLauncher.launch(FindByMode.USERNAME)
       override fun onFindByPhoneNumber() = findByLauncher.launch(FindByMode.PHONE_NUMBER)
-      override fun shouldAllowSelection(id: RecipientId): Boolean = true
-      override fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?) = viewModel.onRecipientSelected(id, phone)
-      override fun onMessage(id: RecipientId) = viewModel.onMessage(id)
-      override fun onVoiceCall(recipient: Recipient) = CommunicationActions.startVoiceCall(context, recipient, viewModel::onUserAlreadyInACall)
-      override fun onVideoCall(recipient: Recipient) = CommunicationActions.startVideoCall(context, recipient, viewModel::onUserAlreadyInACall)
+      override suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean = true
+      override fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?) = viewModel.openConversation(id, phone)
+      override fun onPendingRecipientSelectionsConsumed() = Unit
+      override fun onMessage(id: RecipientId) = viewModel.openConversation(id)
+      override fun onVoiceCall(recipient: Recipient) = CommunicationActions.startVoiceCall(context, recipient, viewModel::showUserAlreadyInACall)
+      override fun onVideoCall(recipient: Recipient) = CommunicationActions.startVideoCall(context, recipient, viewModel::showUserAlreadyInACall)
 
       override fun onRemove(recipient: Recipient) = viewModel.showRemoveConfirmation(recipient)
       override fun onRemoveConfirmed(recipient: Recipient) {
@@ -146,8 +148,8 @@ private fun NewConversationScreen(
 
       override fun onInviteToSignal() = context.startActivity(AppSettingsActivity.invite(context))
       override fun onRefresh() = viewModel.refresh()
-      override fun onUserMessageDismissed(userMessage: UserMessage) = viewModel.onUserMessageDismissed()
-      override fun onContactsListReset() = viewModel.onContactsListReset()
+      override fun onUserMessageDismissed(userMessage: UserMessage) = viewModel.clearUserMessage()
+      override fun onContactsListReset() = viewModel.clearShouldResetContactsList()
       override fun onBackPressed() = closeScreen()
     }
   }
@@ -256,7 +258,7 @@ private fun NewConversationScreenUi(
     snackbarHostState = snackbarHostState
   )
 
-  if (uiState.isRefreshingRecipient) {
+  if (uiState.isLookingUpRecipient) {
     Dialogs.IndeterminateProgressDialog()
   }
 }
@@ -320,11 +322,13 @@ private interface UiCallbacks :
   fun onBackPressed()
 
   object Empty : UiCallbacks {
+    override fun onSearchQueryChanged(query: String) = Unit
     override fun onCreateNewGroup() = Unit
     override fun onFindByUsername() = Unit
     override fun onFindByPhoneNumber() = Unit
-    override fun shouldAllowSelection(id: RecipientId): Boolean = true
+    override suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean = true
     override fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?) = Unit
+    override fun onPendingRecipientSelectionsConsumed() = Unit
     override fun onMessage(id: RecipientId) = Unit
     override fun onVoiceCall(recipient: Recipient) = Unit
     override fun onVideoCall(recipient: Recipient) = Unit
@@ -347,6 +351,7 @@ private fun NewConversationRecipientPicker(
   modifier: Modifier = Modifier
 ) {
   RecipientPicker(
+    searchQuery = uiState.searchQuery,
     isRefreshing = uiState.isRefreshingContacts,
     shouldResetContactsList = uiState.shouldResetContactsList,
     callbacks = RecipientPickerCallbacks(

@@ -37,41 +37,39 @@ class NewConversationViewModel : ViewModel() {
 
   private val contactsManagementRepo = ContactsManagementRepository(AppDependencies.application)
 
-  fun onMessage(id: RecipientId): Unit = openConversation(recipientId = id)
+  fun onSearchQueryChanged(query: String) {
+    internalUiState.update { it.copy(searchQuery = query) }
+  }
 
-  fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?) {
+  fun openConversation(recipientId: RecipientId) {
+    internalUiState.update { it.copy(pendingDestination = recipientId) }
+  }
+
+  fun openConversation(id: RecipientId?, phone: PhoneNumber?) {
     when {
       id != null -> openConversation(recipientId = id)
 
       SignalStore.account.isRegistered -> {
-        Log.d(TAG, "[onRecipientSelected] Missing recipientId: attempting to look up.")
-        resolveAndOpenConversation(phone)
+        Log.d(TAG, "[openConversation] Missing recipientId: attempting to look up.")
+        resolveAndOpenConversation(phone!!)
       }
 
-      else -> Log.w(TAG, "[onRecipientSelected] Cannot look up recipient: account not registered.")
+      else -> Log.w(TAG, "[openConversation] Cannot look up recipient: account not registered.")
     }
   }
 
-  private fun openConversation(recipientId: RecipientId) {
-    internalUiState.update { it.copy(pendingDestination = recipientId) }
-  }
-
-  private fun resolveAndOpenConversation(phone: PhoneNumber?) {
+  private fun resolveAndOpenConversation(phone: PhoneNumber) {
     viewModelScope.launch {
-      internalUiState.update { it.copy(isRefreshingRecipient = true) }
+      internalUiState.update { it.copy(isLookingUpRecipient = true) }
 
       val lookupResult = withContext(Dispatchers.IO) {
-        if (phone != null) {
-          RecipientRepository.lookupNewE164(inputE164 = phone.value)
-        } else {
-          RecipientRepository.LookupResult.InvalidEntry
-        }
+        RecipientRepository.lookupNewE164(inputE164 = phone.value)
       }
 
       when (lookupResult) {
         is RecipientRepository.LookupResult.Success -> {
           val recipient = Recipient.resolved(lookupResult.recipientId)
-          internalUiState.update { it.copy(isRefreshingRecipient = false) }
+          internalUiState.update { it.copy(isLookingUpRecipient = false) }
 
           if (recipient.isRegistered && recipient.hasServiceId) {
             openConversation(recipient.id)
@@ -83,7 +81,7 @@ class NewConversationViewModel : ViewModel() {
         is RecipientRepository.LookupResult.NotFound, is RecipientRepository.LookupResult.InvalidEntry -> {
           internalUiState.update {
             it.copy(
-              isRefreshingRecipient = false,
+              isLookingUpRecipient = false,
               userMessage = Info.RecipientNotSignalUser(phone)
             )
           }
@@ -92,7 +90,7 @@ class NewConversationViewModel : ViewModel() {
         is RecipientRepository.LookupResult.NetworkError -> {
           internalUiState.update {
             it.copy(
-              isRefreshingRecipient = false,
+              isLookingUpRecipient = false,
               userMessage = Info.NetworkError
             )
           }
@@ -137,11 +135,11 @@ class NewConversationViewModel : ViewModel() {
     }
   }
 
-  fun onUserAlreadyInACall() {
+  fun showUserAlreadyInACall() {
     internalUiState.update { it.copy(userMessage = Info.UserAlreadyInAnotherCall) }
   }
 
-  fun onContactsListReset() {
+  fun clearShouldResetContactsList() {
     internalUiState.update { it.copy(shouldResetContactsList = false) }
   }
 
@@ -157,14 +155,15 @@ class NewConversationViewModel : ViewModel() {
     }
   }
 
-  fun onUserMessageDismissed() {
+  fun clearUserMessage() {
     internalUiState.update { it.copy(userMessage = null) }
   }
 }
 
 data class NewConversationUiState(
   val forceSplitPaneOnCompactLandscape: Boolean = SignalStore.internal.forceSplitPaneOnCompactLandscape,
-  val isRefreshingRecipient: Boolean = false,
+  val searchQuery: String = "",
+  val isLookingUpRecipient: Boolean = false,
   val isRefreshingContacts: Boolean = false,
   val shouldResetContactsList: Boolean = false,
   val pendingDestination: RecipientId? = null,
@@ -174,7 +173,7 @@ data class NewConversationUiState(
     sealed interface Info : UserMessage {
       data class RecipientRemoved(val recipient: Recipient) : Info
       data class RecipientBlocked(val recipient: Recipient) : Info
-      data class RecipientNotSignalUser(val phone: PhoneNumber?) : Info
+      data class RecipientNotSignalUser(val phone: PhoneNumber) : Info
       data object UserAlreadyInAnotherCall : Info
       data object NetworkError : Info
     }

@@ -24,6 +24,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.fragment.compose.rememberFragmentState
@@ -35,15 +37,20 @@ import kotlinx.coroutines.withContext
 import org.signal.core.ui.compose.DayNightPreviews
 import org.signal.core.ui.compose.Fragments
 import org.signal.core.util.DimensionUnit
+import org.signal.core.util.orNull
 import org.thoughtcrime.securesms.ContactSelectionListFragment
 import org.thoughtcrime.securesms.R
 import org.thoughtcrime.securesms.components.ContactFilterView
 import org.thoughtcrime.securesms.components.menu.ActionItem
 import org.thoughtcrime.securesms.components.menu.SignalContextMenu
+import org.thoughtcrime.securesms.contacts.ContactSelectionDisplayMode
+import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
+import org.thoughtcrime.securesms.conversation.RecipientPicker.DisplayMode.Companion.flag
 import org.thoughtcrime.securesms.conversation.RecipientPickerCallbacks.ContextMenu
+import org.thoughtcrime.securesms.groups.SelectionLimits
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -56,21 +63,24 @@ import java.util.function.Consumer
  */
 @Composable
 fun RecipientPicker(
+  searchQuery: String,
+  displayModes: Set<RecipientPicker.DisplayMode> = setOf(RecipientPicker.DisplayMode.ALL),
+  selectionLimits: SelectionLimits? = ContactSelectionArguments.Defaults.SELECTION_LIMITS,
   isRefreshing: Boolean,
   focusAndShowKeyboard: Boolean = LocalConfiguration.current.screenHeightDp.dp > 600.dp,
-  shouldResetContactsList: Boolean,
+  pendingRecipientSelections: Set<RecipientId> = emptySet(),
+  shouldResetContactsList: Boolean = false,
+  listBottomPadding: Dp? = null,
+  clipListToPadding: Boolean = ContactSelectionArguments.Defaults.RECYCLER_CHILD_CLIPPING,
   callbacks: RecipientPickerCallbacks,
   modifier: Modifier = Modifier
 ) {
-  var searchQuery by rememberSaveable { mutableStateOf("") }
-
   Column(
     modifier = modifier
   ) {
     RecipientSearchField(
-      onFilterChanged = { filter ->
-        searchQuery = filter
-      },
+      searchQuery = searchQuery,
+      onFilterChanged = { filter -> callbacks.listActions.onSearchQueryChanged(query = filter) },
       focusAndShowKeyboard = focusAndShowKeyboard,
       modifier = Modifier
         .fillMaxWidth()
@@ -78,9 +88,14 @@ fun RecipientPicker(
     )
 
     RecipientSearchResultsList(
+      displayModes = displayModes,
+      selectionLimits = selectionLimits,
       searchQuery = searchQuery,
       isRefreshing = isRefreshing,
+      pendingRecipientSelections = pendingRecipientSelections,
       shouldResetContactsList = shouldResetContactsList,
+      bottomPadding = listBottomPadding,
+      clipListToPadding = clipListToPadding,
       callbacks = callbacks,
       modifier = Modifier
         .fillMaxSize()
@@ -96,6 +111,7 @@ fun RecipientPicker(
  */
 @Composable
 private fun RecipientSearchField(
+  searchQuery: String,
   onFilterChanged: (String) -> Unit,
   @StringRes hintText: Int? = null,
   focusAndShowKeyboard: Boolean = false,
@@ -106,6 +122,10 @@ private fun RecipientSearchField(
     ContactFilterView(context, null, 0).apply {
       hintText?.let { setHint(it) }
     }
+  }
+
+  LaunchedEffect(searchQuery) {
+    wrappedView.setText(searchQuery)
   }
 
   // TODO [jeff] This causes the keyboard to re-open on rotation, which doesn't match the existing behavior of ContactFilterView. To fix this,
@@ -134,17 +154,26 @@ private fun RecipientSearchField(
 
 @Composable
 private fun RecipientSearchResultsList(
+  displayModes: Set<RecipientPicker.DisplayMode>,
   searchQuery: String,
   isRefreshing: Boolean,
+  pendingRecipientSelections: Set<RecipientId>,
   shouldResetContactsList: Boolean,
+  selectionLimits: SelectionLimits? = ContactSelectionArguments.Defaults.SELECTION_LIMITS,
+  bottomPadding: Dp? = null,
+  clipListToPadding: Boolean = ContactSelectionArguments.Defaults.RECYCLER_CHILD_CLIPPING,
   callbacks: RecipientPickerCallbacks,
   modifier: Modifier = Modifier
 ) {
   val fragmentArgs = ContactSelectionArguments(
+    displayMode = displayModes.flag,
     isRefreshable = callbacks.refresh != null,
     enableCreateNewGroup = callbacks.newConversation != null,
     enableFindByUsername = callbacks.findByUsername != null,
-    enableFindByPhoneNumber = callbacks.findByPhoneNumber != null
+    enableFindByPhoneNumber = callbacks.findByPhoneNumber != null,
+    selectionLimits = selectionLimits,
+    recyclerPadBottom = with(LocalDensity.current) { bottomPadding?.toPx()?.toInt() ?: ContactSelectionArguments.Defaults.RECYCLER_PADDING_BOTTOM },
+    recyclerChildClipping = clipListToPadding
   ).toArgumentBundle()
 
   val fragmentState = rememberFragmentState()
@@ -184,6 +213,22 @@ private fun RecipientSearchResultsList(
       currentFragment?.onDataRefreshed()
     }
     wasRefreshing = isRefreshing
+  }
+
+  LaunchedEffect(pendingRecipientSelections) {
+    if (pendingRecipientSelections.isNotEmpty()) {
+      currentFragment?.let { fragment ->
+        pendingRecipientSelections.forEach { recipientId ->
+          currentFragment?.addRecipientToSelectionIfAble(recipientId)
+        }
+        callbacks.listActions.onPendingRecipientSelectionsConsumed()
+
+        callbacks.listActions.onSelectionChanged(
+          newSelections = fragment.selectedContacts,
+          totalMembersCount = fragment.totalMemberCount
+        )
+      }
+    }
   }
 
   LaunchedEffect(shouldResetContactsList) {
@@ -226,19 +271,26 @@ private fun ContactSelectionListFragment.setUpCallbacks(
       chatType: Optional<ChatType?>,
       resultConsumer: Consumer<Boolean?>
     ) {
-      val recipientId = recipientId.get()
-      val shouldAllowSelection = callbacks.listActions.shouldAllowSelection(recipientId)
-      if (shouldAllowSelection) {
-        callbacks.listActions.onRecipientSelected(
-          id = recipientId,
-          phone = number?.let(::PhoneNumber)
-        )
+      val recipientId = recipientId.orNull()
+      val phone = number?.let(::PhoneNumber)
+
+      coroutineScope.launch {
+        val shouldAllowSelection = callbacks.listActions.shouldAllowSelection(recipientId, phone)
+        if (shouldAllowSelection) {
+          callbacks.listActions.onRecipientSelected(recipientId, phone)
+        }
+        resultConsumer.accept(shouldAllowSelection)
       }
-      resultConsumer.accept(shouldAllowSelection)
     }
 
     override fun onContactDeselected(recipientId: Optional<RecipientId?>, number: String?, chatType: Optional<ChatType?>) = Unit
-    override fun onSelectionChanged() = Unit
+
+    override fun onSelectionChanged() {
+      callbacks.listActions.onSelectionChanged(
+        newSelections = fragment.selectedContacts,
+        totalMembersCount = fragment.totalMemberCount
+      )
+    }
   })
 
   fragment.setOnItemLongClickListener { anchorView, contactSearchKey, recyclerView ->
@@ -331,6 +383,7 @@ private suspend fun showItemContextMenu(
 @Composable
 private fun RecipientPickerPreview() {
   RecipientPicker(
+    searchQuery = "",
     isRefreshing = false,
     shouldResetContactsList = false,
     callbacks = RecipientPickerCallbacks(
@@ -353,13 +406,18 @@ data class RecipientPickerCallbacks(
      *
      * This is called before [onRecipientSelected] to provide a chance to prevent the selection.
      */
-    fun shouldAllowSelection(id: RecipientId): Boolean
+    fun onSearchQueryChanged(query: String)
+    suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean
     fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?)
-    fun onContactsListReset()
+    fun onSelectionChanged(newSelections: List<SelectedContact>, totalMembersCount: Int) = Unit
+    fun onPendingRecipientSelectionsConsumed()
+    fun onContactsListReset() = Unit
 
     object Empty : ListActions {
-      override fun shouldAllowSelection(id: RecipientId): Boolean = false
+      override fun onSearchQueryChanged(query: String) = Unit
+      override suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean = true
       override fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?) = Unit
+      override fun onPendingRecipientSelectionsConsumed() = Unit
       override fun onContactsListReset() = Unit
     }
   }
@@ -387,5 +445,30 @@ data class RecipientPickerCallbacks(
 
   interface FindByPhoneNumber {
     fun onFindByPhoneNumber()
+  }
+}
+
+object RecipientPicker {
+  /**
+   * Enum wrapper for [ContactSelectionDisplayMode].
+   */
+  enum class DisplayMode(val flag: Int) {
+    PUSH(flag = ContactSelectionDisplayMode.FLAG_PUSH),
+    SMS(flag = ContactSelectionDisplayMode.FLAG_SMS),
+    ACTIVE_GROUPS(flag = ContactSelectionDisplayMode.FLAG_ACTIVE_GROUPS),
+    INACTIVE_GROUPS(flag = ContactSelectionDisplayMode.FLAG_INACTIVE_GROUPS),
+    SELF(flag = ContactSelectionDisplayMode.FLAG_SELF),
+    BLOCK(flag = ContactSelectionDisplayMode.FLAG_BLOCK),
+    HIDE_GROUPS_V1(flag = ContactSelectionDisplayMode.FLAG_HIDE_GROUPS_V1),
+    HIDE_NEW(flag = ContactSelectionDisplayMode.FLAG_HIDE_NEW),
+    HIDE_RECENT_HEADER(flag = ContactSelectionDisplayMode.FLAG_HIDE_RECENT_HEADER),
+    GROUPS_AFTER_CONTACTS(flag = ContactSelectionDisplayMode.FLAG_GROUPS_AFTER_CONTACTS),
+    GROUP_MEMBERS(flag = ContactSelectionDisplayMode.FLAG_GROUP_MEMBERS),
+    ALL(flag = ContactSelectionDisplayMode.FLAG_ALL);
+
+    companion object {
+      val Set<DisplayMode>.flag: Int
+        get() = fold(initial = 0) { acc, displayMode -> acc or displayMode.flag }
+    }
   }
 }
