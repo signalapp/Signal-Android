@@ -5,6 +5,7 @@
 
 package org.thoughtcrime.securesms.main
 
+import android.os.Parcelable
 import androidx.annotation.Px
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.WindowInsets
@@ -15,14 +16,17 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Density
+import kotlinx.parcelize.Parcelize
 import org.thoughtcrime.securesms.window.WindowSizeClass
 
+@Parcelize
 data class VerticalInsets(
   @param:Px val statusBar: Float,
   @param:Px val navBar: Float
-) {
+) : Parcelable {
   companion object {
     val Zero = VerticalInsets(0f, 0f)
   }
@@ -39,7 +43,7 @@ fun rememberVerticalInsets(): State<VerticalInsets> {
 
   val windowSizeClass = WindowSizeClass.rememberWindowSizeClass()
 
-  val insets = remember { mutableStateOf(VerticalInsets.Zero) }
+  val insets = rememberSaveable { mutableStateOf(VerticalInsets.Zero) }
   val updated = remember(statusBarInsets, navigationBarInsets, windowSizeClass) {
     insets.value = if (windowSizeClass.isSplitPane()) {
       VerticalInsets.Zero

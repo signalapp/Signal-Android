@@ -64,7 +64,9 @@ fun rememberMainNavigationDetailLocation(
   onWillFocusPrimary: suspend () -> Unit = {}
 ): State<MainNavigationDetailLocation> {
   val state = rememberSaveable(
-    stateSaver = MainNavigationDetailLocation.Saver()
+    stateSaver = MainNavigationDetailLocation.Saver(
+      mainNavigationViewModel.earlyNavigationDetailLocationRequested
+    )
   ) {
     mutableStateOf(mainNavigationViewModel.earlyNavigationDetailLocationRequested ?: MainNavigationDetailLocation.Empty)
   }

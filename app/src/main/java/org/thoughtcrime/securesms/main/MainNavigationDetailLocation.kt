@@ -24,13 +24,15 @@ import org.thoughtcrime.securesms.service.webrtc.links.CallLinkRoomId
 @Parcelize
 sealed class MainNavigationDetailLocation : Parcelable {
 
-  class Saver : androidx.compose.runtime.saveable.Saver<MainNavigationDetailLocation, String> {
+  class Saver(
+    val earlyLocation: MainNavigationDetailLocation?
+  ) : androidx.compose.runtime.saveable.Saver<MainNavigationDetailLocation, String> {
     override fun SaverScope.save(value: MainNavigationDetailLocation): String? {
       return Json.encodeToString(value)
     }
 
     override fun restore(value: String): MainNavigationDetailLocation? {
-      return Json.decodeFromString(value)
+      return earlyLocation ?: Json.decodeFromString(value)
     }
   }
 
