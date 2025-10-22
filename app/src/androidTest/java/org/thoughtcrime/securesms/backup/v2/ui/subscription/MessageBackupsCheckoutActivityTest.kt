@@ -138,7 +138,7 @@ class MessageBackupsCheckoutActivityTest {
 
     // Key education screen
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyEducationScreen__your_backup_key)).assertIsDisplayed()
-    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__next)).performClick()
+    composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyEducationScreen__view_recovery_key)).performClick()
 
     // Key record screen
     composeTestRule.onNodeWithText(context.getString(R.string.MessageBackupsKeyRecordScreen__record_your_backup_key)).assertIsDisplayed()
