@@ -151,8 +151,8 @@ class ChangeNumberViewModel : ViewModel() {
   }
 
   fun togglePinKeyboardType() {
-    store.update { previousState ->
-      previousState.copy(pinKeyboardType = previousState.pinKeyboardType.other)
+    store.update {
+      it.copy(pinKeyboardType = it.pinKeyboardType.other)
     }
   }
 
@@ -442,6 +442,7 @@ class ChangeNumberViewModel : ViewModel() {
             svr3Credentials = result.svr3Credentials
           )
         }
+
       else -> Log.i(TAG, "Received exception during verification.", result.getCause())
     }
 
@@ -459,6 +460,7 @@ class ChangeNumberViewModel : ViewModel() {
             svr3Credentials = result.svr3Credentials
           )
         }
+
       is ChangeNumberResult.SvrWrongPin -> {
         store.update {
           it.copy(
@@ -466,6 +468,7 @@ class ChangeNumberViewModel : ViewModel() {
           )
         }
       }
+
       else -> Log.i(TAG, "Received exception during change number.", result.getCause())
     }
 

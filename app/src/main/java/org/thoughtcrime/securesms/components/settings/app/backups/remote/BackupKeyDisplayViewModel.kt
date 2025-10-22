@@ -22,22 +22,22 @@ import org.thoughtcrime.securesms.keyvalue.SignalStore
 import org.whispersystems.signalservice.api.AccountEntropyPool
 
 class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler {
-  private val _uiState = MutableStateFlow(BackupKeyDisplayUiState())
-  val uiState: StateFlow<BackupKeyDisplayUiState> = _uiState.asStateFlow()
+  private val internalUiState = MutableStateFlow(BackupKeyDisplayUiState())
+  val uiState: StateFlow<BackupKeyDisplayUiState> = internalUiState.asStateFlow()
 
   override fun updateBackupKeySaveState(newState: BackupKeySaveState?) {
-    _uiState.update { it.copy(keySaveState = newState) }
+    internalUiState.update { it.copy(keySaveState = newState) }
   }
 
   fun rotateBackupKey() {
     viewModelScope.launch {
-      _uiState.update { it.copy(rotationState = BackupKeyRotationState.GENERATING_KEY) }
+      internalUiState.update { it.copy(rotationState = BackupKeyRotationState.GENERATING_KEY) }
 
       val stagedKeyRotations = withContext(SignalDispatchers.IO) {
         BackupRepository.stageBackupKeyRotations()
       }
 
-      _uiState.update {
+      internalUiState.update {
         it.copy(
           accountEntropyPool = stagedKeyRotations.aep,
           stagedKeyRotations = stagedKeyRotations,
@@ -49,15 +49,15 @@ class BackupKeyDisplayViewModel : ViewModel(), BackupKeyCredentialManagerHandler
 
   fun commitBackupKey() {
     viewModelScope.launch {
-      _uiState.update { it.copy(rotationState = BackupKeyRotationState.COMMITTING_KEY) }
+      internalUiState.update { it.copy(rotationState = BackupKeyRotationState.COMMITTING_KEY) }
 
-      val keyRotations = _uiState.value.stagedKeyRotations ?: error("No key rotations to commit!")
+      val keyRotations = internalUiState.value.stagedKeyRotations ?: error("No key rotations to commit!")
 
       withContext(SignalDispatchers.IO) {
         BackupRepository.commitAEPKeyRotation(keyRotations)
       }
 
-      _uiState.update { it.copy(rotationState = BackupKeyRotationState.FINISHED) }
+      internalUiState.update { it.copy(rotationState = BackupKeyRotationState.FINISHED) }
     }
   }
 

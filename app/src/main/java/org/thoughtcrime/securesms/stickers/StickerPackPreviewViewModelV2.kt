@@ -24,8 +24,8 @@ class StickerPackPreviewViewModelV2(
   params: StickerPackParams?
 ) : ViewModel() {
   private val stickerPreviewRepo: StickerPackPreviewRepository = StickerPackPreviewRepository()
-  private val _uiState = MutableStateFlow(StickerPackPreviewUiState(contentState = ContentState.Loading))
-  val uiState: StateFlow<StickerPackPreviewUiState> = _uiState.asStateFlow()
+  private val internalUiState = MutableStateFlow(StickerPackPreviewUiState(contentState = ContentState.Loading))
+  val uiState: StateFlow<StickerPackPreviewUiState> = internalUiState.asStateFlow()
 
   init {
     if (params != null) {
@@ -39,11 +39,11 @@ class StickerPackPreviewViewModelV2(
     stickerPreviewRepo.getStickerManifest(params.id.value, params.key.value) { result ->
       val stickerManifest = result.map { it.manifest }.orNull()
       if (stickerManifest != null) {
-        _uiState.update { previousState ->
-          previousState.copy(
+        internalUiState.update {
+          it.copy(
             contentState = ContentState.HasData(
               stickerManifest = stickerManifest,
-              isPackInstalled = result.map { it.isInstalled }.getOrElse { false }
+              isPackInstalled = result.map { pack -> pack.isInstalled }.getOrElse { false }
             )
           )
         }
@@ -68,12 +68,12 @@ class StickerPackPreviewViewModelV2(
   }
 
   private fun updateInstalledState(isInstalled: Boolean) {
-    _uiState.update { previousState ->
-      previousState.copy(
-        contentState = if (previousState.contentState is ContentState.HasData) {
-          previousState.contentState.copy(isPackInstalled = isInstalled)
+    internalUiState.update {
+      it.copy(
+        contentState = if (it.contentState is ContentState.HasData) {
+          it.contentState.copy(isPackInstalled = isInstalled)
         } else {
-          previousState.contentState
+          it.contentState
         },
         navTarget = StickerPackPreviewUiState.NavTarget.Up(delay = 500.milliseconds)
       )
@@ -81,8 +81,8 @@ class StickerPackPreviewViewModelV2(
   }
 
   private fun showDataUnavailableState() {
-    _uiState.update { previousState ->
-      previousState.copy(
+    internalUiState.update {
+      it.copy(
         contentState = ContentState.DataUnavailable,
         userMessage = StickerPackPreviewUiState.MessageType.STICKER_PACK_LOAD_FAILED,
         navTarget = StickerPackPreviewUiState.NavTarget.Up(delay = 1.seconds)
@@ -91,11 +91,11 @@ class StickerPackPreviewViewModelV2(
   }
 
   fun setNavTargetConsumed() {
-    _uiState.update { previousState -> previousState.copy(navTarget = null) }
+    internalUiState.update { it.copy(navTarget = null) }
   }
 
   fun setUserMessageConsumed() {
-    _uiState.update { previousState -> previousState.copy(userMessage = null) }
+    internalUiState.update { it.copy(userMessage = null) }
   }
 }
 

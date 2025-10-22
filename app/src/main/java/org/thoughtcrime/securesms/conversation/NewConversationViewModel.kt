@@ -32,8 +32,8 @@ class NewConversationViewModel : ViewModel() {
     private val TAG = Log.tag(NewConversationViewModel::class)
   }
 
-  private val _uiState = MutableStateFlow(NewConversationUiState())
-  val uiState: StateFlow<NewConversationUiState> = _uiState.asStateFlow()
+  private val internalUiState = MutableStateFlow(NewConversationUiState())
+  val uiState: StateFlow<NewConversationUiState> = internalUiState.asStateFlow()
 
   private val contactsManagementRepo = ContactsManagementRepository(AppDependencies.application)
 
@@ -53,12 +53,12 @@ class NewConversationViewModel : ViewModel() {
   }
 
   private fun openConversation(recipientId: RecipientId) {
-    _uiState.update { it.copy(pendingDestination = recipientId) }
+    internalUiState.update { it.copy(pendingDestination = recipientId) }
   }
 
   private fun resolveAndOpenConversation(phone: PhoneNumber?) {
     viewModelScope.launch {
-      _uiState.update { it.copy(isRefreshingRecipient = true) }
+      internalUiState.update { it.copy(isRefreshingRecipient = true) }
 
       val lookupResult = withContext(Dispatchers.IO) {
         if (phone != null) {
@@ -71,7 +71,7 @@ class NewConversationViewModel : ViewModel() {
       when (lookupResult) {
         is RecipientRepository.LookupResult.Success -> {
           val recipient = Recipient.resolved(lookupResult.recipientId)
-          _uiState.update { it.copy(isRefreshingRecipient = false) }
+          internalUiState.update { it.copy(isRefreshingRecipient = false) }
 
           if (recipient.isRegistered && recipient.hasServiceId) {
             openConversation(recipient.id)
@@ -81,7 +81,7 @@ class NewConversationViewModel : ViewModel() {
         }
 
         is RecipientRepository.LookupResult.NotFound, is RecipientRepository.LookupResult.InvalidEntry -> {
-          _uiState.update {
+          internalUiState.update {
             it.copy(
               isRefreshingRecipient = false,
               userMessage = Info.RecipientNotSignalUser(phone)
@@ -90,7 +90,7 @@ class NewConversationViewModel : ViewModel() {
         }
 
         is RecipientRepository.LookupResult.NetworkError -> {
-          _uiState.update {
+          internalUiState.update {
             it.copy(
               isRefreshingRecipient = false,
               userMessage = Info.NetworkError
@@ -102,7 +102,7 @@ class NewConversationViewModel : ViewModel() {
   }
 
   fun showRemoveConfirmation(recipient: Recipient) {
-    _uiState.update {
+    internalUiState.update {
       it.copy(userMessage = Prompt.ConfirmRemoveRecipient(recipient))
     }
   }
@@ -111,7 +111,7 @@ class NewConversationViewModel : ViewModel() {
     contactsManagementRepo.hideContact(recipient).await()
     refresh()
 
-    _uiState.update {
+    internalUiState.update {
       it.copy(
         shouldResetContactsList = true,
         userMessage = Info.RecipientRemoved(recipient)
@@ -120,7 +120,7 @@ class NewConversationViewModel : ViewModel() {
   }
 
   fun showBlockConfirmation(recipient: Recipient) {
-    _uiState.update {
+    internalUiState.update {
       it.copy(userMessage = Prompt.ConfirmBlockRecipient(recipient))
     }
   }
@@ -129,7 +129,7 @@ class NewConversationViewModel : ViewModel() {
     contactsManagementRepo.blockContact(recipient).await()
     refresh()
 
-    _uiState.update {
+    internalUiState.update {
       it.copy(
         shouldResetContactsList = true,
         userMessage = Info.RecipientBlocked(recipient)
@@ -138,27 +138,27 @@ class NewConversationViewModel : ViewModel() {
   }
 
   fun onUserAlreadyInACall() {
-    _uiState.update { it.copy(userMessage = Info.UserAlreadyInAnotherCall) }
+    internalUiState.update { it.copy(userMessage = Info.UserAlreadyInAnotherCall) }
   }
 
   fun onContactsListReset() {
-    _uiState.update { it.copy(shouldResetContactsList = false) }
+    internalUiState.update { it.copy(shouldResetContactsList = false) }
   }
 
   fun refresh() {
     viewModelScope.launch {
-      _uiState.update { it.copy(isRefreshingContacts = true) }
+      internalUiState.update { it.copy(isRefreshingContacts = true) }
 
       withContext(Dispatchers.IO) {
         ContactDiscovery.refreshAll(AppDependencies.application, true)
       }
 
-      _uiState.update { it.copy(isRefreshingContacts = false) }
+      internalUiState.update { it.copy(isRefreshingContacts = false) }
     }
   }
 
   fun onUserMessageDismissed() {
-    _uiState.update { it.copy(userMessage = null) }
+    internalUiState.update { it.copy(userMessage = null) }
   }
 }
 
