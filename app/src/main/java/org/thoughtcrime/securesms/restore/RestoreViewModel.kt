@@ -53,8 +53,8 @@ class RestoreViewModel : ViewModel() {
 
   fun getNextIntent(): Intent? = store.value.nextIntent
 
-  fun hasMultipleRestoreMethods(): Boolean {
-    return getAvailableRestoreMethods().size > 1
+  fun hasNoRestoreMethods(): Boolean {
+    return getAvailableRestoreMethods().isEmpty()
   }
 
   fun getAvailableRestoreMethods(): List<RestoreMethod> {
