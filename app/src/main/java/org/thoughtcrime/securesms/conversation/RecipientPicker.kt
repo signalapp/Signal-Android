@@ -43,6 +43,7 @@ import org.thoughtcrime.securesms.components.menu.SignalContextMenu
 import org.thoughtcrime.securesms.contacts.paged.ChatType
 import org.thoughtcrime.securesms.contacts.paged.ContactSearchKey
 import org.thoughtcrime.securesms.contacts.selection.ContactSelectionArguments
+import org.thoughtcrime.securesms.conversation.RecipientPickerCallbacks.ContextMenu
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.Recipient
 import org.thoughtcrime.securesms.recipients.RecipientId
@@ -55,9 +56,6 @@ import java.util.function.Consumer
  */
 @Composable
 fun RecipientPicker(
-  enableCreateNewGroup: Boolean,
-  enableFindByUsername: Boolean,
-  enableFindByPhoneNumber: Boolean,
   isRefreshing: Boolean,
   focusAndShowKeyboard: Boolean = LocalConfiguration.current.screenHeightDp.dp > 600.dp,
   shouldResetContactsList: Boolean,
@@ -81,9 +79,6 @@ fun RecipientPicker(
 
     RecipientSearchResultsList(
       searchQuery = searchQuery,
-      enableCreateNewGroup = enableCreateNewGroup,
-      enableFindByUsername = enableFindByUsername,
-      enableFindByPhoneNumber = enableFindByPhoneNumber,
       isRefreshing = isRefreshing,
       shouldResetContactsList = shouldResetContactsList,
       callbacks = callbacks,
@@ -140,18 +135,16 @@ private fun RecipientSearchField(
 @Composable
 private fun RecipientSearchResultsList(
   searchQuery: String,
-  enableCreateNewGroup: Boolean,
-  enableFindByUsername: Boolean,
-  enableFindByPhoneNumber: Boolean,
   isRefreshing: Boolean,
   shouldResetContactsList: Boolean,
   callbacks: RecipientPickerCallbacks,
   modifier: Modifier = Modifier
 ) {
   val fragmentArgs = ContactSelectionArguments(
-    enableCreateNewGroup = enableCreateNewGroup,
-    enableFindByUsername = enableFindByUsername,
-    enableFindByPhoneNumber = enableFindByPhoneNumber
+    isRefreshable = callbacks.refresh != null,
+    enableCreateNewGroup = callbacks.newConversation != null,
+    enableFindByUsername = callbacks.findByUsername != null,
+    enableFindByPhoneNumber = callbacks.findByPhoneNumber != null
   ).toArgumentBundle()
 
   val fragmentState = rememberFragmentState()
@@ -166,9 +159,6 @@ private fun RecipientSearchResultsList(
       fragment.view?.setPadding(0, 0, 0, 0)
       fragment.setUpCallbacks(
         callbacks = callbacks,
-        enableCreateNewGroup = enableCreateNewGroup,
-        enableFindByUsername = enableFindByUsername,
-        enableFindByPhoneNumber = enableFindByPhoneNumber,
         coroutineScope = coroutineScope
       )
     },
@@ -199,32 +189,33 @@ private fun RecipientSearchResultsList(
   LaunchedEffect(shouldResetContactsList) {
     if (shouldResetContactsList) {
       currentFragment?.reset()
-      callbacks.onContactsListReset()
+      callbacks.listActions.onContactsListReset()
     }
   }
 }
 
 private fun ContactSelectionListFragment.setUpCallbacks(
   callbacks: RecipientPickerCallbacks,
-  enableCreateNewGroup: Boolean,
-  enableFindByUsername: Boolean,
-  enableFindByPhoneNumber: Boolean,
   coroutineScope: CoroutineScope
 ) {
   val fragment: ContactSelectionListFragment = this
 
-  if (enableCreateNewGroup) {
+  if (callbacks.newConversation != null) {
     fragment.setNewConversationCallback(object : ContactSelectionListFragment.NewConversationCallback {
-      override fun onInvite() = callbacks.onInviteToSignal()
-      override fun onNewGroup(forceV1: Boolean) = callbacks.onCreateNewGroup()
+      override fun onInvite() = callbacks.newConversation.onInviteToSignal()
+      override fun onNewGroup(forceV1: Boolean) = callbacks.newConversation.onCreateNewGroup()
     })
+  } else {
+    fragment.setNewConversationCallback(null)
   }
 
-  if (enableFindByUsername || enableFindByPhoneNumber) {
+  if (callbacks.findByUsername != null || callbacks.findByPhoneNumber != null) {
     fragment.setFindByCallback(object : ContactSelectionListFragment.FindByCallback {
-      override fun onFindByUsername() = callbacks.onFindByUsername()
-      override fun onFindByPhoneNumber() = callbacks.onFindByPhoneNumber()
+      override fun onFindByUsername() = callbacks.findByUsername?.onFindByUsername() ?: Unit
+      override fun onFindByPhoneNumber() = callbacks.findByPhoneNumber?.onFindByPhoneNumber() ?: Unit
     })
+  } else {
+    fragment.setFindByCallback(null)
   }
 
   fragment.setOnContactSelectedListener(object : ContactSelectionListFragment.OnContactSelectedListener {
@@ -236,9 +227,9 @@ private fun ContactSelectionListFragment.setUpCallbacks(
       resultConsumer: Consumer<Boolean?>
     ) {
       val recipientId = recipientId.get()
-      val shouldAllowSelection = callbacks.shouldAllowSelection(recipientId)
+      val shouldAllowSelection = callbacks.listActions.shouldAllowSelection(recipientId)
       if (shouldAllowSelection) {
-        callbacks.onRecipientSelected(
+        callbacks.listActions.onRecipientSelected(
           id = recipientId,
           phone = number?.let(::PhoneNumber)
         )
@@ -251,17 +242,25 @@ private fun ContactSelectionListFragment.setUpCallbacks(
   })
 
   fragment.setOnItemLongClickListener { anchorView, contactSearchKey, recyclerView ->
-    coroutineScope.launch { showItemContextMenu(anchorView, contactSearchKey, recyclerView, callbacks) }
-    true
+    if (callbacks.contextMenu != null) {
+      coroutineScope.launch { showItemContextMenu(anchorView, contactSearchKey, recyclerView, callbacks.contextMenu) }
+      true
+    }
+    return@setOnItemLongClickListener false
   }
 
-  fragment.setOnRefreshListener(callbacks::onRefresh)
+  fragment.setOnRefreshListener { callbacks.refresh?.onRefresh() }
   fragment.setScrollCallback {
     fragment.view?.let { view -> ViewUtil.hideKeyboard(view.context, view) }
   }
 }
 
-private suspend fun showItemContextMenu(anchorView: View, contactSearchKey: ContactSearchKey, recyclerView: RecyclerView, callbacks: RecipientPickerCallbacks) {
+private suspend fun showItemContextMenu(
+  anchorView: View,
+  contactSearchKey: ContactSearchKey,
+  recyclerView: RecyclerView,
+  callbacks: ContextMenu
+) {
   val context = anchorView.context
   val recipient = withContext(Dispatchers.IO) {
     Recipient.resolved(contactSearchKey.requireRecipientSearchKey().recipientId)
@@ -332,49 +331,61 @@ private suspend fun showItemContextMenu(anchorView: View, contactSearchKey: Cont
 @Composable
 private fun RecipientPickerPreview() {
   RecipientPicker(
-    enableCreateNewGroup = true,
-    enableFindByUsername = true,
-    enableFindByPhoneNumber = true,
     isRefreshing = false,
     shouldResetContactsList = false,
-    callbacks = RecipientPickerCallbacks.Empty
+    callbacks = RecipientPickerCallbacks(
+      listActions = RecipientPickerCallbacks.ListActions.Empty
+    )
   )
 }
 
-interface RecipientPickerCallbacks {
-  fun onCreateNewGroup()
-  fun onFindByUsername()
-  fun onFindByPhoneNumber()
+data class RecipientPickerCallbacks(
+  val listActions: ListActions,
+  val refresh: Refresh? = null,
+  val contextMenu: ContextMenu? = null,
+  val newConversation: NewConversation? = null,
+  val findByUsername: FindByUsername? = null,
+  val findByPhoneNumber: FindByPhoneNumber? = null
+) {
+  interface ListActions {
+    /**
+     * Validates whether the selection of [RecipientId] should be allowed. Return true if the selection can proceed, false otherwise.
+     *
+     * This is called before [onRecipientSelected] to provide a chance to prevent the selection.
+     */
+    fun shouldAllowSelection(id: RecipientId): Boolean
+    fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?)
+    fun onContactsListReset()
 
-  /**
-   * Validates whether the selection of [RecipientId] should be allowed. Return true if the selection can proceed, false otherwise.
-   *
-   * This is called before [onRecipientSelected] to provide a chance to prevent the selection.
-   */
-  fun shouldAllowSelection(id: RecipientId): Boolean
-  fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?)
-  fun onMessage(id: RecipientId)
-  fun onVoiceCall(recipient: Recipient)
-  fun onVideoCall(recipient: Recipient)
-  fun onRemove(recipient: Recipient)
-  fun onBlock(recipient: Recipient)
-  fun onInviteToSignal()
-  fun onRefresh()
-  fun onContactsListReset()
+    object Empty : ListActions {
+      override fun shouldAllowSelection(id: RecipientId): Boolean = false
+      override fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?) = Unit
+      override fun onContactsListReset() = Unit
+    }
+  }
 
-  object Empty : RecipientPickerCallbacks {
-    override fun onCreateNewGroup() = Unit
-    override fun onFindByUsername() = Unit
-    override fun onFindByPhoneNumber() = Unit
-    override fun shouldAllowSelection(id: RecipientId): Boolean = true
-    override fun onRecipientSelected(id: RecipientId?, phone: PhoneNumber?) = Unit
-    override fun onMessage(id: RecipientId) = Unit
-    override fun onVoiceCall(recipient: Recipient) = Unit
-    override fun onVideoCall(recipient: Recipient) = Unit
-    override fun onRemove(recipient: Recipient) = Unit
-    override fun onBlock(recipient: Recipient) = Unit
-    override fun onInviteToSignal() = Unit
-    override fun onRefresh() = Unit
-    override fun onContactsListReset() = Unit
+  interface Refresh {
+    fun onRefresh()
+  }
+
+  interface ContextMenu {
+    fun onMessage(id: RecipientId)
+    fun onVoiceCall(recipient: Recipient)
+    fun onVideoCall(recipient: Recipient)
+    fun onRemove(recipient: Recipient)
+    fun onBlock(recipient: Recipient)
+  }
+
+  interface NewConversation {
+    fun onCreateNewGroup()
+    fun onInviteToSignal()
+  }
+
+  interface FindByUsername {
+    fun onFindByUsername()
+  }
+
+  interface FindByPhoneNumber {
+    fun onFindByPhoneNumber()
   }
 }

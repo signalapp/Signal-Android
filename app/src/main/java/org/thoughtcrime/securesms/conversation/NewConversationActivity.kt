@@ -306,7 +306,14 @@ private fun TopAppBarActions(callbacks: UiCallbacks) {
   }
 }
 
-private interface UiCallbacks : RecipientPickerCallbacks {
+private interface UiCallbacks :
+  RecipientPickerCallbacks.ListActions,
+  RecipientPickerCallbacks.Refresh,
+  RecipientPickerCallbacks.ContextMenu,
+  RecipientPickerCallbacks.NewConversation,
+  RecipientPickerCallbacks.FindByUsername,
+  RecipientPickerCallbacks.FindByPhoneNumber {
+
   fun onRemoveConfirmed(recipient: Recipient)
   fun onBlockConfirmed(recipient: Recipient)
   fun onUserMessageDismissed(userMessage: UserMessage)
@@ -340,12 +347,16 @@ private fun NewConversationRecipientPicker(
   modifier: Modifier = Modifier
 ) {
   RecipientPicker(
-    enableCreateNewGroup = true,
-    enableFindByUsername = true,
-    enableFindByPhoneNumber = true,
     isRefreshing = uiState.isRefreshingContacts,
     shouldResetContactsList = uiState.shouldResetContactsList,
-    callbacks = callbacks,
+    callbacks = RecipientPickerCallbacks(
+      listActions = callbacks,
+      refresh = callbacks,
+      contextMenu = callbacks,
+      newConversation = callbacks,
+      findByUsername = callbacks,
+      findByPhoneNumber = callbacks
+    ),
     modifier = modifier
       .fillMaxSize()
       .padding(vertical = 12.dp)

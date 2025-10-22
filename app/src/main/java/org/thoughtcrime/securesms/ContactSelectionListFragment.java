@@ -872,7 +872,7 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     constraintSet.applyTo(constraintLayout);
   }
 
-  public void setOnRefreshListener(SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
+  public void setOnRefreshListener(@Nullable SwipeRefreshLayout.OnRefreshListener onRefreshListener) {
     this.onRefreshListener = onRefreshListener;
     this.swipeRefresh.setOnRefreshListener(onRefreshListener);
   }
