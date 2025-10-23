@@ -159,7 +159,7 @@ public class CreateGroupActivity extends ContactSelectionActivity implements Con
 
   @Override
   public void onSelectionChanged() {
-    int selectedMembers = contactsFragment.getSelectedMembersSize();
+    int selectedMembers       = contactsFragment.getSelectedContactsCount();
     int selectedContactsCount = contactsFragment.getTotalMemberCount();
     if (selectedContactsCount == 0) {
       getToolbar().setTitle(getString(R.string.CreateGroupActivity__select_members));

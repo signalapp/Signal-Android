@@ -5,13 +5,16 @@
 
 package org.thoughtcrime.securesms.groups.ui.creategroup
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
+import androidx.activity.result.ActivityResult
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
 import androidx.compose.animation.ContentTransform
 import androidx.compose.animation.EnterTransition
@@ -31,11 +34,13 @@ import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.pluralStringResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
@@ -55,7 +60,9 @@ import org.thoughtcrime.securesms.contacts.SelectedContact
 import org.thoughtcrime.securesms.conversation.RecipientPicker
 import org.thoughtcrime.securesms.conversation.RecipientPickerCallbacks
 import org.thoughtcrime.securesms.groups.SelectionLimits
+import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.NavTarget
 import org.thoughtcrime.securesms.groups.ui.creategroup.CreateGroupUiState.UserMessage
+import org.thoughtcrime.securesms.groups.ui.creategroup.details.AddGroupDetailsActivity
 import org.thoughtcrime.securesms.recipients.PhoneNumber
 import org.thoughtcrime.securesms.recipients.RecipientId
 import org.thoughtcrime.securesms.recipients.ui.findby.FindByActivity
@@ -85,7 +92,10 @@ class CreateGroupActivityV2 : PassphraseRequiredActivity() {
     setContent {
       SignalTheme {
         CreateGroupScreen(
-          closeScreen = navigateBack
+          closeScreen = { resultCode ->
+            resultCode?.let(::setResult)
+            navigateBack()
+          }
         )
       }
     }
@@ -95,11 +105,20 @@ class CreateGroupActivityV2 : PassphraseRequiredActivity() {
 @Composable
 private fun CreateGroupScreen(
   viewModel: CreateGroupViewModel = viewModel { CreateGroupViewModel() },
-  closeScreen: () -> Unit
+  closeScreen: (resultCode: Int?) -> Unit
 ) {
   val findByLauncher: ActivityResultLauncher<FindByMode> = rememberLauncherForActivityResult(
     contract = FindByActivity.Contract(),
     onResult = { id -> id?.let(viewModel::selectRecipient) }
+  )
+
+  val addDetailsLauncher = rememberLauncherForActivityResult(
+    contract = ActivityResultContracts.StartActivityForResult(),
+    onResult = { result: ActivityResult ->
+      if (result.resultCode == Activity.RESULT_OK) {
+        closeScreen(Activity.RESULT_OK)
+      }
+    }
   )
 
   val callbacks = remember {
@@ -112,11 +131,25 @@ private fun CreateGroupScreen(
       override fun onPendingRecipientSelectionsConsumed() = viewModel.clearPendingRecipientSelections()
       override fun onNextClicked(): Unit = viewModel.continueToGroupDetails()
       override fun onUserMessageDismissed(userMessage: UserMessage) = viewModel.clearUserMessage()
-      override fun onBackPressed() = closeScreen()
+      override fun onPendingDestinationConsumed() = viewModel.clearPendingDestination()
+      override fun onBackPressed() = closeScreen(null)
     }
   }
 
   val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+  val context = LocalContext.current
+
+  LaunchedEffect(uiState.pendingDestination) {
+    when (val pendingDestination = uiState.pendingDestination) {
+      is NavTarget.AddGroupDetails -> {
+        addDetailsLauncher.launch(AddGroupDetailsActivity.newIntent(context, pendingDestination.recipientIds))
+        callbacks.onPendingDestinationConsumed()
+      }
+
+      null -> Unit
+    }
+  }
+
   CreateGroupScreenUi(
     uiState = uiState,
     callbacks = callbacks
@@ -265,6 +298,7 @@ private interface UiCallbacks :
   fun onNextClicked()
   fun onUserMessageDismissed(userMessage: UserMessage)
   fun onBackPressed()
+  fun onPendingDestinationConsumed()
 
   object Empty : UiCallbacks {
     override fun onSearchQueryChanged(query: String) = Unit
@@ -275,6 +309,7 @@ private interface UiCallbacks :
     override fun onNextClicked() = Unit
     override fun onUserMessageDismissed(userMessage: UserMessage) = Unit
     override fun onBackPressed() = Unit
+    override fun onPendingDestinationConsumed() = Unit
   }
 }
 
@@ -283,6 +318,7 @@ private fun UserMessagesHost(
   userMessage: UserMessage?,
   onDismiss: (UserMessage) -> Unit
 ) {
+  val context: Context = LocalContext.current
   when (userMessage) {
     null -> {}
 
@@ -294,6 +330,16 @@ private fun UserMessagesHost(
 
     is UserMessage.Info.RecipientNotSignalUser -> Dialogs.SimpleMessageDialog(
       message = stringResource(R.string.NewConversationActivity__s_is_not_a_signal_user, userMessage.phone.displayText),
+      dismiss = stringResource(android.R.string.ok),
+      onDismiss = { onDismiss(userMessage) }
+    )
+
+    is UserMessage.Info.RecipientsNotSignalUsers -> Dialogs.SimpleMessageDialog(
+      message = pluralStringResource(
+        id = R.plurals.CreateGroupActivity_not_signal_users,
+        count = userMessage.recipients.size,
+        userMessage.recipients.joinToString(", ") { it.getDisplayName(context) }
+      ),
       dismiss = stringResource(android.R.string.ok),
       onDismiss = { onDismiss(userMessage) }
     )

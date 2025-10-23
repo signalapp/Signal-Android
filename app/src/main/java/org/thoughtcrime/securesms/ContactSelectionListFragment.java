@@ -446,14 +446,6 @@ public final class ContactSelectionListFragment extends LoggingFragment {
     onRefreshListener = null;
   }
 
-  public int getSelectedMembersSize() {
-    if (contactSearchMediator == null) {
-      return 0;
-    }
-
-    return contactSearchMediator.getSelectedMembersSize();
-  }
-
   private @NonNull Bundle safeArguments() {
     return getArguments() != null ? getArguments() : new Bundle();
   }
@@ -475,7 +467,11 @@ public final class ContactSelectionListFragment extends LoggingFragment {
   }
 
   public int getSelectedContactsCount() {
-    return getSelectedMembersSize();
+    if (contactSearchMediator == null) {
+      return 0;
+    }
+
+    return contactSearchMediator.getSelectedContacts().size();
   }
 
   public int getTotalMemberCount() {
