@@ -189,9 +189,11 @@ class BackupMessagesJob private constructor(
 
     val createKeyResult = SignalDatabase.attachments.createRemoteKeyForAttachmentsThatNeedArchiveUpload()
     if (createKeyResult.totalCount > 0) {
-      Log.w(TAG, "Needed to create remote keys. $createKeyResult", true)
       if (createKeyResult.unexpectedKeyCreation) {
+        Log.w(TAG, "Unexpected remote key creation! $createKeyResult", true)
         maybePostRemoteKeyMissingNotification()
+      } else {
+        Log.d(TAG, "Needed to create ${createKeyResult.totalCount} remote keys for quotes/stickers.")
       }
     }
     stopwatch.split("keygen")

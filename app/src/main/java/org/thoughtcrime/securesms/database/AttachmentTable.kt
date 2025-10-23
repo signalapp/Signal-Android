@@ -3868,8 +3868,8 @@ class AttachmentTable(
     }
   }
 
-  data class CreateRemoteKeyResult(val totalCount: Int, val notQuoteOrSickerDupeNotFoundCount: Int, val notQuoteOrSickerDupeFoundCount: Int) {
-    val unexpectedKeyCreation = notQuoteOrSickerDupeFoundCount > 0 || notQuoteOrSickerDupeNotFoundCount > 0
+  data class CreateRemoteKeyResult(val totalCount: Int, val notQuoteOrStickerDupeNotFoundCount: Int, val notQuoteOrStickerDupeFoundCount: Int) {
+    val unexpectedKeyCreation = notQuoteOrStickerDupeFoundCount > 0 || notQuoteOrStickerDupeNotFoundCount > 0
   }
 
   class DebugArchiveMediaInfo(
