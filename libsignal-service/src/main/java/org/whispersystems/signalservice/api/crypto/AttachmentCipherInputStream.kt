@@ -362,7 +362,11 @@ object AttachmentCipherInputStream {
 
   private class CombinedKeyMaterial(val aesKey: ByteArray, val macKey: ByteArray) {
     companion object {
+      @Throws(InvalidMessageException::class)
       fun from(combinedKeyMaterial: ByteArray): CombinedKeyMaterial {
+        if (combinedKeyMaterial.size != CIPHER_KEY_SIZE + MAC_KEY_SIZE) {
+          throw InvalidMessageException("Invalid combined key material size: ${combinedKeyMaterial.size}")
+        }
         val parts = Util.split(combinedKeyMaterial, CIPHER_KEY_SIZE, MAC_KEY_SIZE)
         return CombinedKeyMaterial(parts[0], parts[1])
       }
