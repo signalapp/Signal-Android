@@ -2248,6 +2248,10 @@ class ConversationFragment :
   }
 
   private fun setBottomActionBarVisibility(isVisible: Boolean) {
+    if (view == null) {
+      return
+    }
+
     val isCurrentlyVisible = bottomActionBar.isVisible
     if (isVisible == isCurrentlyVisible) {
       return
