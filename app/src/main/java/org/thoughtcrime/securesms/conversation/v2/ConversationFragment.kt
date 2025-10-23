@@ -700,8 +700,10 @@ class ConversationFragment :
   override fun onResume() {
     super.onResume()
 
-    WindowUtil.setLightNavigationBarFromTheme(requireActivity())
-    WindowUtil.setLightStatusBarFromTheme(requireActivity())
+    if (!WindowSizeClass.isLargeScreenSupportEnabled()) {
+      WindowUtil.setLightNavigationBarFromTheme(requireActivity())
+      WindowUtil.setLightStatusBarFromTheme(requireActivity())
+    }
 
     EventBus.getDefault().register(this)
 
@@ -3433,8 +3435,10 @@ class ConversationFragment :
                   getVoiceNoteMediaController().resumePlayback(selectedConversationModel.audioUri, messageRecord.id)
                 }
 
-                WindowUtil.setLightStatusBarFromTheme(requireActivity())
-                WindowUtil.setLightNavigationBarFromTheme(requireActivity())
+                if (!WindowSizeClass.isLargeScreenSupportEnabled()) {
+                  WindowUtil.setLightStatusBarFromTheme(requireActivity())
+                  WindowUtil.setLightNavigationBarFromTheme(requireActivity())
+                }
 
                 clearFocusedItem()
 
