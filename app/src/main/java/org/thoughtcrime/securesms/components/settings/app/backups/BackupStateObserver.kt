@@ -255,7 +255,7 @@ class BackupStateObserver(
       val purchaseResult = AppDependencies.billingApi.queryPurchases()
       Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] queryPurchase result: $purchaseResult")
 
-      val hasActiveGooglePlayBillingSubscription = when (purchaseResult) {
+      val googlePlayBillingSubscriptionIsActiveAndWillRenew = when (purchaseResult) {
         is BillingPurchaseResult.Success -> {
           Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Found a purchase: $purchaseResult")
           purchaseResult.isAcknowledged && purchaseResult.isAutoRenewing
@@ -267,7 +267,7 @@ class BackupStateObserver(
         }
       } || SignalStore.backup.backupTierInternalOverride == MessageBackupTier.PAID
 
-      Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] hasActiveGooglePlayBillingSubscription: $hasActiveGooglePlayBillingSubscription")
+      Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] googlePlayBillingSubscriptionIsActiveAndWillRenew: $googlePlayBillingSubscriptionIsActiveAndWillRenew")
 
       val activeSubscriptionResult = withContext(Dispatchers.IO) {
         RecurringInAppPaymentRepository.getActiveSubscriptionSync(InAppPaymentSubscriberRecord.Type.BACKUP)
@@ -278,26 +278,29 @@ class BackupStateObserver(
           Log.w(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Failed to load active subscription due to an application error.", activeSubscriptionResult.getCause(), true)
           return getStateOnError()
         }
+
         is NetworkResult.NetworkError<ActiveSubscription> -> {
           Log.w(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Failed to load active subscription due to a network error.", activeSubscriptionResult.getCause(), true)
           return getStateOnError()
         }
+
         is NetworkResult.StatusCodeError<ActiveSubscription> -> {
           Log.i(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Failed to load active subscription due to a status code error.", activeSubscriptionResult.getCause(), true)
           null
         }
+
         is NetworkResult.Success<ActiveSubscription> -> {
           Log.i(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] Successfully loaded active subscription.", true)
           activeSubscriptionResult.result
         }
       }
 
-      val hasActiveSignalSubscription = activeSubscription?.isActive == true
+      val signalServiceSubscriptionIsActiveAndWillRenew = activeSubscription?.isActive == true && (!activeSubscription.isCanceled || activeSubscription.willCancelAtPeriodEnd())
 
-      Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] hasActiveSignalSubscription: $hasActiveSignalSubscription")
+      Log.d(TAG, "[getNetworkBackupState][subscriptionStateMismatchDetected] signalServiceSubscriptionIsActiveAndWillRenew: $signalServiceSubscriptionIsActiveAndWillRenew")
 
       when {
-        hasActiveSignalSubscription && !hasActiveGooglePlayBillingSubscription -> {
+        signalServiceSubscriptionIsActiveAndWillRenew && !googlePlayBillingSubscriptionIsActiveAndWillRenew -> {
           val type = buildPaidTypeFromSubscription(activeSubscription.activeSubscription)
 
           if (type == null) {
@@ -312,12 +315,12 @@ class BackupStateObserver(
           )
         }
 
-        hasActiveSignalSubscription && hasActiveGooglePlayBillingSubscription -> {
+        signalServiceSubscriptionIsActiveAndWillRenew && googlePlayBillingSubscriptionIsActiveAndWillRenew -> {
           Log.d(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] Found active signal subscription and active google play subscription. Clearing mismatch.")
           SignalStore.backup.subscriptionStateMismatchDetected = false
         }
 
-        !hasActiveSignalSubscription && !hasActiveGooglePlayBillingSubscription -> {
+        !signalServiceSubscriptionIsActiveAndWillRenew && !googlePlayBillingSubscriptionIsActiveAndWillRenew -> {
           Log.d(TAG, "[getNetworkBackupState][subscriptionMismatchDetected] Found inactive signal subscription and inactive google play subscription. Clearing mismatch.")
           SignalStore.backup.subscriptionStateMismatchDetected = false
         }
@@ -393,6 +396,8 @@ class BackupStateObserver(
           when {
             (subscription.isCanceled || subscription.willCancelAtPeriodEnd()) && subscription.isActive -> {
               Log.d(TAG, "[getPaidBackupState] Found a canceled subscription.")
+              InAppPaymentsRepository.updateBackupInAppPaymentWithCancelation(activeSubscription.successOrThrow())
+
               BackupState.Canceled(
                 messageBackupsType = subscriberType,
                 renewalTime = subscription.endOfCurrentPeriod.seconds
@@ -401,6 +406,7 @@ class BackupStateObserver(
 
             subscription.isActive -> {
               Log.d(TAG, "[getPaidBackupState] Found an active subscription.")
+              InAppPaymentsRepository.clearCancelation(activeSubscription.successOrThrow())
               BackupState.ActivePaid(
                 messageBackupsType = subscriberType,
                 price = FiatMoney.fromSignalNetworkAmount(subscription.amount, Currency.getInstance(subscription.currency)),

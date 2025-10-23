@@ -258,6 +258,7 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
         if (backupExpiration != null) {
           Log.i(TAG, "Marking subscription failed or canceled.")
           SignalStore.backup.setDownloadNotifierToTriggerAtHalfwayPoint(backupExpiration)
+          InAppPaymentsRepository.updateBackupInAppPaymentWithCancelation(activeSubscription)
           BackupStateObserver.notifyBackupStateChanged()
         } else {
           Log.w(TAG, "Failed to mark, no entitlement was found on WhoAmIResponse")
@@ -267,6 +268,8 @@ class BackupSubscriptionCheckJob private constructor(parameters: Parameters) : C
       if (response.getCause() != null) {
         Log.w(TAG, "Failed to get WhoAmI from service.", response.getCause())
       }
+    } else if (activeSubscription != null) {
+      InAppPaymentsRepository.clearCancelation(activeSubscription)
     }
   }
 
