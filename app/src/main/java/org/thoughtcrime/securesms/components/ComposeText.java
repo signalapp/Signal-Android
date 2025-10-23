@@ -442,7 +442,7 @@ public class ComposeText extends EmojiEditText {
   private QueryStart findQueryStart(@NonNull CharSequence text, int inputCursorPosition) {
     QueryStart queryStart = new QueryStart(findQueryStart(text, inputCursorPosition, MENTION_STARTER), true);
 
-    if (queryStart.index < 0) {
+    if (queryStart.index < 0 && !SignalStore.settings().isEmojiStarterDisabled()) {
       queryStart = new QueryStart(findQueryStart(text, inputCursorPosition, EMOJI_STARTER), false);
     }
 

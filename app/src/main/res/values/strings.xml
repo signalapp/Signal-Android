@@ -5519,6 +5519,9 @@
     <!-- ChatsSettingsFragment -->
     <string name="ChatsSettingsFragment__keyboard">Keyboard</string>
     <string name="ChatsSettingsFragment__send_with_enter">Send with enter</string>
+    <!-- Setting to disable emoji starter suggestions via the keyboard colon-key -->
+    <string name="ChatsSettingsFragment__disable_emoji_starter">Disable emoji starter</string>
+    <string name="ChatsSettingsFragment__disable_colon_emoji_suggestions">Disable suggestions via keyboard colon-key</string>
     <!-- Heading within chats settings for chat folders -->
     <string name="ChatsSettingsFragment__chat_folders">Chat folders</string>
     <!-- Option within settings to add a new chat folder if you have never created a folder before -->

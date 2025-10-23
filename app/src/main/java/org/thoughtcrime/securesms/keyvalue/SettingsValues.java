@@ -44,6 +44,7 @@ public final class SettingsValues extends SignalStoreValues {
   public static final  String LANGUAGE                                = "settings.language";
   public static final  String PREFER_SYSTEM_EMOJI                     = "settings.use.system.emoji";
   public static final  String ENTER_KEY_SENDS                         = "settings.enter.key.sends";
+  public static final  String DISABLE_EMOJI_STARTER                   = "settings.disable.emoji.starter";
   public static final  String BACKUPS_ENABLED                         = "settings.backups.enabled";
   public static final  String BACKUPS_SCHEDULE_HOUR                   = "settings.backups.schedule.hour";
   public static final  String BACKUPS_SCHEDULE_MINUTE                 = "settings.backups.schedule.minute";
@@ -128,6 +129,7 @@ public final class SettingsValues extends SignalStoreValues {
                          MESSAGE_FONT_SIZE,
                          PREFER_SYSTEM_EMOJI,
                          ENTER_KEY_SENDS,
+                         DISABLE_EMOJI_STARTER,
                          BACKUPS_ENABLED,
                          MESSAGE_NOTIFICATIONS_ENABLED,
                          MESSAGE_NOTIFICATION_SOUND,
@@ -302,6 +304,14 @@ public final class SettingsValues extends SignalStoreValues {
 
   public void setEnterKeySends(boolean enterKeySends) {
     putBoolean(ENTER_KEY_SENDS, enterKeySends);
+  }
+
+  public boolean isEmojiStarterDisabled() {
+    return getBoolean(DISABLE_EMOJI_STARTER, false);
+  }
+
+  public void setEmojiStarterDisabled(boolean disabled) {
+    putBoolean(DISABLE_EMOJI_STARTER, disabled);
   }
 
   public boolean isBackupEnabled() {

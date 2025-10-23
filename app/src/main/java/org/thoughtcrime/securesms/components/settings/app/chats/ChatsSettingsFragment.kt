@@ -81,6 +81,10 @@ class ChatsSettingsFragment : ComposeFragment() {
       viewModel.setEnterKeySends(enabled)
     }
 
+    override fun onDisableEmojiStarterChanged(enabled: Boolean) {
+      viewModel.setDisableEmojiStarter(enabled)
+    }
+
     override fun onChatBackupsClick() {
       findNavController().safeNavigate(R.id.action_chatsSettingsFragment_to_backupsPreferenceFragment)
     }
@@ -96,6 +100,7 @@ private interface ChatsSettingsCallbacks {
   fun onAddOrEditFoldersClick() = Unit
   fun onUseSystemEmojiChanged(enabled: Boolean) = Unit
   fun onEnterKeySendsChanged(enabled: Boolean) = Unit
+  fun onDisableEmojiStarterChanged(enabled: Boolean) = Unit
   fun onChatBackupsClick() = Unit
 
   object Empty : ChatsSettingsCallbacks
@@ -198,6 +203,16 @@ private fun ChatsSettingsScreen(
           onCheckChanged = callbacks::onEnterKeySendsChanged
         )
       }
+
+      item {
+        Rows.ToggleRow(
+          text = stringResource(R.string.ChatsSettingsFragment__disable_emoji_starter),
+          label = stringResource(R.string.ChatsSettingsFragment__disable_colon_emoji_suggestions),
+          enabled = state.isRegisteredAndUpToDate(),
+          checked = state.disableEmojiStarter,
+          onCheckChanged = callbacks::onDisableEmojiStarterChanged
+        )
+      }
     }
   }
 }
@@ -213,6 +228,7 @@ private fun ChatsSettingsScreenPreview() {
         keepMutedChatsArchived = true,
         useSystemEmoji = false,
         enterKeySends = false,
+        disableEmojiStarter = false,
         localBackupsEnabled = true,
         folderCount = 1,
         userUnregistered = false,

@@ -28,6 +28,7 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
       keepMutedChatsArchived = SignalStore.settings.shouldKeepMutedChatsArchived(),
       useSystemEmoji = SignalStore.settings.isPreferSystemEmoji,
       enterKeySends = SignalStore.settings.isEnterKeySends,
+      disableEmojiStarter = SignalStore.settings.isEmojiStarterDisabled,
       localBackupsEnabled = SignalStore.settings.isBackupEnabled && BackupUtil.canUserAccessBackupDirectory(AppDependencies.application),
       folderCount = 0,
       userUnregistered = TextSecurePreferences.isUnauthorizedReceived(AppDependencies.application) || !SignalStore.account.isRegistered,
@@ -64,6 +65,11 @@ class ChatsSettingsViewModel @JvmOverloads constructor(
   fun setEnterKeySends(enabled: Boolean) {
     store.update { it.copy(enterKeySends = enabled) }
     SignalStore.settings.isEnterKeySends = enabled
+  }
+
+  fun setDisableEmojiStarter(enabled: Boolean) {
+    store.update { it.copy(disableEmojiStarter = enabled) }
+    SignalStore.settings.isEmojiStarterDisabled = enabled
   }
 
   fun refresh() {
