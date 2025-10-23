@@ -973,7 +973,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
   inner class ToolbarCallback : MainToolbarCallback {
 
     override fun onNewGroupClick() {
-      startActivity(CreateGroupActivity.newIntent(this@MainActivity))
+      startActivity(CreateGroupActivity.createIntent(this@MainActivity))
     }
 
     override fun onClearPassphraseClick() {

@@ -11,8 +11,8 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.compose.setContent
-import androidx.activity.result.ActivityResult
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResult
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.animation.AnimatedContent
@@ -75,11 +75,11 @@ import java.text.NumberFormat
 /**
  * Allows creation of a Signal group by selecting from a list of recipients.
  */
-class CreateGroupActivityV2 : PassphraseRequiredActivity() {
+class CreateGroupActivity : PassphraseRequiredActivity() {
   companion object {
     @JvmStatic
     fun createIntent(context: Context): Intent {
-      return Intent(context, CreateGroupActivityV2::class.java)
+      return Intent(context, CreateGroupActivity::class.java)
     }
   }
 

@@ -128,7 +128,7 @@ private fun NewConversationScreen(
   val callbacks = remember {
     object : UiCallbacks {
       override fun onSearchQueryChanged(query: String) = viewModel.onSearchQueryChanged(query)
-      override fun onCreateNewGroup() = createGroupLauncher.launch(CreateGroupActivity.newIntent(context))
+      override fun onCreateNewGroup() = createGroupLauncher.launch(CreateGroupActivity.createIntent(context))
       override fun onFindByUsername() = findByLauncher.launch(FindByMode.USERNAME)
       override fun onFindByPhoneNumber() = findByLauncher.launch(FindByMode.PHONE_NUMBER)
       override suspend fun shouldAllowSelection(id: RecipientId?, phone: PhoneNumber?): Boolean = true

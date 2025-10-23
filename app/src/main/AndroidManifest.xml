@@ -1055,12 +1055,8 @@
               android:configChanges="touchscreen|keyboard|keyboardHidden|orientation|screenLayout|screenSize"
               android:exported="false"/>
 
-    <activity android:name=".groups.ui.creategroup.CreateGroupActivity"
-              android:theme="@style/Theme.Signal.DayNight.NoActionBar"
-              android:exported="false"/>
-
     <activity
-        android:name=".groups.ui.creategroup.CreateGroupActivityV2"
+        android:name=".groups.ui.creategroup.CreateGroupActivity"
         android:exported="false"
         android:theme="@style/Signal.DayNight.NoActionBar" />
 
