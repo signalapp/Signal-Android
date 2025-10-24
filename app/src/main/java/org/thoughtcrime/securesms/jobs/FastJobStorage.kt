@@ -356,10 +356,15 @@ class FastJobStorage(private val jobDatabase: JobDatabase) : JobStorage {
     mostEligibleJobForQueue.keys.removeAll(affectedQueues)
 
     for (queue in affectedQueues) {
-      jobDatabase.getMostEligibleJobInQueue(queue)?.let {
-        jobSpecCache[it.id] = it
-        placeJobInEligibleList(it.toMinimalJobSpec())
-      }
+      minimalJobs
+        .filter { it.queueKey == queue }
+        .minWithOrNull(
+          compareByDescending<MinimalJobSpec> { it.globalPriority }
+            .thenByDescending { it.queuePriority }
+            .thenBy { it.createTime }
+            .thenBy { it.id }
+        )
+        ?.let { placeJobInEligibleList(it) }
     }
 
     for (jobId in ids) {

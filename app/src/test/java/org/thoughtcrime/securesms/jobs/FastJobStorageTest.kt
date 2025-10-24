@@ -864,6 +864,28 @@ class FastJobStorageTest {
   }
 
   @Test
+  fun `deleteJobs - memory-only job remains in mostEligibleJobForQueue after deleting other job in same queue`() {
+    // This test targets a case where we weren't handling in-memory jobs when calculating mostEligiibleForJobQueue after a deletion
+    val memoryJob = fullSpec(id = "memory-job", factoryKey = "f1", queueKey = "q1", isMemoryOnly = true, globalPriority = 10)
+    val durableJob = fullSpec(id = "durable-job", factoryKey = "f2", queueKey = "q1", isMemoryOnly = false, globalPriority = 5)
+
+    val database = mockDatabase(listOf(memoryJob, durableJob))
+    val subject = FastJobStorage(database)
+    subject.init()
+
+    // Verify memory job is initially the most eligible
+    val initialNext = subject.getNextEligibleJob(System.currentTimeMillis(), NO_PREDICATE)
+    assertThat(initialNext).isNotNull().prop(JobSpec::id).isEqualTo("memory-job")
+
+    // Delete the durable job
+    subject.deleteJobs(listOf("durable-job"))
+
+    // The memory job should still be available as the most eligible
+    val afterDelete = subject.getNextEligibleJob(System.currentTimeMillis(), NO_PREDICATE)
+    assertThat(afterDelete).isNotNull().prop(JobSpec::id).isEqualTo("memory-job")
+  }
+
+  @Test
   fun `deleteJobs - deletes all relevant pieces`() {
     val subject = FastJobStorage(mockDatabase(DataSet1.FULL_SPECS))
     subject.init()
@@ -1439,8 +1461,8 @@ class FastJobStorageTest {
     return mock
   }
 
-  private fun fullSpec(id: String, factoryKey: String, queueKey: String? = null): FullSpec {
-    return FullSpec(jobSpec(id, factoryKey, queueKey), emptyList(), emptyList())
+  private fun fullSpec(id: String, factoryKey: String, queueKey: String? = null, isMemoryOnly: Boolean = false, globalPriority: Int = 0): FullSpec {
+    return FullSpec(jobSpec(id, factoryKey, queueKey, isMemoryOnly = isMemoryOnly, globalPriority = globalPriority), emptyList(), emptyList())
   }
 
   private fun jobSpec(
