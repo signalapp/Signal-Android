@@ -23,6 +23,7 @@ import android.view.inputmethod.InputConnection;
 import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.VisibleForTesting;
 import androidx.core.content.ContextCompat;
 import androidx.core.view.inputmethod.EditorInfoCompat;
 import androidx.core.view.inputmethod.InputConnectionCompat;
@@ -477,16 +478,20 @@ public class ComposeText extends EmojiEditText {
   /**
    * Return true if we think the user may be inputting a time.
    */
-  private static boolean couldBeTimeEntry(@NonNull CharSequence text, int startIndex) {
+  @VisibleForTesting
+  static boolean couldBeTimeEntry(@NonNull CharSequence text, int startIndex) {
     if (startIndex <= 0 || startIndex + 1 >= text.length()) {
       return false;
     }
 
     int startOfToken = startIndex;
-    while (startOfToken > 0 && !Character.isWhitespace(text.charAt(startOfToken))) {
-      startOfToken--;
+    while (startOfToken > 0) {
+      int prevIndex = startOfToken - 1;
+      if (Character.isWhitespace(text.charAt(prevIndex))) {
+        break;
+      }
+      startOfToken = prevIndex;
     }
-    startOfToken++;
 
     int endOfToken = startIndex;
     while (endOfToken < text.length() && !Character.isWhitespace(text.charAt(endOfToken))) {
