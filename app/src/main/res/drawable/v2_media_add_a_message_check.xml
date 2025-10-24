@@ -5,7 +5,7 @@
             <size
                 android:width="32dp"
                 android:height="32dp" />
-            <solid android:color="?attr/colorPrimary" />
+            <solid android:color="@color/core_ultramarine" />
             <padding
                 android:bottom="4dp"
                 android:left="4dp"
