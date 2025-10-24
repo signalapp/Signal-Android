@@ -237,7 +237,7 @@ public class ComposeText extends EmojiEditText {
       return null;
     }
 
-    EditorInfoCompat.setContentMimeTypes(editorInfo, new String[] { "image/jpeg", "image/png", "image/gif" });
+    EditorInfoCompat.setContentMimeTypes(editorInfo, new String[] { "image/jpeg", "image/png", "image/gif", "image/webp", "image/heic", "image/heif", "image/avif" });
     return InputConnectionCompat.createWrapper(inputConnection, editorInfo, new CommitContentListener(mediaListener));
   }
 
