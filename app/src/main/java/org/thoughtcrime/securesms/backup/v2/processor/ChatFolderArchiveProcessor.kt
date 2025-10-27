@@ -113,10 +113,10 @@ object ChatFolderArchiveProcessor {
 private fun ChatFolderRecord.toBackupFrame(includedRecipientIds: List<Long>, excludedRecipientIds: List<Long>): Frame {
   val chatFolder = ChatFolderProto(
     name = this.name,
-    showOnlyUnread = this.showUnread,
-    showMutedChats = this.showMutedChats,
-    includeAllIndividualChats = this.showIndividualChats,
-    includeAllGroupChats = this.showGroupChats,
+    showOnlyUnread = this.showUnread && this.folderType != ChatFolderRecord.FolderType.ALL,
+    showMutedChats = this.showMutedChats || this.folderType == ChatFolderRecord.FolderType.ALL,
+    includeAllIndividualChats = this.showIndividualChats || this.folderType == ChatFolderRecord.FolderType.ALL,
+    includeAllGroupChats = this.showGroupChats || this.folderType == ChatFolderRecord.FolderType.ALL,
     folderType = when (this.folderType) {
       ChatFolderRecord.FolderType.ALL -> ChatFolderProto.FolderType.ALL
       ChatFolderRecord.FolderType.CUSTOM -> ChatFolderProto.FolderType.CUSTOM
