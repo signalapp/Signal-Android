@@ -176,6 +176,10 @@ enum class WindowSizeClass(
     }
 
     private fun getSizeClassForOrientationAndSystemSizeClass(orientation: Int, windowSizeClass: androidx.window.core.layout.WindowSizeClass): WindowSizeClass {
+      if (windowSizeClass.windowWidthSizeClass == WindowWidthSizeClass.COMPACT || windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT) {
+        return getCompactSizeClassForOrientation(orientation)
+      }
+
       return when (orientation) {
         Configuration.ORIENTATION_PORTRAIT, Configuration.ORIENTATION_UNDEFINED, Configuration.ORIENTATION_SQUARE -> {
           when (windowSizeClass.windowWidthSizeClass) {
@@ -189,13 +193,7 @@ enum class WindowSizeClass(
         Configuration.ORIENTATION_LANDSCAPE -> {
           when (windowSizeClass.windowWidthSizeClass) {
             WindowWidthSizeClass.COMPACT -> COMPACT_LANDSCAPE
-            WindowWidthSizeClass.MEDIUM -> {
-              if (windowSizeClass.windowHeightSizeClass == WindowHeightSizeClass.COMPACT) {
-                COMPACT_LANDSCAPE
-              } else {
-                MEDIUM_LANDSCAPE
-              }
-            }
+            WindowWidthSizeClass.MEDIUM -> MEDIUM_LANDSCAPE
             WindowWidthSizeClass.EXPANDED -> EXTENDED_LANDSCAPE
             else -> error("Unsupported.")
           }
