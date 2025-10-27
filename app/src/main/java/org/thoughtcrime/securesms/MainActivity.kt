@@ -429,6 +429,12 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           }
         }
 
+        LaunchedEffect(paneExpansionState.currentAnchor, detailAndListAnchor) {
+          if (paneExpansionState.currentAnchor == null) {
+            paneExpansionState.animateTo(detailAndListAnchor)
+          }
+        }
+
         LaunchedEffect(paneExpansionState.currentAnchor, detailOnlyAnchor, listOnlyAnchor, detailAndListAnchor) {
           val isFullScreenPane = when (paneExpansionState.currentAnchor) {
             listOnlyAnchor, detailOnlyAnchor -> {
