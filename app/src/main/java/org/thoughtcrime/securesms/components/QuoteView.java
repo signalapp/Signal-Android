@@ -449,7 +449,7 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
         attachmentVideoOVerlayStub.setVisibility(VISIBLE);
       }
 
-      requestManager.load(new DecryptableUri(slide.getUri()))
+      requestManager.load(slide.getUri() != null ? new DecryptableUri(slide.getUri()) : null)
                     .centerCrop()
                     .override(thumbWidth, thumbHeight)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
