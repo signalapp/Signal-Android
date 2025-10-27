@@ -366,7 +366,8 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         val listOnlyAnchor = PaneExpansionAnchor.Offset.fromEnd(contentLayoutData.detailPaddingEnd)
 
         val paneExpansionState = rememberPaneExpansionState(
-          anchors = listOf(detailOnlyAnchor, detailAndListAnchor, listOnlyAnchor)
+          anchors = listOf(detailOnlyAnchor, detailAndListAnchor, listOnlyAnchor),
+          initialAnchoredIndex = 1
         )
 
         val chatNavGraphState = ChatNavGraphState.remember(windowSizeClass)
@@ -426,12 +427,6 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         BackHandler(paneExpansionState.currentAnchor == detailOnlyAnchor) {
           scope.launch {
             paneExpansionState.animateTo(listOnlyAnchor)
-          }
-        }
-
-        LaunchedEffect(paneExpansionState.currentAnchor, detailAndListAnchor) {
-          if (paneExpansionState.currentAnchor == null) {
-            paneExpansionState.animateTo(detailAndListAnchor)
           }
         }
 
