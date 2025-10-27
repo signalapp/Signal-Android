@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.DialogFragment;
 
 import org.thoughtcrime.securesms.R;
+import org.thoughtcrime.securesms.util.WindowUtil;
 
 /**
  * Base dialog fragment for rendering as a full screen dialog with animation
@@ -41,6 +42,12 @@ public abstract class FullScreenDialogFragment extends DialogFragment {
 
     toolbar.setNavigationOnClickListener(v -> onNavigateUp());
     return view;
+  }
+
+  @Override
+  public void onResume() {
+    super.onResume();
+    WindowUtil.initializeScreenshotSecurity(requireContext(), requireDialog().getWindow());
   }
 
   protected void onNavigateUp() {
