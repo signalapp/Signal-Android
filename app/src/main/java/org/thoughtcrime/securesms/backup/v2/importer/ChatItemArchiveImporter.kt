@@ -84,6 +84,7 @@ import org.whispersystems.signalservice.api.push.ServiceId
 import org.whispersystems.signalservice.api.util.UuidUtil
 import org.whispersystems.signalservice.internal.push.DataMessage
 import java.math.BigInteger
+import java.sql.SQLException
 import java.util.Optional
 import java.util.UUID
 import org.thoughtcrime.securesms.backup.v2.proto.GiftBadge as BackupGiftBadge
@@ -226,12 +227,17 @@ class ChatItemArchiveImporter(
     }
 
     var messageInsertIndex = 0
-    SqlUtil.buildBulkInsert(MessageTable.TABLE_NAME, MESSAGE_COLUMNS, buffer.messages.map { it.contentValues }).forEach { query ->
-      db.rawQuery("${query.where} RETURNING ${MessageTable.ID}", query.whereArgs).forEach { cursor ->
-        val finalMessageId = cursor.requireLong(MessageTable.ID)
-        val relatedInsert = buffer.messages[messageInsertIndex++]
-        relatedInsert.followUp?.invoke(finalMessageId)
+    try {
+      SqlUtil.buildBulkInsert(MessageTable.TABLE_NAME, MESSAGE_COLUMNS, buffer.messages.map { it.contentValues }, onConflict = "IGNORE").forEach { query ->
+        db.rawQuery("${query.where} RETURNING ${MessageTable.ID}", query.whereArgs).forEach { cursor ->
+          val finalMessageId = cursor.requireLong(MessageTable.ID)
+          val relatedInsert = buffer.messages[messageInsertIndex++]
+          relatedInsert.followUp?.invoke(finalMessageId)
+        }
       }
+    } catch (e: SQLException) {
+      Log.w(TAG, "Failed to bulk-insert message! Trying one at at time.", e)
+      performIndividualMessageInserts(buffer.messages)
     }
 
     SqlUtil.buildBulkInsert(ReactionTable.TABLE_NAME, REACTION_COLUMNS, buffer.reactions).forEach {
@@ -247,6 +253,18 @@ class ChatItemArchiveImporter(
     buffer.reset()
 
     return true
+  }
+
+  private fun performIndividualMessageInserts(messageInserts: List<MessageInsert>) {
+    for (message in messageInserts) {
+      val values = message.contentValues
+      try {
+        db.insert(MessageTable.TABLE_NAME, SQLiteDatabase.CONFLICT_IGNORE, values)
+        message.followUp?.invoke(messageId - 1)
+      } catch (e: SQLException) {
+        Log.w(TAG, "Failed to insert message with timestamp ${message.contentValues.get(MessageTable.DATE_SENT)}. Must skip.", e)
+      }
+    }
   }
 
   private fun ChatItem.toMessageInsert(fromRecipientId: RecipientId, chatRecipientId: RecipientId, threadId: Long): MessageInsert {
@@ -1260,8 +1278,7 @@ class ChatItemArchiveImporter(
 
   private class MessageInsert(
     val contentValues: ContentValues,
-    val followUp: ((Long) -> Unit)?,
-    val edits: List<MessageInsert>? = null
+    val followUp: ((Long) -> Unit)?
   )
 
   private class Buffer(
