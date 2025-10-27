@@ -182,9 +182,9 @@ open class InsetAwareConstraintLayout @JvmOverloads constructor(
       }
     } else if (!overridingKeyboard) {
       if (!keyboardAnimator.animating) {
-        keyboardGuideline?.setGuidelineEnd(windowInsets.bottom)
+        keyboardGuideline?.setGuidelineEnd(navigationBar)
       } else {
-        keyboardAnimator.endingGuidelineEnd = windowInsets.bottom
+        keyboardAnimator.endingGuidelineEnd = navigationBar
       }
     }
 
