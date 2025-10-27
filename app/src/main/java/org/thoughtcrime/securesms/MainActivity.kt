@@ -30,7 +30,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.BoxWithConstraintsScope
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
@@ -474,7 +473,6 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
           navigator = wrappedNavigator,
           modifier = chatNavGraphState.writeContentToGraphicsLayer(),
           paneExpansionState = paneExpansionState,
-          contentWindowInsets = WindowInsets(),
           bottomNavContent = {
             if (isNavigationBarVisible) {
               Column(

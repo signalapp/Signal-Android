@@ -22,7 +22,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.LocalMinimumInteractiveComponentSize
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.ScaffoldDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.adaptive.ExperimentalMaterial3AdaptiveApi
 import androidx.compose.material3.adaptive.currentWindowAdaptiveInfo
@@ -230,7 +229,6 @@ fun AppScaffold(
   paneExpansionState: PaneExpansionState = rememberPaneExpansionState(),
   paneExpansionDragHandle: (@Composable ThreePaneScaffoldScope.(PaneExpansionState) -> Unit)? = null,
   snackbarHost: @Composable () -> Unit = {},
-  contentWindowInsets: WindowInsets = ScaffoldDefaults.contentWindowInsets,
   animatorFactory: AppScaffoldAnimationStateFactory = AppScaffoldAnimationStateFactory.Default
 ) {
   val isForcedCompact = WindowSizeClass.checkForcedCompact()
@@ -243,7 +241,6 @@ fun AppScaffold(
       navRailContent = navRailContent,
       bottomNavContent = bottomNavContent,
       windowSizeClass = windowSizeClass,
-      contentWindowInsets = contentWindowInsets,
       modifier = modifier
     )
 
@@ -255,7 +252,7 @@ fun AppScaffold(
 
   Scaffold(
     containerColor = Color.Transparent,
-    contentWindowInsets = contentWindowInsets,
+    contentWindowInsets = WindowInsets(),
     topBar = topBarContent,
     snackbarHost = snackbarHost,
     modifier = modifier
@@ -299,8 +296,7 @@ fun AppScaffold(
               listContent = secondaryContent,
               navRailContent = navRailContent,
               bottomNavContent = bottomNavContent,
-              windowSizeClass = windowSizeClass,
-              contentWindowInsets = contentWindowInsets
+              windowSizeClass = windowSizeClass
             )
           }
         }
@@ -356,13 +352,12 @@ private fun ListAndNavigation(
   bottomNavContent: @Composable () -> Unit,
   snackbarHost: @Composable () -> Unit = {},
   windowSizeClass: WindowSizeClass,
-  contentWindowInsets: WindowInsets,
   modifier: Modifier = Modifier
 ) {
   Scaffold(
     containerColor = Color.Transparent,
     topBar = topBarContent,
-    contentWindowInsets = contentWindowInsets,
+    contentWindowInsets = WindowInsets(),
     snackbarHost = snackbarHost,
     modifier = modifier
   ) { paddingValues ->
