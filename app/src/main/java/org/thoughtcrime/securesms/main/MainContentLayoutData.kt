@@ -83,7 +83,7 @@ data class MainContentLayoutData(
           },
           partitionWidth = when {
             !windowSizeClass.isSplitPane() -> 0.dp
-            windowSizeClass.isExtended() -> 16.dp
+            windowSizeClass.isExtended() -> 24.dp
             else -> 13.dp
           },
           listPaddingStart = when {

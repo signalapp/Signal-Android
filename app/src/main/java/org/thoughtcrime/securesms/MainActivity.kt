@@ -363,7 +363,7 @@ class MainActivity : PassphraseRequiredActivity(), VoiceNoteMediaControllerOwner
         val detailOffset = if (mainToolbarState.mode == MainToolbarMode.SEARCH || mainToolbarState.mode == MainToolbarMode.ACTION_MODE) 0.dp else 80.dp
         val detailOnlyAnchor = PaneExpansionAnchor.Offset.fromStart(detailOffset + contentLayoutData.listPaddingStart + halfPartitionWidth)
         val detailAndListAnchor = PaneExpansionAnchor.Offset.fromStart(listPaneWidth + halfPartitionWidth)
-        val listOnlyAnchor = PaneExpansionAnchor.Offset.fromEnd(contentLayoutData.detailPaddingEnd - halfPartitionWidth)
+        val listOnlyAnchor = PaneExpansionAnchor.Offset.fromEnd(contentLayoutData.detailPaddingEnd)
 
         val paneExpansionState = rememberPaneExpansionState(
           anchors = listOf(detailOnlyAnchor, detailAndListAnchor, listOnlyAnchor)
