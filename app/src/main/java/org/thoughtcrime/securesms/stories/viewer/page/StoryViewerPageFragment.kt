@@ -31,7 +31,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.text.util.LinkifyCompat
-import androidx.core.view.GestureDetectorCompat
 import androidx.core.view.animation.PathInterpolatorCompat
 import androidx.core.view.doOnNextLayout
 import androidx.fragment.app.DialogFragment
@@ -252,7 +251,18 @@ class StoryViewerPageFragment :
       viewModel::goToPreviousPost
     )
 
-    val gestureDetector = GestureDetectorCompat(
+    val parentListener = GestureDetector(
+      requireContext(),
+      ParentGestureListener(
+        singleTapHandler = singleTapHandler
+      )
+    )
+
+    storyPageContainer.setOnTouchListener { v, event ->
+      parentListener.onTouchEvent(event)
+    }
+
+    val gestureDetector = GestureDetector(
       requireContext(),
       StoryGestureListener(
         cardWrapper,
@@ -1360,6 +1370,19 @@ class StoryViewerPageFragment :
           sharedViewModel.setIsChildScrolling(false)
         }
       })
+    }
+  }
+
+  private class ParentGestureListener(
+    private val singleTapHandler: SingleTapHandler
+  ) : GestureDetector.SimpleOnGestureListener() {
+    override fun onDown(e: MotionEvent): Boolean {
+      return true
+    }
+
+    override fun onSingleTapUp(e: MotionEvent): Boolean {
+      singleTapHandler.onActionUp(e)
+      return true
     }
   }
 
