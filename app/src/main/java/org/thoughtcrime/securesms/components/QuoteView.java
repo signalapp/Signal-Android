@@ -454,7 +454,7 @@ public class QuoteView extends ConstraintLayout implements RecipientForeverObser
                     .override(thumbWidth, thumbHeight)
                     .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                     .into(thumbnailView);
-    } else if (MediaUtil.isAudioType(quoteTargetContentType)) {
+    } else if (MediaUtil.isAudioType(quoteTargetContentType) || MediaUtil.isLongTextType(quoteTargetContentType)) {
       thumbnailView.setVisibility(GONE);
       attachmentNameViewStub.setVisibility(GONE);
 
