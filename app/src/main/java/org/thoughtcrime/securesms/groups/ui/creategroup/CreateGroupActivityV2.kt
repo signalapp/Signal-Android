@@ -220,9 +220,7 @@ private fun CreateGroupRecipientPicker(
         findByUsername = callbacks,
         findByPhoneNumber = callbacks
       ),
-      modifier = modifier
-        .fillMaxSize()
-        .padding(vertical = 12.dp)
+      modifier = modifier.fillMaxSize()
     )
 
     AnimatedContent(

@@ -31,7 +31,6 @@ fun ScreenTitlePane(
       .padding(
         start = if (windowSizeClass.isExtended()) 80.dp else 20.dp,
         end = 20.dp,
-        top = 12.dp,
         bottom = 12.dp
       )
   )

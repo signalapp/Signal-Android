@@ -364,9 +364,7 @@ private fun NewConversationRecipientPicker(
       findByUsername = callbacks,
       findByPhoneNumber = callbacks
     ),
-    modifier = modifier
-      .fillMaxSize()
-      .padding(vertical = 12.dp)
+    modifier = modifier.fillMaxSize()
   )
 }
 
